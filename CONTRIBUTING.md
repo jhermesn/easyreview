@@ -42,3 +42,17 @@ The entry holds only what you put in it. The page shows your public GitHub name,
 ## Content and code
 
 Start with [`AGENTS.md`](AGENTS.md): it lists the docs in [`docs/`](docs/) and when each one applies. Every fact comes from an AWS documentation page with its exact URL. Run the checks in [`docs/tech.md`](docs/tech.md#before-you-finish) before you open a pull request.
+
+Looking for something to pick up? Issues labelled [`good first issue`](https://github.com/jhermesn/easyreview/labels/good%20first%20issue) are small and self-contained; [`help wanted`](https://github.com/jhermesn/easyreview/labels/help%20wanted) and [`certification`](https://github.com/jhermesn/easyreview/labels/certification) are bigger. Comment on an issue before you start, so two people don't write the same section.
+
+## Labels
+
+| Label | Meaning |
+|---|---|
+| `triage` | New, not yet looked at by a maintainer |
+| `bug`, `content`, `enhancement`, `documentation`, `accessibility` | What kind of change it needs |
+| `certification` | Coverage for a coming-soon exam or a new exam version |
+| `good first issue`, `help wanted` | Open for contributors |
+| `content-health` | Opened by the weekly content check |
+| `dependencies` | Dependency updates from Dependabot |
+| `question`, `duplicate`, `invalid`, `wontfix` | How an issue was closed or answered |

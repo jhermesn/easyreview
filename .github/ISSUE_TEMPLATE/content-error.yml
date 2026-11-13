@@ -1,6 +1,6 @@
 name: Content error
 description: A fact, flashcard, diagram or note is wrong, outdated or unclear.
-labels: [content]
+labels: [content, triage]
 body:
   - type: input
     id: page

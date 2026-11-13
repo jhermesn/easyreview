@@ -1,6 +1,6 @@
 name: Site bug
 description: Something on the site doesn't work or looks broken.
-labels: [bug]
+labels: [bug, triage]
 body:
   - type: input
     id: page

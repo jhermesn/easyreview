@@ -1,15 +1,23 @@
 version: 2
+# New releases wait 14 days before Dependabot proposes them, so a compromised or broken release is
+# usually caught upstream first. Security updates are never delayed.
 updates:
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 14
     groups:
       astro:
         patterns: ['astro', '@astrojs/*']
+    labels: [dependencies]
     open-pull-requests-limit: 5
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 14
+    labels: [dependencies]
     open-pull-requests-limit: 5
