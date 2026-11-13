@@ -9,12 +9,18 @@
     "build": "node scripts/sync-aws-icons.mjs --check && astro build",
     "preview": "astro preview",
     "lint": "node scripts/lint-content.mjs",
-    "lint:links": "lychee 'src/content/sections/**/*.md' 'src/content/glossary/*.json'"
+    "lint:links": "lychee 'src/content/sections/**/*.md' 'src/content/glossary/*.json'",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "0.4.7",
     "@astrojs/sitemap": "3.7.4",
     "astro": "7.4.7",
     "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "vitest": "4.1.12"
   }
 }
