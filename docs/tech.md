@@ -9,6 +9,8 @@ Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.co
 | `npm run dev` | Dev server at http://localhost:4321/easyreview/, unpublished sections included |
 | `npm run build` | Static site in `dist/`. Fails on schema errors and on diagram icons that were not copied; warns on coverage gaps |
 | `npm run lint` | Section checks the schema can't express: every card cites facts that exist, the body has all its parts, diagrams don't overlap or leave the viewBox. Pass file paths to check only those |
+| `npm test` | Unit tests (Vitest) for the logic behind the pages: spaced repetition, diagram lint, progress codes, Who passed tiers. Tests sit next to the code as `src/lib/<name>.test.ts` |
+| `npm run test:e2e` | Browser smoke test (Playwright) of the built site on desktop and phone: run `npm run build` first. The first run needs `npx playwright install chromium` |
 | `npm run lint:links` | Every fact and glossary source URL still resolves. Needs [lychee](https://lychee.cli.rs) installed |
 
 ## Environment
@@ -22,7 +24,7 @@ Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.co
 
 ## Before you finish
 
-1. `npm run lint` and `npm run build`, with no new `[coverage <cert>]` warnings. CI runs both on every pull request, plus `scripts/check-card-ids.mjs`, which fails if a card id from the base branch is gone.
+1. `npm run lint`, `npm test` and `npm run build`, with no new `[coverage <cert>]` warnings, then `npm run test:e2e` after UI changes. CI runs all of them on every pull request, plus `scripts/check-card-ids.mjs`, which fails if a card id from the base branch is gone.
 2. `STRICT_COVERAGE=1 npm run build` passes before a cert is called complete. An unpublished section counts as a gap.
 3. For UI changes, look at the page in a browser at desktop width and at about 400 px.
 

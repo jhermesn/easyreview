@@ -16,6 +16,7 @@ A section is published once it has facts and every card cites facts that exist i
 docs/                      project docs for contributors and agents (index in AGENTS.md)
 docs/assets/               README screenshots and icons
 scripts/                   section lint, card id check and the content-health watchers
+e2e/                       browser smoke test (Playwright)
 src/
   content.config.ts        Zod schemas for units, sections and glossary
   content/units/           one file per unit
