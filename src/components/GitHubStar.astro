@@ -1,0 +1,20 @@
+---
+// "Star on GitHub" with the live count, like most open source sites. The count is read at build time.
+import SocialIcon from './SocialIcon.astro';
+import { REPO_URL, compactCount, starCount } from '../lib/repo';
+
+interface Props { class?: string }
+const stars = await starCount();
+const label = stars === undefined ? 'Star Easy Review on GitHub' : `Star Easy Review on GitHub (${stars} ${stars === 1 ? 'star' : 'stars'})`;
+---
+<a class:list={['star', Astro.props.class]} href={REPO_URL} target="_blank" rel="noopener" title={label} aria-label={label}>
+  <SocialIcon name="github" size={15} />
+  <span>Star</span>
+  {stars !== undefined && <b>{compactCount(stars)}</b>}
+</a>
+
+<style>
+  .star { display: inline-flex; align-items: center; gap: 0.4rem; height: 2.2rem; padding: 0 0.7rem; border: 1px solid var(--ink-700); color: var(--ink-300); font-size: 0.8rem; text-decoration: none; }
+  .star:hover { color: var(--ink-100); border-color: var(--amber); }
+  .star b { padding-left: 0.45rem; border-left: 1px solid var(--ink-700); color: var(--ink-100); }
+</style>
