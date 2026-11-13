@@ -157,8 +157,8 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
           <div class="foot-row">
             <a class="brand" href={withBase('/')}><Logo size={20} /><span>Easy Review</span></a>
             <nav aria-label="Footer">
-              <a href={withBase('/#certs')}>Certifications</a>
-              <a href={withBase('/passed')}>Who passed</a>
+              {here('/') !== 'page' && <a href={withBase('/#certs')}>Certifications</a>}
+              {here('/') !== 'page' && <a href={withBase('/passed')}>Who passed</a>}
               <a href={withBase('/search')}>Search</a>
               <a href="https://aws.amazon.com/certification/" target="_blank" rel="noopener">AWS Certification <Icon name="external" size={12} /></a>
             </nav>
