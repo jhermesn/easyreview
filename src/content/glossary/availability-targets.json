@@ -1,0 +1,184 @@
+[
+  {
+    "term": "Availability",
+    "aliases": [],
+    "definition": "The percentage of a measurement period during which a workload performs its agreed function successfully.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability"
+  },
+  {
+    "term": "Downtime budget",
+    "aliases": [
+      "allowed downtime"
+    ],
+    "definition": "The unavailability compatible with a target over its measurement period.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability"
+  },
+  {
+    "term": "Nines",
+    "aliases": [],
+    "definition": "Shorthand for an availability percentage, such as five nines meaning 99.999%.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability"
+  },
+  {
+    "term": "Service-level agreement",
+    "aliases": [
+      "SLA"
+    ],
+    "definition": "A service commitment that defines measurement and remedies if it is not met.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html#availability-with-dependencies"
+  },
+  {
+    "term": "Service-level objective",
+    "aliases": [
+      "SLO"
+    ],
+    "definition": "A target level of service used as an availability goal.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html#availability-with-dependencies"
+  },
+  {
+    "term": "Service credit",
+    "aliases": [],
+    "definition": "A credit applied to eligible service charges under an SLA remedy.",
+    "source": "https://aws.amazon.com/compute/sla/"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An isolated location within an AWS Region.",
+    "source": "https://aws.amazon.com/compute/sla/"
+  },
+  {
+    "term": "Recovery time objective",
+    "aliases": [
+      "RTO"
+    ],
+    "definition": "The maximum acceptable delay from service interruption to restoration.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/disaster-recovery-dr-objectives.html#disaster-recovery-dr-objectives"
+  },
+  {
+    "term": "Recovery point objective",
+    "aliases": [
+      "RPO"
+    ],
+    "definition": "The maximum acceptable time since the last recoverable data point.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/disaster-recovery-dr-objectives.html#disaster-recovery-dr-objectives"
+  },
+  {
+    "term": "Authoritative DNS",
+    "aliases": [],
+    "definition": "The DNS service that answers using the records held for a domain.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/route-53-concepts.html#route-53-concepts-domain-name-system-dns"
+  },
+  {
+    "term": "Hosted zone",
+    "aliases": [],
+    "definition": "A container for DNS records describing traffic routing for a domain and its subdomains.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html#hosted-zones-working-with"
+  },
+  {
+    "term": "Hard dependency",
+    "aliases": [],
+    "definition": "A component whose failure stops the workload from performing its function.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html#availability-with-dependencies"
+  },
+  {
+    "term": "Soft dependency",
+    "aliases": [],
+    "definition": "A component whose failure the application can tolerate or compensate for.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html#availability-with-dependencies"
+  },
+  {
+    "term": "Redundancy",
+    "aliases": [
+      "spare"
+    ],
+    "definition": "Alternative components that keep a workload operating when another component fails.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-redundancy.html#availability-with-redundancy"
+  },
+  {
+    "term": "Failure boundary",
+    "aliases": [
+      "failure domain"
+    ],
+    "definition": "A scope within which multiple resources can fail together.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-redundancy.html#availability-with-redundancy"
+  },
+  {
+    "term": "Mean time between failures",
+    "aliases": [
+      "MTBF"
+    ],
+    "definition": "The average interval between component failures.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability"
+  },
+  {
+    "term": "Mean time to recover",
+    "aliases": [
+      "MTTR"
+    ],
+    "definition": "The average time needed to recover after failure.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability"
+  },
+  {
+    "term": "Domain Name System",
+    "aliases": [
+      "DNS"
+    ],
+    "definition": "The system that returns information about resources associated with domain names.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/route-53-concepts.html#route-53-concepts-domain-name-system-dns"
+  },
+  {
+    "term": "Name server",
+    "aliases": [
+      "authoritative name server"
+    ],
+    "definition": "A server that answers DNS queries with information about domain names.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/route-53-concepts.html#route-53-concepts-domain-name-system-dns"
+  },
+  {
+    "term": "Static stability",
+    "aliases": [],
+    "definition": "The ability to keep operating through failure using resources and configuration prepared beforehand.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/static-stability.html#static-stability"
+  },
+  {
+    "term": "Control plane",
+    "aliases": [],
+    "definition": "The part of a service that creates, changes, or deletes resources.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/control-planes-and-data-planes.html#control-planes-and-data-planes"
+  },
+  {
+    "term": "Data plane",
+    "aliases": [],
+    "definition": "The part of a service that carries out work using existing resources.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/control-planes-and-data-planes.html#control-planes-and-data-planes"
+  },
+  {
+    "term": "Quota headroom",
+    "aliases": [
+      "quota buffer"
+    ],
+    "definition": "Unused quota that allows replacement resources to coexist with resources affected by failure.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_manage_service_limits_suff_buffer_limits.html#implementation-guidance"
+  },
+  {
+    "term": "Subnet",
+    "aliases": [],
+    "definition": "A range of network addresses allocated within a virtual private cloud.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_planning_network_topology_ip_subnet_allocation.html#rel_planning_network_topology_ip_subnet_allocation"
+  },
+  {
+    "term": "Block storage",
+    "aliases": [],
+    "definition": "Storage presented to an instance as a device used like a disk.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes.html#ebs-volumes"
+  },
+  {
+    "term": "Fault injection",
+    "aliases": [],
+    "definition": "Deliberately introducing failures to observe how a workload responds.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_testing_resiliency_failure_injection_resiliency.html#rel_testing_resiliency_failure_injection_resiliency"
+  }
+]

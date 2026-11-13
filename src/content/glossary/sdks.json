@@ -1,0 +1,50 @@
+[
+  {
+    "term": "credential provider chain",
+    "aliases": ["provider chain"],
+    "definition": "An ordered search of credential sources that stops when valid credentials are found.",
+    "source": "https://docs.aws.amazon.com/sdkref/latest/guide/standardized-credentials.html#credentialProviderChain"
+  },
+  {
+    "term": "pagination",
+    "aliases": ["paginator"],
+    "definition": "Pagination divides a large result into pages retrieved by separate requests.",
+    "source": "https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/pagination.html#pagination"
+  },
+  {
+    "term": "jitter",
+    "aliases": [],
+    "definition": "Jitter randomizes retry delays to spread out requests from multiple clients.",
+    "source": "https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html#why-jitter-matters"
+  },
+  {
+    "term": "instance metadata service",
+    "aliases": ["IMDS"],
+    "definition": "An EC2 instance endpoint provides instance data and can supply credentials for an attached role.",
+    "source": "https://docs.aws.amazon.com/sdkref/latest/guide/feature-imds-credentials.html#feature-imds-credentials"
+  },
+  {
+    "term": "IAM role",
+    "aliases": ["role"],
+    "definition": "An IAM role is an identity with permissions that provides temporary credentials when assumed.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles"
+  },
+  {
+    "term": "throttling",
+    "aliases": ["throttling error"],
+    "definition": "Throttling occurs when a service rejects a request because of rate limits.",
+    "source": "https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html#error-classification"
+  },
+  {
+    "term": "retry quota",
+    "aliases": [],
+    "definition": "A retry quota is a token budget that can stop retries when it is depleted.",
+    "source": "https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html#retry-quota-token-bucket"
+  },
+  {
+    "term": "exponential backoff",
+    "aliases": [],
+    "definition": "Exponential backoff increases the delay between retry attempts on average.",
+    "source": "https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html#how-long-does-the-sdk-wait"
+  }
+]

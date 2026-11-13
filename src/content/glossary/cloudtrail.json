@@ -1,0 +1,208 @@
+[
+  {
+    "term": "API",
+    "aliases": [
+      "application programming interface"
+    ],
+    "definition": "An interface through which software requests an action from a service.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-events"
+  },
+  {
+    "term": "Control plane",
+    "aliases": [
+      "management operation"
+    ],
+    "definition": "Operations that create, configure or manage resources.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-management-events"
+  },
+  {
+    "term": "Data plane",
+    "aliases": [
+      "data operation"
+    ],
+    "definition": "Operations performed on or within a resource, such as reading an object.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-data-events"
+  },
+  {
+    "term": "Event selector",
+    "aliases": [
+      "advanced event selector"
+    ],
+    "definition": "A filter that determines which events CloudTrail records.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#API_PutEventSelectors"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "A unique identifier for an AWS resource.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html#API_CreateTrail_RequestParameters"
+  },
+  {
+    "term": "VPC endpoint",
+    "aliases": [],
+    "definition": "A private entry point used to reach supported AWS services from a VPC.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-network-events"
+  },
+  {
+    "term": "Delegated administrator",
+    "aliases": [],
+    "definition": "A member account authorized to manage organization resources for a service.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html#creating-trail-organization"
+  },
+  {
+    "term": "Service-linked role",
+    "aliases": [],
+    "definition": "An IAM role linked to an AWS service so that the service can perform its required tasks.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html#creating-trail-organization"
+  },
+  {
+    "term": "Log group",
+    "aliases": [],
+    "definition": "A CloudWatch Logs container for related log streams.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html#send-cloudtrail-events-to-cloudwatch-logs"
+  },
+  {
+    "term": "Metric filter",
+    "aliases": [],
+    "definition": "A pattern that turns matching log events into metric values.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html#cloudwatch-alarms-for-cloudtrail"
+  },
+  {
+    "term": "Event bus",
+    "aliases": [],
+    "definition": "An EventBridge destination where events arrive before rules route them to targets.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html#eb-service-event-cloudtrail"
+  },
+  {
+    "term": "Subscription filter",
+    "aliases": [],
+    "definition": "A configuration that continuously forwards matching log events to a supported destination.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html#API_PutSubscriptionFilter"
+  },
+  {
+    "term": "Server-side encryption",
+    "aliases": [
+      "SSE",
+      "SSE-KMS",
+      "SSE-S3"
+    ],
+    "definition": "Encryption applied to stored data by the destination service using KMS-managed or S3-managed keys.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html#encrypting-cloudtrail-log-files-with-aws-kms"
+  },
+  {
+    "term": "Hash",
+    "aliases": [],
+    "definition": "A fingerprint calculated from file contents to detect changes.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html#cloudtrail-log-file-validation-intro"
+  },
+  {
+    "term": "Digest file",
+    "aliases": [
+      "signed digest"
+    ],
+    "definition": "A signed file that lists delivered logs and their hashes for integrity validation.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html#cloudtrail-log-file-validation-intro"
+  },
+  {
+    "term": "Write once read many",
+    "aliases": [
+      "WORM"
+    ],
+    "definition": "A storage model that protects retained object versions from overwrite or deletion.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock"
+  },
+  {
+    "term": "Legal hold",
+    "aliases": [],
+    "definition": "Protection that keeps an object version locked until the hold is removed.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock"
+  },
+  {
+    "term": "Baseline",
+    "aliases": [],
+    "definition": "The normal API activity pattern learned from past events.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-insights-events-with-cloudtrail.html#logging-insights-events-with-cloudtrail"
+  },
+  {
+    "term": "Event data store",
+    "aliases": [
+      "EDS"
+    ],
+    "definition": "An immutable collection of selected events retained for analysis.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html#cloudtrail-lake"
+  },
+  {
+    "term": "Columnar format",
+    "aliases": [
+      "Apache ORC"
+    ],
+    "definition": "A storage format that organizes data by columns for querying.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html#cloudtrail-lake"
+  },
+  {
+    "term": "SQL",
+    "aliases": [
+      "Structured Query Language"
+    ],
+    "definition": "A language used to select and analyze stored records.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html#cloudtrail-lake-queries"
+  },
+  {
+    "term": "Retention",
+    "aliases": [],
+    "definition": "The length of time stored events are kept.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html#cloudtrail-lake"
+  },
+  {
+    "term": "Home Region",
+    "aliases": [],
+    "definition": "The AWS Region where a trail was created.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_StartLogging.html#API_StartLogging"
+  },
+  {
+    "term": "Opt-in Region",
+    "aliases": [],
+    "definition": "An AWS Region that an account must explicitly enable before using it.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html#creating-trail-organization"
+  },
+  {
+    "term": "Management account",
+    "aliases": [],
+    "definition": "The account that manages an AWS Organizations organization.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html#creating-trail-organization"
+  },
+  {
+    "term": "Member account",
+    "aliases": [],
+    "definition": "An AWS account that belongs to an AWS Organizations organization.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html#creating-trail-organization"
+  },
+  {
+    "term": "Digital signature",
+    "aliases": [
+      "RSA signature"
+    ],
+    "definition": "Cryptographic evidence that lets a validator check a signed digest for changes.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html#cloudtrail-log-file-validation-intro"
+  },
+  {
+    "term": "SHA-256",
+    "aliases": [],
+    "definition": "The hash algorithm CloudTrail uses to calculate log file fingerprints.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html#cloudtrail-log-file-validation-intro"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [],
+    "definition": "An identity with permissions that another identity or service can assume to perform tasks.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html#send-cloudtrail-events-to-cloudwatch-logs"
+  },
+  {
+    "term": "Remediation",
+    "aliases": [],
+    "definition": "An action configured to correct a resource that fails a compliance rule.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/remediation.html#remediation"
+  }
+]

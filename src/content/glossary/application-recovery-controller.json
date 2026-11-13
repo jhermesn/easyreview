@@ -1,0 +1,130 @@
+[
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An Availability Zone is an isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones"
+  },
+  {
+    "term": "Zonal shift",
+    "aliases": [],
+    "definition": "A zonal shift temporarily moves a supported resource traffic away from one Availability Zone.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-shift.html"
+  },
+  {
+    "term": "Zonal autoshift",
+    "aliases": [],
+    "definition": "Zonal autoshift authorizes AWS to move configured resource traffic when AWS telemetry detects a potential zonal impairment.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.html"
+  },
+  {
+    "term": "Practice run",
+    "aliases": [],
+    "definition": "A practice run tests whether an application can operate with resource traffic shifted away from one zone.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.html"
+  },
+  {
+    "term": "Prescaling",
+    "aliases": [
+      "pre-scaling"
+    ],
+    "definition": "Prescaling provisions enough capacity before a zonal shift to serve traffic without one zone.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-shift.html"
+  },
+  {
+    "term": "Telemetry",
+    "aliases": [],
+    "definition": "Telemetry is measurement data AWS uses to detect a potential zonal impairment.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.html"
+  },
+  {
+    "term": "Administrative override",
+    "aliases": [
+      "AdministrativeOverride"
+    ],
+    "definition": "An administrative override records deliberate target exclusion separately from target health.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/zonal-shift.html#admin-override"
+  },
+  {
+    "term": "Fail open",
+    "aliases": [],
+    "definition": "Fail open is a load balancer state in which lack of healthy targets prevents zonal shift from moving traffic away.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-shift.how-it-works.html"
+  },
+  {
+    "term": "Application replica",
+    "aliases": [
+      "cell"
+    ],
+    "definition": "An application replica is a deployment that can serve the workload in another zone or Region.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.about.html"
+  },
+  {
+    "term": "Cluster endpoint",
+    "aliases": [],
+    "definition": "A cluster endpoint is a regional API address used to read or update routing control states.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/introduction-components-routing.html"
+  },
+  {
+    "term": "Control panel",
+    "aliases": [],
+    "definition": "A control panel groups related routing controls so they can share safety rules.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/introduction-components-routing.html"
+  },
+  {
+    "term": "Assertion rule",
+    "aliases": [],
+    "definition": "An assertion rule rejects a routing control update when its required state conditions would be violated.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.safety-rules.html"
+  },
+  {
+    "term": "Gating rule",
+    "aliases": [],
+    "definition": "A gating rule uses a master control to allow or block changes to target routing controls.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.safety-rules.html"
+  },
+  {
+    "term": "Data plane",
+    "aliases": [],
+    "definition": "The routing control data plane reads and updates the live routing control states used for failover.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/data-and-control-planes.html"
+  },
+  {
+    "term": "Control plane",
+    "aliases": [],
+    "definition": "The routing control configuration control plane creates or deletes clusters, panels, and routing controls.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/data-and-control-planes.html"
+  },
+  {
+    "term": "DNS",
+    "aliases": [
+      "Domain Name System"
+    ],
+    "definition": "DNS resolves application names into addresses that clients can connect to.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.about.html"
+  },
+  {
+    "term": "TTL",
+    "aliases": [
+      "time to live"
+    ],
+    "definition": "TTL specifies how long a DNS answer can be cached before it must be refreshed.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/route53-arc-best-practices.regional.html"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An ARN is the AWS identifier for a routing control or another resource.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/route53-arc-best-practices.regional.html"
+  },
+  {
+    "term": "Readiness check",
+    "aliases": [],
+    "definition": "A readiness check audits application replicas for capacity and configuration differences that could affect failover.",
+    "source": "https://docs.aws.amazon.com/r53recovery/latest/dg/readiness-what-is.html"
+  }
+]

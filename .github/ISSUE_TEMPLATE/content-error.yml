@@ -1,0 +1,39 @@
+name: Content error
+description: A fact, flashcard, diagram or note is wrong, outdated or unclear.
+labels: [content]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: URL of the page with the problem.
+      placeholder: https://jhermesn.dev/easyreview/dop-c02/codedeploy/
+    validations:
+      required: true
+  - type: input
+    id: item
+    attributes:
+      label: Fact or card
+      description: Quote the sentence or flashcard question, or give its id if you know it.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: What the site says, and what it should say instead.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: AWS documentation link
+      description: The docs.aws.amazon.com or aws.amazon.com page that shows the correct information. Facts change only with an AWS source.
+      placeholder: https://docs.aws.amazon.com/...
+    validations:
+      required: true
+  - type: checkboxes
+    id: no-exam-content
+    attributes:
+      label: Exam content
+      options:
+        - label: This report doesn't quote real exam questions or paid course or practice-exam material.
+          required: true

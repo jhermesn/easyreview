@@ -1,0 +1,38 @@
+[
+  {
+    "term": "strong consistency",
+    "aliases": ["strongly consistent"],
+    "definition": "Strongly consistent primary reads reflect all earlier successful writes.",
+    "source": "https://docs.aws.amazon.com/memorydb/latest/devguide/consistency.html#consistency"
+  },
+  {
+    "term": "shard",
+    "aliases": [],
+    "definition": "A shard is a partition of a MemoryDB dataset with a primary node and optional replicas.",
+    "source": "https://docs.aws.amazon.com/memorydb/latest/devguide/components.html#whatis.clusters"
+  },
+  {
+    "term": "read replica",
+    "aliases": ["replica"],
+    "definition": "A read replica maintains a copy of a shard's data and serves reads.",
+    "source": "https://docs.aws.amazon.com/memorydb/latest/devguide/replication.html#replication.redis.groups.cluster"
+  },
+  {
+    "term": "eventual consistency",
+    "aliases": ["eventually consistent"],
+    "definition": "An eventually consistent replica might not yet reflect the most recent successful write.",
+    "source": "https://docs.aws.amazon.com/memorydb/latest/devguide/consistency.html#consistency"
+  },
+  {
+    "term": "conflict-free replicated data type",
+    "aliases": ["CRDT"],
+    "definition": "A conflict-free replicated data type can be updated independently and concurrently without coordination.",
+    "source": "https://docs.aws.amazon.com/memorydb/latest/devguide/multi-region.html#multi-region.conflict"
+  },
+  {
+    "term": "snapshot",
+    "aliases": [],
+    "definition": "A MemoryDB snapshot is a point-in-time copy of cluster data and metadata.",
+    "source": "https://docs.aws.amazon.com/memorydb/latest/devguide/snapshots.html#snapshots"
+  }
+]

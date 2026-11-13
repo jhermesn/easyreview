@@ -1,0 +1,44 @@
+[
+  {
+    "term": "Virtual private cloud",
+    "aliases": ["VPC"],
+    "definition": "A logically isolated virtual network in AWS.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "Subnet",
+    "aliases": [],
+    "definition": "A range of IP addresses in a VPC that belongs to one Availability Zone.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#amazon-vpc-features"
+  },
+  {
+    "term": "CIDR block",
+    "aliases": ["CIDR"],
+    "definition": "A range of IP addresses represented using Classless Inter-Domain Routing notation.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html"
+  },
+  {
+    "term": "Attachment",
+    "aliases": [],
+    "definition": "A connection between a transit gateway and a network resource that can send or receive packets.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-attachments-overview"
+  },
+  {
+    "term": "Route propagation",
+    "aliases": ["propagation"],
+    "definition": "The installation of an attachment's routes into a transit gateway route table.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-route-propagation-overview"
+  },
+  {
+    "term": "Blackhole route",
+    "aliases": [],
+    "definition": "A route that drops traffic matching its destination.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-route-tables-overview"
+  },
+  {
+    "term": "Static route",
+    "aliases": [],
+    "definition": "A route that you create in a transit gateway route table.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-route-types-overview"
+  }
+]

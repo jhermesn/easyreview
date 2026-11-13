@@ -1,0 +1,50 @@
+[
+  {
+    "term": "Recovery time objective",
+    "aliases": ["RTO"],
+    "definition": "The acceptable time an application can be down after a disruption.",
+    "source": "https://docs.aws.amazon.com/resilience-hub/latest/userguide/review-assessment.html#review-section"
+  },
+  {
+    "term": "Recovery point objective",
+    "aliases": ["RPO"],
+    "definition": "The acceptable period of data loss after a disruption.",
+    "source": "https://docs.aws.amazon.com/resilience-hub/latest/userguide/review-assessment.html#review-section"
+  },
+  {
+    "term": "Resource drift",
+    "aliases": [],
+    "definition": "Resources added or removed since the latest published application version.",
+    "source": "https://docs.aws.amazon.com/resilience-hub/latest/userguide/review-assessment.html#review-section"
+  },
+  {
+    "term": "Application policy drift",
+    "aliases": ["policy drift"],
+    "definition": "A component that met its policy in the previous assessment no longer meets it in the current assessment.",
+    "source": "https://docs.aws.amazon.com/resilience-hub/latest/userguide/concepts-terms.html#drift-status"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": ["AZ"],
+    "definition": "One or more distinct data centers in an AWS Region with independent power and networking.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/availability-zones.html#availability-zones"
+  },
+  {
+    "term": "SNS topic",
+    "aliases": ["topic"],
+    "definition": "A communication channel that sends messages to multiple endpoints.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html#sns-create-topic"
+  },
+  {
+    "term": "Application component",
+    "aliases": ["AppComponent"],
+    "definition": "A group of related resources that work and fail as a single unit.",
+    "source": "https://docs.aws.amazon.com/resilience-hub/latest/userguide/concepts-terms.html#app-component"
+  },
+  {
+    "term": "Continuous integration and continuous delivery",
+    "aliases": ["CI/CD"],
+    "definition": "Practices for building and testing code changes and automating the software release process.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts-continuous-delivery-integration.html#concepts-continuous-delivery-integration"
+  }
+]

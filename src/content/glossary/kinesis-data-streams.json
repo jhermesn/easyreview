@@ -1,0 +1,132 @@
+[
+  {
+    "term": "Shard",
+    "aliases": [],
+    "definition": "A shard is an ordered record sequence that provides a unit of stream capacity.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#shard"
+  },
+  {
+    "term": "Partition key",
+    "aliases": [],
+    "definition": "A partition key groups records by mapping them to a shard through a hash value.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#partition-key"
+  },
+  {
+    "term": "Sequence number",
+    "aliases": [],
+    "definition": "A sequence number identifies a record position within its shard.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#sequence-number"
+  },
+  {
+    "term": "Hot key",
+    "aliases": [
+      "hot partition key"
+    ],
+    "definition": "A hot key concentrates traffic on one shard until the shard cannot accept more work.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/how-do-i-size-a-stream.html#ondemandmode"
+  },
+  {
+    "term": "Aggregation",
+    "aliases": [
+      "KPL aggregation"
+    ],
+    "definition": "Aggregation combines multiple application records inside one Kinesis record.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-aggretation"
+  },
+  {
+    "term": "Collection",
+    "aliases": [
+      "KPL collection"
+    ],
+    "definition": "Collection sends multiple Kinesis records in one PutRecords request.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-collection"
+  },
+  {
+    "term": "Burst capacity",
+    "aliases": [],
+    "definition": "Burst capacity temporarily accepts intermittent large records above the sustained stream rate.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/large-records.html#how-large-records-work"
+  },
+  {
+    "term": "Retention period",
+    "aliases": [
+      "retention"
+    ],
+    "definition": "The retention period is how long a written record remains accessible in the stream.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/kinesis-extended-retention.html#kinesis-extended-retention"
+  },
+  {
+    "term": "Replay",
+    "aliases": [],
+    "definition": "Replay reads earlier retained records again for processing.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/kinesis-extended-retention.html#kinesis-extended-retention"
+  },
+  {
+    "term": "Shard iterator",
+    "aliases": [],
+    "definition": "A shard iterator is a short-lived token identifying where a shard read begins.",
+    "source": "https://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#API_GetShardIterator"
+  },
+  {
+    "term": "Checkpoint",
+    "aliases": [
+      "checkpointing"
+    ],
+    "definition": "A checkpoint stores the last completed record position so a consumer can resume processing.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/kcl-dynamoDB.html#kcl-dynamoDB"
+  },
+  {
+    "term": "Lease",
+    "aliases": [],
+    "definition": "A lease records which KCL worker currently owns processing of a shard.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/kcl-dynamoDB.html#kcl-dynamoDB"
+  },
+  {
+    "term": "Enhanced fan-out",
+    "aliases": [
+      "EFO"
+    ],
+    "definition": "Enhanced fan-out pushes records to each registered consumer with dedicated read throughput per shard.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/enhanced-consumers.html#enhanced-consumers"
+  },
+  {
+    "term": "Idempotency",
+    "aliases": [
+      "idempotent processing"
+    ],
+    "definition": "Idempotency allows repeated record processing without unintended extra side effects.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html#kinesis-record-processor-duplicates"
+  },
+  {
+    "term": "Server-side encryption",
+    "aliases": [
+      "SSE"
+    ],
+    "definition": "Server-side encryption protects record data stored in Kinesis using AWS KMS keys.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/server-side-encryption.html#server-side-encryption"
+  },
+  {
+    "term": "Transport Layer Security",
+    "aliases": [
+      "TLS"
+    ],
+    "definition": "TLS encrypts network connections used to access Kinesis APIs.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/infrastructure-security.html#infrastructure-security"
+  },
+  {
+    "term": "Mebibyte",
+    "aliases": [
+      "MiB"
+    ],
+    "definition": "A mebibyte is a unit equal to 1,048,576 bytes.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html#quotas-messages"
+  },
+  {
+    "term": "MD5 hash",
+    "aliases": [
+      "MD5"
+    ],
+    "definition": "An MD5 hash maps a partition key to a number used to choose a shard hash range.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#partition-key"
+  }
+]

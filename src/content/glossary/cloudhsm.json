@@ -1,0 +1,38 @@
+[
+  {
+    "term": "Hardware security module",
+    "aliases": ["HSM"],
+    "definition": "A device that processes cryptographic operations and stores cryptographic keys.",
+    "source": "https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html#introduction"
+  },
+  {
+    "term": "HSM cluster",
+    "aliases": ["cluster"],
+    "definition": "A collection of HSMs that CloudHSM keeps synchronized.",
+    "source": "https://docs.aws.amazon.com/cloudhsm/latest/userguide/clusters.html#clusters"
+  },
+  {
+    "term": "CloudHSM key store",
+    "aliases": [],
+    "definition": "A KMS custom key store backed by a CloudHSM cluster that the customer owns and manages.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-cloudhsm.html#concept-hsm-key-store"
+  },
+  {
+    "term": "PKCS 11",
+    "aliases": ["PKCS #11"],
+    "definition": "A standard for performing cryptographic operations on HSMs.",
+    "source": "https://docs.aws.amazon.com/cloudhsm/latest/userguide/pkcs11-library.html#pkcs11-library"
+  },
+  {
+    "term": "FIPS",
+    "aliases": ["Federal Information Processing Standard"],
+    "definition": "A federal information processing standard used for cryptographic validation.",
+    "source": "https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html#introduction"
+  },
+  {
+    "term": "HSM user",
+    "aliases": [],
+    "definition": "A user authenticated directly on an HSM with customer-managed credentials.",
+    "source": "https://docs.aws.amazon.com/cloudhsm/latest/userguide/hsm-users.html#hsm-users"
+  }
+]

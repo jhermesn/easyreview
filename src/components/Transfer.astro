@@ -1,0 +1,80 @@
+---
+// Copy progress to another browser or device with a code, since there are no accounts.
+import Icon from './Icon.astro';
+---
+<details class="transfer" data-transfer>
+  <summary class="icon-btn" title="Move your progress"><Icon name="transfer" label="Move your progress" /></summary>
+  <div class="panel">
+    <p class="title">Move your progress</p>
+    <p class="note muted">Progress stays in this browser. Copy the code here and paste it on the other device.</p>
+    <button type="button" data-transfer-copy><Icon name="docs" size={15} /> <span data-transfer-copy-label>Copy my progress code</span></button>
+    <label class="paste">
+      <span>Paste a code</span>
+      <textarea rows="3" spellcheck="false" autocomplete="off" placeholder="ER1.…" data-transfer-code></textarea>
+    </label>
+    <button type="button" data-transfer-load disabled><Icon name="reset" size={15} /> Replace my progress</button>
+    <p class="note muted" role="status" data-transfer-status></p>
+  </div>
+</details>
+
+<style>
+  .transfer { position: relative; }
+  .transfer summary { list-style: none; cursor: pointer; }
+  .transfer summary::-webkit-details-marker { display: none; }
+  .transfer[open] summary { color: var(--ink-100); border-color: var(--amber); }
+  .panel { position: absolute; right: 0; top: calc(100% + 6px); z-index: 40; width: min(19rem, 88vw); padding: 0.8rem; background: var(--ink-900); border: 1px solid var(--ink-500); box-shadow: 0 12px 30px rgb(0 0 0 / 0.5); display: grid; gap: 0.45rem; }
+  .title { margin: 0; font-weight: 700; }
+  .panel button { display: inline-flex; align-items: center; gap: 0.4rem; justify-content: center; }
+  .note { margin: 0; font-size: 0.74rem; line-height: 1.45; }
+  .note:empty { display: none; }
+  .paste { display: grid; gap: 0.3rem; font-size: 0.82rem; margin-top: 0.4rem; }
+  .paste textarea { font: inherit; font-size: 0.74rem; color: var(--ink-100); background: var(--ink-850); border: 1px solid var(--ink-500); padding: 0.35rem; resize: vertical; word-break: break-all; }
+</style>
+
+<script>
+  import { exportCode, importCode } from '../lib/transfer';
+
+  document.addEventListener('astro:page-load', () => {
+    const root = document.querySelector<HTMLDetailsElement>('[data-transfer]');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = '1';
+    const copy = root.querySelector<HTMLButtonElement>('[data-transfer-copy]')!;
+    const copyLabel = root.querySelector<HTMLElement>('[data-transfer-copy-label]')!;
+    const input = root.querySelector<HTMLTextAreaElement>('[data-transfer-code]')!;
+    const load = root.querySelector<HTMLButtonElement>('[data-transfer-load]')!;
+    const status = root.querySelector<HTMLElement>('[data-transfer-status]')!;
+
+    copy.addEventListener('click', async () => {
+      const code = await exportCode();
+      try {
+        await navigator.clipboard.writeText(code);
+        copyLabel.textContent = 'Copied';
+        status.textContent = `Code copied (${code.length} characters).`;
+      } catch {
+        // No clipboard access: show the code so it can be copied by hand.
+        input.value = code;
+        input.select();
+        status.textContent = 'Select the code above and copy it.';
+      }
+      setTimeout(() => (copyLabel.textContent = 'Copy my progress code'), 2000);
+    });
+
+    input.addEventListener('input', () => (load.disabled = !input.value.trim()));
+
+    load.addEventListener('click', async () => {
+      if (load.dataset.confirm !== '1') {
+        load.dataset.confirm = '1';
+        status.textContent = 'This replaces the progress saved in this browser. Click again to confirm.';
+        return;
+      }
+      delete load.dataset.confirm;
+      try {
+        await importCode(input.value);
+        status.textContent = 'Progress loaded.';
+        location.reload();
+      } catch (err) {
+        status.textContent = (err as Error).message;
+      }
+    });
+  });
+</script>

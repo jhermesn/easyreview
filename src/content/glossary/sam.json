@@ -1,0 +1,82 @@
+[
+  {
+    "term": "Transform",
+    "aliases": [],
+    "definition": "A transform expands SAM declarations into the CloudFormation resources used for deployment.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy.html#sam-specification-template-anatomy"
+  },
+  {
+    "term": "Runtime",
+    "aliases": [],
+    "definition": "A runtime is the language-specific environment that executes function code.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/using-sam-cli-build.html"
+  },
+  {
+    "term": "Artifact",
+    "aliases": [],
+    "definition": "An artifact is packaged code and dependencies prepared for upload and deployment.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-package.html#sam-cli-command-reference-sam-package"
+  },
+  {
+    "term": "Map",
+    "aliases": [
+      "dictionary"
+    ],
+    "definition": "A map contains named values that SAM merges when combining Globals with resource settings.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy-globals.html#sam-specification-template-anatomy-globals"
+  },
+  {
+    "term": "Primitive value",
+    "aliases": [
+      "scalar"
+    ],
+    "definition": "A primitive value is a single string, number, or Boolean that replaces its inherited global value.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy-globals.html#sam-specification-template-anatomy-globals"
+  },
+  {
+    "term": "Alias",
+    "aliases": [],
+    "definition": "A Lambda alias is a named invocation target that points to published function versions.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuration-aliases"
+  },
+  {
+    "term": "Published version",
+    "aliases": [],
+    "definition": "A published version locks Lambda function code and most configuration settings.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html"
+  },
+  {
+    "term": "Canary deployment",
+    "aliases": [
+      "canary"
+    ],
+    "definition": "A canary deployment exposes a new version to an initial share of traffic before shifting the remainder.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/automating-updates-to-serverless-apps.html#automating-updates-to-serverless-apps"
+  },
+  {
+    "term": "Linear deployment",
+    "aliases": [],
+    "definition": "A linear deployment shifts equal shares of traffic at equal time intervals.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/automating-updates-to-serverless-apps.html#automating-updates-to-serverless-apps"
+  },
+  {
+    "term": "Validation hook",
+    "aliases": [
+      "hook"
+    ],
+    "definition": "A validation hook is a function that tests a deployment and reports success or failure to CodeDeploy.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#reference-appspec-file-structure-hooks"
+  },
+  {
+    "term": "Primary key",
+    "aliases": [],
+    "definition": "A primary key identifies an item in a DynamoDB table.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-simpletable.html#sam-resource-simpletable"
+  },
+  {
+    "term": "Container image",
+    "aliases": [],
+    "definition": "A container image packages the operating system, runtime, code, and dependencies required by a function.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/using-sam-cli-build.html"
+  }
+]

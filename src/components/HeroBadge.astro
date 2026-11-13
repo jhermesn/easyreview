@@ -1,0 +1,45 @@
+---
+// A slowly spinning hexagonal slab that shows each certification badge in turn.
+// Falls back to a static badge when WebGL is unavailable or the visitor prefers reduced motion.
+import { certs, isAvailable } from '../lib/certs';
+import { badgeUrl } from '../lib/badge';
+
+// Certs with content first, so the first face matches the static fallback.
+const ordered = [...certs.filter(isAvailable), ...certs.filter((c) => !isAvailable(c))];
+const badges = ordered.map((c) => badgeUrl(c.id));
+const first = badges[0];
+---
+<div class="hero-3d" data-hero-3d data-badges={JSON.stringify(badges)} data-first={first}>
+  <img class="fallback" src={first} alt="" width="166" height="192" />
+  <canvas aria-hidden="true"></canvas>
+</div>
+
+<style>
+  .hero-3d { position: relative; width: 100%; aspect-ratio: 1; max-width: 26rem; margin-inline: auto; }
+  .hero-3d::before {
+    content: ''; position: absolute; inset: 12%; border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--purple) 35%, transparent), transparent 70%);
+    filter: blur(28px); pointer-events: none;
+  }
+  .fallback { position: absolute; inset: 0; margin: auto; width: 55%; height: auto; filter: drop-shadow(0 18px 40px rgb(0 0 0 / 0.6)); }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s; }
+  .hero-3d:global(.live) canvas { opacity: 1; }
+  .hero-3d:global(.live) .fallback { opacity: 0; }
+</style>
+
+<script>
+  import type { Stop } from '../lib/hero3d';
+  let stop: Stop | null = null;
+
+  document.addEventListener('astro:page-load', async () => {
+    const root = document.querySelector<HTMLElement>('[data-hero-3d]');
+    if (!root) return;
+    try {
+      const { start } = await import('../lib/hero3d');
+      stop = await start(root);
+    } catch {
+      stop = null; // keep the static fallback badge
+    }
+  });
+  document.addEventListener('astro:before-swap', () => { stop?.(); stop = null; });
+</script>

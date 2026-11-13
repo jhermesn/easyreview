@@ -1,0 +1,98 @@
+[
+  {
+    "term": "Fault injection",
+    "aliases": [],
+    "definition": "Fault injection deliberately disrupts resources to observe how a workload responds.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/what-is.html#what-is"
+  },
+  {
+    "term": "Experiment template",
+    "aliases": [],
+    "definition": "An experiment template is the reusable blueprint defining FIS actions, targets, stop conditions, and an experiment role.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html#experiment-templates"
+  },
+  {
+    "term": "Target",
+    "aliases": [],
+    "definition": "A target is the set of AWS resources selected for a fault action.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/targets.html#targets"
+  },
+  {
+    "term": "Blast radius",
+    "aliases": [],
+    "definition": "The blast radius is the scope of resources affected by an experiment.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-selection-mode"
+  },
+  {
+    "term": "Steady state",
+    "aliases": [],
+    "definition": "Steady state describes acceptable workload behavior using business or technical metrics.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/stop-conditions.html#stop-conditions"
+  },
+  {
+    "term": "Stop condition",
+    "aliases": [],
+    "definition": "A stop condition references a CloudWatch alarm that stops an experiment when its threshold is reached.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/stop-conditions.html#stop-conditions"
+  },
+  {
+    "term": "Post action",
+    "aliases": [
+      "rollback"
+    ],
+    "definition": "A post action restores prior resource state after a fault when that action supports recovery.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/action-sequence.html#action-parameters"
+  },
+  {
+    "term": "Safety lever",
+    "aliases": [],
+    "definition": "A safety lever stops experiments and prevents new experiment starts in an AWS account and Region.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/safety-lever.html#safety-lever"
+  },
+  {
+    "term": "Role chaining",
+    "aliases": [],
+    "definition": "Role chaining uses permissions from one IAM role to assume another IAM role.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/multi-account-prerequisites.html#permissions"
+  },
+  {
+    "term": "Orchestrator account",
+    "aliases": [],
+    "definition": "The orchestrator account owns and manages a multi-account experiment and its template.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/multi-account.html#multi-account-concepts"
+  },
+  {
+    "term": "Target account",
+    "aliases": [],
+    "definition": "A target account contains resources that a multi-account experiment can affect.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/multi-account.html#multi-account-concepts"
+  },
+  {
+    "term": "Availability Zone ID",
+    "aliases": [
+      "AZ ID"
+    ],
+    "definition": "An Availability Zone ID consistently identifies the same zone across AWS accounts.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/multi-account.html#best-practices"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An Amazon Resource Name identifies a specific AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns"
+  },
+  {
+    "term": "Trust policy",
+    "aliases": [],
+    "definition": "A trust policy defines who may assume an IAM role.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/getting-started-iam-service-role.html#getting-started-iam-service-role"
+  },
+  {
+    "term": "Metric Math",
+    "aliases": [],
+    "definition": "Metric Math combines CloudWatch metrics into expressions that can support an experiment stop alarm.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/multi-account-prerequisites.html#alarms-and-monitoring"
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "term": "pipeline",
+    "aliases": [
+      "release pipeline"
+    ],
+    "definition": "A workflow describing how software changes move through a release process.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-pipelines"
+  },
+  {
+    "term": "stage",
+    "aliases": [],
+    "definition": "A group of related release actions that can isolate an environment.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-stages"
+  },
+  {
+    "term": "action",
+    "aliases": [],
+    "definition": "A configured operation performed at a particular point in a pipeline.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-actions"
+  },
+  {
+    "term": "execution",
+    "aliases": [
+      "pipeline execution"
+    ],
+    "definition": "One identified run of a set of changes through a pipeline.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-executions"
+  },
+  {
+    "term": "artifact",
+    "aliases": [
+      "input artifact",
+      "output artifact"
+    ],
+    "definition": "A file or set of files that an action produces or consumes.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-artifacts"
+  },
+  {
+    "term": "revision",
+    "aliases": [
+      "source revision",
+      "commit"
+    ],
+    "definition": "A particular version of source content processed by a pipeline.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-source-revisions"
+  },
+  {
+    "term": "namespace",
+    "aliases": [],
+    "definition": "A name used to identify a set of variables when another action references them.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#reference-variables-concepts-namespaces"
+  },
+  {
+    "term": "webhook",
+    "aliases": [],
+    "definition": "An event notification sent by a repository provider to trigger connected release processing.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CodestarConnectionSource.html#action-reference-CodestarConnectionSource"
+  },
+  {
+    "term": "change set",
+    "aliases": [],
+    "definition": "A preview of proposed stack changes that can be inspected before resources are changed.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CloudFormation.html#action-reference-CloudFormation"
+  },
+  {
+    "term": "stack",
+    "aliases": [],
+    "definition": "A collection of resources managed together from a CloudFormation template.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CloudFormation.html#action-reference-CloudFormation"
+  },
+  {
+    "term": "stack policy",
+    "aliases": [],
+    "definition": "A document that restricts which stack resources can be updated.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html#protect-stack-resources"
+  },
+  {
+    "term": "task definition",
+    "aliases": [],
+    "definition": "A configuration describing the containers an ECS application runs.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECS.html#action-reference-ECS"
+  },
+  {
+    "term": "AppSpec",
+    "aliases": [
+      "application specification file"
+    ],
+    "definition": "A file giving CodeDeploy instructions for an application deployment.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECSbluegreen.html#action-reference-ECSbluegreen-config"
+  },
+  {
+    "term": "blue/green deployment",
+    "aliases": [],
+    "definition": "A deployment that runs a new application version beside the old version before traffic switches.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECSbluegreen.html#action-reference-ECSbluegreen"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An identifier that names an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns"
+  },
+  {
+    "term": "trust policy",
+    "aliases": [],
+    "definition": "A role policy that identifies which principals may assume the role.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-create-cross-account.html#pipelines-create-cross-account-setup-accountb"
+  },
+  {
+    "term": "customer managed key",
+    "aliases": [],
+    "definition": "An encryption key whose configuration and access you control.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-mgn-key"
+  },
+  {
+    "term": "job worker",
+    "aliases": [
+      "worker"
+    ],
+    "definition": "A process that polls for custom action jobs, performs them, and returns results.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/actions-create-custom-action.html#actions-create-custom-action-job-worker"
+  },
+  {
+    "term": "buildspec",
+    "aliases": [],
+    "definition": "A file containing the commands and settings used by a CodeBuild build.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CodeBuild.html#action-reference-CodeBuild"
+  },
+  {
+    "term": "software bill of materials",
+    "aliases": [
+      "SBOM"
+    ],
+    "definition": "A structured inventory of software components, libraries, and modules.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/sbom-generator.html#sbom-generator"
+  },
+  {
+    "term": "state machine",
+    "aliases": [],
+    "definition": "A workflow represented as states and transitions.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-statemachines.html#concepts-statemachines"
+  },
+  {
+    "term": "macro",
+    "aliases": [],
+    "definition": "A template transformation that expands or changes CloudFormation template content.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros.html#template-macros"
+  }
+]

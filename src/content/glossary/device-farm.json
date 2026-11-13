@@ -1,0 +1,44 @@
+[
+  {
+    "term": "Device pool",
+    "aliases": [],
+    "definition": "A collection of devices that usually share characteristics such as platform or model.",
+    "source": "https://docs.aws.amazon.com/devicefarm/latest/developerguide/welcome.html#welcome-terminology"
+  },
+  {
+    "term": "Run",
+    "aliases": ["test run"],
+    "definition": "A specific app build and set of tests to execute on a set of devices.",
+    "source": "https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-runs.html#test-runs"
+  },
+  {
+    "term": "Job",
+    "aliases": [],
+    "definition": "A request to test one app against one device.",
+    "source": "https://docs.aws.amazon.com/devicefarm/latest/developerguide/welcome.html#welcome-terminology"
+  },
+  {
+    "term": "Test artifact",
+    "aliases": ["artifact"],
+    "definition": "A record such as a log or recording produced during a test.",
+    "source": "https://docs.aws.amazon.com/devicefarm/latest/testgrid/what-is-testgrid.html#terminology"
+  },
+  {
+    "term": "Fuzz test",
+    "aliases": ["fuzzing"],
+    "definition": "A test that sends random user interface events to a device and reports the results.",
+    "source": "https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-built-in-fuzz.html#test-types-built-in-fuzz"
+  },
+  {
+    "term": "Selenium",
+    "aliases": [],
+    "definition": "A testing framework that uses scripts to control a browser and simulate user interactions.",
+    "source": "https://docs.aws.amazon.com/devicefarm/latest/testgrid/getting-started.html#getting-started"
+  },
+  {
+    "term": "Appium",
+    "aliases": [],
+    "definition": "An open-source tool for automating native and mobile web applications.",
+    "source": "https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-appium.html#test-types-appium"
+  }
+]

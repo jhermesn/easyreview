@@ -1,0 +1,74 @@
+[
+  {
+    "term": "Block-level replication",
+    "aliases": [],
+    "definition": "Block-level replication copies changed portions of disk data from a source server to a destination.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html"
+  },
+  {
+    "term": "Staging area subnet",
+    "aliases": [],
+    "definition": "A staging area subnet contains the replication resources that maintain source-server data in AWS.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html"
+  },
+  {
+    "term": "Recovery point objective",
+    "aliases": [
+      "RPO"
+    ],
+    "definition": "RPO expresses how recent the recoverable replicated data is relative to the source.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html"
+  },
+  {
+    "term": "Recovery time objective",
+    "aliases": [
+      "RTO"
+    ],
+    "definition": "RTO expresses the time required to recover service after a disruption.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html"
+  },
+  {
+    "term": "Crash-consistent",
+    "aliases": [],
+    "definition": "A crash-consistent recovery point contains disk data as if the server had stopped without flushing memory.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html"
+  },
+  {
+    "term": "Point-in-time snapshot",
+    "aliases": [
+      "PIT snapshot"
+    ],
+    "definition": "A point-in-time snapshot preserves replicated disk data from a particular moment for recovery.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html"
+  },
+  {
+    "term": "Failover",
+    "aliases": [],
+    "definition": "Failover redirects traffic from a primary system to a recovery system.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/failback-preparing-failover.html"
+  },
+  {
+    "term": "Failback",
+    "aliases": [],
+    "definition": "Failback redirects traffic from recovery systems to restored primary systems.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/failback-performing-main.html"
+  },
+  {
+    "term": "Reverse replication",
+    "aliases": [],
+    "definition": "Reverse replication copies recovery-system changes back to the primary systems before failback.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/failback-performing-main.html"
+  },
+  {
+    "term": "Launch template",
+    "aliases": [],
+    "definition": "A launch template supplies EC2 settings such as the subnet for drill and recovery instances.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/Network-Settings-Preparations.html"
+  },
+  {
+    "term": "ISO",
+    "aliases": [],
+    "definition": "An ISO is a bootable image used to start the Failback Client on a destination server.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/failback-performing.html"
+  }
+]

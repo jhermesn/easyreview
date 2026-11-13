@@ -1,0 +1,38 @@
+[
+  {
+    "term": "Dataset",
+    "aliases": [],
+    "definition": "Prepared data that can be used to create an analysis.",
+    "source": "https://docs.aws.amazon.com/quick/latest/userguide/working-with-data.html#working-with-data"
+  },
+  {
+    "term": "Analysis",
+    "aliases": [],
+    "definition": "A workspace for analyzing and visualizing data that can be published as a dashboard.",
+    "source": "https://docs.aws.amazon.com/quick/latest/userguide/creating-an-analysis.html#creating-an-analysis"
+  },
+  {
+    "term": "Visual",
+    "aliases": [],
+    "definition": "A graphical representation of data in an analysis.",
+    "source": "https://docs.aws.amazon.com/quick/latest/userguide/creating-a-visual.html#creating-a-visual"
+  },
+  {
+    "term": "Manifest",
+    "aliases": ["S3 manifest"],
+    "definition": "A file that identifies the S3 files to import into a Quick Sight dataset.",
+    "source": "https://docs.aws.amazon.com/quick/latest/userguide/create-a-data-set-s3-procedure.html#create-a-data-set-s3-procedure"
+  },
+  {
+    "term": "SPICE",
+    "aliases": ["Super-fast, Parallel, In-memory Calculation Engine"],
+    "definition": "The in-memory engine Quick Sight uses for imported dataset data.",
+    "source": "https://docs.aws.amazon.com/quick/latest/userguide/spice.html#spice"
+  },
+  {
+    "term": "Dashboard",
+    "aliases": [],
+    "definition": "A published analysis that users can interact with and share.",
+    "source": "https://docs.aws.amazon.com/quick/latest/userguide/creating-a-dashboard.html#creating-a-dashboard"
+  }
+]

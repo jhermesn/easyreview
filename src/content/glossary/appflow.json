@@ -1,0 +1,106 @@
+[
+  {
+    "term": "Software as a service",
+    "aliases": [
+      "SaaS"
+    ],
+    "definition": "An application hosted and operated by its provider that customers access as a service.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/what-is-appflow.html#what-is-appflow"
+  },
+  {
+    "term": "Flow",
+    "aliases": [],
+    "definition": "A configured data transfer between a source and destination.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/create-flow-console.html#create-flow-console"
+  },
+  {
+    "term": "Connector",
+    "aliases": [],
+    "definition": "An integration that defines how AppFlow communicates with a supported source or destination.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/app-specific.html#app-specific"
+  },
+  {
+    "term": "Connection",
+    "aliases": [],
+    "definition": "Stored application access settings used by a flow to reach its source or destination.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/data-protection.html#data-protection"
+  },
+  {
+    "term": "Connector profile",
+    "aliases": [],
+    "definition": "A reusable connection resource that a flow creator must have permission to use.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/create-flow-console.html#create-flow-console"
+  },
+  {
+    "term": "Trigger",
+    "aliases": [],
+    "definition": "The condition that starts a flow run.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/flow-triggers.html#flow-triggers"
+  },
+  {
+    "term": "Field mapping",
+    "aliases": [],
+    "definition": "An association between a source data field and its destination field.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/create-flow-console.html#create-flow-console"
+  },
+  {
+    "term": "Incremental transfer",
+    "aliases": [],
+    "definition": "A transfer of records added or changed since the last successful run.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/flow-triggers.html#flow-triggers"
+  },
+  {
+    "term": "Full transfer",
+    "aliases": [],
+    "definition": "A transfer of a snapshot of all source records at run time.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/flow-triggers.html#flow-triggers"
+  },
+  {
+    "term": "Time offset",
+    "aliases": [],
+    "definition": "A delay applied to an incremental transfer window to accommodate late source timestamps.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/flow-triggers.html#flow-triggers"
+  },
+  {
+    "term": "CSV",
+    "aliases": [
+      "comma-separated values"
+    ],
+    "definition": "A text format that separates field values with commas.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/create-flow-console.html#create-flow-console"
+  },
+  {
+    "term": "Masking",
+    "aliases": [],
+    "definition": "Changing field values to conceal their original contents during transfer.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/create-flow-console.html#create-flow-console"
+  },
+  {
+    "term": "Change data capture",
+    "aliases": [
+      "CDC"
+    ],
+    "definition": "Capturing ongoing source database changes for replication.",
+    "source": "https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC"
+  },
+  {
+    "term": "TLS",
+    "aliases": [
+      "Transport Layer Security"
+    ],
+    "definition": "A protocol that encrypts data while it travels between endpoints.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/data-protection.html#data-protection"
+  },
+  {
+    "term": "Customer managed key",
+    "aliases": [],
+    "definition": "A KMS encryption key managed by the customer for protecting flow data.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/data-protection.html#data-protection"
+  },
+  {
+    "term": "Private transfer",
+    "aliases": [],
+    "definition": "Flow data movement through PrivateLink endpoints without exposing that data path to the public internet.",
+    "source": "https://docs.aws.amazon.com/appflow/latest/userguide/private-flows.html#private-flows"
+  }
+]

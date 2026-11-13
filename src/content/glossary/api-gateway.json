@@ -1,0 +1,318 @@
+[
+  {
+    "term": "deployment",
+    "aliases": [],
+    "definition": "A fixed snapshot of a REST API configuration that a stage can expose to callers.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/api/API_Deployment.html"
+  },
+  {
+    "term": "stage",
+    "aliases": [],
+    "definition": "A named reference to a deployed API configuration that clients can invoke.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-stages.html"
+  },
+  {
+    "term": "stage variable",
+    "aliases": [],
+    "definition": "A key-value configuration setting used by an API stage and its integrations.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/stage-variables.html"
+  },
+  {
+    "term": "canary release",
+    "aliases": [
+      "canary"
+    ],
+    "definition": "A release that receives a selected random share of requests while the base version serves the rest.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/canary-release.html"
+  },
+  {
+    "term": "integration",
+    "aliases": [],
+    "definition": "The configuration that connects an API method to a backend endpoint.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/rest-api-develop.html"
+  },
+  {
+    "term": "resource path",
+    "aliases": [],
+    "definition": "The URL path exposed by a REST API resource and its methods.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/rest-api-develop.html"
+  },
+  {
+    "term": "method",
+    "aliases": [],
+    "definition": "An HTTP operation on an API resource that defines how a client accesses it.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/rest-api-develop.html"
+  },
+  {
+    "term": "proxy integration",
+    "aliases": [],
+    "definition": "An integration that forwards request information to a backend under a defined input and output contract.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html"
+  },
+  {
+    "term": "mapping template",
+    "aliases": [],
+    "definition": "A VTL script that transforms an integration request or response payload.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html"
+  },
+  {
+    "term": "Velocity Template Language",
+    "aliases": [
+      "VTL"
+    ],
+    "definition": "The scripting language used by API Gateway mapping templates to transform payload data.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html"
+  },
+  {
+    "term": "payload",
+    "aliases": [],
+    "definition": "The request or response body processed by an API integration.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html"
+  },
+  {
+    "term": "request validator",
+    "aliases": [],
+    "definition": "An API method setting that checks required parameters or a body model before backend integration.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html"
+  },
+  {
+    "term": "JSON schema",
+    "aliases": [],
+    "definition": "A model describing the structure that a request body must match during validation.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html"
+  },
+  {
+    "term": "authorizer",
+    "aliases": [],
+    "definition": "A component that evaluates caller credentials or tokens to allow or deny API access.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html"
+  },
+  {
+    "term": "JSON Web Token",
+    "aliases": [
+      "JWT"
+    ],
+    "definition": "A signed token containing claims that an HTTP API authorizer can validate.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-jwt-authorizer.html"
+  },
+  {
+    "term": "claim",
+    "aliases": [],
+    "definition": "A value inside a token that describes its issuer, audience, validity or other identity information.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-jwt-authorizer.html#http-api-jwt-authorizer.evaluation"
+  },
+  {
+    "term": "scope",
+    "aliases": [],
+    "definition": "A token permission value that an HTTP API route can require for access.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-jwt-authorizer.html"
+  },
+  {
+    "term": "usage plan",
+    "aliases": [],
+    "definition": "A set of deployed API stages and request targets associated with client API keys.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html"
+  },
+  {
+    "term": "API key",
+    "aliases": [],
+    "definition": "A client identifier used to associate REST API requests with a usage plan.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html"
+  },
+  {
+    "term": "quota",
+    "aliases": [],
+    "definition": "A target request allowance over a time interval or another documented service limit.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html"
+  },
+  {
+    "term": "throttling",
+    "aliases": [],
+    "definition": "Limiting the target rate of incoming API requests.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html"
+  },
+  {
+    "term": "token bucket",
+    "aliases": [],
+    "definition": "A request-control model with tokens replenished at a rate and a bucket capacity for bursts.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html"
+  },
+  {
+    "term": "burst",
+    "aliases": [],
+    "definition": "The capacity of the request token bucket used to absorb a short traffic spike.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html"
+  },
+  {
+    "term": "cache key",
+    "aliases": [],
+    "definition": "Selected request values used to distinguish entries in the response cache.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#enable-api-gateway-cache-keys"
+  },
+  {
+    "term": "time-to-live",
+    "aliases": [
+      "TTL"
+    ],
+    "definition": "The period in seconds for which an API response can remain cached.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html"
+  },
+  {
+    "term": "cache invalidation",
+    "aliases": [],
+    "definition": "Refreshing a matching cache entry by fetching its response from the backend.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#invalidate-method-caching"
+  },
+  {
+    "term": "interface VPC endpoint",
+    "aliases": [],
+    "definition": "A network interface inside a VPC that provides private access to an AWS service.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-private-apis.html"
+  },
+  {
+    "term": "point of presence",
+    "aliases": [
+      "POP"
+    ],
+    "definition": "A CloudFront entry location through which an edge-optimized API can receive client requests.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html#api-gateway-api-endpoint-types-edge-optimized"
+  },
+  {
+    "term": "integration latency",
+    "aliases": [],
+    "definition": "The time from API Gateway forwarding a request to receiving the backend response.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html#api-gateway-metrics"
+  },
+  {
+    "term": "execution log",
+    "aliases": [],
+    "definition": "A log of the actions and errors involved in processing API requests.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html"
+  },
+  {
+    "term": "access log",
+    "aliases": [],
+    "definition": "A chosen record of who accessed an API and how the request was handled.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html"
+  },
+  {
+    "term": "OpenAPI",
+    "aliases": [],
+    "definition": "A definition-file format API Gateway can import or export to describe a REST API.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api.html"
+  },
+  {
+    "term": "software development kit",
+    "aliases": [
+      "SDK"
+    ],
+    "definition": "Generated client code for calling a specific REST API stage in a supported language.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/api/API_GetSdk.html"
+  },
+  {
+    "term": "route key",
+    "aliases": [],
+    "definition": "The message value matched against a WebSocket route selection expression to choose an integration.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-overview.html"
+  },
+  {
+    "term": "route selection expression",
+    "aliases": [],
+    "definition": "A rule that reads a JSON message property to choose a WebSocket route.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-overview.html"
+  },
+  {
+    "term": "callback",
+    "aliases": [],
+    "definition": "A backend message sent to an already connected WebSocket client.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-overview.html#apigateway-websocket-api-overview-send-data"
+  },
+  {
+    "term": "buffered response",
+    "aliases": [],
+    "definition": "A response API Gateway receives completely before starting to send it to the client.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/response-transfer-mode.html"
+  },
+  {
+    "term": "response streaming",
+    "aliases": [],
+    "definition": "Sending response data to a client progressively as the backend produces it.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/response-transfer-mode.html"
+  },
+  {
+    "term": "idle timeout",
+    "aliases": [],
+    "definition": "The limit on how long a response stream may remain inactive before it times out.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/response-transfer-mode.html"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "role"
+    ],
+    "definition": "An identity that a user, application or service assumes to obtain a set of permissions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "A string that uniquely identifies an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html"
+  },
+  {
+    "term": "authentication",
+    "aliases": [],
+    "definition": "The process of establishing the identity making a request.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/intro-structure.html"
+  },
+  {
+    "term": "authorization",
+    "aliases": [],
+    "definition": "The decision about whether an identity may perform a requested action.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/intro-structure.html"
+  },
+  {
+    "term": "resource policy",
+    "aliases": [],
+    "definition": "A policy attached to an API that can allow or deny access based on request sources.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html"
+  },
+  {
+    "term": "endpoint policy",
+    "aliases": [],
+    "definition": "A policy attached to a VPC endpoint to control access through that endpoint.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html"
+  },
+  {
+    "term": "integration timeout",
+    "aliases": [],
+    "definition": "The configured time API Gateway waits for an integration response before reporting a timeout.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/api/API_Integration.html"
+  },
+  {
+    "term": "SigV4",
+    "aliases": [
+      "Signature Version 4"
+    ],
+    "definition": "An AWS request signing protocol that API Gateway can use to authenticate caller credentials.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/permissions.html#api-gateway-control-access-iam-permissions-model-for-calling-api"
+  },
+  {
+    "term": "SigV4a",
+    "aliases": [
+      "Signature Version 4a"
+    ],
+    "definition": "An AWS request signing protocol supported for IAM authentication of REST API callers.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/permissions.html#api-gateway-control-access-iam-permissions-model-for-calling-api"
+  },
+  {
+    "term": "Lambda alias",
+    "aliases": [
+      "alias"
+    ],
+    "definition": "An updatable named pointer to a Lambda function version.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html"
+  }
+]

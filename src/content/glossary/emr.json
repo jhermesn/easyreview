@@ -1,0 +1,11 @@
+[
+  {"term":"node","aliases":[],"definition":"An EC2 instance in an EMR on EC2 cluster.","source":"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview.html#emr-overview-clusters"},
+  {"term":"HDFS","aliases":["Hadoop Distributed File System"],"definition":"The distributed file system in which EMR core nodes store cluster data.","source":"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview.html#emr-overview-clusters"},
+  {"term":"bootstrap action","aliases":["bootstrap actions"],"definition":"A script that customizes EMR nodes before cluster applications are installed.","source":"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-bootstrap.html#emr-plan-bootstrap"},
+  {"term":"step","aliases":["EMR step"],"definition":"A unit of work submitted to an EMR cluster for processing by installed software.","source":"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview.html#emr-overview-steps"},
+  {"term":"YARN","aliases":[],"definition":"A component that manages resources for applications in an EMR cluster.","source":"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-master-core-task-nodes.html#emr-plan-master"},
+  {"term":"Spot Instance","aliases":["Spot"],"definition":"An EC2 instance using spare capacity that EC2 can interrupt when it needs the capacity back.","source":"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html#using-spot-instances"},
+  {"term":"instance fleet","aliases":["instance fleets"],"definition":"A node configuration that can mix EC2 instance types and purchasing options.","source":"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview.html#emr-overview-clusters"},
+  {"term":"S3A","aliases":[],"definition":"A Hadoop connector for reading and writing data in Amazon S3.","source":"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-file-systems.html#emr-plan-file-systems"},
+  {"term":"EMRFS","aliases":["EMR File System"],"definition":"An EMR file system that lets Hadoop applications read and write files in Amazon S3.","source":"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-gs.html#emr-getting-started-prepare-storage"}
+]

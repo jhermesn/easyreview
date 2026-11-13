@@ -1,0 +1,155 @@
+[
+  {
+    "term": "Distributed tracing",
+    "aliases": [],
+    "definition": "Recording connected work across services to follow a request through an application.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html"
+  },
+  {
+    "term": "Trace",
+    "aliases": [],
+    "definition": "The connected records of service work associated with a request.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-traces"
+  },
+  {
+    "term": "Segment",
+    "aliases": [],
+    "definition": "A record of a service or resource handling a request.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-segments"
+  },
+  {
+    "term": "Subsegment",
+    "aliases": [],
+    "definition": "A record of a smaller operation inside a segment, such as a downstream call.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-subsegments"
+  },
+  {
+    "term": "Inferred node",
+    "aliases": [],
+    "definition": "A dependency that X-Ray reconstructs from an upstream client subsegment.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-subsegments"
+  },
+  {
+    "term": "Trace context",
+    "aliases": [],
+    "definition": "The identifiers and sampling decision that connect recorded work to a request.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader"
+  },
+  {
+    "term": "Sampling",
+    "aliases": [],
+    "definition": "The selection of requests whose tracing data will be recorded.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-console-sampling.html"
+  },
+  {
+    "term": "Reservoir",
+    "aliases": [],
+    "definition": "The fixed matching request count recorded each second before applying the sampling rate.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-console-sampling.html"
+  },
+  {
+    "term": "Parent-based sampling",
+    "aliases": [],
+    "definition": "A sampling approach in which a downstream service honors the upstream recording decision.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-console-sampling.html"
+  },
+  {
+    "term": "Annotation",
+    "aliases": [],
+    "definition": "An indexed key-value pair that can be used to find traces.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-annotations"
+  },
+  {
+    "term": "Metadata",
+    "aliases": [],
+    "definition": "Additional unindexed trace information that can include objects and arrays.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-metadata"
+  },
+  {
+    "term": "Filter expression",
+    "aliases": [],
+    "definition": "A condition that selects traces using indexed request information.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html"
+  },
+  {
+    "term": "Service graph",
+    "aliases": [
+      "service map",
+      "trace map"
+    ],
+    "definition": "A representation of services and the calls that connect them.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-servicegraph"
+  },
+  {
+    "term": "Instrumentation",
+    "aliases": [],
+    "definition": "Code or configuration that records application work for telemetry collection.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-migration.html"
+  },
+  {
+    "term": "Collector",
+    "aliases": [],
+    "definition": "A process that receives telemetry and forwards it to a configured destination.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-migration.html"
+  },
+  {
+    "term": "Sidecar",
+    "aliases": [],
+    "definition": "A supporting container that runs alongside an application container.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html"
+  },
+  {
+    "term": "Task role",
+    "aliases": [],
+    "definition": "The AWS identity that authorizes API calls made by ECS application containers.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html"
+  },
+  {
+    "term": "Execution role",
+    "aliases": [],
+    "definition": "The AWS identity that grants a Lambda function access to AWS services.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html#services-xray-permissions"
+  },
+  {
+    "term": "Fault-rate anomaly",
+    "aliases": [
+      "insight"
+    ],
+    "definition": "An unexpected increase in server faults detected from trace data.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-console-insights.html"
+  },
+  {
+    "term": "Latency",
+    "aliases": [],
+    "definition": "The elapsed time observed for a request or service call.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-subsegments"
+  },
+  {
+    "term": "OpenTelemetry",
+    "aliases": [
+      "OTel"
+    ],
+    "definition": "An observability framework for generating, collecting, and exporting traces and other telemetry.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-migration.html"
+  },
+  {
+    "term": "UDP",
+    "aliases": [
+      "User Datagram Protocol"
+    ],
+    "definition": "The network protocol used to send raw segment data to the X-Ray daemon.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html"
+  },
+  {
+    "term": "Tracing library",
+    "aliases": [],
+    "definition": "Application code support that records requests and operations as trace data.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-migration.html#library-instrumentations"
+  },
+  {
+    "term": "On-premises",
+    "aliases": [],
+    "definition": "Servers hosted in an organization's own data center.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-migration.html#ec2-onprem-migration"
+  }
+]

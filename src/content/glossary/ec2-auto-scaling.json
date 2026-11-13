@@ -1,0 +1,263 @@
+[
+  {
+    "term": "desired capacity",
+    "aliases": [],
+    "definition": "The amount of instance capacity an Auto Scaling group tries to maintain.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-capacity-limits.html#asg-capacity-limits"
+  },
+  {
+    "term": "launch template",
+    "aliases": [],
+    "definition": "A versioned set of settings used to launch an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html#launch-templates"
+  },
+  {
+    "term": "machine image",
+    "aliases": [
+      "AMI",
+      "Amazon Machine Image"
+    ],
+    "definition": "A template containing the software configuration used to launch an instance.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html#auto-scaling-benefits"
+  },
+  {
+    "term": "subnet",
+    "aliases": [],
+    "definition": "A network subdivision that resides entirely within one Availability Zone.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html#auto-scaling-benefits"
+  },
+  {
+    "term": "scale-out",
+    "aliases": [
+      "scaling out"
+    ],
+    "definition": "Adding instance capacity to an Auto Scaling group.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-capacity-limits.html#asg-capacity-limits"
+  },
+  {
+    "term": "scale-in",
+    "aliases": [
+      "scaling in"
+    ],
+    "definition": "Removing instance capacity from an Auto Scaling group.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html#ec2-auto-scaling-termination-policies"
+  },
+  {
+    "term": "termination policy",
+    "aliases": [],
+    "definition": "Rules that prioritize eligible instances for removal from a group.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html#ec2-auto-scaling-termination-policies"
+  },
+  {
+    "term": "allocation strategy",
+    "aliases": [],
+    "definition": "The configured approach for selecting capacity from instance types or Spot pools.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html#ec2-auto-scaling-termination-policies"
+  },
+  {
+    "term": "target tracking",
+    "aliases": [],
+    "definition": "A scaling policy that adjusts capacity to keep a utilization metric near a target.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-scaling-target-tracking"
+  },
+  {
+    "term": "metric",
+    "aliases": [],
+    "definition": "A measured value, such as average CPU utilization, that a scaling policy can monitor.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-scaling-target-tracking"
+  },
+  {
+    "term": "instance warmup",
+    "aliases": [
+      "warmup"
+    ],
+    "definition": "The initialization period during which a new instance is excluded from aggregated instance metrics.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-scaling-target-tracking"
+  },
+  {
+    "term": "cooldown",
+    "aliases": [],
+    "definition": "A pause after a scaling activity before another simple scaling activity can begin.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-cooldowns.html#ec2-auto-scaling-scaling-cooldowns"
+  },
+  {
+    "term": "backlog per instance",
+    "aliases": [
+      "messages per instance"
+    ],
+    "definition": "The queued message count divided by the number of instances processing the queue.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-scaling-target-tracking"
+  },
+  {
+    "term": "health check grace period",
+    "aliases": [
+      "grace period"
+    ],
+    "definition": "The initial period in service during which Auto Scaling delays replacement for health failures.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-check-grace-period.html#health-check-grace-period"
+  },
+  {
+    "term": "Standby",
+    "aliases": [],
+    "definition": "An Auto Scaling instance state that pauses Auto Scaling health checks until the instance returns to service.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#health-checks-overview"
+  },
+  {
+    "term": "InService",
+    "aliases": [],
+    "definition": "The Auto Scaling state of an instance that has entered service in the group.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#health-checks-overview"
+  },
+  {
+    "term": "lifecycle hook",
+    "aliases": [],
+    "definition": "A pause during instance launch or termination that allows a custom action to finish.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hooks"
+  },
+  {
+    "term": "heartbeat",
+    "aliases": [],
+    "definition": "A signal that extends a lifecycle action wait within its overall timeout.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/completing-lifecycle-hooks.html#completing-lifecycle-hooks"
+  },
+  {
+    "term": "bootstrapping",
+    "aliases": [],
+    "definition": "Installing and configuring software during an instance launch.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hooks"
+  },
+  {
+    "term": "managed node",
+    "aliases": [],
+    "definition": "An instance managed by Systems Manager on which tools such as Run Command can act.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-systems-manager-targets.html#monitoring-systems-manager-targets"
+  },
+  {
+    "term": "warm pool",
+    "aliases": [],
+    "definition": "A set of initialized instances kept alongside an Auto Scaling group for faster scale-out.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#ec2-auto-scaling-warm-pools"
+  },
+  {
+    "term": "hibernation",
+    "aliases": [],
+    "definition": "Saving instance memory to the EBS root volume before stopping so that memory can be restored on restart.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#ec2-auto-scaling-warm-pools"
+  },
+  {
+    "term": "instance reuse policy",
+    "aliases": [],
+    "definition": "A setting that returns scaled-in instances to the warm pool for later use.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#ec2-auto-scaling-warm-pools"
+  },
+  {
+    "term": "instance refresh",
+    "aliases": [],
+    "definition": "An operation that replaces group instances using an updated instance configuration.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html#instance-refresh-overview"
+  },
+  {
+    "term": "desired configuration",
+    "aliases": [],
+    "definition": "The launch settings that an instance refresh should deploy to the group.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html#instance-refresh-overview"
+  },
+  {
+    "term": "checkpoint",
+    "aliases": [],
+    "definition": "A configured percentage of replaced instances at which an instance refresh pauses.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html#instance-refresh-overview"
+  },
+  {
+    "term": "bake time",
+    "aliases": [],
+    "definition": "The final observation wait before an instance refresh is considered complete.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/understand-instance-refresh-default-values.html#understand-instance-refresh-default-values"
+  },
+  {
+    "term": "rollback",
+    "aliases": [
+      "auto rollback"
+    ],
+    "definition": "Replacing instances deployed during a refresh with instances matching the previous saved group configuration.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-rollback.html#instance-refresh-rollback"
+  },
+  {
+    "term": "slow start",
+    "aliases": [],
+    "definition": "An ALB target group setting that gradually increases requests sent to a new healthy target.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#slow-start-mode"
+  },
+  {
+    "term": "security group",
+    "aliases": [],
+    "definition": "Network traffic rules that control incoming and outgoing connections for associated EC2 instances.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html#ec2-security-groups"
+  },
+  {
+    "term": "user data",
+    "aliases": [],
+    "definition": "A startup script supplied in instance launch settings to configure software when an instance boots.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#ec2-auto-scaling-warm-pools"
+  },
+  {
+    "term": "Activity history",
+    "aliases": [],
+    "definition": "The Auto Scaling record of scaling operations, their status, and failure details.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/CHAP_Troubleshooting.html#CHAP_Troubleshooting"
+  },
+  {
+    "term": "Dry run",
+    "aliases": [
+      "dry-run"
+    ],
+    "definition": "A request check that does not perform the requested EC2 action.",
+    "source": "https://docs.aws.amazon.com/ec2/latest/devguide/errors-overview.html#errors-overview"
+  },
+  {
+    "term": "Instance profile",
+    "aliases": [],
+    "definition": "An IAM container that supplies a role to applications on an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-launch-template.html#ts-as-launch-template"
+  },
+  {
+    "term": "Service-linked role",
+    "aliases": [],
+    "definition": "An IAM role linked to a service that lets it perform actions on your behalf.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html#key-policy-requirements-EBS-encryption"
+  },
+  {
+    "term": "Customer managed key",
+    "aliases": [],
+    "definition": "An encryption key you create and control in AWS KMS.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html#key-policy-requirements-EBS-encryption"
+  },
+  {
+    "term": "Grant",
+    "aliases": [],
+    "definition": "A KMS permission delegation that authorizes specified operations on a key.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html#key-policy-requirements-EBS-encryption"
+  },
+  {
+    "term": "Administrative suspension",
+    "aliases": [],
+    "definition": "An Auto Scaling process suspension imposed by the service after repeated launch failures.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html#as-suspend-resume-processes"
+  },
+  {
+    "term": "Processor architecture",
+    "aliases": [
+      "CPU architecture"
+    ],
+    "definition": "The processor instruction family that an instance type and its AMI must both support.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-ami.html#ts-as-ami"
+  }
+]

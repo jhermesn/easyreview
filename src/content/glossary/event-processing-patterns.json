@@ -1,0 +1,94 @@
+[
+  {
+    "term": "Fan-out",
+    "aliases": [
+      "fanout"
+    ],
+    "definition": "Fan-out distributes copies of a published message to multiple subscribers.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html#sns-sqs-as-subscriber"
+  },
+  {
+    "term": "Backlog",
+    "aliases": [],
+    "definition": "A backlog is queued work that consumers have not finished processing.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#sqs-visibility-timeout"
+  },
+  {
+    "term": "Backpressure",
+    "aliases": [],
+    "definition": "Backpressure occurs when producers consistently send messages faster than consumers can process them.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-event-source-mapping.html#troubleshooting-event-source-mapping"
+  },
+  {
+    "term": "Idempotency",
+    "aliases": [
+      "idempotent processing"
+    ],
+    "definition": "Idempotency lets a consumer process the same message repeatedly without unintended extra effects.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues-at-least-once-delivery.html#standard-queues-at-least-once-delivery"
+  },
+  {
+    "term": "Visibility timeout",
+    "aliases": [],
+    "definition": "The visibility timeout temporarily hides a received SQS message while a consumer processes it.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#sqs-visibility-timeout"
+  },
+  {
+    "term": "Dead-letter queue",
+    "aliases": [
+      "DLQ"
+    ],
+    "definition": "A dead-letter queue holds messages that could not be processed successfully for investigation.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html#sqs-dead-letter-queues"
+  },
+  {
+    "term": "Message group",
+    "aliases": [
+      "messageGroupId"
+    ],
+    "definition": "A message group identifies the messages that an SQS FIFO queue processes in order.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html#FIFO-queues-understanding-logic"
+  },
+  {
+    "term": "Shard",
+    "aliases": [],
+    "definition": "A shard is an ordered sequence of records within a Kinesis data stream.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#shard"
+  },
+  {
+    "term": "Consumer",
+    "aliases": [],
+    "definition": "A consumer is an application that reads and processes records from a stream.",
+    "source": "https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#consumers"
+  },
+  {
+    "term": "Resource policy",
+    "aliases": [
+      "resource-based policy"
+    ],
+    "definition": "A resource policy is a permission document attached to a resource to control who can access it.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-access-policy-use-cases.html#sns-publish-messages-to-sqs-queue"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An Amazon Resource Name identifies a specific AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns"
+  },
+  {
+    "term": "Reserved concurrency",
+    "aliases": [],
+    "definition": "Reserved concurrency sets the simultaneous executions reserved for and allowed on a Lambda function.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html#configuration-concurrency"
+  },
+  {
+    "term": "Deduplication",
+    "aliases": [
+      "message deduplication"
+    ],
+    "definition": "Deduplication prevents repeated producer sends from adding duplicate messages to a FIFO queue within its deduplication interval.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing"
+  }
+]

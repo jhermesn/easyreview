@@ -1,0 +1,33 @@
+name: Who passed
+
+# Checks entries someone adds or changes on the "Who passed" wall: the entry belongs to the PR author,
+# their Credly profile links their GitHub profile, and Credly shows each claimed AWS Certification.
+on:
+  pull_request:
+    paths:
+      - 'src/content/passed/**'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Verify changed entries
+        env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mapfile -t files < <(git diff --name-only --diff-filter=AM "$BASE_SHA"...HEAD -- 'src/content/passed/*.json')
+          if [ "${#files[@]}" -eq 0 ]; then echo "No added or changed entries."; exit 0; fi
+          node scripts/verify-passed.mjs "${files[@]}"

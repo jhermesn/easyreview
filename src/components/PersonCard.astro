@@ -1,0 +1,75 @@
+---
+// One person on the "Who passed" wall. The frame colour shows their tier (see TIERS in lib/passed.ts).
+import { Image } from 'astro:assets';
+import SocialIcon from './SocialIcon.astro';
+import { badgeUrl } from '../lib/badge';
+import type { Earned, TierId } from '../lib/passed';
+
+export interface Person {
+  login: string;
+  name: string;
+  bio?: string;
+  avatar?: string;
+  credly: string;
+  linkedin?: string;
+  builder?: string;
+  earned: Earned[];
+  active: number;
+  latest: string;
+  tier: TierId;
+}
+interface Props {
+  person: Person;
+  total: number;
+  tierName: string;
+}
+const { person: p, total, tierName } = Astro.props;
+const golden = p.tier === 'golden';
+const latest = new Date(`${p.latest}T00:00:00Z`).toLocaleDateString('en', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+---
+<li class:list={['person', `tier-${p.tier}`]}>
+  <div class="top">
+    {p.avatar ? <Image src={p.avatar} alt="" width={56} height={56} class="avatar" /> : <span class="avatar blank" aria-hidden="true">{p.name.slice(0, 1)}</span>}
+    <div class="who">
+      <b>{p.name}</b>
+      <span class="meta"><span class="tier">{tierName}</span> {p.active}/{total} active · latest {latest}</span>
+    </div>
+  </div>
+  {p.bio && <p class="bio">{p.bio}</p>}
+  <ul class="earned">
+    {p.earned.map((e) => (
+      <li class:list={{ expired: !e.active }} title={`${e.cert.code} ${e.cert.name}${e.active ? '' : ' (expired)'}`}>
+        <img src={badgeUrl(e.cert.id, golden)} alt={e.cert.code} width="34" height="39" loading="lazy" />
+      </li>
+    ))}
+  </ul>
+  <div class="links">
+    <a href={`https://github.com/${p.login}`} target="_blank" rel="noopener nofollow" aria-label={`${p.name} on GitHub`} title="GitHub"><SocialIcon name="github" /></a>
+    {p.linkedin && <a href={p.linkedin} target="_blank" rel="noopener nofollow" aria-label={`${p.name} on LinkedIn`} title="LinkedIn"><SocialIcon name="linkedin" /></a>}
+    {p.builder && <a href={p.builder} target="_blank" rel="noopener nofollow" aria-label={`${p.name} on AWS Builder Center`} title="AWS Builder Center"><SocialIcon name="builder" /></a>}
+    <a href={`https://www.credly.com/users/${p.credly}/badges`} target="_blank" rel="noopener nofollow" aria-label={`${p.name}'s badges on Credly`} title="Credly badges"><SocialIcon name="credly" /></a>
+  </div>
+</li>
+
+<style>
+  .person { --frame: var(--ink-700); border: 1px solid var(--frame); background: var(--ink-850); padding: 0.8rem 0.9rem; display: grid; gap: 0.5rem; align-content: start; }
+  .tier-golden { --frame: var(--gold); box-shadow: 0 0 1.2rem rgb(242 193 78 / 0.18); border-width: 2px; }
+  .tier-alumni { --frame: #a8761c; border-style: dashed; }
+  .tier-challenger { --frame: #c9d3df; }
+  .tier-rising { --frame: #cd8a4b; }
+  .top { display: flex; gap: 0.7rem; align-items: center; }
+  .avatar { width: 3.5rem; height: 3.5rem; flex: none; border: 2px solid var(--frame); background: var(--ink-800); object-fit: cover; }
+  .blank { display: grid; place-items: center; font-weight: 700; color: var(--ink-300); }
+  .who { display: grid; gap: 0.15rem; min-width: 0; }
+  .who b { overflow-wrap: anywhere; }
+  .tier-golden .who b { background: var(--gold-sheen); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .meta { font-size: 0.72rem; color: var(--ink-300); }
+  .tier { color: var(--frame); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.66rem; }
+  .tier-certified .tier { color: var(--ink-300); }
+  .bio { margin: 0; font-size: 0.8rem; color: var(--ink-300); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .earned { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .expired { opacity: 0.35; filter: grayscale(1); }
+  .links { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+  .links a { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid var(--ink-700); color: var(--ink-300); }
+  .links a:hover, .links a:focus-visible { color: var(--ink-100); border-color: var(--frame, var(--ink-400)); }
+</style>

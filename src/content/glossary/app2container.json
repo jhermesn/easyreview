@@ -1,0 +1,76 @@
+[
+  {
+    "term": "Container image",
+    "aliases": [],
+    "definition": "A packaged application and its dependencies provide the files needed to start a container.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/what-is-a2c.html#what-is-a2c"
+  },
+  {
+    "term": "Runtime dependency",
+    "aliases": [],
+    "definition": "A file, process, or network connection is required while the application runs.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/what-is-a2c.html#what-is-a2c"
+  },
+  {
+    "term": "Artifact",
+    "aliases": [],
+    "definition": "A generated file or image is used to build or deploy the application.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/what-is-a2c.html#what-is-a2c"
+  },
+  {
+    "term": "Inventory",
+    "aliases": [],
+    "definition": "A list identifies running applications that can be analyzed for containerization.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/a2c-commands.html#a2c-commands"
+  },
+  {
+    "term": "Worker machine",
+    "aliases": [],
+    "definition": "A separate compatible machine performs containerization and deployment for an application server.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/start-intro.html#start-intro"
+  },
+  {
+    "term": "Dockerfile",
+    "aliases": [],
+    "definition": "A file contains the instructions used to build a container image.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-containerize.html#cmd-containerize"
+  },
+  {
+    "term": "Container registry",
+    "aliases": [],
+    "definition": "A repository service stores container images for later deployment.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-appdeploy.html#cmd-generate-appdeploy"
+  },
+  {
+    "term": "Application mode",
+    "aliases": [],
+    "definition": "Containerization includes selected application files and dependencies for a supported framework.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/supported-applications.html#supported-applications"
+  },
+  {
+    "term": "Process mode",
+    "aliases": [],
+    "definition": "Containerization includes all non-system files when dependency discovery needs a broader scope.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/supported-applications.html#supported-applications"
+  },
+  {
+    "term": "Stack",
+    "aliases": [],
+    "definition": "A collection of AWS resources is managed together using a CloudFormation template.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/what-is-a2c.html#what-is-a2c"
+  },
+  {
+    "term": "Delivery pipeline",
+    "aliases": [
+      "CI/CD pipeline"
+    ],
+    "definition": "An automated sequence builds and deploys application updates.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-pipeline.html#cmd-generate-pipeline"
+  },
+  {
+    "term": "Kubernetes manifest",
+    "aliases": [],
+    "definition": "A configuration file describes Kubernetes deployment resources for the containerized application.",
+    "source": "https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-appdeploy.html#cmd-generate-appdeploy"
+  }
+]

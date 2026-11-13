@@ -1,0 +1,56 @@
+[
+  {
+    "term": "Storage virtual machine",
+    "aliases": ["SVM"],
+    "definition": "A virtual storage server with endpoints used to access and manage its data.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients"
+  },
+  {
+    "term": "Multipathing",
+    "aliases": [],
+    "definition": "Using multiple client paths to storage servers so a client can switch paths on failure.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-AZ.html#Failover"
+  },
+  {
+    "term": "Capacity pool",
+    "aliases": [],
+    "definition": "An elastic storage tier for data that can tolerate higher latency than SSD storage.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/performance.html#latency-fsxW"
+  },
+  {
+    "term": "Snapshot",
+    "aliases": [],
+    "definition": "A point-in-time copy of data.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/what-is-fsx.html#what-is-fsx"
+  },
+  {
+    "term": "Volume",
+    "aliases": [],
+    "definition": "An isolated container for files, directories or iSCSI storage units.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#managing-volumes"
+  },
+  {
+    "term": "Junction path",
+    "aliases": [],
+    "definition": "The location where a volume is mounted in a storage virtual machine's file tree.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#managing-volumes"
+  },
+  {
+    "term": "NFS",
+    "aliases": ["Network File System"],
+    "definition": "A protocol for accessing shared files over a network.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients"
+  },
+  {
+    "term": "SMB",
+    "aliases": ["Server Message Block"],
+    "definition": "A protocol for accessing shared files over a network.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients"
+  },
+  {
+    "term": "iSCSI",
+    "aliases": ["Internet Small Computer Systems Interface"],
+    "definition": "A protocol for accessing shared block storage over a network.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#using-block-storage"
+  }
+]

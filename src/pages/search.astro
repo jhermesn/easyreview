@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import { availableCerts } from '../lib/certs';
+import { getCertView, sectionHref, unitIdOf } from '../lib/content';
+import { jsonForScript, withBase } from '../lib/format';
+
+// One entry per section, linked through the first cert that includes it; `cert` lists every exam that does.
+const views = await Promise.all(availableCerts().map((c) => getCertView(c.id)));
+const certCodes = new Map<string, string[]>();
+for (const view of views) for (const s of view.sections) certCodes.set(s.id, [...(certCodes.get(s.id) ?? []), view.cert.code]);
+const indexed = new Set<string>();
+const index = views.flatMap((view) =>
+  view.units.flatMap(({ unit, sections }) =>
+    sections.flatMap((s) => {
+      if (indexed.has(s.id)) return [];
+      indexed.add(s.id);
+      const cert = certCodes.get(s.id)!.join(' ');
+      const topic = unit.data.title;
+      return [
+        { kind: 'section', cert, title: s.data.title, text: `${topic} ${s.body ?? ''}`, href: withBase(sectionHref(view.cert.id, s)), topic },
+        ...s.data.cards.map((c) => ({ kind: 'card', cert, title: c.q, text: `${c.a} ${topic}`, href: withBase(`/${view.cert.id}/${unitIdOf(s)}#cards`), topic })),
+      ];
+    }),
+  ),
+);
+---
+<Base title="Search" description="Search every AWS certification review topic, section and flashcard on Easy Review.">
+  <div class="article">
+    <h1>Search</h1>
+  </div>
+  <input type="search" placeholder="lifecycle hook, StackSets, canary, cross-account..." autofocus data-search />
+  <ul class="results" data-results></ul>
+  <script type="application/json" data-index set:html={jsonForScript(index)} />
+</Base>
+
+<style>
+  .results { list-style: none; padding: 0; margin-top: 1rem; }
+  .results :global(li) { padding: 0.5rem 0; border-bottom: 1px solid var(--ink-700); }
+  .results :global(small) { color: var(--ink-300); display: block; }
+  .results :global(.k) { font-size: 0.7rem; text-transform: uppercase; margin-right: 0.5rem; color: var(--purple); }
+  .results :global(.c) { font-size: 0.7rem; margin-right: 0.5rem; color: var(--amber); }
+</style>
+
+<script>
+  import { escapeHtml as esc } from '../lib/format';
+  type Entry = { kind: string; cert: string; title: string; text: string; href: string; topic?: string };
+  document.addEventListener('astro:page-load', () => {
+    const input = document.querySelector<HTMLInputElement>('[data-search]');
+    if (!input || input.dataset.ready) return;
+    input.dataset.ready = '1';
+    const index: Entry[] = JSON.parse(document.querySelector('[data-index]')!.textContent!);
+    const out = document.querySelector<HTMLElement>('[data-results]')!;
+    const run = () => {
+      const terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+      if (!terms.length) { out.innerHTML = ''; return; }
+      const hits = index
+        .map((e) => {
+          const title = e.title.toLowerCase();
+          const hay = `${title} ${e.text.toLowerCase()} ${e.cert.toLowerCase()}`;
+          if (!terms.every((t) => hay.includes(t))) return null;
+          return { e, score: terms.reduce((s, t) => s + (title.includes(t) ? 3 : 1), 0) + (e.kind === 'section' ? 2 : 0) };
+        })
+        .filter((x): x is { e: Entry; score: number } => !!x)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 40);
+      out.innerHTML = hits.length
+        ? hits.map(({ e }) => `<li><span class="c">${esc(e.cert)}</span><span class="k">${e.kind}</span><a href="${e.href}">${esc(e.title.replace(/[*`]/g, ''))}</a>${e.topic ? `<small>${esc(e.topic)}</small>` : ''}</li>`).join('')
+        : '<li class="muted">No match.</li>';
+    };
+    input.addEventListener('input', run);
+    const q = new URLSearchParams(location.search).get('q');
+    if (q) { input.value = q; run(); }
+  });
+</script>

@@ -1,0 +1,410 @@
+[
+  {
+    "term": "Managed node",
+    "aliases": [],
+    "definition": "A machine configured to receive Systems Manager management actions through SSM Agent.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-hybrid-multicloud.html#systems-manager-hybrid-multicloud"
+  },
+  {
+    "term": "Instance profile",
+    "aliases": [],
+    "definition": "A container that passes an IAM role to an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html#id_roles_use_switch-role-ec2_instance-profiles"
+  },
+  {
+    "term": "Service role",
+    "aliases": [],
+    "definition": "An IAM role that an AWS service assumes to perform authorized actions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles"
+  },
+  {
+    "term": "IMDSv2",
+    "aliases": [
+      "Instance Metadata Service Version 2"
+    ],
+    "definition": "The token-based interface through which software on an EC2 instance retrieves instance metadata.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-service"
+  },
+  {
+    "term": "Interface VPC endpoint",
+    "aliases": [
+      "Interface endpoint"
+    ],
+    "definition": "A private network entry point for connecting to a supported service through AWS PrivateLink.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html#setup-create-vpc"
+  },
+  {
+    "term": "Security group",
+    "aliases": [],
+    "definition": "A set of rules that controls permitted network traffic for associated resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups"
+  },
+  {
+    "term": "Hybrid activation",
+    "aliases": [],
+    "definition": "An activation ID and code used to register non-EC2 machines with Systems Manager.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateActivation.html#API_CreateActivation"
+  },
+  {
+    "term": "Token exchange role",
+    "aliases": [],
+    "definition": "An IAM role that supplies temporary AWS permissions to Greengrass device components.",
+    "source": "https://docs.aws.amazon.com/greengrass/v2/developerguide/device-service-role.html#device-service-role"
+  },
+  {
+    "term": "SSM document",
+    "aliases": [
+      "Systems Manager document"
+    ],
+    "definition": "A reusable JSON or YAML definition of actions, steps and input parameters for Systems Manager.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/documents.html#documents"
+  },
+  {
+    "term": "Document version",
+    "aliases": [],
+    "definition": "A saved revision of an SSM document that can be selected explicitly for execution.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/documents.html#ssm-docs-benefits"
+  },
+  {
+    "term": "Resource group",
+    "aliases": [],
+    "definition": "A saved collection of resources selected by a query such as resource types and tags.",
+    "source": "https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query"
+  },
+  {
+    "term": "Tag",
+    "aliases": [],
+    "definition": "A key and optional value attached to a resource to identify or categorize it.",
+    "source": "https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#getting_started-query_types"
+  },
+  {
+    "term": "Invocation",
+    "aliases": [],
+    "definition": "A copy of a Run Command command sent to a particular managed node.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-sns-notifications.html#monitoring-sns-notifications"
+  },
+  {
+    "term": "Concurrency",
+    "aliases": [],
+    "definition": "The number of target invocations allowed to run at the same time.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-velocity"
+  },
+  {
+    "term": "Error threshold",
+    "aliases": [
+      "max-errors"
+    ],
+    "definition": "The allowed error count or percentage before Run Command stops sending new invocations.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-maxerrors"
+  },
+  {
+    "term": "Runbook",
+    "aliases": [
+      "Automation runbook"
+    ],
+    "definition": "An ordered set of maintenance or deployment actions executed by Systems Manager Automation.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/documents.html#what-are-document-types"
+  },
+  {
+    "term": "AMI",
+    "aliases": [
+      "Amazon Machine Image"
+    ],
+    "definition": "A template used to launch an EC2 instance with its operating system and software.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs"
+  },
+  {
+    "term": "Root volume",
+    "aliases": [],
+    "definition": "The storage volume containing the operating system used to boot an instance.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/RootDeviceStorage.html#RootDeviceStorage"
+  },
+  {
+    "term": "Account-Region pair",
+    "aliases": [
+      "Location"
+    ],
+    "definition": "One AWS account in one AWS Region used as an Automation execution location.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/running-automations-multiple-accounts-regions.html#multiple-console"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A group of AWS accounts within an AWS Organizations hierarchy.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#orgs_getting-started_concepts"
+  },
+  {
+    "term": "iam:PassRole",
+    "aliases": [
+      "PassRole"
+    ],
+    "definition": "Permission for a caller to pass an IAM role to an AWS service.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html#id_roles_use_passrole"
+  },
+  {
+    "term": "Association",
+    "aliases": [
+      "State Manager association"
+    ],
+    "definition": "A saved configuration binding a document and its inputs to targets and an execution schedule.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-about.html#state-manager-about"
+  },
+  {
+    "term": "Cron expression",
+    "aliases": [
+      "cron"
+    ],
+    "definition": "A schedule expression specifying calendar times for an action.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/reference-cron-and-rate-expressions.html#reference-cron-and-rate-expressions"
+  },
+  {
+    "term": "Rate expression",
+    "aliases": [
+      "rate"
+    ],
+    "definition": "A schedule expression specifying a repeating time interval.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/reference-cron-and-rate-expressions.html#reference-cron-and-rate-expressions"
+  },
+  {
+    "term": "Compliance",
+    "aliases": [],
+    "definition": "The reported state of a node compared with required patching or configuration criteria.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/compliance-about.html#compliance-about"
+  },
+  {
+    "term": "Patch baseline",
+    "aliases": [
+      "Baseline"
+    ],
+    "definition": "Rules and explicit lists that determine approved and rejected patches.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-predefined-and-custom-patch-baselines.html#patch-manager-predefined-and-custom-patch-baselines"
+  },
+  {
+    "term": "Patch group",
+    "aliases": [],
+    "definition": "Nodes whose patch-group tag value is registered with an operating-system-specific patch baseline.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-patch-groups.html#patch-manager-patch-groups"
+  },
+  {
+    "term": "Patch repository",
+    "aliases": [
+      "Repository"
+    ],
+    "definition": "A source location from which an operating-system package manager obtains updates.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-alternative-source-repository.html#patch-manager-alternative-source-repository"
+  },
+  {
+    "term": "Baseline snapshot",
+    "aliases": [
+      "Patch snapshot"
+    ],
+    "definition": "The approved patch set captured for a patching operation.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-aws-runpatchbaseline.html#patch-manager-aws-runpatchbaseline-parameters-snapshot-id"
+  },
+  {
+    "term": "Cutoff",
+    "aliases": [],
+    "definition": "The time before a maintenance window ends when scheduling of new tasks stops.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateMaintenanceWindow.html#API_CreateMaintenanceWindow"
+  },
+  {
+    "term": "Metadata",
+    "aliases": [],
+    "definition": "Descriptive information such as installed software versions or file attributes rather than file contents.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-inventory.html#systems-manager-inventory"
+  },
+  {
+    "term": "Resource data sync",
+    "aliases": [],
+    "definition": "A configuration that copies collected inventory data to a central S3 bucket.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/inventory-resource-data-sync.html#inventory-resource-data-sync"
+  },
+  {
+    "term": "Finding",
+    "aliases": [],
+    "definition": "A recorded security check result or security-related detection.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-security-hub-integration.html#patch-manager-security-hub-integration"
+  },
+  {
+    "term": "Bastion",
+    "aliases": [
+      "Jump host"
+    ],
+    "definition": "A separate host used to reach machines in a private network.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/access-a-bastion-host-by-using-session-manager-and-amazon-ec2-instance-connect.html#access-a-bastion-host-by-using-session-manager-and-amazon-ec2-instance-connect"
+  },
+  {
+    "term": "TLS",
+    "aliases": [
+      "Transport Layer Security"
+    ],
+    "definition": "A protocol that encrypts data exchanged over a network connection.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html#session-manager"
+  },
+  {
+    "term": "Run As",
+    "aliases": [],
+    "definition": "A session setting that selects an existing Linux or macOS operating-system user.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-run-as.html#session-preferences-run-as"
+  },
+  {
+    "term": "sudoers",
+    "aliases": [],
+    "definition": "The operating-system configuration that grants users permission to run privileged commands.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-run-as.html#session-preferences-run-as"
+  },
+  {
+    "term": "Parameter hierarchy",
+    "aliases": [
+      "Hierarchy"
+    ],
+    "definition": "A slash-separated parameter name structure that organizes related configuration values.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#sysman-paramstore-hierarchies"
+  },
+  {
+    "term": "Recursive retrieval",
+    "aliases": [],
+    "definition": "Reading parameter values from the requested path and its nested paths.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html#API_GetParametersByPath"
+  },
+  {
+    "term": "Parameter label",
+    "aliases": [
+      "Label"
+    ],
+    "definition": "A user-defined name attached to a particular parameter version.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions"
+  },
+  {
+    "term": "Symmetric key",
+    "aliases": [],
+    "definition": "A cryptographic key that uses the same secret material to encrypt and decrypt.",
+    "source": "https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/concepts.html#symmetric-key-encryption"
+  },
+  {
+    "term": "Envelope encryption",
+    "aliases": [],
+    "definition": "Encryption where a data key protects the value and a KMS key protects that data key.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/secure-string-parameter-kms-encryption.html#secure-string-parameter-kms-encryption"
+  },
+  {
+    "term": "Customer managed key",
+    "aliases": [],
+    "definition": "A KMS key whose permissions and lifecycle are controlled by the customer.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/secure-string-parameter-kms-encryption.html#secure-string-parameter-kms-encryption"
+  },
+  {
+    "term": "Deduplication string",
+    "aliases": [],
+    "definition": "An identifier combined with the initiating resource to suppress duplicate open operational issues.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-working-deduplication.html#OpsCenter-working-deduplication"
+  },
+  {
+    "term": "OpsItem",
+    "aliases": [],
+    "definition": "An operational work record linking an issue with affected resources and investigation context.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html#OpsCenter"
+  },
+  {
+    "term": "Response plan",
+    "aliases": [],
+    "definition": "An incident template specifying responders, automated actions and collaboration tools.",
+    "source": "https://docs.aws.amazon.com/incident-manager/latest/userguide/what-is-incident-manager.html#what-is-incident-manager"
+  },
+  {
+    "term": "On-call schedule",
+    "aliases": [],
+    "definition": "A set of rotations that identifies which responder should be notified at a given time.",
+    "source": "https://docs.aws.amazon.com/incident-manager/latest/userguide/what-is-incident-manager.html#what-is-incident-manager"
+  },
+  {
+    "term": "Escalation path",
+    "aliases": [],
+    "definition": "A notification sequence that engages additional responders during an incident.",
+    "source": "https://docs.aws.amazon.com/incident-manager/latest/userguide/what-is-incident-manager.html#what-is-incident-manager"
+  },
+  {
+    "term": "Golden AMI",
+    "aliases": [
+      "Golden image"
+    ],
+    "definition": "An organization-maintained base machine image used for consistent instance launches.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-tutorial-update-patch-golden-ami.html#automation-tutorial-update-patch-golden-ami"
+  },
+  {
+    "term": "Application",
+    "aliases": [],
+    "definition": "A logical group of AWS resources operated together as one workload.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager.html#application-manager"
+  },
+  {
+    "term": "Maintenance mode",
+    "aliases": [],
+    "definition": "A service state that preserves existing access and support without new features or Region expansion.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager-availability-change.html#application-manager-availability-change"
+  },
+  {
+    "term": "Tag filter",
+    "aliases": [],
+    "definition": "A resource-selection condition matching a tag key and optionally its values.",
+    "source": "https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query"
+  },
+  {
+    "term": "Resource share",
+    "aliases": [],
+    "definition": "An AWS RAM configuration listing shared resources, allowed consumers, and their permissions.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html#parameter-store-shared-parameters"
+  },
+  {
+    "term": "Consumer account",
+    "aliases": [],
+    "definition": "An AWS account permitted to read a parameter owned by another account.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html#parameter-store-shared-parameters"
+  },
+  {
+    "term": "Read-only access",
+    "aliases": [],
+    "definition": "Permission to retrieve a shared parameter without updating, deleting, or resharing it.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html#parameter-store-shared-parameters"
+  },
+  {
+    "term": "Key policy",
+    "aliases": [],
+    "definition": "The policy attached to a KMS key that defines who may use it.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#key-policy-modifying-external-accounts"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An AWS resource identifier that includes the owning account, Region where applicable, and resource path.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameter.html#API_GetParameter"
+  },
+  {
+    "term": "SecureString",
+    "aliases": [],
+    "definition": "A Parameter Store value encrypted with an AWS KMS key.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/ps-restrict-parameter-access.html#ps-restrict-parameter-access"
+  },
+  {
+    "term": "Dynamic reference",
+    "aliases": [],
+    "definition": "A CloudFormation value reference resolved from an external store during a stack operation.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html#parameter-store-shared-parameters"
+  },
+  {
+    "term": "Stack",
+    "aliases": [],
+    "definition": "A group of AWS resources created and managed together through CloudFormation.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/modules-using.html#modules-using"
+  },
+  {
+    "term": "Permission set",
+    "aliases": [],
+    "definition": "An AWS RAM collection of allowed actions granted to a resource-share consumer.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html#parameter-store-shared-parameters"
+  }
+]

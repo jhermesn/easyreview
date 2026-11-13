@@ -1,0 +1,275 @@
+[
+  {
+    "term": "Container",
+    "aliases": [
+      "containerized application"
+    ],
+    "definition": "An isolated process that runs an application packaged with its dependencies.",
+    "source": "https://aws.amazon.com/what-is/containerization/"
+  },
+  {
+    "term": "Container image",
+    "aliases": [
+      "image"
+    ],
+    "definition": "A package used to create containers with application code and its dependencies.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html"
+  },
+  {
+    "term": "Dockerfile",
+    "aliases": [],
+    "definition": "A file of instructions describing how to build and start an image.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html"
+  },
+  {
+    "term": "Image layer",
+    "aliases": [
+      "layer"
+    ],
+    "definition": "A read-only part of an image built from a Dockerfile instruction.",
+    "source": "https://docs.aws.amazon.com/pdfs/AmazonECS/latest/bestpracticesguide/bestpracticesguide.pdf"
+  },
+  {
+    "term": "Writable layer",
+    "aliases": [],
+    "definition": "The private changeable storage added to a container and discarded when it is replaced.",
+    "source": "https://docs.aws.amazon.com/pdfs/AmazonECS/latest/bestpracticesguide/bestpracticesguide.pdf"
+  },
+  {
+    "term": "Registry",
+    "aliases": [
+      "image registry"
+    ],
+    "definition": "A store from which container images can be pushed or pulled.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html"
+  },
+  {
+    "term": "Task definition",
+    "aliases": [],
+    "definition": "The JSON configuration describing the containers and resources for an application.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html"
+  },
+  {
+    "term": "Desired count",
+    "aliases": [
+      "desiredCount"
+    ],
+    "definition": "The number of tasks a service is configured to maintain.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html"
+  },
+  {
+    "term": "Volume",
+    "aliases": [],
+    "definition": "Storage exposed to containers through a mounted directory.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html"
+  },
+  {
+    "term": "Ephemeral storage",
+    "aliases": [
+      "disposable storage"
+    ],
+    "definition": "Storage whose data is not retained beyond the associated task or container lifetime.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "role"
+    ],
+    "definition": "An assumable identity that supplies temporary credentials for allowed AWS operations.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "Trust policy",
+    "aliases": [],
+    "definition": "A role policy specifying which principal may assume the role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "Principal",
+    "aliases": [],
+    "definition": "An identity that makes an AWS request, such as a role or service.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "Instance profile",
+    "aliases": [],
+    "definition": "The container used to attach an IAM role to an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html"
+  },
+  {
+    "term": "Image digest",
+    "aliases": [
+      "digest"
+    ],
+    "definition": "A content identifier used to select a particular container image.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html"
+  },
+  {
+    "term": "Platform revision",
+    "aliases": [
+      "revision"
+    ],
+    "definition": "An updated runtime release within a Fargate platform version.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform-fargate.html"
+  },
+  {
+    "term": "Service revision",
+    "aliases": [],
+    "definition": "A version of the service configuration and tasks involved in a deployment.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_service-options.html#deployment-terminology"
+  },
+  {
+    "term": "Deployment controller",
+    "aliases": [],
+    "definition": "The mechanism that manages how a service deploys new versions.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_service-options.html#deployment-terminology"
+  },
+  {
+    "term": "Target group",
+    "aliases": [],
+    "definition": "A logical set of destinations that receive routed load balancer traffic.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_service-options.html#deployment-terminology"
+  },
+  {
+    "term": "Listener",
+    "aliases": [],
+    "definition": "A load balancer endpoint that accepts requests on a configured protocol and port.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-linear.html"
+  },
+  {
+    "term": "Bake time",
+    "aliases": [],
+    "definition": "A waiting period used to observe a new revision before deployment proceeds or old tasks end.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-linear.html"
+  },
+  {
+    "term": "Lifecycle hook",
+    "aliases": [],
+    "definition": "A deployment action that runs custom validation or pauses at a selected stage.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-linear.html"
+  },
+  {
+    "term": "Rollback",
+    "aliases": [],
+    "definition": "Returning an application deployment to a previous revision after a problem.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_service-options.html#deployment-terminology"
+  },
+  {
+    "term": "Service discovery",
+    "aliases": [],
+    "definition": "A way for an application to locate the services it needs.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html"
+  },
+  {
+    "term": "Capacity provider strategy",
+    "aliases": [],
+    "definition": "Rules defining how tasks are distributed among available capacity providers.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CapacityProviderStrategyItem.html"
+  },
+  {
+    "term": "Base",
+    "aliases": [],
+    "definition": "A minimum task count placed on one provider before weighted task distribution.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CapacityProviderStrategyItem.html"
+  },
+  {
+    "term": "Weight",
+    "aliases": [],
+    "definition": "A relative share of tasks assigned to a capacity provider after satisfying its base.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CapacityProviderStrategyItem.html"
+  },
+  {
+    "term": "Scale out",
+    "aliases": [
+      "scale-out"
+    ],
+    "definition": "Add tasks or instances to handle more work.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html"
+  },
+  {
+    "term": "Scale in",
+    "aliases": [
+      "scale-in"
+    ],
+    "definition": "Remove tasks or instances when less capacity is needed.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html"
+  },
+  {
+    "term": "Cooldown",
+    "aliases": [],
+    "definition": "A waiting period that gives a scaling activity time to take effect.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html"
+  },
+  {
+    "term": "Backlog per task",
+    "aliases": [],
+    "definition": "The queued work available for each running worker task.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html"
+  },
+  {
+    "term": "Sidecar",
+    "aliases": [],
+    "definition": "A helper container that runs alongside the application, for example to forward log files.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-docker-buffer-limit.html"
+  },
+  {
+    "term": "Standard output",
+    "aliases": [
+      "STDOUT"
+    ],
+    "definition": "The stream an application uses for ordinary process output.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html"
+  },
+  {
+    "term": "Standard error",
+    "aliases": [
+      "STDERR"
+    ],
+    "definition": "The stream an application uses for process error output.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html"
+  },
+  {
+    "term": "Log driver",
+    "aliases": [
+      "logging driver"
+    ],
+    "definition": "A container runtime component that forwards a container output stream to its destination.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html"
+  },
+  {
+    "term": "Network interface",
+    "aliases": [
+      "elastic network interface",
+      "ENI"
+    ],
+    "definition": "The network connection associated with a task that uses awsvpc networking.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-networking.html"
+  },
+  {
+    "term": "Log group",
+    "aliases": [],
+    "definition": "A collection of log streams with common retention, monitoring, and access settings.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html"
+  },
+  {
+    "term": "Log stream",
+    "aliases": [],
+    "definition": "A sequence of log events from the same source.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html"
+  },
+  {
+    "term": "Auto Scaling group",
+    "aliases": [
+      "ASG"
+    ],
+    "definition": "A collection of EC2 instances whose count can change to provide the needed capacity.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html"
+  },
+  {
+    "term": "Confused deputy",
+    "aliases": [],
+    "definition": "A security problem in which an unauthorized actor induces a more privileged entity to act on its behalf.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html"
+  }
+]

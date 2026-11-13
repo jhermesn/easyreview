@@ -1,0 +1,146 @@
+[
+  {
+    "term": "Landing zone",
+    "aliases": [],
+    "definition": "A multi-account environment containing the accounts, identities, and resources subject to governance.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html#features"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A grouping of accounts within an AWS organization hierarchy.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/how-control-tower-works.html#landing-zone-structure"
+  },
+  {
+    "term": "Baseline",
+    "aliases": [],
+    "definition": "A collection of resources and configurations applied to a governance target.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/types-of-baselines.html#types-of-baselines"
+  },
+  {
+    "term": "Control",
+    "aliases": [
+      "Guardrail"
+    ],
+    "definition": "An ongoing governance rule applied to an AWS environment.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/controlreference/controls.html#controls"
+  },
+  {
+    "term": "Service control policy",
+    "aliases": [
+      "SCP"
+    ],
+    "definition": "An organization policy that limits the permissions available to identities in member accounts without granting permissions.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html"
+  },
+  {
+    "term": "Resource control policy",
+    "aliases": [
+      "RCP"
+    ],
+    "definition": "An organization policy that limits permissions available on member-account resources without granting permissions.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html"
+  },
+  {
+    "term": "Declarative policy",
+    "aliases": [],
+    "definition": "An organization policy that enforces the desired configuration of a supported AWS service.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_declarative_policies.html"
+  },
+  {
+    "term": "CloudFormation hook",
+    "aliases": [
+      "Hook"
+    ],
+    "definition": "A check that evaluates a CloudFormation resource before provisioning and can block a noncompliant resource.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/controlreference/control-behavior.html#control-behavior"
+  },
+  {
+    "term": "Blueprint",
+    "aliases": [],
+    "definition": "A Service Catalog product defining the resources and configuration applied to an account by AFC.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/af-customization-page.html#af-customization-page"
+  },
+  {
+    "term": "Hub account",
+    "aliases": [],
+    "definition": "The account that stores Service Catalog blueprint products for AFC.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/af-customization-page.html#af-customization-page"
+  },
+  {
+    "term": "Lifecycle event",
+    "aliases": [],
+    "definition": "An event recording the completed result of a Control Tower operation.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/lifecycle-events.html#lifecycle-events"
+  },
+  {
+    "term": "Manifest",
+    "aliases": [],
+    "definition": "A file describing the resources and targets in a CfCT configuration package.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/cfct-codepipeline-overview.html#cfct-codepipeline-overview"
+  },
+  {
+    "term": "GitOps",
+    "aliases": [],
+    "definition": "A model in which account requests and configurations stored in Git drive automated workflows.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/aft-overview.html#aft-overview"
+  },
+  {
+    "term": "Feature flag",
+    "aliases": [],
+    "definition": "A configuration option that explicitly enables an optional AFT behavior.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/aft-feature-options.html#aft-feature-options"
+  },
+  {
+    "term": "Drift",
+    "aliases": [
+      "Governance drift"
+    ],
+    "definition": "A mismatch between an expected governance configuration and the current managed environment.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/governance-drift.html#governance-drift"
+  },
+  {
+    "term": "Inheritance drift",
+    "aliases": [],
+    "definition": "A mismatch between an account configuration and the baseline or controls associated with its parent OU.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/governance-drift.html#governance-drift"
+  },
+  {
+    "term": "Config aggregator",
+    "aliases": [
+      "Aggregator"
+    ],
+    "definition": "A resource that collects configuration data across accounts.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/config-updates-v4.html#config-updates-v4"
+  },
+  {
+    "term": "Default VPC",
+    "aliases": [],
+    "definition": "The virtual network AWS initially provides in a Region for a new account.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/aft-feature-options.md#delete-default-vpc-option"
+  },
+  {
+    "term": "Trust policy",
+    "aliases": [],
+    "definition": "A policy attached to a role identifying who may assume it.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An identifier for a specific AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+  },
+  {
+    "term": "SNS topic",
+    "aliases": [
+      "Topic"
+    ],
+    "definition": "A named communication channel that delivers published messages to subscribers.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/welcome.html#welcome"
+  }
+]

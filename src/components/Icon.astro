@@ -1,0 +1,52 @@
+---
+// Small stroke icon set (24x24 grid). Decorative by default; pass `label` when the icon stands alone.
+const paths = {
+  search: 'M10.5 4a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13ZM15.5 15.5 20 20',
+  cards: 'M7 4h11a2 2 0 0 1 2 2v9M4 8h11a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z',
+  check: 'M5 12.5 10 17l9-10',
+  'check-circle': 'M12 3a9 9 0 1 1 0 18a9 9 0 0 1 0-18ZM8 12.5l2.7 2.5L16 9.5',
+  circle: 'M12 3a9 9 0 1 1 0 18a9 9 0 0 1 0-18Z',
+  target: 'M12 3a9 9 0 1 1 0 18a9 9 0 0 1 0-18ZM12 7.5a4.5 4.5 0 1 1 0 9a4.5 4.5 0 0 1 0-9ZM12 11.2a.8.8 0 1 1 0 1.6a.8.8 0 0 1 0-1.6Z',
+  menu: 'M4 6h16M4 12h16M4 18h16',
+  grid: 'M4 4h6v6H4ZM14 4h6v6h-6ZM4 14h6v6H4ZM14 14h6v6h-6Z',
+  'arrow-left': 'M19 12H5M11 6l-6 6 6 6',
+  'arrow-right': 'M5 12h14M13 6l6 6-6 6',
+  external: 'M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5',
+  shield: 'M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6ZM9 12l2 2 4-4.5',
+  alert: 'M12 4 2.8 19.5h18.4ZM12 10v4.5M12 17.2v.3',
+  diagram: 'M4 4h6v5H4ZM14 15h6v5h-6ZM7 9v4h10v2',
+  layers: 'M12 4 3 8.5l9 4.5 9-4.5ZM3 13l9 4.5 9-4.5',
+  flip: 'M4 12a8 8 0 0 1 14-5.3M20 4v4h-4M20 12a8 8 0 0 1-14 5.3M4 20v-4h4',
+  x: 'M6 6l12 12M18 6 6 18',
+  book: 'M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4ZM5 16a4 4 0 0 1 4-4h10',
+  bell: 'M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15ZM10 20.5a2 2 0 0 0 4 0',
+  clock: 'M12 3a9 9 0 1 1 0 18a9 9 0 0 1 0-18ZM12 7v5l3.5 2',
+  calendar: 'M4 6h16v14H4ZM4 10h16M8 3v4M16 3v4',
+  lock: 'M6 11h12v9H6ZM8.5 11V8a3.5 3.5 0 0 1 7 0v3',
+  transfer: 'M4 8h15M15 4l4 4-4 4M20 16H5M9 12l-4 4 4 4',
+  reset: 'M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4',
+  docs: 'M7 3h7l4 4v14H7ZM14 3v4h4M10 12h5M10 16h5',
+} as const;
+
+interface Props {
+  name: keyof typeof paths;
+  size?: number;
+  label?: string;
+  class?: string;
+}
+const { name, size = 18, label, class: className } = Astro.props;
+---
+<svg
+  class:list={['icon', className]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+><path d={paths[name]} /></svg>

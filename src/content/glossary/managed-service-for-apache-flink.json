@@ -1,0 +1,32 @@
+[
+  {
+    "term": "data stream",
+    "aliases": ["stream"],
+    "definition": "A data stream is a continuous flow of data records.",
+    "source": "https://docs.aws.amazon.com/managed-flink/latest/java/how-it-works.html#how-it-works-prog-datastream"
+  },
+  {
+    "term": "checkpoint",
+    "aliases": [],
+    "definition": "A checkpoint is a running application's backup used to recover from an unexpected disruption.",
+    "source": "https://docs.aws.amazon.com/managed-flink/latest/java/how-fault.html#how-fault"
+  },
+  {
+    "term": "Kinesis Processing Unit",
+    "aliases": ["KPU"],
+    "definition": "A Kinesis Processing Unit is a unit of compute capacity for a managed Flink application.",
+    "source": "https://docs.aws.amazon.com/managed-flink/latest/java/how-scaling.html#how-scaling-kpus"
+  },
+  {
+    "term": "snapshot",
+    "aliases": [],
+    "definition": "A snapshot is a backup of application state.",
+    "source": "https://docs.aws.amazon.com/managed-flink/latest/java/how-fault.html#how-fault"
+  },
+  {
+    "term": "connector",
+    "aliases": ["source connector", "sink connector"],
+    "definition": "A connector lets a Flink application read external data or write to an external location.",
+    "source": "https://docs.aws.amazon.com/managed-flink/latest/java/how-it-works.html#how-it-works-prog-datastream"
+  }
+]

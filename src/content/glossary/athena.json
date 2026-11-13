@@ -1,0 +1,148 @@
+[
+  {
+    "term": "SQL",
+    "aliases": [
+      "Structured Query Language"
+    ],
+    "definition": "A language for selecting and aggregating data through tables.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/what-is.html"
+  },
+  {
+    "term": "Serverless",
+    "aliases": [],
+    "definition": "A service model in which users do not provision or manage the query servers.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/what-is.html"
+  },
+  {
+    "term": "Schema",
+    "aliases": [],
+    "definition": "The definition of fields and their data types in a table.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/data-sources-glue.html"
+  },
+  {
+    "term": "Catalog",
+    "aliases": [],
+    "definition": "A store of metadata that describes databases, tables, and columns.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/data-sources-glue.html"
+  },
+  {
+    "term": "Crawler",
+    "aliases": [],
+    "definition": "A process that examines stored data to infer a table schema.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/data-sources-glue.html"
+  },
+  {
+    "term": "External table",
+    "aliases": [],
+    "definition": "A table definition that describes data stored outside the query engine.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/create-cloudtrail-table.html"
+  },
+  {
+    "term": "Workgroup",
+    "aliases": [],
+    "definition": "An Athena boundary for query configuration, access, and usage controls.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/workgroups-setting-control-limits-cloudwatch.html"
+  },
+  {
+    "term": "Encryption key",
+    "aliases": [],
+    "definition": "A cryptographic key used to protect data and control who can decrypt it.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/encryption.html"
+  },
+  {
+    "term": "Federated query",
+    "aliases": [],
+    "definition": "A query that accesses supported external data sources in place through connectors.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/federated-queries.html"
+  },
+  {
+    "term": "Connector",
+    "aliases": [],
+    "definition": "A component that lets Athena read a supported external data source.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/federated-queries.html"
+  },
+  {
+    "term": "Partition",
+    "aliases": [],
+    "definition": "A grouping of related data selected through partition key values.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/partitions.html"
+  },
+  {
+    "term": "Partition key",
+    "aliases": [],
+    "definition": "A virtual column whose value identifies a data partition.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html"
+  },
+  {
+    "term": "Columnar format",
+    "aliases": [],
+    "definition": "A storage format that groups data by column so queries can load only needed columns.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html"
+  },
+  {
+    "term": "Predicate",
+    "aliases": [],
+    "definition": "A query condition used to select matching data.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html"
+  },
+  {
+    "term": "Predicate pushdown",
+    "aliases": [],
+    "definition": "Using filter conditions and block statistics to avoid reading blocks that cannot match.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html"
+  },
+  {
+    "term": "CTAS",
+    "aliases": [
+      "CREATE TABLE AS SELECT"
+    ],
+    "definition": "A SQL operation that creates a table and writes data selected by a query.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html"
+  },
+  {
+    "term": "ETL",
+    "aliases": [
+      "extract, transform, and load"
+    ],
+    "definition": "Processing that reads source data, changes its structure or format, and writes the result.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html"
+  },
+  {
+    "term": "Compaction",
+    "aliases": [
+      "file compaction"
+    ],
+    "definition": "Combining small data files into larger files to reduce per-file overhead.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html"
+  },
+  {
+    "term": "Partition projection",
+    "aliases": [],
+    "definition": "Calculating partition locations from table-property rules rather than individual catalog entries.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html"
+  },
+  {
+    "term": "Hive-style partition",
+    "aliases": [],
+    "definition": "A partition path that includes key=value components.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/partitions.html"
+  },
+  {
+    "term": "Sparse table",
+    "aliases": [],
+    "definition": "A table without data for every combination of its configured partition values.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html"
+  },
+  {
+    "term": "Compression",
+    "aliases": [],
+    "definition": "Encoding data in fewer bytes to reduce storage and read work.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html"
+  },
+  {
+    "term": "Query plan",
+    "aliases": [],
+    "definition": "The operations and partition selections the engine intends to use for a query.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html"
+  }
+]

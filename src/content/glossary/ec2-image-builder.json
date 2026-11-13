@@ -1,0 +1,107 @@
+[
+  {
+    "term": "AMI",
+    "aliases": [
+      "Amazon Machine Image"
+    ],
+    "definition": "A preconfigured operating system and software image used to launch EC2 instances.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html#image-builder-concepts"
+  },
+  {
+    "term": "Base image",
+    "aliases": [],
+    "definition": "The starting image to which a recipe applies its components.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html#image-builder-concepts"
+  },
+  {
+    "term": "Recipe",
+    "aliases": [
+      "image recipe",
+      "container recipe"
+    ],
+    "definition": "A document selecting a base image and components for an output image.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html#image-builder-concepts"
+  },
+  {
+    "term": "Component",
+    "aliases": [],
+    "definition": "A reusable sequence of image customization or test steps.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html#image-builder-concepts"
+  },
+  {
+    "term": "Workflow",
+    "aliases": [],
+    "definition": "An ordered set of steps that Image Builder runs during one image-creation stage.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/manage-image-workflows.html#manage-image-workflows"
+  },
+  {
+    "term": "Instance profile",
+    "aliases": [],
+    "definition": "A container that delivers an IAM role to an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html"
+  },
+  {
+    "term": "Snapshot",
+    "aliases": [],
+    "definition": "A saved copy of a disk volume used to preserve its data.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html"
+  },
+  {
+    "term": "Launch template",
+    "aliases": [],
+    "definition": "A saved set of EC2 launch settings that can include an AMI identifier.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html"
+  },
+  {
+    "term": "Instance refresh",
+    "aliases": [],
+    "definition": "An Auto Scaling operation that rolls out a new configuration to group instances.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html#asg-instance-refresh"
+  },
+  {
+    "term": "Dependency",
+    "aliases": [],
+    "definition": "An image-build input whose update can make a scheduled rebuild necessary.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_Schedule.html#imagebuilder-Type-Schedule-pipelineExecutionStartCondition"
+  },
+  {
+    "term": "Semantic version filter",
+    "aliases": [],
+    "definition": "A version pattern that selects matching versions of an Image Builder resource.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_Schedule.html#imagebuilder-Type-Schedule-pipelineExecutionStartCondition"
+  },
+  {
+    "term": "Parameter",
+    "aliases": [
+      "SSM parameter"
+    ],
+    "definition": "A named value in Parameter Store that can hold an AMI identifier.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/tutorial-ssm-parameters-recipe.html#tutorial-ssm-create-parameter"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A group of accounts within an AWS organization.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html"
+  },
+  {
+    "term": "Trust policy",
+    "aliases": [],
+    "definition": "A role policy that identifies who can assume the role.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/cross-account-dist.html#cross-account-dist-prereqs"
+  },
+  {
+    "term": "Resource share",
+    "aliases": [],
+    "definition": "A collection of resources and the consumers allowed to use them.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/manage-shared-resources.html#manage-shared-resources"
+  },
+  {
+    "term": "Block-device mapping",
+    "aliases": [],
+    "definition": "A definition of the storage devices attached to an instance launched from an AMI.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/cr-upd-ami-distribution-settings.html#create-ami-distribution-config"
+  }
+]

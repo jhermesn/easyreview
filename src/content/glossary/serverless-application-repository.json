@@ -1,0 +1,44 @@
+[
+  {
+    "term": "SAM template",
+    "aliases": ["AWS SAM template"],
+    "definition": "A template defines the AWS resources used by a serverless application.",
+    "source": "https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-how-to-publish.html#publishing-application-prerequisites"
+  },
+  {
+    "term": "nested application",
+    "aliases": ["nested applications"],
+    "definition": "A nested application is an application included inside another application.",
+    "source": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-nested-applications.html#serverless-sam-template-nested-applications"
+  },
+  {
+    "term": "application policy",
+    "aliases": ["application policies"],
+    "definition": "An application policy determines which actions a specified principal or organization can perform on a repository application.",
+    "source": "https://docs.aws.amazon.com/serverlessrepo/latest/devguide/security_iam_resource-based-policy-examples.html#security_iam_resource-based-policy-examples"
+  },
+  {
+    "term": "change set",
+    "aliases": ["CloudFormation change set"],
+    "definition": "A change set describes proposed changes to a CloudFormation stack before execution.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html#using-cfn-updating-stacks-changesets"
+  },
+  {
+    "term": "serverless",
+    "aliases": [],
+    "definition": "Serverless technologies let customers run code and integrate applications without managing servers.",
+    "source": "https://aws.amazon.com/serverless/"
+  },
+  {
+    "term": "resource-based policy",
+    "aliases": ["resource policy"],
+    "definition": "A resource-based policy is attached to a resource and specifies who can access it and what they can do.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html#access_policies_identity-vs-resource"
+  },
+  {
+    "term": "stack",
+    "aliases": ["CloudFormation stack"],
+    "definition": "A CloudFormation stack is a collection of AWS resources managed as one unit.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html#stacks"
+  }
+]

@@ -1,0 +1,131 @@
+[
+  {
+    "term": "telemetry",
+    "aliases": [],
+    "definition": "Measurements and events that describe the behavior of a running system.",
+    "source": "https://aws.amazon.com/what-is/opentelemetry/"
+  },
+  {
+    "term": "instrumentation",
+    "aliases": [
+      "auto-instrumentation"
+    ],
+    "definition": "Code or configuration that makes an application generate telemetry.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html#xray-instrumenting-your-app"
+  },
+  {
+    "term": "metric",
+    "aliases": [
+      "metrics"
+    ],
+    "definition": "A measurement of a running service.",
+    "source": "https://aws.amazon.com/what-is/opentelemetry/"
+  },
+  {
+    "term": "trace",
+    "aliases": [
+      "traces"
+    ],
+    "definition": "A record of the path of one request through a system.",
+    "source": "https://aws.amazon.com/what-is/opentelemetry/"
+  },
+  {
+    "term": "span",
+    "aliases": [
+      "spans"
+    ],
+    "definition": "A record of one operation within a trace.",
+    "source": "https://aws.amazon.com/what-is/opentelemetry/"
+  },
+  {
+    "term": "collector",
+    "aliases": [],
+    "definition": "A process that receives, processes, and exports telemetry.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-OTLPSimplesetup.html#CloudWatch-OTLPSimplesetup"
+  },
+  {
+    "term": "receiver",
+    "aliases": [],
+    "definition": "A collector component that accepts telemetry or retrieves it from an exposed endpoint.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-OTLPSimplesetup.html#CloudWatch-OTLPSupportedReceivers"
+  },
+  {
+    "term": "processor",
+    "aliases": [],
+    "definition": "A collector component that changes or groups telemetry before export.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-OTLPSimplesetup.html#CloudWatch-OTLPSimplesetup"
+  },
+  {
+    "term": "exporter",
+    "aliases": [],
+    "definition": "A component that sends collected telemetry to a destination.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-onboard-ingest-metrics-OpenTelemetry.html#AMP-otel-advanced"
+  },
+  {
+    "term": "OTLP",
+    "aliases": [
+      "OpenTelemetry Protocol"
+    ],
+    "definition": "A protocol for delivering OpenTelemetry data to a collector or monitoring endpoint.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-OTLPEndpoint.html#CloudWatch-OTLPEndpoint"
+  },
+  {
+    "term": "scraping",
+    "aliases": [
+      "scrape"
+    ],
+    "definition": "Reading metrics from an endpoint exposed by an application or infrastructure component.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-onboard-ingest-metrics-OpenTelemetry.html#AMP-otel-advanced"
+  },
+  {
+    "term": "remote write",
+    "aliases": [
+      "prometheusremotewrite"
+    ],
+    "definition": "Sending collected metrics to a remote Prometheus-compatible storage endpoint.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-onboard-ingest-metrics-OpenTelemetry.html#AMP-otel-advanced"
+  },
+  {
+    "term": "sampling",
+    "aliases": [],
+    "definition": "Selecting a subset of traces to record.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-sampling"
+  },
+  {
+    "term": "sidecar",
+    "aliases": [],
+    "definition": "An additional container that runs beside an application container to provide a supporting function.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/trace-data.html#trace-data"
+  },
+  {
+    "term": "SigV4",
+    "aliases": [
+      "AWS Signature Version 4",
+      "sigv4auth"
+    ],
+    "definition": "AWS request signing that authenticates requests using AWS credentials.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-onboard-ingest-metrics-OpenTelemetry.html#AMP-otel-advanced"
+  },
+  {
+    "term": "task role",
+    "aliases": [
+      "task IAM role"
+    ],
+    "definition": "The IAM role that grants an ECS task permission to call AWS services.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/trace-data.html#trace-data-iam"
+  },
+  {
+    "term": "SDK",
+    "aliases": [
+      "software development kit"
+    ],
+    "definition": "A set of software tools and libraries used to add application functionality.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-services-adot.html#xray-services-adot-intro"
+  },
+  {
+    "term": "operator",
+    "aliases": [],
+    "definition": "A component used to manage OpenTelemetry collection on a Kubernetes cluster.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/opentelemetry.html#opentelemetry"
+  }
+]

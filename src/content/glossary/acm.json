@@ -1,0 +1,170 @@
+[
+  {
+    "term": "TLS",
+    "aliases": [
+      "Transport Layer Security"
+    ],
+    "definition": "TLS authenticates a server and encrypts communication between a client and server.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-tls"
+  },
+  {
+    "term": "certificate",
+    "aliases": [
+      "digital certificate"
+    ],
+    "definition": "A certificate binds an identity to a public key using a digital signature.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-asymmetric"
+  },
+  {
+    "term": "public key",
+    "aliases": [],
+    "definition": "A public key is the shareable half of an asymmetric key pair and can be included in a certificate.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-asymmetric"
+  },
+  {
+    "term": "private key",
+    "aliases": [],
+    "definition": "A private key is the secret half of an asymmetric key pair that must be kept secure.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-asymmetric"
+  },
+  {
+    "term": "certificate authority",
+    "aliases": [
+      "CA"
+    ],
+    "definition": "A certificate authority signs certificates that bind an identity to a public key.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-ca"
+  },
+  {
+    "term": "root certificate",
+    "aliases": [
+      "root CA certificate"
+    ],
+    "definition": "A root certificate identifies a trusted authority at the top of a certificate chain.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-root"
+  },
+  {
+    "term": "trust store",
+    "aliases": [],
+    "definition": "A trust store is the collection of CA certificates a client accepts as trusted.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/renew-private-cert.html"
+  },
+  {
+    "term": "PKI",
+    "aliases": [
+      "public key infrastructure"
+    ],
+    "definition": "A PKI is the system of authorities, certificates, keys, and policies used to establish certificate trust.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-pki"
+  },
+  {
+    "term": "DNS",
+    "aliases": [
+      "Domain Name System"
+    ],
+    "definition": "DNS is the directory system that holds records for names in a domain.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/dns-validation.html"
+  },
+  {
+    "term": "CNAME",
+    "aliases": [
+      "canonical name record"
+    ],
+    "definition": "A CNAME record points one DNS name to another and can carry ACM domain-control proof.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/dns-validation.html"
+  },
+  {
+    "term": "domain validation",
+    "aliases": [],
+    "definition": "Domain validation proves that a certificate requester controls each requested domain name.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/domain-ownership-validation.html"
+  },
+  {
+    "term": "hosted zone",
+    "aliases": [],
+    "definition": "A hosted zone is a container of DNS records for a domain and its subdomains.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html"
+  },
+  {
+    "term": "wildcard certificate",
+    "aliases": [],
+    "definition": "A wildcard certificate covers names at one subdomain level using an asterisk in the leftmost label.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate-characteristics.html#wildcard"
+  },
+  {
+    "term": "base domain",
+    "aliases": [
+      "apex domain"
+    ],
+    "definition": "A base domain is the domain name without a subdomain prefix.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-dn"
+  },
+  {
+    "term": "HTTP",
+    "aliases": [
+      "Hypertext Transfer Protocol"
+    ],
+    "definition": "HTTP is the web communication protocol used to retrieve the redirect-based validation proof.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/http-validation.html"
+  },
+  {
+    "term": "HTTP redirect",
+    "aliases": [],
+    "definition": "An HTTP redirect sends a request for one URL to another URL.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/http-validation.html"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An ARN identifies an AWS resource such as an ACM certificate.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html"
+  },
+  {
+    "term": "managed renewal",
+    "aliases": [],
+    "definition": "Managed renewal is the ACM process for replacing eligible certificates before they expire.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/managed-renewal.html"
+  },
+  {
+    "term": "certificate chain",
+    "aliases": [],
+    "definition": "A certificate chain lists issuing certificates in order so each certifies the one before it.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/import-certificate-format.html"
+  },
+  {
+    "term": "PEM",
+    "aliases": [
+      "Privacy Enhanced Mail"
+    ],
+    "definition": "PEM is a text encoding used to represent certificates, chains, and keys.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/import-certificate-format.html"
+  },
+  {
+    "term": "passphrase",
+    "aliases": [],
+    "definition": "A passphrase protects the private key returned by an ACM certificate export.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/export-public-certificate.html"
+  },
+  {
+    "term": "reimport",
+    "aliases": [],
+    "definition": "Reimport replaces an imported certificate while retaining its existing ARN and service associations.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html"
+  },
+  {
+    "term": "ACME",
+    "aliases": [
+      "Automated Certificate Management Environment"
+    ],
+    "definition": "ACME is a protocol that automates certificate issuance and lifecycle management between clients and certificate authorities.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-acme"
+  },
+  {
+    "term": "integrated service",
+    "aliases": [],
+    "definition": "An integrated service can use an ACM certificate directly for its endpoint.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html"
+  }
+]

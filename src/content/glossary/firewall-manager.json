@@ -1,0 +1,20 @@
+[
+  {
+    "term": "Security group",
+    "aliases": [],
+    "definition": "A set of rules controlling network traffic to and from associated resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+  },
+  {
+    "term": "Automatic remediation",
+    "aliases": ["autoremediation"],
+    "definition": "Automatic corrective action taken when a resource does not meet a policy.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/security-group-policies.html#security-groups-best-practice"
+  },
+  {
+    "term": "Rule group",
+    "aliases": [],
+    "definition": "A reusable collection of filtering rules.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/dns-firewall-policies.html#dns-firewall-policies"
+  }
+]

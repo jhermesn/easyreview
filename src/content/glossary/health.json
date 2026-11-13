@@ -1,0 +1,32 @@
+[
+  {
+    "term": "account-specific event",
+    "aliases": [],
+    "definition": "An account-specific event concerns an AWS account and its resources.",
+    "source": "https://docs.aws.amazon.com/health/latest/ug/about-public-events.html#about-public-events"
+  },
+  {
+    "term": "public event",
+    "aliases": [],
+    "definition": "A public event describes regional service availability without being specific to an account.",
+    "source": "https://docs.aws.amazon.com/health/latest/ug/about-public-events.html#about-public-events"
+  },
+  {
+    "term": "organizational view",
+    "aliases": [],
+    "definition": "Organizational view shows AWS Health events centrally across an AWS organization.",
+    "source": "https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html#aggregate-events"
+  },
+  {
+    "term": "event rule",
+    "aliases": [],
+    "definition": "An EventBridge rule matches events and invokes one or more targets.",
+    "source": "https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#cloudwatch-events-health"
+  },
+  {
+    "term": "communication ID",
+    "aliases": ["communicationId"],
+    "definition": "A communication ID identifies an AWS Health event communication and includes the page number for paginated messages.",
+    "source": "https://docs.aws.amazon.com/health/latest/ug/aws-health-events-eventbridge-schema.html#schema-details"
+  }
+]

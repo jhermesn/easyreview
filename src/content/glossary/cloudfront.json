@@ -1,0 +1,416 @@
+[
+  {
+    "term": "viewer",
+    "aliases": [
+      "client"
+    ],
+    "definition": "A viewer is the browser or other client that requests content from CloudFront.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html#modifying-response-headers"
+  },
+  {
+    "term": "edge location",
+    "aliases": [
+      "edge server"
+    ],
+    "definition": "An edge location is a CloudFront data center that serves content to viewers and caches copies of objects.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction"
+  },
+  {
+    "term": "origin",
+    "aliases": [
+      "origin server"
+    ],
+    "definition": "An origin is the server or bucket holding the original content that CloudFront retrieves.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction"
+  },
+  {
+    "term": "distribution",
+    "aliases": [],
+    "definition": "A distribution is the CloudFront configuration describing its origins and how content is delivered.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#HowCloudFrontWorksOverview"
+  },
+  {
+    "term": "cache behavior",
+    "aliases": [],
+    "definition": "A cache behavior is a set of delivery rules applied to requests matching a URL path pattern.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesCacheBehavior.html#DownloadDistValuesCacheBehavior"
+  },
+  {
+    "term": "path pattern",
+    "aliases": [],
+    "definition": "A path pattern specifies which requested URL paths a cache behavior matches.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesCacheBehavior.html#DownloadDistValuesPathPattern"
+  },
+  {
+    "term": "cache key",
+    "aliases": [],
+    "definition": "A cache key is the identifier CloudFront uses to decide which stored response matches a request.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-the-cache-key.html#understanding-the-cache-key"
+  },
+  {
+    "term": "cache hit",
+    "aliases": [],
+    "definition": "A cache hit occurs when a request matches a valid object already stored in a cache.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#controlling-the-cache-key"
+  },
+  {
+    "term": "cache miss",
+    "aliases": [],
+    "definition": "A cache miss occurs when the requested object is not available in the cache and must be retrieved.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#controlling-origin-requests"
+  },
+  {
+    "term": "cache hit ratio",
+    "aliases": [],
+    "definition": "The cache hit ratio is the proportion of requests answered by a cache hit.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#controlling-the-cache-key"
+  },
+  {
+    "term": "time to live",
+    "aliases": [
+      "TTL"
+    ],
+    "definition": "Time to live is the duration for which a cached object remains valid before an origin freshness check.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-key-understand-cache-policy.html#cache-key-understand-cache-policy-ttl"
+  },
+  {
+    "term": "HTTP header",
+    "aliases": [
+      "response header",
+      "request header"
+    ],
+    "definition": "An HTTP header is a named value carried with a request or response to convey information such as caching instructions.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html#modifying-response-headers"
+  },
+  {
+    "term": "cookie",
+    "aliases": [],
+    "definition": "A cookie is a value stored by a client and sent with later requests.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-cookies.html#private-content-how-signed-cookies-work"
+  },
+  {
+    "term": "query string",
+    "aliases": [
+      "query parameter"
+    ],
+    "definition": "A query string is the part of a URL containing named request values after the path.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-key-understand-cache-policy.html#cache-key-understand-cache-policy-settings"
+  },
+  {
+    "term": "stale content",
+    "aliases": [
+      "expired content"
+    ],
+    "definition": "Stale content is a cached object whose freshness duration has expired.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#stale-content"
+  },
+  {
+    "term": "revalidation",
+    "aliases": [
+      "revalidate"
+    ],
+    "definition": "Revalidation checks the origin to determine whether an expired cached object is still current.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#Expiration"
+  },
+  {
+    "term": "eviction",
+    "aliases": [],
+    "definition": "Eviction removes a cached file before expiry to free space for other content.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#Expiration"
+  },
+  {
+    "term": "invalidation",
+    "aliases": [],
+    "definition": "Invalidation removes selected content from CloudFront edge caches before its normal expiry.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#Invalidation"
+  },
+  {
+    "term": "versioned file name",
+    "aliases": [
+      "file versioning"
+    ],
+    "definition": "A versioned file name gives a new revision a different name so requests select that revision.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#Invalidation_Expiration"
+  },
+  {
+    "term": "caching proxy",
+    "aliases": [
+      "corporate proxy"
+    ],
+    "definition": "A caching proxy is an intermediary that can retain and serve a copy of a file for clients.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#Invalidation_Expiration"
+  },
+  {
+    "term": "allowlist",
+    "aliases": [
+      "allow list"
+    ],
+    "definition": "An allowlist identifies the countries permitted to access a distribution.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html#georestrictions-cloudfront"
+  },
+  {
+    "term": "denylist",
+    "aliases": [
+      "block list"
+    ],
+    "definition": "A denylist identifies the countries blocked from accessing a distribution.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html#georestrictions-cloudfront"
+  },
+  {
+    "term": "geolocation",
+    "aliases": [],
+    "definition": "Geolocation determines a requester's geographic location from information such as its IP address.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html#georestrictions-geolocation-service"
+  },
+  {
+    "term": "origin group",
+    "aliases": [],
+    "definition": "An origin group pairs a primary and a secondary origin for eligible request failover.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#high_availability_origin_failover"
+  },
+  {
+    "term": "failover",
+    "aliases": [],
+    "definition": "Failover sends an eligible request to a secondary origin after a configured primary failure.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#high_availability_origin_failover"
+  },
+  {
+    "term": "connection timeout",
+    "aliases": [],
+    "definition": "A connection timeout limits how long CloudFront waits to establish an origin connection.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#controlling-attempts-and-timeouts"
+  },
+  {
+    "term": "response timeout",
+    "aliases": [
+      "origin read timeout"
+    ],
+    "definition": "A response timeout limits how long CloudFront waits for an origin response.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#controlling-attempts-and-timeouts"
+  },
+  {
+    "term": "replication",
+    "aliases": [],
+    "definition": "Replication copies objects between buckets, including buckets in different Regions.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication"
+  },
+  {
+    "term": "regional edge cache",
+    "aliases": [],
+    "definition": "A regional edge cache is an intermediate CloudFront cache serving misses from edge locations.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#os-use-cases-global-viewers"
+  },
+  {
+    "term": "latency",
+    "aliases": [],
+    "definition": "Latency is the delay involved in delivering a request or response across the network.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction"
+  },
+  {
+    "term": "content delivery network",
+    "aliases": [
+      "CDN"
+    ],
+    "definition": "A content delivery network serves content through geographically distributed locations near viewers.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction"
+  },
+  {
+    "term": "service principal",
+    "aliases": [],
+    "definition": "A service principal is the identity of an AWS service used in a resource policy.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An ARN identifies an AWS resource such as the distribution named in an origin access policy.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns"
+  },
+  {
+    "term": "Object Ownership",
+    "aliases": [],
+    "definition": "Object Ownership is an S3 setting controlling object ownership and the use of access control lists.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html#about-object-ownership"
+  },
+  {
+    "term": "access control list",
+    "aliases": [
+      "ACL"
+    ],
+    "definition": "An access control list assigns permissions for an S3 bucket or object.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#private-content-updating-s3-acls"
+  },
+  {
+    "term": "Signature Version 4",
+    "aliases": [
+      "SigV4",
+      "sigv4"
+    ],
+    "definition": "Signature Version 4 is AWS's request-signing format used by OAC to authenticate origin requests.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#create-oac-s3"
+  },
+  {
+    "term": "server-side encryption with AWS KMS",
+    "aliases": [
+      "SSE-KMS"
+    ],
+    "definition": "SSE-KMS encrypts objects at rest using an AWS KMS key.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permissions-sse-kms"
+  },
+  {
+    "term": "trusted key group",
+    "aliases": [],
+    "definition": "A trusted key group contains public keys CloudFront accepts for validating signed URLs or cookies.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html#private-content-trusted-signers"
+  },
+  {
+    "term": "signature",
+    "aliases": [
+      "digital signature"
+    ],
+    "definition": "A signature is proof generated with a private key and validated with the matching public key.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html#private-content-how-signed-urls-work"
+  },
+  {
+    "term": "canned policy",
+    "aliases": [],
+    "definition": "A canned signed access policy specifies an expiry without the optional start-time and IP restrictions of a custom policy.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html#private-content-choosing-canned-custom-policy"
+  },
+  {
+    "term": "custom policy",
+    "aliases": [],
+    "definition": "A custom signed access policy can add start-time and IP restrictions and cover multiple files with a wildcard resource.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html#private-content-choosing-canned-custom-policy"
+  },
+  {
+    "term": "range request",
+    "aliases": [
+      "Range GET"
+    ],
+    "definition": "A range request asks for part of a file instead of the complete object.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html#private-content-check-expiration"
+  },
+  {
+    "term": "Transport Layer Security",
+    "aliases": [
+      "TLS"
+    ],
+    "definition": "TLS protects data while it travels over an HTTPS connection.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption"
+  },
+  {
+    "term": "HTTPS",
+    "aliases": [],
+    "definition": "HTTPS is HTTP communication protected by TLS.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-viewers-to-cloudfront.html#using-https-viewers-to-cloudfront"
+  },
+  {
+    "term": "certificate authority",
+    "aliases": [
+      "CA"
+    ],
+    "definition": "A certificate authority issues certificates used to establish trust in a TLS endpoint.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-certificate-issuer"
+  },
+  {
+    "term": "subject alternative name",
+    "aliases": [
+      "SAN"
+    ],
+    "definition": "A subject alternative name is a certificate field listing the domain names the certificate covers.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-domain-names-in-cert"
+  },
+  {
+    "term": "alternate domain name",
+    "aliases": [
+      "custom domain"
+    ],
+    "definition": "An alternate domain name is a custom domain associated with a CloudFront distribution.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-domain-names-in-cert"
+  },
+  {
+    "term": "Server Name Indication",
+    "aliases": [
+      "SNI"
+    ],
+    "definition": "SNI lets a client include the requested domain in its TLS handshake so CloudFront can select the certificate.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-https-dedicated-ip-or-sni.html#cnames-https-dedicated-ip-or-sni"
+  },
+  {
+    "term": "ClientHello",
+    "aliases": [],
+    "definition": "ClientHello is the opening TLS negotiation message in which an SNI client supplies the requested domain.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-https-dedicated-ip-or-sni.html#cnames-https-dedicated-ip-or-sni"
+  },
+  {
+    "term": "cipher",
+    "aliases": [],
+    "definition": "A cipher is an encryption algorithm allowed by a CloudFront TLS security policy.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/secure-connections-supported-viewer-protocols-ciphers.html#secure-connections-supported-viewer-protocols-ciphers"
+  },
+  {
+    "term": "public key encryption",
+    "aliases": [
+      "asymmetric encryption"
+    ],
+    "definition": "Public key encryption uses a public key to encrypt data and the corresponding private key to decrypt it.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption"
+  },
+  {
+    "term": "chunked encoding",
+    "aliases": [],
+    "definition": "Chunked encoding transfers a message body as a sequence of chunks.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html#runtimes-custom-response-streaming"
+  },
+  {
+    "term": "trigger",
+    "aliases": [
+      "function association"
+    ],
+    "definition": "A trigger associates a Lambda@Edge function with an event on a CloudFront cache behavior.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-cloudfront-trigger-events.html#lambda-cloudfront-trigger-events"
+  },
+  {
+    "term": "cache key normalization",
+    "aliases": [
+      "normalization"
+    ],
+    "definition": "Cache key normalization transforms request values into a consistent form to improve cache reuse.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/edge-functions-choosing.html#edge-functions-choosing"
+  },
+  {
+    "term": "authorization token",
+    "aliases": [],
+    "definition": "An authorization token is request information a function inspects to decide whether access is permitted.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-ways-to-use.html#lambda-edge-ways-to-use"
+  },
+  {
+    "term": "request body",
+    "aliases": [],
+    "definition": "The request body is the data sent with a request that a Lambda@Edge function can inspect or replace.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-edge-function-restrictions.html#lambda-at-edge-restrictions-request-body"
+  },
+  {
+    "term": "base64",
+    "aliases": [],
+    "definition": "Base64 is an encoding that represents binary data as text.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-payload-encodings.html#api-gateway-payload-encodings-non-proxy"
+  },
+  {
+    "term": "gRPC",
+    "aliases": [],
+    "definition": "gRPC is a protocol for calling remote application functions.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-using-grpc.html#distribution-using-grpc"
+  },
+  {
+    "term": "mutual TLS",
+    "aliases": [
+      "mTLS"
+    ],
+    "definition": "Mutual TLS uses certificates to authenticate both client and server.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/mtls-authentication.html#mtls-authentication"
+  }
+]

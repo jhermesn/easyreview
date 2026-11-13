@@ -1,0 +1,200 @@
+[
+  {
+    "term": "Principal",
+    "aliases": [],
+    "definition": "An identity making an AWS request, such as a user, role, or service.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants"
+  },
+  {
+    "term": "Key policy",
+    "aliases": [],
+    "definition": "A resource permission document that controls access to one KMS key.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+  },
+  {
+    "term": "Grant",
+    "aliases": [],
+    "definition": "A removable permission allowing a grantee selected operations on one KMS key.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants"
+  },
+  {
+    "term": "Grantee",
+    "aliases": [],
+    "definition": "The identity receiving the permissions specified by a grant.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants"
+  },
+  {
+    "term": "Grant token",
+    "aliases": [],
+    "definition": "A value that allows use of a new grant before the permission change has propagated.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants"
+  },
+  {
+    "term": "Eventual consistency",
+    "aliases": [],
+    "definition": "A model where a change can take time to become visible across the service.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants"
+  },
+  {
+    "term": "Cryptographic operation",
+    "aliases": [],
+    "definition": "An operation that uses key material for work such as encryption, decryption, or authentication.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/kms-cryptography.html"
+  },
+  {
+    "term": "Key material",
+    "aliases": [],
+    "definition": "The secret cryptographic value used by a key in cryptographic operations.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys"
+  },
+  {
+    "term": "Data key",
+    "aliases": [],
+    "definition": "A symmetric key used outside KMS to encrypt and decrypt application data.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/data-keys.html"
+  },
+  {
+    "term": "Symmetric key",
+    "aliases": [],
+    "definition": "A key where the same secret is used for encryption and decryption.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/data-keys.html"
+  },
+  {
+    "term": "Asymmetric key",
+    "aliases": [],
+    "definition": "A mathematically related public key and private key pair.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
+  },
+  {
+    "term": "HMAC",
+    "aliases": [
+      "Hash-Based Message Authentication Code"
+    ],
+    "definition": "A keyed authentication code used to verify data integrity and authenticity.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+  },
+  {
+    "term": "Plaintext",
+    "aliases": [],
+    "definition": "Data in its readable unencrypted form.",
+    "source": "https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html"
+  },
+  {
+    "term": "Ciphertext",
+    "aliases": [],
+    "definition": "Data transformed by encryption that must be decrypted to recover the original.",
+    "source": "https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html"
+  },
+  {
+    "term": "Envelope encryption",
+    "aliases": [],
+    "definition": "A method that encrypts data with a data key and encrypts that key under another key.",
+    "source": "https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey.html"
+  },
+  {
+    "term": "Encrypted data key",
+    "aliases": [
+      "wrapped key"
+    ],
+    "definition": "A data key stored in encrypted form for later decryption by its protecting key.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/data-keys.html"
+  },
+  {
+    "term": "Encryption context",
+    "aliases": [],
+    "definition": "Non-secret key-value information authenticated with symmetric-key ciphertext.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/encrypt_context.html"
+  },
+  {
+    "term": "Alias",
+    "aliases": [],
+    "definition": "A name that points to a KMS key and can be redirected to another key.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys-manually.html"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An identifier for an AWS resource.",
+    "source": "https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey.html"
+  },
+  {
+    "term": "Key material origin",
+    "aliases": [
+      "origin"
+    ],
+    "definition": "A property recording whether KMS generated key material or it came from an external source.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#mrk-sync-properties"
+  },
+  {
+    "term": "Replica key",
+    "aliases": [],
+    "definition": "A fully usable Regional KMS key related to a primary key with the same ID and material.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#multi-region-keys-overview"
+  },
+  {
+    "term": "AWS partition",
+    "aliases": [
+      "partition"
+    ],
+    "definition": "A boundary separating groups of AWS Regions within which related keys can be replicated.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#multi-region-keys-overview"
+  },
+  {
+    "term": "Key store",
+    "aliases": [],
+    "definition": "A protected location where cryptographic key material is stored and used.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html#key-store-overview"
+  },
+  {
+    "term": "HSM",
+    "aliases": [
+      "hardware security module"
+    ],
+    "definition": "A specialized hardware device for protecting and using cryptographic secrets.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html#key-store-overview"
+  },
+  {
+    "term": "Single-tenant",
+    "aliases": [],
+    "definition": "Dedicated to one customer rather than shared among customers.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html#custom-key-store-overview"
+  },
+  {
+    "term": "Cluster",
+    "aliases": [],
+    "definition": "A group of CloudHSM devices managed together as the backing key store.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-cloudhsm.html"
+  },
+  {
+    "term": "Crypto user",
+    "aliases": [
+      "CU"
+    ],
+    "definition": "A CloudHSM user account that can perform cryptographic operations on cluster keys.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-cloudhsm.html"
+  },
+  {
+    "term": "XKS proxy",
+    "aliases": [
+      "external key store proxy"
+    ],
+    "definition": "Software that passes and translates requests between KMS and an external key manager.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html"
+  },
+  {
+    "term": "SLA",
+    "aliases": [
+      "service level agreement"
+    ],
+    "definition": "A service commitment describing the availability level offered by a provider.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html#default-key-store-operations"
+  },
+  {
+    "term": "Cached data key",
+    "aliases": [],
+    "definition": "A plaintext data key retained for reuse without another KMS request.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/unusable-kms-keys.html"
+  }
+]

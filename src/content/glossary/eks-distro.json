@@ -1,0 +1,5 @@
+[
+  {"term":"Kubernetes control plane","aliases":["control plane"],"definition":"The Kubernetes components that manage the cluster and schedule containers.","source":"https://docs.aws.amazon.com/eks/latest/userguide/eks-deployment-options.html#understand-deployment-options"},
+  {"term":"etcd","aliases":[],"definition":"The configuration database used by Kubernetes clusters.","source":"https://aws.amazon.com/eks/eks-distro/faqs/"},
+  {"term":"reproducible build","aliases":["reproducible builds"],"definition":"A build that can be recreated from the supplied source code and build tools.","source":"https://aws.amazon.com/eks/eks-distro/faqs/"}
+]

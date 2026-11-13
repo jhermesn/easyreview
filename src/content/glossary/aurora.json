@@ -1,0 +1,213 @@
+[
+  {
+    "term": "cluster volume",
+    "aliases": [
+      "shared volume"
+    ],
+    "definition": "The shared storage holding data for the writer and readers of an Aurora cluster.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html#Aurora.Overview.StorageReliability"
+  },
+  {
+    "term": "writer",
+    "aliases": [
+      "primary instance"
+    ],
+    "definition": "The database instance that modifies the shared cluster data.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.html#Aurora.Overview"
+  },
+  {
+    "term": "reader",
+    "aliases": [
+      "replica",
+      "Aurora Replica"
+    ],
+    "definition": "A read-only database instance that shares the writer storage and can be promoted after writer failure.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.html#Aurora.Overview"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An isolated location in an AWS Region used to separate instance failures.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Concepts.AuroraHighAvailability"
+  },
+  {
+    "term": "endpoint",
+    "aliases": [],
+    "definition": "A database connection address that selects the appropriate instance or group of instances.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html#Aurora.Overview.Endpoints"
+  },
+  {
+    "term": "cluster endpoint",
+    "aliases": [
+      "writer endpoint"
+    ],
+    "definition": "The connection address that follows the current writer in an Aurora cluster.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Cluster.html#Aurora.Endpoints.Cluster"
+  },
+  {
+    "term": "reader endpoint",
+    "aliases": [],
+    "definition": "The address that balances new read-only connections across available readers.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Reader.html#Aurora.Endpoints.Reader"
+  },
+  {
+    "term": "promotion tier",
+    "aliases": [
+      "failover priority"
+    ],
+    "definition": "A priority from 0 to 15 that influences which reader takes over as writer.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Concepts.AuroraHighAvailability"
+  },
+  {
+    "term": "connection pool",
+    "aliases": [
+      "pooling"
+    ],
+    "definition": "A set of database connections kept for reuse by client requests.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-connections.html#rds-proxy-connections"
+  },
+  {
+    "term": "target tracking",
+    "aliases": [],
+    "definition": "A scaling policy that adjusts reader count to keep a metric near a chosen value.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling"
+  },
+  {
+    "term": "scalable dimension",
+    "aliases": [],
+    "definition": "The resource quantity a scaling service changes, such as reader count.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.Add.html#Aurora.Integrating.AutoScaling.Add"
+  },
+  {
+    "term": "asynchronous replication",
+    "aliases": [],
+    "definition": "Copying writes to another Region after they can already be committed on the primary.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "replication lag",
+    "aliases": [],
+    "definition": "How far a secondary database is behind the primary in receiving changes.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "recovery point objective",
+    "aliases": [
+      "RPO"
+    ],
+    "definition": "The acceptable amount of recent data loss expressed as a time interval.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "recovery time objective",
+    "aliases": [
+      "RTO"
+    ],
+    "definition": "The time allowed for a system to return to service after an outage.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "switchover",
+    "aliases": [
+      "managed planned failover"
+    ],
+    "definition": "A planned primary-Region change that synchronizes the secondary before promotion.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "failover",
+    "aliases": [],
+    "definition": "Promoting a replacement writer or primary cluster to recover from failure.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "write fencing",
+    "aliases": [],
+    "definition": "An attempt to stop writes to the old primary during global failover.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "split-brain",
+    "aliases": [],
+    "definition": "A condition where old and new primary clusters can both accept writes.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "DNS",
+    "aliases": [
+      "Domain Name System"
+    ],
+    "definition": "The name resolution mechanism through which an endpoint follows a new primary.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "global writer endpoint",
+    "aliases": [],
+    "definition": "A stable connection hostname that follows the primary Region of a global database.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html#Aurora.Overview.Endpoints"
+  },
+  {
+    "term": "headless secondary",
+    "aliases": [],
+    "definition": "A secondary cluster that has storage but no database instances.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "parameter group",
+    "aliases": [],
+    "definition": "A collection of database configuration settings applied to a cluster or instance.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "snapshot",
+    "aliases": [],
+    "definition": "A saved database storage image from which a new cluster can be restored.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups"
+  },
+  {
+    "term": "point-in-time recovery",
+    "aliases": [
+      "PITR"
+    ],
+    "definition": "Restoring a database to a chosen time within its retained backup history.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups"
+  },
+  {
+    "term": "event subscription",
+    "aliases": [],
+    "definition": "A configuration that publishes selected database resource events to an SNS topic.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.Subscribing.html#USER_Events.Subscribing"
+  },
+  {
+    "term": "Aurora capacity unit",
+    "aliases": [
+      "ACU"
+    ],
+    "definition": "A compute capacity measure combining approximately 2 GiB of memory with CPU and networking.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works"
+  },
+  {
+    "term": "provisioned instance",
+    "aliases": [
+      "provisioned capacity"
+    ],
+    "definition": "A database instance with a selected class that fixes its memory, CPU and networking capacity.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works"
+  },
+  {
+    "term": "platform version",
+    "aliases": [],
+    "definition": "The Aurora Serverless infrastructure version that helps determine available capacity limits and features.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works"
+  },
+  {
+    "term": "auto-pause",
+    "aliases": [
+      "automatic pause and resume"
+    ],
+    "definition": "Pausing eligible idle Serverless instances at zero ACUs and resuming them when a connection arrives.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#aurora-serverless-v2-auto-pause"
+  }
+]

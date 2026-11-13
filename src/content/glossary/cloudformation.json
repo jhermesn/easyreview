@@ -1,0 +1,368 @@
+[
+  {
+    "term": "stack",
+    "aliases": [],
+    "definition": "A group of resources created and managed together from a CloudFormation template.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome"
+  },
+  {
+    "term": "template",
+    "aliases": [],
+    "definition": "A JSON or YAML document that describes the resources CloudFormation should manage.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome"
+  },
+  {
+    "term": "logical ID",
+    "aliases": [
+      "logical name"
+    ],
+    "definition": "A name used to identify and reference a resource within its template.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html#template-anatomy"
+  },
+  {
+    "term": "physical ID",
+    "aliases": [
+      "PhysicalResourceId"
+    ],
+    "definition": "The identifier of an actual provisioned resource, which changes when CloudFormation replaces it.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement"
+  },
+  {
+    "term": "intrinsic function",
+    "aliases": [],
+    "definition": "A built-in template function that computes a value when CloudFormation processes a template.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/intrinsic-function-reference.html#intrinsic-function-reference"
+  },
+  {
+    "term": "parameter",
+    "aliases": [],
+    "definition": "A typed input supplied to customize a stack when it is created or updated.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html#parameters-section-structure"
+  },
+  {
+    "term": "pseudo parameter",
+    "aliases": [],
+    "definition": "A built-in value supplied by CloudFormation, such as the current account ID or Region.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html#pseudo-parameter-reference"
+  },
+  {
+    "term": "mapping",
+    "aliases": [],
+    "definition": "A lookup table of literal values retrieved with Fn::FindInMap.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/mappings-section-structure.html#mappings-section-structure"
+  },
+  {
+    "term": "condition",
+    "aliases": [],
+    "definition": "Template logic that determines whether a resource is created or a property value applies.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-section-structure.html#conditions-section-structure"
+  },
+  {
+    "term": "metadata",
+    "aliases": [],
+    "definition": "Additional information attached to a template or resource, including configuration read by helper scripts.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-init.html#aws-resource-init"
+  },
+  {
+    "term": "dependency",
+    "aliases": [],
+    "definition": "A relationship that requires one resource operation to complete before another can proceed.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-dependson.html#aws-attribute-dependson"
+  },
+  {
+    "term": "change set",
+    "aliases": [],
+    "definition": "A preview of proposed stack changes that must be executed before CloudFormation applies them.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html#using-cfn-updating-stacks-changesets"
+  },
+  {
+    "term": "replacement",
+    "aliases": [],
+    "definition": "An update that provisions a new physical resource in place of the previous one.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement"
+  },
+  {
+    "term": "rollback",
+    "aliases": [],
+    "definition": "Recovery that attempts to return a stack to its previous working configuration after a failed operation.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-continueupdaterollback.html#using-cfn-updating-stacks-continueupdaterollback"
+  },
+  {
+    "term": "drift",
+    "aliases": [],
+    "definition": "A difference between a resource actual configuration and its expected template and parameter configuration.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html#what-is-drift"
+  },
+  {
+    "term": "immutable property",
+    "aliases": [],
+    "definition": "A resource property whose change requires replacement rather than updating the existing physical resource.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html#drift-aware-change-sets-considerations"
+  },
+  {
+    "term": "write-only property",
+    "aliases": [],
+    "definition": "A property whose value can be supplied but cannot be read back from the resource service.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html#drift-considerations"
+  },
+  {
+    "term": "resource import",
+    "aliases": [],
+    "definition": "An operation that brings an existing physical resource under a stack management using its template definition.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-resolve-drift.html#resource-import-resolve-drift"
+  },
+  {
+    "term": "snapshot",
+    "aliases": [],
+    "definition": "A saved copy of supported resource data created before the resource is deleted.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options"
+  },
+  {
+    "term": "tag",
+    "aliases": [],
+    "definition": "A key-value label attached to a resource for organization or cost tracking.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-stack.html#configure-stack-options-tags"
+  },
+  {
+    "term": "service role",
+    "aliases": [],
+    "definition": "An IAM role that CloudFormation assumes to perform resource operations on behalf of a stack.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-servicerole.html#using-iam-servicerole"
+  },
+  {
+    "term": "trust policy",
+    "aliases": [],
+    "definition": "A role policy that specifies which principals can assume that role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html"
+  },
+  {
+    "term": "least privilege",
+    "aliases": [],
+    "definition": "Granting only the permissions required to perform the intended work.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-servicerole.html#using-iam-servicerole"
+  },
+  {
+    "term": "capability",
+    "aliases": [],
+    "definition": "An explicit acknowledgment that a template can affect IAM resources or expand macros.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_CreateStack.html#API_CreateStack_RequestParameters"
+  },
+  {
+    "term": "dynamic reference",
+    "aliases": [],
+    "definition": "A template expression that retrieves a value stored in another service during a stack operation.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html#dynamic-references"
+  },
+  {
+    "term": "SecureString",
+    "aliases": [],
+    "definition": "A Parameter Store parameter that stores an encrypted sensitive value.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references-ssm-secure-strings.html#dynamic-references-ssm-secure-strings"
+  },
+  {
+    "term": "rotation",
+    "aliases": [],
+    "definition": "The process of updating a secret and the credentials in the service that uses it.",
+    "source": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"
+  },
+  {
+    "term": "export",
+    "aliases": [],
+    "definition": "A named stack output made available to importing stacks in the same account and Region.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-exports.html#using-cfn-stack-exports"
+  },
+  {
+    "term": "weak reference",
+    "aliases": [],
+    "definition": "An output lookup that neither prevents source changes or deletion nor automatically updates consumers.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/intrinsic-function-reference-getstackoutput.html#intrinsic-function-reference-getstackoutput"
+  },
+  {
+    "term": "partition",
+    "aliases": [],
+    "definition": "A separate group of AWS Regions, such as standard AWS Regions or AWS GovCloud Regions.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/partitions.html"
+  },
+  {
+    "term": "organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A group of AWS Organizations accounts that can be selected as a deployment target.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-associate-stackset-with-org.html#stacksets-orgs-associate-stackset-with-org"
+  },
+  {
+    "term": "stack instance",
+    "aliases": [],
+    "definition": "An association between a StackSet and a target account and Region.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stacksets-concepts"
+  },
+  {
+    "term": "delegated administrator",
+    "aliases": [],
+    "definition": "A member account authorized to initiate supported organization-wide service operations.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-associate-stackset-with-org.html#stacksets-orgs-associate-stackset-with-org"
+  },
+  {
+    "term": "trusted access",
+    "aliases": [],
+    "definition": "An Organizations integration that lets a service perform supported actions in organization accounts.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-associate-stackset-with-org.html#stacksets-orgs-associate-stackset-with-org"
+  },
+  {
+    "term": "parameter override",
+    "aliases": [],
+    "definition": "A stack-instance parameter value that takes precedence over the StackSet value for selected targets.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stackinstances-override.html#stackinstances-override"
+  },
+  {
+    "term": "failure tolerance",
+    "aliases": [],
+    "definition": "The number or percentage of stack-instance operation failures allowed per Region before a StackSet operation stops.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stacksets-concepts"
+  },
+  {
+    "term": "concurrency",
+    "aliases": [],
+    "definition": "The number of target operations allowed to run at the same time.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stacksets-concepts"
+  },
+  {
+    "term": "bootstrap",
+    "aliases": [
+      "bootstrapping"
+    ],
+    "definition": "The installation and configuration performed to prepare an instance to run its software.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/cfn-helper-scripts-reference.html#cfn-helper-scripts-reference"
+  },
+  {
+    "term": "user data",
+    "aliases": [
+      "UserData"
+    ],
+    "definition": "Instructions supplied to an EC2 instance to run tasks when it starts.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts"
+  },
+  {
+    "term": "configset",
+    "aliases": [
+      "configSets"
+    ],
+    "definition": "An ordered list of configuration keys that cfn-init should process.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-init.html#aws-resource-init-configsets"
+  },
+  {
+    "term": "resource signal",
+    "aliases": [],
+    "definition": "A success or failure report used by CloudFormation to coordinate resource readiness.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-creationpolicy.html#aws-attribute-creationpolicy"
+  },
+  {
+    "term": "presigned URL",
+    "aliases": [
+      "ResponseURL"
+    ],
+    "definition": "A URL that grants temporary authorization for a specific request to an S3 object.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html"
+  },
+  {
+    "term": "custom resource provider",
+    "aliases": [],
+    "definition": "The code that handles custom resource lifecycle requests and sends the required response.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html#template-custom-resources"
+  },
+  {
+    "term": "macro",
+    "aliases": [],
+    "definition": "A Lambda-backed processor that rewrites template content before CloudFormation provisions resources.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros-overview.html#template-macros-overview"
+  },
+  {
+    "term": "transform",
+    "aliases": [],
+    "definition": "A template instruction that invokes processing on all or part of a template.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros-overview.html#template-macros-overview"
+  },
+  {
+    "term": "hook",
+    "aliases": [],
+    "definition": "A check invoked before selected provisioning operations or during change set creation.",
+    "source": "https://docs.aws.amazon.com/cloudformation-cli/latest/hooks-userguide/hooks-concepts.html#hook-terms-hook"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An identifier that uniquely names an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html"
+  },
+  {
+    "term": "AMI",
+    "aliases": [
+      "Amazon Machine Image"
+    ],
+    "definition": "An image containing the software configuration used to launch an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html"
+  },
+  {
+    "term": "CIDR",
+    "aliases": [
+      "Classless Inter-Domain Routing"
+    ],
+    "definition": "A notation identifying an IP address range by its network prefix.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An isolated location within an AWS Region where resources can be placed.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html"
+  },
+  {
+    "term": "VPC",
+    "aliases": [
+      "virtual private cloud"
+    ],
+    "definition": "A logically isolated virtual network in which AWS resources can run.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "Module",
+    "aliases": [],
+    "definition": "A reusable package of resource configurations and inputs expanded into a stack template.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/modules.html#modules"
+  },
+  {
+    "term": "Registry",
+    "aliases": [],
+    "definition": "The account and Region repository for CloudFormation extension registrations and versions.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/module-versioning.html#module-versioning"
+  },
+  {
+    "term": "Template fragment",
+    "aliases": [],
+    "definition": "The part of a module package that defines its resources and related configuration.",
+    "source": "https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/modules-structure.html#modules-structure"
+  },
+  {
+    "term": "Schema",
+    "aliases": [],
+    "definition": "A contract describing a module's accepted inputs and resource definitions.",
+    "source": "https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/modules-structure.html#modules-structure"
+  },
+  {
+    "term": "Processed template",
+    "aliases": [],
+    "definition": "The template after CloudFormation has resolved included modules into resources.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/modules-using.html#modules-using"
+  },
+  {
+    "term": "Immutable version",
+    "aliases": [],
+    "definition": "A registered module revision that cannot be edited and must be replaced by registering a new revision.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cloudformation-moduleversion.html#aws-resource-cloudformation-moduleversion"
+  }
+]

@@ -1,0 +1,288 @@
+[
+  {
+    "term": "Pod",
+    "aliases": [],
+    "definition": "A Pod is a Kubernetes unit that runs one or more containers together.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html"
+  },
+  {
+    "term": "Node",
+    "aliases": [
+      "worker node"
+    ],
+    "definition": "A node is a machine that runs containerized applications for a Kubernetes cluster.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html"
+  },
+  {
+    "term": "Control plane",
+    "aliases": [],
+    "definition": "The control plane maintains cluster state and schedules Kubernetes workloads.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html"
+  },
+  {
+    "term": "Deployment",
+    "aliases": [],
+    "definition": "A Deployment maintains application replicas and manages updates to their version.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+  },
+  {
+    "term": "Replica",
+    "aliases": [],
+    "definition": "A replica is a copy of an application Pod.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+  },
+  {
+    "term": "Service",
+    "aliases": [],
+    "definition": "A Kubernetes Service routes traffic to application Pods.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+  },
+  {
+    "term": "Service selector",
+    "aliases": [
+      "selector"
+    ],
+    "definition": "A Service selector chooses destination Pods by their labels.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_use_bluegreen_deployments"
+  },
+  {
+    "term": "Namespace",
+    "aliases": [],
+    "definition": "A namespace groups named Kubernetes resources within a cluster.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html#fargate-profile-components"
+  },
+  {
+    "term": "Label",
+    "aliases": [],
+    "definition": "A label is a key-value attribute used to identify or select Kubernetes resources.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html#fargate-profile-components"
+  },
+  {
+    "term": "DaemonSet",
+    "aliases": [],
+    "definition": "A DaemonSet runs copies of a Pod across nodes.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+  },
+  {
+    "term": "Readiness probe",
+    "aliases": [],
+    "definition": "A readiness probe checks whether a Pod can receive Service traffic.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_use_readiness_probe_to_detect_partial_unavailability"
+  },
+  {
+    "term": "Liveness probe",
+    "aliases": [],
+    "definition": "A liveness probe detects an unresponsive application that needs restarting.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_use_liveness_probe_to_remove_unhealthy_pods"
+  },
+  {
+    "term": "Startup probe",
+    "aliases": [],
+    "definition": "A startup probe lets an application finish initialization before liveness and readiness checks run.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_use_startup_probe_for_applications_that_take_longer_to_start"
+  },
+  {
+    "term": "Resource request",
+    "aliases": [],
+    "definition": "A resource request reserves CPU or memory for Kubernetes placement decisions.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/cas.html"
+  },
+  {
+    "term": "Taint",
+    "aliases": [],
+    "definition": "A taint restricts which Pods a node accepts.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/cas.html"
+  },
+  {
+    "term": "Persistent volume",
+    "aliases": [
+      "PV"
+    ],
+    "definition": "A persistent volume provides storage independently of an individual Pod.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html"
+  },
+  {
+    "term": "Persistent volume claim",
+    "aliases": [
+      "PVC"
+    ],
+    "definition": "A persistent volume claim is a Kubernetes request for storage.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html"
+  },
+  {
+    "term": "StorageClass",
+    "aliases": [
+      "storage class"
+    ],
+    "definition": "A StorageClass defines how Kubernetes storage is provisioned.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi-considerations"
+  },
+  {
+    "term": "Container Storage Interface",
+    "aliases": [
+      "CSI"
+    ],
+    "definition": "The Container Storage Interface connects Kubernetes volume operations to a storage driver.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html"
+  },
+  {
+    "term": "Static provisioning",
+    "aliases": [],
+    "definition": "Static provisioning makes an existing storage resource available as a persistent volume.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html"
+  },
+  {
+    "term": "Dynamic provisioning",
+    "aliases": [],
+    "definition": "Dynamic provisioning creates storage in response to a Kubernetes storage request.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html"
+  },
+  {
+    "term": "Service account",
+    "aliases": [],
+    "definition": "A service account is a Kubernetes identity used by applications in Pods.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/service-accounts.html"
+  },
+  {
+    "term": "Credential chain",
+    "aliases": [
+      "credential provider chain"
+    ],
+    "definition": "A credential chain searches credential sources in order and uses the first valid credentials it finds.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/pod-id-how-it-works.html#pod-id-credentials"
+  },
+  {
+    "term": "OpenID Connect",
+    "aliases": [
+      "OIDC"
+    ],
+    "definition": "OpenID Connect provides identity tokens that IAM can trust for Kubernetes workload authentication.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html"
+  },
+  {
+    "term": "Instance Metadata Service",
+    "aliases": [
+      "IMDS"
+    ],
+    "definition": "Instance Metadata Service exposes EC2 instance information and instance-role credentials to software on the instance.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html#pod-id-benefits"
+  },
+  {
+    "term": "Ingress",
+    "aliases": [],
+    "definition": "An Ingress is a Kubernetes resource that describes application traffic routing.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html"
+  },
+  {
+    "term": "CIDR block",
+    "aliases": [
+      "CIDR"
+    ],
+    "definition": "A CIDR block describes an IP address range used to restrict public endpoint access.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html#modify-endpoint-access"
+  },
+  {
+    "term": "Node affinity",
+    "aliases": [],
+    "definition": "A rule constraining which nodes can host a Pod.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/container-insights-eks-troubleshooting.html#container-insights-eks-troubleshooting"
+  },
+  {
+    "term": "Toleration",
+    "aliases": [],
+    "definition": "A Pod setting allowing placement despite a matching node taint.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/container-insights-eks-troubleshooting.html#container-insights-eks-troubleshooting"
+  },
+  {
+    "term": "Image reference",
+    "aliases": [
+      "image URI"
+    ],
+    "definition": "The registry location and version identifier used to retrieve a container image.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/container-insights-eks-troubleshooting.html#container-insights-eks-troubleshooting"
+  },
+  {
+    "term": "Audit log",
+    "aliases": [],
+    "definition": "A record of actions taken by users and components affecting the Kubernetes cluster.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html#control-plane-logs"
+  },
+  {
+    "term": "Controller",
+    "aliases": [],
+    "definition": "A component that watches Kubernetes objects and changes resources to match their configuration.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html#aws-load-balancer-controller"
+  },
+  {
+    "term": "NodePort",
+    "aliases": [],
+    "definition": "A Service port on a worker node that forwards incoming traffic toward application Pods.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/load-balancing.html#load-balancing"
+  },
+  {
+    "term": "ClusterIP",
+    "aliases": [],
+    "definition": "The internal address used for a Kubernetes Service.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/load-balancing.html#load-balancing"
+  },
+  {
+    "term": "Target group",
+    "aliases": [],
+    "definition": "A set of registered load balancer destinations used for routing and health checks.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/load-balancing.html#load-balancing"
+  },
+  {
+    "term": "IP target",
+    "aliases": [],
+    "definition": "A load balancer destination registered by IP address, such as a Pod address.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/load-balancing.html#load-balancing"
+  },
+  {
+    "term": "Annotation",
+    "aliases": [],
+    "definition": "Configuration metadata attached to a Kubernetes resource and interpreted by a controller.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html#aws-load-balancer-controller"
+  },
+  {
+    "term": "Readiness gate",
+    "aliases": [
+      "Pod readiness gate"
+    ],
+    "definition": "An additional condition that a Pod must satisfy before Kubernetes treats it as ready.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/load-balancing.html#load-balancing"
+  },
+  {
+    "term": "Layer 4",
+    "aliases": [
+      "L4"
+    ],
+    "definition": "The transport layer used for network traffic such as TCP and UDP.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/network-load-balancing.html#network-load-balancing"
+  },
+  {
+    "term": "Layer 7",
+    "aliases": [
+      "L7"
+    ],
+    "definition": "The application layer used for traffic such as HTTP and HTTPS.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html#alb-ingress"
+  },
+  {
+    "term": "Session policy",
+    "aliases": [],
+    "definition": "A policy that restricts the permissions available during a temporary role session.",
+    "source": "https://docs.aws.amazon.com/eks/latest/APIReference/API_CreatePodIdentityAssociation.html#AmazonEKS-CreatePodIdentityAssociation-request-policy"
+  },
+  {
+    "term": "Role chaining",
+    "aliases": [],
+    "definition": "Using credentials from one assumed role to assume another role.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/pod-id-assign-target-role.html#_how_it_works"
+  },
+  {
+    "term": "Pod disruption budget",
+    "aliases": ["PDB"],
+    "definition": "A Kubernetes setting that limits concurrent voluntary disruptions to a workload.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_configure_pod_disruption_budgets"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {"term":"certificate authority","aliases":["CA"],"definition":"A certificate authority signs certificates and can delegate signing authority to subordinate authorities.","source":"https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html"},
+  {"term":"certificate","aliases":["digital certificate"],"definition":"A certificate binds the identity of its subject to a public key.","source":"https://docs.aws.amazon.com/privateca/latest/userguide/PcaTerms.html#terms-ca"},
+  {"term":"public key","aliases":[],"definition":"A public key is the shareable key of a mathematically related public and private key pair.","source":"https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-asymmetric"},
+  {"term":"root certificate authority","aliases":["root CA"],"definition":"A root CA anchors trust for certificates in its hierarchy.","source":"https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html"},
+  {"term":"trust store","aliases":[],"definition":"A trust store is a collection of trusted certificate authorities used to validate certificate chains.","source":"https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html#end-entity-validation"},
+  {"term":"certificate revocation list","aliases":["CRL"],"definition":"A certificate revocation list identifies revoked certificates that clients periodically download and store.","source":"https://docs.aws.amazon.com/privateca/latest/userguide/PcaRevokeCert.html"},
+  {"term":"Online Certificate Status Protocol","aliases":["OCSP"],"definition":"OCSP lets a client query an authoritative database for certificate revocation status.","source":"https://docs.aws.amazon.com/privateca/latest/userguide/PcaRevokeCert.html"}
+]

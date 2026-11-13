@@ -1,0 +1,291 @@
+[
+  {
+    "term": "Invocation",
+    "aliases": [],
+    "definition": "A request to run a function.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html#invocation-sync"
+  },
+  {
+    "term": "Handler",
+    "aliases": [],
+    "definition": "The function entry point that processes an invocation event.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html#best-practices"
+  },
+  {
+    "term": "Synchronous invocation",
+    "aliases": [],
+    "definition": "A function invocation in which the caller waits for the result.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html#invocation-sync"
+  },
+  {
+    "term": "Asynchronous invocation",
+    "aliases": [],
+    "definition": "A function invocation that places an event in a Lambda-managed queue for later processing.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-error-handling.html#invocation-async-error-handling"
+  },
+  {
+    "term": "Event source mapping",
+    "aliases": [],
+    "definition": "A Lambda resource that reads queue or stream records and invokes a function with batches.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping"
+  },
+  {
+    "term": "Batch",
+    "aliases": [
+      "batch size"
+    ],
+    "definition": "A group of records passed to a function in one invocation.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping"
+  },
+  {
+    "term": "Batching window",
+    "aliases": [],
+    "definition": "The maximum time a mapping gathers records before invoking a function.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping"
+  },
+  {
+    "term": "Visibility timeout",
+    "aliases": [],
+    "definition": "The period during which a received queue message is hidden from other consumers.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#services-sqs-configure"
+  },
+  {
+    "term": "Dead-letter queue",
+    "aliases": [
+      "DLQ"
+    ],
+    "definition": "A target that retains events or messages that could not be processed successfully.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-dlq"
+  },
+  {
+    "term": "Redrive policy",
+    "aliases": [],
+    "definition": "An SQS source-queue setting that moves messages to a dead-letter queue after a configured receive count.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#services-sqs-configure"
+  },
+  {
+    "term": "Execution environment",
+    "aliases": [],
+    "definition": "The isolated runtime space containing a function and its resources.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html#lambda-extensions"
+  },
+  {
+    "term": "Cold start",
+    "aliases": [],
+    "definition": "The initialization work needed before an unprepared execution environment can run a request.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html#provisioned-concurrency"
+  },
+  {
+    "term": "Concurrency",
+    "aliases": [],
+    "definition": "The number of function requests being handled at the same time.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html#configuration-concurrency"
+  },
+  {
+    "term": "Reserved concurrency",
+    "aliases": [],
+    "definition": "Capacity dedicated to a function that also limits its simultaneous executions.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html#configuration-concurrency"
+  },
+  {
+    "term": "Provisioned concurrency",
+    "aliases": [],
+    "definition": "Execution environments initialized before requests arrive.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html#provisioned-concurrency"
+  },
+  {
+    "term": "Throttling",
+    "aliases": [],
+    "definition": "Rejection of requests because a capacity or request-rate limit has been reached.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-error-handling.html#invocation-async-error-handling"
+  },
+  {
+    "term": "Backoff",
+    "aliases": [],
+    "definition": "An increasing delay between retry attempts.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-error-handling.html#invocation-async-error-handling"
+  },
+  {
+    "term": "Idempotency",
+    "aliases": [
+      "idempotent"
+    ],
+    "definition": "The property that repeating the same operation causes no additional side effects.",
+    "source": "https://docs.aws.amazon.com/powertools/python/latest/utilities/idempotency/"
+  },
+  {
+    "term": "Idempotency key",
+    "aliases": [],
+    "definition": "A stable identifier used to recognize repeated attempts at the same business operation.",
+    "source": "https://aws.amazon.com/blogs/compute/handling-lambda-functions-idempotency-with-aws-lambda-powertools/"
+  },
+  {
+    "term": "Conditional write",
+    "aliases": [],
+    "definition": "A database change performed only when its specified condition matches.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html#WorkingWithItems.ConditionalUpdate"
+  },
+  {
+    "term": "Execution role",
+    "aliases": [],
+    "definition": "An IAM role that Lambda assumes to access other AWS resources.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html#lambda-intro-execution-role"
+  },
+  {
+    "term": "Trust policy",
+    "aliases": [],
+    "definition": "A role policy that identifies who may assume the role.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html#lambda-intro-execution-role"
+  },
+  {
+    "term": "Resource-based policy",
+    "aliases": [],
+    "definition": "A policy attached to a resource that grants specified principals access to it.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#access-control-resource-based"
+  },
+  {
+    "term": "Principal",
+    "aliases": [],
+    "definition": "The identity or service to which a permission statement applies.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#access-control-resource-based"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An identifier for an AWS resource such as a function, version, or alias.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html#configuration-versions"
+  },
+  {
+    "term": "Alias",
+    "aliases": [],
+    "definition": "A named Lambda resource that points callers to published versions.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuring-alias-routing.html#configuring-alias-routing"
+  },
+  {
+    "term": "Canary release",
+    "aliases": [
+      "canary deployment"
+    ],
+    "definition": "A release that exposes a new version to only a portion of requests.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuring-alias-routing.html#configuring-alias-routing"
+  },
+  {
+    "term": "Layer",
+    "aliases": [],
+    "definition": "A ZIP archive of supplementary function code or data extracted into /opt.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html#chapter-layers"
+  },
+  {
+    "term": "Environment variable",
+    "aliases": [],
+    "definition": "A literal string setting made available to function code.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars"
+  },
+  {
+    "term": "Runtime",
+    "aliases": [],
+    "definition": "The language execution component that runs function code.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html#lambda-extensions"
+  },
+  {
+    "term": "Runtime interface client",
+    "aliases": [],
+    "definition": "A component that implements the Lambda Runtime API for a container image.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-ric"
+  },
+  {
+    "term": "Runtime interface emulator",
+    "aliases": [],
+    "definition": "A tool included in Lambda base images to test invocation handling locally.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-create"
+  },
+  {
+    "term": "Extension",
+    "aliases": [],
+    "definition": "A component that runs with a function to provide capabilities such as monitoring.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html#lambda-extensions"
+  },
+  {
+    "term": "Ephemeral storage",
+    "aliases": [
+      "scratch storage"
+    ],
+    "definition": "Temporary files belonging to one execution environment.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-ephemeral-storage.html#configuration-ephemeral-storage"
+  },
+  {
+    "term": "Shard",
+    "aliases": [],
+    "definition": "A portion of a stream read and processed by a consumer.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#with-kinesis"
+  },
+  {
+    "term": "Partition key",
+    "aliases": [],
+    "definition": "A record value used to group related stream records whose processing order is preserved.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#with-kinesis"
+  },
+  {
+    "term": "Hyperplane ENI",
+    "aliases": [
+      "ENI",
+      "elastic network interface"
+    ],
+    "definition": "A Lambda-managed network interface connecting a function to customer VPC resources.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html#configuration-vpc-enis"
+  },
+  {
+    "term": "Dual stack",
+    "aliases": [],
+    "definition": "A network configuration that supports both IPv4 and IPv6.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html#configuration-vpc-ipv6"
+  },
+  {
+    "term": "NAT gateway",
+    "aliases": [],
+    "definition": "A network component that translates private addresses for outbound IPv4 connections.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc-internet.html#configuration-vpc-internet"
+  },
+  {
+    "term": "Access point",
+    "aliases": [],
+    "definition": "An EFS entry point that supplies a file-system path and access settings for a client.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem-efs.html#configuration-filesystem-efs"
+  },
+  {
+    "term": "Mount target",
+    "aliases": [],
+    "definition": "A network endpoint through which a client reaches an EFS file system.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem-efs.html#configuration-filesystem-efs"
+  },
+  {
+    "term": "Log group",
+    "aliases": [],
+    "definition": "A CloudWatch Logs container for related log streams.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs-loggroups.html#monitoring-cloudwatchlogs-loggroups"
+  },
+  {
+    "term": "Log stream",
+    "aliases": [],
+    "definition": "A sequence of log events associated with a function execution environment.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs-loggroups.html#monitoring-cloudwatchlogs-loggroups"
+  },
+  {
+    "term": "Software development kit",
+    "aliases": [
+      "SDK"
+    ],
+    "definition": "A language library used by code to call service APIs.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html#best-practices"
+  },
+  {
+    "term": "First-in, first-out",
+    "aliases": [
+      "FIFO"
+    ],
+    "definition": "A processing order that keeps items in the order they were sent.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-errorhandling"
+  }
+]

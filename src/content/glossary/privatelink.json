@@ -1,0 +1,9 @@
+[
+  {"term":"virtual private cloud","aliases":["VPC"],"definition":"A VPC is a logically isolated virtual network.","source":"https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html"},
+  {"term":"interface endpoint","aliases":["interface VPC endpoint"],"definition":"An interface endpoint provides network interfaces through which a consumer reaches an endpoint service.","source":"https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html#concepts-vpc-endpoints"},
+  {"term":"endpoint service","aliases":[],"definition":"An endpoint service is a provider's service made available to consumers through VPC endpoints.","source":"https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html#concepts-endpoint-services"},
+  {"term":"endpoint policy","aliases":[],"definition":"An endpoint policy controls which principals can use a VPC endpoint to access a service.","source":"https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html"},
+  {"term":"Domain Name System","aliases":["DNS"],"definition":"DNS translates domain names into IP addresses used to reach services.","source":"https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-dns"},
+  {"term":"CIDR block","aliases":["CIDR"],"definition":"A CIDR block represents a range of IP addresses.","source":"https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html#concepts-resource-configuration"},
+  {"term":"security group","aliases":[],"definition":"A security group controls traffic allowed to and from associated resources.","source":"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"}
+]

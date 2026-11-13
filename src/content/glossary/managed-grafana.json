@@ -1,0 +1,32 @@
+[
+  {
+    "term": "Workspace",
+    "aliases": [],
+    "definition": "A logically isolated Grafana server managed by Amazon Managed Grafana.",
+    "source": "https://docs.aws.amazon.com/grafana/latest/userguide/what-is-Amazon-Managed-Service-Grafana.html"
+  },
+  {
+    "term": "Data source",
+    "aliases": [],
+    "definition": "A storage backend that Grafana queries to build visualizations.",
+    "source": "https://docs.aws.amazon.com/grafana/latest/userguide/AMG-data-sources.html"
+  },
+  {
+    "term": "Virtual private cloud",
+    "aliases": ["VPC"],
+    "definition": "A logically isolated virtual network dedicated to an AWS account.",
+    "source": "https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-vpc.html"
+  },
+  {
+    "term": "StackSet",
+    "aliases": ["CloudFormation StackSets"],
+    "definition": "A way to deploy CloudFormation stacks across multiple accounts and Regions in one operation.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html"
+  },
+  {
+    "term": "Service-managed permissions",
+    "aliases": [],
+    "definition": "A mode in which Managed Grafana creates the IAM roles and policies needed for selected AWS data sources.",
+    "source": "https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html"
+  }
+]

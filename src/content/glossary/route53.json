@@ -1,0 +1,271 @@
+[
+  {
+    "term": "DNS",
+    "aliases": [
+      "Domain Name System"
+    ],
+    "definition": "A system that translates domain names into records such as IP addresses.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy"
+  },
+  {
+    "term": "DNS record",
+    "aliases": [
+      "record"
+    ],
+    "definition": "An entry for a name and type that supplies values in a DNS answer.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html"
+  },
+  {
+    "term": "Hosted zone",
+    "aliases": [],
+    "definition": "A container of DNS records for a domain.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-new-domain.html#dns-configuring-create-hz-delegate"
+  },
+  {
+    "term": "Registrar",
+    "aliases": [],
+    "definition": "The provider that manages registration of a domain name.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-new-domain.html#dns-configuring-create-hz-delegate"
+  },
+  {
+    "term": "Delegation",
+    "aliases": [],
+    "definition": "The assignment of DNS authority to name servers for a domain.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-new-domain.html#dns-configuring-create-hz-delegate"
+  },
+  {
+    "term": "Authoritative name server",
+    "aliases": [],
+    "definition": "A server that supplies the DNS records for its hosted zone.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html#NSFormat"
+  },
+  {
+    "term": "Recursive resolver",
+    "aliases": [
+      "resolver"
+    ],
+    "definition": "A DNS server that looks up an answer for a client and can cache the result.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-weighted.html#rrsets-values-weighted-ttl"
+  },
+  {
+    "term": "TTL",
+    "aliases": [
+      "time to live"
+    ],
+    "definition": "The period for which a DNS resolver can cache a record answer.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-weighted.html#rrsets-values-weighted-ttl"
+  },
+  {
+    "term": "Zone apex",
+    "aliases": [
+      "root domain"
+    ],
+    "definition": "The DNS name that is the same as the hosted-zone name.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html#resource-record-sets-choosing-alias-non-alias"
+  },
+  {
+    "term": "Alias record",
+    "aliases": [
+      "alias"
+    ],
+    "definition": "A Route 53 record that returns values from a supported AWS target or a same-type record in the same hosted zone.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html#resource-record-sets-choosing-alias-non-alias"
+  },
+  {
+    "term": "CIDR block",
+    "aliases": [
+      "CIDR",
+      "IP range"
+    ],
+    "definition": "An IP address range written using an address and a prefix length.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-ipbased.html#routing-policy-ipbased"
+  },
+  {
+    "term": "Bias",
+    "aliases": [],
+    "definition": "A geoproximity setting that expands or shrinks the geographic area served by a resource.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html#routing-policy-geoproximity"
+  },
+  {
+    "term": "Health check",
+    "aliases": [],
+    "definition": "A configured test or health signal used to determine whether a resource is healthy.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values"
+  },
+  {
+    "term": "Calculated health check",
+    "aliases": [],
+    "definition": "A health check that compares the number of healthy child checks with a configured threshold.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values"
+  },
+  {
+    "term": "Failure threshold",
+    "aliases": [],
+    "definition": "The number of consecutive passing or failing probes needed to change an endpoint checker status.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values"
+  },
+  {
+    "term": "TLS",
+    "aliases": [
+      "Transport Layer Security"
+    ],
+    "definition": "The protocol that protects an HTTPS connection.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values"
+  },
+  {
+    "term": "TCP",
+    "aliases": [
+      "Transmission Control Protocol"
+    ],
+    "definition": "A network protocol that establishes a reliable connection between endpoints.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints"
+  },
+  {
+    "term": "Metric",
+    "aliases": [],
+    "definition": "A series of measurements that an alarm can evaluate.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-cloudwatch"
+  },
+  {
+    "term": "Split-view DNS",
+    "aliases": [
+      "split-horizon DNS"
+    ],
+    "definition": "DNS that uses public and private records for the same domain to give internal and external clients different answers.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-considerations.html#hosted-zone-private-considerations"
+  },
+  {
+    "term": "NXDOMAIN",
+    "aliases": [],
+    "definition": "A DNS response meaning that the queried domain does not exist.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-considerations.html#hosted-zone-private-considerations"
+  },
+  {
+    "term": "Conditional forwarder",
+    "aliases": [
+      "forwarding rule"
+    ],
+    "definition": "A DNS rule that sends queries for a chosen domain to specified DNS servers.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html#resolver"
+  },
+  {
+    "term": "Endpoint",
+    "aliases": [],
+    "definition": "A network address and port that receive queries or health probes.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values"
+  },
+  {
+    "term": "Target group",
+    "aliases": [],
+    "definition": "A collection of destinations whose health a load balancer monitors.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html"
+  },
+  {
+    "term": "NAT",
+    "aliases": [
+      "network address translation"
+    ],
+    "definition": "Translation of private source IP addresses so traffic can reach an external network.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-forwarding-outbound-queries.html#resolver-forwarding-outbound-queries"
+  },
+  {
+    "term": "Resource policy",
+    "aliases": [],
+    "definition": "A policy attached to a resource that grants a principal access to it.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html#query-logs-configuring"
+  },
+  {
+    "term": "Log group",
+    "aliases": [],
+    "definition": "A CloudWatch Logs container for related log streams.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html#query-logs"
+  },
+  {
+    "term": "Log stream",
+    "aliases": [],
+    "definition": "A sequence of log events from a particular source.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html#query-logs-viewing"
+  },
+  {
+    "term": "SLA",
+    "aliases": [
+      "service level agreement"
+    ],
+    "definition": "A policy defining a service availability commitment and eligibility for credits.",
+    "source": "https://aws.amazon.com/route53/sla/"
+  },
+  {
+    "term": "Rule group",
+    "aliases": [],
+    "definition": "A reusable collection of DNS Firewall rules associated with one or more VPCs.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview"
+  },
+  {
+    "term": "Domain list",
+    "aliases": [],
+    "definition": "A collection of domain specifications used to match DNS queries.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview"
+  },
+  {
+    "term": "Fail closed",
+    "aliases": [],
+    "definition": "A failure policy that blocks a DNS query when DNS Firewall does not return a response.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html#resolver-dns-firewall-vpc-configuration"
+  },
+  {
+    "term": "Fail open",
+    "aliases": [],
+    "definition": "A failure policy that allows a DNS query when DNS Firewall does not return a response.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html#resolver-dns-firewall-vpc-configuration"
+  },
+  {
+    "term": "NODATA",
+    "aliases": [],
+    "definition": "A successful DNS response containing no answer data for the query.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions"
+  },
+  {
+    "term": "SERVFAIL",
+    "aliases": [],
+    "definition": "A DNS failure response returned when a resolver cannot complete a query.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html#resolver-dns-firewall-vpc-configuration"
+  },
+  {
+    "term": "CNAME",
+    "aliases": [],
+    "definition": "A DNS record that names another domain as its destination.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions"
+  },
+  {
+    "term": "DNS tunneling",
+    "aliases": [],
+    "definition": "The use of DNS queries to carry data outside the normal purpose of name resolution.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview"
+  },
+  {
+    "term": "Domain generation algorithm",
+    "aliases": [
+      "DGA"
+    ],
+    "definition": "A method attackers use to generate many domain names for malicious activity.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview"
+  },
+  {
+    "term": "Wildcard domain",
+    "aliases": [],
+    "definition": "A domain pattern such as *.example.com that matches subdomains.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-getting-started.html#resolver-dns-firewall-getting-started"
+  },
+  {
+    "term": "Redirection chain",
+    "aliases": [],
+    "definition": "The sequence of names followed when DNS records point a lookup to other names.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview"
+  },
+  {
+    "term": "Priority",
+    "aliases": [],
+    "definition": "The numeric ordering setting that determines when a rule or rule group is evaluated.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview"
+  }
+]

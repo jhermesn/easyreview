@@ -1,0 +1,186 @@
+[
+  {
+    "term": "Software development lifecycle",
+    "aliases": [
+      "SDLC"
+    ],
+    "definition": "The process that organizes planning, building, testing, deploying, and maintaining software.",
+    "source": "https://aws.amazon.com/what-is/sdlc/"
+  },
+  {
+    "term": "DevSecOps",
+    "aliases": [],
+    "definition": "The practice of including security testing throughout software development.",
+    "source": "https://aws.amazon.com/what-is/sdlc/"
+  },
+  {
+    "term": "Continuous delivery",
+    "aliases": [],
+    "definition": "A process that automatically prepares tested changes for a human production release decision.",
+    "source": "https://aws.amazon.com/devops/continuous-delivery/"
+  },
+  {
+    "term": "Continuous deployment",
+    "aliases": [],
+    "definition": "A process that automatically releases changes to production after pipeline checks pass.",
+    "source": "https://aws.amazon.com/devops/continuous-delivery/"
+  },
+  {
+    "term": "Production environment",
+    "aliases": [
+      "production"
+    ],
+    "definition": "The environment that runs the software customers use.",
+    "source": "https://aws.amazon.com/what-is/sdlc/"
+  },
+  {
+    "term": "Unit test",
+    "aliases": [],
+    "definition": "A test of application code that simulates its external dependencies.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-cicd-litmus/tests-for-cicd-pipelines.html"
+  },
+  {
+    "term": "Integration test",
+    "aliases": [],
+    "definition": "A test of technical requirements against a provisioned application environment.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-cicd-litmus/tests-for-cicd-pipelines.html"
+  },
+  {
+    "term": "Acceptance test",
+    "aliases": [],
+    "definition": "A test of user requirements against a provisioned application environment.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-cicd-litmus/tests-for-cicd-pipelines.html"
+  },
+  {
+    "term": "Static application security testing",
+    "aliases": [
+      "SAST"
+    ],
+    "definition": "Analysis of source code to find security problems.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-cicd-litmus/tests-for-cicd-pipelines.html"
+  },
+  {
+    "term": "Dynamic application security testing",
+    "aliases": [
+      "DAST"
+    ],
+    "definition": "Security testing that probes a running application for vulnerabilities.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-cicd-litmus/tests-for-cicd-pipelines.html"
+  },
+  {
+    "term": "Synthetic test",
+    "aliases": [],
+    "definition": "A continuously running test that generates traffic to check system health.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-cicd-litmus/tests-for-cicd-pipelines.html"
+  },
+  {
+    "term": "Buildspec",
+    "aliases": [],
+    "definition": "A file that tells CodeBuild which commands to run and which outputs to collect.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html"
+  },
+  {
+    "term": "Lifecycle hook",
+    "aliases": [],
+    "definition": "A script or function invoked at a defined deployment event.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html"
+  },
+  {
+    "term": "Code coverage",
+    "aliases": [],
+    "definition": "A measurement of how much application code the tests execute.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/code-coverage-report.html"
+  },
+  {
+    "term": "Baseline",
+    "aliases": [],
+    "definition": "A selected reference test run used to compare later performance results.",
+    "source": "https://docs.aws.amazon.com/solutions/latest/distributed-load-testing-on-aws/explore-test-results.html"
+  },
+  {
+    "term": "Percentile",
+    "aliases": [],
+    "definition": "A value describing a position in a distribution of response times.",
+    "source": "https://docs.aws.amazon.com/solutions/latest/distributed-load-testing-on-aws/explore-test-results.html"
+  },
+  {
+    "term": "Throughput",
+    "aliases": [],
+    "definition": "The rate at which a system processes requests.",
+    "source": "https://docs.aws.amazon.com/solutions/latest/performance-testing/interpreting-results.html"
+  },
+  {
+    "term": "Service-level objective",
+    "aliases": [
+      "SLO"
+    ],
+    "definition": "A target for a service metric such as response time or error rate.",
+    "source": "https://docs.aws.amazon.com/solutions/latest/performance-testing/interpreting-results.html"
+  },
+  {
+    "term": "Recovery time objective",
+    "aliases": [
+      "RTO"
+    ],
+    "definition": "The target time for restoring a system after an outage.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html"
+  },
+  {
+    "term": "Recovery point objective",
+    "aliases": [
+      "RPO"
+    ],
+    "definition": "The acceptable data loss after an outage measured in time.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html"
+  },
+  {
+    "term": "Origin group",
+    "aliases": [],
+    "definition": "A pair of primary and secondary origins used for CloudFront origin failover.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html"
+  },
+  {
+    "term": "VPC",
+    "aliases": [
+      "virtual private cloud"
+    ],
+    "definition": "An isolated virtual network for AWS resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "NAT",
+    "aliases": [
+      "network address translation"
+    ],
+    "definition": "A mechanism that lets private resources establish outbound network connections.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/vpc-support.html"
+  },
+  {
+    "term": "Container",
+    "aliases": [],
+    "definition": "A packaged application process with the files it needs to run.",
+    "source": "https://docs.aws.amazon.com/solutions/latest/distributed-load-testing-on-aws/solution-overview.html"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "A separate location within an AWS Region used to isolate failures.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html"
+  },
+  {
+    "term": "Exit code",
+    "aliases": [
+      "exit status"
+    ],
+    "definition": "The number a script returns to indicate whether it succeeded or failed.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/application-specification-files.html#application-specification-files-agent-usage"
+  },
+  {
+    "term": "runOrder",
+    "aliases": [],
+    "definition": "The action setting that determines execution order within a CodePipeline stage.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-requirements.html#action.runOrder"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "term": "Manifest",
+    "aliases": ["service manifest"],
+    "definition": "A configuration file that describes a service's desired settings.",
+    "source": "https://aws.amazon.com/blogs/containers/announcing-the-end-of-support-for-the-aws-copilot-cli/"
+  },
+  {
+    "term": "Environment",
+    "aliases": ["Copilot environment"],
+    "definition": "A set of resources shared by the services deployed to it.",
+    "source": "https://aws.amazon.com/blogs/containers/announcing-the-end-of-support-for-the-aws-copilot-cli/"
+  },
+  {
+    "term": "Stack",
+    "aliases": ["CloudFormation stack"],
+    "definition": "A collection of AWS resources managed as a single unit.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html#stacks"
+  },
+  {
+    "term": "Pipeline",
+    "aliases": ["deployment pipeline"],
+    "definition": "A workflow that describes how software changes move through a release process.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-pipelines"
+  },
+  {
+    "term": "Virtual private cloud",
+    "aliases": ["VPC"],
+    "definition": "A logically isolated virtual network for AWS resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc"
+  },
+  {
+    "term": "Queue",
+    "aliases": ["message queue"],
+    "definition": "A place that holds messages sent by producers for consumers to receive.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html#sqs-distributed-queue"
+  }
+]

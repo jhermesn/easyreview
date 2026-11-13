@@ -1,0 +1,482 @@
+[
+  {
+    "term": "Metric",
+    "aliases": [],
+    "definition": "A metric is a sequence of measured values recorded over time.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metric"
+  },
+  {
+    "term": "Metric namespace",
+    "aliases": [
+      "namespace"
+    ],
+    "definition": "A metric namespace keeps related metrics together and separates them from other metric collections.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Namespace"
+  },
+  {
+    "term": "Dimension",
+    "aliases": [],
+    "definition": "A dimension is a name and value that identifies a particular variation of a metric.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension"
+  },
+  {
+    "term": "Period",
+    "aliases": [],
+    "definition": "A period is the time span over which metric values are combined into a statistic.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#CloudWatchPeriods"
+  },
+  {
+    "term": "Statistic",
+    "aliases": [],
+    "definition": "A statistic summarizes the metric values collected during a period.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html#Statistics-definitions"
+  },
+  {
+    "term": "Percentile",
+    "aliases": [],
+    "definition": "A percentile describes the value below which a specified percentage of samples falls.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html#Statistics-definitions"
+  },
+  {
+    "term": "Metric resolution",
+    "aliases": [
+      "resolution"
+    ],
+    "definition": "Metric resolution describes the time granularity at which metric data is stored.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Resolution_definition"
+  },
+  {
+    "term": "Cardinality",
+    "aliases": [],
+    "definition": "Metric cardinality is the number of distinct combinations of identifying labels or dimensions.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html#CloudWatch_Embedded_Metric_Format"
+  },
+  {
+    "term": "Embedded metric format",
+    "aliases": [
+      "EMF"
+    ],
+    "definition": "Embedded metric format places custom metric definitions and values inside structured log events.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html#CloudWatch_Embedded_Metric_Format"
+  },
+  {
+    "term": "OpenTelemetry",
+    "aliases": [
+      "OTel"
+    ],
+    "definition": "OpenTelemetry is an open framework for collecting metrics, logs, and traces using instrumentation.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-OpenTelemetry-Sections.html#CloudWatch-OpenTelemetry-Sections"
+  },
+  {
+    "term": "PromQL",
+    "aliases": [],
+    "definition": "PromQL is the query language used to select and calculate results from Prometheus metrics.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-PromQL-QueryStudio.html#CloudWatch-PromQL-QueryStudio"
+  },
+  {
+    "term": "Trace",
+    "aliases": [],
+    "definition": "A trace records the work performed by application components to handle a request.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-traces"
+  },
+  {
+    "term": "Instrumentation",
+    "aliases": [],
+    "definition": "Instrumentation adds code that records application operations and sends monitoring data.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Application-Signals-Enable-EKS.html#CloudWatch-Application-Signals-Enable-EKS-Console"
+  },
+  {
+    "term": "Service dependency",
+    "aliases": [
+      "dependency"
+    ],
+    "definition": "A service dependency is another service or resource an application calls to complete its work.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AppSignals-MetricsCollected.html#AppSignals-StandardMetrics-Dimensions"
+  },
+  {
+    "term": "Service level indicator",
+    "aliases": [
+      "SLI"
+    ],
+    "definition": "A service level indicator is a performance measurement used to judge whether a service meets its target.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-ServiceLevelObjectives.html#CloudWatch-ServiceLevelObjectives-concepts"
+  },
+  {
+    "term": "Service level objective",
+    "aliases": [
+      "SLO"
+    ],
+    "definition": "A service level objective sets the percentage of time or requests that should meet a performance threshold over an interval.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-ServiceLevelObjectives.html#CloudWatch-ServiceLevelObjectives-concepts"
+  },
+  {
+    "term": "Error budget",
+    "aliases": [],
+    "definition": "An error budget is the unhealthy time or requests a service can have while still meeting its objective.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-ServiceLevelObjectives.html#CloudWatch-ServiceLevelObjectives-budget-request"
+  },
+  {
+    "term": "Burn rate",
+    "aliases": [],
+    "definition": "Burn rate measures how quickly a service consumes its error budget relative to its objective.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-ServiceLevelObjectives.html#CloudWatch-ServiceLevelObjectives-burn"
+  },
+  {
+    "term": "Calendar interval",
+    "aliases": [],
+    "definition": "A calendar interval follows fixed calendar boundaries when an objective is evaluated.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-ServiceLevelObjectives.html#CloudWatch-ServiceLevelObjectives-concepts"
+  },
+  {
+    "term": "Rolling interval",
+    "aliases": [],
+    "definition": "A rolling interval evaluates the recent time window as that window moves forward.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-ServiceLevelObjectives.html#CloudWatch-ServiceLevelObjectives-concepts"
+  },
+  {
+    "term": "Worker node",
+    "aliases": [
+      "node"
+    ],
+    "definition": "A worker node is a machine that runs Kubernetes application workloads.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-concepts.html"
+  },
+  {
+    "term": "Pod",
+    "aliases": [
+      "pod"
+    ],
+    "definition": "A pod is the smallest deployable Kubernetes unit and contains one or more containers.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-concepts.html"
+  },
+  {
+    "term": "DaemonSet",
+    "aliases": [],
+    "definition": "A DaemonSet keeps a selected Kubernetes workload running on each eligible node.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-concepts.html"
+  },
+  {
+    "term": "Log shipper",
+    "aliases": [],
+    "definition": "A log shipper collects log records and forwards them to a destination.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-setup-logs-FluentBit.html#Container-Insights-FluentBit-setup"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "role"
+    ],
+    "definition": "An IAM role is an identity with permissions that an authorized user, application, or service can assume.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An Amazon Resource Name uniquely identifies an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html"
+  },
+  {
+    "term": "Observability sink",
+    "aliases": [
+      "sink"
+    ],
+    "definition": "An observability sink is the monitoring account attachment point for links from source accounts.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html#CloudWatch-Unified-Cross-Account"
+  },
+  {
+    "term": "Observability link",
+    "aliases": [
+      "link"
+    ],
+    "definition": "An observability link is a source account resource that connects it to a monitoring account sink.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html#CloudWatch-Unified-Cross-Account"
+  },
+  {
+    "term": "Telemetry",
+    "aliases": [],
+    "definition": "Telemetry is operational data such as measurements, log events, and request traces.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html#CloudWatch-Unified-Cross-Account"
+  },
+  {
+    "term": "Source account",
+    "aliases": [],
+    "definition": "A source account generates operational data and shares selected data with a monitoring account.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html#CloudWatch-Unified-Cross-Account"
+  },
+  {
+    "term": "Monitoring account",
+    "aliases": [],
+    "definition": "A monitoring account views operational data shared by linked source accounts.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html#CloudWatch-Unified-Cross-Account"
+  },
+  {
+    "term": "Widget",
+    "aliases": [],
+    "definition": "A widget is a dashboard panel that displays data or explanatory text.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-and-work-with-widgets.html#create-and-work-with-widgets"
+  },
+  {
+    "term": "Buffering",
+    "aliases": [],
+    "definition": "Buffering holds records until a configured size or waiting time is reached before delivery.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-metric-streams-setup.html#CloudWatch-metric-streams-setup"
+  },
+  {
+    "term": "Session sampling",
+    "aliases": [
+      "sampling"
+    ],
+    "definition": "Session sampling selects a configured percentage of real user sessions for data collection.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-get-started-create-app-monitor.html#web-platform-app-monitor"
+  },
+  {
+    "term": "App monitor",
+    "aliases": [],
+    "definition": "An app monitor holds the RUM configuration for collecting data from an application.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-get-started-create-app-monitor.html#web-platform-app-monitor"
+  },
+  {
+    "term": "Client-side data",
+    "aliases": [],
+    "definition": "Client-side data describes performance and errors observed in the user application or browser.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM.html#CloudWatch-RUM"
+  },
+  {
+    "term": "Canary",
+    "aliases": [],
+    "definition": "A canary is a script that exercises an endpoint or user flow without requiring customer traffic.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries.html#CloudWatch_Synthetics_Canaries"
+  },
+  {
+    "term": "Canary blueprint",
+    "aliases": [
+      "blueprint"
+    ],
+    "definition": "A canary blueprint is a starting script for a common synthetic check.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Blueprints.html#CloudWatch_Synthetics_Canaries_Blueprints"
+  },
+  {
+    "term": "HTTP Archive",
+    "aliases": [
+      "HAR"
+    ],
+    "definition": "An HTTP Archive file records details about web requests and their performance.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Details.html#CloudWatch_Synthetics_Canaries_Details"
+  },
+  {
+    "term": "Visual baseline",
+    "aliases": [
+      "baseline screenshot"
+    ],
+    "definition": "A visual baseline is the reference screenshot used to compare later canary runs.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Blueprints.html#CloudWatch_Synthetics_Canaries_Blueprints_VisualTesting"
+  },
+  {
+    "term": "Log event",
+    "aliases": [],
+    "definition": "A log event records an activity as a timestamp and a message.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogsConcepts.html#CloudWatchLogsConcepts"
+  },
+  {
+    "term": "Log stream",
+    "aliases": [],
+    "definition": "A log stream is a sequence of log events from the same source.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#Working-with-log-groups-and-streams"
+  },
+  {
+    "term": "Log group",
+    "aliases": [],
+    "definition": "A log group collects streams that share retention, monitoring, and access settings.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#Working-with-log-groups-and-streams"
+  },
+  {
+    "term": "Log retention",
+    "aliases": [
+      "retention period"
+    ],
+    "definition": "Log retention controls how long events remain eligible for storage before they expire.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#SttingLogRetention"
+  },
+  {
+    "term": "Filter pattern",
+    "aliases": [],
+    "definition": "A filter pattern is an expression that identifies matching log events.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#FilterAndPatternSyntax"
+  },
+  {
+    "term": "Metric filter",
+    "aliases": [],
+    "definition": "A metric filter turns matching incoming log events into numeric metric values.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html#MonitoringLogData"
+  },
+  {
+    "term": "Subscription filter",
+    "aliases": [],
+    "definition": "A subscription filter selects incoming log events and sends matches to a processing destination.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html#Subscriptions"
+  },
+  {
+    "term": "At-least-once delivery",
+    "aliases": [],
+    "definition": "At-least-once delivery can deliver the same event more than once.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html#Subscriptions"
+  },
+  {
+    "term": "Logical destination",
+    "aliases": [],
+    "definition": "A logical destination is a named receiving-account resource that senders reference for cross-account log delivery.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CrossAccountSubscriptions-Kinesis.html#CrossAccountSubscriptions-Kinesis"
+  },
+  {
+    "term": "Data masking",
+    "aliases": [
+      "masking"
+    ],
+    "definition": "Data masking hides detected sensitive values in log output unless the reader has permission to view the originals.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html#mask-sensitive-log-data"
+  },
+  {
+    "term": "Encryption context",
+    "aliases": [],
+    "definition": "An encryption context is a set of non-secret key and value pairs used with encryption and access conditions.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/encrypt_context.html"
+  },
+  {
+    "term": "Envelope encryption",
+    "aliases": [],
+    "definition": "Envelope encryption encrypts data with a data key and encrypts that data key with another key.",
+    "source": "https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/how-it-works.html"
+  },
+  {
+    "term": "Server-side encryption",
+    "aliases": [],
+    "definition": "Server-side encryption encrypts data at the receiving service before storing it.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html#encrypt-log-data-kms"
+  },
+  {
+    "term": "Client-side encryption",
+    "aliases": [],
+    "definition": "Client-side encryption encrypts data in the application before sending it to a service.",
+    "source": "https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/introduction.html"
+  },
+  {
+    "term": "Transport Layer Security",
+    "aliases": [
+      "TLS"
+    ],
+    "definition": "Transport Layer Security encrypts network connections to protect data in transit.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/infrastructure-security.html#infrastructure-security"
+  },
+  {
+    "term": "Anomaly detection band",
+    "aliases": [
+      "anomaly band"
+    ],
+    "definition": "An anomaly detection band is a modeled range of expected metric values.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Anomaly_Detection.html#CloudWatch_Anomaly_Detection"
+  },
+  {
+    "term": "Composite alarm",
+    "aliases": [],
+    "definition": "A composite alarm evaluates a logical rule over the states of other alarms.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_Composite_Alarm.html#Create_Composite_Alarm"
+  },
+  {
+    "term": "M out of N",
+    "aliases": [
+      "M-of-N"
+    ],
+    "definition": "M out of N requires a selected number of breaching metric periods within the evaluated set of periods.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-evaluation.html#alarm-evaluation-settings"
+  },
+  {
+    "term": "Log export task",
+    "aliases": [
+      "export task"
+    ],
+    "definition": "A log export task copies a selected time range of stored log events to an S3 bucket.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasks.html#S3ExportTasks"
+  },
+  {
+    "term": "Latency",
+    "aliases": [],
+    "definition": "Latency is the delay measured for an application operation.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AppSignals-MetricsCollected.html#AppSignals-StandardMetrics"
+  },
+  {
+    "term": "Gzip",
+    "aliases": [
+      "gzip compression"
+    ],
+    "definition": "Gzip compresses subscription payloads so they take less space during delivery.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html#Subscriptions"
+  },
+  {
+    "term": "Base64",
+    "aliases": [
+      "base64 encoding"
+    ],
+    "definition": "Base64 represents binary subscription data as text in receiving interfaces.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html#Subscriptions"
+  },
+  {
+    "term": "Metric alarm",
+    "aliases": [],
+    "definition": "A metric alarm evaluates a metric over time and can trigger an action when its state changes.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#CloudWatchAlarms"
+  },
+  {
+    "term": "Missing data",
+    "aliases": [],
+    "definition": "Missing data means an expected metric data point was not received for an evaluation period.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarms-and-missing-data.html#alarms-and-missing-data"
+  },
+  {
+    "term": "Sink policy",
+    "aliases": [],
+    "definition": "A sink policy grants source accounts permission to link and can restrict the types of data shared.",
+    "source": "https://docs.aws.amazon.com/OAM/latest/APIReference/API_PutSinkPolicy.html#API_PutSinkPolicy"
+  },
+  {
+    "term": "Endpoint",
+    "aliases": [],
+    "definition": "An endpoint is the URL a canary requests when it calls an API.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Blueprints.html#CloudWatch_Synthetics_Canaries_Blueprints_API"
+  },
+  {
+    "term": "Symmetric encryption key",
+    "aliases": [
+      "symmetric key"
+    ],
+    "definition": "A symmetric encryption key uses the same secret key to encrypt and decrypt data.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
+  },
+  {
+    "term": "Data at rest",
+    "aliases": [],
+    "definition": "Data at rest is data stored by a service rather than being transferred over a network.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html#encrypt-log-data-kms"
+  },
+  {
+    "term": "Data in transit",
+    "aliases": [],
+    "definition": "Data in transit is data moving across a network connection.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/infrastructure-security.html#infrastructure-security"
+  },
+  {
+    "term": "Object prefix",
+    "aliases": [
+      "prefix"
+    ],
+    "definition": "An object prefix is the shared beginning of S3 object names used to group exported files.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3ExportTasks.html#S3ExportTasks"
+  },
+  {
+    "term": "SSE-KMS",
+    "aliases": [],
+    "definition": "SSE-KMS is server-side encryption that uses AWS KMS keys to protect stored S3 objects.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_artifact_encryption.html#CloudWatch_Synthetics_artifact_encryption"
+  }
+]

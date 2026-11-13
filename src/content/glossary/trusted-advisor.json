@@ -1,0 +1,32 @@
+[
+  {
+    "term": "Check",
+    "aliases": ["Trusted Advisor check"],
+    "definition": "An evaluation that identifies resource conditions and provides recommendations.",
+    "source": "https://docs.aws.amazon.com/awssupport/latest/user/get-started-with-aws-trusted-advisor.html#view-specific-checks"
+  },
+  {
+    "term": "Refresh",
+    "aliases": ["check refresh"],
+    "definition": "A request to update a check's results.",
+    "source": "https://docs.aws.amazon.com/awssupport/latest/user/get-started-with-aws-trusted-advisor.html#refresh-check-results"
+  },
+  {
+    "term": "Best effort delivery",
+    "aliases": [],
+    "definition": "Delivery that is attempted but not guaranteed.",
+    "source": "https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html"
+  },
+  {
+    "term": "Metric",
+    "aliases": [],
+    "definition": "A series of measurements recorded over time for monitoring.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metric"
+  },
+  {
+    "term": "EventBridge rule",
+    "aliases": ["rule"],
+    "definition": "A configuration that matches events and invokes selected targets.",
+    "source": "https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html"
+  }
+]

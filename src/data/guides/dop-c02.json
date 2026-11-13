@@ -1,0 +1,1904 @@
+{
+  "cert": "dop-c02",
+  "source": "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02.html",
+  "retrieved": "2026-11-08",
+  "domains": [
+    {
+      "id": "d1",
+      "name": "SDLC Automation",
+      "tasks": [
+        {
+          "id": "1.1",
+          "title": "Implement CI/CD pipelines.",
+          "items": [
+            {
+              "id": "1.1.k1",
+              "kind": "knowledge",
+              "text": "Software development lifecycle (SDLC) concepts, phases, and models",
+              "sections": [
+                "testing-in-pipelines/sdlc-and-delivery-models",
+                "codestar/legacy-projects-and-retirement"
+              ]
+            },
+            {
+              "id": "1.1.k2",
+              "kind": "knowledge",
+              "text": "Pipeline deployment patterns for single- and multi-account environments",
+              "sections": [
+                "codepipeline/stages-actions-and-triggers",
+                "codepipeline/cross-account-deployments",
+                "cdk/cross-account-trust",
+                "cdk/pipelines-and-approval-steps",
+                "codepipeline/pipeline-types-and-execution-modes"
+              ]
+            },
+            {
+              "id": "1.1.s1",
+              "kind": "skill",
+              "text": "Configuring code, image, and artifact repositories",
+              "sections": [
+                "codecommit/repositories-and-git-access",
+                "codeartifact/domains-and-repositories",
+                "ecr/repositories-and-image-tags",
+                "s3/artifact-and-log-bucket-management",
+                "codeartifact/upstream-repositories",
+                "codecommit/repository-migration"
+              ]
+            },
+            {
+              "id": "1.1.s2",
+              "kind": "skill",
+              "text": "Using version control to integrate pipelines with application environments",
+              "sections": [
+                "codepipeline/stages-actions-and-triggers",
+                "codecommit/repository-events",
+                "codecommit/branch-protection",
+                "codecommit/pull-request-approvals"
+              ]
+            },
+            {
+              "id": "1.1.s3",
+              "kind": "skill",
+              "text": "Setting up build processes (for example, AWS CodeBuild)",
+              "sections": [
+                "codebuild/buildspec-phases",
+                "codebuild/build-caching"
+              ]
+            },
+            {
+              "id": "1.1.s4",
+              "kind": "skill",
+              "text": "Managing build and deployment secrets (for example, AWS Secrets Manager, AWS Systems Manager Parameter Store)",
+              "sections": [
+                "codebuild/environment-variables-and-secrets",
+                "cloudformation/dynamic-references",
+                "systems-manager/parameter-store-tiers-and-policies",
+                "systems-manager/securestring-encryption",
+                "secrets-manager/secret-versions-and-runtime-access",
+                "systems-manager/cross-account-parameter-sharing"
+              ]
+            },
+            {
+              "id": "1.1.s5",
+              "kind": "skill",
+              "text": "Determining appropriate deployment strategies (for example, AWS CodeDeploy)",
+              "sections": [
+                "deployment-strategies/rollout-capacity-and-cost",
+                "deployment-strategies/traffic-shifting-and-health-gates",
+                "deployment-strategies/rollback-and-schema-compatibility",
+                "codedeploy/rollbacks"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Integrate automated testing into CI/CD pipelines.",
+          "items": [
+            {
+              "id": "1.2.k1",
+              "kind": "knowledge",
+              "text": "Different types of tests (for example, unit tests, integration tests, acceptance tests, user interface tests, security scans)",
+              "sections": [
+                "testing-in-pipelines/test-types-and-stage-placement",
+                "codeguru/reviewer-profiler-and-availability",
+                "codepipeline/security-scan-actions",
+                "ecr/image-scanning",
+                "device-farm/device-and-browser-tests"
+              ]
+            },
+            {
+              "id": "1.2.k2",
+              "kind": "knowledge",
+              "text": "Reasonable use of different types of tests at different stages of the CI/CD pipeline",
+              "sections": [
+                "testing-in-pipelines/test-types-and-stage-placement",
+                "codedeploy/traffic-validation-hooks"
+              ]
+            },
+            {
+              "id": "1.2.s1",
+              "kind": "skill",
+              "text": "Running builds or tests when generating pull requests or code merges (for example, CodeBuild)",
+              "sections": [
+                "codebuild/pull-request-builds",
+                "codepipeline/stages-actions-and-triggers"
+              ]
+            },
+            {
+              "id": "1.2.s2",
+              "kind": "skill",
+              "text": "Running load/stress tests, performance benchmarking, and application testing at scale",
+              "sections": [
+                "testing-in-pipelines/load-stress-and-performance-baselines"
+              ]
+            },
+            {
+              "id": "1.2.s3",
+              "kind": "skill",
+              "text": "Measuring application health based on application exit codes",
+              "sections": [
+                "testing-in-pipelines/quality-gates-and-evidence",
+                "codedeploy/lifecycle-hooks"
+              ]
+            },
+            {
+              "id": "1.2.s4",
+              "kind": "skill",
+              "text": "Automating unit tests and code coverage",
+              "sections": [
+                "codebuild/test-and-coverage-reports",
+                "codebuild/exit-codes-and-failure-handling",
+                "cdk/assertions-and-snapshot-tests"
+              ]
+            },
+            {
+              "id": "1.2.s5",
+              "kind": "skill",
+              "text": "Invoking AWS services in a pipeline for testing",
+              "sections": [
+                "codepipeline/test-and-invoke-actions",
+                "codebuild/vpc-builds"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Build and manage artifacts.",
+          "items": [
+            {
+              "id": "1.3.k1",
+              "kind": "knowledge",
+              "text": "Artifact use cases and secure management",
+              "sections": [
+                "artifact-management/source-packages-images-and-build-outputs",
+                "codeartifact/package-origin-controls",
+                "codeartifact/authentication-tokens",
+                "s3/artifact-and-log-bucket-management",
+                "codepipeline/artifacts-and-variables"
+              ]
+            },
+            {
+              "id": "1.3.k2",
+              "kind": "knowledge",
+              "text": "Methods to create and generate artifacts",
+              "sections": [
+                "codebuild/artifacts-and-exported-variables",
+                "codebuild/container-image-builds"
+              ]
+            },
+            {
+              "id": "1.3.k3",
+              "kind": "knowledge",
+              "text": "Artifact lifecycle considerations",
+              "sections": [
+                "codeartifact/package-version-lifecycle",
+                "ecr/lifecycle-policies",
+                "s3/lifecycle-and-retention"
+              ]
+            },
+            {
+              "id": "1.3.s1",
+              "kind": "skill",
+              "text": "Creating and configuring artifact repositories (for example, AWS CodeArtifact, Amazon S3, Amazon ECR)",
+              "sections": [
+                "codeartifact/domains-and-repositories",
+                "ecr/repositories-and-image-tags",
+                "s3/artifact-and-log-bucket-management"
+              ]
+            },
+            {
+              "id": "1.3.s2",
+              "kind": "skill",
+              "text": "Configuring build tools for generating artifacts (for example, CodeBuild, AWS Lambda)",
+              "sections": [
+                "codebuild/buildspec-phases",
+                "codebuild/artifacts-and-exported-variables",
+                "sam/build-package-and-deploy"
+              ]
+            },
+            {
+              "id": "1.3.s3",
+              "kind": "skill",
+              "text": "Automating Amazon EC2 instance and container image build processes (for example, EC2 Image Builder)",
+              "sections": [
+                "ec2-image-builder/recipes-components-and-pipelines",
+                "ec2-image-builder/build-and-test-workflows",
+                "ec2-image-builder/schedules-and-base-image-updates",
+                "ec2/ami-scope-and-sharing",
+                "ec2-image-builder/launch-template-and-parameter-outputs"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.4",
+          "title": "Implement deployment strategies for instance, container, and serverless environments.",
+          "items": [
+            {
+              "id": "1.4.k1",
+              "kind": "knowledge",
+              "text": "Deployment methodologies for various platforms (for example, Amazon EC2, Amazon ECS, Amazon EKS, Lambda)",
+              "sections": [
+                "deployment-strategies/traffic-shifting-and-health-gates",
+                "app-runner/web-application-deployment-and-availability",
+                "rds/blue-green-deployments"
+              ]
+            },
+            {
+              "id": "1.4.k2",
+              "kind": "knowledge",
+              "text": "Application storage patterns (for example, Amazon EFS, Amazon S3, Amazon EBS)",
+              "sections": [
+                "availability-targets/failure-domains-and-spare-capacity",
+                "artifact-management/source-packages-images-and-build-outputs",
+                "fsx-for-windows/smb-directory-integration-and-availability",
+                "ebs/volume-types",
+                "ebs/multi-attach",
+                "ec2/instance-store-lifecycle",
+                "efs/regional-and-one-zone-file-systems",
+                "efs/mount-targets-and-access-points",
+                "fsx-for-lustre/parallel-storage-and-s3-integration",
+                "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
+                "fsx-for-openzfs/nfs-snapshots-and-clones",
+                "storage-gateway/file-gateways",
+                "storage-gateway/volume-and-tape-gateways"
+              ]
+            },
+            {
+              "id": "1.4.k3",
+              "kind": "knowledge",
+              "text": "Mutable deployment patterns in contrast to immutable deployment patterns",
+              "sections": [
+                "deployment-strategies/mutable-and-immutable",
+                "deployment-strategies/golden-images-and-bootstrap"
+              ]
+            },
+            {
+              "id": "1.4.k4",
+              "kind": "knowledge",
+              "text": "Tools and services available for distributing code (for example, CodeDeploy, Image Builder)",
+              "sections": [
+                "deployment-strategies/mutable-and-immutable",
+                "ec2-image-builder/cross-account-and-region-distribution"
+              ]
+            },
+            {
+              "id": "1.4.s1",
+              "kind": "skill",
+              "text": "Configuring security permissions to allow access to artifact repositories (for example, IAM, CodeArtifact)",
+              "sections": [
+                "codeartifact/authentication-tokens",
+                "codeartifact/cross-account-access",
+                "ecr/cross-account-access",
+                "codebuild/service-role-and-troubleshooting"
+              ]
+            },
+            {
+              "id": "1.4.s2",
+              "kind": "skill",
+              "text": "Configuring deployment agents (for example, CodeDeploy agent)",
+              "sections": [
+                "codedeploy/agent-setup"
+              ]
+            },
+            {
+              "id": "1.4.s3",
+              "kind": "skill",
+              "text": "Troubleshooting deployment issues",
+              "sections": [
+                "codedeploy/deployment-troubleshooting",
+                "codebuild/service-role-and-troubleshooting",
+                "elastic-beanstalk/health-and-deployment-troubleshooting",
+                "cloudformation/creation-and-deletion-failures",
+                "cloudformation/update-rollback-recovery"
+              ]
+            },
+            {
+              "id": "1.4.s4",
+              "kind": "skill",
+              "text": "Using different deployment methods (for example, blue/green, canary)",
+              "sections": [
+                "deployment-strategies/traffic-shifting-and-health-gates",
+                "codedeploy/appspec-and-file-handling",
+                "codedeploy/ec2-blue-green",
+                "codedeploy/lambda-and-ecs-traffic-shifting",
+                "api-gateway/canary-releases",
+                "cloudformation/auto-scaling-update-policies",
+                "codedeploy/applications-and-deployment-groups",
+                "codedeploy/deployment-configurations",
+                "codedeploy/auto-scaling-integration",
+                "ec2-auto-scaling/instance-refresh",
+                "ec2-auto-scaling/refresh-checkpoints-and-rollback",
+                "ecs/deployment-circuit-breaker-and-alarms",
+                "ecs/native-traffic-shifting",
+                "eks/canary-and-blue-green",
+                "elastic-beanstalk/applications-environments-and-roles",
+                "elastic-beanstalk/rolling-deployment-policies",
+                "elastic-beanstalk/immutable-and-traffic-splitting",
+                "elastic-beanstalk/blue-green-environments",
+                "elastic-beanstalk/configuration-files-and-hooks",
+                "elastic-beanstalk/worker-environments",
+                "elastic-beanstalk/database-lifecycle",
+                "lambda/versions-and-aliases",
+                "sam/gradual-deployments"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "name": "Configuration Management and IaC",
+      "tasks": [
+        {
+          "id": "2.1",
+          "title": "Define cloud infrastructure and reusable components to provision and manage systems throughout their lifecycle.",
+          "items": [
+            {
+              "id": "2.1.k1",
+              "kind": "knowledge",
+              "text": "Infrastructure as code (IaC) options and tools for AWS",
+              "sections": [
+                "configuration-management/provisioning-tool-selection",
+                "proton/platform-templates-and-end-of-support"
+              ]
+            },
+            {
+              "id": "2.1.k2",
+              "kind": "knowledge",
+              "text": "Change management processes for IaC-based platforms",
+              "sections": [
+                "cloudformation/change-sets-and-update-behavior",
+                "cloudformation/deletion-and-replacement-policies",
+                "codepipeline/cloudformation-actions",
+                "cdk/context-and-lookups",
+                "cloudformation/alarm-rollback-triggers",
+                "cloudformation/stack-policies",
+                "codepipeline/manual-approvals",
+                "service-catalog/provisioned-product-updates"
+              ]
+            },
+            {
+              "id": "2.1.k3",
+              "kind": "knowledge",
+              "text": "Configuration management services and strategies",
+              "sections": [
+                "configuration-management/desired-state-flags-and-compliance",
+                "opsworks/retirement-and-migration"
+              ]
+            },
+            {
+              "id": "2.1.s1",
+              "kind": "skill",
+              "text": "Composing and deploying IaC templates (for example, AWS SAM, AWS CloudFormation, AWS CDK)",
+              "sections": [
+                "cloudformation/template-structure-and-dependencies",
+                "cloudformation/parameters-mappings-and-conditions",
+                "sam/templates-and-globals",
+                "sam/build-package-and-deploy",
+                "cdk/apps-stacks-and-constructs",
+                "cdk/synthesis-and-deployment",
+                "cdk/bootstrap-resources-and-roles",
+                "cdk/development-and-resource-management-commands",
+                "cloudformation/service-roles-and-capabilities"
+              ]
+            },
+            {
+              "id": "2.1.s2",
+              "kind": "skill",
+              "text": "Applying CloudFormation stack sets across multiple accounts and AWS Regions",
+              "sections": [
+                "cloudformation/stackset-permissions-and-targeting",
+                "cloudformation/stackset-rollout-and-recovery",
+                "service-catalog/stackset-constraints"
+              ]
+            },
+            {
+              "id": "2.1.s3",
+              "kind": "skill",
+              "text": "Determining optimal configuration management services (for example, AWS OpsWorks, AWS Systems Manager, AWS Config, AWS AppConfig)",
+              "sections": [
+                "configuration-management/desired-state-flags-and-compliance",
+                "opsworks/retirement-and-migration",
+                "appconfig/deployment-strategies-and-alarm-rollback"
+              ]
+            },
+            {
+              "id": "2.1.s4",
+              "kind": "skill",
+              "text": "Implementing infrastructure patterns, governance controls, and security standards into reusable IaC templates (for example, AWS Service Catalog, CloudFormation modules, AWS CDK)",
+              "sections": [
+                "configuration-management/provisioning-tool-selection",
+                "service-catalog/products-portfolios-and-versions",
+                "service-catalog/launch-constraints",
+                "service-catalog/template-constraints-and-tagoptions",
+                "cloudformation/nested-stacks",
+                "cdk/apps-stacks-and-constructs",
+                "cdk/aspects-and-synthesis-checks",
+                "cloudformation/hooks",
+                "cloudformation/stack-tags",
+                "cloudformation/cross-stack-exports",
+                "cloudformation/cross-account-and-region-outputs",
+                "cloudformation/macros-and-transforms",
+                "serverless-application-repository/application-sharing-and-deployment",
+                "service-catalog/notification-and-tag-update-constraints",
+                "cloudformation/reusable-modules"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Deploy automation to create, onboard, and secure AWS accounts in a multi-account or multi-Region environment.",
+          "items": [
+            {
+              "id": "2.2.k1",
+              "kind": "knowledge",
+              "text": "AWS account structures, best practices, and related AWS services",
+              "sections": [
+                "multi-account-strategy/baseline-rollout-and-delegation",
+                "control-tower/landing-zone-and-shared-accounts",
+                "resource-access-manager/resource-sharing-and-invitations",
+                "multi-account-strategy/account-boundaries-and-shared-services"
+              ]
+            },
+            {
+              "id": "2.2.s1",
+              "kind": "skill",
+              "text": "Standardizing and automating account provisioning and configuration",
+              "sections": [
+                "control-tower/account-factory-and-enrollment",
+                "cloudformation/stackset-permissions-and-targeting",
+                "control-tower/account-factory-for-terraform"
+              ]
+            },
+            {
+              "id": "2.2.s2",
+              "kind": "skill",
+              "text": "Creating, consolidating, and centrally managing accounts (for example, AWS Organizations, AWS Control Tower)",
+              "sections": [
+                "organizations/accounts-ous-and-consolidated-billing",
+                "control-tower/account-factory-and-enrollment"
+              ]
+            },
+            {
+              "id": "2.2.s3",
+              "kind": "skill",
+              "text": "Applying IAM solutions for multi-account and complex organization structures (for example, SCPs, assuming roles)",
+              "sections": [
+                "organizations/service-control-policies",
+                "iam/cross-account-roles-and-resource-policies",
+                "iam-identity-center/identity-sources-permission-sets-and-sessions"
+              ]
+            },
+            {
+              "id": "2.2.s4",
+              "kind": "skill",
+              "text": "Implementing and developing governance and security controls at scale (AWS Config, AWS Control Tower, AWS Security Hub, Amazon Detective, Amazon GuardDuty, Service Catalog, SCPs)",
+              "sections": [
+                "multi-account-strategy/defense-in-depth-and-audit-architecture",
+                "control-tower/control-behaviors-and-guidance",
+                "config/conformance-packs-and-organization-rules",
+                "security-hub/central-configuration-policies",
+                "guardduty/organization-enablement-and-response",
+                "service-catalog/portfolio-sharing-and-local-access",
+                "backup/organization-backup-policies",
+                "control-tower/landing-zone-drift",
+                "organizations/resource-control-policies",
+                "organizations/trusted-access-and-delegated-administration",
+                "security-hub/cross-account-and-region-aggregation"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Design and build automated solutions for complex tasks and large-scale environments.",
+          "items": [
+            {
+              "id": "2.3.k1",
+              "kind": "knowledge",
+              "text": "AWS services and solutions to automate tasks and processes",
+              "sections": [
+                "event-processing-patterns/routing-queuing-and-streaming",
+                "systems-manager/automation-runbooks-and-approvals",
+                "step-functions/service-integration-patterns",
+                "eventbridge/scheduler"
+              ]
+            },
+            {
+              "id": "2.3.k2",
+              "kind": "knowledge",
+              "text": "Methods and strategies to interact with the AWS software-defined infrastructure",
+              "sections": [
+                "sdks/credential-providers-pagination-and-retries",
+                "cloudformation/template-structure-and-dependencies",
+                "cli/pagination-and-error-handling",
+                "cloudshell/browser-shell-and-permissions"
+              ]
+            },
+            {
+              "id": "2.3.s1",
+              "kind": "skill",
+              "text": "Automating system inventory, configuration, and patch management (for example, Systems Manager, AWS Config)",
+              "sections": [
+                "systems-manager/inventory-and-compliance-reporting",
+                "systems-manager/state-manager-associations",
+                "systems-manager/patch-baselines-and-groups",
+                "systems-manager/maintenance-windows",
+                "config/recorders-and-configuration-history",
+                "systems-manager/quick-setup-patch-policies"
+              ]
+            },
+            {
+              "id": "2.3.s2",
+              "kind": "skill",
+              "text": "Developing AWS Lambda function automations for complex scenarios (for example, AWS SDKs, Lambda, AWS Step Functions)",
+              "sections": [
+                "lambda/idempotent-automation",
+                "step-functions/retry-and-catch",
+                "step-functions/service-integration-patterns",
+                "sdks/credential-providers-pagination-and-retries",
+                "cloudformation/custom-resources",
+                "step-functions/task-token-callbacks"
+              ]
+            },
+            {
+              "id": "2.3.s3",
+              "kind": "skill",
+              "text": "Automating the configuration of software applications to the desired state (for example, OpsWorks, Systems Manager State Manager)",
+              "sections": [
+                "systems-manager/state-manager-associations",
+                "opsworks/retirement-and-migration",
+                "cloudformation/bootstrap-helpers-and-signals",
+                "opsworks/legacy-stacks-and-lifecycle-events"
+              ]
+            },
+            {
+              "id": "2.3.s4",
+              "kind": "skill",
+              "text": "Maintaining software compliance (for example, Systems Manager)",
+              "sections": [
+                "systems-manager/patch-compliance-and-remediation",
+                "systems-manager/inventory-and-compliance-reporting"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "name": "Resilient Cloud Solutions",
+      "tasks": [
+        {
+          "id": "3.1",
+          "title": "Implement highly available solutions to meet resilience and business requirements.",
+          "items": [
+            {
+              "id": "3.1.k1",
+              "kind": "knowledge",
+              "text": "Multi-AZ and multi-Region deployments (for example, compute layer, data layer)",
+              "sections": [
+                "availability-targets/failure-domains-and-spare-capacity",
+                "disaster-recovery/availability-replication-and-backup",
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance"
+              ]
+            },
+            {
+              "id": "3.1.k2",
+              "kind": "knowledge",
+              "text": "SLAs",
+              "sections": [
+                "availability-targets/service-slas-and-workload-targets"
+              ]
+            },
+            {
+              "id": "3.1.k3",
+              "kind": "knowledge",
+              "text": "Replication and failover methods for stateful services",
+              "sections": [
+                "disaster-recovery/availability-replication-and-backup",
+                "rds/multi-az-and-failover-tests",
+                "aurora/global-database-switchover-and-failover",
+                "dynamodb/global-tables",
+                "s3/replication",
+                "aurora/storage-replicas-and-auto-scaling",
+                "elasticache/global-datastore",
+                "memorydb/durable-in-memory-workloads",
+                "dms/full-load-and-change-data-capture"
+              ]
+            },
+            {
+              "id": "3.1.k4",
+              "kind": "knowledge",
+              "text": "Techniques to achieve high availability (for example, Multi-AZ, multi-Region)",
+              "sections": [
+                "availability-targets/failure-domains-and-spare-capacity",
+                "disaster-recovery/availability-replication-and-backup"
+              ]
+            },
+            {
+              "id": "3.1.s1",
+              "kind": "skill",
+              "text": "Translating business requirements into technical resiliency needs",
+              "sections": [
+                "availability-targets/service-slas-and-workload-targets",
+                "availability-targets/downtime-budgets-and-nines",
+                "disaster-recovery/rto-and-rpo",
+                "disaster-recovery/recovery-strategy-selection",
+                "resilience-hub/application-models-and-resiliency-policies"
+              ]
+            },
+            {
+              "id": "3.1.s2",
+              "kind": "skill",
+              "text": "Identifying and remediating single points of failure in existing workloads",
+              "sections": [
+                "availability-targets/dependency-and-redundancy-calculations",
+                "availability-targets/failure-domains-and-spare-capacity",
+                "resilience-hub/assessments-drift-and-pipeline-checks"
+              ]
+            },
+            {
+              "id": "3.1.s3",
+              "kind": "skill",
+              "text": "Enabling cross-Region solutions where available (for example, Amazon DynamoDB, Amazon RDS, Amazon Route 53, Amazon S3, Amazon CloudFront)",
+              "sections": [
+                "dynamodb/global-tables",
+                "rds/read-replicas-and-regional-recovery",
+                "aurora/global-database-switchover-and-failover",
+                "route53/routing-policies",
+                "s3/multi-region-access-points",
+                "cloudfront/origin-failover",
+                "efs/replication-and-failover",
+                "cloudfront/functions-and-lambda-at-edge",
+                "route53/private-hosted-zones",
+                "route53/resolver-endpoints-and-rules",
+                "route53/cross-account-dns-sharing",
+                "dynamodb/indexes-and-read-consistency",
+                "dynamodb/time-to-live",
+                "route53/public-zone-delegation"
+              ]
+            },
+            {
+              "id": "3.1.s4",
+              "kind": "skill",
+              "text": "Configuring load balancing to support cross-AZ services",
+              "sections": [
+                "elastic-load-balancing/cross-zone-balancing"
+              ]
+            },
+            {
+              "id": "3.1.s5",
+              "kind": "skill",
+              "text": "Configuring applications and related services to support multiple Availability Zones and AWS Regions while minimizing downtime",
+              "sections": [
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "rds/multi-az-and-failover-tests",
+                "aurora/global-database-switchover-and-failover",
+                "route53/routing-policies",
+                "route53/dns-failover-and-testing",
+                "elastic-load-balancing/draining-slow-start-and-stickiness",
+                "secrets-manager/regional-replication",
+                "application-recovery-controller/routing-controls"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Implement solutions that are scalable to meet business requirements.",
+          "items": [
+            {
+              "id": "3.2.k1",
+              "kind": "knowledge",
+              "text": "Appropriate metrics for scaling services",
+              "sections": [
+                "ec2-auto-scaling/target-tracking-metrics-and-warmup",
+                "ecs/service-auto-scaling"
+              ]
+            },
+            {
+              "id": "3.2.k2",
+              "kind": "knowledge",
+              "text": "Loosely coupled and distributed architectures",
+              "sections": [
+                "event-processing-patterns/routing-queuing-and-streaming",
+                "event-processing-patterns/durable-fan-out",
+                "event-processing-patterns/backpressure-and-idempotency"
+              ]
+            },
+            {
+              "id": "3.2.k3",
+              "kind": "knowledge",
+              "text": "Serverless architectures",
+              "sections": [
+                "event-processing-patterns/routing-queuing-and-streaming",
+                "lambda/invocation-and-retries",
+                "step-functions/standard-and-express",
+                "aurora/serverless-v2-capacity-and-promotion"
+              ]
+            },
+            {
+              "id": "3.2.k4",
+              "kind": "knowledge",
+              "text": "Container platforms",
+              "sections": [
+                "fargate/compute-and-isolation",
+                "eks/cluster-compute-options",
+                "ecs/task-definitions-tasks-and-services",
+                "eks-distro/self-managed-kubernetes",
+                "rosa/managed-openshift"
+              ]
+            },
+            {
+              "id": "3.2.s1",
+              "kind": "skill",
+              "text": "Identifying and remediating scaling issues",
+              "sections": [
+                "ec2-auto-scaling/target-tracking-metrics-and-warmup",
+                "ecs/capacity-providers",
+                "eks/pod-and-node-scaling",
+                "dynamodb/capacity-scaling-and-throttling",
+                "compute-optimizer/resource-rightsizing",
+                "ec2-auto-scaling/warm-pools",
+                "lambda/concurrency-controls",
+                "rds/proxy-connection-pooling"
+              ]
+            },
+            {
+              "id": "3.2.s2",
+              "kind": "skill",
+              "text": "Identifying and implementing appropriate auto scaling, load balancing, and caching solutions",
+              "sections": [
+                "ec2-auto-scaling/scaling-policy-selection",
+                "elastic-load-balancing/load-balancer-types",
+                "cloudfront/cache-behaviors-and-policies",
+                "disaster-recovery/availability-replication-and-backup",
+                "elasticache/engines-replicas-and-multi-az",
+                "cloudfront/ttl-stale-content-and-invalidation",
+                "cloudfront/origin-shield",
+                "dynamodb/dax-read-caching"
+              ]
+            },
+            {
+              "id": "3.2.s3",
+              "kind": "skill",
+              "text": "Deploying container-based applications (for example, Amazon ECS, Amazon EKS)",
+              "sections": [
+                "ecs/task-definitions-tasks-and-services",
+                "ecs/rolling-deployments",
+                "eks/deployments-and-readiness",
+                "app2container/application-containerization-and-availability",
+                "codepipeline/container-deployment-artifacts",
+                "copilot/container-application-workflows-and-support",
+                "eks/services-and-load-balancers"
+              ]
+            },
+            {
+              "id": "3.2.s4",
+              "kind": "skill",
+              "text": "Deploying workloads in multiple Regions for global scalability",
+              "sections": [
+                "route53/routing-policies",
+                "codepipeline/cross-region-actions",
+                "dynamodb/global-tables",
+                "ecr/image-replication",
+                "global-accelerator/regional-endpoint-routing"
+              ]
+            },
+            {
+              "id": "3.2.s5",
+              "kind": "skill",
+              "text": "Configuring serverless applications (for example, Amazon API Gateway, AWS Lambda, AWS Fargate)",
+              "sections": [
+                "sam/templates-and-globals",
+                "sam/build-package-and-deploy",
+                "api-gateway/deployments-and-stages",
+                "fargate/compute-and-isolation",
+                "ecs/task-definitions-tasks-and-services",
+                "fargate/private-subnet-connectivity",
+                "lambda/vpc-connectivity"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Implement automated recovery processes to meet RTO and RPO requirements.",
+          "items": [
+            {
+              "id": "3.3.k1",
+              "kind": "knowledge",
+              "text": "Disaster recovery concepts (for example, RTO, RPO)",
+              "sections": [
+                "disaster-recovery/rto-and-rpo"
+              ]
+            },
+            {
+              "id": "3.3.k2",
+              "kind": "knowledge",
+              "text": "AWS Backup and recovery strategies (for example, pilot light, warm standby)",
+              "sections": [
+                "disaster-recovery/recovery-strategy-selection",
+                "backup/plans-vaults-and-recovery-points",
+                "elastic-disaster-recovery/replication-and-staging",
+                "backup/cross-account-copies",
+                "backup/vault-lock-and-air-gapped-vaults",
+                "ebs/snapshot-lifecycle-management",
+                "s3/glacier-retrieval"
+              ]
+            },
+            {
+              "id": "3.3.k3",
+              "kind": "knowledge",
+              "text": "Recovery procedures",
+              "sections": [
+                "disaster-recovery/recovery-runbooks-and-failback",
+                "application-recovery-controller/zonal-shift",
+                "disaster-recovery/data-plane-and-control-plane-failover",
+                "dynamodb/backups-and-point-in-time-recovery",
+                "ebs/snapshots-and-cross-az-recovery",
+                "rds/backups-and-point-in-time-recovery",
+                "s3/versioning-and-delete-markers"
+              ]
+            },
+            {
+              "id": "3.3.s1",
+              "kind": "skill",
+              "text": "Testing failover of Multi-AZ and multi-Region workloads (for example, Amazon RDS, Amazon Aurora, Route 53, CloudFront)",
+              "sections": [
+                "testing-in-pipelines/failover-test-planning",
+                "backup/restore-testing-and-audit-evidence",
+                "disaster-recovery/recovery-drills-and-game-days",
+                "elastic-disaster-recovery/drills-failover-and-failback",
+                "fis/experiment-templates-and-targets",
+                "fis/stop-conditions-and-recovery",
+                "fis/cross-account-experiments"
+              ]
+            },
+            {
+              "id": "3.3.s2",
+              "kind": "skill",
+              "text": "Identifying and implementing appropriate cross-Region AWS Backup and recovery strategies (for example, AWS Backup, Amazon S3, AWS Systems Manager)",
+              "sections": [
+                "disaster-recovery/recovery-strategy-selection",
+                "backup/plans-vaults-and-recovery-points",
+                "backup/cross-region-copies-and-pitr-limits",
+                "s3/replication",
+                "systems-manager/cross-account-and-region-automation",
+                "ebs/fast-snapshot-restore",
+                "s3/batch-replication",
+                "s3/replication-time-control-and-monitoring"
+              ]
+            },
+            {
+              "id": "3.3.s3",
+              "kind": "skill",
+              "text": "Configuring a load balancer to recover from backend failure",
+              "sections": [
+                "elastic-load-balancing/target-health-and-fail-open",
+                "ec2-auto-scaling/health-checks-and-grace-periods"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "name": "Monitoring and Logging",
+      "tasks": [
+        {
+          "id": "4.1",
+          "title": "Configure the collection, aggregation, and storage of logs and metrics.",
+          "items": [
+            {
+              "id": "4.1.k1",
+              "kind": "knowledge",
+              "text": "How to monitor applications and infrastructure",
+              "sections": [
+                "observability-strategy/signal-and-tool-selection",
+                "cloudwatch/metrics-dimensions-and-resolution",
+                "cloudwatch/agent-and-custom-metrics",
+                "xray/service-instrumentation",
+                "cloudwatch/cross-account-observability",
+                "cloudwatch/real-user-monitoring",
+                "cloudwatch/container-insights",
+                "managed-prometheus/workspaces-ingestion-and-promql",
+                "managed-prometheus/managed-collectors-and-remote-write"
+              ]
+            },
+            {
+              "id": "4.1.k2",
+              "kind": "knowledge",
+              "text": "Amazon CloudWatch metrics (for example, namespaces, metrics, dimensions, and resolution)",
+              "sections": [
+                "cloudwatch/metrics-dimensions-and-resolution"
+              ]
+            },
+            {
+              "id": "4.1.k3",
+              "kind": "knowledge",
+              "text": "Real-time log ingestion",
+              "sections": [
+                "cloudwatch/subscription-filters-and-central-log-delivery",
+                "firehose/destinations-and-buffering"
+              ]
+            },
+            {
+              "id": "4.1.k4",
+              "kind": "knowledge",
+              "text": "Encryption options for at-rest and in-transit logs and metrics (for example, client-side and server-side, AWS KMS)",
+              "sections": [
+                "cloudwatch/log-encryption-and-data-protection"
+              ]
+            },
+            {
+              "id": "4.1.k5",
+              "kind": "knowledge",
+              "text": "Security configurations (for example, IAM roles and permissions to allow for log collection)",
+              "sections": [
+                "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/subscription-filters-and-central-log-delivery",
+                "cloudtrail/log-delivery-and-encryption"
+              ]
+            },
+            {
+              "id": "4.1.s1",
+              "kind": "skill",
+              "text": "Securely storing and managing logs",
+              "sections": [
+                "cloudwatch/log-groups-and-retention",
+                "cloudwatch/log-encryption-and-data-protection",
+                "cloudtrail/log-integrity-and-protection",
+                "s3/object-lock",
+                "cloudwatch/s3-log-exports"
+              ]
+            },
+            {
+              "id": "4.1.s2",
+              "kind": "skill",
+              "text": "Creating CloudWatch metrics from log events by using metric filters",
+              "sections": [
+                "cloudwatch/metric-filters-and-patterns"
+              ]
+            },
+            {
+              "id": "4.1.s3",
+              "kind": "skill",
+              "text": "Creating CloudWatch metric streams (for example, Amazon S3 or Amazon Kinesis Data Firehose options)",
+              "sections": [
+                "cloudwatch/metric-streams"
+              ]
+            },
+            {
+              "id": "4.1.s4",
+              "kind": "skill",
+              "text": "Collecting custom metrics (for example, using the CloudWatch agent)",
+              "sections": [
+                "cloudwatch/agent-and-custom-metrics"
+              ]
+            },
+            {
+              "id": "4.1.s5",
+              "kind": "skill",
+              "text": "Managing log storage lifecycles (for example, Amazon S3 lifecycles, CloudWatch log group retention)",
+              "sections": [
+                "cloudwatch/log-groups-and-retention",
+                "s3/lifecycle-and-retention"
+              ]
+            },
+            {
+              "id": "4.1.s6",
+              "kind": "skill",
+              "text": "Processing log data by using CloudWatch log subscriptions (for example, Amazon Kinesis, AWS Lambda, Amazon OpenSearch Service)",
+              "sections": [
+                "cloudwatch/subscription-filters-and-central-log-delivery",
+                "firehose/transformations-and-format-conversion",
+                "firehose/delivery-failures-and-backup"
+              ]
+            },
+            {
+              "id": "4.1.s7",
+              "kind": "skill",
+              "text": "Searching log data by using filter and pattern syntax or Amazon CloudWatch Logs Insights",
+              "sections": [
+                "cloudwatch/metric-filters-and-patterns",
+                "cloudwatch/logs-insights"
+              ]
+            },
+            {
+              "id": "4.1.s8",
+              "kind": "skill",
+              "text": "Configuring encryption of log data (for example, AWS KMS)",
+              "sections": [
+                "cloudwatch/log-encryption-and-data-protection"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Audit, monitor, and analyze logs and metrics to detect issues.",
+          "items": [
+            {
+              "id": "4.2.k1",
+              "kind": "knowledge",
+              "text": "Anomaly detection alarms (for example, CloudWatch anomaly detection)",
+              "sections": [
+                "cloudwatch/anomaly-detection"
+              ]
+            },
+            {
+              "id": "4.2.k2",
+              "kind": "knowledge",
+              "text": "Common CloudWatch metrics and logs (for example, CPU utilization with Amazon EC2, queue length with Amazon RDS, 5xx errors with an Application Load Balancer [ALB])",
+              "sections": [
+                "cloudwatch/metrics-dimensions-and-resolution",
+                "rds/storage-autoscaling-and-metrics",
+                "elastic-load-balancing/error-metrics-and-access-logs"
+              ]
+            },
+            {
+              "id": "4.2.k3",
+              "kind": "knowledge",
+              "text": "Amazon Inspector and common assessment templates",
+              "sections": [
+                "inspector/ec2-ecr-and-lambda-scanning"
+              ]
+            },
+            {
+              "id": "4.2.k4",
+              "kind": "knowledge",
+              "text": "AWS Config rules",
+              "sections": [
+                "config/managed-custom-and-proactive-rules"
+              ]
+            },
+            {
+              "id": "4.2.k5",
+              "kind": "knowledge",
+              "text": "AWS CloudTrail log events",
+              "sections": [
+                "cloudtrail/event-history-and-event-types",
+                "cloudtrail/trails-and-event-selectors"
+              ]
+            },
+            {
+              "id": "4.2.s1",
+              "kind": "skill",
+              "text": "Building CloudWatch dashboards and Amazon Quick Sight visualizations",
+              "sections": [
+                "cloudwatch/dashboards",
+                "quicksight/datasets-visuals-and-dashboards",
+                "managed-grafana/workspaces-authentication-and-data-sources"
+              ]
+            },
+            {
+              "id": "4.2.s2",
+              "kind": "skill",
+              "text": "Associating CloudWatch alarms with CloudWatch metrics (standard and custom)",
+              "sections": [
+                "cloudwatch/alarm-evaluation-and-missing-data"
+              ]
+            },
+            {
+              "id": "4.2.s3",
+              "kind": "skill",
+              "text": "Configuring AWS X-Ray for different services (for example, containers, Amazon API Gateway, Lambda)",
+              "sections": [
+                "xray/service-instrumentation",
+                "adot/instrumentation-collectors-and-exporters",
+                "xray/sampling-rules"
+              ]
+            },
+            {
+              "id": "4.2.s4",
+              "kind": "skill",
+              "text": "Analyzing real-time log streams (for example, using Amazon Kinesis Data Streams)",
+              "sections": [
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "managed-service-for-apache-flink/stream-processing-workloads"
+              ]
+            },
+            {
+              "id": "4.2.s5",
+              "kind": "skill",
+              "text": "Analyzing logs with AWS services (for example, Amazon Athena, CloudWatch Logs Insights)",
+              "sections": [
+                "observability-strategy/signal-and-tool-selection",
+                "cloudwatch/logs-insights",
+                "athena/s3-log-queries-and-permissions",
+                "athena/partitions-and-columnar-formats",
+                "cloudtrail/lake",
+                "emr/distributed-processing-workloads",
+                "opensearch/log-ingestion-search-and-dashboards"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Automate monitoring and event management of complex environments.",
+          "items": [
+            {
+              "id": "4.3.k1",
+              "kind": "knowledge",
+              "text": "Event-driven, asynchronous design patterns (for example, S3 Event Notifications or Amazon EventBridge events to Amazon SNS or Lambda)",
+              "sections": [
+                "event-processing-patterns/routing-queuing-and-streaming",
+                "s3/event-notifications",
+                "eventbridge/event-buses-and-patterns",
+                "lambda/invocation-and-retries"
+              ]
+            },
+            {
+              "id": "4.3.k2",
+              "kind": "knowledge",
+              "text": "Capabilities of auto scaling for a variety of AWS services (for example, EC2 Auto Scaling groups, RDS storage auto scaling, Amazon DynamoDB, Amazon ECS capacity provider, Amazon EKS autoscalers)",
+              "sections": [
+                "application-auto-scaling/scalable-targets-and-policies",
+                "ec2-auto-scaling/scaling-policy-selection",
+                "dynamodb/capacity-scaling-and-throttling",
+                "rds/storage-autoscaling-and-metrics",
+                "ecs/capacity-providers",
+                "eks/pod-and-node-scaling"
+              ]
+            },
+            {
+              "id": "4.3.k3",
+              "kind": "knowledge",
+              "text": "Alert notification and action capabilities (for example, CloudWatch alarms to Amazon SNS, Lambda, EC2 automatic recovery)",
+              "sections": [
+                "cloudwatch/alarm-actions-and-composite-alarms",
+                "ec2/automatic-instance-recovery",
+                "managed-prometheus/alerting-rules-and-sns",
+                "systems-manager/incident-manager"
+              ]
+            },
+            {
+              "id": "4.3.k4",
+              "kind": "knowledge",
+              "text": "Health check capabilities in AWS services (for example, ALB target groups, Amazon Route 53)",
+              "sections": [
+                "elastic-load-balancing/target-health-and-fail-open",
+                "route53/endpoint-and-calculated-health-checks",
+                "route53/alarm-based-health-checks",
+                "route53/alias-records-and-target-health"
+              ]
+            },
+            {
+              "id": "4.3.s1",
+              "kind": "skill",
+              "text": "Configuring solutions for auto scaling (for example, DynamoDB, EC2 Auto Scaling groups, RDS storage auto scaling, ECS capacity provider)",
+              "sections": [
+                "ec2-auto-scaling/scaling-policy-selection",
+                "dynamodb/capacity-scaling-and-throttling",
+                "rds/storage-autoscaling-and-metrics",
+                "ecs/service-auto-scaling",
+                "ecs/capacity-providers"
+              ]
+            },
+            {
+              "id": "4.3.s2",
+              "kind": "skill",
+              "text": "Creating CloudWatch custom metrics and metric filters, alarms, and notifications (for example, Amazon SNS, Lambda)",
+              "sections": [
+                "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/metric-filters-and-patterns",
+                "cloudwatch/alarm-evaluation-and-missing-data",
+                "cloudwatch/alarm-actions-and-composite-alarms"
+              ]
+            },
+            {
+              "id": "4.3.s3",
+              "kind": "skill",
+              "text": "Configuring S3 events to process log files (for example, by using Lambda) and deliver log files to another destination (for example, OpenSearch Service, CloudWatch Logs)",
+              "sections": [
+                "s3/event-notifications",
+                "s3/artifact-and-log-bucket-management"
+              ]
+            },
+            {
+              "id": "4.3.s4",
+              "kind": "skill",
+              "text": "Configuring EventBridge to send notifications based on a particular event pattern",
+              "sections": [
+                "eventbridge/event-buses-and-patterns"
+              ]
+            },
+            {
+              "id": "4.3.s5",
+              "kind": "skill",
+              "text": "Installing and configuring agents on EC2 instances (for example, AWS Systems Manager Agent [SSM Agent], CloudWatch agent)",
+              "sections": [
+                "systems-manager/managed-nodes-and-hybrid-activation",
+                "cloudwatch/agent-and-custom-metrics"
+              ]
+            },
+            {
+              "id": "4.3.s6",
+              "kind": "skill",
+              "text": "Configuring AWS Config rules to remediate issues",
+              "sections": [
+                "config/managed-custom-and-proactive-rules",
+                "config/automation-remediation-and-retries"
+              ]
+            },
+            {
+              "id": "4.3.s7",
+              "kind": "skill",
+              "text": "Configuring health checks (for example, Route 53, ALB)",
+              "sections": [
+                "route53/endpoint-and-calculated-health-checks",
+                "route53/alarm-based-health-checks",
+                "route53/alias-records-and-target-health",
+                "elastic-load-balancing/target-health-and-fail-open"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "name": "Incident and Event Response",
+      "tasks": [
+        {
+          "id": "5.1",
+          "title": "Manage event sources to process, notify, and take action in response to events.",
+          "items": [
+            {
+              "id": "5.1.k1",
+              "kind": "knowledge",
+              "text": "AWS services that generate, capture, and process events (for example, AWS Health, Amazon EventBridge, AWS CloudTrail)",
+              "sections": [
+                "health/account-events-and-affected-resources",
+                "eventbridge/event-buses-and-patterns",
+                "cloudtrail/event-history-and-event-types",
+                "appflow/saas-data-integration"
+              ]
+            },
+            {
+              "id": "5.1.k2",
+              "kind": "knowledge",
+              "text": "Event-driven architectures (for example, fan out, event streaming, queuing)",
+              "sections": [
+                "event-processing-patterns/routing-queuing-and-streaming",
+                "event-processing-patterns/durable-fan-out",
+                "sns/topics-subscriptions-and-fan-out"
+              ]
+            },
+            {
+              "id": "5.1.s1",
+              "kind": "skill",
+              "text": "Integrating AWS event sources (for example, AWS Health, EventBridge, CloudTrail)",
+              "sections": [
+                "health/eventbridge-routing-and-region-coverage",
+                "eventbridge/event-buses-and-patterns",
+                "cloudtrail/api-event-alerts",
+                "eventbridge/cross-account-routing"
+              ]
+            },
+            {
+              "id": "5.1.s2",
+              "kind": "skill",
+              "text": "Building event processing workflows (for example, Amazon SQS, Amazon Kinesis, Amazon SNS, AWS Lambda, AWS Step Functions)",
+              "sections": [
+                "event-processing-patterns/routing-queuing-and-streaming",
+                "sns/sqs-delivery-policies-and-encryption",
+                "sqs/visibility-retention-and-polling",
+                "sqs/dead-letter-queues-and-redrive",
+                "lambda/queue-and-stream-event-sources",
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "step-functions/retry-and-catch",
+                "step-functions/service-integration-patterns",
+                "dynamodb/streams-and-consumer-limits",
+                "eventbridge/target-retries-and-dead-letter-queues",
+                "eventbridge/archive-and-replay",
+                "eventbridge/pipes-filtering-and-enrichment",
+                "kinesis-data-streams/retention-and-replay",
+                "kinesis-data-streams/enhanced-fan-out-and-checkpoints",
+                "lambda/async-destinations-and-dead-letter-queues",
+                "sns/subscription-filters",
+                "sqs/standard-and-fifo-queues",
+                "sqs/large-payloads"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Implement configuration changes in response to events.",
+          "items": [
+            {
+              "id": "5.2.k1",
+              "kind": "knowledge",
+              "text": "Fleet management services (for example, AWS Systems Manager, AWS Auto Scaling)",
+              "sections": [
+                "systems-manager/managed-nodes-and-hybrid-activation",
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance"
+              ]
+            },
+            {
+              "id": "5.2.k2",
+              "kind": "knowledge",
+              "text": "Configuration management services (for example, AWS Config)",
+              "sections": [
+                "configuration-management/desired-state-flags-and-compliance"
+              ]
+            },
+            {
+              "id": "5.2.s1",
+              "kind": "skill",
+              "text": "Applying configuration changes to systems",
+              "sections": [
+                "systems-manager/run-command-and-remote-scripts",
+                "systems-manager/rate-controls-and-error-thresholds",
+                "systems-manager/state-manager-associations",
+                "appconfig/configuration-validation"
+              ]
+            },
+            {
+              "id": "5.2.s2",
+              "kind": "skill",
+              "text": "Modifying infrastructure configurations in response to events",
+              "sections": [
+                "eventbridge/event-buses-and-patterns",
+                "systems-manager/automation-runbooks-and-approvals",
+                "systems-manager/cross-account-and-region-automation",
+                "ec2-auto-scaling/lifecycle-hooks"
+              ]
+            },
+            {
+              "id": "5.2.s3",
+              "kind": "skill",
+              "text": "Remediating a non-desired system state",
+              "sections": [
+                "config/automation-remediation-and-retries",
+                "systems-manager/state-manager-associations"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "Troubleshoot system and application failures.",
+          "items": [
+            {
+              "id": "5.3.k1",
+              "kind": "knowledge",
+              "text": "AWS metrics and logging services (for example, Amazon CloudWatch, AWS X-Ray)",
+              "sections": [
+                "observability-strategy/signal-and-tool-selection",
+                "xray/traces-segments-and-propagation"
+              ]
+            },
+            {
+              "id": "5.3.k2",
+              "kind": "knowledge",
+              "text": "AWS service health services (for example, AWS Health, CloudWatch, Systems Manager OpsCenter)",
+              "sections": [
+                "health/account-events-and-affected-resources",
+                "cloudwatch/application-signals-and-slos",
+                "systems-manager/opscenter",
+                "systems-manager/application-manager"
+              ]
+            },
+            {
+              "id": "5.3.k3",
+              "kind": "knowledge",
+              "text": "Root cause analysis",
+              "sections": [
+                "observability-strategy/incident-correlation-and-bottlenecks",
+                "xray/trace-analysis-and-retention",
+                "xray/annotations-metadata-and-groups"
+              ]
+            },
+            {
+              "id": "5.3.s1",
+              "kind": "skill",
+              "text": "Analyzing failed deployments (for example, AWS CodePipeline, AWS CodeBuild, AWS CodeDeploy, AWS CloudFormation, CloudWatch synthetic monitoring)",
+              "sections": [
+                "codepipeline/execution-recovery-and-notifications",
+                "codebuild/service-role-and-troubleshooting",
+                "codedeploy/deployment-troubleshooting",
+                "cloudformation/creation-and-deletion-failures",
+                "cloudformation/update-rollback-recovery",
+                "cloudwatch/synthetics-and-release-diagnostics"
+              ]
+            },
+            {
+              "id": "5.3.s2",
+              "kind": "skill",
+              "text": "Analyzing incidents regarding failed processes (for example, auto scaling, Amazon ECS, Amazon EKS)",
+              "sections": [
+                "observability-strategy/incident-correlation-and-bottlenecks",
+                "ecs/task-troubleshooting",
+                "ec2-auto-scaling/launch-failure-troubleshooting",
+                "eks/pod-troubleshooting"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "name": "Security and Compliance",
+      "tasks": [
+        {
+          "id": "6.1",
+          "title": "Implement techniques for identity and access management at scale.",
+          "items": [
+            {
+              "id": "6.1.k1",
+              "kind": "knowledge",
+              "text": "Appropriate usage of different IAM entities for human and machine access (for example, users, groups, roles, identity providers, identity-based policies, resource-based policies, session policies)",
+              "sections": [
+                "iam/identities-roles-and-instance-profiles",
+                "iam/policy-evaluation",
+                "iam/permissions-boundaries-and-session-policies",
+                "iam/saml-and-oidc-federation",
+                "api-gateway/authentication-and-api-keys"
+              ]
+            },
+            {
+              "id": "6.1.k2",
+              "kind": "knowledge",
+              "text": "Identity federation techniques (for example, using IAM identity providers and AWS IAM Identity Center)",
+              "sections": [
+                "iam/saml-and-oidc-federation",
+                "iam-identity-center/identity-sources-permission-sets-and-sessions",
+                "directory-service/managed-ad-ad-connector-and-simple-ad"
+              ]
+            },
+            {
+              "id": "6.1.k3",
+              "kind": "knowledge",
+              "text": "Permission management delegation by using IAM permissions boundaries",
+              "sections": [
+                "iam/permissions-boundaries-and-session-policies"
+              ]
+            },
+            {
+              "id": "6.1.k4",
+              "kind": "knowledge",
+              "text": "Organizational SCPs",
+              "sections": [
+                "organizations/service-control-policies"
+              ]
+            },
+            {
+              "id": "6.1.s1",
+              "kind": "skill",
+              "text": "Designing policies to enforce least privilege access",
+              "sections": [
+                "iam/policy-evaluation",
+                "iam/access-analyzer",
+                "iam/resource-policy-principal-edge-cases",
+                "iam/passrole-and-service-linked-roles"
+              ]
+            },
+            {
+              "id": "6.1.s2",
+              "kind": "skill",
+              "text": "Implementing role-based and attribute-based access control patterns",
+              "sections": [
+                "iam/rbac-and-abac"
+              ]
+            },
+            {
+              "id": "6.1.s3",
+              "kind": "skill",
+              "text": "Automating credential rotation for machine identities (for example, AWS Secrets Manager)",
+              "sections": [
+                "secrets-manager/managed-and-lambda-rotation",
+                "secrets-manager/rotation-failures-and-client-caching"
+              ]
+            },
+            {
+              "id": "6.1.s4",
+              "kind": "skill",
+              "text": "Managing permissions to control access to human and machine identities (for example, enabling multi-factor authentication [MFA], AWS STS, IAM profiles)",
+              "sections": [
+                "iam/identities-roles-and-instance-profiles",
+                "iam/sts-sessions-and-role-chaining",
+                "iam/external-id-and-mfa-conditions",
+                "ecs/task-and-execution-roles",
+                "eks/pod-identity",
+                "lambda/execution-roles-and-resource-policies",
+                "secrets-manager/cross-account-access",
+                "systems-manager/session-manager"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "6.2",
+          "title": "Apply automation for security controls and data protection.",
+          "items": [
+            {
+              "id": "6.2.k1",
+              "kind": "knowledge",
+              "text": "Network security components (for example, security groups, network ACLs, routing, AWS Network Firewall, AWS WAF, AWS Shield)",
+              "sections": [
+                "vpc/security-groups-and-network-acls",
+                "network-firewall/firewall-endpoints-and-routing",
+                "waf/web-acl-scope-and-rule-actions",
+                "shield/standard-and-advanced-protection",
+                "privatelink/interface-endpoints-and-private-access",
+                "client-vpn/remote-user-connectivity",
+                "network-firewall/stateful-domain-and-suricata-rules",
+                "route53/resolver-dns-firewall",
+                "shield/response-team-and-proactive-engagement",
+                "transit-gateway/attachments-route-tables-and-sharing",
+                "vpc/gateway-endpoints-and-endpoint-policies",
+                "vpc/route-tables-and-peering"
+              ]
+            },
+            {
+              "id": "6.2.k2",
+              "kind": "knowledge",
+              "text": "Certificates and public key infrastructure (PKI)",
+              "sections": [
+                "acm/public-certificates-and-domain-validation",
+                "acm/renewal-imports-and-exports",
+                "private-ca/private-certificates-and-trust"
+              ]
+            },
+            {
+              "id": "6.2.k3",
+              "kind": "knowledge",
+              "text": "Data management (for example, data classification, encryption, key management, access controls)",
+              "sections": [
+                "macie/sensitive-data-discovery-and-jobs",
+                "kms/key-policies-and-grants",
+                "kms/key-rotation",
+                "s3/encryption-and-bucket-keys",
+                "s3/public-access-and-object-ownership",
+                "cloudfront/origin-access-control",
+                "cloudfront/signed-urls-and-cookies",
+                "kms/key-disablement-and-deletion",
+                "s3/access-points-and-cors"
+              ]
+            },
+            {
+              "id": "6.2.s1",
+              "kind": "skill",
+              "text": "Automating the application of security controls in multi-account and multi-Region environments (for example, AWS Security Hub, AWS Organizations, AWS Control Tower, AWS Systems Manager)",
+              "sections": [
+                "multi-account-strategy/baseline-rollout-and-delegation",
+                "security-hub/central-configuration-policies",
+                "firewall-manager/organization-policies-and-config-prerequisites",
+                "systems-manager/cross-account-and-region-automation"
+              ]
+            },
+            {
+              "id": "6.2.s2",
+              "kind": "skill",
+              "text": "Combining security controls to apply defense in depth (for example, AWS Certificate Manager [ACM], AWS WAF, AWS Config, AWS Config rules, Security Hub, Amazon GuardDuty, security groups, network ACLs, Amazon Detective, Network Firewall)",
+              "sections": [
+                "multi-account-strategy/defense-in-depth-and-audit-architecture"
+              ]
+            },
+            {
+              "id": "6.2.s3",
+              "kind": "skill",
+              "text": "Automating the discovery of sensitive data at scale (for example, Amazon Macie)",
+              "sections": [
+                "macie/sensitive-data-discovery-and-jobs",
+                "macie/organization-administration"
+              ]
+            },
+            {
+              "id": "6.2.s4",
+              "kind": "skill",
+              "text": "Encrypting data in transit and data at rest (for example, AWS KMS, AWS CloudHSM, ACM)",
+              "sections": [
+                "kms/envelope-encryption-and-context",
+                "cloudhsm/dedicated-hsm-workloads",
+                "acm/public-certificates-and-domain-validation",
+                "cloudfront/tls-and-field-level-encryption",
+                "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "direct-connect/private-connectivity-and-encryption",
+                "ebs/encryption-and-regional-copies",
+                "kms/multi-region-keys",
+                "kms/custom-key-stores"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "6.3",
+          "title": "Implement security monitoring and auditing solutions.",
+          "items": [
+            {
+              "id": "6.3.k1",
+              "kind": "knowledge",
+              "text": "Security auditing services and features (for example, AWS CloudTrail, AWS Config, VPC Flow Logs, AWS CloudFormation drift detection)",
+              "sections": [
+                "observability-strategy/signal-and-tool-selection",
+                "s3/inventory-and-access-logging"
+              ]
+            },
+            {
+              "id": "6.3.k2",
+              "kind": "knowledge",
+              "text": "AWS services for identifying security vulnerabilities and events (for example, GuardDuty, Amazon Inspector, IAM Access Analyzer, AWS Config)",
+              "sections": [
+                "observability-strategy/signal-and-tool-selection",
+                "iam/access-analyzer",
+                "config/managed-custom-and-proactive-rules"
+              ]
+            },
+            {
+              "id": "6.3.k3",
+              "kind": "knowledge",
+              "text": "Common cloud security threats (for example, insecure web traffic, exposed AWS access keys, S3 buckets with public access enabled or encryption disabled)",
+              "sections": [
+                "guardduty/data-sources-and-threat-findings",
+                "guardduty/organization-enablement-and-response",
+                "waf/managed-and-rate-based-rules",
+                "s3/encryption-and-bucket-keys",
+                "s3/public-access-and-object-ownership",
+                "trusted-advisor/checks-and-event-notifications"
+              ]
+            },
+            {
+              "id": "6.3.s1",
+              "kind": "skill",
+              "text": "Implementing robust security auditing",
+              "sections": [
+                "cloudtrail/organization-trails",
+                "cloudtrail/log-integrity-and-protection",
+                "config/recorders-and-configuration-history",
+                "config/managed-custom-and-proactive-rules",
+                "cloudformation/drift-detection-and-remediation",
+                "vpc/flow-logs",
+                "config/aggregators-and-advanced-queries",
+                "route53/public-dns-query-logging"
+              ]
+            },
+            {
+              "id": "6.3.s2",
+              "kind": "skill",
+              "text": "Configuring alerting based on unexpected or anomalous security events",
+              "sections": [
+                "guardduty/organization-enablement-and-response",
+                "security-hub/automation-rules-and-custom-actions",
+                "cloudtrail/api-event-alerts",
+                "cloudtrail/insights"
+              ]
+            },
+            {
+              "id": "6.3.s3",
+              "kind": "skill",
+              "text": "Configuring service and application logging (for example, CloudTrail, Amazon CloudWatch Logs)",
+              "sections": [
+                "cloudtrail/trails-and-event-selectors",
+                "cloudtrail/log-delivery-and-encryption",
+                "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/log-groups-and-retention"
+              ]
+            },
+            {
+              "id": "6.3.s4",
+              "kind": "skill",
+              "text": "Analyzing logs, metrics, and security findings",
+              "sections": [
+                "observability-strategy/signal-and-tool-selection",
+                "cloudwatch/logs-insights",
+                "security-hub/findings-standards-and-config-dependency",
+                "detective/finding-investigation",
+                "inspector/ami-scanning-and-finding-prioritization"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "concepts": [
+    "Application deployment",
+    "Application integration",
+    "Application pipelines",
+    "Automation",
+    "Code repository best practices",
+    "Cost optimization",
+    "Deployment requirements",
+    "Hybrid deployments",
+    "IAM policies",
+    "Metrics, monitoring, alarms, and logging",
+    "Network ACL and security group design and implementation",
+    "Operational best practices",
+    "Rollback procedures"
+  ],
+  "services": [
+    {
+      "category": "Analytics",
+      "names": [
+        "Amazon Athena",
+        "Amazon EMR",
+        "Amazon Kinesis Data Firehose",
+        "Amazon Kinesis Data Streams",
+        "Amazon OpenSearch Service",
+        "Amazon Quick Sight"
+      ]
+    },
+    {
+      "category": "Application Integration",
+      "names": [
+        "Amazon AppFlow",
+        "Amazon EventBridge"
+      ]
+    },
+    {
+      "category": "Compute",
+      "names": [
+        "AWS App Runner",
+        "Amazon EC2",
+        "Amazon EC2 Auto Scaling",
+        "EC2 Image Builder",
+        "AWS Elastic Beanstalk",
+        "AWS Serverless Application Repository"
+      ]
+    },
+    {
+      "category": "Containers",
+      "names": [
+        "AWS App2Container",
+        "AWS Copilot",
+        "Amazon ECR",
+        "Amazon ECS",
+        "Amazon EKS",
+        "Amazon EKS Distro",
+        "AWS Fargate",
+        "Red Hat OpenShift Service on AWS (ROSA)"
+      ]
+    },
+    {
+      "category": "Database",
+      "names": [
+        "Amazon Aurora",
+        "Amazon Aurora Serverless v2",
+        "AWS DMS",
+        "Amazon DocumentDB",
+        "Amazon DynamoDB",
+        "Amazon ElastiCache",
+        "Amazon MemoryDB for Redis",
+        "Amazon RDS",
+        "Amazon Redshift"
+      ]
+    },
+    {
+      "category": "Developer Tools",
+      "names": [
+        "AWS CLI",
+        "AWS CDK",
+        "AWS CloudShell",
+        "AWS CodeArtifact",
+        "AWS CodeBuild",
+        "AWS CodeDeploy",
+        "Amazon CodeGuru",
+        "AWS CodePipeline",
+        "AWS CodeStar",
+        "AWS Fault Injection Simulator (AWS FIS)",
+        "AWS SDKs and Tools",
+        "AWS X-Ray"
+      ]
+    },
+    {
+      "category": "Management and Governance",
+      "names": [
+        "AWS Auto Scaling",
+        "AWS CloudFormation",
+        "AWS CloudTrail",
+        "Amazon CloudWatch",
+        "Amazon CloudWatch Logs",
+        "AWS Compute Optimizer",
+        "AWS Config",
+        "AWS Control Tower",
+        "AWS Health",
+        "AWS License Manager",
+        "Amazon Managed Grafana",
+        "Amazon Managed Service for Prometheus",
+        "AWS OpsWorks",
+        "AWS Organizations",
+        "AWS Proton",
+        "AWS Resilience Hub",
+        "AWS Service Catalog",
+        "AWS Systems Manager",
+        "AWS Trusted Advisor"
+      ]
+    },
+    {
+      "category": "Networking and Content Delivery",
+      "names": [
+        "Amazon API Gateway",
+        "AWS Client VPN",
+        "Amazon CloudFront",
+        "Elastic Load Balancing (ELB)",
+        "AWS PrivateLink",
+        "Amazon Route 53",
+        "AWS Site-to-Site VPN",
+        "AWS Transit Gateway",
+        "Amazon VPC"
+      ]
+    },
+    {
+      "category": "Security, Identity, and Compliance",
+      "names": [
+        "AWS Certificate Manager (ACM)",
+        "AWS CloudHSM",
+        "Amazon Cognito",
+        "Amazon Detective",
+        "AWS Directory Service",
+        "Amazon GuardDuty",
+        "AWS IAM Identity Center",
+        "IAM",
+        "Amazon Inspector",
+        "AWS KMS",
+        "Amazon Macie",
+        "AWS Network Firewall",
+        "AWS Resource Access Manager (AWS RAM)",
+        "AWS Secrets Manager",
+        "AWS Security Hub",
+        "AWS STS",
+        "AWS Shield",
+        "AWS WAF"
+      ]
+    },
+    {
+      "category": "Serverless",
+      "names": [
+        "AWS Lambda",
+        "AWS SAM",
+        "Amazon SNS",
+        "Amazon SQS",
+        "AWS Step Functions"
+      ]
+    },
+    {
+      "category": "Storage",
+      "names": [
+        "AWS Backup",
+        "Amazon EBS",
+        "AWS Elastic Disaster Recovery",
+        "Amazon EFS",
+        "Amazon FSx for Lustre",
+        "Amazon FSx for NetApp ONTAP",
+        "Amazon FSx for OpenZFS",
+        "Amazon FSx for Windows File Server",
+        "Amazon S3",
+        "Amazon S3 Glacier",
+        "AWS Storage Gateway"
+      ]
+    }
+  ]
+}

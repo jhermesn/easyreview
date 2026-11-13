@@ -1,0 +1,117 @@
+[
+  {
+    "term": "Buffering hint",
+    "aliases": [
+      "buffer size",
+      "buffer interval"
+    ],
+    "definition": "A buffering hint tells Firehose how much data or time to accumulate before destination delivery.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/create-configure-backup.html#buffering-hints"
+  },
+  {
+    "term": "Delivery role",
+    "aliases": [
+      "IAM delivery role"
+    ],
+    "definition": "A delivery role grants Firehose the permissions it needs to read sources, process records, and write destinations.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3"
+  },
+  {
+    "term": "Trust policy",
+    "aliases": [],
+    "definition": "A trust policy specifies who can assume an IAM role.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#firehose-assume-role"
+  },
+  {
+    "term": "COPY",
+    "aliases": [],
+    "definition": "COPY is the Redshift command Firehose uses to load staged S3 objects into a table.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#basic-deliver"
+  },
+  {
+    "term": "Schema",
+    "aliases": [],
+    "definition": "A schema describes the field names and types used to interpret input records.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html#record-format-conversion-schema"
+  },
+  {
+    "term": "Deserializer",
+    "aliases": [],
+    "definition": "A deserializer reads encoded input data into the fields used by format conversion.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html#record-format-conversion-deserializer"
+  },
+  {
+    "term": "Serializer",
+    "aliases": [],
+    "definition": "A serializer writes interpreted data into the chosen output format.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html#record-format-conversion-serializer"
+  },
+  {
+    "term": "Columnar format",
+    "aliases": [],
+    "definition": "A columnar format stores data by column to reduce storage and query work.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html#record-format-conversion"
+  },
+  {
+    "term": "Deaggregation",
+    "aliases": [],
+    "definition": "Deaggregation separates multiple combined input records before further processing.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/create-destination.html#create-destination"
+  },
+  {
+    "term": "Dynamic partitioning",
+    "aliases": [],
+    "definition": "Dynamic partitioning uses record values to send data to selected S3 prefixes.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/create-destination.html#create-destination"
+  },
+  {
+    "term": "Base64",
+    "aliases": [
+      "base64 encoding"
+    ],
+    "definition": "Base64 is the text encoding required for record data returned by a Firehose Lambda transformation.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/data-transformation-status-model.html#data-transformation-status-model"
+  },
+  {
+    "term": "Backfill",
+    "aliases": [
+      "manual backfill"
+    ],
+    "definition": "Backfill loads data that an earlier delivery attempt skipped.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/retry.html#dd-retry-osss"
+  },
+  {
+    "term": "Manifest",
+    "aliases": [
+      "manifest file"
+    ],
+    "definition": "A manifest identifies the S3 objects skipped during a Redshift load so they can be loaded manually.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/retry.html#dd-retry-rs"
+  },
+  {
+    "term": "At-least-once delivery",
+    "aliases": [],
+    "definition": "At-least-once delivery allows a record to be delivered again when an attempt is retried.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#basic-deliver"
+  },
+  {
+    "term": "Direct PUT",
+    "aliases": [
+      "DirectPut"
+    ],
+    "definition": "Direct PUT sends application records to Firehose through its PutRecord or PutRecordBatch APIs.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/writing-with-sdk.html#writing-with-sdk"
+  },
+  {
+    "term": "Parquet",
+    "aliases": [],
+    "definition": "Parquet is a columnar file format that Firehose can produce from JSON before S3 delivery.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html#record-format-conversion"
+  },
+  {
+    "term": "ORC",
+    "aliases": [],
+    "definition": "ORC is a columnar file format that Firehose can produce from JSON before S3 delivery.",
+    "source": "https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html#record-format-conversion"
+  }
+]

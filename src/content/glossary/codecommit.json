@@ -1,0 +1,182 @@
+[
+  {
+    "term": "repository",
+    "aliases": ["repo"],
+    "definition": "A repository stores a project's files and the history of changes to them.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html#welcome-introducing"
+  },
+  {
+    "term": "clone",
+    "aliases": ["local clone"],
+    "definition": "A clone is a local copy of a remote Git repository.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html#welcome-how-it-works"
+  },
+  {
+    "term": "commit",
+    "aliases": ["source revision"],
+    "definition": "A commit records a set of file changes in a repository's history.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-commit.html"
+  },
+  {
+    "term": "branch",
+    "aliases": [],
+    "definition": "A branch is a named reference pointing to its latest commit.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-conditional-branch.html#how-to-conditional-branch-create-policy"
+  },
+  {
+    "term": "Git reference",
+    "aliases": ["ref"],
+    "definition": "A Git reference is a name, such as a branch or tag, that identifies a commit.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-basic-git.html"
+  },
+  {
+    "term": "Git tag",
+    "aliases": ["tag"],
+    "definition": "A Git tag gives a name to a particular commit in a repository's history.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-basic-git.html#how-to-basic-git-tags"
+  },
+  {
+    "term": "remote",
+    "aliases": ["remote repository"],
+    "definition": "A remote is a repository that a local Git repository connects to through a configured URL.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-basic-git.html#how-to-basic-git-remotes"
+  },
+  {
+    "term": "push",
+    "aliases": ["Git push"],
+    "definition": "A push sends local commits to a remote repository.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html#welcome-how-it-works"
+  },
+  {
+    "term": "mirror clone",
+    "aliases": ["bare migration copy"],
+    "definition": "A mirror clone is the bare local repository copy used to transfer an existing repository during migration.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-migrate-repository-existing.html#how-to-migrate-existing-clone"
+  },
+  {
+    "term": "incremental migration",
+    "aliases": ["incremental pushes"],
+    "definition": "Incremental migration transfers commits in chunks so a failed transfer can resume with the chunks that did not succeed.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-push-large-repositories.html"
+  },
+  {
+    "term": "pull request",
+    "aliases": ["PR"],
+    "definition": "A pull request proposes source branch changes for review before merging them into a destination branch.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/pull-requests.html"
+  },
+  {
+    "term": "approval pool",
+    "aliases": ["approval rule members"],
+    "definition": "An approval pool identifies the reviewers whose approvals count toward a pull request approval rule.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-pull-request-approval-rule.html"
+  },
+  {
+    "term": "destination reference",
+    "aliases": ["destination branch filter", "DestinationReferences"],
+    "definition": "A destination reference selects the branch receiving changes when a template determines whether to create an approval rule.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/approval-rule-templates.html"
+  },
+  {
+    "term": "ARN",
+    "aliases": ["Amazon Resource Name"],
+    "definition": "An ARN uniquely identifies an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html"
+  },
+  {
+    "term": "role",
+    "aliases": ["IAM role"],
+    "definition": "A role is an AWS identity whose permissions a caller can use by assuming it.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "role session",
+    "aliases": ["assumed-role session"],
+    "definition": "A role session is a temporary use of a role through the credentials issued when the caller assumes it.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "federation",
+    "aliases": ["federated access", "federated identity"],
+    "definition": "Federation lets an identity authenticated outside AWS obtain access through an IAM role.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/temporary-access.html"
+  },
+  {
+    "term": "credential helper",
+    "aliases": ["AWS CLI credential helper"],
+    "definition": "A credential helper supplies authentication information when Git connects to a repository.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up.html#setting-up-other"
+  },
+  {
+    "term": "service role",
+    "aliases": [],
+    "definition": "A service role is a role an AWS service assumes to perform actions on your behalf.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "wildcard",
+    "aliases": ["wildcard pattern"],
+    "definition": "A wildcard lets one pattern match multiple identity or branch names.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-template.html#how-to-create-template-console"
+  },
+  {
+    "term": "event rule",
+    "aliases": ["EventBridge rule"],
+    "definition": "An event rule matches fields in an event and routes matching events to configured targets.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/monitoring-events.html"
+  },
+  {
+    "term": "repository trigger",
+    "aliases": ["trigger"],
+    "definition": "A repository trigger invokes Lambda or sends an SNS notification when selected repository operations occur.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-notify.html"
+  },
+  {
+    "term": "notification rule",
+    "aliases": [],
+    "definition": "A notification rule selects repository event types for notifications sent to its configured target.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-repository-email.html"
+  },
+  {
+    "term": "topic",
+    "aliases": ["SNS topic"],
+    "definition": "A topic is a named communication channel used to distribute notifications to subscribers.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html"
+  },
+  {
+    "term": "webhook",
+    "aliases": [],
+    "definition": "A webhook lets a supported source provider notify CodeBuild about repository activity that can start a build.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/webhooks.html"
+  },
+  {
+    "term": "temporary credentials",
+    "aliases": ["temporary security credentials"],
+    "definition": "Temporary credentials authorize AWS access for a limited lifetime and stop working after they expire.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html"
+  },
+  {
+    "term": "policy",
+    "aliases": ["IAM policy"],
+    "definition": "A policy defines permissions that determine which operations an identity can perform on a resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+  },
+  {
+    "term": "encryption at rest",
+    "aliases": [],
+    "definition": "Encryption at rest protects repository data while CodeCommit stores it.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/encryption.html"
+  },
+  {
+    "term": "encryption in transit",
+    "aliases": [],
+    "definition": "Encryption in transit protects repository data while HTTPS or SSH carries it between the client and CodeCommit.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/encryption.html"
+  },
+  {
+    "term": "best-effort delivery",
+    "aliases": ["best effort"],
+    "definition": "Best-effort delivery attempts to send every service event to EventBridge but can occasionally leave an event undelivered.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/ref/event-delivery-level.html"
+  }
+]

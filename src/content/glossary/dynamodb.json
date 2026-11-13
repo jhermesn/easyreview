@@ -1,0 +1,192 @@
+[
+  {
+    "term": "item",
+    "aliases": [
+      "record"
+    ],
+    "definition": "A collection of named attributes identified by a primary key.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
+  },
+  {
+    "term": "attribute",
+    "aliases": [
+      "field"
+    ],
+    "definition": "A named value stored in an item.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
+  },
+  {
+    "term": "partition key",
+    "aliases": [],
+    "definition": "The primary-key attribute that groups items and determines their storage distribution.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
+  },
+  {
+    "term": "sort key",
+    "aliases": [],
+    "definition": "The second part of a composite primary key that orders items sharing a partition key.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
+  },
+  {
+    "term": "secondary index",
+    "aliases": [],
+    "definition": "Selected table attributes organized under an alternate key for queries.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html"
+  },
+  {
+    "term": "projection",
+    "aliases": [],
+    "definition": "The attributes copied from a table into an index.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html"
+  },
+  {
+    "term": "eventual consistency",
+    "aliases": [],
+    "definition": "A read model in which a recent successful write may not yet appear.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.consistency.html"
+  },
+  {
+    "term": "strongly consistent read",
+    "aliases": [
+      "strong read"
+    ],
+    "definition": "A read that returns the latest successful value within the relevant consistency scope.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"
+  },
+  {
+    "term": "conditional write",
+    "aliases": [],
+    "definition": "A write that succeeds only if the current item meets a condition.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"
+  },
+  {
+    "term": "shard",
+    "aliases": [],
+    "definition": "A group of stream records read in sequence by a consumer.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"
+  },
+  {
+    "term": "consumer",
+    "aliases": [
+      "reader"
+    ],
+    "definition": "An application that reads and processes stream records.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"
+  },
+  {
+    "term": "item image",
+    "aliases": [
+      "image"
+    ],
+    "definition": "A copy of an item before or after a recorded change.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"
+  },
+  {
+    "term": "idempotent",
+    "aliases": [],
+    "definition": "Safe to repeat without applying the same business effect again.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html"
+  },
+  {
+    "term": "epoch seconds",
+    "aliases": [
+      "Unix epoch time"
+    ],
+    "definition": "A timestamp expressed as seconds since the Unix time origin.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html"
+  },
+  {
+    "term": "point-in-time recovery",
+    "aliases": [
+      "PITR"
+    ],
+    "definition": "Continuous backups that allow restoration to a chosen second within a retained window.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Point-in-time-recovery.html"
+  },
+  {
+    "term": "replica",
+    "aliases": [],
+    "definition": "A regional table participating in global table replication.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html"
+  },
+  {
+    "term": "witness",
+    "aliases": [],
+    "definition": "An MRSC component in a third Region that supports availability without serving application reads or writes.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html"
+  },
+  {
+    "term": "target utilization",
+    "aliases": [],
+    "definition": "The desired percentage of provisioned capacity consumed by a workload.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AutoScaling.html"
+  },
+  {
+    "term": "throttling",
+    "aliases": [],
+    "definition": "Rejection of requests when work exceeds an applicable throughput limit.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/throttling-provisioned-capacity-exceeded-mitigation.html"
+  },
+  {
+    "term": "back-pressure",
+    "aliases": [],
+    "definition": "Throttling of table writes because an index cannot accept their updates fast enough.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/throttling-provisioned-capacity-exceeded-mitigation.html"
+  },
+  {
+    "term": "read capacity unit",
+    "aliases": [
+      "RCU"
+    ],
+    "definition": "Provisioned capacity for one strong or two eventual reads per second of items up to 4 KB.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Constraints.html"
+  },
+  {
+    "term": "write capacity unit",
+    "aliases": [
+      "WCU"
+    ],
+    "definition": "Provisioned capacity for one standard write per second of an item up to 1 KB.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Constraints.html"
+  },
+  {
+    "term": "cache hit",
+    "aliases": [],
+    "definition": "A request served from a valid cached copy without reading the underlying table.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html"
+  },
+  {
+    "term": "cache miss",
+    "aliases": [],
+    "definition": "A request that reads the underlying table because no valid cached copy is available.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html"
+  },
+  {
+    "term": "cache TTL",
+    "aliases": [
+      "cache expiration"
+    ],
+    "definition": "The time a cached entry remains valid before it expires.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html"
+  },
+  {
+    "term": "write-through cache",
+    "aliases": [],
+    "definition": "A cache that writes to the underlying table before updating its cached item.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.consistency.html"
+  },
+  {
+    "term": "enhanced fan-out",
+    "aliases": [],
+    "definition": "A Kinesis feature that gives consumers dedicated stream read throughput.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/streamsmain.html"
+  },
+  {
+    "term": "virtual private cloud",
+    "aliases": [
+      "VPC"
+    ],
+    "definition": "A private virtual network where security groups can control DAX cluster access.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html"
+  }
+]

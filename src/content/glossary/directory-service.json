@@ -1,0 +1,38 @@
+[
+  {
+    "term": "directory",
+    "aliases": [],
+    "definition": "A directory stores information about users, groups and devices for managing access.",
+    "source": "https://docs.aws.amazon.com/directoryservice/latest/admin-guide/what_is.html"
+  },
+  {
+    "term": "domain controller",
+    "aliases": [],
+    "definition": "A domain controller is a server that handles Active Directory requests.",
+    "source": "https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html"
+  },
+  {
+    "term": "directory trust",
+    "aliases": ["trust relationship"],
+    "definition": "A directory trust allows users from an existing directory to access resources in another directory using existing credentials.",
+    "source": "https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html"
+  },
+  {
+    "term": "RADIUS",
+    "aliases": ["Remote Authentication Dial-In User Service"],
+    "definition": "RADIUS is a protocol for authentication, authorization and accounting for network services.",
+    "source": "https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_mfa.html"
+  },
+  {
+    "term": "multi-factor authentication",
+    "aliases": ["MFA"],
+    "definition": "Multi-factor authentication requires an additional factor, such as a code, alongside a password.",
+    "source": "https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_mfa.html"
+  },
+  {
+    "term": "identity source",
+    "aliases": [],
+    "definition": "An identity source defines where users and groups are managed for IAM Identity Center.",
+    "source": "https://docs.aws.amazon.com/singlesignon/latest/userguide/manage-your-identity-source.html"
+  }
+]

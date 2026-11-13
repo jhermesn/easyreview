@@ -1,0 +1,129 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
+import FlashDeck from '../../components/FlashDeck.astro';
+import Icon from '../../components/Icon.astro';
+import { availableCerts, domainName, getCert } from '../../lib/certs';
+import { getCertView, deckCards, sectionIds, sectionSlug, type CertUnit } from '../../lib/content';
+import { withBase } from '../../lib/format';
+import { absoluteUrl, breadcrumbs, certFullName } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const cert of availableCerts()) {
+    const { units } = await getCertView(cert.id);
+    units.forEach((u, i) => paths.push({ params: { cert: cert.id, unit: u.unit.id }, props: { entry: u, prev: units[i - 1], next: units[i + 1] } }));
+  }
+  return paths;
+}
+interface Props {
+  entry: CertUnit;
+  prev?: CertUnit;
+  next?: CertUnit;
+}
+const { entry, prev, next } = Astro.props;
+const { unit, domain, sections } = entry;
+const cert = getCert(Astro.params.cert!);
+const { Content: Intro } = await render(unit);
+const blocks = await Promise.all(sections.map(async (s) => ({ s, Content: (await render(s)).Content })));
+const cards = deckCards({ cert, units: [entry], sections, missing: [] });
+const href = (u: CertUnit) => withBase(`/${cert.id}/${u.unit.id}`);
+const site = Astro.site!;
+const jsonLd = [
+  breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }, { name: unit.data.title, path: `/${cert.id}/${unit.id}/` }], site),
+  {
+    '@type': 'LearningResource',
+    name: `${unit.data.title} for ${cert.code}`,
+    description: unit.data.summary,
+    url: absoluteUrl(`/${cert.id}/${unit.id}/`, site),
+    inLanguage: 'en',
+    isAccessibleForFree: true,
+    learningResourceType: ['study notes', 'flashcards'],
+    educationalAlignment: { '@type': 'AlignmentObject', alignmentType: 'educationalSubject', targetName: certFullName(cert) },
+  },
+];
+---
+<Base title={`${unit.data.title} · ${cert.code}`} description={`${unit.data.summary} ${cert.code} review notes and flashcards.`} cert={cert.id} jsonLd={jsonLd} heading={unit.data.title}>
+  <header class="unit-head">
+    <div class="chips">
+      <span title="Exam domain"><Icon name="layers" size={14} />{domainName(cert, domain)}</span>
+      {cards.length > 0 && <a href="#cards" title="Flashcards"><Icon name="cards" size={14} />{cards.length}</a>}
+    </div>
+    <h1>{unit.data.icon && <img src={withBase(`/aws-icons/${unit.data.icon}.svg`)} alt="" width="36" height="36" />}{unit.data.title}</h1>
+    <p class="muted summary">{unit.data.summary}</p>
+    <button class="known" type="button" data-known-toggle={sectionIds(sections)} aria-pressed="false" title="Mark every section of this page as known, in every certification">
+      <Icon name="circle" class="k-off" /><Icon name="check-circle" class="k-on" />
+      <span class="k-off">Mark all as known</span><span class="k-on">All known</span>
+    </button>
+    {sections.length > 1 && (
+      <nav class="toc" aria-label="Sections">
+        {sections.map((s) => <a href={`#${sectionSlug(s)}`} data-known={s.id}><Icon name="circle" size={13} class="st-open" /><Icon name="check-circle" size={13} class="st-done" />{s.data.title}</a>)}
+      </nav>
+    )}
+  </header>
+
+  <article class="article">
+    <Intro />
+    {blocks.map(({ s, Content }) => (
+      <section class="sec" id={sectionSlug(s)}>
+        <h2>
+          <span>{s.data.title}</span>
+          <button class="known small" type="button" data-known-toggle={s.id} aria-pressed="false" title="Mark this section as known">
+            <Icon name="circle" class="k-off" size={15} /><Icon name="check-circle" class="k-on" size={15} />
+          </button>
+        </h2>
+        <Content />
+        {s.data.diagrams.map((d) => <Diagram d={d} />)}
+        {s.data.facts.length > 0 && (
+          <details class="facts">
+            <summary><Icon name="docs" size={14} /> From the AWS docs ({s.data.facts.length})</summary>
+            <ul>{s.data.facts.map((f) => <li>{f.text} <a href={f.source} target="_blank" rel="noopener" title="Open the AWS documentation page"><Icon name="external" size={12} /></a></li>)}</ul>
+          </details>
+        )}
+      </section>
+    ))}
+
+    {cards.length > 0 && (
+      <section id="cards">
+        <h2>Flashcards</h2>
+        <FlashDeck cards={cards} />
+      </section>
+    )}
+  </article>
+
+  <nav class="pager">
+    {prev ? <a href={href(prev)} title={prev.unit.data.title}><Icon name="arrow-left" /> <span>{prev.unit.data.title}</span></a> : <span />}
+    {next ? <a href={href(next)} title={next.unit.data.title}><span>{next.unit.data.title}</span> <Icon name="arrow-right" /></a> : <span />}
+  </nav>
+</Base>
+
+<style>
+  .unit-head { margin-bottom: 1rem; }
+  .chips { display: flex; gap: 0.4rem; flex-wrap: wrap; font-size: 0.75rem; }
+  .chips > * { display: inline-flex; align-items: center; gap: 0.3rem; border: 1px solid var(--ink-700); padding: 0.05rem 0.45rem; color: var(--ink-300); text-decoration: none; }
+  h1 { display: flex; align-items: center; gap: 0.6rem; font-size: 1.6rem; margin: 0.6rem 0 0.3rem; }
+  .summary { margin: 0 0 0.8rem; font-size: 0.9rem; }
+  .known { display: inline-flex; align-items: center; gap: 0.45rem; }
+  .known.small { padding: 0.15rem 0.35rem; border-color: var(--ink-700); }
+  .known :global(.k-on) { display: none; }
+  .known:global(.is-known) { border-color: var(--mint); color: var(--mint); }
+  .known:global(.is-known) :global(.k-on) { display: inline; }
+  .known:global(.is-known) :global(.k-off) { display: none; }
+  .toc { display: grid; gap: 0.15rem; margin-top: 1rem; padding: 0.6rem 0.8rem; border: 1px solid var(--ink-700); background: var(--ink-850); font-size: 0.84rem; }
+  .toc a { display: flex; align-items: center; gap: 0.45rem; text-decoration: none; color: var(--ink-300); }
+  .toc a:hover { color: var(--ink-100); }
+  .toc :global(.st-open) { color: var(--ink-500); }
+  .toc :global(.st-done) { color: var(--mint); display: none; }
+  .toc a:global(.is-known) :global(.st-open) { display: none; }
+  .toc a:global(.is-known) :global(.st-done) { display: inline; }
+  .sec { scroll-margin-top: calc(var(--topbar) + 1rem); }
+  .sec h2 { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+  .facts { margin-top: 0.8rem; border: 1px solid var(--ink-700); padding: 0.35rem 0.8rem; font-size: 0.86rem; }
+  .facts summary { cursor: pointer; display: flex; align-items: center; gap: 0.4rem; color: var(--ink-300); }
+  .facts a { color: var(--ink-300); }
+  .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--ink-700); }
+  .pager a { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; color: var(--ink-300); max-width: 48%; }
+  .pager a span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pager a:hover { color: var(--ink-100); }
+</style>

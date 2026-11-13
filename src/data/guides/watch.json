@@ -1,0 +1,56 @@
+{
+  "checked": "2026-11-13",
+  "pages": {
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain1.html": "c991609c9f284cbe",
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain2.html": "d8def29a348a61c2",
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain3.html": "1affe45239d6267b",
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain4.html": "25b603da9b2f9e3b",
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain5.html": "d71102e3691f820d",
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain6.html": "0c3f705be880d51c",
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02.html": "3221ddb3c4c8f2fd",
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/dop-02-in-scope-services.html": "906b0a8eeee0dce0",
+    "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/dop-technologies-concepts.html": "70ec7e6c1ba65554"
+  },
+  "codes": {
+    "clf-c02": [
+      "CLF-C02"
+    ],
+    "aif-c01": [
+      "AIF-C01"
+    ],
+    "saa-c03": [
+      "SAA-C03"
+    ],
+    "dva-c03": [
+      "DVA-C03"
+    ],
+    "soa-c03": [
+      "SOA-C03"
+    ],
+    "dea-c01": [
+      "DEA-C01"
+    ],
+    "mla-c02": [
+      "MLA-C01",
+      "MLA-C02"
+    ],
+    "dop-c02": [
+      "DOP-C02"
+    ],
+    "sap-c03": [
+      "SAP-C03"
+    ],
+    "aip-c01": [
+      "AIP-C01"
+    ],
+    "scs-c03": [
+      "SCS-C03"
+    ],
+    "ans-c01": [
+      "ANS-C01"
+    ],
+    "aib-c01": [
+      "AIB-C01"
+    ]
+  }
+}

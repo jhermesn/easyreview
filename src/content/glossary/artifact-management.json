@@ -1,0 +1,76 @@
+[
+  {
+    "term": "Artifact",
+    "aliases": [],
+    "definition": "An artifact is a file or collection of files consumed or produced by a pipeline action.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome-introducing-artifacts.html"
+  },
+  {
+    "term": "Repository",
+    "aliases": [],
+    "definition": "A repository stores a collection of source files, packages or images for tools to retrieve and manage.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/welcome.html"
+  },
+  {
+    "term": "Pull request",
+    "aliases": [],
+    "definition": "A pull request lets collaborators review and comment on source changes before merging them into a branch.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html"
+  },
+  {
+    "term": "Package manager",
+    "aliases": [],
+    "definition": "A package manager publishes and retrieves versioned software dependencies from a package repository.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/welcome.html"
+  },
+  {
+    "term": "Domain",
+    "aliases": [],
+    "definition": "A CodeArtifact domain contains repositories that can share packages.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/welcome.html"
+  },
+  {
+    "term": "Upstream repository",
+    "aliases": [
+      "upstream"
+    ],
+    "definition": "An upstream repository makes its CodeArtifact packages available through a downstream repository endpoint.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/repos-upstream.html"
+  },
+  {
+    "term": "External connection",
+    "aliases": [],
+    "definition": "An external connection lets CodeArtifact retrieve packages from a public repository.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/repos-upstream.html"
+  },
+  {
+    "term": "Registry",
+    "aliases": [],
+    "definition": "A registry stores container images that container tools can push and pull.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html"
+  },
+  {
+    "term": "Tag immutability",
+    "aliases": [],
+    "definition": "Tag immutability prevents an existing protected image tag from being overwritten.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html"
+  },
+  {
+    "term": "Buildspec",
+    "aliases": [],
+    "definition": "A buildspec contains the commands and settings CodeBuild uses to run a build.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html"
+  },
+  {
+    "term": "Noncurrent version",
+    "aliases": [],
+    "definition": "A noncurrent version is an older S3 object version retained after a newer version becomes current.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html"
+  },
+  {
+    "term": "Symmetric key",
+    "aliases": [],
+    "definition": "A symmetric KMS key is the key type CodePipeline supports for encrypting and decrypting S3 artifacts.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/S3-artifact-encryption.html"
+  }
+]

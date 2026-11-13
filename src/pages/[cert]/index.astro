@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import ExamFacts from '../../components/ExamFacts.astro';
+import { availableCerts, getCert } from '../../lib/certs';
+import { getCertView, knownGroups, sectionIds } from '../../lib/content';
+import { getGuide } from '../../lib/guides';
+import { withBase } from '../../lib/format';
+import { badgeUrl } from '../../lib/badge';
+import { breadcrumbs, certFullName } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return availableCerts().map((c) => ({ params: { cert: c.id } }));
+}
+const cert = getCert(Astro.params.cert!);
+const view = await getCertView(cert.id);
+const cardTotal = view.sections.reduce((n, s) => n + s.data.cards.length, 0);
+const guideItems = getGuide(cert.id)?.domains.flatMap((d) => d.tasks.flatMap((t) => t.items)) ?? [];
+const covered = guideItems.filter((i) => i.sections.length).length;
+const description = `Free ${certFullName(cert)} review: notes, step-by-step diagrams and ${cardTotal} flashcards from AWS documentation, mapped to the exam guide.`;
+const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.site!)];
+---
+<Base title={`${cert.code} ${cert.name}`} description={description} cert={cert.id} jsonLd={jsonLd} heading="Overview">
+  <header class="head">
+    <img src={badgeUrl(cert.id)} alt="" width="78" height="90" data-badge-cert={cert.id} />
+    <div>
+      <h1>{cert.code}</h1>
+      <p class="muted">{cert.name}</p>
+      <ul class="stats">
+        <li title="Topics you marked as known" data-cert={cert.id} data-known-set={knownGroups(view.sections)}><Icon name="check-circle" size={15} /><span data-known-count></span></li>
+        <li title="Topics"><Icon name="book" size={15} /><span data-count-up>{view.units.length}</span></li>
+        <li title="Flashcards"><Icon name="cards" size={15} /><span data-count-up>{cardTotal}</span></li>
+        {guideItems.length > 0 && <li title="Exam guide items covered"><Icon name="target" size={15} />{covered}/{guideItems.length}</li>}
+      </ul>
+    </div>
+    <a class="btn btn-primary drill" href={withBase(`/${cert.id}/flashcards`)}><Icon name="cards" /> Drill</a>
+  </header>
+  <ExamFacts certId={cert.id} />
+
+  {cert.domains.map((d) => {
+    const own = view.units.filter((u) => u.domain === d.id);
+    return (
+      <section class="domain">
+        <h2><Icon name="layers" size={15} /> {d.name} <span class="pill">{d.weight}%</span></h2>
+        <ul class="tiles" data-reveal>
+          {own.map(({ unit, sections }) => (
+            <li>
+              <a href={withBase(`/${cert.id}/${unit.id}`)} title={unit.data.summary} data-known={sectionIds(sections)}>
+                {unit.data.icon ? <img src={withBase(`/aws-icons/${unit.data.icon}.svg`)} alt="" width="28" height="28" /> : <span class="noicon" />}
+                <span class="name">{unit.data.title}</span>
+                <span class="meta">
+                  <span class="st"><Icon name="circle" size={12} class="st-open" /><Icon name="check-circle" size={12} class="st-done" /></span>
+                  {sections.length} sections · <Icon name="cards" size={12} />{sections.reduce((n, s) => n + s.data.cards.length, 0)}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  })}
+</Base>
+
+<style>
+  .head { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .head h1 { margin: 0; font-size: 1.6rem; }
+  .head p { margin: 0; font-size: 0.85rem; }
+  .stats { list-style: none; padding: 0; margin: 0.5rem 0 0; display: flex; gap: 0.9rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--ink-300); }
+  .stats li { display: inline-flex; align-items: center; gap: 0.3rem; }
+  .stats li:first-child { color: var(--mint); }
+  .stats li.is-gold { color: var(--gold); }
+  .drill { margin-left: auto; display: inline-flex; align-items: center; gap: 0.4rem; }
+  .domain h2 { display: flex; align-items: center; gap: 0.45rem; font-size: 0.95rem; color: var(--purple); margin: 1.8rem 0 0.6rem; }
+  .tiles { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.5rem; }
+  .tiles a { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.6rem; align-items: center; padding: 0.55rem 0.7rem; height: 100%; background: var(--ink-850); border: 1px solid var(--ink-700); text-decoration: none; }
+  .tiles a:hover { border-color: var(--purple); color: var(--ink-100); }
+  .tiles img, .noicon { grid-row: span 2; width: 28px; height: 28px; }
+  .name { font-size: 0.88rem; line-height: 1.35; }
+  .meta { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--ink-400); font-size: 0.72rem; }
+  .st { display: inline-grid; }
+  .st :global(.st-open) { color: var(--ink-500); }
+  .st :global(.st-done) { color: var(--mint); display: none; }
+  .tiles a:global(.is-known) :global(.st-open) { display: none; }
+  .tiles a:global(.is-known) :global(.st-done) { display: block; }
+  .tiles a:global(.is-known) .name { color: var(--ink-300); }
+</style>

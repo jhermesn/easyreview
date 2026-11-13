@@ -1,0 +1,144 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import HeroBadge from '../components/HeroBadge.astro';
+import { certs, levels, isAvailable, availableCerts } from '../lib/certs';
+import { getCertView, knownGroups, unitIdOf } from '../lib/content';
+import { getGuide } from '../lib/guides';
+import { withBase } from '../lib/format';
+import { badgeUrl } from '../lib/badge';
+import { examSummary } from '../lib/exams';
+
+const views = new Map(await Promise.all(availableCerts().map(async (c) => [c.id, await getCertView(c.id)] as const)));
+// Count only what a reader can open: sections some available cert's guide maps.
+const sections = [...new Map([...views.values()].flatMap((v) => v.sections).map((s) => [s.id, s])).values()];
+const unitCount = new Set(sections.map(unitIdOf)).size;
+const allUnitGroups = knownGroups(sections);
+const cardTotal = sections.reduce((n, s) => n + s.data.cards.length, 0);
+const diagramTotal = sections.reduce((n, s) => n + s.data.diagrams.length, 0);
+const live = availableCerts();
+const guideItems = live.flatMap((c) => getGuide(c.id)?.domains.flatMap((d) => d.tasks.flatMap((t) => t.items)) ?? []);
+const coveredPct = guideItems.length ? Math.round((guideItems.filter((i) => i.sections.length).length / guideItems.length) * 100) : 0;
+const primary = live[0];
+// Entry-level tracks share the first row; the rest get a row each.
+const byId = (id: string) => levels.find((l) => l.id === id)!;
+const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => !['foundational', 'business'].includes(l.id)).map((l) => [l])];
+---
+<Base title="Study once, pass every AWS exam" description="Free AWS certification review: notes, step-by-step diagrams and flashcards from AWS documentation, mapped to every exam guide item. Study a topic once and it counts for every exam that uses it.">
+  <section class="hero">
+    <div class="copy">
+      <p class="script-label">100% AWS Docs<svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 8 C 30 3, 70 2, 117 6" /></svg></p>
+      <h1>Study each topic <em class="scribble">once</em>.<br />Use it on <em class="scribble">every</em> exam.</h1>
+      <p class="lead">Short notes, numbered diagrams and flashcards, mapped to every item of the official exam guides. Mark a topic as known and it stays known when you move to the next certification.</p>
+      <a class="resume" href={withBase('/')} data-recent hidden>
+        <img src={withBase('/favicon.svg')} alt="" width="34" height="39" data-recent-badge />
+        <span class="resume-text"><small>Continue where you left off</small><span><b data-recent-code></b> · <span data-recent-title></span></span></span>
+        <Icon name="arrow-right" />
+      </a>
+      <div class="ctas">
+        {primary && <a class="btn btn-primary" href={withBase(`/${primary.id}`)}>Start {primary.code}</a>}
+        <a class="btn" href="#certs"><Icon name="grid" /> All certifications</a>
+      </div>
+      <ul class="stats">
+        <li><b data-count-up>{unitCount}</b><span><Icon name="book" size={12} /> topics</span></li>
+        <li><b data-count-up>{cardTotal}</b><span><Icon name="cards" size={12} /> flashcards</span></li>
+        <li><b data-count-up>{diagramTotal}</b><span><Icon name="diagram" size={12} /> diagrams</span></li>
+        <li><b><span data-count-up>{coveredPct}</span>%</b><span><Icon name="target" size={12} /> exam guide covered</span></li>
+      </ul>
+    </div>
+    <HeroBadge />
+  </section>
+
+  <section id="certs" class="catalog">
+    <div class="catalog-head">
+      <h2>Certifications</h2>
+      <span class="known" data-known-set={allUnitGroups} title="Topics you marked as known"><Icon name="check-circle" size={15} /> <span data-known-count></span> topics known</span>
+    </div>
+    {rows.map((row) => (
+      <div class="level-row">
+    {row.map((lv) => {
+      const own = certs.filter((c) => c.level === lv.id);
+      return own.length > 0 && (
+        <div class="level" style={`--span: ${own.length}`}>
+          <h3>{lv.name}</h3>
+          <ul class="badges" data-reveal>
+            {own.map((c) => (
+              <li>
+                {isAvailable(c) ? (
+                  <a class="tile" href={withBase(`/${c.id}`)} title={[`${c.code} · ${c.name}`, examSummary(c.id)].filter(Boolean).join(' · ')}>
+                    <img src={badgeUrl(c.id)} alt={`${c.code} ${c.name}`} width="104" height="120" loading="lazy" data-badge-cert={c.id} />
+                    <span class="code">{c.code}</span>
+                    <span class="ring" data-cert={c.id} data-known-set={knownGroups(views.get(c.id)?.sections ?? [])}><span data-known-count></span></span>
+                  </a>
+                ) : (
+                  <div class="tile soon" title={[`${c.code} · ${c.name}`, c.note, examSummary(c.id), 'coming soon'].filter(Boolean).join(' · ')}>
+                    <img src={badgeUrl(c.id)} alt={`${c.code} ${c.name}`} width="104" height="120" loading="lazy" data-badge-cert={c.id} />
+                    <span class="code">{c.code}</span>
+                    <span class="flag"><Icon name="lock" size={12} /> soon</span>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    })}
+      </div>
+    ))}
+  </section>
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: center; gap: 2rem; min-height: min(78vh, 40rem); padding-block: 1rem 2rem; }
+  .script-label { position: relative; display: inline-block; margin: 0 0 1.3rem; font-family: var(--script); font-weight: 700; font-size: 1.7rem; line-height: 1.1; color: var(--mint); transform: rotate(-3deg); transform-origin: left; }
+  .script-label svg { position: absolute; left: 0; bottom: -0.32em; width: 100%; height: 0.3em; overflow: visible; }
+  .script-label path { fill: none; stroke: var(--mint); stroke-width: 1.6; stroke-linecap: round; opacity: 0.75; stroke-dasharray: 1; stroke-dashoffset: 1; animation: swoosh 0.7s ease-out 0.2s forwards; }
+  @keyframes swoosh { to { stroke-dashoffset: 0; } }
+  /* Wavy underline: a 16px wave tile whose stroke runs past both edges, so tiles join seamlessly; it slides in from the left. */
+  .scribble { position: relative; white-space: nowrap; }
+  .scribble::after { content: ''; position: absolute; left: 0; bottom: -0.38em; width: 0; height: 10px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='10' viewBox='0 0 16 10'%3E%3Cpath d='M-8 5 Q -4 0.6 0 5 T 8 5 T 16 5 T 24 5' fill='none' stroke='%23ff9900' stroke-width='2.6'/%3E%3C/svg%3E") repeat-x left center / 16px 10px; animation: wave-in 0.8s ease-out 0.35s forwards; }
+  .scribble:last-of-type::after { animation-delay: 0.7s; }
+  @keyframes wave-in { to { width: 100%; } }
+  h1 em { font-style: normal; color: var(--amber); }
+  .lead { color: var(--ink-300); font-size: 1rem; max-width: 34rem; margin: 0 0 1.6rem; }
+  .resume { display: flex; align-items: center; gap: 0.8rem; max-width: 30rem; margin: 0 0 1rem; padding: 0.6rem 0.9rem; border: 1px solid var(--mint); background: color-mix(in srgb, var(--mint) 6%, var(--ink-850)); text-decoration: none; transition: transform 0.15s; }
+  .resume:hover { color: var(--ink-100); transform: translateX(2px); }
+  .resume img { flex: none; }
+  .resume-text { display: grid; flex: 1; min-width: 0; line-height: 1.35; }
+  .resume-text small { color: var(--mint); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .resume-text > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ctas { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .ctas .btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.6rem 1.1rem; }
+  .stats { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 0 1.8rem; }
+  .stats li { display: grid; }
+  .stats b { font-size: 1.5rem; color: var(--ink-100); }
+  .stats li > span { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; color: var(--ink-400); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .catalog { padding-top: 2.5rem; border-top: 1px solid var(--ink-700); }
+  .catalog-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .catalog-head h2 { margin: 0; font-size: 1.3rem; }
+  .known { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--mint); font-size: 0.82rem; }
+  .level-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 0 1.5rem; }
+  .level-row:has(> .level:only-child) { grid-template-columns: 1fr; }
+  .level h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple); margin: 1.6rem 0 0.6rem; }
+  .badges { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.6rem; }
+  .tile { position: relative; display: grid; justify-items: center; gap: 0.35rem; padding: 0.8rem 0.5rem 0.6rem; border: 1px solid var(--ink-700); background: var(--ink-850); text-decoration: none; height: 100%; transition: border-color 0.15s, transform 0.15s; }
+  a.tile:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .tile img { width: 6.5rem; height: auto; }
+  .code { font-weight: 700; font-size: 0.82rem; }
+  .soon img { filter: grayscale(1) brightness(0.55); }
+  .soon .code { color: var(--ink-400); }
+  .flag { position: absolute; top: 0.4rem; right: 0.4rem; display: inline-flex; align-items: center; gap: 0.2rem; font-size: 0.62rem; text-transform: uppercase; color: var(--ink-300); border: 1px solid var(--ink-500); padding: 0 0.3rem; background: var(--ink-900); }
+  .ring { position: absolute; top: 0.4rem; right: 0.4rem; width: 2.1rem; height: 2.1rem; border-radius: 50%; display: grid; place-items: center; font-size: 0.55rem; color: var(--ink-100);
+    background: radial-gradient(closest-side, var(--ink-850) 76%, transparent 78%), conic-gradient(var(--mint) var(--pct, 0%), var(--ink-700) 0); }
+  .ring.is-gold { color: var(--gold); background: radial-gradient(closest-side, var(--ink-850) 76%, transparent 78%), var(--gold-sheen); }
+  .tile:has(.ring.is-gold) { border-color: var(--gold); }
+
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; gap: 0.5rem; }
+    .hero :global(.hero-3d) { order: -1; max-width: 15rem; }
+    .stats { grid-template-columns: repeat(2, auto); gap: 0.8rem 1.8rem; }
+    .ctas { flex-wrap: nowrap; }
+    .ctas .btn { flex: 1 1 0; justify-content: center; padding-inline: 0.5rem; font-size: 0.84rem; }
+  }
+</style>

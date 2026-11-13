@@ -1,0 +1,147 @@
+[
+  {
+    "term": "Subnet",
+    "aliases": [],
+    "definition": "An address range within a VPC whose traffic follows an associated route table.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/subnet-route-tables.html#subnet-route-tables"
+  },
+  {
+    "term": "CIDR block",
+    "aliases": [
+      "CIDR"
+    ],
+    "definition": "A network address range written with a prefix length indicating its size.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/route-tables-priority.html#route-table-longest-prefix-match"
+  },
+  {
+    "term": "Route table",
+    "aliases": [],
+    "definition": "A set of destination and target rules that directs network traffic.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#VPC_Route_Tables"
+  },
+  {
+    "term": "Longest prefix match",
+    "aliases": [],
+    "definition": "Selection of the most specific route whose address range contains the destination.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/route-tables-priority.html#route-table-longest-prefix-match"
+  },
+  {
+    "term": "Network interface",
+    "aliases": [
+      "ENI"
+    ],
+    "definition": "A virtual network attachment that sends and receives traffic for a resource.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-basics.html#flow-logs-basics"
+  },
+  {
+    "term": "Stateful filtering",
+    "aliases": [
+      "stateful"
+    ],
+    "definition": "Filtering that remembers allowed connections and permits their response traffic.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#security-group-basics"
+  },
+  {
+    "term": "Stateless filtering",
+    "aliases": [
+      "stateless"
+    ],
+    "definition": "Filtering that evaluates requests and responses independently.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics"
+  },
+  {
+    "term": "Ephemeral port",
+    "aliases": [],
+    "definition": "A temporary port selected by a client when starting a connection.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/custom-network-acl.html#nacl-ephemeral-ports"
+  },
+  {
+    "term": "Network access control list",
+    "aliases": [
+      "network ACL",
+      "NACL"
+    ],
+    "definition": "A numbered set of allow and deny rules for traffic entering or leaving a subnet.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#vpc-network-acls"
+  },
+  {
+    "term": "Prefix list",
+    "aliases": [],
+    "definition": "A named collection of address ranges that can be referenced by network rules.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-routing"
+  },
+  {
+    "term": "Endpoint policy",
+    "aliases": [],
+    "definition": "A resource policy controlling which requests can use a VPC endpoint.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html#vpc-endpoints-access"
+  },
+  {
+    "term": "Network address translation",
+    "aliases": [
+      "NAT"
+    ],
+    "definition": "Translation of source addresses so private resources can initiate connections through a gateway.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#vpc-nat-gateway"
+  },
+  {
+    "term": "Egress",
+    "aliases": [
+      "outbound traffic"
+    ],
+    "definition": "Traffic leaving a resource or network.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rules"
+  },
+  {
+    "term": "Peering",
+    "aliases": [],
+    "definition": "A direct private routing relationship between two VPCs.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html#vpc-peering-basics"
+  },
+  {
+    "term": "Transitive routing",
+    "aliases": [],
+    "definition": "Routing between networks through an intermediate connected network.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html#vpc-peering-limitations"
+  },
+  {
+    "term": "Aggregation interval",
+    "aliases": [
+      "capture window"
+    ],
+    "definition": "The period over which traffic is combined into a flow log record.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-aggregration-interval"
+  },
+  {
+    "term": "Packet payload",
+    "aliases": [
+      "packet contents"
+    ],
+    "definition": "The application data carried inside a network packet.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/application.html"
+  },
+  {
+    "term": "Elastic IP address",
+    "aliases": [
+      "EIP"
+    ],
+    "definition": "A public IPv4 address associated with a public NAT gateway for internet access.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#vpc-nat-gateway"
+  },
+  {
+    "term": "DNS",
+    "aliases": [
+      "Domain Name System"
+    ],
+    "definition": "Name resolution that maps names to network addresses.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#security-group-basics"
+  },
+  {
+    "term": "DHCP",
+    "aliases": [
+      "Dynamic Host Configuration Protocol"
+    ],
+    "definition": "A protocol that supplies network configuration to clients.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#security-group-basics"
+  }
+]

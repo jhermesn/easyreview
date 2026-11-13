@@ -1,0 +1,6 @@
+[
+  {"term":"infrastructure as code","aliases":["IaC"],"definition":"Infrastructure as code defines infrastructure in templates that can be used to provision resources.","source":"https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#ag-admin"},
+  {"term":"environment template","aliases":[],"definition":"An environment template defines infrastructure shared by multiple applications or resources.","source":"https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#ag-admin"},
+  {"term":"service template","aliases":[],"definition":"A service template defines the infrastructure needed to deploy and maintain an application in an environment.","source":"https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#ag-admin"},
+  {"term":"service instance","aliases":[],"definition":"A service instance is an instantiation of a service template in a specific environment.","source":"https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#ag-admin"}
+]

@@ -1,0 +1,5 @@
+# Link check for fact and glossary sources (npm run lint:links, and weekly in content-health.yml).
+include = ['^https://(docs\.)?aws\.amazon\.com/']
+user_agent = "easyreview-link-check"
+max_concurrency = 8
+no_progress = true

@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import FlashDeck from '../../components/FlashDeck.astro';
+import { availableCerts, getCert } from '../../lib/certs';
+import { getCertView, deckCards } from '../../lib/content';
+import { certFullName } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return availableCerts().map((c) => ({ params: { cert: c.id } }));
+}
+const cert = getCert(Astro.params.cert!);
+const cards = deckCards(await getCertView(cert.id));
+const description = `${cards.length} spaced-repetition flashcards for ${certFullName(cert)}, each tied to the AWS documentation it comes from.`;
+---
+<Base title={`Flashcards · ${cert.code}`} description={description} cert={cert.id} heading="Flashcards">
+  <div class="article">
+    <h1>Flashcards <span class="muted">{cert.code}</span></h1>
+    <p class="muted keys"><kbd>space</kbd> flip · <kbd>1</kbd> to <kbd>4</kbd> again, hard, good, easy · <kbd>←</kbd> <kbd>→</kbd> previous, next</p>
+  </div>
+  <FlashDeck cards={cards} filters />
+</Base>

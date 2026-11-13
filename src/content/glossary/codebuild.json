@@ -1,0 +1,230 @@
+[
+  {
+    "term": "buildspec",
+    "aliases": [],
+    "definition": "A buildspec is a YAML document containing the commands and settings for a build.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html"
+  },
+  {
+    "term": "YAML",
+    "aliases": [],
+    "definition": "YAML is the structured text format used to express a CodeBuild buildspec.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-syntax"
+  },
+  {
+    "term": "build environment",
+    "aliases": [],
+    "definition": "A build environment combines an operating system, language runtime, and tools used to run build commands.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html"
+  },
+  {
+    "term": "container image",
+    "aliases": [
+      "build image"
+    ],
+    "definition": "A container image supplies the software environment in which build commands run.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html"
+  },
+  {
+    "term": "runtime",
+    "aliases": [],
+    "definition": "A runtime provides the language environment selected for running build software.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec.phases.install.runtime-versions"
+  },
+  {
+    "term": "phase",
+    "aliases": [],
+    "definition": "A phase is a named stage of build execution with its own commands and result.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec.phases"
+  },
+  {
+    "term": "shell",
+    "aliases": [],
+    "definition": "A shell executes command text and holds command state such as the current directory.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-cmd.html"
+  },
+  {
+    "term": "exit status",
+    "aliases": [
+      "exit code"
+    ],
+    "definition": "An exit status is the result returned by a command and included in build error context when available.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/APIReference/API_PhaseContext.html"
+  },
+  {
+    "term": "regular expression",
+    "aliases": [
+      "regex"
+    ],
+    "definition": "A regular expression is a text pattern used to match error messages or webhook fields.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec.phases.on-failure.title"
+  },
+  {
+    "term": "environment variable",
+    "aliases": [],
+    "definition": "An environment variable is a named value available to build commands.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An ARN is an identifier that names an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html"
+  },
+  {
+    "term": "artifact",
+    "aliases": [
+      "output artifact"
+    ],
+    "definition": "An artifact is a set of files passed between actions in a pipeline.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome-introducing-artifacts.html"
+  },
+  {
+    "term": "namespace",
+    "aliases": [],
+    "definition": "A namespace groups the output variables of a pipeline action so later actions can reference them.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#reference-variables-concepts"
+  },
+  {
+    "term": "report group",
+    "aliases": [],
+    "definition": "A report group collects report runs and shares settings such as permissions and export configuration.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/test-report-group.html"
+  },
+  {
+    "term": "line coverage",
+    "aliases": [],
+    "definition": "Line coverage measures the statements exercised by tests.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/code-coverage-report.html"
+  },
+  {
+    "term": "branch coverage",
+    "aliases": [],
+    "definition": "Branch coverage measures the control-flow branches exercised by tests.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/code-coverage-report.html"
+  },
+  {
+    "term": "cache",
+    "aliases": [],
+    "definition": "A cache stores build components for reuse in later builds.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-caching.html"
+  },
+  {
+    "term": "cache key",
+    "aliases": [],
+    "definition": "A cache key identifies a stored S3 cache copy.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/caching-s3.html"
+  },
+  {
+    "term": "service role",
+    "aliases": [],
+    "definition": "A service role is an IAM role that a service uses to perform authorized operations on your behalf.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/setting-up-service-role.html"
+  },
+  {
+    "term": "trust policy",
+    "aliases": [],
+    "definition": "A trust policy specifies which principals may assume an IAM role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "VPC",
+    "aliases": [
+      "virtual private cloud"
+    ],
+    "definition": "A VPC is a virtual network isolated from other virtual networks in AWS.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "subnet",
+    "aliases": [],
+    "definition": "A subnet is a range of IP addresses within a VPC.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "security group",
+    "aliases": [],
+    "definition": "A security group controls traffic allowed to and from associated resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "NAT",
+    "aliases": [
+      "network address translation"
+    ],
+    "definition": "NAT provides outbound internet access for VPC build interfaces without public IP addresses.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/vpc-support.html#best-practices-for-vpcs"
+  },
+  {
+    "term": "gateway endpoint",
+    "aliases": [],
+    "definition": "A gateway endpoint adds a route to a supported AWS service without requiring a NAT device.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html"
+  },
+  {
+    "term": "webhook",
+    "aliases": [],
+    "definition": "A webhook delivers repository event information that CodeBuild can filter to start a build.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/webhooks.html"
+  },
+  {
+    "term": "pull request",
+    "aliases": [
+      "PR"
+    ],
+    "definition": "A pull request proposes source branch changes for review before merging.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/monitoring-events.html"
+  },
+  {
+    "term": "fork",
+    "aliases": [],
+    "definition": "A fork is a copy of a repository used to propose changes back to the original repository.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/pull-request-build-policy.html"
+  },
+  {
+    "term": "commit SHA",
+    "aliases": [
+      "commit identifier"
+    ],
+    "definition": "A commit SHA identifies the source revision approved for a pull request build.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/pull-request-build-policy.html"
+  },
+  {
+    "term": "Docker daemon",
+    "aliases": [],
+    "definition": "The Docker daemon is the process used to build and run Docker containers.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker-custom-image.html"
+  },
+  {
+    "term": "privileged mode",
+    "aliases": [],
+    "definition": "Privileged mode grants the Docker permissions required for VPC Docker builds and local Docker layer caching.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/caching-local.html"
+  },
+  {
+    "term": "Docker layer",
+    "aliases": [],
+    "definition": "A Docker layer is a reusable part of a container image that local Docker caching can retain.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/caching-local.html"
+  },
+  {
+    "term": "key policy",
+    "aliases": [],
+    "definition": "A key policy controls access to a KMS key used for artifact encryption.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/setting-up-kms.html"
+  },
+  {
+    "term": "SecureString",
+    "aliases": [],
+    "definition": "A SecureString parameter has a plain parameter name and an encrypted value.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/secure-string-parameter-kms-encryption.html"
+  },
+  {
+    "term": "metric dimension",
+    "aliases": [],
+    "definition": "A metric dimension identifies the project whose CodeBuild metrics you want to inspect.",
+    "source": "https://docs.aws.amazon.com/codebuild/latest/userguide/monitoring-builds.html"
+  }
+]

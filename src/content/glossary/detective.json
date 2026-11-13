@@ -1,0 +1,26 @@
+[
+  {
+    "term": "Behavior graph",
+    "aliases": [],
+    "definition": "A linked set of analyzed data from one or more AWS accounts.",
+    "source": "https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-who-uses"
+  },
+  {
+    "term": "Indicator of compromise",
+    "aliases": ["IOC"],
+    "definition": "An observed artifact that can indicate malicious activity or a security incident.",
+    "source": "https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-features"
+  },
+  {
+    "term": "Finding group",
+    "aliases": [],
+    "definition": "A collection of related findings and entities associated with a potential security event.",
+    "source": "https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-features"
+  },
+  {
+    "term": "Source package",
+    "aliases": [],
+    "definition": "A group of data sources that Detective uses for a behavior graph.",
+    "source": "https://docs.aws.amazon.com/detective/latest/userguide/detective-source-data-about.html#source-data-types-optional"
+  }
+]

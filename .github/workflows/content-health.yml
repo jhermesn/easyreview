@@ -1,0 +1,99 @@
+name: Content health
+
+# Weekly check that the content still matches the exams: exam guide changes, new exam
+# versions, dead AWS doc links, changed doc sections behind facts, section problems and coverage gaps.
+# Findings land in one open issue.
+on:
+  schedule:
+    - cron: '0 10 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: content-health
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      - name: Check AWS doc links
+        id: links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          # Settings in lychee.toml; the same check runs locally with npm run lint:links.
+          args: >-
+            'src/content/sections/**/*.md' 'src/content/glossary/*.json'
+          output: lychee.md
+          fail: false
+
+      - name: Run checks
+        id: checks
+        env:
+          LINKS_EXIT: ${{ steps.links.outputs.exit_code }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          status=0
+          {
+            echo "## Exam guides and exam codes"
+            node scripts/guide-watch.mjs || status=1
+            echo
+            echo "## AWS doc links"
+            if [ "$LINKS_EXIT" = "0" ]; then
+              echo "Every fact and glossary source resolves."
+            else
+              status=1
+              cat lychee.md
+            fi
+            echo
+            echo "## Cited doc sections"
+            node scripts/doc-watch.mjs || status=1
+            echo
+            echo "## Who passed (Credly badges and profile links)"
+            node scripts/verify-passed.mjs || status=1
+            echo
+            echo "## Section lint"
+            npm run --silent lint || status=1
+            echo
+            echo "## Coverage (strict build)"
+            if STRICT_COVERAGE=1 npm run build > build.log 2>&1; then
+              echo "Every exam guide item and in-scope service is covered."
+            else
+              status=1
+              grep -E "coverage|Error" build.log | head -60
+            fi
+          } > report.md
+          cat report.md
+          echo "failed=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update the content health issue
+        if: steps.checks.outputs.failed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create content-health --color FF9900 --description "Content out of date with the exams" --force
+          {
+            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo
+            cat report.md
+            echo
+            echo "To fix: follow docs/maintenance.md, then run \`node scripts/guide-watch.mjs --update\` or \`node scripts/doc-watch.mjs --update\` for the check that fired."
+          } > body.md
+          existing=$(gh issue list --label content-health --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+          else
+            gh issue create --title "Content health: exam or docs changed" --label content-health --body-file body.md
+          fi

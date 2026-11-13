@@ -1,0 +1,58 @@
+[
+  {
+    "term": "Finding",
+    "aliases": [],
+    "definition": "A finding reports a vulnerability or unintended exposure detected in a resource.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html"
+  },
+  {
+    "term": "CVE",
+    "aliases": [
+      "Common Vulnerabilities and Exposures"
+    ],
+    "definition": "A CVE entry identifies a publicly known software vulnerability.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/scanning-ec2.html"
+  },
+  {
+    "term": "CVSS",
+    "aliases": [
+      "Common Vulnerability Scoring System"
+    ],
+    "definition": "CVSS describes the severity of a vulnerability using a score and security metrics.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/findings-understanding-score.html"
+  },
+  {
+    "term": "AMI",
+    "aliases": [
+      "Amazon Machine Image"
+    ],
+    "definition": "An AMI is an image used to launch EC2 instances.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html"
+  },
+  {
+    "term": "Snapshot",
+    "aliases": [],
+    "definition": "An EBS snapshot is a backup of the data on an EBS volume.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html"
+  },
+  {
+    "term": "Systems Manager Agent",
+    "aliases": [
+      "SSM Agent"
+    ],
+    "definition": "SSM Agent is software on a server that enables Systems Manager to manage it.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/scanning-ec2.html"
+  },
+  {
+    "term": "Exploitability",
+    "aliases": [],
+    "definition": "Exploitability describes conditions that affect whether a vulnerability can be used in an attack.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/findings-understanding-score.html"
+  },
+  {
+    "term": "Event rule",
+    "aliases": [],
+    "definition": "An EventBridge rule matches events and routes them to configured targets.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html"
+  }
+]

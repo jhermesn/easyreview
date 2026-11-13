@@ -1,0 +1,86 @@
+[
+  {
+    "term": "Virtual private network",
+    "aliases": [
+      "VPN"
+    ],
+    "definition": "A VPN provides an encrypted connection over a network to reach private resources.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html"
+  },
+  {
+    "term": "Transport Layer Security",
+    "aliases": [
+      "TLS"
+    ],
+    "definition": "TLS encrypts the connection between a remote VPN client and its endpoint.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html"
+  },
+  {
+    "term": "IPsec",
+    "aliases": [],
+    "definition": "IPsec is the network encryption protocol suite used by Site-to-Site VPN.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html"
+  },
+  {
+    "term": "Endpoint",
+    "aliases": [],
+    "definition": "A Client VPN endpoint terminates and manages remote client sessions.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html"
+  },
+  {
+    "term": "CIDR",
+    "aliases": [],
+    "definition": "CIDR notation describes an IP address range using an address and a prefix length.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-endpoint-create.html"
+  },
+  {
+    "term": "Mutual authentication",
+    "aliases": [],
+    "definition": "Mutual authentication uses client certificates to authenticate VPN clients.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/client-authentication.html"
+  },
+  {
+    "term": "SAML",
+    "aliases": [
+      "Security Assertion Markup Language"
+    ],
+    "definition": "SAML enables federated user authentication through an identity provider.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/client-authentication.html"
+  },
+  {
+    "term": "Authorization rule",
+    "aliases": [],
+    "definition": "An authorization rule grants selected users access to a destination network.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-rules.html"
+  },
+  {
+    "term": "Split tunnel",
+    "aliases": [
+      "split-tunnel"
+    ],
+    "definition": "Split tunnel sends traffic matching configured VPN destination routes through the tunnel while other traffic uses local routing.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html"
+  },
+  {
+    "term": "Security group",
+    "aliases": [],
+    "definition": "A security group controls which network traffic can reach a resource.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/how-it-works.html"
+  },
+  {
+    "term": "Source network address translation",
+    "aliases": [
+      "SNAT"
+    ],
+    "definition": "SNAT replaces the source IP address of outgoing traffic with another address.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An Availability Zone is a separate deployment location used for redundant VPN subnet associations.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-target.html"
+  }
+]

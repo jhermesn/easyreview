@@ -1,0 +1,50 @@
+[
+  {
+    "term": "Resource share",
+    "aliases": [],
+    "definition": "A configuration that identifies owned resources, their recipients, and their managed permissions.",
+    "source": "https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is-how-sharing"
+  },
+  {
+    "term": "Managed permission",
+    "aliases": [],
+    "definition": "A permission defining which actions a recipient can take on a shared resource.",
+    "source": "https://docs.aws.amazon.com/ram/latest/userguide/security-ram-permissions.html#security-ram-permissions"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": ["OU"],
+    "definition": "A group of accounts within an AWS organization.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#organizationalunit"
+  },
+  {
+    "term": "Virtual private cloud",
+    "aliases": ["VPC"],
+    "definition": "A logically isolated virtual network for AWS resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc"
+  },
+  {
+    "term": "Subnet",
+    "aliases": [],
+    "definition": "A range of IP addresses within a VPC.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#amazon-vpc-features"
+  },
+  {
+    "term": "Transit gateway",
+    "aliases": [],
+    "definition": "A central hub that routes traffic between VPCs and other network connections.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#amazon-vpc-features"
+  },
+  {
+    "term": "Forwarding rule",
+    "aliases": ["Resolver rule"],
+    "definition": "A rule that directs DNS queries for a domain to configured resolvers.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-rules-managing.html#resolver-rules-managing-associating-rules"
+  },
+  {
+    "term": "Principal",
+    "aliases": [],
+    "definition": "An identity or account specified as a recipient of a resource share.",
+    "source": "https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is-how-sharing"
+  }
+]

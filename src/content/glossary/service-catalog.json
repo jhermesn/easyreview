@@ -1,0 +1,128 @@
+[
+  {
+    "term": "Portfolio",
+    "aliases": [],
+    "definition": "A collection of products with configuration and access information.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/what-is_concepts.html#what-is_concepts-portfolio"
+  },
+  {
+    "term": "Provisioned product",
+    "aliases": [],
+    "definition": "A deployed instance of a catalog product, represented by a stack for CloudFormation products.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/what-is_concepts.html#what-is_concepts-provprod"
+  },
+  {
+    "term": "Constraint",
+    "aliases": [],
+    "definition": "A rule governing how a product can be deployed through a particular portfolio.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/constraints.html#constraints"
+  },
+  {
+    "term": "Parameter",
+    "aliases": [],
+    "definition": "An input value a user supplies to configure resources described in a template.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/what-is_concepts.html#what-is_concepts-product"
+  },
+  {
+    "term": "Stack",
+    "aliases": [],
+    "definition": "A collection of resources created and managed together from a CloudFormation template.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/what-is_concepts.html#what-is_concepts-provprod"
+  },
+  {
+    "term": "Stack set",
+    "aliases": [
+      "StackSet"
+    ],
+    "definition": "A collection of stacks deployed from a common template across target accounts and Regions.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/constraints-stackset.html#constraints-stackset"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "Launch role"
+    ],
+    "definition": "A set of permissions that a user or service can assume temporarily.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/constraints-launch.html#constraints-launch"
+  },
+  {
+    "term": "Principal",
+    "aliases": [
+      "IAM principal"
+    ],
+    "definition": "An identity, such as an IAM user or role, that can receive portfolio access.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/catalogs_portfolios_sharing_how-to-share.html#principal-name-share"
+  },
+  {
+    "term": "TagOption",
+    "aliases": [],
+    "definition": "A managed key-value template from which Service Catalog creates an AWS tag.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/tagoptions.html#tagoptions"
+  },
+  {
+    "term": "Tag",
+    "aliases": [],
+    "definition": "A key-value label attached to a resource.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/tagoptions.html#tagoptions"
+  },
+  {
+    "term": "Assertion",
+    "aliases": [],
+    "definition": "A rule check that must evaluate to true for supplied template parameters to be accepted.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/reference-template_constraint_rules.html#reference-template_constraint_rules"
+  },
+  {
+    "term": "Version guidance",
+    "aliases": [],
+    "definition": "An administrator setting indicating whether an active product version can be used for new launches.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/managing-versions.html#version-guidance"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A grouping within an organization that can be used as a portfolio-sharing target.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/catalogs_portfolios_sharing_how-to-share.html#catalogs_portfolios_sharing_how-to-share"
+  },
+  {
+    "term": "Trust policy",
+    "aliases": [],
+    "definition": "A policy attached to a role identifying who may assume it.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An identifier for a specific AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+  },
+  {
+    "term": "SNS topic",
+    "aliases": [
+      "Topic"
+    ],
+    "definition": "A named communication channel that delivers published messages to subscribers.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/welcome.html#welcome"
+  },
+  {
+    "term": "AutoTags",
+    "aliases": [],
+    "definition": "Tags that Service Catalog automatically applies to identify a provisioned resource's origin.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/autotags.html#autotags"
+  },
+  {
+    "term": "Transform",
+    "aliases": [],
+    "definition": "A CloudFormation template section specifying processing that modifies template content.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-section-structure.html#transform-section-structure"
+  },
+  {
+    "term": "Provisioning engine",
+    "aliases": [],
+    "definition": "The component configured to create and manage resources from Terraform product configurations.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/getstarted-Terraform.html#getstarted-Terraform"
+  }
+]

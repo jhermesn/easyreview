@@ -1,0 +1,9 @@
+[
+  {"term":"document","aliases":[],"definition":"A data record structured using key-value pairs that can be nested.","source":"https://docs.aws.amazon.com/documentdb/latest/devguide/document-database-documents-understanding.html#document-database-documents-understanding"},
+  {"term":"replica","aliases":["read replica"],"definition":"A database instance that serves reads and can be a failover target.","source":"https://docs.aws.amazon.com/documentdb/latest/devguide/how-it-works.html#how-it-works.replication"},
+  {"term":"endpoint","aliases":[],"definition":"A host address and port used to connect to a database instance.","source":"https://docs.aws.amazon.com/documentdb/latest/devguide/how-it-works.html#how-it-works.endpoints"},
+  {"term":"point-in-time recovery","aliases":["PITR"],"definition":"Restoring database data to a selected time within the backup retention period.","source":"https://docs.aws.amazon.com/documentdb/latest/devguide/backup_restore.html#backup_restore"},
+  {"term":"eventual consistency","aliases":[],"definition":"A read can return data that has not yet caught up with a recent write.","source":"https://docs.aws.amazon.com/documentdb/latest/devguide/how-it-works.html#how-it-works"},
+  {"term":"Availability Zone","aliases":["AZ"],"definition":"A distinct location in a Region designed to be isolated from failures in other zones.","source":"https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is-availability-zones"},
+  {"term":"snapshot","aliases":["manual snapshot"],"definition":"A saved copy of cluster data that can be retained beyond the backup retention period.","source":"https://docs.aws.amazon.com/documentdb/latest/devguide/backup_restore.html#backup_restore"}
+]

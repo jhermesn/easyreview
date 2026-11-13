@@ -1,0 +1,14 @@
+[
+  {
+    "term": "continuous delivery toolchain",
+    "aliases": ["toolchain"],
+    "definition": "A set of tools that supports moving software changes toward release.",
+    "source": "https://aws.amazon.com/about-aws/whats-new/2017/04/introducing-aws-codestar/"
+  },
+  {
+    "term": "commit",
+    "aliases": [],
+    "definition": "A recorded change to a repository.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-commit.html"
+  }
+]

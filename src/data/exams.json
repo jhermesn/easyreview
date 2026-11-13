@@ -1,0 +1,115 @@
+{
+  "retrieved": "2026-11-13",
+  "exams": {
+    "clf-c02": {
+      "source": "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+      "category": "Foundational",
+      "duration": "90 minutes",
+      "format": "65 questions; either multiple choice or multiple response",
+      "cost": "100 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "languages": "Arabic, English, French (France), German, Italian, Japanese, Korean, Portuguese (Brazil), Spanish (Latin America), Spanish (Spain), Simplified Chinese, and Traditional Chinese. The AWS Certified Cloud Practitioner exam in Italian and German will be retired after December 31, 2026."
+    },
+    "aif-c01": {
+      "source": "https://aws.amazon.com/certification/certified-ai-practitioner/",
+      "category": "Foundational",
+      "duration": "90 minutes",
+      "format": "65 questions",
+      "cost": "100 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "Arabic, English, French (France), German, Italian, Japanese, Korean, Portuguese (Brazil), Spanish (Latin America), Spanish (Spain), Simplified Chinese, and Traditional Chinese. The AWS Certified AI Practitioner exam in Italian and German will be retired after October 15, 2026."
+    },
+    "saa-c03": {
+      "source": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
+      "category": "Associate",
+      "duration": "130 minutes",
+      "format": "65 questions; either multiple choice or multiple response",
+      "cost": "150 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, French (France), Italian, Japanese, Korean, Portuguese (Brazil), Spanish (Latin America), Spanish (Spain), Simplified Chinese, and Traditional Chinese. The AWS Certified Solutions Architect - Associate exam in Italian will be retired after December 31, 2026."
+    },
+    "dva-c03": {
+      "source": "https://aws.amazon.com/certification/certified-developer-associate/",
+      "category": "Associate",
+      "duration": "130 minutes",
+      "format": "65 questions; either multiple choice or multiple response",
+      "cost": "150 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, Japanese, Korean, Portuguese (Brazil), Simplified Chinese, and Spanish (Latin America)."
+    },
+    "soa-c03": {
+      "source": "https://aws.amazon.com/certification/certified-cloudops-engineer-associate/",
+      "category": "Associate",
+      "duration": "130 minutes",
+      "format": "65 questions; either multiple choice or multiple response",
+      "cost": "150 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, Japanese, Korean, and Simplified Chinese. The AWS Certified CloudOps Engineer - Associate exam in Simplified Chinese and Korean will be retired after November 19, 2026."
+    },
+    "dea-c01": {
+      "source": "https://aws.amazon.com/certification/certified-data-engineer-associate/",
+      "category": "Associate",
+      "duration": "130 minutes",
+      "format": "65 questions; either multiple choice or multiple response",
+      "cost": "150 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, Japanese, Korean, and Simplified Chinese"
+    },
+    "dop-c02": {
+      "source": "https://aws.amazon.com/certification/certified-devops-engineer-professional/",
+      "category": "Professional",
+      "duration": "180 minutes",
+      "format": "75 questions, either multiple choice or multiple response",
+      "cost": "300 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, Japanese, Korean, and Simplified Chinese. The AWS Certified DevOps Engineer - Professional exam in Korean will be retired after December 31, 2026.",
+      "guide": "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02.html",
+      "passingScore": "750",
+      "scaledScore": "100–1,000",
+      "scoredQuestions": "65",
+      "unscoredQuestions": "10"
+    },
+    "sap-c03": {
+      "source": "https://aws.amazon.com/certification/certified-solutions-architect-professional/",
+      "category": "Professional",
+      "duration": "180 minutes",
+      "format": "75 questions, either multiple choice or multiple response",
+      "cost": "300 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, Japanese, Korean, Portuguese (Brazil), Simplified Chinese, and Spanish (Latin America)"
+    },
+    "aip-c01": {
+      "source": "https://aws.amazon.com/certification/certified-generative-ai-developer-professional/",
+      "category": "Professional",
+      "duration": "180 minutes",
+      "format": "75 questions, either multiple choice or multiple response",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, Japanese, Korean, and Simplified Chinese"
+    },
+    "scs-c03": {
+      "source": "https://aws.amazon.com/certification/certified-security-specialty/",
+      "category": "Specialty",
+      "duration": "170 minutes",
+      "format": "65 questions, either multiple choice or multiple response",
+      "cost": "300 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, Japanese, Korean, Portuguese (Brazil), Simplified Chinese, and Spanish (Latin America). The AWS Certified Security - Specialty exam in Simplified Chinese, Spanish (Latin America), and Portuguese (Brazil) will be retired after December 31, 2026."
+    },
+    "ans-c01": {
+      "source": "https://aws.amazon.com/certification/certified-advanced-networking-specialty/",
+      "category": "Specialty",
+      "duration": "170 minutes",
+      "format": "65 questions, either multiple choice or multiple response",
+      "cost": "300 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
+      "testing": "Pearson VUE testing center or online proctored exam",
+      "languages": "English, Japanese, Korean, and Simplified Chinese"
+    },
+    "aib-c01": {
+      "source": "https://aws.amazon.com/certification/certified-ai-business-strategist/",
+      "category": "Business",
+      "duration": "170 minutes",
+      "format": "85 questions, multiple choice and multiple response",
+      "testing": "Pearson testing center or online proctored exam",
+      "languages": "English, Japanese"
+    }
+  }
+}

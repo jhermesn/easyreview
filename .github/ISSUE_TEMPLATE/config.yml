@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Add yourself to Who passed
+    url: https://github.com/jhermesn/easyreview/blob/main/CONTRIBUTING.md#add-yourself-to-who-passed
+    about: Passed an exam? That's a pull request, not an issue.
+  - name: Report a security problem
+    url: https://github.com/jhermesn/easyreview/security/advisories/new
+    about: Report vulnerabilities privately, not in a public issue.

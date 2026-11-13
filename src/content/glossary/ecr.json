@@ -1,0 +1,106 @@
+[
+  {
+    "term": "Registry",
+    "aliases": [],
+    "definition": "A collection of container-image repositories associated with an account.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html"
+  },
+  {
+    "term": "Repository",
+    "aliases": [],
+    "definition": "A named storage location for container images and compatible artifacts.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html"
+  },
+  {
+    "term": "Image tag",
+    "aliases": [
+      "tag"
+    ],
+    "definition": "A name used to select a container image from a repository.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-pull-ecr-image.html#docker-pull-ecr-image"
+  },
+  {
+    "term": "Image digest",
+    "aliases": [
+      "digest"
+    ],
+    "definition": "The SHA-256 content identifier of an image manifest.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECR.html"
+  },
+  {
+    "term": "Manifest",
+    "aliases": [],
+    "definition": "The image description identified by its digest and used when retrieving a container image.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-pull-ecr-image.html#docker-pull-ecr-image"
+  },
+  {
+    "term": "Manifest list",
+    "aliases": [],
+    "definition": "A list referencing images commonly built for different operating systems or processor architectures.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-multi-architecture-image.html#docker-push-multi-architecture-image"
+  },
+  {
+    "term": "Tag immutability",
+    "aliases": [],
+    "definition": "A repository setting that prevents an existing image tag from being overwritten.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html#image-tag-mutability"
+  },
+  {
+    "term": "CVE",
+    "aliases": [
+      "Common Vulnerabilities and Exposures"
+    ],
+    "definition": "An identifier for a publicly known software vulnerability.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/findings-types.html"
+  },
+  {
+    "term": "Finding",
+    "aliases": [],
+    "definition": "A report describing a vulnerability detected in a software package.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/scanning-ecr.html#ecr-scan-behavior"
+  },
+  {
+    "term": "Lifecycle policy",
+    "aliases": [],
+    "definition": "Repository rules that expire or archive images when retention criteria are met.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html#lifecycle-policy-howitworks"
+  },
+  {
+    "term": "Rule priority",
+    "aliases": [],
+    "definition": "A number determining application order, with smaller numbers taking precedence.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/lifecycle_policy_parameters.html#lp_rule_priority"
+  },
+  {
+    "term": "Principal",
+    "aliases": [],
+    "definition": "The role or user making an AWS request.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic-cross-account.html"
+  },
+  {
+    "term": "Identity policy",
+    "aliases": [],
+    "definition": "A policy attached to an identity that grants or denies its actions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic-cross-account.html"
+  },
+  {
+    "term": "Resource policy",
+    "aliases": [],
+    "definition": "A policy attached to a resource that controls access to it.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html#repository-policy-vs-iam-policy"
+  },
+  {
+    "term": "Task execution role",
+    "aliases": [],
+    "definition": "The IAM role that grants the ECS or Fargate agent permission to pull images and perform other task setup actions.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html"
+  },
+  {
+    "term": "Replication backfill",
+    "aliases": [
+      "backfill"
+    ],
+    "definition": "An operation that copies preexisting images matching current replication rules to a selected destination.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/replication-backfill.html"
+  }
+]

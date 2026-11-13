@@ -1,0 +1,26 @@
+[
+  {
+    "term": "container",
+    "aliases": ["containers"],
+    "definition": "A container packages software so it can run as an application.",
+    "source": "https://aws.amazon.com/what-is/containerization/#amsc1--1u81ae8"
+  },
+  {
+    "term": "identity provider",
+    "aliases": ["IdP"],
+    "definition": "An identity provider authenticates users who need access to a cluster.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html#id_roles_providers"
+  },
+  {
+    "term": "control plane",
+    "aliases": ["Kubernetes control plane"],
+    "definition": "The Kubernetes control plane manages nodes and schedules workloads.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html#_amazon_eks_simplified_kubernetes_management"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": ["Availability Zones"],
+    "definition": "An Availability Zone is an isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones"
+  }
+]

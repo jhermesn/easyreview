@@ -1,0 +1,72 @@
+[
+  {
+    "term": "Stateless inspection",
+    "aliases": [],
+    "definition": "Stateless inspection evaluates each packet without connection context.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-rules-engines.html"
+  },
+  {
+    "term": "Stateful inspection",
+    "aliases": [],
+    "definition": "Stateful inspection evaluates packets in the context of their traffic flow.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-rules-engines.html"
+  },
+  {
+    "term": "Firewall endpoint",
+    "aliases": [],
+    "definition": "A firewall endpoint is the VPC traffic insertion point for a firewall policy.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/vpc-config-subnets.html"
+  },
+  {
+    "term": "Route table",
+    "aliases": [],
+    "definition": "A route table contains rules that choose where network traffic is directed.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/vpc-config-route-tables.html"
+  },
+  {
+    "term": "Symmetric routing",
+    "aliases": [],
+    "definition": "Symmetric routing sends both directions of a flow through the same firewall endpoint.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/asymmetric-routing.html"
+  },
+  {
+    "term": "Suricata",
+    "aliases": [],
+    "definition": "Suricata is an intrusion prevention engine with a rule language supported by Network Firewall.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-rules-engines.html"
+  },
+  {
+    "term": "SNI",
+    "aliases": [
+      "Server Name Indication"
+    ],
+    "definition": "SNI is a TLS handshake field that identifies the hostname requested by a client.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html"
+  },
+  {
+    "term": "HOME_NET",
+    "aliases": [],
+    "definition": "HOME_NET defines the source network address ranges included in domain-list inspection.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html"
+  },
+  {
+    "term": "Rule-group capacity",
+    "aliases": [],
+    "definition": "Rule-group capacity is the processing allowance reserved for rules and fixed when the group is created.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/nwfw-rule-group-capacity.html"
+  },
+  {
+    "term": "TLS",
+    "aliases": [
+      "Transport Layer Security"
+    ],
+    "definition": "TLS is a protocol for encrypting network connections.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_CreateTLSInspectionConfiguration.html"
+  },
+  {
+    "term": "HTTP Host header",
+    "aliases": [],
+    "definition": "The HTTP Host header identifies the hostname requested by an HTTP client.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html"
+  }
+]

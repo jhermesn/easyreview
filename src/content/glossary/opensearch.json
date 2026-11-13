@@ -1,0 +1,32 @@
+[
+  {
+    "term": "domain",
+    "aliases": ["OpenSearch Service domain"],
+    "definition": "An OpenSearch Service domain is a managed cluster with its own settings and resources.",
+    "source": "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html#what-is"
+  },
+  {
+    "term": "index",
+    "aliases": [],
+    "definition": "An OpenSearch index is like a database table, with documents as rows and fields as columns.",
+    "source": "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/bp.html#bp-sharding-strategy"
+  },
+  {
+    "term": "subscription filter",
+    "aliases": [],
+    "definition": "A subscription filter selects log events by pattern and identifies where to send matching events.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html#Subscriptions"
+  },
+  {
+    "term": "virtual private cloud",
+    "aliases": ["VPC"],
+    "definition": "A VPC is a logically isolated virtual network in which AWS resources can run.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc"
+  },
+  {
+    "term": "at-least-once delivery",
+    "aliases": [],
+    "definition": "At-least-once delivery permits duplicate events when delivering a subscription.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html#Subscriptions"
+  }
+]

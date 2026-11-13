@@ -1,0 +1,20 @@
+{
+  "name": "easyreview",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/sync-aws-icons.mjs --check && astro build",
+    "preview": "astro preview",
+    "lint": "node scripts/lint-content.mjs",
+    "lint:links": "lychee 'src/content/sections/**/*.md' 'src/content/glossary/*.json'"
+  },
+  "dependencies": {
+    "@astrojs/markdown-satteri": "0.4.5",
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.4.2",
+    "three": "0.186.1"
+  }
+}

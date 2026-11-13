@@ -1,0 +1,462 @@
+[
+  {
+    "term": "Object",
+    "aliases": [
+      "S3 object"
+    ],
+    "definition": "An object is stored data together with metadata that describes it.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html#API_Object"
+  },
+  {
+    "term": "Bucket",
+    "aliases": [],
+    "definition": "A bucket is a container for objects stored in S3.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#Welcome"
+  },
+  {
+    "term": "Object key",
+    "aliases": [
+      "key"
+    ],
+    "definition": "An object key is the name used to identify an object within its bucket.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html#AmazonS3-Type-Object-Key"
+  },
+  {
+    "term": "Version ID",
+    "aliases": [],
+    "definition": "A version ID identifies a particular saved version of an object.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html#versioning-workflows"
+  },
+  {
+    "term": "Current version",
+    "aliases": [],
+    "definition": "The current version is the most recent version returned when a request does not specify a version ID.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html#versioning-workflows"
+  },
+  {
+    "term": "Noncurrent version",
+    "aliases": [
+      "older version"
+    ],
+    "definition": "A noncurrent version is a saved object version that is no longer current.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html#Versioning"
+  },
+  {
+    "term": "Delete marker",
+    "aliases": [],
+    "definition": "A delete marker is a version that makes an object appear deleted while earlier versions can remain stored.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectVersions.html#DeletingObjectVersions"
+  },
+  {
+    "term": "MFA",
+    "aliases": [
+      "multi-factor authentication"
+    ],
+    "definition": "Multi-factor authentication requires an additional proof of identity beyond security credentials.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html#MultiFactorAuthenticationDelete"
+  },
+  {
+    "term": "MFA delete",
+    "aliases": [],
+    "definition": "MFA delete requires an authentication code for permanent version deletion and bucket versioning-state changes.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html#MultiFactorAuthenticationDelete"
+  },
+  {
+    "term": "Asynchronous replication",
+    "aliases": [],
+    "definition": "Asynchronous replication copies data separately from the original write, so the copy can become available later.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication"
+  },
+  {
+    "term": "Replica",
+    "aliases": [],
+    "definition": "A replica is an object copy that S3 creates in a replication destination bucket.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication"
+  },
+  {
+    "term": "Cross-Region Replication",
+    "aliases": [
+      "CRR"
+    ],
+    "definition": "Cross-Region Replication copies matching objects to buckets in a different AWS Region.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication"
+  },
+  {
+    "term": "Same-Region Replication",
+    "aliases": [
+      "SRR"
+    ],
+    "definition": "Same-Region Replication copies matching objects to buckets in the same AWS Region.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication"
+  },
+  {
+    "term": "Two-way replication",
+    "aliases": [
+      "bidirectional replication"
+    ],
+    "definition": "Two-way replication uses rules in both directions so writes to either bucket can be copied to the other.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "role"
+    ],
+    "definition": "An IAM role is an identity with permissions that a trusted service or caller can assume.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/setting-repl-config-perm-overview.html#setting-repl-config-perm-overview"
+  },
+  {
+    "term": "Bucket policy",
+    "aliases": [],
+    "definition": "A bucket policy is a resource policy that grants or denies access to a bucket and its objects.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html#access-policy-language-overview"
+  },
+  {
+    "term": "Manifest",
+    "aliases": [],
+    "definition": "A manifest lists the object keys and, when required, version IDs that a batch job processes.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html#s3-batch-replication-batch"
+  },
+  {
+    "term": "Completion report",
+    "aliases": [],
+    "definition": "A completion report lists batch job results for the processed objects.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html#s3-batch-replication-batch"
+  },
+  {
+    "term": "Service-level agreement",
+    "aliases": [
+      "SLA"
+    ],
+    "definition": "A service-level agreement defines the service commitment and conditions for service credits.",
+    "source": "https://aws.amazon.com/s3/sla-rtc/"
+  },
+  {
+    "term": "Replication latency",
+    "aliases": [
+      "replication lag"
+    ],
+    "definition": "Replication latency is the maximum delay in seconds between the source and destination for a replication rule.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-dimensions.html#metrics-dimensions"
+  },
+  {
+    "term": "Active-passive",
+    "aliases": [],
+    "definition": "In active-passive routing, active Regions receive requests while passive Regions do not.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/FailoverConfiguration.html#FailoverConfiguration"
+  },
+  {
+    "term": "Active-active",
+    "aliases": [],
+    "definition": "In active-active routing, all configured Regions can receive requests.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/FailoverConfiguration.html#FailoverConfiguration"
+  },
+  {
+    "term": "Failover",
+    "aliases": [],
+    "definition": "Failover shifts requests away from one Region to another Region that can serve them.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/MrapFailover.html#MrapFailover"
+  },
+  {
+    "term": "Storage class",
+    "aliases": [],
+    "definition": "A storage class determines an object storage option with particular access, placement, and billing characteristics.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An Availability Zone is an isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-availability-zones.html#aws-availability-zones"
+  },
+  {
+    "term": "Lifecycle rule",
+    "aliases": [],
+    "definition": "A lifecycle rule selects objects and schedules actions such as storage transitions or expiration.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html#object-lifecycle-mgmt"
+  },
+  {
+    "term": "Minimum storage duration",
+    "aliases": [],
+    "definition": "A minimum storage duration is the billed retention period that can still incur charges when data leaves a storage class early.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#lifecycle-transition-general-considerations"
+  },
+  {
+    "term": "Restore",
+    "aliases": [],
+    "definition": "A restore makes archived object data readable, temporarily for Glacier Flexible Retrieval and Deep Archive.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects.html#restoring-objects"
+  },
+  {
+    "term": "Provisioned capacity",
+    "aliases": [],
+    "definition": "Provisioned capacity reserves capacity for Expedited retrievals from Glacier Flexible Retrieval.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html#restoring-objects-retrieval-options"
+  },
+  {
+    "term": "Write once, read many",
+    "aliases": [
+      "WORM"
+    ],
+    "definition": "Write once, read many is a storage model that protects saved data against overwriting or deletion while allowing reads.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock"
+  },
+  {
+    "term": "Retention period",
+    "aliases": [],
+    "definition": "A retention period protects an object version until its retain-until date.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock"
+  },
+  {
+    "term": "Governance mode",
+    "aliases": [],
+    "definition": "Governance mode protects a version while allowing explicitly authorized requests to bypass retention.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock"
+  },
+  {
+    "term": "Compliance mode",
+    "aliases": [],
+    "definition": "Compliance mode prevents any account user, including root, from deleting a protected version or shortening its retention.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock"
+  },
+  {
+    "term": "Legal hold",
+    "aliases": [],
+    "definition": "A legal hold protects an object version without an expiry date until an authorized caller removes it.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock"
+  },
+  {
+    "term": "Encryption at rest",
+    "aliases": [
+      "at-rest encryption"
+    ],
+    "definition": "Encryption at rest protects data while it is stored on disk.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html#ServerSideEncryptionCustomerKeys"
+  },
+  {
+    "term": "Server-side encryption",
+    "aliases": [
+      "SSE"
+    ],
+    "definition": "Server-side encryption lets S3 encrypt object data during storage and decrypt it for authorized access.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html#ServerSideEncryptionCustomerKeys"
+  },
+  {
+    "term": "SSE-S3",
+    "aliases": [],
+    "definition": "SSE-S3 is server-side object encryption with keys managed by S3.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html#default-encryption-faq"
+  },
+  {
+    "term": "SSE-KMS",
+    "aliases": [],
+    "definition": "SSE-KMS is server-side object encryption using keys managed in AWS KMS.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#UsingKMSEncryption"
+  },
+  {
+    "term": "DSSE-KMS",
+    "aliases": [],
+    "definition": "DSSE-KMS applies two layers of server-side encryption using KMS keys.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingDSSEncryption.html#UsingDSSEncryption"
+  },
+  {
+    "term": "SSE-C",
+    "aliases": [],
+    "definition": "SSE-C is server-side encryption using a key that the caller must supply and retain.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html#ServerSideEncryptionCustomerKeys"
+  },
+  {
+    "term": "Customer managed key",
+    "aliases": [],
+    "definition": "A customer managed key is a KMS key whose policies and lifecycle are controlled by the customer.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#UsingKMSEncryption"
+  },
+  {
+    "term": "Encryption context",
+    "aliases": [],
+    "definition": "Encryption context is additional identifying information supplied to KMS and available for policy conditions.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#UsingKMSEncryption"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An ARN is an AWS identifier for a resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns"
+  },
+  {
+    "term": "Access control list",
+    "aliases": [
+      "ACL"
+    ],
+    "definition": "An access control list is a set of grants attached to a bucket or object.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#acl-overview"
+  },
+  {
+    "term": "Principal",
+    "aliases": [],
+    "definition": "A principal is the person, application identity, or service making an AWS request.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#reference_policies_elements_principal"
+  },
+  {
+    "term": "VPC",
+    "aliases": [
+      "virtual private cloud"
+    ],
+    "definition": "A VPC is a logically isolated virtual network in AWS.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc"
+  },
+  {
+    "term": "VPC endpoint",
+    "aliases": [],
+    "definition": "A VPC endpoint enables private connectivity from a VPC to supported AWS services.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html#concepts"
+  },
+  {
+    "term": "CORS",
+    "aliases": [
+      "cross-origin resource sharing"
+    ],
+    "definition": "CORS uses HTTP headers to tell browsers which cross-origin requests a server permits.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html#cors"
+  },
+  {
+    "term": "Origin",
+    "aliases": [],
+    "definition": "An origin is the combination of a URL protocol, host, and port.",
+    "source": "https://aws.amazon.com/what-is/cross-origin-resource-sharing/"
+  },
+  {
+    "term": "Preflight request",
+    "aliases": [
+      "OPTIONS preflight"
+    ],
+    "definition": "A preflight request asks whether a cross-origin method and its headers are permitted before the browser sends the actual request.",
+    "source": "https://aws.amazon.com/what-is/cross-origin-resource-sharing/"
+  },
+  {
+    "term": "Presigned URL",
+    "aliases": [],
+    "definition": "A presigned URL delegates time-limited access to a specified object operation using its signer permissions.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html#using-presigned-url"
+  },
+  {
+    "term": "Bearer token",
+    "aliases": [],
+    "definition": "A bearer token grants its permitted access to anyone who possesses it while it remains valid.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html#using-presigned-url"
+  },
+  {
+    "term": "Prefix",
+    "aliases": [],
+    "definition": "A prefix is the beginning of an object key used to select related object names.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html#notification-how-to-filtering"
+  },
+  {
+    "term": "Suffix",
+    "aliases": [],
+    "definition": "A suffix is the ending of an object key used to select matching object names.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html#notification-how-to-filtering"
+  },
+  {
+    "term": "Idempotent processing",
+    "aliases": [
+      "idempotency"
+    ],
+    "definition": "Idempotent processing avoids repeating side effects when the same event is received more than once.",
+    "source": "https://aws.amazon.com/blogs/storage/manage-event-ordering-and-duplicate-events-with-amazon-s3-event-notifications/"
+  },
+  {
+    "term": "FIFO",
+    "aliases": [
+      "first in, first out"
+    ],
+    "definition": "FIFO is a queue model that preserves message order within each message group.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-fifo-queues.html#sqs-fifo-queues"
+  },
+  {
+    "term": "Artifact",
+    "aliases": [],
+    "definition": "An artifact is a file produced or consumed during a software pipeline.",
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome-introducing-artifacts.html#welcome-introducing-artifacts"
+  },
+  {
+    "term": "Multipart upload",
+    "aliases": [],
+    "definition": "Multipart upload sends an object in independent parts and assembles them when the upload is completed.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html#mpuoverview"
+  },
+  {
+    "term": "Upload ID",
+    "aliases": [],
+    "definition": "An upload ID identifies the multipart upload used to send, list, complete, or abort its parts.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html#mpuoverview"
+  },
+  {
+    "term": "Checksum",
+    "aliases": [],
+    "definition": "A checksum is a calculated value used to detect whether data changed during transfer or storage.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity-upload.html#checking-object-integrity-upload"
+  },
+  {
+    "term": "ETag",
+    "aliases": [
+      "entity tag"
+    ],
+    "definition": "An ETag is an object content identifier that is an MD5 digest only for certain upload and encryption combinations.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html#AmazonS3-Type-Object-ETag"
+  },
+  {
+    "term": "MD5",
+    "aliases": [],
+    "definition": "MD5 is a digest algorithm that produces a value used to compare data content.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity-upload.html#checking-object-integrity-upload"
+  },
+  {
+    "term": "Edge location",
+    "aliases": [],
+    "definition": "An edge location is a network entry point close to users that can route accelerated uploads toward S3.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html#transfer-acceleration"
+  },
+  {
+    "term": "CSV",
+    "aliases": [
+      "comma-separated values"
+    ],
+    "definition": "CSV is a text report format whose values are separated by commas.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory"
+  },
+  {
+    "term": "ORC",
+    "aliases": [
+      "Apache optimized row columnar"
+    ],
+    "definition": "ORC is a column-oriented data format supported by S3 Inventory.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html#columnar-storage"
+  },
+  {
+    "term": "Parquet",
+    "aliases": [
+      "Apache Parquet"
+    ],
+    "definition": "Parquet is a column-oriented data format supported by S3 Inventory.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html#columnar-storage"
+  },
+  {
+    "term": "Data event",
+    "aliases": [],
+    "definition": "A data event records resource activity such as reading or writing an S3 object.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudtrail-logging-s3-info.html#cloudtrail-logging-s3-info"
+  },
+  {
+    "term": "Signature Version 4",
+    "aliases": [
+      "SigV4"
+    ],
+    "definition": "Signature Version 4 adds authentication information to AWS API requests.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html#reference_sigv"
+  }
+]

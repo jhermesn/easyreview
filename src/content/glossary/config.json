@@ -1,0 +1,411 @@
+[
+  {
+    "term": "Advanced query",
+    "aliases": [
+      "advanced queries"
+    ],
+    "definition": "A property-based search of current recorded resource configurations using Config's supported SQL SELECT syntax.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/querying-AWS-resources.html"
+  },
+  {
+    "term": "Aggregation authorization",
+    "aliases": [
+      "aggregator authorization"
+    ],
+    "definition": "Permission for an aggregator account and Region to collect configuration and compliance data from an individual source account.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/aggregate-data.html"
+  },
+  {
+    "term": "Aggregator",
+    "aliases": [
+      "configuration aggregator"
+    ],
+    "definition": "A Config resource that collects configuration and compliance data from source accounts and Regions into a read-only view.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/aggregate-data.html"
+  },
+  {
+    "term": "Amazon Machine Image",
+    "aliases": [
+      "AMI",
+      "AMIs"
+    ],
+    "definition": "An image supplying the software needed to set up and boot an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html"
+  },
+  {
+    "term": "Automation assume role",
+    "aliases": [
+      "AutomationAssumeRole",
+      "assume role"
+    ],
+    "definition": "The IAM role that Systems Manager Automation assumes to perform a runbook's actions.",
+    "source": "https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-aws-disables3bucketpublicreadwrite.html"
+  },
+  {
+    "term": "Automation runbook",
+    "aliases": [
+      "runbook",
+      "Automation document",
+      "SSM Automation document"
+    ],
+    "definition": "A document defining the actions Systems Manager performs as a sequence of steps.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-documents.html"
+  },
+  {
+    "term": "Compliance",
+    "aliases": [
+      "compliant",
+      "noncompliant",
+      "non-compliant"
+    ],
+    "definition": "Whether a resource's configuration satisfies the conditions of a rule.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config-how-rules-work"
+  },
+  {
+    "term": "Compliance snapshot",
+    "aliases": [
+      "compliance data snapshot"
+    ],
+    "definition": "The periodically captured compliance results that Config uses to select resources for automatic remediation.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation"
+  },
+  {
+    "term": "Concurrency",
+    "aliases": [
+      "parallel execution"
+    ],
+    "definition": "The number of remediation actions allowed to run at the same time.",
+    "source": "https://docs.aws.amazon.com/config/latest/APIReference/API_SsmControls.html#config-Type-SsmControls-ConcurrentExecutionRatePercentage"
+  },
+  {
+    "term": "Configuration history",
+    "aliases": [
+      "resource timeline"
+    ],
+    "definition": "The sequence of recorded configuration items showing how a resource changed over time.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#config-history"
+  },
+  {
+    "term": "Configuration item",
+    "aliases": [
+      "CI",
+      "CIs"
+    ],
+    "definition": "A point-in-time record of a supported resource's configuration, attributes, and relationships.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#config-items"
+  },
+  {
+    "term": "Configuration recorder",
+    "aliases": [
+      "recorder",
+      "customer managed recorder"
+    ],
+    "definition": "The Config component that stores configuration changes for the resource types selected for recording.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html#stop-start-recorder"
+  },
+  {
+    "term": "Configuration snapshot",
+    "aliases": [
+      "resource configuration snapshot"
+    ],
+    "definition": "A collection of configuration items for the resources being recorded in an account.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#config-snapshot"
+  },
+  {
+    "term": "Conformance pack",
+    "aliases": [
+      "organization conformance pack"
+    ],
+    "definition": "A template-defined bundle of Config rules and remediation actions deployed together.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html#conformance-packs"
+  },
+  {
+    "term": "Continuous recording",
+    "aliases": [
+      "Continuous"
+    ],
+    "definition": "Recording configuration changes whenever they occur.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html"
+  },
+  {
+    "term": "CSV",
+    "aliases": [
+      "comma-separated values"
+    ],
+    "definition": "A text format storing fields as comma-separated values.",
+    "source": "https://docs.aws.amazon.com/athena/latest/ug/csv-serde.html"
+  },
+  {
+    "term": "Custom policy rule",
+    "aliases": [
+      "Guard rule"
+    ],
+    "definition": "A Config rule whose configuration checks are expressed in Guard rather than a custom Lambda function.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html"
+  },
+  {
+    "term": "Daily recording",
+    "aliases": [
+      "Daily"
+    ],
+    "definition": "Recording the latest resource state over a 24-hour period only when it differs from the previous recorded configuration item.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html"
+  },
+  {
+    "term": "Dedicated Host",
+    "aliases": [
+      "Dedicated Hosts"
+    ],
+    "definition": "A physical server with EC2 instance capacity dedicated to your use.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html"
+  },
+  {
+    "term": "Delegated administrator",
+    "aliases": [
+      "delegated admin",
+      "delegate"
+    ],
+    "definition": "A member account authorized to administer a specific integrated service across an organization.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html"
+  },
+  {
+    "term": "Delivery channel",
+    "aliases": [],
+    "definition": "The Config destination settings controlling where configuration updates and notifications are sent.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#delivery-channel"
+  },
+  {
+    "term": "Detective evaluation",
+    "aliases": [
+      "detective mode"
+    ],
+    "definition": "Evaluation of the configuration settings of already deployed resources.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-proactive-detective"
+  },
+  {
+    "term": "Dynamic parameter",
+    "aliases": [
+      "resource ID parameter"
+    ],
+    "definition": "A remediation parameter whose value is replaced with the target resource ID at runtime.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation"
+  },
+  {
+    "term": "Event pattern",
+    "aliases": [],
+    "definition": "The conditions EventBridge compares with an event to decide whether to send it to a target.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html"
+  },
+  {
+    "term": "Finding",
+    "aliases": [
+      "findings"
+    ],
+    "definition": "A report describing a security or compliance observation about an affected resource.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html"
+  },
+  {
+    "term": "Guard",
+    "aliases": [
+      "CloudFormation Guard"
+    ],
+    "definition": "A policy-as-code language for expressing checks on resource configuration properties.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules_cfn-guard.html#config-custom-policy-rules"
+  },
+  {
+    "term": "Home Region",
+    "aliases": [],
+    "definition": "The designated Region in which Config records a particular global resource type.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html"
+  },
+  {
+    "term": "Hybrid trigger",
+    "aliases": [
+      "hybrid"
+    ],
+    "definition": "A rule trigger combining configuration-change evaluations with periodic evaluations.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-trigger"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "role"
+    ],
+    "definition": "An assumable identity whose permissions determine which AWS actions it can perform.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "JSON",
+    "aliases": [
+      "JavaScript Object Notation"
+    ],
+    "definition": "A text data format representing structured information with named fields and values.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/example-query.html#example-query"
+  },
+  {
+    "term": "Managed rule",
+    "aliases": [
+      "managed rules"
+    ],
+    "definition": "A predefined Config compliance check created by AWS with customizable settings.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#aws-config-managed-rules-type"
+  },
+  {
+    "term": "Organization rule",
+    "aliases": [
+      "organization Config rule"
+    ],
+    "definition": "A Config rule centrally deployed and managed across accounts in an organization.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/config-rule-multi-account-deployment.html#config-rule-multi-account-deployment"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU",
+      "OUs"
+    ],
+    "definition": "A group of AWS accounts within an organization that can also contain other organizational units.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html"
+  },
+  {
+    "term": "PassRole",
+    "aliases": [
+      "iam:PassRole"
+    ],
+    "definition": "Permission to pass an IAM role to an AWS service so the service can later assume that role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html"
+  },
+  {
+    "term": "Periodic trigger",
+    "aliases": [
+      "periodic"
+    ],
+    "definition": "A rule trigger that starts evaluation at a selected frequency.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-trigger"
+  },
+  {
+    "term": "Proactive evaluation",
+    "aliases": [
+      "proactive mode"
+    ],
+    "definition": "Evaluation of proposed resource properties before deployment without blocking deployment or applying remediation.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-proactive-detective"
+  },
+  {
+    "term": "Remediation",
+    "aliases": [
+      "remediation action"
+    ],
+    "definition": "A corrective action that Config runs through a Systems Manager Automation document for a resource reported as noncompliant.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/remediation.html#remediation"
+  },
+  {
+    "term": "Remediation exception",
+    "aliases": [],
+    "definition": "An exclusion preventing automatic remediation of a specified resource until the exception is cleared.",
+    "source": "https://docs.aws.amazon.com/config/latest/APIReference/API_PutRemediationExceptions.html"
+  },
+  {
+    "term": "Resource",
+    "aliases": [
+      "AWS resource"
+    ],
+    "definition": "An entity created and managed in AWS, such as an EC2 instance, storage volume, or security group.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#aws-resources"
+  },
+  {
+    "term": "Retention period",
+    "aliases": [
+      "RetentionPeriodInDays"
+    ],
+    "definition": "The number of days Config keeps historical configuration item information.",
+    "source": "https://docs.aws.amazon.com/config/latest/APIReference/API_RetentionConfiguration.html#config-Type-RetentionConfiguration-RetentionPeriodInDays"
+  },
+  {
+    "term": "Rule scope",
+    "aliases": [
+      "scope"
+    ],
+    "definition": "The resource types, identifiers, or tags used to decide which resource changes initiate a rule evaluation.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-trigger"
+  },
+  {
+    "term": "Service control policy",
+    "aliases": [
+      "SCP",
+      "SCPs"
+    ],
+    "definition": "An organization policy limiting the maximum permissions available to IAM users and roles in member accounts.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html"
+  },
+  {
+    "term": "Service-linked recorder",
+    "aliases": [
+      "service-linked configuration recorder"
+    ],
+    "definition": "A recorder whose resource scope is set by its linked AWS service.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html#stop-start-recorder"
+  },
+  {
+    "term": "Service-linked rule",
+    "aliases": [
+      "service-linked Config rule"
+    ],
+    "definition": "A Config rule owned and managed by the AWS service that created it.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/service-linked-awsconfig-rules.html#service-linked-awsconfig-rules"
+  },
+  {
+    "term": "SNS topic",
+    "aliases": [
+      "topic"
+    ],
+    "definition": "A communication channel used to publish messages to subscribing endpoints.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html#delivery-channel-SNS-topic"
+  },
+  {
+    "term": "SQL",
+    "aliases": [
+      "Structured Query Language"
+    ],
+    "definition": "A language for storing, processing, and retrieving information in relational databases.",
+    "source": "https://aws.amazon.com/what-is/sql/"
+  },
+  {
+    "term": "Static parameter",
+    "aliases": [],
+    "definition": "A remediation parameter with a fixed value rather than a resource ID substituted at runtime.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation"
+  },
+  {
+    "term": "Tag",
+    "aliases": [
+      "tags"
+    ],
+    "definition": "A label with a key and an optional value used to describe a resource.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html#required-tags"
+  },
+  {
+    "term": "Tenancy",
+    "aliases": [
+      "placement tenancy"
+    ],
+    "definition": "The EC2 placement choice distinguishing shared instances, Dedicated Instances, and Dedicated Hosts.",
+    "source": "https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-tenancy.html"
+  },
+  {
+    "term": "Trust relationship",
+    "aliases": [
+      "trust policy"
+    ],
+    "definition": "The role policy specifying which identities or services may assume the role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html"
+  },
+  {
+    "term": "YAML template",
+    "aliases": [
+      "YAML"
+    ],
+    "definition": "A text document used to describe the Config rules and remediation actions in a conformance pack.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html#conformance-packs"
+  }
+]

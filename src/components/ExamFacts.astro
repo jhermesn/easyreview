@@ -1,0 +1,42 @@
+---
+// Exam logistics from the cert's AWS page and exam guide, refreshed by scripts/guide-watch.mjs.
+import Icon from './Icon.astro';
+import { examFacts, examsRetrieved, firstSentence, restAfterFirstSentence } from '../lib/exams';
+
+interface Props {
+  certId: string;
+}
+const facts = examFacts(Astro.props.certId);
+const rows = facts
+  ? [
+      { icon: 'clock', label: 'Duration', value: facts.duration },
+      { icon: 'cards', label: 'Format', value: facts.format },
+      { icon: 'target', label: 'Passing score', value: facts.passingScore && `${facts.passingScore} (scaled ${facts.scaledScore ?? ''})` },
+      { icon: 'layers', label: 'Scored', value: facts.scoredQuestions && `${facts.scoredQuestions} scored, ${facts.unscoredQuestions ?? 0} unscored` },
+      { icon: 'book', label: 'Cost', value: facts.cost && firstSentence(facts.cost) },
+      { icon: 'docs', label: 'Languages', value: facts.languages && firstSentence(facts.languages), note: facts.languages && restAfterFirstSentence(facts.languages) },
+      { icon: 'calendar', label: 'Testing', value: facts.testing },
+    ].filter((r) => r.value)
+  : [];
+---
+{facts && rows.length > 0 && (
+  <section class="exam" aria-label="Exam facts">
+    <dl>
+      {rows.map((r) => (
+        <div><dt><Icon name={r.icon} size={13} />{r.label}</dt><dd>{r.value}{'note' in r && r.note && <small>{r.note}</small>}</dd></div>
+      ))}
+    </dl>
+    <p class="muted src">
+      From the <a href={facts.source} target="_blank" rel="noopener">AWS certification page</a>{facts.guide && <> and <a href={facts.guide} target="_blank" rel="noopener">exam guide</a></>}, retrieved {examsRetrieved}.
+    </p>
+  </section>
+)}
+
+<style>
+  .exam { margin: 1.2rem 0 0.4rem; border: 1px solid var(--ink-700); background: var(--ink-850); padding: 0.8rem 1rem; }
+  dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 0.6rem 1.2rem; }
+  dt { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--purple); font-weight: 700; }
+  dd { margin: 0.15rem 0 0; font-size: 0.84rem; color: var(--ink-100); line-height: 1.5; }
+  dd small { display: block; margin-top: 0.2rem; font-size: 0.72rem; color: var(--ink-400); }
+  .src { margin: 0.7rem 0 0; font-size: 0.72rem; }
+</style>

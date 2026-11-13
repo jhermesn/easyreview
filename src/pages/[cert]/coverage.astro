@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import { availableCerts, getCert } from '../../lib/certs';
+import { getCertView, getContent, orphanSections, sectionHref } from '../../lib/content';
+import { getGuide, guideProblems, servicesCoverage } from '../../lib/guides';
+import { withBase } from '../../lib/format';
+
+export function getStaticPaths() {
+  return availableCerts().filter((c) => getGuide(c.id)).map((c) => ({ params: { cert: c.id } }));
+}
+const cert = getCert(Astro.params.cert!);
+const guide = getGuide(cert.id)!;
+const view = await getCertView(cert.id);
+const { sections, units } = await getContent();
+const items = guide.domains.flatMap((d) => d.tasks.flatMap((t) => t.items));
+const covered = items.filter((i) => i.sections.length).length;
+const services = servicesCoverage(guide, view, [...units.values()]);
+const allServices = services.flatMap((c) => c.services);
+const problems = guideProblems(guide, view, [...units.values()]);
+if (problems.length) {
+  const report = `[coverage ${cert.id}] ${problems.length} gaps:\n  ${problems.join('\n  ')}`;
+  // CI's content health check sets STRICT_COVERAGE=1 so a gap fails the build instead of warning.
+  if (process.env.STRICT_COVERAGE === '1') throw new Error(report);
+  console.warn(report);
+}
+// Reported once per build: content no cert's guide asks for is either a mapping gap or extra reading.
+if (cert.id === availableCerts()[0].id) {
+  const orphans = await orphanSections(availableCerts().map((c) => c.id));
+  if (orphans.length) console.warn(`[coverage] ${orphans.length} sections no cert maps:\n  ${orphans.join('\n  ')}`);
+}
+const link = (id: string) => (sections.has(id) ? withBase(sectionHref(cert.id, sections.get(id)!)) : '#');
+const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
+---
+<Base title={`Coverage · ${cert.code}`} description={`Which ${cert.code} exam guide items and in-scope AWS services each review topic covers.`} cert={cert.id} heading="Coverage">
+  <div class="article">
+    <h1>Coverage <span class="muted">{cert.code}</span></h1>
+    <p class="muted">
+      Every item of the <a href={guide.source} target="_blank" rel="noopener">official exam guide</a> (retrieved {guide.retrieved}) and the sections that cover it.
+    </p>
+    <p>
+      <span class:list={['pill', covered === items.length ? 'ok' : 'warn']}>{covered}/{items.length} guide items covered</span>
+      <span class:list={['pill', allServices.every((s) => s.sections.length) ? 'ok' : 'warn']}>{allServices.filter((s) => s.sections.length).length}/{allServices.length} in-scope services mentioned</span>
+    </p>
+
+    {guide.domains.map((d) => (
+      <section>
+        <h2>{d.name}</h2>
+        {d.tasks.map((task) => (
+          <>
+            <h3>Task {task.id}: {task.title}</h3>
+            <ul class="items">
+              {task.items.map((i) => (
+                <li class:list={{ gap: !i.sections.length }}>
+                  <span class="kind">{i.kind === 'skill' ? 'skill' : 'know'}</span>
+                  {i.text}
+                  <span class="links">{i.sections.length ? i.sections.map((id) => <a href={link(id)}>{titleOf(id)}</a>) : <b>not covered</b>}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ))}
+      </section>
+    ))}
+
+    <h2>In-scope services</h2>
+    {services.map((c) => (
+      <>
+        <h3>{c.category}</h3>
+        <ul class="services">
+          {c.services.map((s) => (
+            <li class:list={{ gap: !s.sections.length }} title={s.sections.map((x) => x.data.title).join(', ') || 'not mentioned in any section'}>
+              {s.sections.length ? <a href={link(s.sections[0].id)}>{s.name}</a> : s.name}
+              <small>{s.sections.length || '0'}</small>
+            </li>
+          ))}
+        </ul>
+      </>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .items { list-style: none; padding: 0; }
+  .items li { padding: 0.35rem 0 0.35rem 0.6rem; border-left: 2px solid var(--mint); margin: 0.3rem 0; font-size: 0.88rem; line-height: 1.55; }
+  .items li.gap { border-left-color: var(--magenta); }
+  .kind { font-size: 0.68rem; text-transform: uppercase; color: var(--ink-400); margin-right: 0.4rem; }
+  .links { display: block; font-size: 0.8rem; }
+  .links a { margin-right: 0.8rem; color: var(--ink-300); }
+  .links b { color: var(--magenta); font-weight: 400; }
+  .services { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .services li { border: 1px solid color-mix(in srgb, var(--mint) 45%, transparent); padding: 0.1rem 0.5rem; font-size: 0.8rem; }
+  .services li.gap { border-color: var(--magenta); color: var(--magenta); }
+  .services a { text-decoration: none; }
+  .services small { color: var(--ink-400); margin-left: 0.35rem; }
+</style>

@@ -1,0 +1,104 @@
+[
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "An organizational unit groups AWS accounts with common governance requirements.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/design-principles-for-your-multi-account-strategy.html#design-principles-for-your-multi-account-strategy"
+  },
+  {
+    "term": "Service control policy",
+    "aliases": [
+      "SCP"
+    ],
+    "definition": "An SCP limits maximum permissions for identities in organization member accounts without granting access.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#orgs_manage_policies_scps"
+  },
+  {
+    "term": "Resource control policy",
+    "aliases": [
+      "RCP"
+    ],
+    "definition": "An RCP limits access to supported resources in organization member accounts without granting access.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html"
+  },
+  {
+    "term": "Trusted access",
+    "aliases": [],
+    "definition": "Trusted access permits a supported AWS service to perform organization-wide tasks.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html"
+  },
+  {
+    "term": "Delegated administrator",
+    "aliases": [],
+    "definition": "A delegated administrator is a member account authorized to administer a particular service for the organization.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/design-principles-for-your-multi-account-strategy.html#design-principles-for-your-multi-account-strategy"
+  },
+  {
+    "term": "Service-linked role",
+    "aliases": [],
+    "definition": "A service-linked role is a role that an integrated AWS service uses to perform its required tasks.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html"
+  },
+  {
+    "term": "Landing zone",
+    "aliases": [],
+    "definition": "A landing zone is a governed multi-account environment managed through Control Tower.",
+    "source": "https://docs.aws.amazon.com/controltower/latest/userguide/aft-overview.html"
+  },
+  {
+    "term": "StackSet",
+    "aliases": [],
+    "definition": "A StackSet deploys a common CloudFormation template across selected accounts and Regions.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-associate-stackset-with-org.html#stacksets-orgs-associate-stackset-with-org"
+  },
+  {
+    "term": "Stateful",
+    "aliases": [],
+    "definition": "A stateful traffic control remembers allowed connections and permits their response traffic.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+  },
+  {
+    "term": "Stateless",
+    "aliases": [],
+    "definition": "A stateless traffic control evaluates each traffic direction without remembering previous packets.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#vpc-network-acls"
+  },
+  {
+    "term": "Digest file",
+    "aliases": [],
+    "definition": "A digest file contains signed references and hashes used to validate delivered CloudTrail logs.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html"
+  },
+  {
+    "term": "Finding",
+    "aliases": [],
+    "definition": "A finding is a report of a detected security issue.",
+    "source": "https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html#what-is-inspector"
+  },
+  {
+    "term": "TLS",
+    "aliases": [
+      "Transport Layer Security"
+    ],
+    "definition": "TLS is a protocol that protects application connections using encryption and certificates.",
+    "source": "https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html#acm-overview"
+  },
+  {
+    "term": "DDoS",
+    "aliases": [
+      "Distributed denial of service"
+    ],
+    "definition": "A DDoS attack uses distributed traffic to overwhelm an application or network.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html#ddos-overview"
+  },
+  {
+    "term": "Intrusion prevention",
+    "aliases": [
+      "IPS"
+    ],
+    "definition": "Intrusion prevention inspects network traffic for threats and can block matching traffic.",
+    "source": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/what-is-aws-network-firewall.html"
+  }
+]

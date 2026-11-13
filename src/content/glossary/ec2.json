@@ -1,0 +1,140 @@
+[
+  {
+    "term": "AMI",
+    "aliases": ["Amazon Machine Image", "image"],
+    "definition": "A software image used to set up and boot an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs"
+  },
+  {
+    "term": "AWS Region",
+    "aliases": ["Region"],
+    "definition": "A separate geographic area containing AWS infrastructure.",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions-availability-zones.html#aws-regions-availability-zones"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": ["AZ", "zone"],
+    "definition": "An isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions-availability-zones.html#aws-regions-availability-zones"
+  },
+  {
+    "term": "Subnet",
+    "aliases": [],
+    "definition": "A range of IP addresses in a VPC that lies within one Availability Zone.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-basics"
+  },
+  {
+    "term": "Instance type",
+    "aliases": [],
+    "definition": "The choice that determines an EC2 instance's compute, memory and storage hardware capabilities.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-types"
+  },
+  {
+    "term": "Host",
+    "aliases": ["host computer"],
+    "definition": "The physical computer on which an EC2 instance runs.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-types"
+  },
+  {
+    "term": "Volume",
+    "aliases": ["disk volume"],
+    "definition": "A storage device that an instance can use like a disk.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes.html#ebs-volumes"
+  },
+  {
+    "term": "EBS snapshot",
+    "aliases": ["snapshot"],
+    "definition": "A backup of an EBS volume's data at a particular point in time.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html#ebs-snapshots"
+  },
+  {
+    "term": "EBS-backed AMI",
+    "aliases": [],
+    "definition": "A launch image whose disk data comes from EBS snapshots.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html#AMIEncryption"
+  },
+  {
+    "term": "Launch permission",
+    "aliases": [],
+    "definition": "Permission to launch EC2 instances from an AMI without owning that image.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html#considerations-for-sharing-AMI-with-accounts"
+  },
+  {
+    "term": "Customer managed key",
+    "aliases": ["customer managed KMS key"],
+    "definition": "An encryption key that you create and control in AWS KMS.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-mgn-key"
+  },
+  {
+    "term": "AWS managed key",
+    "aliases": ["aws/ebs"],
+    "definition": "A KMS key whose lifecycle and permissions AWS controls for use with its designated service in your account.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-key"
+  },
+  {
+    "term": "Instance store",
+    "aliases": ["ephemeral storage", "local storage"],
+    "definition": "Temporary instance storage provided by disks physically attached to its host.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage"
+  },
+  {
+    "term": "Scratch data",
+    "aliases": ["scratch files"],
+    "definition": "Temporary working data that does not need permanent storage.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage"
+  },
+  {
+    "term": "Hibernation",
+    "aliases": ["hibernate", "suspend-to-disk"],
+    "definition": "Stopping an instance after saving its working memory to its EBS root volume so it can resume later.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#Hibernate"
+  },
+  {
+    "term": "RAM",
+    "aliases": ["volatile memory", "working memory"],
+    "definition": "The instance's working memory, whose contents are lost during automatic recovery.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html#ec2-automatic-instance-recovery-key-concepts"
+  },
+  {
+    "term": "System status check",
+    "aliases": [],
+    "definition": "An EC2 check for problems in the AWS infrastructure running an instance.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#system-status-checks"
+  },
+  {
+    "term": "Instance status check",
+    "aliases": [],
+    "definition": "An EC2 check of an individual instance's software and network connectivity.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#instance-status-checks"
+  },
+  {
+    "term": "Metric",
+    "aliases": [],
+    "definition": "A series of measurements recorded over time.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metric"
+  },
+  {
+    "term": "Alarm",
+    "aliases": ["CloudWatch alarm"],
+    "definition": "A monitor that evaluates a metric against a threshold over a period and can trigger an action.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#CloudWatchAlarms"
+  },
+  {
+    "term": "Elastic Fabric Adapter",
+    "aliases": ["EFA"],
+    "definition": "An EC2 network device for workloads such as machine learning and high performance computing.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa"
+  },
+  {
+    "term": "Elastic IP address",
+    "aliases": ["Elastic IP", "EIP"],
+    "definition": "A static public IPv4 address allocated to your AWS account.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#elastic-ip-addresses-eip"
+  },
+  {
+    "term": "Instance metadata",
+    "aliases": ["metadata"],
+    "definition": "Information about an instance used to configure or manage it.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#ec2-instance-metadata"
+  }
+]

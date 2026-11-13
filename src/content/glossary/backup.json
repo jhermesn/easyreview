@@ -1,0 +1,168 @@
+[
+  {
+    "term": "Recovery point",
+    "aliases": [],
+    "definition": "A saved backup that AWS Backup can use to restore a resource.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/vaults.html"
+  },
+  {
+    "term": "Backup vault",
+    "aliases": [
+      "vault"
+    ],
+    "definition": "A container that stores and organizes recovery points.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/vaults.html"
+  },
+  {
+    "term": "Retention period",
+    "aliases": [
+      "retention"
+    ],
+    "definition": "The length of time a backup is kept before it expires.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html"
+  },
+  {
+    "term": "Lifecycle",
+    "aliases": [],
+    "definition": "The settings that determine when a backup changes storage tier and expires.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html"
+  },
+  {
+    "term": "Incremental backup",
+    "aliases": [],
+    "definition": "A backup that saves changes since earlier backups after an initial full backup.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/about-backup-plans.html"
+  },
+  {
+    "term": "Snapshot",
+    "aliases": [],
+    "definition": "A backup of resource data as captured at a particular time.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-copying.html"
+  },
+  {
+    "term": "Point-in-time recovery",
+    "aliases": [
+      "PITR"
+    ],
+    "definition": "Restoring data to a chosen time within a continuous backup retention period.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html"
+  },
+  {
+    "term": "Start window",
+    "aliases": [],
+    "definition": "The period in which a scheduled backup job is allowed to begin.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html"
+  },
+  {
+    "term": "Completion window",
+    "aliases": [],
+    "definition": "The time allowed for a backup job to finish after it starts.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html"
+  },
+  {
+    "term": "Tag",
+    "aliases": [],
+    "definition": "A key-value label used to select or describe a resource.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An identifier for an AWS resource that can be used in a resource assignment.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "restore role",
+      "copy role"
+    ],
+    "definition": "An AWS identity that a service assumes to perform permitted operations.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/manage-cross-account.html#create-organization"
+  },
+  {
+    "term": "Customer managed key",
+    "aliases": [],
+    "definition": "An encryption key whose access policy the customer can manage.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-mgn-key"
+  },
+  {
+    "term": "Resource policy",
+    "aliases": [
+      "resource-based policy",
+      "vault policy"
+    ],
+    "definition": "A policy attached to a resource that specifies who may access it.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#share-vault-cab"
+  },
+  {
+    "term": "Identity policy",
+    "aliases": [
+      "identity-based policy"
+    ],
+    "definition": "A policy attached to a caller identity that grants its allowed actions.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#prereq-cab"
+  },
+  {
+    "term": "Service-linked role",
+    "aliases": [
+      "SLR"
+    ],
+    "definition": "A role linked to an AWS service that permits that service to act in an account.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#restore-cab"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A group of accounts within an AWS organization to which policies can apply.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/manage-cross-account.html#cross-account-management-overview"
+  },
+  {
+    "term": "Effective policy",
+    "aliases": [],
+    "definition": "The policy produced by combining applicable inherited and directly attached policies.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/manage-cross-account.html#cross-account-management-overview"
+  },
+  {
+    "term": "Delegated administrator",
+    "aliases": [],
+    "definition": "A registered member account with permission to perform administrative tasks across an organization.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/manage-cross-account.html#backup-delegatedadmin"
+  },
+  {
+    "term": "Service control policy",
+    "aliases": [
+      "SCP"
+    ],
+    "definition": "An organization policy that limits permissions available to member accounts.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#designate-destination-accounts-cab"
+  },
+  {
+    "term": "Write once, read many",
+    "aliases": [
+      "WORM"
+    ],
+    "definition": "A retention model that permits reads while preventing early deletion or changes.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#backup-vault-lock-benefits"
+  },
+  {
+    "term": "Grace time",
+    "aliases": [
+      "cooling-off period"
+    ],
+    "definition": "The period in which a compliance vault lock can still be changed or removed.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#lock-backup-vault-console"
+  },
+  {
+    "term": "Service-level agreement",
+    "aliases": [
+      "SLA"
+    ],
+    "definition": "A contractual service guarantee, such as a commitment to a completion time.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/controls-and-remediation.html#restore-time-meets-target-control"
+  }
+]

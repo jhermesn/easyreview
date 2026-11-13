@@ -1,0 +1,194 @@
+[
+  {
+    "term": "Recovery time objective",
+    "aliases": [
+      "RTO"
+    ],
+    "definition": "The longest service interruption a business is prepared to accept.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery"
+  },
+  {
+    "term": "Recovery point objective",
+    "aliases": [
+      "RPO"
+    ],
+    "definition": "The oldest recoverable data a business can accept at interruption, measured as a time gap.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery"
+  },
+  {
+    "term": "Disaster recovery",
+    "aliases": [
+      "DR"
+    ],
+    "definition": "The preparation and actions used to restore a workload after a serious disruption.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/introduction.html#introduction"
+  },
+  {
+    "term": "Failover",
+    "aliases": [],
+    "definition": "The move of production traffic from the primary environment to a recovery environment.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/failback.html#failback"
+  },
+  {
+    "term": "Failback",
+    "aliases": [],
+    "definition": "The return of a recovered workload to its original source infrastructure.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/failback.html#failback"
+  },
+  {
+    "term": "Recovery drill",
+    "aliases": [],
+    "definition": "A rehearsal that launches recovery resources to test the recovery procedure.",
+    "source": "https://docs.aws.amazon.com/drs/latest/userguide/failback.html#failback"
+  },
+  {
+    "term": "Game day",
+    "aliases": [],
+    "definition": "A planned failure exercise involving the teams and procedures used for real incidents.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_testing_resiliency_game_days_resiliency.html#rel_testing_resiliency_game_days_resiliency"
+  },
+  {
+    "term": "Pilot light",
+    "aliases": [],
+    "definition": "A recovery design with data and core infrastructure ready but more resources needed to process requests.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery"
+  },
+  {
+    "term": "Warm standby",
+    "aliases": [],
+    "definition": "A working recovery deployment kept at reduced capacity until it must take over.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery"
+  },
+  {
+    "term": "Hot standby",
+    "aliases": [],
+    "definition": "A recovery deployment kept ready at full capacity.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery"
+  },
+  {
+    "term": "Active-active",
+    "aliases": [
+      "multi-site active-active"
+    ],
+    "definition": "A design in which workloads in multiple Regions serve traffic during normal operation.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery"
+  },
+  {
+    "term": "Infrastructure as code",
+    "aliases": [
+      "IaC"
+    ],
+    "definition": "Infrastructure definitions stored as templates that can deploy the required resources.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud"
+  },
+  {
+    "term": "Asynchronous replication",
+    "aliases": [],
+    "definition": "Copying changes to another data store after the source accepts them.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl"
+  },
+  {
+    "term": "Replication lag",
+    "aliases": [],
+    "definition": "The delay between a source change and its arrival at a replica.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery"
+  },
+  {
+    "term": "Point-in-time recovery",
+    "aliases": [
+      "PITR"
+    ],
+    "definition": "Restoring data to an earlier recoverable state.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud"
+  },
+  {
+    "term": "Data plane",
+    "aliases": [],
+    "definition": "The part of a service that performs its ongoing operational work.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud"
+  },
+  {
+    "term": "Control plane",
+    "aliases": [],
+    "definition": "The part of a service used to create or change its configuration.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud"
+  },
+  {
+    "term": "DNS time to live",
+    "aliases": [
+      "TTL"
+    ],
+    "definition": "The interval for which a DNS resolver can cache an answer before querying again.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/best-practices-dns.html#best-practices-dns"
+  },
+  {
+    "term": "Hard dependency",
+    "aliases": [],
+    "definition": "A component a workload cannot operate without and for which no substitute is available.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery"
+  },
+  {
+    "term": "Soft dependency",
+    "aliases": [],
+    "definition": "A component a workload can temporarily replace or operate without at reduced functionality.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery"
+  },
+  {
+    "term": "Stop condition",
+    "aliases": [],
+    "definition": "A configured threshold that stops an FIS experiment through a CloudWatch alarm.",
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/stop-conditions.html#stop-conditions"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#using-regions-availability-zones"
+  },
+  {
+    "term": "AWS Region",
+    "aliases": [
+      "Region"
+    ],
+    "definition": "A separate geographic area containing multiple isolated Availability Zones.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#using-regions-availability-zones"
+  },
+  {
+    "term": "Read replica",
+    "aliases": [],
+    "definition": "A read-only database copy that receives changes from a source database.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl"
+  },
+  {
+    "term": "Synchronous replication",
+    "aliases": [],
+    "definition": "Replication that keeps a standby database synchronized with its primary.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby"
+  },
+  {
+    "term": "Origin",
+    "aliases": [],
+    "definition": "The server or storage location CloudFront contacts to obtain uncached content.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#high_availability_origin_failover"
+  },
+  {
+    "term": "Last writer wins",
+    "aliases": [],
+    "definition": "Conflict handling that retains the item update with the latest internal timestamp.",
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html#V2globaltables_HowItWorks"
+  },
+  {
+    "term": "Delete marker",
+    "aliases": [],
+    "definition": "A marker in a versioned S3 bucket that makes the object appear deleted without removing its earlier versions.",
+    "source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/delete-marker-replication.html#delete-marker-replication"
+  },
+  {
+    "term": "Logically air-gapped vault",
+    "aliases": [],
+    "definition": "An AWS Backup vault with compliance-mode vault lock that can be shared with other accounts for recovery.",
+    "source": "https://docs.aws.amazon.com/aws-backup/latest/devguide/logicallyairgappedvault.html#lag-overview"
+  }
+]

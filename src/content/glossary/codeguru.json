@@ -1,0 +1,20 @@
+[
+  {
+    "term": "pull request",
+    "aliases": [],
+    "definition": "A proposal to change code in a repository.",
+    "source": "https://docs.aws.amazon.com/codecommit/latest/userguide/pull-requests.html"
+  },
+  {
+    "term": "CPU bottleneck",
+    "aliases": [],
+    "definition": "A performance constraint caused by processor usage.",
+    "source": "https://docs.aws.amazon.com/codeguru/latest/profiler-ug/what-is-codeguru-profiler.html#what-is-codeguru-profiler"
+  },
+  {
+    "term": "heap",
+    "aliases": ["heap summary"],
+    "definition": "An area of application memory used for allocated objects.",
+    "source": "https://docs.aws.amazon.com/codeguru/latest/profiler-ug/working-with-visualizations-heap-summary.html#used-space"
+  }
+]

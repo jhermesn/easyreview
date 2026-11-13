@@ -1,0 +1,32 @@
+[
+  {
+    "term": "Shell",
+    "aliases": [],
+    "definition": "A command-line environment in which a user runs commands.",
+    "source": "https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#welcome"
+  },
+  {
+    "term": "Persistent storage",
+    "aliases": [],
+    "definition": "Storage whose data remains available between shell sessions.",
+    "source": "https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#persistent-storage"
+  },
+  {
+    "term": "CloudShell VPC environment",
+    "aliases": ["VPC environment"],
+    "definition": "A CloudShell environment that uses a selected VPC, subnet and security groups.",
+    "source": "https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#cshell-VPC-env"
+  },
+  {
+    "term": "Subnet",
+    "aliases": [],
+    "definition": "A range of IP addresses within a VPC.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#amazon-vpc-features"
+  },
+  {
+    "term": "Security group",
+    "aliases": [],
+    "definition": "A set of rules controlling traffic to and from associated resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups"
+  }
+]

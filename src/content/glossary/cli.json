@@ -1,0 +1,51 @@
+[
+  {
+    "term": "Pagination",
+    "aliases": [],
+    "definition": "Pagination divides a large service result set into smaller pages retrieved through separate calls.",
+    "source": "https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html"
+  },
+  {
+    "term": "Continuation token",
+    "aliases": [
+      "NextToken",
+      "starting token"
+    ],
+    "definition": "A continuation token records where the CLI should resume retrieving a result set.",
+    "source": "https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html"
+  },
+  {
+    "term": "Pager",
+    "aliases": [],
+    "definition": "A pager is a local program that displays terminal output one screen at a time.",
+    "source": "https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html"
+  },
+  {
+    "term": "Throttling",
+    "aliases": [],
+    "definition": "Throttling is a service response that limits an excessive request rate and can be retried.",
+    "source": "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-retries.html"
+  },
+  {
+    "term": "Transient error",
+    "aliases": [],
+    "definition": "A transient error is a temporary failure such as a connection problem that may succeed on retry.",
+    "source": "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-retries.html"
+  },
+  {
+    "term": "Exponential backoff",
+    "aliases": [
+      "backoff"
+    ],
+    "definition": "Exponential backoff increases waiting time between retry attempts.",
+    "source": "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-retries.html"
+  },
+  {
+    "term": "Return code",
+    "aliases": [
+      "exit code"
+    ],
+    "definition": "A return code is the process status that a CLI command reports after it finishes.",
+    "source": "https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-returncodes.html"
+  }
+]

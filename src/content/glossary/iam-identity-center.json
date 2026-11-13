@@ -1,0 +1,44 @@
+[
+  {
+    "term": "Identity source",
+    "aliases": [],
+    "definition": "The place where users and groups are managed.",
+    "source": "https://docs.aws.amazon.com/singlesignon/latest/userguide/manage-your-identity-source.html"
+  },
+  {
+    "term": "Permission set",
+    "aliases": [],
+    "definition": "A template of IAM policies used to assign access to AWS accounts.",
+    "source": "https://docs.aws.amazon.com/singlesignon/latest/userguide/permissionsetsconcept.html"
+  },
+  {
+    "term": "SCIM",
+    "aliases": ["System for Cross-domain Identity Management"],
+    "definition": "A protocol for synchronizing user and group information between identity systems.",
+    "source": "https://docs.aws.amazon.com/singlesignon/latest/userguide/provision-automatically.html"
+  },
+  {
+    "term": "SAML",
+    "aliases": ["Security Assertion Markup Language"],
+    "definition": "A standard for exchanging user information between an identity provider and a service provider.",
+    "source": "https://docs.aws.amazon.com/singlesignon/latest/userguide/customermanagedapps-saml2-oauth2.html#samlfederationconcept"
+  },
+  {
+    "term": "Permissions boundary",
+    "aliases": [],
+    "definition": "A managed policy that sets the maximum permissions an identity-based policy can grant to an IAM user or role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html"
+  },
+  {
+    "term": "Attribute-based access control",
+    "aliases": ["ABAC"],
+    "definition": "Access control that uses attributes such as department to determine access to resources.",
+    "source": "https://docs.aws.amazon.com/singlesignon/latest/userguide/attributesforaccesscontrol.html"
+  },
+  {
+    "term": "Session tag",
+    "aliases": [],
+    "definition": "An attribute passed to an AWS session for use in access policies.",
+    "source": "https://docs.aws.amazon.com/singlesignon/latest/userguide/attributesforaccesscontrol.html"
+  }
+]

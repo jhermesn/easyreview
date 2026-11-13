@@ -1,0 +1,60 @@
+[
+  {
+    "term": "PII",
+    "aliases": [
+      "Personally identifiable information"
+    ],
+    "definition": "PII is personal information that can identify an individual.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html"
+  },
+  {
+    "term": "Managed data identifier",
+    "aliases": [],
+    "definition": "A managed data identifier is built-in detection logic for a specific sensitive data type.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html"
+  },
+  {
+    "term": "Custom data identifier",
+    "aliases": [],
+    "definition": "A custom data identifier is detection logic built from a text pattern and optional context criteria.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/custom-data-identifiers.html"
+  },
+  {
+    "term": "Regular expression",
+    "aliases": [
+      "regex"
+    ],
+    "definition": "A regular expression defines a pattern that text must match.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/custom-data-identifiers.html"
+  },
+  {
+    "term": "Allow list",
+    "aliases": [],
+    "definition": "An allow list defines text or patterns that sensitive data analysis should ignore.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/allow-lists.html"
+  },
+  {
+    "term": "Sampling depth",
+    "aliases": [],
+    "definition": "Sampling depth is the percentage of eligible objects selected for job analysis.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-scope.html"
+  },
+  {
+    "term": "Delegated administrator",
+    "aliases": [],
+    "definition": "A delegated administrator is the account chosen to manage Macie for an organization.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/accounts-mgmt-ao-integrate.html"
+  },
+  {
+    "term": "Trusted service access",
+    "aliases": [],
+    "definition": "Trusted service access allows an AWS service to integrate with Organizations on behalf of the organization.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/accounts-mgmt-ao-integrate.html"
+  },
+  {
+    "term": "Discovery result",
+    "aliases": [],
+    "definition": "A discovery result records an object analysis even when it finds no sensitive data or encounters an error.",
+    "source": "https://docs.aws.amazon.com/macie/latest/user/discovery-jobs.html"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "term": "Data warehouse",
+    "aliases": ["warehouse"],
+    "definition": "A store used to analyze data with SQL and business intelligence tools.",
+    "source": "https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome"
+  },
+  {
+    "term": "Enhanced VPC routing",
+    "aliases": [],
+    "definition": "A Redshift setting that routes COPY and UNLOAD traffic through a VPC.",
+    "source": "https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html#enhanced-vpc-routing"
+  },
+  {
+    "term": "Virtual private cloud",
+    "aliases": ["VPC"],
+    "definition": "A logically isolated virtual network for AWS resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc"
+  },
+  {
+    "term": "External table",
+    "aliases": [],
+    "definition": "A table definition that lets Redshift query data stored outside the warehouse.",
+    "source": "https://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-external-tables.html#c-spectrum-external-tables"
+  },
+  {
+    "term": "External schema",
+    "aliases": [],
+    "definition": "A collection of external tables that references a database in an external data catalog.",
+    "source": "https://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-external-schemas.html#c-spectrum-external-schemas"
+  },
+  {
+    "term": "Data catalog",
+    "aliases": [],
+    "definition": "A store of descriptions of data such as table definitions.",
+    "source": "https://docs.aws.amazon.com/glue/latest/dg/components-overview.html#data-catalog-intro"
+  },
+  {
+    "term": "Gateway endpoint",
+    "aliases": ["S3 gateway endpoint"],
+    "definition": "A VPC route target that connects the VPC to S3 without an internet gateway or NAT device.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-s3"
+  }
+]

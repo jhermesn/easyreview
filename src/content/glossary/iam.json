@@ -1,0 +1,359 @@
+[
+  {
+    "term": "principal",
+    "aliases": [],
+    "definition": "The identity making a request or receiving a permission grant.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#reference_policies_elements_principal"
+  },
+  {
+    "term": "policy",
+    "aliases": [],
+    "definition": "A document that defines permissions or permission limits for requests.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies"
+  },
+  {
+    "term": "identity-based policy",
+    "aliases": [
+      "identity policy"
+    ],
+    "definition": "A policy attached to an identity to define its allowed actions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_id-based"
+  },
+  {
+    "term": "resource-based policy",
+    "aliases": [
+      "resource policy"
+    ],
+    "definition": "A policy attached to a resource that specifies which principals can access it.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_resource-based"
+  },
+  {
+    "term": "trust policy",
+    "aliases": [],
+    "definition": "The resource policy on a role that controls who may assume it.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#term_trust-policy"
+  },
+  {
+    "term": "permissions policy",
+    "aliases": [],
+    "definition": "A policy defining the actions and resources an identity can use.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies"
+  },
+  {
+    "term": "instance profile",
+    "aliases": [],
+    "definition": "A container that passes an IAM role to an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html#id_roles_use_switch-role-ec2_instance-profiles"
+  },
+  {
+    "term": "instance metadata",
+    "aliases": [],
+    "definition": "Information available to applications on an EC2 instance, including its temporary role credentials.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-roles"
+  },
+  {
+    "term": "SDK",
+    "aliases": [
+      "software development kit"
+    ],
+    "definition": "A programming library that helps an application call AWS service APIs.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#id_credentials_temp_request"
+  },
+  {
+    "term": "session",
+    "aliases": [],
+    "definition": "A period of temporary access represented by credentials with an expiration time.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags"
+  },
+  {
+    "term": "session token",
+    "aliases": [],
+    "definition": "The security token used with the access key pair in temporary AWS credentials.",
+    "source": "https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#API_AssumeRole"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An identifier that uniquely names an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#arns-syntax"
+  },
+  {
+    "term": "implicit deny",
+    "aliases": [],
+    "definition": "The absence of an applicable policy Allow for a request.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic_policy-eval-denyallow.html#reference_policies_evaluation-logic_policy-eval-denyallow"
+  },
+  {
+    "term": "explicit deny",
+    "aliases": [],
+    "definition": "A matching Deny statement that overrides an Allow.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic_policy-eval-denyallow.html#reference_policies_evaluation-logic_policy-eval-denyallow"
+  },
+  {
+    "term": "permissions boundary",
+    "aliases": [],
+    "definition": "A managed policy that limits what identity policies can grant a user or role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries"
+  },
+  {
+    "term": "session policy",
+    "aliases": [],
+    "definition": "A policy passed with a temporary session request to limit its identity-policy permissions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
+  },
+  {
+    "term": "managed policy",
+    "aliases": [],
+    "definition": "A standalone identity policy reusable across several identities.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#managedpolicy"
+  },
+  {
+    "term": "inline policy",
+    "aliases": [],
+    "definition": "An identity policy embedded in and tied to one identity.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#inline"
+  },
+  {
+    "term": "service control policy",
+    "aliases": [
+      "SCP"
+    ],
+    "definition": "An organization policy that limits permissions of principals in affected accounts.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_scp"
+  },
+  {
+    "term": "resource control policy",
+    "aliases": [
+      "RCP"
+    ],
+    "definition": "An organization policy that limits permissions available for resources in affected accounts.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_rcp"
+  },
+  {
+    "term": "partition",
+    "aliases": [],
+    "definition": "A separate AWS environment containing a group of Regions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#arns-syntax"
+  },
+  {
+    "term": "AMI",
+    "aliases": [
+      "Amazon Machine Image",
+      "machine image"
+    ],
+    "definition": "An image used as the source for launching an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs"
+  },
+  {
+    "term": "VPC",
+    "aliases": [
+      "virtual private cloud"
+    ],
+    "definition": "A logically isolated virtual network for AWS resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc"
+  },
+  {
+    "term": "VPC endpoint",
+    "aliases": [],
+    "definition": "A connection used to reach a supported service from a VPC without requiring an internet gateway.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#amazon-vpc-features"
+  },
+  {
+    "term": "role chaining",
+    "aliases": [],
+    "definition": "Using one role session to assume another role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#iam-term-role-chaining"
+  },
+  {
+    "term": "source identity",
+    "aliases": [],
+    "definition": "An origin identifier attached to a role session that persists through role chaining.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceidentity"
+  },
+  {
+    "term": "transitive session tag",
+    "aliases": [],
+    "definition": "A session tag configured to persist into later role sessions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_role-chaining"
+  },
+  {
+    "term": "external ID",
+    "aliases": [],
+    "definition": "A customer-specific value checked when a vendor assumes a customer role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_common-scenarios_third-party"
+  },
+  {
+    "term": "confused deputy",
+    "aliases": [],
+    "definition": "A trusted service tricked into using its authority for someone other than the intended customer.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html#id_roles_third-party_external-id"
+  },
+  {
+    "term": "MFA",
+    "aliases": [
+      "multi-factor authentication"
+    ],
+    "definition": "Authentication that uses an additional independent factor beyond the initial sign-in credential.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html#id_credentials_mfa"
+  },
+  {
+    "term": "service principal",
+    "aliases": [],
+    "definition": "The identity of an AWS service used in a role trust policy.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html#id_roles_use_passrole"
+  },
+  {
+    "term": "service role",
+    "aliases": [],
+    "definition": "A role an AWS service assumes to perform work for a customer.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create-service-linked-role.html#id_roles_create-service-linked-role"
+  },
+  {
+    "term": "service-linked role",
+    "aliases": [],
+    "definition": "A role linked to an AWS service whose trust and permissions that service defines.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create-service-linked-role.html#id_roles_create-service-linked-role"
+  },
+  {
+    "term": "privilege escalation",
+    "aliases": [],
+    "definition": "Gaining authority beyond intended permissions, for example through a service using an overly powerful passed role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html#id_roles_use_passrole"
+  },
+  {
+    "term": "federation",
+    "aliases": [],
+    "definition": "Using authentication from an external identity system to obtain AWS access.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html#id_roles_providers_saml"
+  },
+  {
+    "term": "identity provider",
+    "aliases": [
+      "IdP"
+    ],
+    "definition": "A system that authenticates identities and supplies evidence of that authentication.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html#id_roles_providers_oidc"
+  },
+  {
+    "term": "SAML",
+    "aliases": [
+      "Security Assertion Markup Language"
+    ],
+    "definition": "A standard for exchanging identity authentication assertions between systems.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html#id_roles_providers_saml"
+  },
+  {
+    "term": "assertion",
+    "aliases": [],
+    "definition": "A signed identity-provider statement used as evidence of authentication.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html#CreatingSAML-configuring"
+  },
+  {
+    "term": "OIDC",
+    "aliases": [
+      "OpenID Connect"
+    ],
+    "definition": "An identity standard whose provider tokens can be exchanged for AWS role credentials.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html#id_roles_providers_oidc"
+  },
+  {
+    "term": "claim",
+    "aliases": [],
+    "definition": "A named field in an identity token that describes its subject or authentication context.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Create_GitHub"
+  },
+  {
+    "term": "audience",
+    "aliases": [
+      "aud"
+    ],
+    "definition": "The intended recipient identified by an identity token.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Prerequisites"
+  },
+  {
+    "term": "subject",
+    "aliases": [
+      "sub"
+    ],
+    "definition": "The identity represented by a token.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html#idp_oidc_Prerequisites"
+  },
+  {
+    "term": "identity broker",
+    "aliases": [],
+    "definition": "An application that exchanges identity information for temporary credentials for its users.",
+    "source": "https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html#API_GetFederationToken"
+  },
+  {
+    "term": "RBAC",
+    "aliases": [
+      "role-based access control"
+    ],
+    "definition": "Authorization based on a person's job function.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html#introduction_attribute-based-access-control"
+  },
+  {
+    "term": "ABAC",
+    "aliases": [
+      "attribute-based access control"
+    ],
+    "definition": "Authorization based on attributes such as matching principal and resource tags.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html#introduction_attribute-based-access-control"
+  },
+  {
+    "term": "tag",
+    "aliases": [],
+    "definition": "A key-value label used to describe an identity or resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html#introduction_attribute-based-access-control"
+  },
+  {
+    "term": "session tag",
+    "aliases": [],
+    "definition": "A temporary key-value attribute passed into a session for access-control decisions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags"
+  },
+  {
+    "term": "policy variable",
+    "aliases": [],
+    "definition": "A placeholder resolved from request context when a policy is evaluated.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_resource.html#reference_policies_elements_resource_policy-variables"
+  },
+  {
+    "term": "prefix",
+    "aliases": [],
+    "definition": "The beginning of an S3 object key used to select a set of objects.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_s3_home-directory-console.html#reference_policies_examples_s3_home-directory-console"
+  },
+  {
+    "term": "permission set",
+    "aliases": [],
+    "definition": "A collection of policies defining assigned account permissions in IAM Identity Center.",
+    "source": "https://docs.aws.amazon.com/singlesignon/latest/userguide/permissionsetsconcept.html#permissionsetsconcept"
+  },
+  {
+    "term": "zone of trust",
+    "aliases": [],
+    "definition": "The account or organization treated as trusted by an external access analyzer.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer"
+  },
+  {
+    "term": "finding",
+    "aliases": [],
+    "definition": "A report of access identified by an analyzer for review.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer"
+  },
+  {
+    "term": "least privilege",
+    "aliases": [],
+    "definition": "Granting only the permissions needed for the task.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#grant-least-priv"
+  },
+  {
+    "term": "data event",
+    "aliases": [],
+    "definition": "A record of an operation performed on or within a resource, such as reading an S3 object.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events-with-cloudtrail"
+  }
+]

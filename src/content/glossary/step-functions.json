@@ -1,0 +1,98 @@
+[
+  {
+    "term": "State machine",
+    "aliases": [],
+    "definition": "A definition of workflow states and the transitions between them.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html#concepts-amazon-states-language"
+  },
+  {
+    "term": "Execution",
+    "aliases": [
+      "workflow run"
+    ],
+    "definition": "One run of a state machine.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-view-execution-details.html#concepts-view-execution-details"
+  },
+  {
+    "term": "Idempotent action",
+    "aliases": [
+      "idempotency"
+    ],
+    "definition": "An action whose repeated execution does not change its intended outcome.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/choosing-workflow-type.html#choosing-workflow-type"
+  },
+  {
+    "term": "Amazon States Language",
+    "aliases": [
+      "ASL"
+    ],
+    "definition": "The JSON-based language used to define Step Functions state machines.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html#concepts-amazon-states-language"
+  },
+  {
+    "term": "State transition",
+    "aliases": [],
+    "definition": "Movement from one workflow state to the next.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/workflow-states.html"
+  },
+  {
+    "term": "Task token",
+    "aliases": [
+      "taskToken"
+    ],
+    "definition": "A unique value that associates an external completion response with a waiting task.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token"
+  },
+  {
+    "term": "Heartbeat",
+    "aliases": [],
+    "definition": "A signal that a worker is still active while its task waits to finish.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/state-task.html#task-state-fields"
+  },
+  {
+    "term": "Backoff",
+    "aliases": [
+      "BackoffRate"
+    ],
+    "definition": "An increase in the delay between repeated attempts after failure.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-retrying-after-an-error"
+  },
+  {
+    "term": "Jitter",
+    "aliases": [
+      "JitterStrategy"
+    ],
+    "definition": "Random variation in retry delay that spreads attempts over time.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-retrying-after-an-error"
+  },
+  {
+    "term": "Execution role",
+    "aliases": [],
+    "definition": "An IAM role granting a state machine permission to access AWS resources.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/procedure-create-iam-role.html#procedure-create-iam-role"
+  },
+  {
+    "term": "Activity worker",
+    "aliases": [],
+    "definition": "A program that polls for an activity task and returns its result with a task token.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html#activities-overview"
+  },
+  {
+    "term": "Context object",
+    "aliases": [],
+    "definition": "An internal object containing execution and task information.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token"
+  },
+  {
+    "term": "JSONPath",
+    "aliases": [],
+    "definition": "A path notation used to select fields from JSON data.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/input-output-resultpath.html#input-output-resultpath"
+  },
+  {
+    "term": "Workflow variable",
+    "aliases": [],
+    "definition": "A named stored value that later workflow steps can reference.",
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/workflow-variables.html#workflow-variables"
+  }
+]

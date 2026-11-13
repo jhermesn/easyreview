@@ -1,0 +1,156 @@
+[
+  {
+    "term": "Security posture",
+    "aliases": [
+      "posture"
+    ],
+    "definition": "The security state of resources assessed against security requirements.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html"
+  },
+  {
+    "term": "Finding",
+    "aliases": [],
+    "definition": "A record of a security check or a security-related detection.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-concepts.html"
+  },
+  {
+    "term": "Control",
+    "aliases": [],
+    "definition": "A security requirement evaluated by one or more checks.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-concepts.html"
+  },
+  {
+    "term": "Security standard",
+    "aliases": [],
+    "definition": "A group of related security controls based on a security framework.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html"
+  },
+  {
+    "term": "AWS Security Finding Format",
+    "aliases": [
+      "ASFF"
+    ],
+    "definition": "The common structure CSPM uses to represent findings from different providers.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html"
+  },
+  {
+    "term": "Configuration recorder",
+    "aliases": [],
+    "definition": "An AWS Config component that captures resource configuration data.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-setup-prereqs.html#securityhub-setup-prereqs"
+  },
+  {
+    "term": "Service-linked rule",
+    "aliases": [],
+    "definition": "An AWS Config rule created and managed by an AWS service for its checks.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-setup-prereqs.html#securityhub-setup-prereqs"
+  },
+  {
+    "term": "Service-linked configuration recorder",
+    "aliases": [],
+    "definition": "A recorder created and managed by an AWS service to capture the resource settings that service needs.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-setup-prereqs.html#service-linked-config-recorder"
+  },
+  {
+    "term": "Delegated administrator",
+    "aliases": [],
+    "definition": "An account designated to manage CSPM on behalf of an organization.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/designate-orgs-admin-account.html"
+  },
+  {
+    "term": "Member account",
+    "aliases": [],
+    "definition": "An account that grants an administrator access to view and act on its findings.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-concepts.html"
+  },
+  {
+    "term": "Home Region",
+    "aliases": [
+      "aggregation Region"
+    ],
+    "definition": "The Region where CSPM collects linked-Region data and manages central configuration.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/finding-aggregation.html"
+  },
+  {
+    "term": "Linked Region",
+    "aliases": [],
+    "definition": "A Region connected to a home Region for aggregation and optional central configuration.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/central-configuration-intro.html#central-configuration-concepts"
+  },
+  {
+    "term": "Insight",
+    "aliases": [],
+    "definition": "A grouped collection of related findings used to identify an area needing attention.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-concepts.html"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A container for accounts in an organization hierarchy.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/designate-orgs-admin-account.html"
+  },
+  {
+    "term": "Configuration policy",
+    "aliases": [],
+    "definition": "A complete set of CSPM service, standard, and control settings associated with organization targets.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/configuration-policies-overview.html"
+  },
+  {
+    "term": "Policy inheritance",
+    "aliases": [],
+    "definition": "Receiving a configuration from the closest associated parent when no direct association overrides it.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/configuration-policies-overview.html#policy-association"
+  },
+  {
+    "term": "Self-managed account",
+    "aliases": [],
+    "definition": "An account allowed to configure its own CSPM settings separately in each Region.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/central-configuration-intro.html"
+  },
+  {
+    "term": "Opt-in Region",
+    "aliases": [],
+    "definition": "A Region disabled for an account until explicitly enabled.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/start-central-configuration.html#home-region-prereq"
+  },
+  {
+    "term": "Workflow status",
+    "aliases": [],
+    "definition": "The investigation state of a finding tracked in Workflow.Status.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-concepts.html"
+  },
+  {
+    "term": "Suppression",
+    "aliases": [],
+    "definition": "Marking a finding as requiring no action while leaving the underlying control checks enabled.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/controls-findings-create-update.html"
+  },
+  {
+    "term": "Custom action",
+    "aliases": [],
+    "definition": "A CSPM action that sends selected findings or insight results to EventBridge.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cwe-custom-actions.html"
+  },
+  {
+    "term": "Event pattern",
+    "aliases": [],
+    "definition": "The conditions an EventBridge rule uses to choose events that invoke a target.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cwe-all-findings.html"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An identifier for an AWS resource such as a custom action.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cwe-custom-actions.html"
+  },
+  {
+    "term": "Assume a role",
+    "aliases": [],
+    "definition": "Temporarily use an IAM role's permissions to act in an account.",
+    "source": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cwe-send.html"
+  }
+]

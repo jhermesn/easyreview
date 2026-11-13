@@ -1,0 +1,60 @@
+[
+  {
+    "term": "Scalable target",
+    "aliases": [],
+    "definition": "A scalable target is a registered resource capacity dimension that Application Auto Scaling can change.",
+    "source": "https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html"
+  },
+  {
+    "term": "Service namespace",
+    "aliases": [],
+    "definition": "A service namespace identifies which AWS service owns a scalable target.",
+    "source": "https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html"
+  },
+  {
+    "term": "Scalable dimension",
+    "aliases": [],
+    "definition": "A scalable dimension identifies the specific capacity value to change, such as ECS desired task count.",
+    "source": "https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html"
+  },
+  {
+    "term": "Target tracking",
+    "aliases": [],
+    "definition": "Target tracking adjusts capacity to keep a utilization or throughput metric near a chosen value.",
+    "source": "https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html"
+  },
+  {
+    "term": "Cooldown",
+    "aliases": [],
+    "definition": "A cooldown is a period that gives a previous scaling activity time to take effect.",
+    "source": "https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html"
+  },
+  {
+    "term": "Scale out",
+    "aliases": [
+      "scale-out"
+    ],
+    "definition": "Scaling out adds capacity to handle more demand.",
+    "source": "https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html"
+  },
+  {
+    "term": "Scale in",
+    "aliases": [
+      "scale-in"
+    ],
+    "definition": "Scaling in removes capacity when demand decreases.",
+    "source": "https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html"
+  },
+  {
+    "term": "Alarm breach",
+    "aliases": [],
+    "definition": "An alarm breach occurs when a monitored metric crosses the configured threshold.",
+    "source": "https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html"
+  },
+  {
+    "term": "Capacity provider",
+    "aliases": [],
+    "definition": "An ASG capacity provider lets ECS manage the EC2 instance capacity available for tasks.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html"
+  }
+]

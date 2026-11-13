@@ -1,0 +1,182 @@
+[
+  {
+    "term": "Block storage",
+    "aliases": [],
+    "definition": "Storage presented to an instance as a disk for storing files or installing applications.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html#what-is-ebs"
+  },
+  {
+    "term": "Solid-state drive",
+    "aliases": [
+      "SSD"
+    ],
+    "definition": "A storage device used by EBS volume types suited to transactional reads and writes.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html#what-is-ebs"
+  },
+  {
+    "term": "Hard disk drive",
+    "aliases": [
+      "HDD"
+    ],
+    "definition": "A storage device used by EBS volume types suited to large sequential transfers.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html#what-is-ebs"
+  },
+  {
+    "term": "Input/output operations per second",
+    "aliases": [
+      "IOPS"
+    ],
+    "definition": "The number of storage read and write operations performed per second.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-io-characteristics.html#ebs-io-characteristics"
+  },
+  {
+    "term": "Throughput",
+    "aliases": [],
+    "definition": "The amount of data a storage volume transfers per unit of time.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-io-characteristics.html#ebs-io-characteristics"
+  },
+  {
+    "term": "Latency",
+    "aliases": [],
+    "definition": "The elapsed time between sending a storage operation and receiving its completion acknowledgement.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-io-characteristics.html#ebs-io-characteristics"
+  },
+  {
+    "term": "Burst credits",
+    "aliases": [
+      "I/O credits"
+    ],
+    "definition": "An allowance that lets an eligible volume exceed its baseline performance temporarily.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#general-purpose"
+  },
+  {
+    "term": "Snapshot",
+    "aliases": [],
+    "definition": "A point-in-time backup that can restore the captured volume data to a new disk.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html#ebs-snapshots"
+  },
+  {
+    "term": "Incremental backup",
+    "aliases": [],
+    "definition": "A backup that stores changes since the previous backup rather than duplicating unchanged data.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html#ebs-snapshots"
+  },
+  {
+    "term": "Volume initialization",
+    "aliases": [],
+    "definition": "Loading snapshot data blocks onto a restored volume so it can deliver full performance.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/initalize-volume.html#initalize-volume"
+  },
+  {
+    "term": "Volume creation credits",
+    "aliases": [],
+    "definition": "The per-snapshot and per-AZ allowance for creating volumes with FSR benefits.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/volume-creation-credits.html#volume-creation-credits"
+  },
+  {
+    "term": "Clustered file system",
+    "aliases": [],
+    "definition": "A file system designed to coordinate access to a shared disk from multiple servers.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes-multi.html#ebs-volumes-multi"
+  },
+  {
+    "term": "I/O fencing",
+    "aliases": [],
+    "definition": "A mechanism that controls write access to shared storage to preserve data consistency.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes-multi.html#ebs-volumes-multi"
+  },
+  {
+    "term": "Retention",
+    "aliases": [],
+    "definition": "A rule deciding how many backups to keep or how long to keep them.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-ami-policy.html#snapshot-ami-policy"
+  },
+  {
+    "term": "Resource tag",
+    "aliases": [],
+    "definition": "A key-value label used to identify resources for a backup policy.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-ami-policy.html#snapshot-ami-policy"
+  },
+  {
+    "term": "Application-consistent snapshot",
+    "aliases": [],
+    "definition": "A snapshot taken after application I/O is prepared so buffered data is captured consistently.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/automate-app-consistent-backups.html#automate-app-consistent-backups"
+  },
+  {
+    "term": "Machine image",
+    "aliases": [
+      "AMI"
+    ],
+    "definition": "An image used to launch an EC2 instance with its saved storage and configuration.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud"
+  },
+  {
+    "term": "Customer managed key",
+    "aliases": [],
+    "definition": "An encryption key a customer manages and can authorize other accounts to use.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-modifying-snapshot-permissions.html#ebs-modifying-snapshot-permissions"
+  },
+  {
+    "term": "Container Storage Interface",
+    "aliases": [
+      "CSI"
+    ],
+    "definition": "The interface a storage driver uses to manage volumes for Kubernetes applications.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi"
+  },
+  {
+    "term": "Persistent volume",
+    "aliases": [],
+    "definition": "A Kubernetes storage resource through which an application can use an EBS volume.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [],
+    "definition": "An AWS permissions identity a workload can use to make authorized API calls.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#using-regions-availability-zones"
+  },
+  {
+    "term": "AWS Region",
+    "aliases": [
+      "Region"
+    ],
+    "definition": "A separate geographic area containing multiple isolated Availability Zones.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#using-regions-availability-zones"
+  },
+  {
+    "term": "Boot volume",
+    "aliases": [
+      "root volume"
+    ],
+    "definition": "The disk containing the data an EC2 instance uses to boot.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-creating-snapshot.html#ebs-creating-snapshot"
+  },
+  {
+    "term": "StorageClass",
+    "aliases": [],
+    "definition": "A Kubernetes object defining how requested storage should be provisioned.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/create-storage-class.html#create-storage-class"
+  },
+  {
+    "term": "Mount",
+    "aliases": [],
+    "definition": "Make a disk file system accessible to the operating system.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-restoring-volume.html#ebs-restoring-volume"
+  },
+  {
+    "term": "Unmount",
+    "aliases": [],
+    "definition": "Make a disk file system unavailable to the operating system before detaching or preparing it for backup.",
+    "source": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-restoring-volume.html#ebs-restoring-volume"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "term": "Bring Your Own License",
+    "aliases": ["BYOL"],
+    "definition": "Using existing software licenses for cloud resources.",
+    "source": "https://docs.aws.amazon.com/license-manager/latest/userguide/license-manager.html"
+  },
+  {
+    "term": "Self-managed license",
+    "aliases": ["license configuration"],
+    "definition": "A set of licensing rules based on an enterprise agreement.",
+    "source": "https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html"
+  },
+  {
+    "term": "Dedicated Host",
+    "aliases": [],
+    "definition": "A physical server whose instance capacity is dedicated to your use.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html"
+  },
+  {
+    "term": "License affinity to host",
+    "aliases": ["host affinity"],
+    "definition": "A rule that restricts license use to a host for a specified number of days.",
+    "source": "https://docs.aws.amazon.com/license-manager/latest/userguide/config-overview.html"
+  },
+  {
+    "term": "License asset group",
+    "aliases": [],
+    "definition": "A group of related assets used to manage and monitor license usage centrally.",
+    "source": "https://docs.aws.amazon.com/license-manager/latest/userguide/license-asset-groups-overview.html"
+  }
+]

@@ -1,0 +1,39 @@
+---
+// Daily study reminder. Two ways, because a static site has no push server:
+// 1. A notification through Periodic Background Sync (installed app on Chromium browsers; about once a day).
+// 2. A repeating calendar event (.ics), which works on every device.
+import Icon from './Icon.astro';
+---
+<details class="remind" data-remind>
+  <summary class="icon-btn" title="Study reminder"><Icon name="bell" label="Study reminder" /></summary>
+  <div class="panel">
+    <p class="title">Daily study reminder</p>
+    <button type="button" data-remind-notify><Icon name="bell" size={15} /> <span data-remind-notify-label>Turn on notifications</span></button>
+    <p class="note muted" data-remind-status>Works when the site is installed as an app (Chrome, Edge, Android).</p>
+    <div class="cal">
+      <label>At <input type="time" value="19:00" data-remind-time /></label>
+      <button type="button" data-remind-ics><Icon name="calendar" size={15} /> Add to my calendar</button>
+    </div>
+    <p class="note muted">Works everywhere, including iPhone.</p>
+  </div>
+</details>
+
+<style>
+  .remind { position: relative; }
+  .remind summary { list-style: none; cursor: pointer; }
+  .remind summary::-webkit-details-marker { display: none; }
+  .remind[open] summary { color: var(--ink-100); border-color: var(--amber); }
+  .panel { position: absolute; right: 0; top: calc(100% + 6px); z-index: 40; width: min(19rem, 88vw); padding: 0.8rem; background: var(--ink-900); border: 1px solid var(--ink-500); box-shadow: 0 12px 30px rgb(0 0 0 / 0.5); display: grid; gap: 0.45rem; }
+  .title { margin: 0; font-weight: 700; }
+  .panel button { display: inline-flex; align-items: center; gap: 0.4rem; justify-content: center; }
+  .note { margin: 0; font-size: 0.74rem; line-height: 1.45; }
+  .cal { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; margin-top: 0.4rem; }
+  .cal label { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; }
+  .cal input { font: inherit; color: var(--ink-100); background: var(--ink-850); border: 1px solid var(--ink-500); padding: 0.2rem 0.35rem; color-scheme: dark; }
+  .remind :global(.is-on) { border-color: var(--mint); color: var(--mint); }
+</style>
+
+<script>
+  import { setupReminder } from '../lib/reminder';
+  document.addEventListener('astro:page-load', setupReminder);
+</script>

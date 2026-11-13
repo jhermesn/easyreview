@@ -1,0 +1,158 @@
+[
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An isolated location within an AWS Region used to separate database copies from a local failure.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby"
+  },
+  {
+    "term": "Synchronous replication",
+    "aliases": [],
+    "definition": "Changes are copied to a standby as part of committing writes on the primary.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby"
+  },
+  {
+    "term": "Semisynchronous replication",
+    "aliases": [],
+    "definition": "A replica acknowledges receiving a change before all replicas have applied it.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html#multi-az-db-clusters-concepts"
+  },
+  {
+    "term": "Asynchronous replication",
+    "aliases": [],
+    "definition": "A source can commit a database change before a replica receives and applies it.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl"
+  },
+  {
+    "term": "Failover",
+    "aliases": [],
+    "definition": "Database service moves from a failed primary or writer to a standby or reader.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.Failover.html#Concepts.MultiAZ.Failover"
+  },
+  {
+    "term": "Endpoint",
+    "aliases": [],
+    "definition": "A network name that clients use to connect to a database or proxy.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy"
+  },
+  {
+    "term": "Domain Name System",
+    "aliases": [
+      "DNS"
+    ],
+    "definition": "The naming system that resolves a database endpoint name to its network address.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.Failover.html#Concepts.MultiAZ.Failover"
+  },
+  {
+    "term": "Time-to-live",
+    "aliases": [
+      "TTL"
+    ],
+    "definition": "The duration for which a cached DNS answer can be kept before it is looked up again.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.Failover.html#Concepts.MultiAZ.Failover"
+  },
+  {
+    "term": "Replica lag",
+    "aliases": [],
+    "definition": "The delay between a database change on the source and its arrival or application on a replica.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html#rds-cw-metrics-instance"
+  },
+  {
+    "term": "Promotion",
+    "aliases": [],
+    "definition": "A read replica becomes a standalone database and stops replicating from its original source.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.Promote.html#USER_ReadRepl.Promote"
+  },
+  {
+    "term": "Snapshot",
+    "aliases": [],
+    "definition": "A stored backup of the database instance storage at a particular time.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups"
+  },
+  {
+    "term": "Transaction log",
+    "aliases": [],
+    "definition": "A record of database changes used with backups for point-in-time recovery.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html#USER_PIT"
+  },
+  {
+    "term": "Point-in-time recovery",
+    "aliases": [
+      "PITR"
+    ],
+    "definition": "Restoration creates a new database instance at an available time within the backup retention window.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html#USER_PIT"
+  },
+  {
+    "term": "Backup retention period",
+    "aliases": [],
+    "definition": "The configured window for which automated backups remain available for recovery.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.BackupRetention.html#USER_WorkingWithAutomatedBackups.BackupRetention"
+  },
+  {
+    "term": "I/O",
+    "aliases": [
+      "Input/output"
+    ],
+    "definition": "Disk read and write operations performed for a database.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html#rds-cw-metrics-instance"
+  },
+  {
+    "term": "IOPS",
+    "aliases": [
+      "Input/output operations per second"
+    ],
+    "definition": "The number of disk read or write operations completed each second.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html#rds-cw-metrics-instance"
+  },
+  {
+    "term": "Throughput",
+    "aliases": [],
+    "definition": "The number of bytes read from or written to disk per second.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html#rds-cw-metrics-instance"
+  },
+  {
+    "term": "Switchover",
+    "aliases": [],
+    "definition": "A planned transfer of the production role from the blue database environment to green.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-switching.html#blue-green-deployments-switching"
+  },
+  {
+    "term": "Guardrail",
+    "aliases": [],
+    "definition": "A readiness check that can stop an unsafe database switchover.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-switching.html#blue-green-deployments-switching-guardrails"
+  },
+  {
+    "term": "Connection pool",
+    "aliases": [],
+    "definition": "A set of open database connections shared and reused across client requests.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy"
+  },
+  {
+    "term": "Session pinning",
+    "aliases": [],
+    "definition": "A client session keeps one backend database connection until that session ends.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-pinning.html#rds-proxy-pinning"
+  },
+  {
+    "term": "Query cache",
+    "aliases": [],
+    "definition": "Stored query results let repeated reads avoid executing the same database query.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/caching-database-query-results.html"
+  },
+  {
+    "term": "Strong consistency",
+    "aliases": [],
+    "definition": "A read must reflect the latest committed data rather than an older cached result.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/caching-database-query-results.html"
+  },
+  {
+    "term": "Option group",
+    "aliases": [],
+    "definition": "A collection of database engine features and settings associated with an RDS DB instance.",
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithOptionGroups.html#USER_WorkingWithOptionGroups"
+  }
+]

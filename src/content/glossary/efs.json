@@ -1,0 +1,144 @@
+[
+  {
+    "term": "Network File System",
+    "aliases": [
+      "NFS"
+    ],
+    "definition": "A protocol that lets clients access shared files across a network.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works"
+  },
+  {
+    "term": "POSIX permissions",
+    "aliases": [
+      "POSIX"
+    ],
+    "definition": "Unix-style file access rules based on numeric user and group identities.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html#accessing-fs-nfs-permissions"
+  },
+  {
+    "term": "Mount",
+    "aliases": [
+      "mounting"
+    ],
+    "definition": "Connecting a remote file system to a local directory for file access.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works"
+  },
+  {
+    "term": "Mount target",
+    "aliases": [],
+    "definition": "An EFS network endpoint with an address used by NFS clients.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works"
+  },
+  {
+    "term": "Access point",
+    "aliases": [],
+    "definition": "An application entry point that can enforce a directory root and file-operation identity.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html#efs-access-points"
+  },
+  {
+    "term": "Root directory",
+    "aliases": [],
+    "definition": "The top directory visible to a client through its mounted file system.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/enforce-root-directory-access-point.html#enforce-root-directory-access-point"
+  },
+  {
+    "term": "User ID",
+    "aliases": [
+      "UID"
+    ],
+    "definition": "The numeric identity used for a file owner or client user in POSIX permission checks.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/enforce-identity-access-points.html#enforce-identity-access-points"
+  },
+  {
+    "term": "Group ID",
+    "aliases": [
+      "GID"
+    ],
+    "definition": "The numeric group identity used in POSIX permission checks.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/enforce-identity-access-points.html#enforce-identity-access-points"
+  },
+  {
+    "term": "Throughput",
+    "aliases": [],
+    "definition": "The rate at which a file system can transfer data.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes"
+  },
+  {
+    "term": "Latency",
+    "aliases": [],
+    "definition": "The time taken to complete a file operation.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes"
+  },
+  {
+    "term": "Burst credits",
+    "aliases": [],
+    "definition": "Accumulated throughput allowance consumed when activity exceeds a Bursting file system baseline.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/performance.html#bursting"
+  },
+  {
+    "term": "Lifecycle policy",
+    "aliases": [],
+    "definition": "A rule controlling when files move between EFS storage classes.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs"
+  },
+  {
+    "term": "Infrequent Access",
+    "aliases": [
+      "IA"
+    ],
+    "definition": "A storage class for files that are read less often than active Standard data.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/features.html#storage-classes"
+  },
+  {
+    "term": "Metadata",
+    "aliases": [],
+    "definition": "Information describing files and directories, such as ownership and directory structure.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs"
+  },
+  {
+    "term": "Persistent volume",
+    "aliases": [],
+    "definition": "Storage that remains available for application data across container placement changes.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html#efs-csi"
+  },
+  {
+    "term": "Static provisioning",
+    "aliases": [],
+    "definition": "Preparing a persistent volume in advance for a workload to use.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html#efs-csi"
+  },
+  {
+    "term": "Recovery Point Objective",
+    "aliases": [
+      "RPO"
+    ],
+    "definition": "The acceptable amount of data loss expressed as time behind the source.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html#efs-replication-performance"
+  },
+  {
+    "term": "Failover",
+    "aliases": [],
+    "definition": "Switching application use from a primary system to a recovery copy.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/replication-fail-over.html#replication-fail-over"
+  },
+  {
+    "term": "Failback",
+    "aliases": [],
+    "definition": "Returning application operation to the original primary after recovery.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/replication-fail-over.html#replication-fail-over"
+  },
+  {
+    "term": "Asynchronous replication",
+    "aliases": [],
+    "definition": "Copying changes separately from source writes so the replica can lag behind.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html#efs-replication"
+  },
+  {
+    "term": "TLS",
+    "aliases": [
+      "Transport Layer Security"
+    ],
+    "definition": "Encryption that protects data while clients send it to a file system.",
+    "source": "https://docs.aws.amazon.com/efs/latest/ug/iam-access-control-nfs-efs.html#efs-condition-keys-for-nfs"
+  }
+]

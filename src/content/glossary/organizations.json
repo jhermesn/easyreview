@@ -1,0 +1,191 @@
+[
+  {
+    "term": "Organization root",
+    "aliases": [
+      "root"
+    ],
+    "definition": "The top-level container for an organization account and OU hierarchy.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A container grouping AWS accounts or other OUs for common management and policies.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html"
+  },
+  {
+    "term": "Management account",
+    "aliases": [
+      "payer account"
+    ],
+    "definition": "The account that manages the organization and pays its member-account charges.",
+    "source": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html"
+  },
+  {
+    "term": "Member account",
+    "aliases": [],
+    "definition": "An account belonging to an organization other than its management account.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html"
+  },
+  {
+    "term": "Root user",
+    "aliases": [],
+    "definition": "The account-owner identity with access governed by AWS account and organization controls.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html"
+  },
+  {
+    "term": "Principal",
+    "aliases": [
+      "identity"
+    ],
+    "definition": "The user, role, or service making an AWS request.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "Permission ceiling",
+    "aliases": [
+      "guardrail"
+    ],
+    "definition": "The maximum actions organization authorization policies permit without themselves granting access.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html"
+  },
+  {
+    "term": "Explicit deny",
+    "aliases": [
+      "Deny"
+    ],
+    "definition": "A policy statement that blocks matching requests even when another applicable policy allows them.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_evaluation.html#how_scps_deny"
+  },
+  {
+    "term": "Implicit deny",
+    "aliases": [],
+    "definition": "A refusal caused by a required Allow being absent from policy evaluation.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_evaluation.html#how_scps_allow"
+  },
+  {
+    "term": "Allow list",
+    "aliases": [
+      "allowlist"
+    ],
+    "definition": "A policy strategy explicitly permitting selected actions while excluding unlisted actions.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_evaluation.html#strategy_using_scps"
+  },
+  {
+    "term": "Deny list",
+    "aliases": [
+      "denylist"
+    ],
+    "definition": "A policy strategy retaining broad eligibility while explicitly prohibiting selected actions.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples.html"
+  },
+  {
+    "term": "Identity policy",
+    "aliases": [
+      "identity-based policy"
+    ],
+    "definition": "A permissions policy attached to an IAM user or role.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html"
+  },
+  {
+    "term": "Resource policy",
+    "aliases": [
+      "resource-based policy",
+      "bucket policy"
+    ],
+    "definition": "A permissions policy attached to a resource that governs who may access it.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html"
+  },
+  {
+    "term": "Trust policy",
+    "aliases": [
+      "role trust"
+    ],
+    "definition": "The policy that identifies who may assume an IAM role.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "Service-linked role",
+    "aliases": [],
+    "definition": "An IAM role linked to an AWS service so that the service can act on your behalf.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html"
+  },
+  {
+    "term": "Trusted access",
+    "aliases": [],
+    "definition": "Permission for a supported AWS service to perform work across organization accounts.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html"
+  },
+  {
+    "term": "Delegated administrator",
+    "aliases": [
+      "delegated admin"
+    ],
+    "definition": "A member account registered to administer a specific integrated service for the organization.",
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_delegated_admin.html"
+  },
+  {
+    "term": "Seller of Record",
+    "aliases": [
+      "SOR"
+    ],
+    "definition": "The AWS entity responsible for issuing the applicable customer bill.",
+    "source": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html"
+  },
+  {
+    "term": "Reserved Instance",
+    "aliases": [
+      "RI"
+    ],
+    "definition": "An AWS purchase whose eligible usage discount may be shared within an organization.",
+    "source": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ri-turn-off.html"
+  },
+  {
+    "term": "Endpoint",
+    "aliases": [],
+    "definition": "The service address and Region that an API request calls.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-requestedregion"
+  },
+  {
+    "term": "Configuration recorder",
+    "aliases": [
+      "recorder"
+    ],
+    "definition": "The Config component that captures resource configuration information.",
+    "source": "https://docs.aws.amazon.com/config/latest/APIReference/"
+  },
+  {
+    "term": "Delivery channel",
+    "aliases": [],
+    "definition": "The Config settings that direct recorded configuration data to its destinations.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/update-dc-console.html"
+  },
+  {
+    "term": "Identity perimeter",
+    "aliases": [],
+    "definition": "Restrictions that define which identities may access an organization resources.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/building-a-data-perimeter-on-aws/perimeter-implementation.html"
+  },
+  {
+    "term": "Service principal",
+    "aliases": [],
+    "definition": "The identity an AWS service uses when it makes a request directly.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/building-a-data-perimeter-on-aws/perimeter-implementation.html"
+  },
+  {
+    "term": "Trail",
+    "aliases": [
+      "organization trail"
+    ],
+    "definition": "A CloudTrail configuration that records selected activity for an account or organization.",
+    "source": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html"
+  },
+  {
+    "term": "Stack",
+    "aliases": [],
+    "definition": "A collection of AWS resources deployed and managed together by CloudFormation.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-associate-stackset-with-org.html"
+  }
+]

@@ -1,0 +1,343 @@
+[
+  {
+    "term": "application revision",
+    "aliases": [
+      "revision",
+      "revision bundle"
+    ],
+    "definition": "A version of application content and deployment instructions that CodeDeploy can release.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-revision"
+  },
+  {
+    "term": "deployment group",
+    "aliases": [],
+    "definition": "The deployment targets and associated settings that CodeDeploy uses for an application release.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-deployment-group"
+  },
+  {
+    "term": "deployment configuration",
+    "aliases": [],
+    "definition": "Rules that control rollout pace and decide whether a deployment succeeds.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-deployment-configuration"
+  },
+  {
+    "term": "compute platform",
+    "aliases": [],
+    "definition": "The type of computing resource on which an application is deployed.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-compute-platform"
+  },
+  {
+    "term": "in-place deployment",
+    "aliases": [
+      "in-place"
+    ],
+    "definition": "A deployment that updates the application on its existing instances.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-deployment-type"
+  },
+  {
+    "term": "blue/green deployment",
+    "aliases": [
+      "blue/green"
+    ],
+    "definition": "A deployment that prepares a replacement environment before moving traffic from the original environment.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-deployment-type"
+  },
+  {
+    "term": "canary deployment",
+    "aliases": [
+      "canary"
+    ],
+    "definition": "A traffic shift that sends an initial portion to the replacement and the rest after a waiting interval.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-deployment-configuration"
+  },
+  {
+    "term": "linear deployment",
+    "aliases": [
+      "linear"
+    ],
+    "definition": "A traffic shift that moves equal portions at equal time intervals.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-deployment-configuration"
+  },
+  {
+    "term": "all-at-once deployment",
+    "aliases": [
+      "all-at-once"
+    ],
+    "definition": "A deployment that moves all traffic to the replacement in one step.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-deployment-configuration"
+  },
+  {
+    "term": "AppSpec",
+    "aliases": [
+      "application specification file"
+    ],
+    "definition": "A deployment instruction file describing resources or file installation and optional lifecycle hooks.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/application-specification-files.html#application-specification-files"
+  },
+  {
+    "term": "lifecycle hook",
+    "aliases": [
+      "hook"
+    ],
+    "definition": "A named point in deployment where a specified script or validation function can run.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html#reference-appspec-file-structure-hooks"
+  },
+  {
+    "term": "instance profile",
+    "aliases": [
+      "IAM instance profile"
+    ],
+    "definition": "A container that supplies an IAM role to applications running on an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html#id_roles_use_switch-role-ec2_instance-profiles"
+  },
+  {
+    "term": "service role",
+    "aliases": [],
+    "definition": "An IAM role that permits an AWS service to act on AWS resources.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-service-role"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An identifier that uniquely names an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns"
+  },
+  {
+    "term": "temporary security credentials",
+    "aliases": [
+      "STS credentials",
+      "session credentials"
+    ],
+    "definition": "Credentials with a limited lifetime that authorize requests to AWS resources.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html#id_credentials_temp"
+  },
+  {
+    "term": "interface VPC endpoint",
+    "aliases": [
+      "interface endpoint"
+    ],
+    "definition": "A private network entry point used to reach a service without a public internet connection.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/vpc-endpoints.html#vpc-endpoints"
+  },
+  {
+    "term": "gateway endpoint",
+    "aliases": [],
+    "definition": "A route-table destination that provides access to supported AWS services without a NAT device or internet gateway.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-s3"
+  },
+  {
+    "term": "HTTPS",
+    "aliases": [],
+    "definition": "HTTP communication protected with TLS encryption.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent.html#codedeploy-agent-outbound-port"
+  },
+  {
+    "term": "association",
+    "aliases": [
+      "State Manager association"
+    ],
+    "definition": "An instruction that specifies a desired configuration for managed instances on a schedule.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-create-in-place.html#deployment-groups-create-in-place"
+  },
+  {
+    "term": "bootstrap",
+    "aliases": [
+      "bootstrapping"
+    ],
+    "definition": "The initial setup work performed after an instance starts.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-event-order"
+  },
+  {
+    "term": "machine image",
+    "aliases": [
+      "AMI",
+      "Amazon Machine Image"
+    ],
+    "definition": "A template containing the software configuration used to launch an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs"
+  },
+  {
+    "term": "minimum healthy hosts",
+    "aliases": [],
+    "definition": "The instance count or percentage that must stay available during a deployment.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html#deployment-configuration-server"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "A separate location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#using-regions-availability-zones"
+  },
+  {
+    "term": "alias",
+    "aliases": [
+      "Lambda alias"
+    ],
+    "definition": "A named reference to a Lambda function version that can also split traffic between versions.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuration-aliases"
+  },
+  {
+    "term": "weighted alias",
+    "aliases": [],
+    "definition": "A Lambda alias configured to divide requests between two function versions.",
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuration-aliases"
+  },
+  {
+    "term": "task definition",
+    "aliases": [],
+    "definition": "The configuration that describes how containers should run in an ECS application.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-ecs.html#deployment-steps-prerequisites-ecs"
+  },
+  {
+    "term": "task set",
+    "aliases": [],
+    "definition": "A set of ECS tasks running an application version during deployment.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/primary-components.html#primary-components-compute-platform"
+  },
+  {
+    "term": "target group",
+    "aliases": [],
+    "definition": "A set of registered destinations to which a load balancer routes requests.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-ecs.html#deployment-steps-prerequisites-ecs"
+  },
+  {
+    "term": "listener",
+    "aliases": [],
+    "definition": "A load balancer entry point that receives requests and directs them to target groups.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-ecs.html#deployment-steps-prerequisites-ecs"
+  },
+  {
+    "term": "deployment controller",
+    "aliases": [],
+    "definition": "The service setting that selects which system manages ECS deployments.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-ecs.html#deployment-process-workflow-ecs"
+  },
+  {
+    "term": "callback",
+    "aliases": [],
+    "definition": "An explicit API call by a validation function to report its result to CodeDeploy.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_PutLifecycleEventHookExecutionStatus.html#API_PutLifecycleEventHookExecutionStatus"
+  },
+  {
+    "term": "scale-out",
+    "aliases": [],
+    "definition": "An increase in the number of instances in an Auto Scaling group.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors"
+  },
+  {
+    "term": "scale-in",
+    "aliases": [],
+    "definition": "A reduction in the number of instances in an Auto Scaling group.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable"
+  },
+  {
+    "term": "launch deployment",
+    "aliases": [],
+    "definition": "A deployment that installs application code while a new Auto Scaling instance waits to enter service.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors"
+  },
+  {
+    "term": "termination deployment",
+    "aliases": [],
+    "definition": "A deployment that runs shutdown events before an Auto Scaling instance terminates without installing a revision.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable"
+  },
+  {
+    "term": "rollback",
+    "aliases": [],
+    "definition": "A release of a previous application revision as a new deployment.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html#deployments-rollback-and-redeploy"
+  },
+  {
+    "term": "health check",
+    "aliases": [],
+    "definition": "A recurring request that a load balancer uses to decide whether a target can receive traffic.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html#target-group-health-checks"
+  },
+  {
+    "term": "alarm",
+    "aliases": [
+      "CloudWatch alarm"
+    ],
+    "definition": "A rule that watches a metric and changes state when its evaluation conditions are met.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Alarms.html#CloudWatch_Alarms"
+  },
+  {
+    "term": "event pattern",
+    "aliases": [],
+    "definition": "A filter that identifies which incoming events should match an EventBridge rule.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html#eb-event-patterns"
+  },
+  {
+    "term": "best effort",
+    "aliases": [
+      "best-effort delivery"
+    ],
+    "definition": "A service event delivery model in which some events might not reach EventBridge.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/ref/event-delivery-level.html#event-delivery-level"
+  },
+  {
+    "term": "standard streams",
+    "aliases": [
+      "stdin",
+      "stdout",
+      "stderr"
+    ],
+    "definition": "The input, output, and error channels attached to a running process.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/troubleshooting-deployments.html#troubleshooting-long-running-processes"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "role"
+    ],
+    "definition": "An AWS identity with permissions that software or users can assume.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles"
+  },
+  {
+    "term": "Auto Scaling group",
+    "aliases": [
+      "ASG"
+    ],
+    "definition": "A collection of EC2 instances managed together for scaling and availability.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-groups.html#auto-scaling-groups"
+  },
+  {
+    "term": "YAML",
+    "aliases": [],
+    "definition": "A text format used to express structured configuration such as an AppSpec file.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/application-specification-files.html#application-specification-files"
+  },
+  {
+    "term": "JSON",
+    "aliases": [],
+    "definition": "A text format for structured data that Lambda and ECS AppSpec files can use.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/application-specification-files.html#application-specification-files"
+  },
+  {
+    "term": "message queue",
+    "aliases": [
+      "queue"
+    ],
+    "definition": "A store that holds messages until a consumer retrieves them.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html#welcome"
+  },
+  {
+    "term": "configuration parameter",
+    "aliases": [
+      "parameter"
+    ],
+    "definition": "A named setting that software can retrieve from Parameter Store.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-setting-up.html#parameter-store-setting-up"
+  },
+  {
+    "term": "cfn-init",
+    "aliases": [],
+    "definition": "A CloudFormation helper used to run setup scripts on a newly provisioned instance.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-event-order"
+  }
+]

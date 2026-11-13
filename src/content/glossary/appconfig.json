@@ -1,0 +1,134 @@
+[
+  {
+    "term": "configuration profile",
+    "aliases": ["profile"],
+    "definition": "A record that identifies a configuration's type and storage location.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-configuration-profile.html"
+  },
+  {
+    "term": "namespace",
+    "aliases": ["application namespace"],
+    "definition": "An organizational grouping for related configuration resources.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/creating-feature-flags-and-configuration-data.html"
+  },
+  {
+    "term": "feature flag",
+    "aliases": ["feature toggle"],
+    "definition": "A configuration setting that enables or disables an application feature.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-configuration-profile.html"
+  },
+  {
+    "term": "freeform configuration",
+    "aliases": ["free form configuration"],
+    "definition": "Application settings that an AppConfig profile locates in a supported configuration store.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-free-form-configurations-creating.html"
+  },
+  {
+    "term": "URI",
+    "aliases": ["LocationUri", "storage address"],
+    "definition": "An identifier AppConfig uses to locate configuration in its storage source.",
+    "source": "https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_CreateConfigurationProfile.html#appconfig-CreateConfigurationProfile-request-LocationUri"
+  },
+  {
+    "term": "IAM role",
+    "aliases": ["role", "permission identity"],
+    "definition": "An AWS identity with permissions that a trusted caller can assume.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "retrieval role",
+    "aliases": ["RetrievalRoleArn"],
+    "definition": "An IAM role that gives AppConfig permission to read a profile's configuration source.",
+    "source": "https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_CreateConfigurationProfile.html#appconfig-CreateConfigurationProfile-request-RetrievalRoleArn"
+  },
+  {
+    "term": "validator",
+    "aliases": ["configuration validator"],
+    "definition": "A schema or function that checks configuration structure or meaning before deployment proceeds.",
+    "source": "https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_Validator.html"
+  },
+  {
+    "term": "JSON Schema",
+    "aliases": ["schema", "JSON_SCHEMA"],
+    "definition": "A set of rules describing allowed properties in configuration data.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-configuration-and-profile-validators.html#appconfig-creating-configuration-and-profile-validators-json-schema"
+  },
+  {
+    "term": "syntactic validation",
+    "aliases": ["structure check"],
+    "definition": "A check that configuration follows its required structure.",
+    "source": "https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_Validator.html"
+  },
+  {
+    "term": "semantic validation",
+    "aliases": ["meaning check", "business-rule check"],
+    "definition": "A check that configuration values make sense under the application's rules.",
+    "source": "https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_Validator.html"
+  },
+  {
+    "term": "environment",
+    "aliases": ["deployment environment"],
+    "definition": "A logical group of application targets that receive a configuration deployment.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-environment.html"
+  },
+  {
+    "term": "target",
+    "aliases": ["deployment target"],
+    "definition": "An application or application component receiving configuration through an AppConfig environment.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-environment.html"
+  },
+  {
+    "term": "deployment strategy",
+    "aliases": ["rollout strategy"],
+    "definition": "A plan specifying configuration rollout timing, growth, and final alarm monitoring.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-deployment-strategy.html"
+  },
+  {
+    "term": "growth factor",
+    "aliases": ["step percentage", "GrowthFactor"],
+    "definition": "The percentage of callers targeted at a configuration deployment step.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-deployment-strategy.html"
+  },
+  {
+    "term": "bake time",
+    "aliases": ["final bake time", "FinalBakeTimeInMinutes"],
+    "definition": "The alarm observation period after configuration reaches every target and before deployment completes.",
+    "source": "https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_CreateDeploymentStrategy.html#appconfig-CreateDeploymentStrategy-request-FinalBakeTimeInMinutes"
+  },
+  {
+    "term": "metric alarm",
+    "aliases": ["health alarm", "CloudWatch alarm"],
+    "definition": "A check that compares a measured value or expression with a threshold over time.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Alarms.html"
+  },
+  {
+    "term": "rollback",
+    "aliases": ["configuration rollback"],
+    "definition": "Restoring the previous configuration version when stopping a harmful deployment.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/monitoring-deployments.html"
+  },
+  {
+    "term": "polling",
+    "aliases": ["poll", "configuration polling"],
+    "definition": "Repeatedly asking the service whether configuration updates are available.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/about-data-plane.html"
+  },
+  {
+    "term": "local cache",
+    "aliases": ["cache", "cached configuration"],
+    "definition": "A local copy of configuration that an application can read while an agent checks for updates.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/about-data-plane.html"
+  },
+  {
+    "term": "data plane",
+    "aliases": ["configuration retrieval interface"],
+    "definition": "The service interface applications use to retrieve deployed configuration.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/about-data-plane.html"
+  },
+  {
+    "term": "configuration token",
+    "aliases": ["InitialConfigurationToken", "NextPollConfigurationToken", "ConfigurationToken"],
+    "definition": "A single-use value that tracks a configuration retrieval session from one request to the next.",
+    "source": "https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_GetLatestConfiguration.html"
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "term": "container image",
+    "aliases": [],
+    "definition": "A package containing an application and the dependencies needed to run it.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-considerations.html"
+  },
+  {
+    "term": "repository",
+    "aliases": [],
+    "definition": "A versioned source location containing application code or container images.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/architecture.html#architecture.concepts"
+  },
+  {
+    "term": "managed runtime",
+    "aliases": [
+      "runtime"
+    ],
+    "definition": "A base image App Runner provides to execute an application built from source code.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/architecture.html#architecture.concepts"
+  },
+  {
+    "term": "deployment",
+    "aliases": [],
+    "definition": "Applying a version of application code or an image to a running service.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/architecture.html#architecture.concepts"
+  },
+  {
+    "term": "source directory",
+    "aliases": [],
+    "definition": "The repository path whose changes can trigger automatic source-code deployment.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/manage-deploy.html#manage-deploy.methods"
+  },
+  {
+    "term": "concurrency",
+    "aliases": [],
+    "definition": "The number of requests an instance handles at the same time.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/api/API_CreateAutoScalingConfiguration.html#apprunner-CreateAutoScalingConfiguration-request-MaxConcurrency"
+  },
+  {
+    "term": "provisioned instance",
+    "aliases": [],
+    "definition": "An instance kept available as active or reserve capacity for a service.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/api/API_CreateAutoScalingConfiguration.html#apprunner-CreateAutoScalingConfiguration-request-MinSize"
+  },
+  {
+    "term": "health check",
+    "aliases": [],
+    "definition": "A repeated test used to determine whether a service responds as expected.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/manage-configure-healthcheck.html#manage-configure-healthcheck"
+  },
+  {
+    "term": "TCP check",
+    "aliases": [],
+    "definition": "A health test that connects to the port where the application listens.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/manage-configure-healthcheck.html#manage-configure-healthcheck"
+  },
+  {
+    "term": "HTTP check",
+    "aliases": [],
+    "definition": "A health test that sends a web request to a configured application path.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/manage-configure-healthcheck.html#manage-configure-healthcheck"
+  },
+  {
+    "term": "threshold",
+    "aliases": [],
+    "definition": "A configured number of consecutive results needed to mark a service healthy or unhealthy.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/manage-configure-healthcheck.html#manage-configure-healthcheck"
+  },
+  {
+    "term": "access role",
+    "aliases": [],
+    "definition": "The IAM role App Runner uses to retrieve a private ECR image.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/security_iam_service-with-iam.html#security_iam_service-with-iam-roles-service.access"
+  },
+  {
+    "term": "instance role",
+    "aliases": [],
+    "definition": "The IAM role supplying permissions for AWS API calls made by application code.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/security_iam_service-with-iam.html#security_iam_service-with-iam-roles-service.instance"
+  },
+  {
+    "term": "VPC connector",
+    "aliases": [],
+    "definition": "An App Runner networking resource that routes application outbound traffic to a VPC.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/network-vpc.html#network-vpc.VPC-connector"
+  },
+  {
+    "term": "private subnet",
+    "aliases": [],
+    "definition": "A VPC subnet without a direct route to an internet gateway.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html"
+  },
+  {
+    "term": "NAT gateway",
+    "aliases": [],
+    "definition": "A network resource that lets private-subnet applications reach outside services without accepting unsolicited incoming connections.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html"
+  },
+  {
+    "term": "VPC interface endpoint",
+    "aliases": [],
+    "definition": "A private connection from a VPC to a service using AWS PrivateLink.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/network-incoming.html#network-incoming"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html"
+  },
+  {
+    "term": "service principal",
+    "aliases": [],
+    "definition": "The AWS service identity trusted to assume an IAM role.",
+    "source": "https://docs.aws.amazon.com/apprunner/latest/dg/security_iam_service-with-iam.html#security_iam_service-with-iam-roles-service"
+  }
+]

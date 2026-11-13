@@ -1,0 +1,274 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { Font } from 'astro:assets';
+import Logo from '../components/Logo.astro';
+import Icon from '../components/Icon.astro';
+import Reminder from '../components/Reminder.astro';
+import Transfer from '../components/Transfer.astro';
+import { getCert } from '../lib/certs';
+import { getCertView, knownGroups, sectionIds } from '../lib/content';
+import { getGuide } from '../lib/guides';
+import { jsonForScript, withBase } from '../lib/format';
+import { badgeUrl } from '../lib/badge';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  cert?: string;
+  // schema.org objects for search engines, emitted as JSON-LD.
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+  // Plain name of this page inside its cert ("CodeDeploy", "Flashcards"), shown by the resume block.
+  heading?: string;
+}
+const { title, description = 'Notes, diagrams and flashcards for AWS certification review.', cert: certId, jsonLd = [], noindex = false, heading } = Astro.props;
+const cert = certId ? getCert(certId) : undefined;
+const fullTitle = `${title} · Easy Review`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const image = new URL(withBase('/icons/icon-512.png'), Astro.site).href;
+// `<` escaped so a string in the data can never close the script element.
+const ldJson = (data: Record<string, unknown>) => jsonForScript({ '@context': 'https://schema.org', ...data });
+const view = cert ? await getCertView(cert.id) : undefined;
+const hasGuide = cert ? !!getGuide(cert.id) : false;
+// Other free study tools by the same author, shown in the footer.
+const moreTools = [
+  { name: 'Redocted', href: 'https://jhermesn.dev/redocted/', text: 'Daily game: reveal a redacted AWS or Kubernetes docs page by guessing words.' },
+  { name: 'Wrong Answer Labs', href: 'https://github.com/jhermesn/wrong-answer-labs', text: 'Turn AWS exam questions you got wrong into hands-on labs with a grader.' },
+];
+const path = Astro.url.pathname.replace(/\/$/, '');
+const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'page' : undefined);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Easy Review" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary" />
+    {jsonLd.map((data) => <script type="application/ld+json" set:html={ldJson(data)} />)}
+    <meta name="theme-color" content="#06090d" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="manifest" href={withBase('/manifest.webmanifest')} />
+    <link rel="apple-touch-icon" href={withBase('/icons/apple-touch-icon.png')} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Easy Review" />
+    <Font cssVariable="--font-plex-mono" preload />
+    <Font cssVariable="--font-display" preload />
+    <Font cssVariable="--font-script" />
+    <title>{fullTitle}</title>
+    <ClientRouter />
+    <noscript><style>[data-reveal] > * { opacity: 1 !important; }</style></noscript>
+  </head>
+  <body data-cert={cert?.id} data-code={cert?.code} data-page-title={heading}>
+    <header class="topbar">
+      {cert && (
+        <button class="icon-btn menu" type="button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false" data-menu>
+          <Icon name="menu" />
+        </button>
+      )}
+      <a class="brand" href={withBase('/')} title="All certifications" aria-label="Easy Review, all certifications"><Logo /><span class="full">Easy Review</span><span class="short" aria-hidden="true">ER</span></a>
+      {cert && (
+        <a class="current" href={withBase(`/${cert.id}`)} title={cert.name}>
+          <img src={badgeUrl(cert.id)} alt="" width="26" height="30" data-badge-cert={cert.id} />
+          <span>{cert.code}</span>
+        </a>
+      )}
+      {!cert && (
+        <a class="current recent" href={withBase('/')} data-recent hidden title="Back to the last certification you studied">
+          <img src={withBase('/favicon.svg')} alt="" width="26" height="30" data-recent-badge />
+          <span data-recent-code></span>
+        </a>
+      )}
+      <nav class="actions" aria-label="Tools">
+        {cert && (
+          <a class="icon-btn" href={withBase(`/${cert.id}/flashcards`)} aria-current={here(`/${cert.id}/flashcards`)} title="Flashcards">
+            <Icon name="cards" label="Flashcards" />
+          </a>
+        )}
+        {cert && hasGuide && (
+          <a class="icon-btn" href={withBase(`/${cert.id}/coverage`)} aria-current={here(`/${cert.id}/coverage`)} title="Exam guide coverage">
+            <Icon name="target" label="Exam guide coverage" />
+          </a>
+        )}
+        <Reminder />
+        <Transfer />
+        <a class="icon-btn" href={withBase('/search')} aria-current={here('/search')} title="Search">
+          <Icon name="search" label="Search" />
+        </a>
+        <a class="icon-btn wide-only" href={withBase('/')} aria-current={here('/')} title="All certifications">
+          <Icon name="grid" label="All certifications" />
+        </a>
+      </nav>
+    </header>
+
+    <div class:list={['shell', { 'has-sidebar': !!cert }]}>
+      {cert && (
+        <aside id="sidebar" class="sidebar" data-sidebar>
+          <a class="side-cert" href={withBase(`/${cert.id}`)} aria-current={here(`/${cert.id}`)}>
+            <img src={badgeUrl(cert.id)} alt="" width="44" height="51" data-badge-cert={cert.id} />
+            <span><b>{cert.code}</b><small>{cert.name}</small></span>
+          </a>
+          <div class="side-progress" data-cert={cert.id} data-known-set={knownGroups(view?.sections ?? [])}>
+            <span class="bar"><span></span></span>
+            <span class="muted" data-known-count></span>
+          </div>
+          {cert.domains.map((d) => {
+            const own = view!.units.filter((u) => u.domain === d.id);
+            return (
+              <section class="side-domain">
+                <h2 title={`${d.weight}% of the exam`}><span>{d.name}</span><em>{d.weight}%</em></h2>
+                <ul>
+                  {own.map(({ unit, sections }) => (
+                    <li>
+                      <a class="side-link" href={withBase(`/${cert.id}/${unit.id}`)} aria-current={here(`/${cert.id}/${unit.id}`)} data-known={sectionIds(sections)}>
+                        <Icon name="circle" size={14} class="st st-open" />
+                        <Icon name="check-circle" size={14} class="st st-done" />
+                        <span>{unit.data.title}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </aside>
+      )}
+      <main class="main grid-lines">
+        <div class="content">
+          <slot />
+        </div>
+        <footer class="footer">
+          <div class="foot-row">
+            <a class="brand" href={withBase('/')}><Logo size={20} /><span>Easy Review</span></a>
+            <nav aria-label="Footer">
+              <a href={withBase('/#certs')}>Certifications</a>
+              <a href={withBase('/passed')}>Who passed</a>
+              <a href={withBase('/search')}>Search</a>
+              <a href="https://aws.amazon.com/certification/" target="_blank" rel="noopener">AWS Certification <Icon name="external" size={12} /></a>
+            </nav>
+          </div>
+          <section class="more" aria-label="More study tools">
+            <h2>More study tools</h2>
+            <ul>
+              {moreTools.map((t) => (
+                <li><a href={t.href} target="_blank" rel="noopener"><b>{t.name} <Icon name="external" size={11} /></b><span>{t.text}</span></a></li>
+              ))}
+            </ul>
+          </section>
+          <p>Independent study notes. Not affiliated with, sponsored by or endorsed by Amazon Web Services. Each topic links the AWS documentation it is based on; when in doubt, the official docs and exam guide win.</p>
+          <p>AWS and AWS Certification are trademarks of Amazon.com, Inc. or its affiliates. Your progress is stored only in this browser; there are no accounts or trackers.</p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .topbar {
+    position: sticky; top: 0; z-index: 30; height: var(--topbar);
+    display: flex; align-items: center; gap: 0.5rem; padding: 0 0.75rem;
+    background: var(--ink-900); border-bottom: 1px solid var(--ink-700);
+  }
+  .brand { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; white-space: nowrap; margin-right: 0.4rem; }
+  .brand .short { display: none; }
+  .brand span { font-family: var(--display); font-weight: 700; font-size: 1.08rem; letter-spacing: -0.01em; }
+  .current { display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none; padding: 0.15rem 0.6rem 0.15rem 0.35rem; border: 1px solid var(--amber); }
+  .current img { display: block; }
+  .current.recent { border-color: var(--ink-500); }
+  .current.recent:hover { border-color: var(--amber); }
+  .current span { font-weight: 700; font-size: 0.85rem; }
+  .actions { margin-left: auto; display: flex; gap: 0.3rem; }
+  .menu { display: none; }
+
+  .shell { display: block; }
+  .shell.has-sidebar { display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); }
+  .sidebar {
+    position: sticky; top: var(--topbar); height: calc(100dvh - var(--topbar)); overflow-y: auto;
+    padding: 1rem 0.75rem 3rem; border-right: 1px solid var(--ink-700); background: var(--ink-900);
+  }
+  .side-cert { display: flex; gap: 0.6rem; align-items: center; text-decoration: none; padding: 0.3rem; border-left: 2px solid transparent; }
+  .side-cert span { display: grid; line-height: 1.3; }
+  .side-cert small { color: var(--ink-300); font-size: 0.74rem; }
+  .side-cert[aria-current='page'] { border-left-color: var(--amber); background: var(--ink-850); }
+  .side-progress { display: flex; align-items: center; gap: 0.5rem; margin: 0.6rem 0.3rem 0; font-size: 0.75rem; }
+  .bar { flex: 1; height: 4px; background: var(--ink-700); }
+  .bar span { display: block; height: 100%; width: var(--pct, 0%); background: var(--mint); transition: width 0.2s; }
+  .side-progress.is-gold { color: var(--gold); }
+  .side-progress.is-gold .bar span { background: var(--gold-sheen); }
+  .side-domain h2 { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--purple); margin: 1.1rem 0.4rem 0.3rem; font-weight: 700; line-height: 1.4; }
+  .side-domain h2 em { font-style: normal; color: var(--ink-400); }
+  .side-domain ul { list-style: none; margin: 0; padding: 0; }
+  .side-link { display: flex; align-items: center; gap: 0.45rem; padding: 0.15rem 0.4rem; color: var(--ink-300); text-decoration: none; border-left: 2px solid transparent; line-height: 1.45; font-size: 0.84rem; }
+  .side-link:hover { color: var(--ink-100); }
+  .side-link[aria-current='page'] { color: var(--ink-100); border-left-color: var(--amber); background: var(--ink-850); }
+  .side-link :global(.st) { flex: none; }
+  .side-link :global(.st-open) { color: var(--ink-500); }
+  .side-link :global(.st-done) { color: var(--mint); display: none; }
+  .side-link:global(.is-known) :global(.st-open) { display: none; }
+  .side-link:global(.is-known) :global(.st-done) { display: inline; }
+
+  .main { min-height: calc(100dvh - var(--topbar)); display: flex; flex-direction: column; }
+  .content { width: 100%; max-width: 54rem; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; flex: 1; }
+  .shell:not(.has-sidebar) .content { max-width: 72rem; }
+  .footer { width: 100%; border-top: 1px solid var(--ink-700); background: var(--ink-900); padding: 1.5rem 1.25rem 2rem; font-size: 0.75rem; color: var(--ink-400); }
+  .footer > * { max-width: 72rem; margin-inline: auto; }
+  .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem 1.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+  .foot-row nav { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .foot-row nav a { color: var(--ink-300); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem; }
+  .foot-row nav a:hover { color: var(--ink-100); }
+  .footer p { margin: 0.3rem auto; line-height: 1.6; }
+  .more { margin-bottom: 1rem; }
+  .more h2 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple); margin: 0 0 0.5rem; }
+  .more ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 0.5rem; }
+  .more a { display: grid; gap: 0.15rem; height: 100%; padding: 0.55rem 0.7rem; border: 1px solid var(--ink-700); background: var(--ink-850); text-decoration: none; color: var(--ink-300); transition: border-color 0.15s; }
+  .more a:hover { border-color: var(--amber); color: var(--ink-100); }
+  .more b { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--ink-100); font-size: 0.82rem; }
+
+  @media (max-width: 900px) {
+    .menu { display: inline-grid; }
+    .shell.has-sidebar { display: block; }
+    .sidebar {
+      position: fixed; z-index: 25; left: 0; top: var(--topbar); width: min(var(--sidebar), 85vw);
+      transform: translateX(-105%); transition: transform 0.15s ease;
+    }
+    .sidebar.open { transform: none; box-shadow: 0 0 0 100vmax rgb(6 9 13 / 0.7); }
+    .content { padding-inline: 16px; }
+  }
+  @media (max-width: 560px) {
+    .topbar .brand .full { display: none; }
+    .topbar .brand .short { display: inline; }
+    .wide-only { display: none; }
+    .current span { display: none; }
+    .current { padding-inline: 0.35rem; }
+  }
+</style>
+
+<script>
+  import { applyKnown } from '../lib/known';
+  import { trackRecent, applyRecent } from '../lib/recent';
+  import { animatePage } from '../lib/motion';
+
+  document.addEventListener('astro:page-load', () => {
+    trackRecent();
+    applyRecent();
+    applyKnown();
+    animatePage();
+    const btn = document.querySelector<HTMLButtonElement>('[data-menu]');
+    const side = document.querySelector<HTMLElement>('[data-sidebar]');
+    if (!btn || !side) return;
+    const set = (open: boolean) => { side.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', () => set(!side.classList.contains('open')));
+    side.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(false); });
+    document.querySelector('.main')?.addEventListener('click', () => set(false));
+    side.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' });
+  });
+</script>

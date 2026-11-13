@@ -1,0 +1,136 @@
+[
+  {
+    "term": "Publish/subscribe",
+    "aliases": [
+      "pub/sub"
+    ],
+    "definition": "Publish/subscribe sends messages through a topic to recipients attached by subscriptions.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/welcome.html#welcome"
+  },
+  {
+    "term": "Topic",
+    "aliases": [],
+    "definition": "A topic is a named communication channel to which publishers send messages.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/welcome.html#welcome"
+  },
+  {
+    "term": "Subscription",
+    "aliases": [],
+    "definition": "A subscription connects a topic to an endpoint that receives its messages.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/welcome.html#welcome"
+  },
+  {
+    "term": "Endpoint",
+    "aliases": [],
+    "definition": "An endpoint is the destination that receives an SNS notification.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-event-destinations.html#sns-event-destinations"
+  },
+  {
+    "term": "Fan-out",
+    "aliases": [
+      "fanout"
+    ],
+    "definition": "Fan-out delivers one publication to multiple subscribers.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html#sns-sqs-as-subscriber"
+  },
+  {
+    "term": "Polling",
+    "aliases": [
+      "poll"
+    ],
+    "definition": "Polling asks a queue for messages waiting to be processed.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html#sns-sqs-as-subscriber"
+  },
+  {
+    "term": "FIFO",
+    "aliases": [
+      "First in, first out"
+    ],
+    "definition": "FIFO preserves message order within each message group when used with FIFO delivery destinations.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/fifo-message-grouping.html#fifo-message-grouping"
+  },
+  {
+    "term": "Message group",
+    "aliases": [
+      "MessageGroupId"
+    ],
+    "definition": "A message group identifies messages that must remain ordered relative to one another.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/fifo-message-grouping.html#fifo-message-grouping"
+  },
+  {
+    "term": "Message attribute",
+    "aliases": [],
+    "definition": "A message attribute is a named metadata value published alongside the message body.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html#sns-message-filtering"
+  },
+  {
+    "term": "Payload",
+    "aliases": [
+      "message body"
+    ],
+    "definition": "A payload is the application data carried inside a message.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html#sns-message-filtering"
+  },
+  {
+    "term": "Filter policy",
+    "aliases": [],
+    "definition": "A filter policy selects which messages SNS delivers to a particular subscription.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html#sns-message-filtering"
+  },
+  {
+    "term": "Eventual consistency",
+    "aliases": [],
+    "definition": "Eventual consistency means a policy update takes time to become effective throughout the service.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html#sns-subscription-filter-policies"
+  },
+  {
+    "term": "Dead-letter queue",
+    "aliases": [
+      "DLQ"
+    ],
+    "definition": "A dead-letter queue stores messages SNS could not deliver to a subscription endpoint.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-dead-letter-queues.html"
+  },
+  {
+    "term": "Redrive policy",
+    "aliases": [
+      "RedrivePolicy"
+    ],
+    "definition": "An SNS redrive policy identifies the SQS queue that receives a subscription's undeliverable messages.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-dead-letter-queues.html"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An ARN identifies an AWS resource such as a topic or queue.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/subscribe-sqs-queue-to-sns-topic.html#subscribe-sqs-queue-to-sns-topic"
+  },
+  {
+    "term": "Service principal",
+    "aliases": [],
+    "definition": "A service principal identifies an AWS service in an access policy.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/subscribe-sqs-queue-to-sns-topic.html#subscribe-sqs-queue-to-sns-topic"
+  },
+  {
+    "term": "Server-side encryption",
+    "aliases": [
+      "SSE"
+    ],
+    "definition": "Server-side encryption protects stored message contents using an encryption key.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
+  },
+  {
+    "term": "Envelope",
+    "aliases": [],
+    "definition": "An SNS envelope wraps a published message with SNS notification metadata.",
+    "source": "https://docs.aws.amazon.com/sns/latest/dg/sns-large-payload-raw-message-delivery.html#sns-large-payload-raw-message-delivery"
+  },
+  {
+    "term": "Symmetric key",
+    "aliases": [],
+    "definition": "A symmetric encryption key uses the same key material for encryption and decryption.",
+    "source": "https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-data-at-rest-encryption/about-data-encryption.html"
+  }
+]

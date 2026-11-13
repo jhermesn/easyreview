@@ -1,0 +1,96 @@
+[
+  {
+    "term": "Cache-aside",
+    "aliases": [
+      "lazy loading"
+    ],
+    "definition": "Cache-aside reads the database on a cache miss and places the result in the cache.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html"
+  },
+  {
+    "term": "Cache hit",
+    "aliases": [],
+    "definition": "A cache hit finds the requested unexpired value in the cache.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html"
+  },
+  {
+    "term": "Cache miss",
+    "aliases": [],
+    "definition": "A cache miss occurs when a requested value is absent or expired.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html"
+  },
+  {
+    "term": "Time to live",
+    "aliases": [
+      "TTL"
+    ],
+    "definition": "A time to live specifies how long a cached value remains valid before expiration.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html"
+  },
+  {
+    "term": "Write-through",
+    "aliases": [],
+    "definition": "Write-through updates the cache when the application writes data to its database.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html"
+  },
+  {
+    "term": "Shard",
+    "aliases": [
+      "partition"
+    ],
+    "definition": "A shard holds part of a Valkey or Redis OSS dataset with a primary and optional replicas.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Clusters.html"
+  },
+  {
+    "term": "Read replica",
+    "aliases": [],
+    "definition": "A read replica holds a copy of primary data and serves read requests.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Clusters.html"
+  },
+  {
+    "term": "Replication lag",
+    "aliases": [],
+    "definition": "Replication lag is the delay between changes at a primary and their arrival at a replica.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoFailover.html"
+  },
+  {
+    "term": "Endpoint",
+    "aliases": [],
+    "definition": "An endpoint is the address an application uses to connect to a cache node or cluster.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Endpoints.html"
+  },
+  {
+    "term": "Subnet group",
+    "aliases": [],
+    "definition": "A subnet group identifies the VPC subnets eligible to host node-based cache nodes.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SubnetGroups.html"
+  },
+  {
+    "term": "Role-based access control",
+    "aliases": [
+      "RBAC"
+    ],
+    "definition": "RBAC assigns cache users permissions for particular commands and keys.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Clusters.RBAC.html"
+  },
+  {
+    "term": "Transactional log",
+    "aliases": [],
+    "definition": "A transactional log durably records changes across Availability Zones for recovery.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/durability.html"
+  },
+  {
+    "term": "Asynchronous replication",
+    "aliases": [],
+    "definition": "Asynchronous replication copies primary updates to secondary clusters without waiting for those copies before continuing.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Redis-Global-Datastore.html"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An Availability Zone is a separate placement location within an AWS Region used to isolate failures.",
+    "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoFailover.html"
+  }
+]

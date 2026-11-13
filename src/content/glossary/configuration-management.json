@@ -1,0 +1,92 @@
+[
+  {
+    "term": "Infrastructure as code",
+    "aliases": [
+      "IaC"
+    ],
+    "definition": "Infrastructure as code describes and provisions infrastructure from versioned definitions.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/home.html"
+  },
+  {
+    "term": "Stack",
+    "aliases": [],
+    "definition": "A stack is a collection of AWS resources managed together from a CloudFormation template.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html"
+  },
+  {
+    "term": "Construct",
+    "aliases": [],
+    "definition": "A construct is a reusable code component that defines cloud infrastructure.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/home.html"
+  },
+  {
+    "term": "Module",
+    "aliases": [],
+    "definition": "A module packages reusable resource configurations for inclusion in CloudFormation templates.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/modules.html"
+  },
+  {
+    "term": "Portfolio",
+    "aliases": [],
+    "definition": "A portfolio groups Service Catalog products and controls which users may access them.",
+    "source": "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/what-is_concepts.html"
+  },
+  {
+    "term": "Association",
+    "aliases": [],
+    "definition": "An association connects a desired configuration with its targets and execution schedule.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-about.html"
+  },
+  {
+    "term": "Desired state",
+    "aliases": [],
+    "definition": "Desired state is the configuration that managed nodes or resources are expected to maintain.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-vs-maintenance-windows.html"
+  },
+  {
+    "term": "Feature flag",
+    "aliases": [
+      "toggle"
+    ],
+    "definition": "A feature flag is an application setting that controls whether behavior is enabled.",
+    "source": "https://docs.aws.amazon.com/appconfig/latest/userguide/what-is-appconfig.html"
+  },
+  {
+    "term": "Remediation",
+    "aliases": [],
+    "definition": "Remediation performs actions to repair a resource that violates a configuration rule.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/remediation.html"
+  },
+  {
+    "term": "Runbook",
+    "aliases": [
+      "Automation document"
+    ],
+    "definition": "A runbook defines actions that Systems Manager Automation performs.",
+    "source": "https://docs.aws.amazon.com/config/latest/developerguide/remediation.html"
+  },
+  {
+    "term": "Drift",
+    "aliases": [],
+    "definition": "Drift is a difference between actual resource settings and their expected template settings.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html"
+  },
+  {
+    "term": "Change set",
+    "aliases": [],
+    "definition": "A change set previews the effects of proposed CloudFormation stack changes before execution.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html"
+  },
+  {
+    "term": "SecureString",
+    "aliases": [],
+    "definition": "SecureString is a Parameter Store value encrypted using AWS KMS.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html"
+  },
+  {
+    "term": "Rotation",
+    "aliases": [],
+    "definition": "Rotation updates a secret and the credentials in the system that uses it.",
+    "source": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html"
+  }
+]

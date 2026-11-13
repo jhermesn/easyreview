@@ -1,0 +1,56 @@
+[
+  {
+    "term": "finding",
+    "aliases": ["GuardDuty finding"],
+    "definition": "A finding is a report of a potential security issue detected in an AWS account, workload, or data.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html"
+  },
+  {
+    "term": "management event",
+    "aliases": ["control plane event"],
+    "definition": "A management event records a management operation performed on an AWS resource.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_controlplane"
+  },
+  {
+    "term": "VPC flow log",
+    "aliases": ["flow log"],
+    "definition": "A VPC flow log captures information about IP traffic to and from network interfaces.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_vpc"
+  },
+  {
+    "term": "delegated administrator",
+    "aliases": ["GuardDuty administrator"],
+    "definition": "A delegated administrator is an account designated to manage GuardDuty for associated member accounts.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_accounts.html"
+  },
+  {
+    "term": "event pattern",
+    "aliases": [],
+    "definition": "An event pattern defines which event data EventBridge uses to decide whether to send an event to a target.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_eventbridge.html#guardduty_findings_eventbridge_format"
+  },
+  {
+    "term": "target",
+    "aliases": ["EventBridge target"],
+    "definition": "A target is a resource or endpoint that receives events matching an EventBridge rule.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_eventbridge.html#eventbridge_events"
+  },
+  {
+    "term": "trusted list",
+    "aliases": [],
+    "definition": "A trusted list identifies sources for which GuardDuty does not generate findings.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_upload-lists.html#guardduty-threat-intel-list-entity-sets"
+  },
+  {
+    "term": "threat list",
+    "aliases": [],
+    "definition": "A threat list identifies known malicious sources that GuardDuty uses to generate findings.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_upload-lists.html#guardduty-threat-intel-list-entity-sets"
+  },
+  {
+    "term": "sample finding",
+    "aliases": [],
+    "definition": "A sample finding uses placeholder values to help test and understand GuardDuty findings.",
+    "source": "https://docs.aws.amazon.com/guardduty/latest/ug/sample_findings.html"
+  }
+]

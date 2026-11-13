@@ -1,0 +1,174 @@
+[
+  {
+    "term": "Mutable deployment",
+    "aliases": [
+      "In-place deployment"
+    ],
+    "definition": "A release changes application software on existing servers.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-server.html"
+  },
+  {
+    "term": "Immutable deployment",
+    "aliases": [],
+    "definition": "A release starts a new server set from the desired configuration or application version.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/practicing-continuous-integration-continuous-delivery/deployment-methods.html"
+  },
+  {
+    "term": "Blue/green deployment",
+    "aliases": [],
+    "definition": "A new environment is tested beside the old environment before production traffic moves to it.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/practicing-continuous-integration-continuous-delivery/deployment-methods.html"
+  },
+  {
+    "term": "Rolling deployment",
+    "aliases": [],
+    "definition": "A rollout updates or replaces one portion of application capacity at a time.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/practicing-continuous-integration-continuous-delivery/deployment-methods.html"
+  },
+  {
+    "term": "Batch",
+    "aliases": [],
+    "definition": "A subset of instances processed together during a rolling deployment.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html#environments-cfg-rollingdeployments-method"
+  },
+  {
+    "term": "Canary deployment",
+    "aliases": [],
+    "definition": "A release first receives a selected traffic share before the remaining traffic moves after evaluation.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/canary-deployment.html"
+  },
+  {
+    "term": "Linear deployment",
+    "aliases": [],
+    "definition": "Traffic moves to a new version in equal percentage increments with waits between them.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-linear.html"
+  },
+  {
+    "term": "Bake time",
+    "aliases": [],
+    "definition": "An observation period keeps both ECS revisions running after production traffic has shifted.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-linear.html"
+  },
+  {
+    "term": "Lifecycle hook",
+    "aliases": [],
+    "definition": "A script or validation function runs at a named point in the deployment process.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html"
+  },
+  {
+    "term": "Health gate",
+    "aliases": [],
+    "definition": "A health check or alarm condition can stop a deployment from proceeding.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html#environments-cfg-rollingdeployments-method"
+  },
+  {
+    "term": "Circuit breaker",
+    "aliases": [],
+    "definition": "A deployment control detects startup or health failure and can initiate a configured rollback.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html"
+  },
+  {
+    "term": "Readiness probe",
+    "aliases": [],
+    "definition": "A check decides whether a Kubernetes pod can receive Service traffic.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+  },
+  {
+    "term": "Liveness probe",
+    "aliases": [],
+    "definition": "A check detects workload failures that require restarting the container.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+  },
+  {
+    "term": "Pod",
+    "aliases": [],
+    "definition": "A Kubernetes workload unit runs one or more containers.",
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+  },
+  {
+    "term": "Checkpoint",
+    "aliases": [],
+    "definition": "A pause after partial instance replacement allows progress to be evaluated.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html#instance-refresh-how-it-works"
+  },
+  {
+    "term": "Instance refresh",
+    "aliases": [],
+    "definition": "An Auto Scaling operation applies a desired configuration through instance or root-volume replacement.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html#instance-refresh-how-it-works"
+  },
+  {
+    "term": "Application revision",
+    "aliases": [],
+    "definition": "A packaged version of application files is selected for deployment.",
+    "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-server.html"
+  },
+  {
+    "term": "Database schema",
+    "aliases": [],
+    "definition": "The structure of a database defines its tables, fields, and relationships.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/blue-green-deployments/best-practices-for-managing-data-synchronization-and-schema-changes.html#decoupling-schema-changes-from-code-changes"
+  },
+  {
+    "term": "Backward compatibility",
+    "aliases": [],
+    "definition": "A changed schema remains usable by older application code, or new code works with an older schema.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/blue-green-deployments/best-practices-for-managing-data-synchronization-and-schema-changes.html#decoupling-schema-changes-from-code-changes"
+  },
+  {
+    "term": "CNAME",
+    "aliases": [],
+    "definition": "A DNS alias record redirects an environment name to its destination.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.CNAMESwap.html"
+  },
+  {
+    "term": "Golden AMI",
+    "aliases": [],
+    "definition": "A reusable machine image contains preinstalled software and settings for application instances.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/prebaking-vs.-bootstrapping-amis.html"
+  },
+  {
+    "term": "Prebaking",
+    "aliases": [],
+    "definition": "Application components are installed in a machine image before instances launch.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/prebaking-vs.-bootstrapping-amis.html"
+  },
+  {
+    "term": "Bootstrapping",
+    "aliases": [],
+    "definition": "Installation and configuration run when a new instance starts.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/prebaking-vs.-bootstrapping-amis.html"
+  },
+  {
+    "term": "User data",
+    "aliases": [],
+    "definition": "Startup configuration or scripts are supplied to an EC2 instance at launch.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts"
+  },
+  {
+    "term": "Launch template",
+    "aliases": [],
+    "definition": "Stored EC2 launch settings identify the image and configuration for new instances.",
+    "source": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html#instance-refresh-how-it-works"
+  },
+  {
+    "term": "Image recipe",
+    "aliases": [],
+    "definition": "A base image and selected build and test components define the image to create.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/how-image-builder-works.html"
+  },
+  {
+    "term": "Component",
+    "aliases": [],
+    "definition": "Installation, configuration, or test instructions form a reusable part of an image recipe.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/how-image-builder-works.html"
+  },
+  {
+    "term": "Organizational unit",
+    "aliases": [
+      "OU"
+    ],
+    "definition": "A group within AWS Organizations can receive launch permission for a distributed AMI.",
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/cr-upd-ami-distribution-settings.html"
+  }
+]

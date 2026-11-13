@@ -1,0 +1,50 @@
+[
+  {
+    "term": "Virtual private cloud",
+    "aliases": ["VPC"],
+    "definition": "A logically isolated virtual network in AWS.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "IPsec",
+    "aliases": ["Internet Protocol security"],
+    "definition": "A protocol suite used by Site-to-Site VPN to secure network traffic.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html"
+  },
+  {
+    "term": "VPN tunnel",
+    "aliases": ["tunnel"],
+    "definition": "An encrypted link that carries traffic between a customer network and AWS.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts"
+  },
+  {
+    "term": "Customer gateway",
+    "aliases": [],
+    "definition": "An AWS resource containing information about the device on your side of a VPN connection.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts"
+  },
+  {
+    "term": "Customer gateway device",
+    "aliases": [],
+    "definition": "Physical equipment or software on the customer side of a VPN connection.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts"
+  },
+  {
+    "term": "Virtual private gateway",
+    "aliases": [],
+    "definition": "The AWS-side VPN endpoint that can attach to one VPC.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts"
+  },
+  {
+    "term": "Border Gateway Protocol",
+    "aliases": ["BGP"],
+    "definition": "A protocol that exchanges routing information between networks.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-site-to-site-vpn.html"
+  },
+  {
+    "term": "Equal Cost Multi Path",
+    "aliases": ["ECMP"],
+    "definition": "Routing that can use multiple paths to increase available VPN bandwidth.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html#lbt-scaling"
+  }
+]

@@ -1,0 +1,172 @@
+[
+  {
+    "term": "Listener",
+    "aliases": [],
+    "definition": "A listener accepts connection requests using a configured protocol and port.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html"
+  },
+  {
+    "term": "Target group",
+    "aliases": [],
+    "definition": "A target group collects registered destinations to which a load balancer can route requests.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An Availability Zone is an isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones"
+  },
+  {
+    "term": "Cross-zone load balancing",
+    "aliases": [],
+    "definition": "Cross-zone load balancing lets a load balancer node route to targets across enabled Availability Zones.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#cross-zone-load-balancing"
+  },
+  {
+    "term": "DNS",
+    "aliases": [
+      "Domain Name System"
+    ],
+    "definition": "DNS resolves a name into addresses a client can use to reach the load balancer.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#request-routing"
+  },
+  {
+    "term": "Dualstack",
+    "aliases": [],
+    "definition": "Dualstack allows clients to connect using either IPv4 or IPv6.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-ip-address-type.html"
+  },
+  {
+    "term": "Deregistration delay",
+    "aliases": [
+      "draining"
+    ],
+    "definition": "Deregistration delay gives active requests time to finish while a target is being removed.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#deregistration-delay"
+  },
+  {
+    "term": "Slow start",
+    "aliases": [],
+    "definition": "Slow start gradually increases the traffic share sent to a newly healthy target.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#slow-start-mode"
+  },
+  {
+    "term": "Session affinity",
+    "aliases": [
+      "stickiness"
+    ],
+    "definition": "Session affinity uses cookies to keep a client session routed to one target.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#sticky-sessions"
+  },
+  {
+    "term": "Cookie",
+    "aliases": [],
+    "definition": "A cookie is a value a client returns with later requests to carry session information.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#duration-based-stickiness"
+  },
+  {
+    "term": "Fail open",
+    "aliases": [],
+    "definition": "Fail open means continuing to route to registered targets even when all are unhealthy.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html"
+  },
+  {
+    "term": "TLS",
+    "aliases": [
+      "Transport Layer Security"
+    ],
+    "definition": "TLS encrypts traffic between communicating endpoints.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html#secure-listeners"
+  },
+  {
+    "term": "GENEVE",
+    "aliases": [],
+    "definition": "GENEVE encapsulates packets exchanged between a Gateway Load Balancer and its virtual appliances.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/introduction.html#gateway-load-balancer-overview"
+  },
+  {
+    "term": "Proxy Protocol v2",
+    "aliases": [],
+    "definition": "Proxy Protocol v2 carries connection metadata in a binary header before application data.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/network/edit-target-group-attributes.html#proxy-protocol"
+  },
+  {
+    "term": "X-Forwarded-For",
+    "aliases": [
+      "XFF"
+    ],
+    "definition": "X-Forwarded-For is an HTTP request header that carries client IP address information through a proxy.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/x-forwarded-headers.html#x-forwarded-for"
+  },
+  {
+    "term": "CIDR block",
+    "aliases": [
+      "Classless Inter-Domain Routing"
+    ],
+    "definition": "A CIDR block describes an IP address range using a prefix length.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#subnets-load-balancer"
+  },
+  {
+    "term": "VPC",
+    "aliases": [
+      "virtual private cloud"
+    ],
+    "definition": "A VPC is a logically isolated virtual network for AWS resources.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "Subnet",
+    "aliases": [],
+    "definition": "A subnet is an address range inside a VPC that belongs to one Availability Zone.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "Security group",
+    "aliases": [],
+    "definition": "A security group is a firewall that controls allowed traffic to and from resources.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#load-balancer-security-groups"
+  },
+  {
+    "term": "Session state",
+    "aliases": [],
+    "definition": "Session state is user data retained between requests while an application is in use.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_mitigate_interaction_failure_stateless.html"
+  },
+  {
+    "term": "QUIC",
+    "aliases": [],
+    "definition": "QUIC is a transport protocol carried over UDP that an NLB can pass through to targets.",
+    "source": "https://aws.amazon.com/blogs/networking-and-content-delivery/introducing-quic-protocol-support-for-network-load-balancer-accelerating-mobile-first-applications/"
+  },
+  {
+    "term": "Connection idle timeout",
+    "aliases": [],
+    "definition": "The time an ALB connection can remain inactive before the load balancer closes it.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-load-balancer-attributes.html#connection-idle-timeout"
+  },
+  {
+    "term": "HTTP client keepalive duration",
+    "aliases": [
+      "client keepalive"
+    ],
+    "definition": "The maximum time ALB maintains a persistent HTTP client connection before accepting one more request and closing it gracefully.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-load-balancer-attributes.html#http-client-keep-alive-duration"
+  },
+  {
+    "term": "JSON Web Token",
+    "aliases": [
+      "JWT"
+    ],
+    "definition": "A token containing claims that ALB can validate before routing a request.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-verify-jwt.html#listener-verify-jwt"
+  },
+  {
+    "term": "Rule transform",
+    "aliases": [],
+    "definition": "A listener rule operation that rewrites the host header or URL before forwarding without changing the routing decision.",
+    "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-transforms.html#rule-transforms"
+  }
+]

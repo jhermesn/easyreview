@@ -1,0 +1,44 @@
+[
+  {
+    "term": "Network File System",
+    "aliases": ["NFS"],
+    "definition": "A protocol that lets clients access files over a network.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/what-is-fsx.html#fsx-openzfs-feature-overview"
+  },
+  {
+    "term": "snapshot",
+    "aliases": [],
+    "definition": "A read-only image of a volume at a point in time.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-openzfs"
+  },
+  {
+    "term": "clone volume",
+    "aliases": ["clone"],
+    "definition": "A writable volume initialized from and dependent on a snapshot.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-volumes"
+  },
+  {
+    "term": "NFS export",
+    "aliases": ["NFS exports"],
+    "definition": "A volume setting that determines which clients can access it and their NFS options.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/creating-volumes.html#nfs-exports"
+  },
+  {
+    "term": "volume quota",
+    "aliases": ["quota"],
+    "definition": "A limit on the amount of storage a volume can use.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/creating-volumes.html#volume-properties"
+  },
+  {
+    "term": "volume reservation",
+    "aliases": ["reservation"],
+    "definition": "A specified amount of storage guaranteed to a volume.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/creating-volumes.html#volume-properties"
+  },
+  {
+    "term": "full-copy volume",
+    "aliases": ["full copy"],
+    "definition": "A volume copied from a snapshot without an ongoing dependency on that snapshot.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-volumes"
+  }
+]

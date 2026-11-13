@@ -1,0 +1,70 @@
+[
+  {
+    "term": "Network File System",
+    "aliases": [
+      "NFS"
+    ],
+    "definition": "NFS is a network protocol that lets clients access shared files.",
+    "source": "https://docs.aws.amazon.com/filegateway/latest/files3/what-is-file-s3.html"
+  },
+  {
+    "term": "Server Message Block",
+    "aliases": [
+      "SMB"
+    ],
+    "definition": "SMB is a network protocol that lets clients access shared files.",
+    "source": "https://docs.aws.amazon.com/filegateway/latest/files3/what-is-file-s3.html"
+  },
+  {
+    "term": "Object key",
+    "aliases": [],
+    "definition": "An object key identifies an S3 object and corresponds to its file path through S3 File Gateway.",
+    "source": "https://docs.aws.amazon.com/filegateway/latest/files3/file-gateway-concepts.html"
+  },
+  {
+    "term": "Cache",
+    "aliases": [],
+    "definition": "A cache keeps recently accessed data locally to reduce retrieval latency.",
+    "source": "https://docs.aws.amazon.com/filegateway/latest/files3/file-gateway-concepts.html"
+  },
+  {
+    "term": "Time to live",
+    "aliases": [
+      "TTL"
+    ],
+    "definition": "For cache refresh, TTL is the time since a directory refresh after which access triggers another refresh.",
+    "source": "https://docs.aws.amazon.com/filegateway/latest/files3/refresh-cache.html"
+  },
+  {
+    "term": "iSCSI",
+    "aliases": [],
+    "definition": "iSCSI carries storage commands over an IP network so a server can access gateway devices.",
+    "source": "https://docs.aws.amazon.com/storagegateway/latest/vgw/WhatIsStorageGateway.html"
+  },
+  {
+    "term": "Snapshot",
+    "aliases": [],
+    "definition": "A snapshot is a point-in-time backup that can be used to recover a volume.",
+    "source": "https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html"
+  },
+  {
+    "term": "Upload buffer",
+    "aliases": [],
+    "definition": "An upload buffer is local staging storage for data waiting to be transferred to AWS.",
+    "source": "https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html"
+  },
+  {
+    "term": "Virtual tape library",
+    "aliases": [
+      "VTL"
+    ],
+    "definition": "A virtual tape library presents software tape drives and a media changer to backup applications.",
+    "source": "https://docs.aws.amazon.com/storagegateway/latest/tgw/StorageGatewayConcepts.html"
+  },
+  {
+    "term": "Asynchronous upload",
+    "aliases": [],
+    "definition": "An asynchronous upload transfers data after the local write rather than requiring both to finish together.",
+    "source": "https://docs.aws.amazon.com/filegateway/latest/files3/file-gateway-concepts.html"
+  }
+]

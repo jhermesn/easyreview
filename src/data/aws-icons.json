@@ -1,0 +1,3142 @@
+{
+ "release": "07312026",
+ "source": "https://aws.amazon.com/architecture/icons/",
+ "icons": {
+  "activate": {
+   "kind": "service",
+   "name": "AWS Activate"
+  },
+  "amplify": {
+   "kind": "service",
+   "name": "AWS Amplify"
+  },
+  "apache-mxnet-on-aws": {
+   "kind": "service",
+   "name": "Apache MXNet on AWS"
+  },
+  "api-gateway": {
+   "kind": "service",
+   "name": "Amazon API Gateway"
+  },
+  "app-mesh": {
+   "kind": "service",
+   "name": "AWS App Mesh"
+  },
+  "app-runner": {
+   "kind": "service",
+   "name": "AWS App Runner"
+  },
+  "app-studio": {
+   "kind": "service",
+   "name": "AWS App Studio"
+  },
+  "appconfig": {
+   "kind": "service",
+   "name": "AWS AppConfig"
+  },
+  "appfabric": {
+   "kind": "service",
+   "name": "AWS AppFabric"
+  },
+  "appflow": {
+   "kind": "service",
+   "name": "Amazon AppFlow"
+  },
+  "application-auto-scaling": {
+   "kind": "service",
+   "name": "AWS Application Auto Scaling"
+  },
+  "application-discovery-service": {
+   "kind": "service",
+   "name": "AWS Application Discovery Service"
+  },
+  "application-migration-service": {
+   "kind": "service",
+   "name": "AWS Application Migration Service"
+  },
+  "application-recovery-controller": {
+   "kind": "service",
+   "name": "Amazon Application Recovery Controller"
+  },
+  "appsync": {
+   "kind": "service",
+   "name": "AWS AppSync"
+  },
+  "artifact": {
+   "kind": "service",
+   "name": "AWS Artifact"
+  },
+  "athena": {
+   "kind": "service",
+   "name": "Amazon Athena"
+  },
+  "audit-manager": {
+   "kind": "service",
+   "name": "AWS Audit Manager"
+  },
+  "augmented-ai-a2i": {
+   "kind": "service",
+   "name": "Amazon Augmented AI A2I"
+  },
+  "aurora": {
+   "kind": "service",
+   "name": "Amazon Aurora"
+  },
+  "auto-scaling": {
+   "kind": "service",
+   "name": "AWS Auto Scaling"
+  },
+  "b2b-data-interchange": {
+   "kind": "service",
+   "name": "AWS B2B Data Interchange"
+  },
+  "backint-agent": {
+   "kind": "service",
+   "name": "AWS Backint Agent"
+  },
+  "backup": {
+   "kind": "service",
+   "name": "AWS Backup"
+  },
+  "batch": {
+   "kind": "service",
+   "name": "AWS Batch"
+  },
+  "bedrock": {
+   "kind": "service",
+   "name": "Amazon Bedrock"
+  },
+  "bedrock-agentcore": {
+   "kind": "service",
+   "name": "Amazon Bedrock AgentCore"
+  },
+  "billing-conductor": {
+   "kind": "service",
+   "name": "AWS Billing Conductor"
+  },
+  "bottlerocket": {
+   "kind": "service",
+   "name": "Bottlerocket"
+  },
+  "braket": {
+   "kind": "service",
+   "name": "Amazon Braket"
+  },
+  "budgets": {
+   "kind": "service",
+   "name": "AWS Budgets"
+  },
+  "certificate-manager": {
+   "kind": "service",
+   "name": "AWS Certificate Manager"
+  },
+  "chatbot": {
+   "kind": "service",
+   "name": "AWS Chatbot"
+  },
+  "chime": {
+   "kind": "service",
+   "name": "Amazon Chime"
+  },
+  "chime-sdk": {
+   "kind": "service",
+   "name": "Amazon Chime SDK"
+  },
+  "clean-rooms": {
+   "kind": "service",
+   "name": "AWS Clean Rooms"
+  },
+  "client-vpn": {
+   "kind": "service",
+   "name": "AWS Client VPN"
+  },
+  "cloud-control-api": {
+   "kind": "service",
+   "name": "AWS Cloud Control API"
+  },
+  "cloud-development-kit": {
+   "kind": "service",
+   "name": "AWS Cloud Development Kit"
+  },
+  "cloud-directory": {
+   "kind": "service",
+   "name": "Amazon Cloud Directory"
+  },
+  "cloud-map": {
+   "kind": "service",
+   "name": "AWS Cloud Map"
+  },
+  "cloud-wan": {
+   "kind": "service",
+   "name": "AWS Cloud WAN"
+  },
+  "cloud9": {
+   "kind": "service",
+   "name": "AWS Cloud9"
+  },
+  "cloudformation": {
+   "kind": "service",
+   "name": "AWS CloudFormation"
+  },
+  "cloudfront": {
+   "kind": "service",
+   "name": "Amazon CloudFront"
+  },
+  "cloudhsm": {
+   "kind": "service",
+   "name": "AWS CloudHSM"
+  },
+  "cloudsearch": {
+   "kind": "service",
+   "name": "Amazon CloudSearch"
+  },
+  "cloudshell": {
+   "kind": "service",
+   "name": "AWS CloudShell"
+  },
+  "cloudtrail": {
+   "kind": "service",
+   "name": "AWS CloudTrail"
+  },
+  "cloudwatch": {
+   "kind": "service",
+   "name": "Amazon CloudWatch"
+  },
+  "codeartifact": {
+   "kind": "service",
+   "name": "AWS CodeArtifact"
+  },
+  "codebuild": {
+   "kind": "service",
+   "name": "AWS CodeBuild"
+  },
+  "codecatalyst": {
+   "kind": "service",
+   "name": "Amazon CodeCatalyst"
+  },
+  "codecommit": {
+   "kind": "service",
+   "name": "AWS CodeCommit"
+  },
+  "codedeploy": {
+   "kind": "service",
+   "name": "AWS CodeDeploy"
+  },
+  "codeguru": {
+   "kind": "service",
+   "name": "Amazon CodeGuru"
+  },
+  "codepipeline": {
+   "kind": "service",
+   "name": "AWS CodePipeline"
+  },
+  "codewhisperer": {
+   "kind": "service",
+   "name": "Amazon CodeWhisperer"
+  },
+  "cognito": {
+   "kind": "service",
+   "name": "Amazon Cognito"
+  },
+  "command-line-interface": {
+   "kind": "service",
+   "name": "AWS Command Line Interface"
+  },
+  "comprehend": {
+   "kind": "service",
+   "name": "Amazon Comprehend"
+  },
+  "comprehend-medical": {
+   "kind": "service",
+   "name": "Amazon Comprehend Medical"
+  },
+  "compute-optimizer": {
+   "kind": "service",
+   "name": "AWS Compute Optimizer"
+  },
+  "compute-optimizer-aws": {
+   "kind": "service",
+   "name": "AWS Compute Optimizer"
+  },
+  "config": {
+   "kind": "service",
+   "name": "AWS Config"
+  },
+  "connect": {
+   "kind": "service",
+   "name": "Amazon Connect"
+  },
+  "console-mobile-application": {
+   "kind": "service",
+   "name": "AWS Console Mobile Application"
+  },
+  "control-tower": {
+   "kind": "service",
+   "name": "AWS Control Tower"
+  },
+  "corretto": {
+   "kind": "service",
+   "name": "Amazon Corretto"
+  },
+  "cost-and-usage-report": {
+   "kind": "service",
+   "name": "AWS Cost and Usage Report"
+  },
+  "cost-explorer": {
+   "kind": "service",
+   "name": "AWS Cost Explorer"
+  },
+  "data-exchange": {
+   "kind": "service",
+   "name": "AWS Data Exchange"
+  },
+  "data-firehose": {
+   "kind": "service",
+   "name": "Amazon Data Firehose"
+  },
+  "data-transfer-terminal": {
+   "kind": "service",
+   "name": "AWS Data Transfer Terminal"
+  },
+  "database-migration-service": {
+   "kind": "service",
+   "name": "AWS Database Migration Service"
+  },
+  "datasync": {
+   "kind": "service",
+   "name": "AWS DataSync"
+  },
+  "datazone": {
+   "kind": "service",
+   "name": "Amazon DataZone"
+  },
+  "dcv": {
+   "kind": "service",
+   "name": "Amazon DCV"
+  },
+  "deadline-cloud": {
+   "kind": "service",
+   "name": "AWS Deadline Cloud"
+  },
+  "deep-learning-amis": {
+   "kind": "service",
+   "name": "AWS Deep Learning AMIs"
+  },
+  "deep-learning-containers": {
+   "kind": "service",
+   "name": "AWS Deep Learning Containers"
+  },
+  "deepracer": {
+   "kind": "service",
+   "name": "AWS DeepRacer"
+  },
+  "detective": {
+   "kind": "service",
+   "name": "Amazon Detective"
+  },
+  "device-farm": {
+   "kind": "service",
+   "name": "AWS Device Farm"
+  },
+  "devops-agent": {
+   "kind": "service",
+   "name": "AWS DevOps Agent"
+  },
+  "devops-guru": {
+   "kind": "service",
+   "name": "Amazon DevOps Guru"
+  },
+  "direct-connect": {
+   "kind": "service",
+   "name": "AWS Direct Connect"
+  },
+  "directory-service": {
+   "kind": "service",
+   "name": "AWS Directory Service"
+  },
+  "distro-for-opentelemetry": {
+   "kind": "service",
+   "name": "AWS Distro for OpenTelemetry"
+  },
+  "documentdb": {
+   "kind": "service",
+   "name": "Amazon DocumentDB"
+  },
+  "dynamodb": {
+   "kind": "service",
+   "name": "Amazon DynamoDB"
+  },
+  "ec2": {
+   "kind": "service",
+   "name": "Amazon EC2"
+  },
+  "ec2-auto-scaling": {
+   "kind": "service",
+   "name": "Amazon EC2 Auto Scaling"
+  },
+  "ec2-image-builder": {
+   "kind": "service",
+   "name": "Amazon EC2 Image Builder"
+  },
+  "ecs-anywhere": {
+   "kind": "service",
+   "name": "Amazon ECS Anywhere"
+  },
+  "efs": {
+   "kind": "service",
+   "name": "Amazon EFS"
+  },
+  "eks-anywhere": {
+   "kind": "service",
+   "name": "Amazon EKS Anywhere"
+  },
+  "eks-distro": {
+   "kind": "service",
+   "name": "Amazon EKS Distro"
+  },
+  "elastic-beanstalk": {
+   "kind": "service",
+   "name": "AWS Elastic Beanstalk"
+  },
+  "elastic-block-store": {
+   "kind": "service",
+   "name": "Amazon Elastic Block Store"
+  },
+  "elastic-container-registry": {
+   "kind": "service",
+   "name": "Amazon Elastic Container Registry"
+  },
+  "elastic-container-service": {
+   "kind": "service",
+   "name": "Amazon Elastic Container Service"
+  },
+  "elastic-disaster-recovery": {
+   "kind": "service",
+   "name": "AWS Elastic Disaster Recovery"
+  },
+  "elastic-fabric-adapter": {
+   "kind": "service",
+   "name": "Elastic Fabric Adapter"
+  },
+  "elastic-inference": {
+   "kind": "service",
+   "name": "Amazon Elastic Inference"
+  },
+  "elastic-kubernetes-service": {
+   "kind": "service",
+   "name": "Amazon Elastic Kubernetes Service"
+  },
+  "elastic-load-balancing": {
+   "kind": "service",
+   "name": "Elastic Load Balancing"
+  },
+  "elastic-vmware-service": {
+   "kind": "service",
+   "name": "Amazon Elastic VMware Service"
+  },
+  "elasticache": {
+   "kind": "service",
+   "name": "Amazon ElastiCache"
+  },
+  "elemental-appliances-software": {
+   "kind": "service",
+   "name": "AWS Elemental Appliances & Software"
+  },
+  "elemental-conductor": {
+   "kind": "service",
+   "name": "AWS Elemental Conductor"
+  },
+  "elemental-delta": {
+   "kind": "service",
+   "name": "AWS Elemental Delta"
+  },
+  "elemental-inference": {
+   "kind": "service",
+   "name": "AWS Elemental Inference"
+  },
+  "elemental-link": {
+   "kind": "service",
+   "name": "AWS Elemental Link"
+  },
+  "elemental-live": {
+   "kind": "service",
+   "name": "AWS Elemental Live"
+  },
+  "elemental-mediaconnect": {
+   "kind": "service",
+   "name": "AWS Elemental MediaConnect"
+  },
+  "elemental-mediaconvert": {
+   "kind": "service",
+   "name": "AWS Elemental MediaConvert"
+  },
+  "elemental-medialive": {
+   "kind": "service",
+   "name": "AWS Elemental MediaLive"
+  },
+  "elemental-mediapackage": {
+   "kind": "service",
+   "name": "AWS Elemental MediaPackage"
+  },
+  "elemental-mediastore": {
+   "kind": "service",
+   "name": "AWS Elemental MediaStore"
+  },
+  "elemental-mediatailor": {
+   "kind": "service",
+   "name": "AWS Elemental MediaTailor"
+  },
+  "elemental-server": {
+   "kind": "service",
+   "name": "AWS Elemental Server"
+  },
+  "emr": {
+   "kind": "service",
+   "name": "Amazon EMR"
+  },
+  "end-user-messaging": {
+   "kind": "service",
+   "name": "AWS End User Messaging"
+  },
+  "entity-resolution": {
+   "kind": "service",
+   "name": "AWS Entity Resolution"
+  },
+  "eventbridge": {
+   "kind": "service",
+   "name": "Amazon EventBridge"
+  },
+  "express-workflows": {
+   "kind": "service",
+   "name": "AWS Express Workflows"
+  },
+  "fargate": {
+   "kind": "service",
+   "name": "AWS Fargate"
+  },
+  "fault-injection-service": {
+   "kind": "service",
+   "name": "AWS Fault Injection Service"
+  },
+  "file-cache": {
+   "kind": "service",
+   "name": "Amazon File Cache"
+  },
+  "finops-agent": {
+   "kind": "service",
+   "name": "AWS FinOps Agent"
+  },
+  "finspace": {
+   "kind": "service",
+   "name": "Amazon FinSpace"
+  },
+  "firewall-manager": {
+   "kind": "service",
+   "name": "AWS Firewall Manager"
+  },
+  "forecast": {
+   "kind": "service",
+   "name": "Amazon Forecast"
+  },
+  "fraud-detector": {
+   "kind": "service",
+   "name": "Amazon Fraud Detector"
+  },
+  "freertos": {
+   "kind": "service",
+   "name": "FreeRTOS"
+  },
+  "fsx": {
+   "kind": "service",
+   "name": "Amazon FSx"
+  },
+  "fsx-for-lustre": {
+   "kind": "service",
+   "name": "Amazon FSx for Lustre"
+  },
+  "fsx-for-netapp-ontap": {
+   "kind": "service",
+   "name": "Amazon FSx for NetApp ONTAP"
+  },
+  "fsx-for-openzfs": {
+   "kind": "service",
+   "name": "Amazon FSx for OpenZFS"
+  },
+  "fsx-for-wfs": {
+   "kind": "service",
+   "name": "Amazon FSx for WFS"
+  },
+  "gamelift-servers": {
+   "kind": "service",
+   "name": "Amazon GameLift Servers"
+  },
+  "gamelift-streams": {
+   "kind": "service",
+   "name": "Amazon GameLift Streams"
+  },
+  "global-accelerator": {
+   "kind": "service",
+   "name": "AWS Global Accelerator"
+  },
+  "glue": {
+   "kind": "service",
+   "name": "AWS Glue"
+  },
+  "glue-databrew": {
+   "kind": "service",
+   "name": "AWS Glue DataBrew"
+  },
+  "ground-station": {
+   "kind": "service",
+   "name": "AWS Ground Station"
+  },
+  "group-auto-scaling-group": {
+   "kind": "group",
+   "name": "Auto Scaling group"
+  },
+  "group-aws-account": {
+   "kind": "group",
+   "name": "AWS Account"
+  },
+  "group-aws-cloud": {
+   "kind": "group",
+   "name": "AWS Cloud"
+  },
+  "group-aws-cloud-logo": {
+   "kind": "group",
+   "name": "AWS Cloud logo"
+  },
+  "group-aws-iot-greengrass-deployment": {
+   "kind": "group",
+   "name": "AWS IoT Greengrass Deployment"
+  },
+  "group-corporate-data-center": {
+   "kind": "group",
+   "name": "Corporate data center"
+  },
+  "group-ec2-instance-contents": {
+   "kind": "group",
+   "name": "EC2 instance contents"
+  },
+  "group-private-subnet": {
+   "kind": "group",
+   "name": "Private subnet"
+  },
+  "group-public-subnet": {
+   "kind": "group",
+   "name": "Public subnet"
+  },
+  "group-region": {
+   "kind": "group",
+   "name": "Region"
+  },
+  "group-server-contents": {
+   "kind": "group",
+   "name": "Server contents"
+  },
+  "group-spot-fleet": {
+   "kind": "group",
+   "name": "Spot Fleet"
+  },
+  "group-virtual-private-cloud-vpc": {
+   "kind": "group",
+   "name": "Virtual private cloud VPC"
+  },
+  "guardduty": {
+   "kind": "service",
+   "name": "Amazon GuardDuty"
+  },
+  "health-dashboard": {
+   "kind": "service",
+   "name": "AWS Health Dashboard"
+  },
+  "healthimaging": {
+   "kind": "service",
+   "name": "AWS HealthImaging"
+  },
+  "healthlake": {
+   "kind": "service",
+   "name": "AWS HealthLake"
+  },
+  "healthomics": {
+   "kind": "service",
+   "name": "AWS HealthOmics"
+  },
+  "healthscribe": {
+   "kind": "service",
+   "name": "AWS HealthScribe"
+  },
+  "iam-identity-center": {
+   "kind": "service",
+   "name": "AWS IAM Identity Center"
+  },
+  "identity-and-access-management": {
+   "kind": "service",
+   "name": "AWS Identity and Access Management"
+  },
+  "infrastructure-composer": {
+   "kind": "service",
+   "name": "AWS Infrastructure Composer"
+  },
+  "inspector": {
+   "kind": "service",
+   "name": "Amazon Inspector"
+  },
+  "interactive-video-service": {
+   "kind": "service",
+   "name": "Amazon Interactive Video Service"
+  },
+  "interconnect": {
+   "kind": "service",
+   "name": "AWS Interconnect"
+  },
+  "iot-core": {
+   "kind": "service",
+   "name": "AWS IoT Core"
+  },
+  "iot-device-defender": {
+   "kind": "service",
+   "name": "AWS IoT Device Defender"
+  },
+  "iot-device-management": {
+   "kind": "service",
+   "name": "AWS IoT Device Management"
+  },
+  "iot-events": {
+   "kind": "service",
+   "name": "AWS IoT Events"
+  },
+  "iot-expresslink": {
+   "kind": "service",
+   "name": "AWS IoT ExpressLink"
+  },
+  "iot-fleetwise": {
+   "kind": "service",
+   "name": "AWS IoT FleetWise"
+  },
+  "iot-greengrass": {
+   "kind": "service",
+   "name": "AWS IoT Greengrass"
+  },
+  "iot-sitewise": {
+   "kind": "service",
+   "name": "AWS IoT SiteWise"
+  },
+  "iot-twinmaker": {
+   "kind": "service",
+   "name": "AWS IoT TwinMaker"
+  },
+  "iq": {
+   "kind": "service",
+   "name": "AWS IQ"
+  },
+  "kendra": {
+   "kind": "service",
+   "name": "Amazon Kendra"
+  },
+  "key-management-service": {
+   "kind": "service",
+   "name": "AWS Key Management Service"
+  },
+  "keyspaces": {
+   "kind": "service",
+   "name": "Amazon Keyspaces"
+  },
+  "kinesis": {
+   "kind": "service",
+   "name": "Amazon Kinesis"
+  },
+  "kinesis-data-streams": {
+   "kind": "service",
+   "name": "Amazon Kinesis Data Streams"
+  },
+  "kinesis-video-streams": {
+   "kind": "service",
+   "name": "Amazon Kinesis Video Streams"
+  },
+  "kinesis-video-streams-amazon": {
+   "kind": "service",
+   "name": "Amazon Kinesis Video Streams"
+  },
+  "lake-formation": {
+   "kind": "service",
+   "name": "AWS Lake Formation"
+  },
+  "lambda": {
+   "kind": "service",
+   "name": "AWS Lambda"
+  },
+  "launch-wizard": {
+   "kind": "service",
+   "name": "AWS Launch Wizard"
+  },
+  "lex": {
+   "kind": "service",
+   "name": "Amazon Lex"
+  },
+  "license-manager": {
+   "kind": "service",
+   "name": "AWS License Manager"
+  },
+  "lightsail": {
+   "kind": "service",
+   "name": "Amazon Lightsail"
+  },
+  "lightsail-for-research": {
+   "kind": "service",
+   "name": "Amazon Lightsail for Research"
+  },
+  "local-zones": {
+   "kind": "service",
+   "name": "AWS Local Zones"
+  },
+  "location-service": {
+   "kind": "service",
+   "name": "Amazon Location Service"
+  },
+  "lookout-for-equipment": {
+   "kind": "service",
+   "name": "Amazon Lookout for Equipment"
+  },
+  "lookout-for-vision": {
+   "kind": "service",
+   "name": "Amazon Lookout for Vision"
+  },
+  "macie": {
+   "kind": "service",
+   "name": "Amazon Macie"
+  },
+  "mainframe-modernization": {
+   "kind": "service",
+   "name": "AWS Mainframe Modernization"
+  },
+  "managed-blockchain": {
+   "kind": "service",
+   "name": "Amazon Managed Blockchain"
+  },
+  "managed-grafana": {
+   "kind": "service",
+   "name": "Amazon Managed Grafana"
+  },
+  "managed-service-for-apache-flink": {
+   "kind": "service",
+   "name": "Amazon Managed Service for Apache Flink"
+  },
+  "managed-service-for-prometheus": {
+   "kind": "service",
+   "name": "Amazon Managed Service for Prometheus"
+  },
+  "managed-services": {
+   "kind": "service",
+   "name": "AWS Managed Services"
+  },
+  "managed-streaming-for-apache-kafka": {
+   "kind": "service",
+   "name": "Amazon Managed Streaming for Apache Kafka"
+  },
+  "managed-workflows-for-apache-airflow": {
+   "kind": "service",
+   "name": "Amazon Managed Workflows for Apache Airflow"
+  },
+  "management-console": {
+   "kind": "service",
+   "name": "AWS Management Console"
+  },
+  "marketplace-dark": {
+   "kind": "service",
+   "name": "AWS Marketplace_Dark"
+  },
+  "marketplace-light": {
+   "kind": "service",
+   "name": "AWS Marketplace_Light"
+  },
+  "memorydb": {
+   "kind": "service",
+   "name": "Amazon MemoryDB"
+  },
+  "migration-evaluator": {
+   "kind": "service",
+   "name": "AWS Migration Evaluator"
+  },
+  "monitron": {
+   "kind": "service",
+   "name": "Amazon Monitron"
+  },
+  "mq": {
+   "kind": "service",
+   "name": "Amazon MQ"
+  },
+  "neptune": {
+   "kind": "service",
+   "name": "Amazon Neptune"
+  },
+  "network-firewall": {
+   "kind": "service",
+   "name": "AWS Network Firewall"
+  },
+  "neuron": {
+   "kind": "service",
+   "name": "AWS Neuron"
+  },
+  "nitro-enclaves": {
+   "kind": "service",
+   "name": "AWS Nitro Enclaves"
+  },
+  "nova": {
+   "kind": "service",
+   "name": "Amazon Nova"
+  },
+  "open-3d-engine": {
+   "kind": "service",
+   "name": "Open 3D Engine"
+  },
+  "opensearch-service": {
+   "kind": "service",
+   "name": "Amazon OpenSearch Service"
+  },
+  "oracle-database-at-aws": {
+   "kind": "service",
+   "name": "Oracle Database at AWS"
+  },
+  "organizations": {
+   "kind": "service",
+   "name": "AWS Organizations"
+  },
+  "outposts-family": {
+   "kind": "service",
+   "name": "AWS Outposts family"
+  },
+  "outposts-rack": {
+   "kind": "service",
+   "name": "AWS Outposts rack"
+  },
+  "outposts-servers": {
+   "kind": "service",
+   "name": "AWS Outposts servers"
+  },
+  "panorama": {
+   "kind": "service",
+   "name": "AWS Panorama"
+  },
+  "parallel-cluster": {
+   "kind": "service",
+   "name": "AWS Parallel Cluster"
+  },
+  "parallel-computing-service": {
+   "kind": "service",
+   "name": "AWS Parallel Computing Service"
+  },
+  "partner-central": {
+   "kind": "service",
+   "name": "AWS Partner Central"
+  },
+  "payment-cryptography": {
+   "kind": "service",
+   "name": "AWS Payment Cryptography"
+  },
+  "personalize": {
+   "kind": "service",
+   "name": "Amazon Personalize"
+  },
+  "pinpoint": {
+   "kind": "service",
+   "name": "Amazon Pinpoint"
+  },
+  "pinpoint-apis": {
+   "kind": "service",
+   "name": "Amazon Pinpoint APIs"
+  },
+  "polly": {
+   "kind": "service",
+   "name": "Amazon Polly"
+  },
+  "private-certificate-authority": {
+   "kind": "service",
+   "name": "AWS Private Certificate Authority"
+  },
+  "privatelink": {
+   "kind": "service",
+   "name": "AWS PrivateLink"
+  },
+  "professional-services": {
+   "kind": "service",
+   "name": "AWS Professional Services"
+  },
+  "proton": {
+   "kind": "service",
+   "name": "AWS Proton"
+  },
+  "pytorch-on-aws": {
+   "kind": "service",
+   "name": "PyTorch on AWS"
+  },
+  "q": {
+   "kind": "service",
+   "name": "Amazon Q"
+  },
+  "quick": {
+   "kind": "service",
+   "name": "Amazon Quick"
+  },
+  "rds": {
+   "kind": "service",
+   "name": "Amazon RDS"
+  },
+  "red-hat-openshift-service-on-aws": {
+   "kind": "service",
+   "name": "Red Hat OpenShift Service on AWS"
+  },
+  "redshift": {
+   "kind": "service",
+   "name": "Amazon Redshift"
+  },
+  "rekognition": {
+   "kind": "service",
+   "name": "Amazon Rekognition"
+  },
+  "repost": {
+   "kind": "service",
+   "name": "AWS rePost"
+  },
+  "repost-private": {
+   "kind": "service",
+   "name": "AWS rePost Private"
+  },
+  "res-alert": {
+   "kind": "resource",
+   "name": "Alert"
+  },
+  "res-amplify-aws-amplify-studio": {
+   "kind": "resource",
+   "name": "AWS Amplify AWS Amplify Studio"
+  },
+  "res-api-gateway-endpoint": {
+   "kind": "resource",
+   "name": "Amazon API Gateway Endpoint"
+  },
+  "res-app-mesh-mesh": {
+   "kind": "resource",
+   "name": "AWS App Mesh Mesh"
+  },
+  "res-app-mesh-virtual-gateway": {
+   "kind": "resource",
+   "name": "AWS App Mesh Virtual Gateway"
+  },
+  "res-app-mesh-virtual-node": {
+   "kind": "resource",
+   "name": "AWS App Mesh Virtual Node"
+  },
+  "res-app-mesh-virtual-router": {
+   "kind": "resource",
+   "name": "AWS App Mesh Virtual Router"
+  },
+  "res-app-mesh-virtual-service": {
+   "kind": "resource",
+   "name": "AWS App Mesh Virtual Service"
+  },
+  "res-application-discovery-service-aws-agentless-collector": {
+   "kind": "resource",
+   "name": "AWS Application Discovery Service AWS Agentless Collector"
+  },
+  "res-application-discovery-service-aws-discovery-agent": {
+   "kind": "resource",
+   "name": "AWS Application Discovery Service AWS Discovery Agent"
+  },
+  "res-application-discovery-service-migration-evaluator-collector": {
+   "kind": "resource",
+   "name": "AWS Application Discovery Service Migration Evaluator Collector"
+  },
+  "res-athena-data-source-connectors": {
+   "kind": "resource",
+   "name": "Amazon Athena Data Source Connectors"
+  },
+  "res-aurora-amazon-aurora-instance-alternate": {
+   "kind": "resource",
+   "name": "Amazon Aurora Amazon Aurora Instance alternate"
+  },
+  "res-aurora-amazon-rds-instance": {
+   "kind": "resource",
+   "name": "Amazon Aurora Amazon RDS Instance"
+  },
+  "res-aurora-amazon-rds-instance-aternate": {
+   "kind": "resource",
+   "name": "Amazon Aurora Amazon RDS Instance Aternate"
+  },
+  "res-aurora-instance": {
+   "kind": "resource",
+   "name": "Amazon Aurora Instance"
+  },
+  "res-aurora-mariadb-instance": {
+   "kind": "resource",
+   "name": "Amazon Aurora MariaDB Instance"
+  },
+  "res-aurora-mariadb-instance-alternate": {
+   "kind": "resource",
+   "name": "Amazon Aurora MariaDB Instance Alternate"
+  },
+  "res-aurora-mysql-instance": {
+   "kind": "resource",
+   "name": "Amazon Aurora MySQL Instance"
+  },
+  "res-aurora-mysql-instance-alternate": {
+   "kind": "resource",
+   "name": "Amazon Aurora MySQL Instance Alternate"
+  },
+  "res-aurora-oracle-instance": {
+   "kind": "resource",
+   "name": "Amazon Aurora Oracle Instance"
+  },
+  "res-aurora-oracle-instance-alternate": {
+   "kind": "resource",
+   "name": "Amazon Aurora Oracle Instance Alternate"
+  },
+  "res-aurora-piops-instance": {
+   "kind": "resource",
+   "name": "Amazon Aurora PIOPS Instance"
+  },
+  "res-aurora-postgresql-instance": {
+   "kind": "resource",
+   "name": "Amazon Aurora PostgreSQL Instance"
+  },
+  "res-aurora-postgresql-instance-alternate": {
+   "kind": "resource",
+   "name": "Amazon Aurora PostgreSQL Instance Alternate"
+  },
+  "res-aurora-sql-server-instance": {
+   "kind": "resource",
+   "name": "Amazon Aurora SQL Server Instance"
+  },
+  "res-aurora-sql-server-instance-alternate": {
+   "kind": "resource",
+   "name": "Amazon Aurora SQL Server Instance Alternate"
+  },
+  "res-aurora-trusted-language-extensions-for-postgresql": {
+   "kind": "resource",
+   "name": "Amazon Aurora Trusted Language Extensions for PostgreSQL"
+  },
+  "res-authenticated-user": {
+   "kind": "resource",
+   "name": "Authenticated User"
+  },
+  "res-backup-audit-manager": {
+   "kind": "resource",
+   "name": "AWS Backup Audit Manager"
+  },
+  "res-backup-aws-backup-for-aws-cloudformation": {
+   "kind": "resource",
+   "name": "AWS Backup AWS Backup for AWS CloudFormation"
+  },
+  "res-backup-aws-backup-support-for-amazon-fsx-for-netapp-ontap": {
+   "kind": "resource",
+   "name": "AWS Backup AWS Backup support for Amazon FSx for NetApp ONTAP"
+  },
+  "res-backup-aws-backup-support-for-amazon-s3": {
+   "kind": "resource",
+   "name": "AWS Backup AWS Backup support for Amazon S3"
+  },
+  "res-backup-aws-backup-support-for-vmware-workloads": {
+   "kind": "resource",
+   "name": "AWS Backup AWS Backup Support for VMware Workloads"
+  },
+  "res-backup-backup-plan": {
+   "kind": "resource",
+   "name": "AWS Backup Backup Plan"
+  },
+  "res-backup-backup-restore": {
+   "kind": "resource",
+   "name": "AWS Backup Backup Restore"
+  },
+  "res-backup-backup-vault": {
+   "kind": "resource",
+   "name": "AWS Backup Backup Vault"
+  },
+  "res-backup-compliance-reporting": {
+   "kind": "resource",
+   "name": "AWS Backup Compliance Reporting"
+  },
+  "res-backup-compute": {
+   "kind": "resource",
+   "name": "AWS Backup Compute"
+  },
+  "res-backup-database": {
+   "kind": "resource",
+   "name": "AWS Backup Database"
+  },
+  "res-backup-gateway": {
+   "kind": "resource",
+   "name": "AWS Backup Gateway"
+  },
+  "res-backup-legal-hold": {
+   "kind": "resource",
+   "name": "AWS Backup Legal Hold"
+  },
+  "res-backup-recovery-point-objective": {
+   "kind": "resource",
+   "name": "AWS Backup Recovery Point Objective"
+  },
+  "res-backup-recovery-time-objective": {
+   "kind": "resource",
+   "name": "AWS Backup Recovery Time Objective"
+  },
+  "res-backup-storage": {
+   "kind": "resource",
+   "name": "AWS Backup Storage"
+  },
+  "res-backup-vault-lock": {
+   "kind": "resource",
+   "name": "AWS Backup Vault Lock"
+  },
+  "res-backup-virtual-machine": {
+   "kind": "resource",
+   "name": "AWS Backup Virtual Machine"
+  },
+  "res-backup-virtual-machine-monitor": {
+   "kind": "resource",
+   "name": "AWS Backup Virtual Machine Monitor"
+  },
+  "res-braket-chandelier": {
+   "kind": "resource",
+   "name": "Amazon Braket Chandelier"
+  },
+  "res-braket-chip": {
+   "kind": "resource",
+   "name": "Amazon Braket Chip"
+  },
+  "res-braket-embedded-simulator": {
+   "kind": "resource",
+   "name": "Amazon Braket Embedded Simulator"
+  },
+  "res-braket-managed-simulator": {
+   "kind": "resource",
+   "name": "Amazon Braket Managed Simulator"
+  },
+  "res-braket-noise-simulator": {
+   "kind": "resource",
+   "name": "Amazon Braket Noise Simulator"
+  },
+  "res-braket-qpu": {
+   "kind": "resource",
+   "name": "Amazon Braket QPU"
+  },
+  "res-braket-simulator": {
+   "kind": "resource",
+   "name": "Amazon Braket Simulator"
+  },
+  "res-braket-simulator-1": {
+   "kind": "resource",
+   "name": "Amazon Braket Simulator 1"
+  },
+  "res-braket-simulator-2": {
+   "kind": "resource",
+   "name": "Amazon Braket Simulator 2"
+  },
+  "res-braket-simulator-3": {
+   "kind": "resource",
+   "name": "Amazon Braket Simulator 3"
+  },
+  "res-braket-simulator-4": {
+   "kind": "resource",
+   "name": "Amazon Braket Simulator 4"
+  },
+  "res-braket-state-vector": {
+   "kind": "resource",
+   "name": "Amazon Braket State Vector"
+  },
+  "res-braket-tensor-network": {
+   "kind": "resource",
+   "name": "Amazon Braket Tensor Network"
+  },
+  "res-camera": {
+   "kind": "resource",
+   "name": "Camera"
+  },
+  "res-certificate-manager-certificate-authority": {
+   "kind": "resource",
+   "name": "AWS Certificate Manager Certificate Authority"
+  },
+  "res-chat": {
+   "kind": "resource",
+   "name": "Chat"
+  },
+  "res-client": {
+   "kind": "resource",
+   "name": "Client"
+  },
+  "res-cloud-digital-interface": {
+   "kind": "resource",
+   "name": "AWS Cloud Digital Interface"
+  },
+  "res-cloud-map-namespace": {
+   "kind": "resource",
+   "name": "AWS Cloud Map Namespace"
+  },
+  "res-cloud-map-resource": {
+   "kind": "resource",
+   "name": "AWS Cloud Map Resource"
+  },
+  "res-cloud-map-service": {
+   "kind": "resource",
+   "name": "AWS Cloud Map Service"
+  },
+  "res-cloud-wan-core-network-edge": {
+   "kind": "resource",
+   "name": "AWS Cloud WAN Core Network Edge"
+  },
+  "res-cloud-wan-segment-network": {
+   "kind": "resource",
+   "name": "AWS Cloud WAN Segment Network"
+  },
+  "res-cloud-wan-transit-gateway-route-table-attachment": {
+   "kind": "resource",
+   "name": "AWS Cloud WAN Transit Gateway Route Table Attachment"
+  },
+  "res-cloud9-cloud9": {
+   "kind": "resource",
+   "name": "AWS Cloud9 Cloud9"
+  },
+  "res-cloudformation-change-set": {
+   "kind": "resource",
+   "name": "AWS CloudFormation Change Set"
+  },
+  "res-cloudformation-stack": {
+   "kind": "resource",
+   "name": "AWS CloudFormation Stack"
+  },
+  "res-cloudformation-template": {
+   "kind": "resource",
+   "name": "AWS CloudFormation Template"
+  },
+  "res-cloudfront-download-distribution": {
+   "kind": "resource",
+   "name": "Amazon CloudFront Download Distribution"
+  },
+  "res-cloudfront-edge-location": {
+   "kind": "resource",
+   "name": "Amazon CloudFront Edge Location"
+  },
+  "res-cloudfront-functions": {
+   "kind": "resource",
+   "name": "Amazon CloudFront Functions"
+  },
+  "res-cloudfront-streaming-distribution": {
+   "kind": "resource",
+   "name": "Amazon CloudFront Streaming Distribution"
+  },
+  "res-cloudsearch-search-documents": {
+   "kind": "resource",
+   "name": "Amazon CloudSearch Search Documents"
+  },
+  "res-cloudtrail-cloudtrail-lake": {
+   "kind": "resource",
+   "name": "AWS CloudTrail CloudTrail Lake"
+  },
+  "res-cloudwatch-alarm": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Alarm"
+  },
+  "res-cloudwatch-cross-account-observability": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Cross account Observability"
+  },
+  "res-cloudwatch-data-protection": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Data Protection"
+  },
+  "res-cloudwatch-event-event-based": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Event Event Based"
+  },
+  "res-cloudwatch-event-time-based": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Event Time Based"
+  },
+  "res-cloudwatch-evidently": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Evidently"
+  },
+  "res-cloudwatch-logs": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Logs"
+  },
+  "res-cloudwatch-metrics-insights": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Metrics Insights"
+  },
+  "res-cloudwatch-rule": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Rule"
+  },
+  "res-cloudwatch-rum": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch RUM"
+  },
+  "res-cloudwatch-synthetics": {
+   "kind": "resource",
+   "name": "Amazon CloudWatch Synthetics"
+  },
+  "res-cold-storage": {
+   "kind": "resource",
+   "name": "Cold Storage"
+  },
+  "res-credentials": {
+   "kind": "resource",
+   "name": "Credentials"
+  },
+  "res-data-exchange-for-apis": {
+   "kind": "resource",
+   "name": "AWS Data Exchange for APIs"
+  },
+  "res-data-stream": {
+   "kind": "resource",
+   "name": "Data Stream"
+  },
+  "res-data-table": {
+   "kind": "resource",
+   "name": "Data Table"
+  },
+  "res-database": {
+   "kind": "resource",
+   "name": "Database"
+  },
+  "res-database-migration-service-database-migration-workflow-or-job": {
+   "kind": "resource",
+   "name": "AWS Database Migration Service Database migration workflow or job"
+  },
+  "res-datasync-agent": {
+   "kind": "resource",
+   "name": "AWS Datasync Agent"
+  },
+  "res-datasync-discovery": {
+   "kind": "resource",
+   "name": "AWS DataSync Discovery"
+  },
+  "res-datazone-business-data-catalog": {
+   "kind": "resource",
+   "name": "Amazon DataZone Business Data Catalog"
+  },
+  "res-datazone-data-portal": {
+   "kind": "resource",
+   "name": "Amazon DataZone Data Portal"
+  },
+  "res-datazone-data-projects": {
+   "kind": "resource",
+   "name": "Amazon DataZone Data Projects"
+  },
+  "res-devops-guru-insights": {
+   "kind": "resource",
+   "name": "Amazon DevOps Guru Insights"
+  },
+  "res-direct-connect-gateway": {
+   "kind": "resource",
+   "name": "AWS Direct Connect Gateway"
+  },
+  "res-directory-service-ad-connector": {
+   "kind": "resource",
+   "name": "AWS Directory Service AD Connector"
+  },
+  "res-directory-service-aws-managed-microsoft-ad": {
+   "kind": "resource",
+   "name": "AWS Directory Service AWS Managed Microsoft AD"
+  },
+  "res-directory-service-simple-ad": {
+   "kind": "resource",
+   "name": "AWS Directory Service Simple AD"
+  },
+  "res-disk": {
+   "kind": "resource",
+   "name": "Disk"
+  },
+  "res-document": {
+   "kind": "resource",
+   "name": "Document"
+  },
+  "res-documentdb-elastic-clusters": {
+   "kind": "resource",
+   "name": "Amazon DocumentDB Elastic Clusters"
+  },
+  "res-documents": {
+   "kind": "resource",
+   "name": "Documents"
+  },
+  "res-dynamodb-amazon-dynamodb-accelerator": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Amazon DynamoDB Accelerator"
+  },
+  "res-dynamodb-attribute": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Attribute"
+  },
+  "res-dynamodb-attributes": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Attributes"
+  },
+  "res-dynamodb-global-secondary-index": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Global secondary index"
+  },
+  "res-dynamodb-item": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Item"
+  },
+  "res-dynamodb-items": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Items"
+  },
+  "res-dynamodb-standard-access-table-class": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Standard Access Table Class"
+  },
+  "res-dynamodb-standard-infrequent-access-table-class": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Standard Infrequent Access Table Class"
+  },
+  "res-dynamodb-stream": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Stream"
+  },
+  "res-dynamodb-table": {
+   "kind": "resource",
+   "name": "Amazon DynamoDB Table"
+  },
+  "res-ec2-ami": {
+   "kind": "resource",
+   "name": "Amazon EC2 AMI"
+  },
+  "res-ec2-auto-scaling": {
+   "kind": "resource",
+   "name": "Amazon EC2 Auto Scaling"
+  },
+  "res-ec2-aws-microservice-extractor-for-net": {
+   "kind": "resource",
+   "name": "Amazon EC2 AWS Microservice Extractor for .NET"
+  },
+  "res-ec2-db-instance": {
+   "kind": "resource",
+   "name": "Amazon EC2 DB Instance"
+  },
+  "res-ec2-elastic-ip-address": {
+   "kind": "resource",
+   "name": "Amazon EC2 Elastic IP Address"
+  },
+  "res-ec2-instance": {
+   "kind": "resource",
+   "name": "Amazon EC2 Instance"
+  },
+  "res-ec2-instance-with-cloudwatch": {
+   "kind": "resource",
+   "name": "Amazon EC2 Instance with CloudWatch"
+  },
+  "res-ec2-instances": {
+   "kind": "resource",
+   "name": "Amazon EC2 Instances"
+  },
+  "res-ec2-rescue": {
+   "kind": "resource",
+   "name": "Amazon EC2 Rescue"
+  },
+  "res-ec2-spot-instance": {
+   "kind": "resource",
+   "name": "Amazon EC2 Spot Instance"
+  },
+  "res-elastic-beanstalk-application": {
+   "kind": "resource",
+   "name": "AWS Elastic Beanstalk Application"
+  },
+  "res-elastic-beanstalk-deployment": {
+   "kind": "resource",
+   "name": "AWS Elastic Beanstalk Deployment"
+  },
+  "res-elastic-block-store-amazon-data-lifecycle-manager": {
+   "kind": "resource",
+   "name": "Amazon Elastic Block Store Amazon Data Lifecycle Manager"
+  },
+  "res-elastic-block-store-multiple-volumes": {
+   "kind": "resource",
+   "name": "Amazon Elastic Block Store Multiple Volumes"
+  },
+  "res-elastic-block-store-snapshot": {
+   "kind": "resource",
+   "name": "Amazon Elastic Block Store Snapshot"
+  },
+  "res-elastic-block-store-volume": {
+   "kind": "resource",
+   "name": "Amazon Elastic Block Store Volume"
+  },
+  "res-elastic-block-store-volume-gp3": {
+   "kind": "resource",
+   "name": "Amazon Elastic Block Store Volume gp3"
+  },
+  "res-elastic-container-registry-image": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Registry Image"
+  },
+  "res-elastic-container-registry-registry": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Registry Registry"
+  },
+  "res-elastic-container-service-container-1": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Service Container 1"
+  },
+  "res-elastic-container-service-container-2": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Service Container 2"
+  },
+  "res-elastic-container-service-container-3": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Service Container 3"
+  },
+  "res-elastic-container-service-copiiot-cli": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Service CopiIoT CLI"
+  },
+  "res-elastic-container-service-ecs-service-connect": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Service ECS Service Connect"
+  },
+  "res-elastic-container-service-service": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Service Service"
+  },
+  "res-elastic-container-service-task": {
+   "kind": "resource",
+   "name": "Amazon Elastic Container Service Task"
+  },
+  "res-elastic-file-system-efs-intelligent-tiering": {
+   "kind": "resource",
+   "name": "Amazon Elastic File System EFS Intelligent Tiering"
+  },
+  "res-elastic-file-system-efs-one-zone": {
+   "kind": "resource",
+   "name": "Amazon Elastic File System EFS One Zone"
+  },
+  "res-elastic-file-system-efs-one-zone-infrequent-access": {
+   "kind": "resource",
+   "name": "Amazon Elastic File System EFS One Zone Infrequent Access"
+  },
+  "res-elastic-file-system-efs-standard": {
+   "kind": "resource",
+   "name": "Amazon Elastic File System EFS Standard"
+  },
+  "res-elastic-file-system-efs-standard-infrequent-access": {
+   "kind": "resource",
+   "name": "Amazon Elastic File System EFS Standard Infrequent Access"
+  },
+  "res-elastic-file-system-elastic-throughput": {
+   "kind": "resource",
+   "name": "Amazon Elastic File System Elastic Throughput"
+  },
+  "res-elastic-file-system-file-system": {
+   "kind": "resource",
+   "name": "Amazon Elastic File System File System"
+  },
+  "res-elastic-kubernetes-service-eks-on-outposts": {
+   "kind": "resource",
+   "name": "Amazon Elastic Kubernetes Service EKS on Outposts"
+  },
+  "res-elastic-load-balancing-application-load-balancer": {
+   "kind": "resource",
+   "name": "Elastic Load Balancing Application Load Balancer"
+  },
+  "res-elastic-load-balancing-classic-load-balancer": {
+   "kind": "resource",
+   "name": "Elastic Load Balancing Classic Load Balancer"
+  },
+  "res-elastic-load-balancing-gateway-load-balancer": {
+   "kind": "resource",
+   "name": "Elastic Load Balancing Gateway Load Balancer"
+  },
+  "res-elastic-load-balancing-network-load-balancer": {
+   "kind": "resource",
+   "name": "Elastic Load Balancing Network Load Balancer"
+  },
+  "res-elasticache-cache-node": {
+   "kind": "resource",
+   "name": "Amazon ElastiCache Cache Node"
+  },
+  "res-elasticache-elasticache-for-memcached": {
+   "kind": "resource",
+   "name": "Amazon ElastiCache ElastiCache for Memcached"
+  },
+  "res-elasticache-elasticache-for-redis": {
+   "kind": "resource",
+   "name": "Amazon ElastiCache ElastiCache for Redis"
+  },
+  "res-elasticache-elasticache-for-valkey": {
+   "kind": "resource",
+   "name": "Amazon ElastiCache ElastiCache for Valkey"
+  },
+  "res-elemental-mediaconnect-mediaconnect-gateway": {
+   "kind": "resource",
+   "name": "AWS Elemental MediaConnect MediaConnect Gateway"
+  },
+  "res-email": {
+   "kind": "resource",
+   "name": "Email"
+  },
+  "res-emr-cluster": {
+   "kind": "resource",
+   "name": "Amazon EMR Cluster"
+  },
+  "res-emr-emr-engine": {
+   "kind": "resource",
+   "name": "Amazon EMR EMR Engine"
+  },
+  "res-emr-hdfs-cluster": {
+   "kind": "resource",
+   "name": "Amazon EMR HDFS Cluster"
+  },
+  "res-eventbridge-custom-event-bus": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Custom Event Bus"
+  },
+  "res-eventbridge-default-event-bus": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Default Event Bus"
+  },
+  "res-eventbridge-event": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Event"
+  },
+  "res-eventbridge-pipes": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Pipes"
+  },
+  "res-eventbridge-rule": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Rule"
+  },
+  "res-eventbridge-saas-partner-event": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Saas Partner Event"
+  },
+  "res-eventbridge-scheduler": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Scheduler"
+  },
+  "res-eventbridge-schema": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Schema"
+  },
+  "res-eventbridge-schema-registry": {
+   "kind": "resource",
+   "name": "Amazon EventBridge Schema Registry"
+  },
+  "res-file-cache-hybrid-nfs-linked-datasets": {
+   "kind": "resource",
+   "name": "Amazon File Cache Hybrid NFS linked datasets"
+  },
+  "res-file-cache-on-premises-nfs-linked-datasets": {
+   "kind": "resource",
+   "name": "Amazon File Cache On premises NFS linked datasets"
+  },
+  "res-file-cache-s3-linked-datasets": {
+   "kind": "resource",
+   "name": "Amazon File Cache S3 linked datasets"
+  },
+  "res-firewall": {
+   "kind": "resource",
+   "name": "Firewall"
+  },
+  "res-folder": {
+   "kind": "resource",
+   "name": "Folder"
+  },
+  "res-folders": {
+   "kind": "resource",
+   "name": "Folders"
+  },
+  "res-forums": {
+   "kind": "resource",
+   "name": "Forums"
+  },
+  "res-gear": {
+   "kind": "resource",
+   "name": "Gear"
+  },
+  "res-generic-application": {
+   "kind": "resource",
+   "name": "Generic Application"
+  },
+  "res-git-repository": {
+   "kind": "resource",
+   "name": "Git Repository"
+  },
+  "res-globe": {
+   "kind": "resource",
+   "name": "Globe"
+  },
+  "res-glue-aws-glue-for-ray": {
+   "kind": "resource",
+   "name": "AWS Glue AWS Glue for Ray"
+  },
+  "res-glue-crawler": {
+   "kind": "resource",
+   "name": "AWS Glue Crawler"
+  },
+  "res-glue-data-catalog": {
+   "kind": "resource",
+   "name": "AWS Glue Data Catalog"
+  },
+  "res-glue-data-quality": {
+   "kind": "resource",
+   "name": "AWS Glue Data Quality"
+  },
+  "res-identity-access-management-add-on": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management Add on"
+  },
+  "res-identity-access-management-aws-sts": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management AWS STS"
+  },
+  "res-identity-access-management-aws-sts-alternate": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management AWS STS Alternate"
+  },
+  "res-identity-access-management-data-encryption-key": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management Data Encryption Key"
+  },
+  "res-identity-access-management-encrypted-data": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management Encrypted Data"
+  },
+  "res-identity-access-management-iam-access-analyzer": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management IAM Access Analyzer"
+  },
+  "res-identity-access-management-iam-roles-anywhere": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management IAM Roles Anywhere"
+  },
+  "res-identity-access-management-long-term-security-credential": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management Long Term Security Credential"
+  },
+  "res-identity-access-management-mfa-token": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management MFA Token"
+  },
+  "res-identity-access-management-permissions": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management Permissions"
+  },
+  "res-identity-access-management-role": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management Role"
+  },
+  "res-identity-access-management-temporary-security-credential": {
+   "kind": "resource",
+   "name": "AWS Identity Access Management Temporary Security Credential"
+  },
+  "res-inspector-agent": {
+   "kind": "resource",
+   "name": "Amazon Inspector Agent"
+  },
+  "res-internet": {
+   "kind": "resource",
+   "name": "Internet"
+  },
+  "res-internet-alt1": {
+   "kind": "resource",
+   "name": "Internet alt1"
+  },
+  "res-internet-alt2": {
+   "kind": "resource",
+   "name": "Internet alt2"
+  },
+  "res-iot-action": {
+   "kind": "resource",
+   "name": "AWS IoT Action"
+  },
+  "res-iot-actuator": {
+   "kind": "resource",
+   "name": "AWS IoT Actuator"
+  },
+  "res-iot-alexa-enabled-device": {
+   "kind": "resource",
+   "name": "AWS IoT Alexa Enabled Device"
+  },
+  "res-iot-alexa-skill": {
+   "kind": "resource",
+   "name": "AWS IoT Alexa Skill"
+  },
+  "res-iot-alexa-voice-service": {
+   "kind": "resource",
+   "name": "AWS IoT Alexa Voice Service"
+  },
+  "res-iot-certificate": {
+   "kind": "resource",
+   "name": "AWS IoT Certificate"
+  },
+  "res-iot-core-device-advisor": {
+   "kind": "resource",
+   "name": "AWS IoT Core Device Advisor"
+  },
+  "res-iot-core-device-location": {
+   "kind": "resource",
+   "name": "AWS IoT Core Device Location"
+  },
+  "res-iot-desired-state": {
+   "kind": "resource",
+   "name": "AWS IoT Desired State"
+  },
+  "res-iot-device-defender-iot-device-jobs": {
+   "kind": "resource",
+   "name": "AWS IoT Device Defender IoT Device Jobs"
+  },
+  "res-iot-device-gateway": {
+   "kind": "resource",
+   "name": "AWS IoT Device Gateway"
+  },
+  "res-iot-device-management-fleet-hub": {
+   "kind": "resource",
+   "name": "AWS IoT Device Management Fleet Hub"
+  },
+  "res-iot-device-tester": {
+   "kind": "resource",
+   "name": "AWS IoT Device Tester"
+  },
+  "res-iot-echo": {
+   "kind": "resource",
+   "name": "AWS IoT Echo"
+  },
+  "res-iot-fire-tv": {
+   "kind": "resource",
+   "name": "AWS IoT Fire TV"
+  },
+  "res-iot-fire-tv-stick": {
+   "kind": "resource",
+   "name": "AWS IoT Fire TV Stick"
+  },
+  "res-iot-greengrass-artifact": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Artifact"
+  },
+  "res-iot-greengrass-component": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Component"
+  },
+  "res-iot-greengrass-component-machine-learning": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Component Machine Learning"
+  },
+  "res-iot-greengrass-component-nucleus": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Component Nucleus"
+  },
+  "res-iot-greengrass-component-private": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Component Private"
+  },
+  "res-iot-greengrass-component-public": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Component Public"
+  },
+  "res-iot-greengrass-connector": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Connector"
+  },
+  "res-iot-greengrass-interprocess-communication": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Interprocess Communication"
+  },
+  "res-iot-greengrass-protocol": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Protocol"
+  },
+  "res-iot-greengrass-recipe": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Recipe"
+  },
+  "res-iot-greengrass-stream-manager": {
+   "kind": "resource",
+   "name": "AWS IoT Greengrass Stream Manager"
+  },
+  "res-iot-hardware-board": {
+   "kind": "resource",
+   "name": "AWS IoT Hardware Board"
+  },
+  "res-iot-http-protocol": {
+   "kind": "resource",
+   "name": "AWS IoT HTTP Protocol"
+  },
+  "res-iot-http2-protocol": {
+   "kind": "resource",
+   "name": "AWS IoT HTTP2 Protocol"
+  },
+  "res-iot-lambda-function": {
+   "kind": "resource",
+   "name": "AWS IoT Lambda Function"
+  },
+  "res-iot-lorawan-protocol": {
+   "kind": "resource",
+   "name": "AWS IoT LoRaWAN Protocol"
+  },
+  "res-iot-mqtt-protocol": {
+   "kind": "resource",
+   "name": "AWS IoT MQTT Protocol"
+  },
+  "res-iot-over-air-update": {
+   "kind": "resource",
+   "name": "AWS IoT Over Air Update"
+  },
+  "res-iot-policy": {
+   "kind": "resource",
+   "name": "AWS IoT Policy"
+  },
+  "res-iot-reported-state": {
+   "kind": "resource",
+   "name": "AWS IoT Reported State"
+  },
+  "res-iot-rule": {
+   "kind": "resource",
+   "name": "AWS IoT Rule"
+  },
+  "res-iot-sailboat": {
+   "kind": "resource",
+   "name": "AWS IoT Sailboat"
+  },
+  "res-iot-sensor": {
+   "kind": "resource",
+   "name": "AWS IoT Sensor"
+  },
+  "res-iot-servo": {
+   "kind": "resource",
+   "name": "AWS IoT Servo"
+  },
+  "res-iot-shadow": {
+   "kind": "resource",
+   "name": "AWS IoT Shadow"
+  },
+  "res-iot-simulator": {
+   "kind": "resource",
+   "name": "AWS IoT Simulator"
+  },
+  "res-iot-sitewise-asset": {
+   "kind": "resource",
+   "name": "AWS IoT SiteWise Asset"
+  },
+  "res-iot-sitewise-asset-hierarchy": {
+   "kind": "resource",
+   "name": "AWS IoT SiteWise Asset Hierarchy"
+  },
+  "res-iot-sitewise-asset-model": {
+   "kind": "resource",
+   "name": "AWS IoT SiteWise Asset Model"
+  },
+  "res-iot-sitewise-asset-properties": {
+   "kind": "resource",
+   "name": "AWS IoT SiteWise Asset Properties"
+  },
+  "res-iot-sitewise-data-streams": {
+   "kind": "resource",
+   "name": "AWS IoT SiteWise Data Streams"
+  },
+  "res-iot-thing-bank": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Bank"
+  },
+  "res-iot-thing-bicycle": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Bicycle"
+  },
+  "res-iot-thing-camera": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Camera"
+  },
+  "res-iot-thing-car": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Car"
+  },
+  "res-iot-thing-cart": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Cart"
+  },
+  "res-iot-thing-coffee-pot": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Coffee Pot"
+  },
+  "res-iot-thing-door-lock": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Door Lock"
+  },
+  "res-iot-thing-factory": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Factory"
+  },
+  "res-iot-thing-freertos-device": {
+   "kind": "resource",
+   "name": "AWS IoT Thing FreeRTOS Device"
+  },
+  "res-iot-thing-generic": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Generic"
+  },
+  "res-iot-thing-house": {
+   "kind": "resource",
+   "name": "AWS IoT Thing House"
+  },
+  "res-iot-thing-humidity-sensor": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Humidity Sensor"
+  },
+  "res-iot-thing-industrial-pc": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Industrial PC"
+  },
+  "res-iot-thing-lightbulb": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Lightbulb"
+  },
+  "res-iot-thing-medical-emergency": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Medical Emergency"
+  },
+  "res-iot-thing-plc": {
+   "kind": "resource",
+   "name": "AWS IoT Thing PLC"
+  },
+  "res-iot-thing-police-emergency": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Police Emergency"
+  },
+  "res-iot-thing-relay": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Relay"
+  },
+  "res-iot-thing-stacklight": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Stacklight"
+  },
+  "res-iot-thing-temperature-humidity-sensor": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Temperature Humidity Sensor"
+  },
+  "res-iot-thing-temperature-sensor": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Temperature Sensor"
+  },
+  "res-iot-thing-temperature-vibration-sensor": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Temperature Vibration Sensor"
+  },
+  "res-iot-thing-thermostat": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Thermostat"
+  },
+  "res-iot-thing-travel": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Travel"
+  },
+  "res-iot-thing-utility": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Utility"
+  },
+  "res-iot-thing-vibration-sensor": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Vibration Sensor"
+  },
+  "res-iot-thing-windfarm": {
+   "kind": "resource",
+   "name": "AWS IoT Thing Windfarm"
+  },
+  "res-iot-topic": {
+   "kind": "resource",
+   "name": "AWS IoT Topic"
+  },
+  "res-json-script": {
+   "kind": "resource",
+   "name": "JSON Script"
+  },
+  "res-key-management-service-external-key-store": {
+   "kind": "resource",
+   "name": "AWS Key Management Service External Key Store"
+  },
+  "res-lake-formation-data-lake": {
+   "kind": "resource",
+   "name": "AWS Lake Formation Data Lake"
+  },
+  "res-lambda-lambda-function": {
+   "kind": "resource",
+   "name": "AWS Lambda Lambda Function"
+  },
+  "res-license-manager-application-discovery": {
+   "kind": "resource",
+   "name": "AWS License Manager Application Discovery"
+  },
+  "res-license-manager-license-blending": {
+   "kind": "resource",
+   "name": "AWS License Manager License Blending"
+  },
+  "res-location-service-geofence": {
+   "kind": "resource",
+   "name": "Amazon Location Service Geofence"
+  },
+  "res-location-service-map": {
+   "kind": "resource",
+   "name": "Amazon Location Service Map "
+  },
+  "res-location-service-place": {
+   "kind": "resource",
+   "name": "Amazon Location Service Place"
+  },
+  "res-location-service-routes": {
+   "kind": "resource",
+   "name": "Amazon Location Service Routes"
+  },
+  "res-location-service-track": {
+   "kind": "resource",
+   "name": "Amazon Location Service Track "
+  },
+  "res-logs": {
+   "kind": "resource",
+   "name": "Logs"
+  },
+  "res-magnifying-glass": {
+   "kind": "resource",
+   "name": "Magnifying Glass"
+  },
+  "res-mainframe-modernization-analyzer": {
+   "kind": "resource",
+   "name": "AWS Mainframe Modernization Analyzer"
+  },
+  "res-mainframe-modernization-compiler": {
+   "kind": "resource",
+   "name": "AWS Mainframe Modernization Compiler"
+  },
+  "res-mainframe-modernization-converter": {
+   "kind": "resource",
+   "name": "AWS Mainframe Modernization Converter"
+  },
+  "res-mainframe-modernization-developer": {
+   "kind": "resource",
+   "name": "AWS Mainframe Modernization Developer"
+  },
+  "res-mainframe-modernization-runtime": {
+   "kind": "resource",
+   "name": "AWS Mainframe Modernization Runtime"
+  },
+  "res-managed-blockchain-blockchain": {
+   "kind": "resource",
+   "name": "Amazon Managed Blockchain Blockchain"
+  },
+  "res-management-console": {
+   "kind": "resource",
+   "name": "AWS Management Console"
+  },
+  "res-metrics": {
+   "kind": "resource",
+   "name": "Metrics"
+  },
+  "res-mobile-client": {
+   "kind": "resource",
+   "name": "Mobile client"
+  },
+  "res-mq-broker": {
+   "kind": "resource",
+   "name": "Amazon MQ Broker"
+  },
+  "res-msk-amazon-msk-connect": {
+   "kind": "resource",
+   "name": "Amazon MSK Amazon MSK Connect"
+  },
+  "res-multimedia": {
+   "kind": "resource",
+   "name": "Multimedia"
+  },
+  "res-network-firewall-endpoints": {
+   "kind": "resource",
+   "name": "AWS Network Firewall Endpoints"
+  },
+  "res-office-building": {
+   "kind": "resource",
+   "name": "Office building"
+  },
+  "res-opensearch-service-cluster-administrator-node": {
+   "kind": "resource",
+   "name": "Amazon OpenSearch Service Cluster Administrator Node"
+  },
+  "res-opensearch-service-data-node": {
+   "kind": "resource",
+   "name": "Amazon OpenSearch Service Data Node"
+  },
+  "res-opensearch-service-index": {
+   "kind": "resource",
+   "name": "Amazon OpenSearch Service Index"
+  },
+  "res-opensearch-service-observability": {
+   "kind": "resource",
+   "name": "Amazon OpenSearch Service Observability"
+  },
+  "res-opensearch-service-opensearch-dashboards": {
+   "kind": "resource",
+   "name": "Amazon OpenSearch Service OpenSearch Dashboards"
+  },
+  "res-opensearch-service-opensearch-ingestion": {
+   "kind": "resource",
+   "name": "Amazon OpenSearch Service OpenSearch Ingestion"
+  },
+  "res-opensearch-service-traces": {
+   "kind": "resource",
+   "name": "Amazon OpenSearch Service Traces"
+  },
+  "res-opensearch-service-ultrawarm-node": {
+   "kind": "resource",
+   "name": "Amazon OpenSearch Service UltraWarm Node"
+  },
+  "res-organizations-account": {
+   "kind": "resource",
+   "name": "AWS Organizations Account"
+  },
+  "res-organizations-management-account": {
+   "kind": "resource",
+   "name": "AWS Organizations Management Account"
+  },
+  "res-organizations-organizational-unit": {
+   "kind": "resource",
+   "name": "AWS Organizations Organizational Unit"
+  },
+  "res-pinpoint-journey": {
+   "kind": "resource",
+   "name": "Amazon Pinpoint Journey"
+  },
+  "res-programming-language": {
+   "kind": "resource",
+   "name": "Programming Language"
+  },
+  "res-question": {
+   "kind": "resource",
+   "name": "Question"
+  },
+  "res-rds-blue-green-deployments": {
+   "kind": "resource",
+   "name": "Amazon RDS Blue Green Deployments"
+  },
+  "res-rds-multi-az": {
+   "kind": "resource",
+   "name": "Amazon RDS Multi AZ"
+  },
+  "res-rds-multi-az-db-cluster": {
+   "kind": "resource",
+   "name": "Amazon RDS Multi AZ DB Cluster"
+  },
+  "res-rds-optimized-writes": {
+   "kind": "resource",
+   "name": "Amazon RDS Optimized Writes"
+  },
+  "res-rds-proxy-instance": {
+   "kind": "resource",
+   "name": "Amazon RDS Proxy Instance"
+  },
+  "res-rds-proxy-instance-alternate": {
+   "kind": "resource",
+   "name": "Amazon RDS Proxy Instance Alternate"
+  },
+  "res-rds-trusted-language-extensions-for-postgresql": {
+   "kind": "resource",
+   "name": "Amazon RDS Trusted Language Extensions for PostgreSQL"
+  },
+  "res-recover": {
+   "kind": "resource",
+   "name": "Recover"
+  },
+  "res-redshift-auto-copy": {
+   "kind": "resource",
+   "name": "Amazon Redshift Auto copy"
+  },
+  "res-redshift-data-sharing-governance": {
+   "kind": "resource",
+   "name": "Amazon Redshift Data Sharing Governance"
+  },
+  "res-redshift-dense-compute-node": {
+   "kind": "resource",
+   "name": "Amazon Redshift Dense Compute Node"
+  },
+  "res-redshift-dense-storage-node": {
+   "kind": "resource",
+   "name": "Amazon Redshift Dense Storage Node"
+  },
+  "res-redshift-ml": {
+   "kind": "resource",
+   "name": "Amazon Redshift ML"
+  },
+  "res-redshift-query-editor-v2-0": {
+   "kind": "resource",
+   "name": "Amazon Redshift Query Editor v2.0"
+  },
+  "res-redshift-ra3": {
+   "kind": "resource",
+   "name": "Amazon Redshift RA3"
+  },
+  "res-redshift-streaming-ingestion": {
+   "kind": "resource",
+   "name": "Amazon Redshift Streaming Ingestion"
+  },
+  "res-rekognition-image": {
+   "kind": "resource",
+   "name": "Amazon Rekognition Image"
+  },
+  "res-rekognition-video": {
+   "kind": "resource",
+   "name": "Amazon Rekognition Video"
+  },
+  "res-route-53-hosted-zone": {
+   "kind": "resource",
+   "name": "Amazon Route 53 Hosted Zone"
+  },
+  "res-route-53-readiness-checks": {
+   "kind": "resource",
+   "name": "Amazon Route 53 Readiness Checks"
+  },
+  "res-route-53-resolver": {
+   "kind": "resource",
+   "name": "Amazon Route 53 Resolver"
+  },
+  "res-route-53-resolver-dns-firewall": {
+   "kind": "resource",
+   "name": "Amazon Route 53 Resolver DNS Firewall"
+  },
+  "res-route-53-resolver-query-logging": {
+   "kind": "resource",
+   "name": "Amazon Route 53 Resolver Query Logging"
+  },
+  "res-route-53-route-table": {
+   "kind": "resource",
+   "name": "Amazon Route 53 Route Table"
+  },
+  "res-route-53-routing-controls": {
+   "kind": "resource",
+   "name": "Amazon Route 53 Routing Controls"
+  },
+  "res-sagemaker-ai-canvas": {
+   "kind": "resource",
+   "name": "Amazon SageMaker AI Canvas"
+  },
+  "res-sagemaker-ai-geospatial-ml": {
+   "kind": "resource",
+   "name": "Amazon SageMaker AI Geospatial ML"
+  },
+  "res-sagemaker-ai-model": {
+   "kind": "resource",
+   "name": "Amazon SageMaker AI Model"
+  },
+  "res-sagemaker-ai-notebook": {
+   "kind": "resource",
+   "name": "Amazon SageMaker AI Notebook"
+  },
+  "res-sagemaker-ai-shadow-testing": {
+   "kind": "resource",
+   "name": "Amazon SageMaker AI Shadow Testing"
+  },
+  "res-sagemaker-ai-train": {
+   "kind": "resource",
+   "name": "Amazon SageMaker AI Train"
+  },
+  "res-saml-token": {
+   "kind": "resource",
+   "name": "SAML token"
+  },
+  "res-sdk": {
+   "kind": "resource",
+   "name": "SDK"
+  },
+  "res-security-hub-finding": {
+   "kind": "resource",
+   "name": "AWS Security Hub Finding"
+  },
+  "res-server": {
+   "kind": "resource",
+   "name": "Server"
+  },
+  "res-servers": {
+   "kind": "resource",
+   "name": "Servers"
+  },
+  "res-shield": {
+   "kind": "resource",
+   "name": "Shield"
+  },
+  "res-shield-aws-shield-advanced": {
+   "kind": "resource",
+   "name": "AWS Shield AWS Shield Advanced"
+  },
+  "res-simple-email-service-email": {
+   "kind": "resource",
+   "name": "Amazon Simple Email Service Email"
+  },
+  "res-simple-notification-service-email-notification": {
+   "kind": "resource",
+   "name": "Amazon Simple Notification Service Email Notification"
+  },
+  "res-simple-notification-service-http-notification": {
+   "kind": "resource",
+   "name": "Amazon Simple Notification Service HTTP Notification"
+  },
+  "res-simple-notification-service-topic": {
+   "kind": "resource",
+   "name": "Amazon Simple Notification Service Topic"
+  },
+  "res-simple-queue-service-message": {
+   "kind": "resource",
+   "name": "Amazon Simple Queue Service Message"
+  },
+  "res-simple-queue-service-queue": {
+   "kind": "resource",
+   "name": "Amazon Simple Queue Service Queue"
+  },
+  "res-simple-storage-service-bucket": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service Bucket"
+  },
+  "res-simple-storage-service-bucket-with-objects": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service Bucket With Objects"
+  },
+  "res-simple-storage-service-directory-bucket": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service Directory bucket"
+  },
+  "res-simple-storage-service-general-access-points": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service General Access Points"
+  },
+  "res-simple-storage-service-glacier-archive": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service Glacier Archive"
+  },
+  "res-simple-storage-service-glacier-vault": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service Glacier Vault"
+  },
+  "res-simple-storage-service-object": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service Object"
+  },
+  "res-simple-storage-service-s3-batch-operations": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Batch Operations"
+  },
+  "res-simple-storage-service-s3-express-one-zone": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Express One Zone"
+  },
+  "res-simple-storage-service-s3-files": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Files"
+  },
+  "res-simple-storage-service-s3-glacier-deep-archive": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Glacier Deep Archive"
+  },
+  "res-simple-storage-service-s3-glacier-flexible-retrieval": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Glacier Flexible Retrieval"
+  },
+  "res-simple-storage-service-s3-glacier-instant-retrieval": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Glacier Instant Retrieval"
+  },
+  "res-simple-storage-service-s3-intelligent-tiering": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Intelligent Tiering"
+  },
+  "res-simple-storage-service-s3-multi-region-access-points": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Multi Region Access Points"
+  },
+  "res-simple-storage-service-s3-object-lambda": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Object Lambda"
+  },
+  "res-simple-storage-service-s3-object-lambda-access-points": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Object Lambda Access Points"
+  },
+  "res-simple-storage-service-s3-object-lock": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Object Lock"
+  },
+  "res-simple-storage-service-s3-on-outposts": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 On Outposts"
+  },
+  "res-simple-storage-service-s3-one-zone-ia": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 One Zone IA"
+  },
+  "res-simple-storage-service-s3-replication": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Replication"
+  },
+  "res-simple-storage-service-s3-replication-time-control": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Replication Time Control"
+  },
+  "res-simple-storage-service-s3-select": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Select"
+  },
+  "res-simple-storage-service-s3-standard": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Standard"
+  },
+  "res-simple-storage-service-s3-standard-ia": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Standard IA"
+  },
+  "res-simple-storage-service-s3-storage-lens": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Storage Lens"
+  },
+  "res-simple-storage-service-s3-tables": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Tables"
+  },
+  "res-simple-storage-service-s3-vectors": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service S3 Vectors"
+  },
+  "res-simple-storage-service-vpc-access-points": {
+   "kind": "resource",
+   "name": "Amazon Simple Storage Service VPC Access Points"
+  },
+  "res-snowball-snowball-import-export": {
+   "kind": "resource",
+   "name": "AWS Snowball Snowball Import Export"
+  },
+  "res-source-code": {
+   "kind": "resource",
+   "name": "Source Code"
+  },
+  "res-ssl-padlock": {
+   "kind": "resource",
+   "name": "SSL padlock"
+  },
+  "res-storage-gateway-amazon-fsx-file-gateway": {
+   "kind": "resource",
+   "name": "AWS Storage Gateway Amazon FSx File Gateway"
+  },
+  "res-storage-gateway-amazon-s3-file-gateway": {
+   "kind": "resource",
+   "name": "AWS Storage Gateway Amazon S3 File Gateway"
+  },
+  "res-storage-gateway-cached-volume": {
+   "kind": "resource",
+   "name": "AWS Storage Gateway Cached Volume"
+  },
+  "res-storage-gateway-file-gateway": {
+   "kind": "resource",
+   "name": "AWS Storage Gateway File Gateway"
+  },
+  "res-storage-gateway-noncached-volume": {
+   "kind": "resource",
+   "name": "AWS Storage Gateway Noncached Volume"
+  },
+  "res-storage-gateway-tape-gateway": {
+   "kind": "resource",
+   "name": "AWS Storage Gateway Tape Gateway"
+  },
+  "res-storage-gateway-virtual-tape-library": {
+   "kind": "resource",
+   "name": "AWS Storage Gateway Virtual Tape Library"
+  },
+  "res-storage-gateway-volume-gateway": {
+   "kind": "resource",
+   "name": "AWS Storage Gateway Volume Gateway"
+  },
+  "res-systems-manager-application-manager": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Application Manager"
+  },
+  "res-systems-manager-automation": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Automation"
+  },
+  "res-systems-manager-change-calendar": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Change Calendar"
+  },
+  "res-systems-manager-change-manager": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Change Manager"
+  },
+  "res-systems-manager-compliance": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Compliance"
+  },
+  "res-systems-manager-distributor": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Distributor"
+  },
+  "res-systems-manager-documents": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Documents"
+  },
+  "res-systems-manager-incident-manager": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Incident Manager"
+  },
+  "res-systems-manager-inventory": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Inventory"
+  },
+  "res-systems-manager-maintenance-windows": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Maintenance Windows"
+  },
+  "res-systems-manager-opscenter": {
+   "kind": "resource",
+   "name": "AWS Systems Manager OpsCenter"
+  },
+  "res-systems-manager-parameter-store": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Parameter Store"
+  },
+  "res-systems-manager-patch-manager": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Patch Manager"
+  },
+  "res-systems-manager-run-command": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Run Command"
+  },
+  "res-systems-manager-session-manager": {
+   "kind": "resource",
+   "name": "AWS Systems Manager Session Manager"
+  },
+  "res-systems-manager-state-manager": {
+   "kind": "resource",
+   "name": "AWS Systems Manager State Manager"
+  },
+  "res-tape-storage": {
+   "kind": "resource",
+   "name": "Tape storage"
+  },
+  "res-textract-analyze-lending": {
+   "kind": "resource",
+   "name": "Amazon Textract Analyze Lending"
+  },
+  "res-toolkit": {
+   "kind": "resource",
+   "name": "Toolkit"
+  },
+  "res-transfer-family-aws-as2": {
+   "kind": "resource",
+   "name": "AWS Transfer Family AWS AS2"
+  },
+  "res-transfer-family-aws-ftp": {
+   "kind": "resource",
+   "name": "AWS Transfer Family AWS FTP"
+  },
+  "res-transfer-family-aws-ftps": {
+   "kind": "resource",
+   "name": "AWS Transfer Family AWS FTPS"
+  },
+  "res-transfer-family-aws-sftp": {
+   "kind": "resource",
+   "name": "AWS Transfer Family AWS SFTP"
+  },
+  "res-transit-gateway-attachment": {
+   "kind": "resource",
+   "name": "AWS Transit Gateway Attachment"
+  },
+  "res-trusted-advisor-checklist": {
+   "kind": "resource",
+   "name": "AWS Trusted Advisor Checklist"
+  },
+  "res-trusted-advisor-checklist-cost": {
+   "kind": "resource",
+   "name": "AWS Trusted Advisor Checklist Cost"
+  },
+  "res-trusted-advisor-checklist-fault-tolerant": {
+   "kind": "resource",
+   "name": "AWS Trusted Advisor Checklist Fault Tolerant"
+  },
+  "res-trusted-advisor-checklist-performance": {
+   "kind": "resource",
+   "name": "AWS Trusted Advisor Checklist Performance"
+  },
+  "res-trusted-advisor-checklist-security": {
+   "kind": "resource",
+   "name": "AWS Trusted Advisor Checklist Security"
+  },
+  "res-user": {
+   "kind": "resource",
+   "name": "User"
+  },
+  "res-users": {
+   "kind": "resource",
+   "name": "Users"
+  },
+  "res-vpc-carrier-gateway": {
+   "kind": "resource",
+   "name": "Amazon VPC Carrier Gateway"
+  },
+  "res-vpc-customer-gateway": {
+   "kind": "resource",
+   "name": "Amazon VPC Customer Gateway"
+  },
+  "res-vpc-elastic-network-adapter": {
+   "kind": "resource",
+   "name": "Amazon VPC Elastic Network Adapter"
+  },
+  "res-vpc-elastic-network-interface": {
+   "kind": "resource",
+   "name": "Amazon VPC Elastic Network Interface"
+  },
+  "res-vpc-endpoints": {
+   "kind": "resource",
+   "name": "Amazon VPC Endpoints"
+  },
+  "res-vpc-flow-logs": {
+   "kind": "resource",
+   "name": "Amazon VPC Flow Logs"
+  },
+  "res-vpc-internet-gateway": {
+   "kind": "resource",
+   "name": "Amazon VPC Internet Gateway"
+  },
+  "res-vpc-nat-gateway": {
+   "kind": "resource",
+   "name": "Amazon VPC NAT Gateway"
+  },
+  "res-vpc-network-access-analyzer": {
+   "kind": "resource",
+   "name": "Amazon VPC Network Access Analyzer"
+  },
+  "res-vpc-network-access-control-list": {
+   "kind": "resource",
+   "name": "Amazon VPC Network Access Control List"
+  },
+  "res-vpc-peering-connection": {
+   "kind": "resource",
+   "name": "Amazon VPC Peering Connection"
+  },
+  "res-vpc-reachability-analyzer": {
+   "kind": "resource",
+   "name": "Amazon VPC Reachability Analyzer"
+  },
+  "res-vpc-router": {
+   "kind": "resource",
+   "name": "Amazon VPC Router"
+  },
+  "res-vpc-traffic-mirroring": {
+   "kind": "resource",
+   "name": "Amazon VPC Traffic Mirroring"
+  },
+  "res-vpc-virtual-private-cloud-vpc": {
+   "kind": "resource",
+   "name": "Amazon VPC Virtual private cloud VPC"
+  },
+  "res-vpc-vpn-connection": {
+   "kind": "resource",
+   "name": "Amazon VPC VPN Connection"
+  },
+  "res-vpc-vpn-gateway": {
+   "kind": "resource",
+   "name": "Amazon VPC VPN Gateway"
+  },
+  "res-waf-bad-bot": {
+   "kind": "resource",
+   "name": "AWS WAF Bad Bot"
+  },
+  "res-waf-bot": {
+   "kind": "resource",
+   "name": "AWS WAF Bot"
+  },
+  "res-waf-bot-control": {
+   "kind": "resource",
+   "name": "AWS WAF Bot Control"
+  },
+  "res-waf-filtering-rule": {
+   "kind": "resource",
+   "name": "AWS WAF Filtering Rule"
+  },
+  "res-waf-labels": {
+   "kind": "resource",
+   "name": "AWS WAF Labels"
+  },
+  "res-waf-managed-rule": {
+   "kind": "resource",
+   "name": "AWS WAF Managed Rule"
+  },
+  "res-waf-rule": {
+   "kind": "resource",
+   "name": "AWS WAF Rule"
+  },
+  "reserved-instance-reporting": {
+   "kind": "service",
+   "name": "Reserved Instance Reporting"
+  },
+  "resilience-hub": {
+   "kind": "service",
+   "name": "AWS Resilience Hub"
+  },
+  "resource-access-manager": {
+   "kind": "service",
+   "name": "AWS Resource Access Manager"
+  },
+  "resource-explorer": {
+   "kind": "service",
+   "name": "AWS Resource Explorer"
+  },
+  "route-53": {
+   "kind": "service",
+   "name": "Amazon Route 53"
+  },
+  "rtb-fabric": {
+   "kind": "service",
+   "name": "AWS RTB Fabric"
+  },
+  "s3-on-outposts": {
+   "kind": "service",
+   "name": "Amazon S3 on Outposts"
+  },
+  "sagemaker": {
+   "kind": "service",
+   "name": "Amazon SageMaker"
+  },
+  "sagemaker-ai": {
+   "kind": "service",
+   "name": "Amazon SageMaker AI"
+  },
+  "sagemaker-ground-truth": {
+   "kind": "service",
+   "name": "Amazon SageMaker Ground Truth"
+  },
+  "sagemaker-studio-lab": {
+   "kind": "service",
+   "name": "Amazon SageMaker Studio Lab"
+  },
+  "savings-plans": {
+   "kind": "service",
+   "name": "Savings Plans"
+  },
+  "secrets-manager": {
+   "kind": "service",
+   "name": "AWS Secrets Manager"
+  },
+  "security-agent": {
+   "kind": "service",
+   "name": "AWS Security Agent"
+  },
+  "security-hub": {
+   "kind": "service",
+   "name": "AWS Security Hub"
+  },
+  "security-incident-response": {
+   "kind": "service",
+   "name": "AWS Security Incident Response"
+  },
+  "security-lake": {
+   "kind": "service",
+   "name": "Amazon Security Lake"
+  },
+  "serverless-application-repository": {
+   "kind": "service",
+   "name": "AWS Serverless Application Repository"
+  },
+  "service-catalog": {
+   "kind": "service",
+   "name": "AWS Service Catalog"
+  },
+  "service-management-connector": {
+   "kind": "service",
+   "name": "AWS Service Management Connector"
+  },
+  "shield": {
+   "kind": "service",
+   "name": "AWS Shield"
+  },
+  "signer": {
+   "kind": "service",
+   "name": "AWS Signer"
+  },
+  "simple-email-service": {
+   "kind": "service",
+   "name": "Amazon Simple Email Service"
+  },
+  "simple-notification-service": {
+   "kind": "service",
+   "name": "Amazon Simple Notification Service"
+  },
+  "simple-queue-service": {
+   "kind": "service",
+   "name": "Amazon Simple Queue Service"
+  },
+  "simple-storage-service": {
+   "kind": "service",
+   "name": "Amazon Simple Storage Service"
+  },
+  "simple-storage-service-glacier": {
+   "kind": "service",
+   "name": "Amazon Simple Storage Service Glacier"
+  },
+  "simspace-weaver": {
+   "kind": "service",
+   "name": "AWS SimSpace Weaver"
+  },
+  "site-to-site-vpn": {
+   "kind": "service",
+   "name": "AWS Site to Site VPN"
+  },
+  "snowball": {
+   "kind": "service",
+   "name": "AWS Snowball"
+  },
+  "snowball-edge": {
+   "kind": "service",
+   "name": "AWS Snowball Edge"
+  },
+  "step-functions": {
+   "kind": "service",
+   "name": "AWS Step Functions"
+  },
+  "storage-gateway": {
+   "kind": "service",
+   "name": "AWS Storage Gateway"
+  },
+  "supply-chain": {
+   "kind": "service",
+   "name": "AWS Supply Chain"
+  },
+  "support": {
+   "kind": "service",
+   "name": "AWS Support"
+  },
+  "sustainability": {
+   "kind": "service",
+   "name": "AWS Sustainability"
+  },
+  "systems-manager": {
+   "kind": "service",
+   "name": "AWS Systems Manager"
+  },
+  "telco-network-builder": {
+   "kind": "service",
+   "name": "AWS Telco Network Builder"
+  },
+  "tensorflow-on-aws": {
+   "kind": "service",
+   "name": "TensorFlow on AWS"
+  },
+  "textract": {
+   "kind": "service",
+   "name": "Amazon Textract"
+  },
+  "thinkbox-deadline": {
+   "kind": "service",
+   "name": "AWS Thinkbox Deadline"
+  },
+  "thinkbox-frost": {
+   "kind": "service",
+   "name": "AWS Thinkbox Frost"
+  },
+  "thinkbox-krakatoa": {
+   "kind": "service",
+   "name": "AWS Thinkbox Krakatoa"
+  },
+  "thinkbox-stoke": {
+   "kind": "service",
+   "name": "AWS Thinkbox Stoke"
+  },
+  "thinkbox-xmesh": {
+   "kind": "service",
+   "name": "AWS Thinkbox XMesh"
+  },
+  "timestream": {
+   "kind": "service",
+   "name": "Amazon Timestream"
+  },
+  "tools-and-sdks": {
+   "kind": "service",
+   "name": "AWS Tools and SDKs"
+  },
+  "training-certification": {
+   "kind": "service",
+   "name": "AWS Training Certification"
+  },
+  "transcribe": {
+   "kind": "service",
+   "name": "Amazon Transcribe"
+  },
+  "transfer-family": {
+   "kind": "service",
+   "name": "AWS Transfer Family"
+  },
+  "transform": {
+   "kind": "service",
+   "name": "AWS Transform"
+  },
+  "transit-gateway": {
+   "kind": "service",
+   "name": "AWS Transit Gateway"
+  },
+  "translate": {
+   "kind": "service",
+   "name": "Amazon Translate"
+  },
+  "trusted-advisor": {
+   "kind": "service",
+   "name": "AWS Trusted Advisor"
+  },
+  "user-notifications": {
+   "kind": "service",
+   "name": "AWS User Notifications"
+  },
+  "verified-access": {
+   "kind": "service",
+   "name": "AWS Verified Access"
+  },
+  "verified-permissions": {
+   "kind": "service",
+   "name": "Amazon Verified Permissions"
+  },
+  "virtual-private-cloud": {
+   "kind": "service",
+   "name": "Amazon Virtual Private Cloud"
+  },
+  "vpc-lattice": {
+   "kind": "service",
+   "name": "Amazon VPC Lattice"
+  },
+  "waf": {
+   "kind": "service",
+   "name": "AWS WAF"
+  },
+  "wavelength": {
+   "kind": "service",
+   "name": "AWS Wavelength"
+  },
+  "well-architected-tool": {
+   "kind": "service",
+   "name": "AWS Well Architected Tool"
+  },
+  "wickr": {
+   "kind": "service",
+   "name": "AWS Wickr"
+  },
+  "workdocs": {
+   "kind": "service",
+   "name": "Amazon WorkDocs"
+  },
+  "workdocs-sdk": {
+   "kind": "service",
+   "name": "Amazon WorkDocs SDK"
+  },
+  "workmail": {
+   "kind": "service",
+   "name": "Amazon WorkMail"
+  },
+  "workspaces": {
+   "kind": "service",
+   "name": "Amazon WorkSpaces"
+  },
+  "x-ray": {
+   "kind": "service",
+   "name": "AWS X Ray"
+  }
+ }
+}

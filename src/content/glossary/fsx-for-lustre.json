@@ -1,0 +1,20 @@
+[
+  {
+    "term": "POSIX",
+    "aliases": [],
+    "definition": "A family of standards for operating system interfaces used by applications.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#what-is"
+  },
+  {
+    "term": "Data repository association",
+    "aliases": ["DRA"],
+    "definition": "A link between a file system directory and an S3 bucket or prefix.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html#create-dra-linked-data-repo"
+  },
+  {
+    "term": "Metadata",
+    "aliases": [],
+    "definition": "Information about a file, such as its ownership, permissions and timestamps.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-changed-data-meta-dra.html#export-changed-data-meta-dra"
+  }
+]

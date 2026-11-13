@@ -1,0 +1,44 @@
+[
+  {
+    "term": "endpoint",
+    "aliases": ["endpoints"],
+    "definition": "A regional resource that receives application traffic from an accelerator.",
+    "source": "https://docs.aws.amazon.com/global-accelerator/latest/dg/about-accelerators.html#about-accelerators"
+  },
+  {
+    "term": "listener",
+    "aliases": [],
+    "definition": "An accelerator component that accepts client connections on configured protocols and ports.",
+    "source": "https://docs.aws.amazon.com/global-accelerator/latest/dg/about-accelerators.html#about-accelerators"
+  },
+  {
+    "term": "endpoint group",
+    "aliases": ["endpoint groups"],
+    "definition": "A group of accelerator endpoints located in one AWS Region.",
+    "source": "https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoint-groups.html#about-endpoint-groups"
+  },
+  {
+    "term": "traffic dial",
+    "aliases": ["traffic dials"],
+    "definition": "A control that limits the percentage of traffic already directed to an endpoint group.",
+    "source": "https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html#introduction-traffic-dials-weights"
+  },
+  {
+    "term": "endpoint weight",
+    "aliases": ["endpoint weights"],
+    "definition": "A value used to distribute traffic among endpoints in a group.",
+    "source": "https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html#introduction-traffic-dials-weights"
+  },
+  {
+    "term": "idle timeout",
+    "aliases": [],
+    "definition": "The period without sent or received data after which Global Accelerator closes a connection.",
+    "source": "https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html#about-idle-timeout"
+  },
+  {
+    "term": "alias record",
+    "aliases": ["Route 53 alias"],
+    "definition": "A Route 53 record that can direct a domain name to an accelerator.",
+    "source": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-global-accelerator.html#routing-to-global-accelerator-configuring"
+  }
+]

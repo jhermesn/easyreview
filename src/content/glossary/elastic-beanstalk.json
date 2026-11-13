@@ -1,0 +1,178 @@
+[
+  {
+    "term": "Application version",
+    "aliases": [],
+    "definition": "A label identifying deployable application code stored in S3.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.html#concepts"
+  },
+  {
+    "term": "Platform branch",
+    "aliases": [],
+    "definition": "A family of related platform versions used to run an application.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.clone.html"
+  },
+  {
+    "term": "Instance profile",
+    "aliases": [],
+    "definition": "A wrapper that passes an IAM role to an EC2 instance.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-instanceprofile.html"
+  },
+  {
+    "term": "Service role",
+    "aliases": [],
+    "definition": "An IAM role that an AWS service assumes to perform permitted actions for you.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-servicerole.html"
+  },
+  {
+    "term": "Source bundle",
+    "aliases": [],
+    "definition": "An archive containing the application files to deploy.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-sourcebundle.html"
+  },
+  {
+    "term": "Auto Scaling group",
+    "aliases": [
+      "ASG"
+    ],
+    "definition": "A group that maintains a configured count of EC2 instances.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.as.html"
+  },
+  {
+    "term": "Listener",
+    "aliases": [],
+    "definition": "A load balancer endpoint configured to accept connections on a protocol and port.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-elb.html"
+  },
+  {
+    "term": "HTTPS termination",
+    "aliases": [
+      "TLS termination"
+    ],
+    "definition": "Decrypting a secure client connection at the load balancer before forwarding the request.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-elb.html"
+  },
+  {
+    "term": "Security group",
+    "aliases": [],
+    "definition": "A set of rules controlling traffic allowed to and from attached resources.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.ec2.instances.sg.html"
+  },
+  {
+    "term": "CNAME",
+    "aliases": [],
+    "definition": "A DNS alias that directs one name to another name.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.CNAMESwap.html"
+  },
+  {
+    "term": "Time to live",
+    "aliases": [
+      "TTL"
+    ],
+    "definition": "The intended duration a DNS record can remain in a resolver cache.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.CNAMESwap.html"
+  },
+  {
+    "term": "Immutable update",
+    "aliases": [],
+    "definition": "An update that launches replacement instances beside the original fleet before removing the old instances.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environmentmgmt-updates-immutable.html"
+  },
+  {
+    "term": "Canary evaluation",
+    "aliases": [],
+    "definition": "Testing a new application version with a configured share of real traffic before switching all traffic.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html#environments-cfg-trafficsplitting-method"
+  },
+  {
+    "term": "Staging directory",
+    "aliases": [],
+    "definition": "The temporary location where application source is prepared before final deployment.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/customize-containers-ec2.html#linux-container-commands"
+  },
+  {
+    "term": "Platform hook",
+    "aliases": [],
+    "definition": "A script that runs at a defined point in application or configuration deployment.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-linux-extend.hooks.html"
+  },
+  {
+    "term": "Daemon",
+    "aliases": [],
+    "definition": "A background process that performs ongoing work such as polling a queue.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features-managing-env-tiers.html#worker-daemon"
+  },
+  {
+    "term": "Visibility timeout",
+    "aliases": [],
+    "definition": "The period a received queue message is hidden from other consumers while it is processed.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features-managing-env-tiers.html#using-features-managing-env-tiers-worker-settings"
+  },
+  {
+    "term": "Dead-letter queue",
+    "aliases": [
+      "DLQ"
+    ],
+    "definition": "A queue that receives messages that repeatedly fail processing.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features-managing-env-tiers.html#worker-deadletter"
+  },
+  {
+    "term": "Idempotent processing",
+    "aliases": [
+      "idempotency"
+    ],
+    "definition": "Processing that tolerates receiving a message again without repeating its intended side effect.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues-at-least-once-delivery.html"
+  },
+  {
+    "term": "Cron schedule",
+    "aliases": [
+      "cron expression"
+    ],
+    "definition": "An expression describing when a periodic task should run.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features-managing-env-tiers.html#worker-periodictasks"
+  },
+  {
+    "term": "FIFO",
+    "aliases": [
+      "first in first out"
+    ],
+    "definition": "A queue type that preserves the order of messages within each message group.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html"
+  },
+  {
+    "term": "Database snapshot",
+    "aliases": [],
+    "definition": "A saved database backup from which a database instance can be restored.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.db.html#environments-cfg-rds-lifecycle"
+  },
+  {
+    "term": "Connection string",
+    "aliases": [],
+    "definition": "The parameters an application uses to locate and connect to a database.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.db.html"
+  },
+  {
+    "term": "Burst balance",
+    "aliases": [
+      "burst credits"
+    ],
+    "definition": "Accumulated credits that a burstable EC2 instance uses for additional performance.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environmentmgmt-updates-immutable.html"
+  },
+  {
+    "term": "Elastic IP",
+    "aliases": [
+      "EIP"
+    ],
+    "definition": "A static public IPv4 address allocated to an AWS account.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html"
+  },
+  {
+    "term": "Reverse proxy",
+    "aliases": [
+      "proxy server"
+    ],
+    "definition": "A server that receives requests and forwards them to the application.",
+    "source": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-linux-extend.proxy.html"
+  }
+]

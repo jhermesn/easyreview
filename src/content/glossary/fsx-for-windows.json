@@ -1,0 +1,44 @@
+[
+  {
+    "term": "Server Message Block",
+    "aliases": ["SMB"],
+    "definition": "A protocol for accessing shared files over a network.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#what-is"
+  },
+  {
+    "term": "Active Directory",
+    "aliases": [],
+    "definition": "A Microsoft directory service that stores network resources and user accounts.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/aws-ad-integration-fsxW.html#aws-ad-integration-fsxW"
+  },
+  {
+    "term": "shadow copy",
+    "aliases": ["shadow copies"],
+    "definition": "A point-in-time snapshot of a Windows file system.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/shadow-copies-fsxW.html#shadow-copies-fsxW"
+  },
+  {
+    "term": "DFS Namespaces",
+    "aliases": ["Distributed File System Namespaces"],
+    "definition": "A Windows Server role service that groups shared folders into a common folder structure.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-dfs-namespaces.html#using-dfs-namespaces"
+  },
+  {
+    "term": "file share",
+    "aliases": ["file shares"],
+    "definition": "A folder and its subfolders made accessible to clients over SMB.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-file-shares.html#using-file-shares"
+  },
+  {
+    "term": "access control list",
+    "aliases": ["ACL", "access control lists"],
+    "definition": "A list of permissions controlling access to files and folders.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#security-considerations"
+  },
+  {
+    "term": "failback",
+    "aliases": [],
+    "definition": "The return of service to the preferred file server after it recovers.",
+    "source": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html#MultiAZ-Failover"
+  }
+]

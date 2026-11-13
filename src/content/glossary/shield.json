@@ -1,0 +1,46 @@
+[
+  {
+    "term": "Distributed denial of service",
+    "aliases": [
+      "DDoS"
+    ],
+    "definition": "An attack uses many systems to flood a target and prevent legitimate access.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html"
+  },
+  {
+    "term": "Application layer",
+    "aliases": [
+      "layer 7"
+    ],
+    "definition": "The application layer handles requests such as web queries that can be flooded during an attack.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html"
+  },
+  {
+    "term": "Elastic IP address",
+    "aliases": [
+      "EIP"
+    ],
+    "definition": "An Elastic IP is an account-allocated public address whose associated resources can receive Shield Advanced protection.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-advanced-summary-protected-resources.html"
+  },
+  {
+    "term": "Web access control list",
+    "aliases": [
+      "web ACL"
+    ],
+    "definition": "A web ACL groups rules that inspect web requests and determine their treatment.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-advanced-summary-capabilities.html"
+  },
+  {
+    "term": "Health check",
+    "aliases": [],
+    "definition": "A health check reports whether a resource meets configured availability criteria.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-advanced-summary-capabilities.html"
+  },
+  {
+    "term": "Mitigation",
+    "aliases": [],
+    "definition": "A mitigation is a measure that reduces the impact of attack traffic on an application.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-srt-support.html"
+  }
+]

@@ -1,0 +1,174 @@
+[
+  {
+    "term": "Package",
+    "aliases": [],
+    "definition": "A bundle of software and metadata needed to install it and resolve dependencies.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#packages-overview"
+  },
+  {
+    "term": "Dependency",
+    "aliases": [],
+    "definition": "A software package that another package requires to work.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/codeartifact-concepts.html#codeartifact-concepts"
+  },
+  {
+    "term": "Package manager",
+    "aliases": [],
+    "definition": "A tool that installs packages and resolves the dependencies they require.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/codeartifact-concepts.html#codeartifact-concepts"
+  },
+  {
+    "term": "Asset",
+    "aliases": [],
+    "definition": "An individual file associated with a package version.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/codeartifact-concepts.html#welcome-concepts-asset"
+  },
+  {
+    "term": "Metadata",
+    "aliases": [],
+    "definition": "Information describing a package or version that tools use to find and install it.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#packages-overview"
+  },
+  {
+    "term": "Domain",
+    "aliases": [],
+    "definition": "The storage, encryption, and policy boundary that groups CodeArtifact repositories.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/domain-overview.html#domain-overview"
+  },
+  {
+    "term": "Repository",
+    "aliases": [],
+    "definition": "A collection of package versions exposed through endpoints for package tools.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/codeartifact-concepts.html#welcome-concepts-repository"
+  },
+  {
+    "term": "Endpoint",
+    "aliases": [],
+    "definition": "The address a package tool connects to for publishing or downloading packages.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/codeartifact-concepts.html#welcome-concepts-repository"
+  },
+  {
+    "term": "Upstream repository",
+    "aliases": [
+      "upstream"
+    ],
+    "definition": "A CodeArtifact repository searched for packages missing from a connected downstream repository.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/repo-upstream-behavior.html#repo-upstream-behavior"
+  },
+  {
+    "term": "Downstream repository",
+    "aliases": [
+      "downstream"
+    ],
+    "definition": "The repository through which a client requests packages from its upstream sources.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/repo-upstream-behavior.html#repo-upstream-behavior"
+  },
+  {
+    "term": "External connection",
+    "aliases": [],
+    "definition": "A link that lets a CodeArtifact repository import packages from a public registry.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/external-connection.html#external-connection"
+  },
+  {
+    "term": "Public registry",
+    "aliases": [
+      "public repository"
+    ],
+    "definition": "An external package source from which a repository can import dependencies.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/external-connection.html#external-connection"
+  },
+  {
+    "term": "Ingestion",
+    "aliases": [
+      "public import"
+    ],
+    "definition": "Adding a package version from a public source to a CodeArtifact repository.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/package-origin-controls.html#package-origin-control-settings"
+  },
+  {
+    "term": "Dependency substitution",
+    "aliases": [
+      "dependency substitution attack"
+    ],
+    "definition": "Consumption of a public package in place of an intended internal package with the same name.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/package-origin-controls.html#package-origin-controls"
+  },
+  {
+    "term": "Package group",
+    "aliases": [],
+    "definition": "A set of packages matched by format, namespace, and name patterns for shared configuration.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/package-groups.html#package-groups"
+  },
+  {
+    "term": "Namespace",
+    "aliases": [],
+    "definition": "A prefix that organizes related package names, such as an npm scope or Maven group ID.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/codeartifact-concepts.html#welcome-concepts-package-namespace"
+  },
+  {
+    "term": "Authorization token",
+    "aliases": [
+      "auth token"
+    ],
+    "definition": "A temporary value used by package tools to authenticate CodeArtifact requests.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/tokens-authentication.html#tokens-authentication"
+  },
+  {
+    "term": "Assumed-role session",
+    "aliases": [
+      "role session"
+    ],
+    "definition": "The temporary period during which credentials for an assumed IAM role remain valid.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/tokens-authentication.html#get-auth-token-api"
+  },
+  {
+    "term": "Principal",
+    "aliases": [],
+    "definition": "The user, role, or other actor making a request.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/domain-policies.html#domain-policies"
+  },
+  {
+    "term": "Identity policy",
+    "aliases": [
+      "identity-based policy"
+    ],
+    "definition": "A policy attached to a caller identity that grants its permitted actions.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/repo-policies.html#repo-policies"
+  },
+  {
+    "term": "Resource policy",
+    "aliases": [
+      "resource-based policy"
+    ],
+    "definition": "A policy attached to a domain or repository specifying who may perform actions on it.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/repo-policies.html#repo-policies"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "An identifier used to name the AWS resource to which a policy applies.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/auth-and-access-control-permissions-reference.html#auth-and-access-control-permissions-reference"
+  },
+  {
+    "term": "Symmetric key",
+    "aliases": [],
+    "definition": "An encryption key that uses the same key for encryption and decryption.",
+    "source": "https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/concepts.html"
+  },
+  {
+    "term": "Lockfile",
+    "aliases": [
+      "package-lock.json"
+    ],
+    "definition": "A file recording resolved dependency versions so later installs can request those versions.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-version-status"
+  },
+  {
+    "term": "Environment variable",
+    "aliases": [],
+    "definition": "A value supplied to a process that build tools can read for configuration.",
+    "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/tokens-authentication.html#env-var"
+  }
+]

@@ -1,0 +1,213 @@
+[
+  {
+    "term": "Producer",
+    "aliases": [],
+    "definition": "An application component that sends messages to a queue.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html#standard-queues"
+  },
+  {
+    "term": "Consumer",
+    "aliases": [
+      "worker"
+    ],
+    "definition": "An application component that receives and processes queue messages.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html#standard-queues"
+  },
+  {
+    "term": "At-least-once delivery",
+    "aliases": [],
+    "definition": "Delivery in which a message can be received more than once.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html#standard-queues"
+  },
+  {
+    "term": "First-in, first-out",
+    "aliases": [
+      "FIFO"
+    ],
+    "definition": "An ordering rule that preserves the sequence of messages within a message group.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html#FIFO-queues-understanding-logic"
+  },
+  {
+    "term": "Message group ID",
+    "aliases": [
+      "MessageGroupId"
+    ],
+    "definition": "The identifier for a sequence of FIFO messages that must retain their order.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html#FIFO-queues-understanding-logic"
+  },
+  {
+    "term": "Deduplication ID",
+    "aliases": [
+      "MessageDeduplicationId"
+    ],
+    "definition": "A token SQS uses to recognize duplicate FIFO sends during its deduplication interval.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing"
+  },
+  {
+    "term": "Content-based deduplication",
+    "aliases": [],
+    "definition": "Duplicate-send detection based on a SHA-256 fingerprint of the message body.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing"
+  },
+  {
+    "term": "Message attribute",
+    "aliases": [],
+    "definition": "A metadata field attached to a message separately from its body.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing"
+  },
+  {
+    "term": "Partition",
+    "aliases": [],
+    "definition": "An SQS-managed allocation of storage holding FIFO queue messages.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html#high-throughput-fifo"
+  },
+  {
+    "term": "Throughput",
+    "aliases": [
+      "transactions per second",
+      "TPS"
+    ],
+    "definition": "The amount of queue work handled per second, measured as requests or messages.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html#quotas-messages"
+  },
+  {
+    "term": "Idempotency",
+    "aliases": [
+      "idempotent"
+    ],
+    "definition": "The property that repeating a business operation does not produce extra effects.",
+    "source": "https://docs.aws.amazon.com/powertools/python/latest/utilities/idempotency/"
+  },
+  {
+    "term": "Visibility timeout",
+    "aliases": [],
+    "definition": "The period after receiving a message during which it is hidden from other consumers.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#sqs-visibility-timeout"
+  },
+  {
+    "term": "Retention period",
+    "aliases": [],
+    "definition": "The time a message can remain in a queue before SQS deletes it.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html#quotas-messages"
+  },
+  {
+    "term": "Message timer",
+    "aliases": [],
+    "definition": "A per-message delay before the message first becomes available to consumers.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-timers.html#sqs-message-timers"
+  },
+  {
+    "term": "In-flight message",
+    "aliases": [],
+    "definition": "A message that has been received but not yet deleted.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#inflight-messages"
+  },
+  {
+    "term": "Receipt handle",
+    "aliases": [
+      "ReceiptHandle"
+    ],
+    "definition": "An identifier for a particular receive that is required to delete that received message.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html#API_DeleteMessage"
+  },
+  {
+    "term": "Short polling",
+    "aliases": [],
+    "definition": "A receive operation that samples some queue servers and returns immediately.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html#sqs-short-and-long-polling"
+  },
+  {
+    "term": "Long polling",
+    "aliases": [],
+    "definition": "A receive operation that queries all queue servers and waits for a message or its wait deadline.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html#sqs-short-and-long-polling"
+  },
+  {
+    "term": "False-empty response",
+    "aliases": [],
+    "definition": "An empty receive response returned even though the queue has messages.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html#sqs-short-and-long-polling"
+  },
+  {
+    "term": "Dead-letter queue",
+    "aliases": [
+      "DLQ"
+    ],
+    "definition": "A queue that isolates source-queue messages that repeatedly fail processing.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html#sqs-dead-letter-queues"
+  },
+  {
+    "term": "Redrive policy",
+    "aliases": [
+      "RedrivePolicy"
+    ],
+    "definition": "The source-queue policy that selects a DLQ and receive-count threshold.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html#API_CreateQueue"
+  },
+  {
+    "term": "Redrive allow policy",
+    "aliases": [
+      "RedriveAllowPolicy"
+    ],
+    "definition": "The DLQ policy selecting which source queues may use it.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html#API_CreateQueue"
+  },
+  {
+    "term": "DLQ redrive",
+    "aliases": [
+      "message move task"
+    ],
+    "definition": "The operation that moves retained DLQ messages back to a processing queue.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html#sqs-configure-dead-letter-queue-redrive"
+  },
+  {
+    "term": "Redrive velocity",
+    "aliases": [],
+    "definition": "The number of DLQ messages moved per second by a redrive task.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html#sqs-configure-dead-letter-queue-redrive"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "The AWS resource identifier used to identify queues in policies and redrive settings.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html#API_CreateQueue"
+  },
+  {
+    "term": "Payload",
+    "aliases": [],
+    "definition": "The application data carried by a message or stored separately behind its reference.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-managing-large-messages.html#sqs-managing-large-messages"
+  },
+  {
+    "term": "Payload offloading",
+    "aliases": [
+      "offloading"
+    ],
+    "definition": "Storing a message payload in S3 and sending its object reference through SQS.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-managing-large-messages.html#sqs-managing-large-messages"
+  },
+  {
+    "term": "Object reference",
+    "aliases": [
+      "pointer"
+    ],
+    "definition": "Information in a queue message that identifies the S3 object holding the payload.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-managing-large-messages.html#sqs-managing-large-messages"
+  },
+  {
+    "term": "Batch",
+    "aliases": [],
+    "definition": "A group of messages included in one queue API request.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html#API_SendMessageBatch"
+  },
+  {
+    "term": "Enqueue timestamp",
+    "aliases": [
+      "enqueue time"
+    ],
+    "definition": "The recorded time at which a message entered a queue.",
+    "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html#understanding-message-retention-periods"
+  }
+]

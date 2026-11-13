@@ -1,0 +1,218 @@
+[
+  {
+    "term": "Event",
+    "aliases": [
+      "message"
+    ],
+    "definition": "A JSON message that describes an occurrence or change.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is-how-it-works-concepts.html"
+  },
+  {
+    "term": "Event bus",
+    "aliases": [],
+    "definition": "A router that receives events and sends matches to configured destinations.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html"
+  },
+  {
+    "term": "Producer",
+    "aliases": [
+      "event source"
+    ],
+    "definition": "A system that sends events to an event bus or pipe.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is-how-it-works-concepts.html"
+  },
+  {
+    "term": "Event pattern",
+    "aliases": [],
+    "definition": "A JSON filter describing the fields and values an event must match.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern.html#eb-create-pattern"
+  },
+  {
+    "term": "Target",
+    "aliases": [],
+    "definition": "A resource or endpoint that receives a matching event.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-targets"
+  },
+  {
+    "term": "Leaf field",
+    "aliases": [
+      "leaf node"
+    ],
+    "definition": "A field holding a value rather than nested fields.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-create-pattern-operators"
+  },
+  {
+    "term": "SaaS",
+    "aliases": [
+      "software as a service"
+    ],
+    "definition": "An application hosted and operated by a provider for its customers.",
+    "source": "https://aws.amazon.com/what-is/saas/"
+  },
+  {
+    "term": "JSONPath",
+    "aliases": [
+      "JSON path"
+    ],
+    "definition": "A path expression used to select a value in JSON event data.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-transform-target-input.html#eb-transform-target-input"
+  },
+  {
+    "term": "Input transformer",
+    "aliases": [],
+    "definition": "A configuration that selects original event values and inserts them into a target message template.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-transform-target-input.html#eb-transform-target-input"
+  },
+  {
+    "term": "Schema",
+    "aliases": [],
+    "definition": "A description of the structure of an event.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-schema.html"
+  },
+  {
+    "term": "Code binding",
+    "aliases": [],
+    "definition": "Generated programming-language code representing an event schema.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-schema.html"
+  },
+  {
+    "term": "API destination",
+    "aliases": [],
+    "definition": "An HTTPS endpoint that EventBridge can invoke for a rule or pipe.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html"
+  },
+  {
+    "term": "Connection",
+    "aliases": [],
+    "definition": "A configuration holding authorization and connectivity settings for an API destination.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html"
+  },
+  {
+    "term": "Dead-letter queue",
+    "aliases": [
+      "DLQ"
+    ],
+    "definition": "A queue that retains events whose delivery failed so they can be processed later.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rule-dlq.html#eb-rule-dlq"
+  },
+  {
+    "term": "Exponential backoff",
+    "aliases": [],
+    "definition": "A retry method that increases the delay between attempts.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rule-retry-policy.html"
+  },
+  {
+    "term": "Jitter",
+    "aliases": [],
+    "definition": "A randomized delay between retry attempts.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rule-retry-policy.html"
+  },
+  {
+    "term": "Resource policy",
+    "aliases": [
+      "resource-based policy"
+    ],
+    "definition": "A permission document attached to a resource that controls access to it.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cross-account.html#eb-receiving-events-from-another-account"
+  },
+  {
+    "term": "ARN",
+    "aliases": [
+      "Amazon Resource Name"
+    ],
+    "definition": "An identifier for an AWS resource.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-transform-target-input.html#eb-transform-input-predefined"
+  },
+  {
+    "term": "Metadata",
+    "aliases": [],
+    "definition": "Information about an event such as its source or originating account.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is-how-it-works-concepts.html"
+  },
+  {
+    "term": "Managed rule",
+    "aliases": [],
+    "definition": "A rule maintained by an AWS service for a service feature.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-archive.html#eb-archive-managed-rule"
+  },
+  {
+    "term": "Point-to-point integration",
+    "aliases": [],
+    "definition": "A connection from one source to one target.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html"
+  },
+  {
+    "term": "Enrichment",
+    "aliases": [],
+    "definition": "A processing step that adds or changes event data before target delivery.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/pipes-enrichment.html#pipes-enrichment"
+  },
+  {
+    "term": "Synchronous invocation",
+    "aliases": [],
+    "definition": "An invocation that waits for a response before continuing.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/pipes-enrichment.html#pipes-invocation"
+  },
+  {
+    "term": "Asynchronous invocation",
+    "aliases": [],
+    "definition": "An invocation where the caller does not wait for the later processing result.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-error-troubleshooting.html#eb-pipes-error-invoke-customer"
+  },
+  {
+    "term": "Batch",
+    "aliases": [],
+    "definition": "A group of records processed together.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-error-troubleshooting.html#eb-pipes-error-invoke-customer"
+  },
+  {
+    "term": "Redrive policy",
+    "aliases": [],
+    "definition": "Queue settings that move repeatedly failed messages to a dead-letter queue.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-error-troubleshooting.html#eb-pipes-dlq-behavior"
+  },
+  {
+    "term": "Retention",
+    "aliases": [],
+    "definition": "The duration for which events or records remain stored.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-archive.html#eb-archive-archive"
+  },
+  {
+    "term": "Stream",
+    "aliases": [],
+    "definition": "A sequence of records retained for consumers to read.",
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-source.html#eb-pipes-event-source"
+  },
+  {
+    "term": "Cron expression",
+    "aliases": [
+      "cron"
+    ],
+    "definition": "A schedule expression that identifies recurring calendar times.",
+    "source": "https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#cron-based"
+  },
+  {
+    "term": "IANA time zone",
+    "aliases": [],
+    "definition": "A named time zone whose rules define local clock offsets and daylight saving changes.",
+    "source": "https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#time-zones"
+  },
+  {
+    "term": "Execution role",
+    "aliases": [],
+    "definition": "An IAM role that Scheduler assumes to invoke a target on a caller's behalf.",
+    "source": "https://docs.aws.amazon.com/scheduler/latest/UserGuide/setting-up.html"
+  },
+  {
+    "term": "Customer managed key",
+    "aliases": ["customer managed KMS key"],
+    "definition": "A KMS key that you create and control, including its access policy.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-mgn-key"
+  },
+  {
+    "term": "AWS owned key",
+    "aliases": [],
+    "definition": "A KMS key owned and managed by an AWS service, outside your account.",
+    "source": "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-key"
+  }
+]

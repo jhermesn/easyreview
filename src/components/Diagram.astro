@@ -1,0 +1,208 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatRich, withBase } from '../lib/format';
+import { layoutEdges, edgeLabelY, nodeText, ICON } from '../lib/diagram';
+import Icon from './Icon.astro';
+
+type DiagramData = CollectionEntry<'topics'>['data']['diagrams'][number];
+interface Props {
+  d: DiagramData;
+}
+const { d } = Astro.props;
+
+const tones: Record<string, string> = {
+  compute: '#f59e0b',
+  storage: '#22c55e',
+  network: '#a78bfa',
+  security: '#ef4444',
+  mgmt: '#ec4899',
+  database: '#3b82f6',
+  devtools: '#06b6d4',
+  integration: '#eab308',
+  user: '#cbd5e1',
+  neutral: '#64748b',
+};
+
+const edges = layoutEdges(d);
+const markerId = `arrow-${d.id}`;
+---
+<figure class="diagram" data-diagram>
+  <figcaption>{d.title}<span class="swipe" aria-hidden="true">swipe <Icon name="arrow-right" size={12} /></span></figcaption>
+  <div class="viewport">
+  <div class="canvas">
+    <svg viewBox={`0 0 ${d.width} ${d.height}`} role="img" aria-label={d.title} style={`--vbw: ${d.width}`}>
+      <defs>
+        <marker id={markerId} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#9aa7b6" />
+        </marker>
+      </defs>
+      {d.groups.map((g) => (
+        <g class="group">
+          <rect x={g.x} y={g.y} width={g.w} height={g.h} rx="4" fill={tones[g.tone]} fill-opacity="0.05" stroke={tones[g.tone]} stroke-opacity="0.55" stroke-dasharray="6 5" />
+          {g.icon && <image href={withBase(`/aws-icons/${g.icon}.svg`)} x={g.x} y={g.y} width={ICON.group} height={ICON.group} />}
+          <text x={g.x + (g.icon ? ICON.group + 6 : 10)} y={g.y + 17} class="group-label" fill={tones[g.tone]}>{g.label}</text>
+        </g>
+      ))}
+      {edges.map((e) => (
+        <g class="edge" data-step={e.step}>
+          <line x1={e.p1.x} y1={e.p1.y} x2={e.end.x} y2={e.end.y} stroke="#9aa7b6" stroke-width="1.6" stroke-dasharray={e.dashed ? '5 4' : undefined} marker-end={`url(#${markerId})`} />
+          {e.label && <text x={e.mid.x} y={edgeLabelY(e.mid, !!e.step)} class="edge-label" text-anchor="middle">{e.label}</text>}
+          {e.step && (
+            <g class="step-badge" tabindex="0" data-step={e.step}>
+              <circle cx={e.mid.x} cy={e.mid.y} r="11" />
+              <text x={e.mid.x} y={e.mid.y + 4} text-anchor="middle">{e.step}</text>
+            </g>
+          )}
+        </g>
+      ))}
+      {d.nodes.map((n) => (
+        <g class:list={['node', { 'has-info': !!n.info }]} tabindex={n.info ? 0 : undefined} data-info={n.info ? formatRich(n.info) : undefined} data-label={n.label}>
+          <rect x={n.x} y={n.y} width={n.w} height={n.h} rx="3" fill={tones[n.tone]} fill-opacity="0.14" stroke={tones[n.tone]} stroke-width="1.5" />
+          {n.icon && <image href={withBase(`/aws-icons/${n.icon}.svg`)} x={n.x + (n.w - ICON.node) / 2} y={n.y + ICON.pad} width={ICON.node} height={ICON.node} />}
+          <text x={n.x + n.w / 2} y={nodeText(n).label} text-anchor="middle" class="node-label">{n.label}</text>
+          {n.sub && <text x={n.x + n.w / 2} y={nodeText(n).sub} text-anchor="middle" class="node-sub">{n.sub}</text>}
+          {n.info && (
+            <g class="info-dot">
+              <circle cx={n.x + n.w - 2} cy={n.y + 2} r="9" fill="#06090d" stroke={tones[n.tone]} />
+              <text x={n.x + n.w - 2} y={n.y + 6} text-anchor="middle" fill={tones[n.tone]}>i</text>
+            </g>
+          )}
+        </g>
+      ))}
+    </svg>
+  </div>
+  </div>
+  <div class="tip" role="tooltip" hidden></div>
+  {d.steps.length > 0 && (
+    <ol class="steps">
+      {d.steps.map((s, i) => <li data-step={i + 1} set:html={formatRich(s)} />)}
+    </ol>
+  )}
+  {d.nodes.some((n) => n.info) && (
+    <details class="box-notes">
+      <summary>Box details ({d.nodes.filter((n) => n.info).length})</summary>
+      <dl>
+        {d.nodes.filter((n) => n.info).map((n) => (<><dt>{n.label}</dt><dd set:html={formatRich(n.info!)} /></>))}
+      </dl>
+    </details>
+  )}
+</figure>
+
+<style>
+  .diagram { margin: 1.4rem 0; padding: 0.9rem; background: var(--ink-850); border: 1px solid var(--ink-700); }
+  .diagram { position: relative; }
+  figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; font-weight: 700; color: var(--ink-100); margin-bottom: 0.5rem; }
+  .swipe { display: none; flex: none; align-items: center; gap: 0.2rem; font-size: 0.72rem; font-weight: 400; color: var(--ink-400); }
+  .viewport { position: relative; }
+  .canvas { overflow-x: auto; }
+  /* Edge fades show there is more drawing to scroll to. */
+  .viewport::before, .viewport::after { content: ''; position: absolute; top: 0; bottom: 0; width: 2.2rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; z-index: 1; }
+  .viewport::before { left: 0; background: linear-gradient(to right, var(--ink-850), transparent); }
+  .viewport::after { right: 0; background: linear-gradient(to left, var(--ink-850), transparent); }
+  .diagram:global(.more-left) .viewport::before, .diagram:global(.more-right) .viewport::after { opacity: 1; }
+  .diagram:global(.more-right) .swipe { display: inline-flex; }
+  svg { display: block; width: 100%; min-width: 560px; height: auto; font-family: var(--mono); }
+  .node-label { fill: #e6ebf2; font-size: 12.5px; font-weight: 700; }
+  .node-sub { fill: #97a4b3; font-size: 10.5px; }
+  .group-label { font-size: 12px; font-weight: 600; }
+  .edge-label { fill: #9aa7b6; font-size: 11px; paint-order: stroke; stroke: #0b1017; stroke-width: 4px; }
+  .step-badge circle { fill: var(--amber); }
+  .step-badge text { fill: #0d1014; font-size: 12px; font-weight: 700; }
+  .step-badge { cursor: pointer; }
+  .info-dot text { font-size: 12px; font-weight: 700; }
+  .node.has-info { cursor: help; outline: none; }
+  .node.has-info:focus rect, .node.has-info:hover rect { stroke-width: 2.5; fill-opacity: 0.24; }
+  .edge.hot line { stroke: var(--amber); stroke-width: 2.6; }
+  .edge.dim { opacity: 0.25; }
+  .tip {
+    position: absolute; z-index: 5; max-width: min(340px, 90%); padding: 0.55rem 0.7rem; font-size: 0.86rem; line-height: 1.45;
+    background: var(--ink-900); border: 1px solid var(--purple); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); pointer-events: none;
+  }
+  .tip :global(p) { margin: 0.15rem 0; }
+  .tip :global(ul) { margin: 0.2rem 0; padding-left: 1.1rem; }
+  .steps { margin: 0.8rem 0 0; padding-left: 1.6rem; }
+  .steps li { padding: 0.2rem 0.3rem; cursor: default; }
+  .steps li::marker { color: var(--amber); font-weight: 700; }
+  .steps li.hot { background: color-mix(in srgb, var(--amber) 12%, transparent); }
+  .steps :global(p) { margin: 0; }
+  .box-notes { margin-top: 0.7rem; font-size: 0.85rem; }
+  .box-notes summary { cursor: pointer; color: var(--ink-300); }
+  .box-notes dl { margin: 0.4rem 0 0; }
+  .box-notes dt { font-weight: 700; margin-top: 0.5rem; }
+  .box-notes dd { margin: 0.1rem 0 0; color: var(--ink-300); }
+  .box-notes :global(p) { margin: 0.1rem 0; }
+  /* Phones: keep the drawing legible by scrolling sideways, and show box details as a panel under it. */
+  @media (max-width: 700px) {
+    .diagram { padding: 0.7rem 0.5rem; margin-inline: -0.5rem; }
+    /* 0.8 px per viewBox unit keeps node labels near 10 px whatever the diagram width. */
+    svg { min-width: calc(var(--vbw) * 0.8px); }
+    .canvas { scrollbar-width: thin; }
+    .tip { position: static; max-width: none; margin-top: 0.5rem; box-shadow: none; pointer-events: auto; }
+  }
+</style>
+
+<script>
+  function setup(fig: HTMLElement) {
+    if (fig.dataset.ready) return;
+    fig.dataset.ready = '1';
+    const canvas = fig.querySelector<HTMLElement>('.canvas')!;
+    const tip = fig.querySelector<HTMLElement>('.tip')!;
+    let pinned: Element | null = null;
+
+    const updateScrollHints = () => {
+      const max = canvas.scrollWidth - canvas.clientWidth;
+      fig.classList.toggle('more-left', max > 2 && canvas.scrollLeft > 2);
+      fig.classList.toggle('more-right', max > 2 && canvas.scrollLeft < max - 2);
+    };
+    canvas.addEventListener('scroll', updateScrollHints, { passive: true });
+    new ResizeObserver(updateScrollHints).observe(canvas);
+
+    const narrow = window.matchMedia('(max-width: 700px)');
+    const show = (node: SVGGElement) => {
+      tip.innerHTML = `<strong>${node.dataset.label ?? ''}</strong>${node.dataset.info ?? ''}`;
+      tip.hidden = false;
+      if (narrow.matches) {
+        tip.style.left = tip.style.top = '';
+        tip.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        return;
+      }
+      const box = node.getBoundingClientRect();
+      const host = fig.getBoundingClientRect();
+      const left = Math.min(box.left - host.left, fig.clientWidth - tip.offsetWidth - 4);
+      tip.style.left = `${Math.max(4, left)}px`;
+      const below = box.bottom - host.top + 8;
+      const canvasBottom = canvas.getBoundingClientRect().bottom - host.top;
+      tip.style.top = below + tip.offsetHeight > canvasBottom + 40 ? `${Math.max(4, box.top - host.top - tip.offsetHeight - 8)}px` : `${below}px`;
+    };
+    const hide = () => { if (!pinned && !narrow.matches) tip.hidden = true; };
+
+    fig.querySelectorAll<SVGGElement>('.node.has-info').forEach((node) => {
+      node.addEventListener('pointerenter', () => show(node));
+      node.addEventListener('pointerleave', hide);
+      node.addEventListener('focus', () => show(node));
+      node.addEventListener('blur', hide);
+      node.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        pinned = pinned === node ? null : node;
+        if (pinned) show(node); else tip.hidden = true;
+      });
+    });
+    document.addEventListener('click', () => { pinned = null; tip.hidden = true; });
+
+    const highlight = (step: string | undefined) => {
+      fig.querySelectorAll<SVGGElement>('.edge').forEach((e) => {
+        e.classList.toggle('hot', !!step && e.dataset.step === step);
+        e.classList.toggle('dim', !!step && e.dataset.step !== step);
+      });
+      fig.querySelectorAll<HTMLElement>('.steps li').forEach((li) => li.classList.toggle('hot', !!step && li.dataset.step === step));
+    };
+    fig.querySelectorAll<HTMLElement | SVGElement>('[data-step]').forEach((el) => {
+      if (el.classList.contains('edge')) return;
+      el.addEventListener('pointerenter', () => highlight(el.dataset.step));
+      el.addEventListener('pointerleave', () => highlight(undefined));
+      el.addEventListener('focus', () => highlight(el.dataset.step));
+      el.addEventListener('blur', () => highlight(undefined));
+    });
+  }
+  document.addEventListener('astro:page-load', () => document.querySelectorAll<HTMLElement>('[data-diagram]').forEach(setup));
+</script>

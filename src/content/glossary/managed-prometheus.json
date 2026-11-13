@@ -1,0 +1,92 @@
+[
+  {
+    "term": "PromQL",
+    "aliases": [],
+    "definition": "PromQL is the query language used to select and combine Prometheus metrics.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/what-is-Amazon-Managed-Service-Prometheus.html#what-is-Amazon-Managed-Service-Prometheus"
+  },
+  {
+    "term": "Scraping",
+    "aliases": [
+      "scrape"
+    ],
+    "definition": "Scraping pulls metric values from endpoints that expose them.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector.html#AMP-collector"
+  },
+  {
+    "term": "Remote write",
+    "aliases": [
+      "remote_write"
+    ],
+    "definition": "Remote write sends collected Prometheus metrics to a remote destination.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-ingest-methods.html#AMP-ingest-methods"
+  },
+  {
+    "term": "SigV4",
+    "aliases": [
+      "AWS Signature Version 4"
+    ],
+    "definition": "SigV4 signs AWS API requests using AWS credentials.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-onboard-ingest-metrics-OpenTelemetry.html#AMP-onboard-ingest-metrics-OpenTelemetry"
+  },
+  {
+    "term": "Elastic network interface",
+    "aliases": [
+      "ENI"
+    ],
+    "definition": "An elastic network interface provides a virtual network connection inside a VPC.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html"
+  },
+  {
+    "term": "VPC endpoint",
+    "aliases": [],
+    "definition": "A VPC endpoint provides a private connection from a VPC to a supported service.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html"
+  },
+  {
+    "term": "Recording rule",
+    "aliases": [],
+    "definition": "A recording rule saves an expression result as time series that later queries can reuse.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-Ruler.html"
+  },
+  {
+    "term": "Service principal",
+    "aliases": [],
+    "definition": "A service principal identifies an AWS service in a permissions policy.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#reference_policies_elements_principal"
+  },
+  {
+    "term": "Retention period",
+    "aliases": [
+      "retention"
+    ],
+    "definition": "A retention period is how long metrics remain stored before deletion.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/what-is-Amazon-Managed-Service-Prometheus.html#what-is-Amazon-Managed-Service-Prometheus"
+  },
+  {
+    "term": "Time series",
+    "aliases": [],
+    "definition": "A time series contains successive values of a metric over time.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metric"
+  },
+  {
+    "term": "Availability Zone",
+    "aliases": [
+      "AZ"
+    ],
+    "definition": "An Availability Zone is an isolated location within an AWS Region.",
+    "source": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones"
+  },
+  {
+    "term": "Workspace",
+    "aliases": [],
+    "definition": "A workspace is the AMP destination that stores ingested metrics for queries and rules.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-ingest-methods.html#AMP-ingest-methods"
+  },
+  {
+    "term": "Metric",
+    "aliases": [],
+    "definition": "A metric is a variable measured as data points over time.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metric"
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "term": "Web access control list",
+    "aliases": [
+      "web ACL",
+      "protection pack"
+    ],
+    "definition": "A web ACL groups request inspection rules associated with protected application resources.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/how-aws-waf-works-resources.html"
+  },
+  {
+    "term": "Terminating action",
+    "aliases": [],
+    "definition": "A terminating action ends web ACL evaluation and determines the request outcome.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-rule-actions.html"
+  },
+  {
+    "term": "Verification token",
+    "aliases": [
+      "token"
+    ],
+    "definition": "A verification token lets WAF determine whether a client has passed a CAPTCHA or background challenge.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-rule-actions.html"
+  },
+  {
+    "term": "Aggregation key",
+    "aliases": [],
+    "definition": "An aggregation key is a request value used to group requests into separate rate counters.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html"
+  },
+  {
+    "term": "Scope-down statement",
+    "aliases": [],
+    "definition": "A scope-down statement filters which requests a rate-based rule counts and limits.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-high-level-settings.html"
+  },
+  {
+    "term": "SQL injection",
+    "aliases": [
+      "SQLi"
+    ],
+    "definition": "SQL injection attempts to add unauthorized database queries through application requests.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-use-case.html"
+  },
+  {
+    "term": "Cross-site scripting",
+    "aliases": [
+      "XSS"
+    ],
+    "definition": "Cross-site scripting uses malicious script content in a web application attack.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-baseline.html"
+  },
+  {
+    "term": "Bot",
+    "aliases": [],
+    "definition": "A bot is automated software that sends requests to a web application.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-bot.html"
+  },
+  {
+    "term": "Origin",
+    "aliases": [],
+    "definition": "An origin is the backend from which CloudFront retrieves content.",
+    "source": "https://aws.amazon.com/blogs/security/how-to-enhance-amazon-cloudfront-origin-security-with-aws-waf-and-aws-secrets-manager/"
+  },
+  {
+    "term": "Request sampling",
+    "aliases": [],
+    "definition": "Request sampling collects a subset of evaluated web requests for inspection.",
+    "source": "https://docs.aws.amazon.com/waf/latest/developerguide/logging.html"
+  }
+]

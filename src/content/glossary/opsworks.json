@@ -1,0 +1,20 @@
+[
+  {
+    "term": "lifecycle event",
+    "aliases": [],
+    "definition": "A lifecycle event is an OpsWorks Stacks event for which layer recipes run.",
+    "source": "https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/OpsWorks.html#describeLayers-property"
+  },
+  {
+    "term": "association",
+    "aliases": ["State Manager association"],
+    "definition": "An association assigns a configuration and schedule to target resources.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-about.html#state-manager-about"
+  },
+  {
+    "term": "why-run",
+    "aliases": ["why-run mode"],
+    "definition": "Why-run mode shows the changes Chef recipes would make without applying them.",
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-state-manager-chef.html#systems-manager-state-manager-chef"
+  }
+]

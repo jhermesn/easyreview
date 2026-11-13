@@ -1,0 +1,26 @@
+[
+  {
+    "term": "rightsizing",
+    "aliases": ["right-sizing"],
+    "definition": "Choosing a resource configuration suited to the workload's capacity and performance needs.",
+    "source": "https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html#what-is-compute-optimizer"
+  },
+  {
+    "term": "lookback period",
+    "aliases": ["lookback"],
+    "definition": "The historical period of resource metrics used for analysis.",
+    "source": "https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html#intro-enhanced-infrastructure-metrics"
+  },
+  {
+    "term": "utilization metric",
+    "aliases": ["utilization metrics"],
+    "definition": "A measurement of how much of a resource is being used.",
+    "source": "https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html#intro-metrics-analyzed"
+  },
+  {
+    "term": "headroom",
+    "aliases": [],
+    "definition": "Capacity reserved above observed utilization.",
+    "source": "https://docs.aws.amazon.com/compute-optimizer/latest/ug/rightsizing-preferences.html"
+  }
+]

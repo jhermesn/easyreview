@@ -1,0 +1,44 @@
+[
+  {
+    "term": "metric",
+    "aliases": [],
+    "definition": "A metric tracks numerical performance data over time.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html#cloudwatch-monitoring-overview"
+  },
+  {
+    "term": "trace",
+    "aliases": [],
+    "definition": "A trace records a request and its calls to downstream components.",
+    "source": "https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html#aws-xray"
+  },
+  {
+    "term": "canary",
+    "aliases": [],
+    "definition": "A canary is a scheduled script that monitors endpoints by following customer actions.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries.html#CloudWatch_Synthetics_Canaries"
+  },
+  {
+    "term": "drift",
+    "aliases": [],
+    "definition": "Drift is a difference between the actual and expected configuration of a stack resource.",
+    "source": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html#what-is-drift"
+  },
+  {
+    "term": "log group",
+    "aliases": [],
+    "definition": "A log group contains log streams with shared retention, monitoring, and access settings.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#Working-with-log-groups-and-streams"
+  },
+  {
+    "term": "service level objective",
+    "aliases": ["SLO"],
+    "definition": "A service level objective tracks a performance indicator against a chosen goal and threshold.",
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-ServiceLevelObjectives.html#CloudWatch-ServiceLevelObjectives"
+  },
+  {
+    "term": "PromQL",
+    "aliases": ["Prometheus query language"],
+    "definition": "PromQL is the Prometheus query language used to filter and aggregate metrics.",
+    "source": "https://docs.aws.amazon.com/prometheus/latest/userguide/what-is-Amazon-Managed-Service-Prometheus.html#what-is-Amazon-Managed-Service-Prometheus"
+  }
+]

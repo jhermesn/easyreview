@@ -1,0 +1,38 @@
+[
+  {
+    "term": "virtual interface",
+    "aliases": ["VIF"],
+    "definition": "A virtual interface is a logical connection that provides access to an AWS destination over Direct Connect.",
+    "source": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html#overview-components"
+  },
+  {
+    "term": "MACsec",
+    "aliases": ["MAC Security"],
+    "definition": "MACsec protects traffic on a point-to-point Ethernet link with encryption and integrity checks.",
+    "source": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/MACsec.html"
+  },
+  {
+    "term": "virtual private gateway",
+    "aliases": ["VGW"],
+    "definition": "A virtual private gateway provides edge routing for managed VPN and Direct Connect connections to a VPC.",
+    "source": "https://aws.amazon.com/directconnect/faqs/#definitions--1f5cnkc"
+  },
+  {
+    "term": "virtual private cloud",
+    "aliases": ["VPC"],
+    "definition": "A VPC is a logically isolated virtual network in AWS.",
+    "source": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "term": "VPN tunnel",
+    "aliases": [],
+    "definition": "A VPN tunnel is an encrypted link carrying data between a customer network and AWS.",
+    "source": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts"
+  },
+  {
+    "term": "Border Gateway Protocol",
+    "aliases": ["BGP"],
+    "definition": "BGP exchanges routing information between AWS and remote network endpoints.",
+    "source": "https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-site-to-site-vpn.html"
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "term": "Task",
+    "aliases": [],
+    "definition": "An ECS task runs the containers described by one task definition together.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html"
+  },
+  {
+    "term": "Pod",
+    "aliases": [],
+    "definition": "A pod is the Kubernetes workload unit that EKS schedules onto Fargate compute.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/fargate.html"
+  },
+  {
+    "term": "Sidecar",
+    "aliases": [],
+    "definition": "A sidecar is a container that runs alongside an application container in the same task.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-security-considerations.html"
+  },
+  {
+    "term": "Task definition",
+    "aliases": [],
+    "definition": "A task definition describes an ECS container workload and its resource and networking requirements.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-tasks-services.html"
+  },
+  {
+    "term": "Platform version",
+    "aliases": [],
+    "definition": "A platform version identifies the kernel and container runtime environment for a Fargate task.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform-fargate.html"
+  },
+  {
+    "term": "Revision",
+    "aliases": [],
+    "definition": "A revision updates a Fargate platform version without changing its version identifier.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform-fargate.html"
+  },
+  {
+    "term": "Namespace",
+    "aliases": [],
+    "definition": "A namespace groups Kubernetes pods for selection by an EKS Fargate profile.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html"
+  },
+  {
+    "term": "DaemonSet",
+    "aliases": [],
+    "definition": "A DaemonSet is a Kubernetes workload pattern for running a daemon on nodes and is unsupported on Fargate.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/fargate.html"
+  },
+  {
+    "term": "Static provisioning",
+    "aliases": [],
+    "definition": "Static provisioning prepares persistent file storage before a pod consumes it.",
+    "source": "https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html"
+  },
+  {
+    "term": "Elastic network interface",
+    "aliases": [
+      "ENI"
+    ],
+    "definition": "An ENI is the virtual network interface that gives a Fargate task its VPC address.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-networking.html"
+  },
+  {
+    "term": "Interface VPC endpoint",
+    "aliases": [],
+    "definition": "An interface VPC endpoint gives resources private-address access to a service API.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html"
+  },
+  {
+    "term": "Gateway endpoint",
+    "aliases": [],
+    "definition": "An S3 gateway endpoint supplies a route-table path to S3 for image-layer downloads.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html"
+  },
+  {
+    "term": "NAT gateway",
+    "aliases": [],
+    "definition": "A NAT gateway provides outbound internet connectivity for tasks with private IPv4 addresses.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-networking.html"
+  },
+  {
+    "term": "Image layer",
+    "aliases": [],
+    "definition": "An image layer is a part of a container image that ECR stores in S3 for downloading.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html"
+  },
+  {
+    "term": "Manifest",
+    "aliases": [],
+    "definition": "A manifest describes the image layers a client downloads for a container image.",
+    "source": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html"
+  },
+  {
+    "term": "Task execution role",
+    "aliases": [],
+    "definition": "The execution role gives ECS and Fargate agents permissions for image pulls and other task startup operations.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html"
+  },
+  {
+    "term": "Task role",
+    "aliases": [],
+    "definition": "A task role grants AWS API permissions to application code inside task containers.",
+    "source": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html"
+  }
+]

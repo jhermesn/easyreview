@@ -1,0 +1,160 @@
+[
+  {
+    "term": "infrastructure as code",
+    "aliases": [
+      "IaC"
+    ],
+    "definition": "Defining and managing infrastructure through code that can be stored in version control.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/core-concepts.html#concepts-iac"
+  },
+  {
+    "term": "construct",
+    "aliases": [],
+    "definition": "A reusable code component that describes one or more CloudFormation resources and their configuration.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/constructs.html"
+  },
+  {
+    "term": "stack",
+    "aliases": [],
+    "definition": "A group of resource definitions that CDK maps to a CloudFormation stack.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/core-concepts.html#concepts-learn"
+  },
+  {
+    "term": "synthesis",
+    "aliases": [
+      "synth"
+    ],
+    "definition": "Running a CDK app to produce CloudFormation templates and deployment artifacts.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/deploy.html#deploy-how-synth"
+  },
+  {
+    "term": "cloud assembly",
+    "aliases": [],
+    "definition": "The set of templates and other artifacts produced by CDK synthesis for deployment.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/deploy.html#deploy-how-synth"
+  },
+  {
+    "term": "asset",
+    "aliases": [],
+    "definition": "A local file or container image packaged and published for use by deployed infrastructure.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/deploy.html#deploy-how-deploy"
+  },
+  {
+    "term": "bootstrap",
+    "aliases": [
+      "bootstrapping"
+    ],
+    "definition": "Provisioning storage and roles needed for CDK deployment in an AWS account and Region.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html"
+  },
+  {
+    "term": "environment",
+    "aliases": [],
+    "definition": "The AWS account and Region where CDK resources are deployed.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html#bootstrapping-what"
+  },
+  {
+    "term": "service role",
+    "aliases": [],
+    "definition": "An IAM role that an AWS service assumes to perform actions on your behalf.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-env.html#bootstrapping-env-default"
+  },
+  {
+    "term": "context",
+    "aliases": [],
+    "definition": "Key-value settings and cached environment information associated with a CDK construct.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/context.html"
+  },
+  {
+    "term": "Aspect",
+    "aliases": [],
+    "definition": "An operation CDK applies to constructs in a scope during synthesis.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/aspects.html"
+  },
+  {
+    "term": "scope",
+    "aliases": [],
+    "definition": "A construct and its children to which an operation such as an Aspect applies.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/aspects.html"
+  },
+  {
+    "term": "stage",
+    "aliases": [],
+    "definition": "A group of related stacks deployed together in a CDK application.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/cdk-pipeline.html#cdk-pipeline-stages"
+  },
+  {
+    "term": "wave",
+    "aliases": [],
+    "definition": "A group of CDK pipeline stages that can deploy in parallel.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/cdk-pipeline.html#cdk-pipeline-stages"
+  },
+  {
+    "term": "snapshot test",
+    "aliases": [],
+    "definition": "A test that compares a synthesized template with a previously stored baseline.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/testing.html"
+  },
+  {
+    "term": "fine-grained assertion",
+    "aliases": [],
+    "definition": "A test of a specific property or requirement in a generated CloudFormation template.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/testing.html"
+  },
+  {
+    "term": "drift",
+    "aliases": [],
+    "definition": "A difference between deployed resource configuration and its CloudFormation template.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/ref-cli-cmd-deploy.html#ref-cli-cmd-deploy-options"
+  },
+  {
+    "term": "removal policy",
+    "aliases": [],
+    "definition": "A resource setting that determines what happens to it when its stack is destroyed.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/resources.html#resources-removal"
+  },
+  {
+    "term": "Amazon Machine Image",
+    "aliases": [
+      "AMI"
+    ],
+    "definition": "An image used to launch EC2 instances that CDK can look up and cache during synthesis.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/context.html"
+  },
+  {
+    "term": "change set",
+    "aliases": [],
+    "definition": "A proposed CloudFormation update that can be prepared for review before execution.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/ref-cli-cmd-deploy.html#ref-cli-cmd-deploy-options"
+  },
+  {
+    "term": "custom resource",
+    "aliases": [],
+    "definition": "A resource definition that lets CloudFormation run custom logic during deployment.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/deploy.html#deploy-how-deploy"
+  },
+  {
+    "term": "self-updating pipeline",
+    "aliases": [
+      "self-mutating pipeline"
+    ],
+    "definition": "A pipeline that reconfigures itself when its CDK application adds stages or stacks.",
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/cdk-pipeline.html"
+  },
+  {
+    "term": "IAM role",
+    "aliases": [
+      "role"
+    ],
+    "definition": "An identity that a user, application or service assumes to obtain a set of permissions.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  },
+  {
+    "term": "Amazon Resource Name",
+    "aliases": [
+      "ARN"
+    ],
+    "definition": "A string that uniquely identifies an AWS resource.",
+    "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html"
+  }
+]
