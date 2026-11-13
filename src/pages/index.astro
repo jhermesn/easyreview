@@ -9,6 +9,8 @@ import { withBase } from '../lib/format';
 import { badgeUrl } from '../lib/badge';
 import { examSummary } from '../lib/exams';
 import { absoluteUrl } from '../lib/seo';
+import { Image } from 'astro:assets';
+import { ADD_YOURSELF, loadPeople } from '../lib/people';
 
 const views = new Map(await Promise.all(availableCerts().map(async (c) => [c.id, await getCertView(c.id)] as const)));
 // Count only what a reader can open: sections some available cert's guide maps.
@@ -23,6 +25,11 @@ const coveredPct = guideItems.length ? Math.round((guideItems.filter((i) => i.se
 const primary = live[0];
 // Entry-level tracks share the first row; the rest get a row each.
 const byId = (id: string) => levels.find((l) => l.id === id)!;
+// Most recent first, so the wall on the home page changes as people pass.
+const people = (await loadPeople()).sort((a, b) => b.latest.localeCompare(a.latest));
+const faces = people.slice(0, 12);
+const certCount = people.reduce((n, p) => n + p.active, 0);
+
 // Site name and logo for search results.
 const home = absoluteUrl('/', Astro.site!);
 const jsonLd = [
@@ -54,6 +61,26 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
       </ul>
     </div>
     <HeroBadge />
+  </section>
+
+  <section class="passed" aria-labelledby="passed-title">
+    <div class="passed-copy">
+      <p class="passed-kicker"><Icon name="shield" size={14} /> Who passed</p>
+      <h2 id="passed-title">{people.length ? `${people.length} ${people.length === 1 ? 'person' : 'people'} studied here and passed` : 'Studied here and passed?'}</h2>
+      <p>{people.length ? `${certCount} active AWS Certifications on the wall, each checked against a public Credly badge.` : 'Be the first on the wall: your badges come from Credly, your photo from GitHub.'} Passed an exam? Add yourself with one pull request.</p>
+      <div class="ctas">
+        {people.length > 0 && <a class="btn btn-primary" href={withBase('/passed')}>See who passed <Icon name="arrow-right" /></a>}
+        <a class="btn" href={ADD_YOURSELF} target="_blank" rel="noopener"><Icon name="check-circle" /> Add yourself <Icon name="external" size={12} /></a>
+      </div>
+    </div>
+    {faces.length > 0 && (
+      <a class="faces" href={withBase('/passed')} aria-label="See everyone who passed">
+        {faces.map((p) => p.avatar
+          ? <Image src={p.avatar} alt={p.name} title={`${p.name} · ${p.active} AWS Certifications`} width={72} height={72} class:list={['face', `tier-${p.tier}`]} loading="lazy" />
+          : <span class:list={['face', 'blank', `tier-${p.tier}`]} title={p.name}>{p.name.slice(0, 1)}</span>)}
+        {people.length > faces.length && <span class="face more">+{people.length - faces.length}</span>}
+      </a>
+    )}
   </section>
 
   <section id="certs" class="catalog">
@@ -120,6 +147,22 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
   .stats li { display: grid; }
   .stats b { font-size: 1.5rem; color: var(--ink-100); }
   .stats li > span { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; color: var(--ink-400); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .passed { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem 2.5rem; flex-wrap: wrap; margin: 0 0 2.5rem; padding: 1.6rem 1.8rem; border: 1px solid color-mix(in srgb, var(--amber) 55%, var(--ink-700)); background: radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--amber) 12%, transparent), transparent 60%), var(--ink-900); }
+  .passed::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(var(--amber), var(--purple)); }
+  .passed-copy { flex: 1 1 22rem; }
+  .passed-kicker { display: inline-flex; align-items: center; gap: 0.35rem; margin: 0 0 0.4rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); }
+  .passed h2 { margin: 0 0 0.5rem; font-size: 1.3rem; }
+  .passed-copy > p:not(.passed-kicker) { margin: 0 0 1rem; color: var(--ink-300); max-width: 38rem; }
+  .faces { display: flex; flex-wrap: wrap; align-items: center; padding-left: 0.9rem; text-decoration: none; }
+  .face { width: 3.6rem; height: 3.6rem; margin-left: -0.9rem; border: 2px solid var(--ink-500); background: var(--ink-800); object-fit: cover; display: grid; place-items: center; font-weight: 700; color: var(--ink-100); transition: transform 0.15s; }
+  .faces:hover .face { transform: translateY(-2px); }
+  /* Same tier frames as components/PersonCard.astro. */
+  .face.tier-golden { border-color: var(--gold); }
+  .face.tier-alumni { border-color: #a8761c; border-style: dashed; }
+  .face.tier-challenger { border-color: #c9d3df; }
+  .face.tier-rising { border-color: #cd8a4b; }
+  .face.more { font-size: 0.8rem; color: var(--ink-300); }
 
   .catalog { padding-top: 2.5rem; border-top: 1px solid var(--ink-700); }
   .catalog-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }

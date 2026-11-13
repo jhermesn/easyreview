@@ -3,21 +3,8 @@
 import { Image } from 'astro:assets';
 import SocialIcon from './SocialIcon.astro';
 import { badgeUrl } from '../lib/badge';
-import type { Earned, TierId } from '../lib/passed';
+import type { Person } from '../lib/people';
 
-export interface Person {
-  login: string;
-  name: string;
-  bio?: string;
-  avatar?: string;
-  credly: string;
-  linkedin?: string;
-  builder?: string;
-  earned: Earned[];
-  active: number;
-  latest: string;
-  tier: TierId;
-}
 interface Props {
   person: Person;
   total: number;
