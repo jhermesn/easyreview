@@ -8,6 +8,7 @@ import { getGuide } from '../lib/guides';
 import { withBase } from '../lib/format';
 import { badgeUrl } from '../lib/badge';
 import { examSummary } from '../lib/exams';
+import { absoluteUrl } from '../lib/seo';
 
 const views = new Map(await Promise.all(availableCerts().map(async (c) => [c.id, await getCertView(c.id)] as const)));
 // Count only what a reader can open: sections some available cert's guide maps.
@@ -22,9 +23,15 @@ const coveredPct = guideItems.length ? Math.round((guideItems.filter((i) => i.se
 const primary = live[0];
 // Entry-level tracks share the first row; the rest get a row each.
 const byId = (id: string) => levels.find((l) => l.id === id)!;
+// Site name and logo for search results.
+const home = absoluteUrl('/', Astro.site!);
+const jsonLd = [
+  { '@type': 'WebSite', name: 'Easy Review', url: home },
+  { '@type': 'Organization', name: 'Easy Review', url: home, logo: absoluteUrl('/icons/icon-512.png', Astro.site!), sameAs: ['https://github.com/jhermesn/easyreview'] },
+];
 const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => !['foundational', 'business'].includes(l.id)).map((l) => [l])];
 ---
-<Base title="Study once, pass every AWS exam" description="Free AWS certification review: notes, step-by-step diagrams and flashcards from AWS documentation, mapped to every exam guide item. Study a topic once and it counts for every exam that uses it.">
+<Base title="Study once, pass every AWS exam" description="Free AWS certification review: notes, step-by-step diagrams and flashcards from AWS documentation, mapped to every exam guide item. Study a topic once and it counts for every exam that uses it." jsonLd={jsonLd}>
   <section class="hero">
     <div class="copy">
       <p class="script-label">100% AWS Docs<svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 8 C 30 3, 70 2, 117 6" /></svg></p>
