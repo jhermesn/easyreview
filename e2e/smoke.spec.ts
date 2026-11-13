@@ -49,3 +49,10 @@ test('who passed lists people from Credly', async ({ page }) => {
   await page.goto('passed/');
   await expect(page.locator('.person').first()).toBeVisible();
 });
+
+test('every header tool is reachable on any screen', async ({ page, isMobile }) => {
+  await page.goto('dop-c02/codedeploy/');
+  if (isMobile) await page.getByRole('button', { name: 'More tools' }).click();
+  await page.getByRole('link', { name: 'Flashcards' }).first().click();
+  await expect(page).toHaveURL(/\/dop-c02\/flashcards\/?$/);
+});
