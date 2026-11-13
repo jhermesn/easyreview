@@ -12,9 +12,9 @@
     "lint:links": "lychee 'src/content/sections/**/*.md' 'src/content/glossary/*.json'"
   },
   "dependencies": {
-    "@astrojs/markdown-satteri": "0.4.5",
+    "@astrojs/markdown-satteri": "0.4.8",
     "@astrojs/sitemap": "3.7.4",
-    "astro": "7.4.2",
+    "astro": "7.4.10",
     "three": "0.186.1"
   }
 }
