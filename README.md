@@ -12,7 +12,6 @@ Free study notes for AWS Certification exams: short sections, step-by-step diagr
 [![Content health](https://github.com/jhermesn/easyreview/actions/workflows/content-health.yml/badge.svg)](https://github.com/jhermesn/easyreview/actions/workflows/content-health.yml)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-6672e3)](LICENSE)
 [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-288996)](LICENSE-CONTENT.md)
-![DOP-C02: 3,077 flashcards](https://img.shields.io/badge/DOP--C02-3%2C077%20flashcards-ff9900)
 
 <img src="docs/assets/home.webp" alt="Easy Review home page: a 3D DOP-C02 badge beside the headline 'Study each topic once. Use it on every exam.' and counts of topics, flashcards and diagrams" width="860" />
 

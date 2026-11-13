@@ -17,6 +17,7 @@ The goal is 80/20 review: what the exam asks, in the fewest words. A reader shou
 - The product name is "Easy Review". AWS trademark guidelines forbid AWS marks in product names, so "AWS" appears only in relational phrases such as "study notes for AWS Certification exams".
 - Official AWS Certification badges are reserved for certified individuals. The site draws its own exam badges (`src/lib/badge.ts`) and never shows the official ones.
 - AWS Architecture Icons come unchanged from the official package, under the terms listed in `NOTICE.md`.
+- The brand scales by size: favicon and app icons show the logo alone; link previews (`public/og.png`, 1200x630) and the GitHub social preview (`docs/assets/social-preview.png`, 1280x640) show the logo with the name. Keep counts out of these images, since platforms cache them for a long time.
 
 ## Look
 

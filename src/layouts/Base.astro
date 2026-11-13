@@ -26,7 +26,9 @@ const { title, description = 'Notes, diagrams and flashcards for AWS certificati
 const cert = certId ? getCert(certId) : undefined;
 const fullTitle = `${title} · Easy Review`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const image = new URL(withBase('/icons/icon-512.png'), Astro.site).href;
+// Link previews show the logo with the name; the small icons below carry the logo alone.
+const image = new URL(withBase('/og.png'), Astro.site).href;
+const imageAlt = 'Easy Review: free study notes for AWS Certification exams';
 // `<` escaped so a string in the data can never close the script element.
 const ldJson = (data: Record<string, unknown>) => jsonForScript({ '@context': 'https://schema.org', ...data });
 const view = cert ? await getCertView(cert.id) : undefined;
@@ -52,11 +54,16 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={image} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content={imageAlt} />
     {jsonLd.map((data) => <script type="application/ld+json" set:html={ldJson(data)} />)}
     <meta name="theme-color" content="#06090d" />
     <meta name="color-scheme" content="dark" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="icon" type="image/png" sizes="192x192" href={withBase('/icons/icon-192.png')} />
     <link rel="manifest" href={withBase('/manifest.webmanifest')} />
     <link rel="apple-touch-icon" href={withBase('/icons/apple-touch-icon.png')} />
     <meta name="mobile-web-app-capable" content="yes" />
