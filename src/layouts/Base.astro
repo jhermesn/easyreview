@@ -5,6 +5,7 @@ import Logo from '../components/Logo.astro';
 import Icon from '../components/Icon.astro';
 import Reminder from '../components/Reminder.astro';
 import Transfer from '../components/Transfer.astro';
+import GitHubStar from '../components/GitHubStar.astro';
 import { getCert } from '../lib/certs';
 import { getCertView, knownGroups, sectionIds } from '../lib/content';
 import { getGuide } from '../lib/guides';
@@ -111,6 +112,7 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
         <a class="icon-btn" href={withBase('/search')} aria-current={here('/search')} title="Search">
           <Icon name="search" label="Search" />
         </a>
+        <GitHubStar class="wide-only" />
         <a class="icon-btn wide-only" href={withBase('/')} aria-current={here('/')} title="All certifications">
           <Icon name="grid" label="All certifications" />
         </a>
@@ -155,7 +157,10 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
         </div>
         <footer class="footer">
           <div class="foot-row">
-            <a class="brand" href={withBase('/')}><Logo size={20} /><span>Easy Review</span></a>
+            <div class="foot-brand">
+              <a class="brand" href={withBase('/')}><Logo size={20} /><span>Easy Review</span></a>
+              <GitHubStar />
+            </div>
             <nav aria-label="Footer">
               {here('/') !== 'page' && <a href={withBase('/#certs')}>Certifications</a>}
               {here('/') !== 'page' && <a href={withBase('/passed')}>Who passed</a>}
@@ -229,6 +234,7 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
   .footer { width: 100%; border-top: 1px solid var(--ink-700); background: var(--ink-900); padding: 1.5rem 1.25rem 2rem; font-size: 0.75rem; color: var(--ink-400); }
   .footer > * { max-width: 72rem; margin-inline: auto; }
   .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem 1.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+  .foot-brand { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
   .foot-row nav { display: flex; gap: 1.2rem; flex-wrap: wrap; }
   .foot-row nav a { color: var(--ink-300); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem; }
   .foot-row nav a:hover { color: var(--ink-100); }
