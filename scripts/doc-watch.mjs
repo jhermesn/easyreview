@@ -29,16 +29,20 @@ function citations() {
   for (const file of readdirSync(GLOSSARY).filter((f) => f.endsWith('.json'))) {
     for (const t of JSON.parse(readFileSync(join(GLOSSARY, file), 'utf8'))) add(t.source, `glossary/${file.replace(/\.json$/, '')}: ${t.term}`);
   }
+  // A PDF changes bytes on every rebuild, so its hash says nothing; the link check still covers it.
+  for (const url of out.keys()) if (url.split('#')[0].endsWith('.pdf')) out.delete(url);
   return out;
 }
 
-// HTML from the element carrying the anchor up to the next heading of the same or a higher level.
+// HTML from the element carrying the anchor up to the next section heading of the same or a higher level.
+// Section headings carry an id (that is what anchors point to); headings without one, such as the
+// <h6>Note</h6> inside note boxes, belong to the section.
 function sectionHtml(article, anchor) {
   const found = [`id="${anchor}"`, `name="${anchor}"`].map((a) => article.indexOf(a)).filter((i) => i >= 0);
   if (!found.length) return undefined;
   const at = article.lastIndexOf('<', Math.min(...found));
   const level = /^<h([1-6])/i.exec(article.slice(at))?.[1] ?? '6';
-  const end = article.slice(at + 1).search(new RegExp(`<h[1-${level}][\\s>]`, 'i'));
+  const end = article.slice(at + 1).search(new RegExp(`<h[1-${level}]\\s[^>]*\\bid=`, 'i'));
   return article.slice(at, end < 0 ? undefined : at + 1 + end);
 }
 
