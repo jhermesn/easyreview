@@ -1,0 +1,16 @@
+name: Feature idea
+description: Something the site could do better for studying.
+labels: [enhancement, triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What gets in the way
+      description: What you were trying to do while studying, and what made it harder than it should be.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help
+      description: Your idea, or how another tool does it.

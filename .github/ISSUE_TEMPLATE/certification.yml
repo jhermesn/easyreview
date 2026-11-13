@@ -1,0 +1,24 @@
+name: Certification coverage
+description: Ask for, or offer to help with, an AWS Certification that is coming soon or has a new exam version.
+labels: [certification, triage]
+body:
+  - type: input
+    id: exam
+    attributes:
+      label: Exam
+      placeholder: SAA-C03
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What is missing or changed, with the AWS exam guide link if there is one.
+    validations:
+      required: true
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Helping out
+      options:
+        - label: I'd like to write sections for this exam (see docs/certifications.md).
