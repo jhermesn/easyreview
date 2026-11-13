@@ -10,7 +10,7 @@ import Icon from './Icon.astro';
     <button type="button" data-transfer-copy><Icon name="docs" size={15} /> <span data-transfer-copy-label>Copy my progress code</span></button>
     <label class="paste">
       <span>Paste a code</span>
-      <textarea rows="3" spellcheck="false" autocomplete="off" placeholder="ER1.…" data-transfer-code></textarea>
+      <textarea name="progress-code" rows="3" spellcheck="false" autocomplete="off" placeholder="ER1.…" data-transfer-code></textarea>
     </label>
     <button type="button" data-transfer-load disabled><Icon name="reset" size={15} /> Replace my progress</button>
     <p class="note muted" role="status" data-transfer-status></p>

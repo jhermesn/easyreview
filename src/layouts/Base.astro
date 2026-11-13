@@ -97,6 +97,7 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
         </a>
       )}
       <nav class="actions" aria-label="Tools">
+        <div class="tools" id="topbar-tools" data-tools>
         {cert && (
           <a class="icon-btn" href={withBase(`/${cert.id}/flashcards`)} aria-current={here(`/${cert.id}/flashcards`)} title="Flashcards">
             <Icon name="cards" label="Flashcards" />
@@ -109,9 +110,13 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
         )}
         <Reminder />
         <Transfer />
+        </div>
         <a class="icon-btn" href={withBase('/search')} aria-current={here('/search')} title="Search">
           <Icon name="search" label="Search" />
         </a>
+        <button class="icon-btn more" type="button" aria-controls="topbar-tools" aria-expanded="false" title="More tools" data-more>
+          <Icon name="more" label="More tools" />
+        </button>
         <GitHubStar class="wide-only" />
         <a class="icon-btn wide-only" href={withBase('/')} aria-current={here('/')} title="All certifications">
           <Icon name="grid" label="All certifications" />
@@ -200,6 +205,9 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
   .current span { font-weight: 700; font-size: 0.85rem; }
   .actions { margin-left: auto; display: flex; gap: 0.3rem; }
   .menu { display: none; }
+  /* Phones keep menu, logo, exam and search in the bar; the other tools open as a row under it. */
+  .tools { display: contents; }
+  .more { display: none; }
 
   .shell { display: block; }
   .shell.has-sidebar { display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); }
@@ -259,9 +267,14 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
   @media (max-width: 560px) {
     .topbar .brand .full { display: none; }
     .topbar .brand .short { display: inline; }
-    .wide-only { display: none; }
+    /* :global so it also reaches child components such as GitHubStar. */
+    .topbar :global(.wide-only) { display: none; }
     .current span { display: none; }
     .current { padding-inline: 0.35rem; }
+    .more { display: inline-grid; }
+    .more[aria-expanded='true'] { border-color: var(--amber); color: var(--ink-100); }
+    .tools { display: none; }
+    .tools.open { position: absolute; top: 100%; left: 0; right: 0; display: flex; justify-content: flex-end; gap: 0.3rem; padding: 0.5rem 0.75rem; background: var(--ink-900); border-bottom: 1px solid var(--ink-700); box-shadow: 0 10px 20px rgb(0 0 0 / 0.4); }
   }
 </style>
 
@@ -275,6 +288,15 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
     applyRecent();
     applyKnown();
     animatePage();
+    const more = document.querySelector<HTMLButtonElement>('[data-more]');
+    const tools = document.querySelector<HTMLElement>('[data-tools]');
+    if (more && tools && !more.dataset.ready) {
+      more.dataset.ready = '1';
+      const show = (open: boolean) => { tools.classList.toggle('open', open); more.setAttribute('aria-expanded', String(open)); };
+      more.addEventListener('click', () => show(!tools.classList.contains('open')));
+      document.addEventListener('click', (e) => { if (!(e.target as Element).closest('[data-more], [data-tools]')) show(false); });
+      tools.addEventListener('click', (e) => { if ((e.target as Element).closest('a')) show(false); });
+    }
     const btn = document.querySelector<HTMLButtonElement>('[data-menu]');
     const side = document.querySelector<HTMLElement>('[data-sidebar]');
     if (!btn || !side) return;

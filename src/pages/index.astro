@@ -174,7 +174,7 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
   .badges { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.6rem; }
   .tile { position: relative; display: grid; justify-items: center; gap: 0.35rem; padding: 0.8rem 0.5rem 0.6rem; border: 1px solid var(--ink-700); background: var(--ink-850); text-decoration: none; height: 100%; transition: border-color 0.15s, transform 0.15s; }
   a.tile:hover { border-color: var(--amber); transform: translateY(-2px); }
-  .tile img { width: 6.5rem; height: auto; }
+  .tile img { width: 6.5rem; height: auto; aspect-ratio: 104 / 120; }
   .code { font-weight: 700; font-size: 0.82rem; }
   .soon img { filter: grayscale(1) brightness(0.55); }
   .soon .code { color: var(--ink-400); }
