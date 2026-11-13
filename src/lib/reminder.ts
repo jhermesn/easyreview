@@ -18,9 +18,14 @@ async function registration(): Promise<PeriodicSyncRegistration | undefined> {
   return (await navigator.serviceWorker.getRegistration(base())) as PeriodicSyncRegistration | undefined;
 }
 
+// Browsers that expose Periodic Background Sync but can't use it here (not installed, headless) reject getTags().
 async function isOn() {
-  const reg = await registration();
-  return !!(await reg?.periodicSync?.getTags())?.includes(TAG);
+  try {
+    const reg = await registration();
+    return !!(await reg?.periodicSync?.getTags())?.includes(TAG);
+  } catch {
+    return false;
+  }
 }
 
 async function toggleNotifications(): Promise<string> {
