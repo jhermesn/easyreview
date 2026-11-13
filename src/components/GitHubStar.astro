@@ -5,16 +5,17 @@ import { REPO_URL, compactCount, starCount } from '../lib/repo';
 
 interface Props { class?: string }
 const stars = await starCount();
-const label = stars === undefined ? 'Star Easy Review on GitHub' : `Star Easy Review on GitHub (${stars} ${stars === 1 ? 'star' : 'stars'})`;
 ---
-<a class:list={['star', Astro.props.class]} href={REPO_URL} target="_blank" rel="noopener" title={label} aria-label={label}>
+<!-- The accessible name starts with the visible text ("Star 5"), as screen reader and voice users expect. -->
+<a class:list={['star', Astro.props.class]} href={REPO_URL} target="_blank" rel="noopener" title="Star Easy Review on GitHub">
   <SocialIcon name="github" size={15} />
-  <span>Star</span>
-  {stars !== undefined && <b>{compactCount(stars)}</b>}
+  <span>Star<span class="hidden"> Easy Review on GitHub</span></span>
+  {stars !== undefined && <b>{compactCount(stars)}<span class="hidden"> {stars === 1 ? 'star' : 'stars'}</span></b>}
 </a>
 
 <style>
   .star { display: inline-flex; align-items: center; gap: 0.4rem; height: 2.2rem; padding: 0 0.7rem; border: 1px solid var(--ink-700); color: var(--ink-300); font-size: 0.8rem; text-decoration: none; }
   .star:hover { color: var(--ink-100); border-color: var(--amber); }
+  .hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .star b { padding-left: 0.45rem; border-left: 1px solid var(--ink-700); color: var(--ink-100); }
 </style>

@@ -85,7 +85,8 @@ const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
   .items li.gap { border-left-color: var(--magenta); }
   .kind { font-size: 0.68rem; text-transform: uppercase; color: var(--ink-400); margin-right: 0.4rem; }
   .links { display: block; font-size: 0.8rem; }
-  .links a { margin-right: 0.8rem; color: var(--ink-300); }
+  /* Inline links sized to a 24px touch target. */
+  .links a { display: inline-block; min-height: 24px; line-height: 24px; margin-right: 0.8rem; color: var(--ink-300); }
   .links b { color: var(--magenta); font-weight: 400; }
   .services { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .services li { border: 1px solid color-mix(in srgb, var(--mint) 45%, transparent); padding: 0.1rem 0.5rem; font-size: 0.8rem; }
