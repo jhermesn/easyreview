@@ -16,18 +16,18 @@ const CONCURRENCY = 6;
 const MAX_LISTED = 80;
 const MISSING = 'missing';
 
-// url (with anchor) -> citing ids like "codedeploy/agent-setup#agent-needed" or "glossary/codedeploy: AppSpec"
+// url (with anchor) -> citing facts: { who: "codedeploy/agent-setup#agent-needed" or "glossary/codedeploy: AppSpec", text }
 function citations() {
   const out = new Map();
-  const add = (url, who) => out.set(url, [...(out.get(url) ?? []), who]);
+  const add = (url, who, text) => out.set(url, [...(out.get(url) ?? []), { who, text }]);
   for (const unit of readdirSync(SECTIONS)) {
     for (const file of readdirSync(join(SECTIONS, unit)).filter((f) => f.endsWith('.md'))) {
       const front = /^---\n([\s\S]*?)\n---/.exec(readFileSync(join(SECTIONS, unit, file), 'utf8'))?.[1];
-      for (const f of parse(front ?? '')?.facts ?? []) add(f.source, `${unit}/${file.replace(/\.md$/, '')}#${f.id}`);
+      for (const f of parse(front ?? '')?.facts ?? []) add(f.source, `${unit}/${file.replace(/\.md$/, '')}#${f.id}`, f.text);
     }
   }
   for (const file of readdirSync(GLOSSARY).filter((f) => f.endsWith('.json'))) {
-    for (const t of JSON.parse(readFileSync(join(GLOSSARY, file), 'utf8'))) add(t.source, `glossary/${file.replace(/\.json$/, '')}: ${t.term}`);
+    for (const t of JSON.parse(readFileSync(join(GLOSSARY, file), 'utf8'))) add(t.source, `glossary/${file.replace(/\.json$/, '')}: ${t.term}`, t.definition);
   }
   // A PDF changes bytes on every rebuild, so its hash says nothing; the link check still covers it.
   for (const url of out.keys()) if (url.split('#')[0].endsWith('.pdf')) out.delete(url);
@@ -53,6 +53,7 @@ async function hashAll(urls) {
     pages.set(page, [...(pages.get(page) ?? []), url]);
   }
   const hashes = {};
+  const texts = {};
   const failed = [];
   const queue = [...pages];
   async function worker() {
@@ -68,16 +69,24 @@ async function hashAll(urls) {
       for (const url of cited) {
         const anchor = url.includes('#') ? decodeURIComponent(url.split('#')[1]) : '';
         const html = anchor ? sectionHtml(article, anchor) : article;
-        hashes[url] = html === undefined ? MISSING : sha(plainText(html));
+        texts[url] = html === undefined ? undefined : plainText(html);
+        hashes[url] = html === undefined ? MISSING : sha(texts[url]);
       }
     }
   }
   await Promise.all(Array.from({ length: CONCURRENCY }, worker));
-  return { hashes, failed };
+  return { hashes, texts, failed };
 }
 
 const cited = citations();
-const { hashes, failed } = await hashAll([...cited.keys()]);
+const { hashes, texts, failed } = await hashAll([...cited.keys()]);
+
+// Numbers in a fact that the current section text no longer contains: the likeliest facts to have gone stale.
+const numbersOf = (s) => (s.match(/\d[\d,.]*\d|\d/g) ?? []).map((n) => n.replace(/,/g, ''));
+function goneNumbers(fact, url) {
+  const page = (texts[url] ?? '').replace(/,/g, '');
+  return [...new Set(numbersOf(fact))].filter((n) => !page.includes(n));
+}
 const saved = existsSync(SNAPSHOT) ? JSON.parse(readFileSync(SNAPSHOT, 'utf8')) : undefined;
 
 if (process.argv.includes('--update') || !saved) {
@@ -98,12 +107,21 @@ for (const [url, hash] of Object.entries(hashes)) {
   const before = saved.sections[url];
   if (before === hash || !before) continue;
   const what = hash === MISSING ? 'anchor gone' : before === MISSING ? 'anchor back' : 'changed';
-  changes.push(`${what}: ${url}\n  re-check: ${cited.get(url).join(', ')}`);
+  const facts = cited.get(url).map((f) => {
+    const gone = hash === MISSING ? [] : goneNumbers(f.text, url);
+    return gone.length ? `${f.who} (no longer on the page: ${gone.join(', ')})` : f.who;
+  });
+  const flagged = facts.some((f) => f.includes('no longer on the page'));
+  changes.push({ flagged, line: `${what}: ${url}\n  re-check: ${facts.join(', ')}` });
 }
 const fresh = Object.keys(hashes).filter((url) => !saved.sections[url]).length;
 
 console.log(changes.length ? `${changes.length} cited doc sections changed since ${saved.checked}:\n` : `No cited doc section changed since ${saved.checked}.`);
-for (const line of changes.slice(0, MAX_LISTED)) console.log(`- ${line}`);
+// Sections whose facts lost a number come first: those are the likeliest real changes.
+changes.sort((a, b) => Number(b.flagged) - Number(a.flagged));
+const flaggedCount = changes.filter((c) => c.flagged).length;
+if (flaggedCount) console.log(`${flaggedCount} of them no longer contain a number their facts state; start there.\n`);
+for (const { line } of changes.slice(0, MAX_LISTED)) console.log(`- ${line}`);
 if (changes.length > MAX_LISTED) console.log(`- ... and ${changes.length - MAX_LISTED} more (run the script locally for the full list)`);
 if (fresh) console.log(`\n${fresh} newly cited sections are not in the snapshot yet; \`--update\` adds them.`);
 if (failed.length) console.log(`\n${failed.length} pages could not be loaded this run and were skipped.`);
