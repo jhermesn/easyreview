@@ -84,6 +84,9 @@ facts:
   - id: triggers
     text: Other AWS services, such as Amazon S3 and Amazon DynamoDB, can invoke Lambda functions with events.
     source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html
+  - id: pricing
+    text: Lambda functions are billed by the number of requests and the duration the code runs, in GB-seconds based on the memory chosen; the free tier includes one million requests and 400,000 GB-seconds per month.
+    source: https://aws.amazon.com/lambda/pricing/
 diagrams:
   - id: lambda-async-invocation-flow
     title: Asynchronous invocation separates acceptance from execution
@@ -227,6 +230,11 @@ cards:
     q: Who patches and scales the servers that run AWS Lambda functions?
     a: AWS. Lambda is serverless; you manage only your code.
     facts: [serverless]
+  - id: lambda-059
+    q: After the free tier, what does AWS charge for when a company runs AWS Lambda functions?
+    a: The number of requests and the duration the code runs (GB-seconds, based on the memory chosen). Not the number of functions or versions.
+    trap: true
+    facts: [pricing]
 ---
 Lambda runs function code in response to invocations, meaning requests to execute the function. A synchronous caller waits for the result; an asynchronous caller hands work to Lambda's event queue. The invocation path determines who owns retries.
 
@@ -265,5 +273,6 @@ An Application Load Balancer (ALB) invokes a Lambda target directly with a JSON 
 - Temporary storage: 512 through 10,240 MB in 1-MB steps, per environment.
 - Durable executions can last up to one year. In November 2026 the default running-execution quota rose from one million to five million per account, with twice that new quota in N. Virginia, Oregon, and Ireland.
 - Lambda: no servers to manage, pay for what you use; S3 and DynamoDB events can trigger it.
+- Lambda pricing: requests plus duration (GB-seconds); free tier 1 million requests and 400,000 GB-seconds a month.
 
 > **Trap:** Disabling asynchronous function-error retries does not prevent duplicate events or turn off the separate throttling retry path.

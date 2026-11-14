@@ -61,6 +61,9 @@ facts:
     text: SNS Standard topics provide at-least-once delivery and best-effort ordering, so duplicates and
       out-of-order messages can occur.
     source: https://aws.amazon.com/sns/features/
+  - id: endpoint-types
+    text: SNS subscription endpoint types are HTTP/HTTPS, email, Amazon SQS, AWS Lambda, Amazon Data Firehose, platform application endpoints (mobile push) and SMS; an EC2 instance is not an endpoint type of its own.
+    source: https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html
 cards:
   - id: sns-003
     q: What do an Amazon SNS topic and subscription represent?
@@ -149,6 +152,11 @@ cards:
     a: "No. SNS delivers to SQS, Lambda, HTTP or HTTPS, email, SMS, mobile push and Data Firehose, not to an instance. Subscribe a Lambda function or an SQS queue the instance polls."
     facts:
       - destinations
+  - id: sns-028
+    q: Can an Amazon EC2 instance subscribe to an SNS topic directly?
+    a: Not as an endpoint type. SNS delivers to HTTP/HTTPS, email, SQS, Lambda, Firehose, mobile push and SMS; an app on EC2 would expose an HTTP endpoint or read from an SQS queue.
+    trap: true
+    facts: [endpoint-types]
 diagrams:
   - id: sns-independent-queues
     title: One publication, separate subscriber queues

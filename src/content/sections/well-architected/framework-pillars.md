@@ -51,6 +51,9 @@ facts:
   - id: oe-principles
     text: "Operational excellence design principles: organize teams around business outcomes, implement observability, safely automate where possible, make frequent small reversible changes, refine operations procedures frequently, anticipate failure, learn from all operational events and metrics, and use managed services."
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/oe-design-principles.html
+  - id: reliability-principles
+    text: "Reliability pillar design principles: automatically recover from failure, test recovery procedures, scale horizontally to increase aggregate workload availability, stop guessing capacity, and manage change through automation."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html
 cards:
   - id: well-architected-001
     q: What are the six pillars of the AWS Well-Architected Framework?
@@ -109,6 +112,10 @@ cards:
     q: "\"Make frequent, small, reversible changes\" and \"anticipate failure\" are design principles of which Well-Architected pillar?"
     a: Operational excellence.
     facts: [oe-principles]
+  - id: well-architected-019
+    q: A company runs its Amazon RDS database in multiple Availability Zones so it fails over automatically. Which Well-Architected pillar does this serve?
+    a: "Reliability: automatically recover from failure and remove single points of failure."
+    facts: [reliability-principles, reliability]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
 
