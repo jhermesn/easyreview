@@ -6,7 +6,7 @@
 - **Section**: one exam-relevant idea of a unit, `src/content/sections/<unit>/<slug>.md`. It holds the facts, cards and diagrams for that idea, plus its Markdown body.
 - **Fact**: one claim from an AWS documentation page, with the exact URL. Numbers, limits, defaults and dates live in facts and nowhere else. Cards cite the facts they rely on.
 - **Glossary**: `src/content/glossary/<unit>.json`, terms a unit's sections use that a reader may not know. A definition applies only inside its unit, because the same word can mean different things per service.
-- **Guide map**: `src/data/guides/<cert>.json` lists each exam guide item and the section ids that cover it. A cert shows exactly the sections its guide maps. A section mapped by several certs is shared, so the "known" mark a reader sets on it (`src/lib/known.ts`) shows in all of them.
+- **Guide map**: `src/data/guides/<cert>.json` lists each exam guide item and the section ids that cover it, and each in-scope service with the unit about it (`unit`), or the section ids that cover it when the service has no unit of its own (`sections`). A cert shows exactly the sections its guide maps. A section mapped by several certs is shared, so the "known" mark a reader sets on it (`src/lib/known.ts`) shows in all of them.
 
 A section is published once it has facts and every card cites facts that exist in it (`src/lib/content.ts`). When a section renders, `src/lib/autolink.ts` gives the first mention of each glossary term a definition tooltip and links the first mention of another unit's `names` to that unit.
 

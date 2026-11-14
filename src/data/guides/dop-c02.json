@@ -583,7 +583,8 @@
               "text": "Maintaining software compliance (for example, Systems Manager)",
               "sections": [
                 "systems-manager/patch-compliance-and-remediation",
-                "systems-manager/inventory-and-compliance-reporting"
+                "systems-manager/inventory-and-compliance-reporting",
+                "license-manager/license-inventory-and-rules"
               ]
             }
           ]
@@ -629,7 +630,8 @@
                 "aurora/storage-replicas-and-auto-scaling",
                 "elasticache/global-datastore",
                 "memorydb/durable-in-memory-workloads",
-                "dms/full-load-and-change-data-capture"
+                "dms/full-load-and-change-data-capture",
+                "documentdb/document-workloads-and-compatibility"
               ]
             },
             {
@@ -740,7 +742,8 @@
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "lambda/invocation-and-retries",
                 "step-functions/standard-and-express",
-                "aurora/serverless-v2-capacity-and-promotion"
+                "aurora/serverless-v2-capacity-and-promotion",
+                "redshift/data-warehouse-workloads"
               ]
             },
             {
@@ -1742,162 +1745,482 @@
   "services": [
     {
       "category": "Analytics",
-      "names": [
-        "Amazon Athena",
-        "Amazon EMR",
-        "Amazon Kinesis Data Firehose",
-        "Amazon Kinesis Data Streams",
-        "Amazon OpenSearch Service",
-        "Amazon Quick Sight"
+      "services": [
+        {
+          "name": "Amazon Athena",
+          "unit": "athena"
+        },
+        {
+          "name": "Amazon EMR",
+          "unit": "emr"
+        },
+        {
+          "name": "Amazon Kinesis Data Firehose",
+          "unit": "firehose"
+        },
+        {
+          "name": "Amazon Kinesis Data Streams",
+          "unit": "kinesis-data-streams"
+        },
+        {
+          "name": "Amazon OpenSearch Service",
+          "unit": "opensearch"
+        },
+        {
+          "name": "Amazon Quick Sight",
+          "unit": "quicksight"
+        }
       ]
     },
     {
       "category": "Application Integration",
-      "names": [
-        "Amazon AppFlow",
-        "Amazon EventBridge"
+      "services": [
+        {
+          "name": "Amazon AppFlow",
+          "unit": "appflow"
+        },
+        {
+          "name": "Amazon EventBridge",
+          "unit": "eventbridge"
+        }
       ]
     },
     {
       "category": "Compute",
-      "names": [
-        "AWS App Runner",
-        "Amazon EC2",
-        "Amazon EC2 Auto Scaling",
-        "EC2 Image Builder",
-        "AWS Elastic Beanstalk",
-        "AWS Serverless Application Repository"
+      "services": [
+        {
+          "name": "AWS App Runner",
+          "unit": "app-runner"
+        },
+        {
+          "name": "Amazon EC2",
+          "unit": "ec2"
+        },
+        {
+          "name": "Amazon EC2 Auto Scaling",
+          "unit": "ec2-auto-scaling"
+        },
+        {
+          "name": "EC2 Image Builder",
+          "unit": "ec2-image-builder"
+        },
+        {
+          "name": "AWS Elastic Beanstalk",
+          "unit": "elastic-beanstalk"
+        },
+        {
+          "name": "AWS Serverless Application Repository",
+          "unit": "serverless-application-repository"
+        }
       ]
     },
     {
       "category": "Containers",
-      "names": [
-        "AWS App2Container",
-        "AWS Copilot",
-        "Amazon ECR",
-        "Amazon ECS",
-        "Amazon EKS",
-        "Amazon EKS Distro",
-        "AWS Fargate",
-        "Red Hat OpenShift Service on AWS (ROSA)"
+      "services": [
+        {
+          "name": "AWS App2Container",
+          "unit": "app2container"
+        },
+        {
+          "name": "AWS Copilot",
+          "unit": "copilot"
+        },
+        {
+          "name": "Amazon ECR",
+          "unit": "ecr"
+        },
+        {
+          "name": "Amazon ECS",
+          "unit": "ecs"
+        },
+        {
+          "name": "Amazon EKS",
+          "unit": "eks"
+        },
+        {
+          "name": "Amazon EKS Distro",
+          "unit": "eks-distro"
+        },
+        {
+          "name": "AWS Fargate",
+          "unit": "fargate"
+        },
+        {
+          "name": "Red Hat OpenShift Service on AWS (ROSA)",
+          "unit": "rosa"
+        }
       ]
     },
     {
       "category": "Database",
-      "names": [
-        "Amazon Aurora",
-        "Amazon Aurora Serverless v2",
-        "AWS DMS",
-        "Amazon DocumentDB",
-        "Amazon DynamoDB",
-        "Amazon ElastiCache",
-        "Amazon MemoryDB for Redis",
-        "Amazon RDS",
-        "Amazon Redshift"
+      "services": [
+        {
+          "name": "Amazon Aurora",
+          "unit": "aurora"
+        },
+        {
+          "name": "Amazon Aurora Serverless v2",
+          "sections": [
+            "aurora/serverless-v2-capacity-and-promotion"
+          ]
+        },
+        {
+          "name": "AWS DMS",
+          "unit": "dms"
+        },
+        {
+          "name": "Amazon DocumentDB",
+          "unit": "documentdb"
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "unit": "dynamodb"
+        },
+        {
+          "name": "Amazon ElastiCache",
+          "unit": "elasticache"
+        },
+        {
+          "name": "Amazon MemoryDB for Redis",
+          "unit": "memorydb"
+        },
+        {
+          "name": "Amazon RDS",
+          "unit": "rds"
+        },
+        {
+          "name": "Amazon Redshift",
+          "unit": "redshift"
+        }
       ]
     },
     {
       "category": "Developer Tools",
-      "names": [
-        "AWS CLI",
-        "AWS CDK",
-        "AWS CloudShell",
-        "AWS CodeArtifact",
-        "AWS CodeBuild",
-        "AWS CodeDeploy",
-        "Amazon CodeGuru",
-        "AWS CodePipeline",
-        "AWS CodeStar",
-        "AWS Fault Injection Simulator (AWS FIS)",
-        "AWS SDKs and Tools",
-        "AWS X-Ray"
+      "services": [
+        {
+          "name": "AWS CLI",
+          "unit": "cli"
+        },
+        {
+          "name": "AWS CDK",
+          "unit": "cdk"
+        },
+        {
+          "name": "AWS CloudShell",
+          "unit": "cloudshell"
+        },
+        {
+          "name": "AWS CodeArtifact",
+          "unit": "codeartifact"
+        },
+        {
+          "name": "AWS CodeBuild",
+          "unit": "codebuild"
+        },
+        {
+          "name": "AWS CodeDeploy",
+          "unit": "codedeploy"
+        },
+        {
+          "name": "Amazon CodeGuru",
+          "unit": "codeguru"
+        },
+        {
+          "name": "AWS CodePipeline",
+          "unit": "codepipeline"
+        },
+        {
+          "name": "AWS CodeStar",
+          "unit": "codestar"
+        },
+        {
+          "name": "AWS Fault Injection Simulator (AWS FIS)",
+          "unit": "fis"
+        },
+        {
+          "name": "AWS SDKs and Tools",
+          "unit": "sdks"
+        },
+        {
+          "name": "AWS X-Ray",
+          "unit": "xray"
+        }
       ]
     },
     {
       "category": "Management and Governance",
-      "names": [
-        "AWS Auto Scaling",
-        "AWS CloudFormation",
-        "AWS CloudTrail",
-        "Amazon CloudWatch",
-        "Amazon CloudWatch Logs",
-        "AWS Compute Optimizer",
-        "AWS Config",
-        "AWS Control Tower",
-        "AWS Health",
-        "AWS License Manager",
-        "Amazon Managed Grafana",
-        "Amazon Managed Service for Prometheus",
-        "AWS OpsWorks",
-        "AWS Organizations",
-        "AWS Proton",
-        "AWS Resilience Hub",
-        "AWS Service Catalog",
-        "AWS Systems Manager",
-        "AWS Trusted Advisor"
+      "services": [
+        {
+          "name": "AWS Auto Scaling",
+          "unit": "application-auto-scaling"
+        },
+        {
+          "name": "AWS CloudFormation",
+          "unit": "cloudformation"
+        },
+        {
+          "name": "AWS CloudTrail",
+          "unit": "cloudtrail"
+        },
+        {
+          "name": "Amazon CloudWatch",
+          "unit": "cloudwatch"
+        },
+        {
+          "name": "Amazon CloudWatch Logs",
+          "unit": "cloudwatch"
+        },
+        {
+          "name": "AWS Compute Optimizer",
+          "unit": "compute-optimizer"
+        },
+        {
+          "name": "AWS Config",
+          "unit": "config"
+        },
+        {
+          "name": "AWS Control Tower",
+          "unit": "control-tower"
+        },
+        {
+          "name": "AWS Health",
+          "unit": "health"
+        },
+        {
+          "name": "AWS License Manager",
+          "unit": "license-manager"
+        },
+        {
+          "name": "Amazon Managed Grafana",
+          "unit": "managed-grafana"
+        },
+        {
+          "name": "Amazon Managed Service for Prometheus",
+          "unit": "managed-prometheus"
+        },
+        {
+          "name": "AWS OpsWorks",
+          "unit": "opsworks"
+        },
+        {
+          "name": "AWS Organizations",
+          "unit": "organizations"
+        },
+        {
+          "name": "AWS Proton",
+          "unit": "proton"
+        },
+        {
+          "name": "AWS Resilience Hub",
+          "unit": "resilience-hub"
+        },
+        {
+          "name": "AWS Service Catalog",
+          "unit": "service-catalog"
+        },
+        {
+          "name": "AWS Systems Manager",
+          "unit": "systems-manager"
+        },
+        {
+          "name": "AWS Trusted Advisor",
+          "unit": "trusted-advisor"
+        }
       ]
     },
     {
       "category": "Networking and Content Delivery",
-      "names": [
-        "Amazon API Gateway",
-        "AWS Client VPN",
-        "Amazon CloudFront",
-        "Elastic Load Balancing (ELB)",
-        "AWS PrivateLink",
-        "Amazon Route 53",
-        "AWS Site-to-Site VPN",
-        "AWS Transit Gateway",
-        "Amazon VPC"
+      "services": [
+        {
+          "name": "Amazon API Gateway",
+          "unit": "api-gateway"
+        },
+        {
+          "name": "AWS Client VPN",
+          "unit": "client-vpn"
+        },
+        {
+          "name": "Amazon CloudFront",
+          "unit": "cloudfront"
+        },
+        {
+          "name": "Elastic Load Balancing (ELB)",
+          "unit": "elastic-load-balancing"
+        },
+        {
+          "name": "AWS PrivateLink",
+          "unit": "privatelink"
+        },
+        {
+          "name": "Amazon Route 53",
+          "unit": "route53"
+        },
+        {
+          "name": "AWS Site-to-Site VPN",
+          "unit": "site-to-site-vpn"
+        },
+        {
+          "name": "AWS Transit Gateway",
+          "unit": "transit-gateway"
+        },
+        {
+          "name": "Amazon VPC",
+          "unit": "vpc"
+        }
       ]
     },
     {
       "category": "Security, Identity, and Compliance",
-      "names": [
-        "AWS Certificate Manager (ACM)",
-        "AWS CloudHSM",
-        "Amazon Cognito",
-        "Amazon Detective",
-        "AWS Directory Service",
-        "Amazon GuardDuty",
-        "AWS IAM Identity Center",
-        "IAM",
-        "Amazon Inspector",
-        "AWS KMS",
-        "Amazon Macie",
-        "AWS Network Firewall",
-        "AWS Resource Access Manager (AWS RAM)",
-        "AWS Secrets Manager",
-        "AWS Security Hub",
-        "AWS STS",
-        "AWS Shield",
-        "AWS WAF"
+      "services": [
+        {
+          "name": "AWS Certificate Manager (ACM)",
+          "unit": "acm"
+        },
+        {
+          "name": "AWS CloudHSM",
+          "unit": "cloudhsm"
+        },
+        {
+          "name": "Amazon Cognito",
+          "sections": [
+            "api-gateway/authentication-and-api-keys",
+            "iam/saml-and-oidc-federation"
+          ]
+        },
+        {
+          "name": "Amazon Detective",
+          "unit": "detective"
+        },
+        {
+          "name": "AWS Directory Service",
+          "unit": "directory-service"
+        },
+        {
+          "name": "Amazon GuardDuty",
+          "unit": "guardduty"
+        },
+        {
+          "name": "AWS IAM Identity Center",
+          "unit": "iam-identity-center"
+        },
+        {
+          "name": "IAM",
+          "unit": "iam"
+        },
+        {
+          "name": "Amazon Inspector",
+          "unit": "inspector"
+        },
+        {
+          "name": "AWS KMS",
+          "unit": "kms"
+        },
+        {
+          "name": "Amazon Macie",
+          "unit": "macie"
+        },
+        {
+          "name": "AWS Network Firewall",
+          "unit": "network-firewall"
+        },
+        {
+          "name": "AWS Resource Access Manager (AWS RAM)",
+          "unit": "resource-access-manager"
+        },
+        {
+          "name": "AWS Secrets Manager",
+          "unit": "secrets-manager"
+        },
+        {
+          "name": "AWS Security Hub",
+          "unit": "security-hub"
+        },
+        {
+          "name": "AWS STS",
+          "unit": "iam"
+        },
+        {
+          "name": "AWS Shield",
+          "unit": "shield"
+        },
+        {
+          "name": "AWS WAF",
+          "unit": "waf"
+        }
       ]
     },
     {
       "category": "Serverless",
-      "names": [
-        "AWS Lambda",
-        "AWS SAM",
-        "Amazon SNS",
-        "Amazon SQS",
-        "AWS Step Functions"
+      "services": [
+        {
+          "name": "AWS Lambda",
+          "unit": "lambda"
+        },
+        {
+          "name": "AWS SAM",
+          "unit": "sam"
+        },
+        {
+          "name": "Amazon SNS",
+          "unit": "sns"
+        },
+        {
+          "name": "Amazon SQS",
+          "unit": "sqs"
+        },
+        {
+          "name": "AWS Step Functions",
+          "unit": "step-functions"
+        }
       ]
     },
     {
       "category": "Storage",
-      "names": [
-        "AWS Backup",
-        "Amazon EBS",
-        "AWS Elastic Disaster Recovery",
-        "Amazon EFS",
-        "Amazon FSx for Lustre",
-        "Amazon FSx for NetApp ONTAP",
-        "Amazon FSx for OpenZFS",
-        "Amazon FSx for Windows File Server",
-        "Amazon S3",
-        "Amazon S3 Glacier",
-        "AWS Storage Gateway"
+      "services": [
+        {
+          "name": "AWS Backup",
+          "unit": "backup"
+        },
+        {
+          "name": "Amazon EBS",
+          "unit": "ebs"
+        },
+        {
+          "name": "AWS Elastic Disaster Recovery",
+          "unit": "elastic-disaster-recovery"
+        },
+        {
+          "name": "Amazon EFS",
+          "unit": "efs"
+        },
+        {
+          "name": "Amazon FSx for Lustre",
+          "unit": "fsx-for-lustre"
+        },
+        {
+          "name": "Amazon FSx for NetApp ONTAP",
+          "unit": "fsx-for-netapp-ontap"
+        },
+        {
+          "name": "Amazon FSx for OpenZFS",
+          "unit": "fsx-for-openzfs"
+        },
+        {
+          "name": "Amazon FSx for Windows File Server",
+          "unit": "fsx-for-windows"
+        },
+        {
+          "name": "Amazon S3",
+          "unit": "s3"
+        },
+        {
+          "name": "Amazon S3 Glacier",
+          "unit": "s3"
+        },
+        {
+          "name": "AWS Storage Gateway",
+          "unit": "storage-gateway"
+        }
       ]
     }
   ]
