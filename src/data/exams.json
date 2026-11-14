@@ -1,5 +1,5 @@
 {
-  "retrieved": "2026-11-13",
+  "retrieved": "2026-11-14",
   "exams": {
     "clf-c02": {
       "source": "https://aws.amazon.com/certification/certified-cloud-practitioner/",
@@ -7,7 +7,12 @@
       "duration": "90 minutes",
       "format": "65 questions; either multiple choice or multiple response",
       "cost": "100 USD. Visit Exam pricing for additional cost information, including foreign exchange rates",
-      "languages": "Arabic, English, French (France), German, Italian, Japanese, Korean, Portuguese (Brazil), Spanish (Latin America), Spanish (Spain), Simplified Chinese, and Traditional Chinese. The AWS Certified Cloud Practitioner exam in Italian and German will be retired after December 31, 2026."
+      "languages": "Arabic, English, French (France), German, Italian, Japanese, Korean, Portuguese (Brazil), Spanish (Latin America), Spanish (Spain), Simplified Chinese, and Traditional Chinese. The AWS Certified Cloud Practitioner exam in Italian and German will be retired after December 31, 2026.",
+      "guide": "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02.html",
+      "passingScore": "700",
+      "scaledScore": "100–1,000",
+      "scoredQuestions": "50",
+      "unscoredQuestions": "15"
     },
     "aif-c01": {
       "source": "https://aws.amazon.com/certification/certified-ai-practitioner/",

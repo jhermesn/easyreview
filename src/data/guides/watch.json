@@ -1,6 +1,15 @@
 {
-  "checked": "2026-11-13",
+  "checked": "2026-11-14",
   "pages": {
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/clf-02-in-scope-services.html": "4276ea1330715917",
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/clf-02-out-of-scope-services.html": "87a530e65cb0a13c",
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/clf-02-revisions.html": "4e2677c4054e7c9e",
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/clf-technologies-concepts.html": "34b438d877fa8621",
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02-domain1.html": "8ef63671b85645e3",
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02-domain2.html": "c6646ccb999c30cb",
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02-domain3.html": "5349ddffaad5a41b",
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02-domain4.html": "3cb919cc51b7a917",
+    "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02.html": "a06d56713ad0c51a",
     "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain1.html": "c991609c9f284cbe",
     "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain2.html": "d8def29a348a61c2",
     "https://docs.aws.amazon.com/aws-certification/latest/devops-engineer-professional-02/devops-engineer-professional-02-domain3.html": "1affe45239d6267b",
