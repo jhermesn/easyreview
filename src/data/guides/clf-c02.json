@@ -1,0 +1,1944 @@
+{
+  "cert": "clf-c02",
+  "source": "https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02.html",
+  "retrieved": "2026-11-13",
+  "domains": [
+    {
+      "id": "d1",
+      "name": "Cloud Concepts",
+      "tasks": [
+        {
+          "id": "1.1",
+          "title": "Define the benefits of the AWS Cloud.",
+          "items": [
+            {
+              "id": "1.1.k1",
+              "kind": "knowledge",
+              "text": "Value proposition of the AWS Cloud",
+              "sections": [
+                "cloud-value/benefits-of-the-cloud"
+              ]
+            },
+            {
+              "id": "1.1.s1",
+              "kind": "skill",
+              "text": "Understanding the benefits of global infrastructure (for example, speed of deployment, global reach)",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "cloud-value/benefits-of-the-cloud"
+              ]
+            },
+            {
+              "id": "1.1.s2",
+              "kind": "skill",
+              "text": "Understanding the advantages of high availability, elasticity, and agility",
+              "sections": [
+                "cloud-value/benefits-of-the-cloud",
+                "availability-targets/service-slas-and-workload-targets"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Identify design principles of the AWS Cloud.",
+          "items": [
+            {
+              "id": "1.2.k1",
+              "kind": "knowledge",
+              "text": "AWS Well-Architected Framework",
+              "sections": [
+                "well-architected/framework-pillars",
+                "well-architected/well-architected-tool"
+              ]
+            },
+            {
+              "id": "1.2.s1",
+              "kind": "skill",
+              "text": "Understanding the pillars of the Well-Architected Framework (for example, operational excellence, security, reliability, performance efficiency, cost optimization, sustainability)",
+              "sections": [
+                "well-architected/framework-pillars"
+              ]
+            },
+            {
+              "id": "1.2.s2",
+              "kind": "skill",
+              "text": "Identifying differences between the pillars of the Well-Architected Framework",
+              "sections": [
+                "well-architected/framework-pillars"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Understand the benefits of and strategies for migration to the AWS Cloud.",
+          "items": [
+            {
+              "id": "1.3.k1",
+              "kind": "knowledge",
+              "text": "Cloud adoption strategies",
+              "sections": [
+                "cloud-adoption/cloud-adoption-framework",
+                "cloud-adoption/migration-strategies"
+              ]
+            },
+            {
+              "id": "1.3.k2",
+              "kind": "knowledge",
+              "text": "Resources to support the cloud migration journey",
+              "sections": [
+                "cloud-adoption/migration-services"
+              ]
+            },
+            {
+              "id": "1.3.s1",
+              "kind": "skill",
+              "text": "Understanding the components of the AWS Cloud Adoption Framework (AWS CAF) (for example, reduced business risk; improved environmental, social, and governance [ESG] performance; increased revenue; increased operational efficiency)",
+              "sections": [
+                "cloud-adoption/cloud-adoption-framework"
+              ]
+            },
+            {
+              "id": "1.3.s2",
+              "kind": "skill",
+              "text": "Identifying appropriate migration strategies (for example, database replication)",
+              "sections": [
+                "cloud-adoption/migration-strategies",
+                "dms/full-load-and-change-data-capture"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.4",
+          "title": "Understand concepts of cloud economics.",
+          "items": [
+            {
+              "id": "1.4.k1",
+              "kind": "knowledge",
+              "text": "Aspects of cloud economics",
+              "sections": [
+                "cloud-value/cloud-economics"
+              ]
+            },
+            {
+              "id": "1.4.k2",
+              "kind": "knowledge",
+              "text": "Cost savings of moving to the cloud",
+              "sections": [
+                "cloud-value/cloud-economics"
+              ]
+            },
+            {
+              "id": "1.4.s1",
+              "kind": "skill",
+              "text": "Understanding the role of fixed costs compared with variable costs",
+              "sections": [
+                "cloud-value/cloud-economics"
+              ]
+            },
+            {
+              "id": "1.4.s2",
+              "kind": "skill",
+              "text": "Understanding costs that are associated with on-premises environments",
+              "sections": [
+                "cloud-value/cloud-economics"
+              ]
+            },
+            {
+              "id": "1.4.s3",
+              "kind": "skill",
+              "text": "Understanding the differences between licensing strategies (for example, Bring Your Own License [BYOL] model compared with included licenses)",
+              "sections": [
+                "cloud-value/cloud-economics",
+                "license-manager/license-inventory-and-rules"
+              ]
+            },
+            {
+              "id": "1.4.s4",
+              "kind": "skill",
+              "text": "Understanding the concept of rightsizing",
+              "sections": [
+                "cloud-value/cloud-economics",
+                "compute-optimizer/resource-rightsizing"
+              ]
+            },
+            {
+              "id": "1.4.s5",
+              "kind": "skill",
+              "text": "Identifying benefits of automation",
+              "sections": [
+                "cloud-value/cloud-economics"
+              ]
+            },
+            {
+              "id": "1.4.s6",
+              "kind": "skill",
+              "text": "Understanding the economies of scale (for example, cost savings)",
+              "sections": [
+                "cloud-value/cloud-economics"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "name": "Security and Compliance",
+      "tasks": [
+        {
+          "id": "2.1",
+          "title": "Understand the AWS shared responsibility model.",
+          "items": [
+            {
+              "id": "2.1.k1",
+              "kind": "knowledge",
+              "text": "AWS shared responsibility model",
+              "sections": [
+                "shared-responsibility/security-of-and-in-the-cloud"
+              ]
+            },
+            {
+              "id": "2.1.s1",
+              "kind": "skill",
+              "text": "Recognizing the components of the AWS shared responsibility model",
+              "sections": [
+                "shared-responsibility/security-of-and-in-the-cloud"
+              ]
+            },
+            {
+              "id": "2.1.s2",
+              "kind": "skill",
+              "text": "Describing the customer's responsibilities on AWS",
+              "sections": [
+                "shared-responsibility/security-of-and-in-the-cloud"
+              ]
+            },
+            {
+              "id": "2.1.s3",
+              "kind": "skill",
+              "text": "Describing AWS responsibilities",
+              "sections": [
+                "shared-responsibility/security-of-and-in-the-cloud"
+              ]
+            },
+            {
+              "id": "2.1.s4",
+              "kind": "skill",
+              "text": "Describing responsibilities that the customer and AWS share",
+              "sections": [
+                "shared-responsibility/security-of-and-in-the-cloud"
+              ]
+            },
+            {
+              "id": "2.1.s5",
+              "kind": "skill",
+              "text": "Describing how AWS responsibilities and customer responsibilities can shift, depending on the service used (for example, Amazon RDS, AWS Lambda, Amazon EC2)",
+              "sections": [
+                "shared-responsibility/security-of-and-in-the-cloud"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Understand AWS Cloud security, governance, and compliance concepts.",
+          "items": [
+            {
+              "id": "2.2.k1",
+              "kind": "knowledge",
+              "text": "AWS compliance and governance concepts",
+              "sections": [
+                "artifact/compliance-programs",
+                "config/recorders-and-configuration-history"
+              ]
+            },
+            {
+              "id": "2.2.k2",
+              "kind": "knowledge",
+              "text": "Benefits of cloud security (for example, encryption)",
+              "sections": [
+                "kms/encryption-at-rest-and-in-transit"
+              ]
+            },
+            {
+              "id": "2.2.k3",
+              "kind": "knowledge",
+              "text": "Where to capture and locate logs that are associated with cloud security",
+              "sections": [
+                "cloudtrail/event-history-and-event-types",
+                "cloudwatch/log-groups-and-retention",
+                "vpc/flow-logs"
+              ]
+            },
+            {
+              "id": "2.2.s1",
+              "kind": "skill",
+              "text": "Identifying where to find AWS compliance information (for example, AWS Artifact)",
+              "sections": [
+                "artifact/reports-and-agreements"
+              ]
+            },
+            {
+              "id": "2.2.s2",
+              "kind": "skill",
+              "text": "Understanding compliance needs among geographic locations or industries (for example, AWS compliance)",
+              "sections": [
+                "artifact/compliance-programs"
+              ]
+            },
+            {
+              "id": "2.2.s3",
+              "kind": "skill",
+              "text": "Describing how customers secure resources on AWS (for example, Amazon Inspector, AWS Security Hub, Amazon GuardDuty, AWS Shield)",
+              "sections": [
+                "inspector/ec2-ecr-and-lambda-scanning",
+                "security-hub/findings-standards-and-config-dependency",
+                "guardduty/data-sources-and-threat-findings",
+                "shield/standard-and-advanced-protection",
+                "detective/finding-investigation",
+                "macie/sensitive-data-discovery-and-jobs"
+              ]
+            },
+            {
+              "id": "2.2.s4",
+              "kind": "skill",
+              "text": "Identifying encryption options (for example, encryption in transit, encryption at rest)",
+              "sections": [
+                "kms/encryption-at-rest-and-in-transit",
+                "acm/public-certificates-and-domain-validation",
+                "cloudhsm/dedicated-hsm-workloads"
+              ]
+            },
+            {
+              "id": "2.2.s5",
+              "kind": "skill",
+              "text": "Recognizing services that aid in governance and compliance (for example, monitoring with Amazon CloudWatch; auditing with AWS CloudTrail and AWS Config; reporting with access reports)",
+              "sections": [
+                "cloudwatch/alarm-actions-and-composite-alarms",
+                "cloudtrail/trails-and-event-selectors",
+                "config/managed-custom-and-proactive-rules",
+                "control-tower/landing-zone-and-shared-accounts"
+              ]
+            },
+            {
+              "id": "2.2.s6",
+              "kind": "skill",
+              "text": "Recognizing compliance requirements that vary among AWS services",
+              "sections": [
+                "artifact/compliance-programs"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Identify AWS access management capabilities.",
+          "items": [
+            {
+              "id": "2.3.k1",
+              "kind": "knowledge",
+              "text": "Identity and access management (for example, AWS Identity and Access Management [IAM])",
+              "sections": [
+                "iam/users-groups-and-policies",
+                "iam/identities-roles-and-instance-profiles",
+                "iam/policy-evaluation"
+              ]
+            },
+            {
+              "id": "2.3.k2",
+              "kind": "knowledge",
+              "text": "Importance of protecting the AWS root user account",
+              "sections": [
+                "iam/root-user"
+              ]
+            },
+            {
+              "id": "2.3.k3",
+              "kind": "knowledge",
+              "text": "Principle of least privilege",
+              "sections": [
+                "iam/users-groups-and-policies"
+              ]
+            },
+            {
+              "id": "2.3.k4",
+              "kind": "knowledge",
+              "text": "AWS IAM Identity Center",
+              "sections": [
+                "iam-identity-center/identity-sources-permission-sets-and-sessions"
+              ]
+            },
+            {
+              "id": "2.3.s1",
+              "kind": "skill",
+              "text": "Understanding access keys, password policies, and credential storage (for example, AWS Secrets Manager, AWS Systems Manager)",
+              "sections": [
+                "iam/credentials-and-mfa",
+                "secrets-manager/secret-versions-and-runtime-access",
+                "systems-manager/parameter-store-tiers-and-policies"
+              ]
+            },
+            {
+              "id": "2.3.s2",
+              "kind": "skill",
+              "text": "Identifying authentication methods in AWS (for example, multi-factor authentication [MFA], IAM Identity Center, cross-account IAM roles)",
+              "sections": [
+                "iam/credentials-and-mfa",
+                "iam-identity-center/identity-sources-permission-sets-and-sessions",
+                "iam/cross-account-roles-and-resource-policies"
+              ]
+            },
+            {
+              "id": "2.3.s3",
+              "kind": "skill",
+              "text": "Defining groups, users, custom policies, and managed policies in compliance with the principle of least privilege",
+              "sections": [
+                "iam/users-groups-and-policies"
+              ]
+            },
+            {
+              "id": "2.3.s4",
+              "kind": "skill",
+              "text": "Identifying tasks that only the account root user can perform",
+              "sections": [
+                "iam/root-user"
+              ]
+            },
+            {
+              "id": "2.3.s5",
+              "kind": "skill",
+              "text": "Understanding which methods can achieve root user protection",
+              "sections": [
+                "iam/root-user"
+              ]
+            },
+            {
+              "id": "2.3.s6",
+              "kind": "skill",
+              "text": "Understanding the types of identity management (for example, federated)",
+              "sections": [
+                "iam/saml-and-oidc-federation",
+                "cognito/user-pools-and-identity-pools",
+                "directory-service/managed-ad-ad-connector-and-simple-ad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.4",
+          "title": "Identify components and resources for security.",
+          "items": [
+            {
+              "id": "2.4.k1",
+              "kind": "knowledge",
+              "text": "Security capabilities that AWS provides",
+              "sections": [
+                "waf/web-acl-scope-and-rule-actions",
+                "shield/standard-and-advanced-protection",
+                "guardduty/data-sources-and-threat-findings"
+              ]
+            },
+            {
+              "id": "2.4.k2",
+              "kind": "knowledge",
+              "text": "Security-related documentation that AWS provides",
+              "sections": [
+                "technical-resources/documentation-and-guidance"
+              ]
+            },
+            {
+              "id": "2.4.s1",
+              "kind": "skill",
+              "text": "Describing AWS security features and services (for example, AWS WAF, AWS Firewall Manager, AWS Shield, Amazon GuardDuty)",
+              "sections": [
+                "waf/web-acl-scope-and-rule-actions",
+                "firewall-manager/organization-policies-and-config-prerequisites",
+                "shield/standard-and-advanced-protection",
+                "guardduty/data-sources-and-threat-findings"
+              ]
+            },
+            {
+              "id": "2.4.s2",
+              "kind": "skill",
+              "text": "Understanding that third-party security products are available from AWS Marketplace",
+              "sections": [
+                "marketplace/buying-software"
+              ]
+            },
+            {
+              "id": "2.4.s3",
+              "kind": "skill",
+              "text": "Identifying where AWS security information is available (for example, AWS Knowledge Center, AWS Security Center, AWS Security Blog)",
+              "sections": [
+                "technical-resources/documentation-and-guidance"
+              ]
+            },
+            {
+              "id": "2.4.s4",
+              "kind": "skill",
+              "text": "Understanding the use of AWS services for identifying security issues (for example, AWS Trusted Advisor)",
+              "sections": [
+                "trusted-advisor/checks-and-event-notifications"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "name": "Cloud Technology and Services",
+      "tasks": [
+        {
+          "id": "3.1",
+          "title": "Define methods of deploying and operating in the AWS Cloud.",
+          "items": [
+            {
+              "id": "3.1.k1",
+              "kind": "knowledge",
+              "text": "Various ways of provisioning and operating in the AWS Cloud",
+              "sections": [
+                "management-console/ways-to-access-aws",
+                "cloudformation/template-structure-and-dependencies",
+                "elastic-beanstalk/applications-environments-and-roles"
+              ]
+            },
+            {
+              "id": "3.1.k2",
+              "kind": "knowledge",
+              "text": "Various ways to access AWS services",
+              "sections": [
+                "management-console/ways-to-access-aws",
+                "cli/pagination-and-error-handling",
+                "sdks/credential-providers-pagination-and-retries",
+                "cloudshell/browser-shell-and-permissions"
+              ]
+            },
+            {
+              "id": "3.1.k3",
+              "kind": "knowledge",
+              "text": "Types of cloud deployment models",
+              "sections": [
+                "cloud-value/deployment-models"
+              ]
+            },
+            {
+              "id": "3.1.s1",
+              "kind": "skill",
+              "text": "Deciding between options such as programmatic access (for example, APIs, SDKs, CLI), the AWS Management Console, and infrastructure as code (IaC)",
+              "sections": [
+                "management-console/ways-to-access-aws",
+                "cloudformation/template-structure-and-dependencies"
+              ]
+            },
+            {
+              "id": "3.1.s2",
+              "kind": "skill",
+              "text": "Evaluating requirements to determine whether to use one-time operations or repeatable processes",
+              "sections": [
+                "management-console/ways-to-access-aws"
+              ]
+            },
+            {
+              "id": "3.1.s3",
+              "kind": "skill",
+              "text": "Identifying deployment models (for example, cloud, hybrid, on-premises)",
+              "sections": [
+                "cloud-value/deployment-models",
+                "outposts/on-premises-aws-infrastructure"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Define the AWS global infrastructure.",
+          "items": [
+            {
+              "id": "3.2.k1",
+              "kind": "knowledge",
+              "text": "AWS Regions, Availability Zones, and edge locations",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations"
+              ]
+            },
+            {
+              "id": "3.2.k2",
+              "kind": "knowledge",
+              "text": "High availability",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "rds/multi-az-and-failover-tests"
+              ]
+            },
+            {
+              "id": "3.2.k3",
+              "kind": "knowledge",
+              "text": "Use of multiple Regions",
+              "sections": [
+                "global-infrastructure/multi-region-use-cases"
+              ]
+            },
+            {
+              "id": "3.2.k4",
+              "kind": "knowledge",
+              "text": "Benefits of edge locations",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "cloudfront/cache-behaviors-and-policies",
+                "global-accelerator/regional-endpoint-routing"
+              ]
+            },
+            {
+              "id": "3.2.s1",
+              "kind": "skill",
+              "text": "Describing relationships among Regions, Availability Zones, and edge locations",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations"
+              ]
+            },
+            {
+              "id": "3.2.s2",
+              "kind": "skill",
+              "text": "Describing how to achieve high availability by using multiple Availability Zones",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance"
+              ]
+            },
+            {
+              "id": "3.2.s3",
+              "kind": "skill",
+              "text": "Recognizing that Availability Zones do not share single points of failure",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations"
+              ]
+            },
+            {
+              "id": "3.2.s4",
+              "kind": "skill",
+              "text": "Describing when to use multiple Regions (for example, disaster recovery, business continuity, low latency for end users, data sovereignty)",
+              "sections": [
+                "global-infrastructure/multi-region-use-cases",
+                "disaster-recovery/recovery-strategy-selection"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Identify AWS compute services.",
+          "items": [
+            {
+              "id": "3.3.k1",
+              "kind": "knowledge",
+              "text": "AWS compute services",
+              "sections": [
+                "ec2/instance-types",
+                "lightsail/simple-virtual-servers",
+                "batch/managed-batch-computing",
+                "elastic-beanstalk/applications-environments-and-roles",
+                "outposts/on-premises-aws-infrastructure"
+              ]
+            },
+            {
+              "id": "3.3.s1",
+              "kind": "skill",
+              "text": "Recognizing the appropriate use of various EC2 instance types (for example, compute optimized, storage optimized)",
+              "sections": [
+                "ec2/instance-types"
+              ]
+            },
+            {
+              "id": "3.3.s2",
+              "kind": "skill",
+              "text": "Recognizing the appropriate use of various container options (for example, Amazon Elastic Container Service [Amazon ECS], Amazon Elastic Kubernetes Service [Amazon EKS])",
+              "sections": [
+                "ecs/task-definitions-tasks-and-services",
+                "eks/cluster-compute-options",
+                "ecr/repositories-and-image-tags"
+              ]
+            },
+            {
+              "id": "3.3.s3",
+              "kind": "skill",
+              "text": "Recognizing the appropriate use of various serverless compute options (for example, AWS Fargate, Lambda)",
+              "sections": [
+                "fargate/compute-and-isolation",
+                "lambda/invocation-and-retries"
+              ]
+            },
+            {
+              "id": "3.3.s4",
+              "kind": "skill",
+              "text": "Recognizing that auto scaling provides elasticity",
+              "sections": [
+                "ec2-auto-scaling/scaling-policy-selection",
+                "application-auto-scaling/scalable-targets-and-policies"
+              ]
+            },
+            {
+              "id": "3.3.s5",
+              "kind": "skill",
+              "text": "Identifying the purposes of load balancers",
+              "sections": [
+                "elastic-load-balancing/load-balancer-types"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.4",
+          "title": "Identify AWS database services.",
+          "items": [
+            {
+              "id": "3.4.k1",
+              "kind": "knowledge",
+              "text": "AWS database services",
+              "sections": [
+                "rds/managed-vs-self-managed-databases",
+                "neptune/graph-databases",
+                "documentdb/document-workloads-and-compatibility"
+              ]
+            },
+            {
+              "id": "3.4.k2",
+              "kind": "knowledge",
+              "text": "Database migration",
+              "sections": [
+                "dms/full-load-and-change-data-capture",
+                "dms/schema-conversion-tool"
+              ]
+            },
+            {
+              "id": "3.4.s1",
+              "kind": "skill",
+              "text": "Deciding when to use EC2 hosted databases or AWS managed databases",
+              "sections": [
+                "rds/managed-vs-self-managed-databases"
+              ]
+            },
+            {
+              "id": "3.4.s2",
+              "kind": "skill",
+              "text": "Identifying relational databases (for example, Amazon RDS, Amazon Aurora)",
+              "sections": [
+                "rds/managed-vs-self-managed-databases",
+                "aurora/storage-replicas-and-auto-scaling"
+              ]
+            },
+            {
+              "id": "3.4.s3",
+              "kind": "skill",
+              "text": "Identifying NoSQL databases (for example, DynamoDB)",
+              "sections": [
+                "dynamodb/capacity-scaling-and-throttling"
+              ]
+            },
+            {
+              "id": "3.4.s4",
+              "kind": "skill",
+              "text": "Identifying memory-based databases (for example, Amazon ElastiCache)",
+              "sections": [
+                "elasticache/engines-replicas-and-multi-az"
+              ]
+            },
+            {
+              "id": "3.4.s5",
+              "kind": "skill",
+              "text": "Identifying database migration tools (for example, AWS Database Migration Service [AWS DMS], AWS Schema Conversion Tool [AWS SCT])",
+              "sections": [
+                "dms/full-load-and-change-data-capture",
+                "dms/schema-conversion-tool"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.5",
+          "title": "Identify AWS network services.",
+          "items": [
+            {
+              "id": "3.5.k1",
+              "kind": "knowledge",
+              "text": "AWS network services",
+              "sections": [
+                "vpc/subnets-and-gateways",
+                "api-gateway/deployments-and-stages",
+                "privatelink/interface-endpoints-and-private-access",
+                "transit-gateway/attachments-route-tables-and-sharing"
+              ]
+            },
+            {
+              "id": "3.5.s1",
+              "kind": "skill",
+              "text": "Identifying the components of a VPC (for example, subnets, gateways)",
+              "sections": [
+                "vpc/subnets-and-gateways",
+                "vpc/route-tables-and-peering"
+              ]
+            },
+            {
+              "id": "3.5.s2",
+              "kind": "skill",
+              "text": "Understanding security in a VPC (for example, network ACLs, security groups, Amazon Inspector)",
+              "sections": [
+                "vpc/security-groups-and-network-acls",
+                "inspector/ec2-ecr-and-lambda-scanning"
+              ]
+            },
+            {
+              "id": "3.5.s3",
+              "kind": "skill",
+              "text": "Understanding the purpose of Amazon Route 53",
+              "sections": [
+                "route53/routing-policies",
+                "route53/public-zone-delegation"
+              ]
+            },
+            {
+              "id": "3.5.s4",
+              "kind": "skill",
+              "text": "Identifying network connectivity options to AWS (for example, AWS VPN, AWS Direct Connect)",
+              "sections": [
+                "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "client-vpn/remote-user-connectivity",
+                "direct-connect/private-connectivity-and-encryption"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.6",
+          "title": "Identify AWS storage services.",
+          "items": [
+            {
+              "id": "3.6.k1",
+              "kind": "knowledge",
+              "text": "AWS storage services",
+              "sections": [
+                "s3/buckets-objects-and-durability",
+                "ebs/volume-types",
+                "efs/regional-and-one-zone-file-systems"
+              ]
+            },
+            {
+              "id": "3.6.s1",
+              "kind": "skill",
+              "text": "Identifying the uses for object storage",
+              "sections": [
+                "s3/buckets-objects-and-durability"
+              ]
+            },
+            {
+              "id": "3.6.s2",
+              "kind": "skill",
+              "text": "Recognizing the differences in Amazon S3 storage classes",
+              "sections": [
+                "s3/storage-classes",
+                "s3/glacier-retrieval"
+              ]
+            },
+            {
+              "id": "3.6.s3",
+              "kind": "skill",
+              "text": "Identifying block storage solutions (for example, Amazon Elastic Block Store [Amazon EBS], instance store)",
+              "sections": [
+                "ebs/volume-types",
+                "ec2/instance-store-lifecycle"
+              ]
+            },
+            {
+              "id": "3.6.s4",
+              "kind": "skill",
+              "text": "Identifying file services (for example, Amazon Elastic File System [Amazon EFS], Amazon FSx)",
+              "sections": [
+                "efs/regional-and-one-zone-file-systems",
+                "fsx-for-windows/smb-directory-integration-and-availability",
+                "fsx-for-lustre/parallel-storage-and-s3-integration",
+                "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
+                "fsx-for-openzfs/nfs-snapshots-and-clones"
+              ]
+            },
+            {
+              "id": "3.6.s5",
+              "kind": "skill",
+              "text": "Identifying cached file systems (for example, AWS Storage Gateway)",
+              "sections": [
+                "storage-gateway/file-gateways",
+                "storage-gateway/volume-and-tape-gateways"
+              ]
+            },
+            {
+              "id": "3.6.s6",
+              "kind": "skill",
+              "text": "Understanding use cases for lifecycle policies",
+              "sections": [
+                "s3/lifecycle-and-retention",
+                "ebs/snapshot-lifecycle-management"
+              ]
+            },
+            {
+              "id": "3.6.s7",
+              "kind": "skill",
+              "text": "Understanding use cases for AWS Backup",
+              "sections": [
+                "backup/plans-vaults-and-recovery-points",
+                "elastic-disaster-recovery/replication-and-staging"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.7",
+          "title": "Identify AWS artificial intelligence and machine learning (AI/ML) services and analytics services.",
+          "items": [
+            {
+              "id": "3.7.k1",
+              "kind": "knowledge",
+              "text": "AWS AI/ML services",
+              "sections": [
+                "sagemaker-ai/build-train-and-deploy-models",
+                "amazon-q/generative-ai-assistant",
+                "comprehend/text-analysis",
+                "polly/text-to-speech",
+                "rekognition/image-and-video-analysis",
+                "textract/document-text-extraction",
+                "transcribe/speech-to-text",
+                "translate/language-translation"
+              ]
+            },
+            {
+              "id": "3.7.k2",
+              "kind": "knowledge",
+              "text": "AWS analytics services",
+              "sections": [
+                "athena/partitions-and-columnar-formats",
+                "emr/distributed-processing-workloads",
+                "redshift/data-warehouse-workloads",
+                "opensearch/log-ingestion-search-and-dashboards"
+              ]
+            },
+            {
+              "id": "3.7.s1",
+              "kind": "skill",
+              "text": "Understanding AI/ML services and the tasks that they accomplish (for example, Amazon SageMaker AI, Amazon Lex)",
+              "sections": [
+                "sagemaker-ai/build-train-and-deploy-models",
+                "lex/conversational-interfaces",
+                "comprehend/text-analysis",
+                "rekognition/image-and-video-analysis"
+              ]
+            },
+            {
+              "id": "3.7.s2",
+              "kind": "skill",
+              "text": "Identifying the services for data analytics (for example, Amazon Athena, Amazon Kinesis, AWS Glue, Amazon Quick)",
+              "sections": [
+                "athena/partitions-and-columnar-formats",
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "firehose/destinations-and-buffering",
+                "glue/data-integration-and-catalog",
+                "quicksight/datasets-visuals-and-dashboards"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.8",
+          "title": "Identify services from other in-scope AWS service categories.",
+          "items": [
+            {
+              "id": "3.8.k1",
+              "kind": "knowledge",
+              "text": "Application integration services of Amazon EventBridge, Amazon Simple Notification Service (Amazon SNS), and Amazon Simple Queue Service (Amazon SQS)",
+              "sections": [
+                "eventbridge/event-buses-and-patterns",
+                "sns/topics-subscriptions-and-fan-out",
+                "sqs/standard-and-fifo-queues",
+                "step-functions/standard-and-express"
+              ]
+            },
+            {
+              "id": "3.8.k2",
+              "kind": "knowledge",
+              "text": "Business application services of Amazon Connect and Amazon Simple Email Service (Amazon SES)",
+              "sections": [
+                "connect/contact-center",
+                "ses/email-sending"
+              ]
+            },
+            {
+              "id": "3.8.k3",
+              "kind": "knowledge",
+              "text": "Customer enablement services (for example, AWS Support)",
+              "sections": [
+                "support/support-plans"
+              ]
+            },
+            {
+              "id": "3.8.k4",
+              "kind": "knowledge",
+              "text": "Developer tool services and capabilities (for example, AWS CodeBuild, AWS CodePipeline, and AWS X-Ray)",
+              "sections": [
+                "codebuild/buildspec-phases",
+                "codepipeline/stages-actions-and-triggers",
+                "xray/traces-segments-and-propagation"
+              ]
+            },
+            {
+              "id": "3.8.k5",
+              "kind": "knowledge",
+              "text": "End-user computing services of Amazon AppStream 2.0, Amazon WorkSpaces, and Amazon WorkSpaces Secure Browser",
+              "sections": [
+                "appstream/application-streaming",
+                "workspaces/virtual-desktops-and-secure-browser"
+              ]
+            },
+            {
+              "id": "3.8.k6",
+              "kind": "knowledge",
+              "text": "Frontend web and mobile services of AWS Amplify",
+              "sections": [
+                "amplify/frontend-and-mobile-apps"
+              ]
+            },
+            {
+              "id": "3.8.k7",
+              "kind": "knowledge",
+              "text": "IoT services (for example, AWS IoT Core)",
+              "sections": [
+                "iot-core/device-connectivity"
+              ]
+            },
+            {
+              "id": "3.8.s1",
+              "kind": "skill",
+              "text": "Choosing the appropriate service to deliver messages and to send alerts and notifications",
+              "sections": [
+                "sns/topics-subscriptions-and-fan-out",
+                "sqs/standard-and-fifo-queues",
+                "eventbridge/event-buses-and-patterns",
+                "ses/email-sending"
+              ]
+            },
+            {
+              "id": "3.8.s2",
+              "kind": "skill",
+              "text": "Choosing the appropriate service to meet business application needs",
+              "sections": [
+                "connect/contact-center",
+                "ses/email-sending"
+              ]
+            },
+            {
+              "id": "3.8.s3",
+              "kind": "skill",
+              "text": "Choosing the appropriate option for business support assistance",
+              "sections": [
+                "support/support-plans"
+              ]
+            },
+            {
+              "id": "3.8.s4",
+              "kind": "skill",
+              "text": "Identifying the tools to develop, deploy, and troubleshoot applications",
+              "sections": [
+                "codebuild/buildspec-phases",
+                "codepipeline/stages-actions-and-triggers",
+                "xray/traces-segments-and-propagation"
+              ]
+            },
+            {
+              "id": "3.8.s5",
+              "kind": "skill",
+              "text": "Identifying the services that can present the output of virtual machines (VMs) on end-user machines",
+              "sections": [
+                "workspaces/virtual-desktops-and-secure-browser",
+                "appstream/application-streaming"
+              ]
+            },
+            {
+              "id": "3.8.s6",
+              "kind": "skill",
+              "text": "Identifying the services that can create and deploy frontend and mobile services",
+              "sections": [
+                "amplify/frontend-and-mobile-apps"
+              ]
+            },
+            {
+              "id": "3.8.s7",
+              "kind": "skill",
+              "text": "Identifying the services that manage IoT devices",
+              "sections": [
+                "iot-core/device-connectivity"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "name": "Billing, Pricing, and Support",
+      "tasks": [
+        {
+          "id": "4.1",
+          "title": "Compare AWS pricing models.",
+          "items": [
+            {
+              "id": "4.1.k1",
+              "kind": "knowledge",
+              "text": "Compute purchasing options (for example, On-Demand Instances, Reserved Instances, Spot Instances, Savings Plans, Dedicated Hosts, Dedicated Instances, Capacity Reservations)",
+              "sections": [
+                "ec2/purchasing-options"
+              ]
+            },
+            {
+              "id": "4.1.k2",
+              "kind": "knowledge",
+              "text": "Storage options and tiers",
+              "sections": [
+                "s3/storage-classes",
+                "ebs/volume-types"
+              ]
+            },
+            {
+              "id": "4.1.s1",
+              "kind": "skill",
+              "text": "Identifying when to use various compute purchasing options",
+              "sections": [
+                "ec2/purchasing-options"
+              ]
+            },
+            {
+              "id": "4.1.s2",
+              "kind": "skill",
+              "text": "Describing Reserved Instance flexibility",
+              "sections": [
+                "ec2/reserved-instance-flexibility-and-sharing"
+              ]
+            },
+            {
+              "id": "4.1.s3",
+              "kind": "skill",
+              "text": "Describing Reserved Instance behavior in AWS Organizations",
+              "sections": [
+                "ec2/reserved-instance-flexibility-and-sharing"
+              ]
+            },
+            {
+              "id": "4.1.s4",
+              "kind": "skill",
+              "text": "Understanding incoming data transfer costs and outgoing data transfer costs (for example, from one Region to another Region, within the same Region)",
+              "sections": [
+                "billing-and-cost-management/data-transfer-costs"
+              ]
+            },
+            {
+              "id": "4.1.s5",
+              "kind": "skill",
+              "text": "Understanding pricing options for various storage options and tiers",
+              "sections": [
+                "s3/storage-classes"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Understand resources for billing, budget, and cost management.",
+          "items": [
+            {
+              "id": "4.2.k1",
+              "kind": "knowledge",
+              "text": "Billing support and information",
+              "sections": [
+                "billing-and-cost-management/cost-explorer",
+                "support/support-center-and-cases"
+              ]
+            },
+            {
+              "id": "4.2.k2",
+              "kind": "knowledge",
+              "text": "Pricing information for AWS services",
+              "sections": [
+                "billing-and-cost-management/pricing-calculator"
+              ]
+            },
+            {
+              "id": "4.2.k3",
+              "kind": "knowledge",
+              "text": "AWS Organizations",
+              "sections": [
+                "organizations/accounts-ous-and-consolidated-billing",
+                "service-quotas/quotas-and-increases",
+                "service-catalog/products-portfolios-and-versions"
+              ]
+            },
+            {
+              "id": "4.2.k4",
+              "kind": "knowledge",
+              "text": "AWS cost allocation tags",
+              "sections": [
+                "billing-and-cost-management/cost-allocation-tags"
+              ]
+            },
+            {
+              "id": "4.2.s1",
+              "kind": "skill",
+              "text": "Understanding the appropriate uses and capabilities of AWS Budgets and AWS Cost Explorer",
+              "sections": [
+                "billing-and-cost-management/budgets",
+                "billing-and-cost-management/cost-explorer"
+              ]
+            },
+            {
+              "id": "4.2.s2",
+              "kind": "skill",
+              "text": "Understanding the appropriate uses and capabilities of AWS Pricing Calculator",
+              "sections": [
+                "billing-and-cost-management/pricing-calculator"
+              ]
+            },
+            {
+              "id": "4.2.s3",
+              "kind": "skill",
+              "text": "Understanding AWS Organizations consolidated billing and allocation of costs",
+              "sections": [
+                "organizations/accounts-ous-and-consolidated-billing"
+              ]
+            },
+            {
+              "id": "4.2.s4",
+              "kind": "skill",
+              "text": "Understanding various types of cost allocation tags and their relation to billing reports (for example, AWS Cost and Usage Report)",
+              "sections": [
+                "billing-and-cost-management/cost-allocation-tags",
+                "billing-and-cost-management/cost-and-usage-reports"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Identify AWS technical resources and AWS Support options.",
+          "items": [
+            {
+              "id": "4.3.k1",
+              "kind": "knowledge",
+              "text": "Resources and documentation available on official AWS websites",
+              "sections": [
+                "technical-resources/documentation-and-guidance"
+              ]
+            },
+            {
+              "id": "4.3.k2",
+              "kind": "knowledge",
+              "text": "AWS Support plans",
+              "sections": [
+                "support/support-plans"
+              ]
+            },
+            {
+              "id": "4.3.k3",
+              "kind": "knowledge",
+              "text": "Role of the AWS Partner Network, including independent software vendors and system integrators",
+              "sections": [
+                "technical-resources/partners-and-professional-services"
+              ]
+            },
+            {
+              "id": "4.3.k4",
+              "kind": "knowledge",
+              "text": "AWS Support Center",
+              "sections": [
+                "support/support-center-and-cases"
+              ]
+            },
+            {
+              "id": "4.3.s1",
+              "kind": "skill",
+              "text": "Locating AWS whitepapers, blogs, and documentation on official AWS websites",
+              "sections": [
+                "technical-resources/documentation-and-guidance"
+              ]
+            },
+            {
+              "id": "4.3.s2",
+              "kind": "skill",
+              "text": "Identifying and locating AWS technical resources (for example, AWS Prescriptive Guidance, AWS Knowledge Center, AWS re:Post)",
+              "sections": [
+                "technical-resources/documentation-and-guidance"
+              ]
+            },
+            {
+              "id": "4.3.s3",
+              "kind": "skill",
+              "text": "Identifying AWS Support options for AWS customers (for example, customer service and communities, Basic Support, AWS Business Support+, AWS Enterprise Support, AWS Unified Operations)",
+              "sections": [
+                "support/support-plans"
+              ]
+            },
+            {
+              "id": "4.3.s4",
+              "kind": "skill",
+              "text": "Identifying the role of Trusted Advisor, AWS Health Dashboard, and the AWS Health API to help manage and monitor environments for cost optimization",
+              "sections": [
+                "trusted-advisor/checks-and-event-notifications",
+                "health/account-events-and-affected-resources"
+              ]
+            },
+            {
+              "id": "4.3.s5",
+              "kind": "skill",
+              "text": "Identifying the role of the AWS Trust and Safety team to report abuse of AWS resources",
+              "sections": [
+                "technical-resources/trust-and-safety"
+              ]
+            },
+            {
+              "id": "4.3.s6",
+              "kind": "skill",
+              "text": "Understanding the role of AWS Partners (for example, AWS Marketplace, independent software vendors, system integrators)",
+              "sections": [
+                "technical-resources/partners-and-professional-services",
+                "marketplace/buying-software"
+              ]
+            },
+            {
+              "id": "4.3.s7",
+              "kind": "skill",
+              "text": "Identifying the benefits of being an AWS Partner (for example, partner training and certification, partner events, partner volume discounts)",
+              "sections": [
+                "technical-resources/partners-and-professional-services"
+              ]
+            },
+            {
+              "id": "4.3.s8",
+              "kind": "skill",
+              "text": "Identifying the key services that AWS Marketplace offers (for example, cost management, governance and entitlement)",
+              "sections": [
+                "marketplace/buying-software"
+              ]
+            },
+            {
+              "id": "4.3.s9",
+              "kind": "skill",
+              "text": "Identifying technical assistance options available at AWS (for example, AWS Professional Services, AWS solutions architects)",
+              "sections": [
+                "technical-resources/partners-and-professional-services"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "concepts": [
+    "APIs",
+    "Benefits of migrating to the AWS Cloud",
+    "AWS Cloud Adoption Framework (AWS CAF)",
+    "AWS Compliance",
+    "Compute",
+    "Cost management",
+    "Databases",
+    "Amazon EC2 instance types (for example, Reserved Instances, On-Demand Instances, Spot Instances)",
+    "AWS global infrastructure (for example, AWS Regions, Availability Zones)",
+    "Infrastructure as code (IaC)",
+    "AWS Knowledge Center",
+    "Machine learning",
+    "Management and governance",
+    "Migration and data transfer",
+    "Network services",
+    "AWS Partner Network (APN)",
+    "AWS Prescriptive Guidance",
+    "AWS Pricing Calculator",
+    "AWS Professional Services",
+    "AWS re:Post",
+    "AWS SDKs",
+    "Security",
+    "AWS Security Blog",
+    "AWS shared responsibility model",
+    "AWS solutions architects",
+    "Storage",
+    "AWS Support Center",
+    "AWS Support plans",
+    "AWS Well-Architected Framework"
+  ],
+  "services": [
+    {
+      "category": "Analytics",
+      "services": [
+        {
+          "name": "Amazon Athena",
+          "unit": "athena"
+        },
+        {
+          "name": "Amazon EMR",
+          "unit": "emr"
+        },
+        {
+          "name": "AWS Glue",
+          "unit": "glue"
+        },
+        {
+          "name": "Amazon Kinesis",
+          "sections": [
+            "kinesis-data-streams/shards-partition-keys-and-capacity",
+            "firehose/destinations-and-buffering"
+          ]
+        },
+        {
+          "name": "Amazon OpenSearch Service",
+          "unit": "opensearch"
+        },
+        {
+          "name": "Amazon Quick",
+          "unit": "quicksight"
+        },
+        {
+          "name": "Amazon Redshift",
+          "unit": "redshift"
+        }
+      ]
+    },
+    {
+      "category": "Application Integration",
+      "services": [
+        {
+          "name": "Amazon EventBridge",
+          "unit": "eventbridge"
+        },
+        {
+          "name": "Amazon Simple Notification Service (Amazon SNS)",
+          "unit": "sns"
+        },
+        {
+          "name": "Amazon Simple Queue Service (Amazon SQS)",
+          "unit": "sqs"
+        },
+        {
+          "name": "AWS Step Functions",
+          "unit": "step-functions"
+        }
+      ]
+    },
+    {
+      "category": "Business Applications",
+      "services": [
+        {
+          "name": "Amazon Connect",
+          "unit": "connect"
+        },
+        {
+          "name": "Amazon Simple Email Service (Amazon SES)",
+          "unit": "ses"
+        }
+      ]
+    },
+    {
+      "category": "Cloud Financial Management",
+      "services": [
+        {
+          "name": "AWS Budgets",
+          "sections": [
+            "billing-and-cost-management/budgets"
+          ]
+        },
+        {
+          "name": "AWS Cost and Usage Reports",
+          "sections": [
+            "billing-and-cost-management/cost-and-usage-reports"
+          ]
+        },
+        {
+          "name": "AWS Cost Explorer",
+          "sections": [
+            "billing-and-cost-management/cost-explorer"
+          ]
+        },
+        {
+          "name": "AWS Marketplace",
+          "unit": "marketplace"
+        }
+      ]
+    },
+    {
+      "category": "Compute",
+      "services": [
+        {
+          "name": "AWS Batch",
+          "unit": "batch"
+        },
+        {
+          "name": "Amazon EC2",
+          "unit": "ec2"
+        },
+        {
+          "name": "AWS Elastic Beanstalk",
+          "unit": "elastic-beanstalk"
+        },
+        {
+          "name": "Amazon Lightsail",
+          "unit": "lightsail"
+        },
+        {
+          "name": "AWS Outposts",
+          "unit": "outposts"
+        }
+      ]
+    },
+    {
+      "category": "Containers",
+      "services": [
+        {
+          "name": "Amazon Elastic Container Registry (Amazon ECR)",
+          "unit": "ecr"
+        },
+        {
+          "name": "Amazon Elastic Container Service (Amazon ECS)",
+          "unit": "ecs"
+        },
+        {
+          "name": "Amazon Elastic Kubernetes Service (Amazon EKS)",
+          "unit": "eks"
+        }
+      ]
+    },
+    {
+      "category": "Customer Enablement",
+      "services": [
+        {
+          "name": "AWS Support",
+          "unit": "support"
+        }
+      ]
+    },
+    {
+      "category": "Database",
+      "services": [
+        {
+          "name": "Amazon Aurora",
+          "unit": "aurora"
+        },
+        {
+          "name": "Amazon DocumentDB",
+          "unit": "documentdb"
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "unit": "dynamodb"
+        },
+        {
+          "name": "Amazon ElastiCache",
+          "unit": "elasticache"
+        },
+        {
+          "name": "Amazon Neptune",
+          "unit": "neptune"
+        },
+        {
+          "name": "Amazon RDS",
+          "unit": "rds"
+        }
+      ]
+    },
+    {
+      "category": "Developer Tools",
+      "services": [
+        {
+          "name": "AWS CLI",
+          "unit": "cli"
+        },
+        {
+          "name": "AWS CodeBuild",
+          "unit": "codebuild"
+        },
+        {
+          "name": "AWS CodePipeline",
+          "unit": "codepipeline"
+        },
+        {
+          "name": "AWS X-Ray",
+          "unit": "xray"
+        }
+      ]
+    },
+    {
+      "category": "End User Computing",
+      "services": [
+        {
+          "name": "Amazon AppStream 2.0",
+          "unit": "appstream"
+        },
+        {
+          "name": "Amazon WorkSpaces",
+          "unit": "workspaces"
+        },
+        {
+          "name": "Amazon WorkSpaces Secure Browser",
+          "sections": [
+            "workspaces/virtual-desktops-and-secure-browser"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Frontend Web and Mobile",
+      "services": [
+        {
+          "name": "AWS Amplify",
+          "unit": "amplify"
+        }
+      ]
+    },
+    {
+      "category": "Internet of Things (IoT)",
+      "services": [
+        {
+          "name": "AWS IoT Core",
+          "unit": "iot-core"
+        }
+      ]
+    },
+    {
+      "category": "Machine Learning",
+      "services": [
+        {
+          "name": "Amazon Comprehend",
+          "unit": "comprehend"
+        },
+        {
+          "name": "Amazon Lex",
+          "unit": "lex"
+        },
+        {
+          "name": "Amazon Polly",
+          "unit": "polly"
+        },
+        {
+          "name": "Amazon Q",
+          "unit": "amazon-q"
+        },
+        {
+          "name": "Amazon Rekognition",
+          "unit": "rekognition"
+        },
+        {
+          "name": "Amazon SageMaker AI",
+          "unit": "sagemaker-ai"
+        },
+        {
+          "name": "Amazon Textract",
+          "unit": "textract"
+        },
+        {
+          "name": "Amazon Transcribe",
+          "unit": "transcribe"
+        },
+        {
+          "name": "Amazon Translate",
+          "unit": "translate"
+        }
+      ]
+    },
+    {
+      "category": "Management and Governance",
+      "services": [
+        {
+          "name": "AWS Auto Scaling",
+          "unit": "application-auto-scaling"
+        },
+        {
+          "name": "AWS CloudFormation",
+          "unit": "cloudformation"
+        },
+        {
+          "name": "AWS CloudTrail",
+          "unit": "cloudtrail"
+        },
+        {
+          "name": "Amazon CloudWatch",
+          "unit": "cloudwatch"
+        },
+        {
+          "name": "AWS Compute Optimizer",
+          "unit": "compute-optimizer"
+        },
+        {
+          "name": "AWS Config",
+          "unit": "config"
+        },
+        {
+          "name": "AWS Control Tower",
+          "unit": "control-tower"
+        },
+        {
+          "name": "AWS Health Dashboard",
+          "unit": "health"
+        },
+        {
+          "name": "AWS License Manager",
+          "unit": "license-manager"
+        },
+        {
+          "name": "AWS Management Console",
+          "unit": "management-console"
+        },
+        {
+          "name": "AWS Organizations",
+          "unit": "organizations"
+        },
+        {
+          "name": "AWS Service Catalog",
+          "unit": "service-catalog"
+        },
+        {
+          "name": "Service Quotas",
+          "unit": "service-quotas"
+        },
+        {
+          "name": "AWS Systems Manager",
+          "unit": "systems-manager"
+        },
+        {
+          "name": "AWS Trusted Advisor",
+          "unit": "trusted-advisor"
+        },
+        {
+          "name": "AWS Well-Architected Tool",
+          "sections": [
+            "well-architected/well-architected-tool"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Migration and Transfer",
+      "services": [
+        {
+          "name": "AWS Application Discovery Service",
+          "sections": [
+            "cloud-adoption/migration-services"
+          ]
+        },
+        {
+          "name": "AWS Application Migration Service",
+          "sections": [
+            "cloud-adoption/migration-services"
+          ]
+        },
+        {
+          "name": "AWS Database Migration Service (AWS DMS)",
+          "unit": "dms"
+        },
+        {
+          "name": "Migration Evaluator",
+          "sections": [
+            "cloud-adoption/migration-services"
+          ]
+        },
+        {
+          "name": "AWS Migration Hub",
+          "sections": [
+            "cloud-adoption/migration-services"
+          ]
+        },
+        {
+          "name": "AWS Schema Conversion Tool (AWS SCT)",
+          "sections": [
+            "dms/schema-conversion-tool"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Networking and Content Delivery",
+      "services": [
+        {
+          "name": "Amazon API Gateway",
+          "unit": "api-gateway"
+        },
+        {
+          "name": "Amazon CloudFront",
+          "unit": "cloudfront"
+        },
+        {
+          "name": "AWS Direct Connect",
+          "unit": "direct-connect"
+        },
+        {
+          "name": "AWS Global Accelerator",
+          "unit": "global-accelerator"
+        },
+        {
+          "name": "AWS PrivateLink",
+          "unit": "privatelink"
+        },
+        {
+          "name": "Amazon Route 53",
+          "unit": "route53"
+        },
+        {
+          "name": "AWS Transit Gateway",
+          "unit": "transit-gateway"
+        },
+        {
+          "name": "Amazon VPC",
+          "unit": "vpc"
+        },
+        {
+          "name": "AWS VPN",
+          "sections": [
+            "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+            "client-vpn/remote-user-connectivity"
+          ]
+        },
+        {
+          "name": "AWS Site-to-Site VPN",
+          "unit": "site-to-site-vpn"
+        },
+        {
+          "name": "AWS Client VPN",
+          "unit": "client-vpn"
+        }
+      ]
+    },
+    {
+      "category": "Security, Identity, and Compliance",
+      "services": [
+        {
+          "name": "AWS Artifact",
+          "unit": "artifact"
+        },
+        {
+          "name": "AWS Certificate Manager (ACM)",
+          "unit": "acm"
+        },
+        {
+          "name": "AWS CloudHSM",
+          "unit": "cloudhsm"
+        },
+        {
+          "name": "Amazon Cognito",
+          "unit": "cognito"
+        },
+        {
+          "name": "Amazon Detective",
+          "unit": "detective"
+        },
+        {
+          "name": "AWS Directory Service",
+          "unit": "directory-service"
+        },
+        {
+          "name": "AWS Firewall Manager",
+          "unit": "firewall-manager"
+        },
+        {
+          "name": "Amazon GuardDuty",
+          "unit": "guardduty"
+        },
+        {
+          "name": "AWS Identity and Access Management (IAM)",
+          "unit": "iam"
+        },
+        {
+          "name": "AWS IAM Identity Center",
+          "unit": "iam-identity-center"
+        },
+        {
+          "name": "Amazon Inspector",
+          "unit": "inspector"
+        },
+        {
+          "name": "AWS Key Management Service (AWS KMS)",
+          "unit": "kms"
+        },
+        {
+          "name": "Amazon Macie",
+          "unit": "macie"
+        },
+        {
+          "name": "AWS Resource Access Manager (AWS RAM)",
+          "unit": "resource-access-manager"
+        },
+        {
+          "name": "AWS Secrets Manager",
+          "unit": "secrets-manager"
+        },
+        {
+          "name": "AWS Security Hub",
+          "unit": "security-hub"
+        },
+        {
+          "name": "AWS Shield",
+          "unit": "shield"
+        },
+        {
+          "name": "AWS WAF",
+          "unit": "waf"
+        }
+      ]
+    },
+    {
+      "category": "Serverless",
+      "services": [
+        {
+          "name": "AWS Fargate",
+          "unit": "fargate"
+        },
+        {
+          "name": "AWS Lambda",
+          "unit": "lambda"
+        }
+      ]
+    },
+    {
+      "category": "Storage",
+      "services": [
+        {
+          "name": "AWS Backup",
+          "unit": "backup"
+        },
+        {
+          "name": "Amazon Elastic Block Store (Amazon EBS)",
+          "unit": "ebs"
+        },
+        {
+          "name": "Amazon Elastic File System (Amazon EFS)",
+          "unit": "efs"
+        },
+        {
+          "name": "AWS Elastic Disaster Recovery",
+          "unit": "elastic-disaster-recovery"
+        },
+        {
+          "name": "Amazon FSx",
+          "sections": [
+            "fsx-for-windows/smb-directory-integration-and-availability",
+            "fsx-for-lustre/parallel-storage-and-s3-integration",
+            "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
+            "fsx-for-openzfs/nfs-snapshots-and-clones"
+          ]
+        },
+        {
+          "name": "Amazon S3",
+          "unit": "s3"
+        },
+        {
+          "name": "Amazon S3 Glacier",
+          "unit": "s3"
+        },
+        {
+          "name": "AWS Storage Gateway",
+          "unit": "storage-gateway"
+        }
+      ]
+    }
+  ]
+}
