@@ -48,6 +48,9 @@ facts:
   - id: loose-coupling
     text: The reliability pillar recommends loosely coupled dependencies, such as queues, streams and workflows, ideally asynchronous; a monolithic workload is an anti-pattern.
     source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_prevent_interaction_failure_loosely_coupled_system.html
+  - id: oe-principles
+    text: "Operational excellence design principles: organize teams around business outcomes, implement observability, safely automate where possible, make frequent small reversible changes, refine operations procedures frequently, anticipate failure, learn from all operational events and metrics, and use managed services."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/oe-design-principles.html
 cards:
   - id: well-architected-001
     q: What are the six pillars of the AWS Well-Architected Framework?
@@ -102,6 +105,10 @@ cards:
     q: A monolithic application fails completely when one component fails. Which Well-Architected recommendation addresses this?
     a: Loosely coupled dependencies (reliability pillar), for example with Amazon SQS queues between components.
     facts: [loose-coupling]
+  - id: well-architected-018
+    q: "\"Make frequent, small, reversible changes\" and \"anticipate failure\" are design principles of which Well-Architected pillar?"
+    a: Operational excellence.
+    facts: [oe-principles]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
 

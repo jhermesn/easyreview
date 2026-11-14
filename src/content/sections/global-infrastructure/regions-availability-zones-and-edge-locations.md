@@ -51,6 +51,9 @@ facts:
   - id: s3-namespace
     text: By default, S3 general purpose bucket names must be unique across all AWS accounts in a partition, but each bucket is created in one Region.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html
+  - id: regional-endpoints
+    text: Most AWS services, such as Amazon EC2, Amazon RDS, AWS Lambda and Amazon Rekognition, have Regional endpoints, so their resources live in the Region you choose.
+    source: https://docs.aws.amazon.com/general/latest/gr/rande.html
 cards:
   - id: global-infrastructure-001
     q: How do AWS Regions and Availability Zones relate to each other?
@@ -107,6 +110,10 @@ cards:
     q: Is traffic between Availability Zones in a Region encrypted?
     a: Yes. All traffic between AZs is encrypted.
     facts: [az-encryption]
+  - id: global-infrastructure-019
+    q: Is Amazon Rekognition a global or a Regional service?
+    a: Regional. Like EC2, RDS and Lambda, it has Regional endpoints and runs in the Region you choose.
+    facts: [regional-endpoints]
 diagrams:
   - id: region-azs-edge
     title: A Region, its Availability Zones, and edge locations

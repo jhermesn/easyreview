@@ -71,6 +71,9 @@ facts:
   - id: quota-percent-alarm
     text: "For services that publish usage metrics to Service Quotas, the metric math expression m1/SERVICE_QUOTA(m1)*100 shows usage as a percentage of the quota, and a CloudWatch alarm on it can notify before the quota is reached."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Quotas-Visualize-Alarms.html#CloudWatch-Quotas-Visualize-Alarms
+  - id: purpose
+    text: Amazon CloudWatch monitors AWS resources and applications in real time, covering resource utilization, application performance and operational health.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
 cards:
   - id: cloudwatch-001
     q: What identifies a traditional CloudWatch metric, and what does a new dimension value do?
@@ -131,6 +134,10 @@ cards:
     a: "Graph the usage metric, add the metric math expression m1/SERVICE_QUOTA(m1)*100, and create an alarm on it with a threshold of 80 that notifies the SNS topic."
     facts:
       - quota-percent-alarm
+  - id: cloudwatch-114
+    q: Which AWS service monitors resource utilization, application performance and operational health of AWS resources?
+    a: Amazon CloudWatch.
+    facts: [purpose]
 ---
 CloudWatch metrics store measurements over time, such as CPU use or request latency, the delay a request experiences. For traditional metrics, the namespace is the container, the metric name is the measurement, and dimensions are name and value pairs identifying what was measured.
 

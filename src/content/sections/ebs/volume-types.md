@@ -83,6 +83,9 @@ facts:
   - id: same-az
     text: An EBS volume and the instance it attaches to must be in the same Availability Zone; EBS volumes persist independently of the instance.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes.html
+  - id: pricing-dimensions
+    text: EBS charges for provisioned storage per GB-month by volume type, for provisioned IOPS and throughput above what is included, and for snapshot storage.
+    source: https://aws.amazon.com/ebs/pricing/
 cards:
   - id: ebs-010
     q: When should an EC2 workload choose EBS gp3 rather than io2 Block Express?
@@ -144,6 +147,10 @@ cards:
     a: No. An EBS volume attaches only to instances in its own Availability Zone. Use a snapshot to create a volume in the other AZ.
     trap: true
     facts: [same-az]
+  - id: ebs-042
+    q: What does Amazon EBS charge for?
+    a: Provisioned storage (GB-month, by volume type), provisioned IOPS and throughput above the included amount, and snapshot storage.
+    facts: [pricing-dimensions]
 ---
 Amazon EBS provides block storage, disks attached to EC2 instances. Choose solid-state drive (SSD) storage for transactional I/O, meaning application reads and writes, and hard disk drive (HDD) storage for large sequential transfers.
 

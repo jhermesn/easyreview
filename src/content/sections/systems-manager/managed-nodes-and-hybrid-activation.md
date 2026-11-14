@@ -114,6 +114,9 @@ facts:
   - id: term-security-group
     text: A set of rules that controls permitted network traffic for associated resources.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups
+  - id: central-view
+    text: Systems Manager gives a centralized view to see and manage EC2 instances, on-premises servers and other managed nodes across an organization's accounts.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html
 diagrams:
   - id: ssm-node-connectivity
     title: Agent connections originate on the managed node
@@ -235,6 +238,10 @@ cards:
     facts:
       - node-ec2-trust
       - node-hybrid-role
+  - id: systems-manager-108
+    q: A company wants one place to view and operate both its EC2 instances and its on-premises servers. Which AWS service fits?
+    a: AWS Systems Manager, which manages them all as managed nodes from a centralized view.
+    facts: [central-view]
 ---
 A Systems Manager managed node is a machine configured to receive management actions through SSM Agent. The agent is the software on the machine that connects it to Systems Manager.
 

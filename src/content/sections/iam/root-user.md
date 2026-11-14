@@ -30,6 +30,9 @@ facts:
   - id: monitor-root
     text: AWS recommends alerting on root user sign-in and use, for example with an Amazon EventBridge rule that detects root user activity and notifies administrators through Amazon SNS.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-monitor
+  - id: cloudwatch-events-rule
+    text: The root user best practices describe the sign-in alert both as an Amazon CloudWatch Events rule that notifies the security administrator and as an Amazon EventBridge rule with Amazon SNS.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-monitor
 cards:
   - id: iam-071
     q: What is the AWS account root user, and when should it be used?
@@ -64,6 +67,10 @@ cards:
     q: A security team wants a notification whenever someone signs in as the AWS account root user. What can it set up?
     a: An Amazon EventBridge rule on root user activity recorded by CloudTrail, sending the alert through Amazon SNS.
     facts: [monitor-root]
+  - id: iam-098
+    q: Which AWS services can notify a security team when the AWS account root user signs in?
+    a: A CloudWatch Events (EventBridge) rule that matches root user sign-in, with an Amazon SNS notification.
+    facts: [cloudwatch-events-rule, monitor-root]
 ---
 Every AWS account starts with a root user: the email address and password used to create it, with complete access to everything in the account. That power makes it the most valuable credential to protect, and AWS recommends keeping it locked away for the few tasks only it can do. [AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-tasks.html#id_root-user)
 

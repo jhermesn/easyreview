@@ -24,6 +24,9 @@ facts:
   - id: s3-same-region
     text: Data transferred from an Amazon S3 bucket to any AWS service in the same Region, such as Amazon EC2, is free.
     source: https://aws.amazon.com/s3/pricing/
+  - id: ec2-s3-free
+    text: Data transferred directly between Amazon S3 and EC2 instances in the same Region is free in both directions.
+    source: https://aws.amazon.com/ec2/pricing/on-demand/#Data_Transfer_within_the_same_AWS_Region
 cards:
   - id: billing-and-cost-management-019
     q: Does AWS charge for data uploaded from the internet into AWS?
@@ -47,6 +50,10 @@ cards:
     a: No. Data transfer from S3 to any AWS service in the same Region is free.
     trap: true
     facts: [s3-same-region]
+  - id: billing-and-cost-management-031
+    q: An EC2 instance writes backups to an Amazon S3 bucket in the same Region. Is that data transfer charged?
+    a: No. Direct transfer between S3 and EC2 in the same Region is free in both directions.
+    facts: [ec2-s3-free]
 ---
 Data transfer pricing depends on direction and distance. Data coming in from the internet is free. Data leaving AWS for the internet, crossing Regions, or crossing Availability Zones is generally charged. [Understanding data transfer charges](https://docs.aws.amazon.com/cur/latest/userguide/cur-data-transfers-charges.html#cur-data-transfers-charges)
 

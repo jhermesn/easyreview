@@ -36,6 +36,9 @@ facts:
   - id: credential-report
     text: The IAM credential report lists all users in the account and the status of their passwords, access keys and MFA devices.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html
+  - id: best-practices
+    text: IAM best practices include requiring MFA for IAM users and the root user, updating access keys when long-term credentials are needed, and regularly removing unused users, roles, permissions and credentials.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html
 cards:
   - id: iam-078
     q: Ten developers need the same permissions in AWS. What is the simplest way to manage them in IAM?
@@ -75,6 +78,10 @@ cards:
     q: An administrator wants to see which permitted services an IAM role never uses, to trim its permissions. Which IAM feature helps?
     a: IAM last accessed information, which shows when each service was last used.
     facts: [last-accessed]
+  - id: iam-100
+    q: Which IAM best practices apply when a company still needs IAM users with long-term credentials?
+    a: Require MFA, update (rotate) their access keys, and regularly remove unused users and credentials.
+    facts: [best-practices]
 ---
 IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 

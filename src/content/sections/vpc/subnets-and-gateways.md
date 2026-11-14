@@ -36,6 +36,9 @@ facts:
   - id: nat-gateway-managed
     text: A NAT gateway is managed by AWS with no maintenance; a NAT instance is an EC2 instance the customer manages, including patching.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html
+  - id: vpc-region
+    text: A VPC belongs to one Region and can have subnets in each of its Availability Zones; each subnet stays in one Availability Zone.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html
 cards:
   - id: vpc-026
     q: What is an Amazon VPC subnet, and how many Availability Zones can one subnet span?
@@ -70,6 +73,11 @@ cards:
     q: A company wants private subnets to reach the internet through NAT with no instances to patch. Should it use a NAT gateway or a NAT instance?
     a: A NAT gateway, which AWS manages. A NAT instance is an EC2 instance the customer must patch and maintain.
     facts: [nat-gateway-managed]
+  - id: vpc-035
+    q: Can one Amazon VPC span several AWS Regions or several Availability Zones?
+    a: Only several Availability Zones. A VPC is in one Region and can have subnets in each of its AZs; each subnet is in one AZ.
+    trap: true
+    facts: [vpc-region]
 ---
 Amazon VPC is your own isolated network in AWS. Inside it, subnets split the address range by Availability Zone, route tables steer traffic, and gateways connect the VPC to the internet, other networks or AWS services. [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc)
 

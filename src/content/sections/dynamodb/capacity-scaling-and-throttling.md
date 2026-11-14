@@ -73,6 +73,11 @@
       "id": "reserved-capacity",
       "text": "DynamoDB reserved capacity discounts provisioned read and write capacity for a one-year term (three years in some Regions); it is not available for on-demand mode.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/reserved-capacity.html"
+    },
+    {
+      "id": "schemaless",
+      "text": "Other than the primary key, a DynamoDB table is schemaless: items can have different attributes and data types.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
     }
   ],
   "cards": [
@@ -153,6 +158,14 @@
       "a": "DynamoDB reserved capacity. It discounts provisioned read and write capacity; it does not apply to on-demand mode.",
       "facts": [
         "reserved-capacity"
+      ]
+    },
+    {
+      "id": "dynamodb-044",
+      "q": "A company stores product records whose attributes differ from item to item. Which AWS database fits without defining a fixed schema?",
+      "a": "Amazon DynamoDB. Only the primary key is fixed; each item can have different attributes.",
+      "facts": [
+        "schemaless"
       ]
     }
   ],

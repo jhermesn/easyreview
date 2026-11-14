@@ -24,6 +24,9 @@ facts:
   - id: nosql-types
     text: Key-value (DynamoDB), document (DocumentDB) and graph (Neptune) databases are NoSQL, non-relational databases.
     source: https://aws.amazon.com/nosql/
+  - id: reserved-db
+    text: RDS reserved DB instances give a discount for a one-year or three-year term, with No Upfront, Partial Upfront or All Upfront payment.
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithReservedDBInstances.html
 cards:
   - id: rds-041
     q: What does Amazon RDS manage that a database on Amazon EC2 leaves to the customer?
@@ -50,6 +53,10 @@ cards:
     q: "Which of these AWS databases are NoSQL: Amazon DynamoDB, Amazon Neptune, Amazon DocumentDB, Amazon Aurora?"
     a: DynamoDB (key-value), Neptune (graph) and DocumentDB (document). Aurora is relational.
     facts: [nosql-types]
+  - id: rds-047
+    q: A company runs an Amazon RDS database around the clock for the next three years. How can it lower the instance cost?
+    a: Buy RDS reserved DB instances for a three-year term (No, Partial or All Upfront).
+    facts: [reserved-db]
 ---
 A database can run on servers you manage or as a managed AWS service. Amazon RDS runs relational databases for you: AWS installs, patches, backs up and scales them, and you focus on the data and the application. [What is Amazon RDS?](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome)
 

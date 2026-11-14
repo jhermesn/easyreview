@@ -57,6 +57,12 @@ facts:
     text: Stopping and starting an EBS-backed EC2 instance usually migrates it to another host when
       addressing an underlying system problem.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#system-status-checks
+  - id: stored-in-s3
+    text: EBS snapshots are stored in Amazon S3, in buckets the customer can't access directly.
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html
+  - id: billed-stored
+    text: EBS snapshot charges are based on the data stored; because snapshots are incremental, only changed blocks add storage.
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html
 diagrams:
   - id: ebs-cross-az-recovery
     title: Recover an EBS volume in another AZ
@@ -167,6 +173,15 @@ cards:
     a: StatusCheckFailed_AttachedEBS. It reports attached-volume reachability or I/O impairment.
     facts:
       - attached-check
+  - id: ebs-043
+    q: Where are Amazon EBS snapshots stored, and can a customer browse them in the S3 console?
+    a: In Amazon S3, in AWS-managed buckets the customer can't access directly.
+    facts: [stored-in-s3]
+  - id: ebs-044
+    q: A 500 GiB EBS volume has 20 GiB of changes since its last snapshot. Does the new snapshot add 500 GiB of storage charges?
+    a: No. Snapshots are incremental and billed on data stored, so the new snapshot adds only the changed blocks.
+    trap: true
+    facts: [billed-stored, stored-in-s3]
 ---
 An EBS snapshot is a point-in-time backup used to create a replacement disk. The volume must share its instance's Availability Zone (AZ), but the snapshot can restore volumes across AZs in the same Region.
 

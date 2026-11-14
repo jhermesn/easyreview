@@ -39,6 +39,9 @@ facts:
   - id: mfa-types
     text: "IAM supports three MFA types: passkeys and security keys (FIDO), virtual MFA apps on a phone or computer, and hardware TOTP tokens."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html
+  - id: mfa-devices
+    text: A FIDO security key is a physical device, such as a YubiKey, plugged into the computer; a hardware TOTP token is a separate device that displays a six-digit code; a virtual MFA device is an app on a phone or computer.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html
 cards:
   - id: iam-085
     q: What does multi-factor authentication (MFA) add to an AWS sign-in?
@@ -77,6 +80,10 @@ cards:
     q: Which MFA types does IAM support, and which one needs no extra hardware?
     a: Passkeys and security keys, virtual MFA apps, and hardware TOTP tokens. A virtual MFA app runs on an existing phone or computer.
     facts: [mfa-types]
+  - id: iam-099
+    q: Which IAM MFA type is a physical device plugged into a USB port, and which one displays a code to type?
+    a: A FIDO security key plugs in, for example a YubiKey; a hardware TOTP token displays a six-digit code.
+    facts: [mfa-devices]
 ---
 Credentials prove who is calling AWS. People sign in to the console with passwords and MFA; programs use access keys or, better, temporary credentials from roles. Fewer long-term credentials mean less to leak. [Access keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#id_credentials_access-keys)
 
