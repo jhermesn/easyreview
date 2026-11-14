@@ -33,10 +33,13 @@ src/
   lib/badge.ts             the site's own exam badges (/badges/<cert>.svg, <cert>-gold.svg)
   lib/passed.ts            "Who passed" schema, GitHub and Credly lookups, tiers
   lib/format.ts            withBase(), HTML escaping, the inline card format
+  i18n/                    interface languages and strings (see docs/translations.md)
+  middleware.ts            points in-body unit links at the page's language
   components/Diagram.astro SVG diagram renderer (boxes, groups, numbered arrows, info hotspots)
   components/FlashDeck.astro flashcard deck (flip, knew it / missed, missed-only, traps-only)
   layouts/Base.astro       top bar with cert tabs, sidebar tree, content column
-  pages/                   / (certs), /<cert>, /<cert>/<unit>, /<cert>/flashcards, /<cert>/coverage, /search, /passed
+  pages/[...lang]/         / (certs), /<cert>, /<cert>/<unit>, /<cert>/flashcards, /<cert>/coverage, /search, /passed;
+                           every page in every language: English at the root, others under /<locale>/
 public/aws-icons/          icons copied by scripts/sync-aws-icons.mjs, only the ones content uses
 ```
 

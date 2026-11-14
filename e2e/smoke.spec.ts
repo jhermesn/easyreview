@@ -56,3 +56,14 @@ test('every header tool is reachable on any screen', async ({ page, isMobile }) 
   await page.getByRole('link', { name: 'Flashcards' }).first().click();
   await expect(page).toHaveURL(/\/dop-c02\/flashcards\/?$/);
 });
+
+test('the Portuguese site renders in Portuguese and switches back to English', async ({ page, isMobile }) => {
+  await page.goto('pt-br/dop-c02/codedeploy/');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
+  await expect(page.getByRole('button', { name: /Marcar tudo como sabido/ })).toBeVisible();
+  if (isMobile) await page.getByRole('button', { name: 'Mais ferramentas' }).click();
+  await page.locator('[data-lang] summary').click();
+  await page.getByRole('link', { name: 'English' }).click();
+  await expect(page).toHaveURL(/\/easyreview\/dop-c02\/codedeploy\/?$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+});

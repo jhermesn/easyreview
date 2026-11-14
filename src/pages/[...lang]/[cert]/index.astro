@@ -1,39 +1,43 @@
 ---
-import Base from '../../layouts/Base.astro';
-import Icon from '../../components/Icon.astro';
-import ExamFacts from '../../components/ExamFacts.astro';
-import { availableCerts, getCert } from '../../lib/certs';
-import { getCertView, knownGroups, sectionIds } from '../../lib/content';
-import { getGuide } from '../../lib/guides';
-import { withBase } from '../../lib/format';
-import { badgeUrl } from '../../lib/badge';
-import { breadcrumbs, certFullName } from '../../lib/seo';
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import ExamFacts from '../../../components/ExamFacts.astro';
+import { availableCerts, getCert } from '../../../lib/certs';
+import { getCertView, knownGroups, sectionIds } from '../../../lib/content';
+import { getGuide } from '../../../lib/guides';
+import { withBase } from '../../../lib/format';
+import { badgeUrl } from '../../../lib/badge';
+import { breadcrumbs, certFullName } from '../../../lib/seo';
+import { localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 
 export function getStaticPaths() {
-  return availableCerts().map((c) => ({ params: { cert: c.id } }));
+  return localeParams(availableCerts().map((c) => ({ params: { cert: c.id } })));
 }
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
+const link = (path: string) => localePath(locale, path);
 const cert = getCert(Astro.params.cert!);
 const view = await getCertView(cert.id);
 const cardTotal = view.sections.reduce((n, s) => n + s.data.cards.length, 0);
 const guideItems = getGuide(cert.id)?.domains.flatMap((d) => d.tasks.flatMap((t) => t.items)) ?? [];
 const covered = guideItems.filter((i) => i.sections.length).length;
-const description = `Free ${certFullName(cert)} review: notes, step-by-step diagrams and ${cardTotal} flashcards from AWS documentation, mapped to the exam guide.`;
-const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.site!)];
+const description = t('cert.description', { cert: certFullName(cert), n: cardTotal });
+const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.site!, locale)];
 ---
-<Base title={`${cert.code} ${cert.name}`} description={description} cert={cert.id} jsonLd={jsonLd} heading="Overview">
+<Base title={`${cert.code} ${cert.name}`} description={description} cert={cert.id} jsonLd={jsonLd} heading={t('cert.overview')}>
   <header class="head">
     <img src={badgeUrl(cert.id)} alt="" width="78" height="90" data-badge-cert={cert.id} />
     <div>
       <h1>{cert.code}</h1>
       <p class="muted">{cert.name}</p>
       <ul class="stats">
-        <li title="Topics you marked as known" data-cert={cert.id} data-known-set={knownGroups(view.sections)}><Icon name="check-circle" size={15} /><span data-known-count></span></li>
-        <li title="Topics"><Icon name="book" size={15} /><span data-count-up>{view.units.length}</span></li>
-        <li title="Flashcards"><Icon name="cards" size={15} /><span data-count-up>{cardTotal}</span></li>
-        {guideItems.length > 0 && <li title="Exam guide items covered"><Icon name="target" size={15} />{covered}/{guideItems.length}</li>}
+        <li title={t('known.title')} data-cert={cert.id} data-known-set={knownGroups(view.sections)}><Icon name="check-circle" size={15} /><span data-known-count></span></li>
+        <li title={t('cert.topics')}><Icon name="book" size={15} /><span data-count-up>{view.units.length}</span></li>
+        <li title={t('nav.flashcards')}><Icon name="cards" size={15} /><span data-count-up>{cardTotal}</span></li>
+        {guideItems.length > 0 && <li title={t('cert.itemsCovered')}><Icon name="target" size={15} />{covered}/{guideItems.length}</li>}
       </ul>
     </div>
-    <a class="btn btn-primary drill" href={withBase(`/${cert.id}/flashcards`)}><Icon name="cards" /> Drill</a>
+    <a class="btn btn-primary drill" href={link(`/${cert.id}/flashcards`)}><Icon name="cards" /> {t('cert.drill')}</a>
   </header>
   <ExamFacts certId={cert.id} />
 
@@ -45,12 +49,12 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
         <ul class="tiles" data-reveal>
           {own.map(({ unit, sections }) => (
             <li>
-              <a href={withBase(`/${cert.id}/${unit.id}`)} title={unit.data.summary} data-known={sectionIds(sections)}>
+              <a href={link(`/${cert.id}/${unit.id}`)} title={unit.data.summary} data-known={sectionIds(sections)}>
                 {unit.data.icon ? <img src={withBase(`/aws-icons/${unit.data.icon}.svg`)} alt="" width="28" height="28" /> : <span class="noicon" />}
                 <span class="name">{unit.data.title}</span>
                 <span class="meta">
                   <span class="st"><Icon name="circle" size={12} class="st-open" /><Icon name="check-circle" size={12} class="st-done" /></span>
-                  {sections.length} sections · <Icon name="cards" size={12} />{sections.reduce((n, s) => n + s.data.cards.length, 0)}
+                  {t('cert.sections', { n: sections.length })} · <Icon name="cards" size={12} />{sections.reduce((n, s) => n + s.data.cards.length, 0)}
                 </span>
               </a>
             </li>

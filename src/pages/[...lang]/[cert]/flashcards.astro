@@ -1,0 +1,25 @@
+---
+import Base from '../../../layouts/Base.astro';
+import FlashDeck from '../../../components/FlashDeck.astro';
+import ContentNotice from '../../../components/ContentNotice.astro';
+import { availableCerts, getCert } from '../../../lib/certs';
+import { getCertView, deckCards } from '../../../lib/content';
+import { certFullName } from '../../../lib/seo';
+import { localeOf, localeParams, useTranslations } from '../../../i18n';
+
+export function getStaticPaths() {
+  return localeParams(availableCerts().map((c) => ({ params: { cert: c.id } })));
+}
+const t = useTranslations(localeOf(Astro.currentLocale));
+const cert = getCert(Astro.params.cert!);
+const cards = deckCards(await getCertView(cert.id));
+const description = t('flash.description', { n: cards.length, cert: certFullName(cert) });
+---
+<Base title={`${t('nav.flashcards')} · ${cert.code}`} description={description} cert={cert.id} heading={t('nav.flashcards')}>
+  <div class="article">
+    <h1>{t('nav.flashcards')} <span class="muted">{cert.code}</span></h1>
+    <p class="muted keys"><kbd>{t('flash.keySpace')}</kbd> {t('flash.flip')} · <kbd>1</kbd> {t('flash.to')} <kbd>4</kbd> {t('flash.grades')} · <kbd>←</kbd> <kbd>→</kbd> {t('flash.prevNext')}</p>
+    <ContentNotice />
+  </div>
+  <FlashDeck cards={cards} filters />
+</Base>

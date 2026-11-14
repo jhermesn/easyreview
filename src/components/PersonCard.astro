@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import SocialIcon from './SocialIcon.astro';
 import { badgeUrl } from '../lib/badge';
 import type { Person } from '../lib/people';
+import { LOCALES, localeOf, useTranslations } from '../i18n';
 
 interface Props {
   person: Person;
@@ -11,30 +12,32 @@ interface Props {
   tierName: string;
 }
 const { person: p, total, tierName } = Astro.props;
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
 const golden = p.tier === 'golden';
-const latest = new Date(`${p.latest}T00:00:00Z`).toLocaleDateString('en', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+const latest = new Date(`${p.latest}T00:00:00Z`).toLocaleDateString(LOCALES[locale].lang, { month: 'short', year: 'numeric', timeZone: 'UTC' });
 ---
 <li class:list={['person', `tier-${p.tier}`]}>
   <div class="top">
     {p.avatar ? <Image src={p.avatar} alt="" width={56} height={56} class="avatar" /> : <span class="avatar blank" aria-hidden="true">{p.name.slice(0, 1)}</span>}
     <div class="who">
       <b>{p.name}</b>
-      <span class="meta"><span class="tier">{tierName}</span> {p.active}/{total} active · latest {latest}</span>
+      <span class="meta"><span class="tier">{tierName}</span> {t('passed.meta', { n: p.active, total, date: latest })}</span>
     </div>
   </div>
   {p.bio && <p class="bio">{p.bio}</p>}
   <ul class="earned">
     {p.earned.map((e) => (
-      <li class:list={{ expired: !e.active }} title={`${e.cert.code} ${e.cert.name}${e.active ? '' : ' (expired)'}`}>
+      <li class:list={{ expired: !e.active }} title={`${e.cert.code} ${e.cert.name}${e.active ? '' : ` (${t('passed.expired')})`}`}>
         <img src={badgeUrl(e.cert.id, golden)} alt={e.cert.code} width="34" height="39" loading="lazy" />
       </li>
     ))}
   </ul>
   <div class="links">
-    <a href={`https://github.com/${p.login}`} target="_blank" rel="noopener nofollow" aria-label={`${p.name} on GitHub`} title="GitHub"><SocialIcon name="github" /></a>
-    {p.linkedin && <a href={p.linkedin} target="_blank" rel="noopener nofollow" aria-label={`${p.name} on LinkedIn`} title="LinkedIn"><SocialIcon name="linkedin" /></a>}
-    {p.builder && <a href={p.builder} target="_blank" rel="noopener nofollow" aria-label={`${p.name} on AWS Builder Center`} title="AWS Builder Center"><SocialIcon name="builder" /></a>}
-    <a href={`https://www.credly.com/users/${p.credly}/badges`} target="_blank" rel="noopener nofollow" aria-label={`${p.name}'s badges on Credly`} title="Credly badges"><SocialIcon name="credly" /></a>
+    <a href={`https://github.com/${p.login}`} target="_blank" rel="noopener nofollow" aria-label={t('passed.on', { name: p.name, site: 'GitHub' })} title="GitHub"><SocialIcon name="github" /></a>
+    {p.linkedin && <a href={p.linkedin} target="_blank" rel="noopener nofollow" aria-label={t('passed.on', { name: p.name, site: 'LinkedIn' })} title="LinkedIn"><SocialIcon name="linkedin" /></a>}
+    {p.builder && <a href={p.builder} target="_blank" rel="noopener nofollow" aria-label={t('passed.on', { name: p.name, site: 'AWS Builder Center' })} title="AWS Builder Center"><SocialIcon name="builder" /></a>}
+    <a href={`https://www.credly.com/users/${p.credly}/badges`} target="_blank" rel="noopener nofollow" aria-label={t('passed.credly', { name: p.name })} title={t('passed.credlyTitle')}><SocialIcon name="credly" /></a>
   </div>
 </li>
 

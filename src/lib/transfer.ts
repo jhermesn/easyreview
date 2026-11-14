@@ -26,20 +26,21 @@ export async function exportCode(): Promise<string> {
   return PREFIX + toBase64Url(await pipe(json, new CompressionStream('deflate-raw')));
 }
 
-// Replaces this browser's progress with the code's. Throws on anything that isn't a code from this site.
+// Replaces this browser's progress with the code's. Throws on anything that isn't a code from this site;
+// the error message is an interface string key (src/i18n), so the page can show it in the reader's language.
 export async function importCode(code: string): Promise<void> {
   const trimmed = code.replace(/\s+/g, '');
-  if (!trimmed.startsWith(PREFIX)) throw new Error('This is not an Easy Review progress code.');
+  if (!trimmed.startsWith(PREFIX)) throw new Error('transfer.error.notCode');
   let saved: unknown;
   try {
     const bytes = await pipe(fromBase64Url(trimmed.slice(PREFIX.length)), new DecompressionStream('deflate-raw'));
     saved = JSON.parse(new TextDecoder().decode(bytes));
   } catch {
-    throw new Error('The code is incomplete or damaged. Copy it again.');
+    throw new Error('transfer.error.damaged');
   }
-  if (!saved || typeof saved !== 'object' || Array.isArray(saved)) throw new Error('The code holds no progress.');
+  if (!saved || typeof saved !== 'object' || Array.isArray(saved)) throw new Error('transfer.error.empty');
   const entries = Object.entries(saved).filter(([name, value]) => name in KEYS && value && typeof value === 'object');
-  if (!entries.length) throw new Error('The code holds no progress.');
+  if (!entries.length) throw new Error('transfer.error.empty');
   for (const key of Object.values(KEYS)) localStorage.removeItem(key);
   for (const [name, value] of entries) writeJson(KEYS[name as keyof typeof KEYS], value);
 }

@@ -3,18 +3,20 @@
 // 1. A notification through Periodic Background Sync (installed app on Chromium browsers; about once a day).
 // 2. A repeating calendar event (.ics), which works on every device.
 import Icon from './Icon.astro';
+import { localeOf, useTranslations } from '../i18n';
+const t = useTranslations(localeOf(Astro.currentLocale));
 ---
 <details class="remind" data-remind>
-  <summary class="icon-btn" title="Study reminder"><Icon name="bell" label="Study reminder" /></summary>
+  <summary class="icon-btn" title={t('remind.title')}><Icon name="bell" label={t('remind.title')} /></summary>
   <div class="panel">
-    <p class="title">Daily study reminder</p>
-    <button type="button" data-remind-notify><Icon name="bell" size={15} /> <span data-remind-notify-label>Turn on notifications</span></button>
-    <p class="note muted" data-remind-status>Works when the site is installed as an app (Chrome, Edge, Android).</p>
+    <p class="title">{t('remind.heading')}</p>
+    <button type="button" data-remind-notify><Icon name="bell" size={15} /> <span data-remind-notify-label>{t('remind.turnOn')}</span></button>
+    <p class="note muted" data-remind-status>{t('remind.appNote')}</p>
     <div class="cal">
-      <label>At <input type="time" name="reminder-time" value="19:00" data-remind-time /></label>
-      <button type="button" data-remind-ics><Icon name="calendar" size={15} /> Add to my calendar</button>
+      <label>{t('remind.at')} <input type="time" name="reminder-time" value="19:00" data-remind-time /></label>
+      <button type="button" data-remind-ics><Icon name="calendar" size={15} /> {t('remind.calendar')}</button>
     </div>
-    <p class="note muted">Works everywhere, including iPhone.</p>
+    <p class="note muted">{t('remind.calendarNote')}</p>
   </div>
 </details>
 

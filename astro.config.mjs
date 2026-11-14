@@ -2,6 +2,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 import { satteri } from '@astrojs/markdown-satteri';
 import sitemap from '@astrojs/sitemap';
 import { autolink } from './src/lib/autolink.ts';
+import { DEFAULT_LOCALE, LOCALES } from './src/i18n/locales.ts';
 
 const base = process.env.BASE_PATH ?? '/easyreview';
 
@@ -13,7 +14,9 @@ export default defineConfig({
   trailingSlash: 'ignore',
   // "Who passed" photos are downloaded from GitHub at build time and served from this site.
   image: { domains: ['avatars.githubusercontent.com'] },
-  integrations: [sitemap()],
+  // Interface languages: English at the root, the others under /<locale>/ (pages live in src/pages/[...lang]).
+  i18n: { defaultLocale: DEFAULT_LOCALE, locales: Object.keys(LOCALES), routing: { prefixDefaultLocale: false } },
+  integrations: [sitemap({ i18n: { defaultLocale: DEFAULT_LOCALE, locales: Object.fromEntries(Object.entries(LOCALES).map(([id, l]) => [id, l.lang])) } })],
   markdown: { processor: satteri({ hastPlugins: [autolink({ base })] }) },
   // The home hero's three.js chunk (~570 kB, ~140 kB gzip) loads lazily after first paint.
   vite: { build: { chunkSizeWarningLimit: 650 } },

@@ -1,13 +1,15 @@
 ---
 import { render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import Diagram from '../../components/Diagram.astro';
-import FlashDeck from '../../components/FlashDeck.astro';
-import Icon from '../../components/Icon.astro';
-import { availableCerts, domainName, getCert } from '../../lib/certs';
-import { getCertView, deckCards, sectionIds, sectionSlug, type CertUnit } from '../../lib/content';
-import { withBase } from '../../lib/format';
-import { absoluteUrl, breadcrumbs, certFullName } from '../../lib/seo';
+import Base from '../../../layouts/Base.astro';
+import Diagram from '../../../components/Diagram.astro';
+import FlashDeck from '../../../components/FlashDeck.astro';
+import Icon from '../../../components/Icon.astro';
+import { availableCerts, domainName, getCert } from '../../../lib/certs';
+import { getCertView, deckCards, sectionIds, sectionSlug, type CertUnit } from '../../../lib/content';
+import { withBase } from '../../../lib/format';
+import { absoluteUrl, breadcrumbs, certFullName } from '../../../lib/seo';
+import ContentNotice from '../../../components/ContentNotice.astro';
+import { localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -15,7 +17,7 @@ export async function getStaticPaths() {
     const { units } = await getCertView(cert.id);
     units.forEach((u, i) => paths.push({ params: { cert: cert.id, unit: u.unit.id }, props: { entry: u, prev: units[i - 1], next: units[i + 1] } }));
   }
-  return paths;
+  return localeParams(paths);
 }
 interface Props {
   entry: CertUnit;
@@ -23,41 +25,45 @@ interface Props {
   next?: CertUnit;
 }
 const { entry, prev, next } = Astro.props;
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
 const { unit, domain, sections } = entry;
 const cert = getCert(Astro.params.cert!);
 const { Content: Intro } = await render(unit);
 const blocks = await Promise.all(sections.map(async (s) => ({ s, Content: (await render(s)).Content })));
 const cards = deckCards({ cert, units: [entry], sections, missing: [] });
-const href = (u: CertUnit) => withBase(`/${cert.id}/${u.unit.id}`);
+const href = (u: CertUnit) => localePath(locale, `/${cert.id}/${u.unit.id}`);
 const site = Astro.site!;
 const jsonLd = [
-  breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }, { name: unit.data.title, path: `/${cert.id}/${unit.id}/` }], site),
+  breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }, { name: unit.data.title, path: `/${cert.id}/${unit.id}/` }], site, locale),
   {
     '@type': 'LearningResource',
-    name: `${unit.data.title} for ${cert.code}`,
+    name: t('unit.resourceName', { unit: unit.data.title, code: cert.code }),
     description: unit.data.summary,
-    url: absoluteUrl(`/${cert.id}/${unit.id}/`, site),
+    url: absoluteUrl(`/${cert.id}/${unit.id}/`, site, locale),
+    // The study content itself is English until a translation exists.
     inLanguage: 'en',
     isAccessibleForFree: true,
-    learningResourceType: ['study notes', 'flashcards'],
+    learningResourceType: [t('unit.typeNotes'), t('unit.typeFlashcards')],
     educationalAlignment: { '@type': 'AlignmentObject', alignmentType: 'educationalSubject', targetName: certFullName(cert) },
   },
 ];
 ---
-<Base title={`${unit.data.title} · ${cert.code}`} description={`${unit.data.summary} ${cert.code} review notes and flashcards.`} cert={cert.id} jsonLd={jsonLd} heading={unit.data.title}>
+<Base title={`${unit.data.title} · ${cert.code}`} description={t('unit.description', { summary: unit.data.summary, code: cert.code })} cert={cert.id} jsonLd={jsonLd} heading={unit.data.title}>
   <header class="unit-head">
     <div class="chips">
-      <span title="Exam domain"><Icon name="layers" size={14} />{domainName(cert, domain)}</span>
-      {cards.length > 0 && <a href="#cards" title="Flashcards"><Icon name="cards" size={14} />{cards.length}</a>}
+      <span title={t('unit.domain')}><Icon name="layers" size={14} />{domainName(cert, domain)}</span>
+      {cards.length > 0 && <a href="#cards" title={t('nav.flashcards')}><Icon name="cards" size={14} />{cards.length}</a>}
     </div>
     <h1>{unit.data.icon && <img src={withBase(`/aws-icons/${unit.data.icon}.svg`)} alt="" width="36" height="36" />}{unit.data.title}</h1>
     <p class="muted summary">{unit.data.summary}</p>
-    <button class="known" type="button" data-known-toggle={sectionIds(sections)} aria-pressed="false" title="Mark every section of this page as known, in every certification">
+    <button class="known" type="button" data-known-toggle={sectionIds(sections)} aria-pressed="false" title={t('unit.markAllTitle')}>
       <Icon name="circle" class="k-off" /><Icon name="check-circle" class="k-on" />
-      <span class="k-off">Mark all as known</span><span class="k-on">All known</span>
+      <span class="k-off">{t('unit.markAll')}</span><span class="k-on">{t('unit.allKnown')}</span>
     </button>
+    <ContentNotice />
     {sections.length > 1 && (
-      <nav class="toc" aria-label="Sections">
+      <nav class="toc" aria-label={t('unit.sections')}>
         {sections.map((s) => <a href={`#${sectionSlug(s)}`} data-known={s.id}><Icon name="circle" size={13} class="st-open" /><Icon name="check-circle" size={13} class="st-done" />{s.data.title}</a>)}
       </nav>
     )}
@@ -69,7 +75,7 @@ const jsonLd = [
       <section class="sec" id={sectionSlug(s)}>
         <h2>
           <span>{s.data.title}</span>
-          <button class="known small" type="button" data-known-toggle={s.id} aria-pressed="false" title="Mark this section as known">
+          <button class="known small" type="button" data-known-toggle={s.id} aria-pressed="false" title={t('unit.markOne')}>
             <Icon name="circle" class="k-off" size={15} /><Icon name="check-circle" class="k-on" size={15} />
           </button>
         </h2>
@@ -77,8 +83,8 @@ const jsonLd = [
         {s.data.diagrams.map((d) => <Diagram d={d} />)}
         {s.data.facts.length > 0 && (
           <details class="facts">
-            <summary><Icon name="docs" size={14} /> From the AWS docs ({s.data.facts.length})</summary>
-            <ul>{s.data.facts.map((f) => <li>{f.text} <a href={f.source} target="_blank" rel="noopener" title="Open the AWS documentation page"><Icon name="external" size={12} /></a></li>)}</ul>
+            <summary><Icon name="docs" size={14} /> {t('unit.facts', { n: s.data.facts.length })}</summary>
+            <ul>{s.data.facts.map((f) => <li>{f.text} <a href={f.source} target="_blank" rel="noopener" title={t('unit.openDoc')}><Icon name="external" size={12} /></a></li>)}</ul>
           </details>
         )}
       </section>
@@ -86,7 +92,7 @@ const jsonLd = [
 
     {cards.length > 0 && (
       <section id="cards">
-        <h2>Flashcards</h2>
+        <h2>{t('nav.flashcards')}</h2>
         <FlashDeck cards={cards} />
       </section>
     )}

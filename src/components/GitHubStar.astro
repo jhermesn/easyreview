@@ -2,15 +2,17 @@
 // "Star on GitHub" with the live count, like most open source sites. The count is read at build time.
 import SocialIcon from './SocialIcon.astro';
 import { REPO_URL, compactCount, starCount } from '../lib/repo';
+import { localeOf, useTranslations } from '../i18n';
 
 interface Props { class?: string }
 const stars = await starCount();
+const t = useTranslations(localeOf(Astro.currentLocale));
 ---
 <!-- The accessible name starts with the visible text ("Star 5"), as screen reader and voice users expect. -->
-<a class:list={['star', Astro.props.class]} href={REPO_URL} target="_blank" rel="noopener" title="Star Easy Review on GitHub">
+<a class:list={['star', Astro.props.class]} href={REPO_URL} target="_blank" rel="noopener" title={t('star.title')}>
   <SocialIcon name="github" size={15} />
-  <span>Star<span class="hidden"> Easy Review on GitHub</span></span>
-  {stars !== undefined && <b>{compactCount(stars)}<span class="hidden"> {stars === 1 ? 'star' : 'stars'}</span></b>}
+  <span>{t('star.label')}<span class="hidden"> {t('star.hidden')}</span></span>
+  {stars !== undefined && <b>{compactCount(stars)}<span class="hidden"> {t(stars === 1 ? 'star.one' : 'star.many')}</span></b>}
 </a>
 
 <style>

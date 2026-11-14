@@ -1,33 +1,37 @@
 ---
-import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
-import PersonCard from '../components/PersonCard.astro';
-import { goldenJacketCerts } from '../lib/certs';
-import { TIERS } from '../lib/passed';
-import { ADD_YOURSELF, loadPeople, type Person } from '../lib/people';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import { goldenJacketCerts } from '../../lib/certs';
+import { TIERS } from '../../lib/passed';
+import { ADD_YOURSELF, loadPeople, type Person } from '../../lib/people';
+import { localeOf, localeParams, useTranslations } from '../../i18n';
+
+export const getStaticPaths = () => localeParams();
+const t = useTranslations(localeOf(Astro.currentLocale));
 
 const total = goldenJacketCerts().length;
-const tierName = Object.fromEntries(TIERS.map((t) => [t.id, t.name]));
+const tierName = Object.fromEntries(TIERS.map((tier) => [tier.id, t(`tier.${tier.id}`)]));
 
 const people = await loadPeople();
 const byCount = (a: Person, b: Person) => b.active - a.active || b.latest.localeCompare(a.latest) || a.name.localeCompare(b.name);
-const groups = TIERS.map((t) => ({ ...t, list: people.filter((p) => p.tier === t.id).sort(byCount) })).filter((g) => g.list.length);
+const groups = TIERS.map((tier) => ({ id: tier.id, name: t(`tier.${tier.id}`), note: t(`tier.${tier.id}.note`), list: people.filter((p) => p.tier === tier.id).sort(byCount) })).filter((g) => g.list.length);
 const recent = [...people].sort((a, b) => b.latest.localeCompare(a.latest) || byCount(a, b));
 ---
-<Base title="Who passed" description="People who studied with Easy Review and passed their AWS Certification exams, each checked against their public Credly badges.">
+<Base title={t('footer.passed')} description={t('passed.description')}>
   <div class="article">
-    <h1>Who passed</h1>
-    <p class="muted">People who studied here and passed. Each person adds themselves; their certifications come from their public Credly badges, and their photo and description from GitHub. Tiers follow the Golden Jackets Brazil community.</p>
-    <a class="btn add" href={ADD_YOURSELF} target="_blank" rel="noopener"><Icon name="check-circle" /> Add yourself <Icon name="external" size={12} /></a>
+    <h1>{t('footer.passed')}</h1>
+    <p class="muted">{t('passed.intro')}</p>
+    <a class="btn add" href={ADD_YOURSELF} target="_blank" rel="noopener"><Icon name="check-circle" /> {t('passed.add')} <Icon name="external" size={12} /></a>
   </div>
 
   {people.length === 0 ? (
-    <p class="empty">Nobody here yet. Passed an exam? Be the first.</p>
+    <p class="empty">{t('passed.empty')}</p>
   ) : (
     <>
-      <div class="sort" role="tablist" aria-label="Order" data-tabs>
-        <button type="button" role="tab" id="tab-most" aria-controls="panel-most" aria-selected="true">Most certified</button>
-        <button type="button" role="tab" id="tab-recent" aria-controls="panel-recent" aria-selected="false">Recently updated</button>
+      <div class="sort" role="tablist" aria-label={t('passed.order')} data-tabs>
+        <button type="button" role="tab" id="tab-most" aria-controls="panel-most" aria-selected="true">{t('passed.most')}</button>
+        <button type="button" role="tab" id="tab-recent" aria-controls="panel-recent" aria-selected="false">{t('passed.recent')}</button>
       </div>
 
       <section role="tabpanel" id="panel-most" aria-labelledby="tab-most">

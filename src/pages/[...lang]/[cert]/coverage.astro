@@ -1,13 +1,16 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { availableCerts, getCert } from '../../lib/certs';
-import { getCertView, getContent, orphanSections, sectionHref } from '../../lib/content';
-import { getGuide, guideProblems, servicesCoverage } from '../../lib/guides';
-import { withBase } from '../../lib/format';
+import Base from '../../../layouts/Base.astro';
+import { availableCerts, getCert } from '../../../lib/certs';
+import { getCertView, getContent, orphanSections, sectionHref } from '../../../lib/content';
+import { getGuide, guideProblems, servicesCoverage } from '../../../lib/guides';
+import { DEFAULT_LOCALE, localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
+import ContentNotice from '../../../components/ContentNotice.astro';
 
 export function getStaticPaths() {
-  return availableCerts().filter((c) => getGuide(c.id)).map((c) => ({ params: { cert: c.id } }));
+  return localeParams(availableCerts().filter((c) => getGuide(c.id)).map((c) => ({ params: { cert: c.id } })));
 }
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
 const cert = getCert(Astro.params.cert!);
 const guide = getGuide(cert.id)!;
 const view = await getCertView(cert.id);
@@ -17,43 +20,45 @@ const covered = items.filter((i) => i.sections.length).length;
 const services = servicesCoverage(guide, view);
 const allServices = services.flatMap((c) => c.services);
 const problems = guideProblems(guide, view);
-if (problems.length) {
+// Reported once, from the default-locale build of the page.
+if (problems.length && locale === DEFAULT_LOCALE) {
   const report = `[coverage ${cert.id}] ${problems.length} gaps:\n  ${problems.join('\n  ')}`;
   // CI's content health check sets STRICT_COVERAGE=1 so a gap fails the build instead of warning.
   if (process.env.STRICT_COVERAGE === '1') throw new Error(report);
   console.warn(report);
 }
 // Reported once per build: content no cert's guide asks for is either a mapping gap or extra reading.
-if (cert.id === availableCerts()[0].id) {
+if (cert.id === availableCerts()[0].id && locale === DEFAULT_LOCALE) {
   const orphans = await orphanSections(availableCerts().map((c) => c.id));
   if (orphans.length) console.warn(`[coverage] ${orphans.length} sections no cert maps:\n  ${orphans.join('\n  ')}`);
 }
-const link = (id: string) => (sections.has(id) ? withBase(sectionHref(cert.id, sections.get(id)!)) : '#');
+const link = (id: string) => (sections.has(id) ? localePath(locale, sectionHref(cert.id, sections.get(id)!)) : '#');
 const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
 ---
-<Base title={`Coverage · ${cert.code}`} description={`Which ${cert.code} exam guide items and in-scope AWS services each review topic covers.`} cert={cert.id} heading="Coverage">
+<Base title={`${t('cov.title')} · ${cert.code}`} description={t('cov.description', { code: cert.code })} cert={cert.id} heading={t('cov.title')}>
   <div class="article">
-    <h1>Coverage <span class="muted">{cert.code}</span></h1>
+    <h1>{t('cov.title')} <span class="muted">{cert.code}</span></h1>
     <p class="muted">
-      Every item of the <a href={guide.source} target="_blank" rel="noopener">official exam guide</a> (retrieved {guide.retrieved}) and the sections that cover it.
+      {t('cov.intro.a')} <a href={guide.source} target="_blank" rel="noopener">{t('cov.intro.guide')}</a> {t('cov.intro.b', { date: guide.retrieved })}
     </p>
     <p>
-      <span class:list={['pill', covered === items.length ? 'ok' : 'warn']}>{covered}/{items.length} guide items covered</span>
-      <span class:list={['pill', allServices.every((s) => s.sections.length) ? 'ok' : 'warn']}>{allServices.filter((s) => s.sections.length).length}/{allServices.length} in-scope services covered</span>
+      <span class:list={['pill', covered === items.length ? 'ok' : 'warn']}>{t('cov.itemsPill', { n: covered, total: items.length })}</span>
+      <span class:list={['pill', allServices.every((s) => s.sections.length) ? 'ok' : 'warn']}>{t('cov.servicesPill', { n: allServices.filter((s) => s.sections.length).length, total: allServices.length })}</span>
     </p>
+    <ContentNotice />
 
     {guide.domains.map((d) => (
       <section>
         <h2>{d.name}</h2>
         {d.tasks.map((task) => (
           <>
-            <h3>Task {task.id}: {task.title}</h3>
+            <h3>{t('cov.task', { id: task.id })} {task.title}</h3>
             <ul class="items">
               {task.items.map((i) => (
                 <li class:list={{ gap: !i.sections.length }}>
-                  <span class="kind">{i.kind === 'skill' ? 'skill' : 'know'}</span>
+                  <span class="kind">{i.kind === 'skill' ? t('cov.skill') : t('cov.know')}</span>
                   {i.text}
-                  <span class="links">{i.sections.length ? i.sections.map((id) => <a href={link(id)}>{titleOf(id)}</a>) : <b>not covered</b>}</span>
+                  <span class="links">{i.sections.length ? i.sections.map((id) => <a href={link(id)}>{titleOf(id)}</a>) : <b>{t('cov.notCovered')}</b>}</span>
                 </li>
               ))}
             </ul>
@@ -62,13 +67,13 @@ const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
       </section>
     ))}
 
-    <h2>In-scope services</h2>
+    <h2>{t('cov.services')}</h2>
     {services.map((c) => (
       <>
         <h3>{c.category}</h3>
         <ul class="services">
           {c.services.map((s) => (
-            <li class:list={{ gap: !s.sections.length }} title={s.sections.map((x) => x.data.title).join(', ') || 'no section in this cert'}>
+            <li class:list={{ gap: !s.sections.length }} title={s.sections.map((x) => x.data.title).join(', ') || t('cov.noSection')}>
               {s.sections.length ? <a href={link(s.sections[0].id)}>{s.name}</a> : s.name}
               <small>{s.sections.length || '0'}</small>
             </li>

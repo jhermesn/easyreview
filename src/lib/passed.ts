@@ -63,13 +63,8 @@ export async function credlyAwsCerts(credly: string): Promise<Earned[]> {
 
 // Tiers follow the Golden Jackets Brazil community, scaled to the current number of non-beta certs (12 today):
 // all of them active, all of them once (some expired), 10-11, 7-9, then everyone else.
-export const TIERS = [
-  { id: 'golden', name: 'Golden Jackets', note: 'Every current AWS Certification, all active at once.' },
-  { id: 'alumni', name: 'Alumni', note: 'Held every current AWS Certification; some have since expired.' },
-  { id: 'challenger', name: 'Challengers', note: 'One or two certifications away from a Golden Jacket.' },
-  { id: 'rising', name: 'Rising', note: 'Three to five certifications away from a Golden Jacket.' },
-  { id: 'certified', name: 'Certified', note: 'AWS Certified and going for more.' },
-] as const;
+// Names and notes are interface strings: tier.<id> and tier.<id>.note in src/i18n.
+export const TIERS = [{ id: 'golden' }, { id: 'alumni' }, { id: 'challenger' }, { id: 'rising' }, { id: 'certified' }] as const;
 export type TierId = (typeof TIERS)[number]['id'];
 
 export function tierOf(earned: Earned[]): TierId {

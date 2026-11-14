@@ -1,18 +1,20 @@
 ---
 // Copy progress to another browser or device with a code, since there are no accounts.
 import Icon from './Icon.astro';
+import { localeOf, useTranslations } from '../i18n';
+const t = useTranslations(localeOf(Astro.currentLocale));
 ---
 <details class="transfer" data-transfer>
-  <summary class="icon-btn" title="Move your progress"><Icon name="transfer" label="Move your progress" /></summary>
+  <summary class="icon-btn" title={t('transfer.title')}><Icon name="transfer" label={t('transfer.title')} /></summary>
   <div class="panel">
-    <p class="title">Move your progress</p>
-    <p class="note muted">Progress stays in this browser. Copy the code here and paste it on the other device.</p>
-    <button type="button" data-transfer-copy><Icon name="docs" size={15} /> <span data-transfer-copy-label>Copy my progress code</span></button>
+    <p class="title">{t('transfer.title')}</p>
+    <p class="note muted">{t('transfer.intro')}</p>
+    <button type="button" data-transfer-copy><Icon name="docs" size={15} /> <span data-transfer-copy-label>{t('transfer.copy')}</span></button>
     <label class="paste">
-      <span>Paste a code</span>
+      <span>{t('transfer.paste')}</span>
       <textarea name="progress-code" rows="3" spellcheck="false" autocomplete="off" placeholder="ER1.…" data-transfer-code></textarea>
     </label>
-    <button type="button" data-transfer-load disabled><Icon name="reset" size={15} /> Replace my progress</button>
+    <button type="button" data-transfer-load disabled><Icon name="reset" size={15} /> {t('transfer.replace')}</button>
     <p class="note muted" role="status" data-transfer-status></p>
   </div>
 </details>
@@ -33,11 +35,13 @@ import Icon from './Icon.astro';
 
 <script>
   import { exportCode, importCode } from '../lib/transfer';
+  import { clientT, type Key } from '../i18n';
 
   document.addEventListener('astro:page-load', () => {
     const root = document.querySelector<HTMLDetailsElement>('[data-transfer]');
     if (!root || root.dataset.ready) return;
     root.dataset.ready = '1';
+    const t = clientT();
     const copy = root.querySelector<HTMLButtonElement>('[data-transfer-copy]')!;
     const copyLabel = root.querySelector<HTMLElement>('[data-transfer-copy-label]')!;
     const input = root.querySelector<HTMLTextAreaElement>('[data-transfer-code]')!;
@@ -48,15 +52,15 @@ import Icon from './Icon.astro';
       const code = await exportCode();
       try {
         await navigator.clipboard.writeText(code);
-        copyLabel.textContent = 'Copied';
-        status.textContent = `Code copied (${code.length} characters).`;
+        copyLabel.textContent = t('transfer.copied');
+        status.textContent = t('transfer.copiedStatus', { n: code.length });
       } catch {
         // No clipboard access: show the code so it can be copied by hand.
         input.value = code;
         input.select();
-        status.textContent = 'Select the code above and copy it.';
+        status.textContent = t('transfer.selectManually');
       }
-      setTimeout(() => (copyLabel.textContent = 'Copy my progress code'), 2000);
+      setTimeout(() => (copyLabel.textContent = t('transfer.copy')), 2000);
     });
 
     input.addEventListener('input', () => (load.disabled = !input.value.trim()));
@@ -64,16 +68,16 @@ import Icon from './Icon.astro';
     load.addEventListener('click', async () => {
       if (load.dataset.confirm !== '1') {
         load.dataset.confirm = '1';
-        status.textContent = 'This replaces the progress saved in this browser. Click again to confirm.';
+        status.textContent = t('transfer.confirm');
         return;
       }
       delete load.dataset.confirm;
       try {
         await importCode(input.value);
-        status.textContent = 'Progress loaded.';
+        status.textContent = t('transfer.loaded');
         location.reload();
       } catch (err) {
-        status.textContent = (err as Error).message;
+        status.textContent = t((err as Error).message as Key);
       }
     });
   });

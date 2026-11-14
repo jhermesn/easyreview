@@ -11,6 +11,7 @@ Easy Review is a static Astro study site for AWS Certification exams. The rules 
 | [docs/diagrams.md](docs/diagrams.md) | Before adding or changing a diagram |
 | [docs/certifications.md](docs/certifications.md) | When adding a certification |
 | [docs/maintenance.md](docs/maintenance.md) | When fixing a `content-health` issue |
+| [docs/translations.md](docs/translations.md) | Before adding or changing interface text, or adding a language |
 
 The rules that matter most:
 

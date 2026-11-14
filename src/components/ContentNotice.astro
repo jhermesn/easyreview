@@ -1,0 +1,20 @@
+---
+// Shown on pages whose study content has no translation in the reader's language yet.
+import Icon from './Icon.astro';
+import { DEFAULT_LOCALE, localeOf, useTranslations } from '../i18n';
+
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
+const HELP = 'https://github.com/jhermesn/easyreview/blob/main/docs/translations.md';
+---
+{locale !== DEFAULT_LOCALE && (
+  <p class="notice" lang={locale}>
+    <Icon name="globe" size={15} />
+    <span>{t('content.english')} <a href={HELP} target="_blank" rel="noopener">{t('content.help')}</a></span>
+  </p>
+)}
+
+<style>
+  .notice { display: flex; align-items: flex-start; gap: 0.5rem; margin: 0 0 1.2rem; padding: 0.6rem 0.8rem; border: 1px solid var(--ink-700); border-left: 3px solid var(--purple); background: var(--ink-900); color: var(--ink-300); font-size: 0.82rem; }
+  .notice :global(svg) { flex: none; margin-top: 0.15rem; color: var(--purple); }
+</style>

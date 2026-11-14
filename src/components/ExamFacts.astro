@@ -2,32 +2,34 @@
 // Exam logistics from the cert's AWS page and exam guide, refreshed by scripts/guide-watch.mjs.
 import Icon from './Icon.astro';
 import { examFacts, examsRetrieved, firstSentence, restAfterFirstSentence } from '../lib/exams';
+import { localeOf, useTranslations } from '../i18n';
 
 interface Props {
   certId: string;
 }
 const facts = examFacts(Astro.props.certId);
+const t = useTranslations(localeOf(Astro.currentLocale));
 const rows = facts
   ? [
-      { icon: 'clock', label: 'Duration', value: facts.duration },
-      { icon: 'cards', label: 'Format', value: facts.format },
-      { icon: 'target', label: 'Passing score', value: facts.passingScore && `${facts.passingScore} (scaled ${facts.scaledScore ?? ''})` },
-      { icon: 'layers', label: 'Scored', value: facts.scoredQuestions && `${facts.scoredQuestions} scored, ${facts.unscoredQuestions ?? 0} unscored` },
-      { icon: 'book', label: 'Cost', value: facts.cost && firstSentence(facts.cost) },
-      { icon: 'docs', label: 'Languages', value: facts.languages && firstSentence(facts.languages), note: facts.languages && restAfterFirstSentence(facts.languages) },
-      { icon: 'calendar', label: 'Testing', value: facts.testing },
+      { icon: 'clock', label: t('exam.duration'), value: facts.duration },
+      { icon: 'cards', label: t('exam.format'), value: facts.format },
+      { icon: 'target', label: t('exam.passing'), value: facts.passingScore && t('exam.passingValue', { score: facts.passingScore, scale: facts.scaledScore ?? '' }) },
+      { icon: 'layers', label: t('exam.scored'), value: facts.scoredQuestions && t('exam.scoredValue', { scored: facts.scoredQuestions, unscored: facts.unscoredQuestions ?? 0 }) },
+      { icon: 'book', label: t('exam.cost'), value: facts.cost && firstSentence(facts.cost) },
+      { icon: 'docs', label: t('exam.languages'), value: facts.languages && firstSentence(facts.languages), note: facts.languages && restAfterFirstSentence(facts.languages) },
+      { icon: 'calendar', label: t('exam.testing'), value: facts.testing },
     ].filter((r) => r.value)
   : [];
 ---
 {facts && rows.length > 0 && (
-  <section class="exam" aria-label="Exam facts">
+  <section class="exam" aria-label={t('exam.label')}>
     <dl>
       {rows.map((r) => (
         <div><dt><Icon name={r.icon} size={13} />{r.label}</dt><dd>{r.value}{'note' in r && r.note && <small>{r.note}</small>}</dd></div>
       ))}
     </dl>
     <p class="muted src">
-      From the <a href={facts.source} target="_blank" rel="noopener">AWS certification page</a>{facts.guide && <> and <a href={facts.guide} target="_blank" rel="noopener">exam guide</a></>}, retrieved {examsRetrieved}.
+      {t('exam.from')} <a href={facts.source} target="_blank" rel="noopener">{t('exam.certPage')}</a>{facts.guide && <> {t('exam.and')} <a href={facts.guide} target="_blank" rel="noopener">{t('exam.guide')}</a></>}, {t('exam.retrieved', { date: examsRetrieved })}
     </p>
   </section>
 )}
