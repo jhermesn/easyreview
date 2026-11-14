@@ -13,8 +13,8 @@ const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
 const cert = getCert(Astro.params.cert!);
 const guide = getGuide(cert.id)!;
-const view = await getCertView(cert.id);
-const { sections } = await getContent();
+const view = await getCertView(cert.id, locale);
+const { sections } = await getContent(locale);
 const items = guide.domains.flatMap((d) => d.tasks.flatMap((t) => t.items));
 const covered = items.filter((i) => i.sections.length).length;
 const services = servicesCoverage(guide, view);
@@ -50,7 +50,7 @@ const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
       <span class:list={['pill', covered === items.length ? 'ok' : 'warn']}>{t('cov.itemsPill', { n: covered, total: items.length })}</span>
       <span class:list={['pill', allServices.every((s) => s.sections.length) ? 'ok' : 'warn']}>{t('cov.servicesPill', { n: allServices.filter((s) => s.sections.length).length, total: allServices.length })}</span>
     </p>
-    <ContentNotice />
+    <ContentNotice langs={[DEFAULT_LOCALE, ...view.sections.map((s) => s.lang)]} />
 
     {guide.domains.map((d) => (
       <section>

@@ -23,6 +23,7 @@ src/
   content/sections/<unit>/ one file per section
   content/glossary/        one JSON file per unit
   content/passed/          "Who passed" entries, one JSON file per GitHub login
+  content/i18n/<locale>/   study content translations, mirroring units/, sections/ and glossary/
   data/guides/<cert>.json  exam guide outline, items mapped to section ids
   data/exams.json          exam facts (duration, cost, format) shown on cert pages
   data/aws-icons.json      official AWS Architecture Icon ids
@@ -30,6 +31,7 @@ src/
   lib/content.ts           loading, publishing rule, per-cert view of units and sections
   lib/guides.ts            guide loading and coverage checks
   lib/autolink.ts          glossary tooltips and unit links in section bodies
+  lib/translate.ts         merging and checking study content translations (see docs/translations.md)
   lib/badge.ts             the site's own exam badges (/badges/<cert>.svg, <cert>-gold.svg)
   lib/passed.ts            "Who passed" schema, GitHub and Credly lookups, tiers
   lib/format.ts            withBase(), HTML escaping, the inline card format

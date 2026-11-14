@@ -45,6 +45,10 @@ Start with [`AGENTS.md`](AGENTS.md): it lists the docs in [`docs/`](docs/) and w
 
 Looking for something to pick up? Issues labelled [`good first issue`](https://github.com/jhermesn/easyreview/labels/good%20first%20issue) are small and self-contained; [`help wanted`](https://github.com/jhermesn/easyreview/labels/help%20wanted) and [`certification`](https://github.com/jhermesn/easyreview/labels/certification) are bigger. Comment on an issue before you start, so two people don't write the same section.
 
+## Translations
+
+Study content is written in English and translated one section at a time. To translate a section, follow [`docs/translations.md`](docs/translations.md#translate-study-content); the Brazilian Portuguese technical resources unit is a complete example.
+
 ## Labels
 
 | Label | Meaning |

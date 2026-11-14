@@ -1,7 +1,8 @@
 name: Content health
 
 # Weekly check that the content still matches the exams: exam guide changes, new exam
-# versions, dead AWS doc links, changed doc sections behind facts, section problems and coverage gaps.
+# versions, dead AWS doc links, changed doc sections behind facts, section problems, coverage gaps
+# and translations left stale by English edits.
 # Findings land in one open issue.
 on:
   schedule:
@@ -66,6 +67,9 @@ jobs:
             echo
             echo "## Section lint"
             npm run --silent lint || status=1
+            echo
+            echo "## Translations"
+            npm run --silent translations || status=1
             echo
             echo "## Coverage (strict build)"
             if STRICT_COVERAGE=1 npm run build > build.log 2>&1; then

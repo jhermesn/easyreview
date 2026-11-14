@@ -97,4 +97,35 @@ const sections = defineCollection({
     }),
 });
 
-export const collections = { units, sections, glossary };
+// Translations: src/content/i18n/<locale>/ mirrors src/content/. `source` is the hash of the English file
+// the translation was made from (src/lib/translate.ts); ids stay English, so progress is shared.
+const sourceHash = z.string().regex(/^[0-9a-f]{12}$/, 'source must be the 12-character hash from npm run translations');
+const unitTranslations = defineCollection({
+  loader: glob({ base: './src/content/i18n', pattern: '*/units/*.md' }),
+  schema: z.object({ source: sourceHash, title: z.string(), summary: z.string() }),
+});
+const optionalText = z.string().optional();
+const sectionTranslations = defineCollection({
+  loader: glob({ base: './src/content/i18n', pattern: '*/sections/**/[^_]*.md' }),
+  schema: z.object({
+    source: sourceHash,
+    title: z.string(),
+    facts: z.record(slugId, z.string().min(1)).default({}),
+    cards: z.record(slugId, z.object({ q: z.string(), a: z.string() })).default({}),
+    diagrams: z
+      .record(
+        z.string(),
+        z.object({
+          title: optionalText,
+          nodes: z.record(z.string(), z.object({ label: optionalText, sub: optionalText, info: optionalText })).optional(),
+          groups: z.array(z.string()).optional(),
+          // Keyed "<from>><to>", the edge's two node ids.
+          edges: z.record(z.string(), z.string()).optional(),
+          steps: z.array(z.string()).optional(),
+        }),
+      )
+      .default({}),
+  }),
+});
+
+export const collections = { units, sections, glossary, unitTranslations, sectionTranslations };

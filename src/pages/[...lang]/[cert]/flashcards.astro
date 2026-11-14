@@ -10,16 +10,18 @@ import { localeOf, localeParams, useTranslations } from '../../../i18n';
 export function getStaticPaths() {
   return localeParams(availableCerts().map((c) => ({ params: { cert: c.id } })));
 }
-const t = useTranslations(localeOf(Astro.currentLocale));
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
 const cert = getCert(Astro.params.cert!);
-const cards = deckCards(await getCertView(cert.id));
+const view = await getCertView(cert.id, locale);
+const cards = deckCards(view);
 const description = t('flash.description', { n: cards.length, cert: certFullName(cert) });
 ---
 <Base title={`${t('nav.flashcards')} · ${cert.code}`} description={description} cert={cert.id} heading={t('nav.flashcards')}>
   <div class="article">
     <h1>{t('nav.flashcards')} <span class="muted">{cert.code}</span></h1>
     <p class="muted keys"><kbd>{t('flash.keySpace')}</kbd> {t('flash.flip')} · <kbd>1</kbd> {t('flash.to')} <kbd>4</kbd> {t('flash.grades')} · <kbd>←</kbd> <kbd>→</kbd> {t('flash.prevNext')}</p>
-    <ContentNotice />
+    <ContentNotice langs={view.sections.map((s) => s.lang)} />
   </div>
   <FlashDeck cards={cards} filters />
 </Base>

@@ -40,7 +40,7 @@ const image = new URL(withBase('/og.png'), Astro.site).href;
 const imageAlt = t('meta.imageAlt');
 // `<` escaped so a string in the data can never close the script element.
 const ldJson = (data: Record<string, unknown>) => jsonForScript({ '@context': 'https://schema.org', ...data });
-const view = cert ? await getCertView(cert.id) : undefined;
+const view = cert ? await getCertView(cert.id, locale) : undefined;
 const hasGuide = cert ? !!getGuide(cert.id) : false;
 // Other free study tools by the same author, shown in the footer.
 const moreTools = [

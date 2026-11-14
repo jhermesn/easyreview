@@ -9,6 +9,7 @@
     "build": "node scripts/sync-aws-icons.mjs --check && astro build",
     "preview": "astro preview",
     "lint": "node scripts/lint-content.mjs",
+    "translations": "node scripts/translations.mjs",
     "lint:links": "lychee 'src/content/sections/**/*.md' 'src/content/glossary/*.json'",
     "test": "vitest run",
     "test:e2e": "playwright test"

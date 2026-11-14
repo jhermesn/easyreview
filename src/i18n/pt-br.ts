@@ -74,6 +74,7 @@ const ptBr: Partial<Record<Key, string>> = {
   'cert.sections': '{n} seções',
 
   'content.english': 'Este conteúdo de estudo ainda não foi traduzido, então aparece em inglês.',
+  'content.partial': 'Parte deste conteúdo de estudo ainda não foi traduzida, então essa parte aparece em inglês.',
   'content.help': 'Ajude a traduzir',
 
   'unit.resourceName': '{unit} para o {code}',

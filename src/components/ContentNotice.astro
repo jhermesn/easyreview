@@ -1,16 +1,20 @@
 ---
-// Shown on pages whose study content has no translation in the reader's language yet.
+// Shown when some of a page's study content has no translation in the reader's language yet.
+// `langs`: the language of each piece of content on the page.
 import Icon from './Icon.astro';
-import { DEFAULT_LOCALE, localeOf, useTranslations } from '../i18n';
+import { DEFAULT_LOCALE, localeOf, useTranslations, type Locale } from '../i18n';
 
+interface Props { langs: Locale[] }
 const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
+const english = Astro.props.langs.filter((l) => l === DEFAULT_LOCALE).length;
+const message = english === Astro.props.langs.length ? t('content.english') : t('content.partial');
 const HELP = 'https://github.com/jhermesn/easyreview/blob/main/docs/translations.md';
 ---
-{locale !== DEFAULT_LOCALE && (
+{locale !== DEFAULT_LOCALE && english > 0 && (
   <p class="notice" lang={locale}>
     <Icon name="globe" size={15} />
-    <span>{t('content.english')} <a href={HELP} target="_blank" rel="noopener">{t('content.help')}</a></span>
+    <span>{message} <a href={HELP} target="_blank" rel="noopener">{t('content.help')}</a></span>
   </p>
 )}
 

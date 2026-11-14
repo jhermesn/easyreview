@@ -17,7 +17,7 @@ const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
 const link = (path: string) => localePath(locale, path);
 const cert = getCert(Astro.params.cert!);
-const view = await getCertView(cert.id);
+const view = await getCertView(cert.id, locale);
 const cardTotal = view.sections.reduce((n, s) => n + s.data.cards.length, 0);
 const guideItems = getGuide(cert.id)?.domains.flatMap((d) => d.tasks.flatMap((t) => t.items)) ?? [];
 const covered = guideItems.filter((i) => i.sections.length).length;

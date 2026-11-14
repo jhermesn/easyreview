@@ -11,6 +11,8 @@ export interface DeckCard {
   q: string;
   a: string;
   trap: boolean;
+  // BCP 47 tag of the card's text, which stays English until its section is translated.
+  lang: string;
 }
 interface Props {
   cards: DeckCard[];
@@ -149,7 +151,7 @@ const grades = [
 
   import { GRADES, describeDelay, isDue, isKnown, isNew, normalize, schedule, type CardState, type Grade } from '../lib/srs';
 
-  type Card = { id: string; topic: string; topicTitle: string; domain: string; q: string; a: string; trap: boolean };
+  type Card = { id: string; topic: string; topicTitle: string; domain: string; q: string; a: string; trap: boolean; lang: string };
   type Progress = Record<string, CardState>;
 
   const load = (): Progress => {
@@ -229,6 +231,7 @@ const grades = [
       $('[data-empty]').hidden = !!c;
       $('[data-q]').innerHTML = c?.q ?? '';
       $('[data-a]').innerHTML = c?.a ?? '';
+      $('[data-q]').lang = $('[data-a]').lang = c?.lang ?? document.documentElement.lang;
       $('[data-meta]').textContent = c ? c.topicTitle : '';
       $('[data-trap]').hidden = !c?.trap;
       const s = c ? progress[c.id] : undefined;
