@@ -8,7 +8,8 @@ Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.co
 |---|---|
 | `npm run dev` | Dev server at http://localhost:4321/easyreview/, unpublished sections included |
 | `npm run build` | Static site in `dist/`. Fails on schema errors and on diagram icons that were not copied; warns on coverage gaps |
-| `npm run lint` | Section checks the schema can't express: every card cites facts that exist, the body has all its parts, diagrams don't overlap or leave the viewBox. Pass file paths to check only those |
+| `npm run lint` | Section checks the schema can't express: every card cites facts that exist, the body has all its parts, diagrams don't overlap or leave the viewBox. Then every content translation matches its English file. Pass file paths to check only those sections |
+| `npm run translations` | Translation progress per language and exam, and translations left stale by English edits. `-- --stamp <file>` records the English file's current hash after a translation is updated (docs/translations.md) |
 | `npm test` | Unit tests (Vitest) for the logic behind the pages: spaced repetition, diagram lint, progress codes, Who passed tiers. Tests sit next to the code as `src/lib/<name>.test.ts` |
 | `npm run test:e2e` | Browser smoke test (Playwright) of the built site on desktop and phone: run `npm run build` first. The first run needs `npx playwright install chromium` |
 | `npm run lint:links` | Every fact and glossary source URL still resolves. Needs [lychee](https://lychee.cli.rs) installed |

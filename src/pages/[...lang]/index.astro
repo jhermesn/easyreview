@@ -18,7 +18,7 @@ const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
 const link = (path: string) => localePath(locale, path);
 
-const views = new Map(await Promise.all(availableCerts().map(async (c) => [c.id, await getCertView(c.id)] as const)));
+const views = new Map(await Promise.all(availableCerts().map(async (c) => [c.id, await getCertView(c.id, locale)] as const)));
 // Count only what a reader can open: sections some available cert's guide maps.
 const sections = [...new Map([...views.values()].flatMap((v) => v.sections).map((s) => [s.id, s])).values()];
 const unitCount = new Set(sections.map(unitIdOf)).size;

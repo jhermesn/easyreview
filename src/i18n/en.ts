@@ -72,6 +72,7 @@ const en = {
   'cert.sections': '{n} sections',
 
   'content.english': 'This study content has not been translated yet, so it is shown in English.',
+  'content.partial': 'Part of this study content has not been translated yet, so that part is shown in English.',
   'content.help': 'Help translate it',
 
   'unit.resourceName': '{unit} for {code}',

@@ -1,15 +1,16 @@
 // Sätteri hast plugin for section bodies: the first mention of a glossary term gets a definition
 // tooltip, and the first mention of another unit's service name links to that unit's page.
 // Glossary terms come from the section's own unit only (src/content/glossary/<unit>.json), since
-// the same word can mean different things per service.
-import { readdirSync, readFileSync } from 'node:fs';
+// the same word can mean different things per service. A translated section body uses the unit's fresh
+// glossary translation (src/content/i18n/<locale>/glossary/<unit>.json) when there is one.
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { HastPluginEntry } from 'satteri';
 import { parse } from 'yaml';
 import { escapeRe } from './format';
+import { glossaryProblems, hashFile, mergeGlossary, type GlossaryTranslation, type Term } from './translate';
 
-interface Term { term: string; aliases: string[]; definition: string }
 interface Target { key: string; text: string; caseSensitive: boolean; plural: boolean; definition?: string; unit?: string }
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
@@ -40,18 +41,22 @@ function readUnitCerts(): Map<string, string> {
   return out;
 }
 
-function readGlossary(unit: string): Term[] {
-  try {
-    return JSON.parse(readFileSync(join(ROOT, 'src/content/glossary', `${unit}.json`), 'utf8'));
-  } catch {
-    return [];
-  }
+function readGlossary(unit: string, locale?: string): Term[] {
+  const path = join(ROOT, 'src/content/glossary', `${unit}.json`);
+  if (!existsSync(path)) return [];
+  const english: Term[] = JSON.parse(readFileSync(path, 'utf8')).map((t: Term) => ({ ...t, aliases: t.aliases ?? [] }));
+  const translated = locale && join(ROOT, 'src/content/i18n', locale, 'glossary', `${unit}.json`);
+  if (!translated || !existsSync(translated)) return english;
+  const tr: GlossaryTranslation = JSON.parse(readFileSync(translated, 'utf8'));
+  // Stale or incomplete translations fall back to English; npm run lint reports them.
+  if (tr.source !== hashFile(path) || glossaryProblems(english, tr).length) return english;
+  return mergeGlossary(english, tr);
 }
 
-function buildMatcher(unit: string, names: Map<string, string[]>, certs: Map<string, string>) {
+function buildMatcher(unit: string, locale: string | undefined, names: Map<string, string[]>, certs: Map<string, string>) {
   const targets: Target[] = [];
-  for (const t of readGlossary(unit))
-    for (const text of [t.term, ...t.aliases])
+  for (const t of readGlossary(unit, locale))
+    for (const text of [t.term, ...(t.aliases ?? [])])
       targets.push({ key: `term:${t.term.toLowerCase()}`, text, caseSensitive: isAcronym(text), plural: !isAcronym(text), definition: t.definition });
   for (const [other, list] of names)
     if (other !== unit && certs.has(other)) for (const text of list) targets.push({ key: `unit:${other}`, text, caseSensitive: true, plural: false, unit: other });
@@ -80,20 +85,23 @@ export function autolink({ base }: { base: string }): HastPluginEntry {
   return () => {
     const used = new Set<string>();
     let unit: string | undefined;
+    let key = '';
     let slug = '';
     let tips = 0;
     return {
       name: 'autolink',
       before(_root, ctx) {
         const path = ctx.fileURL ? fileURLToPath(ctx.fileURL) : '';
-        // Only section bodies: src/content/sections/<unit>/<slug>.md
+        // Only section bodies: src/content/[i18n/<locale>/]sections/<unit>/<slug>.md
         if (basename(dirname(dirname(path))) !== 'sections') return;
+        const locale = /\/src\/content\/i18n\/([^/]+)\/sections\//.exec(path.replaceAll('\\', '/'))?.[1];
         unit = basename(dirname(path));
         slug = basename(path, '.md');
-        if (!matchers.has(unit)) matchers.set(unit, buildMatcher(unit, names, certs));
+        key = `${locale ?? ''}:${unit}`;
+        if (!matchers.has(key)) matchers.set(key, buildMatcher(unit, locale, names, certs));
       },
       text(node, ctx) {
-        const matcher = unit && matchers.get(unit);
+        const matcher = unit && matchers.get(key);
         if (!matcher) return;
         for (let p = ctx.parent(node); p && p.type === 'element'; p = ctx.parent(p)) if (SKIP.has(p.tagName)) return;
         const parts: any[] = [];

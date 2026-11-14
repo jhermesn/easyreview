@@ -10,7 +10,7 @@ const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
 
 // One entry per section, linked through the first cert that includes it; `cert` lists every exam that does.
-const views = await Promise.all(availableCerts().map((c) => getCertView(c.id)));
+const views = await Promise.all(availableCerts().map((c) => getCertView(c.id, locale)));
 const certCodes = new Map<string, string[]>();
 for (const view of views) for (const s of view.sections) certCodes.set(s.id, [...(certCodes.get(s.id) ?? []), view.cert.code]);
 const indexed = new Set<string>();

@@ -1,6 +1,6 @@
 # Translations
 
-The interface is available in English (default, at the root) and Brazilian Portuguese (under `/pt-br/`). Study content is written in English; where a translation does not exist yet, pages in another language show the English content with a notice.
+The interface is available in English (default, at the root) and Brazilian Portuguese (under `/pt-br/`). Study content is written in English first and translated per section; where a translation does not exist yet, pages in another language show the English text with a notice.
 
 ## How it works
 
@@ -22,6 +22,69 @@ The interface is available in English (default, at the root) and Brazilian Portu
 
 Add the key to `src/i18n/en.ts` and use it with `t('key')` (pages and components get `t` from `useTranslations(localeOf(Astro.currentLocale))`). Add the same key to every `complete` language in the same pull request (`npm test` fails otherwise); other languages show the English text until someone translates it.
 
-## Study content
+## Translate study content
 
-Units, sections, facts, flashcards, diagrams and the glossary are in English. Exam facts and the exam guide outlines come from the English AWS pages.
+English is the source: every fact is written from an English AWS documentation page first (docs/content.md). A translation follows one English file and never adds facts of its own.
+
+Translate the exams AWS offers in that language first. AWS lists the languages of each exam on its exam page; a reader preparing for an exam in Portuguese gets the most from Portuguese notes.
+
+### Where translations live
+
+`src/content/i18n/<locale>/` mirrors `src/content/`:
+
+| English file | Translation |
+|---|---|
+| `src/content/units/<unit>.md` | `src/content/i18n/<locale>/units/<unit>.md`: `title`, `summary` and the intro |
+| `src/content/sections/<unit>/<slug>.md` | `src/content/i18n/<locale>/sections/<unit>/<slug>.md`: title, facts, cards, diagram text and the body |
+| `src/content/glossary/<unit>.json` | `src/content/i18n/<locale>/glossary/<unit>.json`: each term, its aliases and definition |
+
+A section translation keys facts and cards by their English ids, so progress and "known" marks stay the same in every language. Sources, card `facts` and `trap`, and diagram layout come from the English file and are not repeated:
+
+```yaml
+---
+source: 3f9a1c0b2d4e
+title: Grupos de implantação
+facts:
+  deployment-group: Um grupo de implantação é o conjunto de instâncias que uma implantação atinge.
+cards:
+  codedeploy-012:
+    q: O que define o conjunto de instâncias que uma implantação do CodeDeploy atinge?
+    a: O grupo de implantação.
+diagrams:
+  traffic-shift:
+    title: Troca de tráfego
+    nodes:
+      lb: { label: Balanceador de carga }
+    groups: [Produção]
+    edges:
+      lb>blue: todo o tráfego
+    steps: [O balanceador envia todo o tráfego para o ambiente azul]
+---
+### Como funciona
+...
+```
+
+Diagram text is optional per part: a node, group, edge or step left out keeps its English label, which suits service names. The body keeps the English heading outline (the same `##`/`###` levels in the same order), and the trap blocks and lists stay where they are.
+
+A glossary translation keys terms by their English `term`:
+
+```json
+{
+  "source": "cad0dcc034a7",
+  "terms": {
+    "Deployment group": { "term": "Grupo de implantação", "aliases": [], "definition": "..." }
+  }
+}
+```
+
+### Fresh and stale
+
+`source` is a hash of the English file the translation was made from. While it matches, the translation is fresh and replaces the English text. When someone edits the English file, the translation becomes stale and readers get the current English text until a translator catches up, so a translation never shows an outdated number.
+
+1. Write or update the translation from the current English file.
+2. Run `npm run translations -- --stamp <translation file>` to record the English file's current hash.
+3. Run `npm run lint`: it fails when a fresh translation misses a fact or card, has one the English file doesn't, points at a diagram part that doesn't exist or changes the heading outline. The build fails on the same problems.
+
+`npm run translations` lists progress per locale and exam and every stale translation; the weekly content health check reports stale ones. English contributors don't need to touch translations: editing an English file is enough, and the translation catches up later.
+
+Exam facts and the exam guide outlines on coverage pages stay in English, as AWS publishes them.

@@ -1,9 +1,11 @@
 // Section checks the schema can't express: card fact references, the full body and diagram layout.
 // The schema itself (ids, source URLs, diagram edges) is checked by `npm run build` (src/content.config.ts).
-// Usage: node scripts/lint-content.mjs [src/content/sections/<unit>/<slug>.md ...]   (default: every section)
+// Usage: node scripts/lint-content.mjs [src/content/sections/<unit>/<slug>.md ...]   (default: every section,
+// then every translation in src/content/i18n, see scripts/translations.mjs)
 import { readFileSync, readdirSync } from 'node:fs';
 import { parse } from 'yaml';
 import { lintDiagram, withDefaults } from '../src/lib/diagram.ts';
+import { checkTranslations } from './translations.mjs';
 
 const DIR = 'src/content/sections';
 
@@ -45,4 +47,5 @@ for (const file of files) {
   failed += problems.length > 0;
 }
 console.log(failed ? `${failed} of ${files.length} sections have problems.` : `${files.length} sections OK.`);
+if (!process.argv.slice(2).length) failed += checkTranslations();
 process.exit(failed ? 1 : 0);

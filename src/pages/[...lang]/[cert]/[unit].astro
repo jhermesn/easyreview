@@ -9,26 +9,23 @@ import { getCertView, deckCards, sectionIds, sectionSlug, type CertUnit } from '
 import { withBase } from '../../../lib/format';
 import { absoluteUrl, breadcrumbs, certFullName } from '../../../lib/seo';
 import ContentNotice from '../../../components/ContentNotice.astro';
-import { localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
+import { LOCALES, localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 
 export async function getStaticPaths() {
   const paths = [];
-  for (const cert of availableCerts()) {
-    const { units } = await getCertView(cert.id);
-    units.forEach((u, i) => paths.push({ params: { cert: cert.id, unit: u.unit.id }, props: { entry: u, prev: units[i - 1], next: units[i + 1] } }));
-  }
+  for (const cert of availableCerts()) for (const { unit } of (await getCertView(cert.id)).units) paths.push({ params: { cert: cert.id, unit: unit.id } });
   return localeParams(paths);
 }
-interface Props {
-  entry: CertUnit;
-  prev?: CertUnit;
-  next?: CertUnit;
-}
-const { entry, prev, next } = Astro.props;
 const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
-const { unit, domain, sections } = entry;
 const cert = getCert(Astro.params.cert!);
+// Looked up per locale, so translated titles and text reach this page and its neighbours.
+const { units } = await getCertView(cert.id, locale);
+const at = units.findIndex((u) => u.unit.id === Astro.params.unit);
+const [entry, prev, next] = [units[at], units[at - 1], units[at + 1]];
+const { unit, domain, sections } = entry;
+// Untranslated blocks keep lang="en" so screen readers and translators know what they are reading.
+const langOf = (l: string) => (l === locale ? undefined : LOCALES[l as keyof typeof LOCALES].lang);
 const { Content: Intro } = await render(unit);
 const blocks = await Promise.all(sections.map(async (s) => ({ s, Content: (await render(s)).Content })));
 const cards = deckCards({ cert, units: [entry], sections, missing: [] });
@@ -41,8 +38,7 @@ const jsonLd = [
     name: t('unit.resourceName', { unit: unit.data.title, code: cert.code }),
     description: unit.data.summary,
     url: absoluteUrl(`/${cert.id}/${unit.id}/`, site, locale),
-    // The study content itself is English until a translation exists.
-    inLanguage: 'en',
+    inLanguage: LOCALES[unit.lang].lang,
     isAccessibleForFree: true,
     learningResourceType: [t('unit.typeNotes'), t('unit.typeFlashcards')],
     educationalAlignment: { '@type': 'AlignmentObject', alignmentType: 'educationalSubject', targetName: certFullName(cert) },
@@ -61,7 +57,7 @@ const jsonLd = [
       <Icon name="circle" class="k-off" /><Icon name="check-circle" class="k-on" />
       <span class="k-off">{t('unit.markAll')}</span><span class="k-on">{t('unit.allKnown')}</span>
     </button>
-    <ContentNotice />
+    <ContentNotice langs={[unit.lang, ...sections.map((s) => s.lang)]} />
     {sections.length > 1 && (
       <nav class="toc" aria-label={t('unit.sections')}>
         {sections.map((s) => <a href={`#${sectionSlug(s)}`} data-known={s.id}><Icon name="circle" size={13} class="st-open" /><Icon name="check-circle" size={13} class="st-done" />{s.data.title}</a>)}
@@ -70,21 +66,23 @@ const jsonLd = [
   </header>
 
   <article class="article">
-    <Intro />
+    <div lang={langOf(unit.lang)}><Intro /></div>
     {blocks.map(({ s, Content }) => (
       <section class="sec" id={sectionSlug(s)}>
         <h2>
-          <span>{s.data.title}</span>
+          <span lang={langOf(s.lang)}>{s.data.title}</span>
           <button class="known small" type="button" data-known-toggle={s.id} aria-pressed="false" title={t('unit.markOne')}>
             <Icon name="circle" class="k-off" size={15} /><Icon name="check-circle" class="k-on" size={15} />
           </button>
         </h2>
-        <Content />
-        {s.data.diagrams.map((d) => <Diagram d={d} />)}
+        <div lang={langOf(s.lang)}>
+          <Content />
+          {s.data.diagrams.map((d) => <Diagram d={d} />)}
+        </div>
         {s.data.facts.length > 0 && (
           <details class="facts">
             <summary><Icon name="docs" size={14} /> {t('unit.facts', { n: s.data.facts.length })}</summary>
-            <ul>{s.data.facts.map((f) => <li>{f.text} <a href={f.source} target="_blank" rel="noopener" title={t('unit.openDoc')}><Icon name="external" size={12} /></a></li>)}</ul>
+            <ul lang={langOf(s.lang)}>{s.data.facts.map((f) => <li>{f.text} <a href={f.source} target="_blank" rel="noopener" title={t('unit.openDoc')}><Icon name="external" size={12} /></a></li>)}</ul>
           </details>
         )}
       </section>
