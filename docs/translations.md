@@ -64,7 +64,7 @@ diagrams:
 ...
 ```
 
-Diagram text is optional per part: a node, group, edge or step left out keeps its English label, which suits service names. The body keeps the English heading outline (the same `##`/`###` levels in the same order), and the trap blocks and lists stay where they are.
+Diagram text is optional per part: a node, group, edge or step left out keeps its English label, which suits service names. The body keeps the English heading outline (the same `##`/`###` levels in the same order), and the trap blocks and lists stay where they are. Translate the `**Trap:**` label too (`**Pegadinha:**` in pt-BR).
 
 A glossary translation keys terms by their English `term`:
 
