@@ -11,12 +11,12 @@ export function getStaticPaths() {
 const cert = getCert(Astro.params.cert!);
 const guide = getGuide(cert.id)!;
 const view = await getCertView(cert.id);
-const { sections, units } = await getContent();
+const { sections } = await getContent();
 const items = guide.domains.flatMap((d) => d.tasks.flatMap((t) => t.items));
 const covered = items.filter((i) => i.sections.length).length;
-const services = servicesCoverage(guide, view, [...units.values()]);
+const services = servicesCoverage(guide, view);
 const allServices = services.flatMap((c) => c.services);
-const problems = guideProblems(guide, view, [...units.values()]);
+const problems = guideProblems(guide, view);
 if (problems.length) {
   const report = `[coverage ${cert.id}] ${problems.length} gaps:\n  ${problems.join('\n  ')}`;
   // CI's content health check sets STRICT_COVERAGE=1 so a gap fails the build instead of warning.
@@ -39,7 +39,7 @@ const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
     </p>
     <p>
       <span class:list={['pill', covered === items.length ? 'ok' : 'warn']}>{covered}/{items.length} guide items covered</span>
-      <span class:list={['pill', allServices.every((s) => s.sections.length) ? 'ok' : 'warn']}>{allServices.filter((s) => s.sections.length).length}/{allServices.length} in-scope services mentioned</span>
+      <span class:list={['pill', allServices.every((s) => s.sections.length) ? 'ok' : 'warn']}>{allServices.filter((s) => s.sections.length).length}/{allServices.length} in-scope services covered</span>
     </p>
 
     {guide.domains.map((d) => (
@@ -68,7 +68,7 @@ const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
         <h3>{c.category}</h3>
         <ul class="services">
           {c.services.map((s) => (
-            <li class:list={{ gap: !s.sections.length }} title={s.sections.map((x) => x.data.title).join(', ') || 'not mentioned in any section'}>
+            <li class:list={{ gap: !s.sections.length }} title={s.sections.map((x) => x.data.title).join(', ') || 'no section in this cert'}>
               {s.sections.length ? <a href={link(s.sections[0].id)}>{s.name}</a> : s.name}
               <small>{s.sections.length || '0'}</small>
             </li>
