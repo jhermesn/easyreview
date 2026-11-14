@@ -44,6 +44,9 @@ facts:
     text: Termination protection is controlled on the root stack and passed to its nested stacks, but
       does not prevent an update from removing a nested stack.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html#using-cfn-protect-stacks
+  - id: events-by-operation
+    text: Every stack operation gets an operation ID; stack events are grouped by it, and describe-events can filter one operation to failed events only (FailedEvents=true) to find the failing resource.
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/view-stack-events-by-operation.html
 cards:
   - id: cloudformation-041
     q: A CloudFormation stack reaches ROLLBACK_COMPLETE after its first creation failed. How can the
@@ -102,6 +105,10 @@ cards:
     trap: true
     facts:
       - termination
+  - id: cloudformation-150
+    q: A CloudFormation update with nested stacks failed. How does an engineer list only the failed events of that update?
+    a: Use describe-events with the update's operation ID and the FailedEvents=true filter.
+    facts: [events-by-operation]
 ---
 CloudFormation events explain which resource operation failed and why. Recovery depends on whether creation failed, rollback finished, or deletion left resources behind.
 

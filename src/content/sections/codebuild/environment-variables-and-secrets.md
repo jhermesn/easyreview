@@ -49,6 +49,12 @@ facts:
   - id: parameter-decrypt
     text: Decrypting a Parameter Store SecureString requires kms:Decrypt permission for its KMS key.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/secure-string-parameter-kms-encryption.html#parameter-policy-kms-encryption
+  - id: source-version-vars
+    text: CODEBUILD_RESOLVED_SOURCE_VERSION holds the commit ID that was built, while CODEBUILD_SOURCE_VERSION holds the version requested, such as a branch name or commit ID.
+    source: https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
+  - id: initiator-jenkins
+    text: CODEBUILD_INITIATOR names who started the build; when the CodeBuild plugin for Jenkins starts it, the value is CodeBuild-Jenkins-Plugin.
+    source: https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
 diagrams: []
 cards:
   - id: codebuild-005
@@ -104,6 +110,14 @@ cards:
       previous value.
     facts:
       - literal-replacement
+  - id: codebuild-060
+    q: A buildspec must tag an image with the exact commit that was built, even when a branch name triggered the build. Which variable fits?
+    a: CODEBUILD_RESOLVED_SOURCE_VERSION, the resolved commit ID.
+    facts: [source-version-vars]
+  - id: codebuild-061
+    q: How can a CodeBuild build tell that the Jenkins plugin started it?
+    a: CODEBUILD_INITIATOR is CodeBuild-Jenkins-Plugin.
+    facts: [initiator-jenkins]
 ---
 CodeBuild maps environment variable names to plain values or stored secrets. An environment variable is a named value available to build commands. Secret references let the build retrieve a value without putting it in the buildspec text.
 

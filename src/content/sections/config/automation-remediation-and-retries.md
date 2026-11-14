@@ -118,6 +118,9 @@ facts:
   - id: topic-definition
     text: An SNS topic is a communication channel delivering messages to subscribing endpoints.
     source: https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html#delivery-channel-SNS-topic
+  - id: s3-logging-remediation
+    text: The managed rule s3-bucket-logging-enabled flags buckets without server access logging, and the AWS-ConfigureS3BucketLogging runbook can remediate them automatically.
+    source: https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-logging-enabled.html
 diagrams:
   - id: config-compliance-flow
     title: Record, evaluate, remediate and aggregate
@@ -341,6 +344,10 @@ cards:
       - sns-target
       - automatic-remediation
       - event-delivery
+  - id: config-050
+    q: A company must turn on S3 server access logging automatically for any bucket that lacks it. What fits?
+    a: The AWS Config rule s3-bucket-logging-enabled with automatic remediation through the AWS-ConfigureS3BucketLogging runbook.
+    facts: [s3-logging-remediation]
 ---
 AWS Config **remediation** corrects a resource that a rule reports as noncompliant. The rule detects the problem; a Systems Manager Automation **runbook**, a document listing corrective actions, performs the fix.
 

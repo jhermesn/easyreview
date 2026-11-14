@@ -75,6 +75,12 @@ facts:
   - id: sqli
     text: An AWS WAF SQL injection rule statement inspects web requests for malicious SQL code.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-sqli-match.html
+  - id: log-prefix
+    text: AWS WAF logging destinations (S3 bucket, CloudWatch Logs group or Firehose stream) must have names starting with aws-waf-logs-.
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/logging-s3.html
+  - id: ip-set
+    text: An IP set match statement checks the request IP against a list of CIDR ranges; an Allow rule on it with a Block default action restricts access to those ranges.
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-ipset-match.html
 diagrams:
   - id: waf-rule-evaluation
     title: Evaluation when no rule terminates
@@ -206,6 +212,15 @@ cards:
     q: Which AWS service can block SQL injection attempts in web requests?
     a: AWS WAF, with an SQL injection rule statement.
     facts: [sqli]
+  - id: waf-022
+    q: AWS WAF refuses an S3 bucket as its log destination. What naming rule applies?
+    a: The destination name must start with aws-waf-logs-.
+    trap: true
+    facts: [log-prefix]
+  - id: waf-023
+    q: A CloudFront distribution must accept requests only from the company's office IP ranges. How with AWS WAF?
+    a: An IP set of the CIDR ranges, an Allow rule on that IP set, and Block as the web ACL default action.
+    facts: [ip-set]
 ---
 AWS WAF filters web requests using a web access control list (web ACL), also called a protection pack. A web ACL contains rules associated with a supported application endpoint. It lets you choose which matching requests to allow, block, count or challenge.
 

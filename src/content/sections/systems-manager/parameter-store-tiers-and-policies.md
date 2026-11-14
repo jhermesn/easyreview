@@ -86,6 +86,9 @@ facts:
   - id: parameter-rotation
     text: AWS recommends Secrets Manager for credentials requiring automatic rotation.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#parameter-store-policies
+  - id: regional
+    text: Parameter Store parameters belong to one account and Region, so each Region needs its own parameter, for example with that Region's AMI ID.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html
 cards:
   - id: systems-manager-005
     q: How do Systems Manager Parameter Store standard and advanced parameters differ?
@@ -165,6 +168,10 @@ cards:
     a: String for text, StringList for a comma-separated list, and SecureString for an encrypted value.
     facts:
       - parameter-types
+  - id: systems-manager-111
+    q: A template reads a golden AMI ID from Parameter Store and must deploy in three Regions. What is needed?
+    a: A parameter in each Region holding that Region's AMI ID; parameters are Regional.
+    facts: [regional]
 ---
 Parameter Store keeps application configuration as named values. The tier determines storage limits and policy support; the parameter type determines how the value is represented.
 

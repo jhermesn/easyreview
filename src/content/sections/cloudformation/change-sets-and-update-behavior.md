@@ -60,6 +60,9 @@ facts:
   - id: update-order
     text: CloudFormation orders resource updates by dependency.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-dependson.html#aws-attribute-dependson
+  - id: lambda-s3-code
+    text: A Lambda function whose code is in S3 is updated by CloudFormation only when S3Bucket, S3Key or S3ObjectVersion changes; uploading new code to the same key leaves the stack with nothing to update.
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-lambda-function-code.html
 diagrams:
   - id: cfn-change-flow
     title: Preview and execute a stack update
@@ -214,6 +217,11 @@ cards:
     facts:
       - rds-version
       - rds-major
+  - id: cloudformation-154
+    q: A pipeline uploads new Lambda code to the same S3 key and updates the stack, but the function keeps the old code. Why, and what fixes it?
+    a: CloudFormation sees no change in S3Bucket, S3Key or S3ObjectVersion. Use a new key or pass the new S3ObjectVersion.
+    trap: true
+    facts: [lambda-s3-code]
 ---
 A CloudFormation change set is a preview of a proposed stack operation. It separates reviewing changes from executing them, so replacements and removals can be examined before resources change.
 

@@ -94,6 +94,9 @@ facts:
   - id: ecs-model-s3-date
     text: Amazon S3 Files launched in April 2026.
     source: https://aws.amazon.com/about-aws/whats-new/2026/04/amazon-s3-files/
+  - id: image-digest
+    text: A container definition can reference an image by digest (repository@sha256:...), so every task runs exactly that image.
+    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_image
 diagrams:
   - id: ecs-service-replacement
     title: A service replaces a stopped task
@@ -219,6 +222,10 @@ cards:
     facts:
       - ecs-model-layers
       - ecs-model-disposable
+  - id: ecs-070
+    q: How can an ECS task definition guarantee that every task runs the exact same image, even if a tag is moved?
+    a: Reference the image by digest (repository@sha256:...) instead of by tag.
+    facts: [image-digest]
 ---
 
 An ECS task definition describes how to run an application in containers, which package code and its dependencies. A task is a running copy; a service keeps the requested number of copies available.

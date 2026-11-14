@@ -53,6 +53,9 @@ facts:
     text: NLB HTTPS health checks fail against targets that support only TLS 1.3; targets must also
       support an earlier version such as TLS 1.2.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html#target-group-health-checks
+  - id: success-codes
+    text: An ALB target passes its health check only if the response code is in the target group's success codes, 200 by default.
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html
 cards:
   - id: elastic-load-balancing-005
     q: Every registered target in an ALB target group fails health checks across all enabled zones.
@@ -104,6 +107,11 @@ cards:
     a: Enable an earlier TLS version such as TLS 1.2 on the target for the health checks.
     facts:
       - nlb-https-tls
+  - id: elastic-load-balancing-059
+    q: ALB targets are unhealthy although the app answers the health check path with a 302 redirect. Why?
+    a: The default success code is 200; add 302 to the success codes or point the check at a path that returns 200.
+    trap: true
+    facts: [success-codes]
 ---
 An ALB health check is a periodic request that tests whether a registered target can respond. Health thresholds decide when to avoid a target or change routing when too little healthy capacity remains.
 

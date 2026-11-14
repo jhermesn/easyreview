@@ -41,6 +41,12 @@ facts:
   - id: filter-history
     text: A newly created metric filter does not process historical events.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html#MonitoringLogData
+  - id: contributor-insights
+    text: CloudWatch Contributor Insights rules analyze structured log events and rank the top contributors by a field, such as the instance or IP that sends the most errors.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContributorInsights.html
+  - id: insight-metric
+    text: Metric math's INSIGHT_RULE_METRIC function turns a Contributor Insights rule into a metric, so an alarm can fire, for example, when the top contributor's share of the total is too high.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html
 cards:
   - id: cloudwatch-014
     q: A team wants the error count in CloudWatch logs from last week. Will a newly created metric
@@ -79,6 +85,10 @@ cards:
     q: A team needs a CloudWatch Logs Insights query to run regularly and save results in Amazon S3. What feature fits?
     a: Use a scheduled query with an S3 destination.
     facts: [insights-scheduled]
+  - id: cloudwatch-115
+    q: A team must find which EC2 instance produces the most error log lines and alarm when one instance causes over half of them. What fits?
+    a: A CloudWatch Contributor Insights rule on the logs, plus an alarm on INSIGHT_RULE_METRIC comparing the top contributor with the total.
+    facts: [contributor-insights, insight-metric]
 ---
 CloudWatch Logs Insights searches stored log events to answer questions about past behavior. Use it when the evidence is already in the logs and a newly created metric filter would start too late.
 

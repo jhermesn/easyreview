@@ -41,6 +41,9 @@ facts:
     text: Log group deletion protection is disabled by default and, when enabled, blocks deletion until
       disabled.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogsConcepts.html#CloudWatchLogsConcepts
+  - id: incoming-bytes
+    text: The AWS/Logs metric IncomingBytes, by LogGroupName, shows how much data each log group ingests, which finds the costliest groups.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html
 cards:
   - id: cloudwatch-057
     q: What is the difference between a CloudWatch Logs log stream and a log group?
@@ -81,6 +84,10 @@ cards:
     a: RETROACTIVE. NEW_ONLY applies only to log groups created after the policy.
     facts:
       - retention-modes
+  - id: cloudwatch-116
+    q: Which CloudWatch metric shows which log groups ingest the most data and drive the CloudWatch Logs bill?
+    a: AWS/Logs IncomingBytes, with the LogGroupName dimension.
+    facts: [incoming-bytes]
 ---
 CloudWatch Logs stores timestamped events from applications and infrastructure. A log stream holds events from one source; a log group collects streams that need the same retention, monitoring, and access settings.
 

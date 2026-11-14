@@ -125,6 +125,9 @@ facts:
   - id: instance-metadata
     text: Instance metadata is data about a running EC2 instance, such as its ID and type, that software on the instance can read; it is not the launch script, which is user data.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+  - id: encrypt-ami
+    text: To get an encrypted AMI from an unencrypted one, copy it with encryption turned on and a KMS key; the copy's snapshots are encrypted.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html
 diagrams:
   - id: image-builder-bake-and-roll
     title: Bake, distribute and roll out a golden AMI
@@ -366,6 +369,10 @@ cards:
     a: User data, which runs scripts at launch. Instance metadata only describes the running instance.
     trap: true
     facts: [instance-metadata, user-data]
+  - id: deployment-strategies-042
+    q: How does a team turn an existing unencrypted AMI into an encrypted one?
+    a: Copy the AMI with encryption on and a KMS key; the new AMI's snapshots are encrypted.
+    facts: [encrypt-ami]
 ---
 
 A golden AMI is a reusable EC2 launch image prepared with the software and settings an application needs. Prebaking puts application components into that image. Bootstrapping runs installation or configuration when an instance starts. [AWS deployment guidance](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/prebaking-vs.-bootstrapping-amis.html) recommends combining the two when instances need both quick startup and environment-specific customization.

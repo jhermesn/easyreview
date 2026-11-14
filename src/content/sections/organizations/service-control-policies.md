@@ -86,6 +86,9 @@ facts:
     text: A Config recorder captures resource configurations, and its delivery channel selects
       destinations for recorded data.
     source: https://docs.aws.amazon.com/config/latest/developerguide/update-dc-console.html
+  - id: imdsv2-scp
+    text: A policy can deny requests signed with EC2 role credentials when ec2:RoleDelivery is below 2.0, which forces credentials to come from IMDSv2; in an SCP this applies across member accounts.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html
 diagrams:
   - id: organizations-scp-path
     title: Every level must permit the action
@@ -207,6 +210,10 @@ cards:
       - organizations-scp-allowlist
       - organizations-scp-path
       - organizations-scp-deny
+  - id: organizations-033
+    q: An organization must block use of instance role credentials obtained through IMDSv1 in every account. What fits?
+    a: An SCP that denies requests when ec2:RoleDelivery is below 2.0, so only IMDSv2 credentials work.
+    facts: [imdsv2-scp]
 ---
 
 A service control policy (SCP) is an organization-wide permissions limit for member-account identities. A principal is the identity making a request, such as a user or role. Passing SCP evaluation only leaves an action eligible; access still needs the appropriate IAM or resource policy.

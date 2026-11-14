@@ -39,6 +39,9 @@ facts:
     text: Making probes depend on a shared external database can cause all replicas to fail their health
       checks at once.
     source: https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_use_readiness_probe_to_detect_partial_unavailability
+  - id: rbac-mapping
+    text: An IAM role gets Kubernetes permissions only after the cluster maps it, through an EKS access entry or the older aws-auth ConfigMap; without the mapping, kubectl returns Unauthorized even though AssumeRole worked.
+    source: https://docs.aws.amazon.com/eks/latest/userguide/grant-k8s-access.html
 diagrams:
   - id: eks-readiness-flow
     title: Readiness gates Service traffic
@@ -136,6 +139,11 @@ cards:
       - shared-failure
       - liveness
     trap: true
+  - id: eks-059
+    q: A CI role assumes successfully but kubectl against an EKS cluster returns Unauthorized. What is missing?
+    a: "A mapping of that IAM role to Kubernetes permissions: an EKS access entry (or the aws-auth ConfigMap)."
+    trap: true
+    facts: [rbac-mapping]
 ---
 A Kubernetes Deployment describes an application's desired replicas, meaning copies of its Pods, and updates their version. Health probes are checks that tell Kubernetes whether a container can serve requests or needs recovery. A Service provides traffic routing to the application Pods.
 

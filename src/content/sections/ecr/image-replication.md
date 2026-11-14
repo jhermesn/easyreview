@@ -50,6 +50,9 @@ facts:
   - id: repository-filter
     text: Replication rules can select repositories using a repository-name prefix.
     source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/replication.html#replication
+  - id: pull-through
+    text: Pull through cache rules sync the contents of an upstream registry, such as Amazon ECR Public or Quay, with an Amazon ECR private registry.
+    source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html
 diagrams:
   - id: ecr-replication-destination
     title: Destination permissions for cross-account replication
@@ -148,6 +151,10 @@ cards:
     facts:
       - future-content
       - backfill
+  - id: ecr-024
+    q: A company wants its clusters to pull public base images through its own Amazon ECR private registry. Which ECR feature fits?
+    a: A pull through cache rule, which syncs the upstream registry into the private registry.
+    facts: [pull-through]
 ---
 ECR replication copies container images between accounts or Regions using private registry rules. The source selects where images go; a destination account grants permission to receive them. A registry policy controls registry-level access, while a repository policy controls an individual repository.
 

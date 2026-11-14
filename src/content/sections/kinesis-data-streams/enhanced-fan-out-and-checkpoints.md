@@ -59,6 +59,9 @@ facts:
     text: Consumers should handle records more than once without unintended extra side effects; this is
       idempotent processing.
     source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html#kinesis-record-processor-duplicates
+  - id: kcl-metrics
+    text: The KCL publishes CloudWatch metrics under the application name, including MillisBehindLatest per shard, which shows how far consumers lag.
+    source: https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-kcl.html
 cards:
   - id: kinesis-data-streams-006
     q: Five Kinesis Data Streams applications each need the full shard read rate without competing with
@@ -114,6 +117,10 @@ cards:
     trap: true
     facts:
       - consumer-latency
+  - id: kinesis-data-streams-024
+    q: Which KCL metric shows how far a Kinesis consumer application lags behind the stream, to scale the consumer fleet?
+    a: MillisBehindLatest.
+    facts: [kcl-metrics]
 diagrams:
   - id: kinesis-independent-consumers
     title: Independent consumers keep separate read progress
