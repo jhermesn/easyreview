@@ -1175,6 +1175,7 @@
               "text": "AWS Organizations",
               "sections": [
                 "organizations/accounts-ous-and-consolidated-billing",
+                "resource-access-manager/resource-sharing-and-invitations",
                 "service-quotas/quotas-and-increases",
                 "service-catalog/products-portfolios-and-versions"
               ]
