@@ -31,6 +31,9 @@ export function formatRich(text: string): string {
   return out.join('');
 }
 
+// Card text without the inline markup of formatRich, for structured data.
+export const plainText = (text: string) => text.replace(/\*\*|`/g, '').replace(/\s*\n\s*(- )?/g, ' ').trim();
+
 export const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // JSON for an inline <script> tag: "<" is escaped so the data can never close the tag.
