@@ -86,6 +86,7 @@ const en = {
   'unit.sections': 'Sections',
   'unit.markOne': 'Mark this section as known',
   'unit.facts': 'From the AWS docs ({n})',
+  'unit.cardList': 'All {n} cards as a list',
   'unit.openDoc': 'Open the AWS documentation page',
 
   'deck.again': 'Again',

@@ -88,6 +88,7 @@ const ptBr: Partial<Record<Key, string>> = {
   'unit.sections': 'Seções',
   'unit.markOne': 'Marcar esta seção como sabida',
   'unit.facts': 'Da documentação da AWS ({n})',
+  'unit.cardList': 'Todos os {n} flashcards em lista',
   'unit.openDoc': 'Abrir a página da documentação da AWS',
 
   'deck.again': 'De novo',

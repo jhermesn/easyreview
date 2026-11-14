@@ -6,7 +6,7 @@ import FlashDeck from '../../../components/FlashDeck.astro';
 import Icon from '../../../components/Icon.astro';
 import { availableCerts, domainName, getCert } from '../../../lib/certs';
 import { getCertView, deckCards, sectionIds, sectionSlug, type CertUnit } from '../../../lib/content';
-import { withBase } from '../../../lib/format';
+import { formatRich, plainText, withBase } from '../../../lib/format';
 import { absoluteUrl, breadcrumbs, certFullName } from '../../../lib/seo';
 import ContentNotice from '../../../components/ContentNotice.astro';
 import { LOCALES, localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
@@ -31,7 +31,7 @@ const blocks = await Promise.all(sections.map(async (s) => ({ s, Content: (await
 const cards = deckCards({ cert, units: [entry], sections, missing: [] });
 const href = (u: CertUnit) => localePath(locale, `/${cert.id}/${u.unit.id}`);
 const site = Astro.site!;
-const jsonLd = [
+const jsonLd: Record<string, unknown>[] = [
   breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }, { name: unit.data.title, path: `/${cert.id}/${unit.id}/` }], site, locale),
   {
     '@type': 'LearningResource',
@@ -44,6 +44,21 @@ const jsonLd = [
     educationalAlignment: { '@type': 'AlignmentObject', alignmentType: 'educationalSubject', targetName: certFullName(cert) },
   },
 ];
+// The deck renders on the client, so the cards are also listed as HTML and as a Quiz of flashcards for search engines.
+if (cards.length) {
+  jsonLd.push({
+    '@type': 'Quiz',
+    name: t('unit.resourceName', { unit: unit.data.title, code: cert.code }),
+    about: { '@type': 'Thing', name: unit.data.title },
+    educationalAlignment: { '@type': 'AlignmentObject', alignmentType: 'educationalSubject', targetName: certFullName(cert) },
+    hasPart: cards.map((c) => ({
+      '@type': 'Question',
+      eduQuestionType: 'Flashcard',
+      text: plainText(c.q),
+      acceptedAnswer: { '@type': 'Answer', text: plainText(c.a) },
+    })),
+  });
+}
 ---
 <Base title={`${unit.data.title} · ${cert.code}`} description={t('unit.description', { summary: unit.data.summary, code: cert.code })} cert={cert.id} jsonLd={jsonLd} heading={unit.data.title}>
   <header class="unit-head">
@@ -92,6 +107,17 @@ const jsonLd = [
       <section id="cards">
         <h2>{t('nav.flashcards')}</h2>
         <FlashDeck cards={cards} />
+        <details class="card-list">
+          <summary>{t('unit.cardList', { n: cards.length })}</summary>
+          <dl>
+            {cards.map((c) => (
+              <div lang={c.lang === LOCALES[locale].lang ? undefined : c.lang}>
+                <dt set:html={formatRich(c.q)} />
+                <dd set:html={formatRich(c.a)} />
+              </div>
+            ))}
+          </dl>
+        </details>
       </section>
     )}
   </article>
@@ -126,6 +152,12 @@ const jsonLd = [
   .facts { margin-top: 0.8rem; border: 1px solid var(--ink-700); padding: 0.35rem 0.8rem; font-size: 0.86rem; }
   .facts summary { cursor: pointer; display: flex; align-items: center; gap: 0.4rem; color: var(--ink-300); }
   .facts a { color: var(--ink-300); }
+  .card-list { margin-top: 1rem; border: 1px solid var(--ink-700); padding: 0.35rem 0.8rem; font-size: 0.86rem; }
+  .card-list summary { cursor: pointer; color: var(--ink-300); }
+  .card-list dl { margin: 0.6rem 0 0.2rem; display: grid; gap: 0.8rem; }
+  .card-list dt { color: var(--ink-100); font-weight: 600; }
+  .card-list dd { margin: 0.2rem 0 0; color: var(--ink-300); }
+  .card-list :global(p) { margin: 0; }
   .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--ink-700); }
   .pager a { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; color: var(--ink-300); max-width: 48%; }
   .pager a span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

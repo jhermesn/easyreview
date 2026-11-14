@@ -62,6 +62,9 @@ jobs:
             echo "## Cited doc sections"
             node scripts/doc-watch.mjs || status=1
             echo
+            echo "## Dated content"
+            node scripts/date-watch.mjs || status=1
+            echo
             echo "## Who passed (Credly badges and profile links)"
             node scripts/verify-passed.mjs || status=1
             echo
