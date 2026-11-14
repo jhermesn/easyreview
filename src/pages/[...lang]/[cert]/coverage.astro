@@ -30,7 +30,12 @@ if (problems.length && locale === DEFAULT_LOCALE) {
 // Reported once per build: content no cert's guide asks for is either a mapping gap or extra reading.
 if (cert.id === availableCerts()[0].id && locale === DEFAULT_LOCALE) {
   const orphans = await orphanSections(availableCerts().map((c) => c.id));
-  if (orphans.length) console.warn(`[coverage] ${orphans.length} sections no cert maps:\n  ${orphans.join('\n  ')}`);
+  if (orphans.length) {
+    // A section no cert maps is built but unreachable: a missing guide mapping, or content to remove.
+    const report = `[coverage] ${orphans.length} sections no cert maps:\n  ${orphans.join('\n  ')}`;
+    if (process.env.STRICT_COVERAGE === '1') throw new Error(report);
+    console.warn(report);
+  }
 }
 const link = (id: string) => (sections.has(id) ? localePath(locale, sectionHref(cert.id, sections.get(id)!)) : '#');
 const titleOf = (id: string) => sections.get(id)?.data.title ?? id;

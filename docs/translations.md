@@ -13,14 +13,14 @@ The interface is available in English (default, at the root) and Brazilian Portu
 
 ## Translate the interface into a new language
 
-1. Add the language to `LOCALES` in `src/i18n/locales.ts`: its URL id (lowercase, such as `es` or `pt-br`), its name in that language, its BCP 47 tag (`lang`) and its Open Graph locale (`og`).
+1. Add the language to `LOCALES` in `src/i18n/locales.ts`: its URL id (lowercase, such as `es` or `pt-br`), its name in that language, its BCP 47 tag (`lang`), its Open Graph locale (`og`) and `complete: false`. Set `complete: true` once every string is translated; from then on `npm test` fails when a string is missing.
 2. Copy `src/i18n/pt-br.ts` to `src/i18n/<id>.ts`, translate the values, and add the dictionary to `dictionaries` in `src/i18n/index.ts`.
 3. Keep product and AWS names as they are: Easy Review, AWS Certification, service names, the Golden Jackets tiers and the exam level names (Foundational, Associate...).
 4. Run `npm test`, `npm run build` and `npm run test:e2e`, then check a few pages in the browser, on a phone width too.
 
 ## Add or change an interface string
 
-Add the key to `src/i18n/en.ts` and use it with `t('key')` (pages and components get `t` from `useTranslations(localeOf(Astro.currentLocale))`). Add the same key to every other dictionary when you can; until then those languages show the English text.
+Add the key to `src/i18n/en.ts` and use it with `t('key')` (pages and components get `t` from `useTranslations(localeOf(Astro.currentLocale))`). Add the same key to every `complete` language in the same pull request (`npm test` fails otherwise); other languages show the English text until someone translates it.
 
 ## Study content
 

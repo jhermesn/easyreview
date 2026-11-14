@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import en from './en';
 import { withBase } from '../lib/format';
-import { dictionaries, localeIds, localePath, stripLocale, useTranslations } from '.';
+import { LOCALES, dictionaries, localeIds, localePath, stripLocale, useTranslations } from '.';
 
 const placeholders = (s: string) => [...s.matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort();
 
@@ -10,6 +10,10 @@ describe.each(localeIds.filter((l) => l !== 'en'))('%s dictionary', (locale) => 
 
   it('only uses keys that exist in English', () => {
     expect(Object.keys(dict).filter((k) => !(k in en))).toEqual([]);
+  });
+
+  it.runIf(LOCALES[locale].complete)('translates every string (complete locale)', () => {
+    expect(Object.keys(en).filter((k) => !(k in dictionaries[locale]))).toEqual([]);
   });
 
   it('keeps every placeholder of the English text', () => {
