@@ -57,6 +57,19 @@ test('every header tool is reachable on any screen', async ({ page, isMobile }) 
   await expect(page).toHaveURL(/\/dop-c02\/flashcards\/?$/);
 });
 
+// Translations run longer than English, so every locale is checked on a narrow phone.
+const narrowPages = ['', 'dop-c02/', 'dop-c02/codedeploy/', 'dop-c02/flashcards/', 'dop-c02/coverage/', 'search/', 'passed/'];
+for (const locale of ['', 'pt-br/']) {
+  test(`${locale || 'en/'} pages fit a 320px screen without sideways scroll`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 720 });
+    for (const path of narrowPages) {
+      await page.goto(locale + path);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      expect(overflow, `${locale}${path} scrolls sideways`).toBe(0);
+    }
+  });
+}
+
 test('the Portuguese site renders in Portuguese and switches back to English', async ({ page, isMobile }) => {
   await page.goto('pt-br/dop-c02/codedeploy/');
   await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');

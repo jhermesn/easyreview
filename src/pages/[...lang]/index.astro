@@ -191,10 +191,12 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
   .tile:has(.ring.is-gold) { border-color: var(--gold); }
 
   @media (max-width: 820px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; gap: 0.5rem; }
+    .hero { grid-template-columns: minmax(0, 1fr); min-height: auto; gap: 0.5rem; }
     .hero :global(.hero-3d) { order: -1; max-width: 15rem; }
     .stats { grid-template-columns: repeat(2, auto); gap: 0.8rem 1.8rem; }
-    .ctas { flex-wrap: nowrap; }
-    .ctas .btn { flex: 1 1 0; justify-content: center; padding-inline: 0.5rem; font-size: 0.84rem; }
+    .passed { padding: 1.3rem 1.1rem; }
+    .passed-copy { flex-basis: 100%; min-width: 0; }
+    /* Buttons share a row when both labels fit and stack when a longer translation does not. */
+    .ctas .btn { flex: 1 1 auto; justify-content: center; padding-inline: 0.5rem; font-size: 0.84rem; }
   }
 </style>
