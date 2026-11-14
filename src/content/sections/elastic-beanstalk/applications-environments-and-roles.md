@@ -90,6 +90,12 @@ facts:
   - id: no-charge
     text: Elastic Beanstalk has no additional charge; you pay only for the AWS resources your application uses.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
+  - id: docker-platform
+    text: Elastic Beanstalk Docker platforms run applications in any language or runtime packaged as a container image.
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.html
+  - id: custom-platforms-retired
+    text: "Elastic Beanstalk custom platforms are retired: on July 18, 2022, all Amazon Linux AMI platform branches, including custom platforms, were retired."
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html
 diagrams:
   - id: beanstalk-https-request
     title: HTTPS termination and backend access
@@ -189,6 +195,11 @@ cards:
     q: A developer wants to upload a web application and have AWS provision the servers, load balancing and scaling, with no extra service fee. Which service fits?
     a: "AWS Elastic Beanstalk.\nIt has no additional charge; you pay for the EC2 instances and other resources it creates."
     facts: [upload-code, no-charge]
+  - id: elastic-beanstalk-062
+    q: A team must run an app on Elastic Beanstalk in a language Beanstalk has no managed platform for. What should it use?
+    a: A Docker platform with the app packaged as a container image. Custom platforms were retired on July 18, 2022.
+    trap: true
+    facts: [docker-platform, custom-platforms-retired]
 ---
 Elastic Beanstalk Standard deploys application code on managed EC2 environments. An application groups related versions and environments; each environment is an independently configured running deployment. A platform is the operating system, language runtime, and server software used to run that code.
 

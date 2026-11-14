@@ -49,6 +49,9 @@ facts:
   - id: event-build-target
     text: An EventBridge rule can target a CodeBuild project.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html
+  - id: status-reporting
+    text: With build status reporting turned on, CodeBuild posts the build result to the commit or pull request in the source provider.
+    source: https://docs.aws.amazon.com/codebuild/latest/userguide/sample-github-pull-request.html
 diagrams:
   - id: codebuild-codecommit-trigger
     title: CodeCommit pull request events start builds
@@ -137,6 +140,10 @@ cards:
       Server webhook pull requests."
     facts:
       - source-version
+  - id: codebuild-059
+    q: Developers want each pull request to show whether its CodeBuild build passed. Which CodeBuild setting does this?
+    a: Build status reporting, which posts the build result to the source provider.
+    facts: [status-reporting]
 ---
 CodeBuild repository webhooks start builds in response to source events. A webhook is an event notification sent by the repository provider. Pull request builds run tests on proposed changes, while comment approval controls whether untrusted contributions may execute.
 

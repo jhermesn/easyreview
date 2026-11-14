@@ -86,6 +86,9 @@ facts:
   - id: ecs-roles-nitro-date
     text: AWS announced Nitro Sandboxes for ECS tasks in November 2026.
     source: https://aws.amazon.com/about-aws/whats-new/2026/11/nitro-sandboxes-eks-ecs-ec2/
+  - id: awslogs-role
+    text: With the awslogs driver on EC2 container instances, logs:CreateLogStream and logs:PutLogEvents must be on the container instance role, or on the task execution role when the task has one.
+    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html
 cards:
   - id: ecs-003
     q: An ECS application must read S3 objects using its own AWS permissions. Which role needs access?
@@ -191,6 +194,11 @@ cards:
     facts:
       - ecs-roles-nitro
       - ecs-roles-nitro-date
+  - id: ecs-071
+    q: ECS tasks on EC2 with the awslogs driver send no logs, and the task has no execution role. Which role needs logs:PutLogEvents?
+    a: The container instance role (or the task execution role, if one is assigned). The task role is for the application's own calls.
+    trap: true
+    facts: [awslogs-role]
 ---
 
 ECS separates application permissions from the permissions needed to start a task. An IAM role is an assumable identity with permissions and temporary credentials; its trust policy defines who may assume it.

@@ -41,6 +41,9 @@ facts:
     text: Replacement normally creates a new physical resource and redirects dependents before removing
       the old one.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-updatereplacepolicy.html#aws-attribute-updatereplacepolicy
+  - id: rename-stack
+    text: A stack can't be renamed; to move resources to a stack with a new name, set DeletionPolicy Retain on them, delete the old stack, then import the retained resources into a new stack.
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import.html
 cards:
   - id: cloudformation-035
     q: A CloudFormation change set would replace an RDS database. Which policy protects the old physical
@@ -90,6 +93,10 @@ cards:
     facts:
       - retain
       - retain-cost
+  - id: cloudformation-151
+    q: How can a team give a CloudFormation stack a new name without deleting its resources?
+    a: Set DeletionPolicy Retain on every resource, delete the stack, then import the retained resources into a new stack with the new name.
+    facts: [rename-stack]
 ---
 Deletion and replacement policies decide what CloudFormation does with a physical resource when it leaves a stack. Choose the policy by the event: removal from the stack or replacement during an update.
 

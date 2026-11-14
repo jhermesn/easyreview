@@ -106,6 +106,9 @@ facts:
   - id: schema-fields
     text: A CloudTrail external table declares log field names and data types.
     source: https://docs.aws.amazon.com/athena/latest/ug/create-cloudtrail-table.html
+  - id: s3-access-logs
+    text: Athena can query S3 server access logs through an external table defined over the log bucket, for example to rank objects by number of requests.
+    source: https://docs.aws.amazon.com/athena/latest/ug/querying-s3-access-logs.html
 diagrams:
   - id: athena-s3-query-results
     title: S3 log query with a customer-owned results bucket
@@ -236,6 +239,10 @@ cards:
       - kms-source
       - kms-output
       - encryption-separate
+  - id: athena-018
+    q: A team wants the cheapest way to find which S3 objects get the most requests, using the bucket's server access logs. What fits?
+    a: Athena with an external table over the access log bucket, then a SQL query that counts requests per object key.
+    facts: [s3-access-logs]
 ---
 Athena runs SQL, the language used to select and aggregate table data, directly over logs stored in S3. It is serverless: you do not manage the query servers. A table supplies the schema, meaning field names and types, while the log objects stay in S3.
 

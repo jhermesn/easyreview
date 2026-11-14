@@ -85,6 +85,9 @@ facts:
   - id: dsse-layers
     text: DSSE-KMS applies two layers of server-side encryption to uploaded objects.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingDSSEncryption.html#UsingDSSEncryption
+  - id: kms-quota
+    text: Each upload or download of an SSE-KMS object calls KMS and counts against the Region's KMS request quota, so heavy traffic can be throttled; SSE-S3 makes no KMS calls.
+    source: https://docs.aws.amazon.com/kms/latest/developerguide/requests-per-second.html
 cards:
   - id: s3-014
     q: What encryption does S3 apply to a new upload with no encryption settings?
@@ -146,6 +149,10 @@ cards:
       - ssec-keys
       - ssec-loss
       - ssec-https
+  - id: s3-131
+    q: S3 requests on an SSE-KMS bucket start failing with throttling at high request rates. Why?
+    a: Each SSE-KMS object request calls KMS and counts against the KMS request quota. S3 Bucket Keys or SSE-S3 cut those calls.
+    facts: [kms-quota, bucket-key-cost]
 ---
 S3 server-side encryption protects object data at rest, meaning while stored on disk. S3 encrypts data during storage and decrypts it for authorized reads; the encryption option determines who controls the keys.
 

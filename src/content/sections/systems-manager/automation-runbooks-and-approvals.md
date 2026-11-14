@@ -80,6 +80,12 @@ facts:
   - id: term-golden-ami
     text: An organization-maintained base machine image used for consistent instance launches.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-tutorial-update-patch-golden-ami.html#automation-tutorial-update-patch-golden-ami
+  - id: run-command-step
+    text: An Automation runbook can run commands on instances as ordered steps with aws:runCommand and stops when a step fails.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-action-runcommand.html
+  - id: status-events
+    text: Automation execution status changes are sent to EventBridge, so a rule on Failed or TimedOut can notify an SNS topic.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-eventbridge-events.html
 diagrams:
   - id: ssm-approval-flow
     title: An approval step gates later runbook actions
@@ -235,6 +241,10 @@ cards:
       - automation-rescue-order
       - automation-windows-rescue
       - automation-rescue-encryption
+  - id: systems-manager-109
+    q: An operations team needs scripts on instances to run in a fixed order, stop on failure, and alert by email if a run fails, without custom code. What fits?
+    a: A Systems Manager Automation runbook with aws:runCommand steps, plus an EventBridge rule on Failed executions that notifies SNS.
+    facts: [run-command-step, status-events]
 ---
 Systems Manager Automation runs a runbook, an ordered set of maintenance or deployment actions. It can coordinate AWS resource operations and pause for a person to approve a step.
 

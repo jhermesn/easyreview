@@ -153,6 +153,9 @@ facts:
   - id: org-events
     text: Organizations activity can trigger EventBridge notification rules in US East (N. Virginia).
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_cloudwatch-integration.html
+  - id: s3-to-eventbridge
+    text: Once EventBridge notifications are turned on for a bucket, S3 sends events such as Object Created to EventBridge, where a rule can start a Step Functions workflow.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/EventBridge.html
 diagrams:
   - id: eventbridge-bus-routing
     title: "Classic bus: select events before invoking a target"
@@ -334,6 +337,10 @@ cards:
     a: Enable both insights and notifications on the group.
     facts:
       - xray-insights
+  - id: eventbridge-050
+    q: How can every new object in an S3 bucket start a Step Functions workflow without a Lambda function in between?
+    a: Turn on EventBridge notifications for the bucket and add an EventBridge rule on Object Created that targets the state machine.
+    facts: [s3-to-eventbridge]
 ---
 An EventBridge event bus routes JSON events, which are messages describing something that happened, to matching targets. A target is the resource or endpoint that receives the event. Think of a Classic bus as a sorting desk: rules select events, then send them to the configured destinations.
 

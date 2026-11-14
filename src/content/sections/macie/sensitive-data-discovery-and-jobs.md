@@ -33,6 +33,9 @@ facts:
   - id: job-records
     text: A sensitive data finding records a positive detection; discovery results also record analyses with no sensitive data or with errors.
     source: https://docs.aws.amazon.com/macie/latest/user/discovery-jobs.html
+  - id: eventbridge
+    text: Macie publishes findings to EventBridge automatically (source aws.macie), so rules can alert through SNS or start Lambda.
+    source: https://docs.aws.amazon.com/macie/latest/user/monitoring-findings-eventbridge.html
 cards:
   - id: macie-001
     q: Which AWS service discovers personally identifiable information in S3 objects and reports bucket security issues?
@@ -72,6 +75,10 @@ cards:
     trap: true
     facts:
       - job-incremental
+  - id: macie-012
+    q: How does a security team get an alert as soon as Amazon Macie finds sensitive data?
+    a: An EventBridge rule on Macie findings (source aws.macie) that targets SNS.
+    facts: [eventbridge]
 ---
 
 Amazon Macie discovers sensitive content in S3 general purpose buckets and monitors bucket security settings. Personally identifiable information (PII) means data that can identify a person. Macie separates risks in access settings from sensitive content found inside objects.

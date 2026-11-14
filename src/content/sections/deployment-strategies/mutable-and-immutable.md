@@ -37,6 +37,9 @@ facts:
     text: For Beanstalk changes combining a new application version with instance-replacing
       configuration, use separate updates or configure immutable policies for both.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environmentmgmt-updates-immutable.html
+  - id: alb-cutover
+    text: For EC2 blue/green behind one Application Load Balancer, changing the listener rule to forward to the green target group switches traffic at once, with no DNS caching delay.
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-update-rules.html
 cards:
   - id: deployment-strategies-001
     q: For EC2 application releases, what separates an in-place CodeDeploy deployment from an immutable
@@ -73,6 +76,10 @@ cards:
     facts:
       - eb-policies
       - immutable-both
+  - id: deployment-strategies-043
+    q: A blue/green EC2 deployment must switch all traffic instantly with no DNS caching delay. How?
+    a: Point the Application Load Balancer listener rule at the green target group.
+    facts: [alb-cutover]
 ---
 
 A deployment can change existing servers or create replacements. In-place deployment changes the application on existing instances. Immutable deployment starts a new server set from the desired configuration. The [AWS deployment methods guide](https://docs.aws.amazon.com/whitepapers/latest/practicing-continuous-integration-continuous-delivery/deployment-methods.html) explains these choices.

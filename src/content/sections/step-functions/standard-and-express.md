@@ -46,6 +46,9 @@ facts:
     text: Execution details expose state inputs and outputs; Express execution history requires
       CloudWatch Logs logging to be enabled.
     source: https://docs.aws.amazon.com/step-functions/latest/dg/concepts-view-execution-details.html#concepts-view-execution-details
+  - id: parallel
+    text: A Parallel state runs several branches at the same time and continues when all branches finish.
+    source: https://docs.aws.amazon.com/step-functions/latest/dg/state-parallel.html
 cards:
   - id: step-functions-001
     q: How do Step Functions Standard and Express differ in duration, history, billing, and
@@ -94,6 +97,10 @@ cards:
       state inputs and outputs.
     facts:
       - execution-debugging
+  - id: step-functions-023
+    q: A Step Functions workflow must run three independent checks at the same time and continue when all finish. Which state type fits?
+    a: A Parallel state.
+    facts: [parallel]
 ---
 
 Step Functions runs a workflow, a sequence of steps with rules for moving between them. Its state machine is the workflow definition; an execution is one run. Choose Standard for long processes and Express for short event processing.

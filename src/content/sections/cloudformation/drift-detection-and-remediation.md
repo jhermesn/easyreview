@@ -101,6 +101,12 @@ facts:
   - id: update-stack-runbook
     text: "The AWS-UpdateCloudFormationStack Automation runbook updates an existing stack from a template stored in S3. It takes the stack name or ID, the template URL and a role for its Lambda step."
     source: https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-aws-updatecloudformationstack.html#automation-aws-updatecloudformationstack
+  - id: not-checked
+    text: Resources whose type doesn't support drift detection get a drift status of NOT_CHECKED.
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html
+  - id: config-rule-timeout
+    text: The Config rule cloudformation-stack-drift-detection-check runs DetectStackDrift on every stack and is limited to 15 minutes, so in large accounts scope it to fewer stacks with tags.
+    source: https://docs.aws.amazon.com/config/latest/developerguide/cloudformation-stack-drift-detection-check.html
 cards:
   - id: cloudformation-051
     q: What does CloudFormation drift detection compare, and what statuses describe its results?
@@ -237,6 +243,14 @@ cards:
     facts:
       - update-stack-runbook
       - drift-aware
+  - id: cloudformation-152
+    q: The Config rule cloudformation-stack-drift-detection-check times out in an account with hundreds of stacks. What fixes it?
+    a: Scope the rule to fewer stacks with tags; it runs DetectStackDrift on every stack within a 15-minute limit.
+    facts: [config-rule-timeout]
+  - id: cloudformation-153
+    q: A stack's drift result shows NOT_CHECKED for some resources. Why?
+    a: Their resource types don't support drift detection.
+    facts: [not-checked]
 diagrams:
   - id: cfn-drift-import
     title: Adopt an existing resource without replacement
