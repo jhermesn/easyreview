@@ -26,6 +26,8 @@ Add the key to `src/i18n/en.ts` and use it with `t('key')` (pages and components
 
 English is the source: every fact is written from an English AWS documentation page first (docs/content.md). A translation follows one English file and never adds facts of its own.
 
+The pt-BR translation of the technical resources unit (`src/content/i18n/pt-br/units/technical-resources.md` and its three sections) is a complete example to copy from. Any section is a good first contribution, one file at a time.
+
 Translate the exams AWS offers in that language first. AWS lists the languages of each exam on its exam page; a reader preparing for an exam in Portuguese gets the most from Portuguese notes.
 
 ### Where translations live
