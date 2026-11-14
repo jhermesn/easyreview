@@ -66,6 +66,9 @@ facts:
   - id: acl-definition
     text: An ACL is a list of grants attached to a bucket or object.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#acl-overview
+  - id: get-object-acl
+    text: The GetObjectAcl API returns the access control list (ACL) of an object.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html
 cards:
   - id: s3-017
     q: How can an S3 administrator block public access even when bucket-level permissions grant it?
@@ -113,6 +116,10 @@ cards:
     facts:
       - website-public
       - website-https
+  - id: s3-129
+    q: Which S3 API call returns the ACL of a single object?
+    a: GetObjectAcl.
+    facts: [get-object-acl]
 ---
 S3 separates public-access safeguards from object ownership. Block Public Access limits public grants; Object Ownership decides who owns uploaded objects and whether access control lists (ACLs), lists of grants attached to resources, are used.
 

@@ -75,6 +75,9 @@ facts:
   - id: artifact-checksum
     text: "CodeBuild reports the SHA-256 and MD5 hashes of a build artifact only when the project packaging is ZIP."
     source: https://docs.aws.amazon.com/codebuild/latest/APIReference/API_BuildArtifacts.html#CodeBuild-Type-BuildArtifacts-sha256sum
+  - id: sha256-zip
+    text: A CodeBuild build's artifacts expose a SHA-256 hash for integrity checks only when the project's artifact packaging is ZIP.
+    source: https://docs.aws.amazon.com/codebuild/latest/APIReference/API_BuildArtifacts.html
 diagrams:
   - id: codebuild-output-flow
     title: Files and values for later pipeline actions
@@ -209,6 +212,11 @@ cards:
     facts:
       - artifact-checksum
       - standalone-output
+  - id: codebuild-058
+    q: A pipeline must verify the SHA-256 checksum CodeBuild reports for a build artifact, but the field is empty. What project setting is needed?
+    a: Artifact packaging set to ZIP; the sha256sum value is only available then.
+    trap: true
+    facts: [sha256-zip]
 ---
 CodeBuild artifacts are output files selected for later use. Exported variables pass named values between CodePipeline actions. Use artifacts for the files and variables for values such as a version identifier.
 

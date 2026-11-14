@@ -69,6 +69,9 @@ facts:
   - id: csv-format
     text: CSV is a comma-separated-values text format.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory
+  - id: inventory-acl
+    text: S3 Inventory reports can include an Object ACL field that lists the grantees and permissions of each object.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html
 cards:
   - id: s3-034
     q: An S3 audit needs object reads recorded while a scheduled job lists bucket contents. Which
@@ -127,6 +130,10 @@ cards:
       - inventory-purpose
       - inventory-formats
       - inventory-first
+  - id: s3-130
+    q: A company must audit the ACLs of millions of objects on a schedule without calling an API per object. Which S3 feature fits?
+    a: S3 Inventory with the Object ACL field in its reports.
+    facts: [inventory-acl]
 ---
 S3 Inventory answers what objects exist and which metadata they have. Access logging and CloudTrail data events answer what requests were made; they serve different audit needs.
 

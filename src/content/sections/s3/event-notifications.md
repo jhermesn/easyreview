@@ -76,6 +76,9 @@ facts:
   - id: events-key-encoding
     text: The object key in an S3 event notification is URL encoded, with spaces represented by plus signs.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-content-structure.html#notification-content-structure
+  - id: acl-event
+    text: The s3:ObjectAcl:Put event notifies when an ACL is put on an object or an existing ACL changes.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html
 diagrams:
   - id: s3-eventbridge-fifo
     title: Routing S3 events to a FIFO queue
@@ -202,6 +205,10 @@ cards:
     a: Decode it as a URL-encoded key; a plus sign represents a space.
     facts:
       - events-key-encoding
+  - id: s3-128
+    q: A security team wants a Lambda function to run whenever someone changes an object's ACL in an S3 bucket. Which S3 event type does it subscribe to?
+    a: s3:ObjectAcl:Put, which fires when an ACL is put on an object or changed.
+    facts: [acl-event]
 ---
 S3 event notifications start work when selected bucket events occur. They let a file arrival trigger processing without an application repeatedly listing the bucket.
 
