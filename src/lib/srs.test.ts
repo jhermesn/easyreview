@@ -53,4 +53,8 @@ describe('describeDelay', () => {
   ])('%i ms reads %s', (ms, text) => {
     expect(describeDelay(ms)).toBe(text);
   });
+
+  it('uses the given unit labels', () => {
+    expect(describeDelay(96 * DAY, ['min', 'h', 'd', 'mês', 'a'])).toBe('3.2mês');
+  });
 });

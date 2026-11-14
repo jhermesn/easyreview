@@ -49,13 +49,15 @@ export function schedule(prev: CardState | undefined, grade: Grade, now = Date.n
 }
 
 // "1m", "6m", "1d", "3.2mo": what the button will schedule, shown before grading like Anki does.
-export function describeDelay(ms: number): string {
-  if (ms < 60 * MIN) return `${Math.max(1, Math.round(ms / MIN))}m`;
-  if (ms < DAY - 30 * MIN) return `${Math.round(ms / (60 * MIN))}h`;
+// units: minute, hour, day, month, year suffixes in the reader's language.
+export function describeDelay(ms: number, units: string[] = ['m', 'h', 'd', 'mo', 'y']): string {
+  const [m, h, d, mo, y] = units;
+  if (ms < 60 * MIN) return `${Math.max(1, Math.round(ms / MIN))}${m}`;
+  if (ms < DAY - 30 * MIN) return `${Math.round(ms / (60 * MIN))}${h}`;
   const days = ms / DAY;
-  if (days < 30) return `${Math.round(days)}d`;
-  if (days < 365) return `${Number((days / 30).toFixed(1))}mo`;
-  return `${Number((days / 365).toFixed(1))}y`;
+  if (days < 30) return `${Math.round(days)}${d}`;
+  if (days < 365) return `${Number((days / 30).toFixed(1))}${mo}`;
+  return `${Number((days / 365).toFixed(1))}${y}`;
 }
 
 export const isDue = (s: CardState | undefined, now = Date.now()) => !!s && s.due <= now;

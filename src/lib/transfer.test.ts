@@ -36,8 +36,8 @@ describe('progress code', () => {
   });
 
   it.each([
-    ['not a code', 'This is not an Easy Review progress code.'],
-    ['ER1.@@@', 'The code is incomplete or damaged. Copy it again.'],
+    ['not a code', 'transfer.error.notCode'],
+    ['ER1.@@@', 'transfer.error.damaged'],
   ])('rejects %j', async (code, message) => {
     await expect(importCode(code)).rejects.toThrow(message);
   });
@@ -51,7 +51,7 @@ describe('progress code', () => {
       return c;
     })();
 
-    await expect(importCode(empty)).rejects.toThrow('The code holds no progress.');
+    await expect(importCode(empty)).rejects.toThrow('transfer.error.empty');
     expect(localStorage.getItem(KEYS.known)).toBe('{"a":1}');
   });
 });

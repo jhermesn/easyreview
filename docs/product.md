@@ -21,4 +21,6 @@ The goal is 80/20 review: what the exam asks, in the fewest words. A reader shou
 
 ## Look
 
+The interface is translated (English and Brazilian Portuguese so far, see `translations.md`); study content is written in English.
+
 The site follows the AWS Builder Center design standards. Colors, type and spacing come from the tokens in `src/styles/global.css`; reuse them instead of new values. The layout has two panels: a sidebar tree (cert, then domain, then unit) beside the content. Navigation prefers icons (`src/components/Icon.astro`) and the site's own badges over text. Check every UI change at desktop width and at about 400 px.

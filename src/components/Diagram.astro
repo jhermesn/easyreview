@@ -3,12 +3,14 @@ import type { CollectionEntry } from 'astro:content';
 import { formatRich, withBase } from '../lib/format';
 import { layoutEdges, edgeLabelY, nodeText, ICON } from '../lib/diagram';
 import Icon from './Icon.astro';
+import { localeOf, useTranslations } from '../i18n';
 
 type DiagramData = CollectionEntry<'topics'>['data']['diagrams'][number];
 interface Props {
   d: DiagramData;
 }
 const { d } = Astro.props;
+const t = useTranslations(localeOf(Astro.currentLocale));
 
 const tones: Record<string, string> = {
   compute: '#f59e0b',
@@ -27,7 +29,7 @@ const edges = layoutEdges(d);
 const markerId = `arrow-${d.id}`;
 ---
 <figure class="diagram" data-diagram>
-  <figcaption>{d.title}<span class="swipe" aria-hidden="true">swipe <Icon name="arrow-right" size={12} /></span></figcaption>
+  <figcaption>{d.title}<span class="swipe" aria-hidden="true">{t('diagram.swipe')} <Icon name="arrow-right" size={12} /></span></figcaption>
   <div class="viewport">
   <div class="canvas">
     <svg viewBox={`0 0 ${d.width} ${d.height}`} role="img" aria-label={d.title} style={`--vbw: ${d.width}`}>
@@ -80,7 +82,7 @@ const markerId = `arrow-${d.id}`;
   )}
   {d.nodes.some((n) => n.info) && (
     <details class="box-notes">
-      <summary>Box details ({d.nodes.filter((n) => n.info).length})</summary>
+      <summary>{t('diagram.details', { n: d.nodes.filter((n) => n.info).length })}</summary>
       <dl>
         {d.nodes.filter((n) => n.info).map((n) => (<><dt>{n.label}</dt><dd set:html={formatRich(n.info!)} /></>))}
       </dl>

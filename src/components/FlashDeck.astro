@@ -1,6 +1,7 @@
 ---
 import { formatRich, jsonForScript } from '../lib/format';
 import Icon from './Icon.astro';
+import { localeOf, useTranslations } from '../i18n';
 
 export interface DeckCard {
   id: string;
@@ -16,13 +17,14 @@ interface Props {
   filters?: boolean;
 }
 const { cards, filters = false } = Astro.props;
+const t = useTranslations(localeOf(Astro.currentLocale));
 const payload = cards.map((c) => ({ ...c, q: formatRich(c.q), a: formatRich(c.a) }));
 const topics = [...new Map(cards.map((c) => [c.topic, c.topicTitle])).entries()];
 const grades = [
-  { id: 'again', label: 'Again', key: '1', cls: 'bad' },
-  { id: 'hard', label: 'Hard', key: '2', cls: '' },
-  { id: 'good', label: 'Good', key: '3', cls: 'ok' },
-  { id: 'easy', label: 'Easy', key: '4', cls: 'easy' },
+  { id: 'again', label: t('deck.again'), key: '1', cls: 'bad' },
+  { id: 'hard', label: t('deck.hard'), key: '2', cls: '' },
+  { id: 'good', label: t('deck.good'), key: '3', cls: 'ok' },
+  { id: 'easy', label: t('deck.easy'), key: '4', cls: 'easy' },
 ];
 ---
 <section class="deck" data-deck>
@@ -30,11 +32,11 @@ const grades = [
   <div class="bar">
     {filters && (
       <details class="pick" data-pick>
-        <summary><Icon name="layers" size={15} /> <span data-pick-label>All topics</span></summary>
+        <summary><Icon name="layers" size={15} /> <span data-pick-label>{t('deck.allTopics')}</span></summary>
         <div class="pick-panel">
           <div class="pick-actions">
-            <button type="button" data-pick-all>All</button>
-            <button type="button" data-pick-none>None</button>
+            <button type="button" data-pick-all>{t('deck.all')}</button>
+            <button type="button" data-pick-none>{t('deck.none')}</button>
           </div>
           <ul>
             {topics.map(([slug, title]) => (
@@ -44,38 +46,38 @@ const grades = [
         </div>
       </details>
     )}
-    <select data-mode aria-label="Which cards">
-      <option value="smart">Due + new</option>
-      <option value="due">Only due</option>
-      <option value="known">Known cards</option>
-      <option value="missed">Only missed</option>
-      <option value="traps">Only exam traps</option>
-      <option value="all">All, shuffled</option>
+    <select data-mode aria-label={t('deck.which')}>
+      <option value="smart">{t('deck.mode.smart')}</option>
+      <option value="due">{t('deck.mode.due')}</option>
+      <option value="known">{t('deck.mode.known')}</option>
+      <option value="missed">{t('deck.mode.missed')}</option>
+      <option value="traps">{t('deck.mode.traps')}</option>
+      <option value="all">{t('deck.mode.all')}</option>
     </select>
     <span class="nav">
-      <button type="button" data-prev title="Previous card (←)" aria-label="Previous card"><Icon name="arrow-left" size={15} /></button>
+      <button type="button" data-prev title={t('deck.prevTitle')} aria-label={t('deck.prev')}><Icon name="arrow-left" size={15} /></button>
       <span class="count muted" data-count></span>
-      <button type="button" data-next title="Next card (→)" aria-label="Next card"><Icon name="arrow-right" size={15} /></button>
+      <button type="button" data-next title={t('deck.nextTitle')} aria-label={t('deck.next')}><Icon name="arrow-right" size={15} /></button>
     </span>
   </div>
 
-  <div class="stage" data-flash tabindex="0" aria-live="polite" title="Flip (space)">
+  <div class="stage" data-flash tabindex="0" aria-live="polite" title={t('deck.flipTitle')}>
     <div class="card" data-card>
       <div class="face front">
-        <div class="meta"><span data-meta></span><span class="trap" data-trap hidden><Icon name="alert" size={14} /> trap</span></div>
+        <div class="meta"><span data-meta></span><span class="trap" data-trap hidden><Icon name="alert" size={14} /> {t('deck.trap')}</span></div>
         <div class="q" data-q></div>
-        <span class="hint"><Icon name="flip" size={13} /> tap to flip</span>
+        <span class="hint"><Icon name="flip" size={13} /> {t('deck.tapToFlip')}</span>
       </div>
       <div class="face back">
-        <div class="meta"><span>Answer</span><span class="muted" data-due></span></div>
+        <div class="meta"><span>{t('deck.answer')}</span><span class="muted" data-due></span></div>
         <div class="a" data-a></div>
       </div>
     </div>
-    <p class="empty muted" data-empty hidden>Nothing to review here right now. Pick other topics or another filter.</p>
+    <p class="empty muted" data-empty hidden>{t('deck.empty')}</p>
   </div>
 
   <div class="controls">
-    <button class="btn-primary" data-flip title="Show answer (space)"><Icon name="flip" /> Answer</button>
+    <button class="btn-primary" data-flip title={t('deck.showAnswer')}><Icon name="flip" /> {t('deck.answer')}</button>
     <div class="grades" data-grades hidden>
       {grades.map((g) => (
         <button type="button" class={g.cls} data-grade={g.id} title={`${g.label} (${g.key})`}>
@@ -84,7 +86,7 @@ const grades = [
       ))}
     </div>
   </div>
-  <p class="stats muted"><span data-stats></span> · <button class="link" data-reset title="Reset progress for the selected topics"><Icon name="reset" size={13} /></button></p>
+  <p class="stats muted"><span data-stats></span> · <button class="link" data-reset title={t('deck.reset')}><Icon name="reset" size={13} /></button></p>
 </section>
 
 <style>
@@ -141,6 +143,7 @@ const grades = [
 
 <script>
   import { KEYS, readJson, writeJson } from '../lib/storage';
+  import { clientT } from '../i18n';
 
   import { GRADES, describeDelay, isDue, isKnown, isNew, normalize, schedule, type CardState, type Grade } from '../lib/srs';
 
@@ -164,6 +167,8 @@ const grades = [
   function setup(root: HTMLElement) {
     if (root.dataset.ready) return;
     root.dataset.ready = '1';
+    const t = clientT();
+    const delay = (ms: number) => describeDelay(ms, t('deck.units').split(','));
     const all: Card[] = JSON.parse(root.querySelector('[data-cards]')!.textContent!);
     const $ = <T extends HTMLElement>(s: string) => root.querySelector<T>(s)!;
     const boxes = [...root.querySelectorAll<HTMLInputElement>('[data-pick-box]')];
@@ -186,7 +191,7 @@ const grades = [
       const label = root.querySelector('[data-pick-label]');
       if (!label) return;
       const on = boxes.filter((b) => b.checked);
-      label.textContent = on.length === boxes.length ? 'All topics' : on.length === 0 ? 'No topics' : on.length === 1 ? on[0].nextElementSibling!.textContent! : `${on.length} topics`;
+      label.textContent = on.length === boxes.length ? t('deck.allTopics') : on.length === 0 ? t('deck.noTopics') : on.length === 1 ? on[0].nextElementSibling!.textContent! : t('deck.nTopics', { n: on.length });
     };
 
     const build = () => {
@@ -225,7 +230,7 @@ const grades = [
       $('[data-meta]').textContent = c ? c.topicTitle : '';
       $('[data-trap]').hidden = !c?.trap;
       const s = c ? progress[c.id] : undefined;
-      $('[data-due]').textContent = s ? (isDue(s) ? 'due now' : `next in ${describeDelay(s.due - Date.now())}`) : 'new';
+      $('[data-due]').textContent = s ? (isDue(s) ? t('deck.dueNow') : t('deck.nextIn', { delay: delay(s.due - Date.now()) })) : t('deck.new');
       $('[data-flip]').hidden = !c;
       $('[data-grades]').hidden = true;
       $('[data-count]').textContent = queue.length ? `${pos + 1} / ${queue.length}` : '0';
@@ -236,7 +241,7 @@ const grades = [
       const due = scoped.filter((x) => isDue(progress[x.id], now)).length;
       const fresh = scoped.filter((x) => isNew(progress[x.id])).length;
       const known = scoped.filter((x) => isKnown(progress[x.id])).length;
-      $('[data-stats]').textContent = `${due} due · ${fresh} new · ${known}/${scoped.length} known`;
+      $('[data-stats]').textContent = t('deck.stats', { due, fresh, known, total: scoped.length });
     };
 
     const flip = () => {
@@ -248,7 +253,7 @@ const grades = [
       $('[data-grades]').hidden = !flipped;
       if (flipped) {
         const now = Date.now();
-        for (const g of GRADES) $(`[data-ivl="${g}"]`).textContent = describeDelay(schedule(progress[c.id], g, now).due - now);
+        for (const g of GRADES) $(`[data-ivl="${g}"]`).textContent = delay(schedule(progress[c.id], g, now).due - now);
       }
     };
 

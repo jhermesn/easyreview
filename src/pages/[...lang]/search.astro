@@ -1,8 +1,13 @@
 ---
-import Base from '../layouts/Base.astro';
-import { availableCerts } from '../lib/certs';
-import { getCertView, sectionHref, unitIdOf } from '../lib/content';
-import { jsonForScript, withBase } from '../lib/format';
+import Base from '../../layouts/Base.astro';
+import { availableCerts } from '../../lib/certs';
+import { getCertView, sectionHref, unitIdOf } from '../../lib/content';
+import { jsonForScript } from '../../lib/format';
+import { localeOf, localeParams, localePath, useTranslations } from '../../i18n';
+
+export const getStaticPaths = () => localeParams();
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
 
 // One entry per section, linked through the first cert that includes it; `cert` lists every exam that does.
 const views = await Promise.all(availableCerts().map((c) => getCertView(c.id)));
@@ -17,18 +22,18 @@ const index = views.flatMap((view) =>
       const cert = certCodes.get(s.id)!.join(' ');
       const topic = unit.data.title;
       return [
-        { kind: 'section', cert, title: s.data.title, text: `${topic} ${s.body ?? ''}`, href: withBase(sectionHref(view.cert.id, s)), topic },
-        ...s.data.cards.map((c) => ({ kind: 'card', cert, title: c.q, text: `${c.a} ${topic}`, href: withBase(`/${view.cert.id}/${unitIdOf(s)}#cards`), topic })),
+        { kind: 'section', cert, title: s.data.title, text: `${topic} ${s.body ?? ''}`, href: localePath(locale, sectionHref(view.cert.id, s)), topic },
+        ...s.data.cards.map((c) => ({ kind: 'card', cert, title: c.q, text: `${c.a} ${topic}`, href: localePath(locale, `/${view.cert.id}/${unitIdOf(s)}#cards`), topic })),
       ];
     }),
   ),
 );
 ---
-<Base title="Search" description="Search every AWS certification review topic, section and flashcard on Easy Review.">
+<Base title={t('nav.search')} description={t('search.description')}>
   <div class="article">
-    <h1>Search</h1>
+    <h1>{t('nav.search')}</h1>
   </div>
-  <input type="search" placeholder="lifecycle hook, StackSets, canary, cross-account..." autofocus data-search />
+  <input type="search" placeholder={t('search.placeholder')} aria-label={t('nav.search')} autofocus data-search />
   <ul class="results" data-results></ul>
   <script type="application/json" data-index set:html={jsonForScript(index)} />
 </Base>
@@ -42,12 +47,14 @@ const index = views.flatMap((view) =>
 </style>
 
 <script>
-  import { escapeHtml as esc } from '../lib/format';
+  import { escapeHtml as esc } from '../../lib/format';
+  import { clientT } from '../../i18n';
   type Entry = { kind: string; cert: string; title: string; text: string; href: string; topic?: string };
   document.addEventListener('astro:page-load', () => {
     const input = document.querySelector<HTMLInputElement>('[data-search]');
     if (!input || input.dataset.ready) return;
     input.dataset.ready = '1';
+    const t = clientT();
     const index: Entry[] = JSON.parse(document.querySelector('[data-index]')!.textContent!);
     const out = document.querySelector<HTMLElement>('[data-results]')!;
     const run = () => {
@@ -64,8 +71,8 @@ const index = views.flatMap((view) =>
         .sort((a, b) => b.score - a.score)
         .slice(0, 40);
       out.innerHTML = hits.length
-        ? hits.map(({ e }) => `<li><span class="c">${esc(e.cert)}</span><span class="k">${e.kind}</span><a href="${e.href}">${esc(e.title.replace(/[*`]/g, ''))}</a>${e.topic ? `<small>${esc(e.topic)}</small>` : ''}</li>`).join('')
-        : '<li class="muted">No match.</li>';
+        ? hits.map(({ e }) => `<li><span class="c">${esc(e.cert)}</span><span class="k">${t(e.kind === 'card' ? 'search.kind.card' : 'search.kind.section')}</span><a href="${e.href}">${esc(e.title.replace(/[*`]/g, ''))}</a>${e.topic ? `<small>${esc(e.topic)}</small>` : ''}</li>`).join('')
+        : `<li class="muted">${esc(t('search.none'))}</li>`;
     };
     input.addEventListener('input', run);
     const q = new URLSearchParams(location.search).get('q');

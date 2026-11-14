@@ -11,6 +11,8 @@ import { getCertView, knownGroups, sectionIds } from '../lib/content';
 import { getGuide } from '../lib/guides';
 import { jsonForScript, withBase } from '../lib/format';
 import { badgeUrl } from '../lib/badge';
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { LOCALES, localeIds, localeOf, localePath, stripLocale, useTranslations, DEFAULT_LOCALE } from '../i18n';
 import '../styles/global.css';
 
 interface Props {
@@ -23,32 +25,41 @@ interface Props {
   // Plain name of this page inside its cert ("CodeDeploy", "Flashcards"), shown by the resume block.
   heading?: string;
 }
-const { title, description = 'Notes, diagrams and flashcards for AWS certification review.', cert: certId, jsonLd = [], noindex = false, heading } = Astro.props;
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
+const { title, description = t('meta.description'), cert: certId, jsonLd = [], noindex = false, heading } = Astro.props;
+const link = (path: string) => localePath(locale, path);
+// The same page in every locale, for hreflang and the language picker.
+const pagePath = stripLocale(Astro.url.pathname);
+const alternates = localeIds.map((l) => ({ l, href: new URL(localePath(l, pagePath), Astro.site).href }));
 const cert = certId ? getCert(certId) : undefined;
 const fullTitle = `${title} · Easy Review`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 // Link previews show the logo with the name; the small icons below carry the logo alone.
 const image = new URL(withBase('/og.png'), Astro.site).href;
-const imageAlt = 'Easy Review: free study notes for AWS Certification exams';
+const imageAlt = t('meta.imageAlt');
 // `<` escaped so a string in the data can never close the script element.
 const ldJson = (data: Record<string, unknown>) => jsonForScript({ '@context': 'https://schema.org', ...data });
 const view = cert ? await getCertView(cert.id) : undefined;
 const hasGuide = cert ? !!getGuide(cert.id) : false;
 // Other free study tools by the same author, shown in the footer.
 const moreTools = [
-  { name: 'Redocted', href: 'https://jhermesn.dev/redocted/', text: 'Daily game: reveal a redacted AWS or Kubernetes docs page by guessing words.' },
-  { name: 'Wrong Answer Labs', href: 'https://github.com/jhermesn/wrong-answer-labs', text: 'Turn AWS exam questions you got wrong into hands-on labs with a grader.' },
+  { name: 'Redocted', href: 'https://jhermesn.dev/redocted/', text: t('footer.redocted') },
+  { name: 'Wrong Answer Labs', href: 'https://github.com/jhermesn/wrong-answer-labs', text: t('footer.wrongAnswerLabs') },
 ];
 const path = Astro.url.pathname.replace(/\/$/, '');
-const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'page' : undefined);
+const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' : undefined);
 ---
 <!doctype html>
-<html lang="en">
+<html lang={LOCALES[locale].lang} data-locale={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {!noindex && alternates.map((a) => <link rel="alternate" hreflang={LOCALES[a.l].lang} href={a.href} />)}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={alternates.find((a) => a.l === DEFAULT_LOCALE)!.href} />}
+    <meta property="og:locale" content={LOCALES[locale].og} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Easy Review" />
     <meta property="og:title" content={fullTitle} />
@@ -79,47 +90,48 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
   <body data-cert={cert?.id} data-code={cert?.code} data-page-title={heading}>
     <header class="topbar">
       {cert && (
-        <button class="icon-btn menu" type="button" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false" data-menu>
+        <button class="icon-btn menu" type="button" aria-label={t('nav.toggle')} aria-controls="sidebar" aria-expanded="false" data-menu>
           <Icon name="menu" />
         </button>
       )}
-      <a class="brand" href={withBase('/')} title="All certifications" aria-label="Easy Review, all certifications"><Logo /><span class="full">Easy Review</span><span class="short" aria-hidden="true">ER</span></a>
+      <a class="brand" href={link('/')} title={t('nav.allCerts')} aria-label={t('nav.brand')}><Logo /><span class="full">Easy Review</span><span class="short" aria-hidden="true">ER</span></a>
       {cert && (
-        <a class="current" href={withBase(`/${cert.id}`)} title={cert.name}>
+        <a class="current" href={link(`/${cert.id}`)} title={cert.name}>
           <img src={badgeUrl(cert.id)} alt="" width="26" height="30" data-badge-cert={cert.id} />
           <span>{cert.code}</span>
         </a>
       )}
       {!cert && (
-        <a class="current recent" href={withBase('/')} data-recent hidden title="Back to the last certification you studied">
+        <a class="current recent" href={link('/')} data-recent hidden title={t('nav.recent')}>
           <img src={withBase('/favicon.svg')} alt="" width="26" height="30" data-recent-badge />
           <span data-recent-code></span>
         </a>
       )}
-      <nav class="actions" aria-label="Tools">
+      <nav class="actions" aria-label={t('nav.tools')}>
         <div class="tools" id="topbar-tools" data-tools>
         {cert && (
-          <a class="icon-btn" href={withBase(`/${cert.id}/flashcards`)} aria-current={here(`/${cert.id}/flashcards`)} title="Flashcards">
-            <Icon name="cards" label="Flashcards" />
+          <a class="icon-btn" href={link(`/${cert.id}/flashcards`)} aria-current={here(`/${cert.id}/flashcards`)} title={t('nav.flashcards')}>
+            <Icon name="cards" label={t('nav.flashcards')} />
           </a>
         )}
         {cert && hasGuide && (
-          <a class="icon-btn" href={withBase(`/${cert.id}/coverage`)} aria-current={here(`/${cert.id}/coverage`)} title="Exam guide coverage">
-            <Icon name="target" label="Exam guide coverage" />
+          <a class="icon-btn" href={link(`/${cert.id}/coverage`)} aria-current={here(`/${cert.id}/coverage`)} title={t('nav.coverage')}>
+            <Icon name="target" label={t('nav.coverage')} />
           </a>
         )}
         <Reminder />
         <Transfer />
+        <LanguagePicker />
         </div>
-        <a class="icon-btn" href={withBase('/search')} aria-current={here('/search')} title="Search">
-          <Icon name="search" label="Search" />
+        <a class="icon-btn" href={link('/search')} aria-current={here('/search')} title={t('nav.search')}>
+          <Icon name="search" label={t('nav.search')} />
         </a>
-        <button class="icon-btn more" type="button" aria-controls="topbar-tools" aria-expanded="false" title="More tools" data-more>
-          <Icon name="more" label="More tools" />
+        <button class="icon-btn more-btn" type="button" aria-controls="topbar-tools" aria-expanded="false" title={t('nav.more')} data-more>
+          <Icon name="more" label={t('nav.more')} />
         </button>
         <GitHubStar class="wide-only" />
-        <a class="icon-btn wide-only" href={withBase('/')} aria-current={here('/')} title="All certifications">
-          <Icon name="grid" label="All certifications" />
+        <a class="icon-btn wide-only" href={link('/')} aria-current={here('/')} title={t('nav.allCerts')}>
+          <Icon name="grid" label={t('nav.allCerts')} />
         </a>
       </nav>
     </header>
@@ -127,7 +139,7 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
     <div class:list={['shell', { 'has-sidebar': !!cert }]}>
       {cert && (
         <aside id="sidebar" class="sidebar" data-sidebar>
-          <a class="side-cert" href={withBase(`/${cert.id}`)} aria-current={here(`/${cert.id}`)}>
+          <a class="side-cert" href={link(`/${cert.id}`)} aria-current={here(`/${cert.id}`)}>
             <img src={badgeUrl(cert.id)} alt="" width="44" height="51" data-badge-cert={cert.id} />
             <span><b>{cert.code}</b><small>{cert.name}</small></span>
           </a>
@@ -139,11 +151,11 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
             const own = view!.units.filter((u) => u.domain === d.id);
             return (
               <section class="side-domain">
-                <h2 title={`${d.weight}% of the exam`}><span>{d.name}</span><em>{d.weight}%</em></h2>
+                <h2 title={t('side.weight', { n: d.weight })}><span>{d.name}</span><em>{d.weight}%</em></h2>
                 <ul>
                   {own.map(({ unit, sections }) => (
                     <li>
-                      <a class="side-link" href={withBase(`/${cert.id}/${unit.id}`)} aria-current={here(`/${cert.id}/${unit.id}`)} data-known={sectionIds(sections)}>
+                      <a class="side-link" href={link(`/${cert.id}/${unit.id}`)} aria-current={here(`/${cert.id}/${unit.id}`)} data-known={sectionIds(sections)}>
                         <Icon name="circle" size={14} class="st st-open" />
                         <Icon name="check-circle" size={14} class="st st-done" />
                         <span>{unit.data.title}</span>
@@ -163,26 +175,26 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
         <footer class="footer">
           <div class="foot-row">
             <div class="foot-brand">
-              <a class="brand" href={withBase('/')}><Logo size={20} /><span>Easy Review</span></a>
+              <a class="brand" href={link('/')}><Logo size={20} /><span>Easy Review</span></a>
               <GitHubStar />
             </div>
-            <nav aria-label="Footer">
-              {here('/') !== 'page' && <a href={withBase('/#certs')}>Certifications</a>}
-              {here('/') !== 'page' && <a href={withBase('/passed')}>Who passed</a>}
-              <a href={withBase('/search')}>Search</a>
-              <a href="https://aws.amazon.com/certification/" target="_blank" rel="noopener">AWS Certification <Icon name="external" size={12} /></a>
+            <nav aria-label={t('footer.label')}>
+              {here('/') !== 'page' && <a href={link('/#certs')}>{t('footer.certs')}</a>}
+              {here('/') !== 'page' && <a href={link('/passed')}>{t('footer.passed')}</a>}
+              <a href={link('/search')}>{t('nav.search')}</a>
+              <a href="https://aws.amazon.com/certification/" target="_blank" rel="noopener">{t('footer.awsCertification')} <Icon name="external" size={12} /></a>
             </nav>
           </div>
-          <section class="more" aria-label="More study tools">
-            <h2>More study tools</h2>
+          <section class="more" aria-label={t('footer.moreTools')}>
+            <h2>{t('footer.moreTools')}</h2>
             <ul>
               {moreTools.map((t) => (
                 <li><a href={t.href} target="_blank" rel="noopener"><b>{t.name} <Icon name="external" size={11} /></b><span>{t.text}</span></a></li>
               ))}
             </ul>
           </section>
-          <p>Independent study notes. Not affiliated with, sponsored by or endorsed by Amazon Web Services. Each topic links the AWS documentation it is based on; when in doubt, the official docs and exam guide win.</p>
-          <p>AWS and AWS Certification are trademarks of Amazon.com, Inc. or its affiliates. Your progress is stored only in this browser; there are no accounts or trackers.</p>
+          <p>{t('footer.disclaimer')}</p>
+          <p>{t('footer.trademarks')}</p>
         </footer>
       </main>
     </div>
@@ -203,11 +215,11 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
   .current.recent { border-color: var(--ink-500); }
   .current.recent:hover { border-color: var(--amber); }
   .current span { font-weight: 700; font-size: 0.85rem; }
-  .actions { margin-left: auto; display: flex; gap: 0.3rem; }
+  .actions { margin-left: auto; display: flex; align-items: center; gap: 0.3rem; }
   .menu { display: none; }
   /* Phones keep menu, logo, exam and search in the bar; the other tools open as a row under it. */
   .tools { display: contents; }
-  .more { display: none; }
+  .more-btn { display: none; }
 
   .shell { display: block; }
   .shell.has-sidebar { display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); }
@@ -271,8 +283,8 @@ const here = (href: string) => (path === withBase(href).replace(/\/$/, '') ? 'pa
     .topbar :global(.wide-only) { display: none; }
     .current span { display: none; }
     .current { padding-inline: 0.35rem; }
-    .more { display: inline-grid; }
-    .more[aria-expanded='true'] { border-color: var(--amber); color: var(--ink-100); }
+    .more-btn { display: inline-grid; }
+    .more-btn[aria-expanded='true'] { border-color: var(--amber); color: var(--ink-100); }
     .tools { display: none; }
     .tools.open { position: absolute; top: 100%; left: 0; right: 0; display: flex; justify-content: flex-end; gap: 0.3rem; padding: 0.5rem 0.75rem; background: var(--ink-900); border-bottom: 1px solid var(--ink-700); box-shadow: 0 10px 20px rgb(0 0 0 / 0.4); }
   }

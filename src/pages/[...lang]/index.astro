@@ -1,16 +1,22 @@
 ---
-import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
-import HeroBadge from '../components/HeroBadge.astro';
-import { certs, levels, isAvailable, availableCerts } from '../lib/certs';
-import { getCertView, knownGroups, unitIdOf } from '../lib/content';
-import { getGuide } from '../lib/guides';
-import { withBase } from '../lib/format';
-import { badgeUrl } from '../lib/badge';
-import { examSummary } from '../lib/exams';
-import { absoluteUrl } from '../lib/seo';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import HeroBadge from '../../components/HeroBadge.astro';
+import { certs, levels, isAvailable, availableCerts } from '../../lib/certs';
+import { getCertView, knownGroups, unitIdOf } from '../../lib/content';
+import { getGuide } from '../../lib/guides';
+import { withBase } from '../../lib/format';
+import { badgeUrl } from '../../lib/badge';
+import { examSummary } from '../../lib/exams';
+import { absoluteUrl } from '../../lib/seo';
 import { Image } from 'astro:assets';
-import { ADD_YOURSELF, loadPeople } from '../lib/people';
+import { ADD_YOURSELF, loadPeople } from '../../lib/people';
+import { localeOf, localeParams, localePath, useTranslations } from '../../i18n';
+
+export const getStaticPaths = () => localeParams();
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
+const link = (path: string) => localePath(locale, path);
 
 const views = new Map(await Promise.all(availableCerts().map(async (c) => [c.id, await getCertView(c.id)] as const)));
 // Count only what a reader can open: sections some available cert's guide maps.
@@ -31,33 +37,33 @@ const faces = people.slice(0, 12);
 const certCount = people.reduce((n, p) => n + p.active, 0);
 
 // Site name and logo for search results.
-const home = absoluteUrl('/', Astro.site!);
+const home = new URL(link('/'), Astro.site).href;
 const jsonLd = [
   { '@type': 'WebSite', name: 'Easy Review', url: home },
   { '@type': 'Organization', name: 'Easy Review', url: home, logo: absoluteUrl('/icons/icon-512.png', Astro.site!), sameAs: ['https://github.com/jhermesn/easyreview'] },
 ];
 const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => !['foundational', 'business'].includes(l.id)).map((l) => [l])];
 ---
-<Base title="Study once, pass every AWS exam" description="Free AWS certification review: notes, step-by-step diagrams and flashcards from AWS documentation, mapped to every exam guide item. Study a topic once and it counts for every exam that uses it." jsonLd={jsonLd}>
+<Base title={t('home.title')} description={t('home.description')} jsonLd={jsonLd}>
   <section class="hero">
     <div class="copy">
-      <p class="script-label">100% AWS Docs<svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 8 C 30 3, 70 2, 117 6" /></svg></p>
-      <h1>Study each topic <em class="scribble">once</em>.<br />Use it on <em class="scribble">every</em> exam.</h1>
-      <p class="lead">Short notes, numbered diagrams and flashcards, mapped to every item of the official exam guides. Mark a topic as known and it stays known when you move to the next certification.</p>
-      <a class="resume" href={withBase('/')} data-recent hidden>
+      <p class="script-label">{t('home.kicker')}<svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 8 C 30 3, 70 2, 117 6" /></svg></p>
+      <h1>{t('home.h1.a')} <em class="scribble">{t('home.h1.once')}</em>.<br />{t('home.h1.b')} <em class="scribble">{t('home.h1.every')}</em> {t('home.h1.c')}</h1>
+      <p class="lead">{t('home.lead')}</p>
+      <a class="resume" href={link('/')} data-recent hidden>
         <img src={withBase('/favicon.svg')} alt="" width="34" height="39" data-recent-badge />
-        <span class="resume-text"><small>Continue where you left off</small><span><b data-recent-code></b> · <span data-recent-title></span></span></span>
+        <span class="resume-text"><small>{t('home.resume')}</small><span><b data-recent-code></b> · <span data-recent-title></span></span></span>
         <Icon name="arrow-right" />
       </a>
       <div class="ctas">
-        {primary && <a class="btn btn-primary" href={withBase(`/${primary.id}`)}>Start {primary.code}</a>}
-        <a class="btn" href="#certs"><Icon name="grid" /> All certifications</a>
+        {primary && <a class="btn btn-primary" href={link(`/${primary.id}`)}>{t('home.start', { code: primary.code })}</a>}
+        <a class="btn" href="#certs"><Icon name="grid" /> {t('nav.allCerts')}</a>
       </div>
       <ul class="stats">
-        <li><b data-count-up>{unitCount}</b><span><Icon name="book" size={12} /> topics</span></li>
-        <li><b data-count-up>{cardTotal}</b><span><Icon name="cards" size={12} /> flashcards</span></li>
-        <li><b data-count-up>{diagramTotal}</b><span><Icon name="diagram" size={12} /> diagrams</span></li>
-        <li><b><span data-count-up>{coveredPct}</span>%</b><span><Icon name="target" size={12} /> exam guide covered</span></li>
+        <li><b data-count-up>{unitCount}</b><span><Icon name="book" size={12} /> {t('home.stat.topics')}</span></li>
+        <li><b data-count-up>{cardTotal}</b><span><Icon name="cards" size={12} /> {t('home.stat.flashcards')}</span></li>
+        <li><b data-count-up>{diagramTotal}</b><span><Icon name="diagram" size={12} /> {t('home.stat.diagrams')}</span></li>
+        <li><b><span data-count-up>{coveredPct}</span>%</b><span><Icon name="target" size={12} /> {t('home.stat.covered')}</span></li>
       </ul>
     </div>
     <HeroBadge />
@@ -65,18 +71,18 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
 
   <section class="passed" aria-labelledby="passed-title">
     <div class="passed-copy">
-      <p class="passed-kicker"><Icon name="shield" size={14} /> Who passed</p>
-      <h2 id="passed-title">{people.length ? `${people.length} ${people.length === 1 ? 'person' : 'people'} studied here and passed` : 'Studied here and passed?'}</h2>
-      <p>{people.length ? `${certCount} active AWS Certifications on the wall, each checked against a public Credly badge.` : 'Be the first on the wall: your badges come from Credly, your photo from GitHub.'} Passed an exam? Add yourself with one pull request.</p>
+      <p class="passed-kicker"><Icon name="shield" size={14} /> {t('footer.passed')}</p>
+      <h2 id="passed-title">{people.length ? t(people.length === 1 ? 'home.passed.titleOne' : 'home.passed.titleMany', { n: people.length }) : t('home.passed.titleNone')}</h2>
+      <p>{people.length ? t('home.passed.count', { n: certCount }) : t('home.passed.first')} {t('home.passed.join')}</p>
       <div class="ctas">
-        {people.length > 0 && <a class="btn btn-primary" href={withBase('/passed')}>See who passed <Icon name="arrow-right" /></a>}
-        <a class="btn" href={ADD_YOURSELF} target="_blank" rel="noopener"><Icon name="check-circle" /> Add yourself <Icon name="external" size={12} /></a>
+        {people.length > 0 && <a class="btn btn-primary" href={link('/passed')}>{t('home.passed.see')} <Icon name="arrow-right" /></a>}
+        <a class="btn" href={ADD_YOURSELF} target="_blank" rel="noopener"><Icon name="check-circle" /> {t('passed.add')} <Icon name="external" size={12} /></a>
       </div>
     </div>
     {faces.length > 0 && (
-      <a class="faces" href={withBase('/passed')} aria-label="See everyone who passed">
+      <a class="faces" href={link('/passed')} aria-label={t('home.passed.everyone')}>
         {faces.map((p) => p.avatar
-          ? <Image src={p.avatar} alt={p.name} title={`${p.name} · ${p.active} AWS Certifications`} width={72} height={72} class:list={['face', `tier-${p.tier}`]} loading="lazy" />
+          ? <Image src={p.avatar} alt={p.name} title={`${p.name} · ${t('passed.activeCount', { n: p.active })}`} width={72} height={72} class:list={['face', `tier-${p.tier}`]} loading="lazy" />
           : <span class:list={['face', 'blank', `tier-${p.tier}`]} title={p.name}>{p.name.slice(0, 1)}</span>)}
         {people.length > faces.length && <span class="face more">+{people.length - faces.length}</span>}
       </a>
@@ -85,8 +91,8 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
 
   <section id="certs" class="catalog">
     <div class="catalog-head">
-      <h2>Certifications</h2>
-      <span class="known" data-known-set={allUnitGroups} title="Topics you marked as known"><Icon name="check-circle" size={15} /> <span data-known-count></span> topics known</span>
+      <h2>{t('footer.certs')}</h2>
+      <span class="known" data-known-set={allUnitGroups} title={t('known.title')}><Icon name="check-circle" size={15} /> <span data-known-count></span> {t('home.topicsKnown')}</span>
     </div>
     {rows.map((row) => (
       <div class="level-row">
@@ -94,21 +100,21 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
       const own = certs.filter((c) => c.level === lv.id);
       return own.length > 0 && (
         <div class="level" style={`--span: ${own.length}`}>
-          <h3>{lv.name}</h3>
+          <h3>{t(`level.${lv.id}`)}</h3>
           <ul class="badges" data-reveal>
             {own.map((c) => (
               <li>
                 {isAvailable(c) ? (
-                  <a class="tile" href={withBase(`/${c.id}`)} title={[`${c.code} · ${c.name}`, examSummary(c.id)].filter(Boolean).join(' · ')}>
+                  <a class="tile" href={link(`/${c.id}`)} title={[`${c.code} · ${c.name}`, examSummary(c.id)].filter(Boolean).join(' · ')}>
                     <img src={badgeUrl(c.id)} alt={`${c.code} ${c.name}`} width="104" height="120" loading="lazy" data-badge-cert={c.id} />
                     <span class="code">{c.code}</span>
                     <span class="ring" data-cert={c.id} data-known-set={knownGroups(views.get(c.id)?.sections ?? [])}><span data-known-count></span></span>
                   </a>
                 ) : (
-                  <div class="tile soon" title={[`${c.code} · ${c.name}`, c.note, examSummary(c.id), 'coming soon'].filter(Boolean).join(' · ')}>
+                  <div class="tile soon" title={[`${c.code} · ${c.name}`, c.note, examSummary(c.id), t('home.soon.title')].filter(Boolean).join(' · ')}>
                     <img src={badgeUrl(c.id)} alt={`${c.code} ${c.name}`} width="104" height="120" loading="lazy" data-badge-cert={c.id} />
                     <span class="code">{c.code}</span>
-                    <span class="flag"><Icon name="lock" size={12} /> soon</span>
+                    <span class="flag"><Icon name="lock" size={12} /> {t('home.soon')}</span>
                   </div>
                 )}
               </li>

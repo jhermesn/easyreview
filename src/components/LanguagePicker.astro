@@ -1,0 +1,28 @@
+---
+// The current page in every interface language.
+import Icon from './Icon.astro';
+import { LOCALES, localeIds, localeOf, localePath, stripLocale, useTranslations } from '../i18n';
+
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
+const page = stripLocale(Astro.url.pathname);
+---
+<details class="lang" data-lang>
+  <summary class="icon-btn" title={t('nav.language')}><Icon name="globe" label={t('nav.language')} /></summary>
+  <ul class="panel">
+    {localeIds.map((l) => (
+      <li><a href={localePath(l, page)} hreflang={LOCALES[l].lang} lang={LOCALES[l].lang} aria-current={l === locale ? 'true' : undefined} data-astro-reload>{LOCALES[l].name}</a></li>
+    ))}
+  </ul>
+</details>
+
+<style>
+  .lang { position: relative; }
+  .lang summary { list-style: none; cursor: pointer; }
+  .lang summary::-webkit-details-marker { display: none; }
+  .lang[open] summary { color: var(--ink-100); border-color: var(--amber); }
+  .panel { position: absolute; right: 0; top: calc(100% + 6px); z-index: 40; min-width: 12rem; margin: 0; padding: 0.4rem; list-style: none; background: var(--ink-900); border: 1px solid var(--ink-500); box-shadow: 0 12px 30px rgb(0 0 0 / 0.5); }
+  .panel a { display: block; padding: 0.45rem 0.6rem; color: var(--ink-300); text-decoration: none; }
+  .panel a:hover { color: var(--ink-100); background: var(--ink-850); }
+  .panel a[aria-current] { color: var(--amber); }
+</style>

@@ -1,5 +1,6 @@
 // Service worker registration and the daily study reminder (see components/Reminder.astro).
 import { withBase } from './format';
+import { clientT, type Key } from '../i18n';
 
 const TAG = 'study-reminder';
 const base = () => withBase('');
@@ -28,24 +29,26 @@ async function isOn() {
   }
 }
 
-async function toggleNotifications(): Promise<string> {
+// Returns the interface string to show.
+async function toggleNotifications(): Promise<Key> {
   const reg = await registration();
-  if (!reg?.periodicSync || !('Notification' in window)) return 'This browser cannot schedule reminders. Use the calendar option.';
+  if (!reg?.periodicSync || !('Notification' in window)) return 'remind.unsupported';
   if (await isOn()) {
     await reg.periodicSync.unregister(TAG);
-    return 'Daily notification turned off.';
+    return 'remind.off';
   }
-  if ((await Notification.requestPermission()) !== 'granted') return 'Notifications are blocked for this site.';
+  if ((await Notification.requestPermission()) !== 'granted') return 'remind.blocked';
   try {
     await reg.periodicSync.register(TAG, { minInterval: 24 * 60 * 60 * 1000 });
-    return 'On. You will get a reminder about once a day.';
+    return 'remind.on';
   } catch {
-    return 'Install the site as an app first (browser menu, "Install"), then turn this on.';
+    return 'remind.install';
   }
 }
 
 // A repeating daily calendar event at the chosen local time, linking back to the site.
 function downloadCalendar(time: string) {
+  const t = clientT();
   const [h, m] = time.split(':').map(Number);
   const start = new Date();
   start.setHours(h, m, 0, 0);
@@ -58,8 +61,8 @@ function downloadCalendar(time: string) {
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Easy Review//Study reminder//EN',
     'BEGIN:VEVENT', `UID:study-reminder@${location.host}`, `DTSTAMP:${local(new Date())}`,
     `DTSTART:${local(start)}`, `DTEND:${local(end)}`, 'RRULE:FREQ=DAILY',
-    'SUMMARY:AWS study: 15 minutes of flashcards', `DESCRIPTION:Pick up where you left off: ${url}`, `URL:${url}`,
-    'BEGIN:VALARM', 'TRIGGER:PT0M', 'ACTION:DISPLAY', 'DESCRIPTION:Time for a quick review', 'END:VALARM',
+    `SUMMARY:${t('remind.ics.summary')}`, `DESCRIPTION:${t('remind.ics.description', { url })}`, `URL:${url}`,
+    'BEGIN:VALARM', 'TRIGGER:PT0M', 'ACTION:DISPLAY', `DESCRIPTION:${t('remind.ics.alarm')}`, 'END:VALARM',
     'END:VEVENT', 'END:VCALENDAR',
   ].join('\r\n');
   const a = document.createElement('a');
@@ -71,6 +74,7 @@ function downloadCalendar(time: string) {
 
 export async function setupReminder() {
   registerServiceWorker();
+  const t = clientT();
   const root = document.querySelector<HTMLDetailsElement>('[data-remind]');
   if (!root || root.dataset.ready) return;
   root.dataset.ready = '1';
@@ -80,9 +84,9 @@ export async function setupReminder() {
   const refresh = async () => {
     const on = await isOn();
     notify.classList.toggle('is-on', on);
-    label.textContent = on ? 'Notifications on (turn off)' : 'Turn on notifications';
+    label.textContent = on ? t('remind.onTurnOff') : t('remind.turnOn');
   };
-  notify.addEventListener('click', async () => { status.textContent = await toggleNotifications(); refresh(); });
+  notify.addEventListener('click', async () => { status.textContent = t(await toggleNotifications()); refresh(); });
   root.querySelector('[data-remind-ics]')!.addEventListener('click', () => downloadCalendar(root.querySelector<HTMLInputElement>('[data-remind-time]')!.value || '19:00'));
   const close = (ev: MouseEvent) => {
     if (!root.isConnected) return document.removeEventListener('click', close);
