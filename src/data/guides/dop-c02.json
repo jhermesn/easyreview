@@ -263,7 +263,9 @@
                 "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
                 "fsx-for-openzfs/nfs-snapshots-and-clones",
                 "storage-gateway/file-gateways",
-                "storage-gateway/volume-and-tape-gateways"
+                "storage-gateway/volume-and-tape-gateways",
+                "s3/buckets-objects-and-durability",
+                "s3/storage-classes"
               ]
             },
             {
@@ -606,7 +608,9 @@
               "sections": [
                 "availability-targets/failure-domains-and-spare-capacity",
                 "disaster-recovery/availability-replication-and-backup",
-                "ec2-auto-scaling/groups-launch-templates-and-az-balance"
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/multi-region-use-cases"
               ]
             },
             {
@@ -640,7 +644,8 @@
               "text": "Techniques to achieve high availability (for example, Multi-AZ, multi-Region)",
               "sections": [
                 "availability-targets/failure-domains-and-spare-capacity",
-                "disaster-recovery/availability-replication-and-backup"
+                "disaster-recovery/availability-replication-and-backup",
+                "global-infrastructure/regions-availability-zones-and-edge-locations"
               ]
             },
             {
@@ -811,7 +816,8 @@
                 "codepipeline/cross-region-actions",
                 "dynamodb/global-tables",
                 "ecr/image-replication",
-                "global-accelerator/regional-endpoint-routing"
+                "global-accelerator/regional-endpoint-routing",
+                "global-infrastructure/multi-region-use-cases"
               ]
             },
             {
@@ -958,7 +964,8 @@
               "kind": "knowledge",
               "text": "Encryption options for at-rest and in-transit logs and metrics (for example, client-side and server-side, AWS KMS)",
               "sections": [
-                "cloudwatch/log-encryption-and-data-protection"
+                "cloudwatch/log-encryption-and-data-protection",
+                "kms/encryption-at-rest-and-in-transit"
               ]
             },
             {
@@ -1013,7 +1020,8 @@
               "text": "Managing log storage lifecycles (for example, Amazon S3 lifecycles, CloudWatch log group retention)",
               "sections": [
                 "cloudwatch/log-groups-and-retention",
-                "s3/lifecycle-and-retention"
+                "s3/lifecycle-and-retention",
+                "s3/storage-classes"
               ]
             },
             {
@@ -1468,7 +1476,9 @@
                 "iam/policy-evaluation",
                 "iam/permissions-boundaries-and-session-policies",
                 "iam/saml-and-oidc-federation",
-                "api-gateway/authentication-and-api-keys"
+                "api-gateway/authentication-and-api-keys",
+                "iam/root-user",
+                "iam/users-groups-and-policies"
               ]
             },
             {
@@ -1505,7 +1515,8 @@
                 "iam/policy-evaluation",
                 "iam/access-analyzer",
                 "iam/resource-policy-principal-edge-cases",
-                "iam/passrole-and-service-linked-roles"
+                "iam/passrole-and-service-linked-roles",
+                "iam/users-groups-and-policies"
               ]
             },
             {
@@ -1537,7 +1548,8 @@
                 "eks/pod-identity",
                 "lambda/execution-roles-and-resource-policies",
                 "secrets-manager/cross-account-access",
-                "systems-manager/session-manager"
+                "systems-manager/session-manager",
+                "iam/credentials-and-mfa"
               ]
             }
           ]
@@ -1562,7 +1574,8 @@
                 "shield/response-team-and-proactive-engagement",
                 "transit-gateway/attachments-route-tables-and-sharing",
                 "vpc/gateway-endpoints-and-endpoint-policies",
-                "vpc/route-tables-and-peering"
+                "vpc/route-tables-and-peering",
+                "vpc/subnets-and-gateways"
               ]
             },
             {
@@ -1588,7 +1601,8 @@
                 "cloudfront/origin-access-control",
                 "cloudfront/signed-urls-and-cookies",
                 "kms/key-disablement-and-deletion",
-                "s3/access-points-and-cors"
+                "s3/access-points-and-cors",
+                "kms/encryption-at-rest-and-in-transit"
               ]
             },
             {
@@ -1632,7 +1646,8 @@
                 "direct-connect/private-connectivity-and-encryption",
                 "ebs/encryption-and-regional-copies",
                 "kms/multi-region-keys",
-                "kms/custom-key-stores"
+                "kms/custom-key-stores",
+                "kms/encryption-at-rest-and-in-transit"
               ]
             }
           ]
@@ -1670,7 +1685,9 @@
                 "waf/managed-and-rate-based-rules",
                 "s3/encryption-and-bucket-keys",
                 "s3/public-access-and-object-ownership",
-                "trusted-advisor/checks-and-event-notifications"
+                "trusted-advisor/checks-and-event-notifications",
+                "iam/credentials-and-mfa",
+                "s3/buckets-objects-and-durability"
               ]
             },
             {
