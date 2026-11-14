@@ -98,6 +98,9 @@ facts:
   - id: termination-oldest-config
     text: "OldestLaunchConfiguration terminates instances on a noncurrent launch configuration first. OldestLaunchTemplate terminates instances on a noncurrent launch template first, then those on the oldest version of the current template."
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html#predefined-termination-policies
+  - id: no-fee
+    text: EC2 Auto Scaling has no additional fee beyond the EC2 instances, CloudWatch and other resources it uses.
+    source: https://aws.amazon.com/ec2/autoscaling/pricing/
 diagrams:
   - id: asg-alb-zones
     title: Load balancing across an Auto Scaling group
@@ -253,6 +256,10 @@ cards:
     facts:
       - termination-oldest-config
       - termination-zone
+  - id: ec2-auto-scaling-079
+    q: Does Amazon EC2 Auto Scaling itself cost extra?
+    a: No. You pay only for the EC2 instances, CloudWatch and other resources it uses.
+    facts: [no-fee]
 ---
 An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces instances that terminate unexpectedly. A launch template is its versioned recipe for new instances, including the machine image, instance type and security groups. A machine image supplies the software to boot the instance; security groups are network traffic rules for its connections.
 

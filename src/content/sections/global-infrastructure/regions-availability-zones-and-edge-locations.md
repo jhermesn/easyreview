@@ -42,6 +42,15 @@ facts:
   - id: local-zones
     text: AWS Local Zones place compute, storage, database and other select resources close to large population and industry centers for low-latency access.
     source: https://docs.aws.amazon.com/local-zones/latest/ug/what-is-aws-local-zones.html#what-is-aws-local-zones
+  - id: global-services
+    text: A few AWS services are global within a partition, such as IAM, AWS Organizations, Amazon CloudFront, AWS Global Accelerator and Amazon Route 53; most services, such as EC2, RDS and Lambda, are Regional.
+    source: https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/global-services.html
+  - id: az-encryption
+    text: All traffic between Availability Zones is encrypted.
+    source: https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
+  - id: s3-namespace
+    text: By default, S3 general purpose bucket names must be unique across all AWS accounts in a partition, but each bucket is created in one Region.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html
 cards:
   - id: global-infrastructure-001
     q: How do AWS Regions and Availability Zones relate to each other?
@@ -85,6 +94,19 @@ cards:
     a: No. AZs are data centers inside a Region where you run resources. Edge locations are separate sites that cache and deliver content, such as CloudFront content, close to users.
     trap: true
     facts: [az, edge]
+  - id: global-infrastructure-016
+    q: "Which of these AWS services are global rather than Regional: IAM, Amazon CloudFront, Amazon EC2, Amazon RDS, Amazon Route 53?"
+    a: IAM, CloudFront and Route 53. EC2 and RDS are Regional.
+    facts: [global-services]
+  - id: global-infrastructure-017
+    q: Is Amazon S3 a global service because bucket names are unique worldwide?
+    a: No. Bucket names share a global namespace by default, but each bucket and its data live in one Region.
+    trap: true
+    facts: [s3-namespace]
+  - id: global-infrastructure-018
+    q: Is traffic between Availability Zones in a Region encrypted?
+    a: Yes. All traffic between AZs is encrypted.
+    facts: [az-encryption]
 diagrams:
   - id: region-azs-edge
     title: A Region, its Availability Zones, and edge locations
@@ -134,5 +156,7 @@ The AWS global infrastructure has three building blocks. A Region is a geographi
 - Every public Region has at least three AZs.
 - AZs are up to about 100 km (60 miles) apart, with single-digit millisecond latency between them.
 - AZ codes are the Region code plus a letter, such as us-east-2a.
+- Global: IAM, Organizations, CloudFront, Route 53, Global Accelerator. Most others are Regional.
+- Traffic between AZs is encrypted.
 
 > **Trap:** One AZ is not highly available. A single AZ can fail as a unit, so high availability needs at least two AZs.

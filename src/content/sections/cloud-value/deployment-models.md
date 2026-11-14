@@ -18,6 +18,9 @@ facts:
   - id: control
     text: Each type of cloud computing gives a different level of control, flexibility and management.
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/types-of-cloud-computing.html#types-of-cloud-computing
+  - id: service-models
+    text: Cloud services are traditionally grouped as IaaS (networking, compute and storage building blocks with the most control), PaaS (the provider manages the underlying hardware and operating systems so you focus on your application) and SaaS (complete software run and managed by the provider).
+    source: https://aws.amazon.com/types-of-cloud-computing/
 cards:
   - id: cloud-value-010
     q: What are the three cloud deployment models AWS describes?
@@ -36,6 +39,14 @@ cards:
     a: No. On-premises private cloud offers dedicated resources but few of the benefits of cloud computing, and it works much like legacy IT.
     trap: true
     facts: [on-premises]
+  - id: cloud-value-027
+    q: A team wants to deploy its application code without managing the servers or operating systems underneath. Which cloud service model is this?
+    a: "Platform as a Service (PaaS).\nIaaS gives raw building blocks to manage; SaaS is finished software run by the provider."
+    facts: [service-models]
+  - id: cloud-value-028
+    q: Which cloud service model gives the most control over networking, compute and storage?
+    a: Infrastructure as a Service (IaaS).
+    facts: [service-models]
 ---
 A deployment model says where an application's parts run. AWS describes three: all in the cloud, hybrid, and on-premises. Each gives a different level of control, flexibility and management. [Types of cloud computing](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/types-of-cloud-computing.html#types-of-cloud-computing)
 
@@ -62,5 +73,6 @@ A deployment model says where an application's parts run. AWS describes three: a
 - Three models: cloud, hybrid, on-premises.
 - Hybrid most often means cloud plus an existing data center.
 - On-premises private cloud gives dedicated resources, not the cloud's benefits.
+- IaaS: building blocks, most control. PaaS: provider runs hardware and OS. SaaS: finished software.
 
 > **Trap:** Hybrid does not mean using two cloud providers. AWS uses it for cloud resources connected to resources outside the cloud, most commonly on-premises.

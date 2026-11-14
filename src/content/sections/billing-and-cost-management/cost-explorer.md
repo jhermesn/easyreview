@@ -18,6 +18,12 @@ facts:
   - id: assistant
     text: Cost Explorer can answer cost questions asked in plain words through AWS assistant, explaining trends, top drivers and anomalies.
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html#ce-what-is
+  - id: rightsizing
+    text: Cost Explorer rightsizing recommendations show underutilized EC2 instances across member accounts in one view and suggest downsizing or terminating them.
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-rightsizing.html
+  - id: sp-recommendations
+    text: AWS gives Savings Plans recommendations based on past usage, viewable from the management account or a member account and through the Cost Explorer API.
+    source: https://docs.aws.amazon.com/savingsplans/latest/userguide/sp-recommendations.html
 cards:
   - id: billing-and-cost-management-005
     q: A manager wants to see which AWS services drove last quarter's cost increase. Which tool fits?
@@ -40,6 +46,14 @@ cards:
     a: No. Cost Explorer analyzes costs; threshold alerts come from AWS Budgets.
     trap: true
     facts: [purpose]
+  - id: billing-and-cost-management-029
+    q: A company with many AWS accounts wants one view of underutilized EC2 instances to downsize, without extra tooling. Which feature fits?
+    a: "Cost Explorer rightsizing recommendations.\nThey list underutilized EC2 instances across member accounts and suggest downsizing or terminating them."
+    facts: [rightsizing]
+  - id: billing-and-cost-management-030
+    q: A company wants AWS to suggest a Savings Plans commitment from its past usage. Where does it get this?
+    a: Savings Plans recommendations, in the Billing and Cost Management console or the Cost Explorer API, based on past usage.
+    facts: [sp-recommendations]
 ---
 AWS Cost Explorer is the analysis tool for past and forecast costs. It charts spending by service, account, tag or other dimensions and helps find what drives cost. [AWS Cost Explorer](https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html#ce-what-is)
 
@@ -60,6 +74,7 @@ AWS Cost Explorer is the analysis tool for past and forecast costs. It charts sp
 
 - If the question says visualize, analyze or understand cost trends, think AWS Cost Explorer.
 - If the question says Reserved Instance purchase recommendations, think Cost Explorer.
+- If the question says underutilized EC2 instances across accounts, think Cost Explorer rightsizing recommendations, because they show them in one view.
 
 ### Remember
 

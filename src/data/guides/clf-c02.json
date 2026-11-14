@@ -252,7 +252,8 @@
               "text": "AWS compliance and governance concepts",
               "sections": [
                 "artifact/compliance-programs",
-                "config/recorders-and-configuration-history"
+                "config/recorders-and-configuration-history",
+                "organizations/service-control-policies"
               ]
             },
             {
@@ -270,7 +271,8 @@
               "sections": [
                 "cloudtrail/event-history-and-event-types",
                 "cloudwatch/log-groups-and-retention",
-                "vpc/flow-logs"
+                "vpc/flow-logs",
+                "s3/inventory-and-access-logging"
               ]
             },
             {
@@ -320,7 +322,8 @@
                 "cloudwatch/alarm-actions-and-composite-alarms",
                 "cloudtrail/trails-and-event-selectors",
                 "config/managed-custom-and-proactive-rules",
-                "control-tower/landing-zone-and-shared-accounts"
+                "control-tower/landing-zone-and-shared-accounts",
+                "cloudwatch/metrics-dimensions-and-resolution"
               ]
             },
             {
@@ -503,7 +506,9 @@
               "sections": [
                 "management-console/ways-to-access-aws",
                 "cloudformation/template-structure-and-dependencies",
-                "elastic-beanstalk/applications-environments-and-roles"
+                "elastic-beanstalk/applications-environments-and-roles",
+                "systems-manager/managed-nodes-and-hybrid-activation",
+                "cdk/apps-stacks-and-constructs"
               ]
             },
             {
@@ -539,7 +544,8 @@
               "kind": "skill",
               "text": "Evaluating requirements to determine whether to use one-time operations or repeatable processes",
               "sections": [
-                "management-console/ways-to-access-aws"
+                "management-console/ways-to-access-aws",
+                "cloudformation/stackset-permissions-and-targeting"
               ]
             },
             {
@@ -623,7 +629,8 @@
               "text": "Describing when to use multiple Regions (for example, disaster recovery, business continuity, low latency for end users, data sovereignty)",
               "sections": [
                 "global-infrastructure/multi-region-use-cases",
-                "disaster-recovery/recovery-strategy-selection"
+                "disaster-recovery/recovery-strategy-selection",
+                "rds/read-replicas-and-regional-recovery"
               ]
             }
           ]
@@ -641,7 +648,8 @@
                 "lightsail/simple-virtual-servers",
                 "batch/managed-batch-computing",
                 "elastic-beanstalk/applications-environments-and-roles",
-                "outposts/on-premises-aws-infrastructure"
+                "outposts/on-premises-aws-infrastructure",
+                "deployment-strategies/golden-images-and-bootstrap"
               ]
             },
             {
@@ -735,7 +743,8 @@
               "kind": "skill",
               "text": "Identifying NoSQL databases (for example, DynamoDB)",
               "sections": [
-                "dynamodb/capacity-scaling-and-throttling"
+                "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/dax-read-caching"
               ]
             },
             {
@@ -743,7 +752,8 @@
               "kind": "skill",
               "text": "Identifying memory-based databases (for example, Amazon ElastiCache)",
               "sections": [
-                "elasticache/engines-replicas-and-multi-az"
+                "elasticache/engines-replicas-and-multi-az",
+                "dynamodb/dax-read-caching"
               ]
             },
             {
@@ -830,7 +840,9 @@
               "kind": "skill",
               "text": "Identifying the uses for object storage",
               "sections": [
-                "s3/buckets-objects-and-durability"
+                "s3/buckets-objects-and-durability",
+                "s3/public-access-and-object-ownership",
+                "s3/replication"
               ]
             },
             {
@@ -848,7 +860,8 @@
               "text": "Identifying block storage solutions (for example, Amazon Elastic Block Store [Amazon EBS], instance store)",
               "sections": [
                 "ebs/volume-types",
-                "ec2/instance-store-lifecycle"
+                "ec2/instance-store-lifecycle",
+                "ebs/snapshots-and-cross-az-recovery"
               ]
             },
             {
@@ -860,7 +873,8 @@
                 "fsx-for-windows/smb-directory-integration-and-availability",
                 "fsx-for-lustre/parallel-storage-and-s3-integration",
                 "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
-                "fsx-for-openzfs/nfs-snapshots-and-clones"
+                "fsx-for-openzfs/nfs-snapshots-and-clones",
+                "efs/mount-targets-and-access-points"
               ]
             },
             {
@@ -1049,7 +1063,8 @@
               "sections": [
                 "codebuild/buildspec-phases",
                 "codepipeline/stages-actions-and-triggers",
-                "xray/traces-segments-and-propagation"
+                "xray/traces-segments-and-propagation",
+                "elastic-beanstalk/health-and-deployment-troubleshooting"
               ]
             },
             {
@@ -1158,7 +1173,8 @@
               "text": "Billing support and information",
               "sections": [
                 "billing-and-cost-management/cost-explorer",
-                "support/support-center-and-cases"
+                "support/support-center-and-cases",
+                "billing-and-cost-management/credits"
               ]
             },
             {
@@ -1177,7 +1193,8 @@
                 "organizations/accounts-ous-and-consolidated-billing",
                 "resource-access-manager/resource-sharing-and-invitations",
                 "service-quotas/quotas-and-increases",
-                "service-catalog/products-portfolios-and-versions"
+                "service-catalog/products-portfolios-and-versions",
+                "organizations/service-control-policies"
               ]
             },
             {

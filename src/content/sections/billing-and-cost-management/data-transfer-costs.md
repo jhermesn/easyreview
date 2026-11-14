@@ -21,6 +21,9 @@ facts:
   - id: cross-az-ec2
     text: Data transferred in to and out from Amazon EC2, Amazon RDS, Amazon Redshift, DAX, ElastiCache and network interfaces across Availability Zones in the same Region is charged at 0.01 USD/GB in each direction.
     source: https://aws.amazon.com/ec2/pricing/on-demand/#Data_Transfer_within_the_same_AWS_Region
+  - id: s3-same-region
+    text: Data transferred from an Amazon S3 bucket to any AWS service in the same Region, such as Amazon EC2, is free.
+    source: https://aws.amazon.com/s3/pricing/
 cards:
   - id: billing-and-cost-management-019
     q: Does AWS charge for data uploaded from the internet into AWS?
@@ -39,6 +42,11 @@ cards:
     q: How much data transfer out to the internet does AWS include free each month?
     a: 100 GB per month, aggregated across all services and Regions except China and GovCloud.
     facts: [free-100gb]
+  - id: billing-and-cost-management-028
+    q: An application on Amazon EC2 reads objects from an Amazon S3 bucket in the same Region. Is the data transfer from S3 to EC2 charged?
+    a: No. Data transfer from S3 to any AWS service in the same Region is free.
+    trap: true
+    facts: [s3-same-region]
 ---
 Data transfer pricing depends on direction and distance. Data coming in from the internet is free. Data leaving AWS for the internet, crossing Regions, or crossing Availability Zones is generally charged. [Understanding data transfer charges](https://docs.aws.amazon.com/cur/latest/userguide/cur-data-transfers-charges.html#cur-data-transfers-charges)
 
@@ -60,11 +68,13 @@ Data transfer pricing depends on direction and distance. Data coming in from the
 - If the question says uploading data to AWS costs, think free inbound.
 - If the question says copying data to another Region, think charged out of the source Region.
 - If the question says traffic between AZs, think a small charge in each direction.
+- If the question says S3 to EC2 in the same Region, think no data transfer charge, because in-Region transfer out of S3 to AWS services is free.
 
 ### Remember
 
 - Inbound from the internet: free.
 - 100 GB out to the internet free per month, across all services and Regions (except China and GovCloud).
 - Cross-AZ for EC2: 0.01 USD/GB each way.
+- S3 to an AWS service in the same Region: free.
 
 > **Trap:** Multi-AZ designs are not free of transfer costs. Replication and traffic between AZs are charged for many services.

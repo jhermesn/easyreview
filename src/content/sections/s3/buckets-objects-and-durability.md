@@ -24,6 +24,12 @@ facts:
   - id: versioning
     text: S3 Versioning keeps multiple versions of an object in the same bucket, so accidentally deleted or overwritten objects can be restored.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#CoreConcepts
+  - id: flat
+    text: S3 buckets have a flat structure, not a file system hierarchy; console folders are shared key name prefixes.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-folders.html
+  - id: transfer-acceleration
+    text: S3 Transfer Acceleration speeds up long-distance transfers to a bucket by routing them through CloudFront edge locations.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
 cards:
   - id: s3-112
     q: What kind of storage is Amazon S3, and what are its two main building blocks?
@@ -50,6 +56,15 @@ cards:
     q: How can a company recover an Amazon S3 object that someone overwrote by mistake?
     a: Turn on S3 Versioning. It keeps earlier versions in the bucket, so the old version can be restored.
     facts: [versioning]
+  - id: s3-126
+    q: Users around the world upload large files to one Amazon S3 bucket and uploads are slow. Which S3 feature speeds them up?
+    a: S3 Transfer Acceleration, which routes uploads through CloudFront edge locations.
+    facts: [transfer-acceleration]
+  - id: s3-127
+    q: Does Amazon S3 store objects in a folder hierarchy like a file system?
+    a: No. S3 is flat; folders in the console are shared key name prefixes.
+    trap: true
+    facts: [flat]
 ---
 Amazon S3 stores data as objects in buckets. It is built for any amount of data with very high durability, so it is the default place on AWS for files, backups, data lakes and static website content. [What is Amazon S3?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#Welcome)
 

@@ -33,6 +33,9 @@ facts:
   - id: no-contracts
     text: The paid plans offer technical support cases with pay-by-the-month pricing and no long-term contracts.
     source: https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#features
+  - id: third-party
+    text: Business Support+ includes third-party software support, and Enterprise Support includes all Business Support+ benefits.
+    source: https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#features
 cards:
   - id: support-001
     q: What are the current AWS Support plans?
@@ -67,6 +70,10 @@ cards:
     q: Do paid AWS Support plans require a long-term contract?
     a: No. They are priced by the month with no long-term contract.
     facts: [no-contracts]
+  - id: support-014
+    q: Which AWS Support plans include help with popular third-party software on AWS?
+    a: Business Support+ and above; Enterprise Support includes every Business Support+ benefit. Basic Support doesn't.
+    facts: [third-party]
 ---
 AWS Support plans set how much help a customer gets and how fast. Basic comes with every account. AWS has reorganized the plans: today they are Basic, Business Support+, Enterprise Support and Unified Operations. Developer, Business and Enterprise On-Ramp end on January 1, 2027. [AWS Support Plans](https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#aws-support-plans)
 

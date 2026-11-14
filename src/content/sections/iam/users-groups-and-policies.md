@@ -30,6 +30,12 @@ facts:
   - id: temporary
     text: AWS recommends that human users and workloads use temporary credentials, such as IAM roles, instead of IAM users with long-term passwords and access keys.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#root-user-best-practices
+  - id: last-accessed
+    text: IAM last accessed information shows which services an identity or policy has actually used, to remove unused permissions and keep least privilege.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_last-accessed.html
+  - id: credential-report
+    text: The IAM credential report lists all users in the account and the status of their passwords, access keys and MFA devices.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html
 cards:
   - id: iam-078
     q: Ten developers need the same permissions in AWS. What is the simplest way to manage them in IAM?
@@ -61,6 +67,14 @@ cards:
     q: An employee moves from the support team to the finance team. How should an administrator change the employee's IAM permissions?
     a: Remove the user from the support group and add them to the finance group, instead of editing the user's own permissions.
     facts: [group-change-job]
+  - id: iam-095
+    q: An auditor needs a list of all IAM users with the status of their passwords, access keys and MFA. Which IAM feature provides it?
+    a: The IAM credential report.
+    facts: [credential-report]
+  - id: iam-096
+    q: An administrator wants to see which permitted services an IAM role never uses, to trim its permissions. Which IAM feature helps?
+    a: IAM last accessed information, which shows when each service was last used.
+    facts: [last-accessed]
 ---
 IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 
@@ -82,6 +96,7 @@ IAM controls who can do what in an AWS account. Users are identities for people,
 - If the question says many users with the same permissions, think IAM group.
 - If the question says only the permissions needed, think least privilege.
 - If the question says a reusable policy you can edit, think customer managed policy.
+- If the question says audit the status of all users' credentials, think IAM credential report, because it lists passwords, keys and MFA per user.
 
 ### Remember
 

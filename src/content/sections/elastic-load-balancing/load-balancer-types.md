@@ -158,6 +158,9 @@ facts:
   - id: lambda-one-function
     text: "An ALB target group of type lambda holds one Lambda function; to replace the function, AWS recommends a new target group and an updated listener rule."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#register-lambda-function
+  - id: healthy-targets
+    text: A load balancer distributes incoming traffic across targets in multiple Availability Zones, monitors their health and routes traffic only to healthy targets.
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html
 cards:
   - id: elastic-load-balancing-002
     q: When should an application use an ALB, NLB, or GWLB?
@@ -330,6 +333,10 @@ cards:
     facts:
       - lambda-one-function
       - weights
+  - id: elastic-load-balancing-058
+    q: How does Elastic Load Balancing improve the availability of an application on EC2 instances in two Availability Zones?
+    a: It spreads traffic across the instances in both AZs and sends requests only to healthy ones.
+    facts: [healthy-targets]
 diagrams:
   - id: alb-weighted-request-flow
     title: ALB rules select a weighted target group

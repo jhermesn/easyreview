@@ -24,6 +24,9 @@ facts:
   - id: ri-marketplace
     text: The EC2 Reserved Instance Marketplace lets customers sell unused Standard Reserved Instances, for example after moving Regions or changing instance types.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html#ri-market-general
+  - id: payment-options
+    text: Reserved Instances can be paid All Upfront, Partial Upfront or No Upfront; with Partial or No Upfront the rest is billed monthly over the term.
+    source: https://aws.amazon.com/ec2/pricing/reserved-instances/
 cards:
   - id: ec2-044
     q: What is the difference between a regional and a zonal EC2 Reserved Instance?
@@ -50,6 +53,10 @@ cards:
     a: No. Only a zonal Reserved Instance (or a Capacity Reservation) reserves capacity, in one AZ.
     trap: true
     facts: [regional, zonal]
+  - id: ec2-055
+    q: What payment options can a company choose when it buys EC2 Reserved Instances?
+    a: "All Upfront, Partial Upfront or No Upfront.\nWith Partial or No Upfront, the remaining balance is billed monthly over the term."
+    facts: [payment-options]
 ---
 Reserved Instances are discounts on EC2 usage that matches their attributes. Their scope decides how flexible the discount is and whether it reserves capacity. In AWS Organizations, the discount can be shared across accounts. [Regional and zonal Reserved Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-scope.html#reserved-instances-scope)
 
@@ -77,5 +84,6 @@ Reserved Instances are discounts on EC2 usage that matches their attributes. The
 
 - Scope doesn't change the price.
 - Standard: modify only; Convertible: exchange.
+- RI payment: All Upfront, Partial Upfront, No Upfront.
 
 > **Trap:** Size flexibility applies only to regional RIs on Linux/Unix with default tenancy, not to Windows or zonal RIs.

@@ -36,6 +36,12 @@ facts:
   - id: customer-specific
     text: Customer-specific controls are solely the customer's responsibility, based on the applications they deploy in AWS services.
     source: https://aws.amazon.com/compliance/shared-responsibility-model/
+  - id: global-infra
+    text: "AWS is responsible for the global infrastructure that runs AWS services: the Regions, Availability Zones and edge locations."
+    source: https://aws.amazon.com/compliance/shared-responsibility-model/
+  - id: pentest
+    text: Customers may run security assessments and penetration tests on their own resources for permitted services without prior AWS approval; DoS and DDoS tests are prohibited outside AWS's simulated DDoS testing policy.
+    source: https://aws.amazon.com/security/penetration-testing/
 cards:
   - id: shared-responsibility-001
     q: In the AWS shared responsibility model, what does "security of the cloud" versus "security in the cloud" mean?
@@ -78,6 +84,15 @@ cards:
     a: No. AWS takes on the OS and engine patching, but the customer still controls data, access, network settings and encryption choices.
     trap: true
     facts: [rds-patching, in-cloud, abstracted]
+  - id: shared-responsibility-011
+    q: Under the AWS shared responsibility model, who is responsible for the Regions, Availability Zones and edge locations?
+    a: AWS, as part of security of the cloud.
+    facts: [global-infra]
+  - id: shared-responsibility-012
+    q: Does a customer need AWS approval before running a penetration test against its own EC2 instances?
+    a: No, for permitted services. DoS and DDoS testing are prohibited outside AWS's simulated DDoS testing policy.
+    trap: true
+    facts: [pentest]
 ---
 AWS and the customer share security and compliance. AWS secures the cloud itself: facilities, hardware, network, and the host software that runs the services. The customer secures what it builds in the cloud. The customer's part grows or shrinks with the services it chooses. [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/)
 

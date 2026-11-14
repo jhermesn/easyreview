@@ -42,6 +42,15 @@ facts:
   - id: phase-details
     text: Envision shows how cloud accelerates business outcomes; Align finds capability gaps across the six perspectives; Launch delivers pilots in production; Scale expands pilots to the desired scale.
     source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/your-cloud-transformation-journey.html#your-cloud-transformation-journey
+  - id: platform-stakeholders
+    text: The CAF Platform perspective has seven capabilities, and its common stakeholders are the CTO, technology leaders, architects and engineers.
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/platform-perspective.html
+  - id: operations-capabilities
+    text: "The CAF Operations perspective has nine capabilities: observability, event management (AIOps), incident and problem management, change and release management, performance and capacity management, configuration management, patch management, availability and continuity management, and application management."
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/operations-perspective.html
+  - id: business-capabilities
+    text: "The CAF Business perspective has eight capabilities: strategy management, portfolio management, innovation management, product management, strategic partnership, data monetization, business insights and data science. Its common stakeholders are the CEO, CFO, COO, CIO and CTO."
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/business-perspective.html
 cards:
   - id: cloud-adoption-001
     q: What are the six perspectives of the AWS Cloud Adoption Framework (AWS CAF)?
@@ -80,6 +89,18 @@ cards:
     a: No. It is guidance for planning and running the organizational change; migration services such as AWS Application Migration Service move the servers.
     trap: true
     facts: [purpose, uses]
+  - id: cloud-adoption-025
+    q: In the AWS Cloud Adoption Framework (AWS CAF), which perspective has the CTO, architects and engineers as its common stakeholders?
+    a: "The Platform perspective.\nIt covers the cloud environment and workload delivery."
+    facts: [platform-stakeholders]
+  - id: cloud-adoption-026
+    q: Which AWS CAF perspective includes patch management, incident and problem management, and observability?
+    a: "The Operations perspective.\nIts nine capabilities keep cloud services running at the level agreed with the business."
+    facts: [operations-capabilities]
+  - id: cloud-adoption-027
+    q: Which AWS CAF perspective includes portfolio management, data monetization and strategic partnership?
+    a: "The Business perspective.\nIts stakeholders are executives such as the CEO, CFO and CIO."
+    facts: [business-capabilities]
 ---
 The AWS Cloud Adoption Framework (AWS CAF) is AWS guidance for the organizational side of moving to the cloud. It helps find and prioritize opportunities, check how ready the organization is, and plan the transformation in steps. [AWS CAF overview](https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/welcome.html#welcome)
 
@@ -111,5 +132,6 @@ Business, People and Governance are the business side; Platform, Security and Op
 - Six perspectives: Business, People, Governance, Platform, Security, Operations.
 - Four phases: Envision, Align, Launch, Scale.
 - Outcomes: reduced business risk; improved ESG performance; increased revenue; increased operational efficiency.
+- Business perspective: 8 capabilities, executive stakeholders. Platform: 7, CTO and engineers. Operations: 9, including patch and incident management.
 
 > **Trap:** AWS CAF has six perspectives and the Well-Architected Framework has six pillars. Security appears in both; questions about workforce or governance point to CAF, questions about workload design point to Well-Architected.

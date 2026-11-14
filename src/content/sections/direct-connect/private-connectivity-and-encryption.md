@@ -42,6 +42,9 @@ facts:
   - id: dx-redundancy
     text: High resiliency uses separate Direct Connect connections at multiple locations to protect against connectivity and location failures.
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html#high_resiliency
+  - id: dedicated-link
+    text: AWS Direct Connect links an internal network to AWS over a dedicated Ethernet fiber connection at a Direct Connect location, bypassing internet service providers.
+    source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html
 cards:
   - id: direct-connect-001
     q: A company uses AWS Direct Connect and requires encryption in transit. What options should it consider?
@@ -74,6 +77,10 @@ cards:
     q: A virtual private gateway receives the same destination prefix from AWS Direct Connect and Site-to-Site VPN using BGP. Which route is preferred?
     a: The Direct Connect route is preferred for matching prefixes.
     facts: [dx-routes]
+  - id: direct-connect-008
+    q: A company needs a dedicated private network connection from its data center to AWS that does not use the public internet. Which service fits?
+    a: AWS Direct Connect.
+    facts: [dedicated-link]
 diagrams:
   - id: direct-connect-vpn-flow
     title: IPsec VPN over Direct Connect

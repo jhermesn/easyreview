@@ -99,6 +99,9 @@ facts:
     text: The AWS account root user is the account identity created with access to all its services and
       resources, subject to applicable controls.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html
+  - id: remove-standalone
+    text: "To remove a member account from an organization, the account needs the information to stand alone: a support plan, verified contact information and a current payment method."
+    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_account-before-remove
 diagrams:
   - id: organizations-policy-tree
     title: Policy inheritance follows the account path
@@ -220,6 +223,10 @@ cards:
       OrganizationalUnit, Policy, and ResourcePolicy.
     facts:
       - organizations-accounts-config
+  - id: organizations-032
+    q: What must a member account of an AWS organization have before it can be removed to become a standalone account?
+    a: A support plan, verified contact information and a current payment method.
+    facts: [remove-standalone]
 ---
 
 AWS Organizations groups accounts for central management and billing. An organizational unit (OU) is a folder for accounts or other OUs; policies inherited through that folder hierarchy apply to its accounts.

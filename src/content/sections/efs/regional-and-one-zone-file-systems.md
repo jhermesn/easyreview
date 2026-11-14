@@ -78,6 +78,9 @@ facts:
   - id: eks-no-ebs
     text: EBS volumes cannot be mounted to EKS Fargate pods.
     source: https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi
+  - id: on-premises
+    text: On-premises servers can mount an Amazon EFS file system when connected to the VPC with AWS Direct Connect or Site-to-Site VPN.
+    source: https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-direct-connect
 cards:
   - id: efs-001
     q: Which AWS service gives Linux clients shared POSIX file storage across AZs, and what network
@@ -151,6 +154,10 @@ cards:
       - lifecycle-ia
       - lifecycle-archive
       - archive-requires-elastic
+  - id: efs-022
+    q: Can on-premises Linux servers mount an Amazon EFS file system?
+    a: Yes, when the data center connects to the VPC with AWS Direct Connect or Site-to-Site VPN.
+    facts: [on-premises]
 diagrams:
   - id: efs-regional-clients
     title: Clients in different AZs share one Regional file system

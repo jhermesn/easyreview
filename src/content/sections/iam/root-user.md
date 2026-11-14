@@ -27,6 +27,9 @@ facts:
   - id: tasks-other
     text: Root-only tasks also include activating IAM access to the Billing and Cost Management console, registering as a seller in the Reserved Instance Marketplace, enabling MFA delete on an S3 bucket, editing an S3 bucket policy that denies all principals, and signing up for AWS GovCloud (US).
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-tasks.html#root-user-tasks
+  - id: monitor-root
+    text: AWS recommends alerting on root user sign-in and use, for example with an Amazon EventBridge rule that detects root user activity and notifies administrators through Amazon SNS.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-monitor
 cards:
   - id: iam-071
     q: What is the AWS account root user, and when should it be used?
@@ -57,6 +60,10 @@ cards:
     a: No. AWS recommends never creating root access keys; scripts should use roles with least-privilege permissions.
     trap: true
     facts: [protections, not-daily]
+  - id: iam-097
+    q: A security team wants a notification whenever someone signs in as the AWS account root user. What can it set up?
+    a: An Amazon EventBridge rule on root user activity recorded by CloudTrail, sending the alert through Amazon SNS.
+    facts: [monitor-root]
 ---
 Every AWS account starts with a root user: the email address and password used to create it, with complete access to everything in the account. That power makes it the most valuable credential to protect, and AWS recommends keeping it locked away for the few tasks only it can do. [AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-tasks.html#id_root-user)
 

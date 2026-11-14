@@ -33,6 +33,9 @@ facts:
   - id: peering-tgw
     text: A VPC peering connection routes traffic between two VPCs, and a transit gateway acts as a central hub routing traffic between VPCs, VPN connections and AWS Direct Connect connections.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#amazon-vpc-features
+  - id: nat-gateway-managed
+    text: A NAT gateway is managed by AWS with no maintenance; a NAT instance is an EC2 instance the customer manages, including patching.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html
 cards:
   - id: vpc-026
     q: What is an Amazon VPC subnet, and how many Availability Zones can one subnet span?
@@ -63,6 +66,10 @@ cards:
     q: Which VPC component directs traffic from a subnet to a gateway or another network?
     a: A route table.
     facts: [route-tables]
+  - id: vpc-033
+    q: A company wants private subnets to reach the internet through NAT with no instances to patch. Should it use a NAT gateway or a NAT instance?
+    a: A NAT gateway, which AWS manages. A NAT instance is an EC2 instance the customer must patch and maintain.
+    facts: [nat-gateway-managed]
 ---
 Amazon VPC is your own isolated network in AWS. Inside it, subnets split the address range by Availability Zone, route tables steer traffic, and gateways connect the VPC to the internet, other networks or AWS services. [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc)
 
@@ -94,5 +101,6 @@ Amazon VPC is your own isolated network in AWS. Inside it, subnets split the add
 
 - A subnet lives in exactly one AZ.
 - AWS recommends private subnets to protect resources.
+- NAT gateway: managed by AWS. NAT instance: you manage it.
 
 > **Trap:** An internet gateway alone doesn't make an instance reachable. The subnet needs a route to it, and the instance needs a public IP address.

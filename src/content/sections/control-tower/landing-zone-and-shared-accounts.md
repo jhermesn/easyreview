@@ -51,6 +51,9 @@ facts:
   - id: baseline-definition
     text: A baseline is a group of resources and configurations applied to a target.
     source: https://docs.aws.amazon.com/controltower/latest/userguide/types-of-baselines.html#types-of-baselines
+  - id: controls
+    text: AWS Control Tower applies controls (guardrails), which are preventive, detective or proactive rules, to the accounts in its landing zone.
+    source: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
 diagrams:
   - id: control-tower-integration-accounts
     title: Landing zone 4.0 optional integration accounts
@@ -132,6 +135,10 @@ cards:
     a: No. The home Region is fixed after setup.
     facts:
       - home-region
+  - id: control-tower-034
+    q: Which AWS service sets up a multi-account landing zone and applies preventive and detective guardrails to its accounts?
+    a: AWS Control Tower.
+    facts: [controls]
 ---
 AWS Control Tower sets up and governs a multi-account landing zone. A landing zone is the environment containing the accounts, identities, and resources that follow your governance rules. An organizational unit (OU) groups accounts under the organization hierarchy.
 

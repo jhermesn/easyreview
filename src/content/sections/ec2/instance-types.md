@@ -24,6 +24,9 @@ facts:
   - id: hpc
     text: High-performance computing instances offer the best price performance for HPC workloads at scale, such as large, complex simulations and deep learning.
     source: https://docs.aws.amazon.com/ec2/latest/instancetypes/hpc.html#hpc
+  - id: ec2-purpose
+    text: Amazon EC2 provides scalable compute capacity in the AWS Cloud as virtual servers (instances) that you configure and manage, including the operating system.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html
 cards:
   - id: ec2-030
     q: A company runs a web server that uses CPU, memory and network in roughly equal amounts. Which EC2 instance category fits?
@@ -50,6 +53,10 @@ cards:
     a: No. Memory optimized instances are built for large in-memory data sets; the category, not only the size, should match the workload.
     trap: true
     facts: [memory, instance-type]
+  - id: ec2-056
+    q: A company needs virtual servers in AWS where it controls the operating system and installed software. Which service fits?
+    a: Amazon EC2, which provides virtual servers (instances) that you configure and manage.
+    facts: [ec2-purpose]
 ---
 An EC2 instance type sets the CPU, memory, storage and networking of a virtual server. Types are grouped into categories by what they're good at, so the first choice is the category that matches the workload. [Amazon EC2 instance types](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html#instance-types)
 

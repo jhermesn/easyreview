@@ -18,6 +18,9 @@ facts:
   - id: ses-spam
     text: Spam or malicious email sent through Amazon SES is reported to email-abuse@amazon.com.
     source: https://aws.amazon.com/premiumsupport/knowledge-center/report-aws-abuse/
+  - id: aup
+    text: The AWS Acceptable Use Policy lists uses of AWS services that are prohibited, such as illegal activity, security violations and network abuse.
+    source: https://aws.amazon.com/aup/
 cards:
   - id: technical-resources-012
     q: A company sees port scans and intrusion attempts coming from an IP address on AWS. Which AWS team should it report this to?
@@ -32,6 +35,10 @@ cards:
     q: Which kinds of abuse does the AWS Trust & Safety team handle?
     a: Objectionable web content, spam and abusive email, abusive network activity such as DDoS, intrusion attempts and port scans, and DMCA copyright requests.
     facts: [types]
+  - id: technical-resources-015
+    q: Which AWS document lists the activities that are prohibited on AWS services?
+    a: The AWS Acceptable Use Policy. Abuse that breaks it is reported to the AWS Trust & Safety team.
+    facts: [aup, report]
 ---
 When an AWS resource is used for abuse, such as spam, attacks or illegal content, anyone can report it to the AWS Trust & Safety team. [Report abuse of AWS resources](https://aws.amazon.com/premiumsupport/knowledge-center/report-aws-abuse/)
 
@@ -53,6 +60,7 @@ When an AWS resource is used for abuse, such as spam, attacks or illegal content
 
 - If the question says AWS resources used for attacks or spam, think AWS Trust & Safety.
 - If the question says report abuse, not AWS Support.
+- If the question says prohibited uses of AWS, think AWS Acceptable Use Policy, because it lists them.
 
 ### Remember
 

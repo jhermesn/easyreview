@@ -63,6 +63,16 @@
       "id": "example",
       "text": "An 8 KB item read uses 2 strong, 1 eventual, or 4 transactional read units.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html"
+    },
+    {
+      "id": "three-az",
+      "text": "DynamoDB automatically replicates table data across three Availability Zones in a Region.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/disaster-recovery-resiliency.html"
+    },
+    {
+      "id": "reserved-capacity",
+      "text": "DynamoDB reserved capacity discounts provisioned read and write capacity for a one-year term (three years in some Regions); it is not available for on-demand mode.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/reserved-capacity.html"
     }
   ],
   "cards": [
@@ -127,6 +137,23 @@
         "quotas"
       ],
       "trap": true
+    },
+    {
+      "id": "dynamodb-042",
+      "q": "Does a DynamoDB table need extra setup to keep its data in more than one Availability Zone?",
+      "a": "No. DynamoDB automatically replicates table data across three Availability Zones in the Region.",
+      "trap": true,
+      "facts": [
+        "three-az"
+      ]
+    },
+    {
+      "id": "dynamodb-043",
+      "q": "A company runs steady DynamoDB traffic in provisioned capacity mode and wants a lower price for a one-year commitment. What should it buy?",
+      "a": "DynamoDB reserved capacity. It discounts provisioned read and write capacity; it does not apply to on-demand mode.",
+      "facts": [
+        "reserved-capacity"
+      ]
     }
   ],
   "diagrams": [
@@ -219,5 +246,7 @@ DynamoDB capacity controls how much read and write work a table can accept. On-d
 - An 8 KB item read uses 2 strong, 1 eventual, or 4 transactional read units.
 - Standard is the default table class; class selection is separate from capacity mode.
 - Index metrics use TableName and GlobalSecondaryIndexName.
+- DynamoDB data: three AZs automatically.
+- Reserved capacity: provisioned mode only.
 
 > **Trap:** Auto scaling does not react instantly to spikes. On-demand can also throttle at quotas or configured maximums.

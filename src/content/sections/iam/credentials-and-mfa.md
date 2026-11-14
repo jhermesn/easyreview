@@ -36,6 +36,9 @@ facts:
   - id: parameter-store
     text: AWS Systems Manager Parameter Store securely stores, organizes and retrieves configuration data as named parameters, so applications don't hardcode values.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html#systems-manager-parameter-store
+  - id: mfa-types
+    text: "IAM supports three MFA types: passkeys and security keys (FIDO), virtual MFA apps on a phone or computer, and hardware TOTP tokens."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html
 cards:
   - id: iam-085
     q: What does multi-factor authentication (MFA) add to an AWS sign-in?
@@ -70,6 +73,10 @@ cards:
     q: Where should an application store database passwords and API keys instead of hardcoding them?
     a: In AWS Secrets Manager, which can also rotate them, or in AWS Systems Manager Parameter Store. The application reads them at run time.
     facts: [secrets-manager, parameter-store]
+  - id: iam-093
+    q: Which MFA types does IAM support, and which one needs no extra hardware?
+    a: Passkeys and security keys, virtual MFA apps, and hardware TOTP tokens. A virtual MFA app runs on an existing phone or computer.
+    facts: [mfa-types]
 ---
 Credentials prove who is calling AWS. People sign in to the console with passwords and MFA; programs use access keys or, better, temporary credentials from roles. Fewer long-term credentials mean less to leak. [Access keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#id_credentials_access-keys)
 
@@ -100,5 +107,6 @@ Credentials prove who is calling AWS. People sign in to the console with passwor
 - Up to eight MFA devices per user; one is enough to sign in.
 - Up to two access keys per user; the secret shows only once.
 - The password policy skips the root user and access keys.
+- MFA types: passkeys and security keys, virtual MFA app, hardware TOTP token.
 
 > **Trap:** Rotating a password does not rotate access keys. They are separate credentials; disable or rotate keys on their own.

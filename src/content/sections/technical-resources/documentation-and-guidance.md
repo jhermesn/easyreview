@@ -27,6 +27,9 @@ facts:
   - id: repost-private
     text: AWS re:Post Private, a private version of re:Post for Enterprise Support customers, reaches end of support on June 30, 2027.
     source: https://docs.aws.amazon.com/repostprivate/latest/caguide/what-is.html#what-is
+  - id: architecture-center
+    text: The AWS Architecture Center offers reference architecture diagrams, expert guides and best practices.
+    source: https://aws.amazon.com/architecture/
 cards:
   - id: technical-resources-001
     q: Where should a customer look first for answers to common AWS troubleshooting questions?
@@ -49,6 +52,10 @@ cards:
     q: Where do AWS questions and community answers live, together with the official Knowledge Center articles?
     a: AWS re:Post.
     facts: [repost]
+  - id: technical-resources-016
+    q: Where does a solutions architect find AWS reference architecture diagrams?
+    a: The AWS Architecture Center.
+    facts: [architecture-center]
 ---
 AWS publishes free self-service resources for learning and troubleshooting. Most questions have an answer in one of them before a support case is needed. [Troubleshooting resources](https://docs.aws.amazon.com/awssupport/latest/user/troubleshooting.html#troubleshooting)
 

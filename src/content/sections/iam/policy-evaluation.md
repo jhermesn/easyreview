@@ -73,6 +73,9 @@ facts:
   - id: ami-definition
     text: An AMI supplies the software required to set up and boot an EC2 instance.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs
+  - id: statement-elements
+    text: An IAM policy statement uses Effect, Action and Resource (or their Not forms); Condition is optional, and Principal is used in resource-based policies.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html
 cards:
   - id: iam-001
     q: What wins when IAM finds both an Allow and an applicable explicit Deny for a request?
@@ -139,6 +142,10 @@ cards:
     facts:
       - source-account
     trap: true
+  - id: iam-094
+    q: "Which element of an IAM identity-based policy statement is optional: Effect, Action, Resource or Condition?"
+    a: Condition. Effect, Action and Resource define the statement; Principal appears in resource-based policies.
+    facts: [statement-elements]
 ---
 
 IAM policy evaluation decides whether a request has permission to perform an action on a resource. A principal is the identity making the request. Start with the request's action, resource and context, then find every policy that applies.

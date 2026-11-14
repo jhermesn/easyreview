@@ -21,6 +21,9 @@ facts:
   - id: rds-custom
     text: Amazon RDS Custom gives database administrators access to customize the database environment and operating system for legacy, custom and packaged applications, while automating administration tasks.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom
+  - id: nosql-types
+    text: Key-value (DynamoDB), document (DocumentDB) and graph (Neptune) databases are NoSQL, non-relational databases.
+    source: https://aws.amazon.com/nosql/
 cards:
   - id: rds-041
     q: What does Amazon RDS manage that a database on Amazon EC2 leaves to the customer?
@@ -43,6 +46,10 @@ cards:
     a: No. Application optimization stays with the customer on premises, on EC2 and on RDS.
     trap: true
     facts: [comparison]
+  - id: rds-046
+    q: "Which of these AWS databases are NoSQL: Amazon DynamoDB, Amazon Neptune, Amazon DocumentDB, Amazon Aurora?"
+    a: DynamoDB (key-value), Neptune (graph) and DocumentDB (document). Aurora is relational.
+    facts: [nosql-types]
 ---
 A database can run on servers you manage or as a managed AWS service. Amazon RDS runs relational databases for you: AWS installs, patches, backs up and scales them, and you focus on the data and the application. [What is Amazon RDS?](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome)
 
@@ -78,5 +85,6 @@ AWS also offers purpose-built databases:
 
 - RDS engines: Db2, MariaDB, SQL Server, MySQL, Oracle, PostgreSQL; plus Aurora.
 - RDS handles backups, patching, failover and read replicas.
+- NoSQL: DynamoDB, DocumentDB, Neptune. Relational: RDS, Aurora.
 
 > **Trap:** A managed database doesn't make AWS responsible for your data or access. The customer still controls who can connect and what is stored.

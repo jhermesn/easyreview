@@ -39,6 +39,15 @@ facts:
   - id: game-days
     text: Game days simulate events in production on a regular schedule to find improvements and build experience in handling events.
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/general-design-principles.html#general-design-principles
+  - id: safely-automate
+    text: "An operational excellence design principle is safely automate where possible: define the whole workload and its operations as code and run procedures automatically."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/oe-design-principles.html
+  - id: security-principles
+    text: "Security pillar design principles: implement a strong identity foundation, maintain traceability, apply security at all layers, automate security best practices, protect data in transit and at rest, keep people away from data, and prepare for security events."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/sec-design.html
+  - id: loose-coupling
+    text: The reliability pillar recommends loosely coupled dependencies, such as queues, streams and workflows, ideally asynchronous; a monolithic workload is an anti-pattern.
+    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_prevent_interaction_failure_loosely_coupled_system.html
 cards:
   - id: well-architected-001
     q: What are the six pillars of the AWS Well-Architected Framework?
@@ -81,6 +90,18 @@ cards:
     q: How does the AWS Cloud make testing at production scale affordable, according to the Well-Architected Framework?
     a: Create the production-scale environment on demand, test, then decommission it. You pay only while it runs.
     facts: [production-scale]
+  - id: well-architected-015
+    q: Which Well-Architected pillar includes the design principle of defining the workload and its operations as code?
+    a: Operational excellence (safely automate where possible).
+    facts: [safely-automate]
+  - id: well-architected-016
+    q: Which Well-Architected pillar has the design principles "maintain traceability" and "keep people away from data"?
+    a: Security.
+    facts: [security-principles]
+  - id: well-architected-017
+    q: A monolithic application fails completely when one component fails. Which Well-Architected recommendation addresses this?
+    a: Loosely coupled dependencies (reliability pillar), for example with Amazon SQS queues between components.
+    facts: [loose-coupling]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
 
@@ -109,6 +130,7 @@ The general design principles apply across pillars: stop guessing capacity, test
 - If the question says lowest price point for the value delivered, think cost optimization.
 - If the question says reduce environmental impact or energy use, think sustainability.
 - If the question says improve operations and procedures, think operational excellence.
+- If the question says operations as code, think operational excellence, because defining operations as code is part of its safely automate principle.
 
 ### Remember
 

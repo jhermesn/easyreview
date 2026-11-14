@@ -33,6 +33,9 @@ facts:
   - id: lowest-cost
     text: Amazon S3 archives data at the lowest costs in S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#RRS
+  - id: availability
+    text: "S3 storage classes are designed for different availability: S3 Standard 99.99%, Standard-IA, Intelligent-Tiering and Glacier Instant Retrieval 99.9%, and One Zone-IA 99.5%."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html
 cards:
   - id: s3-118
     q: A company's data is accessed in unpredictable patterns. Which Amazon S3 storage class moves it between tiers automatically without retrieval fees?
@@ -63,6 +66,10 @@ cards:
     q: What are the minimum storage durations of S3 Standard-IA, S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive?
     a: 30 days, 90 days and 180 days.
     facts: [standard-ia, glacier-flexible, deep-archive]
+  - id: s3-125
+    q: Which S3 storage class has the lowest designed availability, and why?
+    a: S3 One Zone-IA, designed for 99.5%, because it stores data in a single Availability Zone.
+    facts: [availability]
 ---
 Amazon S3 storage classes trade access speed and frequency for price. All are designed for the same 11 nines of durability; they differ in availability, retrieval time, retrieval fees and minimum storage duration. [Comparing the Amazon S3 storage classes](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-compare)
 
@@ -94,5 +101,6 @@ Amazon S3 storage classes trade access speed and frequency for price. All are de
 
 - All classes: 11 nines durability.
 - Minimums: Standard-IA and One Zone-IA 30 days, Glacier IR and Flexible 90 days, Deep Archive 180 days.
+- Availability: Standard 99.99%, Standard-IA and Intelligent-Tiering 99.9%, One Zone-IA 99.5%.
 
 > **Trap:** Cheaper classes are not always cheaper overall. Frequently read data in Standard-IA or Glacier pays retrieval fees that can exceed the storage savings.

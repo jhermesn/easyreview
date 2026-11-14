@@ -24,6 +24,9 @@ facts:
   - id: tam
     text: Enterprise Support and Unified Operations include a designated Technical Account Manager (TAM).
     source: https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#features
+  - id: solutions-library
+    text: The AWS Solutions Library collects vetted solutions built by AWS and AWS Partners; the former AWS Quick Starts page now leads there.
+    source: https://aws.amazon.com/solutions/
 cards:
   - id: technical-resources-006
     q: What is the AWS Partner Network (APN)?
@@ -50,6 +53,10 @@ cards:
     a: No. AWS Support answers cases under a support plan; AWS Professional Services runs project engagements to design, build and migrate workloads.
     trap: true
     facts: [proserve]
+  - id: technical-resources-017
+    q: Where does a company find vetted, ready-made solutions built by AWS and AWS Partners, the successor of AWS Quick Starts?
+    a: The AWS Solutions Library.
+    facts: [solutions-library]
 ---
 When a customer needs more than documentation and support cases, AWS offers people. AWS Professional Services and AWS solutions architects come from AWS itself; AWS Partner Network members are outside companies. [AWS Partner Network](https://aws.amazon.com/partners/)
 

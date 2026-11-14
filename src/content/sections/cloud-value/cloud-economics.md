@@ -45,6 +45,15 @@ facts:
   - id: migration-evaluator
     text: Migration Evaluator builds a data-driven business case for moving to AWS, finds over-provisioned on-premises instances and compares BYOL with License Included options.
     source: https://aws.amazon.com/migration-evaluator/
+  - id: cost-drivers
+    text: The three fundamental drivers of AWS cost are compute, storage and outbound data transfer.
+    source: https://docs.aws.amazon.com/whitepapers/latest/how-aws-pricing-works/key-principles.html
+  - id: free-iam
+    text: AWS Identity and Access Management (IAM), IAM Identity Center and AWS STS are offered at no additional charge.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
+  - id: free-auto-scaling
+    text: Amazon EC2 Auto Scaling has no additional fee; you pay for the EC2 instances, CloudWatch and other resources it uses.
+    source: https://aws.amazon.com/ec2/autoscaling/pricing/
 cards:
   - id: cloud-value-014
     q: How does moving to the AWS Cloud change the way a company pays for servers?
@@ -83,6 +92,14 @@ cards:
     a: No. Resource saturation is a common on-premises failure, and oversized servers sit idle. On AWS capacity follows demand and is billed as used.
     trap: true
     facts: [on-prem-saturation, fixed-to-variable]
+  - id: cloud-value-025
+    q: What are the three fundamental drivers of cost on AWS?
+    a: Compute, storage and outbound data transfer.
+    facts: [cost-drivers]
+  - id: cloud-value-026
+    q: "Which AWS services in this list are free to use: IAM, EC2 Auto Scaling, Amazon EC2 instances, Amazon EBS volumes?"
+    a: "IAM and EC2 Auto Scaling.\nAuto Scaling itself is free; you pay for the instances and CloudWatch resources it uses."
+    facts: [free-iam, free-auto-scaling]
 ---
 Cloud economics compares what a workload costs in a data center with what it costs on AWS. On premises you buy capacity up front and pay for it whether you use it or not; on AWS you pay for what runs. [Six advantages](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html#six-advantages-of-cloud-computing)
 
@@ -114,5 +131,7 @@ Migration Evaluator builds a business case for a move, finds over-provisioned on
 - Stopping dev and test outside an 8-hour workday saves about 75% (40 of 168 hours).
 - Right-sizing repeats as usage, prices and resource types change.
 - RDS for Oracle License Included: Standard Edition 2 only. BYOL: Enterprise Edition and Standard Edition 2.
+- Cost drivers: compute, storage, outbound data transfer.
+- No extra charge: IAM and EC2 Auto Scaling (you pay for the resources Auto Scaling uses).
 
 > **Trap:** Moving to AWS does not remove every cost of running servers. AWS takes on the data center, but you still choose sizes, stop idle resources and manage what you run on unmanaged services.

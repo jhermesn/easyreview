@@ -33,6 +33,9 @@ facts:
   - id: auto-recover
     text: Monitoring a workload for key performance indicators lets automation run when a threshold is breached, so recovery from failure can be automatic.
     source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html#design-principles
+  - id: scale-out
+    text: Scaling horizontally (out) replaces one large resource with several smaller ones so a single failure has less impact; scaling vertically (up) makes one resource bigger and adds no redundancy.
+    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html
 cards:
   - id: cloud-value-001
     q: What are the six advantages of cloud computing that AWS lists?
@@ -71,6 +74,15 @@ cards:
     a: No. It means scaling up and down as demand changes, paying only for what is used.
     trap: true
     facts: [stop-guessing, variable-expense]
+  - id: cloud-value-023
+    q: A company moves an application to a bigger EC2 instance type. Which kind of scaling is this, and does it add fault tolerance?
+    a: Vertical scaling (scaling up). It adds no fault tolerance, because there is still one instance.
+    trap: true
+    facts: [scale-out]
+  - id: cloud-value-024
+    q: Which kind of scaling adds more EC2 instances behind a load balancer and also improves availability?
+    a: "Horizontal scaling (scaling out): more, smaller resources, so one failure affects less of the workload."
+    facts: [scale-out]
 ---
 Cloud computing delivers IT resources on demand over the internet, with pay-as-you-go pricing. AWS owns and maintains the hardware, and you provision what you need when you need it. [What is cloud computing](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/what-is-cloud-computing.html#what-is-cloud-computing)
 
@@ -99,6 +111,7 @@ AWS names six advantages of cloud computing: [Six advantages](https://docs.aws.a
 - If the question says idle servers bought for a peak, or not enough capacity, think stop guessing capacity, because the cloud scales both ways.
 - If the question says faster experiments or shorter time to provision, think speed and agility.
 - If the question says users in other countries need low latency, think go global in minutes.
+- If the question says bigger instance type, think vertical scaling, because it resizes one resource; more instances is horizontal scaling.
 
 ### Remember
 

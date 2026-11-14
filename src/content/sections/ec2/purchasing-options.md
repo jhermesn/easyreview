@@ -39,6 +39,18 @@ facts:
   - id: payment
     text: Savings Plans can be paid All Upfront, Partial Upfront or No Upfront.
     source: https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html#what-is-savings-plans
+  - id: per-second
+    text: On-Demand Instances are billed per second while running, with a 60-second minimum.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html
+  - id: spot-90
+    text: Spot Instances are available at up to a 90% discount compared with On-Demand prices.
+    source: https://aws.amazon.com/ec2/spot/
+  - id: sp-types
+    text: "There are four Savings Plans types: Compute, EC2 Instance, Database and SageMaker AI Savings Plans."
+    source: https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html
+  - id: sp-rates
+    text: EC2 Instance Savings Plans save up to 72% for a commitment to one instance family in one Region; Compute Savings Plans save up to 66% but apply across instance families, Regions, Fargate and Lambda.
+    source: https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html
 cards:
   - id: ec2-036
     q: A company runs a steady workload on EC2 for the next three years but may change instance families. Which purchasing option saves the most while staying flexible?
@@ -73,6 +85,23 @@ cards:
     q: Which is AWS's recommended commitment-based discount for EC2 today, Savings Plans or Reserved Instances?
     a: Savings Plans. Both offer up to 72% off On-Demand, but Savings Plans don't lock you into an instance configuration.
     facts: [prefer-sp]
+  - id: ec2-051
+    q: What is the minimum billing period when an EC2 On-Demand Instance starts?
+    a: 60 seconds. After that, On-Demand Instances are billed per second.
+    facts: [per-second]
+  - id: ec2-052
+    q: Which EC2 purchasing option can give up to a 90% discount compared with On-Demand?
+    a: Spot Instances.
+    facts: [spot-90]
+  - id: ec2-053
+    q: Which Savings Plans type gives the largest EC2 discount, and what does it tie you to?
+    a: EC2 Instance Savings Plans, up to 72%. They tie you to one instance family in one Region; Compute Savings Plans (up to 66%) are more flexible.
+    trap: true
+    facts: [sp-rates]
+  - id: ec2-054
+    q: Which four Savings Plans types does AWS offer?
+    a: Compute, EC2 Instance, Database and SageMaker AI Savings Plans.
+    facts: [sp-types]
 ---
 Amazon EC2 charges the same instance in different ways depending on how much you commit and how much interruption you accept. Choosing well can cut compute costs sharply. [EC2 billing and purchasing options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html#instance-purchasing-options)
 
@@ -106,5 +135,8 @@ Amazon EC2 charges the same instance in different ways depending on how much you
 - Savings Plans and RIs: 1 or 3 years, up to 72% off.
 - Spot: two-minute interruption notice.
 - Savings Plans payment: All Upfront, Partial Upfront or No Upfront.
+- On-Demand: per second, 60-second minimum.
+- Spot: up to 90% off.
+- EC2 Instance Savings Plans up to 72%; Compute Savings Plans up to 66%.
 
 > **Trap:** A Reserved Instance is a billing discount, not a server. It applies automatically to matching On-Demand usage.
