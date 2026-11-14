@@ -17,7 +17,7 @@ Free study notes for AWS Certification exams: short sections, step-by-step diagr
 
 </div>
 
-The first exam covered in full is **AWS Certified DevOps Engineer - Professional (DOP-C02)**: every item of its exam guide and every in-scope service is mapped to a unit. The other AWS Certifications show as coming soon and reuse the same units as they are added.
+Two exams are covered in full: **AWS Certified Cloud Practitioner (CLF-C02)** and **AWS Certified DevOps Engineer - Professional (DOP-C02)**. Every item of their exam guides and every in-scope service is mapped to a unit. Units are shared, so a topic marked as known counts in every exam that uses it. The other AWS Certifications show as coming soon and reuse the same units as they are added.
 
 ## What's in it
 
