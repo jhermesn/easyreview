@@ -1,6 +1,6 @@
 # Product
 
-Easy Review is a free static study site for AWS Certification exams. The first exam covered is DevOps Engineer - Professional (DOP-C02). Each unit page has short notes, exam traps, interactive diagrams, the AWS documentation facts behind them and a flashcard deck. There is no backend and no accounts: flashcard progress and "known" marks stay in the reader's browser, and a progress code moves them to another device.
+Easy Review is a free static study site for AWS Certification exams. The exams covered are Cloud Practitioner (CLF-C02) and DevOps Engineer - Professional (DOP-C02). Each unit page has short notes, exam traps, interactive diagrams, the AWS documentation facts behind them and a flashcard deck. There is no backend and no accounts: flashcard progress and "known" marks stay in the reader's browser, and a progress code moves them to another device.
 
 The goal is 80/20 review: what the exam asks, in the fewest words. A reader should get through a section in a few minutes after missing a practice question. Correctness matters more than volume, because a wrong fact on a study site costs the reader an exam question.
 

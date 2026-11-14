@@ -53,6 +53,9 @@ facts:
     text: Credit requests must be submitted within 15 days after the attack billing month; awarded
       credits apply only to Shield Advanced usage.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/ddos-request-service-credit.html
+  - id: edge-services
+    text: Serving traffic through Amazon CloudFront and Amazon Route 53, which run in edge locations, is an AWS best practice for DDoS resilience because attacks are absorbed at the edge.
+    source: https://docs.aws.amazon.com/whitepapers/latest/aws-best-practices-ddos-resiliency/aws-best-practices-ddos-resiliency.html
 diagrams: []
 cards:
   - id: shield-001
@@ -107,6 +110,10 @@ cards:
       more than one protection group.
     facts:
       - protection-groups
+  - id: shield-014
+    q: Besides AWS Shield, which two edge services help a web application absorb DDoS attacks?
+    a: Amazon CloudFront and Amazon Route 53, which run in edge locations.
+    facts: [edge-services]
 ---
 AWS Shield helps keep applications available during a distributed denial of service (DDoS) attack, where many systems flood a target with traffic. Standard protection is automatic. Advanced adds explicitly configured protection for supported resources.
 

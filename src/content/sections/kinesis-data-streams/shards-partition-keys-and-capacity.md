@@ -85,6 +85,9 @@ facts:
   - id: shard-resharding
     text: Resharding splits or merges shards to change provisioned stream capacity.
     source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-using-sdk-java-resharding.html#kinesis-using-sdk-java-resharding
+  - id: real-time
+    text: Amazon Kinesis Data Streams collects and processes large streams of data records in real time.
+    source: https://docs.aws.amazon.com/streams/latest/dev/introduction.html
 cards:
   - id: kinesis-data-streams-001
     q: What sustained write and shared-read capacity does one Kinesis Data Streams shard provide?
@@ -161,6 +164,10 @@ cards:
     facts:
       - shard-batch-order
       - shard-order
+  - id: kinesis-data-streams-023
+    q: A company must ingest and process website clickstream data in real time. Which AWS service fits?
+    a: Amazon Kinesis Data Streams.
+    facts: [real-time]
 diagrams:
   - id: kinesis-partition-routing
     title: Partition keys distribute records among shards

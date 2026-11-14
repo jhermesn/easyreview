@@ -66,6 +66,9 @@ facts:
   - id: bg-weighted-endpoints
     text: "For a blue/green shift with Route 53, each environment exposes its own endpoint, such as its own load balancer, and weighted records send a percentage of traffic to green, raised step by step until green carries all traffic."
     source: https://docs.aws.amazon.com/whitepapers/latest/blue-green-deployments/update-dns-routing-with-amazon-route-53.html#update-dns-routing-with-amazon-route-53
+  - id: health-checks
+    text: Route 53 health checks monitor the health of web applications and other resources, and CloudWatch alarms can notify when a health check status changes.
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html
 cards:
   - id: route53-001
     q: An application runs in two AWS Regions, and its standby should receive DNS answers only after the primary fails. Which Route 53 policy fits?
@@ -142,6 +145,10 @@ cards:
     facts:
       - bg-weighted-endpoints
       - weighted-ratio
+  - id: route53-065
+    q: Which Amazon Route 53 feature monitors whether a web server is healthy so DNS can fail over away from it?
+    a: Route 53 health checks.
+    facts: [health-checks]
 diagrams:
   - id: route53-regional-alias-tree
     title: Latency selection above regional weighted records

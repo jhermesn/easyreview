@@ -87,6 +87,12 @@ facts:
   - id: mapping-template
     text: "A REST API mapping template, written in VTL, transforms the integration request body before API Gateway calls the backend, or the integration response before it reaches the client. Without a template for the Content-Type, the body passes through unchanged."
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-request
+  - id: front-door
+    text: Amazon API Gateway creates, publishes and secures REST, HTTP and WebSocket APIs and acts as a front door to backends such as Lambda functions, EC2 and web applications.
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html
+  - id: aws-integration
+    text: An API Gateway REST API can integrate directly with AWS services, for example as a proxy to Amazon Kinesis, without a Lambda function in between.
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-kinesis.html
 diagrams:
   - id: api-deployment-stage
     title: Publishing a REST API configuration
@@ -241,6 +247,14 @@ cards:
     a: "A mapping template on the integration request. It rewrites the body with VTL before API Gateway calls the backend; without a template for that Content-Type, the body passes through unchanged."
     facts:
       - mapping-template
+  - id: api-gateway-029
+    q: A team wants a managed front door for a REST API whose backend is AWS Lambda. Which service fits?
+    a: Amazon API Gateway.
+    facts: [front-door]
+  - id: api-gateway-030
+    q: Can Amazon API Gateway send requests straight to Amazon Kinesis without a Lambda function?
+    a: Yes. A REST API can use an AWS service integration as a Kinesis proxy.
+    facts: [aws-integration]
 ---
 A REST API deployment is a fixed snapshot of the API configuration. A stage is the named reference clients use to reach a deployment, allowing a release to be attached to a new or existing stage.
 

@@ -122,6 +122,9 @@ facts:
       Image Builder wait and fail the image for findings above the allowed severity; without one, it can distribute
       before the scan finishes.
     source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/integ-inspector.html#integ-inspector-ami-scan
+  - id: instance-metadata
+    text: Instance metadata is data about a running EC2 instance, such as its ID and type, that software on the instance can read; it is not the launch script, which is user data.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
 diagrams:
   - id: image-builder-bake-and-roll
     title: Bake, distribute and roll out a golden AMI
@@ -358,6 +361,11 @@ cards:
     facts:
       - ami-scan-release
       - ami-scan-gate
+  - id: deployment-strategies-041
+    q: A company wants each EC2 instance to install software automatically at first launch. Should it use instance metadata or user data?
+    a: User data, which runs scripts at launch. Instance metadata only describes the running instance.
+    trap: true
+    facts: [instance-metadata, user-data]
 ---
 
 A golden AMI is a reusable EC2 launch image prepared with the software and settings an application needs. Prebaking puts application components into that image. Bootstrapping runs installation or configuration when an instance starts. [AWS deployment guidance](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/prebaking-vs.-bootstrapping-amis.html) recommends combining the two when instances need both quick startup and environment-specific customization.

@@ -14,7 +14,7 @@ test('home links to the first available certification', async ({ page }) => {
   await page.goto('./');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('once');
   await page.getByRole('link', { name: /^Start / }).click();
-  await expect(page).toHaveURL(/\/dop-c02\/?$/);
+  await expect(page).toHaveURL(/\/[a-z]{3}-c\d\d\/?$/);
 });
 
 test('a unit page renders sections, diagrams and doc sources', async ({ page }) => {
@@ -67,6 +67,22 @@ for (const locale of ['', 'pt-br/']) {
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       expect(overflow, `${locale}${path} scrolls sideways`).toBe(0);
     }
+  });
+}
+
+// Sections are shared across certs, so a link to another unit must stay in the cert the reader is studying.
+for (const path of ['dop-c02/lambda/', 'clf-c02/ec2/', 'pt-br/dop-c02/lambda/']) {
+  test(`unit links on ${path} stay in the page's cert`, async ({ page }) => {
+    await page.goto(path);
+    const strays = await page.evaluate(() => {
+      const certPath = location.pathname.replace(/[^/]+\/$/, '');
+      const covered = new Set([...document.querySelectorAll<HTMLAnchorElement>('a:not(.unit-link)')].map((a) => a.pathname).filter((p) => p.startsWith(certPath)));
+      return [...document.querySelectorAll<HTMLAnchorElement>('a.unit-link')]
+        .filter((a) => covered.has(`${certPath}${a.dataset.unit}`) || covered.has(`${certPath}${a.dataset.unit}/`))
+        .filter((a) => !a.pathname.startsWith(certPath))
+        .map((a) => a.pathname);
+    });
+    expect(strays).toEqual([]);
   });
 }
 

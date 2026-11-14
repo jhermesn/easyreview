@@ -60,6 +60,9 @@ facts:
       deletion during environment termination; a separately managed group avoids tying access to
       that environment lifecycle.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.ec2.console.html#using-features.managing.ec2.securitygroups
+  - id: cidr-sources
+    text: Security group rules and network ACL rules specify IP address ranges in CIDR notation, such as 203.0.113.0/24.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
 cards:
   - id: vpc-001
     q: How do VPC security groups and network ACLs differ?
@@ -131,6 +134,10 @@ cards:
     facts:
       - sg-retirement-dependency
       - sg-reference
+  - id: vpc-034
+    q: In which notation do security group and network ACL rules specify IP address ranges?
+    a: CIDR notation, for example 203.0.113.0/24.
+    facts: [cidr-sources]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.

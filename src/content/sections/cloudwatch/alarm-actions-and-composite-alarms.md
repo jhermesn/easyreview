@@ -76,6 +76,9 @@ facts:
     text: After a mute window ends, CloudWatch executes actions for the current state if it differs from
       the state at the start; otherwise it executes no actions.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-mute-rules.html#effects-of-mute-rules
+  - id: billing-alarm
+    text: A billing alarm watches the EstimatedCharges metric and notifies through Amazon SNS; billing alerts must be turned on first, and billing metric data is stored in US East (N. Virginia).
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html
 cards:
   - id: cloudwatch-010
     q: Several related CloudWatch alarms page the same team. Which alarm type can combine their
@@ -187,6 +190,10 @@ cards:
       start of the window.
     facts:
       - alarm-mute-end
+  - id: cloudwatch-113
+    q: A company wants an email when its estimated AWS charges pass 500 USD, using CloudWatch. What does it set up, and in which Region?
+    a: A CloudWatch billing alarm on EstimatedCharges with an SNS notification, created in US East (N. Virginia) after turning on billing alerts.
+    facts: [billing-alarm]
 ---
 CloudWatch alarm actions turn a detected condition into a notification or response. A composite alarm combines other alarms so related symptoms can produce a single notification.
 
@@ -217,6 +224,7 @@ CloudWatch alarm actions turn a detected condition into a notification or respon
 - If an alarm invokes Lambda in another account, grant the CloudWatch alarm service principal access in the function resource policy.
 - If maintenance follows a schedule, use a mute rule for metric or composite actions without stopping evaluation. After the window, actions run if the final state differs from the initial state.
 - If creating a composite alarm is denied, check that `cloudwatch:PutCompositeAlarm` is scoped to `*`. OpsItem actions also require `iam:CreateServiceLinkedRole` for an IAM user.
+- If the question says alert when estimated charges pass a threshold, think a CloudWatch billing alarm in US East (N. Virginia) or AWS Budgets, because both alert on spend.
 
 ### Remember
 

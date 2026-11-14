@@ -78,6 +78,12 @@ facts:
   - id: init-order
     text: Lambda initialization runs extension initialization, runtime initialization, and function initialization before invoking the handler.
     source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html#using-extensions-env
+  - id: serverless
+    text: AWS Lambda runs code without servers to provision or manage; AWS handles server maintenance, capacity provisioning and scaling, and you pay only for the resources used.
+    source: https://docs.aws.amazon.com/lambda/latest/dg/welcome.html
+  - id: triggers
+    text: Other AWS services, such as Amazon S3 and Amazon DynamoDB, can invoke Lambda functions with events.
+    source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html
 diagrams:
   - id: lambda-async-invocation-flow
     title: Asynchronous invocation separates acceptance from execution
@@ -213,6 +219,14 @@ cards:
     a: It rose from one million to five million, except in N. Virginia, Oregon, and Ireland, where the new quota is twice as high.
     facts:
       - durable-quota-change
+  - id: lambda-057
+    q: A company wants to run code in response to new uploads to an Amazon S3 bucket, with no servers to manage. Which service fits?
+    a: "AWS Lambda, triggered by S3 events.\nAWS manages the servers, capacity and scaling."
+    facts: [serverless, triggers]
+  - id: lambda-058
+    q: Who patches and scales the servers that run AWS Lambda functions?
+    a: AWS. Lambda is serverless; you manage only your code.
+    facts: [serverless]
 ---
 Lambda runs function code in response to invocations, meaning requests to execute the function. A synchronous caller waits for the result; an asynchronous caller hands work to Lambda's event queue. The invocation path determines who owns retries.
 
@@ -250,5 +264,6 @@ An Application Load Balancer (ALB) invokes a Lambda target directly with a JSON 
 - Memory: 128 MB by default, 128 through 10,240 MB in 1-MB steps. At 1,769 MB, CPU capacity equals one virtual CPU (vCPU).
 - Temporary storage: 512 through 10,240 MB in 1-MB steps, per environment.
 - Durable executions can last up to one year. In November 2026 the default running-execution quota rose from one million to five million per account, with twice that new quota in N. Virginia, Oregon, and Ireland.
+- Lambda: no servers to manage, pay for what you use; S3 and DynamoDB events can trigger it.
 
 > **Trap:** Disabling asynchronous function-error retries does not prevent duplicate events or turn off the separate throttling retry path.

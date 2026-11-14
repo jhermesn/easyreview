@@ -80,6 +80,12 @@ facts:
     text: An EKS Auto Mode StorageClass defines volume provisioning settings such as volume type and
       encryption.
     source: https://docs.aws.amazon.com/eks/latest/userguide/create-storage-class.html#create-storage-class
+  - id: same-az
+    text: An EBS volume and the instance it attaches to must be in the same Availability Zone; EBS volumes persist independently of the instance.
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes.html
+  - id: pricing-dimensions
+    text: EBS charges for provisioned storage per GB-month by volume type, for provisioned IOPS and throughput above what is included, and for snapshot storage.
+    source: https://aws.amazon.com/ebs/pricing/
 cards:
   - id: ebs-010
     q: When should an EC2 workload choose EBS gp3 rather than io2 Block Express?
@@ -136,6 +142,15 @@ cards:
     trap: true
     facts:
       - eks-fargate
+  - id: ebs-041
+    q: Can an EC2 instance in us-east-1a attach an EBS volume created in us-east-1b?
+    a: No. An EBS volume attaches only to instances in its own Availability Zone. Use a snapshot to create a volume in the other AZ.
+    trap: true
+    facts: [same-az]
+  - id: ebs-042
+    q: What does Amazon EBS charge for?
+    a: Provisioned storage (GB-month, by volume type), provisioned IOPS and throughput above the included amount, and snapshot storage.
+    facts: [pricing-dimensions]
 ---
 Amazon EBS provides block storage, disks attached to EC2 instances. Choose solid-state drive (SSD) storage for transactional I/O, meaning application reads and writes, and hard disk drive (HDD) storage for large sequential transfers.
 
@@ -175,5 +190,6 @@ EKS Auto Mode manages block storage without installing that CSI controller. Its 
 - gp2 baseline is 3 IOPS per GiB, bounded by 100 and 16000 IOPS. Eligible small volumes can burst to 3000 IOPS.
 - st1 and sc1 cannot boot an EC2 instance.
 - For direct volume creation, the console defaults to gp3; command line tools, API and SDK default to gp2.
+- EBS volume and instance: same AZ.
 
 > **Trap:** An EBS IOPS setting alone does not establish application performance. The I/O size, instance limits and workload demand also matter.

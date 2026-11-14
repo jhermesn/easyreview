@@ -54,6 +54,9 @@ facts:
   - id: cloudwatch-log-streaming
     text: When instance log streaming is enabled, Elastic Beanstalk sends environment instance log files to CloudWatch Logs.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.cloudwatchlogs.html#AWSHowTo.cloudwatchlogs.loggroups
+  - id: basic-health
+    text: Basic health reporting uses load balancer health checks (or EC2 status checks in a single-instance environment), checks that the Auto Scaling group has at least one instance, and publishes no metrics to CloudWatch.
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.healthstatus.html
 cards:
   - id: elastic-beanstalk-006
     q: An Elastic Beanstalk deployment stays at Warning even though the team has confirmed it operates correctly. Which health settings can change acceptance?
@@ -101,6 +104,10 @@ cards:
     a: Enable instance log streaming to CloudWatch Logs.
     facts:
       - cloudwatch-log-streaming
+  - id: elastic-beanstalk-061
+    q: What does Elastic Beanstalk basic health reporting check, and does it publish metrics to CloudWatch?
+    a: Load balancer health checks (or EC2 status checks for a single instance) and that the Auto Scaling group has at least one instance. It publishes no CloudWatch metrics; enhanced health adds an agent and more data.
+    facts: [basic-health]
 ---
 Elastic Beanstalk enhanced health explains why an environment or instance is unhealthy by combining request results, system metrics, and operation state. A green load balancer check alone can miss an application that accepts connections before it is ready.
 

@@ -51,6 +51,9 @@ facts:
   - id: existing-connections
     text: Existing connections remain directed to their endpoint until the idle timeout, even if the endpoint becomes unhealthy or is removed.
     source: https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html#about-idle-timeout
+  - id: tcp-udp
+    text: Global Accelerator listeners support TCP and UDP, so it also serves non-HTTP workloads.
+    source: https://docs.aws.amazon.com/global-accelerator/latest/dg/about-listeners.html
 diagrams:
   - id: accelerator-regional-routing
     title: Standard accelerator routing
@@ -109,6 +112,11 @@ cards:
     q: What are the Global Accelerator TCP and UDP idle timeouts?
     a: TCP is 340 seconds and UDP is 30 seconds. Neither is customizable.
     facts: [timeouts]
+  - id: global-accelerator-010
+    q: A multiplayer game uses UDP and needs lower latency for players worldwide. Which AWS service fits better than CloudFront?
+    a: AWS Global Accelerator. Its listeners support TCP and UDP, while CloudFront caches HTTP content.
+    trap: true
+    facts: [tcp-udp]
 ---
 
 AWS Global Accelerator gives clients fixed IP addresses for applications running in AWS Regions. It brings traffic onto the AWS global network at an edge location, an entry point near users, then routes it to application endpoints, the receiving resources.

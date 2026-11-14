@@ -84,6 +84,12 @@ facts:
   - id: security-group
     text: A security group controls allowed incoming and outgoing resource traffic.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.ec2.instances.sg.html#using-features.managing.ec2.instances.sg
+  - id: upload-code
+    text: With Elastic Beanstalk you upload an application source bundle and it provisions and runs the AWS resources, such as EC2 instances, a load balancer and Auto Scaling, while you keep control of them.
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
+  - id: no-charge
+    text: Elastic Beanstalk has no additional charge; you pay only for the AWS resources your application uses.
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
 diagrams:
   - id: beanstalk-https-request
     title: HTTPS termination and backend access
@@ -179,6 +185,10 @@ cards:
     a: elasticbeanstalk:PutInstanceStatistics, when enhanced health authorization is enabled.
     facts:
       - custom-health
+  - id: elastic-beanstalk-060
+    q: A developer wants to upload a web application and have AWS provision the servers, load balancing and scaling, with no extra service fee. Which service fits?
+    a: "AWS Elastic Beanstalk.\nIt has no additional charge; you pay for the EC2 instances and other resources it creates."
+    facts: [upload-code, no-charge]
 ---
 Elastic Beanstalk Standard deploys application code on managed EC2 environments. An application groups related versions and environments; each environment is an independently configured running deployment. A platform is the operating system, language runtime, and server software used to run that code.
 
@@ -212,5 +222,6 @@ For the Standard Docker platform without Compose, use a `Dockerfile` to build an
 - Single instance: Elastic IP, no load balancer, capacity fixed at 1.
 - Service role: Beanstalk actions. Instance profile: application instance actions.
 - With enhanced health authorization enabled, custom profiles need `elasticbeanstalk:PutInstanceStatistics` to send health data.
+- Elastic Beanstalk: no extra charge, pay for the resources.
 
 > **Trap:** A single-instance environment still uses Auto Scaling. It maintains one instance rather than adding instances for increasing traffic.

@@ -32,7 +32,20 @@ export const levels: { id: Level; name: string }[] = [
 ];
 
 export const certs: Cert[] = [
-  { id: 'clf-c02', code: 'CLF-C02', name: 'Cloud Practitioner', level: 'foundational', page: awsCert('certified-cloud-practitioner'), domains: [] },
+  {
+    id: 'clf-c02',
+    code: 'CLF-C02',
+    name: 'Cloud Practitioner',
+    level: 'foundational',
+    page: awsCert('certified-cloud-practitioner'),
+    guideUrl: 'https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/cloud-practitioner-02.html',
+    domains: [
+      { id: 'd1', name: 'Cloud Concepts', weight: 24 },
+      { id: 'd2', name: 'Security and Compliance', weight: 30 },
+      { id: 'd3', name: 'Cloud Technology and Services', weight: 34 },
+      { id: 'd4', name: 'Billing, Pricing, and Support', weight: 12 },
+    ],
+  },
   { id: 'aif-c01', code: 'AIF-C01', name: 'AI Practitioner', level: 'foundational', page: awsCert('certified-ai-practitioner'), domains: [] },
   { id: 'saa-c03', code: 'SAA-C03', name: 'Solutions Architect - Associate', level: 'associate', page: awsCert('certified-solutions-architect-associate'), domains: [] },
   { id: 'dva-c03', code: 'DVA-C03', name: 'Developer - Associate', level: 'associate', page: awsCert('certified-developer-associate'), domains: [] },

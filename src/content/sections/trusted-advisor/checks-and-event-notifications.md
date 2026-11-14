@@ -72,6 +72,12 @@ facts:
   - id: sns-publish
     text: Messages published to an SNS topic are delivered on an attempted basis to its subscribed endpoints.
     source: https://docs.aws.amazon.com/sns/latest/dg/sns-publishing.html
+  - id: ebs-underutilized
+    text: The Underutilized Amazon EBS volumes check flags volumes that are unattached or have had very low write activity.
+    source: https://docs.aws.amazon.com/awssupport/latest/user/cost-optimization-checks.html#underutilized-amazon-ebs-volumes
+  - id: cloudtrail-check
+    text: The AWS CloudTrail Management Event Logging security check checks whether CloudTrail is recording management events in the account.
+    source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html#aws-cloudtrail-man-events-log
 diagrams:
   - id: trusted-advisor-events
     title: Check status notification
@@ -142,6 +148,14 @@ cards:
     q: Which security checks can a Basic Support customer use in Trusted Advisor?
     a: "Examples include S3 bucket permissions, MFA on the root account and security groups with specific unrestricted ports."
     facts: [basic-security-examples]
+  - id: trusted-advisor-014
+    q: Which AWS Trusted Advisor check finds EBS volumes that are unattached or barely used?
+    a: Underutilized Amazon EBS volumes, a cost optimization check.
+    facts: [ebs-underutilized]
+  - id: trusted-advisor-015
+    q: Which AWS Trusted Advisor category checks whether AWS CloudTrail is logging management events?
+    a: Security, through the AWS CloudTrail Management Event Logging check.
+    facts: [cloudtrail-check]
 ---
 AWS Trusted Advisor inspects your AWS environment and recommends improvements to cost, availability, performance and security. A check evaluates resources and reports results for review.
 

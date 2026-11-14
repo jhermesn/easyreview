@@ -78,6 +78,12 @@ facts:
   - id: proxy-reserve
     text: RDS Proxy reserves internal connections, so MaxDatabaseConnectionsAllowed can be lower than the value calculated from MaxConnectionsPercent.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.maxconnectionspercent
+  - id: engine-compat
+    text: Amazon Aurora is a fully managed relational database engine compatible with MySQL and PostgreSQL.
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html
+  - id: managed-patching
+    text: Aurora applies operating system and database engine patches during the cluster maintenance window, so the customer does not patch servers.
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html
 cards:
   - id: aurora-001
     q: What separates Aurora storage durability from database instance availability?
@@ -148,6 +154,10 @@ cards:
       - tier
       - tier-tie
       - tier-exception
+  - id: aurora-031
+    q: A company runs MySQL and PostgreSQL applications and wants a managed relational database that AWS patches for it. Which AWS database fits?
+    a: "Amazon Aurora.\nIt is compatible with MySQL and PostgreSQL, and AWS applies OS and engine patches in the maintenance window."
+    facts: [engine-compat, managed-patching]
 diagrams:
   - id: aurora-shared-storage
     title: Instances share storage while endpoints select connections
@@ -250,5 +260,6 @@ An Aurora cluster separates database instances from a shared storage volume. The
 - Metrics: RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
 - Reader Auto Scaling does not scale the writer and is unsupported for Global Database secondaries or Serverless v2.
 - MaxDatabaseConnectionsAllowed accounts for proxy internal reserves and can be below the simple percentage calculation.
+- Aurora is MySQL and PostgreSQL compatible; AWS patches it in the maintenance window.
 
 > **Trap:** Manually created readers affect Auto Scaling metrics but are not removed by its scale-in actions. With no readers, the reader endpoint reaches the writer and can accept writes.

@@ -69,6 +69,12 @@ facts:
     text: A Secrets Manager rotation workflow can update both the CloudFront custom origin header and
       the ALB WAF rule configuration.
     source: https://aws.amazon.com/blogs/security/how-to-enhance-amazon-cloudfront-origin-security-with-aws-waf-and-aws-secrets-manager/
+  - id: geo-match
+    text: An AWS WAF geo match rule statement allows or blocks web requests by their country or region of origin.
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html
+  - id: sqli
+    text: An AWS WAF SQL injection rule statement inspects web requests for malicious SQL code.
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-sqli-match.html
 diagrams:
   - id: waf-rule-evaluation
     title: Evaluation when no rule terminates
@@ -192,6 +198,14 @@ cards:
     facts:
       - origin-header
       - origin-rotation
+  - id: waf-020
+    q: A company must block web requests to its application from specific countries. Which AWS service and rule type fit?
+    a: AWS WAF with a geo match rule statement.
+    facts: [geo-match]
+  - id: waf-021
+    q: Which AWS service can block SQL injection attempts in web requests?
+    a: AWS WAF, with an SQL injection rule statement.
+    facts: [sqli]
 ---
 AWS WAF filters web requests using a web access control list (web ACL), also called a protection pack. A web ACL contains rules associated with a supported application endpoint. It lets you choose which matching requests to allow, block, count or challenge.
 
@@ -220,6 +234,7 @@ For an ALB origin behind CloudFront, an origin is the backend serving CloudFront
 - If the question says protect CloudFront with a Regional ACL, think a global ACL created in `us-east-1`, because a Regional ACL has the wrong scope.
 - If the question says audit matching web requests centrally, think WAF logging, because logs can go to CloudWatch Logs, S3 or Firehose.
 - If the question says rotate an origin validation secret, think both CloudFront and the ALB WAF rule, because the sent and accepted values must stay aligned.
+- If the question says block countries or SQL injection, think AWS WAF, because it has geo match and SQL injection rule statements.
 
 ### Remember
 

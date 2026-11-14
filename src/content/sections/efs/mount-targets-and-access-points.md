@@ -64,6 +64,9 @@ facts:
     text: Lambda can use EFS through a cross-account VPC path when routing, security groups, IAM
       permissions, access-point access, and file permissions permit it.
     source: https://aws.amazon.com/blogs/aws/new-a-shared-file-system-for-your-lambda-functions/
+  - id: other-region
+    text: An EC2 instance in a different AWS Region from an EFS file system can mount it, after setting the file system Region in efs-utils.
+    source: https://docs.aws.amazon.com/efs/latest/ug/mount-different-region.html
 cards:
   - id: efs-003
     q: What controls can an EFS access point enforce, and does it replace the mount target?
@@ -119,6 +122,10 @@ cards:
     facts:
       - cross-account-lambda
       - lambda-ap
+  - id: efs-023
+    q: Can an EC2 instance in another AWS Region mount an Amazon EFS file system?
+    a: Yes. Configure efs-utils with the file system's Region; the instance also needs network access to the file system.
+    facts: [other-region]
 ---
 
 An EFS mount target provides network connectivity; an access point defines how an application sees and identifies itself to the shared file system. A root directory is the top folder visible through that mount. A POSIX identity is the numeric Unix-style user and group used for file permission checks.
