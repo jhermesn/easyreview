@@ -12,6 +12,9 @@ facts:
   - id: features
     text: Amazon Transcribe supports language customization, content filtering for privacy, multi-channel audio and identifying individual speakers.
     source: https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is
+  - id: transcribe-medical
+    text: "Amazon Transcribe Medical is automatic speech recognition for medical speech, such as physician-dictated notes, telemedicine appointments and physician-patient conversations."
+    source: https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical.html#transcribe-medical
 cards:
   - id: transcribe-001
     q: A call center wants written transcripts of recorded customer calls. Which AWS service fits?
@@ -30,6 +33,10 @@ cards:
     a: No. It produces text in the spoken language; translation is Amazon Translate.
     trap: true
     facts: [purpose]
+  - id: transcribe-005
+    q: "Which AWS service turns physician dictation and doctor-patient conversations into text?"
+    a: "Amazon Transcribe Medical, speech recognition built for medical vocabulary."
+    facts: [transcribe-medical]
 ---
 Amazon Transcribe turns speech into text. It works on live audio streams and on recorded files, and can separate speakers and filter sensitive content. [What is Amazon Transcribe?](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is)
 

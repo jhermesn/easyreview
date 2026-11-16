@@ -4242,6 +4242,15 @@
   "https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/regional-services.html#regional-services": "9e7ab2c36450295b",
   "https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/zonal-services.html#zonal-services": "86ed8fbc8a1a8de9",
   "https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/governance-perspective.html#governance-perspective": "bdcadae485fd2baf",
-  "https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/security-perspective.html#security-perspective": "3fc466ae408bc804"
+  "https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/security-perspective.html#security-perspective": "3fc466ae408bc804",
+  "https://aws.amazon.com/what-is/machine-learning/": "c1e3f599a4504cee",
+  "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/pull-behavior.html#pull-behavior": "764683fc693eec6a",
+  "https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-generate-sdk.html#how-to-generate-sdk": "30c68c682d9269bf",
+  "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-tagging.html#guardrails-tagging": "03791840f7dfe55e",
+  "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-diffusion-3-5-large.html#model-parameters-diffusion-3-5-large": "0008ab6384f43214",
+  "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-create.html#prompt-management-create": "30c9d85b7d961801",
+  "https://docs.aws.amazon.com/comprehend-medical/latest/dev/comprehendmedical-welcome.html#comprehendmedical-welcome": "a3e9d31b3d299a4d",
+  "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical.html#transcribe-medical": "51838304022ca4da",
+  "https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport-limits.html#vmexport-limits": "9a82ef1e5bf2abe0"
  }
 }

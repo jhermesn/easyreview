@@ -112,6 +112,9 @@ facts:
   - id: ecs-diagnose-exec-timeout
     text: ECS Exec has a fixed 20-minute idle timeout and does not support IPv6-only tasks.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html#ecs-exec-considerations
+  - id: ecs-image-pull-behavior
+    text: "On EC2 and external instances, the ECS agent pulls the task image from the registry and caches it. With ECS_IMAGE_PULL_BEHAVIOR set to default, a failed pull falls back to the cached image; with always, the task fails instead."
+    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/pull-behavior.html#pull-behavior
 diagrams:
   - id: ecs-stopped-task-alert
     title: Stopped tasks trigger notifications
@@ -265,6 +268,10 @@ cards:
     facts:
       - ecs-diagnose-exec-endpoint
       - ecs-diagnose-exec-timeout
+  - id: ecs-075
+    q: "After a force new deployment that reuses the same image tag, some ECS tasks on EC2 container instances still run the previous image. What explains it?"
+    a: "The default pull behavior: when the remote pull fails, the agent starts the task from the cached local image. Setting ECS_IMAGE_PULL_BEHAVIOR to always makes the task fail instead, and a new tag per release avoids the ambiguity."
+    facts: [ecs-image-pull-behavior]
 ---
 
 ECS task troubleshooting connects scheduler messages, stop reasons, and application logs. Each explains a different part of a failure: placement, task termination, or application behavior.

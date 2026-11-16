@@ -15,6 +15,9 @@ facts:
   - id: custom-entities
     text: "Amazon Comprehend custom entity recognition finds entity types of your own, such as product codes or business-specific terms, beyond the preset generic entity types, with automatic annotation and model training."
     source: https://docs.aws.amazon.com/comprehend/latest/dg/custom-entity-recognition.html#custom-entity-recognition
+  - id: comprehend-medical
+    text: "Amazon Comprehend Medical uses NLP to detect medical information such as conditions, medications and test results in unstructured clinical text like physician notes and discharge summaries."
+    source: https://docs.aws.amazon.com/comprehend-medical/latest/dev/comprehendmedical-welcome.html#comprehendmedical-welcome
 cards:
   - id: comprehend-001
     q: A company wants to know whether customer reviews are positive or negative. Which AWS service fits?
@@ -37,6 +40,10 @@ cards:
     q: "A food company must extract its own ingredient names from product descriptions, which aren't among Amazon Comprehend's built-in entity types. Which feature fits?"
     a: "Amazon Comprehend **custom entity recognition**, trained on the company's own entity types."
     facts: [custom-entities]
+  - id: comprehend-006
+    q: "Which AWS service extracts medical entities from physician notes, discharge summaries and test results?"
+    a: "Amazon Comprehend Medical, the clinical-text version of Comprehend."
+    facts: [comprehend-medical]
 ---
 Amazon Comprehend reads text and tells you what's in it: the people, places and organizations mentioned, key phrases, the language and the sentiment. It needs no machine learning expertise. [What is Amazon Comprehend?](https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html#what-is)
 

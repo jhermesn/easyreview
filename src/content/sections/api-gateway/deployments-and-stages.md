@@ -93,6 +93,9 @@ facts:
   - id: aws-integration
     text: An API Gateway REST API can integrate directly with AWS services, for example as a proxy to Amazon Kinesis, without a Lambda function in between.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-kinesis.html
+  - id: sdk-generation
+    text: "API Gateway generates a client SDK for a REST API after it is deployed to a stage, in Java, JavaScript, Java for Android, Objective-C or Swift for iOS, and Ruby; the GetSdk API returns it for automation."
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-generate-sdk.html#how-to-generate-sdk
 diagrams:
   - id: api-deployment-stage
     title: Publishing a REST API configuration
@@ -255,6 +258,10 @@ cards:
     q: Can Amazon API Gateway send requests straight to Amazon Kinesis without a Lambda function?
     a: Yes. A REST API can use an AWS service integration as a Kinesis proxy.
     facts: [aws-integration]
+  - id: api-gateway-039
+    q: "Engineers download client SDKs for a REST API by hand after each stage update and upload them to S3. How can this be automated?"
+    a: "An EventBridge rule on the stage update API call, recorded by CloudTrail, invokes a Lambda function that calls API Gateway GetSdk for the stage and writes the SDK to S3."
+    facts: [sdk-generation]
 ---
 A REST API deployment is a fixed snapshot of the API configuration. A stage is the named reference clients use to reach a deployment, allowing a release to be attached to a new or existing stage.
 
