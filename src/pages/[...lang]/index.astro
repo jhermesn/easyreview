@@ -108,7 +108,7 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
                   <a class="tile" href={link(`/${c.id}`)} title={[`${c.code} · ${c.name}`, examSummary(c.id)].filter(Boolean).join(' · ')}>
                     <img src={badgeUrl(c.id)} alt={`${c.code} ${c.name}`} width="104" height="120" loading="lazy" data-badge-cert={c.id} />
                     <span class="code">{c.code}</span>
-                    <span class="ring" data-cert={c.id} data-known-set={knownGroups(views.get(c.id)?.sections ?? [])}><span data-known-count></span></span>
+                    <span class="ring" data-cert={c.id} data-known-set={knownGroups(views.get(c.id)?.sections ?? [])}><span data-known-pct aria-hidden="true"></span><span class="sr-only" data-known-count></span></span>
                   </a>
                 ) : (
                   <div class="tile soon" title={[`${c.code} · ${c.name}`, c.note, examSummary(c.id), t('home.soon.title')].filter(Boolean).join(' · ')}>
@@ -185,10 +185,11 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
   .soon img { filter: grayscale(1) brightness(0.55); }
   .soon .code { color: var(--ink-400); }
   .flag { position: absolute; top: 0.4rem; right: 0.4rem; display: inline-flex; align-items: center; gap: 0.2rem; font-size: 0.62rem; text-transform: uppercase; color: var(--ink-300); border: 1px solid var(--ink-500); padding: 0 0.3rem; background: var(--ink-900); }
-  .ring { position: absolute; top: 0.4rem; right: 0.4rem; width: 2.1rem; height: 2.1rem; border-radius: 50%; display: grid; place-items: center; font-size: 0.55rem; color: var(--ink-100);
+  .ring { position: absolute; top: 0.4rem; right: 0.4rem; width: 2.5rem; height: 2.5rem; border-radius: 50%; display: grid; place-items: center; font-size: 0.6rem; letter-spacing: -0.02em; color: var(--ink-100);
     background: radial-gradient(closest-side, var(--ink-850) 76%, transparent 78%), conic-gradient(var(--mint) var(--pct, 0%), var(--ink-700) 0); }
   .ring.is-gold { color: var(--gold); background: radial-gradient(closest-side, var(--ink-850) 76%, transparent 78%), var(--gold-sheen); }
   .tile:has(.ring.is-gold) { border-color: var(--gold); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   @media (max-width: 820px) {
     .hero { grid-template-columns: minmax(0, 1fr); min-height: auto; gap: 0.5rem; }

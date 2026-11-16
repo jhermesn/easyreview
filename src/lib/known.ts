@@ -22,7 +22,8 @@ const allKnown = (ids: string[], all: Known) => ids.length > 0 && ids.every((id)
 // Elements opt in with data attributes (values are comma-separated section ids):
 //   data-known="a,b"         gets .is-known when every id is known (a unit = its sections)
 //   data-known-set="a,b|c"   groups split by "|" (a topic = its sections); sets --pct and fills
-//                            [data-known-count] with "known groups/total groups"
+//                            [data-known-count] with "known groups/total groups" and
+//                            [data-known-pct] with the share known, for spaces too small for the count
 //   data-known-toggle="a,b"  button that marks all ids known or not (aria-pressed reflects state)
 //   data-cert on a known-set  records whether that cert is complete (every group known)
 //   img[data-badge-cert]      shows the gold badge once its cert is complete
@@ -33,9 +34,12 @@ export function applyKnown(all = readKnown()) {
   document.querySelectorAll<HTMLElement>('[data-known-set]').forEach((el) => {
     const groups = (el.dataset.knownSet ?? '').split('|').map(idsOf).filter((g) => g.length);
     const n = groups.filter((g) => allKnown(g, all)).length;
-    el.style.setProperty('--pct', `${groups.length ? Math.round((n / groups.length) * 100) : 0}%`);
+    const pct = `${groups.length ? Math.round((n / groups.length) * 100) : 0}%`;
+    el.style.setProperty('--pct', pct);
     const count = el.querySelector<HTMLElement>('[data-known-count]');
     if (count) count.textContent = `${n}/${groups.length}`;
+    const share = el.querySelector<HTMLElement>('[data-known-pct]');
+    if (share) share.textContent = pct;
     if (el.dataset.cert) complete[el.dataset.cert] = groups.length > 0 && n === groups.length;
     el.classList.toggle('is-gold', !!el.dataset.cert && complete[el.dataset.cert]);
   });
