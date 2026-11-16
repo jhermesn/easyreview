@@ -1,9 +1,9 @@
 import { unitIdOf, type CertView, type Section } from './content';
 
-// Exam guide outlines live in src/data/guides/<cert>.json. Each knowledge/skill item lists the
+// Exam guide outlines live in src/data/guides/<cert>.json. Each knowledge, skill or objective item lists the
 // section ids ("<unit>/<slug>") that cover it. Each in-scope service names the unit about it, or,
 // for a service without its own unit, the sections that cover it.
-export interface GuideItem { id: string; kind: 'knowledge' | 'skill'; text: string; sections: string[] }
+export interface GuideItem { id: string; kind: 'knowledge' | 'skill' | 'objective'; text: string; sections: string[] }
 export interface GuideTask { id: string; title: string; items: GuideItem[] }
 export type GuideService = { name: string; unit: string } | { name: string; sections: string[] };
 export interface Guide {
