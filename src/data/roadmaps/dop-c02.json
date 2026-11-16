@@ -1,0 +1,268 @@
+{
+  "cert": "dop-c02",
+  "stages": [
+    {
+      "id": "foundations",
+      "title": {
+        "en": "Foundations refresher",
+        "pt-br": "Revisão dos fundamentos"
+      },
+      "goal": {
+        "en": "The accounts, identity and core services every DevOps scenario assumes.",
+        "pt-br": "As contas, a identidade e os serviços básicos que todo cenário de DevOps pressupõe."
+      },
+      "units": [
+        "global-infrastructure",
+        "availability-targets",
+        "iam",
+        "iam-identity-center",
+        "organizations",
+        "multi-account-strategy",
+        "control-tower",
+        "vpc",
+        "ec2",
+        "s3",
+        "cli",
+        "sdks",
+        "cloudshell"
+      ]
+    },
+    {
+      "id": "build",
+      "title": {
+        "en": "Code, builds and artifacts",
+        "pt-br": "Código, builds e artefatos"
+      },
+      "goal": {
+        "en": "Where code lives, how it gets built and tested, and where artifacts go.",
+        "pt-br": "Onde o código fica, como ele é compilado e testado, e para onde vão os artefatos."
+      },
+      "units": [
+        "codecommit",
+        "codebuild",
+        "codeartifact",
+        "artifact-management",
+        "ecr",
+        "codeguru",
+        "testing-in-pipelines",
+        "device-farm"
+      ]
+    },
+    {
+      "id": "deploy",
+      "title": {
+        "en": "Pipelines and deployments",
+        "pt-br": "Pipelines e deploys"
+      },
+      "goal": {
+        "en": "Releasing safely: pipelines, deployment strategies and rollbacks.",
+        "pt-br": "Publicar com segurança: pipelines, estratégias de deploy e rollbacks."
+      },
+      "units": [
+        "codepipeline",
+        "codedeploy",
+        "deployment-strategies",
+        "codestar",
+        "ec2-image-builder",
+        "elastic-beanstalk",
+        "app-runner",
+        "copilot",
+        "proton",
+        "app2container"
+      ]
+    },
+    {
+      "id": "iac",
+      "title": {
+        "en": "Infrastructure as code and configuration",
+        "pt-br": "Infraestrutura como código e configuração"
+      },
+      "goal": {
+        "en": "Templates, stacks and keeping fleets configured.",
+        "pt-br": "Templates, stacks e manter frotas configuradas."
+      },
+      "units": [
+        "cloudformation",
+        "cdk",
+        "sam",
+        "serverless-application-repository",
+        "service-catalog",
+        "systems-manager",
+        "appconfig",
+        "configuration-management",
+        "opsworks",
+        "license-manager",
+        "resource-access-manager",
+        "secrets-manager"
+      ]
+    },
+    {
+      "id": "compute",
+      "title": {
+        "en": "Compute and containers at scale",
+        "pt-br": "Computação e contêineres em escala"
+      },
+      "goal": {
+        "en": "Scaling instances, containers and serverless workloads.",
+        "pt-br": "Escalar instâncias, contêineres e cargas serverless."
+      },
+      "units": [
+        "ec2-auto-scaling",
+        "application-auto-scaling",
+        "elastic-load-balancing",
+        "lambda",
+        "ecs",
+        "fargate",
+        "eks",
+        "eks-distro",
+        "rosa",
+        "api-gateway",
+        "step-functions"
+      ]
+    },
+    {
+      "id": "data",
+      "title": {
+        "en": "Storage and databases",
+        "pt-br": "Armazenamento e bancos de dados"
+      },
+      "goal": {
+        "en": "Durable data: replication, backups and migrations.",
+        "pt-br": "Dados duráveis: replicação, backups e migrações."
+      },
+      "units": [
+        "ebs",
+        "efs",
+        "fsx-for-windows",
+        "fsx-for-lustre",
+        "fsx-for-netapp-ontap",
+        "fsx-for-openzfs",
+        "storage-gateway",
+        "rds",
+        "aurora",
+        "dynamodb",
+        "elasticache",
+        "memorydb",
+        "documentdb",
+        "dms",
+        "backup"
+      ]
+    },
+    {
+      "id": "networking",
+      "title": {
+        "en": "Networking",
+        "pt-br": "Redes"
+      },
+      "goal": {
+        "en": "Routing traffic across Regions, accounts and on-premises networks.",
+        "pt-br": "Rotear tráfego entre Regiões, contas e redes on-premises."
+      },
+      "units": [
+        "route53",
+        "cloudfront",
+        "global-accelerator",
+        "privatelink",
+        "transit-gateway",
+        "site-to-site-vpn",
+        "client-vpn",
+        "direct-connect",
+        "network-firewall"
+      ]
+    },
+    {
+      "id": "resilience",
+      "title": {
+        "en": "Resilience and disaster recovery",
+        "pt-br": "Resiliência e recuperação de desastres"
+      },
+      "goal": {
+        "en": "Designing for failure and proving recovery works.",
+        "pt-br": "Projetar para falhas e provar que a recuperação funciona."
+      },
+      "units": [
+        "disaster-recovery",
+        "elastic-disaster-recovery",
+        "application-recovery-controller",
+        "resilience-hub",
+        "fis"
+      ]
+    },
+    {
+      "id": "observability",
+      "title": {
+        "en": "Monitoring and observability",
+        "pt-br": "Monitoramento e observabilidade"
+      },
+      "goal": {
+        "en": "Metrics, logs and traces, and analyzing them at scale.",
+        "pt-br": "Métricas, logs e traces, e como analisá-los em escala."
+      },
+      "units": [
+        "cloudwatch",
+        "xray",
+        "adot",
+        "managed-prometheus",
+        "managed-grafana",
+        "observability-strategy",
+        "cloudtrail",
+        "health",
+        "opensearch",
+        "kinesis-data-streams",
+        "firehose",
+        "managed-service-for-apache-flink",
+        "athena",
+        "quicksight",
+        "redshift",
+        "emr",
+        "appflow"
+      ]
+    },
+    {
+      "id": "events",
+      "title": {
+        "en": "Events and incident response",
+        "pt-br": "Eventos e resposta a incidentes"
+      },
+      "goal": {
+        "en": "Reacting to events automatically and fixing what alarms find.",
+        "pt-br": "Reagir a eventos automaticamente e corrigir o que os alarmes encontram."
+      },
+      "units": [
+        "eventbridge",
+        "sns",
+        "sqs",
+        "event-processing-patterns",
+        "trusted-advisor",
+        "compute-optimizer"
+      ]
+    },
+    {
+      "id": "security",
+      "title": {
+        "en": "Security and compliance",
+        "pt-br": "Segurança e conformidade"
+      },
+      "goal": {
+        "en": "Encryption, detection and compliance rules across accounts.",
+        "pt-br": "Criptografia, detecção e regras de conformidade entre contas."
+      },
+      "units": [
+        "kms",
+        "acm",
+        "private-ca",
+        "cloudhsm",
+        "config",
+        "security-hub",
+        "guardduty",
+        "inspector",
+        "macie",
+        "detective",
+        "waf",
+        "shield",
+        "firewall-manager",
+        "directory-service"
+      ]
+    }
+  ]
+}

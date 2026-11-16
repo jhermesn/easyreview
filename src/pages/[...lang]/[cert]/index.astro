@@ -9,6 +9,8 @@ import { withBase } from '../../../lib/format';
 import { badgeUrl } from '../../../lib/badge';
 import { breadcrumbs, certFullName } from '../../../lib/seo';
 import CertCelebration from '../../../components/CertCelebration.astro';
+import Roadmap from '../../../components/Roadmap.astro';
+import { getRoadmap } from '../../../lib/roadmap';
 import { localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 
 export function getStaticPaths() {
@@ -23,6 +25,7 @@ const cardTotal = view.sections.reduce((n, s) => n + s.data.cards.length, 0);
 const guideItems = getGuide(cert.id)?.domains.flatMap((d) => d.tasks.flatMap((t) => t.items)) ?? [];
 const covered = guideItems.filter((i) => i.sections.length).length;
 const description = t('cert.description', { cert: certFullName(cert), n: cardTotal });
+const roadmap = getRoadmap(cert.id);
 const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.site!, locale)];
 ---
 <Base title={`${cert.code} ${cert.name}`} description={description} cert={cert.id} jsonLd={jsonLd} heading={t('cert.overview')}>
@@ -43,6 +46,18 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
   <CertCelebration cert={cert} />
   <ExamFacts certId={cert.id} />
 
+  {roadmap && (
+    <div class="views" role="tablist" aria-label={t('roadmap.views')}>
+      <button type="button" role="tab" id="tab-roadmap" aria-controls="view-roadmap" aria-selected="true" data-view-tab><Icon name="route" size={15} /> {t('roadmap.tab')}</button>
+      <button type="button" role="tab" id="tab-domains" aria-controls="view-domains" aria-selected="false" data-view-tab><Icon name="layers" size={15} /> {t('roadmap.byDomain')}</button>
+    </div>
+  )}
+  {roadmap && (
+    <section id="view-roadmap" role="tabpanel" aria-labelledby="tab-roadmap">
+      <Roadmap certId={cert.id} roadmap={roadmap} units={view.units} />
+    </section>
+  )}
+  <div id="view-domains" role={roadmap ? 'tabpanel' : undefined} aria-labelledby={roadmap ? 'tab-domains' : undefined} hidden={!!roadmap}>
   {cert.domains.map((d) => {
     const own = view.units.filter((u) => u.domain === d.id);
     return (
@@ -65,7 +80,26 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
       </section>
     );
   })}
+  </div>
 </Base>
+
+<script>
+  // Roadmap and exam-domain views of the same topics.
+  document.addEventListener('astro:page-load', () => {
+    const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-view-tab]')];
+    for (const tab of tabs) {
+      if (tab.dataset.ready) continue;
+      tab.dataset.ready = '1';
+      tab.addEventListener('click', () => {
+        for (const other of tabs) {
+          const on = other === tab;
+          other.setAttribute('aria-selected', String(on));
+          document.getElementById(other.getAttribute('aria-controls')!)!.hidden = !on;
+        }
+      });
+    }
+  });
+</script>
 
 <style>
   .head { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem; }
@@ -76,6 +110,9 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
   .stats li:first-child { color: var(--mint); }
   .stats li.is-gold { color: var(--gold); }
   .drill { margin-left: auto; display: inline-flex; align-items: center; gap: 0.4rem; }
+  .views { display: flex; gap: 0.4rem; margin: 1.6rem 0 1rem; border-bottom: 1px solid var(--ink-700); }
+  .views button { display: inline-flex; align-items: center; gap: 0.4rem; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: 0.45rem 0.7rem; min-width: 0; white-space: normal; text-align: left; }
+  .views button[aria-selected='true'] { color: var(--ink-100); border-bottom-color: var(--amber); }
   .domain h2 { display: flex; align-items: center; gap: 0.45rem; font-size: 0.95rem; color: var(--purple); margin: 1.8rem 0 0.6rem; }
   .tiles { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.5rem; }
   .tiles a { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.6rem; align-items: center; padding: 0.55rem 0.7rem; height: 100%; background: var(--ink-850); border: 1px solid var(--ink-700); text-decoration: none; }

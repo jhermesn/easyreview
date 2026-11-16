@@ -1,0 +1,266 @@
+{
+  "cert": "clf-c02",
+  "stages": [
+    {
+      "id": "cloud-basics",
+      "title": {
+        "en": "Cloud basics",
+        "pt-br": "Fundamentos da nuvem"
+      },
+      "goal": {
+        "en": "Why the cloud, how AWS is laid out, and who secures what.",
+        "pt-br": "Por que a nuvem, como a AWS é organizada e quem protege o quê."
+      },
+      "units": [
+        "cloud-value",
+        "global-infrastructure",
+        "availability-targets",
+        "shared-responsibility",
+        "well-architected",
+        "cloud-adoption"
+      ]
+    },
+    {
+      "id": "access",
+      "title": {
+        "en": "Accounts and access",
+        "pt-br": "Contas e acesso"
+      },
+      "goal": {
+        "en": "How you reach AWS and who can do what in your accounts.",
+        "pt-br": "Como você acessa a AWS e quem pode fazer o quê nas suas contas."
+      },
+      "units": [
+        "management-console",
+        "cli",
+        "cloudshell",
+        "sdks",
+        "iam",
+        "iam-identity-center",
+        "organizations",
+        "control-tower",
+        "directory-service",
+        "cognito",
+        "resource-access-manager",
+        "service-quotas"
+      ]
+    },
+    {
+      "id": "networking",
+      "title": {
+        "en": "Networking",
+        "pt-br": "Redes"
+      },
+      "goal": {
+        "en": "Private networks, DNS, content delivery and connections to AWS.",
+        "pt-br": "Redes privadas, DNS, entrega de conteúdo e conexões com a AWS."
+      },
+      "units": [
+        "vpc",
+        "route53",
+        "cloudfront",
+        "global-accelerator",
+        "elastic-load-balancing",
+        "privatelink",
+        "transit-gateway",
+        "site-to-site-vpn",
+        "client-vpn",
+        "direct-connect",
+        "api-gateway"
+      ]
+    },
+    {
+      "id": "compute",
+      "title": {
+        "en": "Compute",
+        "pt-br": "Computação"
+      },
+      "goal": {
+        "en": "Servers, containers and serverless, and how they scale.",
+        "pt-br": "Servidores, contêineres e serverless, e como eles escalam."
+      },
+      "units": [
+        "ec2",
+        "ec2-auto-scaling",
+        "application-auto-scaling",
+        "lambda",
+        "ecs",
+        "ecr",
+        "eks",
+        "fargate",
+        "lightsail",
+        "batch",
+        "elastic-beanstalk",
+        "outposts"
+      ]
+    },
+    {
+      "id": "storage",
+      "title": {
+        "en": "Storage and backup",
+        "pt-br": "Armazenamento e backup"
+      },
+      "goal": {
+        "en": "Object, block and file storage, and how to recover data.",
+        "pt-br": "Armazenamento de objetos, blocos e arquivos, e como recuperar dados."
+      },
+      "units": [
+        "s3",
+        "ebs",
+        "efs",
+        "fsx-for-windows",
+        "fsx-for-lustre",
+        "fsx-for-netapp-ontap",
+        "fsx-for-openzfs",
+        "storage-gateway",
+        "backup",
+        "disaster-recovery",
+        "elastic-disaster-recovery"
+      ]
+    },
+    {
+      "id": "databases",
+      "title": {
+        "en": "Databases",
+        "pt-br": "Bancos de dados"
+      },
+      "goal": {
+        "en": "Managed relational, NoSQL and in-memory databases, and migrating to them.",
+        "pt-br": "Bancos relacionais, NoSQL e em memória gerenciados, e como migrar para eles."
+      },
+      "units": [
+        "rds",
+        "aurora",
+        "dynamodb",
+        "elasticache",
+        "neptune",
+        "documentdb",
+        "dms"
+      ]
+    },
+    {
+      "id": "security",
+      "title": {
+        "en": "Security services",
+        "pt-br": "Serviços de segurança"
+      },
+      "goal": {
+        "en": "Encryption, secrets and the services that detect and block threats.",
+        "pt-br": "Criptografia, segredos e os serviços que detectam e bloqueiam ameaças."
+      },
+      "units": [
+        "kms",
+        "acm",
+        "cloudhsm",
+        "secrets-manager",
+        "waf",
+        "shield",
+        "firewall-manager",
+        "guardduty",
+        "inspector",
+        "macie",
+        "detective",
+        "security-hub",
+        "artifact"
+      ]
+    },
+    {
+      "id": "operations",
+      "title": {
+        "en": "Monitoring, governance and IaC",
+        "pt-br": "Monitoramento, governança e IaC"
+      },
+      "goal": {
+        "en": "Watching resources, auditing changes and building with templates.",
+        "pt-br": "Acompanhar recursos, auditar mudanças e criar com templates."
+      },
+      "units": [
+        "cloudwatch",
+        "cloudtrail",
+        "config",
+        "trusted-advisor",
+        "health",
+        "systems-manager",
+        "service-catalog",
+        "license-manager",
+        "cloudformation",
+        "cdk"
+      ]
+    },
+    {
+      "id": "applications",
+      "title": {
+        "en": "Applications and developer tools",
+        "pt-br": "Aplicações e ferramentas de desenvolvimento"
+      },
+      "goal": {
+        "en": "Messaging, workflows, CI/CD and services for end users.",
+        "pt-br": "Mensageria, fluxos, CI/CD e serviços para usuários finais."
+      },
+      "units": [
+        "sqs",
+        "sns",
+        "eventbridge",
+        "step-functions",
+        "ses",
+        "connect",
+        "codebuild",
+        "codepipeline",
+        "xray",
+        "deployment-strategies",
+        "amplify",
+        "iot-core",
+        "appstream",
+        "workspaces"
+      ]
+    },
+    {
+      "id": "data-ai",
+      "title": {
+        "en": "Analytics and AI",
+        "pt-br": "Análise de dados e IA"
+      },
+      "goal": {
+        "en": "Querying and streaming data, and the AI services the exam names.",
+        "pt-br": "Consultar e transmitir dados, e os serviços de IA que a prova cita."
+      },
+      "units": [
+        "athena",
+        "glue",
+        "emr",
+        "kinesis-data-streams",
+        "firehose",
+        "opensearch",
+        "quicksight",
+        "redshift",
+        "sagemaker-ai",
+        "amazon-q",
+        "comprehend",
+        "lex",
+        "polly",
+        "rekognition",
+        "textract",
+        "transcribe",
+        "translate"
+      ]
+    },
+    {
+      "id": "billing",
+      "title": {
+        "en": "Billing and support",
+        "pt-br": "Cobrança e suporte"
+      },
+      "goal": {
+        "en": "Pricing models, cost tools, support plans and where to get help.",
+        "pt-br": "Modelos de preço, ferramentas de custo, planos de suporte e onde pedir ajuda."
+      },
+      "units": [
+        "billing-and-cost-management",
+        "compute-optimizer",
+        "marketplace",
+        "support",
+        "technical-resources"
+      ]
+    }
+  ]
+}

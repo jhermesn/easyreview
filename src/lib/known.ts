@@ -66,4 +66,6 @@ export function applyKnown(all = readKnown()) {
       btn.addEventListener('click', () => setKnown(ids, btn.getAttribute('aria-pressed') !== 'true'));
     }
   });
+  // Components that derive state from known topics (the roadmap's next topic) update after this.
+  document.dispatchEvent(new CustomEvent('easyreview:known-applied'));
 }

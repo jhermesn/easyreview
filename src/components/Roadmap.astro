@@ -1,0 +1,105 @@
+---
+// A cert's study path as a tree: numbered stages on a spine, each branching into its topics. Known topics
+// are checked, each stage counts its progress, and the next topic to study is highlighted.
+import Icon from './Icon.astro';
+import type { CertUnit } from '../lib/content';
+import { sectionIds } from '../lib/content';
+import { localized, type Roadmap } from '../lib/roadmap';
+import { withBase } from '../lib/format';
+import { localeOf, localePath, useTranslations } from '../i18n';
+
+interface Props {
+  certId: string;
+  roadmap: Roadmap;
+  units: CertUnit[];
+}
+const { certId, roadmap, units } = Astro.props;
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
+const byId = new Map(units.map((u) => [u.unit.id, u]));
+const stages = roadmap.stages.map((s) => ({ ...s, units: s.units.map((id) => byId.get(id)).filter((u): u is CertUnit => !!u) }));
+---
+<div class="roadmap" data-roadmap>
+  <p class="intro muted">{t('roadmap.intro')}</p>
+  <a class="btn btn-primary next" href="#" data-roadmap-next hidden><Icon name="arrow-right" size={16} /> <span data-roadmap-next-label></span></a>
+  <ol class="stages">
+    {stages.map((s, i) => (
+      <li class="stage" data-stage data-known-set={s.units.map((u) => sectionIds(u.sections)).join('|')}>
+        <span class="num" aria-hidden="true"><span class="n">{i + 1}</span><Icon name="check" size={16} class="done-mark" /></span>
+        <div class="body">
+          <h3>
+            <span class="sr-only">{t('roadmap.stage', { n: i + 1 })}: </span>{localized(s.title, locale)}
+            <span class="count muted" data-known-count></span>
+          </h3>
+          <p class="goal muted">{localized(s.goal, locale)}</p>
+          <ul class="units">
+            {s.units.map(({ unit, sections }) => (
+              <li>
+                <a href={localePath(locale, `/${certId}/${unit.id}`)} title={unit.data.summary} data-known={sectionIds(sections)} data-roadmap-unit>
+                  {unit.data.icon ? <img src={withBase(`/aws-icons/${unit.data.icon}.svg`)} alt="" width="20" height="20" loading="lazy" /> : null}
+                  <span class="name">{unit.data.title}</span>
+                  <Icon name="check-circle" size={13} class="st-done" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .intro { margin: 0 0 0.8rem; font-size: 0.86rem; }
+  .next { display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 1.2rem; max-width: 100%; }
+  .next span { overflow: hidden; text-overflow: ellipsis; }
+  .stages { list-style: none; margin: 0; padding: 0; }
+  .stage { position: relative; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 0 0.9rem; padding-bottom: 1.6rem; }
+  /* The spine joins each stage to the next. */
+  .stage:not(:last-child)::before { content: ''; position: absolute; left: calc(1.1rem - 1px); top: 2.2rem; bottom: 0; width: 2px; background: var(--ink-700); }
+  .num { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border: 2px solid var(--ink-500); border-radius: 50%; background: var(--ink-900); color: var(--ink-300); font-weight: 700; font-size: 0.9rem; }
+  .num :global(.done-mark) { display: none; }
+  .stage:global(.is-current) .num { border-color: var(--amber); color: var(--amber); }
+  .stage:global(.is-done) .num { border-color: var(--mint); color: var(--mint); }
+  .stage:global(.is-done) .n { display: none; }
+  .stage:global(.is-done) .num :global(.done-mark) { display: block; }
+  .stage:global(.is-done):not(:last-child)::before { background: var(--mint); }
+  h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.2rem 0.6rem; margin: 0.35rem 0 0.15rem; font-size: 1rem; }
+  .count { font-size: 0.78rem; font-weight: 400; }
+  .goal { margin: 0 0 0.6rem; font-size: 0.84rem; }
+  /* Topics branch off a short line from the stage. */
+  .units { list-style: none; margin: 0; padding: 0 0 0 0.9rem; border-left: 2px solid var(--ink-800); display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .units a { position: relative; display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.55rem; border: 1px solid var(--ink-700); background: var(--ink-850); color: var(--ink-300); text-decoration: none; font-size: 0.82rem; }
+  .units a:hover { border-color: var(--purple); color: var(--ink-100); }
+  .units img { width: 20px; height: 20px; flex: none; }
+  .units :global(.st-done) { display: none; color: var(--mint); }
+  .units a:global(.is-known) { border-color: var(--ink-700); color: var(--ink-400); }
+  .units a:global(.is-known) :global(.st-done) { display: inline; }
+  .units a:global(.is-next) { border-color: var(--amber); color: var(--ink-100); box-shadow: 0 0 0 1px var(--amber); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+
+<script>
+  import { clientT } from '../i18n';
+
+  // Runs after lib/known.ts has marked known topics on this page.
+  document.addEventListener('easyreview:known-applied', () => {
+    const root = document.querySelector<HTMLElement>('[data-roadmap]');
+    if (!root) return;
+    const t = clientT();
+    const links = [...root.querySelectorAll<HTMLAnchorElement>('[data-roadmap-unit]')];
+    const next = links.find((a) => !a.classList.contains('is-known'));
+    links.forEach((a) => a.classList.toggle('is-next', a === next));
+    root.querySelectorAll<HTMLElement>('[data-stage]').forEach((stage) => {
+      const topics = [...stage.querySelectorAll('[data-roadmap-unit]')];
+      stage.classList.toggle('is-done', topics.every((a) => a.classList.contains('is-known')));
+      stage.classList.toggle('is-current', !!next && stage.contains(next));
+    });
+    const button = root.querySelector<HTMLAnchorElement>('[data-roadmap-next]')!;
+    button.hidden = !next;
+    if (next) {
+      button.href = next.href;
+      root.querySelector('[data-roadmap-next-label]')!.textContent = t(links.indexOf(next) === 0 ? 'roadmap.start' : 'roadmap.continue', { topic: next.querySelector('.name')!.textContent ?? '' });
+    }
+  });
+</script>
