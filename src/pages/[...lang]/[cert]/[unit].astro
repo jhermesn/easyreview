@@ -9,6 +9,7 @@ import { getCertView, deckCards, sectionIds, sectionSlug, type CertUnit } from '
 import { formatRich, plainText, withBase } from '../../../lib/format';
 import { absoluteUrl, breadcrumbs, certFullName } from '../../../lib/seo';
 import ContentNotice from '../../../components/ContentNotice.astro';
+import ShareProgress from '../../../components/ShareProgress.astro';
 import { LOCALES, localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 
 export async function getStaticPaths() {
@@ -72,6 +73,11 @@ if (cards.length) {
       <Icon name="circle" class="k-off" /><Icon name="check-circle" class="k-on" />
       <span class="k-off">{t('unit.markAll')}</span><span class="k-on">{t('unit.allKnown')}</span>
     </button>
+    <ShareProgress
+      ids={sectionIds(sections)}
+      text={t('share.topicText', { topic: unit.data.title, cert: certFullName(cert) })}
+      url={absoluteUrl(`/${cert.id}/${unit.id}/`, site, locale)}
+    />
     <ContentNotice langs={[unit.lang, ...sections.map((s) => s.lang)]} />
     {sections.length > 1 && (
       <nav class="toc" aria-label={t('unit.sections')}>

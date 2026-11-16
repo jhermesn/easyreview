@@ -31,6 +31,17 @@ test('marking a section as known survives a reload', async ({ page }) => {
   await expect(page.locator('[data-known-count]').first()).not.toHaveText(/^0\//);
 });
 
+test('a finished topic can be shared with its name and link', async ({ page }) => {
+  await page.goto('pt-br/clf-c02/iam/');
+  const share = page.locator('[data-share]');
+  await expect(share).toBeHidden();
+  await page.getByRole('button', { name: /Marcar tudo como sabido/ }).click();
+  await share.locator('summary').click();
+  const x = new URL((await share.getByRole('link', { name: /^X/ }).getAttribute('href'))!);
+  expect(x.searchParams.get('text')).toMatch(/^Concluí o tópico IAM da AWS Certified Cloud Practitioner \(CLF-C02\)/);
+  expect(x.searchParams.get('url')).toMatch(/\/easyreview\/pt-br\/clf-c02\/iam\/$/);
+});
+
 test('a flashcard flips and can be graded', async ({ page }) => {
   await page.goto('dop-c02/flashcards/');
   await page.getByRole('button', { name: 'Answer' }).click();
