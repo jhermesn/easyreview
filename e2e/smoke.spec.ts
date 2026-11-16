@@ -118,6 +118,26 @@ test('who passed lists people from Credly', async ({ page }) => {
   await expect(page.locator('.person').first()).toBeVisible();
 });
 
+test('the star count refreshes from GitHub once per visit and keeps the built count when GitHub fails', async ({ page }) => {
+  let calls = 0;
+  await page.route('https://api.github.com/repos/**', (route) => {
+    calls++;
+    return route.fulfill({ json: { stargazers_count: 4321 } });
+  });
+  await page.goto('./');
+  const footerStar = page.locator('footer [data-stars]');
+  await expect(footerStar).toContainText('4.3k stars');
+  await page.goto('search/');
+  await expect(page.locator('footer [data-stars]')).toContainText('4.3k');
+  expect(calls).toBe(1);
+
+  // A new tab starts a new session, so it asks GitHub again.
+  const offline = await page.context().newPage();
+  await offline.route('https://api.github.com/repos/**', (route) => route.abort());
+  await offline.goto('./');
+  await expect(offline.locator('footer [data-stars-n]')).not.toHaveText('4.3k');
+});
+
 test('every header tool is reachable on any screen', async ({ page, isMobile }) => {
   await page.goto('dop-c02/codedeploy/');
   if (isMobile) await page.getByRole('button', { name: 'More tools' }).click();
