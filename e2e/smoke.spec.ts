@@ -31,6 +31,23 @@ test('marking a section as known survives a reload', async ({ page }) => {
   await expect(page.locator('[data-known-count]').first()).not.toHaveText(/^0\//);
 });
 
+test('a cert ring on home shows the share known inside the ring and turns gold only when complete', async ({ page }) => {
+  await page.goto('clf-c02/');
+  const ids = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>('.tiles a[data-known]')].flatMap((a) => a.dataset.known!.split(',')));
+  const markKnown = (known: string[]) => page.evaluate((k) => localStorage.setItem('easyreview:known:v1', JSON.stringify(Object.fromEntries(k.map((id) => [id, Date.now()])))), known);
+  const ring = page.locator('.ring[data-cert="clf-c02"]');
+  await markKnown(ids.slice(0, 40));
+  await page.goto('./');
+  await expect(ring.locator('[data-known-pct]')).toHaveText(/^\d{1,2}%$/);
+  await expect(ring.locator('[data-known-count]')).toHaveText(/^\d+\/\d+$/);
+  expect(await ring.evaluate((r) => r.scrollWidth <= r.clientWidth)).toBe(true);
+  await expect(ring).not.toHaveClass(/is-gold/);
+  await markKnown(ids);
+  await page.reload();
+  await expect(ring.locator('[data-known-pct]')).toHaveText('100%');
+  await expect(ring).toHaveClass(/is-gold/);
+});
+
 test('finishing a certification celebrates once, with the exam page, Who passed and sharing', async ({ page }) => {
   await page.goto('pt-br/clf-c02/');
   const card = page.locator('section.celebrate');
