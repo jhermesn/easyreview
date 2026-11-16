@@ -296,28 +296,13 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
   import { applyKnown } from '../lib/known';
   import { trackRecent, applyRecent } from '../lib/recent';
   import { animatePage } from '../lib/motion';
+  import { bindHeaderMenus } from '../lib/header-menus';
 
   document.addEventListener('astro:page-load', () => {
     trackRecent();
     applyRecent();
     applyKnown();
     animatePage();
-    const more = document.querySelector<HTMLButtonElement>('[data-more]');
-    const tools = document.querySelector<HTMLElement>('[data-tools]');
-    if (more && tools && !more.dataset.ready) {
-      more.dataset.ready = '1';
-      const show = (open: boolean) => { tools.classList.toggle('open', open); more.setAttribute('aria-expanded', String(open)); };
-      more.addEventListener('click', () => show(!tools.classList.contains('open')));
-      document.addEventListener('click', (e) => { if (!(e.target as Element).closest('[data-more], [data-tools]')) show(false); });
-      tools.addEventListener('click', (e) => { if ((e.target as Element).closest('a')) show(false); });
-    }
-    const btn = document.querySelector<HTMLButtonElement>('[data-menu]');
-    const side = document.querySelector<HTMLElement>('[data-sidebar]');
-    if (!btn || !side) return;
-    const set = (open: boolean) => { side.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open)); };
-    btn.addEventListener('click', () => set(!side.classList.contains('open')));
-    side.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) set(false); });
-    document.querySelector('.main')?.addEventListener('click', () => set(false));
-    side.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' });
+    bindHeaderMenus();
   });
 </script>

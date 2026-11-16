@@ -92,6 +92,28 @@ test('every header tool is reachable on any screen', async ({ page, isMobile }) 
   await expect(page).toHaveURL(/\/dop-c02\/flashcards\/?$/);
 });
 
+test('header menus open one at a time and close on Escape', async ({ page, isMobile }) => {
+  await page.goto('dop-c02/codedeploy/');
+  const remind = page.locator('[data-remind]');
+  const transfer = page.locator('[data-transfer]');
+  if (isMobile) await page.getByRole('button', { name: 'More tools' }).click();
+  await remind.locator('summary').click();
+  await expect(remind).toHaveAttribute('open', '');
+  await transfer.locator('summary').click();
+  await expect(transfer).toHaveAttribute('open', '');
+  await expect(remind).not.toHaveAttribute('open');
+  if (isMobile) {
+    // The sidebar replaces the tools list and its panel.
+    await page.locator('[data-menu]').click();
+    await expect(page.locator('[data-sidebar]')).toHaveClass(/\bopen\b/);
+    await expect(transfer).not.toHaveAttribute('open');
+    await expect(page.locator('[data-tools]')).not.toHaveClass(/\bopen\b/);
+  }
+  await page.keyboard.press('Escape');
+  await expect(transfer).not.toHaveAttribute('open');
+  await expect(page.locator('[data-sidebar]')).not.toHaveClass(/\bopen\b/);
+});
+
 // Translations run longer than English, so every locale is checked on a narrow phone.
 const narrowPages = ['', 'dop-c02/', 'dop-c02/codedeploy/', 'dop-c02/flashcards/', 'dop-c02/coverage/', 'search/', 'passed/'];
 for (const locale of ['', 'pt-br/']) {
