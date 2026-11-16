@@ -31,7 +31,7 @@ Two exams are covered in full: **AWS Certified Cloud Practitioner (CLF-C02)** an
 | <img src="docs/assets/icons/target.svg" width="22" alt="" /> | **Exam guide coverage** per cert: which guide items and in-scope services each section covers. |
 | <img src="docs/assets/icons/clock.svg" width="22" alt="" /> | **Exam facts** (duration, format, cost, passing score), refreshed weekly from the AWS certification pages. |
 | <img src="docs/assets/icons/transfer.svg" width="22" alt="" /> | **Your progress, your browser.** No accounts and no trackers. Move progress to another device with a code. |
-| <img src="docs/assets/icons/share.svg" width="22" alt="" /> | **Share a finished topic** on LinkedIn, X, WhatsApp and other networks, or through your phone's share sheet. Plain links, so no social network scripts load. |
+| <img src="docs/assets/icons/share.svg" width="22" alt="" /> | **Share a finished topic or certification** on LinkedIn, X, WhatsApp and other networks, or through your phone's share sheet. Finishing a whole cert brings a short celebration with the AWS exam page and how to join Who passed. Plain links, so no social network scripts load. |
 | <img src="docs/assets/icons/shield.svg" width="22" alt="" /> | **Who passed:** people who studied here add themselves by pull request, checked against their public Credly badges. |
 
 ## Screenshots

@@ -1,22 +1,19 @@
 ---
-// Lets a reader share a finished topic. It shows once every section in `ids` is known (lib/known.ts adds
-// .is-known), and uses plain share links, so no social network script loads on the page.
+// Lets a reader share a finished topic or cert. It shows once every section in `ids` is known, or once
+// `cert` is complete (lib/known.ts adds .is-known), and uses plain share links, so no social network
+// script loads on the page.
 import Icon from './Icon.astro';
 import { shareLinks } from '../lib/share';
 import { localeOf, useTranslations } from '../i18n';
 
-interface Props {
-  ids: string;
-  text: string;
-  url: string;
-}
-const { ids, text, url } = Astro.props;
+type Props = { title: string; text: string; url: string } & ({ ids: string; cert?: never } | { cert: string; ids?: never });
+const { ids, cert, title, text, url } = Astro.props;
 const t = useTranslations(localeOf(Astro.currentLocale));
 ---
-<details class="share" data-known={ids} data-share data-share-text={text} data-share-url={url}>
+<details class="share" data-known={ids} data-known-cert={cert} data-share data-share-text={text} data-share-url={url}>
   <summary class="btn"><Icon name="share" size={16} /> {t('share.button')}</summary>
   <div class="panel">
-    <p class="title">{t('share.title')}</p>
+    <p class="title">{title}</p>
     <p class="note muted">{text}</p>
     <button type="button" data-share-native hidden><Icon name="share" size={15} /> {t('share.device')}</button>
     <ul>

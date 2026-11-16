@@ -75,6 +75,7 @@ if (cards.length) {
     </button>
     <ShareProgress
       ids={sectionIds(sections)}
+      title={t('share.title')}
       text={t('share.topicText', { topic: unit.data.title, cert: certFullName(cert) })}
       url={absoluteUrl(`/${cert.id}/${unit.id}/`, site, locale)}
     />

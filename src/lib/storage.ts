@@ -6,6 +6,7 @@ export const KEYS = {
   progress: 'easyreview:progress:v1', // card id -> flashcard results
   recent: 'easyreview:recent:v1', // last cert page opened
   complete: 'easyreview:complete:v1', // cert id -> every topic of it marked known
+  celebrated: 'easyreview:celebrated:v1', // cert id -> its completion was celebrated
 } as const;
 
 export function readJson<T>(key: string, fallback: T): T {

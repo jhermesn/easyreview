@@ -1,0 +1,76 @@
+---
+// Celebrates a finished cert with the next steps: the exam page on AWS, adding yourself to Who passed after
+// passing, and sharing. As a card it shows on the cert page once the cert is complete; as a dialog it opens
+// once, when the last topic is marked known (lib/known.ts sends easyreview:cert-complete).
+import Icon from './Icon.astro';
+import ShareProgress from './ShareProgress.astro';
+import type { Cert } from '../lib/certs';
+import { ADD_YOURSELF } from '../lib/people';
+import { absoluteUrl, certFullName } from '../lib/seo';
+import { localeOf, useTranslations } from '../i18n';
+
+interface Props {
+  cert: Cert;
+  dialog?: boolean;
+}
+const { cert, dialog = false } = Astro.props;
+const locale = localeOf(Astro.currentLocale);
+const t = useTranslations(locale);
+const Tag = dialog ? 'dialog' : 'section';
+const titleId = `celebrate-${cert.id}${dialog ? '-dialog' : ''}`;
+---
+<Tag
+  class:list={['celebrate', dialog ? 'is-dialog' : 'is-card']}
+  data-known-cert={dialog ? undefined : cert.id}
+  data-celebrate={dialog ? cert.id : undefined}
+  aria-labelledby={titleId}
+>
+  {dialog && <button type="button" class="close" data-celebrate-close title={t('celebrate.close')}><Icon name="x" label={t('celebrate.close')} /></button>}
+  <p class="title" id={titleId}><Icon name="check-circle" size={20} /> {t('celebrate.title', { code: cert.code })}</p>
+  <p class="body">{t('celebrate.body')}</p>
+  <div class="next">
+    <a class="btn btn-primary" href={cert.page} target="_blank" rel="noopener">{t('celebrate.exam')} <Icon name="external" size={12} /></a>
+    <a class="btn" href={ADD_YOURSELF} target="_blank" rel="noopener">{t('celebrate.passed')} <Icon name="external" size={12} /></a>
+  </div>
+  <ShareProgress
+    cert={cert.id}
+    title={t('share.certTitle')}
+    text={t('share.certText', { cert: certFullName(cert) })}
+    url={absoluteUrl(`/${cert.id}/`, Astro.site!, locale)}
+  />
+</Tag>
+
+<style>
+  .celebrate { border: 1px solid var(--gold); background: var(--ink-900); color: var(--ink-100); padding: 1rem 1.1rem; }
+  .is-card { display: none; margin: 0.8rem 0 0.4rem; }
+  .is-card:global(.is-known) { display: block; }
+  .is-dialog { width: min(30rem, calc(100vw - 2rem)); box-shadow: 0 20px 50px rgb(0 0 0 / 0.6); }
+  .is-dialog::backdrop { background: rgb(0 0 0 / 0.6); }
+  .title { display: flex; align-items: center; gap: 0.5rem; margin: 0 2rem 0.4rem 0; font-size: 1.05rem; font-weight: 700; color: var(--gold); }
+  .body { margin: 0 0 0.8rem; font-size: 0.9rem; line-height: 1.5; }
+  .next { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .next a { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .celebrate :global(.share) { margin: 0.7rem 0 0; }
+  /* The dialog scrolls, so a floating panel would be clipped: inside it, the share options open in place. */
+  .is-dialog :global(.share .panel) { position: static; width: auto; margin-top: 0.5rem; box-shadow: none; }
+  .close { position: absolute; top: 0.6rem; right: 0.6rem; padding: 0.2rem; border: none; line-height: 0; }
+</style>
+
+<script>
+  import { confetti } from '../lib/confetti';
+
+  // Registered once per page load; known.ts sends the event after the page's known state is applied.
+  document.addEventListener('easyreview:cert-complete', (event) => {
+    const cert = (event as CustomEvent<string>).detail;
+    const dialog = document.querySelector<HTMLDialogElement>(`dialog[data-celebrate="${cert}"]`);
+    if (!dialog || dialog.open) return;
+    dialog.showModal();
+    confetti(dialog);
+  });
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    const dialog = target.closest<HTMLDialogElement>('dialog[data-celebrate]');
+    // A click on the close button, or on the backdrop (which targets the dialog itself), closes it.
+    if (dialog && (target.closest('[data-celebrate-close]') || target === dialog)) dialog.close();
+  });
+</script>
