@@ -193,6 +193,13 @@ const ptBr: Partial<Record<Key, string>> = {
 
   'transfer.title': 'Levar seu progresso',
   'transfer.intro': 'O progresso fica neste navegador. Copie o código aqui e cole no outro dispositivo.',
+  'share.button': 'Compartilhar',
+  'share.title': 'Conte que você concluiu este tópico',
+  'share.topicText': 'Concluí o tópico {topic} da {cert} no Easy Review. Venha estudar também!',
+  'share.device': 'Mais apps deste aparelho',
+  'share.copy': 'Copiar texto e link',
+  'share.copied': 'Copiado',
+  'share.copyFailed': 'Cópia não permitida aqui',
   'transfer.copy': 'Copiar meu código de progresso',
   'transfer.paste': 'Colar um código',
   'transfer.replace': 'Substituir meu progresso',

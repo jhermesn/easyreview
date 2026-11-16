@@ -191,6 +191,13 @@ const en = {
 
   'transfer.title': 'Move your progress',
   'transfer.intro': 'Progress stays in this browser. Copy the code here and paste it on the other device.',
+  'share.button': 'Share',
+  'share.title': 'Share that you finished this topic',
+  'share.topicText': 'I finished the {topic} topic of {cert} on Easy Review. Come study too!',
+  'share.device': 'More apps on this device',
+  'share.copy': 'Copy text and link',
+  'share.copied': 'Copied',
+  'share.copyFailed': 'Copy not allowed here',
   'transfer.copy': 'Copy my progress code',
   'transfer.paste': 'Paste a code',
   'transfer.replace': 'Replace my progress',

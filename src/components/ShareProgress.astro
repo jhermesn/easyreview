@@ -1,0 +1,79 @@
+---
+// Lets a reader share a finished topic. It shows once every section in `ids` is known (lib/known.ts adds
+// .is-known), and uses plain share links, so no social network script loads on the page.
+import Icon from './Icon.astro';
+import { shareLinks } from '../lib/share';
+import { localeOf, useTranslations } from '../i18n';
+
+interface Props {
+  ids: string;
+  text: string;
+  url: string;
+}
+const { ids, text, url } = Astro.props;
+const t = useTranslations(localeOf(Astro.currentLocale));
+---
+<details class="share" data-known={ids} data-share data-share-text={text} data-share-url={url}>
+  <summary class="btn"><Icon name="share" size={16} /> {t('share.button')}</summary>
+  <div class="panel">
+    <p class="title">{t('share.title')}</p>
+    <p class="note muted">{text}</p>
+    <button type="button" data-share-native hidden><Icon name="share" size={15} /> {t('share.device')}</button>
+    <ul>
+      {shareLinks(text, url).map((l) => (
+        <li><a href={l.href} target="_blank" rel="noopener noreferrer">{l.name} <Icon name="external" size={13} /></a></li>
+      ))}
+    </ul>
+    <button type="button" data-share-copy><Icon name="docs" size={15} /> <span data-share-copy-label>{t('share.copy')}</span></button>
+  </div>
+</details>
+
+<style>
+  .share { display: none; position: relative; vertical-align: top; margin-left: 0.4rem; }
+  .share:global(.is-known) { display: inline-block; }
+  .share summary { list-style: none; }
+  .share summary::-webkit-details-marker { display: none; }
+  .share summary:hover, .share[open] summary { color: var(--ink-100); border-color: var(--amber); }
+  .panel { position: absolute; left: 0; top: calc(100% + 6px); z-index: 40; width: min(18rem, calc(100vw - 2rem)); padding: 0.8rem; background: var(--ink-900); border: 1px solid var(--ink-500); box-shadow: 0 12px 30px rgb(0 0 0 / 0.5); display: grid; gap: 0.45rem; }
+  .title { margin: 0; font-weight: 700; }
+  .note { margin: 0; font-size: 0.78rem; line-height: 1.45; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+  ul a { display: flex; align-items: center; justify-content: space-between; gap: 0.3rem; padding: 0.35rem 0.5rem; border: 1px solid var(--ink-700); text-decoration: none; color: var(--ink-300); font-size: 0.82rem; }
+  ul a:hover { color: var(--ink-100); border-color: var(--ink-500); }
+  .panel button { display: inline-flex; align-items: center; gap: 0.4rem; justify-content: center; }
+  /* On phones the button gets its own line, so the panel opens from the left margin and stays on screen. */
+  @media (max-width: 640px) {
+    .share:global(.is-known) { display: block; margin: 0.5rem 0 0; }
+  }
+</style>
+
+<script>
+  import { clientT } from '../i18n';
+
+  document.addEventListener('astro:page-load', () => {
+    const t = clientT();
+    document.querySelectorAll<HTMLDetailsElement>('[data-share]').forEach((root) => {
+      if (root.dataset.ready) return;
+      root.dataset.ready = '1';
+      const text = root.dataset.shareText!;
+      const url = root.dataset.shareUrl!;
+      // Phones open the system share sheet, which reaches every installed app.
+      const native = root.querySelector<HTMLButtonElement>('[data-share-native]')!;
+      if (typeof navigator.share === 'function') {
+        native.hidden = false;
+        native.addEventListener('click', () => navigator.share({ text, url }).catch(() => undefined));
+      }
+      const copy = root.querySelector<HTMLButtonElement>('[data-share-copy]')!;
+      const label = root.querySelector<HTMLElement>('[data-share-copy-label]')!;
+      copy.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(`${text} ${url}`);
+          label.textContent = t('share.copied');
+        } catch {
+          label.textContent = t('share.copyFailed');
+        }
+        setTimeout(() => (label.textContent = t('share.copy')), 2000);
+      });
+    });
+  });
+</script>
