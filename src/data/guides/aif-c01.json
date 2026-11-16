@@ -1,0 +1,1074 @@
+{
+  "cert": "aif-c01",
+  "source": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html",
+  "retrieved": "2026-11-16",
+  "domains": [
+    {
+      "id": "d1",
+      "name": "Fundamentals of AI and ML",
+      "tasks": [
+        {
+          "id": "1.1",
+          "title": "Explain basic AI concepts and terminologies.",
+          "items": [
+            {
+              "id": "1.1.o1",
+              "kind": "objective",
+              "text": "Define basic AI terms (for example, AI, ML, deep learning, neural networks, computer vision, natural language processing [NLP], model, algorithm, training and inferencing, bias, fairness, fit, large language model [LLM], generative AI [GenAI], agentic AI).",
+              "sections": [
+                "ai-ml-fundamentals/ai-ml-and-deep-learning",
+                "ml-lifecycle/training-and-model-fit",
+                "generative-ai/foundation-models-and-llms",
+                "generative-ai/tokens-and-embeddings",
+                "responsible-ai/bias-and-datasets",
+                "ai-ml-fundamentals/common-algorithms"
+              ]
+            },
+            {
+              "id": "1.1.o2",
+              "kind": "objective",
+              "text": "Describe the similarities and differences between AI, ML, GenAI, deep learning, and agentic AI.",
+              "sections": [
+                "ai-ml-fundamentals/ai-ml-and-deep-learning",
+                "agentic-ai/agents-and-tools"
+              ]
+            },
+            {
+              "id": "1.1.o3",
+              "kind": "objective",
+              "text": "Describe various types of inferencing (for example, batch, real-time, asynchronous, serverless).",
+              "sections": [
+                "sagemaker-ai/inference-options",
+                "bedrock/pricing-and-throughput"
+              ]
+            },
+            {
+              "id": "1.1.o4",
+              "kind": "objective",
+              "text": "Describe the different types of data in AI models (for example, labeled and unlabeled, tabular, time-series, image, text, structured and unstructured).",
+              "sections": [
+                "ai-ml-fundamentals/types-of-data"
+              ]
+            },
+            {
+              "id": "1.1.o5",
+              "kind": "objective",
+              "text": "Describe different types of AI/ML learning (for example, supervised learning, unsupervised learning, reinforcement learning methods).",
+              "sections": [
+                "ai-ml-fundamentals/learning-paradigms"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Identify practical use cases for AI.",
+          "items": [
+            {
+              "id": "1.2.o1",
+              "kind": "objective",
+              "text": "Recognize applications where AI/ML can provide value (for example, assist human decision making, solution scalability, automation).",
+              "sections": [
+                "ai-ml-fundamentals/ai-ml-and-deep-learning",
+                "generative-ai/capabilities-and-limitations",
+                "agentic-ai/agents-and-tools"
+              ]
+            },
+            {
+              "id": "1.2.o2",
+              "kind": "objective",
+              "text": "Determine when AI/ML solutions are not appropriate (for example, cost-benefit analyses, situations when a specific outcome is needed instead of a prediction).",
+              "sections": [
+                "ml-lifecycle/lifecycle-phases"
+              ]
+            },
+            {
+              "id": "1.2.o3",
+              "kind": "objective",
+              "text": "Select the appropriate AI/ML techniques for specific use cases (for example, regression, classification, clustering).",
+              "sections": [
+                "ai-ml-fundamentals/learning-paradigms",
+                "ai-ml-fundamentals/common-algorithms"
+              ]
+            },
+            {
+              "id": "1.2.o4",
+              "kind": "objective",
+              "text": "Identify examples of real-world AI applications (for example, computer vision, NLP, speech recognition, recommendation systems, fraud detection, forecasting, knowledge bases, agentic AI).",
+              "sections": [
+                "ai-ml-fundamentals/ai-ml-and-deep-learning",
+                "personalize/recommendations",
+                "rekognition/image-and-video-analysis",
+                "textract/document-text-extraction",
+                "bedrock/knowledge-bases-and-rag",
+                "agentic-ai/agents-and-tools"
+              ]
+            },
+            {
+              "id": "1.2.o5",
+              "kind": "objective",
+              "text": "Explain the capabilities of AWS managed AI/ML services (for example, Amazon SageMaker AI, Amazon Transcribe, Amazon Translate, Amazon Comprehend, Amazon Lex, Amazon Polly).",
+              "sections": [
+                "sagemaker-ai/build-train-and-deploy-models",
+                "transcribe/speech-to-text",
+                "translate/language-translation",
+                "comprehend/text-analysis",
+                "lex/conversational-interfaces",
+                "polly/text-to-speech",
+                "rekognition/image-and-video-analysis",
+                "textract/document-text-extraction",
+                "personalize/recommendations"
+              ]
+            },
+            {
+              "id": "1.2.o6",
+              "kind": "objective",
+              "text": "Identify when traditional ML models or foundation models (FMs) are appropriate for a specific use case (for example, based on regulatory concerns, explainability requirements, operational constraints).",
+              "sections": [
+                "generative-ai/capabilities-and-limitations",
+                "responsible-ai/transparency-and-explainability"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Describe the AI/ML development lifecycle.",
+          "items": [
+            {
+              "id": "1.3.o1",
+              "kind": "objective",
+              "text": "Describe and differentiate components of an AI/ML pipeline.",
+              "sections": [
+                "ml-lifecycle/lifecycle-phases",
+                "ml-lifecycle/training-and-model-fit"
+              ]
+            },
+            {
+              "id": "1.3.o2",
+              "kind": "objective",
+              "text": "Describe sources of FM models (for example, open source pre-trained models, training custom models).",
+              "sections": [
+                "sagemaker-ai/jumpstart-and-no-code-tools",
+                "generative-ai/choosing-aws-genai-services",
+                "bedrock/foundation-models-on-bedrock"
+              ]
+            },
+            {
+              "id": "1.3.o3",
+              "kind": "objective",
+              "text": "Describe methods to use a model in production (for example, managed API service, self-hosted API).",
+              "sections": [
+                "generative-ai/choosing-aws-genai-services",
+                "sagemaker-ai/inference-options",
+                "ec2/instance-types",
+                "ecs/task-definitions-tasks-and-services",
+                "eks/cluster-compute-options",
+                "lambda/invocation-and-retries"
+              ]
+            },
+            {
+              "id": "1.3.o4",
+              "kind": "objective",
+              "text": "Identify relevant AWS services and features for each stage of an AI/ML pipeline (for example, Amazon Bedrock, Amazon Quick, Kiro, SageMaker AI).",
+              "sections": [
+                "bedrock/foundation-models-on-bedrock",
+                "quicksight/datasets-visuals-and-dashboards",
+                "kiro/agentic-development",
+                "sagemaker-ai/data-and-labeling-tools",
+                "glue/data-integration-and-catalog",
+                "glue/databrew",
+                "emr/distributed-processing-workloads",
+                "redshift/data-warehouse-workloads",
+                "data-exchange/third-party-data",
+                "s3/storage-classes",
+                "dynamodb/capacity-scaling-and-throttling",
+                "elasticache/engines-replicas-and-multi-az",
+                "rds/managed-vs-self-managed-databases",
+                "ec2/accelerated-computing-for-ai"
+              ]
+            },
+            {
+              "id": "1.3.o5",
+              "kind": "objective",
+              "text": "Describe fundamental concepts of ML operations (MLOps) (for example, experimentation, repeatable processes, scalable systems, managing technical debt, achieving production readiness, model monitoring, model re-training).",
+              "sections": [
+                "sagemaker-ai/mlops-and-governance",
+                "ml-lifecycle/lifecycle-phases"
+              ]
+            },
+            {
+              "id": "1.3.o6",
+              "kind": "objective",
+              "text": "Describe model performance metrics (for example, accuracy, precision, recall, F1 score) and business metrics (for example, cost per user, development costs, customer feedback, return on investment [ROI]) to evaluate ML models.",
+              "sections": [
+                "ml-lifecycle/model-metrics"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "name": "Fundamentals of GenAI",
+      "tasks": [
+        {
+          "id": "2.1",
+          "title": "Explain the basic concepts of generative AI (GenAI).",
+          "items": [
+            {
+              "id": "2.1.o1",
+              "kind": "objective",
+              "text": "Define foundational GenAI concepts (for example, tokens, chunking, embeddings, vectors, prompt engineering, transformer-based large language models [LLMs], foundation models [FMs], multi-modal models, diffusion models).",
+              "sections": [
+                "generative-ai/tokens-and-embeddings",
+                "generative-ai/foundation-models-and-llms",
+                "bedrock/knowledge-bases-and-rag",
+                "nova/nova-models"
+              ]
+            },
+            {
+              "id": "2.1.o2",
+              "kind": "objective",
+              "text": "Identify potential use cases for GenAI models (for example, image, video, and audio generation; summarization; AI assistants; translation; code generation; customer service agents; search; recommendation engines).",
+              "sections": [
+                "generative-ai/capabilities-and-limitations",
+                "nova/nova-models",
+                "kiro/agentic-development",
+                "transform/agentic-modernization"
+              ]
+            },
+            {
+              "id": "2.1.o3",
+              "kind": "objective",
+              "text": "Describe the FM lifecycle (for example, data selection, model selection, pre-training, fine-tuning, evaluation, deployment, feedback).",
+              "sections": [
+                "generative-ai/lifecycle-and-model-selection"
+              ]
+            },
+            {
+              "id": "2.1.o4",
+              "kind": "objective",
+              "text": "Describe the token-based pricing model and its effect on cost and performance for inference.",
+              "sections": [
+                "bedrock/pricing-and-throughput"
+              ]
+            },
+            {
+              "id": "2.1.o5",
+              "kind": "objective",
+              "text": "Describe the role of context engineering in FM applications.",
+              "sections": [
+                "fm-customization/choosing-a-customization-approach"
+              ]
+            },
+            {
+              "id": "2.1.o6",
+              "kind": "objective",
+              "text": "Define foundational agentic AI concepts (for example, multi-agent system patterns for complex AI applications, Model Context Protocol [MCP] and its role in connecting agents to external systems, multi-agent communication patterns, memory management, tool usage, and workflow orchestration).",
+              "sections": [
+                "agentic-ai/agents-and-tools",
+                "agentic-ai/multi-agent-systems-and-memory"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Understand the capabilities and limitations of GenAI for solving business problems.",
+          "items": [
+            {
+              "id": "2.2.o1",
+              "kind": "objective",
+              "text": "Describe the advantages of GenAI (for example, adaptability, responsiveness, conversational capabilities, ability to generate content).",
+              "sections": [
+                "generative-ai/capabilities-and-limitations"
+              ]
+            },
+            {
+              "id": "2.2.o2",
+              "kind": "objective",
+              "text": "Identify disadvantages of GenAI solutions (for example, hallucinations, interpretability, inaccuracy, nondeterminism).",
+              "sections": [
+                "generative-ai/capabilities-and-limitations"
+              ]
+            },
+            {
+              "id": "2.2.o3",
+              "kind": "objective",
+              "text": "Identify factors to consider when selecting GenAI models (for example, model types, performance requirements, capabilities, constraints, compliance, cost, latency, model complexity).",
+              "sections": [
+                "generative-ai/lifecycle-and-model-selection"
+              ]
+            },
+            {
+              "id": "2.2.o4",
+              "kind": "objective",
+              "text": "Determine business value and metrics for GenAI applications (for example, cross-domain performance, ROI, efficiency, conversion rate, average revenue per user, accuracy, customer lifetime value).",
+              "sections": [
+                "fm-evaluation/business-and-application-metrics"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Describe AWS infrastructure and technologies for building GenAI applications.",
+          "items": [
+            {
+              "id": "2.3.o1",
+              "kind": "objective",
+              "text": "Identify AWS services and features to develop GenAI applications (for example, Amazon Bedrock, Amazon SageMaker AI, SageMaker JumpStart, Amazon Quick, Kiro, Strands Agents, Amazon Bedrock AgentCore).",
+              "sections": [
+                "generative-ai/choosing-aws-genai-services",
+                "bedrock/foundation-models-on-bedrock",
+                "sagemaker-ai/jumpstart-and-no-code-tools",
+                "quicksight/datasets-visuals-and-dashboards",
+                "kiro/agentic-development",
+                "strands-agents/agent-sdk",
+                "bedrock-agentcore/agentcore-services",
+                "nova/nova-models"
+              ]
+            },
+            {
+              "id": "2.3.o2",
+              "kind": "objective",
+              "text": "Describe the advantages of using AWS GenAI services to build applications (for example, accessibility, lower barrier to entry, efficiency, cost-effectiveness, speed to market, ability to meet business objectives).",
+              "sections": [
+                "generative-ai/choosing-aws-genai-services",
+                "bedrock/foundation-models-on-bedrock"
+              ]
+            },
+            {
+              "id": "2.3.o3",
+              "kind": "objective",
+              "text": "Describe the benefits of AWS infrastructure for GenAI applications (for example, security, compliance, responsibility, safety).",
+              "sections": [
+                "bedrock/security-and-monitoring",
+                "shared-responsibility/security-of-and-in-the-cloud",
+                "bedrock/guardrails"
+              ]
+            },
+            {
+              "id": "2.3.o4",
+              "kind": "objective",
+              "text": "Describe cost tradeoffs of AWS GenAI services (for example, responsiveness, availability, redundancy, performance, regional coverage, token-based pricing, provision throughput, custom models).",
+              "sections": [
+                "bedrock/pricing-and-throughput",
+                "generative-ai/choosing-aws-genai-services",
+                "billing-and-cost-management/budgets",
+                "billing-and-cost-management/cost-explorer",
+                "ec2/purchasing-options"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "name": "Applications of Foundation Models",
+      "tasks": [
+        {
+          "id": "3.1",
+          "title": "Describe design considerations for applications that use foundation models (FMs).",
+          "items": [
+            {
+              "id": "3.1.o1",
+              "kind": "objective",
+              "text": "Identify selection criteria to choose FMs (for example, cost, modality, latency, multi-lingual, model size, model complexity, customization, input/output length, prompt caching).",
+              "sections": [
+                "generative-ai/lifecycle-and-model-selection",
+                "bedrock/pricing-and-throughput",
+                "nova/nova-models"
+              ]
+            },
+            {
+              "id": "3.1.o2",
+              "kind": "objective",
+              "text": "Describe the effect of inference parameters on model responses (for example, temperature, input/output length).",
+              "sections": [
+                "generative-ai/inference-parameters"
+              ]
+            },
+            {
+              "id": "3.1.o3",
+              "kind": "objective",
+              "text": "Define Retrieval Augmented Generation (RAG) and describe its business applications (for example, Amazon Bedrock Knowledge Bases).",
+              "sections": [
+                "bedrock/knowledge-bases-and-rag"
+              ]
+            },
+            {
+              "id": "3.1.o4",
+              "kind": "objective",
+              "text": "Identify AWS services that help store embeddings within vector databases (for example, Amazon OpenSearch Service, Amazon Aurora, Amazon Neptune, Amazon RDS for PostgreSQL).",
+              "sections": [
+                "bedrock/knowledge-bases-and-rag",
+                "opensearch/log-ingestion-search-and-dashboards",
+                "neptune/graph-databases",
+                "aurora/storage-replicas-and-auto-scaling",
+                "documentdb/document-workloads-and-compatibility"
+              ]
+            },
+            {
+              "id": "3.1.o5",
+              "kind": "objective",
+              "text": "Explain the cost tradeoffs of various approaches to FM customization (for example, pre-training, fine-tuning, in-context learning, RAG, model distillation).",
+              "sections": [
+                "fm-customization/choosing-a-customization-approach",
+                "bedrock/model-customization"
+              ]
+            },
+            {
+              "id": "3.1.o6",
+              "kind": "objective",
+              "text": "Define the role of AI agents and describe AI agents' business applications.",
+              "sections": [
+                "agentic-ai/agents-and-tools",
+                "bedrock-agentcore/agentcore-services"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Choose effective prompt engineering techniques.",
+          "items": [
+            {
+              "id": "3.2.o1",
+              "kind": "objective",
+              "text": "Define the concepts and constructs of prompt engineering (for example, context, instruction, negative prompts).",
+              "sections": [
+                "prompt-engineering/prompt-techniques"
+              ]
+            },
+            {
+              "id": "3.2.o2",
+              "kind": "objective",
+              "text": "Define techniques for prompt engineering (for example, chain-of-thought, zero-shot, single-shot, few-shot, prompt templates).",
+              "sections": [
+                "prompt-engineering/prompt-techniques"
+              ]
+            },
+            {
+              "id": "3.2.o3",
+              "kind": "objective",
+              "text": "Identify and describe the benefits and best practices for prompt engineering (for example, response quality improvement, experimentation, guardrails, discovery, specificity and concision, using multiple comments).",
+              "sections": [
+                "prompt-engineering/prompt-techniques",
+                "bedrock/guardrails"
+              ]
+            },
+            {
+              "id": "3.2.o4",
+              "kind": "objective",
+              "text": "Define potential risks and limitations of prompt engineering (for example, exposure, poisoning, hijacking, jailbreaking).",
+              "sections": [
+                "prompt-engineering/prompt-attacks"
+              ]
+            },
+            {
+              "id": "3.2.o5",
+              "kind": "objective",
+              "text": "Describe prompt versioning and management strategies that use Amazon Bedrock Prompt Management.",
+              "sections": [
+                "bedrock/prompt-management-and-flows"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Describe the training and fine-tuning process for FMs.",
+          "items": [
+            {
+              "id": "3.3.o1",
+              "kind": "objective",
+              "text": "Describe the key elements of training an FM (for example, pre-training, fine-tuning, continuous pre-training, distillation).",
+              "sections": [
+                "fm-customization/choosing-a-customization-approach",
+                "bedrock/model-customization",
+                "generative-ai/foundation-models-and-llms"
+              ]
+            },
+            {
+              "id": "3.3.o2",
+              "kind": "objective",
+              "text": "Define methods for fine-tuning an FM (for example, instruction tuning, adapting models for specific domains, transfer learning, continuous pre-training).",
+              "sections": [
+                "fm-customization/fine-tuning-and-data",
+                "bedrock/model-customization"
+              ]
+            },
+            {
+              "id": "3.3.o3",
+              "kind": "objective",
+              "text": "Describe how to prepare data to fine-tune an FM (for example, data curation, governance, size, labeling, representativeness, reinforcement learning from human feedback [RLHF]).",
+              "sections": [
+                "fm-customization/fine-tuning-and-data",
+                "sagemaker-ai/data-and-labeling-tools"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.4",
+          "title": "Describe methods to evaluate FM performance.",
+          "items": [
+            {
+              "id": "3.4.o1",
+              "kind": "objective",
+              "text": "Determine approaches to evaluate FM performance (for example, human-in-the-loop evaluation, benchmark datasets, Amazon Bedrock Model Evaluation).",
+              "sections": [
+                "fm-evaluation/evaluation-methods-and-metrics",
+                "bedrock/model-evaluation"
+              ]
+            },
+            {
+              "id": "3.4.o2",
+              "kind": "objective",
+              "text": "Identify relevant metrics to assess FM performance (for example, Recall-Oriented Understudy for Gisting Evaluation [ROUGE], Bilingual Evaluation Understudy [BLEU], BERTScore, LLM-as-a-judge).",
+              "sections": [
+                "fm-evaluation/evaluation-methods-and-metrics"
+              ]
+            },
+            {
+              "id": "3.4.o3",
+              "kind": "objective",
+              "text": "Determine whether an FM effectively meets business objectives (for example, productivity, user engagement, task engineering).",
+              "sections": [
+                "fm-evaluation/business-and-application-metrics"
+              ]
+            },
+            {
+              "id": "3.4.o4",
+              "kind": "objective",
+              "text": "Identify approaches to evaluate the performance of applications built with FM (for example, RAG, agents, workflows).",
+              "sections": [
+                "bedrock/model-evaluation",
+                "bedrock-agentcore/agentcore-services",
+                "fm-evaluation/business-and-application-metrics"
+              ]
+            },
+            {
+              "id": "3.4.o5",
+              "kind": "objective",
+              "text": "Identify business objective alignment metrics for AI applications (for example, task completion rate, user satisfaction, cost per interaction).",
+              "sections": [
+                "fm-evaluation/business-and-application-metrics"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "name": "Guidelines for Responsible AI",
+      "tasks": [
+        {
+          "id": "4.1",
+          "title": "Explain the development of AI systems that are responsible.",
+          "items": [
+            {
+              "id": "4.1.o1",
+              "kind": "objective",
+              "text": "Identify features of responsible AI (for example, bias, fairness, inclusivity, robustness, safety, veracity).",
+              "sections": [
+                "responsible-ai/dimensions-of-responsible-ai"
+              ]
+            },
+            {
+              "id": "4.1.o2",
+              "kind": "objective",
+              "text": "Explain how to use tools to identify features of responsible AI (for example, Amazon Bedrock Guardrails).",
+              "sections": [
+                "bedrock/guardrails",
+                "responsible-ai/bias-and-datasets"
+              ]
+            },
+            {
+              "id": "4.1.o3",
+              "kind": "objective",
+              "text": "Define responsible practices to select a model (for example, environmental considerations, sustainability).",
+              "sections": [
+                "generative-ai/lifecycle-and-model-selection"
+              ]
+            },
+            {
+              "id": "4.1.o4",
+              "kind": "objective",
+              "text": "Identify legal risks of working with generative AI (GenAI) (for example, intellectual property infringement claims, biased model outputs, loss of customer trust, end user risk, hallucinations).",
+              "sections": [
+                "responsible-ai/generative-ai-risks"
+              ]
+            },
+            {
+              "id": "4.1.o5",
+              "kind": "objective",
+              "text": "Identify characteristics of datasets (for example, inclusivity, diversity, curated data sources, balanced datasets).",
+              "sections": [
+                "responsible-ai/bias-and-datasets"
+              ]
+            },
+            {
+              "id": "4.1.o6",
+              "kind": "objective",
+              "text": "Describe effects of bias and variance (for example, effects on demographic groups, inaccuracy, overfitting, underfitting).",
+              "sections": [
+                "ml-lifecycle/training-and-model-fit",
+                "responsible-ai/bias-and-datasets"
+              ]
+            },
+            {
+              "id": "4.1.o7",
+              "kind": "objective",
+              "text": "Describe tools to detect and monitor bias, trustworthiness, and truthfulness (for example, analyzing label quality, human audits, subgroup analysis).",
+              "sections": [
+                "responsible-ai/bias-and-datasets",
+                "sagemaker-ai/mlops-and-governance",
+                "sagemaker-ai/data-and-labeling-tools"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Recognize the importance of transparent and explainable models.",
+          "items": [
+            {
+              "id": "4.2.o1",
+              "kind": "objective",
+              "text": "Describe the differences between models that are transparent and explainable and models that are not transparent and explainable.",
+              "sections": [
+                "responsible-ai/transparency-and-explainability"
+              ]
+            },
+            {
+              "id": "4.2.o2",
+              "kind": "objective",
+              "text": "Describe tools to identify transparent and explainable models (for example, Amazon SageMaker Model Cards, Amazon Bedrock Model Evaluations, open source models, data, licensing).",
+              "sections": [
+                "responsible-ai/transparency-and-explainability",
+                "sagemaker-ai/mlops-and-governance",
+                "bedrock/model-evaluation"
+              ]
+            },
+            {
+              "id": "4.2.o3",
+              "kind": "objective",
+              "text": "Identify tradeoffs between model safety and transparency (for example, measure interpretability and performance).",
+              "sections": [
+                "responsible-ai/transparency-and-explainability"
+              ]
+            },
+            {
+              "id": "4.2.o4",
+              "kind": "objective",
+              "text": "Describe principles of human-centered design for explainable AI (for example, user-feedback mechanisms, AI decision transparency).",
+              "sections": [
+                "responsible-ai/transparency-and-explainability",
+                "responsible-ai/dimensions-of-responsible-ai"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "name": "Security, Compliance, and Governance for AI Solutions",
+      "tasks": [
+        {
+          "id": "5.1",
+          "title": "Explain methods to secure AI systems.",
+          "items": [
+            {
+              "id": "5.1.o1",
+              "kind": "objective",
+              "text": "Identify AWS services and features to secure AI systems (for example, IAM roles, policies, and permissions; encryption; Amazon Macie; AWS PrivateLink; AWS shared responsibility model; Amazon Bedrock AgentCore Identity; Policy in AgentCore; Amazon Bedrock Guardrails).",
+              "sections": [
+                "ai-security-governance/securing-ai-workloads",
+                "bedrock/security-and-monitoring",
+                "iam/users-groups-and-policies",
+                "iam/identities-roles-and-instance-profiles",
+                "kms/encryption-at-rest-and-in-transit",
+                "macie/sensitive-data-discovery-and-jobs",
+                "privatelink/interface-endpoints-and-private-access",
+                "shared-responsibility/security-of-and-in-the-cloud",
+                "secrets-manager/secret-versions-and-runtime-access",
+                "bedrock-agentcore/agentcore-services",
+                "bedrock/guardrails"
+              ]
+            },
+            {
+              "id": "5.1.o2",
+              "kind": "objective",
+              "text": "Describe the concept of source citation and documenting data origins (for example, data lineage, data cataloging, Amazon SageMaker Model Cards).",
+              "sections": [
+                "ai-security-governance/data-governance",
+                "bedrock/knowledge-bases-and-rag",
+                "glue/data-integration-and-catalog",
+                "sagemaker-ai/mlops-and-governance"
+              ]
+            },
+            {
+              "id": "5.1.o3",
+              "kind": "objective",
+              "text": "Describe best practices for secure data engineering (for example, assessing data quality, implementing privacy-enhancing technologies, data access control, data integrity).",
+              "sections": [
+                "ai-security-governance/data-governance",
+                "lake-formation/data-lake-governance",
+                "glue/databrew"
+              ]
+            },
+            {
+              "id": "5.1.o4",
+              "kind": "objective",
+              "text": "Describe security and privacy considerations for AI systems (for example, application security, threat detection, vulnerability management, infrastructure protection, prompt injection, encryption at rest and in transit, data leakage prevention, output filtering and validation, audit trail and logging requirements for AI interactions, toxicity).",
+              "sections": [
+                "ai-security-governance/securing-ai-workloads",
+                "prompt-engineering/prompt-attacks",
+                "bedrock/guardrails",
+                "bedrock/security-and-monitoring",
+                "inspector/ec2-ecr-and-lambda-scanning",
+                "vpc/security-groups-and-network-acls",
+                "cloudfront/cache-behaviors-and-policies"
+              ]
+            },
+            {
+              "id": "5.1.o5",
+              "kind": "objective",
+              "text": "Describe hallucination detection methods and grounding techniques to improve output accuracy (for example, Retrieval Augmented Generation [RAG] grounding, output validation, confidence scoring).",
+              "sections": [
+                "ai-security-governance/grounding-and-hallucinations",
+                "bedrock/guardrails"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Recognize governance and compliance regulations for AI systems.",
+          "items": [
+            {
+              "id": "5.2.o1",
+              "kind": "objective",
+              "text": "Identify AWS services and features to assist with governance and regulation compliance (for example, AWS Config, Amazon Inspector, AWS Artifact, AWS CloudTrail, AWS Trusted Advisor).",
+              "sections": [
+                "config/managed-custom-and-proactive-rules",
+                "inspector/ec2-ecr-and-lambda-scanning",
+                "artifact/reports-and-agreements",
+                "artifact/compliance-programs",
+                "cloudtrail/event-history-and-event-types",
+                "trusted-advisor/checks-and-event-notifications"
+              ]
+            },
+            {
+              "id": "5.2.o2",
+              "kind": "objective",
+              "text": "Describe data governance strategies (for example, data lifecycles, logging, residency, monitoring, observation, retention).",
+              "sections": [
+                "ai-security-governance/data-governance",
+                "s3/lifecycle-and-retention",
+                "s3/glacier-retrieval",
+                "cloudwatch/log-groups-and-retention",
+                "cloudtrail/trails-and-event-selectors"
+              ]
+            },
+            {
+              "id": "5.2.o3",
+              "kind": "objective",
+              "text": "Describe processes to follow governance protocols (for example, policies, review cadence, review strategies, governance frameworks such as the Generative AI Security Scoping Matrix, transparency standards, team training requirements).",
+              "sections": [
+                "ai-security-governance/securing-ai-workloads",
+                "ai-security-governance/data-governance",
+                "well-architected/well-architected-tool",
+                "well-architected/framework-pillars"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "concepts": [],
+  "services": [
+    {
+      "category": "Analytics",
+      "services": [
+        {
+          "name": "AWS Data Exchange",
+          "unit": "data-exchange"
+        },
+        {
+          "name": "Amazon EMR",
+          "unit": "emr"
+        },
+        {
+          "name": "AWS Glue",
+          "unit": "glue"
+        },
+        {
+          "name": "AWS Glue DataBrew",
+          "sections": [
+            "glue/databrew"
+          ]
+        },
+        {
+          "name": "AWS Lake Formation",
+          "unit": "lake-formation"
+        },
+        {
+          "name": "Amazon OpenSearch Service",
+          "unit": "opensearch"
+        },
+        {
+          "name": "Amazon Quick",
+          "unit": "quicksight"
+        },
+        {
+          "name": "Amazon Redshift",
+          "unit": "redshift"
+        }
+      ]
+    },
+    {
+      "category": "Cloud Financial Management",
+      "services": [
+        {
+          "name": "AWS Budgets",
+          "sections": [
+            "billing-and-cost-management/budgets"
+          ]
+        },
+        {
+          "name": "AWS Cost Explorer",
+          "sections": [
+            "billing-and-cost-management/cost-explorer"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Compute",
+      "services": [
+        {
+          "name": "Amazon EC2",
+          "unit": "ec2"
+        },
+        {
+          "name": "AWS Lambda",
+          "unit": "lambda"
+        }
+      ]
+    },
+    {
+      "category": "Containers",
+      "services": [
+        {
+          "name": "Amazon Elastic Container Service (Amazon ECS)",
+          "unit": "ecs"
+        },
+        {
+          "name": "Amazon Elastic Kubernetes Service (Amazon EKS)",
+          "unit": "eks"
+        }
+      ]
+    },
+    {
+      "category": "Database",
+      "services": [
+        {
+          "name": "Amazon Aurora",
+          "unit": "aurora"
+        },
+        {
+          "name": "Amazon DocumentDB (with MongoDB compatibility)",
+          "unit": "documentdb"
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "unit": "dynamodb"
+        },
+        {
+          "name": "Amazon ElastiCache",
+          "unit": "elasticache"
+        },
+        {
+          "name": "Amazon Neptune",
+          "unit": "neptune"
+        },
+        {
+          "name": "Amazon RDS",
+          "unit": "rds"
+        }
+      ]
+    },
+    {
+      "category": "Developer Tools",
+      "services": [
+        {
+          "name": "Kiro",
+          "unit": "kiro"
+        },
+        {
+          "name": "Strands Agents",
+          "unit": "strands-agents"
+        }
+      ]
+    },
+    {
+      "category": "Machine Learning",
+      "services": [
+        {
+          "name": "Amazon Bedrock",
+          "unit": "bedrock"
+        },
+        {
+          "name": "Amazon Bedrock AgentCore",
+          "unit": "bedrock-agentcore"
+        },
+        {
+          "name": "Amazon Comprehend",
+          "unit": "comprehend"
+        },
+        {
+          "name": "Amazon Lex",
+          "unit": "lex"
+        },
+        {
+          "name": "Amazon Nova",
+          "unit": "nova"
+        },
+        {
+          "name": "Amazon Personalize",
+          "unit": "personalize"
+        },
+        {
+          "name": "Amazon Polly",
+          "unit": "polly"
+        },
+        {
+          "name": "Amazon Rekognition",
+          "unit": "rekognition"
+        },
+        {
+          "name": "Amazon SageMaker AI",
+          "unit": "sagemaker-ai"
+        },
+        {
+          "name": "Amazon SageMaker JumpStart",
+          "sections": [
+            "sagemaker-ai/jumpstart-and-no-code-tools"
+          ]
+        },
+        {
+          "name": "Amazon Textract",
+          "unit": "textract"
+        },
+        {
+          "name": "Amazon Transcribe",
+          "unit": "transcribe"
+        },
+        {
+          "name": "Amazon Translate",
+          "unit": "translate"
+        },
+        {
+          "name": "AWS Transform",
+          "unit": "transform"
+        }
+      ]
+    },
+    {
+      "category": "Management and Governance",
+      "services": [
+        {
+          "name": "AWS CloudTrail",
+          "unit": "cloudtrail"
+        },
+        {
+          "name": "Amazon CloudWatch",
+          "unit": "cloudwatch"
+        },
+        {
+          "name": "AWS Config",
+          "unit": "config"
+        },
+        {
+          "name": "AWS Trusted Advisor",
+          "unit": "trusted-advisor"
+        },
+        {
+          "name": "AWS Well-Architected Tool",
+          "sections": [
+            "well-architected/well-architected-tool"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Networking and Content Delivery",
+      "services": [
+        {
+          "name": "Amazon CloudFront",
+          "unit": "cloudfront"
+        },
+        {
+          "name": "Amazon VPC",
+          "unit": "vpc"
+        }
+      ]
+    },
+    {
+      "category": "Security, Identity, and Compliance",
+      "services": [
+        {
+          "name": "AWS Artifact",
+          "unit": "artifact"
+        },
+        {
+          "name": "AWS Identity and Access Management (IAM)",
+          "unit": "iam"
+        },
+        {
+          "name": "Amazon Inspector",
+          "unit": "inspector"
+        },
+        {
+          "name": "AWS Key Management Service (AWS KMS)",
+          "unit": "kms"
+        },
+        {
+          "name": "Amazon Macie",
+          "unit": "macie"
+        },
+        {
+          "name": "AWS Secrets Manager",
+          "unit": "secrets-manager"
+        }
+      ]
+    },
+    {
+      "category": "Storage",
+      "services": [
+        {
+          "name": "Amazon S3",
+          "sections": [
+            "s3/storage-classes",
+            "s3/lifecycle-and-retention"
+          ]
+        },
+        {
+          "name": "Amazon S3 Glacier",
+          "sections": [
+            "s3/glacier-retrieval"
+          ]
+        }
+      ]
+    }
+  ]
+}

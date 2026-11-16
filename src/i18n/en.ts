@@ -139,6 +139,7 @@ const en = {
   'cov.task': 'Task {id}:',
   'cov.skill': 'skill',
   'cov.know': 'know',
+  'cov.objective': 'objective',
   'cov.notCovered': 'not covered',
   'cov.services': 'In-scope services',
   'cov.noSection': 'no section in this cert',

@@ -141,6 +141,7 @@ const ptBr: Partial<Record<Key, string>> = {
   'cov.task': 'Tarefa {id}:',
   'cov.skill': 'habilidade',
   'cov.know': 'conhecimento',
+  'cov.objective': 'objetivo',
   'cov.notCovered': 'não coberto',
   'cov.services': 'Serviços no escopo',
   'cov.noSection': 'nenhuma seção nesta certificação',

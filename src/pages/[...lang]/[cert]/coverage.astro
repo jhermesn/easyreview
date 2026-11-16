@@ -61,7 +61,7 @@ const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
             <ul class="items">
               {task.items.map((i) => (
                 <li class:list={{ gap: !i.sections.length }}>
-                  <span class="kind">{i.kind === 'skill' ? t('cov.skill') : t('cov.know')}</span>
+                  <span class="kind">{t(i.kind === 'skill' ? 'cov.skill' : i.kind === 'objective' ? 'cov.objective' : 'cov.know')}</span>
                   {i.text}
                   <span class="links">{i.sections.length ? i.sections.map((id) => <a href={link(id)}>{titleOf(id)}</a>) : <b>{t('cov.notCovered')}</b>}</span>
                 </li>
