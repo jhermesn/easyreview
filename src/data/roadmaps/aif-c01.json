@@ -1,0 +1,193 @@
+{
+  "cert": "aif-c01",
+  "stages": [
+    {
+      "id": "foundations",
+      "title": {
+        "en": "AI and ML basics",
+        "pt-br": "Fundamentos de IA e ML"
+      },
+      "goal": {
+        "en": "What AI, ML and deep learning are, how models learn, and how an ML project runs.",
+        "pt-br": "O que são IA, ML e deep learning, como os modelos aprendem e como um projeto de ML acontece."
+      },
+      "units": [
+        "ai-ml-fundamentals",
+        "ml-lifecycle"
+      ]
+    },
+    {
+      "id": "ai-services",
+      "title": {
+        "en": "Ready-made AI services",
+        "pt-br": "Serviços de IA prontos"
+      },
+      "goal": {
+        "en": "The managed AWS services that add vision, language, speech and recommendations without building models.",
+        "pt-br": "Os serviços gerenciados da AWS que trazem visão, linguagem, fala e recomendações sem criar modelos."
+      },
+      "units": [
+        "comprehend",
+        "lex",
+        "polly",
+        "rekognition",
+        "textract",
+        "transcribe",
+        "translate",
+        "personalize"
+      ]
+    },
+    {
+      "id": "ml-on-aws",
+      "title": {
+        "en": "Building ML on AWS",
+        "pt-br": "ML na AWS"
+      },
+      "goal": {
+        "en": "SageMaker AI for building, deploying and governing models, and the data and compute services behind it.",
+        "pt-br": "O SageMaker AI para criar, implantar e governar modelos, e os serviços de dados e computação por trás dele."
+      },
+      "units": [
+        "sagemaker-ai",
+        "s3",
+        "glue",
+        "emr",
+        "redshift",
+        "data-exchange",
+        "dynamodb",
+        "elasticache",
+        "rds",
+        "ec2",
+        "lambda",
+        "ecs",
+        "eks"
+      ]
+    },
+    {
+      "id": "genai",
+      "title": {
+        "en": "Generative AI concepts",
+        "pt-br": "Conceitos de IA generativa"
+      },
+      "goal": {
+        "en": "Foundation models, tokens, embeddings, inference parameters, and where generative AI helps or fails.",
+        "pt-br": "Modelos de fundação, tokens, embeddings, parâmetros de inferência e onde a IA generativa ajuda ou falha."
+      },
+      "units": [
+        "generative-ai",
+        "nova"
+      ]
+    },
+    {
+      "id": "bedrock",
+      "title": {
+        "en": "Building with Amazon Bedrock",
+        "pt-br": "Construindo com o Amazon Bedrock"
+      },
+      "goal": {
+        "en": "Bedrock models, pricing, RAG with Knowledge Bases, vector stores and good prompts.",
+        "pt-br": "Modelos do Bedrock, preços, RAG com Knowledge Bases, bancos vetoriais e bons prompts."
+      },
+      "units": [
+        "bedrock",
+        "prompt-engineering",
+        "opensearch",
+        "aurora",
+        "neptune",
+        "documentdb"
+      ]
+    },
+    {
+      "id": "customize-evaluate",
+      "title": {
+        "en": "Customizing and evaluating models",
+        "pt-br": "Customizar e avaliar modelos"
+      },
+      "goal": {
+        "en": "When to fine-tune or use RAG, and how to measure models and applications.",
+        "pt-br": "Quando fazer fine-tuning ou usar RAG, e como medir modelos e aplicações."
+      },
+      "units": [
+        "fm-customization",
+        "fm-evaluation"
+      ]
+    },
+    {
+      "id": "agents",
+      "title": {
+        "en": "Agents and AI assistants",
+        "pt-br": "Agentes e assistentes de IA"
+      },
+      "goal": {
+        "en": "How agents use tools and memory, and the AWS services to build and use them.",
+        "pt-br": "Como agentes usam ferramentas e memória, e os serviços da AWS para criá-los e usá-los."
+      },
+      "units": [
+        "agentic-ai",
+        "bedrock-agentcore",
+        "strands-agents",
+        "kiro",
+        "quicksight",
+        "transform"
+      ]
+    },
+    {
+      "id": "responsible-ai",
+      "title": {
+        "en": "Responsible AI",
+        "pt-br": "IA responsável"
+      },
+      "goal": {
+        "en": "Fairness, bias, explainability and the risks of generative AI.",
+        "pt-br": "Justiça, viés, explicabilidade e os riscos da IA generativa."
+      },
+      "units": [
+        "responsible-ai"
+      ]
+    },
+    {
+      "id": "security",
+      "title": {
+        "en": "Securing AI systems",
+        "pt-br": "Segurança de sistemas de IA"
+      },
+      "goal": {
+        "en": "Scoping AI security, protecting data and models, and stopping hallucinations.",
+        "pt-br": "Escopo de segurança de IA, proteção de dados e modelos, e combate a alucinações."
+      },
+      "units": [
+        "ai-security-governance",
+        "shared-responsibility",
+        "iam",
+        "kms",
+        "macie",
+        "privatelink",
+        "secrets-manager",
+        "vpc",
+        "cloudfront",
+        "inspector"
+      ]
+    },
+    {
+      "id": "governance",
+      "title": {
+        "en": "Governance and compliance",
+        "pt-br": "Governança e conformidade"
+      },
+      "goal": {
+        "en": "The AWS services that audit, govern and report on AI workloads and their costs.",
+        "pt-br": "Os serviços da AWS que auditam, governam e reportam cargas de IA e seus custos."
+      },
+      "units": [
+        "cloudtrail",
+        "config",
+        "artifact",
+        "trusted-advisor",
+        "cloudwatch",
+        "well-architected",
+        "lake-formation",
+        "billing-and-cost-management"
+      ]
+    }
+  ]
+}
