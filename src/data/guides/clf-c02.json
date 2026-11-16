@@ -105,7 +105,10 @@
               "text": "Identifying appropriate migration strategies (for example, database replication)",
               "sections": [
                 "cloud-adoption/migration-strategies",
-                "dms/full-load-and-change-data-capture"
+                "dms/full-load-and-change-data-capture",
+                "datasync/online-data-transfer",
+                "snow-family/offline-transfer-and-edge-devices",
+                "transfer-family/managed-file-transfer-endpoints"
               ]
             }
           ]
@@ -1211,7 +1214,8 @@
               "text": "Understanding the appropriate uses and capabilities of AWS Budgets and AWS Cost Explorer",
               "sections": [
                 "billing-and-cost-management/budgets",
-                "billing-and-cost-management/cost-explorer"
+                "billing-and-cost-management/cost-explorer",
+                "billing-and-cost-management/anomaly-detection-and-optimization-hub"
               ]
             },
             {
