@@ -11,6 +11,9 @@ test.afterEach(() => {
 });
 
 test('home links to the first available certification', async ({ page }) => {
+  // The 3D hero badge renders on a software GPU in headless Chrome and can stall the click's page swap
+  // past the assertion timeout. This test is about the link, so it takes the static badge.
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('./');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('once');
   await page.getByRole('link', { name: /^Start / }).click();
