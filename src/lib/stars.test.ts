@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { compactCount } from './repo';
+import { compactCount } from './stars';
 
 describe('compactCount', () => {
   it.each([

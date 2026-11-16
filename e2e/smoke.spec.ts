@@ -11,6 +11,9 @@ test.afterEach(() => {
 });
 
 test('home links to the first available certification', async ({ page }) => {
+  // The 3D hero badge renders on a software GPU in headless Chrome and can stall the click's page swap
+  // past the assertion timeout. This test is about the link, so it takes the static badge.
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('./');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('once');
   await page.getByRole('link', { name: /^Start / }).click();
@@ -116,6 +119,26 @@ test('search finds sections', async ({ page }) => {
 test('who passed lists people from Credly', async ({ page }) => {
   await page.goto('passed/');
   await expect(page.locator('.person').first()).toBeVisible();
+});
+
+test('the star count refreshes from GitHub once per visit and keeps the built count when GitHub fails', async ({ page }) => {
+  let calls = 0;
+  await page.route('https://api.github.com/repos/**', (route) => {
+    calls++;
+    return route.fulfill({ json: { stargazers_count: 4321 } });
+  });
+  await page.goto('./');
+  const footerStar = page.locator('footer [data-stars]');
+  await expect(footerStar).toContainText('4.3k stars');
+  await page.goto('search/');
+  await expect(page.locator('footer [data-stars]')).toContainText('4.3k');
+  expect(calls).toBe(1);
+
+  // A new tab starts a new session, so it asks GitHub again.
+  const offline = await page.context().newPage();
+  await offline.route('https://api.github.com/repos/**', (route) => route.abort());
+  await offline.goto('./');
+  await expect(offline.locator('footer [data-stars-n]')).not.toHaveText('4.3k');
 });
 
 test('every header tool is reachable on any screen', async ({ page, isMobile }) => {

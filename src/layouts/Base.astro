@@ -297,6 +297,7 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
   import { trackRecent, applyRecent } from '../lib/recent';
   import { animatePage } from '../lib/motion';
   import { bindHeaderMenus } from '../lib/header-menus';
+  import { refreshStars } from '../lib/stars';
 
   document.addEventListener('astro:page-load', () => {
     trackRecent();
@@ -304,5 +305,6 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
     applyKnown();
     animatePage();
     bindHeaderMenus();
+    refreshStars();
   });
 </script>
