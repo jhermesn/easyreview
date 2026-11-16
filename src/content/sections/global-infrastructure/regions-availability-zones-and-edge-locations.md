@@ -54,6 +54,9 @@ facts:
   - id: regional-endpoints
     text: Most AWS services, such as Amazon EC2, Amazon RDS, AWS Lambda and Amazon Rekognition, have Regional endpoints, so their resources live in the Region you choose.
     source: https://docs.aws.amazon.com/general/latest/gr/rande.html
+  - id: az-ids
+    text: "AWS maps physical Availability Zones to AZ names randomly per account, so us-east-1a can differ between accounts; the AZ ID (such as use1-az1) identifies the same physical zone in every account."
+    source: https://docs.aws.amazon.com/ram/latest/userguide/working-with-az-ids.html#working-with-az-ids
 cards:
   - id: global-infrastructure-001
     q: How do AWS Regions and Availability Zones relate to each other?
@@ -114,6 +117,11 @@ cards:
     q: Is Amazon Rekognition a global or a Regional service?
     a: Regional. Like EC2, RDS and Lambda, it has Regional endpoints and runs in the Region you choose.
     facts: [regional-endpoints]
+  - id: global-infrastructure-020
+    q: "Two AWS accounts must place resources in the same physical Availability Zone. Why is the AZ name not enough, and what should they use?"
+    a: "AZ names map randomly per account; use the **AZ ID** (for example use1-az1), which is the same in every account."
+    trap: true
+    facts: [az-ids]
 diagrams:
   - id: region-azs-edge
     title: A Region, its Availability Zones, and edge locations

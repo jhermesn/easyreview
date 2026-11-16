@@ -1,0 +1,341 @@
+{
+  "cert": "saa-c03",
+  "stages": [
+    {
+      "id": "foundations",
+      "title": {
+        "en": "Architecture foundations",
+        "pt-br": "Fundamentos de arquitetura"
+      },
+      "goal": {
+        "en": "Regions and AZs, shared responsibility, Well-Architected, and the scaling and coupling ideas every design question builds on.",
+        "pt-br": "Regiões e AZs, responsabilidade compartilhada, Well-Architected e as ideias de escala e acoplamento que todas as questões de design usam."
+      },
+      "units": [
+        "global-infrastructure",
+        "shared-responsibility",
+        "well-architected",
+        "scalable-architectures",
+        "availability-targets",
+        "management-console",
+        "cli"
+      ]
+    },
+    {
+      "id": "identity",
+      "title": {
+        "en": "Identity and accounts",
+        "pt-br": "Identidade e contas"
+      },
+      "goal": {
+        "en": "IAM users, roles and policies, federation, and how Organizations, SCPs and Control Tower secure many accounts.",
+        "pt-br": "Usuários, roles e políticas do IAM, federação, e como Organizations, SCPs e Control Tower protegem várias contas."
+      },
+      "units": [
+        "iam",
+        "iam-identity-center",
+        "directory-service",
+        "cognito",
+        "organizations",
+        "control-tower",
+        "multi-account-strategy",
+        "resource-access-manager",
+        "service-catalog",
+        "firewall-manager"
+      ]
+    },
+    {
+      "id": "networking",
+      "title": {
+        "en": "VPC and hybrid networking",
+        "pt-br": "VPC e redes híbridas"
+      },
+      "goal": {
+        "en": "Subnets, routing, NAT, security groups, endpoints, and connecting VPCs and data centers with peering, Transit Gateway, VPN and Direct Connect.",
+        "pt-br": "Sub-redes, rotas, NAT, security groups, endpoints, e como ligar VPCs e data centers com peering, Transit Gateway, VPN e Direct Connect."
+      },
+      "units": [
+        "vpc",
+        "privatelink",
+        "transit-gateway",
+        "site-to-site-vpn",
+        "client-vpn",
+        "direct-connect",
+        "network-firewall",
+        "route53"
+      ]
+    },
+    {
+      "id": "edge",
+      "title": {
+        "en": "Edge and application protection",
+        "pt-br": "Borda e proteção de aplicações"
+      },
+      "goal": {
+        "en": "CloudFront, Global Accelerator, TLS certificates, and WAF and Shield against web attacks and DDoS.",
+        "pt-br": "CloudFront, Global Accelerator, certificados TLS, e WAF e Shield contra ataques web e DDoS."
+      },
+      "units": [
+        "cloudfront",
+        "global-accelerator",
+        "acm",
+        "waf",
+        "shield"
+      ]
+    },
+    {
+      "id": "compute",
+      "title": {
+        "en": "Compute and scaling",
+        "pt-br": "Computação e escala"
+      },
+      "goal": {
+        "en": "EC2 types, purchasing and placement, Auto Scaling, load balancers, and hybrid and edge compute.",
+        "pt-br": "Tipos de EC2, compra e posicionamento, Auto Scaling, load balancers, e computação híbrida e de borda."
+      },
+      "units": [
+        "ec2",
+        "ec2-auto-scaling",
+        "application-auto-scaling",
+        "elastic-load-balancing",
+        "elastic-beanstalk",
+        "batch",
+        "compute-optimizer",
+        "license-manager",
+        "outposts",
+        "wavelength",
+        "vmware-cloud-on-aws"
+      ]
+    },
+    {
+      "id": "containers-serverless",
+      "title": {
+        "en": "Containers and serverless",
+        "pt-br": "Containers e serverless"
+      },
+      "goal": {
+        "en": "ECS, EKS and Fargate, Lambda, API Gateway and Step Functions, and when each fits.",
+        "pt-br": "ECS, EKS e Fargate, Lambda, API Gateway e Step Functions, e quando usar cada um."
+      },
+      "units": [
+        "ecs",
+        "ecr",
+        "eks",
+        "eks-distro",
+        "eks-anywhere",
+        "fargate",
+        "app2container",
+        "lambda",
+        "api-gateway",
+        "step-functions",
+        "serverless-application-repository",
+        "amplify",
+        "device-farm"
+      ]
+    },
+    {
+      "id": "storage",
+      "title": {
+        "en": "Storage",
+        "pt-br": "Armazenamento"
+      },
+      "goal": {
+        "en": "S3 classes, performance and lifecycle, EBS volume types, EFS and FSx file systems, and hybrid storage.",
+        "pt-br": "Classes, desempenho e ciclo de vida do S3, tipos de volume EBS, sistemas de arquivos EFS e FSx, e armazenamento híbrido."
+      },
+      "units": [
+        "s3",
+        "ebs",
+        "efs",
+        "fsx-for-windows",
+        "fsx-for-lustre",
+        "fsx-for-netapp-ontap",
+        "fsx-for-openzfs",
+        "storage-gateway"
+      ]
+    },
+    {
+      "id": "databases",
+      "title": {
+        "en": "Databases and caching",
+        "pt-br": "Bancos de dados e cache"
+      },
+      "goal": {
+        "en": "RDS and Aurora replicas, failover and encryption, DynamoDB capacity and global tables, purpose-built databases and ElastiCache.",
+        "pt-br": "Réplicas, failover e criptografia no RDS e no Aurora, capacidade e global tables no DynamoDB, bancos especializados e ElastiCache."
+      },
+      "units": [
+        "rds",
+        "aurora",
+        "dynamodb",
+        "elasticache",
+        "memorydb",
+        "documentdb",
+        "neptune",
+        "keyspaces"
+      ]
+    },
+    {
+      "id": "decoupling",
+      "title": {
+        "en": "Decoupling and events",
+        "pt-br": "Desacoplamento e eventos"
+      },
+      "goal": {
+        "en": "SQS, SNS, EventBridge and Amazon MQ, and the patterns that keep tiers independent.",
+        "pt-br": "SQS, SNS, EventBridge e Amazon MQ, e os padrões que mantêm as camadas independentes."
+      },
+      "units": [
+        "sqs",
+        "sns",
+        "eventbridge",
+        "amazon-mq",
+        "event-processing-patterns"
+      ]
+    },
+    {
+      "id": "data",
+      "title": {
+        "en": "Streaming and analytics",
+        "pt-br": "Streaming e análise de dados"
+      },
+      "goal": {
+        "en": "Kinesis and MSK for streams, Glue, Athena and Lake Formation for data lakes, plus EMR, Redshift and dashboards.",
+        "pt-br": "Kinesis e MSK para streams, Glue, Athena e Lake Formation para data lakes, além de EMR, Redshift e dashboards."
+      },
+      "units": [
+        "kinesis-data-streams",
+        "firehose",
+        "managed-service-for-apache-flink",
+        "kinesis-video-streams",
+        "msk",
+        "glue",
+        "athena",
+        "lake-formation",
+        "emr",
+        "redshift",
+        "quicksight",
+        "opensearch",
+        "appflow",
+        "data-exchange",
+        "data-pipeline"
+      ]
+    },
+    {
+      "id": "migration",
+      "title": {
+        "en": "Migration and data transfer",
+        "pt-br": "Migração e transferência de dados"
+      },
+      "goal": {
+        "en": "Choosing between DataSync, Snow Family, Transfer Family, Storage Gateway and DMS to move data and applications.",
+        "pt-br": "Escolher entre DataSync, Snow Family, Transfer Family, Storage Gateway e DMS para mover dados e aplicações."
+      },
+      "units": [
+        "cloud-adoption",
+        "datasync",
+        "snow-family",
+        "transfer-family",
+        "dms"
+      ]
+    },
+    {
+      "id": "resilience",
+      "title": {
+        "en": "Backup and disaster recovery",
+        "pt-br": "Backup e recuperação de desastres"
+      },
+      "goal": {
+        "en": "RTO and RPO, the four DR strategies, AWS Backup and Elastic Disaster Recovery.",
+        "pt-br": "RTO e RPO, as quatro estratégias de DR, AWS Backup e Elastic Disaster Recovery."
+      },
+      "units": [
+        "disaster-recovery",
+        "backup",
+        "elastic-disaster-recovery"
+      ]
+    },
+    {
+      "id": "data-security",
+      "title": {
+        "en": "Encryption and security services",
+        "pt-br": "Criptografia e serviços de segurança"
+      },
+      "goal": {
+        "en": "KMS, CloudHSM and secrets, and the detection and compliance services: GuardDuty, Macie, Inspector, Security Hub, Config and CloudTrail.",
+        "pt-br": "KMS, CloudHSM e secrets, e os serviços de detecção e conformidade: GuardDuty, Macie, Inspector, Security Hub, Config e CloudTrail."
+      },
+      "units": [
+        "kms",
+        "cloudhsm",
+        "secrets-manager",
+        "systems-manager",
+        "guardduty",
+        "macie",
+        "inspector",
+        "detective",
+        "security-hub",
+        "config",
+        "cloudtrail",
+        "artifact"
+      ]
+    },
+    {
+      "id": "operations",
+      "title": {
+        "en": "Monitoring and automation",
+        "pt-br": "Monitoramento e automação"
+      },
+      "goal": {
+        "en": "CloudWatch, X-Ray and managed Prometheus and Grafana, plus CloudFormation, immutable deployments and service quotas.",
+        "pt-br": "CloudWatch, X-Ray e Prometheus e Grafana gerenciados, além de CloudFormation, deploys imutáveis e cotas de serviço."
+      },
+      "units": [
+        "cloudwatch",
+        "xray",
+        "managed-prometheus",
+        "managed-grafana",
+        "health",
+        "cloudformation",
+        "proton",
+        "deployment-strategies",
+        "service-quotas"
+      ]
+    },
+    {
+      "id": "ml-services",
+      "title": {
+        "en": "AI and ML services",
+        "pt-br": "Serviços de IA e ML"
+      },
+      "goal": {
+        "en": "The managed services for text, speech, images and documents, and SageMaker AI.",
+        "pt-br": "Os serviços gerenciados para texto, fala, imagens e documentos, e o SageMaker AI."
+      },
+      "units": [
+        "comprehend",
+        "lex",
+        "polly",
+        "rekognition",
+        "textract",
+        "transcribe",
+        "translate",
+        "sagemaker-ai"
+      ]
+    },
+    {
+      "id": "cost",
+      "title": {
+        "en": "Cost optimization",
+        "pt-br": "Otimização de custos"
+      },
+      "goal": {
+        "en": "Cost Explorer, Budgets, anomaly detection, data transfer costs and Savings Plans.",
+        "pt-br": "Cost Explorer, Budgets, detecção de anomalias, custos de transferência de dados e Savings Plans."
+      },
+      "units": [
+        "billing-and-cost-management"
+      ]
+    }
+  ]
+}

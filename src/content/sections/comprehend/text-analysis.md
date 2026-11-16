@@ -12,6 +12,9 @@ facts:
   - id: modes
     text: Amazon Comprehend runs real-time analysis for small workloads or asynchronous jobs for large document sets, with pre-trained models or custom models for classification and entity recognition.
     source: https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html#what-is
+  - id: custom-entities
+    text: "Amazon Comprehend custom entity recognition finds entity types of your own, such as product codes or business-specific terms, beyond the preset generic entity types, with automatic annotation and model training."
+    source: https://docs.aws.amazon.com/comprehend/latest/dg/custom-entity-recognition.html#custom-entity-recognition
 cards:
   - id: comprehend-001
     q: A company wants to know whether customer reviews are positive or negative. Which AWS service fits?
@@ -30,6 +33,10 @@ cards:
     a: No. Comprehend analyzes text it is given; extracting text from scanned documents is Amazon Textract.
     trap: true
     facts: [nlp]
+  - id: comprehend-005
+    q: "A food company must extract its own ingredient names from product descriptions, which aren't among Amazon Comprehend's built-in entity types. Which feature fits?"
+    a: "Amazon Comprehend **custom entity recognition**, trained on the company's own entity types."
+    facts: [custom-entities]
 ---
 Amazon Comprehend reads text and tells you what's in it: the people, places and organizations mentioned, key phrases, the language and the sentiment. It needs no machine learning expertise. [What is Amazon Comprehend?](https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html#what-is)
 

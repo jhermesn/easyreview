@@ -63,6 +63,11 @@
       "id": "import-options",
       "text": "S3 import accepts CSV, DynamoDB JSON, and Amazon Ion, and supports creating GSIs but not LSIs.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/S3DataImport.HowItWorks.html"
+    },
+    {
+      "id": "deletion-protection",
+      "text": "DynamoDB deletion protection, off by default, stops a table from being deleted until an authorized administrator turns the property off.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.Basics.html#WorkingWithTables.Basics.DeletionProtection"
     }
   ],
   "cards": [
@@ -122,6 +127,14 @@
         "reset"
       ],
       "trap": true
+    },
+    {
+      "id": "dynamodb-045",
+      "q": "A DynamoDB table holding orders must never be dropped by mistake during routine administration. Which table setting fits?",
+      "a": "Enable **deletion protection** on the table (it is off by default).",
+      "facts": [
+        "deletion-protection"
+      ]
     }
   ],
   "diagrams": [
