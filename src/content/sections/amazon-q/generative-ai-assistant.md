@@ -16,8 +16,8 @@ facts:
     text: Amazon Q Business is a fully managed generative AI assistant that answers questions, summarizes, generates content and completes tasks based on enterprise data, with permissions-aware responses and citations.
     source: https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html#what-is
   - id: business-closed
-    text: As of November 2026, Amazon Q Business is no longer open to new customers; AWS points to Amazon Quick for similar capabilities.
-    source: https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html#what-is
+    text: Amazon Q Business stopped accepting new customers on July 31, 2026; AWS points to Amazon Quick Suite for similar capabilities, and existing customers can keep using it.
+    source: https://docs.aws.amazon.com/decision-guides/latest/generative-ai-on-aws-how-to-choose/guide.html#understand
   - id: bedrock
     text: Amazon Q Developer and Amazon Q Business are built on Amazon Bedrock and use its automated abuse detection.
     source: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#what-is
@@ -28,7 +28,7 @@ cards:
     facts: [developer, assistant]
   - id: amazon-q-002
     q: Employees want a generative AI assistant that answers HR and IT questions from company documents, respecting their permissions. Which AWS service was built for this?
-    a: Amazon Q Business. As of November 2026 it's closed to new customers, and AWS points to Amazon Quick.
+    a: Amazon Q Business. It closed to new customers on July 31, 2026, and AWS points to Amazon Quick Suite.
     facts: [business, business-closed]
   - id: amazon-q-003
     q: Which AWS service are the Amazon Q assistants built on?
@@ -47,7 +47,7 @@ Amazon Q is AWS's family of generative AI assistants. Amazon Q Developer helps p
 | Assistant | Helps with | Status (November 2026) |
 |---|---|---|
 | Amazon Q Developer | Understanding, building and operating AWS applications | Console chat renamed AWS assistant; IDE plugins end April 30, 2027 |
-| Amazon Q Business | Answers and tasks from enterprise data, with citations | Closed to new customers; AWS points to Amazon Quick |
+| Amazon Q Business | Answers and tasks from enterprise data, with citations | Closed to new customers on July 31, 2026; AWS points to Amazon Quick Suite |
 
 1. Ask a question in plain language.
 2. The assistant answers from AWS knowledge and your resources (Q Developer) or from connected enterprise data (Q Business).
