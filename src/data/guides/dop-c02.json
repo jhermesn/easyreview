@@ -778,7 +778,8 @@
                 "compute-optimizer/resource-rightsizing",
                 "ec2-auto-scaling/warm-pools",
                 "lambda/concurrency-controls",
-                "rds/proxy-connection-pooling"
+                "rds/proxy-connection-pooling",
+                "lambda/memory-timeout-and-snapstart"
               ]
             },
             {
@@ -836,7 +837,8 @@
                 "fargate/compute-and-isolation",
                 "ecs/task-definitions-tasks-and-services",
                 "fargate/private-subnet-connectivity",
-                "lambda/vpc-connectivity"
+                "lambda/vpc-connectivity",
+                "lambda/memory-timeout-and-snapstart"
               ]
             }
           ]

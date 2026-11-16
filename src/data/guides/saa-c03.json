@@ -617,7 +617,8 @@
                 "fargate/compute-and-isolation",
                 "step-functions/standard-and-express",
                 "api-gateway/deployments-and-stages",
-                "serverless-application-repository/application-sharing-and-deployment"
+                "serverless-application-repository/application-sharing-and-deployment",
+                "lambda/memory-timeout-and-snapstart"
               ]
             },
             {
@@ -827,7 +828,8 @@
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
                 "rds/multi-az-and-failover-tests",
                 "availability-targets/failure-domains-and-spare-capacity",
-                "well-architected/framework-pillars"
+                "well-architected/framework-pillars",
+                "ec2/ip-addresses-and-network-interfaces"
               ]
             },
             {
@@ -1003,7 +1005,8 @@
                 "lambda/invocation-and-retries",
                 "lambda/vpc-connectivity",
                 "fargate/compute-and-isolation",
-                "lambda/queue-and-stream-event-sources"
+                "lambda/queue-and-stream-event-sources",
+                "lambda/memory-timeout-and-snapstart"
               ]
             },
             {
@@ -1048,7 +1051,8 @@
                 "ec2/instance-types",
                 "ec2/placement-groups-and-efa",
                 "ec2/accelerated-computing-for-ai",
-                "ec2/hibernation-user-data-and-instance-connect"
+                "ec2/hibernation-user-data-and-instance-connect",
+                "ec2/ip-addresses-and-network-interfaces"
               ]
             },
             {
@@ -1058,7 +1062,8 @@
               "sections": [
                 "lambda/concurrency-controls",
                 "compute-optimizer/resource-rightsizing",
-                "ec2/instance-types"
+                "ec2/instance-types",
+                "lambda/memory-timeout-and-snapstart"
               ]
             }
           ]
@@ -1232,7 +1237,8 @@
               "sections": [
                 "vpc/ip-addressing-and-nat-instances",
                 "vpc/subnets-and-gateways",
-                "vpc/route-tables-and-peering"
+                "vpc/route-tables-and-peering",
+                "ec2/ip-addresses-and-network-interfaces"
               ]
             },
             {

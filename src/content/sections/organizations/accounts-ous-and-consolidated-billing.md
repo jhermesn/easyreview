@@ -102,6 +102,9 @@ facts:
   - id: remove-standalone
     text: "To remove a member account from an organization, the account needs the information to stand alone: a support plan, verified contact information and a current payment method."
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_account-before-remove
+  - id: tag-policies
+    text: "AWS Organizations tag policies standardize the tags on resources across the organization's accounts, including the case of tag keys and values."
+    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html#orgs_manage_policies_tag-policies
 diagrams:
   - id: organizations-policy-tree
     title: Policy inheritance follows the account path
@@ -227,6 +230,10 @@ cards:
     q: What must a member account of an AWS organization have before it can be removed to become a standalone account?
     a: A support plan, verified contact information and a current payment method.
     facts: [remove-standalone]
+  - id: organizations-034
+    q: "Cost allocation reports break because teams tag resources as CostCenter, costcenter and cost-center. Which AWS Organizations feature enforces one standard?"
+    a: "**Tag policies**."
+    facts: [tag-policies]
 ---
 
 AWS Organizations groups accounts for central management and billing. An organizational unit (OU) is a folder for accounts or other OUs; policies inherited through that folder hierarchy apply to its accounts.

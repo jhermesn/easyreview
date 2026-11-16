@@ -62,6 +62,9 @@ facts:
     text: DLM application-consistent pre and post scripts require snapshot policies targeting instances
       and run through Systems Manager command documents.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/automate-app-consistent-backups.html#automate-app-consistent-backups
+  - id: recycle-bin
+    text: "Recycle Bin keeps deleted EBS volumes, EBS snapshots and EBS-backed AMIs for a retention period you set, so they can be restored before they are permanently deleted."
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/recycle-bin.html#recycle-bin
 cards:
   - id: ebs-004
     q: Does AWS automatically create backups for an EBS volume with no configured backup policy?
@@ -123,6 +126,10 @@ cards:
     facts:
       - app-consistent
       - instance-scripts
+  - id: ebs-045
+    q: "An admin deleted critical EBS snapshots by mistake. Which feature, enabled beforehand, would have allowed restoring them?"
+    a: "**Recycle Bin** with a retention rule for EBS snapshots."
+    facts: [recycle-bin]
 ---
 Data Lifecycle Manager (DLM) automates EBS snapshot and EBS-backed Amazon Machine Image (AMI) management. An AMI is the machine image used to launch an EC2 instance. DLM applies a schedule and retention rules, which decide how long backups remain.
 

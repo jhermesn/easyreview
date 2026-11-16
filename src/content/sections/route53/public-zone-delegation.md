@@ -33,6 +33,9 @@ facts:
   - id: sla
     text: The Route 53 SLA covers authoritative DNS hosted-zone availability and excludes API and console availability.
     source: https://aws.amazon.com/route53/sla/
+  - id: dnssec
+    text: "Route 53 DNSSEC signing signs every response for a hosted zone with public key cryptography, so DNS resolvers can verify that answers came from Route 53 and weren't tampered with."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec.html#dns-configuring-dnssec
 cards:
   - id: route53-048
     q: A company keeps its domain at an external registrar but wants Route 53 DNS hosting. Must it transfer registration?
@@ -62,6 +65,10 @@ cards:
     facts:
       - sla
     trap: true
+  - id: route53-066
+    q: "A bank must protect its public domain against DNS spoofing so resolvers can verify Route 53 answers. Which Route 53 feature fits?"
+    a: "**DNSSEC signing** on the public hosted zone."
+    facts: [dnssec]
 diagrams:
   - id: route53-public-delegation
     title: Delegate an externally registered domain to Route 53

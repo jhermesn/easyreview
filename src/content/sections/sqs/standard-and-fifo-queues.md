@@ -45,6 +45,9 @@ facts:
   - id: fifo-high-region
     text: High-throughput FIFO request quotas vary by Region; increasing distinct message groups helps distribute work across partitions.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html#quotas-messages
+  - id: temporary-queues
+    text: "The SQS Temporary Queue Client maps many application-managed temporary queues onto one SQS queue, which cuts API calls and cost for request-response patterns."
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-temporary-queues.html#sqs-temporary-queues
 diagrams:
   - id: sqs-fifo-independent-groups
     title: FIFO ordering is local to a message group
@@ -137,6 +140,10 @@ cards:
     facts:
       - fifo-high-settings
       - fifo-high-region
+  - id: sqs-027
+    q: "Thousands of short-lived clients each need a reply queue in a request-response pattern, and creating real SQS queues per client is slow and costly. What fits?"
+    a: "**SQS temporary queues** through the Temporary Queue Client, which maps them onto one SQS queue."
+    facts: [temporary-queues]
 ---
 SQS queues buffer work between producers, which send messages, and consumers, which receive and process them. Standard queues suit work that tolerates duplicate delivery and occasional reordering. FIFO (first-in, first-out) queues preserve order within each message group.
 

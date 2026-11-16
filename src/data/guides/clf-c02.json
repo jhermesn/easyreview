@@ -791,7 +791,8 @@
               "text": "Identifying the components of a VPC (for example, subnets, gateways)",
               "sections": [
                 "vpc/subnets-and-gateways",
-                "vpc/route-tables-and-peering"
+                "vpc/route-tables-and-peering",
+                "vpc/ip-addressing-and-nat-instances"
               ]
             },
             {

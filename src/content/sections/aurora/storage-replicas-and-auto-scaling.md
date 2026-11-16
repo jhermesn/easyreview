@@ -84,6 +84,15 @@ facts:
   - id: managed-patching
     text: Aurora applies operating system and database engine patches during the cluster maintenance window, so the customer does not patch servers.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html
+  - id: cloning
+    text: "Aurora cloning creates a new cluster that initially shares the source's data pages using copy-on-write, so it is fast and uses little extra space; it suits test environments built from production data."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html#Aurora.Managing.Clone
+  - id: custom-endpoint
+    text: "An Aurora custom endpoint points to a set of DB instances you choose and balances connections among them, for example to send reporting queries to specific replicas."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Custom.html#Aurora.Endpoints.Custom
+  - id: xtrabackup
+    text: "A MySQL 5.7 or 8.0 database can be migrated physically to Aurora MySQL by copying Percona XtraBackup files to Amazon S3 and restoring from them."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Migrating.ExtMySQL.S3.html#AuroraMySQL.Migrating.ExtMySQL.S3
 cards:
   - id: aurora-001
     q: What separates Aurora storage durability from database instance availability?
@@ -158,6 +167,18 @@ cards:
     q: A company runs MySQL and PostgreSQL applications and wants a managed relational database that AWS patches for it. Which AWS database fits?
     a: "Amazon Aurora.\nIt is compatible with MySQL and PostgreSQL, and AWS applies OS and engine patches in the maintenance window."
     facts: [engine-compat, managed-patching]
+  - id: aurora-036
+    q: "Developers need a full copy of a 5 TB production Aurora database for testing, created in minutes and at low storage cost. Which feature fits?"
+    a: "**Aurora cloning** (copy-on-write: shares pages until either side changes them)."
+    facts: [cloning]
+  - id: aurora-037
+    q: "Analytics queries must go only to two large Aurora replicas, while the app uses the others. Which Aurora feature fits?"
+    a: "A **custom endpoint** that includes just those two replicas."
+    facts: [custom-endpoint]
+  - id: aurora-038
+    q: "How can a large self-managed MySQL 8.0 database move to Aurora MySQL faster than a logical dump?"
+    a: "Back it up with Percona XtraBackup, upload the files to S3 and restore an Aurora MySQL cluster from them."
+    facts: [xtrabackup]
 diagrams:
   - id: aurora-shared-storage
     title: Instances share storage while endpoints select connections
