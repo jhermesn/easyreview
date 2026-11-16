@@ -5,6 +5,7 @@ import Logo from '../components/Logo.astro';
 import Icon from '../components/Icon.astro';
 import Reminder from '../components/Reminder.astro';
 import Transfer from '../components/Transfer.astro';
+import CertCelebration from '../components/CertCelebration.astro';
 import GitHubStar from '../components/GitHubStar.astro';
 import { getCert } from '../lib/certs';
 import { getCertView, knownGroups, sectionIds } from '../lib/content';
@@ -198,6 +199,7 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
         </footer>
       </main>
     </div>
+    {cert && <CertCelebration cert={cert} dialog />}
   </body>
 </html>
 

@@ -8,6 +8,7 @@ import { getGuide } from '../../../lib/guides';
 import { withBase } from '../../../lib/format';
 import { badgeUrl } from '../../../lib/badge';
 import { breadcrumbs, certFullName } from '../../../lib/seo';
+import CertCelebration from '../../../components/CertCelebration.astro';
 import { localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 
 export function getStaticPaths() {
@@ -39,6 +40,7 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
     </div>
     <a class="btn btn-primary drill" href={link(`/${cert.id}/flashcards`)}><Icon name="cards" /> {t('cert.drill')}</a>
   </header>
+  <CertCelebration cert={cert} />
   <ExamFacts certId={cert.id} />
 
   {cert.domains.map((d) => {

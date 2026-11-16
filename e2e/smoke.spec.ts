@@ -31,9 +31,33 @@ test('marking a section as known survives a reload', async ({ page }) => {
   await expect(page.locator('[data-known-count]').first()).not.toHaveText(/^0\//);
 });
 
+test('finishing a certification celebrates once, with the exam page, Who passed and sharing', async ({ page }) => {
+  await page.goto('pt-br/clf-c02/');
+  const card = page.locator('section.celebrate');
+  await expect(card).toBeHidden();
+  await page.evaluate(() => {
+    const ids = [...document.querySelectorAll<HTMLElement>('.tiles a[data-known]')].flatMap((a) => a.dataset.known!.split(','));
+    localStorage.setItem('easyreview:known:v1', JSON.stringify(Object.fromEntries(ids.map((id) => [id, Date.now()]))));
+  });
+  await page.reload();
+  const dialog = page.locator('dialog[data-celebrate]');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole('link', { name: /Página da prova na AWS/ })).toHaveAttribute('href', /aws\.amazon\.com\/certification\/certified-cloud-practitioner/);
+  await expect(dialog.getByRole('link', { name: /Passou\? Adicione-se/ })).toHaveAttribute('href', /CONTRIBUTING\.md#add-yourself/);
+  await dialog.locator('[data-share] summary').click();
+  const x = new URL((await dialog.getByRole('link', { name: /^X/ }).getAttribute('href'))!);
+  expect(x.searchParams.get('text')).toMatch(/^Concluí todos os tópicos da AWS Certified Cloud Practitioner \(CLF-C02\)/);
+  await dialog.locator('[data-celebrate-close]').click();
+  await expect(dialog).toBeHidden();
+  await expect(card).toBeVisible();
+  await page.reload();
+  await expect(card).toBeVisible();
+  await expect(dialog).toBeHidden();
+});
+
 test('a finished topic can be shared with its name and link', async ({ page }) => {
   await page.goto('pt-br/clf-c02/iam/');
-  const share = page.locator('[data-share]');
+  const share = page.locator('.unit-head [data-share]');
   await expect(share).toBeHidden();
   await page.getByRole('button', { name: /Marcar tudo como sabido/ }).click();
   await share.locator('summary').click();

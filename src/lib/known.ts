@@ -26,6 +26,7 @@ const allKnown = (ids: string[], all: Known) => ids.length > 0 && ids.every((id)
 //   data-known-toggle="a,b"  button that marks all ids known or not (aria-pressed reflects state)
 //   data-cert on a known-set  records whether that cert is complete (every group known)
 //   img[data-badge-cert]      shows the gold badge once its cert is complete
+//   data-known-cert="cert-id" gets .is-known once that cert is complete
 export function applyKnown(all = readKnown()) {
   document.querySelectorAll<HTMLElement>('[data-known]').forEach((el) => el.classList.toggle('is-known', allKnown(idsOf(el.dataset.known), all)));
   const complete = readJson<Record<string, boolean>>(KEYS.complete, {});
@@ -40,6 +41,15 @@ export function applyKnown(all = readKnown()) {
   });
   // Pages without a cert's known-set (search, 404) rely on the last recorded state.
   writeJson(KEYS.complete, complete);
+  document.querySelectorAll<HTMLElement>('[data-known-cert]').forEach((el) => el.classList.toggle('is-known', !!complete[el.dataset.knownCert!]));
+  // A cert finished for the first time gets one celebration, on a page that can show it (CertCelebration).
+  const celebrated = readJson<Record<string, boolean>>(KEYS.celebrated, {});
+  const fresh = [...document.querySelectorAll<HTMLElement>('[data-celebrate]')].map((el) => el.dataset.celebrate!).filter((c) => complete[c] && !celebrated[c]);
+  if (fresh.length) {
+    for (const c of fresh) celebrated[c] = true;
+    writeJson(KEYS.celebrated, celebrated);
+    for (const c of fresh) document.dispatchEvent(new CustomEvent('easyreview:cert-complete', { detail: c }));
+  }
   document.querySelectorAll<HTMLImageElement>('img[data-badge-cert]').forEach((img) => {
     const gold = !!complete[img.dataset.badgeCert!];
     const src = badgeUrl(img.dataset.badgeCert!, gold);
