@@ -144,6 +144,10 @@ cards:
     q: "Thousands of short-lived clients each need a reply queue in a request-response pattern, and creating real SQS queues per client is slow and costly. What fits?"
     a: "**SQS temporary queues** through the Temporary Queue Client, which maps them onto one SQS queue."
     facts: [temporary-queues]
+  - id: sqs-028
+    q: "Pro users jobs must be processed before lite users jobs. How can SQS standard queues provide that priority?"
+    a: "Use two queues, one per class, and have the workers poll the pro queue first. A standard queue has only best-effort ordering, so one queue cannot rank messages."
+    facts: [standard-delivery]
 ---
 SQS queues buffer work between producers, which send messages, and consumers, which receive and process them. Standard queues suit work that tolerates duplicate delivery and occasional reordering. FIFO (first-in, first-out) queues preserve order within each message group.
 

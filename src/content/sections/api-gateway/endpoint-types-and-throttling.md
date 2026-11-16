@@ -21,6 +21,12 @@ facts:
   - id: order
     text: API Gateway applies throttles in this order, per-client or per-method limits in a usage plan, per-method limits on the stage, the account limit per Region, then AWS Regional throttling.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html#api-gateway-request-throttling
+  - id: stateful-websocket
+    text: "REST and HTTP APIs in API Gateway give stateless client-server communication, while WebSocket APIs give stateful, full-duplex communication between client and server."
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html#welcome
+  - id: stage-cache
+    text: "REST API stage caching returns cached endpoint responses for a TTL that defaults to 300 seconds and can be at most 3,600 seconds; a TTL of 0 turns caching off, and methods can override the stage setting."
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#api-gateway-caching
 cards:
   - id: api-gateway-031
     q: A REST API serves mobile users worldwide from one Region. Which API Gateway endpoint type reduces their latency with no extra setup?
@@ -47,6 +53,14 @@ cards:
     a: "Set stage or method throttling (or usage plan limits per client) on that API, below the account-level quota."
     trap: true
     facts: [order, account-quota]
+  - id: api-gateway-037
+    q: "Which API Gateway API type keeps a stateful, two-way connection between client and server?"
+    a: "A WebSocket API. REST and HTTP APIs are stateless request-response APIs."
+    facts: [stateful-websocket]
+  - id: api-gateway-038
+    q: "A read-heavy REST API behind Lambda and Aurora serves data that changes rarely. What cuts backend load with the least change?"
+    a: "Turn on API Gateway stage caching. Responses are served from the cache for the TTL, which defaults to 300 seconds and goes up to 3,600 seconds."
+    facts: [stage-cache]
 ---
 API Gateway endpoint type decides where requests enter AWS, and throttling decides how many get through. [API endpoint types](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html)
 

@@ -104,6 +104,15 @@ facts:
   - id: email-phaseout
     text: AWS announced in August 2026 that email validation will be phased out during 2027.
     source: https://aws.amazon.com/about-aws/whats-new/2026/08/AWS-Certificate-Manager-Email-DNS-Switch/
+  - id: imported-no-renewal
+    text: "ACM does not renew imported certificates; the owner must get a new certificate from the issuer and reimport it before expiry, which keeps the same ARN."
+    source: https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html#import-certificate
+  - id: days-to-expiry
+    text: "ACM publishes a DaysToExpiry CloudWatch metric twice a day for every certificate until it expires."
+    source: https://docs.aws.amazon.com/acm/latest/userguide/cloudwatch-metrics.html#cloudwatch-metrics
+  - id: config-expiration-check
+    text: "The AWS Config managed rule acm-certificate-expiration-check flags certificates that expire within a set number of days, 14 by default."
+    source: https://docs.aws.amazon.com/config/latest/developerguide/acm-certificate-expiration-check.html#acm-certificate-expiration-check
 diagrams:
   - id: acm-dns-issuance
     title: DNS validation and ALB attachment with Route 53
@@ -239,6 +248,10 @@ cards:
     a: A maximum of `198 days`, effective February 18, 2026.
     facts:
       - current-validity
+  - id: acm-021
+    q: "Third-party certificates imported into ACM must trigger an alert 30 days before they expire. What fits with the least effort?"
+    a: "The AWS Config managed rule acm-certificate-expiration-check with daysToExpiration set to 30, sending noncompliance to SNS. ACM never renews imported certificates, so they need this watch. A CloudWatch alarm on DaysToExpiry also works."
+    facts: [imported-no-renewal, config-expiration-check, days-to-expiry]
 ---
 ACM issues and manages certificates for TLS, the protocol that authenticates servers and encrypts client-server traffic. A certificate binds an identity to a public key. A certificate authority (CA) signs that binding so clients can decide whether to trust it.
 

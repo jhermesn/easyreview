@@ -45,6 +45,12 @@ facts:
   - id: suspend
     text: Suspending HealthCheck and ReplaceUnhealthy can prevent automatic health-based replacement during troubleshooting.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#health-check-considerations
+  - id: impaired-wait
+    text: "When an EC2 status check becomes impaired, Auto Scaling waits a few minutes for AWS to fix the issue before marking the instance unhealthy, and it never marks an instance unhealthy for insufficient-data."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#instance-health-detection
+  - id: replace-order
+    text: "By default, Auto Scaling replaces an unhealthy instance by terminating it first and then launching a new one in a separate scaling activity; an instance maintenance policy can make it launch the replacement first."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/replace-unhealthy-instance.html#replace-unhealthy-instance
 cards:
   - id: ec2-auto-scaling-010
     q: An ALB marks an EC2 Auto Scaling instance unhealthy, but the group keeps it. What should be enabled?
@@ -87,6 +93,15 @@ cards:
     trap: true
     facts:
       - nonrunning
+  - id: ec2-auto-scaling-081
+    q: "An instance status check just turned impaired, but Auto Scaling has not replaced the instance yet. Is something wrong?"
+    a: "Not necessarily. Auto Scaling waits a few minutes for AWS to fix an impaired status before it marks the instance unhealthy. A health check grace period that has not expired also delays replacement."
+    facts: [impaired-wait]
+  - id: ec2-auto-scaling-082
+    q: "In what order does Auto Scaling replace an unhealthy instance by default, and how does that differ from AZ rebalancing?"
+    a: "It terminates the unhealthy instance first, then launches a replacement. AZ rebalancing does the opposite: it launches new instances before terminating old ones."
+    trap: true
+    facts: [replace-order]
 ---
 Health checks let EC2 Auto Scaling identify instances to replace. EC2 checks cover instance and host problems; optional traffic-service checks let the group also react when an application cannot serve requests.
 

@@ -81,6 +81,12 @@ facts:
   - id: dms-views
     text: Views can be migrated with full-load-only tasks but not with tasks that include CDC.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html
+  - id: s3-source
+    text: "AWS DMS can use Amazon S3 as a source, reading CSV or Parquet files for a full load and new files for ongoing changes."
+    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.S3.html#CHAP_Source.S3
+  - id: kinesis-target
+    text: "AWS DMS can use Amazon Kinesis Data Streams as a target."
+    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kinesis.html#CHAP_Target.Kinesis
 cards:
   - id: dms-001
     q: How do Amazon DocumentDB, Amazon Redshift and AWS DMS differ?
@@ -132,6 +138,10 @@ cards:
     q: A team is migrating to a different database engine with AWS DMS. How can it convert the source schema?
     a: Use DMS Schema Conversion or AWS Schema Conversion Tool. Manually convert objects that automatic conversion cannot handle.
     facts: [dms-schema, dms-sct]
+  - id: dms-016
+    q: "Existing S3 data files and every later change to them must stream into Kinesis Data Streams quickly, with little code. What can bridge them?"
+    a: "AWS DMS, with S3 as the source endpoint and Kinesis Data Streams as the target endpoint, running a full load plus ongoing changes."
+    facts: [s3-source, kinesis-target]
 diagrams:
   - id: dms-replication-flow
     title: DMS replication

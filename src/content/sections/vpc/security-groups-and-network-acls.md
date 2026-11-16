@@ -63,6 +63,9 @@ facts:
   - id: cidr-sources
     text: Security group rules and network ACL rules specify IP address ranges in CIDR notation, such as 203.0.113.0/24.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
+  - id: sg-sources
+    text: "A security group rule source or destination is an IPv4 or IPv6 CIDR range, a single address written as a /32 or /128, a prefix list ID, or another security group; an internet gateway ID is not a valid source."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rule-components
 cards:
   - id: vpc-001
     q: How do VPC security groups and network ACLs differ?
@@ -138,6 +141,10 @@ cards:
     q: In which notation do security group and network ACL rules specify IP address ranges?
     a: CIDR notation, for example 203.0.113.0/24.
     facts: [cidr-sources]
+  - id: vpc-045
+    q: "Which of these cannot be the source of a security group inbound rule: a CIDR block, a single IP, another security group, or an internet gateway ID?"
+    a: "An internet gateway ID. Sources are CIDR ranges (including single addresses), prefix lists and security groups."
+    facts: [sg-sources]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.

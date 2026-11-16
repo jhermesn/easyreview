@@ -90,6 +90,9 @@ facts:
   - id: approved-running
     text: The AWS Config rule approved-amis-by-id marks running EC2 instances NON_COMPLIANT when their AMI is outside the configured list of approved AMI IDs.
     source: https://docs.aws.amazon.com/config/latest/developerguide/approved-amis-by-id.html#approved-amis-by-id
+  - id: copy-creates-snapshots
+    text: "Copying an EBS-backed AMI to another Region creates copies of its backing snapshots there, billed as additional snapshot storage."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html#copy-ami-costs
 cards:
   - id: ec2-004
     q: Does sharing an EC2 AMI create a copy owned by the recipient account?
@@ -141,6 +144,10 @@ cards:
     q: A team needs to identify running EC2 instances whose AMI IDs are outside its approved list. Which AWS Config rule fits?
     a: approved-amis-by-id. Configure the approved AMI IDs; the rule marks running instances using other images NON_COMPLIANT.
     facts: [approved-running]
+  - id: ec2-082
+    q: "An AMI made from a snapshot in Region A is copied to Region B, and one instance is launched from it in Region B. What exists in Region B?"
+    a: "One instance, one AMI and one snapshot. Copying an EBS-backed AMI also copies its backing snapshot into the destination Region."
+    facts: [copy-creates-snapshots]
 diagrams:
   - id: ec2-ami-zone-replacement
     title: Relocate within a Region by launching from an AMI

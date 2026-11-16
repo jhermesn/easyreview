@@ -22,7 +22,7 @@ facts:
     text: Business Support+ starts at a minimum of 29 USD per month per account.
     source: https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#aws-support-plans
   - id: enterprise
-    text: AWS Enterprise Support adds a designated Technical Account Manager (TAM), up to 15-minute response for production-critical cases, AWS Security Incident Response, strategic business reviews and AWS Countdown event management.
+    text: AWS Enterprise Support adds a designated Technical Account Manager (TAM), under 15-minute response for business-critical system down cases, AWS Security Incident Response, strategic business reviews and AWS Countdown event management.
     source: https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#features
   - id: enterprise-price
     text: The Enterprise Support minimum is 5,000 USD, reduced from 15,000 USD.
@@ -36,6 +36,12 @@ facts:
   - id: third-party
     text: Business Support+ includes third-party software support, and Enterprise Support includes all Business Support+ benefits.
     source: https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#features
+  - id: support-api-plans
+    text: "The AWS Support API requires Business Support+, Enterprise Support or Unified Operations; Basic Support has no API access."
+    source: https://docs.aws.amazon.com/awssupport/latest/user/about-support-api.html#about-support-api
+  - id: basic-ta-checks
+    text: "With Basic Support, Trusted Advisor gives all Service limits checks plus a small set of Security and Fault Tolerance checks; the full set needs a higher plan."
+    source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor-check-reference.html#trusted-advisor-check-reference
 cards:
   - id: support-001
     q: What are the current AWS Support plans?
@@ -74,6 +80,10 @@ cards:
     q: Which AWS Support plans include help with popular third-party software on AWS?
     a: Business Support+ and above; Enterprise Support includes every Business Support+ benefit. Basic Support doesn't.
     facts: [third-party]
+  - id: support-015
+    q: "What does a Basic Support customer get from Trusted Advisor and the Support API?"
+    a: "Only the Service limits checks and a few Security and Fault Tolerance checks in Trusted Advisor, and no Support API. Business Support+ is the lowest plan with all checks and the API."
+    facts: [basic-ta-checks, support-api-plans]
 ---
 AWS Support plans set how much help a customer gets and how fast. Basic comes with every account. AWS has reorganized the plans: today they are Basic, Business Support+, Enterprise Support and Unified Operations. Developer, Business and Enterprise On-Ramp end on January 1, 2027. [AWS Support Plans](https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#aws-support-plans)
 

@@ -99,6 +99,9 @@ facts:
   - id: stateful-definition
     text: A stateful security group permits response traffic for an allowed connection.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html
+  - id: security-lake
+    text: "Amazon Security Lake automatically centralizes security logs and events from AWS services, SaaS providers, on-premises and third-party sources into a data lake in your account, stored as Parquet in the OCSF schema."
+    source: https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html#what-is-security-lake
 cards:
   - id: multi-account-strategy-001
     q: AWS member-account administrators need their own CloudTrail trails while a central audit baseline remains
@@ -202,6 +205,10 @@ cards:
       - inspector
       - macie
       - detective
+  - id: multi-account-strategy-033
+    q: "Security event data from many accounts and services must land in one place in a standard schema for threat detection, with little custom code. Which service fits?"
+    a: "Amazon Security Lake. It collects the logs automatically, normalizes them to OCSF in Parquet, and stores them in an S3-based data lake in your account."
+    facts: [security-lake]
 diagrams:
   - id: central-audit-path
     title: Organization audit logs in a separate account

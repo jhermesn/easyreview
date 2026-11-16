@@ -91,6 +91,12 @@ facts:
   - id: cache-query-definition
     text: A URL query string carries named request values that a cache policy can include in the cache key.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-key-understand-cache-policy.html#cache-key-understand-cache-policy-settings
+  - id: custom-origin-anywhere
+    text: "A CloudFront custom origin is any HTTP or HTTPS server with a publicly resolvable DNS name, hosted on AWS or elsewhere, such as an on-premises web server."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html#concept_CustomOrigin
+  - id: all-methods
+    text: "When a distribution allows all HTTP methods, CloudFront forwards PUT, POST, PATCH and DELETE requests to the origin, so uploads also travel over the AWS edge network; it caches only GET, HEAD and optionally OPTIONS responses."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#RequestCustomHTTPMethods
 cards:
   - id: cloudfront-001
     q: What decides which CloudFront origin and settings handle a request?
@@ -152,6 +158,14 @@ cards:
       - cache-geo
       - cache-geo-custom
       - cache-geo-oac
+  - id: cloudfront-052
+    q: "A dynamic site must stay in an on-premises data center in the US but load faster for new users in Asia within days. What fits?"
+    a: "A CloudFront distribution with a custom origin that points to the on-premises web servers. A custom origin can be any publicly resolvable HTTP server."
+    facts: [custom-origin-anywhere]
+  - id: cloudfront-053
+    q: "Can CloudFront speed up uploads to an S3 bucket, or only downloads?"
+    a: "Both. With all HTTP methods allowed, CloudFront forwards PUT and POST requests to the origin over the edge network. Only GET, HEAD and optionally OPTIONS responses are cached."
+    facts: [all-methods]
 ---
 CloudFront delivers web content through edge locations, which are servers that keep copies near viewers, the clients requesting content. An origin holds the original content. A distribution is the configuration that connects those origins to viewers; its cache behaviors are ordered rules for different URL paths.
 

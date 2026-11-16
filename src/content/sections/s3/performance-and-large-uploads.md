@@ -39,6 +39,12 @@ facts:
   - id: same-region
     text: Keeping the EC2 instances that use a bucket in the same Region as the bucket reduces latency and data transfer costs.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-guidelines.html#optimizing-performance-guidelines-combine
+  - id: ta-not-accelerated
+    text: "When Transfer Acceleration would not speed up a transfer, AWS does not charge the acceleration fee for it."
+    source: https://aws.amazon.com/s3/transfer-acceleration/
+  - id: cli-sync
+    text: "The AWS CLI aws s3 sync command recursively copies new and updated files between a local directory and an S3 prefix, or between two S3 prefixes, including buckets in different Regions."
+    source: https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html#description
 cards:
   - id: s3-132
     q: An application writes 20,000 objects per second into a single S3 prefix and gets HTTP 503 Slow Down errors. What design change fixes it?
@@ -69,6 +75,15 @@ cards:
     a: "No. Its parts stay until you complete or stop the upload; a lifecycle rule (AbortIncompleteMultipartUpload) can clean them up."
     trap: true
     facts: [part-numbers]
+  - id: s3-149
+    q: "A 3 GB upload with Transfer Acceleration turns out no faster than a normal upload. What does the uploader pay for the transfer into S3?"
+    a: "Nothing for the transfer. Data coming in from the internet has no S3 transfer charge, and the acceleration fee is not charged when the transfer was not accelerated."
+    trap: true
+    facts: [ta-not-accelerated]
+  - id: s3-150
+    q: "What is a simple one-time way to copy all objects from one bucket to a bucket in another Region?"
+    a: "Run aws s3 sync between the two bucket prefixes. S3 Batch Replication also works when a replication rule is set up."
+    facts: [cli-sync]
 ---
 Amazon S3 scales per prefix, so performance problems are usually design problems: one hot prefix, single-stream uploads, or long-distance transfers. [Optimizing Amazon S3 performance](https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html)
 

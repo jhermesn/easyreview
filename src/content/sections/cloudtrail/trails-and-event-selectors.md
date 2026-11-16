@@ -63,6 +63,9 @@ facts:
     text: "Trail creation and starting event logging are separate CLI operations: create-trail and
       start-logging."
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.html#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli
+  - id: console-multi-region
+    text: "A trail created in the CloudTrail console applies to all enabled Regions (a multi-Region trail); a single-Region trail can only be created with the CLI or API."
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html#cloudtrail-create-a-trail-using-the-console-first-time
 cards:
   - id: cloudtrail-004
     q: A CloudTrail trail existed before an S3 download, but S3 data events were disabled. Can its
@@ -136,6 +139,10 @@ cards:
     facts:
       - api-region-default
       - trail-regions
+  - id: cloudtrail-051
+    q: "A trail is created in the CloudTrail console. Which Regions does it log?"
+    a: "All enabled Regions. Console trails are multi-Region; a single-Region trail needs the CLI or API."
+    facts: [console-multi-region]
 ---
 A trail is the CloudTrail configuration that sends selected events to S3 for an ongoing audit record. An event selector is a filter that decides which activity the trail records. [Trail concepts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-trails)
 

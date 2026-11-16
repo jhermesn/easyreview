@@ -42,6 +42,9 @@ facts:
   - id: networking
     text: On-premises clients can access FSx for Windows File Server shares using AWS Direct Connect or Site-to-Site VPN.
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#fsx-access-shares
+  - id: dfs-support
+    text: "FSx for Windows File Server supports DFS Namespaces on every deployment type, but DFS Replication only on Single-AZ 1 file systems; Multi-AZ file systems provide their own cross-AZ redundancy."
+    source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html#deployment-type-features-summary
 diagrams:
   - id: fsx-windows-multi-az
     title: Multi-AZ failover
@@ -92,6 +95,10 @@ cards:
     q: How can on-premises clients reach FSx for Windows File Server shares?
     a: Use AWS Direct Connect or Site-to-Site VPN.
     facts: [networking]
+  - id: fsx-for-windows-009
+    q: "An on-premises DFS Replication (DFSR) setup keeps files in sync across several Windows servers. What replaces it on AWS?"
+    a: "Amazon FSx for Windows File Server. A Multi-AZ file system gives built-in redundancy across AZs, and DFS Namespaces can group shares; DFS Replication itself is only supported on Single-AZ 1."
+    facts: [dfs-support]
 ---
 
 Amazon FSx for Windows File Server provides managed Windows file servers for shared files. Clients use Server Message Block (SMB), a network file-sharing protocol, and Microsoft Active Directory identifies users.

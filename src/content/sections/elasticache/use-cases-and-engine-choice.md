@@ -15,6 +15,12 @@ facts:
   - id: valkey-features
     text: Unlike Memcached, Valkey and Redis OSS on ElastiCache support complex data types, replication for high availability and pub/sub.
     source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SelectEngine.html
+  - id: cache-expensive-queries
+    text: "Caching the results of expensive queries, such as joins across many tables or heavy calculations, means the database pays for the query once and later reads come from memory."
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html#elasticache-use-cases-data-store
+  - id: geospatial
+    text: "Valkey and Redis OSS on ElastiCache support geospatial indexes; Memcached does not."
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SelectEngine.html#SelectEngine
 cards:
   - id: elasticache-018
     q: A mobile game needs a real-time global leaderboard that updates with every score change for millions of players. Which service and data structure fit?
@@ -33,6 +39,14 @@ cards:
     q: Which ElastiCache engines support pub/sub messaging?
     a: "Valkey and Redis OSS (not Memcached)."
     facts: [pubsub, valkey-features]
+  - id: elasticache-022
+    q: "Which two workloads does ElastiCache help: read-heavy workloads, write-heavy workloads, compute-intensive workloads, ETL, or complex JOIN queries run in the cache?"
+    a: "Read-heavy and compute-intensive workloads. The cache stores results of expensive queries or calculations so they run once. It does not run JOINs or ETL itself."
+    facts: [cache-expensive-queries]
+  - id: elasticache-023
+    q: "A cache in front of a relational database must support geospatial queries. Which ElastiCache engine fits?"
+    a: "Valkey or Redis OSS, which have geospatial indexes. Memcached does not support them."
+    facts: [geospatial]
 ---
 ElastiCache is more than a database cache. Valkey and Redis OSS add data structures, replication and pub/sub; Memcached stays a simple, multi-threaded object cache. [Common ElastiCache use cases](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html)
 

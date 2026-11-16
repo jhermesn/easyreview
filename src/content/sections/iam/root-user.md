@@ -33,6 +33,12 @@ facts:
   - id: cloudwatch-events-rule
     text: The root user best practices describe the sign-in alert both as an Amazon CloudWatch Events rule that notifies the security administrator and as an Amazon EventBridge rule with Amazon SNS.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-monitor
+  - id: group-email
+    text: "AWS recommends a business-managed group email address for the root user, so messages from AWS reach several people even when someone is away."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#ru-bp-group
+  - id: alternate-contacts
+    text: "Each account can have up to three alternate contacts, for billing, operations and security, which can be distribution lists; the root email still receives all messages."
+    source: https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact-alternate.html#manage-acct-update-contact-alternate
 cards:
   - id: iam-071
     q: What is the AWS account root user, and when should it be used?
@@ -71,6 +77,10 @@ cards:
     q: Which AWS services can notify a security team when the AWS account root user signs in?
     a: A CloudWatch Events (EventBridge) rule that matches root user sign-in, with an Amazon SNS notification.
     facts: [cloudwatch-events-rule, monitor-root]
+  - id: iam-103
+    q: "An operational alert went to a member account root email that nobody reads. How should every account be set up so this does not happen again?"
+    a: "Use a group email address managed by the business for each root user, forwarding to the admins, and set the billing, operations and security alternate contacts to team distribution lists."
+    facts: [group-email, alternate-contacts]
 ---
 Every AWS account starts with a root user: the email address and password used to create it, with complete access to everything in the account. That power makes it the most valuable credential to protect, and AWS recommends keeping it locked away for the few tasks only it can do. [AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-tasks.html#id_root-user)
 

@@ -7,7 +7,7 @@ facts:
     text: AWS Cost Anomaly Detection uses machine learning to detect and alert on unusual spend patterns, accounting for seasonality and natural growth to reduce false positives.
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/manage-ad.html#manage-ad
   - id: cad-alerts
-    text: Cost Anomaly Detection sends alerts individually or in aggregated reports by email or to an Amazon SNS topic, which can forward them to Slack or Amazon Chime.
+    text: Cost Anomaly Detection sends alerts individually or in aggregated reports by email or to an Amazon SNS topic, which Amazon Q Developer in chat applications can forward to a Slack channel.
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/manage-ad.html#manage-ad
   - id: cad-root-cause
     text: Cost Anomaly Detection ranks an anomaly's root causes by dollar impact across AWS service, account, Region and usage type, and runs about three times a day.

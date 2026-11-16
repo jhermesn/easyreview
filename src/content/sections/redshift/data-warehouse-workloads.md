@@ -57,6 +57,12 @@ facts:
   - id: warehouse-vpc
     text: A VPC is a logically isolated virtual network for AWS resources.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc
+  - id: warehouse-mpp
+    text: "Redshift uses massively parallel processing: several compute nodes each run the same compiled query segments on part of the data, which makes complex queries on large datasets fast."
+    source: https://docs.aws.amazon.com/redshift/latest/dg/c_challenges_achieving_high_performance_queries.html#massively-parallel-processing
+  - id: warehouse-ml
+    text: "Redshift ML lets analysts create, train and run models with SQL; Redshift creates the model in SageMaker AI from the data it is given."
+    source: https://docs.aws.amazon.com/redshift/latest/dg/machine_learning.html#machine_learning
 diagrams:
   - id: redshift-enhanced-routing
     title: Enhanced VPC routing to S3
@@ -104,6 +110,10 @@ cards:
     q: A team wants Redshift warehouse capacity without manually managing a provisioned cluster. What can it choose?
     a: Redshift Serverless automatically provisions resources and scales warehouse capacity.
     facts: [warehouse-serverless]
+  - id: redshift-008
+    q: "Analysts load S3 data into a warehouse each morning, need fast MPP queries without managing clusters, and want to run ML predictions in SQL. What fits?"
+    a: "A daily Glue job that loads Amazon Redshift Serverless, with Redshift ML for SQL-based models. Serverless keeps Redshift MPP query engine with automatic capacity."
+    facts: [warehouse-mpp, warehouse-ml, warehouse-serverless]
 ---
 Amazon Redshift is a managed cloud data warehouse for SQL analytics and business intelligence. A data warehouse is a store organized for analyzing data.
 

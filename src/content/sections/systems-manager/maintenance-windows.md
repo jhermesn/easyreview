@@ -41,6 +41,9 @@ facts:
   - id: window-baseline
     text: A patch baseline defines the approval rules used to select patches for an operation.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-predefined-and-custom-patch-baselines.html#patch-manager-predefined-and-custom-patch-baselines
+  - id: patch-lb-runbook
+    text: "The AWS-owned Automation runbook AWSEC2-PatchLoadBalancerInstance removes an instance from its Classic Load Balancer, ALB or NLB target group, waits for connection draining, installs OS updates, and registers the instance again."
+    source: https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-awsec2-patch-load-balancer-instance.html#automation-awsec2-patch-load-balancer-instance
 cards:
   - id: systems-manager-024
     q: A team needs Systems Manager patch installation only during an approved maintenance period. Which
@@ -83,6 +86,10 @@ cards:
     a: Standard workflows. Express workflows are unsupported.
     facts:
       - window-types
+  - id: systems-manager-112
+    q: "Instances behind an ALB must be patched without receiving traffic while they patch, within a defined window. What fits with the least custom work?"
+    a: "Run the AWSEC2-PatchLoadBalancerInstance Automation runbook from a Systems Manager maintenance window. It deregisters each instance, waits for draining, patches it and registers it again."
+    facts: [patch-lb-runbook]
 ---
 A maintenance window defines when Systems Manager should schedule maintenance that could disrupt a workload. It separates the allowed execution period from the document that performs the work.
 

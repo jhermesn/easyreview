@@ -24,6 +24,9 @@ facts:
   - id: dtt
     text: AWS Data Transfer Terminal is a physical AWS facility you reserve and visit with your own storage devices to upload data quickly to AWS; it is available to Enterprise Support customers.
     source: https://docs.aws.amazon.com/datatransferterminal/latest/userguide/what-is-dtt.html#what-is-dtt
+  - id: import-to-s3
+    text: "A Snowball Edge import job copies data into Amazon S3 buckets, with each file becoming an S3 object; to archive it cheaply, a lifecycle rule then moves the objects to a Glacier storage class."
+    source: https://docs.aws.amazon.com/snowball/latest/developer-guide/importtype.html#importtype
 cards:
   - id: snow-family-001
     q: A research site has 500 TB to load into Amazon S3 and only a slow internet link that would take months. Which AWS option did exam questions traditionally expect, and what changed in November 2025?
@@ -45,6 +48,11 @@ cards:
     q: Is data on an AWS Snowball Edge device encrypted while it is shipped?
     a: "Yes. Encryption is enforced at rest and in physical transit."
     facts: [encryption]
+  - id: snow-family-006
+    q: "Backups shipped on a Snowball device must end up in the cheapest archive tier. Where should the import job write?"
+    a: "To an S3 bucket, with a lifecycle rule that moves the objects to Glacier Deep Archive the same day. Import jobs land data in S3 buckets, not straight in a Glacier vault."
+    trap: true
+    facts: [import-to-s3]
 ---
 The Snow Family solves two problems: moving more data than the network can carry in time, and running compute where there is no network. You load a rugged device on site and ship it back to AWS, which imports the data into Amazon S3. [What is Snowball Edge?](https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html)
 

@@ -27,6 +27,9 @@ facts:
   - id: ec2-purpose
     text: Amazon EC2 provides scalable compute capacity in the AWS Cloud as virtual servers (instances) that you configure and manage, including the operating system.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html
+  - id: mac-instances
+    text: "EC2 Mac instances run macOS on Apple hardware for building, testing and signing apps for Apple platforms such as iPhone, iPad and Mac; they run only on Dedicated Hosts with a 24-hour minimum allocation."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-mac-instances.html#ec2-mac-instances
 cards:
   - id: ec2-030
     q: A company runs a web server that uses CPU, memory and network in roughly equal amounts. Which EC2 instance category fits?
@@ -57,6 +60,10 @@ cards:
     q: A company needs virtual servers in AWS where it controls the operating system and installed software. Which service fits?
     a: Amazon EC2, which provides virtual servers (instances) that you configure and manage.
     facts: [ec2-purpose]
+  - id: ec2-084
+    q: "A team needs cloud machines to build and sign its iOS app. Which EC2 option fits?"
+    a: "EC2 Mac instances, which run macOS on Apple hardware. They run on Dedicated Hosts, billed per host with a 24-hour minimum."
+    facts: [mac-instances]
 ---
 An EC2 instance type sets the CPU, memory, storage and networking of a virtual server. Types are grouped into categories by what they're good at, so the first choice is the category that matches the workload. [Amazon EC2 instance types](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html#instance-types)
 

@@ -76,6 +76,12 @@ facts:
   - id: statement-elements
     text: An IAM policy statement uses Effect, Action and Resource (or their Not forms); Condition is optional, and Principal is used in resource-based policies.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html
+  - id: source-ip-caller
+    text: "The aws:SourceIp condition key compares the IP address of the caller making the API request, not the IP of the resource, and works only for public IP ranges."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceip
+  - id: trust-policy-only
+    text: "The only resource-based policy that IAM itself supports is the role trust policy, which says which principals can assume the role."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_resource-based
 cards:
   - id: iam-001
     q: What wins when IAM finds both an Allow and an applicable explicit Deny for a request?
@@ -146,6 +152,15 @@ cards:
     q: "Which element of an IAM identity-based policy statement is optional: Effect, Action, Resource or Condition?"
     a: Condition. Effect, Action and Resource define the statement; Principal appears in resource-based policies.
     facts: [statement-elements]
+  - id: iam-101
+    q: "A policy allows ec2:RunInstances with the condition aws:SourceIp 34.50.31.0/24. What does that limit?"
+    a: "Where the API call comes from. The caller must send the request from an address in that range; it says nothing about the IP addresses of the launched instances."
+    trap: true
+    facts: [source-ip-caller]
+  - id: iam-102
+    q: "Which resource-based policy does the IAM service support?"
+    a: "Only the role trust policy, which names the principals that may assume the role."
+    facts: [trust-policy-only]
 ---
 
 IAM policy evaluation decides whether a request has permission to perform an action on a resource. A principal is the identity making the request. Start with the request's action, resource and context, then find every policy that applies.

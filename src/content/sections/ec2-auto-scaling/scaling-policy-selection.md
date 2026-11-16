@@ -39,6 +39,9 @@ facts:
   - id: promql-scaling
     text: Since November 2026, CloudWatch PromQL alarms can invoke EC2 Auto Scaling step and simple scaling policies, but not target tracking policies.
     source: https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-cloudwatch-alarms-autoscaling-group-actions/
+  - id: scheduled-desired
+    text: "A scheduled action sets a new desired capacity at a specific time, optionally with new minimum and maximum values, so the group scales out before a predictable peak."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scheduled-scaling.html#scheduled-scaling-how-it-works
 cards:
   - id: ec2-auto-scaling-003
     q: Which EC2 Auto Scaling policy keeps average CPU near a target without manually maintaining its alarms?
@@ -88,6 +91,10 @@ cards:
     facts:
       - promql-scaling
       - step
+  - id: ec2-auto-scaling-083
+    q: "A workload peaks at a known hour on the last day of every month. How should an Auto Scaling group be ready with 10 instances before the peak?"
+    a: "Create a scheduled action for that time that sets the desired capacity to 10. Target tracking and simple scaling only react after the load arrives."
+    facts: [scheduled-desired]
 ---
 Scaling policies change the desired capacity of an EC2 Auto Scaling group as demand changes. Scale-out adds capacity; scale-in removes it. Choose a policy based on whether the trigger is current utilization, a known time or a recurring demand pattern.
 

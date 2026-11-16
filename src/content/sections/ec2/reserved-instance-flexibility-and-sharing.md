@@ -27,6 +27,9 @@ facts:
   - id: payment-options
     text: Reserved Instances can be paid All Upfront, Partial Upfront or No Upfront; with Partial or No Upfront the rest is billed monthly over the term.
     source: https://aws.amazon.com/ec2/pricing/reserved-instances/
+  - id: convertible-exchange-value
+    text: "A Convertible Reserved Instance can be exchanged any number of times for a different instance family, operating system or tenancy, as long as the new reservation is of equal or higher value."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-convertible-exchange.html#ri-convertible-exchange
 cards:
   - id: ec2-044
     q: What is the difference between a regional and a zonal EC2 Reserved Instance?
@@ -57,6 +60,11 @@ cards:
     q: What payment options can a company choose when it buys EC2 Reserved Instances?
     a: "All Upfront, Partial Upfront or No Upfront.\nWith Partial or No Upfront, the remaining balance is billed monthly over the term."
     facts: [payment-options]
+  - id: ec2-085
+    q: "What limits an exchange of a Convertible Reserved Instance?"
+    a: "The new reservation must be of equal or higher value. Family, operating system and tenancy can change, with no limit on the number of exchanges."
+    trap: true
+    facts: [convertible-exchange-value]
 ---
 Reserved Instances are discounts on EC2 usage that matches their attributes. Their scope decides how flexible the discount is and whether it reserves capacity. In AWS Organizations, the discount can be shared across accounts. [Regional and zonal Reserved Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-scope.html#reserved-instances-scope)
 

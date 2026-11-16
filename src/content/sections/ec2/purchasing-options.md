@@ -51,6 +51,15 @@ facts:
   - id: sp-rates
     text: EC2 Instance Savings Plans save up to 72% for a commitment to one instance family in one Region; Compute Savings Plans save up to 66% but apply across instance families, Regions, Fargate and Lambda.
     source: https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html
+  - id: vpc-tenancy
+    text: "Instances in a VPC with dedicated tenancy always run as Dedicated Instances; in a VPC with default tenancy, an instance or launch template can still request dedicated tenancy."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html#dedicated-howitworks
+  - id: stopped-billing
+    text: "A stopped EC2 instance is not billed for usage or data transfer, but its attached EBS volumes keep being charged."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html#instance-stop-start
+  - id: sql-license-included
+    text: "EC2 instances can run Microsoft SQL Server with the license included from AWS, launched from license-included Windows AMIs, or with licenses you bring yourself."
+    source: https://docs.aws.amazon.com/sql-server-ec2/latest/userguide/sql-server-on-ec2-licensing.html#sql-server-on-ec2-licensing
 cards:
   - id: ec2-036
     q: A company runs a steady workload on EC2 for the next three years but may change instance families. Which purchasing option saves the most while staying flexible?
@@ -102,6 +111,19 @@ cards:
     q: Which four Savings Plans types does AWS offer?
     a: Compute, EC2 Instance, Database and SageMaker AI Savings Plans.
     facts: [sp-types]
+  - id: ec2-083
+    q: "A launch template asks for dedicated tenancy, but the VPC has default tenancy. Where do the instances run?"
+    a: "On dedicated hardware. A default-tenancy VPC lets the launch template choose dedicated, and a dedicated-tenancy VPC forces dedicated for every instance."
+    trap: true
+    facts: [vpc-tenancy]
+  - id: ec2-086
+    q: "In which instance state is only EBS storage billed, not the instance itself?"
+    a: "Stopped. Instance usage stops being billed, but attached EBS volumes are still charged."
+    facts: [stopped-billing]
+  - id: ec2-087
+    q: "A DBA needs SQL Server Standard on a server reachable by RDP, must not buy a license separately, and is unsure about sizing. What fits?"
+    a: "An EC2 instance from a Windows Server AMI with SQL Server Standard license included. AWS bills the license with the instance, and the instance type can be changed later."
+    facts: [sql-license-included]
 ---
 Amazon EC2 charges the same instance in different ways depending on how much you commit and how much interruption you accept. Choosing well can cut compute costs sharply. [EC2 billing and purchasing options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html#instance-purchasing-options)
 
