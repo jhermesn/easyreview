@@ -191,6 +191,13 @@ const en = {
 
   'transfer.title': 'Move your progress',
   'transfer.intro': 'Progress stays in this browser. Copy the code here and paste it on the other device.',
+  'roadmap.tab': 'Study path',
+  'roadmap.byDomain': 'By exam domain',
+  'roadmap.views': 'How to list the topics',
+  'roadmap.intro': 'Study the stages in order: each one builds on the ones before it. Topics you mark as known are checked.',
+  'roadmap.stage': 'Stage {n}',
+  'roadmap.start': 'Start with {topic}',
+  'roadmap.continue': 'Continue with {topic}',
   'share.button': 'Share',
   'share.title': 'Share that you finished this topic',
   'share.topicText': 'I finished the {topic} topic of {cert} on Easy Review. Come study too!',

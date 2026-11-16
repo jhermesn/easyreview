@@ -193,6 +193,13 @@ const ptBr: Partial<Record<Key, string>> = {
 
   'transfer.title': 'Levar seu progresso',
   'transfer.intro': 'O progresso fica neste navegador. Copie o código aqui e cole no outro dispositivo.',
+  'roadmap.tab': 'Trilha de estudo',
+  'roadmap.byDomain': 'Por domínio da prova',
+  'roadmap.views': 'Como listar os tópicos',
+  'roadmap.intro': 'Estude as etapas em ordem: cada uma se apoia nas anteriores. Os tópicos que você marca como sabidos aparecem marcados.',
+  'roadmap.stage': 'Etapa {n}',
+  'roadmap.start': 'Comece por {topic}',
+  'roadmap.continue': 'Continue com {topic}',
   'share.button': 'Compartilhar',
   'share.title': 'Conte que você concluiu este tópico',
   'share.topicText': 'Concluí o tópico {topic} da {cert} no Easy Review. Venha estudar também!',

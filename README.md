@@ -28,6 +28,7 @@ Two exams are covered in full: **AWS Certified Cloud Practitioner (CLF-C02)** an
 | <img src="docs/assets/icons/diagram.svg" width="22" alt="" /> | **Diagrams** with official AWS Architecture Icons and numbered steps, for request flows, failover sequences and order of execution. |
 | <img src="docs/assets/icons/cards.svg" width="22" alt="" /> | **Flashcards** with spaced repetition, a missed-only mode and a traps-only mode. |
 | <img src="docs/assets/icons/check-circle.svg" width="22" alt="" /> | **Study once, use it everywhere.** A section you mark as known stays known in every exam that includes it. A cert's badge turns gold once you know every topic. |
+| <img src="docs/assets/icons/route.svg" width="22" alt="" /> | **A study path** per cert: topics in stages that build on each other, with your progress per stage and a button that takes you to the next topic to study. |
 | <img src="docs/assets/icons/target.svg" width="22" alt="" /> | **Exam guide coverage** per cert: which guide items and in-scope services each section covers. |
 | <img src="docs/assets/icons/clock.svg" width="22" alt="" /> | **Exam facts** (duration, format, cost, passing score), refreshed weekly from the AWS certification pages. |
 | <img src="docs/assets/icons/transfer.svg" width="22" alt="" /> | **Your progress, your browser.** No accounts and no trackers. Move progress to another device with a code. |

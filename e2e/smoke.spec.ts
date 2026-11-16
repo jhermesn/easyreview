@@ -55,6 +55,22 @@ test('finishing a certification celebrates once, with the exam page, Who passed 
   await expect(dialog).toBeHidden();
 });
 
+test('the study path points to the next topic and keeps the exam-domain view', async ({ page }) => {
+  await page.goto('pt-br/clf-c02/');
+  const next = page.locator('[data-roadmap-next]');
+  await expect(next).toHaveText(/Comece por /);
+  const first = page.locator('[data-roadmap-unit]').first();
+  await expect(first).toHaveClass(/is-next/);
+  await first.click();
+  await page.getByRole('button', { name: /Marcar tudo como sabido/ }).click();
+  await page.goto('pt-br/clf-c02/');
+  await expect(next).toHaveText(/Continue com /);
+  await expect(page.locator('[data-roadmap-unit]').first()).toHaveClass(/is-known/);
+  await page.getByRole('tab', { name: /Por domínio da prova/ }).click();
+  await expect(page.locator('#view-domains')).toBeVisible();
+  await expect(page.locator('#view-roadmap')).toBeHidden();
+});
+
 test('a finished topic can be shared with its name and link', async ({ page }) => {
   await page.goto('pt-br/clf-c02/iam/');
   const share = page.locator('.unit-head [data-share]');
