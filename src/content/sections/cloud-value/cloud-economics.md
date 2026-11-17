@@ -29,10 +29,10 @@ facts:
     source: https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/select-the-correct-resource-type-size-and-number.html#select-the-correct-resource-type-size-and-number
   - id: automation-recovery
     text: Automation can track failures and run recovery processes when a monitored threshold is breached, and more advanced automation can remediate failures before they occur.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html#design-principles
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles
   - id: on-prem-saturation
     text: A common cause of failure in on-premises workloads is resource saturation, when demand exceeds the capacity that was bought.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html#design-principles
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles
   - id: byol-li
     text: Amazon RDS for Oracle offers License Included, where AWS holds the Oracle license, and Bring Your Own License (BYOL), where you use existing Oracle Database licenses.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Oracle.Concepts.Licensing.html#Oracle.Concepts.Licensing

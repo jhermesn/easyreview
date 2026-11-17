@@ -37,7 +37,7 @@ facts:
       trigger another replication hop.
     source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/replication.html#replication
   - id: no-deletes
-    text: ECR registry replication does not propagate deletion or archival actions.
+    text: By default, ECR registry replication does not replicate deletions, and it never replicates archive actions.
     source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/replication.html#replication
   - id: local-policies
     text: Repository and lifecycle policies are not replicated; repository creation templates can
@@ -53,6 +53,9 @@ facts:
   - id: pull-through
     text: Pull through cache rules sync the contents of an upstream registry, such as Amazon ECR Public or Quay, with an Amazon ECR private registry.
     source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html
+  - id: delete-replication
+    text: "Since November 16, 2026, an ECR replication rule with deleteReplication enabled replicates image deletions, tag removals and lifecycle expirations to its destinations; a cross-account destination must also grant ecr:ReplicateImageDelete."
+    source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/replication-delete.html#replication-delete
 diagrams:
   - id: ecr-replication-destination
     title: Destination permissions for cross-account replication
@@ -137,11 +140,11 @@ cards:
   - id: ecr-022
     q: An ECR source lifecycle policy deletes an image. Will registry replication delete the destination
       copy?
-    a: No. Replication does not propagate deletions. Configure destination retention separately;
-      lifecycle policies are not replicated.
+    a: Not by default. Since November 16, 2026, a rule with deleteReplication enabled replicates the deletion, including lifecycle expirations; otherwise configure destination retention separately, because lifecycle policies are not replicated.
     trap: true
     facts:
       - no-deletes
+      - delete-replication
       - local-policies
   - id: ecr-023
     q: An ECR replication rule is enabled after a repository already contains images. How can the
@@ -155,6 +158,10 @@ cards:
     q: A company wants its clusters to pull public base images through its own Amazon ECR private registry. Which ECR feature fits?
     a: A pull through cache rule, which syncs the upstream registry into the private registry.
     facts: [pull-through]
+  - id: ecr-025
+    q: "Images expired by an ECR lifecycle policy in the source Region must also disappear from the cross-account replica registry. What configuration does this need?"
+    a: "Enable deleteReplication on the replication rule (available since November 16, 2026), and grant ecr:ReplicateImageDelete in the destination registry policy."
+    facts: [delete-replication]
 ---
 ECR replication copies container images between accounts or Regions using private registry rules. The source selects where images go; a destination account grants permission to receive them. A registry policy controls registry-level access, while a repository policy controls an individual repository.
 
@@ -164,7 +171,7 @@ ECR replication copies container images between accounts or Regions using privat
 2. For another account, grant the source `ecr:ReplicateImage` in the destination registry policy. Also grant `ecr:CreateRepository`, or precreate destination repositories with matching names.
 3. ECR copies newly pushed or restored content. Repository names remain unchanged. For older images, start replication backfill, which copies existing images matching the current rules to the selected destination.
 4. Configure destination repository settings and retention. Policies do not copy automatically; repository creation templates can supply settings when ECR creates destination repositories.
-5. Configure every required destination at the source. A replicated image does not trigger another replication hop. Deletes and archive actions do not propagate.
+5. Configure every required destination at the source. A replicated image does not trigger another replication hop. Deletes propagate only when the rule enables replication of deletes (since November 16, 2026); archive actions never do.
 
 ### Exam cues
 
@@ -176,6 +183,6 @@ ECR replication copies container images between accounts or Regions using privat
 
 - Each push or restore produces one replication hop.
 - Backfill targets one destination per backfill; AWS documented it in October 2026.
-- Policies, deletes and archive actions do not propagate automatically.
+- Policies and archive actions do not propagate; deletes propagate only with `deleteReplication` on the rule (November 2026).
 
 > **Trap:** A tag collision at an immutable destination does not necessarily stop the image copy. The image can arrive without the conflicting tag and be untagged.

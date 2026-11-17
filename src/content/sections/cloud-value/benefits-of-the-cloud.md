@@ -29,13 +29,13 @@ facts:
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html#six-advantages-of-cloud-computing
   - id: scale-horizontally
     text: Replacing one large resource with multiple small resources, and distributing requests across them so they share no common point of failure, increases aggregate workload availability.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html#design-principles
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles
   - id: auto-recover
     text: Monitoring a workload for key performance indicators lets automation run when a threshold is breached, so recovery from failure can be automatic.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html#design-principles
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles
   - id: scale-out
     text: Scaling horizontally (out) replaces one large resource with several smaller ones so a single failure has less impact; scaling vertically (up) makes one resource bigger and adds no redundancy.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles
 cards:
   - id: cloud-value-001
     q: What are the six advantages of cloud computing that AWS lists?
@@ -91,7 +91,7 @@ Cloud computing delivers IT resources on demand over the internet, with pay-as-y
 1. You request resources through the console, the CLI or an API instead of buying hardware.
 2. AWS runs them on its infrastructure in the Region you choose, and bills for what you use.
 3. When demand changes, you add or remove resources, so capacity follows the workload. This is elasticity.
-4. Spreading a workload over many small resources and over separate locations keeps one failure from taking it all down. This is high availability. [Reliability design principles](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html#design-principles)
+4. Spreading a workload over many small resources and over separate locations keeps one failure from taking it all down. This is high availability. [Reliability design principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles)
 
 AWS names six advantages of cloud computing: [Six advantages](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html#six-advantages-of-cloud-computing)
 

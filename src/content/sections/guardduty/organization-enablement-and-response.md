@@ -91,7 +91,7 @@ facts:
     text: An AWS CloudFormation custom resource backed by Lambda can check GuardDuty state before enabling it to avoid a failed duplicate deployment.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/enable-amazon-guardduty-conditionally-by-using-aws-cloudformation-templates.html#enable-amazon-guardduty-conditionally-by-using-aws-cloudformation-templates-summary
   - id: conditional-limit
-    text: The AWS conditional enablement pattern does not enable GuardDuty if it was manually disabled in the account or Region.
+    text: In the AWS conditional enablement pattern, a suspended GuardDuty keeps its detector, so the pattern reports AlreadyEnabled and does not resume monitoring; a disabled GuardDuty has no detector, so the pattern creates a new one without the old findings.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/enable-amazon-guardduty-conditionally-by-using-aws-cloudformation-templates.html#enable-amazon-guardduty-conditionally-by-using-aws-cloudformation-templates-prereqs
 diagrams:
   - id: guardduty-finding-response
@@ -165,7 +165,7 @@ cards:
     facts: [lists-admin]
   - id: guardduty-021
     q: An AWS CloudFormation deployment may target accounts where GuardDuty already exists. How can it avoid a duplicate enablement failure?
-    a: Use a Lambda-backed custom resource to check GuardDuty state before enabling it. The AWS pattern does not re-enable a manually disabled detector.
+    a: Use a Lambda-backed custom resource to check GuardDuty state before enabling it. A suspended detector stays suspended (the pattern reports AlreadyEnabled); a disabled one is recreated without its old findings.
     facts: [conditional-cfn, conditional-limit]
   - id: guardduty-022
     q: A GuardDuty finding is automatically archived by a suppression rule. Will EventBridge receive it?
@@ -192,7 +192,7 @@ GuardDuty can be managed across an organization and can send findings to automat
 
 Entity lists can contain IP addresses and domains; legacy IP lists contain IP addresses only. SHA-256 file hashes, which identify file contents, are supported only in threat entity lists. A trusted entry takes precedence if it is also on a threat list.
 
-For infrastructure deployments, an AWS CloudFormation custom resource can invoke Lambda to check GuardDuty state before enabling it. This avoids duplicate enablement failures. AWS notes that its example does not re-enable GuardDuty that was manually disabled.
+For infrastructure deployments, an AWS CloudFormation custom resource can invoke Lambda to check GuardDuty state before enabling it. This avoids duplicate enablement failures. A suspended GuardDuty keeps its detector, so the example reports AlreadyEnabled and leaves monitoring off; a disabled GuardDuty has no detector, so the example creates a new one without the old findings.
 
 ### Exam cues
 

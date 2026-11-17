@@ -5,7 +5,7 @@
       "RTO"
     ],
     "definition": "The longest service interruption a business is prepared to accept.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp01.html#rel13-bp01"
   },
   {
     "term": "Recovery point objective",
@@ -13,7 +13,7 @@
       "RPO"
     ],
     "definition": "The oldest recoverable data a business can accept at interruption, measured as a time gap.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp01.html#rel13-bp01"
   },
   {
     "term": "Disaster recovery",
@@ -45,25 +45,25 @@
     "term": "Game day",
     "aliases": [],
     "definition": "A planned failure exercise involving the teams and procedures used for real incidents.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_testing_resiliency_game_days_resiliency.html#rel_testing_resiliency_game_days_resiliency"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel12-bp05.html#rel12-bp05"
   },
   {
     "term": "Pilot light",
     "aliases": [],
     "definition": "A recovery design with data and core infrastructure ready but more resources needed to process requests.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02"
   },
   {
     "term": "Warm standby",
     "aliases": [],
     "definition": "A working recovery deployment kept at reduced capacity until it must take over.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02"
   },
   {
     "term": "Hot standby",
     "aliases": [],
-    "definition": "A recovery deployment kept ready at full capacity.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery"
+    "definition": "A warm standby scaled to serve the full production load.",
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02"
   },
   {
     "term": "Active-active",
@@ -71,7 +71,7 @@
       "multi-site active-active"
     ],
     "definition": "A design in which workloads in multiple Regions serve traffic during normal operation.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02"
   },
   {
     "term": "Infrastructure as code",
@@ -125,13 +125,13 @@
     "term": "Hard dependency",
     "aliases": [],
     "definition": "A component a workload cannot operate without and for which no substitute is available.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp05.html#rel13-bp05"
   },
   {
     "term": "Soft dependency",
     "aliases": [],
     "definition": "A component a workload can temporarily replace or operate without at reduced functionality.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp05.html#rel13-bp05"
   },
   {
     "term": "Stop condition",

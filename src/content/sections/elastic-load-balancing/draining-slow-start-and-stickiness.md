@@ -52,10 +52,10 @@ facts:
   - id: shared-session
     text: A shared session store such as DynamoDB or ElastiCache keeps session data independent of an
       application instance and preserves it when that instance fails.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_mitigate_interaction_failure_stateless.html
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel05-bp06.html#rel05-bp06
   - id: session-state
     text: Session state is user data retained between requests during use of an application.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_mitigate_interaction_failure_stateless.html
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel05-bp06.html#rel05-bp06
   - id: tg-stickiness
     text: "Weighted target groups do not honor sticky sessions by default. With target group stickiness enabled on the rule, an AWSALBTG cookie keeps a client on the target group it first reached for the configured duration."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-action-types.html#forward-actions

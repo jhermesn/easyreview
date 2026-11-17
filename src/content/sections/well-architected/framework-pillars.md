@@ -32,28 +32,49 @@ facts:
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions
   - id: general-principles
     text: The general design principles are to stop guessing capacity needs, test systems at production scale, automate with architectural experimentation in mind, consider evolutionary architectures, drive architectures using data, and improve through game days.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/general-design-principles.html#general-design-principles
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles
   - id: production-scale
     text: A production-scale test environment can be created on demand and decommissioned after testing, so you pay for it only while it runs.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/general-design-principles.html#general-design-principles
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles
   - id: game-days
     text: Game days simulate events in production on a regular schedule to find improvements and build experience in handling events.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/general-design-principles.html#general-design-principles
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles
   - id: safely-automate
     text: "An operational excellence design principle is safely automate where possible: define the whole workload and its operations as code and run procedures automatically."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/oe-design-principles.html
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/ops-design-principles.html#ops-design-principles
   - id: security-principles
     text: "Security pillar design principles: implement a strong identity foundation, maintain traceability, apply security at all layers, automate security best practices, protect data in transit and at rest, keep people away from data, and prepare for security events."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/sec-design.html
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/sec-design-principles.html#sec-design-principles
   - id: loose-coupling
     text: The reliability pillar recommends loosely coupled dependencies, such as queues, streams and workflows, ideally asynchronous; a monolithic workload is an anti-pattern.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_prevent_interaction_failure_loosely_coupled_system.html
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel04-bp02.html#rel04-bp02
   - id: oe-principles
-    text: "Operational excellence design principles: organize teams around business outcomes, implement observability, safely automate where possible, make frequent small reversible changes, refine operations procedures frequently, anticipate failure, learn from all operational events and metrics, and use managed services."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/oe-design-principles.html
+    text: "Operational excellence design principles: implement observability for actionable insights, safely automate where possible, make frequent small reversible changes, refine operations frequently, anticipate failure, learn from all operational events and metrics, and use managed services."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/ops-design-principles.html#ops-design-principles
   - id: reliability-principles
     text: "Reliability pillar design principles: automatically recover from failure, test recovery procedures, scale horizontally to increase aggregate workload availability, stop guessing capacity, and manage change through automation."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-principles.html
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles
+  - id: framework-update-2026
+    text: "On November 16, 2026, AWS consolidated the six pillar whitepapers into one Well-Architected Framework document, refreshed nearly all best practices, and split the guidance into Cloud Foundations and Cloud Workloads."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/release-notes.html#fw-11-16-2026-update
+  - id: cloud-foundations
+    text: "Well-Architected Cloud Foundations covers organization-wide capabilities to set up before production workloads, in seven areas: multi-account environment, identity and access management, central observability, resource and inventory management, security and compliance, cloud financial management, and networking and connectivity."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/cloud-foundations.html#capabilities
+  - id: foundations-landing-zone
+    text: "AWS describes Well-Architected Cloud Foundations as the blueprint for a sound landing zone, a well-architected multi-account AWS environment."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/cloud-foundations.html#cloud-foundations
+  - id: cloud-workloads
+    text: "Cloud Workloads holds the six pillars and their workload best practices, which can be evaluated and tracked continually."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/release-notes.html#release-notes-workloads
+  - id: performance-principles
+    text: "Performance efficiency design principles: use managed services to reduce operational complexity, deploy workloads closer to your customers, build scalable architectures, experiment more often, consider mechanical sympathy, and design for change and variable demand."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/perf-design-principles.html#perf-design-principles
+  - id: cost-principles
+    text: "Cost optimization design principles: implement Cloud Financial Management, adopt a consumption model, measure business outcomes relative to costs, use managed services and automation, and implement granular cost allocation."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/cost-design-principles.html#cost-design-principles
+  - id: sustainability-principles
+    text: "Sustainability design principles: understand your impact, establish sustainability goals, maximize utilization, anticipate and adopt more efficient hardware and software, align the computational approach to problem complexity, and minimize the footprint of data and its processing."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/sus-design-principles.html#sus-design-principles
 cards:
   - id: well-architected-001
     q: What are the six pillars of the AWS Well-Architected Framework?
@@ -116,6 +137,31 @@ cards:
     q: A company runs its Amazon RDS database in multiple Availability Zones so it fails over automatically. Which Well-Architected pillar does this serve?
     a: "Reliability: automatically recover from failure and remove single points of failure."
     facts: [reliability-principles, reliability]
+  - id: well-architected-020
+    q: "What changed in the AWS Well-Architected Framework on November 16, 2026?"
+    a: "The six pillar whitepapers became one framework document, nearly all best practices were refreshed, and the guidance was split into Cloud Foundations (organization-wide) and Cloud Workloads (the six pillars)."
+    facts: [framework-update-2026, cloud-workloads]
+  - id: well-architected-021
+    q: "A platform team must set up multi-account structure, central identity, logging, tagging, security tooling, cost visibility and networking before any workload runs. Which part of the AWS Well-Architected Framework guides this?"
+    a: "Well-Architected Cloud Foundations, the blueprint for a sound landing zone. Its seven capabilities cover exactly these areas."
+    facts: [cloud-foundations, foundations-landing-zone]
+  - id: well-architected-022
+    q: "\"Deploy workloads closer to your customers\" and \"consider mechanical sympathy\" are design principles of which Well-Architected pillar?"
+    a: "Performance efficiency."
+    facts: [performance-principles]
+  - id: well-architected-023
+    q: "\"Measure business outcomes relative to costs\" and \"implement granular cost allocation\" are design principles of which Well-Architected pillar?"
+    a: "Cost optimization."
+    facts: [cost-principles]
+  - id: well-architected-024
+    q: "\"Maximize utilization\" and \"minimize the footprint of data and its processing\" are design principles of which Well-Architected pillar?"
+    a: "Sustainability."
+    facts: [sustainability-principles]
+  - id: well-architected-025
+    q: "Is the six-pillar list of the AWS Well-Architected Framework different after the November 16, 2026 update?"
+    a: "No. The six pillars stay the same; they now sit under Cloud Workloads, next to the new Cloud Foundations guidance."
+    trap: true
+    facts: [framework-update-2026, six-pillars, cloud-workloads]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
 
@@ -135,7 +181,9 @@ The AWS Well-Architected Framework is AWS's set of best practices for cloud arch
 | Cost optimization | Deliver business value at the lowest price point |
 | Sustainability | Reduce energy use and total resources |
 
-The general design principles apply across pillars: stop guessing capacity, test at production scale, automate to experiment, evolve the architecture, decide with data, and improve through game days. [General design principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/general-design-principles.html#general-design-principles)
+Since November 16, 2026, the framework is one document in two parts. Cloud Foundations covers what an organization sets up once for all workloads (accounts, identity, observability, inventory, security, cost, networking), and Cloud Workloads holds the six pillars. [Release notes](https://docs.aws.amazon.com/wellarchitected/latest/framework/release-notes.html#fw-11-16-2026-update)
+
+The general design principles apply across pillars: stop guessing capacity, test at production scale, automate to experiment, evolve the architecture, decide with data, and improve through game days. [Framework design principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles)
 
 ### Exam cues
 
@@ -145,10 +193,12 @@ The general design principles apply across pillars: stop guessing capacity, test
 - If the question says reduce environmental impact or energy use, think sustainability.
 - If the question says improve operations and procedures, think operational excellence.
 - If the question says operations as code, think operational excellence, because defining operations as code is part of its safely automate principle.
+- If the question says organization-wide setup before the first workload, such as a landing zone, think Well-Architected Cloud Foundations.
 
 ### Remember
 
 - Six pillars; sustainability is the sixth.
+- November 16, 2026: one framework document, split into Cloud Foundations (seven capabilities) and Cloud Workloads (the pillars).
 - A workload is a set of components that deliver business value.
 - Game days simulate production events to practice handling them.
 

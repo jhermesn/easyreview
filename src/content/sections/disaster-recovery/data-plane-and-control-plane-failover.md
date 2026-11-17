@@ -38,7 +38,7 @@ facts:
   - id: preprovision
     text: Increasing warm standby capacity in advance reduces reliance on control plane scaling during
       recovery.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
 cards:
   - id: disaster-recovery-012
     q: Which traffic-switching approach reduces control plane dependence during cross-Region AWS
