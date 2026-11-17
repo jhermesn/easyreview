@@ -42,6 +42,9 @@ facts:
   - id: s3-vectors
     text: "Amazon S3 Vectors is cost-optimized vector storage in vector buckets, with S3 durability and availability, no infrastructure to provision, and subsecond query latency (as low as 100 ms for frequent queries)."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-vectors.html#s3-vectors-what-is
+  - id: kb-quick-create
+    text: "When you create a knowledge base, Bedrock can quick-create the vector store for you in Amazon OpenSearch Serverless, Amazon Aurora PostgreSQL Serverless or Amazon S3 Vectors, or you can connect a vector store you set up."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create.html#knowledge-base-create-console
 cards:
   - id: bedrock-020
     q: A company wants its chatbot to answer from internal HR documents that change monthly, without retraining a model. Which approach and Amazon Bedrock feature fit?
@@ -85,6 +88,10 @@ cards:
     a: "No. Since September 30, 2026 new Confluence, SharePoint, Salesforce and web crawler connectors are not supported on customer-managed knowledge bases; existing ones keep working. AWS recommends Bedrock Managed Knowledge Base."
     trap: true
     facts: [kb-connector-change, kb-data-sources]
+  - id: bedrock-066
+    q: "A team wants Bedrock Knowledge Bases to create and configure the vector store for it. Which stores can the quick-create option build?"
+    a: "Amazon OpenSearch Serverless, Amazon Aurora PostgreSQL Serverless and Amazon S3 Vectors. Other supported stores, such as Pinecone or MongoDB Atlas, must be set up first."
+    facts: [kb-quick-create, kb-vector-stores]
 ---
 Retrieval augmented generation (RAG) gives a model the facts it needs at question time: find the relevant passages in your data and put them in the prompt. Amazon Bedrock Knowledge Bases runs that pipeline for you, from ingestion to citations. [Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)
 

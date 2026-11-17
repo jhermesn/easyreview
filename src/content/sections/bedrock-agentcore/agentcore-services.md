@@ -48,6 +48,9 @@ facts:
   - id: agent-trace
     text: "An agent trace shows each orchestration step, including the inputs and outputs of the action groups invoked and the knowledge bases queried, so you can follow and debug the agent's reasoning."
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/trace-events.html#trace-events
+  - id: evaluation-types
+    text: "AgentCore Evaluations has three types: online evaluation continuously scores a sample of live production sessions, on-demand evaluation scores chosen spans or traces, and batch evaluation scores many sessions in one asynchronous job for baselines and regression tests."
+    source: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations-types.html#evaluations-types
 cards:
   - id: bedrock-agentcore-001
     q: A team built an agent with an open source framework and needs a secure, serverless place to run it at scale with session isolation. Which AWS service fits?
@@ -94,6 +97,10 @@ cards:
     q: "How can a Bedrock agent reduce the risk that a prompt injection triggers a harmful action?"
     a: "Turn on user confirmation for the action, so the application user must confirm before the agent invokes the action group function."
     facts: [action-fulfillment]
+  - id: bedrock-agentcore-012
+    q: "A bank must keep measuring the response quality of its deployed AgentCore agent on real customer traffic. Which AgentCore Evaluations type fits?"
+    a: "Online evaluation, which samples live production sessions and scores them continuously. On-demand evaluation targets chosen traces, and batch evaluation runs one-off jobs over many sessions."
+    facts: [evaluation-types]
 ---
 AgentCore is a set of building blocks for running agents in production: where they run, what they remember, which tools they reach, whose identity they use, what they're allowed to do and how well they perform. Use the pieces together or one at a time, with any framework or model. [What is AgentCore?](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)
 

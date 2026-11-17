@@ -16,8 +16,8 @@ facts:
     text: Provisioned Throughput buys a higher level of throughput for a model at a fixed cost, billed hourly in model units, with no commitment or a 1-month or 6-month term; longer terms get a bigger discount.
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html
   - id: provisioned-custom
-    text: A model you customized in Amazon Bedrock needs Provisioned Throughput to be used.
-    source: https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html
+    text: A model you customized in Amazon Bedrock runs inference on purchased Provisioned Throughput or, through a custom model deployment, on demand, paying only for what you use.
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html#model-customization-use
   - id: tiers
     text: Amazon Bedrock has four inference service tiers; Reserved reserves capacity for critical apps, Priority gives the fastest responses at a premium, Standard is the default, and Flex gives a discount for workloads that tolerate longer processing.
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/service-tiers-inference.html
@@ -36,8 +36,8 @@ cards:
     a: Batch inference, which processes prompts asynchronously into Amazon S3 at about 50% less than on-demand for supported models.
     facts: [batch, batch-price]
   - id: bedrock-008
-    q: A company fine-tuned a model in Amazon Bedrock. What must it purchase before it can run inference on that custom model?
-    a: Provisioned Throughput.
+    q: A company fine-tuned a model in Amazon Bedrock. What are its two ways to run inference on that custom model?
+    a: Purchase Provisioned Throughput for dedicated capacity, or create a custom model deployment and invoke it on demand, paying per use.
     facts: [provisioned-custom]
   - id: bedrock-009
     q: A high-volume app needs consistent, guaranteed throughput from one Amazon Bedrock model at a predictable cost. Which option fits?
@@ -73,7 +73,7 @@ Bedrock pricing follows tokens. On-demand bills each input and output token; bat
 |---|---|---|
 | On-demand | Variable or spiky traffic | Per token, nothing when idle |
 | Batch inference | Large jobs that can wait | Per token, about 50% less |
-| Provisioned Throughput | Steady high volume; custom models | Hourly per model unit |
+| Provisioned Throughput | Steady high volume; dedicated capacity, also for custom models | Hourly per model unit |
 | Flex tier | Latency-tolerant work | Discounted per token |
 | Priority tier | Fastest responses | Premium per token |
 
@@ -84,7 +84,7 @@ Bedrock pricing follows tokens. On-demand bills each input and output token; bat
 ### Exam cues
 
 - If the question says large volume, not time-sensitive, think batch inference.
-- If the question says custom (fine-tuned) model in Bedrock, think Provisioned Throughput.
+- If the question says run a custom (fine-tuned) model in Bedrock, think Provisioned Throughput for dedicated capacity or a custom model deployment for on-demand use.
 - If the question says repeated long system prompt or document, think prompt caching.
 - If the question says data residency plus more throughput, think geographic cross-Region inference.
 

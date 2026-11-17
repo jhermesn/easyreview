@@ -4338,6 +4338,12 @@
   "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html#api-gateway-api-integration-types": "ebe604288e28eb56",
   "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api.html#api-gateway-import-api": "50d06ec9d17d1858",
   "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html#api-gateway-method-request-validation": "3eed13fdbe0678ff",
-  "https://docs.aws.amazon.com/step-functions/latest/dg/workflow-states.html#workflow-states": "82626d929c572fde"
+  "https://docs.aws.amazon.com/step-functions/latest/dg/workflow-states.html#workflow-states": "82626d929c572fde",
+  "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations-types.html#evaluations-types": "8057aa30713a5c50",
+  "https://docs.aws.amazon.com/bedrock/latest/userguide/custom-model-supported.html#custom-model-supported": "5533a59127abc597",
+  "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create.html#knowledge-base-create-console": "8d237bc1328a724b",
+  "https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html#model-customization-use": "00b2ffff09fa4a8e",
+  "https://docs.aws.amazon.com/nova/latest/userguide/image-generation.html#image-generation": "f94a4ae80566b2d6",
+  "https://docs.aws.amazon.com/sagemaker/latest/dg/incremental-training.html#incremental-training": "780279fcd93b86e3"
  }
 }

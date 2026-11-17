@@ -27,6 +27,9 @@ facts:
   - id: kfold
     text: K-fold cross-validation splits the training data into k equal folds, trains on k-1 folds and validates on the remaining one, and repeats k times with a different validation fold.
     source: https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-cross-validation-kfold
+  - id: incremental-training
+    text: "SageMaker AI incremental training starts from an existing model's artifacts and trains a new model on an expanded dataset, saving time and resources when model quality degrades."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/incremental-training.html#incremental-training
 cards:
   - id: ml-lifecycle-008
     q: A model reaches 99% accuracy on its training data but 70% on new data. What is happening?
