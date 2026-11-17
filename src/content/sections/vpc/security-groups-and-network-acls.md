@@ -63,6 +63,12 @@ facts:
   - id: cidr-sources
     text: Security group rules and network ACL rules specify IP address ranges in CIDR notation, such as 203.0.113.0/24.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
+  - id: sg-sources
+    text: "A security group rule source or destination is an IPv4 or IPv6 CIDR range, a single address written as a /32 or /128, a prefix list ID, or another security group; an internet gateway ID is not a valid source."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rule-components
+  - id: common-ports
+    text: "Common security group rules open TCP 22 for SSH to Linux instances, 3389 for RDP to Windows instances, 80 for HTTP and 443 for HTTPS."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html#security-group-rules-reference
 cards:
   - id: vpc-001
     q: How do VPC security groups and network ACLs differ?
@@ -138,6 +144,14 @@ cards:
     q: In which notation do security group and network ACL rules specify IP address ranges?
     a: CIDR notation, for example 203.0.113.0/24.
     facts: [cidr-sources]
+  - id: vpc-045
+    q: "Which of these cannot be the source of a security group inbound rule: a CIDR block, a single IP, another security group, or an internet gateway ID?"
+    a: "An internet gateway ID. Sources are CIDR ranges (including single addresses), prefix lists and security groups."
+    facts: [sg-sources]
+  - id: vpc-046
+    q: "Which inbound ports does a security group open for SSH to a Linux instance, RDP to a Windows instance, and HTTPS?"
+    a: "TCP 22 for SSH, 3389 for RDP and 443 for HTTPS (80 for plain HTTP)."
+    facts: [common-ports]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.

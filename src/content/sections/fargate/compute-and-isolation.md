@@ -66,6 +66,9 @@ facts:
   - id: eks-ebs
     text: EBS volumes cannot be mounted to EKS Fargate pods.
     source: https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html
+  - id: pricing
+    text: "AWS Fargate is billed per second, with a one-minute minimum, for the vCPU and memory you allocate to each task, whether or not they are fully used."
+    source: https://docs.aws.amazon.com/decision-guides/latest/decision-guides/fargate-or-lambda.html
 diagrams:
   - id: fargate-task-launch
     title: ECS places a task on managed compute
@@ -165,6 +168,10 @@ cards:
     trap: true
     facts:
       - roles
+  - id: fargate-016
+    q: "How is Amazon ECS on AWS Fargate billed compared with the ECS EC2 launch type?"
+    a: "- Fargate: per second for the vCPU and memory allocated to each task (one-minute minimum).\n- EC2 launch type: for the EC2 instances and EBS volumes in the cluster."
+    facts: [pricing]
 ---
 Fargate supplies container compute without requiring you to manage worker hosts. ECS runs tasks, groups of containers deployed together, while EKS runs Kubernetes pods. The isolation boundary surrounds each task or pod, not every container inside it.
 

@@ -57,6 +57,9 @@ facts:
   - id: ipv6-limits
     text: VPN connections on a virtual private gateway do not support IPv6 traffic, and a single connection cannot carry both IPv4 and IPv6 traffic simultaneously.
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#site-to-site-limitations
+  - id: tgw-ecmp
+    text: "AWS Transit Gateway supports ECMP routing, which can be turned on for VPN attachments to spread traffic across several VPN tunnels."
+    source: https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-ecmp
 diagrams:
   - id: vpn-two-tunnels
     title: Two VPN tunnels
@@ -125,6 +128,10 @@ cards:
     a: "No. Separate VPN connections are needed; a virtual private gateway VPN does not support IPv6 traffic."
     trap: true
     facts: [ipv6-limits]
+  - id: site-to-site-vpn-015
+    q: "Traffic over Site-to-Site VPN has outgrown one connection. Which design raises aggregate VPN throughput?"
+    a: "Terminate the VPN connections on a transit gateway with ECMP turned on and add more VPN tunnels. Transfer Acceleration and Global Accelerator do not apply to VPN links."
+    facts: [tgw-ecmp, ecmp]
 ---
 AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud (VPC), an isolated virtual network in AWS, using IPsec, a protocol for securing IP traffic. Each connection has two encrypted tunnels for availability.
 

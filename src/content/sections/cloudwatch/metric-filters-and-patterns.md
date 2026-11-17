@@ -40,6 +40,9 @@ facts:
   - id: filter-alarm
     text: The CloudWatch metric produced by a log filter can be graphed or used by a metric alarm.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html#MonitoringLogData
+  - id: filter-dimensions-limit
+    text: "JSON and space-delimited metric filters can publish up to three dimensions; dimension values are charged like custom metrics, so avoid high-cardinality fields such as IP addresses or request IDs."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntaxForMetricFilters.html#logs-metric-filters-dimensions
 diagrams:
   - id: cloudwatch-log-metric-alarm
     title: From application logs to an alarm
@@ -132,6 +135,11 @@ cards:
     trap: true
     facts:
       - filter-dimensions
+  - id: cloudwatch-119
+    q: "A metric filter should add a dimension for each request ID. Is this a good idea?"
+    a: "No. Metric filters allow up to three dimensions, and each distinct value is charged like a custom metric, so high-cardinality fields such as request IDs drive up cost."
+    trap: true
+    facts: [filter-dimensions-limit]
 ---
 A CloudWatch Logs metric filter converts matching incoming log events into numbers that an alarm can monitor. Think of it as a counter on arriving events, rather than a search over stored history.
 

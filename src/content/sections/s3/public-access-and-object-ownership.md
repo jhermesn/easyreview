@@ -69,6 +69,9 @@ facts:
   - id: get-object-acl
     text: The GetObjectAcl API returns the access control list (ACL) of an object.
     source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html
+  - id: access-analyzer-s3
+    text: "IAM Access Analyzer for S3 reports general purpose buckets that allow access to the public or to other AWS accounts, and a public bucket can be blocked from that page with one action."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html#access-analyzer
 cards:
   - id: s3-017
     q: How can an S3 administrator block public access even when bucket-level permissions grant it?
@@ -120,6 +123,10 @@ cards:
     q: Which S3 API call returns the ACL of a single object?
     a: GetObjectAcl.
     facts: [get-object-acl]
+  - id: s3-158
+    q: "A security team wants a list of S3 buckets that are public or shared with other AWS accounts, reviewed from the S3 console. Which feature fits?"
+    a: "IAM Access Analyzer for S3. It lists buckets with public or cross-account access and can block public access on a bucket in one step."
+    facts: [access-analyzer-s3]
 ---
 S3 separates public-access safeguards from object ownership. Block Public Access limits public grants; Object Ownership decides who owns uploaded objects and whether access control lists (ACLs), lists of grants attached to resources, are used.
 

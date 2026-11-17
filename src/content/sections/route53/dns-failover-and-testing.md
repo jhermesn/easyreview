@@ -30,6 +30,9 @@ facts:
   - id: async
     text: DNS queries use existing health status rather than starting a probe.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records
+  - id: active-passive
+    text: "Active-passive failover uses the failover routing policy: Route 53 answers with the healthy primary resources and only switches to the secondary resources when every primary is unhealthy."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-types.html#dns-failover-types-active-passive
 diagrams:
   - id: route53-dns-failover
     title: DNS failover between regional endpoints
@@ -120,6 +123,10 @@ cards:
     facts:
       - unchecked-secondary
     trap: true
+  - id: route53-067
+    q: "Users must see a static error page from S3 only when the ALB that serves the site is unhealthy. Which Route 53 setup fits?"
+    a: "Active-passive failover: a primary failover record for the ALB with a health check, and a secondary record (an alias to the S3 website endpoint) that Route 53 returns only when the primary is unhealthy."
+    facts: [active-passive]
 ---
 Route 53 failover routing changes the DNS answer from a primary resource to a standby. It uses recorded health status, while recursive resolver caches control when a client receives a fresh answer.
 

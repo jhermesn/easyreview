@@ -24,7 +24,8 @@
         "s3",
         "cli",
         "sdks",
-        "cloudshell"
+        "cloudshell",
+        "scalable-architectures"
       ]
     },
     {
@@ -117,7 +118,8 @@
         "eks-distro",
         "rosa",
         "api-gateway",
-        "step-functions"
+        "step-functions",
+        "eks-anywhere"
       ]
     },
     {

@@ -161,6 +161,21 @@ facts:
   - id: healthy-targets
     text: A load balancer distributes incoming traffic across targets in multiple Availability Zones, monitors their health and routes traffic only to healthy targets.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html
+  - id: host-wildcard
+    text: "In an ALB host condition, *.example.com matches test.example.com but not example.com; host matching is not case-sensitive, while path patterns are case-sensitive."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#host-conditions
+  - id: path-routing
+    text: "A path-pattern condition routes by URL path, so one ALB can send /orders/* and /products/* to different target groups."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions
+  - id: nlb-primary-ip
+    text: "When NLB targets are registered by instance ID, traffic goes to the primary private IP address of the instance primary network interface."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#request-routing-ip-addresses
+  - id: alb-websockets
+    text: "Application Load Balancers natively support WebSockets: an HTTP/1.1 connection can be upgraded to a persistent ws or wss connection."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#load-balancer-listeners
+  - id: alb-lambda
+    text: "An ALB can forward a request to a target group whose target is a Lambda function, invoking the function with the request content."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#lambda-functions
 cards:
   - id: elastic-load-balancing-002
     q: When should an application use an ALB, NLB, or GWLB?
@@ -337,6 +352,23 @@ cards:
     q: How does Elastic Load Balancing improve the availability of an application on EC2 instances in two Availability Zones?
     a: It spreads traffic across the instances in both AZs and sends requests only to healthy ones.
     facts: [healthy-targets]
+  - id: elastic-load-balancing-063
+    q: "Which hostnames does the ALB host condition *.example.com match: example.com, test.example.com, or example.test.com?"
+    a: "Only test.example.com. The wildcard needs a label in front of example.com, so the bare domain does not match. Host matching ignores case."
+    trap: true
+    facts: [host-wildcard]
+  - id: elastic-load-balancing-064
+    q: "Requests to /orders must reach one microservice and requests to /products another, behind one load balancer. Which ALB routing fits?"
+    a: "Path-based routing: listener rules with path-pattern conditions that forward to a separate target group per service. Host-based routing would split by domain name instead."
+    facts: [path-routing]
+  - id: elastic-load-balancing-065
+    q: "An NLB target group registers EC2 instances by instance ID. Which IP address receives the traffic?"
+    a: "The primary private IP address of each instance primary network interface, not a public or Elastic IP."
+    facts: [nlb-primary-ip]
+  - id: elastic-load-balancing-066
+    q: "Which load balancer supports path-based and host-based routing, WebSockets, and Lambda functions as targets?"
+    a: "The Application Load Balancer. It routes on HTTP content, upgrades connections to WebSockets, and can invoke a Lambda function from a target group."
+    facts: [alb-websockets, alb-lambda]
 diagrams:
   - id: alb-weighted-request-flow
     title: ALB rules select a weighted target group

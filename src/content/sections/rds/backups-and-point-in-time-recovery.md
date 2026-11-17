@@ -59,6 +59,12 @@ facts:
     text: Since November 2026, RDS for Oracle can copy the snapshot's option group to another Region
       in the same snapshot copy request using CopyOptionGroup.
     source: https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-rds-oracle-cross-region-snapshot-copy-option-group/
+  - id: multiaz-backup-latency
+    text: "Synchronous replication to a Multi-AZ standby also minimizes latency spikes on the primary during system backups."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby
+  - id: free-backup-storage
+    text: "RDS includes free backup storage up to 100 percent of the total provisioned database storage in the account for each Region, covering DB snapshots and DB cluster snapshots."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups
 cards:
   - id: rds-007
     q: An accidental table deletion is committed on an RDS Multi-AZ DB instance. Is failover sufficient
@@ -117,6 +123,14 @@ cards:
     a: Set CopyOptionGroup to true. Cross-Region option group copying was added in November 2026.
     facts:
       - oracle-option-copy
+  - id: rds-055
+    q: "Besides failover, what does a Multi-AZ DB instance deployment improve during the daily backup window?"
+    a: "It minimizes latency spikes on the primary during backups, because of the synchronous standby. Multi-AZ still does not serve reads."
+    facts: [multiaz-backup-latency]
+  - id: rds-061
+    q: "An account runs 500 GB of provisioned RDS storage in one Region. How much RDS backup storage is free there?"
+    a: "Up to 500 GB: free backup storage equals 100 percent of the total provisioned database storage per Region."
+    facts: [free-backup-storage]
 ---
 
 RDS backups provide earlier copies of a database for recovery after a data error. Point-in-time recovery (PITR) combines backups and transaction logs, which record database changes, to recover to an available time within the retention window. The [backup guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups) describes backups of the whole DB instance.

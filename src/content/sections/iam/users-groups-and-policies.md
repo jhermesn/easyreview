@@ -39,6 +39,18 @@ facts:
   - id: best-practices
     text: IAM best practices include requiring MFA for IAM users and the root user, updating access keys when long-term credentials are needed, and regularly removing unused users, roles, permissions and credentials.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html
+  - id: groups-flat
+    text: "IAM user groups cannot be nested: a group contains only users, and one user can belong to several groups, up to an account quota."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups
+  - id: policy-simulator
+    text: "The IAM policy simulator tests identity-based policies, permissions boundaries, SCPs and resource-based policies against a simulated request, without sending a real request to any service."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html#access_policies_testing-policies
+  - id: account-alias
+    text: "An account alias replaces the numeric account ID in the IAM user sign-in URL with an easier name."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/console-account-alias.html#console-account-alias
+  - id: server-certs
+    text: "ACM is the preferred place for SSL/TLS server certificates; IAM can also store server certificates, and must be used in Regions that ACM does not support."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html#id_credentials_server-certs
 cards:
   - id: iam-078
     q: Ten developers need the same permissions in AWS. What is the simplest way to manage them in IAM?
@@ -82,6 +94,23 @@ cards:
     q: Which IAM best practices apply when a company still needs IAM users with long-term credentials?
     a: Require MFA, update (rotate) their access keys, and regularly remove unused users and credentials.
     facts: [best-practices]
+  - id: iam-104
+    q: "Which is true of IAM user groups: they can be nested, a user can be in several groups, or every account has a default group with all users?"
+    a: "A user can belong to several groups. Groups cannot be nested, and there is no default group that holds every user."
+    trap: true
+    facts: [groups-flat]
+  - id: iam-105
+    q: "Which IAM feature tests whether policies would allow an action without making the real request?"
+    a: "The IAM policy simulator. It evaluates identity-based policies, permissions boundaries, SCPs and resource-based policies against a simulated request."
+    facts: [policy-simulator]
+  - id: iam-106
+    q: "What is an IAM account alias?"
+    a: "A friendly name that replaces the numeric account ID in the sign-in URL for IAM users."
+    facts: [account-alias]
+  - id: iam-107
+    q: "Which two AWS services can hold SSL/TLS server certificates for use with AWS resources?"
+    a: "AWS Certificate Manager, the preferred option, and IAM, which stores server certificates and is required in Regions where ACM is not available."
+    facts: [server-certs]
 ---
 IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 

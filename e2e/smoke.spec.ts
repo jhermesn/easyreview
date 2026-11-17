@@ -171,7 +171,7 @@ test('header menus open one at a time and close on Escape', async ({ page, isMob
 });
 
 // Translations run longer than English, so every locale is checked on a narrow phone.
-const narrowPages = ['', 'dop-c02/', 'dop-c02/codedeploy/', 'dop-c02/flashcards/', 'dop-c02/coverage/', 'aif-c01/', 'aif-c01/bedrock/', 'aif-c01/coverage/', 'search/', 'passed/'];
+const narrowPages = ['', 'dop-c02/', 'dop-c02/codedeploy/', 'dop-c02/flashcards/', 'dop-c02/coverage/', 'aif-c01/', 'aif-c01/bedrock/', 'aif-c01/coverage/', 'saa-c03/', 'saa-c03/vpc/', 'saa-c03/coverage/', 'search/', 'passed/'];
 for (const locale of ['', 'pt-br/']) {
   test(`${locale || 'en/'} pages fit a 320px screen without sideways scroll`, async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 720 });

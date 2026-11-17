@@ -21,6 +21,12 @@ facts:
   - id: custom-period
     text: Budgets can use a custom period aligned with a fiscal year, project duration or grant period.
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs
+  - id: coverage-budgets
+    text: "AWS Budgets can track Reserved Instance and Savings Plans coverage as well as utilization, and alert when coverage drops below a threshold."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-create.html#budgets-create
+  - id: budget-templates
+    text: "AWS Budgets templates create a budget in one step: a zero spend budget notifies once spending exceeds the AWS Free Tier limits, and a monthly cost budget notifies on actual or forecasted spend above the amount."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/budget-templates.html#budget-templates
 cards:
   - id: billing-and-cost-management-001
     q: A company wants an email before its monthly AWS spend goes over 1,000 USD. Which AWS service does this?
@@ -39,6 +45,14 @@ cards:
     a: No. It can alert on forecasted spend before it accrues, as well as on actual spend.
     trap: true
     facts: [actual-forecast]
+  - id: billing-and-cost-management-038
+    q: "A team must be told when too much EC2, Fargate and Lambda usage runs outside its Compute Savings Plans. What fits?"
+    a: "An AWS Budgets Savings Plans coverage budget with a coverage threshold and notifications. A utilization budget tracks the opposite problem, unused commitment."
+    facts: [coverage-budgets]
+  - id: billing-and-cost-management-040
+    q: "A new learner wants an email as soon as the account spends anything beyond the Free Tier. What is the quickest setup?"
+    a: "The zero spend budget template in AWS Budgets."
+    facts: [budget-templates]
 ---
 AWS Budgets sets a spending or usage target and alerts, or acts, when the target is at risk. It looks forward, while Cost Explorer looks back. [Managing costs with AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs)
 

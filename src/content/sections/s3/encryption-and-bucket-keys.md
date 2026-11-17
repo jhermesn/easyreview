@@ -88,6 +88,12 @@ facts:
   - id: kms-quota
     text: Each upload or download of an SSE-KMS object calls KMS and counts against the Region's KMS request quota, so heavy traffic can be throttled; SSE-S3 makes no KMS calls.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/requests-per-second.html
+  - id: sse-s3-unique-key
+    text: "SSE-S3 encrypts each object with its own unique key and encrypts that key with a root key that S3 rotates regularly."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html#UsingServerSideEncryption
+  - id: client-side
+    text: "Client-side encryption encrypts data before it is sent to S3, for example with the Amazon S3 Encryption Client, so S3 only ever stores ciphertext and never sees the keys."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingClientSideEncryption.html#UsingClientSideEncryption
 cards:
   - id: s3-014
     q: What encryption does S3 apply to a new upload with no encryption settings?
@@ -153,6 +159,14 @@ cards:
     q: S3 requests on an SSE-KMS bucket start failing with throttling at high request rates. Why?
     a: Each SSE-KMS object request calls KMS and counts against the KMS request quota. S3 Bucket Keys or SSE-S3 cut those calls.
     facts: [kms-quota, bucket-key-cost]
+  - id: s3-151
+    q: "Data must be encrypted with a company-specific algorithm and keys before AWS ever receives it. Which S3 encryption option fits?"
+    a: "Client-side encryption. The client encrypts the data before upload, so S3 stores only ciphertext. SSE-S3, SSE-KMS and SSE-C all encrypt on the S3 side with AES-256."
+    facts: [client-side]
+  - id: s3-152
+    q: "With SSE-S3, does every object in a bucket share one encryption key?"
+    a: "No. Each object gets its own unique key, and S3 encrypts those keys with a root key that it rotates regularly."
+    facts: [sse-s3-unique-key]
 ---
 S3 server-side encryption protects object data at rest, meaning while stored on disk. S3 encrypts data during storage and decrypts it for authorized reads; the encryption option determines who controls the keys.
 

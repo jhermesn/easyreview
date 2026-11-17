@@ -42,6 +42,12 @@ facts:
   - id: pentest
     text: Customers may run security assessments and penetration tests on their own resources for permitted services without prior AWS approval; DoS and DDoS tests are prohibited outside AWS's simulated DDoS testing policy.
     source: https://aws.amazon.com/security/penetration-testing/
+  - id: zone-security
+    text: "AWS gives service and communications protection, or zone security, as an example of a customer-specific control: the customer may need to route or zone data within specific security environments."
+    source: https://aws.amazon.com/compliance/shared-responsibility-model/
+  - id: media-destruction
+    text: "When a storage device that held customer data reaches the end of its life, AWS decommissions it with a documented media destruction process, as part of security of the cloud."
+    source: https://aws.amazon.com/compliance/data-center/controls/
 cards:
   - id: shared-responsibility-001
     q: In the AWS shared responsibility model, what does "security of the cloud" versus "security in the cloud" mean?
@@ -93,6 +99,15 @@ cards:
     a: No, for permitted services. DoS and DDoS testing are prohibited outside AWS's simulated DDoS testing policy.
     trap: true
     facts: [pentest]
+  - id: shared-responsibility-013
+    q: "Which control is solely the customer responsibility: patch management, awareness and training, or service and communications protection (zone security)?"
+    a: "Service and communications protection, also called zone security, which is customer-specific. Patch management and awareness and training are shared controls."
+    trap: true
+    facts: [zone-security, customer-specific]
+  - id: shared-responsibility-014
+    q: "What happens to an AWS storage device that held customer data when it reaches end of life?"
+    a: "AWS decommissions it with its media destruction process. Disposing of physical media is part of AWS security of the cloud."
+    facts: [media-destruction]
 ---
 AWS and the customer share security and compliance. AWS secures the cloud itself: facilities, hardware, network, and the host software that runs the services. The customer secures what it builds in the cloud. The customer's part grows or shrinks with the services it chooses. [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/)
 

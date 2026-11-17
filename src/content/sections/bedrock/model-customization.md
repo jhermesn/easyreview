@@ -27,6 +27,18 @@ facts:
   - id: training-cost
     text: Model training is charged by tokens processed (tokens in the training data times the number of epochs), plus monthly storage per custom model.
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html#custom-models
+  - id: customization-role
+    text: "A Bedrock model customization job uses a service role that Bedrock assumes to read training and validation files and write output in Amazon S3; if those resources use a KMS key, the role also needs permission to decrypt with that key."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-iam-role.html#model-customization-iam-role
+  - id: tuning-data-handling
+    text: "Bedrock uses fine-tuning data only to fine-tune your model and doesn't store it after the job; a fine-tuned model can still replay training data, so filter confidential data out before tuning."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-custom-job.html#encryption-custom-job
+  - id: custom-inference
+    text: "After customization, a Bedrock custom model runs on purchased Provisioned Throughput, or on demand after you deploy it with a custom model deployment and invoke the deployment ARN."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html#model-customization-use
+  - id: fine-tunable-amazon-models
+    text: "Amazon models that can be fine-tuned in Bedrock include Nova Micro, Nova Lite, Nova Pro, Nova 2 Lite, Nova Canvas, Titan Image Generator G1 v2 and Titan Multimodal Embeddings G1."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/custom-model-supported.html#custom-model-supported
 cards:
   - id: bedrock-041
     q: A company has thousands of labeled examples of support tickets and ideal replies and wants a model to reply in that style. Which Amazon Bedrock customization fits?
@@ -58,9 +70,22 @@ cards:
     facts: [training-cost]
   - id: bedrock-048
     q: Can a model customized in Amazon Bedrock be called with plain on-demand pricing right after training?
-    a: "Not by default. A model you customize in Bedrock needs Provisioned Throughput to run inference."
+    a: "Not directly. First create a custom model deployment, then invoke its ARN on demand and pay per use, or purchase Provisioned Throughput for dedicated capacity."
     trap: true
-    facts: [what]
+    facts: [custom-inference]
+  - id: bedrock-063
+    q: "A Bedrock fine-tuning job fails to read training data in an S3 bucket encrypted with SSE-KMS. What must its service role have?"
+    a: "Access to the S3 objects and permission to decrypt with the KMS key that encrypts them."
+    facts: [customization-role]
+  - id: bedrock-064
+    q: "Does Amazon Bedrock fine-tuning guarantee a custom model never reveals its training data?"
+    a: "No. Bedrock doesn't keep the data after the job, but a fine-tuned model can replay some of it. Remove confidential data before tuning."
+    trap: true
+    facts: [tuning-data-handling]
+  - id: bedrock-065
+    q: "A team wants to fine-tune an Amazon model in Bedrock that understands text, images and video. Which fits: Nova Micro, Nova Pro or Nova Reel?"
+    a: "Nova Pro, a multimodal understanding model that Bedrock can fine-tune. Nova Micro is text only, and Nova Reel generates video and is not on the fine-tuning list."
+    facts: [fine-tunable-amazon-models]
 ---
 Customization changes the model itself, unlike prompts and RAG. Bedrock offers supervised fine-tuning, reinforcement fine-tuning, distillation and continued pre-training, and can import models trained elsewhere. [Customize your model](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
 
@@ -75,7 +100,7 @@ Customization changes the model itself, unlike prompts and RAG. Bedrock offers s
 
 1. Put training (and optional validation) data in Amazon S3.
 2. Start a customization job on a supported base model, with hyperparameters such as epochs.
-3. Buy Provisioned Throughput for the custom model and call it like any other model.
+3. Run inference through Provisioned Throughput, or deploy the custom model for on-demand inference and call the deployment ARN.
 
 ### Exam cues
 

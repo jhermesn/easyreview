@@ -62,6 +62,12 @@ facts:
     text: DLM application-consistent pre and post scripts require snapshot policies targeting instances
       and run through Systems Manager command documents.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/automate-app-consistent-backups.html#automate-app-consistent-backups
+  - id: recycle-bin
+    text: "Recycle Bin keeps deleted EBS volumes, EBS snapshots and EBS-backed AMIs for a retention period you set, so they can be restored before they are permanently deleted."
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/recycle-bin.html#recycle-bin
+  - id: snapshot-archive
+    text: "EBS Snapshots Archive costs up to 75 percent less for snapshots kept 90 days or longer and rarely accessed; an archived snapshot must be restored to the standard tier before it can be used."
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-archive.html#snapshot-archive
 cards:
   - id: ebs-004
     q: Does AWS automatically create backups for an EBS volume with no configured backup policy?
@@ -123,6 +129,14 @@ cards:
     facts:
       - app-consistent
       - instance-scripts
+  - id: ebs-045
+    q: "An admin deleted critical EBS snapshots by mistake. Which feature, enabled beforehand, would have allowed restoring them?"
+    a: "**Recycle Bin** with a retention rule for EBS snapshots."
+    facts: [recycle-bin]
+  - id: ebs-046
+    q: "Compliance snapshots must be kept for years and are almost never restored. How can their storage cost drop?"
+    a: "Move them to the EBS Snapshots Archive tier, up to 75 percent cheaper for snapshots kept 90 days or more; restore one to the standard tier before using it."
+    facts: [snapshot-archive]
 ---
 Data Lifecycle Manager (DLM) automates EBS snapshot and EBS-backed Amazon Machine Image (AMI) management. An AMI is the machine image used to launch an EC2 instance. DLM applies a schedule and retention rules, which decide how long backups remain.
 

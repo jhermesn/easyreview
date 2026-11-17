@@ -18,6 +18,9 @@ facts:
   - id: closed
     text: SageMaker Ground Truth and Amazon A2I are no longer open to new customers; existing customers can keep using them, but no new features are planned.
     source: https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html
+  - id: dw-quality-report
+    text: "The Data Wrangler Data Quality and Insights Report analyzes an imported dataset and shows issues such as missing values and outliers to guide cleaning."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler-data-insights.html#data-wrangler-data-insights
 cards:
   - id: sagemaker-ai-015
     q: A loan app built on Amazon Textract must send low-confidence extractions to a person to check. Which AWS service was built for this?

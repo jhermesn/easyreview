@@ -45,6 +45,9 @@ facts:
   - id: ds-hybrid
     text: AWS Managed Microsoft AD Hybrid Edition extends an existing self-managed Active Directory to AWS without synchronizing user identities.
     source: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html#choosing_ms_ad
+  - id: trusts
+    text: "AWS Managed Microsoft AD supports one-way and two-way external and forest trusts with self-managed on-premises Active Directory and with other AWS Managed Microsoft AD directories."
+    source: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_setup_trust.html#ms_ad_setup_trust
 cards:
   - id: directory-service-001
     q: An organization has on-premises Active Directory. How do AWS Managed Microsoft AD, AD Connector and Simple AD differ?
@@ -76,6 +79,10 @@ cards:
     a: No. IAM Identity Center synchronizes users, groups and memberships, while authentication happens against the source directory.
     trap: true
     facts: [ds-identity-sync]
+  - id: directory-service-008
+    q: "Users in an on-premises Active Directory must reach AWS applications joined to AWS Managed Microsoft AD, and the AWS side must trust on-premises identities too. What links the directories?"
+    a: "A **two-way forest (or external) trust** between AWS Managed Microsoft AD and the on-premises AD."
+    facts: [trusts]
 diagrams:
   - id: directory-connector-authentication
     title: AD Connector authentication

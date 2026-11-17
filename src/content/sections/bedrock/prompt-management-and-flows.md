@@ -18,6 +18,9 @@ facts:
   - id: catalog
     text: A prompt catalog is a central repository for storing, managing and versioning the prompts an organization uses.
     source: https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/definitions.html
+  - id: prompt-tools
+    text: "A prompt saved in Bedrock Prompt Management can include a tools configuration, for supported models, so the model can call an external tool or API when it generates the response."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-create.html#prompt-management-create
 cards:
   - id: bedrock-049
     q: A team wants to store reusable prompts with placeholders, test variants and keep versions. Which Amazon Bedrock feature fits?
@@ -35,6 +38,10 @@ cards:
     q: In Amazon Bedrock Prompt Management, what lets one saved prompt serve many customers' requests?
     a: Variables in the prompt, filled in with each request's values.
     facts: [variables]
+  - id: bedrock-054
+    q: "A reusable prompt in Bedrock Prompt Management must let the model call an external API. What does the prompt need?"
+    a: "A tools configuration in the saved prompt, for a model that supports tool use."
+    facts: [prompt-tools]
 ---
 Prompts are part of an application's code and deserve the same care: Amazon Bedrock Prompt Management stores them with variables, compares variants and keeps versions, and Flows wires prompts into larger workflows. [Prompt Management](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html)
 

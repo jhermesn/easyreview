@@ -51,6 +51,12 @@ facts:
   - id: business-capabilities
     text: "The CAF Business perspective has eight capabilities: strategy management, portfolio management, innovation management, product management, strategic partnership, data monetization, business insights and data science. Its common stakeholders are the CEO, CFO, COO, CIO and CTO."
     source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/business-perspective.html
+  - id: security-capabilities
+    text: "The CAF Security perspective has nine capabilities: security governance, security assurance, identity and access management, threat detection, vulnerability management, infrastructure protection, data protection, application security and incident response."
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/security-perspective.html#security-perspective
+  - id: governance-capabilities
+    text: "The CAF Governance perspective has seven capabilities: program and project management, benefits management, risk management, cloud financial management, application portfolio management, data governance and data curation."
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/governance-perspective.html#governance-perspective
 cards:
   - id: cloud-adoption-001
     q: What are the six perspectives of the AWS Cloud Adoption Framework (AWS CAF)?
@@ -101,6 +107,14 @@ cards:
     q: Which AWS CAF perspective includes portfolio management, data monetization and strategic partnership?
     a: "The Business perspective.\nIts stakeholders are executives such as the CEO, CFO and CIO."
     facts: [business-capabilities]
+  - id: cloud-adoption-028
+    q: "Which CAF Security capability is about protecting workloads against unintended and unauthorized access and potential vulnerabilities?"
+    a: "Infrastructure protection. The Security perspective has nine capabilities, including threat detection, vulnerability management, data protection and incident response."
+    facts: [security-capabilities]
+  - id: cloud-adoption-029
+    q: "Data governance and data curation belong to which CAF perspective?"
+    a: "Governance, along with program and project management, benefits management, risk management, cloud financial management and application portfolio management."
+    facts: [governance-capabilities]
 ---
 The AWS Cloud Adoption Framework (AWS CAF) is AWS guidance for the organizational side of moving to the cloud. It helps find and prioritize opportunities, check how ready the organization is, and plan the transformation in steps. [AWS CAF overview](https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/welcome.html#welcome)
 

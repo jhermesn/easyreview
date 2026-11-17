@@ -74,6 +74,9 @@ facts:
   - id: purpose
     text: Amazon CloudWatch monitors AWS resources and applications in real time, covering resource utilization, application performance and operational health.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
+  - id: putmetricdata-timestamps
+    text: "PutMetricData accepts data point timestamps up to two weeks in the past and up to two hours in the future."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html#API_PutMetricData
 cards:
   - id: cloudwatch-001
     q: What identifies a traditional CloudWatch metric, and what does a new dimension value do?
@@ -138,6 +141,10 @@ cards:
     q: Which AWS service monitors resource utilization, application performance and operational health of AWS resources?
     a: Amazon CloudWatch.
     facts: [purpose]
+  - id: cloudwatch-120
+    q: "A batch job wants to backfill custom metric data points from three weeks ago with PutMetricData. Will CloudWatch accept them?"
+    a: "No. PutMetricData accepts timestamps up to two weeks back and up to two hours ahead."
+    facts: [putmetricdata-timestamps]
 ---
 CloudWatch metrics store measurements over time, such as CPU use or request latency, the delay a request experiences. For traditional metrics, the namespace is the container, the metric name is the measurement, and dimensions are name and value pairs identifying what was measured.
 

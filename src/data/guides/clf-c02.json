@@ -105,7 +105,10 @@
               "text": "Identifying appropriate migration strategies (for example, database replication)",
               "sections": [
                 "cloud-adoption/migration-strategies",
-                "dms/full-load-and-change-data-capture"
+                "dms/full-load-and-change-data-capture",
+                "datasync/online-data-transfer",
+                "snow-family/offline-transfer-and-edge-devices",
+                "transfer-family/managed-file-transfer-endpoints"
               ]
             }
           ]
@@ -788,7 +791,8 @@
               "text": "Identifying the components of a VPC (for example, subnets, gateways)",
               "sections": [
                 "vpc/subnets-and-gateways",
-                "vpc/route-tables-and-peering"
+                "vpc/route-tables-and-peering",
+                "vpc/ip-addressing-and-nat-instances"
               ]
             },
             {
@@ -922,7 +926,8 @@
                 "rekognition/image-and-video-analysis",
                 "textract/document-text-extraction",
                 "transcribe/speech-to-text",
-                "translate/language-translation"
+                "translate/language-translation",
+                "kendra/intelligent-search"
               ]
             },
             {
@@ -1211,7 +1216,8 @@
               "text": "Understanding the appropriate uses and capabilities of AWS Budgets and AWS Cost Explorer",
               "sections": [
                 "billing-and-cost-management/budgets",
-                "billing-and-cost-management/cost-explorer"
+                "billing-and-cost-management/cost-explorer",
+                "billing-and-cost-management/anomaly-detection-and-optimization-hub"
               ]
             },
             {

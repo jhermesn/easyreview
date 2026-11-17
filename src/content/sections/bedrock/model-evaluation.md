@@ -21,6 +21,12 @@ facts:
   - id: rag-metrics
     text: RAG evaluation metrics include context relevance and context coverage for retrieval, and correctness, completeness and faithfulness (avoiding hallucination against the retrieved text) for generated responses.
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-evaluation-metrics.html
+  - id: human-two-models
+    text: "A Bedrock model evaluation job that uses human workers rates or compares the responses of up to two models, and the evaluators are managed as a work team."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-type-human.html#model-evaluation-type-human
+  - id: builtin-datasets
+    text: "Built-in prompt datasets for automatic evaluation are open-source datasets sampled down to 100 prompts; BOLD tests fairness across profession, gender, race, religious and political ideologies, and RealToxicityPrompts tests toxicity."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-prompt-datasets.html#model-evaluation-prompt-datasets-builtin
 cards:
   - id: bedrock-035
     q: A bank wants its own compliance experts to rate several foundation models on its customer questions. Which Amazon Bedrock feature fits?
@@ -47,6 +53,14 @@ cards:
     a: "Yes. Bedrock evaluations also cover models and RAG sources outside Amazon Bedrock."
     trap: true
     facts: [what]
+  - id: bedrock-059
+    q: "A team wants a quick, low-effort check of whether a foundation model produces biased text about gender, race or religion. What can it use in Amazon Bedrock?"
+    a: "An automatic model evaluation job with a built-in prompt dataset such as BOLD, which tests fairness across those groups."
+    facts: [builtin-datasets]
+  - id: bedrock-060
+    q: "How many models can one Amazon Bedrock human evaluation job compare?"
+    a: "Up to two models, rated by a work team of human evaluators."
+    facts: [human-two-models]
 ---
 Amazon Bedrock evaluations compare models, and RAG pipelines, on your own prompts or standard datasets, scored by metrics, by a judge model or by your own people. [Evaluate performance](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html)
 
@@ -68,6 +82,7 @@ Amazon Bedrock evaluations compare models, and RAG pipelines, on your own prompt
 - If the question says compare FMs quickly on predefined quality and responsibility metrics, think automatic evaluation.
 - If the question says the company's own experts must judge, think human-based evaluation.
 - If the question says check retrieval relevance and answer accuracy of a knowledge base, think RAG evaluation.
+- If the question says check a model for bias with little effort, think an automatic evaluation with a built-in dataset such as BOLD.
 
 ### Remember
 

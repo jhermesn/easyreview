@@ -736,7 +736,8 @@
               "sections": [
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "event-processing-patterns/durable-fan-out",
-                "event-processing-patterns/backpressure-and-idempotency"
+                "event-processing-patterns/backpressure-and-idempotency",
+                "scalable-architectures/scaling-state-and-coupling"
               ]
             },
             {
@@ -760,7 +761,9 @@
                 "eks/cluster-compute-options",
                 "ecs/task-definitions-tasks-and-services",
                 "eks-distro/self-managed-kubernetes",
-                "rosa/managed-openshift"
+                "rosa/managed-openshift",
+                "ecs/ecs-anywhere",
+                "eks-anywhere/on-premises-kubernetes"
               ]
             },
             {
@@ -775,7 +778,8 @@
                 "compute-optimizer/resource-rightsizing",
                 "ec2-auto-scaling/warm-pools",
                 "lambda/concurrency-controls",
-                "rds/proxy-connection-pooling"
+                "rds/proxy-connection-pooling",
+                "lambda/memory-timeout-and-snapstart"
               ]
             },
             {
@@ -790,7 +794,9 @@
                 "elasticache/engines-replicas-and-multi-az",
                 "cloudfront/ttl-stale-content-and-invalidation",
                 "cloudfront/origin-shield",
-                "dynamodb/dax-read-caching"
+                "dynamodb/dax-read-caching",
+                "scalable-architectures/scaling-state-and-coupling",
+                "elasticache/use-cases-and-engine-choice"
               ]
             },
             {
@@ -831,7 +837,9 @@
                 "fargate/compute-and-isolation",
                 "ecs/task-definitions-tasks-and-services",
                 "fargate/private-subnet-connectivity",
-                "lambda/vpc-connectivity"
+                "lambda/vpc-connectivity",
+                "lambda/memory-timeout-and-snapstart",
+                "api-gateway/integrations-and-monitoring"
               ]
             }
           ]
@@ -939,7 +947,8 @@
                 "cloudwatch/real-user-monitoring",
                 "cloudwatch/container-insights",
                 "managed-prometheus/workspaces-ingestion-and-promql",
-                "managed-prometheus/managed-collectors-and-remote-write"
+                "managed-prometheus/managed-collectors-and-remote-write",
+                "api-gateway/integrations-and-monitoring"
               ]
             },
             {
@@ -1647,7 +1656,9 @@
                 "ebs/encryption-and-regional-copies",
                 "kms/multi-region-keys",
                 "kms/custom-key-stores",
-                "kms/encryption-at-rest-and-in-transit"
+                "kms/encryption-at-rest-and-in-transit",
+                "rds/encryption-authentication-and-maintenance",
+                "elastic-load-balancing/alb-authentication-and-certificates"
               ]
             }
           ]

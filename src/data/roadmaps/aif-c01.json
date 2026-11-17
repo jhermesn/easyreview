@@ -34,7 +34,8 @@
         "textract",
         "transcribe",
         "translate",
-        "personalize"
+        "personalize",
+        "kendra"
       ]
     },
     {

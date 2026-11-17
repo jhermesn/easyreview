@@ -27,6 +27,12 @@ facts:
   - id: ec2-s3-free
     text: Data transferred directly between Amazon S3 and EC2 instances in the same Region is free in both directions.
     source: https://aws.amazon.com/ec2/pricing/on-demand/#Data_Transfer_within_the_same_AWS_Region
+  - id: public-ip-in-region
+    text: "Within a Region, data sent to or from a public or Elastic IPv4 address is charged in each direction, while EC2 traffic over private IPs to an ALB or Classic Load Balancer in the same VPC is free."
+    source: https://aws.amazon.com/ec2/pricing/on-demand/
+  - id: public-ipv4-charge
+    text: "AWS charges for every public IPv4 address, including those on running instances and Elastic IP addresses."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-public-ipv4-addresses
 cards:
   - id: billing-and-cost-management-019
     q: Does AWS charge for data uploaded from the internet into AWS?
@@ -54,6 +60,15 @@ cards:
     q: An EC2 instance writes backups to an Amazon S3 bucket in the same Region. Is that data transfer charged?
     a: No. Direct transfer between S3 and EC2 in the same Region is free in both directions.
     facts: [ec2-s3-free]
+  - id: billing-and-cost-management-037
+    q: "Two EC2 instances in different AZs replicate a database over their Elastic IP addresses and the transfer bill is high. What lowers it?"
+    a: "Replicate over the instances private IP addresses. Traffic to a public or Elastic IPv4 address is charged in each direction even inside the Region."
+    facts: [public-ip-in-region]
+  - id: billing-and-cost-management-039
+    q: "Is an Elastic IP address free while it is attached to a running instance?"
+    a: "No. AWS charges for every public IPv4 address, attached or not, including public IPs on running instances."
+    trap: true
+    facts: [public-ipv4-charge]
 ---
 Data transfer pricing depends on direction and distance. Data coming in from the internet is free. Data leaving AWS for the internet, crossing Regions, or crossing Availability Zones is generally charged. [Understanding data transfer charges](https://docs.aws.amazon.com/cur/latest/userguide/cur-data-transfers-charges.html#cur-data-transfers-charges)
 

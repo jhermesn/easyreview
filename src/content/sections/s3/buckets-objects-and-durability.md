@@ -30,6 +30,15 @@ facts:
   - id: transfer-acceleration
     text: S3 Transfer Acceleration speeds up long-distance transfers to a bucket by routing them through CloudFront edge locations.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
+  - id: bucket-naming
+    text: "General purpose bucket names are 3 to 63 characters of lowercase letters, numbers, periods and hyphens; they cannot look like an IP address, start with xn--, or end with -s3alias."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html#general-purpose-bucket-names
+  - id: account-regional-namespace
+    text: "Buckets can optionally be created in an account regional namespace, where only the owning account can create names ending in its account ID, Region code and -an, so a chosen prefix cannot be taken by another account."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html#account-regional-naming-rules
+  - id: object-tags
+    text: "An S3 object can carry up to 10 tags with unique keys, which access policies and lifecycle rule filters can use."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html#object-tagging
 cards:
   - id: s3-112
     q: What kind of storage is Amazon S3, and what are its two main building blocks?
@@ -65,6 +74,18 @@ cards:
     a: No. S3 is flat; folders in the console are shared key name prefixes.
     trap: true
     facts: [flat]
+  - id: s3-155
+    q: "Is MyBucket_2026 a valid S3 general purpose bucket name?"
+    a: "No. Names use only lowercase letters, numbers, periods and hyphens, 3 to 63 characters, so uppercase letters and underscores are rejected."
+    facts: [bucket-naming]
+  - id: s3-156
+    q: "A team wants bucket names that no other AWS account can ever claim first. Which S3 option gives that?"
+    a: "The account regional namespace: names carry the account ID, Region code and -an suffix, and only that account can create them."
+    facts: [account-regional-namespace]
+  - id: s3-157
+    q: "How many tags can one S3 object have?"
+    a: "Up to 10, each with a unique key."
+    facts: [object-tags]
 ---
 Amazon S3 stores data as objects in buckets. It is built for any amount of data with very high durability, so it is the default place on AWS for files, backups, data lakes and static website content. [What is Amazon S3?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#Welcome)
 

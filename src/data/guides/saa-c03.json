@@ -1,0 +1,2777 @@
+{
+  "cert": "saa-c03",
+  "source": "https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html",
+  "retrieved": "2026-11-16",
+  "domains": [
+    {
+      "id": "d1",
+      "name": "Design Secure Architectures",
+      "tasks": [
+        {
+          "id": "1.1",
+          "title": "Design secure access to AWS resources.",
+          "items": [
+            {
+              "id": "1.1.k1",
+              "kind": "knowledge",
+              "text": "Access controls and management across multiple accounts",
+              "sections": [
+                "organizations/service-control-policies",
+                "organizations/resource-control-policies",
+                "iam/cross-account-roles-and-resource-policies",
+                "resource-access-manager/resource-sharing-and-invitations",
+                "multi-account-strategy/account-boundaries-and-shared-services"
+              ]
+            },
+            {
+              "id": "1.1.k2",
+              "kind": "knowledge",
+              "text": "AWS federated access and identity services (for example, IAM, AWS IAM Identity Center)",
+              "sections": [
+                "iam/saml-and-oidc-federation",
+                "iam-identity-center/identity-sources-permission-sets-and-sessions",
+                "iam/identities-roles-and-instance-profiles",
+                "directory-service/managed-ad-ad-connector-and-simple-ad"
+              ]
+            },
+            {
+              "id": "1.1.k3",
+              "kind": "knowledge",
+              "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/multi-region-use-cases"
+              ]
+            },
+            {
+              "id": "1.1.k4",
+              "kind": "knowledge",
+              "text": "AWS security best practices (for example, the principle of least privilege)",
+              "sections": [
+                "iam/users-groups-and-policies",
+                "iam/policy-evaluation",
+                "iam/access-analyzer",
+                "iam/root-user"
+              ]
+            },
+            {
+              "id": "1.1.k5",
+              "kind": "knowledge",
+              "text": "The AWS shared responsibility model",
+              "sections": [
+                "shared-responsibility/security-of-and-in-the-cloud"
+              ]
+            },
+            {
+              "id": "1.1.s1",
+              "kind": "skill",
+              "text": "Applying AWS security best practices to IAM users and root users (for example, multi-factor authentication [MFA])",
+              "sections": [
+                "iam/root-user",
+                "iam/credentials-and-mfa"
+              ]
+            },
+            {
+              "id": "1.1.s2",
+              "kind": "skill",
+              "text": "Designing a flexible authorization model that includes IAM users, groups, roles, and policies",
+              "sections": [
+                "iam/users-groups-and-policies",
+                "iam/identities-roles-and-instance-profiles",
+                "iam/rbac-and-abac",
+                "iam/permissions-boundaries-and-session-policies"
+              ]
+            },
+            {
+              "id": "1.1.s3",
+              "kind": "skill",
+              "text": "Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)",
+              "sections": [
+                "iam/sts-sessions-and-role-chaining",
+                "iam/cross-account-roles-and-resource-policies",
+                "iam/rbac-and-abac",
+                "iam/external-id-and-mfa-conditions"
+              ]
+            },
+            {
+              "id": "1.1.s4",
+              "kind": "skill",
+              "text": "Designing a security strategy for multiple AWS accounts (for example, AWS Control Tower, service control policies [SCPs])",
+              "sections": [
+                "control-tower/landing-zone-and-shared-accounts",
+                "control-tower/control-behaviors-and-guidance",
+                "organizations/service-control-policies",
+                "organizations/accounts-ous-and-consolidated-billing",
+                "multi-account-strategy/defense-in-depth-and-audit-architecture",
+                "firewall-manager/organization-policies-and-config-prerequisites",
+                "service-catalog/portfolio-sharing-and-local-access"
+              ]
+            },
+            {
+              "id": "1.1.s5",
+              "kind": "skill",
+              "text": "Determining the appropriate use of resource policies for AWS services",
+              "sections": [
+                "iam/cross-account-roles-and-resource-policies",
+                "iam/resource-policy-principal-edge-cases",
+                "kms/key-policies-and-grants",
+                "s3/public-access-and-object-ownership"
+              ]
+            },
+            {
+              "id": "1.1.s6",
+              "kind": "skill",
+              "text": "Determining when to federate a directory service with IAM roles",
+              "sections": [
+                "directory-service/managed-ad-ad-connector-and-simple-ad",
+                "iam/saml-and-oidc-federation",
+                "iam-identity-center/identity-sources-permission-sets-and-sessions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Design secure workloads and applications.",
+          "items": [
+            {
+              "id": "1.2.k1",
+              "kind": "knowledge",
+              "text": "Application configuration and credentials security",
+              "sections": [
+                "secrets-manager/secret-versions-and-runtime-access",
+                "secrets-manager/managed-and-lambda-rotation",
+                "systems-manager/parameter-store-tiers-and-policies",
+                "iam/identities-roles-and-instance-profiles"
+              ]
+            },
+            {
+              "id": "1.2.k2",
+              "kind": "knowledge",
+              "text": "AWS service endpoints",
+              "sections": [
+                "vpc/gateway-endpoints-and-endpoint-policies",
+                "privatelink/interface-endpoints-and-private-access",
+                "management-console/ways-to-access-aws",
+                "cli/pagination-and-error-handling"
+              ]
+            },
+            {
+              "id": "1.2.k3",
+              "kind": "knowledge",
+              "text": "Control ports, protocols, and network traffic on AWS",
+              "sections": [
+                "vpc/security-groups-and-network-acls",
+                "network-firewall/firewall-endpoints-and-routing",
+                "vpc/flow-logs"
+              ]
+            },
+            {
+              "id": "1.2.k4",
+              "kind": "knowledge",
+              "text": "Secure application access",
+              "sections": [
+                "cognito/user-pools-and-identity-pools",
+                "elastic-load-balancing/alb-authentication-and-certificates",
+                "api-gateway/authentication-and-api-keys",
+                "cloudfront/signed-urls-and-cookies"
+              ]
+            },
+            {
+              "id": "1.2.k5",
+              "kind": "knowledge",
+              "text": "Security services with appropriate use cases (for example, Amazon Cognito, Amazon GuardDuty, Amazon Macie)",
+              "sections": [
+                "cognito/user-pools-and-identity-pools",
+                "guardduty/data-sources-and-threat-findings",
+                "macie/sensitive-data-discovery-and-jobs",
+                "inspector/ec2-ecr-and-lambda-scanning",
+                "detective/finding-investigation",
+                "security-hub/findings-standards-and-config-dependency"
+              ]
+            },
+            {
+              "id": "1.2.k6",
+              "kind": "knowledge",
+              "text": "Threat vectors external to AWS (for example, DDoS, SQL injection)",
+              "sections": [
+                "shield/standard-and-advanced-protection",
+                "shield/response-team-and-proactive-engagement",
+                "waf/managed-and-rate-based-rules"
+              ]
+            },
+            {
+              "id": "1.2.s1",
+              "kind": "skill",
+              "text": "Designing VPC architectures with security components (for example, security groups, route tables, network ACLs, NAT gateways)",
+              "sections": [
+                "vpc/security-groups-and-network-acls",
+                "vpc/route-tables-and-peering",
+                "vpc/subnets-and-gateways",
+                "vpc/ip-addressing-and-nat-instances"
+              ]
+            },
+            {
+              "id": "1.2.s2",
+              "kind": "skill",
+              "text": "Determining network segmentation strategies (for example, using public subnets and private subnets)",
+              "sections": [
+                "vpc/subnets-and-gateways",
+                "vpc/security-groups-and-network-acls",
+                "multi-account-strategy/account-boundaries-and-shared-services"
+              ]
+            },
+            {
+              "id": "1.2.s3",
+              "kind": "skill",
+              "text": "Integrating AWS services to secure applications (for example, AWS Shield, AWS WAF, IAM Identity Center, AWS Secrets Manager)",
+              "sections": [
+                "shield/standard-and-advanced-protection",
+                "waf/managed-and-rate-based-rules",
+                "waf/web-acl-scope-and-rule-actions",
+                "secrets-manager/secret-versions-and-runtime-access",
+                "iam-identity-center/identity-sources-permission-sets-and-sessions",
+                "elastic-load-balancing/alb-authentication-and-certificates"
+              ]
+            },
+            {
+              "id": "1.2.s4",
+              "kind": "skill",
+              "text": "Securing external network connections to and from the AWS Cloud (for example, VPN, AWS Direct Connect)",
+              "sections": [
+                "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "direct-connect/private-connectivity-and-encryption",
+                "client-vpn/remote-user-connectivity"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Determine appropriate data security controls.",
+          "items": [
+            {
+              "id": "1.3.k1",
+              "kind": "knowledge",
+              "text": "Data access and governance",
+              "sections": [
+                "lake-formation/data-lake-governance",
+                "s3/public-access-and-object-ownership",
+                "iam/policy-evaluation",
+                "macie/sensitive-data-discovery-and-jobs",
+                "cloudtrail/trails-and-event-selectors"
+              ]
+            },
+            {
+              "id": "1.3.k2",
+              "kind": "knowledge",
+              "text": "Data recovery",
+              "sections": [
+                "backup/plans-vaults-and-recovery-points",
+                "rds/backups-and-point-in-time-recovery",
+                "dynamodb/backups-and-point-in-time-recovery",
+                "s3/versioning-and-delete-markers",
+                "ebs/snapshots-and-cross-az-recovery"
+              ]
+            },
+            {
+              "id": "1.3.k3",
+              "kind": "knowledge",
+              "text": "Data retention and classification",
+              "sections": [
+                "s3/object-lock",
+                "s3/lifecycle-and-retention",
+                "macie/sensitive-data-discovery-and-jobs",
+                "cloudwatch/log-groups-and-retention"
+              ]
+            },
+            {
+              "id": "1.3.k4",
+              "kind": "knowledge",
+              "text": "Encryption and appropriate key management",
+              "sections": [
+                "kms/key-policies-and-grants",
+                "kms/key-rotation",
+                "kms/multi-region-keys",
+                "cloudhsm/dedicated-hsm-workloads",
+                "kms/custom-key-stores"
+              ]
+            },
+            {
+              "id": "1.3.s1",
+              "kind": "skill",
+              "text": "Aligning AWS technologies to meet compliance requirements",
+              "sections": [
+                "artifact/reports-and-agreements",
+                "config/conformance-packs-and-organization-rules",
+                "security-hub/findings-standards-and-config-dependency",
+                "s3/object-lock",
+                "backup/vault-lock-and-air-gapped-vaults",
+                "control-tower/control-behaviors-and-guidance",
+                "cloudtrail/log-integrity-and-protection"
+              ]
+            },
+            {
+              "id": "1.3.s2",
+              "kind": "skill",
+              "text": "Encrypting data at rest (for example, AWS KMS)",
+              "sections": [
+                "kms/encryption-at-rest-and-in-transit",
+                "kms/envelope-encryption-and-context",
+                "s3/encryption-and-bucket-keys",
+                "ebs/encryption-and-regional-copies",
+                "rds/encryption-authentication-and-maintenance"
+              ]
+            },
+            {
+              "id": "1.3.s3",
+              "kind": "skill",
+              "text": "Encrypting data in transit (for example, AWS Certificate Manager [ACM] using TLS)",
+              "sections": [
+                "acm/public-certificates-and-domain-validation",
+                "cloudfront/tls-and-field-level-encryption",
+                "elastic-load-balancing/alb-authentication-and-certificates",
+                "rds/encryption-authentication-and-maintenance"
+              ]
+            },
+            {
+              "id": "1.3.s4",
+              "kind": "skill",
+              "text": "Implementing access policies for encryption keys",
+              "sections": [
+                "kms/key-policies-and-grants"
+              ]
+            },
+            {
+              "id": "1.3.s5",
+              "kind": "skill",
+              "text": "Implementing data backups and replications",
+              "sections": [
+                "backup/cross-region-copies-and-pitr-limits",
+                "s3/replication",
+                "backup/cross-account-copies",
+                "rds/read-replicas-and-regional-recovery",
+                "efs/replication-and-failover"
+              ]
+            },
+            {
+              "id": "1.3.s6",
+              "kind": "skill",
+              "text": "Implementing policies for data access, lifecycle, and protection",
+              "sections": [
+                "s3/lifecycle-and-retention",
+                "s3/object-lock",
+                "s3/public-access-and-object-ownership",
+                "s3/requester-pays-and-presigned-urls"
+              ]
+            },
+            {
+              "id": "1.3.s7",
+              "kind": "skill",
+              "text": "Rotating encryption keys and renewing certificates",
+              "sections": [
+                "kms/key-rotation",
+                "acm/renewal-imports-and-exports",
+                "secrets-manager/managed-and-lambda-rotation"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "name": "Design Resilient Architectures",
+      "tasks": [
+        {
+          "id": "2.1",
+          "title": "Design scalable and loosely coupled architectures.",
+          "items": [
+            {
+              "id": "2.1.k1",
+              "kind": "knowledge",
+              "text": "API creation and management (for example, Amazon API Gateway, REST API)",
+              "sections": [
+                "api-gateway/deployments-and-stages",
+                "api-gateway/authentication-and-api-keys",
+                "api-gateway/endpoint-types-and-throttling",
+                "api-gateway/canary-releases",
+                "api-gateway/integrations-and-monitoring"
+              ]
+            },
+            {
+              "id": "2.1.k2",
+              "kind": "knowledge",
+              "text": "AWS managed services with appropriate use cases (for example, AWS Transfer Family, Amazon SQS, AWS Secrets Manager)",
+              "sections": [
+                "transfer-family/managed-file-transfer-endpoints",
+                "sqs/standard-and-fifo-queues",
+                "secrets-manager/secret-versions-and-runtime-access",
+                "amazon-mq/managed-message-brokers"
+              ]
+            },
+            {
+              "id": "2.1.k3",
+              "kind": "knowledge",
+              "text": "Caching strategies",
+              "sections": [
+                "elasticache/engines-replicas-and-multi-az",
+                "elasticache/use-cases-and-engine-choice",
+                "cloudfront/cache-behaviors-and-policies",
+                "dynamodb/dax-read-caching"
+              ]
+            },
+            {
+              "id": "2.1.k4",
+              "kind": "knowledge",
+              "text": "Design principles for microservices (for example, stateless workloads compared with stateful workloads)",
+              "sections": [
+                "scalable-architectures/scaling-state-and-coupling",
+                "ecs/task-definitions-tasks-and-services",
+                "api-gateway/endpoint-types-and-throttling"
+              ]
+            },
+            {
+              "id": "2.1.k5",
+              "kind": "knowledge",
+              "text": "Event-driven architectures",
+              "sections": [
+                "eventbridge/event-buses-and-patterns",
+                "s3/event-notifications",
+                "sns/topics-subscriptions-and-fan-out",
+                "lambda/queue-and-stream-event-sources",
+                "event-processing-patterns/durable-fan-out"
+              ]
+            },
+            {
+              "id": "2.1.k6",
+              "kind": "knowledge",
+              "text": "Horizontal scaling and vertical scaling",
+              "sections": [
+                "scalable-architectures/scaling-state-and-coupling",
+                "ec2-auto-scaling/scaling-policy-selection",
+                "aurora/storage-replicas-and-auto-scaling"
+              ]
+            },
+            {
+              "id": "2.1.k7",
+              "kind": "knowledge",
+              "text": "How to appropriately use edge accelerators (for example, content delivery network [CDN])",
+              "sections": [
+                "cloudfront/cache-behaviors-and-policies",
+                "global-accelerator/regional-endpoint-routing",
+                "s3/performance-and-large-uploads"
+              ]
+            },
+            {
+              "id": "2.1.k8",
+              "kind": "knowledge",
+              "text": "How to migrate applications into containers",
+              "sections": [
+                "app2container/application-containerization-and-availability",
+                "ecs/task-definitions-tasks-and-services",
+                "ecr/repositories-and-image-tags",
+                "cloud-adoption/migration-strategies"
+              ]
+            },
+            {
+              "id": "2.1.k9",
+              "kind": "knowledge",
+              "text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
+              "sections": [
+                "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/cross-zone-balancing",
+                "elastic-load-balancing/alb-authentication-and-certificates"
+              ]
+            },
+            {
+              "id": "2.1.k10",
+              "kind": "knowledge",
+              "text": "Multi-tier architectures",
+              "sections": [
+                "scalable-architectures/scaling-state-and-coupling",
+                "vpc/subnets-and-gateways",
+                "elastic-load-balancing/load-balancer-types"
+              ]
+            },
+            {
+              "id": "2.1.k11",
+              "kind": "knowledge",
+              "text": "Queuing and messaging concepts (for example, publish/subscribe)",
+              "sections": [
+                "sqs/standard-and-fifo-queues",
+                "sqs/visibility-retention-and-polling",
+                "sns/topics-subscriptions-and-fan-out",
+                "amazon-mq/managed-message-brokers",
+                "sqs/dead-letter-queues-and-redrive"
+              ]
+            },
+            {
+              "id": "2.1.k12",
+              "kind": "knowledge",
+              "text": "Serverless technologies and patterns (for example, AWS Fargate, AWS Lambda)",
+              "sections": [
+                "lambda/invocation-and-retries",
+                "lambda/concurrency-controls",
+                "fargate/compute-and-isolation",
+                "step-functions/standard-and-express",
+                "amplify/frontend-and-mobile-apps"
+              ]
+            },
+            {
+              "id": "2.1.k13",
+              "kind": "knowledge",
+              "text": "Storage types with associated characteristics (for example, object, file, block)",
+              "sections": [
+                "s3/buckets-objects-and-durability",
+                "efs/regional-and-one-zone-file-systems",
+                "ebs/volume-types",
+                "fsx-for-windows/smb-directory-integration-and-availability"
+              ]
+            },
+            {
+              "id": "2.1.k14",
+              "kind": "knowledge",
+              "text": "The orchestration of containers (for example, Amazon ECS, Amazon EKS)",
+              "sections": [
+                "ecs/task-definitions-tasks-and-services",
+                "ecs/capacity-providers",
+                "eks/cluster-compute-options",
+                "eks/pod-and-node-scaling",
+                "eks-distro/self-managed-kubernetes"
+              ]
+            },
+            {
+              "id": "2.1.k15",
+              "kind": "knowledge",
+              "text": "When to use read replicas",
+              "sections": [
+                "rds/read-replicas-and-regional-recovery",
+                "aurora/storage-replicas-and-auto-scaling"
+              ]
+            },
+            {
+              "id": "2.1.k16",
+              "kind": "knowledge",
+              "text": "Workflow orchestration (for example, AWS Step Functions)",
+              "sections": [
+                "step-functions/standard-and-express",
+                "step-functions/service-integration-patterns",
+                "step-functions/retry-and-catch",
+                "data-pipeline/legacy-data-workflows"
+              ]
+            },
+            {
+              "id": "2.1.s1",
+              "kind": "skill",
+              "text": "Designing event-driven, microservice, and/or multi-tier architectures based on requirements",
+              "sections": [
+                "event-processing-patterns/routing-queuing-and-streaming",
+                "event-processing-patterns/durable-fan-out",
+                "scalable-architectures/scaling-state-and-coupling",
+                "eventbridge/event-buses-and-patterns",
+                "step-functions/service-integration-patterns"
+              ]
+            },
+            {
+              "id": "2.1.s2",
+              "kind": "skill",
+              "text": "Determining scaling strategies for components used in an architecture design",
+              "sections": [
+                "ec2-auto-scaling/scaling-policy-selection",
+                "ec2-auto-scaling/target-tracking-metrics-and-warmup",
+                "application-auto-scaling/scalable-targets-and-policies",
+                "dynamodb/capacity-scaling-and-throttling",
+                "scalable-architectures/scaling-state-and-coupling"
+              ]
+            },
+            {
+              "id": "2.1.s3",
+              "kind": "skill",
+              "text": "Determining the AWS services required to achieve loose coupling based on requirements",
+              "sections": [
+                "scalable-architectures/scaling-state-and-coupling",
+                "sqs/standard-and-fifo-queues",
+                "sns/topics-subscriptions-and-fan-out",
+                "eventbridge/event-buses-and-patterns",
+                "amazon-mq/managed-message-brokers"
+              ]
+            },
+            {
+              "id": "2.1.s4",
+              "kind": "skill",
+              "text": "Determining when to use containers",
+              "sections": [
+                "ecs/task-definitions-tasks-and-services",
+                "eks/cluster-compute-options",
+                "fargate/compute-and-isolation",
+                "ecs/ecs-anywhere",
+                "eks-anywhere/on-premises-kubernetes"
+              ]
+            },
+            {
+              "id": "2.1.s5",
+              "kind": "skill",
+              "text": "Determining when to use serverless technologies and patterns",
+              "sections": [
+                "lambda/invocation-and-retries",
+                "fargate/compute-and-isolation",
+                "step-functions/standard-and-express",
+                "api-gateway/deployments-and-stages",
+                "serverless-application-repository/application-sharing-and-deployment",
+                "lambda/memory-timeout-and-snapstart"
+              ]
+            },
+            {
+              "id": "2.1.s6",
+              "kind": "skill",
+              "text": "Recommending appropriate compute, storage, networking, and database technologies based on requirements",
+              "sections": [
+                "ec2/instance-types",
+                "s3/storage-classes",
+                "elastic-load-balancing/load-balancer-types",
+                "rds/managed-vs-self-managed-databases",
+                "dynamodb/capacity-scaling-and-throttling"
+              ]
+            },
+            {
+              "id": "2.1.s7",
+              "kind": "skill",
+              "text": "Using purpose-built AWS services for workloads",
+              "sections": [
+                "dynamodb/capacity-scaling-and-throttling",
+                "neptune/graph-databases",
+                "documentdb/document-workloads-and-compatibility",
+                "keyspaces/serverless-cassandra-tables",
+                "redshift/data-warehouse-workloads",
+                "memorydb/durable-in-memory-workloads",
+                "device-farm/device-and-browser-tests"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Design highly available and/or fault-tolerant architectures.",
+          "items": [
+            {
+              "id": "2.2.k1",
+              "kind": "knowledge",
+              "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions, Amazon Route 53)",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/multi-region-use-cases",
+                "route53/routing-policies",
+                "route53/dns-failover-and-testing"
+              ]
+            },
+            {
+              "id": "2.2.k2",
+              "kind": "knowledge",
+              "text": "AWS managed services with appropriate use cases (for example, Amazon Comprehend, Amazon Polly)",
+              "sections": [
+                "comprehend/text-analysis",
+                "polly/text-to-speech",
+                "rekognition/image-and-video-analysis",
+                "textract/document-text-extraction",
+                "transcribe/speech-to-text",
+                "translate/language-translation",
+                "lex/conversational-interfaces",
+                "sagemaker-ai/build-train-and-deploy-models"
+              ]
+            },
+            {
+              "id": "2.2.k3",
+              "kind": "knowledge",
+              "text": "Basic networking concepts (for example, route tables)",
+              "sections": [
+                "vpc/route-tables-and-peering",
+                "vpc/subnets-and-gateways",
+                "vpc/ip-addressing-and-nat-instances"
+              ]
+            },
+            {
+              "id": "2.2.k4",
+              "kind": "knowledge",
+              "text": "Disaster recovery (DR) strategies (for example, backup and restore, pilot light, warm standby, active-active failover, recovery point objective [RPO], recovery time objective [RTO])",
+              "sections": [
+                "disaster-recovery/recovery-strategy-selection",
+                "disaster-recovery/rto-and-rpo",
+                "elastic-disaster-recovery/replication-and-staging",
+                "backup/plans-vaults-and-recovery-points"
+              ]
+            },
+            {
+              "id": "2.2.k5",
+              "kind": "knowledge",
+              "text": "Distributed design patterns",
+              "sections": [
+                "event-processing-patterns/routing-queuing-and-streaming",
+                "event-processing-patterns/backpressure-and-idempotency",
+                "scalable-architectures/scaling-state-and-coupling"
+              ]
+            },
+            {
+              "id": "2.2.k6",
+              "kind": "knowledge",
+              "text": "Failover strategies",
+              "sections": [
+                "route53/dns-failover-and-testing",
+                "rds/multi-az-and-failover-tests",
+                "aurora/global-database-switchover-and-failover",
+                "cloudfront/origin-failover",
+                "disaster-recovery/data-plane-and-control-plane-failover"
+              ]
+            },
+            {
+              "id": "2.2.k7",
+              "kind": "knowledge",
+              "text": "Immutable infrastructure",
+              "sections": [
+                "deployment-strategies/mutable-and-immutable",
+                "deployment-strategies/golden-images-and-bootstrap"
+              ]
+            },
+            {
+              "id": "2.2.k8",
+              "kind": "knowledge",
+              "text": "Load balancing concepts (for example, ALB)",
+              "sections": [
+                "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/target-health-and-fail-open",
+                "elastic-load-balancing/draining-slow-start-and-stickiness"
+              ]
+            },
+            {
+              "id": "2.2.k9",
+              "kind": "knowledge",
+              "text": "Proxy concepts (for example, Amazon RDS Proxy)",
+              "sections": [
+                "rds/proxy-connection-pooling"
+              ]
+            },
+            {
+              "id": "2.2.k10",
+              "kind": "knowledge",
+              "text": "Service quotas and throttling (for example, how to configure the service quotas for a workload in a standby environment)",
+              "sections": [
+                "service-quotas/quotas-and-increases",
+                "api-gateway/endpoint-types-and-throttling",
+                "lambda/concurrency-controls"
+              ]
+            },
+            {
+              "id": "2.2.k11",
+              "kind": "knowledge",
+              "text": "Storage options and characteristics (for example, durability, replication)",
+              "sections": [
+                "s3/buckets-objects-and-durability",
+                "efs/regional-and-one-zone-file-systems",
+                "ebs/snapshots-and-cross-az-recovery",
+                "s3/replication"
+              ]
+            },
+            {
+              "id": "2.2.k12",
+              "kind": "knowledge",
+              "text": "Workload visibility (for example, AWS X-Ray)",
+              "sections": [
+                "xray/traces-segments-and-propagation",
+                "xray/service-instrumentation",
+                "cloudwatch/container-insights",
+                "cloudwatch/application-signals-and-slos",
+                "managed-prometheus/workspaces-ingestion-and-promql"
+              ]
+            },
+            {
+              "id": "2.2.s1",
+              "kind": "skill",
+              "text": "Determining automation strategies to ensure infrastructure integrity",
+              "sections": [
+                "cloudformation/template-structure-and-dependencies",
+                "cloudformation/drift-detection-and-remediation",
+                "config/automation-remediation-and-retries",
+                "cloudformation/stackset-permissions-and-targeting",
+                "proton/platform-templates-and-end-of-support",
+                "service-catalog/products-portfolios-and-versions"
+              ]
+            },
+            {
+              "id": "2.2.s2",
+              "kind": "skill",
+              "text": "Determining the AWS services required to provide a highly available and/or fault-tolerant architecture across AWS Regions or Availability Zones",
+              "sections": [
+                "elastic-load-balancing/cross-zone-balancing",
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "rds/multi-az-and-failover-tests",
+                "aurora/global-database-switchover-and-failover",
+                "route53/dns-failover-and-testing",
+                "dynamodb/global-tables"
+              ]
+            },
+            {
+              "id": "2.2.s3",
+              "kind": "skill",
+              "text": "Identifying metrics based on business requirements to deliver a highly available solution",
+              "sections": [
+                "availability-targets/service-slas-and-workload-targets",
+                "cloudwatch/alarm-actions-and-composite-alarms",
+                "route53/endpoint-and-calculated-health-checks",
+                "health/account-events-and-affected-resources"
+              ]
+            },
+            {
+              "id": "2.2.s4",
+              "kind": "skill",
+              "text": "Implementing designs to mitigate single points of failure",
+              "sections": [
+                "scalable-architectures/scaling-state-and-coupling",
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "rds/multi-az-and-failover-tests",
+                "availability-targets/failure-domains-and-spare-capacity",
+                "well-architected/framework-pillars",
+                "ec2/ip-addresses-and-network-interfaces"
+              ]
+            },
+            {
+              "id": "2.2.s5",
+              "kind": "skill",
+              "text": "Implementing strategies to ensure the durability and availability of data (for example, backups)",
+              "sections": [
+                "s3/buckets-objects-and-durability",
+                "s3/versioning-and-delete-markers",
+                "backup/plans-vaults-and-recovery-points",
+                "ebs/snapshots-and-cross-az-recovery"
+              ]
+            },
+            {
+              "id": "2.2.s6",
+              "kind": "skill",
+              "text": "Selecting an appropriate DR strategy to meet business requirements",
+              "sections": [
+                "disaster-recovery/recovery-strategy-selection",
+                "disaster-recovery/rto-and-rpo",
+                "elastic-disaster-recovery/drills-failover-and-failback"
+              ]
+            },
+            {
+              "id": "2.2.s7",
+              "kind": "skill",
+              "text": "Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for example, when application changes are not possible)",
+              "sections": [
+                "ec2/automatic-instance-recovery",
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "route53/dns-failover-and-testing",
+                "elastic-disaster-recovery/replication-and-staging",
+                "sqs/standard-and-fifo-queues"
+              ]
+            },
+            {
+              "id": "2.2.s8",
+              "kind": "skill",
+              "text": "Using purpose-built AWS services for workloads",
+              "sections": [
+                "dynamodb/capacity-scaling-and-throttling",
+                "neptune/graph-databases",
+                "documentdb/document-workloads-and-compatibility",
+                "keyspaces/serverless-cassandra-tables",
+                "redshift/data-warehouse-workloads",
+                "memorydb/durable-in-memory-workloads",
+                "device-farm/device-and-browser-tests"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "name": "Design High-Performing Architectures",
+      "tasks": [
+        {
+          "id": "3.1",
+          "title": "Determine high-performing and/or scalable storage solutions.",
+          "items": [
+            {
+              "id": "3.1.k1",
+              "kind": "knowledge",
+              "text": "Hybrid storage solutions to meet business requirements",
+              "sections": [
+                "storage-gateway/file-gateways",
+                "storage-gateway/volume-and-tape-gateways",
+                "fsx-for-netapp-ontap/multiprotocol-storage-and-availability"
+              ]
+            },
+            {
+              "id": "3.1.k2",
+              "kind": "knowledge",
+              "text": "Storage services with appropriate use cases (for example, Amazon S3, Amazon EFS, Amazon EBS)",
+              "sections": [
+                "s3/buckets-objects-and-durability",
+                "efs/regional-and-one-zone-file-systems",
+                "ebs/volume-types",
+                "ebs/multi-attach"
+              ]
+            },
+            {
+              "id": "3.1.k3",
+              "kind": "knowledge",
+              "text": "Storage types with associated characteristics (for example, object, file, block)",
+              "sections": [
+                "s3/buckets-objects-and-durability",
+                "efs/regional-and-one-zone-file-systems",
+                "ebs/volume-types",
+                "fsx-for-windows/smb-directory-integration-and-availability"
+              ]
+            },
+            {
+              "id": "3.1.s1",
+              "kind": "skill",
+              "text": "Determining storage services and configurations that meet performance demands",
+              "sections": [
+                "ebs/volume-types",
+                "efs/regional-and-one-zone-file-systems",
+                "fsx-for-lustre/parallel-storage-and-s3-integration",
+                "s3/performance-and-large-uploads",
+                "ec2/instance-store-lifecycle"
+              ]
+            },
+            {
+              "id": "3.1.s2",
+              "kind": "skill",
+              "text": "Determining storage services that can scale to accommodate future needs",
+              "sections": [
+                "s3/buckets-objects-and-durability",
+                "efs/regional-and-one-zone-file-systems",
+                "fsx-for-netapp-ontap/multiprotocol-storage-and-availability"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Design high-performing and elastic compute solutions.",
+          "items": [
+            {
+              "id": "3.2.k1",
+              "kind": "knowledge",
+              "text": "AWS compute services with appropriate use cases (for example, AWS Batch, Amazon EMR, AWS Fargate)",
+              "sections": [
+                "batch/managed-batch-computing",
+                "emr/distributed-processing-workloads",
+                "fargate/compute-and-isolation",
+                "ec2/instance-types",
+                "lambda/concurrency-controls",
+                "elastic-beanstalk/applications-environments-and-roles"
+              ]
+            },
+            {
+              "id": "3.2.k2",
+              "kind": "knowledge",
+              "text": "Distributed computing concepts supported by AWS global infrastructure and edge services",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "cloudfront/functions-and-lambda-at-edge",
+                "global-accelerator/regional-endpoint-routing",
+                "wavelength/carrier-edge-zones"
+              ]
+            },
+            {
+              "id": "3.2.k3",
+              "kind": "knowledge",
+              "text": "Queuing and messaging concepts (for example, publish/subscribe)",
+              "sections": [
+                "sqs/standard-and-fifo-queues",
+                "sqs/visibility-retention-and-polling",
+                "sns/topics-subscriptions-and-fan-out",
+                "amazon-mq/managed-message-brokers",
+                "sqs/dead-letter-queues-and-redrive"
+              ]
+            },
+            {
+              "id": "3.2.k4",
+              "kind": "knowledge",
+              "text": "Scalability capabilities with appropriate use cases (for example, Amazon EC2 Auto Scaling, AWS Auto Scaling)",
+              "sections": [
+                "ec2-auto-scaling/scaling-policy-selection",
+                "application-auto-scaling/scalable-targets-and-policies",
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance"
+              ]
+            },
+            {
+              "id": "3.2.k5",
+              "kind": "knowledge",
+              "text": "Serverless technologies and patterns (for example, AWS Lambda, Fargate)",
+              "sections": [
+                "lambda/invocation-and-retries",
+                "lambda/vpc-connectivity",
+                "fargate/compute-and-isolation",
+                "lambda/queue-and-stream-event-sources",
+                "lambda/memory-timeout-and-snapstart"
+              ]
+            },
+            {
+              "id": "3.2.k6",
+              "kind": "knowledge",
+              "text": "The orchestration of containers (for example, Amazon ECS, Amazon EKS)",
+              "sections": [
+                "ecs/task-definitions-tasks-and-services",
+                "ecs/capacity-providers",
+                "eks/cluster-compute-options",
+                "eks/pod-and-node-scaling",
+                "eks-distro/self-managed-kubernetes"
+              ]
+            },
+            {
+              "id": "3.2.s1",
+              "kind": "skill",
+              "text": "Decoupling workloads so that components can scale independently",
+              "sections": [
+                "scalable-architectures/scaling-state-and-coupling",
+                "sqs/standard-and-fifo-queues",
+                "sns/topics-subscriptions-and-fan-out",
+                "eventbridge/event-buses-and-patterns"
+              ]
+            },
+            {
+              "id": "3.2.s2",
+              "kind": "skill",
+              "text": "Identifying metrics and conditions to perform scaling actions",
+              "sections": [
+                "ec2-auto-scaling/target-tracking-metrics-and-warmup",
+                "ec2-auto-scaling/scaling-policy-selection",
+                "cloudwatch/alarm-evaluation-and-missing-data",
+                "ecs/service-auto-scaling"
+              ]
+            },
+            {
+              "id": "3.2.s3",
+              "kind": "skill",
+              "text": "Selecting the appropriate compute options and features (for example, EC2 instance types) to meet business requirements",
+              "sections": [
+                "ec2/instance-types",
+                "ec2/placement-groups-and-efa",
+                "ec2/accelerated-computing-for-ai",
+                "ec2/hibernation-user-data-and-instance-connect",
+                "ec2/ip-addresses-and-network-interfaces"
+              ]
+            },
+            {
+              "id": "3.2.s4",
+              "kind": "skill",
+              "text": "Selecting the appropriate resource type and size (for example, the amount of Lambda memory) to meet business requirements",
+              "sections": [
+                "lambda/concurrency-controls",
+                "compute-optimizer/resource-rightsizing",
+                "ec2/instance-types",
+                "lambda/memory-timeout-and-snapstart"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Determine high-performing database solutions.",
+          "items": [
+            {
+              "id": "3.3.k1",
+              "kind": "knowledge",
+              "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/multi-region-use-cases"
+              ]
+            },
+            {
+              "id": "3.3.k2",
+              "kind": "knowledge",
+              "text": "Caching strategies and services (for example, Amazon ElastiCache)",
+              "sections": [
+                "elasticache/engines-replicas-and-multi-az",
+                "elasticache/use-cases-and-engine-choice",
+                "dynamodb/dax-read-caching",
+                "cloudfront/cache-behaviors-and-policies"
+              ]
+            },
+            {
+              "id": "3.3.k3",
+              "kind": "knowledge",
+              "text": "Data access patterns (for example, read-intensive compared with write-intensive)",
+              "sections": [
+                "rds/read-replicas-and-regional-recovery",
+                "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/dax-read-caching",
+                "elasticache/engines-replicas-and-multi-az"
+              ]
+            },
+            {
+              "id": "3.3.k4",
+              "kind": "knowledge",
+              "text": "Database capacity planning (for example, capacity units, instance types, Provisioned IOPS)",
+              "sections": [
+                "dynamodb/capacity-scaling-and-throttling",
+                "rds/storage-autoscaling-and-metrics",
+                "ebs/volume-types",
+                "aurora/serverless-v2-capacity-and-promotion"
+              ]
+            },
+            {
+              "id": "3.3.k5",
+              "kind": "knowledge",
+              "text": "Database connections and proxies",
+              "sections": [
+                "rds/proxy-connection-pooling"
+              ]
+            },
+            {
+              "id": "3.3.k6",
+              "kind": "knowledge",
+              "text": "Database engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)",
+              "sections": [
+                "dms/full-load-and-change-data-capture",
+                "dms/schema-conversion-tool",
+                "aurora/storage-configurations-and-babelfish"
+              ]
+            },
+            {
+              "id": "3.3.k7",
+              "kind": "knowledge",
+              "text": "Database replication (for example, read replicas)",
+              "sections": [
+                "rds/read-replicas-and-regional-recovery",
+                "rds/multi-az-and-failover-tests",
+                "aurora/storage-replicas-and-auto-scaling",
+                "aurora/global-database-switchover-and-failover",
+                "dynamodb/global-tables"
+              ]
+            },
+            {
+              "id": "3.3.k8",
+              "kind": "knowledge",
+              "text": "Database types and services (for example, serverless, relational compared with non-relational, in-memory)",
+              "sections": [
+                "aurora/serverless-v2-capacity-and-promotion",
+                "dynamodb/capacity-scaling-and-throttling",
+                "elasticache/engines-replicas-and-multi-az",
+                "memorydb/durable-in-memory-workloads",
+                "documentdb/document-workloads-and-compatibility",
+                "neptune/graph-databases",
+                "keyspaces/serverless-cassandra-tables"
+              ]
+            },
+            {
+              "id": "3.3.s1",
+              "kind": "skill",
+              "text": "Configuring read replicas to meet business requirements",
+              "sections": [
+                "rds/read-replicas-and-regional-recovery",
+                "aurora/storage-replicas-and-auto-scaling"
+              ]
+            },
+            {
+              "id": "3.3.s2",
+              "kind": "skill",
+              "text": "Designing database architectures",
+              "sections": [
+                "rds/multi-az-and-failover-tests",
+                "rds/read-replicas-and-regional-recovery",
+                "aurora/global-database-switchover-and-failover",
+                "dynamodb/global-tables",
+                "rds/proxy-connection-pooling"
+              ]
+            },
+            {
+              "id": "3.3.s3",
+              "kind": "skill",
+              "text": "Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+              "sections": [
+                "rds/managed-vs-self-managed-databases",
+                "aurora/storage-configurations-and-babelfish",
+                "rds/encryption-authentication-and-maintenance"
+              ]
+            },
+            {
+              "id": "3.3.s4",
+              "kind": "skill",
+              "text": "Determining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB)",
+              "sections": [
+                "aurora/storage-replicas-and-auto-scaling",
+                "dynamodb/capacity-scaling-and-throttling",
+                "documentdb/document-workloads-and-compatibility",
+                "neptune/graph-databases",
+                "keyspaces/serverless-cassandra-tables",
+                "redshift/data-warehouse-workloads"
+              ]
+            },
+            {
+              "id": "3.3.s5",
+              "kind": "skill",
+              "text": "Integrating caching to meet business requirements",
+              "sections": [
+                "elasticache/use-cases-and-engine-choice",
+                "elasticache/engines-replicas-and-multi-az",
+                "dynamodb/dax-read-caching",
+                "api-gateway/deployments-and-stages"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.4",
+          "title": "Determine high-performing and/or scalable network architectures.",
+          "items": [
+            {
+              "id": "3.4.k1",
+              "kind": "knowledge",
+              "text": "Edge networking services with appropriate use cases (for example, Amazon CloudFront, AWS Global Accelerator)",
+              "sections": [
+                "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/origin-failover",
+                "global-accelerator/regional-endpoint-routing",
+                "s3/performance-and-large-uploads"
+              ]
+            },
+            {
+              "id": "3.4.k2",
+              "kind": "knowledge",
+              "text": "How to design network architecture (for example, subnet tiers, routing, IP addressing)",
+              "sections": [
+                "vpc/ip-addressing-and-nat-instances",
+                "vpc/subnets-and-gateways",
+                "vpc/route-tables-and-peering",
+                "ec2/ip-addresses-and-network-interfaces"
+              ]
+            },
+            {
+              "id": "3.4.k3",
+              "kind": "knowledge",
+              "text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
+              "sections": [
+                "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/cross-zone-balancing",
+                "elastic-load-balancing/alb-authentication-and-certificates"
+              ]
+            },
+            {
+              "id": "3.4.k4",
+              "kind": "knowledge",
+              "text": "Network connection options (for example, AWS VPN, AWS Direct Connect, AWS PrivateLink)",
+              "sections": [
+                "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "direct-connect/private-connectivity-and-encryption",
+                "privatelink/interface-endpoints-and-private-access",
+                "client-vpn/remote-user-connectivity"
+              ]
+            },
+            {
+              "id": "3.4.s1",
+              "kind": "skill",
+              "text": "Creating a network topology for various architectures (for example, global, hybrid, multi-tier)",
+              "sections": [
+                "transit-gateway/attachments-route-tables-and-sharing",
+                "vpc/subnets-and-gateways",
+                "direct-connect/connections-lags-and-gateways",
+                "site-to-site-vpn/vpn-cloudhub",
+                "global-accelerator/regional-endpoint-routing"
+              ]
+            },
+            {
+              "id": "3.4.s2",
+              "kind": "skill",
+              "text": "Determining network configurations that can scale to accommodate future needs",
+              "sections": [
+                "vpc/ip-addressing-and-nat-instances",
+                "transit-gateway/attachments-route-tables-and-sharing",
+                "resource-access-manager/resource-sharing-and-invitations"
+              ]
+            },
+            {
+              "id": "3.4.s3",
+              "kind": "skill",
+              "text": "Determining the appropriate placement of resources to meet business requirements",
+              "sections": [
+                "ec2/placement-groups-and-efa",
+                "global-infrastructure/multi-region-use-cases",
+                "wavelength/carrier-edge-zones",
+                "outposts/on-premises-aws-infrastructure"
+              ]
+            },
+            {
+              "id": "3.4.s4",
+              "kind": "skill",
+              "text": "Selecting the appropriate load balancing strategy",
+              "sections": [
+                "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/cross-zone-balancing",
+                "route53/routing-policies"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3.5",
+          "title": "Determine high-performing data ingestion and transformation solutions.",
+          "items": [
+            {
+              "id": "3.5.k1",
+              "kind": "knowledge",
+              "text": "Data analytics and visualization services with appropriate use cases (for example, Amazon Athena, AWS Lake Formation, Amazon Quick)",
+              "sections": [
+                "athena/partitions-and-columnar-formats",
+                "lake-formation/data-lake-governance",
+                "quicksight/datasets-visuals-and-dashboards",
+                "redshift/data-warehouse-workloads",
+                "opensearch/log-ingestion-search-and-dashboards",
+                "emr/distributed-processing-workloads",
+                "data-exchange/third-party-data"
+              ]
+            },
+            {
+              "id": "3.5.k2",
+              "kind": "knowledge",
+              "text": "Data ingestion patterns (for example, frequency)",
+              "sections": [
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "firehose/destinations-and-buffering",
+                "appflow/saas-data-integration",
+                "msk/managed-kafka-clusters"
+              ]
+            },
+            {
+              "id": "3.5.k3",
+              "kind": "knowledge",
+              "text": "Data transfer services with appropriate use cases (for example, AWS DataSync, AWS Storage Gateway)",
+              "sections": [
+                "datasync/online-data-transfer",
+                "storage-gateway/file-gateways",
+                "storage-gateway/volume-and-tape-gateways",
+                "snow-family/offline-transfer-and-edge-devices",
+                "transfer-family/managed-file-transfer-endpoints"
+              ]
+            },
+            {
+              "id": "3.5.k4",
+              "kind": "knowledge",
+              "text": "Data transformation services with appropriate use cases (for example, AWS Glue)",
+              "sections": [
+                "glue/data-integration-and-catalog",
+                "glue/databrew",
+                "firehose/transformations-and-format-conversion",
+                "emr/distributed-processing-workloads",
+                "data-pipeline/legacy-data-workflows"
+              ]
+            },
+            {
+              "id": "3.5.k5",
+              "kind": "knowledge",
+              "text": "Secure access to ingestion access points",
+              "sections": [
+                "s3/access-points-and-cors",
+                "transfer-family/managed-file-transfer-endpoints",
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "privatelink/interface-endpoints-and-private-access"
+              ]
+            },
+            {
+              "id": "3.5.k6",
+              "kind": "knowledge",
+              "text": "Sizes and speeds needed to meet business requirements",
+              "sections": [
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "direct-connect/connections-lags-and-gateways",
+                "snow-family/offline-transfer-and-edge-devices"
+              ]
+            },
+            {
+              "id": "3.5.k7",
+              "kind": "knowledge",
+              "text": "Streaming data services with appropriate use cases (for example, Amazon Kinesis)",
+              "sections": [
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "firehose/destinations-and-buffering",
+                "managed-service-for-apache-flink/stream-processing-workloads",
+                "kinesis-video-streams/video-ingestion-and-processing",
+                "msk/managed-kafka-clusters"
+              ]
+            },
+            {
+              "id": "3.5.s1",
+              "kind": "skill",
+              "text": "Building and securing data lakes",
+              "sections": [
+                "lake-formation/data-lake-governance",
+                "glue/data-integration-and-catalog",
+                "athena/partitions-and-columnar-formats",
+                "s3/encryption-and-bucket-keys"
+              ]
+            },
+            {
+              "id": "3.5.s2",
+              "kind": "skill",
+              "text": "Designing data streaming architectures",
+              "sections": [
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "kinesis-data-streams/enhanced-fan-out-and-checkpoints",
+                "firehose/destinations-and-buffering",
+                "managed-service-for-apache-flink/stream-processing-workloads",
+                "msk/managed-kafka-clusters",
+                "kinesis-video-streams/video-ingestion-and-processing"
+              ]
+            },
+            {
+              "id": "3.5.s3",
+              "kind": "skill",
+              "text": "Designing data transfer solutions",
+              "sections": [
+                "datasync/online-data-transfer",
+                "snow-family/offline-transfer-and-edge-devices",
+                "transfer-family/managed-file-transfer-endpoints",
+                "s3/performance-and-large-uploads",
+                "storage-gateway/file-gateways"
+              ]
+            },
+            {
+              "id": "3.5.s4",
+              "kind": "skill",
+              "text": "Implementing visualization strategies",
+              "sections": [
+                "quicksight/datasets-visuals-and-dashboards",
+                "opensearch/log-ingestion-search-and-dashboards",
+                "managed-grafana/workspaces-authentication-and-data-sources"
+              ]
+            },
+            {
+              "id": "3.5.s5",
+              "kind": "skill",
+              "text": "Selecting appropriate compute options for data processing (for example, Amazon EMR)",
+              "sections": [
+                "emr/distributed-processing-workloads",
+                "glue/data-integration-and-catalog",
+                "batch/managed-batch-computing",
+                "managed-service-for-apache-flink/stream-processing-workloads"
+              ]
+            },
+            {
+              "id": "3.5.s6",
+              "kind": "skill",
+              "text": "Selecting appropriate configurations for ingestion",
+              "sections": [
+                "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "firehose/destinations-and-buffering",
+                "msk/managed-kafka-clusters"
+              ]
+            },
+            {
+              "id": "3.5.s7",
+              "kind": "skill",
+              "text": "Transforming data between formats (for example, .csv to .parquet)",
+              "sections": [
+                "firehose/transformations-and-format-conversion",
+                "glue/data-integration-and-catalog",
+                "athena/partitions-and-columnar-formats"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "name": "Design Cost-Optimized Architectures",
+      "tasks": [
+        {
+          "id": "4.1",
+          "title": "Design cost-optimized storage solutions.",
+          "items": [
+            {
+              "id": "4.1.k1",
+              "kind": "knowledge",
+              "text": "Access options (for example, an S3 bucket with Requester Pays object storage)",
+              "sections": [
+                "s3/requester-pays-and-presigned-urls",
+                "s3/access-points-and-cors",
+                "s3/public-access-and-object-ownership"
+              ]
+            },
+            {
+              "id": "4.1.k2",
+              "kind": "knowledge",
+              "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+              "sections": [
+                "billing-and-cost-management/cost-allocation-tags",
+                "organizations/accounts-ous-and-consolidated-billing"
+              ]
+            },
+            {
+              "id": "4.1.k3",
+              "kind": "knowledge",
+              "text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+              "sections": [
+                "billing-and-cost-management/cost-explorer",
+                "billing-and-cost-management/budgets",
+                "billing-and-cost-management/cost-and-usage-reports",
+                "billing-and-cost-management/anomaly-detection-and-optimization-hub",
+                "compute-optimizer/resource-rightsizing"
+              ]
+            },
+            {
+              "id": "4.1.k4",
+              "kind": "knowledge",
+              "text": "AWS storage services with appropriate use cases (for example, Amazon FSx, Amazon EFS, Amazon S3, Amazon EBS)",
+              "sections": [
+                "s3/storage-classes",
+                "efs/regional-and-one-zone-file-systems",
+                "ebs/volume-types",
+                "fsx-for-windows/smb-directory-integration-and-availability",
+                "fsx-for-lustre/parallel-storage-and-s3-integration",
+                "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
+                "fsx-for-openzfs/nfs-snapshots-and-clones"
+              ]
+            },
+            {
+              "id": "4.1.k5",
+              "kind": "knowledge",
+              "text": "Backup strategies",
+              "sections": [
+                "backup/plans-vaults-and-recovery-points",
+                "ebs/snapshot-lifecycle-management",
+                "rds/backups-and-point-in-time-recovery",
+                "dynamodb/backups-and-point-in-time-recovery",
+                "s3/versioning-and-delete-markers"
+              ]
+            },
+            {
+              "id": "4.1.k6",
+              "kind": "knowledge",
+              "text": "Block storage options (for example, hard disk drive [HDD] volume types, solid state drive [SSD] volume types)",
+              "sections": [
+                "ebs/volume-types",
+                "ec2/instance-store-lifecycle"
+              ]
+            },
+            {
+              "id": "4.1.k7",
+              "kind": "knowledge",
+              "text": "Data lifecycles",
+              "sections": [
+                "s3/lifecycle-and-retention",
+                "efs/regional-and-one-zone-file-systems",
+                "ebs/snapshot-lifecycle-management"
+              ]
+            },
+            {
+              "id": "4.1.k8",
+              "kind": "knowledge",
+              "text": "Hybrid storage options (for example, AWS DataSync, AWS Transfer Family, AWS Storage Gateway)",
+              "sections": [
+                "datasync/online-data-transfer",
+                "transfer-family/managed-file-transfer-endpoints",
+                "storage-gateway/file-gateways",
+                "storage-gateway/volume-and-tape-gateways"
+              ]
+            },
+            {
+              "id": "4.1.k9",
+              "kind": "knowledge",
+              "text": "Storage access patterns",
+              "sections": [
+                "s3/storage-classes",
+                "s3/performance-and-large-uploads",
+                "ebs/multi-attach",
+                "efs/mount-targets-and-access-points"
+              ]
+            },
+            {
+              "id": "4.1.k10",
+              "kind": "knowledge",
+              "text": "Storage tiering (for example, cold tiering for object storage)",
+              "sections": [
+                "s3/storage-classes",
+                "s3/lifecycle-and-retention",
+                "s3/glacier-retrieval"
+              ]
+            },
+            {
+              "id": "4.1.k11",
+              "kind": "knowledge",
+              "text": "Storage types with associated characteristics (for example, object, file, block)",
+              "sections": [
+                "s3/buckets-objects-and-durability",
+                "efs/regional-and-one-zone-file-systems",
+                "ebs/volume-types",
+                "fsx-for-windows/smb-directory-integration-and-availability"
+              ]
+            },
+            {
+              "id": "4.1.s1",
+              "kind": "skill",
+              "text": "Designing appropriate storage strategies (for example, batch uploads to Amazon S3 compared with individual uploads)",
+              "sections": [
+                "s3/performance-and-large-uploads",
+                "s3/storage-classes"
+              ]
+            },
+            {
+              "id": "4.1.s2",
+              "kind": "skill",
+              "text": "Determining the correct storage size for a workload",
+              "sections": [
+                "ebs/volume-types",
+                "rds/storage-autoscaling-and-metrics",
+                "compute-optimizer/resource-rightsizing"
+              ]
+            },
+            {
+              "id": "4.1.s3",
+              "kind": "skill",
+              "text": "Determining the lowest cost method of transferring data for a workload to AWS storage",
+              "sections": [
+                "datasync/online-data-transfer",
+                "snow-family/offline-transfer-and-edge-devices",
+                "direct-connect/connections-lags-and-gateways",
+                "billing-and-cost-management/data-transfer-costs"
+              ]
+            },
+            {
+              "id": "4.1.s4",
+              "kind": "skill",
+              "text": "Determining when storage auto scaling is required",
+              "sections": [
+                "rds/storage-autoscaling-and-metrics",
+                "aurora/storage-replicas-and-auto-scaling",
+                "efs/regional-and-one-zone-file-systems"
+              ]
+            },
+            {
+              "id": "4.1.s5",
+              "kind": "skill",
+              "text": "Managing S3 object lifecycles",
+              "sections": [
+                "s3/lifecycle-and-retention",
+                "s3/storage-classes"
+              ]
+            },
+            {
+              "id": "4.1.s6",
+              "kind": "skill",
+              "text": "Selecting the appropriate backup and/or archival solution",
+              "sections": [
+                "backup/plans-vaults-and-recovery-points",
+                "s3/glacier-retrieval",
+                "storage-gateway/volume-and-tape-gateways",
+                "s3/storage-classes"
+              ]
+            },
+            {
+              "id": "4.1.s7",
+              "kind": "skill",
+              "text": "Selecting the appropriate service for data migration to storage services",
+              "sections": [
+                "datasync/online-data-transfer",
+                "snow-family/offline-transfer-and-edge-devices",
+                "transfer-family/managed-file-transfer-endpoints",
+                "storage-gateway/file-gateways",
+                "cloud-adoption/migration-services"
+              ]
+            },
+            {
+              "id": "4.1.s8",
+              "kind": "skill",
+              "text": "Selecting the appropriate storage tier",
+              "sections": [
+                "s3/storage-classes",
+                "efs/regional-and-one-zone-file-systems",
+                "ebs/volume-types"
+              ]
+            },
+            {
+              "id": "4.1.s9",
+              "kind": "skill",
+              "text": "Selecting the correct data lifecycle for storage",
+              "sections": [
+                "s3/lifecycle-and-retention",
+                "s3/glacier-retrieval"
+              ]
+            },
+            {
+              "id": "4.1.s10",
+              "kind": "skill",
+              "text": "Selecting the most cost-effective storage service for a workload",
+              "sections": [
+                "s3/storage-classes",
+                "ebs/volume-types",
+                "efs/regional-and-one-zone-file-systems",
+                "s3/storage-lens"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Design cost-optimized compute solutions.",
+          "items": [
+            {
+              "id": "4.2.k1",
+              "kind": "knowledge",
+              "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+              "sections": [
+                "billing-and-cost-management/cost-allocation-tags",
+                "organizations/accounts-ous-and-consolidated-billing"
+              ]
+            },
+            {
+              "id": "4.2.k2",
+              "kind": "knowledge",
+              "text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+              "sections": [
+                "billing-and-cost-management/cost-explorer",
+                "billing-and-cost-management/budgets",
+                "billing-and-cost-management/cost-and-usage-reports",
+                "billing-and-cost-management/anomaly-detection-and-optimization-hub",
+                "compute-optimizer/resource-rightsizing"
+              ]
+            },
+            {
+              "id": "4.2.k3",
+              "kind": "knowledge",
+              "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+              "sections": [
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/multi-region-use-cases"
+              ]
+            },
+            {
+              "id": "4.2.k4",
+              "kind": "knowledge",
+              "text": "AWS purchasing options (for example, Spot Instances, Reserved Instances, Savings Plans)",
+              "sections": [
+                "ec2/purchasing-options",
+                "ec2/reserved-instance-flexibility-and-sharing",
+                "ec2/fleets-and-spot-requests",
+                "license-manager/license-inventory-and-rules"
+              ]
+            },
+            {
+              "id": "4.2.k5",
+              "kind": "knowledge",
+              "text": "Distributed compute strategies (for example, edge processing)",
+              "sections": [
+                "cloudfront/functions-and-lambda-at-edge",
+                "outposts/on-premises-aws-infrastructure",
+                "wavelength/carrier-edge-zones",
+                "snow-family/offline-transfer-and-edge-devices"
+              ]
+            },
+            {
+              "id": "4.2.k6",
+              "kind": "knowledge",
+              "text": "Hybrid compute options (for example, AWS Outposts)",
+              "sections": [
+                "outposts/on-premises-aws-infrastructure",
+                "ecs/ecs-anywhere",
+                "eks-anywhere/on-premises-kubernetes",
+                "vmware-cloud-on-aws/vmware-workloads-on-aws",
+                "wavelength/carrier-edge-zones"
+              ]
+            },
+            {
+              "id": "4.2.k7",
+              "kind": "knowledge",
+              "text": "Instance types, families, and sizes (for example, memory optimized, compute optimized, virtualization)",
+              "sections": [
+                "ec2/instance-types",
+                "ec2/accelerated-computing-for-ai"
+              ]
+            },
+            {
+              "id": "4.2.k8",
+              "kind": "knowledge",
+              "text": "Optimization of compute utilization (for example, containers, serverless computing, microservices)",
+              "sections": [
+                "compute-optimizer/resource-rightsizing",
+                "fargate/compute-and-isolation",
+                "lambda/concurrency-controls",
+                "ecs/capacity-providers"
+              ]
+            },
+            {
+              "id": "4.2.k9",
+              "kind": "knowledge",
+              "text": "Scaling strategies (for example, auto scaling, hibernation)",
+              "sections": [
+                "ec2-auto-scaling/scaling-policy-selection",
+                "ec2-auto-scaling/warm-pools",
+                "ec2/hibernation-user-data-and-instance-connect"
+              ]
+            },
+            {
+              "id": "4.2.s1",
+              "kind": "skill",
+              "text": "Determining an appropriate load balancing strategy (for example, Application Load Balancer [Layer 7] compared with Network Load Balancer [Layer 4] compared with Gateway Load Balancer)",
+              "sections": [
+                "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/cross-zone-balancing"
+              ]
+            },
+            {
+              "id": "4.2.s2",
+              "kind": "skill",
+              "text": "Determining appropriate scaling methods and strategies for elastic workloads (for example, horizontal compared with vertical, EC2 hibernation)",
+              "sections": [
+                "scalable-architectures/scaling-state-and-coupling",
+                "ec2/hibernation-user-data-and-instance-connect",
+                "ec2-auto-scaling/scaling-policy-selection",
+                "ec2-auto-scaling/warm-pools"
+              ]
+            },
+            {
+              "id": "4.2.s3",
+              "kind": "skill",
+              "text": "Determining cost-effective AWS compute services with appropriate use cases (for example, AWS Lambda, Amazon EC2, AWS Fargate)",
+              "sections": [
+                "lambda/concurrency-controls",
+                "fargate/compute-and-isolation",
+                "ec2/purchasing-options",
+                "ec2/instance-types"
+              ]
+            },
+            {
+              "id": "4.2.s4",
+              "kind": "skill",
+              "text": "Determining the required availability for different classes of workloads (for example, production workloads, non-production workloads)",
+              "sections": [
+                "availability-targets/service-slas-and-workload-targets",
+                "availability-targets/downtime-budgets-and-nines",
+                "ec2/purchasing-options"
+              ]
+            },
+            {
+              "id": "4.2.s5",
+              "kind": "skill",
+              "text": "Selecting the appropriate instance family for a workload",
+              "sections": [
+                "ec2/instance-types",
+                "ec2/accelerated-computing-for-ai"
+              ]
+            },
+            {
+              "id": "4.2.s6",
+              "kind": "skill",
+              "text": "Selecting the appropriate instance size for a workload",
+              "sections": [
+                "ec2/instance-types",
+                "compute-optimizer/resource-rightsizing",
+                "scalable-architectures/scaling-state-and-coupling"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Design cost-optimized database solutions.",
+          "items": [
+            {
+              "id": "4.3.k1",
+              "kind": "knowledge",
+              "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+              "sections": [
+                "billing-and-cost-management/cost-allocation-tags",
+                "organizations/accounts-ous-and-consolidated-billing"
+              ]
+            },
+            {
+              "id": "4.3.k2",
+              "kind": "knowledge",
+              "text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+              "sections": [
+                "billing-and-cost-management/cost-explorer",
+                "billing-and-cost-management/budgets",
+                "billing-and-cost-management/cost-and-usage-reports",
+                "billing-and-cost-management/anomaly-detection-and-optimization-hub",
+                "compute-optimizer/resource-rightsizing"
+              ]
+            },
+            {
+              "id": "4.3.k3",
+              "kind": "knowledge",
+              "text": "Caching strategies",
+              "sections": [
+                "elasticache/engines-replicas-and-multi-az",
+                "elasticache/use-cases-and-engine-choice",
+                "cloudfront/cache-behaviors-and-policies",
+                "dynamodb/dax-read-caching"
+              ]
+            },
+            {
+              "id": "4.3.k4",
+              "kind": "knowledge",
+              "text": "Data retention policies",
+              "sections": [
+                "s3/lifecycle-and-retention",
+                "backup/plans-vaults-and-recovery-points",
+                "rds/backups-and-point-in-time-recovery",
+                "dynamodb/time-to-live"
+              ]
+            },
+            {
+              "id": "4.3.k5",
+              "kind": "knowledge",
+              "text": "Database capacity planning (for example, capacity units)",
+              "sections": [
+                "dynamodb/capacity-scaling-and-throttling",
+                "aurora/serverless-v2-capacity-and-promotion",
+                "keyspaces/serverless-cassandra-tables"
+              ]
+            },
+            {
+              "id": "4.3.k6",
+              "kind": "knowledge",
+              "text": "Database connections and proxies",
+              "sections": [
+                "rds/proxy-connection-pooling"
+              ]
+            },
+            {
+              "id": "4.3.k7",
+              "kind": "knowledge",
+              "text": "Database engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)",
+              "sections": [
+                "dms/full-load-and-change-data-capture",
+                "dms/schema-conversion-tool",
+                "aurora/storage-configurations-and-babelfish"
+              ]
+            },
+            {
+              "id": "4.3.k8",
+              "kind": "knowledge",
+              "text": "Database replication (for example, read replicas)",
+              "sections": [
+                "rds/read-replicas-and-regional-recovery",
+                "rds/multi-az-and-failover-tests",
+                "aurora/storage-replicas-and-auto-scaling",
+                "aurora/global-database-switchover-and-failover",
+                "dynamodb/global-tables"
+              ]
+            },
+            {
+              "id": "4.3.k9",
+              "kind": "knowledge",
+              "text": "Database types and services (for example, relational compared with non-relational, Amazon Aurora, Amazon DynamoDB)",
+              "sections": [
+                "rds/managed-vs-self-managed-databases",
+                "aurora/storage-replicas-and-auto-scaling",
+                "dynamodb/capacity-scaling-and-throttling",
+                "documentdb/document-workloads-and-compatibility",
+                "neptune/graph-databases",
+                "keyspaces/serverless-cassandra-tables"
+              ]
+            },
+            {
+              "id": "4.3.s1",
+              "kind": "skill",
+              "text": "Designing appropriate backup and retention policies (for example, snapshot frequency)",
+              "sections": [
+                "backup/plans-vaults-and-recovery-points",
+                "ebs/snapshot-lifecycle-management",
+                "rds/backups-and-point-in-time-recovery",
+                "backup/cross-region-copies-and-pitr-limits"
+              ]
+            },
+            {
+              "id": "4.3.s2",
+              "kind": "skill",
+              "text": "Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+              "sections": [
+                "rds/managed-vs-self-managed-databases",
+                "aurora/storage-configurations-and-babelfish",
+                "rds/encryption-authentication-and-maintenance"
+              ]
+            },
+            {
+              "id": "4.3.s3",
+              "kind": "skill",
+              "text": "Determining cost-effective AWS database services with appropriate use cases (for example, DynamoDB compared with Amazon RDS, serverless)",
+              "sections": [
+                "dynamodb/capacity-scaling-and-throttling",
+                "aurora/serverless-v2-capacity-and-promotion",
+                "aurora/storage-configurations-and-babelfish",
+                "rds/managed-vs-self-managed-databases"
+              ]
+            },
+            {
+              "id": "4.3.s4",
+              "kind": "skill",
+              "text": "Determining cost-effective AWS database types (for example, time series format, columnar format)",
+              "sections": [
+                "redshift/data-warehouse-workloads",
+                "athena/partitions-and-columnar-formats",
+                "keyspaces/serverless-cassandra-tables"
+              ]
+            },
+            {
+              "id": "4.3.s5",
+              "kind": "skill",
+              "text": "Migrating database schemas and data to different locations and/or different database engines",
+              "sections": [
+                "dms/full-load-and-change-data-capture",
+                "dms/schema-conversion-tool",
+                "aurora/storage-configurations-and-babelfish"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4.4",
+          "title": "Design cost-optimized network architectures.",
+          "items": [
+            {
+              "id": "4.4.k1",
+              "kind": "knowledge",
+              "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+              "sections": [
+                "billing-and-cost-management/cost-allocation-tags",
+                "organizations/accounts-ous-and-consolidated-billing"
+              ]
+            },
+            {
+              "id": "4.4.k2",
+              "kind": "knowledge",
+              "text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+              "sections": [
+                "billing-and-cost-management/cost-explorer",
+                "billing-and-cost-management/budgets",
+                "billing-and-cost-management/cost-and-usage-reports",
+                "billing-and-cost-management/anomaly-detection-and-optimization-hub",
+                "compute-optimizer/resource-rightsizing"
+              ]
+            },
+            {
+              "id": "4.4.k3",
+              "kind": "knowledge",
+              "text": "Load balancing concepts (for example, ALB)",
+              "sections": [
+                "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/target-health-and-fail-open",
+                "elastic-load-balancing/draining-slow-start-and-stickiness"
+              ]
+            },
+            {
+              "id": "4.4.k4",
+              "kind": "knowledge",
+              "text": "NAT gateways (for example, NAT instance costs compared with NAT gateway costs)",
+              "sections": [
+                "vpc/ip-addressing-and-nat-instances",
+                "vpc/route-tables-and-peering"
+              ]
+            },
+            {
+              "id": "4.4.k5",
+              "kind": "knowledge",
+              "text": "Network connectivity (for example, private lines, dedicated lines, VPNs)",
+              "sections": [
+                "direct-connect/connections-lags-and-gateways",
+                "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "site-to-site-vpn/vpn-cloudhub"
+              ]
+            },
+            {
+              "id": "4.4.k6",
+              "kind": "knowledge",
+              "text": "Network routing, topology, and peering (for example, AWS Transit Gateway, VPC peering)",
+              "sections": [
+                "transit-gateway/attachments-route-tables-and-sharing",
+                "vpc/route-tables-and-peering"
+              ]
+            },
+            {
+              "id": "4.4.k7",
+              "kind": "knowledge",
+              "text": "Network services with appropriate use cases (for example, DNS)",
+              "sections": [
+                "route53/routing-policies",
+                "route53/alias-records-and-target-health",
+                "route53/private-hosted-zones",
+                "route53/resolver-endpoints-and-rules"
+              ]
+            },
+            {
+              "id": "4.4.s1",
+              "kind": "skill",
+              "text": "Configuring appropriate NAT gateway types for a network (for example, a single shared NAT gateway compared with NAT gateways for each Availability Zone)",
+              "sections": [
+                "vpc/route-tables-and-peering",
+                "vpc/subnets-and-gateways",
+                "vpc/ip-addressing-and-nat-instances"
+              ]
+            },
+            {
+              "id": "4.4.s2",
+              "kind": "skill",
+              "text": "Configuring appropriate network connections (for example, AWS Direct Connect compared with VPN compared with internet)",
+              "sections": [
+                "direct-connect/private-connectivity-and-encryption",
+                "direct-connect/connections-lags-and-gateways",
+                "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "client-vpn/remote-user-connectivity"
+              ]
+            },
+            {
+              "id": "4.4.s3",
+              "kind": "skill",
+              "text": "Configuring appropriate network routes to minimize network transfer costs (for example, Region to Region, Availability Zone to Availability Zone, private to public, AWS Global Accelerator, VPC endpoints)",
+              "sections": [
+                "billing-and-cost-management/data-transfer-costs",
+                "vpc/gateway-endpoints-and-endpoint-policies",
+                "global-accelerator/regional-endpoint-routing",
+                "privatelink/interface-endpoints-and-private-access"
+              ]
+            },
+            {
+              "id": "4.4.s4",
+              "kind": "skill",
+              "text": "Determining strategic needs for content delivery networks (CDNs) and edge caching",
+              "sections": [
+                "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/ttl-stale-content-and-invalidation",
+                "cloudfront/origin-shield",
+                "global-accelerator/regional-endpoint-routing"
+              ]
+            },
+            {
+              "id": "4.4.s5",
+              "kind": "skill",
+              "text": "Reviewing existing workloads for network optimizations",
+              "sections": [
+                "billing-and-cost-management/data-transfer-costs",
+                "vpc/flow-logs",
+                "vpc/gateway-endpoints-and-endpoint-policies",
+                "well-architected/well-architected-tool"
+              ]
+            },
+            {
+              "id": "4.4.s6",
+              "kind": "skill",
+              "text": "Selecting an appropriate throttling strategy",
+              "sections": [
+                "api-gateway/endpoint-types-and-throttling",
+                "api-gateway/authentication-and-api-keys",
+                "waf/managed-and-rate-based-rules",
+                "lambda/concurrency-controls"
+              ]
+            },
+            {
+              "id": "4.4.s7",
+              "kind": "skill",
+              "text": "Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed)",
+              "sections": [
+                "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "direct-connect/connections-lags-and-gateways"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "concepts": [
+    "Compute",
+    "Cost management",
+    "Database",
+    "Disaster recovery",
+    "High performance",
+    "Management and governance",
+    "Microservices and component delivery",
+    "Migration and data transfer",
+    "Networking, connectivity, and content delivery",
+    "Resiliency",
+    "Security",
+    "Serverless and event-driven design principles",
+    "Storage"
+  ],
+  "services": [
+    {
+      "category": "Analytics",
+      "services": [
+        {
+          "name": "Amazon Athena",
+          "unit": "athena"
+        },
+        {
+          "name": "AWS Data Exchange",
+          "unit": "data-exchange"
+        },
+        {
+          "name": "AWS Data Pipeline",
+          "unit": "data-pipeline"
+        },
+        {
+          "name": "Amazon EMR",
+          "unit": "emr"
+        },
+        {
+          "name": "AWS Glue",
+          "unit": "glue"
+        },
+        {
+          "name": "Amazon Kinesis",
+          "sections": [
+            "kinesis-data-streams/shards-partition-keys-and-capacity",
+            "firehose/destinations-and-buffering",
+            "managed-service-for-apache-flink/stream-processing-workloads"
+          ]
+        },
+        {
+          "name": "AWS Lake Formation",
+          "unit": "lake-formation"
+        },
+        {
+          "name": "Amazon Managed Streaming for Apache Kafka (Amazon MSK)",
+          "unit": "msk"
+        },
+        {
+          "name": "Amazon OpenSearch Service",
+          "unit": "opensearch"
+        },
+        {
+          "name": "Amazon Quick",
+          "unit": "quicksight"
+        },
+        {
+          "name": "Amazon Redshift",
+          "unit": "redshift"
+        }
+      ]
+    },
+    {
+      "category": "Application Integration",
+      "services": [
+        {
+          "name": "Amazon AppFlow",
+          "unit": "appflow"
+        },
+        {
+          "name": "Amazon EventBridge",
+          "unit": "eventbridge"
+        },
+        {
+          "name": "Amazon MQ",
+          "unit": "amazon-mq"
+        },
+        {
+          "name": "Amazon SNS",
+          "unit": "sns"
+        },
+        {
+          "name": "Amazon SQS",
+          "unit": "sqs"
+        },
+        {
+          "name": "AWS Step Functions",
+          "unit": "step-functions"
+        }
+      ]
+    },
+    {
+      "category": "AWS Cost Management",
+      "services": [
+        {
+          "name": "AWS Budgets",
+          "sections": [
+            "billing-and-cost-management/budgets"
+          ]
+        },
+        {
+          "name": "AWS Cost and Usage Report",
+          "sections": [
+            "billing-and-cost-management/cost-and-usage-reports"
+          ]
+        },
+        {
+          "name": "AWS Cost Explorer",
+          "sections": [
+            "billing-and-cost-management/cost-explorer"
+          ]
+        },
+        {
+          "name": "Savings Plans",
+          "sections": [
+            "ec2/purchasing-options"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Compute",
+      "services": [
+        {
+          "name": "AWS Batch",
+          "unit": "batch"
+        },
+        {
+          "name": "Amazon EC2",
+          "unit": "ec2"
+        },
+        {
+          "name": "Amazon EC2 Auto Scaling",
+          "unit": "ec2-auto-scaling"
+        },
+        {
+          "name": "AWS Elastic Beanstalk",
+          "unit": "elastic-beanstalk"
+        },
+        {
+          "name": "AWS Outposts",
+          "unit": "outposts"
+        },
+        {
+          "name": "AWS Serverless Application Repository",
+          "unit": "serverless-application-repository"
+        },
+        {
+          "name": "VMware Cloud on AWS",
+          "unit": "vmware-cloud-on-aws"
+        },
+        {
+          "name": "AWS Wavelength",
+          "unit": "wavelength"
+        }
+      ]
+    },
+    {
+      "category": "Containers",
+      "services": [
+        {
+          "name": "Amazon ECR",
+          "unit": "ecr"
+        },
+        {
+          "name": "Amazon ECS",
+          "unit": "ecs"
+        },
+        {
+          "name": "Amazon ECS Anywhere",
+          "sections": [
+            "ecs/ecs-anywhere"
+          ]
+        },
+        {
+          "name": "Amazon EKS",
+          "unit": "eks"
+        },
+        {
+          "name": "Amazon EKS Anywhere",
+          "unit": "eks-anywhere"
+        },
+        {
+          "name": "Amazon EKS Distro",
+          "unit": "eks-distro"
+        }
+      ]
+    },
+    {
+      "category": "Database",
+      "services": [
+        {
+          "name": "Amazon Aurora",
+          "unit": "aurora"
+        },
+        {
+          "name": "Amazon Aurora Serverless",
+          "sections": [
+            "aurora/serverless-v2-capacity-and-promotion"
+          ]
+        },
+        {
+          "name": "Amazon DocumentDB",
+          "unit": "documentdb"
+        },
+        {
+          "name": "Amazon DynamoDB",
+          "unit": "dynamodb"
+        },
+        {
+          "name": "Amazon ElastiCache",
+          "unit": "elasticache"
+        },
+        {
+          "name": "Amazon Keyspaces",
+          "unit": "keyspaces"
+        },
+        {
+          "name": "Amazon Neptune",
+          "unit": "neptune"
+        },
+        {
+          "name": "Amazon RDS",
+          "unit": "rds"
+        }
+      ]
+    },
+    {
+      "category": "Developer Tools",
+      "services": [
+        {
+          "name": "AWS X-Ray",
+          "unit": "xray"
+        }
+      ]
+    },
+    {
+      "category": "Front-End Web and Mobile",
+      "services": [
+        {
+          "name": "AWS Amplify",
+          "unit": "amplify"
+        },
+        {
+          "name": "Amazon API Gateway",
+          "unit": "api-gateway"
+        },
+        {
+          "name": "AWS Device Farm",
+          "unit": "device-farm"
+        }
+      ]
+    },
+    {
+      "category": "Machine Learning",
+      "services": [
+        {
+          "name": "Amazon Comprehend",
+          "unit": "comprehend"
+        },
+        {
+          "name": "Amazon Lex",
+          "unit": "lex"
+        },
+        {
+          "name": "Amazon Polly",
+          "unit": "polly"
+        },
+        {
+          "name": "Amazon Rekognition",
+          "unit": "rekognition"
+        },
+        {
+          "name": "Amazon SageMaker AI",
+          "unit": "sagemaker-ai"
+        },
+        {
+          "name": "Amazon Textract",
+          "unit": "textract"
+        },
+        {
+          "name": "Amazon Transcribe",
+          "unit": "transcribe"
+        },
+        {
+          "name": "Amazon Translate",
+          "unit": "translate"
+        }
+      ]
+    },
+    {
+      "category": "Management and Governance",
+      "services": [
+        {
+          "name": "AWS Auto Scaling",
+          "sections": [
+            "application-auto-scaling/scalable-targets-and-policies"
+          ]
+        },
+        {
+          "name": "AWS CLI",
+          "unit": "cli"
+        },
+        {
+          "name": "AWS CloudFormation",
+          "unit": "cloudformation"
+        },
+        {
+          "name": "AWS CloudTrail",
+          "unit": "cloudtrail"
+        },
+        {
+          "name": "Amazon CloudWatch",
+          "unit": "cloudwatch"
+        },
+        {
+          "name": "AWS Compute Optimizer",
+          "unit": "compute-optimizer"
+        },
+        {
+          "name": "AWS Config",
+          "unit": "config"
+        },
+        {
+          "name": "AWS Control Tower",
+          "unit": "control-tower"
+        },
+        {
+          "name": "AWS Health Dashboard",
+          "unit": "health"
+        },
+        {
+          "name": "AWS License Manager",
+          "unit": "license-manager"
+        },
+        {
+          "name": "Amazon Managed Grafana",
+          "unit": "managed-grafana"
+        },
+        {
+          "name": "Amazon Managed Service for Prometheus",
+          "unit": "managed-prometheus"
+        },
+        {
+          "name": "AWS Management Console",
+          "unit": "management-console"
+        },
+        {
+          "name": "AWS Organizations",
+          "unit": "organizations"
+        },
+        {
+          "name": "AWS Proton",
+          "unit": "proton"
+        },
+        {
+          "name": "AWS Service Catalog",
+          "unit": "service-catalog"
+        },
+        {
+          "name": "AWS Systems Manager",
+          "unit": "systems-manager"
+        },
+        {
+          "name": "AWS Well-Architected Tool",
+          "sections": [
+            "well-architected/well-architected-tool"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Media Services",
+      "services": [
+        {
+          "name": "Amazon Kinesis Video Streams",
+          "unit": "kinesis-video-streams"
+        }
+      ]
+    },
+    {
+      "category": "Migration and Transfer",
+      "services": [
+        {
+          "name": "AWS Application Discovery Service",
+          "sections": [
+            "cloud-adoption/migration-services"
+          ]
+        },
+        {
+          "name": "AWS Application Migration Service",
+          "sections": [
+            "cloud-adoption/migration-services"
+          ]
+        },
+        {
+          "name": "AWS DataSync",
+          "unit": "datasync"
+        },
+        {
+          "name": "AWS DMS",
+          "unit": "dms"
+        },
+        {
+          "name": "AWS Snow Family",
+          "unit": "snow-family"
+        },
+        {
+          "name": "AWS Transfer Family",
+          "unit": "transfer-family"
+        }
+      ]
+    },
+    {
+      "category": "Networking and Content Delivery",
+      "services": [
+        {
+          "name": "AWS Client VPN",
+          "unit": "client-vpn"
+        },
+        {
+          "name": "Amazon CloudFront",
+          "unit": "cloudfront"
+        },
+        {
+          "name": "AWS Direct Connect",
+          "unit": "direct-connect"
+        },
+        {
+          "name": "Elastic Load Balancing (ELB)",
+          "unit": "elastic-load-balancing"
+        },
+        {
+          "name": "AWS Global Accelerator",
+          "unit": "global-accelerator"
+        },
+        {
+          "name": "AWS PrivateLink",
+          "unit": "privatelink"
+        },
+        {
+          "name": "Amazon Route 53",
+          "unit": "route53"
+        },
+        {
+          "name": "AWS Site-to-Site VPN",
+          "unit": "site-to-site-vpn"
+        },
+        {
+          "name": "AWS Transit Gateway",
+          "unit": "transit-gateway"
+        },
+        {
+          "name": "Amazon VPC",
+          "unit": "vpc"
+        }
+      ]
+    },
+    {
+      "category": "Security, Identity, and Compliance",
+      "services": [
+        {
+          "name": "AWS Artifact",
+          "unit": "artifact"
+        },
+        {
+          "name": "AWS Certificate Manager (ACM)",
+          "unit": "acm"
+        },
+        {
+          "name": "AWS CloudHSM",
+          "unit": "cloudhsm"
+        },
+        {
+          "name": "Amazon Cognito",
+          "unit": "cognito"
+        },
+        {
+          "name": "Amazon Detective",
+          "unit": "detective"
+        },
+        {
+          "name": "AWS Directory Service",
+          "unit": "directory-service"
+        },
+        {
+          "name": "AWS Firewall Manager",
+          "unit": "firewall-manager"
+        },
+        {
+          "name": "Amazon GuardDuty",
+          "unit": "guardduty"
+        },
+        {
+          "name": "AWS IAM Identity Center",
+          "unit": "iam-identity-center"
+        },
+        {
+          "name": "Amazon Inspector",
+          "unit": "inspector"
+        },
+        {
+          "name": "AWS KMS",
+          "unit": "kms"
+        },
+        {
+          "name": "Amazon Macie",
+          "unit": "macie"
+        },
+        {
+          "name": "AWS Network Firewall",
+          "unit": "network-firewall"
+        },
+        {
+          "name": "AWS Resource Access Manager (AWS RAM)",
+          "unit": "resource-access-manager"
+        },
+        {
+          "name": "AWS Secrets Manager",
+          "unit": "secrets-manager"
+        },
+        {
+          "name": "AWS Security Hub",
+          "unit": "security-hub"
+        },
+        {
+          "name": "AWS Shield",
+          "unit": "shield"
+        },
+        {
+          "name": "AWS WAF",
+          "unit": "waf"
+        },
+        {
+          "name": "IAM",
+          "unit": "iam"
+        }
+      ]
+    },
+    {
+      "category": "Serverless",
+      "services": [
+        {
+          "name": "AWS Fargate",
+          "unit": "fargate"
+        },
+        {
+          "name": "AWS Lambda",
+          "unit": "lambda"
+        }
+      ]
+    },
+    {
+      "category": "Storage",
+      "services": [
+        {
+          "name": "AWS Backup",
+          "unit": "backup"
+        },
+        {
+          "name": "Amazon EBS",
+          "unit": "ebs"
+        },
+        {
+          "name": "Amazon EFS",
+          "unit": "efs"
+        },
+        {
+          "name": "Amazon FSx (for all types)",
+          "sections": [
+            "fsx-for-windows/smb-directory-integration-and-availability",
+            "fsx-for-lustre/parallel-storage-and-s3-integration",
+            "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
+            "fsx-for-openzfs/nfs-snapshots-and-clones"
+          ]
+        },
+        {
+          "name": "Amazon S3",
+          "unit": "s3"
+        },
+        {
+          "name": "Amazon S3 Glacier",
+          "sections": [
+            "s3/glacier-retrieval",
+            "s3/storage-classes"
+          ]
+        },
+        {
+          "name": "AWS Storage Gateway",
+          "unit": "storage-gateway"
+        }
+      ]
+    }
+  ]
+}

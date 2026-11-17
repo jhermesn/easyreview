@@ -30,6 +30,12 @@ facts:
   - id: dms-tracking
     text: AWS Migration Hub receives migration status updates from AWS Application Migration Service and AWS Database Migration Service.
     source: https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub
+  - id: ads-collectors
+    text: "Application Discovery Service Agentless Collector is an OVA appliance deployed in VMware vCenter that reports VM performance and utilization without per-VM agents, but cannot see processes or network connections; the Discovery Agent, installed on each server, collects those too."
+    source: https://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html#what-is-appdiscovery
+  - id: vm-export
+    text: "VM Import/Export can export most EC2 instances as VMs for Citrix Xen, Microsoft Hyper-V or VMware vSphere, storing the image in S3; instances with Windows, SQL Server or AWS Marketplace software cannot be exported."
+    source: https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport-limits.html#vmexport-limits
 cards:
   - id: cloud-adoption-019
     q: Which AWS service rehosts physical, virtual and cloud servers on AWS with continuous block-level replication and short cutovers?
@@ -56,6 +62,14 @@ cards:
     a: No. It discovers, plans and tracks migrations; tools such as AWS Application Migration Service and AWS DMS do the moving.
     trap: true
     facts: [hub, dms-tracking]
+  - id: cloud-adoption-030
+    q: "Discovery of VMware vCenter VMs must avoid installing anything on each VM, yet the team also needs process and network connection data. What does each Application Discovery Service option provide?"
+    a: "The Agentless Collector (an OVA in vCenter) reports VM performance and utilization only. Process and network connection data needs the Discovery Agent on each server."
+    facts: [ads-collectors]
+  - id: cloud-adoption-031
+    q: "A team wants to test an Amazon Linux EC2 instance on its on-premises VMware vSphere hosts. Which AWS capability produces the VM image?"
+    a: "VM Import/Export instance export, which writes the VM image to S3. It cannot export instances with Windows, SQL Server or AWS Marketplace software."
+    facts: [vm-export]
 ---
 AWS migration services cover the three stages of a move: build the case, discover what you run, then move and track it. Several were renamed or closed to new customers in late 2025, so exam questions may use older names. [Migration Hub](https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub)
 

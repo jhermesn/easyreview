@@ -126,6 +126,12 @@ facts:
   - id: batch-tagging
     text: "S3 Batch Operations applies a tag set to every object in a supplied list in one job, which can cover billions of objects."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html#object-tagging
+  - id: transition-waterfall
+    text: "Lifecycle transitions only move objects toward colder classes, from Standard to Standard-IA, Intelligent-Tiering, One Zone-IA and the Glacier classes; One Zone-IA can only move on to Glacier Flexible Retrieval or Deep Archive, and nothing transitions back to Standard."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#supported-lifecycle-transitions
+  - id: transition-request-charge
+    text: "Each lifecycle transition is billed as a transition request per object, which is why S3 by default skips transitioning objects smaller than 128 KB."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#lifecycle-transition-general-considerations
 cards:
   - id: s3-021
     q: Which S3 controls move aging objects, delete old versions, and remove abandoned upload parts?
@@ -236,6 +242,15 @@ cards:
     a: "S3 Batch Operations with a replace-tags operation over the supplied object list."
     facts:
       - batch-tagging
+  - id: s3-153
+    q: "Which lifecycle transition is supported: One Zone-IA to Standard-IA, Intelligent-Tiering to Standard, or Standard-IA to One Zone-IA?"
+    a: "Standard-IA to One Zone-IA. Transitions only go toward colder classes. One Zone-IA can only move to Glacier Flexible Retrieval or Deep Archive, and no class transitions back to Standard."
+    trap: true
+    facts: [transition-waterfall]
+  - id: s3-154
+    q: "Do S3 lifecycle transitions cost anything by themselves?"
+    a: "Yes. Each transitioned object is billed as a transition request, so moving many tiny objects can cost more than it saves. Data uploaded from the internet, by contrast, has no transfer charge."
+    facts: [transition-request-charge]
 ---
 S3 Lifecycle applies rules to move aging objects between storage classes or remove them. A storage class is a choice of access speed, storage placement, and billing terms; choose it before scheduling transitions.
 

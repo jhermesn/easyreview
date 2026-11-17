@@ -12,6 +12,9 @@ facts:
   - id: channels
     text: Customers contact the contact center through the method they choose, and agents help them solve issues they can't resolve alone.
     source: https://docs.aws.amazon.com/connect/latest/adminguide/what-is-amazon-connect.html#what-is-amazon-connect
+  - id: chime-eos
+    text: "AWS ended support for the Amazon Chime meetings and chat service on February 20, 2026; its console and application resources are no longer available."
+    source: https://docs.aws.amazon.com/chime/latest/ag/what-is-chime.html#what-is-chime
 cards:
   - id: connect-001
     q: A company wants a cloud-based contact center where customers call or chat and are routed to agents. Which AWS service fits?
@@ -26,6 +29,11 @@ cards:
     a: No. Connect runs contact centers; bulk and transactional email is Amazon SES.
     trap: true
     facts: [purpose]
+  - id: connect-004
+    q: "A question offers Amazon Chime and Amazon Connect for improving business communication and customer service. What changed for Chime?"
+    a: "AWS ended support for Amazon Chime on February 20, 2026, so it is no longer an option. Amazon Connect remains the AWS contact-center service."
+    trap: true
+    facts: [chime-eos]
 ---
 Amazon Connect runs a contact center in the cloud: phone and chat with customers, routing to the right agent, and real-time performance tracking. The contact center product is now called Amazon Connect Customer. [What is Connect Customer?](https://docs.aws.amazon.com/connect/latest/adminguide/what-is-amazon-connect.html#what-is-amazon-connect)
 

@@ -115,7 +115,10 @@
         "storage-gateway",
         "backup",
         "disaster-recovery",
-        "elastic-disaster-recovery"
+        "elastic-disaster-recovery",
+        "datasync",
+        "snow-family",
+        "transfer-family"
       ]
     },
     {
@@ -240,6 +243,7 @@
         "polly",
         "rekognition",
         "textract",
+        "kendra",
         "transcribe",
         "translate"
       ]

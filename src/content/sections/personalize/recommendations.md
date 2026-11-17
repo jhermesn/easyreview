@@ -9,6 +9,9 @@ facts:
   - id: use-cases
     text: Common Amazon Personalize uses include video recommendations such as "Top picks for you" and "More like X", and ecommerce recommendations such as "Frequently bought together" and "Customers who viewed X also viewed".
     source: https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html#what-is-personalize
+  - id: recipes
+    text: "Amazon Personalize recipes are algorithms prepared for specific use cases: USER_PERSONALIZATION (recommend items for a user), PERSONALIZED_RANKING (re-rank a list), POPULAR_ITEMS (trending or popular), RELATED_ITEMS (similar items), PERSONALIZED_ACTIONS (next best action) and USER_SEGMENTATION (user segments)."
+    source: https://docs.aws.amazon.com/personalize/latest/dg/working-with-predefined-recipes.html#use-cases
 cards:
   - id: personalize-001
     q: An online store wants "Customers who viewed this also viewed" suggestions without building ML models. Which AWS service fits?
@@ -27,6 +30,10 @@ cards:
     a: "No. It's fully managed; you provide interaction and item data, and it trains and serves the recommenders."
     trap: true
     facts: [what]
+  - id: personalize-005
+    q: "A news site wants Amazon Personalize to show breaking articles that many readers are interacting with right now. Which recipe type fits?"
+    a: "A POPULAR_ITEMS recipe, such as Trending-Now. USER_PERSONALIZATION recommends items for one user, and RELATED_ITEMS finds similar items."
+    facts: [recipes]
 ---
 Amazon Personalize builds recommendation systems from your users' interactions, such as views, clicks and purchases, with no ML to write. [What is Amazon Personalize?](https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html)
 
@@ -40,6 +47,7 @@ Amazon Personalize builds recommendation systems from your users' interactions, 
 
 - If the question says personalized recommendations, "frequently bought together" or "more like this", think Amazon Personalize.
 - If the question says find users interested in an item, think Personalize user segments.
+- If the question says trending items, think POPULAR_ITEMS; similar items, think RELATED_ITEMS; next best action, think PERSONALIZED_ACTIONS.
 
 ### Remember
 

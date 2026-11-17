@@ -33,6 +33,9 @@ facts:
   - id: firehose-delivery
     text: Amazon Data Firehose delivers streaming data to destinations and can transform data before delivery.
     source: https://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html#what-is-this-service
+  - id: renamed
+    text: "Amazon Managed Service for Apache Flink was previously named Amazon Kinesis Data Analytics for Apache Flink."
+    source: https://docs.aws.amazon.com/managed-flink/latest/apiv2/Welcome.html#Welcome
 diagrams:
   - id: flink-stream-flow
     title: Process and deliver a stream
@@ -74,6 +77,10 @@ cards:
     a: "No. Firehose can transform data before delivering it."
     facts: [firehose-delivery]
     trap: true
+  - id: managed-service-for-apache-flink-007
+    q: "An exam answer mentions Amazon Kinesis Data Analytics for real-time analytics on a stream. What is that service called today?"
+    a: "Amazon Managed Service for Apache Flink."
+    facts: [renamed]
 ---
 
 Amazon Managed Service for Apache Flink runs applications that analyze streaming data, a continuous flow of records. Think of it as managed compute for processing records as they arrive.

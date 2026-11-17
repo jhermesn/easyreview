@@ -24,6 +24,12 @@ facts:
   - id: self-supervised
     text: Foundation models are trained on broad, unlabeled data, learning to predict the next item in a sequence instead of learning from human labels.
     source: https://aws.amazon.com/what-is/generative-ai/
+  - id: semi-supervised
+    text: "Semi-supervised learning combines a small amount of labeled data with a large amount of unlabeled data: a model partly trained on the labeled data labels the rest (pseudo-labeling), and training continues on both."
+    source: https://aws.amazon.com/what-is/machine-learning/
+  - id: knn
+    text: "The SageMaker AI k-nearest neighbors (k-NN) algorithm classifies a sample with the most frequent label among the k closest points, or for regression returns the average of their values."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/k-nearest-neighbors.html#k-nearest-neighbors
 cards:
   - id: ai-ml-fundamentals-007
     q: A bank has past loan records labeled "repaid" or "defaulted" and wants to predict the label for new applicants. Which learning type and problem type fit?
@@ -54,6 +60,10 @@ cards:
     q: A company has no labels and wants to flag unusual credit card transactions. Which ML approach fits?
     a: Unsupervised anomaly detection, which finds rare items that differ from the rest of the data.
     facts: [unsupervised-tasks]
+  - id: ai-ml-fundamentals-027
+    q: "A team has a few labeled medical images and many unlabeled ones. Which learning approach uses both?"
+    a: "Semi-supervised learning. The model trains on the labeled examples, labels the unlabeled data (pseudo-labeling), and keeps training on both."
+    facts: [semi-supervised]
 ---
 A model learns in one of three ways: from labeled examples (supervised), by finding structure in unlabeled data (unsupervised), or from rewards for its actions (reinforcement). The data you have and the answer you want decide which one fits. [Types of algorithms](https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html)
 

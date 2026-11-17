@@ -27,6 +27,24 @@ facts:
   - id: reserved-db
     text: RDS reserved DB instances give a discount for a one-year or three-year term, with No Upfront, Partial Upfront or All Upfront payment.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithReservedDBInstances.html
+  - id: custom-multiaz
+    text: "RDS Custom for Oracle and RDS Custom for SQL Server support Multi-AZ deployments with a synchronous standby in another AZ; unlike regular RDS Multi-AZ, they need prerequisites set up first because RDS Custom runs inside your account."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-sqlserver-multiaz.html#custom-sqlserver-multiaz
+  - id: custom-oracle-eos
+    text: "AWS will end support for RDS Custom for Oracle on March 31, 2027, after which its console and resources can no longer be accessed (noted November 2026)."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-oracle-multiaz.html#custom-oracle-multiaz
+  - id: oracle-byol
+    text: "RDS for Oracle offers two licensing models, License Included and Bring Your Own License (BYOL), and you can switch between them by modifying the DB instance."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Oracle.Concepts.Licensing.html#Oracle.Concepts.Licensing
+  - id: timestream
+    text: "Amazon Timestream is the purpose-built time series database; Timestream for LiveAnalytics is serverless with a memory store for recent data and a magnetic store for history, and Timestream for InfluxDB runs managed InfluxDB."
+    source: https://docs.aws.amazon.com/timestream/latest/developerguide/what-is-timestream.html#what-is-timestream
+  - id: timestream-closed
+    text: "Amazon Timestream for LiveAnalytics closed to new customers on June 20, 2025; AWS points new workloads to Timestream for InfluxDB."
+    source: https://docs.aws.amazon.com/timestream/latest/developerguide/AmazonTimestreamForLiveAnalytics-availability-change.html#AmazonTimestreamForLiveAnalytics-availability-change
+  - id: managed-blockchain
+    text: "Amazon Managed Blockchain provides Ethereum and Bitcoin public nodes and private Hyperledger Fabric networks; it stopped accepting new customers on October 29, 2026, and existing customers lose access after September 29, 2027."
+    source: https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/what-is-managed-blockchain.html#what-is-managed-blockchain
 cards:
   - id: rds-041
     q: What does Amazon RDS manage that a database on Amazon EC2 leaves to the customer?
@@ -57,6 +75,26 @@ cards:
     q: A company runs an Amazon RDS database around the clock for the next three years. How can it lower the instance cost?
     a: Buy RDS reserved DB instances for a three-year term (No, Partial or All Upfront).
     facts: [reserved-db]
+  - id: rds-056
+    q: "A legacy Oracle application needs OS-level customization of the database host and higher availability. Which managed option fits?"
+    a: "RDS Custom for Oracle with a Multi-AZ deployment. Regular RDS for Oracle gives no OS access, and EC2 leaves all failover work to the team. Note that AWS ends support for RDS Custom for Oracle on March 31, 2027."
+    facts: [custom-multiaz, custom-oracle-eos]
+  - id: rds-057
+    q: "An RDS production database will run for years. How can its instance cost drop?"
+    a: "Buy RDS reserved DB instances for a one- or three-year term. They are a billing discount applied to matching DB instances."
+    facts: [reserved-db]
+  - id: rds-058
+    q: "Which RDS engine lets a company bring its own existing database licenses?"
+    a: "RDS for Oracle, which offers Bring Your Own License as well as License Included."
+    facts: [oracle-byol]
+  - id: rds-059
+    q: "IoT sensors write trillions of timestamped readings a day that must be queried by time window. Which AWS database family fits, and which option takes new customers?"
+    a: "Amazon Timestream, the time series database. Timestream for LiveAnalytics closed to new customers on June 20, 2025, so new workloads use Timestream for InfluxDB."
+    facts: [timestream, timestream-closed]
+  - id: rds-060
+    q: "Which AWS service offered managed Hyperledger Fabric networks and Ethereum nodes, and what is its status?"
+    a: "Amazon Managed Blockchain. It stopped accepting new customers on October 29, 2026, and access ends after September 29, 2027."
+    facts: [managed-blockchain]
 ---
 A database can run on servers you manage or as a managed AWS service. Amazon RDS runs relational databases for you: AWS installs, patches, backs up and scales them, and you focus on the data and the application. [What is Amazon RDS?](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome)
 

@@ -18,6 +18,9 @@ facts:
   - id: bedrock-in-studio
     text: Amazon Bedrock in SageMaker Unified Studio (previously Amazon Bedrock IDE) lets you discover models, try prompts in a playground and build generative AI apps with knowledge bases and guardrails, with little or no code.
     source: https://docs.aws.amazon.com/decision-guides/latest/generative-ai-on-aws-how-to-choose/guide.html#understand
+  - id: canvas-ready-models
+    text: "SageMaker Canvas Ready-to-use models make predictions on your data without building a model, using Amazon Textract, Amazon Rekognition and Amazon Comprehend behind the scenes."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/canvas-ready-to-use-models.html#canvas-ready-to-use-models
 cards:
   - id: sagemaker-ai-010
     q: A team wants to deploy and fine-tune an open-weight foundation model from a catalog of pre-trained models, with its own instances. Which SageMaker AI feature fits?
