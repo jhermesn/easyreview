@@ -87,6 +87,9 @@ facts:
   - id: pricing
     text: Lambda functions are billed by the number of requests and the duration the code runs, in GB-seconds based on the memory chosen; the free tier includes one million requests and 400,000 GB-seconds per month.
     source: https://aws.amazon.com/lambda/pricing/
+  - id: function-url
+    text: "A Lambda function URL is a dedicated HTTPS endpoint for one function, with auth type AWS_IAM or NONE (public, still subject to the resource-based policy), and works as a webhook endpoint without API Gateway."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html#urls-configuration
 diagrams:
   - id: lambda-async-invocation-flow
     title: Asynchronous invocation separates acceptance from execution
@@ -235,6 +238,10 @@ cards:
     a: The number of requests and the duration the code runs (GB-seconds, based on the memory chosen). Not the number of functions or versions.
     trap: true
     facts: [pricing]
+  - id: lambda-067
+    q: "A third-party service must call a Lambda function through an HTTPS webhook. What is the simplest option?"
+    a: "A Lambda function URL: a dedicated HTTPS endpoint for the function, with no API Gateway to set up."
+    facts: [function-url]
 ---
 Lambda runs function code in response to invocations, meaning requests to execute the function. A synchronous caller waits for the result; an asynchronous caller hands work to Lambda's event queue. The invocation path determines who owns retries.
 

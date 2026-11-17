@@ -110,6 +110,9 @@ facts:
     text: Auto Mode SecurityGroupPolicy uses eks.amazonaws.com/v1 and is not spec-compatible with the
       VPC CNI SecurityGroupPolicy in vpcresources.k8s.aws/v1beta1.
     source: https://docs.aws.amazon.com/eks/latest/userguide/auto-sgp.html#_how_this_compares_to_other_ways_to_assign_security_groups
+  - id: envelope-encryption
+    text: "EKS clusters on Kubernetes 1.28 or later envelope-encrypt all Kubernetes API data, including Secrets, before it reaches etcd, using KMS with an AWS owned key by default or a customer managed KMS key you choose."
+    source: https://docs.aws.amazon.com/eks/latest/userguide/envelope-encryption.html#envelope-encryption
 cards:
   - id: eks-004
     q: Does Amazon EKS always manage only the control plane?
@@ -206,6 +209,10 @@ cards:
     trap: true
     facts:
       - auto-pod-sg-api
+  - id: eks-060
+    q: "Kubernetes Secrets on an EKS cluster must be encrypted with a key the company controls and audits in CloudTrail. What should they configure?"
+    a: "EKS envelope encryption with their own customer managed KMS key. EKS already envelope-encrypts API data with an AWS owned key by default."
+    facts: [envelope-encryption]
 ---
 Amazon EKS runs Kubernetes, a system that places and maintains container workloads. Its control plane stores cluster state and schedules work. A node is the machine running that work; its kubelet agent keeps containers running inside Pods, the units Kubernetes schedules.
 

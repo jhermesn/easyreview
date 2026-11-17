@@ -21,6 +21,9 @@ facts:
   - id: geospatial
     text: "Valkey and Redis OSS on ElastiCache support geospatial indexes; Memcached does not."
     source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SelectEngine.html#SelectEngine
+  - id: memcached-auto-discovery
+    text: "For Memcached clusters, ElastiCache Auto Discovery lets client programs find every node and keep connections to all of them as nodes are added or removed; it is not available for Valkey or Redis OSS."
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoDiscovery.html#AutoDiscovery
 cards:
   - id: elasticache-018
     q: A mobile game needs a real-time global leaderboard that updates with every score change for millions of players. Which service and data structure fit?
@@ -47,6 +50,10 @@ cards:
     q: "A cache in front of a relational database must support geospatial queries. Which ElastiCache engine fits?"
     a: "Valkey or Redis OSS, which have geospatial indexes. Memcached does not support them."
     facts: [geospatial]
+  - id: elasticache-024
+    q: "An app stores sessions in an ElastiCache Memcached cluster that scales its node count. How do clients keep track of the nodes?"
+    a: "Memcached Auto Discovery, which lets clients find all nodes and connect to them automatically. It exists only for the Memcached engine."
+    facts: [memcached-auto-discovery]
 ---
 ElastiCache is more than a database cache. Valkey and Redis OSS add data structures, replication and pub/sub; Memcached stays a simple, multi-threaded object cache. [Common ElastiCache use cases](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html)
 

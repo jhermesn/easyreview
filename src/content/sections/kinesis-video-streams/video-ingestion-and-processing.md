@@ -15,6 +15,9 @@ facts:
   - id: playback
     text: Kinesis Video Streams lets you watch live streams as they arrive, in the console or in your own application.
     source: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/what-is-kinesis-video.html#what-is-kinesis-video
+  - id: rekognition-stream
+    text: "Amazon Rekognition Video analyzes live video from Kinesis Video Streams through a stream processor: face search results go to a Kinesis data stream, and label detection results (people, packages, pets) go out as SNS and S3 notifications."
+    source: https://docs.aws.amazon.com/rekognition/latest/dg/streaming-video.html#streaming-video
 cards:
   - id: kinesis-video-streams-001
     q: Thousands of security cameras must stream live video to AWS, where it is stored for 30 days and analyzed in real time. Which service ingests the video?
@@ -29,6 +32,10 @@ cards:
     q: Besides video, what kinds of data can Amazon Kinesis Video Streams ingest?
     a: "Time-serialized media such as audio, thermal imagery, depth data and RADAR data."
     facts: [sources]
+  - id: kinesis-video-streams-004
+    q: "Security cameras must stream live video to AWS, and unknown people must trigger an alert. Which services fit?"
+    a: "Kinesis Video Streams for ingestion and a Rekognition Video stream processor that searches faces against a collection; its results reach a Kinesis data stream, where a consumer can raise the alert."
+    facts: [rekognition-stream]
 ---
 Amazon Kinesis Video Streams is the video member of the Kinesis family. Kinesis Data Streams carries records; Kinesis Video Streams carries media from cameras and sensors, keeps it, and lets you play it back or process it. [What is Amazon Kinesis Video Streams?](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/what-is-kinesis-video.html)
 

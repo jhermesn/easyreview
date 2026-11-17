@@ -81,6 +81,9 @@ facts:
   - id: reader-count
     text: Aurora Auto Scaling reader-count policies are unsupported for Serverless v2; create readers in advance and let them scale compute.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html#aurora-serverless-v2.limitations
+  - id: convert-provisioned
+    text: "A provisioned Aurora DB instance can be converted to Serverless v2 by modifying its instance class; to keep writer downtime low, convert or add a Serverless v2 reader and then fail over to it."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-administration.html#aurora-serverless-v2-converting-from-provisioned
 cards:
   - id: aurora-006
     q: An Aurora workload has unpredictable bursts. What does Serverless v2 scale, and does ordinary capacity scaling require idle connections?
@@ -152,6 +155,10 @@ cards:
     facts:
       - pause-cost
       - resume
+  - id: aurora-041
+    q: "A provisioned Aurora cluster must move its writer to Serverless v2 for traffic spikes, with little downtime. What is the usual path?"
+    a: "Add (or convert) a Serverless v2 reader, then fail over so it becomes the writer. No new cluster or data migration is needed."
+    facts: [convert-provisioned]
 diagrams:
   - id: aurora-serverless-promotion-tiers
     title: Promotion tiers choose shared or independent capacity

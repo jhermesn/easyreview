@@ -78,6 +78,11 @@
       "id": "schemaless",
       "text": "Other than the primary key, a DynamoDB table is schemaless: items can have different attributes and data types.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
+    },
+    {
+      "id": "partition-key-uniform",
+      "text": "DynamoDB uses provisioned throughput best when the workload is spread across many distinct partition key values; a key with few values, such as a creation date, concentrates traffic on a few partitions.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-uniform-load.html#bp-partition-key-uniform-load"
     }
   ],
   "cards": [
@@ -166,6 +171,14 @@
       "a": "Amazon DynamoDB. Only the primary key is fixed; each item can have different attributes.",
       "facts": [
         "schemaless"
+      ]
+    },
+    {
+      "id": "dynamodb-046",
+      "q": "A DynamoDB table throttles writes while most of its provisioned capacity sits unused. What partition key change helps?",
+      "a": "Choose a high-cardinality partition key, one with many distinct values, so requests spread evenly across partitions.",
+      "facts": [
+        "partition-key-uniform"
       ]
     }
   ],

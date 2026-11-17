@@ -54,6 +54,9 @@ facts:
   - id: agent-logs-store
     text: "Logs collected by the CloudWatch agent are stored in CloudWatch Logs, like logs from the older CloudWatch Logs agent."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html#Install-CloudWatch-Agent
+  - id: agent-swap
+    text: "On Linux, the CloudWatch agent can collect swap metrics such as swap_used, swap_free and swap_used_percent, which EC2 does not publish by itself."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-CloudWatch-agent.html#linux-metrics-enabled-by-CloudWatch-agent
 cards:
   - id: cloudwatch-005
     q: An EC2 application needs memory use, disk space use, and application log files in CloudWatch.
@@ -108,6 +111,10 @@ cards:
     a: "No. The agent stores the logs it collects in CloudWatch Logs. Deliver them onward with a subscription filter on the log group."
     facts:
       - agent-logs-store
+  - id: cloudwatch-121
+    q: "EC2 instances fail for lack of swap space. How do you monitor available swap on each instance?"
+    a: "Install the CloudWatch agent and collect its swap metrics (for example swap_used_percent); EC2 does not report swap by default."
+    facts: [agent-swap]
 ---
 The CloudWatch agent collects measurements and log files from inside a server. It fills the gap between EC2 host monitoring and what the operating system or application knows, such as memory use and free disk space.
 

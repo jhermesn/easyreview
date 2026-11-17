@@ -93,6 +93,12 @@ facts:
   - id: xtrabackup
     text: "A MySQL 5.7 or 8.0 database can be migrated physically to Aurora MySQL by copying Percona XtraBackup files to Amazon S3 and restoring from them."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Migrating.ExtMySQL.S3.html#AuroraMySQL.Migrating.ExtMySQL.S3
+  - id: no-replica-failover
+    text: "If an Aurora cluster has no Aurora Replicas, a failure recreates the primary instance in the same Availability Zone, which typically takes under 10 minutes; promoting a replica is much faster."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
+  - id: lambda-native
+    text: "Aurora MySQL can invoke a Lambda function from SQL with the native functions lambda_sync and lambda_async, once the cluster has access to Lambda."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Lambda.html#AuroraMySQL.Integrating.Lambda
 cards:
   - id: aurora-001
     q: What separates Aurora storage durability from database instance availability?
@@ -179,6 +185,15 @@ cards:
     q: "How can a large self-managed MySQL 8.0 database move to Aurora MySQL faster than a logical dump?"
     a: "Back it up with Percona XtraBackup, upload the files to S3 and restore an Aurora MySQL cluster from them."
     facts: [xtrabackup]
+  - id: aurora-039
+    q: "The writer of a single-instance Aurora cluster fails. What does Aurora do, and how long can it take?"
+    a: "It recreates the primary instance in the same AZ, typically within 10 minutes. Add an Aurora Replica in another AZ so failover becomes a fast promotion."
+    trap: true
+    facts: [no-replica-failover]
+  - id: aurora-040
+    q: "When a row is deleted in Aurora MySQL, a Lambda function must run and forward the change. How can the database call Lambda directly?"
+    a: "With the Aurora MySQL native functions lambda_sync or lambda_async, after granting the cluster access to Lambda."
+    facts: [lambda-native]
 diagrams:
   - id: aurora-shared-storage
     title: Instances share storage while endpoints select connections

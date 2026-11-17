@@ -24,6 +24,9 @@ facts:
   - id: sp-recommendations
     text: AWS gives Savings Plans recommendations based on past usage, viewable from the management account or a member account and through the Cost Explorer API.
     source: https://docs.aws.amazon.com/savingsplans/latest/userguide/sp-recommendations.html
+  - id: ce-api
+    text: "The Cost Explorer API lets you query cost and usage data programmatically, from monthly totals down to granular usage, for custom reports and automation."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-api.html#ce-api
 cards:
   - id: billing-and-cost-management-005
     q: A manager wants to see which AWS services drove last quarter's cost increase. Which tool fits?
@@ -54,6 +57,10 @@ cards:
     q: A company wants AWS to suggest a Savings Plans commitment from its past usage. Where does it get this?
     a: Savings Plans recommendations, in the Billing and Cost Management console or the Cost Explorer API, based on past usage.
     facts: [sp-recommendations]
+  - id: billing-and-cost-management-045
+    q: "An internal tool must pull AWS cost and usage data and forecasts on a schedule with the least overhead. What should it call?"
+    a: "The Cost Explorer API, which returns cost and usage data programmatically; Cost Explorer also forecasts spending."
+    facts: [ce-api, history-forecast]
 ---
 AWS Cost Explorer is the analysis tool for past and forecast costs. It charts spending by service, account, tag or other dimensions and helps find what drives cost. [AWS Cost Explorer](https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html#ce-what-is)
 

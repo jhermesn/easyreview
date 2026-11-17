@@ -39,6 +39,9 @@ facts:
   - id: traffic-mirroring
     text: VPC Traffic Mirroring copies network traffic from an elastic network interface and sends it to out-of-band security and monitoring appliances.
     source: https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html#what-is-traffic-mirroring
+  - id: ipv6-only-subnet
+    text: "An IPv6-only subnet has an IPv6 CIDR block and no IPv4 CIDR block, in a VPC that has an IPv6 CIDR; its resources communicate over IPv6."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-basics
 cards:
   - id: vpc-036
     q: How many usable IPv4 addresses does a /24 subnet in a VPC have, and why?
@@ -78,6 +81,10 @@ cards:
     q: A security team needs a copy of the packets from specific EC2 instances sent to an intrusion detection appliance. Which VPC feature fits?
     a: "VPC Traffic Mirroring (Flow Logs record metadata, not packet contents)."
     facts: [traffic-mirroring]
+  - id: vpc-047
+    q: "A dual-stack VPC has run out of IPv4 addresses for new instances, but has plenty of IPv6 space. What lets you keep launching?"
+    a: "Create an IPv6-only subnet and launch the instances there, if the workloads can communicate over IPv6."
+    facts: [ipv6-only-subnet]
 ---
 VPC addressing mistakes are hard to fix later, and NAT choices trade operations work for flexibility. [VPC CIDR blocks](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html)
 

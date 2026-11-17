@@ -64,6 +64,9 @@ facts:
   - id: ipv6-route
     text: To use an egress-only internet gateway, add a route such as ::/0 targeting it.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.html#egress-only-internet-gateway-basics
+  - id: inter-region-peering
+    text: "VPC peering also works between VPCs in different Regions; their resources talk over private IP addresses without a gateway or VPN, and inter-Region traffic is encrypted."
+    source: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#what-is-vpc-peering
 cards:
   - id: vpc-011
     q: A VPC subnet has no explicit route-table association. Which table directs its traffic?
@@ -112,6 +115,10 @@ cards:
     facts:
       - nat-security
       - nat-bandwidth
+  - id: vpc-048
+    q: "EC2 instances in VPCs in Ohio and N. Virginia must exchange data privately. What is the simplest setup?"
+    a: "An inter-Region VPC peering connection, plus routes to the peer CIDR in each route table."
+    facts: [inter-region-peering]
 diagrams:
   - id: vpc-direct-peering
     title: Peering needs routes on both sides

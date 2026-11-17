@@ -75,6 +75,9 @@ facts:
   - id: stage-permissions
     text: When a REST API stage variable selects a Lambda function, configure the function invoke permissions manually.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/stage-variables.html#stage-variables
+  - id: env-helpers
+    text: "Beyond encryption at rest, the Lambda console can turn on helpers for encryption in transit, which encrypt chosen environment variables client-side with a KMS key before they are sent."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars-encryption.html#configuration-envvars-encryption
 diagrams:
   - id: lambda-weighted-alias-routing
     title: Only alias invocations participate in a weighted release
@@ -191,6 +194,10 @@ cards:
     facts:
       - env-encryption
       - env-secrets
+  - id: lambda-068
+    q: "Lambda environment variables hold third-party API keys that must also be protected in transit, not only at rest. What does Lambda offer?"
+    a: "Console helpers for encryption in transit: they encrypt the chosen variables client-side with a KMS key, and the function decrypts them at runtime."
+    facts: [env-helpers]
 ---
 Lambda versions preserve a release while aliases give callers a stable name for a published version. A weighted alias can send part of the traffic to a second version, allowing a canary release, where only some requests try the new code.
 

@@ -64,6 +64,12 @@ facts:
   - id: endpoint-types
     text: SNS subscription endpoint types are HTTP/HTTPS, email, Amazon SQS, AWS Lambda, Amazon Data Firehose, platform application endpoints (mobile push) and SMS; an EC2 instance is not an endpoint type of its own.
     source: https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html
+  - id: end-user-messaging
+    text: "AWS End User Messaging SMS, the former SMS, MMS and voice features of Amazon Pinpoint, is an application-to-person messaging service for SMS, MMS, RCS and voice."
+    source: https://docs.aws.amazon.com/sms-voice/latest/userguide/what-is-sms-mms.html#what-is-sms-mms
+  - id: two-way-sms
+    text: "With two-way SMS, AWS End User Messaging SMS receives incoming replies from customers, which can feed services such as Lambda or Amazon Lex."
+    source: https://docs.aws.amazon.com/sms-voice/latest/userguide/two-way-sms.html#two-way-sms
 cards:
   - id: sns-003
     q: What do an Amazon SNS topic and subscription represent?
@@ -157,6 +163,10 @@ cards:
     a: Not as an endpoint type. SNS delivers to HTTP/HTTPS, email, SQS, Lambda, Firehose, mobile push and SMS; an app on EC2 would expose an HTTP endpoint or read from an SQS queue.
     trap: true
     facts: [endpoint-types]
+  - id: sns-029
+    q: "A marketing campaign must send SMS confirmations to subscribers and process their replies. Which service is built for that?"
+    a: "AWS End User Messaging SMS (formerly Amazon Pinpoint SMS), using a two-way SMS-enabled number."
+    facts: [end-user-messaging, two-way-sms]
 diagrams:
   - id: sns-independent-queues
     title: One publication, separate subscriber queues

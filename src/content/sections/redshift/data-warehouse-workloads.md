@@ -63,6 +63,9 @@ facts:
   - id: warehouse-ml
     text: "Redshift ML lets analysts create, train and run models with SQL; Redshift creates the model in SageMaker AI from the data it is given."
     source: https://docs.aws.amazon.com/redshift/latest/dg/machine_learning.html#machine_learning
+  - id: cross-region-snapshot
+    text: "Amazon Redshift can automatically copy automated and manual snapshots of a cluster to another AWS Region, so the cluster can be restored there if the primary Region fails."
+    source: https://docs.aws.amazon.com/redshift/latest/mgmt/cross-region-snapshot-copy.html#cross-region-snapshot-copy
 diagrams:
   - id: redshift-enhanced-routing
     title: Enhanced VPC routing to S3
@@ -114,6 +117,10 @@ cards:
     q: "Analysts load S3 data into a warehouse each morning, need fast MPP queries without managing clusters, and want to run ML predictions in SQL. What fits?"
     a: "A daily Glue job that loads Amazon Redshift Serverless, with Redshift ML for SQL-based models. Serverless keeps Redshift MPP query engine with automatic capacity."
     facts: [warehouse-mpp, warehouse-ml, warehouse-serverless]
+  - id: redshift-009
+    q: "A Redshift data warehouse must survive a full Region outage. What should be turned on?"
+    a: "Cross-Region snapshot copy, so snapshots are copied automatically to another Region and the cluster can be restored there."
+    facts: [cross-region-snapshot]
 ---
 Amazon Redshift is a managed cloud data warehouse for SQL analytics and business intelligence. A data warehouse is a store organized for analyzing data.
 

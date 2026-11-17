@@ -42,6 +42,9 @@ facts:
   - id: spillover
     text: Requests above provisioned capacity can use on-demand capacity when concurrency remains available and can experience cold starts.
     source: https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html#provisioned-concurrency
+  - id: scaling-rate
+    text: "Each Lambda function can scale by up to 1,000 execution environments every 10 seconds in each Region, and unused scaling capacity does not accrue."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/scaling-behavior.html#scaling-rate
 cards:
   - id: lambda-010
     q: How do reserved concurrency and provisioned concurrency differ for Lambda?
@@ -83,6 +86,10 @@ cards:
     facts:
       - spillover
       - reserved-cap
+  - id: lambda-065
+    q: "How fast can one Lambda function add concurrency during a sudden burst?"
+    a: "Up to 1,000 more execution environments every 10 seconds per function per Region, within the account concurrency quota."
+    facts: [scaling-rate]
 ---
 Lambda concurrency is the number of requests a function handles at the same time. Reserved concurrency protects and limits capacity; provisioned concurrency prepares execution environments so requests avoid initialization delays called cold starts.
 

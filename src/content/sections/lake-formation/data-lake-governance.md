@@ -9,6 +9,9 @@ facts:
   - id: permissions
     text: Lake Formation has its own permissions model that augments IAM and grants fine-grained access with a simple grant or revoke, including to external sources such as Amazon Redshift and Amazon DynamoDB.
     source: https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html#what-is-lake-formation
+  - id: cross-account
+    text: "Lake Formation shares Data Catalog resources with other AWS accounts, organizations or IAM principals in another account using AWS RAM, with fine-grained access to both metadata and the underlying data."
+    source: https://docs.aws.amazon.com/lake-formation/latest/dg/cross-account-permissions.html#cross-account-permissions
 cards:
   - id: lake-formation-001
     q: A company must let its ML team read only certain columns of customer tables in an S3 data lake. Which AWS service fits?
@@ -23,6 +26,10 @@ cards:
     a: "No. Its permissions model augments IAM with fine-grained data access."
     trap: true
     facts: [permissions]
+  - id: lake-formation-004
+    q: "Several AWS accounts each hold part of a data lake, and access must follow user roles from a central account with the least overhead. Which service fits?"
+    a: "AWS Lake Formation, which centrally governs the data lake and shares Data Catalog resources across accounts through AWS RAM."
+    facts: [cross-account]
 ---
 AWS Lake Formation is the governance layer of a data lake: it decides who may see which databases, tables and columns in S3 and the Glue Data Catalog, and shares data safely for analytics and ML. [What is Lake Formation?](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html)
 
