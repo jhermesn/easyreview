@@ -21,6 +21,9 @@ facts:
   - id: repeatable
     text: A CloudFormation template can be reused to create the same resources in a consistent and repeatable way, for example in multiple Regions.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#welcome-quickly-replicate-your-infrastructure
+  - id: multi-session
+    text: "After opting in to multi-session support, one browser can be signed in to up to five identities at once in the AWS Management Console, mixing root, IAM and federated roles from the same or different accounts."
+    source: https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/multisession.html#multisession
 cards:
   - id: management-console-001
     q: What are the main ways to access and operate AWS services?
@@ -47,6 +50,10 @@ cards:
     a: No. Manual steps aren't repeatable; use infrastructure as code such as CloudFormation for repeatable processes.
     trap: true
     facts: [repeatable, console]
+  - id: management-console-007
+    q: "An administrator wants the console for two AWS accounts open in the same browser at the same time. What makes that possible?"
+    a: "Multi-session support. After opting in, one browser can hold up to five signed-in identities, each in its own tab."
+    facts: [multi-session]
 ---
 Every AWS action can be done in more than one way. The web console suits one-time, visual work. The CLI and SDKs suit scripts and applications. Infrastructure as code suits anything that must be repeated exactly. [What is the AWS Management Console?](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/what-is.html#what-is)
 

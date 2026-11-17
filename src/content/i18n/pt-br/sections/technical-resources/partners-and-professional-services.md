@@ -1,5 +1,5 @@
 ---
-source: 386f83295074
+source: a8479be5de14
 title: Parceiros e Professional Services
 facts:
   apn: A AWS Partner Network (APN) é uma comunidade global de organizações que usam tecnologias, programas, financiamento e ferramentas da AWS para criar soluções e serviços para clientes.
@@ -10,6 +10,8 @@ facts:
   solutions-architects: As boas práticas do AWS Well-Architected foram criadas por arquitetos de soluções da AWS a partir de anos de experiência construindo soluções para muitas empresas.
   tam: O Enterprise Support e o Unified Operations incluem um Technical Account Manager (TAM) designado.
   solutions-library: A AWS Solutions Library reúne soluções revisadas criadas pela AWS e por AWS Partners; a antiga página do AWS Quick Starts agora leva até ela.
+  ams: O AWS Managed Services (AMS) é um serviço corporativo em que a AWS opera a infraestrutura do cliente, automatizando solicitações de mudança, monitoramento, aplicação de patches, segurança e backup, 24 horas por dia, todos os dias do ano.
+  ams-advanced-end: O AMS Advanced deixou de aceitar novos clientes em 30 de junho de 2026 e chega ao fim do suporte em 30 de junho de 2027; as alternativas incluem o AMS Accelerate, o plano de suporte Unified Operations e serviços gerenciados de AWS Partners.
 cards:
   technical-resources-006:
     q: O que é a AWS Partner Network (APN)?
@@ -32,6 +34,12 @@ cards:
   technical-resources-017:
     q: Onde uma empresa encontra soluções prontas e revisadas, criadas pela AWS e por AWS Partners, que substituem o AWS Quick Starts?
     a: Na AWS Solutions Library.
+  technical-resources-018:
+    q: Uma empresa quer que a equipe da AWS opere sua infraestrutura na AWS, incluindo patches, monitoramento, backups e solicitações de mudança. Qual oferta atende?
+    a: O AWS Managed Services (AMS), um serviço corporativo em que a AWS opera a infraestrutura em nome do cliente. O AMS Advanced fechou para novos clientes em 30 de junho de 2026, então um cliente novo avalia o AMS Accelerate ou serviços gerenciados de AWS Partners.
+  technical-resources-019:
+    q: O AWS Managed Services (AMS) é a mesma coisa que usar serviços gerenciados como o Amazon RDS?
+    a: Não. Serviços gerenciados como o RDS são serviços da AWS que eliminam trabalho operacional de um tipo de recurso. O AMS é uma oferta corporativa em que a AWS opera a infraestrutura do cliente.
 ---
 Quando um cliente precisa de mais do que documentação e casos de suporte, a AWS oferece pessoas. O AWS Professional Services e os arquitetos de soluções da AWS vêm da própria AWS; os membros da AWS Partner Network são empresas externas. [AWS Partner Network](https://aws.amazon.com/partners/)
 
@@ -41,7 +49,8 @@ Quando um cliente precisa de mais do que documentação e casos de suporte, a AW
 2. Os **arquitetos de soluções da AWS** compartilham experiência em arquitetura; essa experiência deu forma às boas práticas do Well-Architected.
 3. Os membros da **AWS Partner Network (APN)** incluem parceiros de consultoria e integradores de sistemas, que entregam projetos, e fornecedores independentes de software (ISVs), que vendem software, muitas vezes pelo AWS Marketplace.
 4. **Technical Account Managers** vêm com o Enterprise Support e o Unified Operations.
-5. Os parceiros gerenciam o relacionamento com a AWS no AWS Partner Central e recebem programas, certificações, incentivos e financiamento. [Partner Central](https://docs.aws.amazon.com/partner-central/latest/getting-started/what-is-partner-central.html#what-is-partner-central)
+5. O **AWS Managed Services (AMS)** faz a AWS operar a infraestrutura do cliente: solicitações de mudança, monitoramento, patches, segurança e backup. O AMS Advanced fechou para novos clientes em 30 de junho de 2026 e acaba em 30 de junho de 2027. [O que é o AMS?](https://docs.aws.amazon.com/managedservices/latest/userguide/what-is-ams.html#what-is-ams)
+6. Os parceiros gerenciam o relacionamento com a AWS no AWS Partner Central e recebem programas, certificações, incentivos e financiamento. [Partner Central](https://docs.aws.amazon.com/partner-central/latest/getting-started/what-is-partner-central.html#what-is-partner-central)
 
 | Ajuda | De quem | Uso típico |
 |---|---|---|
@@ -50,12 +59,14 @@ Quando um cliente precisa de mais do que documentação e casos de suporte, a AW
 | Parceiros de consultoria, integradores de sistemas | Membros da APN | Projetos, serviços gerenciados |
 | Fornecedores independentes de software | Membros da APN | Software, muitas vezes no AWS Marketplace |
 | Technical Account Manager | AWS, com Enterprise Support ou superior | Orientação proativa contínua |
+| AWS Managed Services | AWS | A AWS cuida da operação diária da infraestrutura |
 
 ### Dicas para a prova
 
 - Se a questão fala em empresa terceira para ajudar na migração, pense em um AWS Partner (parceiro de consultoria ou integrador de sistemas).
 - Se a questão fala em especialistas da AWS em um projeto, pense no AWS Professional Services.
 - Se a questão fala em empresa de software vendendo na AWS, pense em ISV na APN e no AWS Marketplace.
+- Se a questão fala que a AWS deve operar a infraestrutura pela empresa, pense no AWS Managed Services (AMS).
 
 ### Para lembrar
 

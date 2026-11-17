@@ -75,6 +75,9 @@ facts:
   - id: oac-ownership-definition
     text: S3 Object Ownership controls ownership of uploaded objects and enables or disables access control lists.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html#about-object-ownership
+  - id: vpc-origins
+    text: "CloudFront VPC origins deliver content from Application Load Balancers, Network Load Balancers and EC2 instances in private subnets, so CloudFront becomes the single entry point and the origin needs no public access."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-vpc-origins.html#private-content-vpc-origins
 diagrams:
   - id: cloudfront-oac-private-origin
     title: CloudFront signs requests to a private S3 origin
@@ -178,6 +181,10 @@ cards:
       - oac-https
       - oac-no-override
       - oac-auth-forward
+  - id: cloudfront-054
+    q: "An internal ALB in private subnets must serve users through CloudFront without any public endpoint of its own. What does CloudFront offer?"
+    a: "A VPC origin. CloudFront reaches ALBs, NLBs and EC2 instances in private subnets over a private connection and becomes the only way in."
+    facts: [vpc-origins]
 ---
 Origin access control (OAC) lets CloudFront authenticate to an S3 bucket so the bucket can serve content through a distribution without public read access. It protects the origin connection. Remove direct read permissions as well, so viewers cannot bypass CloudFront with S3 URLs.
 

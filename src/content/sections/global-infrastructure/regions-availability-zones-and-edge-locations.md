@@ -63,6 +63,9 @@ facts:
   - id: regional-services
     text: "Regional services, such as Amazon S3, are built across several Availability Zones of one Region and spread data and requests over them."
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/regional-services.html#regional-services
+  - id: region-pricing
+    text: "Resource pricing can differ between Regions because of local costs such as land, electricity and taxes, so Region cost is a selection factor alongside latency, data residency and service availability."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/cost_pricing_model_region_cost.html#cost_pricing_model_region_cost
 cards:
   - id: global-infrastructure-001
     q: How do AWS Regions and Availability Zones relate to each other?
@@ -132,6 +135,10 @@ cards:
     q: "Sort these by scope: IAM, CloudFront, Route 53, S3, EFS, AWS Batch, EC2, EBS."
     a: "Global: IAM, CloudFront, Route 53. Regional: S3, EFS, AWS Batch. Zonal: EC2 instances and EBS volumes, which live in one Availability Zone."
     facts: [global-services, regional-services, zonal-services]
+  - id: global-infrastructure-022
+    q: "Besides latency, legal requirements and service availability, what else can differ between two AWS Regions that host the same workload?"
+    a: "Price. Each Region has its own resource prices, so with no residency or latency constraint the cheaper Region can lower cost."
+    facts: [region-pricing]
 diagrams:
   - id: region-azs-edge
     title: A Region, its Availability Zones, and edge locations

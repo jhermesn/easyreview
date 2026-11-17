@@ -81,6 +81,9 @@ facts:
   - id: ip-set
     text: An IP set match statement checks the request IP against a list of CIDR ranges; an Allow rule on it with a Block default action restricts access to those ranges.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-ipset-match.html
+  - id: size-constraint
+    text: "An AWS WAF size constraint statement compares the byte size of a request component, such as the query string or body, with a number you set, without inspecting its contents."
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-size-constraint-match.html#waf-rule-statement-type-size-constraint-match
 diagrams:
   - id: waf-rule-evaluation
     title: Evaluation when no rule terminates
@@ -221,6 +224,10 @@ cards:
     q: A CloudFront distribution must accept requests only from the company's office IP ranges. How with AWS WAF?
     a: An IP set of the CIDR ranges, an Allow rule on that IP set, and Block as the web ACL default action.
     facts: [ip-set]
+  - id: waf-024
+    q: "A web app must reject requests whose query string is longer than 100 bytes. Which AWS WAF rule statement fits?"
+    a: "A size constraint statement on the query string with a greater-than comparison."
+    facts: [size-constraint]
 ---
 AWS WAF filters web requests using a web access control list (web ACL), also called a protection pack. A web ACL contains rules associated with a supported application endpoint. It lets you choose which matching requests to allow, block, count or challenge.
 

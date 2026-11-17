@@ -27,6 +27,12 @@ facts:
   - id: solutions-library
     text: The AWS Solutions Library collects vetted solutions built by AWS and AWS Partners; the former AWS Quick Starts page now leads there.
     source: https://aws.amazon.com/solutions/
+  - id: ams
+    text: "AWS Managed Services (AMS) is an enterprise service in which AWS operates a customer's infrastructure, automating change requests, monitoring, patch management, security and backup, 24 hours a day, every day of the year."
+    source: https://docs.aws.amazon.com/managedservices/latest/userguide/what-is-ams.html#what-is-ams
+  - id: ams-advanced-end
+    text: "AMS Advanced stopped accepting new customers on June 30, 2026 and reaches end of support on June 30, 2027; alternatives include AMS Accelerate, the Unified Operations support plan and AWS Partner managed services."
+    source: https://docs.aws.amazon.com/managedservices/latest/userguide/SunsetPlan.html#SunsetPlan
 cards:
   - id: technical-resources-006
     q: What is the AWS Partner Network (APN)?
@@ -57,6 +63,15 @@ cards:
     q: Where does a company find vetted, ready-made solutions built by AWS and AWS Partners, the successor of AWS Quick Starts?
     a: The AWS Solutions Library.
     facts: [solutions-library]
+  - id: technical-resources-018
+    q: "A company wants AWS staff to operate its AWS infrastructure for it, including patching, monitoring, backups and change requests. Which offering fits?"
+    a: "AWS Managed Services (AMS), an enterprise service in which AWS runs the infrastructure on the customer's behalf. AMS Advanced closed to new customers on June 30, 2026, so a new customer looks at AMS Accelerate or AWS Partner managed services."
+    facts: [ams, ams-advanced-end]
+  - id: technical-resources-019
+    q: "Is AWS Managed Services (AMS) the same thing as using managed services such as Amazon RDS?"
+    a: "No. Managed services such as RDS are AWS services that remove operational work for one resource type. AMS is an enterprise offering in which AWS operates a customer's infrastructure."
+    trap: true
+    facts: [ams]
 ---
 When a customer needs more than documentation and support cases, AWS offers people. AWS Professional Services and AWS solutions architects come from AWS itself; AWS Partner Network members are outside companies. [AWS Partner Network](https://aws.amazon.com/partners/)
 
@@ -66,7 +81,8 @@ When a customer needs more than documentation and support cases, AWS offers peop
 2. **AWS solutions architects** share architecture expertise; their experience shaped the Well-Architected best practices.
 3. **AWS Partner Network (APN)** members include consulting partners and system integrators that deliver projects, and independent software vendors (ISVs) that sell software, often through AWS Marketplace.
 4. **Technical Account Managers** come with Enterprise Support and Unified Operations.
-5. Partners manage their AWS relationship in AWS Partner Central and get programs, certifications, incentives and funding. [Partner Central](https://docs.aws.amazon.com/partner-central/latest/getting-started/what-is-partner-central.html#what-is-partner-central)
+5. **AWS Managed Services (AMS)** has AWS operate a customer's infrastructure: change requests, monitoring, patching, security and backup. AMS Advanced closed to new customers on June 30, 2026 and ends on June 30, 2027. [What is AMS?](https://docs.aws.amazon.com/managedservices/latest/userguide/what-is-ams.html#what-is-ams)
+6. Partners manage their AWS relationship in AWS Partner Central and get programs, certifications, incentives and funding. [Partner Central](https://docs.aws.amazon.com/partner-central/latest/getting-started/what-is-partner-central.html#what-is-partner-central)
 
 | Help | From | Typical use |
 |---|---|---|
@@ -75,12 +91,14 @@ When a customer needs more than documentation and support cases, AWS offers peop
 | Consulting partners, system integrators | APN members | Projects, managed services |
 | Independent software vendors | APN members | Software, often in AWS Marketplace |
 | Technical Account Manager | AWS, with Enterprise Support or higher | Ongoing proactive guidance |
+| AWS Managed Services | AWS | AWS runs day-to-day infrastructure operations |
 
 ### Exam cues
 
 - If the question says third-party company to help migrate, think an AWS Partner (consulting partner or system integrator).
 - If the question says AWS experts on a project, think AWS Professional Services.
 - If the question says software company selling on AWS, think ISV in the APN and AWS Marketplace.
+- If the question says AWS should operate the infrastructure for the company, think AWS Managed Services (AMS).
 
 ### Remember
 

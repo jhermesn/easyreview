@@ -21,6 +21,12 @@ facts:
   - id: audience
     text: Customers use the tool to document architectures, provide product launch governance, and understand and manage the risks in their technology portfolio.
     source: https://docs.aws.amazon.com/wellarchitected/latest/userguide/tool.html#tool
+  - id: sustainability-console
+    text: "The AWS Sustainability console shows the estimated carbon emissions and water allocation from an account's AWS usage, broken down by AWS Region, service and, for emissions, scope; data for each month is published the following month."
+    source: https://docs.aws.amazon.com/sustainability/latest/userguide/what-is-sustainability.html#sustainability-features
+  - id: sustainability-organizations
+    text: "Signed in to an AWS Organizations management account, AWS Sustainability reports the consolidated impact of the member accounts; a member account sees only its own data."
+    source: https://docs.aws.amazon.com/sustainability/latest/userguide/what-is-sustainability.html#related-services
 cards:
   - id: well-architected-011
     q: Which AWS service reviews a workload against the AWS Well-Architected Framework and produces an improvement plan?
@@ -39,6 +45,10 @@ cards:
     a: No. It is a guided self-review that documents risks and an improvement plan; you make the changes.
     trap: true
     facts: [output, tool]
+  - id: well-architected-026
+    q: "A company must report the carbon emissions caused by its AWS usage, by Region and by service. Which AWS tool shows this?"
+    a: "The AWS Sustainability console. Its carbon emissions view estimates emissions from AWS usage and breaks them down by scope, Region and service."
+    facts: [sustainability-console]
 ---
 The AWS Well-Architected Tool runs Well-Architected Framework reviews in the AWS console. You answer the questions for a workload, and the tool lists the risks and an improvement plan. [What is AWS WA Tool](https://docs.aws.amazon.com/wellarchitected/latest/userguide/tool.html#tool)
 
@@ -56,6 +66,7 @@ AWS Well-Architected Agent, in preview as of October 2026, takes another approac
 - If the question says review a workload against AWS best practices, think AWS Well-Architected Tool.
 - If the question says add company-specific best practices to reviews, think custom lenses.
 - If the question says track improvement over time, think milestones.
+- If the question says measure the carbon emissions of AWS usage, think the AWS Sustainability console, because it estimates emissions by Region and service.
 
 ### Remember
 

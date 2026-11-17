@@ -18,6 +18,9 @@ facts:
   - id: cur-tags
     text: Cost and Usage Reports can break down costs by tags that you define.
     source: https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html#what-is-cur
+  - id: tag-prefixes
+    text: "AWS-generated cost allocation tags carry the reserved aws: prefix, such as aws:createdBy, while user-defined tags appear with the user: prefix in the cost allocation report."
+    source: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html#custom-tags
 cards:
   - id: billing-and-cost-management-016
     q: A company wants to see AWS costs per department. What should it do?
@@ -32,6 +35,10 @@ cards:
     a: The tag wasn't activated as a cost allocation tag. Both types must be activated before they show in billing tools.
     trap: true
     facts: [activate]
+  - id: billing-and-cost-management-044
+    q: "In an AWS cost allocation report, how are AWS-generated tags told apart from tags the company defined?"
+    a: "AWS-generated tags carry the aws: prefix (for example aws:createdBy); user-defined tags carry the user: prefix."
+    facts: [tag-prefixes]
 ---
 Cost allocation tags split the AWS bill by business dimension, such as team, project or environment. A tag is a key and value on a resource; activating it makes billing tools use it. [Cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#cost-alloc-tags)
 

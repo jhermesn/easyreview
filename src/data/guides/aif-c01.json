@@ -101,7 +101,8 @@
                 "rekognition/image-and-video-analysis",
                 "textract/document-text-extraction",
                 "bedrock/knowledge-bases-and-rag",
-                "agentic-ai/agents-and-tools"
+                "agentic-ai/agents-and-tools",
+                "kendra/intelligent-search"
               ]
             },
             {
@@ -117,7 +118,8 @@
                 "polly/text-to-speech",
                 "rekognition/image-and-video-analysis",
                 "textract/document-text-extraction",
-                "personalize/recommendations"
+                "personalize/recommendations",
+                "kendra/intelligent-search"
               ]
             },
             {

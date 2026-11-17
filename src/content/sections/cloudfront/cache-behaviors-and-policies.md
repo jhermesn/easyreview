@@ -97,6 +97,9 @@ facts:
   - id: all-methods
     text: "When a distribution allows all HTTP methods, CloudFront forwards PUT, POST, PATCH and DELETE requests to the origin, so uploads also travel over the AWS edge network; it caches only GET, HEAD and optionally OPTIONS responses."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#RequestCustomHTTPMethods
+  - id: flat-rate-plans
+    text: "CloudFront flat-rate pricing plans (Free, Pro, Business and Premium) bundle the CDN with AWS WAF, DDoS protection, a TLS certificate and S3 storage credits for one monthly price per distribution, with usage allowances and no overage charges."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/flat-rate-pricing-plan.html#flat-rate-pricing-plan
 cards:
   - id: cloudfront-001
     q: What decides which CloudFront origin and settings handle a request?
@@ -166,6 +169,10 @@ cards:
     q: "Can CloudFront speed up uploads to an S3 bucket, or only downloads?"
     a: "Both. With all HTTP methods allowed, CloudFront forwards PUT and POST requests to the origin over the edge network. Only GET, HEAD and optionally OPTIONS responses are cached."
     facts: [all-methods]
+  - id: cloudfront-055
+    q: "A small site wants a predictable CloudFront bill that does not grow during a traffic spike or attack, with WAF included. Which pricing option fits?"
+    a: "A CloudFront flat-rate pricing plan (Free, Pro, Business or Premium): one monthly price with usage allowances, WAF and DDoS protection, and no overage charges."
+    facts: [flat-rate-plans]
 ---
 CloudFront delivers web content through edge locations, which are servers that keep copies near viewers, the clients requesting content. An origin holds the original content. A distribution is the configuration that connects those origins to viewers; its cache behaviors are ordered rules for different URL paths.
 

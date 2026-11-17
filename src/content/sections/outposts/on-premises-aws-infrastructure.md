@@ -15,6 +15,9 @@ facts:
   - id: resources
     text: Subnets on an Outpost can host resources such as EC2 instances, EBS volumes, ECS clusters and RDS instances.
     source: https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html#what-is-outposts
+  - id: outposts-responsibility
+    text: "With AWS Outposts the customer is responsible for the physical security and access controls of the site and for power, space, cooling and network connectivity; AWS is responsible for the rack hardware, hypervisor, storage systems and the AWS services on it."
+    source: https://docs.aws.amazon.com/whitepapers/latest/aws-outposts-high-availability-design/aws-outposts-high-availability-design.html#shared-security-model
 cards:
   - id: outposts-001
     q: A factory must process data locally with very low latency but wants the same AWS APIs and tools it uses in the cloud. Which AWS service fits?
@@ -33,6 +36,10 @@ cards:
     a: No. Outposts runs AWS capacity at your own site; Local Zones are AWS-run locations near large cities.
     trap: true
     facts: [managed]
+  - id: outposts-005
+    q: "Under the shared responsibility model, who secures the physical room where an AWS Outposts rack is installed?"
+    a: "The customer. They provide physical security, power, cooling and network at the site; AWS manages the rack hardware, hypervisor and services."
+    facts: [outposts-responsibility]
 ---
 AWS Outposts puts AWS hardware in your data center. You run AWS services there with the same APIs and tools as in a Region, for workloads that need low latency to on-premises systems or must process data locally. [What is AWS Outposts?](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html#what-is-outposts)
 

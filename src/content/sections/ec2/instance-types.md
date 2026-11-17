@@ -30,6 +30,9 @@ facts:
   - id: mac-instances
     text: "EC2 Mac instances run macOS on Apple hardware for building, testing and signing apps for Apple platforms such as iPhone, iPad and Mac; they run only on Dedicated Hosts with a 24-hour minimum allocation."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-mac-instances.html#ec2-mac-instances
+  - id: type-naming
+    text: "An instance type name is the instance family then the size: in c7gn.4xlarge, c is the series, 7 the generation, gn the options and 4xlarge the size."
+    source: https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html#instance-type-names
 cards:
   - id: ec2-030
     q: A company runs a web server that uses CPU, memory and network in roughly equal amounts. Which EC2 instance category fits?
@@ -64,6 +67,10 @@ cards:
     q: "A team needs cloud machines to build and sign its iOS app. Which EC2 option fits?"
     a: "EC2 Mac instances, which run macOS on Apple hardware. They run on Dedicated Hosts, billed per host with a 24-hour minimum."
     facts: [mac-instances]
+  - id: ec2-088
+    q: "What does each part of the instance type name m5.2xlarge mean?"
+    a: "m is the series (general purpose), 5 the generation and 2xlarge the size within the family."
+    facts: [type-naming]
 ---
 An EC2 instance type sets the CPU, memory, storage and networking of a virtual server. Types are grouped into categories by what they're good at, so the first choice is the category that matches the workload. [Amazon EC2 instance types](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html#instance-types)
 
