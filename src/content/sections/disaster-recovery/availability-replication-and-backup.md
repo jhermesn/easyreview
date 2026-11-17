@@ -17,11 +17,11 @@ facts:
   - id: regional
     text: Regional disaster recovery requires a recovery design outside the affected Region; multi-AZ
       availability operates inside one Region.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: corruption
     text: Continuous replication can copy corruption or destructive changes; add versioning or
       point-in-time backups in the recovery site.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: pitr
     text: Point-in-time recovery restores data to an earlier recoverable state, which helps recover from
       destructive changes.

@@ -22,7 +22,7 @@ facts:
     text: A cron invocation at a nonexistent local time during the spring daylight saving transition is skipped.
     source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time
   - id: dst-once
-    text: A cron invocation at a repeated local time during the autumn daylight saving transition runs only once.
+    text: A cron invocation at a repeated local time during the autumn daylight saving transition runs only once, at the second occurrence after the shift.
     source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time
   - id: rate-day
     text: A day in a rate schedule is a 24-hour duration even across daylight saving changes.

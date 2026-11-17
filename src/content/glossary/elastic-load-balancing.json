@@ -133,7 +133,7 @@
     "term": "Session state",
     "aliases": [],
     "definition": "Session state is user data retained between requests while an application is in use.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_mitigate_interaction_failure_stateless.html"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel05-bp06.html#rel05-bp06"
   },
   {
     "term": "QUIC",

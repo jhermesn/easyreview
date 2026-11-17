@@ -19,8 +19,7 @@ facts:
       to the same vault and key remain incremental.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.html
   - id: copy-encryption
-    text: Cross-Region copies generally use the destination vault KMS key; copies of unencrypted Aurora,
-      DocumentDB, and Neptune clusters remain unencrypted.
+    text: Cross-Region and cross-account copies of resources fully managed by AWS Backup use the destination vault key; a same-account cross-Region copy of a resource such as EBS into an aws/backup vault uses that service's AWS managed key; copies of unencrypted Aurora, DocumentDB and Neptune clusters stay unencrypted.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/encryption.html#copy-encryption
   - id: continuous-copy
     text: A continuous backup rule with a supported copy action produces periodic snapshot copies at the

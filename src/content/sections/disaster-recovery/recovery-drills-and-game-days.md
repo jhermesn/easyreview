@@ -6,28 +6,28 @@ facts:
   - id: game-day
     text: A game day rehearses workload-impacting failures with the teams and procedures that would
       handle a real incident.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_testing_resiliency_game_days_resiliency.html#rel_testing_resiliency_game_days_resiliency
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel12-bp05.html#rel12-bp05
   - id: plan-exercise
     text: Plan game day scope and objectives, notify participants and involve technical and business
       stakeholders.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_testing_resiliency_game_days_resiliency.html#rel_testing_resiliency_game_days_resiliency
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel12-bp05.html#rel12-bp05
   - id: observe-learn
     text: Observe the exercise, stop or roll back harmful tests and incorporate findings into procedures
       and systems.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_testing_resiliency_game_days_resiliency.html#rel_testing_resiliency_game_days_resiliency
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel12-bp05.html#rel12-bp05
   - id: measure
     text: Regular failover tests must establish that the recovery site works and meets RTO and RPO.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_dr_tested.html#rel_planning_for_recovery_dr_tested
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp03.html#rel13-bp03
   - id: load
     text: A secondary site that handled a previous test may be too small for the present failover load.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_dr_tested.html#rel_planning_for_recovery_dr_tested
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp03.html#rel13-bp03
   - id: drill
     text: Elastic Disaster Recovery drills launch test instances through the recovery process without
       affecting source servers or ongoing replication.
     source: https://docs.aws.amazon.com/drs/latest/userguide/failback.html#drs-terminology
   - id: drill-no-traffic
     text: Elastic Disaster Recovery can launch drill instances without redirecting production traffic.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_dr_tested.html#rel_planning_for_recovery_dr_tested
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp03.html#rel13-bp03
   - id: failback-test
     text: Elastic Disaster Recovery guidance recommends including failback in the initial drill and some
       regular drills.

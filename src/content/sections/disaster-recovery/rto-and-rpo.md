@@ -6,14 +6,14 @@ facts:
   - id: rto
     text: Recovery time objective (RTO) is the longest acceptable interval from service interruption to
       service restoration.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp01.html#rel13-bp01
   - id: rpo
     text: Recovery point objective (RPO) limits the acceptable age of the last recoverable data when
       service is interrupted.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp01.html#rel13-bp01
   - id: business-targets
     text: Set recovery objectives from business impact, cost, dependencies and compliance requirements.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp01.html#rel13-bp01
   - id: backup-interval
     text: Backup frequency determines the recoverable point for a backup-based recovery plan.
     source: https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#backup-and-restore
@@ -24,11 +24,11 @@ facts:
   - id: measure-recovery
     text: Test recovery paths to show that the workload recovers within its time target and to the
       required data state.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_dr_tested.html#rel_planning_for_recovery_dr_tested
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp03.html#rel13-bp03
   - id: independent-targets
     text: RTO constrains downtime while RPO constrains lost data; choosing a stricter target than the
       business needs adds cost and complexity.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp01.html#rel13-bp01
   - id: disaster-recovery
     text: Disaster recovery prepares a workload to respond to a serious disruption using business
       objectives for downtime and data loss.

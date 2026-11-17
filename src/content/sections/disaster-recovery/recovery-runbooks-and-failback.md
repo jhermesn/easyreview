@@ -6,21 +6,21 @@ facts:
   - id: runbook
     text: Document recovery roles, initiation criteria, dependency handling and a way to stop unsafe
       recovery automation.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp05.html#rel13-bp05
   - id: hard-dependency
     text: A hard dependency is required for operation with no substitute; a soft dependency can use a
       substitute or reduced functionality.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp05.html#rel13-bp05
   - id: recovery-ready
     text: Recovery planning should identify missing or corrupt data, prepare caches and define checks
       that confirm successful restoration.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp05.html#rel13-bp05
   - id: independent-recovery
     text: Recovery procedures must work when the primary site and its control plane are inaccessible.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp05.html#rel13-bp05
   - id: orchestrate
     text: Systems Manager Automation and Step Functions can orchestrate complex recovery workflows.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_auto_recovery.html#rel_planning_for_recovery_auto_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp05.html#rel13-bp05
   - id: regional-preparation
     text: Prepare regional permissions and service quotas before relying on a standby Region.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/aws-multi-region-fundamentals/fundamental-4.html#4a-account-management

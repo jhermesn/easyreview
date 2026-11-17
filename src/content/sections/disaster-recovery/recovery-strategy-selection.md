@@ -14,34 +14,34 @@ facts:
   - id: pilot
     text: Pilot light keeps replicated data and core resources available but needs additional actions
       before it can process requests.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: warm
     text: Warm standby keeps a working workload at reduced capacity and scales it up for recovery.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: hot
-    text: Hot standby is a standby deployment provisioned at full capacity.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    text: A warm standby that is fully scaled and serving full production load is a hot standby.
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: active
     text: Multi-site active-active serves traffic from multiple Regions and must handle data
       synchronization and write conflicts.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: tradeoff
     text: Select a recovery strategy that meets business recovery objectives without unnecessary cost or
       complexity.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: typical-backup
-    text: AWS illustrates backup and restore with RPO in hours and RTO within 24 hours; these are
+    text: AWS illustrates backup and restore with RPO in hours and RTO of up to a day; these are
       indicative strategy ranges.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: typical-pilot
     text: AWS illustrates pilot light with RPO in minutes and RTO in tens of minutes.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: typical-warm
     text: AWS illustrates warm standby with RPO in seconds and RTO in minutes.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: typical-active
-    text: AWS illustrates multi-site active-active with near-zero RPO and potentially zero RTO.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    text: AWS illustrates multi-site active-active as pushing RPO and RTO toward zero at the highest operational cost.
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: aurora-failover
     text: Aurora Global Database recovery can take minutes, with potential data loss determined by
       asynchronous replication lag.
@@ -64,20 +64,20 @@ facts:
   - id: test-capacity
     text: Recovery testing must establish that the secondary site can handle the failover load and meet
       the recovery targets.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_dr_tested.html#rel_planning_for_recovery_dr_tested
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp03.html#rel13-bp03
   - id: rto
     text: RTO is the maximum acceptable downtime between interruption and service restoration.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp01.html#rel13-bp01
   - id: rpo
     text: RPO is the maximum acceptable time gap between the last recoverable data and interruption.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_objective_defined_recovery.html#rel_planning_for_recovery_objective_defined_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp01.html#rel13-bp01
   - id: routing
     text: Route 53 health checks and ARC routing controls provide failover through data plane operations.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/best-practices-dns.html#best-practices-dns
   - id: backups
     text: Keep point-in-time backups or versioned data in the recovery site because continuous
       replication can copy destructive changes.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html#rel_planning_for_recovery_disaster_recovery
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel13-bp02.html#rel13-bp02
   - id: pilot-switched-off
     text: "In pilot light, data stores replicate continuously to the recovery Region while application servers stay switched off; AWS recommends not deploying them at all and deploying them from infrastructure as code such as CloudFormation when failover starts."
     source: https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#pilot-light
@@ -279,12 +279,12 @@ A disaster recovery strategy determines how much of a workload is ready at the r
 
 | Strategy | Ready before failure | Recovery action | Indicative RPO / RTO |
 |---|---|---|---|
-| Backup and restore | Backups and deployment material | Rebuild and restore | Hours / within 24 hours |
+| Backup and restore | Backups and deployment material | Rebuild and restore | Hours / up to a day |
 | Pilot light | Data replication and core infrastructure | Deploy or start the missing application resources, then scale | Minutes / tens of minutes |
 | Warm standby | Working workload at reduced capacity | Scale up | Seconds / minutes |
-| Multi-site active-active | Workloads serving traffic in multiple Regions | Use surviving Regions | Near zero / potentially zero |
+| Multi-site active-active | Workloads serving traffic in multiple Regions | Use surviving Regions | Toward zero / toward zero, at the highest cost |
 
-Hot standby is a full-capacity standby. Multi-site active-active also needs data synchronization and a way to handle concurrent write conflicts. DynamoDB global tables accept regional writes. Their default multi-Region eventual consistency (MREC) mode copies changes asynchronously and resolves concurrent changes with last writer wins, which keeps the item version with the latest internal timestamp. Aurora global database write forwarding sends secondary writes to the primary cluster.
+Hot standby is a warm standby scaled to serve the full production load. Multi-site active-active also needs data synchronization and a way to handle concurrent write conflicts. DynamoDB global tables accept regional writes. Their default multi-Region eventual consistency (MREC) mode copies changes asynchronously and resolves concurrent changes with last writer wins, which keeps the item version with the latest internal timestamp. Aurora global database write forwarding sends secondary writes to the primary cluster.
 
 ### Exam cues
 
@@ -296,7 +296,7 @@ Hot standby is a full-capacity standby. Multi-site active-active also needs data
 
 ### Remember
 
-- Warm standby becomes hot standby when provisioned at full capacity.
+- Warm standby becomes hot standby when fully scaled and serving the full production load.
 - Aurora unplanned recovery can take minutes and lose unreplicated changes. RDS read replica promotion includes a reboot and can take several minutes or longer.
 - Measure full recovery, including data, application capacity and traffic movement.
 
