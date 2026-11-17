@@ -1,6 +1,6 @@
 ---
 title: Private connectivity and encryption
-level: professional
+level: associate
 order: 10
 facts:
   - id: dx-connection

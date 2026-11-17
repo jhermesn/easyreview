@@ -1,6 +1,6 @@
 ---
 title: Identity sources, permission sets, and sessions
-level: professional
+level: associate
 order: 10
 facts:
   - id: identity-source

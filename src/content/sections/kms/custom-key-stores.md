@@ -1,6 +1,6 @@
 ---
 title: Custom key stores
-level: professional
+level: associate
 order: 50
 facts:
   - id: store-definition

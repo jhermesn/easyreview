@@ -1,6 +1,6 @@
 ---
 title: Multi-Region keys
-level: professional
+level: associate
 order: 40
 facts:
   - id: mrk-purpose

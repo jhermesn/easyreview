@@ -1,6 +1,6 @@
 ---
 title: Resource sharing and invitations
-level: professional
+level: associate
 order: 10
 facts:
   - id: ram-purpose

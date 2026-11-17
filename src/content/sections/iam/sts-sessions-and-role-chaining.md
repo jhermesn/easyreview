@@ -1,6 +1,6 @@
 ---
 title: STS sessions and role chaining
-level: professional
+level: associate
 order: 60
 facts:
   - id: sts-credential-parts

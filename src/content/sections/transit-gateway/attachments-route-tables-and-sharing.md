@@ -1,6 +1,6 @@
 ---
 title: Attachments, route tables, and sharing
-level: professional
+level: associate
 order: 10
 facts:
   - id: hub

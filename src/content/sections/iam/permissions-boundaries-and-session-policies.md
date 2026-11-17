@@ -1,6 +1,6 @@
 ---
 title: Permissions boundaries and session policies
-level: professional
+level: associate
 order: 30
 facts:
   - id: boundary-ceiling

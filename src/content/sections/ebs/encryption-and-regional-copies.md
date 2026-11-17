@@ -1,6 +1,6 @@
 ---
 title: Encryption and Regional copies
-level: professional
+level: associate
 order: 60
 facts:
   - id: kms

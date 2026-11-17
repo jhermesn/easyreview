@@ -1,6 +1,6 @@
 ---
 title: External ID and MFA conditions
-level: professional
+level: associate
 order: 80
 facts:
   - id: external-purpose

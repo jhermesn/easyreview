@@ -1,6 +1,6 @@
 ---
 title: Global database switchover and failover
-level: professional
+level: associate
 order: 20
 facts:
   - id: global

@@ -1,6 +1,6 @@
 ---
 title: Service control policies
-level: professional
+level: associate
 order: 20
 facts:
   - id: organizations-scp-ceiling

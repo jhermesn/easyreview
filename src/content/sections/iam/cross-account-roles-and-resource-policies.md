@@ -1,6 +1,6 @@
 ---
 title: Cross-account roles and resource policies
-level: professional
+level: associate
 order: 50
 facts:
   - id: cross-both-allow

@@ -1,6 +1,6 @@
 ---
 title: Capacity providers
-level: professional
+level: associate
 order: 70
 facts:
   - id: ecs-capacity-purpose

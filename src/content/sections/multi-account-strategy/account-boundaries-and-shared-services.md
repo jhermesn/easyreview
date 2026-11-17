@@ -1,6 +1,6 @@
 ---
 title: Account boundaries and shared services
-level: professional
+level: associate
 order: 10
 facts:
   - id: isolation

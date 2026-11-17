@@ -1,6 +1,6 @@
 ---
 title: Regional endpoint routing
-level: professional
+level: associate
 order: 10
 facts:
   - id: fixed-entry

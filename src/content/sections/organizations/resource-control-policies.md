@@ -1,6 +1,6 @@
 ---
 title: Resource control policies
-level: professional
+level: associate
 order: 30
 facts:
   - id: organizations-rcp-ceiling

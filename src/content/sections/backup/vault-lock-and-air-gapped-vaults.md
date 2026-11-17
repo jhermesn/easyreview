@@ -1,6 +1,6 @@
 ---
 title: Vault Lock and air-gapped vaults
-level: professional
+level: associate
 order: 50
 facts:
   - id: lock-purpose

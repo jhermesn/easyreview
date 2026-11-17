@@ -1,6 +1,6 @@
 ---
 title: Cross-Region copies and PITR limits
-level: professional
+level: associate
 order: 40
 facts:
   - id: regional-copy
