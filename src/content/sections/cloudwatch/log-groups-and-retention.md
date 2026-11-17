@@ -44,6 +44,12 @@ facts:
   - id: incoming-bytes
     text: The AWS/Logs metric IncomingBytes, by LogGroupName, shows how much data each log group ingests, which finds the costliest groups.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html
+  - id: log-classes
+    text: "CloudWatch Logs has a full-featured Standard log class and a lower-cost Essentials log class (formerly Infrequent Access) with a subset of features; the classes differ only in ingestion price, and a log group's class can't be changed after creation."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html#CloudWatch_Logs_Log_Classes
+  - id: live-tail
+    text: "CloudWatch Logs Live Tail streams new log events as they are ingested so you can filter and highlight them in near real time during an incident; sessions are billed per minute."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html#CloudWatchLogs_LiveTail
 cards:
   - id: cloudwatch-057
     q: What is the difference between a CloudWatch Logs log stream and a log group?
@@ -88,6 +94,14 @@ cards:
     q: Which CloudWatch metric shows which log groups ingest the most data and drive the CloudWatch Logs bill?
     a: AWS/Logs IncomingBytes, with the LogGroupName dimension.
     facts: [incoming-bytes]
+  - id: cloudwatch-117
+    q: "A team wants to cut ingestion cost for logs it only keeps for occasional cross-account analysis. Which log class fits, and can an existing log group switch to it?"
+    a: "The Essentials log class (formerly Infrequent Access), which has a lower ingestion price and fewer features. A log group's class is fixed at creation, so it needs a new log group."
+    facts: [log-classes]
+  - id: cloudwatch-118
+    q: "During an incident, an engineer wants to watch new log events appear and filter them for an error string. Which CloudWatch feature fits?"
+    a: "CloudWatch Logs Live Tail, which streams newly ingested events with filtering and highlighting."
+    facts: [live-tail]
 ---
 CloudWatch Logs stores timestamped events from applications and infrastructure. A log stream holds events from one source; a log group collects streams that need the same retention, monitoring, and access settings.
 
@@ -103,6 +117,8 @@ CloudWatch Logs stores timestamped events from applications and infrastructure. 
 - If the question says many application instances need common retention, think streams in a shared group, because retention belongs to the group.
 - If the question says existing groups must inherit a common account retention policy, think RETROACTIVE, because NEW_ONLY covers future groups.
 - If the question says protect a log group from accidental deletion, think deletion protection, because deletion remains blocked until protection is disabled.
+- If the question says cheaper ingestion for rarely queried logs, think the Essentials log class (formerly Infrequent Access), chosen when the log group is created.
+- If the question says watch logs arrive live during an incident, think Live Tail.
 
 ### Remember
 

@@ -838,7 +838,8 @@
                 "ecs/task-definitions-tasks-and-services",
                 "fargate/private-subnet-connectivity",
                 "lambda/vpc-connectivity",
-                "lambda/memory-timeout-and-snapstart"
+                "lambda/memory-timeout-and-snapstart",
+                "api-gateway/integrations-and-monitoring"
               ]
             }
           ]
@@ -946,7 +947,8 @@
                 "cloudwatch/real-user-monitoring",
                 "cloudwatch/container-insights",
                 "managed-prometheus/workspaces-ingestion-and-promql",
-                "managed-prometheus/managed-collectors-and-remote-write"
+                "managed-prometheus/managed-collectors-and-remote-write",
+                "api-gateway/integrations-and-monitoring"
               ]
             },
             {

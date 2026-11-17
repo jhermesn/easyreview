@@ -395,7 +395,8 @@
                 "api-gateway/deployments-and-stages",
                 "api-gateway/authentication-and-api-keys",
                 "api-gateway/endpoint-types-and-throttling",
-                "api-gateway/canary-releases"
+                "api-gateway/canary-releases",
+                "api-gateway/integrations-and-monitoring"
               ]
             },
             {

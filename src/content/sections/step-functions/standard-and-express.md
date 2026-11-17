@@ -49,6 +49,9 @@ facts:
   - id: parallel
     text: A Parallel state runs several branches at the same time and continues when all branches finish.
     source: https://docs.aws.amazon.com/step-functions/latest/dg/state-parallel.html
+  - id: state-types
+    text: "Step Functions state types are Task (one unit of work), Choice (branch on input), Parallel (fixed parallel branches), Map (the same steps for each item of an array), Pass, Wait (pause for a time or until a date), and the terminal Succeed and Fail states."
+    source: https://docs.aws.amazon.com/step-functions/latest/dg/workflow-states.html#workflow-states
 cards:
   - id: step-functions-001
     q: How do Step Functions Standard and Express differ in duration, history, billing, and
@@ -101,6 +104,10 @@ cards:
     q: A Step Functions workflow must run three independent checks at the same time and continue when all finish. Which state type fits?
     a: A Parallel state.
     facts: [parallel]
+  - id: step-functions-024
+    q: "A workflow must run the same processing steps for every file listed in its input, and pause until a set date before reporting. Which Step Functions states fit?"
+    a: "A Map state for the per-file steps and a Wait state for the pause. Parallel runs fixed branches, and Choice picks one branch from the input."
+    facts: [state-types]
 ---
 
 Step Functions runs a workflow, a sequence of steps with rules for moving between them. Its state machine is the workflow definition; an execution is one run. Choose Standard for long processes and Express for short event processing.

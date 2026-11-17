@@ -4330,6 +4330,14 @@
   "https://docs.aws.amazon.com/translate/latest/dg/how-custom-terminology.html#how-custom-terminology": "3fab8a24de8f8fa8",
   "https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-size-constraint-match.html#waf-rule-statement-type-size-constraint-match": "90795d4d11fe3d3d",
   "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/cost_pricing_model_region_cost.html#cost_pricing_model_region_cost": "1a92c7958cb5186b",
-  "https://docs.aws.amazon.com/whitepapers/latest/aws-outposts-high-availability-design/aws-outposts-high-availability-design.html#shared-security-model": "8fd6f0189e178da5"
+  "https://docs.aws.amazon.com/whitepapers/latest/aws-outposts-high-availability-design/aws-outposts-high-availability-design.html#shared-security-model": "8fd6f0189e178da5",
+  "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html#API_PutMetricData": "f489836370d07530",
+  "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html#CloudWatchLogs_LiveTail": "42ed31eeb706212c",
+  "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html#CloudWatch_Logs_Log_Classes": "1279b1166ec572c9",
+  "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntaxForMetricFilters.html#logs-metric-filters-dimensions": "5ea35787da3a1f9c",
+  "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html#api-gateway-api-integration-types": "ebe604288e28eb56",
+  "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api.html#api-gateway-import-api": "50d06ec9d17d1858",
+  "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html#api-gateway-method-request-validation": "3eed13fdbe0678ff",
+  "https://docs.aws.amazon.com/step-functions/latest/dg/workflow-states.html#workflow-states": "82626d929c572fde"
  }
 }
