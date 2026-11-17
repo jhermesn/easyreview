@@ -3,7 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
 import ExamFacts from '../../../components/ExamFacts.astro';
 import { availableCerts, getCert } from '../../../lib/certs';
-import { getCertView, knownGroups, sectionIds } from '../../../lib/content';
+import { certCards, getCertView, knownGroups, sectionIds } from '../../../lib/content';
 import { getGuide } from '../../../lib/guides';
 import { withBase } from '../../../lib/format';
 import { badgeUrl } from '../../../lib/badge';
@@ -21,7 +21,7 @@ const t = useTranslations(locale);
 const link = (path: string) => localePath(locale, path);
 const cert = getCert(Astro.params.cert!);
 const view = await getCertView(cert.id, locale);
-const cardTotal = view.sections.reduce((n, s) => n + s.data.cards.length, 0);
+const cardTotal = view.sections.reduce((n, s) => n + certCards(cert, s).length, 0);
 const guideItems = getGuide(cert.id)?.domains.flatMap((d) => d.tasks.flatMap((t) => t.items)) ?? [];
 const covered = guideItems.filter((i) => i.sections.length).length;
 const description = t('cert.description', { cert: certFullName(cert), n: cardTotal });
@@ -71,7 +71,7 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
                 <span class="name">{unit.data.title}</span>
                 <span class="meta">
                   <span class="st"><Icon name="circle" size={12} class="st-open" /><Icon name="check-circle" size={12} class="st-done" /></span>
-                  {t('cert.sections', { n: sections.length })} · <Icon name="cards" size={12} />{sections.reduce((n, s) => n + s.data.cards.length, 0)}
+                  {t('cert.sections', { n: sections.length })} · <Icon name="cards" size={12} />{sections.reduce((n, s) => n + certCards(cert, s).length, 0)}
                 </span>
               </a>
             </li>

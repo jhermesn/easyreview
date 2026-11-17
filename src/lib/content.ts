@@ -6,6 +6,7 @@ import type { DeckCard } from '../components/FlashDeck.astro';
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales';
 import { getCert, type Cert } from './certs';
 import { getGuide } from './guides';
+import { cardsFitCert } from './levels';
 import { hashFile, mergeSection, sectionProblems } from './translate';
 
 // `lang` is the language the entry's text is in: the page's locale when a fresh translation exists, else English.
@@ -112,10 +113,13 @@ export async function orphanSections(certIds: string[]): Promise<string[]> {
   return [...sections.keys()].filter((id) => !used.has(id));
 }
 
+// The cards a cert drills from one of its sections: none when the section is above the exam's level.
+export const certCards = (cert: Cert, s: Section) => (cardsFitCert(cert.level, s.data.level) ? s.data.cards : []);
+
 export function deckCards(view: CertView): DeckCard[] {
   return view.units.flatMap(({ unit, domain, sections }) =>
     sections.flatMap((s) =>
-      s.data.cards.map((c) => ({ id: c.id, topic: unit.id, topicTitle: unit.data.title, domain, q: c.q, a: c.a, trap: c.trap, lang: LOCALES[s.lang].lang })),
+      certCards(view.cert, s).map((c) => ({ id: c.id, topic: unit.id, topicTitle: unit.data.title, domain, q: c.q, a: c.a, trap: c.trap, lang: LOCALES[s.lang].lang })),
     ),
   );
 }

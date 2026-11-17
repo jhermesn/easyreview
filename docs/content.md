@@ -14,7 +14,7 @@ Front matter (exact schema in `src/content.config.ts`):
 | Field | Meaning |
 |---|---|
 | `title` | Short section title |
-| `level` | `foundational`, `associate` or `professional` |
+| `level` | `foundational`, `associate` or `professional`. A cert drills the cards of a section only when the section is at or below the exam level; the notes show in every cert that maps the section. |
 | `order` | Sort order inside the unit |
 | `facts` | `{ id, text, source }`: one atomic claim in your own words and the exact AWS doc URL, with `#anchor` when the page has one |
 | `cards` | `{ id, q, a, trap, facts }`: `facts` lists the fact ids the card relies on |
