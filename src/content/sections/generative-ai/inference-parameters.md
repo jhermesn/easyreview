@@ -21,6 +21,9 @@ facts:
   - id: defaults
     text: Inference parameter defaults and ranges depend on the model.
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html
+  - id: stop-sequences
+    text: "Stop sequences are character sequences that make the model stop generating once it produces one of them."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html#inference-length
 cards:
   - id: generative-ai-014
     q: A legal team wants consistent, factual answers from an LLM with little variation between runs. How should it set temperature?
@@ -47,6 +50,10 @@ cards:
     a: "No. Inference parameters only change how one response is sampled; the model's parameters stay the same.\nIt makes output more consistent, not more correct."
     trap: true
     facts: [sampling, temperature]
+  - id: generative-ai-040
+    q: "An application wants the model to stop writing as soon as it outputs the text \"END\". Which inference parameter does this?"
+    a: "A stop sequence. When the model generates a specified stop sequence, it stops generating more tokens."
+    facts: [stop-sequences]
 ---
 Inference parameters are dials you set per request. Temperature, Top K and Top P control how adventurous the model is when picking each next token; length settings cap how much it writes. [Inference parameters](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html)
 
@@ -70,6 +77,7 @@ Inference parameters are dials you set per request. Temperature, Top K and Top P
 - If the question says creative or varied output, think higher temperature or Top P.
 - If the question says a count of candidate tokens, think Top K; a percentage, think Top P.
 - If the question says limit cost or response size, think maximum length (tokens).
+- If the question says stop generation at a specific marker, think stop sequences.
 
 ### Remember
 

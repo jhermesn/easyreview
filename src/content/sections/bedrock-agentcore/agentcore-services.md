@@ -36,6 +36,18 @@ facts:
   - id: agents-classic
     text: Amazon Bedrock Agents became Amazon Bedrock Agents Classic and closed to new customers on July 30, 2026; AWS recommends AgentCore for new agent development.
     source: https://docs.aws.amazon.com/decision-guides/latest/generative-ai-on-aws-how-to-choose/guide.html#understand
+  - id: classic-agent-tasks
+    text: "A Bedrock Agents Classic agent breaks a user request into steps, asks the user for missing information, calls company APIs and queries knowledge bases; it needs at least one action group or an associated knowledge base."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html#agents
+  - id: action-group-definition
+    text: "An action group defines what an agent can do, either with an OpenAPI schema that maps each action to an API operation or with function details listing the parameters to elicit from the user."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/action-define.html#action-define
+  - id: action-fulfillment
+    text: "An action group is fulfilled by a Lambda function holding the business logic or by returning control to the application in the InvokeAgent response; user confirmation before an action helps guard against prompt injection."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/action-handle.html#action-handle
+  - id: agent-trace
+    text: "An agent trace shows each orchestration step, including the inputs and outputs of the action groups invoked and the knowledge bases queried, so you can follow and debug the agent's reasoning."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/trace-events.html#trace-events
 cards:
   - id: bedrock-agentcore-001
     q: A team built an agent with an open source framework and needs a secure, serverless place to run it at scale with session isolation. Which AWS service fits?
@@ -70,6 +82,18 @@ cards:
     a: "No. Bedrock Agents became Agents Classic and closed to new customers on July 30, 2026; use Amazon Bedrock AgentCore."
     trap: true
     facts: [agents-classic]
+  - id: bedrock-agentcore-009
+    q: "In an Amazon Bedrock agent, how do you tell the agent which business actions it can take, and how are they carried out?"
+    a: "With action groups. Each action group is defined by an OpenAPI schema or by function details, and is fulfilled by a Lambda function or by returning control to your application."
+    facts: [action-group-definition, action-fulfillment]
+  - id: bedrock-agentcore-010
+    q: "A Bedrock agent gave an unexpected answer. How do you see which actions and knowledge base queries it ran?"
+    a: "Turn on the trace. It records every orchestration step with the inputs and outputs of each action group and knowledge base query."
+    facts: [agent-trace]
+  - id: bedrock-agentcore-011
+    q: "How can a Bedrock agent reduce the risk that a prompt injection triggers a harmful action?"
+    a: "Turn on user confirmation for the action, so the application user must confirm before the agent invokes the action group function."
+    facts: [action-fulfillment]
 ---
 AgentCore is a set of building blocks for running agents in production: where they run, what they remember, which tools they reach, whose identity they use, what they're allowed to do and how well they perform. Use the pieces together or one at a time, with any framework or model. [What is AgentCore?](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)
 
@@ -93,6 +117,7 @@ AgentCore is a set of building blocks for running agents in production: where th
 - If the question says expose APIs or Lambda functions to agents as MCP tools, think AgentCore Gateway.
 - If the question says act on behalf of users with OAuth tokens, think AgentCore Identity.
 - If the question says enforce rules on what tools an agent may call, think Policy in AgentCore.
+- If the question says define the actions an existing Bedrock agent can take, think action groups (OpenAPI schema or function details, fulfilled by Lambda or return of control).
 
 ### Remember
 

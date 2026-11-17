@@ -30,6 +30,9 @@ facts:
   - id: faithfulness
     text: Model-based metrics include faithfulness (groundedness), which checks that output is consistent with the source context, relevance to the query, coherence and style adherence.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/dev-experimenting-quality.html#dev-experimenting-quality-metrics
+  - id: perplexity
+    text: "Perplexity is an intrinsic language modeling metric based on how likely the model finds the test text; a lower perplexity means the model predicts the text better, but it does not always match human judgment."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/lda.html#lda-or-ntm
 cards:
   - id: fm-evaluation-001
     q: Which metric fits a model that translates product descriptions from English to Spanish against reference translations?
@@ -64,6 +67,10 @@ cards:
     q: Why should an LLM judge come from a different model family than the model it grades?
     a: Models tend to prefer outputs like their own (self-preference bias).
     facts: [judge-family]
+  - id: fm-evaluation-013
+    q: "A team compares two language models by perplexity on the same test text. Which result is better?"
+    a: "The lower perplexity: the model predicts the test text better. It is an intrinsic metric and may not match human judgment, so pair it with task metrics or human review."
+    facts: [perplexity]
 ---
 Evaluating generative AI takes several lenses at once: automatic metrics against reference answers, a model acting as judge, and human reviewers for what only people can judge. All of them need a good evaluation dataset. [Evaluating generated outputs](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/dev-experimenting-quality.html)
 

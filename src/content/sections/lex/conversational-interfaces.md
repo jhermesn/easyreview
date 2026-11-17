@@ -12,6 +12,12 @@ facts:
   - id: channels
     text: Lex chatbots can be added to mobile devices, web applications and chat platforms.
     source: https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html#what-is
+  - id: intents
+    text: "A Lex intent is an action the user wants to perform; it has a name, sample utterances showing how users ask for it, and a fulfillment, usually an AWS Lambda function."
+    source: https://docs.aws.amazon.com/lexv2/latest/dg/how-it-works.html#how-it-works
+  - id: slots
+    text: "Slots are the parameters an intent needs; Lex prompts the user for each required slot value before it fulfills the intent, and each slot has a built-in or custom slot type."
+    source: https://docs.aws.amazon.com/lexv2/latest/dg/how-it-works.html#how-it-works
 cards:
   - id: lex-001
     q: A company wants a chatbot on its website that understands customers' typed and spoken questions. Which AWS service fits?
@@ -26,6 +32,10 @@ cards:
     a: No. You define the conversation flow in the console and Lex manages the dialog.
     trap: true
     facts: [no-expertise]
+  - id: lex-004
+    q: "A Lex hotel booking bot needs the city, check-in date and number of nights before it books. What are these in Lex, and what usually does the booking?"
+    a: "They are slots of the BookHotel intent. When all required slots are filled, Lex fulfills the intent, usually by invoking a Lambda function."
+    facts: [intents, slots]
 ---
 Amazon Lex builds chatbots and voice bots. It understands what a user means, manages the conversation, and plugs into web, mobile and chat channels. [What is Amazon Lex V2?](https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html#what-is)
 
@@ -39,6 +49,7 @@ Amazon Lex builds chatbots and voice bots. It understands what a user means, man
 ### Exam cues
 
 - If the question says chatbot or conversational interface, think Amazon Lex.
+- If the question says the bot must collect details before acting, think slots of an intent fulfilled by Lambda.
 
 ### Remember
 

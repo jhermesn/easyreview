@@ -27,6 +27,12 @@ facts:
   - id: training-cost
     text: Model training is charged by tokens processed (tokens in the training data times the number of epochs), plus monthly storage per custom model.
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html#custom-models
+  - id: customization-role
+    text: "A Bedrock model customization job uses a service role that Bedrock assumes to read training and validation files and write output in Amazon S3; if those resources use a KMS key, the role also needs permission to decrypt with that key."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-iam-role.html#model-customization-iam-role
+  - id: tuning-data-handling
+    text: "Bedrock uses fine-tuning data only to fine-tune your model and doesn't store it after the job; a fine-tuned model can still replay training data, so filter confidential data out before tuning."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-custom-job.html#encryption-custom-job
 cards:
   - id: bedrock-041
     q: A company has thousands of labeled examples of support tickets and ideal replies and wants a model to reply in that style. Which Amazon Bedrock customization fits?
@@ -61,6 +67,15 @@ cards:
     a: "Not by default. A model you customize in Bedrock needs Provisioned Throughput to run inference."
     trap: true
     facts: [what]
+  - id: bedrock-063
+    q: "A Bedrock fine-tuning job fails to read training data in an S3 bucket encrypted with SSE-KMS. What must its service role have?"
+    a: "Access to the S3 objects and permission to decrypt with the KMS key that encrypts them."
+    facts: [customization-role]
+  - id: bedrock-064
+    q: "Does Amazon Bedrock fine-tuning guarantee a custom model never reveals its training data?"
+    a: "No. Bedrock doesn't keep the data after the job, but a fine-tuned model can replay some of it. Remove confidential data before tuning."
+    trap: true
+    facts: [tuning-data-handling]
 ---
 Customization changes the model itself, unlike prompts and RAG. Bedrock offers supervised fine-tuning, reinforcement fine-tuning, distillation and continued pre-training, and can import models trained elsewhere. [Customize your model](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
 

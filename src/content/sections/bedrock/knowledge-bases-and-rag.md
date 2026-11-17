@@ -30,6 +30,18 @@ facts:
   - id: vector-stores
     text: Amazon OpenSearch Service is the recommended vector database for Amazon Bedrock; Amazon Aurora PostgreSQL and Amazon RDS for PostgreSQL store embeddings with the pgvector extension, and Amazon DocumentDB and Amazon MemoryDB also support vector search.
     source: https://aws.amazon.com/what-is/vector-databases/
+  - id: kb-vector-stores
+    text: "A customer-managed Bedrock knowledge base can store its vectors in Amazon OpenSearch Serverless, OpenSearch Service managed clusters, Amazon S3 Vectors, Amazon Aurora, Amazon Neptune Analytics (for GraphRAG), Pinecone, Redis Enterprise Cloud or MongoDB Atlas."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html#knowledge-base-setup
+  - id: kb-data-sources
+    text: "Knowledge base data sources include Amazon S3, Confluence, Microsoft SharePoint, Salesforce, a web crawler and custom sources; images, audio and video are ingested only from Amazon S3 and custom sources."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/data-source-connectors.html#data-source-connectors
+  - id: kb-connector-change
+    text: "Starting September 30, 2026, new Confluence, SharePoint, Salesforce and web crawler connectors can no longer be created on customer-managed knowledge bases; existing ones keep working, and AWS recommends Bedrock Managed Knowledge Base for these sources."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/data-source-connectors.html#data-source-connectors
+  - id: s3-vectors
+    text: "Amazon S3 Vectors is cost-optimized vector storage in vector buckets, with S3 durability and availability, no infrastructure to provision, and subsecond query latency (as low as 100 ms for frequent queries)."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-vectors.html#s3-vectors-what-is
 cards:
   - id: bedrock-020
     q: A company wants its chatbot to answer from internal HR documents that change monthly, without retraining a model. Which approach and Amazon Bedrock feature fit?
@@ -60,6 +72,19 @@ cards:
     a: "No. RAG adds retrieved context to the prompt at query time; fine-tuning is what changes the weights."
     trap: true
     facts: [rag, kb]
+  - id: bedrock-056
+    q: "A RAG application on Amazon Bedrock Knowledge Bases needs cost-optimized, durable vector storage with subsecond queries and no infrastructure to provision. Which vector store fits?"
+    a: "Amazon S3 Vectors, one of the supported knowledge base vector stores. OpenSearch suits high-performance search, Aurora suits relational data, and Neptune Analytics suits GraphRAG."
+    facts: [kb-vector-stores, s3-vectors]
+  - id: bedrock-057
+    q: "Which vector store do you pick for a Bedrock knowledge base that should use GraphRAG over connected entities?"
+    a: "Amazon Neptune Analytics, the graph option among the supported knowledge base vector stores."
+    facts: [kb-vector-stores]
+  - id: bedrock-058
+    q: "In late 2026 a team wants a new Bedrock knowledge base fed from Confluence and SharePoint. Can it add those connectors to a customer-managed knowledge base?"
+    a: "No. Since September 30, 2026 new Confluence, SharePoint, Salesforce and web crawler connectors are not supported on customer-managed knowledge bases; existing ones keep working. AWS recommends Bedrock Managed Knowledge Base."
+    trap: true
+    facts: [kb-connector-change, kb-data-sources]
 ---
 Retrieval augmented generation (RAG) gives a model the facts it needs at question time: find the relevant passages in your data and put them in the prompt. Amazon Bedrock Knowledge Bases runs that pipeline for you, from ingestion to citations. [Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)
 
@@ -83,6 +108,7 @@ Retrieval augmented generation (RAG) gives a model the facts it needs at questio
 - If the question says reduce hallucinations with company data, think RAG grounding.
 - If the question says show sources for each answer, think citations from RetrieveAndGenerate.
 - If the question says store embeddings or vector search, think OpenSearch Service, Aurora/RDS PostgreSQL with pgvector, or Neptune.
+- If the question says cost-optimized durable vector storage for a knowledge base, think Amazon S3 Vectors; for GraphRAG, think Neptune Analytics.
 
 ### Remember
 

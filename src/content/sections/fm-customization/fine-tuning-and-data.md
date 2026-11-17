@@ -27,6 +27,9 @@ facts:
   - id: data-size
     text: For supervised fine-tuning of Amazon Nova models, the recommended dataset size is 2,000 to 10,000 samples, with a minimum of 200.
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/nova-2-sft-data-prep.html
+  - id: rlhf-steps
+    text: "RLHF collects human prompts and ideal answers, fine-tunes a pretrained model, trains a separate reward model from human preferences between responses, and then uses that reward model to optimize the language model with reinforcement learning."
+    source: https://aws.amazon.com/what-is/reinforcement-learning-from-human-feedback/
 cards:
   - id: fm-customization-008
     q: A team trains a model on prompt-and-response pairs that show how to follow instructions for its tasks. Which fine-tuning approach is this?
@@ -57,6 +60,10 @@ cards:
     a: "No. Quality comes first: accurate, representative, diverse examples matter more than raw volume."
     trap: true
     facts: [data-quality]
+  - id: fm-customization-015
+    q: "In RLHF, what turns human preferences into something reinforcement learning can optimize automatically?"
+    a: "A separate reward model trained on human choices between responses. It then acts as the reward function that optimizes the language model."
+    facts: [rlhf-steps]
 ---
 Fine-tuning keeps training a pre-trained model on your data, so its weights change. The data decides the result: accurate, representative and varied examples matter more than volume. [Fine-tuning foundation models](https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning.html)
 

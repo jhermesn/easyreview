@@ -27,6 +27,9 @@ facts:
   - id: nova2
     text: Amazon Nova 2 adds new models with up to 1 million tokens of context and extended reasoning.
     source: https://docs.aws.amazon.com/nova/latest/nova2-userguide/what-is-nova-2.html
+  - id: nova2-models
+    text: "Amazon Nova 2 includes Nova 2 Lite (text, image, video and document input with text output, for fast, cost-efficient high-volume use), Nova 2 Sonic (speech in and out) and Nova Multimodal Embeddings (embeddings from text, images, documents, video and audio)."
+    source: https://docs.aws.amazon.com/nova/latest/nova2-userguide/what-is-nova-2.html#model-families
 cards:
   - id: nova-001
     q: A chatbot only handles text and needs the fastest, cheapest responses. Which Amazon Nova model fits?
@@ -53,6 +56,10 @@ cards:
     a: "No. Nova Micro is text-only; Nova Lite, Pro and Premier accept images and video."
     trap: true
     facts: [micro, lite, pro-premier]
+  - id: nova-007
+    q: "A semantic search application must find matches across text, images, video and audio with one embedding model. Which Amazon Nova model fits?"
+    a: "Amazon Nova Multimodal Embeddings, which turns text, images, documents, video and audio into embeddings for semantic search and similarity matching."
+    facts: [nova2-models]
 ---
 Amazon Nova is Amazon's own model family in Amazon Bedrock. Pick by modality and size: Micro for fast text, Lite and Pro for multimodal understanding, Premier for the hardest tasks, Canvas and Reel to create images and video, and Sonic for speech. [What is Amazon Nova?](https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html)
 
@@ -74,6 +81,7 @@ Amazon Nova is Amazon's own model family in Amazon Bedrock. Pick by modality and
 - If the question says images or video as input at low cost, think Nova Lite.
 - If the question says generate images, think Nova Canvas; generate video, think Nova Reel.
 - If the question says spoken conversation, think Nova Sonic.
+- If the question says one Nova model for embeddings across text, images, video and audio, think Nova Multimodal Embeddings.
 
 ### Remember
 

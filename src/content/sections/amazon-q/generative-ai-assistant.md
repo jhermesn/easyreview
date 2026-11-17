@@ -21,6 +21,24 @@ facts:
   - id: bedrock
     text: Amazon Q Developer and Amazon Q Business are built on Amazon Bedrock and use its automated abuse detection.
     source: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#what-is
+  - id: qdev-ide
+    text: "In an IDE such as Visual Studio Code, JetBrains or Visual Studio, Amazon Q Developer chats about code, completes code inline, generates new code, scans code for security vulnerabilities and helps upgrade, debug and optimize it."
+    source: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#what-is
+  - id: aws-assistant-resources-costs
+    text: "The AWS assistant, which replaced the Amazon Q Developer chat in the console, answers questions about your AWS resources and costs."
+    source: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#what-is
+  - id: qdev-chat-apps
+    text: "Amazon Q Developer in chat applications brings the assistant to Microsoft Teams and Slack channels, using the AmazonQDeveloperAccess managed policy and channel guardrails."
+    source: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#quick-start
+  - id: qdev-tiers
+    text: "Amazon Q Developer has a Free tier and a paid Amazon Q Developer Pro subscription."
+    source: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#pricing
+  - id: quick-features
+    text: "AWS Quick is an AI-powered workplace service with Quick Sight for BI dashboards, Quick Flows and Quick Automate for AI-driven automations, Quick Index to ground answers in company documents, Quick Research for cited research reports, and apps built from natural language."
+    source: https://docs.aws.amazon.com/quick/latest/userguide/what-is.html#what-is
+  - id: quick-access
+    text: "Organizations provision AWS Quick in the AWS Management Console with IAM Identity Center or IAM federation and per-user subscriptions; individuals can sign up without an AWS account."
+    source: https://docs.aws.amazon.com/quick/latest/userguide/what-is.html#accessing-quick
 cards:
   - id: amazon-q-001
     q: A developer wants an AI assistant that answers questions about AWS architecture and their own AWS resources. Which AWS service fits?
@@ -39,6 +57,18 @@ cards:
     a: No. Amazon Q is a set of ready-to-use generative AI assistants; custom model training is Amazon SageMaker AI.
     trap: true
     facts: [developer, business]
+  - id: amazon-q-005
+    q: "Employees need one AI assistant that answers from company documents, writes cited research reports, builds dashboards and automates routine tasks. Which AWS service fits a new customer in late 2026?"
+    a: "AWS Quick, with Quick Index, Quick Research, Quick Sight, Quick Flows and Quick Automate. Amazon Q Business closed to new customers on July 31, 2026."
+    facts: [quick-features]
+  - id: amazon-q-006
+    q: "Which Amazon Q Developer capabilities help a developer inside the IDE?"
+    a: "Code chat, inline code completion, new code generation, security vulnerability scans, and code upgrades, debugging and optimization."
+    facts: [qdev-ide]
+  - id: amazon-q-007
+    q: "An operations team wants to ask about AWS resources from its Slack channel. What does AWS offer?"
+    a: "Amazon Q Developer in chat applications, which works in Slack and Microsoft Teams with the AmazonQDeveloperAccess policy and channel guardrails."
+    facts: [qdev-chat-apps]
 ---
 Amazon Q is AWS's family of generative AI assistants. Amazon Q Developer helps people build and run applications on AWS. Amazon Q Business answers employees' questions from company data. Both have changed recently, so exam questions may use older names. [What is Amazon Q Developer?](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#what-is)
 
@@ -57,6 +87,7 @@ Amazon Q is AWS's family of generative AI assistants. Amazon Q Developer helps p
 
 - If the question says AI assistant for AWS development or for questions about AWS resources, think Amazon Q Developer.
 - If the question says generative AI assistant over company documents, think Amazon Q Business.
+- If the question says employees need one AI workspace for company knowledge, research, dashboards and automations, think AWS Quick (Amazon Q Business closed to new customers).
 
 ### Remember
 

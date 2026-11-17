@@ -24,6 +24,15 @@ facts:
   - id: business-metrics
     text: Business metrics such as fraud detection rate, new business acquisition or customer satisfaction should be tied to the technical metric, so model performance maps to a business outcome.
     source: https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/business-goal-identification.html
+  - id: mae
+    text: "Mean absolute error (MAE) is the average absolute difference between predicted and actual values across all values; it measures a regression model's prediction error, and lower is better."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics
+  - id: rmse-outliers
+    text: "Root mean squared error (RMSE) is the square root of the averaged squared differences between predicted and actual values; it highlights large errors and outliers."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics
+  - id: r2
+    text: "R2, the coefficient of determination, measures how much of the variance in the target a regression model explains; higher values mean more explained variability, and values near zero mean the model explains very little."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics
 cards:
   - id: ml-lifecycle-014
     q: A fraud model must catch as many real fraud cases as possible, even if some legitimate payments get flagged. Which metric should it maximize?
@@ -54,6 +63,14 @@ cards:
     q: Besides model metrics such as accuracy, what should an ML project measure to prove value?
     a: Business metrics tied to the goal, such as fraud detection rate, customer satisfaction, cost savings or return on investment.
     facts: [business-metrics]
+  - id: ml-lifecycle-022
+    q: "A model predicts house prices. Which metrics evaluate it: precision and recall, or MAE, RMSE and R2?"
+    a: "MAE, RMSE and R2, because predicting a price is regression. Precision, recall, F1 and the confusion matrix are for classification."
+    facts: [mae, rmse-outliers, r2]
+  - id: ml-lifecycle-023
+    q: "A regression model has an R2 of 0.8. What does that say?"
+    a: "The model explains about 80% of the variance in the target value. Higher R2 means more explained variability."
+    facts: [r2]
 ---
 Model metrics say how well a model predicts; business metrics say whether that matters. For classification, the confusion matrix counts true and false positives and negatives, and precision, recall and F1 come from it. [Autopilot metrics](https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics)
 
@@ -78,6 +95,7 @@ Model metrics say how well a model predicts; business metrics say whether that m
 - If the question says false alarms are costly, think precision.
 - If the question says balance both or imbalanced classes, think F1.
 - If the question says cost per user, ROI or customer feedback, think business metrics, not model metrics.
+- If the question says evaluate a model that predicts a number, think MAE, RMSE or R2, not precision or recall.
 
 ### Remember
 

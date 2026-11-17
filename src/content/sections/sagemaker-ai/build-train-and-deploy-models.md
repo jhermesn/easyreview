@@ -15,6 +15,9 @@ facts:
   - id: savings-plans
     text: SageMaker AI Savings Plans lower prices for SageMaker AI instance usage regardless of instance family, size, component or Region.
     source: https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html#what-is-savings-plans
+  - id: network-isolation
+    text: "With EnableNetworkIsolation set, SageMaker training and inference containers cannot make any outbound network calls, not even to Amazon S3, and get no AWS credentials."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/mkt-algo-model-internet-free.html#mkt-algo-model-internet-free-isolation
 cards:
   - id: sagemaker-ai-001
     q: Data scientists want to build, train and deploy their own custom machine learning model without managing servers. Which AWS service fits?
@@ -33,6 +36,10 @@ cards:
     a: No. A pre-built service such as Amazon Comprehend does it through an API; SageMaker AI is for building custom models.
     trap: true
     facts: [purpose]
+  - id: sagemaker-ai-027
+    q: "A training job must have no way to send data out, not even to Amazon S3. Which SageMaker setting does this?"
+    a: "Network isolation (EnableNetworkIsolation): the container can make no outbound calls and receives no AWS credentials."
+    facts: [network-isolation]
 ---
 Amazon SageMaker AI is the AWS platform for custom machine learning. Data scientists prepare data, train models and deploy them to production in one managed service, without running their own servers. [What is Amazon SageMaker AI?](https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html#whatis)
 

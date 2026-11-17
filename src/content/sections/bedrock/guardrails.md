@@ -33,6 +33,9 @@ facts:
   - id: input-tags
     text: "With InvokeModel, input tags mark the parts of the input that a guardrail should evaluate, so user content is checked while the developer system prompt is left alone; the Converse API uses guardrailConfiguration content blocks for the same purpose."
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-tagging.html#guardrails-tagging
+  - id: guardrail-metrics
+    text: "Bedrock Guardrails publishes CloudWatch metrics such as InvocationsIntervened, the number of invocations where a guardrail intervened, with dimensions for input or output and for policy type (content, topic, word, sensitive information, contextual grounding)."
+    source: https://docs.aws.amazon.com/bedrock/latest/userguide/monitoring-guardrails-cw-metrics.html#monitoring-guardrails-cw-metrics
 cards:
   - id: bedrock-027
     q: A bank's chatbot must refuse to give investment advice. Which Amazon Bedrock Guardrails policy fits?
@@ -71,6 +74,10 @@ cards:
     q: "A guardrail with a prompt attack filter keeps flagging the developer own system prompt. How should the app limit evaluation to user input?"
     a: "Wrap the user-supplied content in guardrail input tags (or use guardrailConfiguration blocks with Converse), so only that content is evaluated."
     facts: [input-tags]
+  - id: bedrock-061
+    q: "A team wants an alert whenever its Bedrock guardrail starts blocking many prompts. What does it monitor?"
+    a: "The InvocationsIntervened CloudWatch metric from Bedrock Guardrails, with a CloudWatch alarm on it. Dimensions split it by input or output and by policy type."
+    facts: [guardrail-metrics]
 ---
 Amazon Bedrock Guardrails screens what goes into and comes out of a model, with the same policies whatever model you use. Each policy targets a different risk: harmful content, off-limits topics, banned words, PII, ungrounded answers and attacks on the prompt. [Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
 
@@ -96,6 +103,7 @@ Amazon Bedrock Guardrails screens what goes into and comes out of a model, with 
 - If the question says detect hallucinations against the retrieved source, think contextual grounding checks.
 - If the question says jailbreak, prompt injection or reveal the system prompt, think the prompt attack filter.
 - If the question says verify answers against formal policy rules, think Automated Reasoning checks.
+- If the question says alert when a guardrail blocks content, think the InvocationsIntervened CloudWatch metric with an alarm.
 
 ### Remember
 

@@ -27,6 +27,9 @@ facts:
   - id: semi-supervised
     text: "Semi-supervised learning combines a small amount of labeled data with a large amount of unlabeled data: a model partly trained on the labeled data labels the rest (pseudo-labeling), and training continues on both."
     source: https://aws.amazon.com/what-is/machine-learning/
+  - id: knn
+    text: "The SageMaker AI k-nearest neighbors (k-NN) algorithm classifies a sample with the most frequent label among the k closest points, or for regression returns the average of their values."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/k-nearest-neighbors.html#k-nearest-neighbors
 cards:
   - id: ai-ml-fundamentals-007
     q: A bank has past loan records labeled "repaid" or "defaulted" and wants to predict the label for new applicants. Which learning type and problem type fit?

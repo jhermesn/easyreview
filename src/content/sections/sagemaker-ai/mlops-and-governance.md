@@ -24,6 +24,15 @@ facts:
   - id: drift
     text: Data drift is a significant change in input data compared with the training data; concept drift is a change in the properties of the target; both degrade a model and trigger retraining.
     source: https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/monitoring.html
+  - id: registry-approval
+    text: "In SageMaker Model Registry, setting a model version's approval status to Approved can trigger CI/CD deployment; the status can be set manually or by a condition step in a pipeline."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-approve.html#model-registry-approve
+  - id: role-manager
+    text: "SageMaker Role Manager builds least-privilege roles for ML personas such as data scientists and MLOps engineers, but it is no longer open to new customers."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/role-manager.html#role-manager
+  - id: managed-mlflow
+    text: "Fully managed MLflow on SageMaker AI tracks experiments and monitors the performance of models and AI applications in one tool."
+    source: https://docs.aws.amazon.com/sagemaker/latest/dg/mlflow.html#mlflow
 cards:
   - id: sagemaker-ai-020
     q: A team must automate data preparation, training, evaluation and registration of models as repeatable steps. Which SageMaker AI feature fits?
@@ -50,6 +59,10 @@ cards:
     a: "No. MLOps means repeatable pipelines, versioned models, monitoring in production and retraining when data drifts."
     trap: true
     facts: [pipelines, drift]
+  - id: sagemaker-ai-026
+    q: "A team wants a model version to reach production only after someone approves it. Which SageMaker feature controls this?"
+    a: "SageMaker Model Registry approval status: setting a version to Approved can start the CI/CD deployment."
+    facts: [registry-approval]
 ---
 MLOps applies DevOps habits to ML: automated, repeatable pipelines, versioned models, monitoring in production and retraining when the world changes. SageMaker AI has a tool for each step and for documenting models. [Model Monitor](https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html)
 

@@ -12,6 +12,12 @@ facts:
   - id: specialized
     text: Amazon Textract has specialized APIs for invoices and receipts (AnalyzeExpense) and identity documents (AnalyzeID).
     source: https://docs.aws.amazon.com/textract/latest/dg/what-is.html#what-is
+  - id: queries
+    text: "Textract Queries let you ask a natural language question about a document, such as the year-to-date gross pay, and return the answer with its confidence and location on the page."
+    source: https://docs.aws.amazon.com/textract/latest/dg/queryresponse.html#queryresponse
+  - id: analyze-lending
+    text: "Textract Analyze Lending splits a mortgage document packet into pages, classifies each by document type and extracts and validates its information."
+    source: https://docs.aws.amazon.com/textract/latest/dg/lending-document-classification-extraction.html#lending-document-classification-extraction
 cards:
   - id: textract-001
     q: An insurer receives thousands of scanned claim forms and must extract the fields and tables. Which AWS service fits?
@@ -30,6 +36,10 @@ cards:
     a: No. Textract extracts text and structure; sentiment analysis is Amazon Comprehend.
     trap: true
     facts: [detect]
+  - id: textract-005
+    q: "An app must pull one value, the total amount due, from scanned bills of varying layouts by asking for it in plain language. Which Textract feature fits?"
+    a: "Textract Queries, which answer a natural language question about the document with the value, its confidence and its location."
+    facts: [queries]
 ---
 Amazon Textract pulls text and structure out of documents. It reads printed and handwritten text and keeps form fields and tables intact, so scanned paperwork becomes data. [What is Amazon Textract?](https://docs.aws.amazon.com/textract/latest/dg/what-is.html#what-is)
 

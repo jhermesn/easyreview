@@ -30,6 +30,12 @@ facts:
   - id: stable-diffusion
     text: "Bedrock offers Stability AI image models such as Stable Diffusion 3.5 Large, an 8-billion-parameter model for text-to-image and image-to-image generation."
     source: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-diffusion-3-5-large.html#model-parameters-diffusion-3-5-large
+  - id: partyrock
+    text: "PartyRock, an Amazon Bedrock Playground, lets anyone build, share and remix generative AI apps without writing code."
+    source: https://aws.amazon.com/about-aws/whats-new/2023/11/partyrock-amazon-bedrock-playground/
+  - id: partyrock-free
+    text: "PartyRock needs no AWS account or credit card, and since 2025 every user gets a recurring free daily usage allowance."
+    source: https://aws.amazon.com/blogs/aws/introducing-new-partyrock-capabilities-and-free-daily-usage/
 cards:
   - id: bedrock-001
     q: A company wants to try models from several providers for a chatbot and switch between them without managing servers. Which AWS service fits?
@@ -60,6 +66,10 @@ cards:
     q: "An app must create illustrations from short story text, using a model in Amazon Bedrock. Which kind of model fits?"
     a: "A text-to-image model such as Stability AI Stable Diffusion 3.5 Large (or Amazon Nova Canvas)."
     facts: [stable-diffusion]
+  - id: bedrock-062
+    q: "A teacher wants students to experiment with building generative AI apps without code, AWS accounts or credit cards. What fits?"
+    a: "PartyRock, an Amazon Bedrock Playground. It needs no AWS account and gives a free daily usage allowance."
+    facts: [partyrock, partyrock-free]
 ---
 Amazon Bedrock is the managed way to use foundation models on AWS: one API, many model providers, no servers. Your data stays yours: providers don't see your prompts and outputs, and customization works on a private copy of a model. [What is Amazon Bedrock?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
 
@@ -75,6 +85,7 @@ Amazon Bedrock is the managed way to use foundation models on AWS: one API, many
 - If the question says use foundation models from several providers without managing infrastructure, think Amazon Bedrock.
 - If the question says the company worries its data trains the provider's model, think Bedrock's data privacy: data isn't shared or used to improve base models.
 - If the question says the model must call an API or database, think tool use (function calling).
+- If the question says build generative AI apps without code or an AWS account, think PartyRock.
 
 ### Remember
 
