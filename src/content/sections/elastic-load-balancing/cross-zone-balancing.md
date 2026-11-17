@@ -29,6 +29,9 @@ facts:
   - id: zone
     text: An Availability Zone is an isolated location in an AWS Region.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones
+  - id: cross-zone-charges
+    text: "ALB has cross-zone balancing always on and charges no regional data transfer for it; an NLB with cross-zone balancing enabled pays regional data transfer between Availability Zones."
+    source: https://aws.amazon.com/elasticloadbalancing/faqs/
 cards:
   - id: elastic-load-balancing-003
     q: What are the default cross-zone balancing settings for ALB, NLB, and GWLB?
@@ -61,6 +64,11 @@ cards:
     facts:
       - incompatible
     trap: true
+  - id: elastic-load-balancing-068
+    q: "Turning on cross-zone load balancing adds data transfer charges for which load balancer: ALB or NLB?"
+    a: "NLB. Traffic it sends across Availability Zones is billed as regional data transfer; ALB always balances across zones at no such charge."
+    trap: true
+    facts: [cross-zone-charges]
 diagrams:
   - id: elb-cross-zone-scope
     title: Cross-zone balancing lets a node reach another zone

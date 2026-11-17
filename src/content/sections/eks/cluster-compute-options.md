@@ -113,6 +113,9 @@ facts:
   - id: envelope-encryption
     text: "EKS clusters on Kubernetes 1.28 or later envelope-encrypt all Kubernetes API data, including Secrets, before it reaches etcd, using KMS with an AWS owned key by default or a customer managed KMS key you choose."
     source: https://docs.aws.amazon.com/eks/latest/userguide/envelope-encryption.html#envelope-encryption
+  - id: eks-connector
+    text: "Amazon EKS Connector registers any conformant Kubernetes cluster, such as one on premises or in another cloud, so its status, configuration and workloads show in the EKS console."
+    source: https://docs.aws.amazon.com/eks/latest/userguide/eks-connector.html#eks-connector
 cards:
   - id: eks-004
     q: Does Amazon EKS always manage only the control plane?
@@ -213,6 +216,10 @@ cards:
     q: "Kubernetes Secrets on an EKS cluster must be encrypted with a key the company controls and audits in CloudTrail. What should they configure?"
     a: "EKS envelope encryption with their own customer managed KMS key. EKS already envelope-encrypts API data with an AWS owned key by default."
     facts: [envelope-encryption]
+  - id: eks-061
+    q: "A company wants to see its on-premises Kubernetes clusters next to its EKS clusters in the EKS console. What feature does that?"
+    a: "Amazon EKS Connector, which registers the external clusters for viewing in the console."
+    facts: [eks-connector]
 ---
 Amazon EKS runs Kubernetes, a system that places and maintains container workloads. Its control plane stores cluster state and schedules work. A node is the machine running that work; its kubelet agent keeps containers running inside Pods, the units Kubernetes schedules.
 

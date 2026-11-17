@@ -51,6 +51,9 @@ facts:
     text: Amazon RDS for Oracle does not support Oracle Real Application Clusters (RAC); AWS directs
       high-availability workloads to Multi-AZ.
     source: https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_Source.Oracle.ToRDSOracle.html
+  - id: subnet-group-azs
+    text: "An RDS DB instance needs a VPC with subnets in at least two Availability Zones, even for Single-AZ, so a standby can be created later."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html
 diagrams:
   - id: rds-instance-multi-az
     title: Multi-AZ DB instance connection and replication paths

@@ -66,6 +66,9 @@ facts:
   - id: sight-data-access
     text: Users with dashboard access can see the data used in its associated analysis.
     source: https://docs.aws.amazon.com/quick/latest/userguide/sharing-a-dashboard.html#sharing-a-dashboard
+  - id: column-security
+    text: "Quick Enterprise edition can restrict dataset columns to chosen users or groups with column-level security."
+    source: https://docs.aws.amazon.com/quicksight/latest/user/restrict-access-to-a-data-set-using-column-level-security.html#restrict-access-to-a-data-set-using-column-level-security
 cards:
   - id: quicksight-001
     q: Analysts need a shared Quick Sight visual of archived S3 logs without listing each file in a manifest. What workflow can they use?
@@ -105,6 +108,10 @@ cards:
     q: An S3-backed Quick Sight dashboard uses SPICE and needs data added since the last import. What should the author do?
     a: Refresh the SPICE dataset, either manually or on a schedule.
     facts: [sight-spice, sight-refresh-manual, sight-refresh-schedule]
+  - id: quicksight-010
+    q: "Only finance users may see the salary column in a shared dashboard dataset. What feature does that?"
+    a: "Column-level security on the dataset (Enterprise edition)."
+    facts: [column-security]
 ---
 AWS Quick Sight, formerly Amazon QuickSight, creates interactive business intelligence visualizations and dashboards from data sources. Think of a dataset as the data used by an analysis, and a dashboard as the published view.
 

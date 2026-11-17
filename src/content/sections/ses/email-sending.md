@@ -12,6 +12,12 @@ facts:
   - id: receive
     text: Receiving mail with Amazon SES supports solutions such as autoresponders, unsubscribe systems and support tickets created from incoming email.
     source: https://docs.aws.amazon.com/ses/latest/dg/Welcome.html#Welcome
+  - id: authentication
+    text: "SES supports DKIM and SPF to authenticate outgoing mail, and DMARC compliance builds on them; ISPs may refuse unauthenticated mail."
+    source: https://docs.aws.amazon.com/ses/latest/dg/email-authentication-methods.html#email-authentication-methods
+  - id: dedicated-ips
+    text: "SES sends from IP addresses shared with other customers by default; dedicated IP addresses can be leased at extra cost so your sending reputation is yours alone."
+    source: https://docs.aws.amazon.com/ses/latest/dg/dedicated-ip.html#dedicated-ip
 cards:
   - id: ses-001
     q: An online store must send order confirmation emails to customers from its own domain. Which AWS service fits?
@@ -26,6 +32,10 @@ cards:
     a: No. Fan-out notifications to many endpoint types fit Amazon SNS; SES is for sending and receiving full email from your domains.
     trap: true
     facts: [purpose]
+  - id: ses-004
+    q: "A company sending bulk mail through SES does not want other senders to affect its IP reputation. What should it use?"
+    a: "Dedicated IP addresses leased for its account instead of the default shared pool."
+    facts: [dedicated-ips]
 ---
 Amazon SES sends email at scale, such as marketing campaigns, receipts and newsletters, from your own domains, and can also receive email. [What is Amazon SES?](https://docs.aws.amazon.com/ses/latest/dg/Welcome.html#Welcome)
 

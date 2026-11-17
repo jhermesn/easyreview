@@ -54,6 +54,9 @@ facts:
   - id: peering
     text: Transit gateway peering attachments require static routes.
     source: https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-route-table-peering
+  - id: multicast
+    text: "Transit Gateway can route multicast traffic between subnets of attached VPCs, acting as the multicast router for senders and receivers."
+    source: https://docs.aws.amazon.com/vpc/latest/tgw/tgw-multicast-overview.html#tgw-multicast-overview
 diagrams:
   - id: transit-gateway-routing
     title: Traffic between attached VPCs
@@ -104,6 +107,10 @@ cards:
     q: What happens when static and propagated Transit Gateway routes have the same destination?
     a: "The static route takes priority."
     facts: [static]
+  - id: transit-gateway-009
+    q: "A trading application must send one multicast stream to many instances across VPCs. Which AWS service supports it?"
+    a: "AWS Transit Gateway with multicast enabled."
+    facts: [multicast]
 ---
 AWS Transit Gateway is a Regional virtual router that connects virtual private clouds (VPCs), which are isolated AWS networks, and on-premises networks. Think of it as a hub whose attachments connect networks and whose route tables choose paths.
 

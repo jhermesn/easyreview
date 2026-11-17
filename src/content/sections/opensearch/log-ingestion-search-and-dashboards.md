@@ -45,6 +45,12 @@ facts:
   - id: search-athena
     text: Athena runs interactive SQL queries directly against data stored in S3.
     source: https://docs.aws.amazon.com/athena/latest/ug/what-is.html#what-is
+  - id: serverless
+    text: "OpenSearch Serverless collections scale compute automatically, suit infrequent or unpredictable workloads, and are always encrypted."
+    source: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless.html#serverless
+  - id: ddb-ingestion
+    text: "An OpenSearch Ingestion pipeline can stream DynamoDB table changes into OpenSearch, with or without an initial full snapshot, to add search over DynamoDB data."
+    source: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configure-client-ddb.html#configure-client-ddb
 diagrams:
   - id: opensearch-log-flow
     title: Search CloudWatch logs
@@ -91,6 +97,10 @@ cards:
     a: "No. Choose the access type when creating the domain; it cannot be changed afterward."
     facts: [search-network]
     trap: true
+  - id: opensearch-008
+    q: "Users need full-text search over items stored in DynamoDB, which stays the source of truth. What design fits?"
+    a: "Stream the table changes into OpenSearch, for example with an OpenSearch Ingestion pipeline, and search there."
+    facts: [ddb-ingestion]
 ---
 
 Amazon OpenSearch Service manages search and analytics clusters for workloads such as application log analysis. OpenSearch Dashboards visualizes the data.

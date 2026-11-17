@@ -120,6 +120,9 @@ facts:
   - id: managed-check
     text: The Config rule ec2-instance-managed-by-systems-manager marks EC2 instances NON_COMPLIANT when Systems Manager doesn't manage them, and DescribeInstanceInformation lists the managed nodes.
     source: https://docs.aws.amazon.com/config/latest/developerguide/ec2-instance-managed-by-systems-manager.html
+  - id: fleet-manager
+    text: "Systems Manager Fleet Manager is a console view for remotely managing nodes on AWS or on premises, showing fleet health and running common troubleshooting tasks."
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/fleet-manager.html#fleet-manager
 diagrams:
   - id: ssm-node-connectivity
     title: Agent connections originate on the managed node

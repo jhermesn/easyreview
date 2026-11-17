@@ -69,6 +69,12 @@ facts:
   - id: health-checks
     text: Route 53 health checks monitor the health of web applications and other resources, and CloudWatch alarms can notify when a health check status changes.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html
+  - id: simple-multi
+    text: "A simple record with several values returns all of them in random order and the resolver hands them to the client; unlike multivalue answer records, the values are not health checked one by one."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-simple.html#routing-policy-simple
+  - id: geoprox-coords
+    text: "Geoproximity routing locates AWS resources by Region or Local Zone group and non-AWS resources by latitude and longitude."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html#routing-policy-geoproximity
 cards:
   - id: route53-001
     q: An application runs in two AWS Regions, and its standby should receive DNS answers only after the primary fails. Which Route 53 policy fits?
@@ -149,6 +155,11 @@ cards:
     q: Which Amazon Route 53 feature monitors whether a web server is healthy so DNS can fail over away from it?
     a: Route 53 health checks.
     facts: [health-checks]
+  - id: route53-068
+    q: "A simple record lists three IP addresses and one server dies. Does Route 53 stop returning its address?"
+    a: "No. A simple record returns every value in random order without checking each one; multivalue answer records with health checks return only healthy addresses."
+    trap: true
+    facts: [simple-multi, multivalue]
 diagrams:
   - id: route53-regional-alias-tree
     title: Latency selection above regional weighted records

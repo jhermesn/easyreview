@@ -33,6 +33,12 @@ facts:
   - id: force-ssl
     text: "To require encrypted connections, set rds.force_ssl to 1 for RDS for SQL Server (a static parameter, so reboot) or require_secure_transport to ON for RDS for MySQL (no reboot needed) in the DB parameter group."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/SQLServer.Concepts.General.SSL.Using.html#SQLServer.Concepts.General.SSL.Forcing
+  - id: replica-encryption
+    text: "A read replica has the same encryption state as its source: an unencrypted instance cannot have an encrypted replica, and an encrypted one cannot have an unencrypted replica."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations
+  - id: log-export
+    text: "RDS can publish database logs, such as the MySQL audit, error, general and slow query logs, to CloudWatch Logs, where they are kept until a retention period is set."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Procedural.UploadtoCloudWatch.html#rds-integration-cw-logs
 cards:
   - id: rds-048
     q: A production RDS for MySQL instance was created without encryption. Compliance now requires encryption at rest. What is the supported path?
@@ -68,6 +74,15 @@ cards:
     q: "All connections to an RDS for SQL Server instance must use SSL. Which setting enforces it?"
     a: "Set rds.force_ssl to 1 in its DB parameter group and reboot, because the parameter is static. (For RDS for MySQL the parameter is require_secure_transport.)"
     facts: [force-ssl]
+  - id: rds-070
+    q: "Can you create an encrypted read replica to get an encrypted copy of an unencrypted RDS instance?"
+    a: "No. A replica follows the source encryption state. Encrypt a snapshot copy and restore it, or use a blue/green deployment."
+    trap: true
+    facts: [replica-encryption]
+  - id: rds-071
+    q: "Auditors need RDS for MySQL audit logs searchable and retained for a year. What do you configure?"
+    a: "Publish the audit log to CloudWatch Logs and set the log group retention to a year."
+    facts: [log-export]
 ---
 RDS security comes down to three questions: is data encrypted at rest (decided at creation), is the connection encrypted (SSL/TLS), and how do clients authenticate (passwords or IAM tokens). Maintenance behavior on Multi-AZ is the other common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
 

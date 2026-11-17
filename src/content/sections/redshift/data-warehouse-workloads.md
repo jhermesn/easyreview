@@ -66,6 +66,15 @@ facts:
   - id: cross-region-snapshot
     text: "Amazon Redshift can automatically copy automated and manual snapshots of a cluster to another AWS Region, so the cluster can be restored there if the primary Region fails."
     source: https://docs.aws.amazon.com/redshift/latest/mgmt/cross-region-snapshot-copy.html#cross-region-snapshot-copy
+  - id: leader-compute
+    text: "A provisioned Redshift cluster has a leader node that receives queries and builds execution plans, and compute nodes that run them in parallel."
+    source: https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes
+  - id: auto-snapshots
+    text: "Redshift automated snapshots are taken about every eight hours or every 5 GB per node of changed data, whichever comes first."
+    source: https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html#about-automated-snapshots
+  - id: multi-az
+    text: "Provisioned RA3 (and RG) clusters support Multi-AZ deployments that run compute in two Availability Zones to keep working through a zone failure."
+    source: https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-multi-az.html#managing-cluster-multi-az
 diagrams:
   - id: redshift-enhanced-routing
     title: Enhanced VPC routing to S3
@@ -121,6 +130,14 @@ cards:
     q: "A Redshift data warehouse must survive a full Region outage. What should be turned on?"
     a: "Cross-Region snapshot copy, so snapshots are copied automatically to another Region and the cluster can be restored there."
     facts: [cross-region-snapshot]
+  - id: redshift-010
+    q: "How often does Redshift take automated snapshots by default?"
+    a: "About every eight hours or after 5 GB per node of data changes, whichever comes first."
+    facts: [auto-snapshots]
+  - id: redshift-011
+    q: "A Redshift data warehouse must survive an Availability Zone failure without a restore. What deployment fits?"
+    a: "A Multi-AZ deployment on RA3 nodes."
+    facts: [multi-az]
 ---
 Amazon Redshift is a managed cloud data warehouse for SQL analytics and business intelligence. A data warehouse is a store organized for analyzing data.
 

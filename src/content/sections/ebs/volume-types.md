@@ -92,6 +92,9 @@ facts:
   - id: io1-ratio
     text: "io1 volumes allow at most 50 provisioned IOPS per GiB, from 100 to 64,000 IOPS per volume; io2 Block Express allows 1,000 IOPS per GiB, up to 256,000 IOPS."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/provisioned-iops.html#EBSVolumeTypes_piops
+  - id: gp3-max
+    text: "gp3 can be provisioned up to 80,000 IOPS (500 IOPS per GiB) and 2,000 MiB/s of throughput."
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type
 cards:
   - id: ebs-010
     q: When should an EC2 workload choose EBS gp3 rather than io2 Block Express?
@@ -165,6 +168,10 @@ cards:
     q: "What is the most IOPS a 10 GiB io1 volume can be provisioned with?"
     a: "500 IOPS, because io1 allows at most 50 IOPS per GiB."
     facts: [io1-ratio]
+  - id: ebs-049
+    q: "What are the maximum IOPS and throughput of a gp3 volume?"
+    a: "80,000 IOPS (at 500 IOPS per GiB, so from 160 GiB) and 2,000 MiB/s."
+    facts: [gp3-max]
 ---
 Amazon EBS provides block storage, disks attached to EC2 instances. Choose solid-state drive (SSD) storage for transactional I/O, meaning application reads and writes, and hard disk drive (HDD) storage for large sequential transfers.
 

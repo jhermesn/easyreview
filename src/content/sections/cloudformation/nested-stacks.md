@@ -33,6 +33,9 @@ facts:
   - id: root-delete
     text: Root-stack operations should manage nested stacks rather than deleting child stacks directly.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html#perform-stack-operations-on-nested-stacks
+  - id: resource-limits
+    text: "One template can declare up to 500 resources, and one operation in a nested stack hierarchy can create, update or delete at most 2,500 resources, though the hierarchy may hold more."
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html
 cards:
   - id: cloudformation-002
     q: How should a team update a reusable nested CloudFormation stack?
@@ -63,6 +66,10 @@ cards:
       particular child.
     facts:
       - root
+  - id: cloudformation-156
+    q: "A template needs 700 resources. What does CloudFormation require?"
+    a: "Splitting it, for example into nested stacks, because one template can declare at most 500 resources."
+    facts: [resource-limits]
 diagrams:
   - id: cfn-nested-values
     title: Pass an output between nested stacks

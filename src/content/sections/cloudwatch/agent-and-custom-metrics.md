@@ -57,6 +57,9 @@ facts:
   - id: agent-swap
     text: "On Linux, the CloudWatch agent can collect swap metrics such as swap_used, swap_free and swap_used_percent, which EC2 does not publish by itself."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-CloudWatch-agent.html#linux-metrics-enabled-by-CloudWatch-agent
+  - id: lambda-insights
+    text: "CloudWatch Lambda Insights adds a Lambda extension layer that reports system metrics such as CPU, memory, disk and network, plus diagnostics such as cold starts."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights.html#Lambda-Insights
 cards:
   - id: cloudwatch-005
     q: An EC2 application needs memory use, disk space use, and application log files in CloudWatch.
@@ -115,6 +118,10 @@ cards:
     q: "EC2 instances fail for lack of swap space. How do you monitor available swap on each instance?"
     a: "Install the CloudWatch agent and collect its swap metrics (for example swap_used_percent); EC2 does not report swap by default."
     facts: [agent-swap]
+  - id: cloudwatch-123
+    q: "A team needs memory and CPU usage plus cold-start data for its Lambda functions in CloudWatch. What should it enable?"
+    a: "Lambda Insights, the CloudWatch extension delivered as a Lambda layer."
+    facts: [lambda-insights]
 ---
 The CloudWatch agent collects measurements and log files from inside a server. It fills the gap between EC2 host monitoring and what the operating system or application knows, such as memory use and free disk space.
 

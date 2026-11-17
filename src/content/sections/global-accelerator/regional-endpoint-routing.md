@@ -54,6 +54,9 @@ facts:
   - id: tcp-udp
     text: Global Accelerator listeners support TCP and UDP, so it also serves non-HTTP workloads.
     source: https://docs.aws.amazon.com/global-accelerator/latest/dg/about-listeners.html
+  - id: client-affinity
+    text: "Setting client affinity to Source IP makes a standard accelerator send every connection from the same client IP to the same endpoint, for stateful applications; the default None hashes the 5-tuple."
+    source: https://docs.aws.amazon.com/global-accelerator/latest/dg/about-listeners-client-affinity.html#about-listeners-client-affinity
 diagrams:
   - id: accelerator-regional-routing
     title: Standard accelerator routing
@@ -117,6 +120,10 @@ cards:
     a: AWS Global Accelerator. Its listeners support TCP and UDP, while CloudFront caches HTTP content.
     trap: true
     facts: [tcp-udp]
+  - id: global-accelerator-011
+    q: "A stateful game server behind Global Accelerator must keep each player on the same endpoint. What setting does that?"
+    a: "Client affinity set to Source IP on the listener."
+    facts: [client-affinity]
 ---
 
 AWS Global Accelerator gives clients fixed IP addresses for applications running in AWS Regions. It brings traffic onto the AWS global network at an edge location, an entry point near users, then routes it to application endpoints, the receiving resources.

@@ -66,6 +66,12 @@ facts:
   - id: billing-states
     text: "EC2 bills instance usage only in the running state, plus the stopping state when hibernating; EBS volumes and Elastic IP addresses bill whatever the instance state, and a Reserved Instance keeps billing to the end of its term after its instance is terminated."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html#instance-billing-by-state
+  - id: cr-billing
+    text: "A Capacity Reservation is billed at the On-Demand rate whether or not instances run in it; Savings Plans and Regional Reserved Instances can apply their discount to it."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-pricing-billing.html
+  - id: instance-scheduler
+    text: "Instance Scheduler on AWS is a deployable solution that uses resource tags and Lambda to stop and start EC2 and RDS instances on custom schedules across accounts and Regions."
+    source: https://docs.aws.amazon.com/solutions/latest/instance-scheduler-on-aws/solution-overview.html#solution-overview
 cards:
   - id: ec2-036
     q: A company runs a steady workload on EC2 for the next three years but may change instance families. Which purchasing option saves the most while staying flexible?
@@ -139,6 +145,15 @@ cards:
     a: "Running, and stopping when the instance is hibernating. EBS volumes and Elastic IPs still bill while stopped, and Reserved Instances bill for their full term even after termination."
     trap: true
     facts: [billing-states]
+  - id: ec2-091
+    q: "A team creates a Capacity Reservation for a week but launches nothing into it. What do they pay?"
+    a: "The On-Demand rate for the reserved capacity for the whole week. A Capacity Reservation is charged whether or not it is used; only Savings Plans or Regional Reserved Instances lower that price."
+    trap: true
+    facts: [cr-billing]
+  - id: ec2-096
+    q: "Development EC2 and RDS instances in several accounts should stop outside business hours automatically. What ready-made AWS solution fits?"
+    a: "Instance Scheduler on AWS, which stops and starts tagged instances on defined schedules across accounts and Regions."
+    facts: [instance-scheduler]
 ---
 Amazon EC2 charges the same instance in different ways depending on how much you commit and how much interruption you accept. Choosing well can cut compute costs sharply. [EC2 billing and purchasing options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html#instance-purchasing-options)
 

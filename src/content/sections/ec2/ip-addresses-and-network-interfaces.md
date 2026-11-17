@@ -21,6 +21,21 @@ facts:
   - id: ebs-optimized
     text: An EBS-optimized instance has dedicated bandwidth for Amazon EBS I/O, so EBS traffic doesn't compete with the instance's other network traffic.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-optimization.html#ebs-optimization
+  - id: eip-quota
+    text: "Each AWS account has a default quota of five Elastic IP addresses per Region; addresses from a BYOIP pool do not count toward it."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-limit
+  - id: eni-termination
+    text: "Each network interface attached to an instance has a delete-on-termination setting that decides whether the interface is deleted or kept when the instance terminates."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#using-eni
+  - id: connect-timeout
+    text: "A Connection timed out error when connecting to an instance points at the network path: a security group or network ACL that blocks the port, or a subnet route table with no route to the internet gateway."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html#TroubleshootingInstancesConnectionTimeout
+  - id: shutdown-behavior
+    text: "By default an OS shutdown of an EBS-backed instance stops it; setting InstanceInitiatedShutdownBehavior to terminate makes it terminate instead."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingInstanceInitiatedShutdownBehavior.html#Using_ChangingInstanceInitiatedShutdownBehavior
+  - id: stop-protection
+    text: "Stop protection blocks accidental stop and termination through EC2, but not a shutdown run inside the operating system or Auto Scaling terminations."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html#ec2-stop-protection
 cards:
   - id: ec2-077
     q: A licensed application is tied to a fixed public IP. If its EC2 instance fails, a standby instance must take over at the same address quickly. What fits?
@@ -43,6 +58,23 @@ cards:
     q: Which EC2 feature uses SR-IOV for higher packets per second and lower network latency?
     a: "Enhanced networking."
     facts: [ena]
+  - id: ec2-094
+    q: "How many Elastic IP addresses can an account allocate per Region by default?"
+    a: "Five. The quota can be raised, and addresses brought with BYOIP do not count."
+    facts: [eip-quota]
+  - id: ec2-095
+    q: "SSH to a new instance fails with Connection timed out. Where do you look first?"
+    a: "At the network path: the security group and network ACL rules for port 22 (and NACL return ports), and the subnet route to the internet gateway."
+    facts: [connect-timeout]
+  - id: ec2-097
+    q: "An admin runs shutdown inside an EBS-backed Linux instance with default settings. What state does the instance end in?"
+    a: "Stopped. It only terminates if the instance-initiated shutdown behavior was set to terminate."
+    facts: [shutdown-behavior]
+  - id: ec2-098
+    q: "Does stop protection keep an Auto Scaling group from terminating an unhealthy instance?"
+    a: "No. Stop protection does not affect Auto Scaling terminations or OS-initiated shutdowns; use scale-in protection for the group."
+    trap: true
+    facts: [stop-protection]
 ---
 An EC2 instance's network identity is its network interfaces and their addresses. Knowing which addresses stay and which can move answers most failover and licensing questions. [EC2 instance IP addressing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html)
 

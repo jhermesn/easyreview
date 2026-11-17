@@ -72,6 +72,12 @@ facts:
   - id: login-lockout
     text: "A CloudHSM user who exceeds five incorrect login attempts is locked out until an admin resets the password; clusters created before February 2018 allow 20 attempts."
     source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/cloudhsm_cli-login.html#cloudhsm_cli-login
+  - id: ssl-offload
+    text: "CloudHSM can offload the SSL/TLS private-key work of web servers and keep those keys in the HSM."
+    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/use-cases.html#use-cases
+  - id: tde
+    text: "CloudHSM can hold the transparent data encryption (TDE) master key for databases such as Oracle that encrypt their files before writing to disk."
+    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/use-cases.html#use-cases
 cards:
   - id: cloudhsm-001
     q: A security team requires dedicated hardware security modules under its control. Which AWS service fits?
@@ -122,6 +128,10 @@ cards:
     a: "After five incorrect login attempts the account is locked out, and an admin must reset its password. The keys are not deleted."
     trap: true
     facts: [login-lockout]
+  - id: cloudhsm-012
+    q: "An Oracle database on EC2 must keep its TDE master key in a single-tenant HSM the company controls. What service fits?"
+    a: "AWS CloudHSM, which stores the TDE master encryption key."
+    facts: [tde]
 diagrams:
   - id: cloudhsm-kms-store
     title: KMS CloudHSM key store

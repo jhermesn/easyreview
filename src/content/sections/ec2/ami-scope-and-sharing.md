@@ -93,6 +93,9 @@ facts:
   - id: copy-creates-snapshots
     text: "Copying an EBS-backed AMI to another Region creates copies of its backing snapshots there, billed as additional snapshot storage."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html#copy-ami-costs
+  - id: ami-bpa-default
+    text: "Block public access for AMIs is on by default for new accounts and for existing accounts that never had public AMIs; it is off by default for accounts that had public AMIs."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-public-access-to-amis.html#block-public-access-to-amis-default-settings
 cards:
   - id: ec2-004
     q: Does sharing an EC2 AMI create a copy owned by the recipient account?
@@ -148,6 +151,10 @@ cards:
     q: "An AMI made from a snapshot in Region A is copied to Region B, and one instance is launched from it in Region B. What exists in Region B?"
     a: "One instance, one AMI and one snapshot. Copying an EBS-backed AMI also copies its backing snapshot into the destination Region."
     facts: [copy-creates-snapshots]
+  - id: ec2-099
+    q: "A new account tries to make an AMI public and fails. What setting is likely in the way?"
+    a: "Block public access for AMIs, which is enabled by default in new accounts."
+    facts: [ami-bpa-default]
 diagrams:
   - id: ec2-ami-zone-replacement
     title: Relocate within a Region by launching from an AMI

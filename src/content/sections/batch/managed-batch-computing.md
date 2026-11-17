@@ -12,6 +12,15 @@ facts:
   - id: no-software
     text: AWS Batch is fully managed, so there is no batch computing software to install or manage.
     source: https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html#what-is-batch
+  - id: capacity-types
+    text: "AWS Batch runs containerized jobs on Amazon ECS or Amazon EKS and scales capacity on EC2 instances (including Spot), Fargate or ECS Managed Instances."
+    source: https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html#what-is-batch
+  - id: multi-node-parallel
+    text: "Batch multi-node parallel jobs (gang scheduling) run one job across several EC2 instances, with a main node that starts first, for tightly coupled HPC or distributed GPU training."
+    source: https://docs.aws.amazon.com/batch/latest/userguide/multi-node-parallel-jobs.html#multi-node-parallel-jobs
+  - id: parallelcluster
+    text: "AWS ParallelCluster is an open source tool that deploys HPC clusters with compute, a scheduler such as Slurm and a shared file system; AWS now points new HPC work to the managed AWS Parallel Computing Service."
+    source: https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html#what-is-aws-parallelcluster
 cards:
   - id: batch-001
     q: Scientists submit thousands of compute jobs that must run on as many servers as needed and then stop. Which AWS service manages this?
@@ -26,6 +35,14 @@ cards:
     q: How does AWS Batch reduce compute costs for job workloads?
     a: It provisions resources only for submitted jobs and distributes the work by quantity and scale, so no idle fleet waits for jobs.
     facts: [provisioning]
+  - id: batch-004
+    q: "A nightly image job runs for three hours and needs a custom runtime. Lambda or AWS Batch?"
+    a: "AWS Batch. Lambda stops at 15 minutes; Batch runs any container image as long as needed on EC2, Spot or Fargate capacity."
+    facts: [capacity-types]
+  - id: batch-005
+    q: "An MPI simulation must run as one job across many instances. Which Batch feature handles it?"
+    a: "Multi-node parallel jobs, which launch a main node and child nodes for a single job."
+    facts: [multi-node-parallel]
 ---
 AWS Batch runs batch jobs: units of work, such as simulations or data processing, that run to completion without user interaction. You submit jobs; Batch finds and provisions the compute and spreads the work. [What is AWS Batch?](https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html#what-is-batch)
 

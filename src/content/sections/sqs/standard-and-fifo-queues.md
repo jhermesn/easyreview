@@ -48,6 +48,9 @@ facts:
   - id: temporary-queues
     text: "The SQS Temporary Queue Client maps many application-managed temporary queues onto one SQS queue, which cuts API calls and cost for request-response patterns."
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-temporary-queues.html#sqs-temporary-queues
+  - id: sse-options
+    text: "SQS encrypts messages at rest with SQS-managed keys (SSE-SQS), the default for new queues, or with keys managed in AWS KMS (SSE-KMS)."
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-server-side-encryption
 diagrams:
   - id: sqs-fifo-independent-groups
     title: FIFO ordering is local to a message group
@@ -148,6 +151,10 @@ cards:
     q: "Pro users jobs must be processed before lite users jobs. How can SQS standard queues provide that priority?"
     a: "Use two queues, one per class, and have the workers poll the pro queue first. A standard queue has only best-effort ordering, so one queue cannot rank messages."
     facts: [standard-delivery]
+  - id: sqs-029
+    q: "A queue must use encryption keys whose use the security team can audit and restrict. SSE-SQS or SSE-KMS?"
+    a: "SSE-KMS, which uses keys in AWS KMS that the team controls through key policies. SSE-SQS keys are managed by SQS itself."
+    facts: [sse-options]
 ---
 SQS queues buffer work between producers, which send messages, and consumers, which receive and process them. Standard queues suit work that tolerates duplicate delivery and occasional reordering. FIFO (first-in, first-out) queues preserve order within each message group.
 

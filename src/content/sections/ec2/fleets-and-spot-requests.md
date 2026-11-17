@@ -21,6 +21,12 @@ facts:
   - id: cancel
     text: Canceling an active Spot request doesn't terminate its running Spot Instance; you terminate the instance separately.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-cancel.html#using-spot-instances-cancel
+  - id: alloc-pco
+    text: "The price-capacity-optimized Spot allocation strategy is the recommended one: it picks the pools with the most spare capacity, then the cheapest of those."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html#ec2-fleet-allocation-strategies-for-spot-instances
+  - id: alloc-others
+    text: "capacity-optimized picks only the pools with the most spare capacity (fewest interruptions), diversified spreads Spot Instances across all pools, and lowest-price, the CLI default, carries the highest interruption risk."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html#ec2-fleet-allocation-strategies-for-spot-instances
 cards:
   - id: ec2-073
     q: A batch workload must keep 200 vCPUs of cheap capacity running across several instance types and AZs, replacing Spot Instances when they are interrupted. Which feature fits?
@@ -39,6 +45,14 @@ cards:
     q: What is the default Spot Instance request type, and what happens after an interruption?
     a: "One-time; it isn't resubmitted after the instance is interrupted."
     facts: [one-time]
+  - id: ec2-092
+    q: "Which Spot allocation strategy balances low price with a low chance of interruption, and is the one AWS recommends?"
+    a: "price-capacity-optimized. It narrows to the pools with the most capacity, then launches from the cheapest of them."
+    facts: [alloc-pco]
+  - id: ec2-093
+    q: "A Spot Fleet runs a workload that is costly to interrupt and price matters less. Which allocation strategy fits?"
+    a: "capacity-optimized, which launches only from the pools with the most spare capacity. lowest-price has the highest interruption risk."
+    facts: [alloc-others]
 ---
 Fleets and Spot request types control how EC2 keeps cheap capacity running when Spot Instances come and go. [EC2 Fleet and Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html)
 

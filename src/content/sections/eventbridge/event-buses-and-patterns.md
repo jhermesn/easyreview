@@ -156,6 +156,9 @@ facts:
   - id: s3-to-eventbridge
     text: Once EventBridge notifications are turned on for a bucket, S3 sends events such as Object Created to EventBridge, where a rule can start a Step Functions workflow.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/EventBridge.html
+  - id: target-permission-types
+    text: "EventBridge reaches CloudWatch Logs targets through resource-based policies, Lambda, SNS and SQS targets through a resource-based policy or an IAM execution role, and Kinesis streams through an IAM role."
+    source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-resource-based.html#eb-use-resource-based
 diagrams:
   - id: eventbridge-bus-routing
     title: "Classic bus: select events before invoking a target"
@@ -341,6 +344,11 @@ cards:
     q: How can every new object in an S3 bucket start a Step Functions workflow without a Lambda function in between?
     a: Turn on EventBridge notifications for the bucket and add an EventBridge rule on Object Created that targets the state machine.
     facts: [s3-to-eventbridge]
+  - id: eventbridge-051
+    q: "An EventBridge rule targets a Kinesis data stream. Do you grant access with a resource-based policy on the stream?"
+    a: "No. Kinesis targets use an IAM role that EventBridge assumes; resource-based policies are the path for targets such as Lambda, SNS, SQS and CloudWatch Logs."
+    trap: true
+    facts: [target-permission-types]
 ---
 An EventBridge event bus routes JSON events, which are messages describing something that happened, to matching targets. A target is the resource or endpoint that receives the event. Think of a Classic bus as a sorting desk: rules select events, then send them to the configured destinations.
 

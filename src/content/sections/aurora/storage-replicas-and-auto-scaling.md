@@ -99,6 +99,18 @@ facts:
   - id: lambda-native
     text: "Aurora MySQL can invoke a Lambda function from SQL with the native functions lambda_sync and lambda_async, once the cluster has access to Lambda."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Lambda.html#AuroraMySQL.Integrating.Lambda
+  - id: volume-max
+    text: "An Aurora cluster volume grows automatically up to 256 TiB on supported engine versions, and you pay only for the space used."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html#aurora-storage-growth
+  - id: backtrack
+    text: "Aurora MySQL Backtrack rewinds the same cluster to an earlier time in minutes without a restore; it must be enabled when the cluster is created or restored, and the window is at most 72 hours."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Backtrack.html#AuroraMySQL.Managing.Backtrack.Limitations
+  - id: aurora-ml
+    text: "Aurora machine learning lets SQL in Aurora MySQL or Aurora PostgreSQL call Amazon Bedrock, Amazon Comprehend or SageMaker AI models."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-ml.html#aurora-ml
+  - id: migrate-via-replica
+    text: "To move from RDS for MySQL to Aurora MySQL with little downtime, create an Aurora read replica of the RDS instance, wait for replica lag 0, point clients to it and promote it."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Migrating.RDSMySQL.Replica.html#AuroraMySQL.Migrating.RDSMySQL.Replica
 cards:
   - id: aurora-001
     q: What separates Aurora storage durability from database instance availability?
@@ -194,6 +206,19 @@ cards:
     q: "When a row is deleted in Aurora MySQL, a Lambda function must run and forward the change. How can the database call Lambda directly?"
     a: "With the Aurora MySQL native functions lambda_sync or lambda_async, after granting the cluster access to Lambda."
     facts: [lambda-native]
+  - id: aurora-042
+    q: "A bad DELETE hit an Aurora MySQL cluster 20 minutes ago. Which feature undoes it fastest without creating a new cluster, and what must already be true?"
+    a: "Backtrack, which rewinds the cluster in place in minutes. It only works if Backtrack was enabled when the cluster was created or restored, and the window is at most 72 hours."
+    trap: true
+    facts: [backtrack]
+  - id: aurora-043
+    q: "Analysts want sentiment scores on rows in Aurora without building an ML pipeline. What feature fits?"
+    a: "Aurora machine learning, which calls Amazon Comprehend (or Bedrock or SageMaker AI) from SQL."
+    facts: [aurora-ml]
+  - id: aurora-045
+    q: "A production RDS for MySQL database must move to Aurora MySQL with minimal downtime. What path does AWS recommend?"
+    a: "Create an Aurora read replica of the RDS instance; when replica lag reaches 0, switch clients and promote the replica."
+    facts: [migrate-via-replica]
 diagrams:
   - id: aurora-shared-storage
     title: Instances share storage while endpoints select connections

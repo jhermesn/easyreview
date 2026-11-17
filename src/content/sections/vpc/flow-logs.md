@@ -48,6 +48,12 @@ facts:
     text: An accepted request and rejected response can reveal a stateless subnet ACL that permits only
       one direction.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-records-examples.html#flow-log-example-security-groups
+  - id: contributor-insights
+    text: "CloudWatch Contributor Insights analyzes log data, such as flow logs in CloudWatch Logs, to show the top-N contributors, for example the hosts sending the most traffic."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContributorInsights.html
+  - id: traffic-mirroring
+    text: "VPC Traffic Mirroring copies packets from an elastic network interface to a target (another network interface, a Network Load Balancer or a Gateway Load Balancer endpoint) for content inspection; flow logs record only metadata."
+    source: https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-targets.html
 cards:
   - id: vpc-007
     q: What do VPC Flow Logs record, and where can the records be published?
@@ -88,6 +94,14 @@ cards:
       aggregate in one minute or less regardless of the selected maximum.
     facts:
       - flow-interval
+  - id: vpc-053
+    q: "Which IP addresses generate the most rejected traffic in a VPC? What gives a quick top-N view from flow logs?"
+    a: "Send the flow logs to CloudWatch Logs and use Contributor Insights rules on them."
+    facts: [contributor-insights]
+  - id: vpc-054
+    q: "A security appliance must inspect full packet contents from production instances. Flow logs or Traffic Mirroring?"
+    a: "Traffic Mirroring, sending copies to the appliance through an NLB or Gateway Load Balancer endpoint for availability. Flow logs hold no packet payloads."
+    facts: [traffic-mirroring]
 ---
 
 VPC Flow Logs record information about IP traffic at network interfaces. They help investigate allowed and rejected connections without collecting packet contents. A network interface is the virtual network attachment through which a resource sends and receives traffic.

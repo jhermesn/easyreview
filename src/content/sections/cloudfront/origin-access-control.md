@@ -78,6 +78,12 @@ facts:
   - id: vpc-origins
     text: "CloudFront VPC origins deliver content from Application Load Balancers, Network Load Balancers and EC2 instances in private subnets, so CloudFront becomes the single entry point and the origin needs no public access."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-vpc-origins.html#private-content-vpc-origins
+  - id: managed-prefix-list
+    text: "The CloudFront managed prefix list holds the IP ranges of CloudFront origin-facing servers; referencing it in a security group lets only CloudFront reach an origin such as an ALB or EC2 instance."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/LocationsOfEdgeServers.html#managed-prefix-list
+  - id: origin-transfer-free
+    text: "Data transfer from AWS origins, such as S3 or an ALB, to CloudFront is not charged."
+    source: https://aws.amazon.com/cloudfront/pricing/
 diagrams:
   - id: cloudfront-oac-private-origin
     title: CloudFront signs requests to a private S3 origin
@@ -185,6 +191,14 @@ cards:
     q: "An internal ALB in private subnets must serve users through CloudFront without any public endpoint of its own. What does CloudFront offer?"
     a: "A VPC origin. CloudFront reaches ALBs, NLBs and EC2 instances in private subnets over a private connection and becomes the only way in."
     facts: [vpc-origins]
+  - id: cloudfront-056
+    q: "An internet-facing ALB must accept traffic only from CloudFront. What restricts it at the network layer?"
+    a: "An ALB security group inbound rule that allows only the CloudFront managed prefix list (a custom origin header checked by the ALB adds a second control)."
+    facts: [managed-prefix-list]
+  - id: cloudfront-057
+    q: "Serving S3 content through CloudFront instead of straight from S3: is the S3 to CloudFront transfer billed?"
+    a: "No. Transfer from AWS origins to CloudFront is free; you pay CloudFront delivery to viewers."
+    facts: [origin-transfer-free]
 ---
 Origin access control (OAC) lets CloudFront authenticate to an S3 bucket so the bucket can serve content through a distribution without public read access. It protects the origin connection. Remove direct read permissions as well, so viewers cannot bypass CloudFront with S3 URLs.
 

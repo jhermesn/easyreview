@@ -60,6 +60,12 @@ facts:
   - id: tgw-ecmp
     text: "AWS Transit Gateway supports ECMP routing, which can be turned on for VPN attachments to spread traffic across several VPN tunnels."
     source: https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-ecmp
+  - id: route-propagation
+    text: "With a virtual private gateway, enable route propagation on the subnet route tables so the VPN static prefixes or BGP routes appear there when the connection is up."
+    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-configure-routing
+  - id: cgw-behind-nat
+    text: "If the customer gateway device sits behind NAT, register the NAT device public IP address as the customer gateway address and allow UDP 500 and 4500 for NAT traversal."
+    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/cgw-options.html
 diagrams:
   - id: vpn-two-tunnels
     title: Two VPN tunnels
@@ -132,6 +138,10 @@ cards:
     q: "Traffic over Site-to-Site VPN has outgrown one connection. Which design raises aggregate VPN throughput?"
     a: "Terminate the VPN connections on a transit gateway with ECMP turned on and add more VPN tunnels. Transfer Acceleration and Global Accelerator do not apply to VPN links."
     facts: [tgw-ecmp, ecmp]
+  - id: site-to-site-vpn-016
+    q: "A Site-to-Site VPN is up, but instances cannot reach on-premises hosts. The VPC uses a virtual private gateway. What is often missing?"
+    a: "Route propagation (or static routes) in the subnet route tables toward the virtual private gateway."
+    facts: [route-propagation]
 ---
 AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud (VPC), an isolated virtual network in AWS, using IPsec, a protocol for securing IP traffic. Each connection has two encrypted tunnels for availability.
 

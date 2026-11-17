@@ -79,6 +79,12 @@ facts:
     text: An application programming interface (API) is an interface that other programs call to use
       application functionality.
     source: https://aws.amazon.com/what-is/api/
+  - id: network-synthetic-monitor
+    text: "CloudWatch Network Synthetic Monitor measures packet loss and latency between a VPC subnet and on-premises IP addresses over hybrid links, with no agents to install."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/what-is-network-monitor.html#nw-monitor-features
+  - id: application-insights
+    text: "CloudWatch Application Insights scans an application resources, sets up recommended metrics and logs for its components, and flags common problems."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-application-insights.html#cloudwatch-application-insights
 cards:
   - id: cloudwatch-025
     q: A team must detect a broken checkout flow before customers encounter it. Which CloudWatch feature
@@ -122,6 +128,10 @@ cards:
       - canary-debug
       - canary-artifacts
       - canary-har
+  - id: cloudwatch-122
+    q: "The network team must track latency and packet loss on the Direct Connect path to the data center without installing agents. What service fits?"
+    a: "CloudWatch Network Synthetic Monitor, which probes from a VPC subnet to on-premises IP addresses."
+    facts: [network-synthetic-monitor]
 diagrams:
   - id: cloudwatch-canary-run-evidence
     title: A canary exercises an endpoint and records its run
