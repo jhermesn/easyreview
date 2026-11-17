@@ -1,4 +1,5 @@
 import { unitIdOf, type CertView, type Section } from './content';
+import { sectionFitsCert } from './levels';
 
 // Exam guide outlines live in src/data/guides/<cert>.json. Each knowledge, skill or objective item lists the
 // section ids ("<unit>/<slug>") that cover it. Each in-scope service names the unit about it, or,
@@ -32,9 +33,16 @@ export function servicesCoverage(guide: Guide, view: CertView) {
 
 export function guideProblems(guide: Guide, view: CertView): string[] {
   const problems = [...view.missing];
+  const byId = new Map(view.sections.map((s) => [s.id, s]));
   for (const d of guide.domains)
     for (const task of d.tasks)
-      for (const item of task.items) if (!item.sections.length) problems.push(`${item.id} maps to no section`);
+      for (const item of task.items) {
+        if (!item.sections.length) problems.push(`${item.id} maps to no section`);
+        for (const id of item.sections) {
+          const s = byId.get(id);
+          if (s && !sectionFitsCert(view.cert.level, s.data.level)) problems.push(`${item.id} maps ${s.data.level} section "${id}" above this ${view.cert.level} exam`);
+        }
+      }
   for (const cat of servicesCoverage(guide, view))
     for (const s of cat.services) if (!s.sections.length) problems.push(`service "${s.name}" has no section in this cert`);
   return problems;

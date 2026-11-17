@@ -14,7 +14,7 @@ Front matter (exact schema in `src/content.config.ts`):
 | Field | Meaning |
 |---|---|
 | `title` | Short section title |
-| `level` | `foundational`, `associate` or `professional` |
+| `level` | `foundational`, `associate` or `professional`: the lowest exam level whose readers should see every card in the section. A guide only maps sections at or below its exam's level |
 | `order` | Sort order inside the unit |
 | `facts` | `{ id, text, source }`: one atomic claim in your own words and the exact AWS doc URL, with `#anchor` when the page has one |
 | `cards` | `{ id, q, a, trap, facts }`: `facts` lists the fact ids the card relies on |

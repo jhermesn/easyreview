@@ -17,4 +17,5 @@ The rules that matter most:
 
 - Every fact comes from an AWS documentation page, with its exact URL. Write in your own words; never copy third-party study material or reproduce a practice question.
 - Card ids are permanent: reword freely, never change or reuse an `id`.
+- A cert shows exactly the sections its guide maps, every card included, so a guide only maps sections at or below the exam's level (foundational, associate, professional). When an item needs a service whose sections are all deeper, write a section at the exam's level.
 - Run the checks in `docs/tech.md` and leave no new warnings before you finish.
