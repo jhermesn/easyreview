@@ -17,6 +17,8 @@ Free study notes for AWS Certification exams: short sections, step-by-step diagr
 
 </div>
 
+Easy Review is for reviewing, not a course. To learn a service from scratch, use the official training on [AWS Skill Builder](https://skillbuilder.aws/), which has free exam prep courses and practice question sets. Verified higher education students can also join [AWS Student Rewards](https://builder.aws.com/student-rewards) for a year of Skill Builder, AWS credits and a certification exam voucher.
+
 Four exams are covered in full: **AWS Certified Cloud Practitioner (CLF-C02)**, **AWS Certified AI Practitioner (AIF-C01)**, **AWS Certified Solutions Architect - Associate (SAA-C03)** and **AWS Certified DevOps Engineer - Professional (DOP-C02)**. Every item of their exam guides and every in-scope service is mapped to a unit. Units are shared, so a topic marked as known counts in every exam that uses it. The other AWS Certifications show as coming soon and reuse the same units as they are added.
 
 ## What's in it

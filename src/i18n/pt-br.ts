@@ -25,7 +25,7 @@ const ptBr: Partial<Record<Key, string>> = {
   'footer.redocted': 'Jogo diário: revele uma página censurada da documentação da AWS ou do Kubernetes adivinhando palavras.',
   'footer.wrongAnswerLabs': 'Transforme as questões de exame AWS que você errou em laboratórios práticos com correção automática.',
   'footer.disclaimer':
-    'Resumos de estudo independentes. Sem afiliação, patrocínio ou endosso da Amazon Web Services. Cada tópico indica a documentação da AWS em que se baseia; na dúvida, a documentação oficial e o guia do exame valem mais.',
+    'Resumos de revisão independentes, não um curso; o treinamento oficial está no AWS Skill Builder. Sem afiliação, patrocínio ou endosso da Amazon Web Services. Cada tópico indica a documentação da AWS em que se baseia; na dúvida, a documentação oficial e o guia do exame valem mais.',
   'footer.trademarks':
     'AWS e AWS Certification são marcas registradas da Amazon.com, Inc. ou de suas afiliadas. Seu progresso fica salvo só neste navegador; não há contas nem rastreadores.',
 
@@ -46,6 +46,16 @@ const ptBr: Partial<Record<Key, string>> = {
   'home.stat.flashcards': 'flashcards',
   'home.stat.diagrams': 'diagramas',
   'home.stat.covered': 'do guia coberto',
+  'home.learn.kicker': 'Revisão, não curso',
+  'home.learn.title': 'Aprenda com a AWS, revise aqui',
+  'home.learn.text':
+    'O Easy Review serve para revisar e fixar o que você estudou. Para aprender um serviço do zero, comece pelo treinamento que a própria AWS faz para os exames dela.',
+  'home.learn.skillBuilder': 'AWS Skill Builder',
+  'home.learn.skillBuilderText':
+    'Cursos gratuitos no seu ritmo, um curso preparatório de 2 horas para cada certificação e conjuntos oficiais de questões de prática escritos pela AWS.',
+  'home.learn.studentRewards': 'AWS Student Rewards',
+  'home.learn.studentRewardsText':
+    'Para estudantes do ensino superior verificados: um ano de Skill Builder, além de créditos AWS e um voucher de exame de certificação conforme você ganha badges no Builder Center.',
   'home.passed.titleOne': '{n} pessoa estudou aqui e passou',
   'home.passed.titleMany': '{n} pessoas estudaram aqui e passaram',
   'home.passed.titleNone': 'Estudou aqui e passou?',
