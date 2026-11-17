@@ -94,6 +94,12 @@ facts:
   - id: client-side
     text: "Client-side encryption encrypts data before it is sent to S3, for example with the Amazon S3 Encryption Client, so S3 only ever stores ciphertext and never sees the keys."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingClientSideEncryption.html#UsingClientSideEncryption
+  - id: sse-kms-permissions
+    text: "Uploading an SSE-KMS object needs kms:GenerateDataKey on the key and downloading it needs kms:Decrypt, so S3 access alone does not let someone read the data."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#UsingKMSEncryption
+  - id: update-object-encryption
+    text: "UpdateObjectEncryption changes an existing SSE-S3 or SSE-KMS object to SSE-KMS, or to use an S3 Bucket Key, in place without copying data; it does not accept unencrypted, DSSE-KMS or SSE-C objects."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/update-sse-encryption.html#update-sse-encryption
 cards:
   - id: s3-014
     q: What encryption does S3 apply to a new upload with no encryption settings?
@@ -167,6 +173,14 @@ cards:
     q: "With SSE-S3, does every object in a bucket share one encryption key?"
     a: "No. Each object gets its own unique key, and S3 encrypts those keys with a root key that it rotates regularly."
     facts: [sse-s3-unique-key]
+  - id: s3-167
+    q: "S3 administrators must manage a bucket of SSE-KMS objects without being able to read the data. How?"
+    a: "Give them S3 permissions but no kms:Decrypt on the KMS key. Reading an SSE-KMS object needs both S3 access and kms:Decrypt."
+    facts: [sse-kms-permissions]
+  - id: s3-168
+    q: "Existing SSE-S3 objects must move to SSE-KMS with a Bucket Key without rewriting them. Which operation does that?"
+    a: "UpdateObjectEncryption, which updates the encryption in place with no data copy. CopyObject also works but rewrites each object."
+    facts: [update-object-encryption, bucket-key-existing]
 ---
 S3 server-side encryption protects object data at rest, meaning while stored on disk. S3 encrypts data during storage and decrypts it for authorized reads; the encryption option determines who controls the keys.
 
@@ -194,7 +208,7 @@ S3 server-side encryption protects object data at rest, meaning while stored on 
 ### Remember
 
 - New uploads have base SSE-S3 encryption using AES-256 since January 2023; it cannot be disabled and adds no encryption charge.
-- Bucket Keys can reduce KMS request costs by up to 99%; savings are not guaranteed for each workload. Existing objects require copying.
+- Bucket Keys can reduce KMS request costs by up to 99%; savings are not guaranteed for each workload. Existing objects need CopyObject or, for SSE-S3 and SSE-KMS objects, an in-place UpdateObjectEncryption.
 - Bucket Keys do not support DSSE-KMS.
 - Since April 2026, SSE-C is blocked by default for new general purpose buckets and existing buckets in accounts without SSE-C objects. `PutBucketEncryption` with `BlockedEncryptionTypes: NONE` enables it.
 

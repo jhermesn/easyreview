@@ -62,6 +62,9 @@ facts:
   - id: identity-broker
     text: "If an identity store is not compatible with SAML 2.0, a custom identity broker application can authenticate users, request temporary credentials from AWS STS and hand them to the users."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_federated-users.html#id_roles_common-scenarios_federated-users-idbroker
+  - id: saml-duration
+    text: "AssumeRoleWithSAML credentials last one hour by default; DurationSeconds can ask for longer, up to the role maximum session duration and the SAML assertion session limit."
+    source: https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithSAML.html#API_AssumeRoleWithSAML
 diagrams:
   - id: iam-federation-exchange
     title: Provider evidence becomes AWS role credentials

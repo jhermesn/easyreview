@@ -36,6 +36,9 @@ facts:
   - id: stop-protection
     text: "Stop protection blocks accidental stop and termination through EC2, but not a shutdown run inside the operating system or Auto Scaling terminations."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-stop-protection.html#ec2-stop-protection
+  - id: split-horizon-dns
+    text: "EC2 hostnames use split-horizon DNS: queried from inside the VPC they resolve to the private IP address, and a public DNS name resolves to the public IPv4 address from outside."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hostname-types.html
 cards:
   - id: ec2-077
     q: A licensed application is tied to a fixed public IP. If its EC2 instance fails, a standby instance must take over at the same address quickly. What fits?
@@ -75,6 +78,10 @@ cards:
     a: "No. Stop protection does not affect Auto Scaling terminations or OS-initiated shutdowns; use scale-in protection for the group."
     trap: true
     facts: [stop-protection]
+  - id: ec2-103
+    q: "Two instances in the same VPC talk using each other public DNS names. Does the traffic leave the VPC?"
+    a: "No. Inside the VPC the public DNS name resolves to the private IP address, so traffic stays private."
+    facts: [split-horizon-dns]
 ---
 An EC2 instance's network identity is its network interfaces and their addresses. Knowing which addresses stay and which can move answers most failover and licensing questions. [EC2 instance IP addressing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html)
 

@@ -27,6 +27,12 @@ facts:
   - id: alloc-others
     text: "capacity-optimized picks only the pools with the most spare capacity (fewest interruptions), diversified spreads Spot Instances across all pools, and lowest-price, the CLI default, carries the highest interruption risk."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html#ec2-fleet-allocation-strategies-for-spot-instances
+  - id: spot-pool
+    text: "A Spot capacity pool is the unused EC2 capacity for one instance type in one Availability Zone."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html#spot-features
+  - id: rebalance
+    text: "An EC2 rebalance recommendation signals that a Spot Instance is at elevated interruption risk; it can arrive before the two-minute interruption notice, but sometimes arrives with it."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rebalance-recommendations.html
 cards:
   - id: ec2-073
     q: A batch workload must keep 200 vCPUs of cheap capacity running across several instance types and AZs, replacing Spot Instances when they are interrupted. Which feature fits?
@@ -53,6 +59,10 @@ cards:
     q: "A Spot Fleet runs a workload that is costly to interrupt and price matters less. Which allocation strategy fits?"
     a: "capacity-optimized, which launches only from the pools with the most spare capacity. lowest-price has the highest interruption risk."
     facts: [alloc-others]
+  - id: ec2-106
+    q: "Which Spot signal can warn earlier than the two-minute interruption notice?"
+    a: "The EC2 instance rebalance recommendation, sent when the instance is at elevated interruption risk; it is not guaranteed to come first."
+    facts: [rebalance]
 ---
 Fleets and Spot request types control how EC2 keeps cheap capacity running when Spot Instances come and go. [EC2 Fleet and Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html)
 

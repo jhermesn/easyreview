@@ -69,6 +69,9 @@ facts:
   - id: external-mfa
     text: An external identity provider manages MFA settings instead of Identity Center.
     source: https://docs.aws.amazon.com/singlesignon/latest/userguide/mfa-getting-started.html
+  - id: instance-types
+    text: "An organization instance of IAM Identity Center, enabled in the Organizations management account, supports all features and is recommended; an account instance is bound to one account and Region for simpler single-account application access."
+    source: https://docs.aws.amazon.com/singlesignon/latest/userguide/identity-center-instances.html#identity-center-instances
 diagrams:
   - id: identity-center-account-access
     title: Sign in and access an account
@@ -119,6 +122,10 @@ cards:
     q: A company wants IAM Identity Center users to access a SAML business application with single sign-on. What should an administrator do?
     a: Configure the application and assign its users or groups. No users are assigned by default.
     facts: [apps, saml-apps]
+  - id: iam-identity-center-009
+    q: "A company wants one place to give workforce users access to many AWS accounts. Which IAM Identity Center instance type fits?"
+    a: "An organization instance, enabled in the Organizations management account. Account instances cannot manage access to multiple AWS accounts."
+    facts: [instance-types]
 ---
 
 IAM Identity Center gives workforce users single sign-on access to assigned AWS accounts and applications. A single sign-on lets users sign in once and reach their assigned resources.

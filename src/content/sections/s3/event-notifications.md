@@ -79,6 +79,9 @@ facts:
   - id: acl-event
     text: The s3:ObjectAcl:Put event notifies when an ACL is put on an object or an existing ACL changes.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html
+  - id: restore-events
+    text: "S3 ObjectRestore event types report when a restore from S3 Glacier Flexible Retrieval or Deep Archive starts, completes, and when the temporary restored copy expires."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html#supported-notification-event-types
 diagrams:
   - id: s3-eventbridge-fifo
     title: Routing S3 events to a FIFO queue
@@ -209,6 +212,10 @@ cards:
     q: A security team wants a Lambda function to run whenever someone changes an object's ACL in an S3 bucket. Which S3 event type does it subscribe to?
     a: s3:ObjectAcl:Put, which fires when an ACL is put on an object or changed.
     facts: [acl-event]
+  - id: s3-166
+    q: "An app must start processing as soon as a Glacier Deep Archive restore finishes. Which S3 event type fits?"
+    a: "s3:ObjectRestore:Completed, sent to SNS, SQS, Lambda or EventBridge."
+    facts: [restore-events]
 ---
 S3 event notifications start work when selected bucket events occur. They let a file arrival trigger processing without an application repeatedly listing the bucket.
 

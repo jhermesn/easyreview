@@ -98,6 +98,12 @@ facts:
   - id: access-grants
     text: "S3 Access Grants maps read-only, write-only or read-write access to S3 prefixes, buckets or objects for IAM principals and directly for users and groups from a corporate directory."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants.html#access-grants
+  - id: ap-delegation
+    text: "AWS recommends a bucket policy that delegates access control to access points, so each access point policy grants access without repeating it in the bucket policy."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-policies.html#access-points-delegating-control
+  - id: ap-vpc-endpoint
+    text: "To use an access point from a VPC, the S3 VPC endpoint policy must allow the access point and its underlying bucket."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-vpc.html
 diagrams:
   - id: s3-object-lambda-response
     title: Transforming an Object Lambda response

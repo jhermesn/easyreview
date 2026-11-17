@@ -72,6 +72,12 @@ facts:
   - id: instance-scheduler
     text: "Instance Scheduler on AWS is a deployable solution that uses resource tags and Lambda to stop and start EC2 and RDS instances on custom schedules across accounts and Regions."
     source: https://docs.aws.amazon.com/solutions/latest/instance-scheduler-on-aws/solution-overview.html#solution-overview
+  - id: cr-matching
+    text: "An open Capacity Reservation is used automatically by any running or new instance with matching type, platform and Availability Zone; a targeted one only by instances that name it, and future-dated reservations start as targeted."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cr-concepts.html#cr-instance-eligibility
+  - id: sp-hourly
+    text: "Savings Plans are a commitment to a set amount of compute usage per hour for one or three years, in exchange for lower prices than On-Demand; they are a pricing model, not reserved capacity."
+    source: https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html
 cards:
   - id: ec2-036
     q: A company runs a steady workload on EC2 for the next three years but may change instance families. Which purchasing option saves the most while staying flexible?
@@ -154,6 +160,11 @@ cards:
     q: "Development EC2 and RDS instances in several accounts should stop outside business hours automatically. What ready-made AWS solution fits?"
     a: "Instance Scheduler on AWS, which stops and starts tagged instances on defined schedules across accounts and Regions."
     facts: [instance-scheduler]
+  - id: ec2-105
+    q: "A team buys a Compute Savings Plan to be sure capacity exists for a big launch. Is that enough?"
+    a: "No. Savings Plans only lower prices for committed hourly usage; to hold capacity in an Availability Zone, use an On-Demand Capacity Reservation."
+    trap: true
+    facts: [sp-hourly, cr-billing]
 ---
 Amazon EC2 charges the same instance in different ways depending on how much you commit and how much interruption you accept. Choosing well can cut compute costs sharply. [EC2 billing and purchasing options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html#instance-purchasing-options)
 
