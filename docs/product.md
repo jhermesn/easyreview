@@ -4,6 +4,8 @@ Easy Review is a free static study site for AWS Certification exams. The exams c
 
 The goal is 80/20 review: what the exam asks, in the fewest words. A reader should get through a section in a few minutes after missing a practice question. Correctness matters more than volume, because a wrong fact on a study site costs the reader an exam question.
 
+The site complements AWS training and does not replace it. The home page and footer point readers who need to learn a service from scratch to AWS Skill Builder, and students to AWS Student Rewards; keep that pointer whenever the home page changes.
+
 ## Where content comes from
 
 - Every number, limit, default, date and behaviour a section states is a fact with the exact `docs.aws.amazon.com` or `aws.amazon.com` URL. A claim you cannot find in AWS documentation is dropped, and your report says so.

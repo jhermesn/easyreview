@@ -69,6 +69,18 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
     <HeroBadge />
   </section>
 
+  <section class="learn" aria-labelledby="learn-title">
+    <div class="learn-copy">
+      <p class="learn-kicker"><Icon name="book" size={14} /> {t('home.learn.kicker')}</p>
+      <h2 id="learn-title">{t('home.learn.title')}</h2>
+      <p>{t('home.learn.text')}</p>
+    </div>
+    <ul class="learn-links">
+      <li><a href="https://skillbuilder.aws/" target="_blank" rel="noopener"><b>{t('home.learn.skillBuilder')} <Icon name="external" size={12} /></b><span>{t('home.learn.skillBuilderText')}</span></a></li>
+      <li><a href="https://builder.aws.com/student-rewards" target="_blank" rel="noopener"><b>{t('home.learn.studentRewards')} <Icon name="external" size={12} /></b><span>{t('home.learn.studentRewardsText')}</span></a></li>
+    </ul>
+  </section>
+
   <section class="passed" aria-labelledby="passed-title">
     <div class="passed-copy">
       <p class="passed-kicker"><Icon name="shield" size={14} /> {t('footer.passed')}</p>
@@ -154,6 +166,17 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
   .stats b { font-size: 1.5rem; color: var(--ink-100); }
   .stats li > span { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; color: var(--ink-400); text-transform: uppercase; letter-spacing: 0.05em; }
 
+  .learn { display: flex; align-items: center; gap: 1.2rem 2.5rem; flex-wrap: wrap; margin: 0 0 1.5rem; padding: 1.3rem 1.8rem; border: 1px solid var(--ink-700); background: var(--ink-900); }
+  .learn-copy { flex: 1 1 20rem; min-width: 0; }
+  .learn-kicker { display: inline-flex; align-items: center; gap: 0.35rem; margin: 0 0 0.4rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mint); }
+  .learn h2 { margin: 0 0 0.4rem; font-size: 1.15rem; }
+  .learn-copy > p:not(.learn-kicker) { margin: 0; color: var(--ink-300); max-width: 36rem; }
+  .learn-links { flex: 1 1 22rem; min-width: 0; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 0.6rem; }
+  .learn-links a { display: grid; gap: 0.25rem; height: 100%; padding: 0.7rem 0.9rem; border: 1px solid var(--ink-700); background: var(--ink-850); text-decoration: none; transition: border-color 0.15s; }
+  .learn-links a:hover { border-color: var(--mint); color: inherit; }
+  .learn-links b { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--ink-100); font-size: 0.9rem; }
+  .learn-links span { color: var(--ink-400); font-size: 0.8rem; line-height: 1.45; }
+
   .passed { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem 2.5rem; flex-wrap: wrap; margin: 0 0 2.5rem; padding: 1.6rem 1.8rem; border: 1px solid color-mix(in srgb, var(--amber) 55%, var(--ink-700)); background: radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--amber) 12%, transparent), transparent 60%), var(--ink-900); }
   .passed::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(var(--amber), var(--purple)); }
   .passed-copy { flex: 1 1 22rem; }
@@ -195,7 +218,7 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
     .hero { grid-template-columns: minmax(0, 1fr); min-height: auto; gap: 0.5rem; }
     .hero :global(.hero-3d) { order: -1; max-width: 15rem; }
     .stats { grid-template-columns: repeat(2, auto); gap: 0.8rem 1.8rem; }
-    .passed { padding: 1.3rem 1.1rem; }
+    .learn, .passed { padding: 1.3rem 1.1rem; }
     .passed-copy { flex-basis: 100%; min-width: 0; }
     /* Buttons share a row when both labels fit and stack when a longer translation does not. */
     .ctas .btn { flex: 1 1 auto; justify-content: center; padding-inline: 0.5rem; font-size: 0.84rem; }

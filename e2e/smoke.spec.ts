@@ -16,6 +16,7 @@ test('home links to the first available certification', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('./');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('once');
+  await expect(page.getByRole('link', { name: /AWS Skill Builder/ })).toHaveAttribute('href', 'https://skillbuilder.aws/');
   await page.getByRole('link', { name: /^Start / }).click();
   await expect(page).toHaveURL(/\/[a-z]{3}-c\d\d\/?$/);
 });
