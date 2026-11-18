@@ -31,18 +31,18 @@ cards:
     a: Amazon Neptune; fraud detection is a typical graph use case.
     facts: [use-cases]
   - id: neptune-003
-    q: Which query languages does Amazon Neptune support?
-    a: Gremlin, openCypher and SPARQL.
-    facts: [languages]
+    q: "Which AWS database service is designed for applications with highly connected data?"
+    a: "Amazon Neptune is a fully managed graph database service for highly connected datasets."
+    facts: [purpose]
   - id: neptune-004
     q: Is Amazon Neptune a relational database?
     a: No. It is a graph database; relational databases on AWS are Amazon RDS and Aurora.
     trap: true
     facts: [purpose]
   - id: neptune-005
-    q: "Changes to a Neptune graph must be pushed to a search index as they happen. What feature provides the change feed?"
-    a: "Neptune Streams, which logs each graph change in order."
-    facts: [streams]
+    q: "Which AWS database service can support a recommendation engine using relationships between data?"
+    a: "Amazon Neptune is a graph database used for recommendation engines and other connected-data applications."
+    facts: [purpose, use-cases]
 ---
 Amazon Neptune stores data as a graph: things and the relationships between them. That makes queries like "friends of friends" or "accounts linked to this device" fast, where a relational database would need many joins. [What is Amazon Neptune?](https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro)
 

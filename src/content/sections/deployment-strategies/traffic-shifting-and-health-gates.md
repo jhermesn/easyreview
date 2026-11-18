@@ -191,12 +191,10 @@ cards:
     facts:
       - bake-time
   - id: deployment-strategies-020
-    q: An AppConfig deployment alarm enters INSUFFICIENT_DATA. What happens when alarm actions remain
-      enabled?
-    a: AppConfig rolls configuration back to the previous version during deployment. It responds to
-      ALARM as well as INSUFFICIENT_DATA.
+    q: "An Amazon ECS deployment must shift traffic to a new revision in equal increments. Which strategy fits?"
+    a: "Use a linear deployment. It moves traffic in equal percentage increments with waits between increments."
     facts:
-      - appconfig-alarms
+      - linear-shift
 ---
 
 Traffic shifting controls how many requests reach a new version while it is evaluated. A health gate is a check that can stop rollout when the new version is not ready. The [ECS canary workflow](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/canary-deployment.html) combines limited initial exposure with evaluation before the remaining traffic moves.

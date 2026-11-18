@@ -142,12 +142,6 @@ cards:
       An AMI is the image used to launch an instance.
     facts:
       - launch-ami
-  - id: iam-065
-    q: An IAM policy expects aws:SourceAccount on a direct request made by an IAM user. Will that key be present?
-    a: No. The key is available only for qualifying direct AWS service principal calls on behalf of a triggering resource, and not every service integration uses it.
-    facts:
-      - source-account
-    trap: true
   - id: iam-094
     q: "Which element of an IAM identity-based policy statement is optional: Effect, Action, Resource or Condition?"
     a: Condition. Effect, Action and Resource define the statement; Principal appears in resource-based policies.
@@ -172,8 +166,6 @@ IAM policy evaluation decides whether a request has permission to perform an act
 3. Reject the request if any applicable policy explicitly denies it. Otherwise find an allow, subject to permissions boundaries, session limits and organization policies. Missing permission is an implicit deny.
 4. For ordinary same-account access, an identity or resource policy can grant permission. Check which principal the resource policy names. Role trust and KMS key policies have their own explicit-allow requirements.
 
-`aws:SourceAccount` identifies the account of a resource that triggered a qualifying direct service-to-service request. It is not present for a direct IAM user or role request, and not all service integrations use it.
-
 | Policy | Purpose |
 |---|---|
 | Identity policy | Grants actions to a user, group member or role |
@@ -189,7 +181,6 @@ IAM policy evaluation decides whether a request has permission to perform an act
 - If the question says `s3:GetObject` is allowed but objects remain inaccessible, think resource ARN matching, because a bucket ARN differs from an object ARN. `s3:ListBucket` targets the bucket; object actions target object paths.
 - If the question says a Region restriction breaks a global service, think `NotAction` exceptions in the `aws:RequestedRegion` deny, because global endpoints can be outside the approved Regions.
 - If the question says developers may launch only approved machine images (AMIs), think image ARN restrictions on `ec2:RunInstances`, because that action supports image resource permissions and conditions such as `ec2:Owner`.
-- If the question says a direct IAM user request lacks `aws:SourceAccount`, think request context availability, because the key applies only to qualifying direct service principal calls.
 
 ### Remember
 

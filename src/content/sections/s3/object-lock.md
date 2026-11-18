@@ -100,11 +100,6 @@ cards:
     facts:
       - lock-enable-existing
       - lock-permanent-setting
-  - id: s3-148
-    q: "Older exam questions ask how to make archives in an Amazon Glacier vault immutable for compliance. What was the answer, and what should a new design use?"
-    a: "- Old answer: a **Glacier Vault Lock** policy, which can't change once locked.\n- New designs: S3 Glacier storage classes with **S3 Object Lock** (compliance mode), since standalone Glacier vaults are closed to new customers."
-    trap: true
-    facts: [glacier-vault-lock, glacier-closed]
 ---
 S3 Object Lock prevents protected object versions from being overwritten or deleted. Its write-once-read-many model means data can be read repeatedly while the saved version remains protected.
 

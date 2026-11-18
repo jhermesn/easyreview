@@ -115,9 +115,9 @@ cards:
     facts: [existing-connections, failover]
     trap: true
   - id: global-accelerator-009
-    q: What are the Global Accelerator TCP and UDP idle timeouts?
-    a: TCP is 340 seconds and UDP is 30 seconds. Neither is customizable.
-    facts: [timeouts]
+    q: "A global application needs fixed IP addresses and traffic routed over the AWS global network to regional endpoints. Which service fits?"
+    a: "AWS Global Accelerator provides static IP addresses at AWS edge locations and routes traffic to regional endpoints over the AWS global network."
+    facts: [fixed-entry]
   - id: global-accelerator-010
     q: A multiplayer game uses UDP and needs lower latency for players worldwide. Which AWS service fits better than CloudFront?
     a: AWS Global Accelerator. Its listeners support TCP and UDP, while CloudFront caches HTTP content.

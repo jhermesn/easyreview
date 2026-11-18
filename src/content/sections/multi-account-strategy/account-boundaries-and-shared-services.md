@@ -121,11 +121,6 @@ cards:
       not a substitute for the consumer account's identity permissions.
     facts:
       - ram-permissions
-  - id: multi-account-strategy-023
-    q: In which Region must an AWS RAM share be created for a Regional resource?
-    a: In the resource's Region. A share containing global resources uses us-east-1.
-    facts:
-      - ram-regions
   - id: multi-account-strategy-024
     q: A network account shares an Amazon VPC subnet with workload accounts in its organization. Can one workload
       account manage another participant's EC2 instances?
@@ -148,13 +143,6 @@ cards:
     facts:
       - ram-enable
       - ram-org-requirements
-  - id: multi-account-strategy-027
-    q: An AWS RAM resource must remain shared with a specific account after that account leaves the organization.
-      How should the share be created?
-    a: Enable RetainSharingOnAccountLeaveOrganization on a new direct account share, allow external principals
-      and have the consumer accept its invitation.
-    facts:
-      - ram-leave
   - id: multi-account-strategy-028
     q: A team shares a resource using AWS RAM to avoid the resource owner's quota. Does sharing increase that
       quota?
@@ -162,19 +150,6 @@ cards:
     trap: true
     facts:
       - ram-owner-quota
-  - id: multi-account-strategy-029
-    q: An AWS Organizations management account cannot add another member account. Which account quota and
-      pending invitations should it check?
-    a: The default account quota is 10 and is adjustable, though new organizations can have a lower quota.
-      Pending invitations count against it.
-    facts:
-      - org-account-quota
-  - id: multi-account-strategy-030
-    q: A platform team wants other AWS accounts to reuse its customer managed AWS RAM permission on their own
-      resource shares. What feature can it use?
-    a: Share the customer managed permission. RAM added this capability in November 2026.
-    facts:
-      - shared-permissions
   - id: multi-account-strategy-032
     q: "Every new account in an AWS organization needs higher quotas for some services from day one. What avoids manual requests per account?"
     a: "A Service Quotas quota request template with trusted access enabled in Organizations. It requests the increases automatically when accounts are created."
@@ -245,8 +220,6 @@ An AWS account is an isolation boundary for resources, access, and billing. Sepa
 5. For cross-account shares, the RAM managed permission sets the maximum actions. The consumer account must grant its identities access too. For role-based access, configure destination role trust and permissions and allow the originating identity to assume it.
 6. A network account can share VPC subnets with accounts in the same organization. Each participant manages its own resources, not another participant's resources.
 7. Enable organization sharing from the management account through RAM with all Organizations features and the required RAM, IAM and Organizations permissions. Sharing does not raise the resource owner's quota.
-8. A consumer normally loses organization-shared access when it leaves. To retain a direct account share, set `RetainSharingOnAccountLeaveOrganization` when creating it, allow external principals and have the consumer accept the invitation.
-9. Since November 2026, teams can share customer managed RAM permissions for receiving accounts to use on their own resource shares.
 
 ### Exam cues
 
@@ -262,7 +235,6 @@ An AWS account is an isolation boundary for resources, access, and billing. Sepa
 - Group OUs by control requirements.
 - SCPs do not constrain the management account.
 - Ordinary RAM shares inside an enabled organization do not require invitations.
-- Regional RAM resources and their share must be in the same Region. Shares for global resources use `us-east-1`.
-- The default Organizations account quota is 10 and is adjustable. New organizations can have a lower quota; pending invitations count against it.
+- Sharing a resource does not raise the owner's quota.
 
 > **Trap:** An OU groups accounts for governance. It does not replace the account boundary or automatically grant access between accounts.

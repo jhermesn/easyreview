@@ -100,15 +100,6 @@ cards:
       - shard-write
       - shard-read
       - shard-record-rate
-  - id: kinesis-data-streams-002
-    q: How does Kinesis Data Streams choose a shard, and how should a producer preserve strict write
-      order?
-    a: By default it hashes the partition key with MD5 into a shard hash range. For strict ordering,
-      make serial PutRecord calls to the same shard with SequenceNumberForOrdering. There is no
-      stream-wide shard order.
-    facts:
-      - shard-hash
-      - shard-order
   - id: kinesis-data-streams-003
     q: A Kinesis Data Streams stream throttles writes while most shards are idle. What should the team
       investigate?
@@ -125,14 +116,6 @@ cards:
     facts:
       - shard-provisioned
       - shard-standard
-  - id: kinesis-data-streams-008
-    q: A Kinesis producer sends many tiny application records and reaches the shard record-rate limit
-      before its byte limit. Which KPL feature helps?
-    a: Aggregation. It packs multiple application records into one Kinesis record, reducing the number
-      of service records written. Collection also reduces request overhead by using PutRecords.
-    facts:
-      - shard-kpl-aggregation
-      - shard-kpl-collection
   - id: kinesis-data-streams-009
     q: A Kinesis application needs occasional 4 MiB records. Is the default stream setting enough, and
       does enabling large records raise sustained shard throughput?
@@ -153,20 +136,11 @@ cards:
     facts:
       - shard-spike
   - id: kinesis-data-streams-011
-    q: What protects Kinesis Data Streams data at rest and in transit?
-    a: Use server-side encryption with AWS KMS keys for stored data. Kinesis API connections require TLS
-      1.2 and AWS recommends TLS 1.3.
+    q: "A company needs to collect new log lines from Linux servers for real-time stream processing. Which Amazon Kinesis option fits?"
+    a: "Use Kinesis Agent to send new log lines to Amazon Kinesis Data Streams for real-time processing."
     facts:
-      - shard-encryption
-      - shard-tls
-  - id: kinesis-data-streams-012
-    q: Does Kinesis PutRecords guarantee strict ordering when some records in the batch fail?
-    a: No. PutRecords can partially succeed and does not guarantee ordering. Use serial PutRecord writes
-      to the same shard with SequenceNumberForOrdering when strict ordering is required.
-    trap: true
-    facts:
-      - shard-batch-order
-      - shard-order
+      - kinesis-agent
+      - real-time
   - id: kinesis-data-streams-023
     q: A company must ingest and process website clickstream data in real time. Which AWS service fits?
     a: Amazon Kinesis Data Streams.
@@ -229,9 +203,7 @@ Kinesis Data Streams stores records for applications to process independently. A
 1. A producer sends record bytes with a partition key. Kinesis hashes that key using MD5, a function that maps it to a number, and chooses the shard whose hash range contains it.
 2. Distribute traffic across keys. A hot key, meaning one key carrying too much traffic, can throttle its shard even while other shards have room.
 3. Choose capacity management. Provisioned mode requires a shard count; on-demand manages shards automatically. On-demand can still throttle on a hot key or a sudden increase beyond its scaling envelope.
-4. For strict write order, send `PutRecord` calls serially to the same shard with `SequenceNumberForOrdering`. `PutRecords` batches improve request efficiency but can partially fail and do not guarantee ordering.
-5. Use Kinesis Producer Library, or KPL, aggregation to combine small application records into one service record. Collection sends multiple service records through `PutRecords`; both features are enabled by default.
-6. Choose a maximum record size that downstream consumers can handle. Protect stored data with KMS server-side encryption and API connections with Transport Layer Security, or TLS, which encrypts data in transit.
+4. Choose a maximum record size that downstream consumers can handle. Protect stored data with KMS server-side encryption and API connections with Transport Layer Security, or TLS, which encrypts data in transit.
 
 | Mode | Capacity responsibility | Cue |
 |---|---|---|
@@ -242,9 +214,8 @@ Kinesis Data Streams stores records for applications to process independently. A
 ### Exam cues
 
 - If the question says most shards are idle but writes throttle, think hot partition key, because the same key maps to one shard.
-- If the question says many tiny records hit the record-rate limit, think KPL aggregation, because multiple application records become one service record.
-- If the question says strict write order matters, think serial `PutRecord` calls and `SequenceNumberForOrdering`, because `PutRecords` does not guarantee ordering.
 - If the question says unpredictable traffic with no shard management, think On-demand Standard, because it automatically manages capacity.
+- If the question says server log lines must reach a stream without changing the application, think Kinesis Agent, because it watches log files and sends new lines to the stream.
 
 ### Remember
 
@@ -255,4 +226,4 @@ Kinesis Data Streams stores records for applications to process independently. A
 - Large records use intermittent burst capacity. Check Region support and downstream limits, including Firehose destination restrictions.
 - API connections require TLS 1.2; AWS recommends TLS 1.3.
 
-> **Trap:** A larger allowed record does not create a higher sustained shard write rate. Separate the per-record size setting from sustained capacity and from producer batching.
+> **Trap:** A larger allowed record does not create a higher sustained shard write rate. Separate the per-record size setting from sustained capacity.

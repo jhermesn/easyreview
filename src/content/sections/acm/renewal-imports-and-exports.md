@@ -214,31 +214,6 @@ cards:
     facts:
       - public-export
       - export-deployment
-  - id: acm-014
-    q: A team wants to export an ACM public certificate created before June 17, 2025. Can it export the
-      existing certificate?
-    a: "No. Public certificates created before that date cannot be exported. Request an exportable
-      replacement with `Export: ENABLED`; that option cannot change after creation."
-    facts:
-      - old-export
-      - export-option
-    trap: true
-  - id: acm-015
-    q: What does an ACM public certificate export contain, and how is its private key protected?
-    a: The certificate, certificate chain, and private key encrypted with a supplied passphrase. ACM
-      private certificate exports also contain an encrypted private key.
-    facts:
-      - export-material
-      - private-export
-  - id: acm-016
-    q: How do ACM renewal windows differ for current public certificates, older public certificates, and
-      eligible private certificates?
-    a: Public certificates with `198-day` validity renew `45 days` before expiry. Older `395-day` public
-      certificates renew `60 days` before expiry into `198-day` replacements. Eligible private
-      certificates begin renewal attempts `60 days` before expiry.
-    facts:
-      - public-window
-      - private-window
   - id: acm-017
     q: What happens to an ACM certificate ARN after managed renewal, and how are copies in multiple
       Regions handled?
@@ -246,24 +221,6 @@ cards:
     facts:
       - renewal-arn
       - regional-renewal
-  - id: acm-018
-    q: A team still uses email validation for ACM public certificates. Which announced 2027 deadlines
-      affect issuance and renewal?
-    a: New email-validated issuance stops March 31, 2027; renewal of email-validated certificates stops
-      September 30, 2027. Migrate existing certificates to DNS before renewal support ends.
-    facts:
-      - email-end-new
-      - email-end-renew
-  - id: acm-019
-    q: A team uses ACM with an ACME client on its own infrastructure. Who holds the private key and
-      renews the certificate, and can it attach that certificate to an ALB?
-    a: The ACME client holds the private key and manages renewal. ACME-issued certificates cannot bind
-      to AWS integrated services such as an ALB.
-    facts:
-      - acme
-      - acme-integration
-      - acme-renewal
-    trap: true
   - id: acm-020
     q: A team needs an EventBridge signal when an ACM certificate is renewed and ready for deployment.
       Which event should it match?
@@ -293,9 +250,6 @@ ACM managed renewal replaces eligible certificates before expiration. Renewal an
 | Exported ACM-issued certificate | ACM, while eligible. | Customer exports and installs the replacement. |
 | Imported certificate | Customer and original issuer. | Reimport to preserve ARN and service associations. |
 | Direct Private CA `IssueCertificate` | Customer. | Customer installs the certificate. |
-| ACME client issuance | ACME client. | Client holds the key; certificates cannot bind to integrated services. |
-
-ACME is a protocol for automating certificate issuance and renewal on customer-managed infrastructure. It has a separate renewal lifecycle from ACM managed renewal.
 
 ### Exam cues
 
@@ -306,10 +260,6 @@ ACME is a protocol for automating certificate issuance and renewal on customer-m
 
 ### Remember
 
-- Public renewal: 198-day certificates renew 45 days before expiry. Older 395-day certificates renew 60 days before expiry into 198-day replacements.
-- Eligible private certificate renewal starts 60 days before expiry.
-- Public certificates created before June 17, 2025 cannot be exported. Choose `Export: ENABLED` for an exportable replacement; the setting cannot change after creation.
-- In August 2026 AWS announced the email phaseout: new email-validated issuance stops March 31, 2027; email-validated renewal stops September 30, 2027.
 - Imported, expired, and directly issued Private CA certificates are ineligible for ACM managed renewal.
 - `ACM Certificate Approaching Expiration` covers active public, private, and imported certificates.
 

@@ -53,16 +53,16 @@ cards:
     a: "Amazon Rekognition Custom Labels, which trains a model for business-specific objects and logos from a small image set."
     facts: [custom-labels]
   - id: rekognition-006
-    q: "A chatbot generates images and must block unsafe ones before returning them. Which API checks each image?"
-    a: "Rekognition DetectModerationLabels. A Custom Moderation adapter trained on your images can raise its accuracy."
+    q: "Which AWS AI service can help an application identify inappropriate images and videos?"
+    a: "Amazon Rekognition can detect inappropriate, unwanted or offensive images and videos."
     facts: [content-moderation]
   - id: rekognition-007
     q: "A bank's identity check must confirm a real person is in front of the camera, not a photo or video. Which Rekognition feature fits?"
     a: "Face Liveness, which analyzes a short video selfie and detects spoof attacks."
     facts: [face-liveness]
   - id: rekognition-008
-    q: "A construction company must check site photos for missing hard hats. Which Rekognition API fits?"
-    a: "DetectProtectiveEquipment (PPE detection)."
+    q: "A construction company wants to analyze site photos for protective equipment. Which AWS AI service can help?"
+    a: "Amazon Rekognition can detect protective equipment such as head, face and hand covers in images."
     facts: [ppe-detection]
 ---
 Amazon Rekognition analyzes images and videos: what objects and scenes appear, whether there is text or unsafe content, and whose face it is. It works through an API, with no models to build. [What is Amazon Rekognition?](https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html#what-is)

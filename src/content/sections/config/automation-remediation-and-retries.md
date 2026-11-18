@@ -254,24 +254,6 @@ cards:
       - automatic-remediation
       - retry-attempts
       - retry-window
-  - id: config-010
-    q: AWS Config automatic remediation starts for a resource that is already compliant. Why can this
-      happen?
-    a: Its compliance snapshot can be stale. A resource corrected after the snapshot can still be
-      selected for automatic remediation.
-    trap: true
-    facts:
-      - stale-snapshot
-  - id: config-011
-    q: AWS Config remediation fails despite a valid runbook. Which execution details and permissions
-      should an operator inspect?
-    a: Use DescribeRemediationExecutionStatus for failed steps and errors. Check parameter values,
-      Automation role action permissions and Systems Manager trust, and any PassRole error for the
-      caller starting Automation.
-    facts:
-      - remediation-diagnostics
-      - resource-parameter
-      - automation-permissions
   - id: config-020
     q: A security team needs AWS Config rules and automatic fixes for unwanted S3 public access across
       member accounts. How should it package the deployment?
@@ -292,48 +274,6 @@ cards:
       - compliance-events
       - sns-target
       - manual-remediation
-  - id: config-025
-    q: Which AWS Config remediation controls limit simultaneous fixes and repeated failures?
-    a: ConcurrentExecutionRatePercentage limits parallel remediation; ErrorPercentage controls when
-      errors stop further automations. MaximumAutomaticAttempts and RetryAttemptSeconds control
-      retries before an exception.
-    facts:
-      - concurrency-control
-      - error-control
-      - retry-attempts
-      - retry-window
-  - id: config-026
-    q: An AWS Config rule flags unwanted public S3 bucket access. Which runbook and parameters can
-      support automatic correction?
-    a: AWS-DisableS3BucketPublicReadWrite uses S3 Block Public Access. Supply S3BucketName and
-      AutomationAssumeRole for automatic Config remediation; pack rules require remediation in the
-      pack template.
-    facts:
-      - s3-public-runbook
-      - automatic-role
-      - pack-remediation
-  - id: config-040
-    q: What are AWS Config automatic remediation's default failed-attempt count and retry window?
-    a: MaximumAutomaticAttempts defaults to 5 and RetryAttemptSeconds to 60 seconds. Reaching the
-      failure threshold within the window adds a remediation exception that blocks further automatic
-      remediation.
-    facts:
-      - retry-attempts
-      - retry-window
-      - exception-blocks
-  - id: config-041
-    q: What are the AWS Config remediation defaults for concurrency and allowed errors?
-    a: ConcurrentExecutionRatePercentage defaults to 10 percent; ErrorPercentage defaults to 50 percent.
-    facts:
-      - concurrency-control
-      - error-control
-  - id: config-042
-    q: An AWS Config resource has a remediation exception after repeated failures. Will automatic
-      remediation keep retrying it?
-    a: No. The exception excludes it from automatic remediation until the exception is cleared.
-    trap: true
-    facts:
-      - exception-blocks
   - id: config-043
     q: An AWS Config compliance alert needs to notify an SNS topic without automatically correcting
       resources. Which event path fits?
@@ -354,34 +294,24 @@ AWS Config **remediation** corrects a resource that a rule reports as noncomplia
 ### How it works
 
 1. Associate a managed or custom Automation runbook with a supported Config rule. For rules created by a conformance pack, put the remediation in the pack template and update the pack. Direct `PutRemediationConfigurations` does not support service-linked rules, including organization rules.
-2. Supply the runbook's parameters. A **static parameter** stays fixed; a **dynamic parameter** receives the noncompliant resource ID at runtime. For example, `AWS-DisableS3BucketPublicReadWrite` uses S3 Block Public Access and takes the bucket name in `S3BucketName`.
+2. Supply the runbook's parameters. A **static parameter** stays fixed; a **dynamic parameter** receives the noncompliant resource ID at runtime.
 3. Choose manual or automatic remediation. Manual waits for an operator to select resources and start the action. Automatic starts for reported noncompliance and requires `AutomationAssumeRole`, the IAM role whose permissions Automation uses.
-4. Configure retries and execution controls. **Concurrency** is how many fixes may run at once. A **remediation exception** stops automatic remediation for a resource until the exception is cleared.
-5. Inspect failures with `DescribeRemediationExecutionStatus` or `describe-remediation-execution-status`. Check failed steps, parameter values, role permissions, its **trust relationship**, which permits Systems Manager to assume it, and any `iam:PassRole` error for the caller starting Automation. `iam:PassRole` permits passing a role for a service to use; Config remediation setup also lists it as a dependent permission.
-6. For notifications, match `aws.config` events of type `Config Rules Compliance Change` in EventBridge and target an SNS topic, a channel for publishing messages to subscribers. `ComplianceChangeNotification` identifies a changed compliance result. This notification path is separate from automatic remediation.
+4. Configure retries for failed automatic actions within a time window.
+5. For notifications, match `aws.config` events of type `Config Rules Compliance Change` in EventBridge and target an SNS topic, a channel for publishing messages to subscribers. `ComplianceChangeNotification` identifies a changed compliance result. This notification path is separate from automatic remediation.
 
 ### Exam cues
 
 - If the question says automatically correct noncompliant resources, think Config remediation plus an Automation runbook, because the evaluation and corrective action have separate responsibilities.
 - If the question says alert on unrestricted incoming SSH but let a person decide the fix, think `restricted-ssh`, EventBridge, SNS, and manual remediation, because automatic correction is not required for notification.
 - If the question says detect old active IAM user access keys, think periodic `access-keys-rotated` with `maxAccessKeyAge`, because it compares key age with the configured threshold.
-- If the question says corrected resources are still remediated, think a stale compliance snapshot, because automatic remediation selects resources from periodically captured compliance data.
 - If the question says deploy checks and fixes across member accounts, think an organization conformance pack, because it packages both in the deployment template.
+- If the question says enable S3 server access logging for buckets without it, think `s3-bucket-logging-enabled` and `AWS-ConfigureS3BucketLogging`, because the rule detects missing logging and the runbook can remediate it automatically.
 
 ### Remember
-
-| Setting | Meaning | Default |
-|---|---|---|
-| `MaximumAutomaticAttempts` | Failed attempts counted before an exception; accepts 1 through 25 | 5 |
-| `RetryAttemptSeconds` | Window for counting attempts before an exception | 60 seconds |
-| `ConcurrentExecutionRatePercentage` | Percentage of noncompliant resources allowed to run in parallel | 10 percent |
-| `ErrorPercentage` | Allowed errors before Systems Manager stops further automations | 50 percent |
 
 - `access-keys-rotated` defaults to 90 days and excludes root user keys.
 - `restricted-ssh` checks unrestricted SSH from `0.0.0.0/0` or `::/0`, meaning any IPv4 or IPv6 address. It has both change and periodic triggers.
 - Automatic remediation requires `AutomationAssumeRole` even when a runbook can otherwise run without an explicit role.
 - Config event delivery to EventBridge is best effort.
 
-> **Trap:** The retry window counts attempts before adding an exception. It is not a guaranteed interval between attempts or a guaranteed repair deadline.
-
-> **Trap:** A compliant resource can still be selected by automatic remediation if the latest compliance snapshot is stale.
+> **Trap:** An EventBridge notification does not automatically fix the resource. Automatic remediation is configured separately.

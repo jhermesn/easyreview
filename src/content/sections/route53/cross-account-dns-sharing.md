@@ -32,26 +32,28 @@ facts:
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-considerations.html#hosted-zone-private-considerations
 cards:
   - id: route53-024
-    q: A central account owns Route 53 Resolver forwarding rules. How can other accounts reuse them?
-    a: Share the rules through AWS RAM, then associate the shared rules with recipient VPCs in the Region. Recipients cannot edit or delete them.
+    q: "A company shares Route 53 Resolver forwarding rules across accounts for workloads in multiple Regions. Can one Regional rule be associated with VPCs in every Region?"
+    a: "No. Resolver rules and their VPC associations are Regional. Share the relevant rules through AWS RAM and associate them with recipient VPCs."
     facts:
       - ram
       - associate-rule
       - regional
-      - read-only
+    trap: true
   - id: route53-025
-    q: How does a team directly associate a Route 53 private hosted zone with a VPC owned by another account?
-    a: The zone owner calls CreateVPCAssociationAuthorization for the VPC, then the VPC owner calls AssociateVPCWithHostedZone. Use API, CLI or SDK rather than the console, and enable both VPC DNS attributes.
+    q: "A recipient needs a shared Route 53 Resolver forwarding rule for a VPC in a Region. What must it do after the rule is shared through AWS RAM?"
+    a: "Associate the shared rule with the VPC. Resolver rules and their VPC associations are Regional."
     facts:
-      - authorize
-      - associate-zone
-      - no-console
-      - flags
+      - ram
+      - associate-rule
+      - regional
   - id: route53-047
-    q: A Route 53 zone owner deletes a cross-account VPC association authorization after the VPC has been associated. Is DNS access removed?
-    a: No. Removing the authorization does not remove the existing association.
+    q: "A multi-Region team uses Route 53 Resolver rules shared through AWS RAM. Can a recipient account edit a shared rule for its Regional VPCs?"
+    a: "No. Recipients can associate a shared rule with VPCs, but they cannot change or delete the rule."
     facts:
-      - delete-auth
+      - ram
+      - associate-rule
+      - read-only
+      - regional
     trap: true
 diagrams:
   - id: route53-cross-account-association

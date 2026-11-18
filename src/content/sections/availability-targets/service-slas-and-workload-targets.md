@@ -80,24 +80,14 @@ cards:
       - ec2-credit
       - sla-not-prediction
   - id: availability-targets-006
-    q: A company runs one EC2 instance and assumes the Region-Level 99.99% SLA applies. What deployment
-      condition is missing?
-    a: Concurrent deployment across at least two Availability Zones in the Region. The SLA specifies a
-      two-Region alternative where a Region has only one AZ. An individual instance has a separate
-      99.5% monthly commitment.
-    trap: true
+    q: What is a tradeoff when a business sets a higher workload availability target on AWS?
+    a: Higher targets typically increase cost and require more failure testing and recovery automation.
     facts:
-      - ec2-region-sla
-      - ec2-instance-sla
+      - target-cost
   - id: availability-targets-007
-    q: An application is unavailable while Route 53 still answers DNS queries. Does the Route 53
-      Authoritative DNS SLA establish an application outage claim?
-    a: No. It measures hosted-zone DNS availability. It does not promise availability of the
-      application, Route 53 API or console.
-    trap: true
+    q: What does an AWS workload availability measure describe?
+    a: The percentage of a stated period when the workload performs its agreed function successfully.
     facts:
-      - dns-scope
-      - dns-exclusions
       - availability-function
   - id: availability-targets-008
     q: Which workload objective limits service restoration time, and which limits the age of recoverable
@@ -108,13 +98,10 @@ cards:
       - rto-definition
       - rpo-definition
   - id: availability-targets-009
-    q: A team believes a qualifying EC2 outage earns SLA credits automatically. What claim process
-      should it follow?
-    a: Open an AWS Support case with the required evidence by the end of the second billing cycle after
-      the incident.
-    trap: true
+    q: What does an AWS service level agreement (SLA) describe?
+    a: It defines a service commitment, how it is measured, and remedies if the commitment is not met.
     facts:
-      - ec2-credit
+      - sla-contract
 ---
 A workload availability target states how often the application must perform its agreed function. A service-level agreement, or SLA, defines a service commitment and its remedy. Set the workload target from business needs and evaluate the services it depends on. [AWS availability guidance](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability) · [SLA and dependency guidance](https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html#availability-with-dependencies)
 

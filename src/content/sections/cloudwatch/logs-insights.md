@@ -57,16 +57,6 @@ cards:
     facts:
       - insights-purpose
       - filter-history
-  - id: cloudwatch-026
-    q: Which query languages does CloudWatch Logs Insights support, and how long do queries and results
-      last?
-    a: Logs Insights QL, OpenSearch PPL, and OpenSearch SQL. Queries time out after 60 minutes; results
-      remain for 7 days. Charges depend on data scanned.
-    facts:
-      - insights-languages
-      - insights-timeout
-      - insights-results
-      - insights-cost
   - id: cloudwatch-069
     q: CloudWatch Logs Insights investigations scan too much data. What can reduce the scan volume?
     a: Create field indexes for frequently queried fields and limit the groups and time range being
@@ -74,13 +64,6 @@ cards:
     facts:
       - insights-index
       - insights-cost
-  - id: cloudwatch-070
-    q: Can CloudWatch Logs Insights query events whose timestamps are older than their log group
-      creation time?
-    a: No. Those timestamps are outside the events Logs Insights can access for that group.
-    trap: true
-    facts:
-      - insights-creation
   - id: cloudwatch-093
     q: A team needs a CloudWatch Logs Insights query to run regularly and save results in Amazon S3. What feature fits?
     a: Use a scheduled query with an S3 destination.
@@ -95,7 +78,7 @@ CloudWatch Logs Insights searches stored log events to answer questions about pa
 ### How it works
 
 1. Choose the log groups and time range for the investigation.
-2. Select Logs Insights QL, OpenSearch PPL, or OpenSearch SQL. A query language specifies how to select and combine records.
+2. Select a query language to specify how to select and combine records.
 3. With Logs Insights QL, use `fields` to select fields, `filter` to restrict events, `stats` to calculate aggregates, and `sort` to order results. Pipes pass results between commands.
 4. Use automatically discovered fields in supported logs and JSON. Field indexes, lookup structures for selected fields, can reduce how much data a query scans.
 5. Inspect results or add a query to a dashboard for repeated viewing.
@@ -110,8 +93,6 @@ CloudWatch Logs Insights searches stored log events to answer questions about pa
 
 ### Remember
 
-- Query timeout: 60 minutes. Results remain available for 7 days.
-- Query languages: Logs Insights QL, OpenSearch PPL, OpenSearch SQL.
-- Events with timestamps before log group creation cannot be read by Logs Insights.
+- Field indexes can reduce query scan volume.
 
 > **Trap:** A metric filter does not count yesterday's stored events when created today. Use a historical query.

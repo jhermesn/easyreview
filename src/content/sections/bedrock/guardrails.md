@@ -75,9 +75,9 @@ cards:
     a: "Wrap the user-supplied content in guardrail input tags (or use guardrailConfiguration blocks with Converse), so only that content is evaluated."
     facts: [input-tags]
   - id: bedrock-061
-    q: "A team wants an alert whenever its Bedrock guardrail starts blocking many prompts. What does it monitor?"
-    a: "The InvocationsIntervened CloudWatch metric from Bedrock Guardrails, with a CloudWatch alarm on it. Dimensions split it by input or output and by policy type."
-    facts: [guardrail-metrics]
+    q: "How can Amazon Bedrock Guardrails help protect sensitive information in AI responses?"
+    a: "Its sensitive information filters can block or mask personally identifiable information."
+    facts: [sensitive]
 ---
 Amazon Bedrock Guardrails screens what goes into and comes out of a model, with the same policies whatever model you use. Each policy targets a different risk: harmful content, off-limits topics, banned words, PII, ungrounded answers and attacks on the prompt. [Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
 

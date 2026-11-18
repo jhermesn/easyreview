@@ -136,15 +136,6 @@
       ]
     },
     {
-      "id": "dynamodb-014",
-      "q": "A DynamoDB LSI query repeatedly fetches extra attributes from the table. How can the team reduce those reads?",
-      "a": "Project required attributes with INCLUDE or ALL. This trades index storage for fewer base table fetches.",
-      "facts": [
-        "projection",
-        "fetch"
-      ]
-    },
-    {
       "id": "dynamodb-015",
       "q": "How do DynamoDB keys and size limits constrain flexible item attributes?",
       "a": "Non-key attributes can vary. A simple key identifies by partition key; a composite key identifies by partition and sort key. Each item is at most 400 KB, including names and values.",
@@ -156,10 +147,10 @@
     },
     {
       "id": "dynamodb-016",
-      "q": "Concurrent workers claim free resources in a DynamoDB allocation table. How should they prevent duplicate assignment?",
-      "a": "Use a conditional write that updates an allocation only while it is free. DynamoDB checks the latest item version.",
+      "q": "A DynamoDB application needs to query the same items using a different partition key. Which index fits?",
+      "a": "Use a global secondary index. It can use different keys, but its reads are eventually consistent.",
       "facts": [
-        "conditional"
+        "gsi"
       ]
     },
     {
@@ -168,15 +159,6 @@
       "a": "A **sparse index**: set the index key attribute (such as OpenFlag) only on open orders. DynamoDB writes index entries only for items that have the index key attributes.",
       "facts": [
         "sparse-index"
-      ]
-    },
-    {
-      "id": "dynamodb-054",
-      "q": "How many local secondary indexes can a DynamoDB table have?",
-      "a": "**Five**, a fixed quota. LSIs are also created only with the table.",
-      "facts": [
-        "lsi-limit",
-        "lsi"
       ]
     }
   ]
@@ -189,21 +171,14 @@ DynamoDB stores items, or records, in tables. Each item contains attributes, or 
 1. Choose a partition key to group items. A simple primary key uses it alone; a composite primary key adds a sort key that orders items within a group. Each complete key must be unique.
 2. Use `Query` with one partition-key value and an optional sort-key comparison, `BETWEEN` range, or `begins_with` prefix. Results are ascending unless `ScanIndexForward=false`.
 3. Choose a local secondary index (LSI) for another sort key under the same partition key. Choose a global secondary index (GSI) when different keys and eventual reads fit.
-4. Select a projection, the attributes copied into the index. An LSI can fetch missing attributes from the table, at extra read cost and latency.
-5. For competing allocation claims, use a conditional write, a write that succeeds only if the current item meets a condition. Reading an allocation alone does not reserve it.
-
-| Projection | Copied attributes |
-| --- | --- |
-| `KEYS_ONLY` | Table and index keys |
-| `INCLUDE` | Keys and selected attributes |
-| `ALL` | All item attributes |
+4. For competing allocation claims, use a conditional write, a write that succeeds only if the current item meets a condition. Reading an allocation alone does not reserve it.
 
 ### Exam cues
 
 - If the question says alternate sort key and strong reads on a new table, think LSI, because it supports strong reads and must exist at table creation.
 - If the question says add an alternate key later, think GSI, because it can be added to an existing table if eventual reads suffice.
 - If the question says a known asset key and date range, think Query, because a key condition narrows reads while Scan reads all items.
-- If the question says repeated LSI fetches, think project the required attributes, because an index-only result avoids those reads.
+- If the question says only some items need an index entry, think sparse index, because DynamoDB indexes items that have the index key attributes.
 
 ### Remember
 

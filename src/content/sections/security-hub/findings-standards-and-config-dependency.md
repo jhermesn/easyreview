@@ -120,43 +120,21 @@ cards:
       - standards
       - provider-services
   - id: security-hub-007
-    q: A team wants AWS Security Hub CSPM findings from integrations without enabling the default standards. Which API setting fits?
-    a: Set EnableDefaultStandards to false in EnableSecurityHub. Omitting it defaults to true.
+    q: "A security team needs to review findings from multiple AWS services and accounts in one place. Which service fits?"
+    a: "AWS Security Hub CSPM collects security findings across services and accounts."
     facts:
-      - enable-default
-  - id: security-hub-008
-    q: A team enabled AWS Security Hub CSPM without Security Hub, but a control shows WARNING and Config.1 shows FAILED. What recording issue should it check?
-    a: Check whether AWS Config records the resource type required by that control in the affected account and Region.
+      - cspm-purpose
+  - id: security-hub-010
+    q: "A team needs to evaluate AWS resources against security standards such as CIS and PCI DSS. Which service fits?"
+    a: "AWS Security Hub CSPM evaluates resources against standards that group security controls."
     facts:
-      - manual-config
-      - recording-gap
-  - id: security-hub-009
-    q: An AWS Security Hub CSPM team needs managed and custom AWS Config rule evaluations in the findings list. Is enabling a CSPM standard sufficient?
-    a: Activate the AWS Config integration. It imports rule evaluations through EventBridge; this is separate from the service-linked Config rules used by CSPM controls.
-    trap: true
+      - cspm-purpose
+      - standards
+  - id: security-hub-011
+    q: "A team wants AWS Config rule evaluations included in AWS Security Hub CSPM findings. Which integration should it activate?"
+    a: "The AWS Config integration sends managed and custom rule evaluations as CSPM findings through EventBridge."
     facts:
       - config-integration
-      - control-config
-  - id: security-hub-010
-    q: Which standards does the EnableSecurityHub API enable by default for AWS Security Hub CSPM?
-    a: AWS Foundational Security Best Practices and CIS AWS Foundations Benchmark v1.2.0. Set EnableDefaultStandards to false to opt out.
-    facts:
-      - default-standards
-      - enable-default
-  - id: security-hub-011
-    q: Both AWS Security Hub and Security Hub CSPM are enabled in an account and Region. Must an operator manually create the CSPM configuration recorder?
-    a: No. CSPM creates AWSConfigurationRecorderForSecurityHubCSPM automatically for control resource recording.
-    trap: true
-    facts:
-      - service-recorder
-  - id: security-hub-012
-    q: A team expects old AWS Config evaluations to appear after it activates the AWS Security Hub CSPM integration. What is the limitation?
-    a: The integration sends evaluations performed after CSPM was enabled. CSPM does not retroactively consolidate older findings.
-    trap: true
-    facts:
-      - config-integration-scope
-      - config-rule-exclusions
-      - post-enable
   - id: security-hub-033
     q: A team wants patch compliance alongside security control findings in AWS Security Hub CSPM. Which integration supplies it?
     a: Systems Manager Patch Manager can send patch compliance findings to Security Hub CSPM.
@@ -170,22 +148,20 @@ AWS Security Hub Cloud Security Posture Management (CSPM) collects security find
 1. Enable CSPM in the accounts and Regions that need coverage. The `EnableSecurityHub` API enables AWS Foundational Security Best Practices (FSBP) and CIS AWS Foundations Benchmark v1.2.0 by default. Set `EnableDefaultStandards: false` to opt out of those standards while keeping CSPM enabled.
 2. Enable the standards and controls you need. Supported frameworks include CIS, PCI DSS, and NIST, which define sets of security requirements. Most AWS control checks use service-linked Config rules, rules created for the service to evaluate resource settings.
 3. Provide the required resource recording. With CSPM alone, manually configure AWS Config in each participating account and Region. With both CSPM and Security Hub enabled, CSPM creates `AWSConfigurationRecorderForSecurityHubCSPM` automatically.
-4. Receive findings from integrations such as GuardDuty, Inspector, Macie, Firewall Manager, and IAM Access Analyzer. Patch Manager can also contribute patch compliance findings. CSPM consolidates findings generated after enablement, not earlier history.
-5. To import evaluations from your managed and custom Config rules, activate the AWS Config integration. Config sends evaluations through EventBridge and CSPM converts them to ASFF. This integration excludes service-linked rules except those managed by Control Tower.
+4. Receive findings from integrations such as GuardDuty, Inspector, Macie, Firewall Manager, and IAM Access Analyzer. Patch Manager can also contribute patch compliance findings.
 
-AWS added service-linked recorder guidance in May 2026. For older scenarios or CSPM-only setups, keep the manual Config prerequisite in mind. A configuration recorder is the component that captures resource settings. With manual recording, missing required resource types can produce a failed `Config.1` finding and warning findings for the affected control. Daily recording can delay change-triggered findings until the 24-hour recording period ends.
+AWS added service-linked recorder guidance in May 2026. For older scenarios or CSPM-only setups, keep the manual Config prerequisite in mind. A configuration recorder is the component that captures resource settings.
 
 | Requirement | Mechanism | What it provides |
 |---|---|---|
 | Check AWS resource settings | CSPM controls backed by service-linked Config rules | Control findings |
-| Import managed or custom Config rule results | AWS Config integration through EventBridge | ASFF findings for those evaluations |
 | Collect findings from other security tools | Product integrations | Findings in a common format |
 
 ### Exam cues
 
 - If the question says assess resources against security standards and combine detector findings, think Security Hub CSPM, because it provides controls and a common findings view.
 - If the question says CSPM without Security Hub has missing control evaluations, think required Config recording, because most AWS controls need recorded resource settings.
-- If the question says collect Config rule evaluations without enabling default standards, think `EnableDefaultStandards: false` plus the Config integration, because service enablement, standards, and integration ingestion are separate choices.
+- If the question says collect integration findings without default standards, think `EnableDefaultStandards: false`, because CSPM can be enabled without automatically enabling those standards.
 
 ### Remember
 
@@ -194,4 +170,4 @@ AWS added service-linked recorder guidance in May 2026. For older scenarios or C
 - Manual recording: cover required resource types in every applicable account and Region.
 - Both services enabled: CSPM creates the service-linked recorder automatically.
 
-> **Trap:** Enabling a CSPM standard is not the same as importing your managed and custom Config rule results. Those results use the AWS Config integration.
+> **Trap:** CSPM alone needs manual Config recording for the required resource types. The automatic service-linked recorder applies when both CSPM and Security Hub are enabled.

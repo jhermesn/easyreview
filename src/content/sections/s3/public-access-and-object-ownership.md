@@ -122,18 +122,10 @@ cards:
     facts:
       - website-public
       - website-https
-  - id: s3-129
-    q: Which S3 API call returns the ACL of a single object?
-    a: GetObjectAcl.
-    facts: [get-object-acl]
   - id: s3-158
     q: "A security team wants a list of S3 buckets that are public or shared with other AWS accounts, reviewed from the S3 console. Which feature fits?"
     a: "IAM Access Analyzer for S3. It lists buckets with public or cross-account access and can block public access on a bucket in one step."
     facts: [access-analyzer-s3]
-  - id: s3-160
-    q: "A static website in S3 must answer at example.com through Route 53. What must be true of the bucket?"
-    a: "Its name must be exactly example.com, with static website hosting turned on, and the domain must be registered."
-    facts: [website-bucket-name]
 ---
 S3 separates public-access safeguards from object ownership. Block Public Access limits public grants; Object Ownership decides who owns uploaded objects and whether access control lists (ACLs), lists of grants attached to resources, are used.
 

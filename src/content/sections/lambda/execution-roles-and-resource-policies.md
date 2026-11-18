@@ -107,11 +107,11 @@ cards:
     facts:
       - cross-account-invoke
   - id: lambda-032
-    q: Several Lambda functions must write to one CloudWatch log group. How should the team configure them?
-    a: Set the same custom log group in each function logging configuration and authorize their execution roles to write logs. Custom streams preserve the function and version identity.
+    q: "An AWS Lambda function needs permission to write logs to Amazon CloudWatch Logs. Which identity needs that permission?"
+    a: "The Lambda function execution role. AWSLambdaBasicExecutionRole grants basic CloudWatch Logs permissions."
     facts:
-      - shared-log-group
-      - log-write
+      - execution-role
+      - basic-logs
   - id: lambda-033
     q: A same-account Lambda client uses IAM authorization for EFS. Must both its role policy and the EFS file-system policy contain an allow for every action?
     a: No. EFS evaluates the policies together; an allow in either can grant an action. ClientMount grants read access, while ClientWrite grants write access. An applicable explicit deny still overrides an allow.
@@ -122,9 +122,9 @@ cards:
       - efs-actions
       - policy-explicit-deny
   - id: lambda-070
-    q: "A row inserted in RDS for PostgreSQL must trigger a Lambda function directly from the database. What is needed?"
-    a: "The aws_lambda extension, an IAM role on the instance that allows lambda:InvokeFunction, and outbound network access from the instance to Lambda."
-    facts: [rds-pg-invoke]
+    q: "An application in one AWS account must invoke a Lambda function in another account. Which permissions are required?"
+    a: "Grant access in the function resource-based policy and give the caller corresponding Lambda API permission."
+    facts: [cross-account-invoke]
 ---
 A Lambda execution role is an AWS Identity and Access Management (IAM) role that grants the function access to AWS resources. A resource-based policy grants callers access to the function. A principal is the identity or service receiving permission; these policies control different directions of access.
 

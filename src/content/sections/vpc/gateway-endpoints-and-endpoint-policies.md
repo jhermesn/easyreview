@@ -84,13 +84,6 @@ cards:
     facts:
       - vpc-source-ip
       - pair-source-conditions
-  - id: vpc-020
-    q: A team wants EC2 role credentials usable only through an endpoint in the VPC where they were
-      issued. Which condition values should it compare?
-    a: aws:Ec2InstanceSourceVpc and aws:SourceVpc. Scope the policy to EC2 role credentials and account
-      for AWS services making calls on their behalf.
-    facts:
-      - credential-vpc
 diagrams:
   - id: vpc-s3-gateway-path
     title: S3 traffic follows the gateway endpoint route
@@ -143,7 +136,7 @@ A gateway endpoint gives a VPC a route to S3 or DynamoDB without NAT or an inter
 2. Associate the subnets' route tables. AWS adds a route whose destination is the service prefix list and whose target is the endpoint.
 3. Permit the service traffic in client security groups and subnet ACLs. Groups can reference the prefix list; ACL rules need address ranges.
 4. Evaluate the endpoint policy alongside identity and resource policies, such as IAM and S3 bucket policies. The endpoint policy does not replace them, and an applicable explicit deny wins.
-5. For source-address conditions on S3 endpoint requests, use `aws:VpcSourceIp` with a VPC or endpoint condition. For EC2 credential confinement, compare the credential's original VPC with the request's endpoint VPC and allow required AWS service calls on the role's behalf.
+5. For source-address conditions on S3 endpoint requests, use `aws:VpcSourceIp` with a VPC or endpoint condition.
 
 ### Exam cues
 

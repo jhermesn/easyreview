@@ -88,12 +88,10 @@ cards:
       - retry-all
       - retry-unavailable
   - id: codepipeline-017
-    q: How do CodePipeline Stop and wait and Stop and abandon differ?
-    a: Stop and wait allows running actions to finish and starts no later actions. Stop and abandon
-      abandons pipeline actions immediately, but provider tasks can continue.
+    q: "A CodePipeline deployment fails. Where can an operator find the failed action and its provider execution details?"
+    a: "Inspect execution history and action execution details for the action status and provider details."
     facts:
-      - stop-wait
-      - stop-abandon
+      - execution-diagnosis
   - id: codepipeline-018
     q: A CodePipeline CloudFormation action shows a generic deployment failure. Where should the team
       investigate, and what permission improves the pipeline error?
@@ -129,14 +127,10 @@ cards:
       - retry-once
       - v2-recovery
   - id: codepipeline-053
-    q: A CodePipeline execution is stopped with Stop and abandon during a CloudFormation update. Is the
-      stack update necessarily canceled?
-    a: No. Provider work can continue after the pipeline action is abandoned. Stop and wait lets the
-      running action finish.
-    trap: true
+    q: "A CodePipeline CloudFormation action reports a generic failure. What permission lets it include the first failed resource?"
+    a: "Grant `cloudformation:DescribeStackEvents` so the action can include the first failed resource in its error."
     facts:
-      - stop-abandon
-      - stop-wait
+      - stack-event-errors
   - id: codepipeline-055
     q: A CodePipeline stage retry runs after a CodeBuild action previously produced an artifact. Are
       successful action artifacts guaranteed to remain unchanged during the retry?

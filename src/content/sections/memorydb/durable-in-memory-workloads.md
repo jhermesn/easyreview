@@ -84,10 +84,9 @@ cards:
     a: "Create a new cluster from a snapshot. Snapshots contain data and cluster metadata."
     facts: [memorydb-snapshot]
   - id: memorydb-007
-    q: Is Amazon ElastiCache limited to non-durable caching, unlike MemoryDB?
-    a: "No. Node-based ElastiCache for Valkey can also serve as a durable data store when durability is enabled."
-    facts: [cache-comparison]
-    trap: true
+    q: "How does Amazon MemoryDB keep successful writes durable if a primary fails?"
+    a: "It stores successful writes in a distributed Multi-AZ transaction log before responding. A replica can become the new primary."
+    facts: [memorydb-log, memorydb-failover]
   - id: memorydb-008
     q: A MemoryDB shard has no replicas and its primary fails. Can it immediately accept writes?
     a: "No. Writes stop until the primary is replaced and synchronized from the transaction log."

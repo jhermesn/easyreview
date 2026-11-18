@@ -75,27 +75,25 @@ cards:
     trap: true
     facts: [vpc-storage]
   - id: cloudshell-004
-    q: How much persistent home directory storage does AWS CloudShell provide per Region outside VPC environments?
-    a: 1 GB per Region, at no additional cost.
-    facts: [storage]
+    q: "How can an operator use the AWS CLI to interact with infrastructure from a browser?"
+    a: "Launch AWS CloudShell from the AWS Management Console. It provides a pre-authenticated shell with AWS CLI version 2 installed."
+    facts: [shell]
   - id: cloudshell-005
-    q: A CloudShell user has not launched a session in a Region for 120 days. What can happen to that Region's persistent files?
-    a: They are automatically deleted unless the user takes action.
-    facts: [retention]
+    q: "A user can launch AWS CloudShell but cannot run an infrastructure command. What authorization should the team examine?"
+    a: "Check the policies applicable to the principal and the requested AWS action. CloudShell access and AWS request authorization are evaluated through IAM policies."
+    facts: [access, authorization]
   - id: cloudshell-006
-    q: Does an active background process keep an unattended AWS CloudShell session from timing out?
-    a: No. Running processes do not count as interaction; inactive sessions end after 20 to 30 minutes, or 10 minutes in GovCloud.
-    trap: true
-    facts: [session]
+    q: "A team needs a browser shell in a selected VPC subnet to interact with private infrastructure. What can it configure?"
+    a: "Create an AWS CloudShell VPC environment with the required VPC, subnet, and security groups."
+    facts: [vpc]
   - id: cloudshell-007
     q: An administrator denies cloudshell:PutCredentials. Can a user still launch CloudShell and use console credentials automatically?
     a: The user can launch it with the required launch permissions, but must configure credentials manually.
     facts: [credentials, launch]
   - id: cloudshell-008
-    q: Does denying CloudShell console upload and download URL actions prevent all file transfers from the environment?
-    a: No. Other transfer clients can still transfer files.
-    trap: true
-    facts: [file-transfer]
+    q: "What permissions are needed to launch AWS CloudShell from the AWS Management Console?"
+    a: "Allow CreateEnvironment, CreateSession, GetEnvironmentStatus, and StartEnvironment."
+    facts: [launch]
   - id: cloudshell-009
     q: Does AWSCloudShellFullAccess give a CloudShell user permission to call every AWS service?
     a: No. The policy grants CloudShell access; AWS still evaluates applicable policies for each service request.

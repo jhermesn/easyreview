@@ -76,18 +76,6 @@ cards:
     a: "No. Firehose does not support that CloudWatch Logs destination path; use the OpenSearch subscription filter."
     facts: [search-cloudwatch-firehose, search-subscription]
     trap: true
-  - id: opensearch-003
-    q: A team sends application records directly to Firehose for indexing in OpenSearch Service. What record format is required?
-    a: "UTF-8 encoded, single-line JSON objects. Firehose buffers records and sends bulk indexing requests."
-    facts: [search-firehose]
-  - id: opensearch-004
-    q: How many subscription filters can a CloudWatch Logs log group have, and can delivery contain duplicates?
-    a: "Up to five filters. Delivery is at least once, so duplicates can occur."
-    facts: [search-subscription-limits]
-  - id: opensearch-005
-    q: How long does CloudWatch Logs retry a retryable error when delivering a subscription to OpenSearch Service?
-    a: "Up to 24 hours. Non-retryable errors behave differently and can cause logs to be skipped."
-    facts: [search-retry]
   - id: opensearch-006
     q: A team wants to query archived logs directly in S3 using SQL rather than operate a search cluster. Which AWS service fits?
     a: "Amazon Athena. It runs interactive SQL queries directly against data in S3."
@@ -98,9 +86,9 @@ cards:
     facts: [search-network]
     trap: true
   - id: opensearch-008
-    q: "Users need full-text search over items stored in DynamoDB, which stays the source of truth. What design fits?"
-    a: "Stream the table changes into OpenSearch, for example with an OpenSearch Ingestion pipeline, and search there."
-    facts: [ddb-ingestion]
+    q: "A team wants to analyze CloudWatch log events in Amazon OpenSearch Service as they arrive. What can send matching events to the domain?"
+    a: "A CloudWatch Logs subscription filter can send matching events to the OpenSearch Service domain in near real time."
+    facts: [search-subscription]
 ---
 
 Amazon OpenSearch Service manages search and analytics clusters for workloads such as application log analysis. OpenSearch Dashboards visualizes the data.
@@ -109,7 +97,7 @@ Amazon OpenSearch Service manages search and analytics clusters for workloads su
 
 1. Create a domain, the managed cluster that stores and searches data. Choose public access or access through a virtual private cloud (VPC), a logically isolated virtual network.
 2. For CloudWatch Logs, create an OpenSearch subscription filter on a Standard class log group. The filter selects matching events for near-real-time delivery to the domain. The console setup requires a Lambda execution role with domain access; a VPC domain also needs the AWSLambdaVPCAccessExecutionRole policy.
-3. Use OpenSearch Dashboards to visualize the data. An index is like a database table, with documents as rows. For other producers, Firehose can buffer records and send bulk requests, which index multiple records together.
+3. Use OpenSearch Dashboards to visualize the data. An index is like a database table, with documents as rows.
 
 ### Exam cues
 
@@ -120,9 +108,7 @@ Amazon OpenSearch Service manages search and analytics clusters for workloads su
 
 ### Remember
 
-- Subscriptions require the Standard log class. A log group supports up to five subscription filters.
-- Subscription delivery is at least once, so duplicate events can occur. Retryable errors are retried for up to 24 hours.
-- For Firehose to OpenSearch, records must be UTF-8 encoded single-line JSON objects.
+- Subscriptions require the Standard log class.
 - Public or VPC domain access cannot be changed after domain creation.
 
 > **Trap:** Firehose supports OpenSearch destinations, but not delivery of CloudWatch Logs to those destinations. CloudWatch combines multiple log events in a single Firehose record.

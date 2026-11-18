@@ -84,25 +84,6 @@ cards:
       - s3-selector
       - lambda-selector
       - selector-fields
-  - id: cloudtrail-006
-    q: A CloudTrail trail records its own S3 log deliveries as data events. How can it suppress that
-      repeated activity?
-    a: Set RecursiveLogging to false. CloudTrail suppresses its own delivery events; other callers
-      remain logged. A destination excluded from the S3 selector also avoids the loop.
-    trap: true
-    facts:
-      - recursive-events
-      - recursive-suppression
-      - s3-selector
-  - id: cloudtrail-007
-    q: Does CloudTrail log every STS request in us-east-1, even when the caller uses a Regional STS
-      endpoint?
-    a: No. Global endpoint requests are logged in us-east-1; Regional endpoint requests are logged in
-      their respective Region. Use a multi-Region trail for enabled Regions.
-    trap: true
-    facts:
-      - sts-regions
-      - trail-regions
   - id: cloudtrail-024
     q: How does a CloudTrail trail capture S3 GetObject and DeleteObject for a chosen bucket?
     a: Enable S3 object data events for that bucket. Data event logging is opt-in and incurs additional
@@ -110,35 +91,6 @@ cards:
     facts:
       - data-opt-in
       - s3-selector
-  - id: cloudtrail-027
-    q: A team applies advanced data selectors to a CloudTrail trail that used basic management
-      selectors. What must it preserve explicitly?
-    a: Include the required management selection in the new configuration. Advanced selectors overwrite
-      basic selectors.
-    trap: true
-    facts:
-      - selector-replace
-      - selector-default
-  - id: cloudtrail-028
-    q: Automation recreates a CloudTrail trail through the CLI after deletion. Which additional
-      operation begins recording and log delivery?
-    a: Call StartLogging for the new trail. For a multi-Region trail, call it in the home Region.
-    facts:
-      - create-start
-      - start-logging
-  - id: cloudtrail-029
-    q: What is the default RecursiveLogging value on a CloudTrail trail?
-    a: True. Set it to false to suppress CloudTrail-generated delivery events.
-    facts:
-      - recursive-default
-      - recursive-suppression
-  - id: cloudtrail-050
-    q: A team creates a CloudTrail trail using CreateTrail without setting IsMultiRegionTrail. Does it collect events in all enabled Regions?
-    a: No. The API defaults to a single-Region trail. Set IsMultiRegionTrail to true for multi-Region coverage.
-    trap: true
-    facts:
-      - api-region-default
-      - trail-regions
   - id: cloudtrail-051
     q: "A trail is created in the CloudTrail console. Which Regions does it log?"
     a: "All enabled Regions. Console trails are multi-Region; a single-Region trail needs the CLI or API."
@@ -151,7 +103,6 @@ A trail is the CloudTrail configuration that sends selected events to S3 for an 
 1. Choose the destination bucket and Region coverage. A multi-Region trail covers enabled Regions; the console creates this kind of trail.
 2. Choose the events. Without specific selectors, the trail records read and write management events. Add data events explicitly for object operations or function invocations.
 3. Narrow data collection with advanced selectors. An ARN, or Amazon Resource Name, identifies a resource. Use the fields below to select its activity.
-4. When creating or recreating a trail through the CLI, create the configuration and start logging. `StartLogging` starts recording and delivery; call it in the Region where the trail was created, called its home Region. [CLI operations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.html#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli)
 
 | Selector field | Meaning | Example selection |
 |---|---|---|
@@ -163,19 +114,17 @@ A trail is the CloudTrail configuration that sends selected events to S3 for an 
 
 [AWS data event selection](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events-with-cloudtrail) · [Advanced selector fields](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/filtering-data-events.html#filtering-data-events)
 
-Global endpoint and Regional endpoint requests need different handling: STS global endpoint calls are logged in `us-east-1`, while Regional endpoint calls are logged in their respective Region. Console-created trails include global service events by default. If several single-Region trails collect global events, include them only once to avoid duplicates. [STS logging](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration) · [Global event handling](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-global-service-events)
+For trail setup and delivery details, see [CLI operations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.html#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli), [STS logging](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration), [global event handling](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-global-service-events), and [recursive event handling](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-recursive-logging.html#cloudtrail-trail-recursive-logging).
 
 ### Exam cues
 
 - If the question says audit one S3 prefix, think advanced data event selectors, because a resource ARN filter limits collection to that prefix.
-- If the question says a recreated trail delivers nothing, think `StartLogging`, because creating the configuration and starting recording are separate operations.
-- If the question says log delivery creates more log events, think `RecursiveLogging: false` or exclude the destination bucket, because CloudTrail delivery can match the data selector.
+- If the question says audit a Lambda invocation, think data event selectors, because function invocations require explicit selection.
+- If the question says a trail was created in the console, think all enabled Regions, because console-created trails are multi-Region.
 
 ### Remember
 
 - Data events are opt-in and incur additional charges.
-- `CreateTrail` defaults to a single-Region trail; the console creates multi-Region trails.
-- Advanced selectors replace basic selectors; include every event category still required.
-- `RecursiveLogging` defaults to `true`. Setting it to `false` suppresses CloudTrail-invoked S3 `PutObject` and CloudWatch Logs `PutLogEvents` deliveries. [Recursive event handling](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-recursive-logging.html#cloudtrail-trail-recursive-logging)
+- Console-created trails cover all enabled Regions. [Console trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html#cloudtrail-create-a-trail-using-the-console-first-time)
 
 > **Trap:** An existing trail is not evidence that an S3 download was recorded. Its data event selection must have included that operation when it happened.

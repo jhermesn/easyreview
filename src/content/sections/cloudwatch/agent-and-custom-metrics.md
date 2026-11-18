@@ -83,16 +83,6 @@ cards:
       - emf
       - emf-permissions
       - emf-cardinality
-  - id: cloudwatch-035
-    q: How do CloudWatchAgentServerPolicy and CloudWatchAgentAdminPolicy differ for agent configuration
-      in Parameter Store?
-    a: ServerPolicy can read AmazonCloudWatch-* parameters and publish telemetry. AdminPolicy also
-      writes those parameters. EC2 can use instance profile credentials; on-premises agents can use
-      a shared credential profile.
-    facts:
-      - agent-server-policy
-      - agent-admin-policy
-      - agent-credentials
   - id: cloudwatch-048
     q: A team wants centrally managed CloudWatch agent configuration across many servers. Where can it
       store the configuration?
@@ -109,11 +99,6 @@ cards:
     facts:
       - emf
       - emf-cardinality
-  - id: cloudwatch-112
-    q: "An application on EC2 writes log files that must end up in Amazon Data Firehose. Can the CloudWatch agent deliver them straight to Firehose?"
-    a: "No. The agent stores the logs it collects in CloudWatch Logs. Deliver them onward with a subscription filter on the log group."
-    facts:
-      - agent-logs-store
   - id: cloudwatch-121
     q: "EC2 instances fail for lack of swap space. How do you monitor available swap on each instance?"
     a: "Install the CloudWatch agent and collect its swap metrics (for example swap_used_percent); EC2 does not report swap by default."
@@ -127,9 +112,9 @@ The CloudWatch agent collects measurements and log files from inside a server. I
 
 ### How it works
 
-1. Grant the server permission to publish telemetry, meaning operational measurements and events. EC2 can use an instance profile, which supplies a role to the instance. An on-premises agent can use a shared credential profile.
+1. Grant the server permission to publish telemetry, meaning operational measurements and events.
 2. Install the agent and configure which guest metrics and file paths to collect. Start the agent to send the data.
-3. Use Systems Manager for fleet management and Parameter Store to hold the configuration. `CloudWatchAgentServerPolicy` reads configuration parameters named `AmazonCloudWatch-*`; `CloudWatchAgentAdminPolicy` also writes them.
+3. Use Systems Manager for fleet management and Parameter Store to hold the configuration.
 4. For application metrics carried in logs, emit embedded metric format (EMF), structured log data containing metric definitions. CloudWatch extracts those metrics asynchronously without a separate PutMetricData call.
 
 ### Exam cues
@@ -137,7 +122,6 @@ The CloudWatch agent collects measurements and log files from inside a server. I
 - If the question says EC2 memory and disk space are missing, think CloudWatch agent, because it collects guest measurements.
 - If the question says Lambda should emit metrics without PutMetricData, think EMF, because extraction happens from log events.
 - If the question says configure many agents consistently, think Systems Manager and Parameter Store, because they manage installation and shared configuration.
-- If the question says ship instance log files to another service through the CloudWatch agent, think agent to CloudWatch Logs first, because the agent stores collected logs there.
 
 ### Remember
 

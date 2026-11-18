@@ -160,10 +160,12 @@ cards:
       - kms-policy
       - topic-policy
   - id: managed-prometheus-012
-    q: An AMP dashboard repeatedly runs an expensive PromQL expression. Which rule type can precompute it?
-    a: A recording rule. It saves the expression result as new time series for later queries.
+    q: "How can Amazon Managed Service for Prometheus send notifications when a PromQL condition is met?"
+    a: "Configure an alerting rule and an alert manager receiver for an SNS Standard topic. The rule sends triggered alerts to alert manager for routing."
     facts:
-      - record-rule
+      - alert-rule
+      - route-alert
+      - sns-config
   - id: managed-prometheus-013
     q: An AMP alerting rule depends on a recording rule result. How should the rules be arranged for ordered
       evaluation?

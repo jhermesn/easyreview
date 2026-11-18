@@ -68,26 +68,25 @@ cards:
     a: "EC2 Instance Connect, which pushes a one-time public key valid for 60 seconds."
     facts: [eic]
   - id: ec2-072
-    q: What is the size limit for EC2 user data?
-    a: "16 KB before base64 encoding."
-    facts: [user-data-size]
+    q: "An EC2 instance takes a long time to build its in-memory state and is stopped on a schedule. Which feature helps it resume ready to work?"
+    a: "Use hibernation. It saves memory to the encrypted EBS root volume and reloads it on start."
+    facts: [prewarm, hibernate]
   - id: ec2-100
-    q: "A security review wants to block SSRF-style theft of instance role credentials from metadata. What setting helps?"
-    a: "Require IMDSv2 (HttpTokens required), so metadata calls need a session token from a PUT request; tokenless IMDSv1 calls stop working."
-    facts: [imdsv2]
+    q: "A team expects to hibernate an EC2 instance later. When must it enable hibernation?"
+    a: "At launch. Hibernation cannot be enabled after the instance is launched."
+    facts: [hibernate-launch]
   - id: ec2-101
-    q: "A launch script passes a database password in EC2 user data. Why is that a problem?"
-    a: "User data and metadata are readable by anyone or any software on the instance through IMDS, with no authentication or encryption. Use Secrets Manager or Parameter Store instead."
-    trap: true
-    facts: [metadata-not-secret]
+    q: "An EC2 workload must retain running process state across a stop. Should it stop normally or hibernate?"
+    a: "Hibernate the instance. Its RAM is saved to the encrypted EBS root volume and processes resume on start."
+    facts: [hibernate]
   - id: ec2-102
     q: "From which IP address does software on an instance read its metadata?"
     a: "169.254.169.254, the link-local IMDS address (fd00:ec2::254 for IPv6)."
     facts: [imds]
   - id: ec2-107
-    q: "Admins must SSH into instances in private subnets with no public IPs, no bastion host and no internet gateway. What fits?"
-    a: "An EC2 Instance Connect Endpoint in the VPC (Systems Manager Session Manager is the other agent-based option)."
-    facts: [eice]
+    q: "A team plans to hibernate EC2 instances with large memory. What storage requirement must it account for?"
+    a: "The encrypted EBS root volume must have enough space for RAM."
+    facts: [hibernate-prereqs]
 ---
 Three EC2 features that change how an instance starts and how you reach it: hibernation keeps memory across a stop, user data configures the first boot, and Instance Connect replaces long-lived SSH keys. [Hibernate your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 

@@ -148,24 +148,6 @@ cards:
       - organizations-rcp-scp
       - organizations-rcp-external
       - organizations-rcp-ceiling
-  - id: organizations-024
-    q: Can an AWS Organizations administrator detach RCPFullAWSAccess to build an RCP allow list?
-    a: No. The managed policy cannot be detached. Custom RCPs use Deny; only the managed
-      RCPFullAWSAccess policy supports Allow.
-    trap: true
-    facts:
-      - organizations-rcp-baseline
-      - organizations-rcp-effect
-  - id: organizations-025
-    q: An AWS Organizations team applies an RCP using aws:PrincipalOrgID and breaks CloudTrail log
-      delivery. What exception may be missing?
-    a: Account for AWS service principals with an aws:PrincipalIsAWSService condition. A service
-      principal is not an IAM principal belonging to your organization; aws:SourceOrgID can
-      constrain the service request origin.
-    facts:
-      - organizations-rcp-organization
-      - organizations-rcp-service-exception
-      - organizations-rcp-source-org
   - id: organizations-026
     q: An AWS Organizations RCP denies S3 reads, but the bucket policy grants them. Which policy wins?
     a: The applicable RCP Deny wins. Resource-policy access must fit within the RCP ceiling.
@@ -191,13 +173,10 @@ A resource control policy (RCP) limits access to supported resources in member a
 | RCP | Supported member-account resources, including outside access | No |
 | Resource policy | Access to its attached resource | Can grant access within applicable limits |
 
-To build an identity perimeter, a rule about who may reach data, use `aws:PrincipalOrgID` to identify the caller's organization. Account for AWS service principals with `aws:PrincipalIsAWSService` exceptions so services such as CloudTrail can deliver logs. `aws:SourceOrgID` can constrain which organization a service request originates from.
-
 ### Exam cues
 
 - If the question says outside principals must be blocked from member-account S3 data, think RCP or bucket policy, because the bucket owner's SCP does not constrain those outside identities.
 - If the question says a bucket policy Allow conflicts with an RCP Deny, think denied, because the resource grant cannot override the ceiling.
-- If the question says organization-only access breaks AWS service delivery, think service-principal exceptions, because AWS services do not belong to the organization like IAM roles do.
 
 ### Remember
 

@@ -90,41 +90,32 @@ cards:
       - app-languages
       - app-eks
   - id: cloudwatch-038
-    q: A checkout team wants an Application Signals SLO for the fraction of requests below a latency
-      threshold over a rolling interval. Which evaluation type fits?
-    a: A request-based SLO. It measures successful requests as a fraction of all requests, with an error
-      budget based on requests.
+    q: A team needs visibility into application requests and the services they call. Which
+      CloudWatch feature fits?
+    a: Application Signals collects application metrics and traces and discovers a map of services
+      and dependencies.
     facts:
-      - slo-components
-      - slo-request
-      - slo-request-budget
+      - app-purpose
   - id: cloudwatch-074
-    q: An Application Signals dashboard shows many HTTP 4xx responses without a corresponding loss of
-      availability. Why?
-    a: HTTP 4xx responses count as Error, not service faults. Availability uses Faults relative to total
-      responses; Fault includes HTTP 5xx and OpenTelemetry span status errors.
-    trap: true
+    q: A team needs to measure application request delay with CloudWatch Application Signals. Which
+      metric should it use?
+    a: Use the Latency metric, which measures request delay in milliseconds.
     facts:
-      - app-error
-      - app-fault
-      - app-availability
+      - app-latency
   - id: cloudwatch-075
-    q: How do period-based and request-based CloudWatch Application Signals SLOs differ?
-    a: Period-based SLOs count healthy time periods. Request-based SLOs count good requests. The error
-      budget is the unhealthy time or requests the goal permits.
+    q: A team needs to understand the work application components perform for a request. What can
+      CloudWatch Application Signals collect?
+    a: Application Signals collects traces. A trace records the work components perform to handle a
+      request.
     facts:
-      - slo-period
-      - slo-request
-      - slo-budget
-      - slo-request-budget
+      - app-purpose
+      - term-trace
   - id: cloudwatch-076
-    q: A CloudWatch Application Signals SLO is consuming its error budget too quickly. What measurement
-      can drive an early warning?
-    a: Burn rate. A sustained rate above 1 spends the budget faster than the goal allows; configure a
-      burn-rate alarm.
+    q: A team wants CloudWatch Application Signals visibility for an Amazon EKS application. What
+      supports its instrumentation?
+    a: The CloudWatch Observability add-on supports Application Signals instrumentation on EKS.
     facts:
-      - slo-burn
-      - slo-alarms
+      - app-eks
 ---
 Application Signals connects application health measurements with a map of service dependencies, the other services an application calls. A service level objective (SLO) turns a performance expectation into a target that CloudWatch can track over time.
 

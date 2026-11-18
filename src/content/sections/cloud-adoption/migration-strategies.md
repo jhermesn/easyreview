@@ -43,26 +43,6 @@ cards:
     q: A company moves its self-managed SQL Server database to Amazon RDS for SQL Server during migration. Which migration strategy is this?
     a: Replatform (lift, tinker and shift). It adds an optimization, a managed database, without rewriting the application.
     facts: [replatform]
-  - id: cloud-adoption-013
-    q: A company replaces its on-premises CRM with a SaaS CRM product. Which migration strategy is this?
-    a: Repurchase (drop and shop).
-    facts: [repurchase]
-  - id: cloud-adoption-014
-    q: A company rebuilds a monolith as microservices on AWS to scale and release features faster. Which migration strategy is this?
-    a: Refactor (re-architect). It is the most complex and costly strategy.
-    facts: [refactor, refactor-cost]
-  - id: cloud-adoption-015
-    q: During a migration assessment, a company finds an application nobody uses. Which migration strategy applies?
-    a: Retire. Decommissioning it removes its maintenance and hosting costs.
-    facts: [retire]
-  - id: cloud-adoption-016
-    q: An application depends on factory hardware that has no cloud equivalent. Which migration strategy fits for now?
-    a: Retain. Keep it in the source environment until it can be migrated.
-    facts: [retain]
-  - id: cloud-adoption-017
-    q: A company moves hundreds of VMware VMs to a cloud version of VMware without buying hardware or changing operations. Which migration strategy is this?
-    a: Relocate. It moves servers to a cloud version of the same platform.
-    facts: [relocate]
   - id: cloud-adoption-018
     q: For a large migration, should a company refactor every application while moving it to AWS?
     a: No. Refactor is the most complex and costly strategy. AWS recommends rehost, relocate or replatform first, then modernize after the migration.
@@ -75,7 +55,7 @@ A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs
 
 1. Assess each application: its business value, dependencies, risk and target.
 2. Pick one of the 7 Rs for it.
-3. Move the simple ones first; modernize after the migration when the strategy allows.
+3. For a large migration, consider rehosting, relocating or replatforming first, then modernizing afterward. [Refactor](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#refactor)
 
 | Strategy | Also called | What happens |
 |---|---|---|
@@ -89,16 +69,14 @@ A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs
 
 ### Exam cues
 
-- If the question says no changes, as fast as possible, think rehost.
-- If the question says move to a managed service such as Amazon RDS without rewriting, think replatform.
-- If the question says switch to a SaaS product, think repurchase.
-- If the question says redesign as microservices or serverless, think refactor.
-- If the question says decommission, think retire; keep on premises for now, think retain.
+- If the question says move an application without changes, think rehost.
+- If the question says move a SQL Server database to Amazon RDS for SQL Server, think replatform, because the move adds an optimization.
+- If the question says modernize during a large migration, consider rehost, relocate or replatform first, because refactoring is the most complex and costly strategy.
 
 ### Remember
 
 - Seven strategies: retire, retain, rehost, relocate, repurchase, replatform, refactor.
 - Refactor is the most complex and costly.
-- Rehost is the quick first step; modernization can follow.
+- For a large migration, rehost, relocate or replatform first; modernization can follow.
 
 > **Trap:** Replatform is not refactor. Moving a database to Amazon RDS changes the platform, not the application's architecture.

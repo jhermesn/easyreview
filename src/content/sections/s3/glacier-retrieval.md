@@ -168,20 +168,6 @@ cards:
     facts:
       - glacier-temporary
       - glacier-copy
-  - id: s3-169
-    q: "Millions of 20 KB objects are moved to S3 Standard-IA to save money, and the bill goes up. Why?"
-    a: "Standard-IA bills every object as at least 128 KB (and 30 days), so tiny objects cost more there than in Standard."
-    trap: true
-    facts: [ia-minimums]
-  - id: s3-170
-    q: "Does S3 Intelligent-Tiering move a 50 KB object to the Infrequent Access tier when it is not read?"
-    a: "No. Objects under 128 KB are not monitored and always stay in Frequent Access."
-    facts: [it-small-objects]
-  - id: s3-173
-    q: "A team plans to archive millions of 2 KB log objects in S3 Glacier Deep Archive to cut costs. What overhead undermines the plan?"
-    a: "Each archived object adds **40 KB of metadata** (32 KB at the archive rate, 8 KB at the Standard rate). Bundle small files into larger objects before archiving."
-    trap: true
-    facts: [archive-metadata]
 ---
 S3 Glacier storage classes trade access speed for archive storage costs. Instant Retrieval stays directly readable; Flexible Retrieval and Deep Archive require a restore job before an application can read the data.
 

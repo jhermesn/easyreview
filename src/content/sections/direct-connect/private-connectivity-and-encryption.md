@@ -60,10 +60,6 @@ cards:
     a: Use an IPsec VPN over Direct Connect, or MACsec on a supported connection. MACsec protects the point-to-point link, not every network segment.
     trap: true
     facts: [dx-no-default-encryption, dx-vpn, dx-macsec-scope]
-  - id: direct-connect-002
-    q: Which AWS Direct Connect virtual interface types reach a VPC, public AWS services and transit gateways?
-    a: A private interface reaches a VPC, a public interface reaches public AWS services, and a transit interface reaches transit gateways through a Direct Connect gateway.
-    facts: [dx-vifs]
   - id: direct-connect-003
     q: A company wants an encrypted connection to its VPC over AWS Direct Connect using a public VPN endpoint. What should it configure?
     a: Establish Site-to-Site VPN IPsec tunnels over a Direct Connect public virtual interface.
@@ -78,26 +74,14 @@ cards:
     a: No. MACsec is not supported on hosted connections.
     trap: true
     facts: [dx-macsec-support]
-  - id: direct-connect-006
-    q: A company needs a backup path to its VPC if AWS Direct Connect fails. What can it use?
-    a: Configure a backup Site-to-Site IPsec VPN.
-    facts: [dx-backup]
-  - id: direct-connect-007
-    q: A virtual private gateway receives the same destination prefix from AWS Direct Connect and Site-to-Site VPN using BGP. Which route is preferred?
-    a: The Direct Connect route is preferred for matching prefixes.
-    facts: [dx-routes]
   - id: direct-connect-008
     q: A company needs a dedicated private network connection from its data center to AWS that does not use the public internet. Which service fits?
     a: AWS Direct Connect.
     facts: [dedicated-link]
-  - id: direct-connect-013
-    q: "Critical workloads need Direct Connect to survive a device failure and the loss of a whole location. Which model fits?"
-    a: "Maximum resiliency: separate connections on separate devices in at least two locations."
-    facts: [maximum-resiliency]
   - id: direct-connect-015
-    q: "Two Direct Connect private VIFs advertise the same prefixes, and traffic from AWS should prefer one as active and the other as passive. Which mechanism does AWS recommend?"
-    a: "**Local preference BGP community tags.** Route selection uses longest prefix, then local preference, then AS_PATH length, then MED."
-    facts: [bgp-path-order]
+    q: "Does AWS Direct Connect encrypt traffic in transit by default?"
+    a: "No. Add encryption in transit, such as an IPsec VPN over the connection or MACsec on a supported connection."
+    facts: [dx-no-default-encryption]
   - id: direct-connect-016
     q: "A regulated company needs IPsec encryption over its Direct Connect link without exposing any public IP addresses. Which option fits?"
     a: "**Private IP Site-to-Site VPN** over Direct Connect. It encrypts the traffic without public tunnel addresses."
@@ -125,13 +109,13 @@ AWS Direct Connect links an internal network to AWS without using internet servi
 1. Connect your network to a Direct Connect location. A virtual interface is a logical connection to an AWS destination.
 2. Choose a private interface for a virtual private cloud (VPC), an isolated AWS network, a public interface for public AWS services, or a transit interface for transit gateways through a Direct Connect gateway.
 3. If encryption is required, use Site-to-Site VPN tunnels, encrypted links using IPsec, over a public interface, or MACsec, link-level encryption, on a supported connection. IPsec encrypts between VPN endpoints; MACsec encrypts the link between the customer device and the Direct Connect device.
-4. For a backup, configure Site-to-Site VPN separately. A virtual private gateway routes between a VPC and these connections. For matching destination prefixes at that gateway, Direct Connect routes learned through Border Gateway Protocol (BGP), a way to exchange routes, take priority over VPN routes, subject to endpoint health.
+4. To encrypt traffic without public IP addresses, use private IP Site-to-Site VPN over Direct Connect. For active and passive private virtual interfaces, use local preference Border Gateway Protocol (BGP) communities to influence route selection. [Private IP VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/private-ip-dx.html) and [routing](https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html)
 
 ### Exam cues
 
 - If the question says traffic must remain encrypted when MACsec negotiation fails, think `must_encrypt`, because `should_encrypt` can fall back to cleartext.
-- If the question says the Direct Connect link fails, think a separately configured Site-to-Site VPN backup, because it can carry VPC traffic.
-- If the question says protect against a location failure, think connections at multiple Direct Connect locations, because a single location remains a shared failure point.
+- If the question says IPsec without public IP addresses, think private IP Site-to-Site VPN over Direct Connect, because it encrypts traffic without public tunnel addresses.
+- If the question says prefer one private interface as active and another as passive, think local preference BGP communities, because AWS recommends them for active and passive paths.
 
 ### Remember
 

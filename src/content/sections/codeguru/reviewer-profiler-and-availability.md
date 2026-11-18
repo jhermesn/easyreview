@@ -39,22 +39,25 @@ cards:
     a: Reviewer analyzes source code for defects; Profiler analyzes runtime performance in live applications.
     facts: [reviewer-analysis, profiler-runtime]
   - id: codeguru-002
-    q: Can a team create a new Amazon CodeGuru Reviewer repository association?
-    a: No. Reviewer is in maintenance and has worked only with existing associations since November 7, 2025.
-    trap: true
-    facts: [reviewer-availability, reviewer-maintenance]
+    q: "What can CodeGuru Reviewer check during a code review?"
+    a: "It identifies potential defects, including resource leaks and security problems, in Java and Python code."
+    facts:
+      - reviewer-analysis
+      - reviewer-issue-types
   - id: codeguru-003
     q: A team with an existing CodeGuru Reviewer association needs to find hardcoded secrets. What integration helps?
     a: Reviewer integrates with AWS Secrets Manager to find unprotected secrets, which can then be moved to Secrets Manager.
     facts: [secrets, reviewer-availability]
   - id: codeguru-004
-    q: An application has high CPU usage in production. Which Amazon CodeGuru capability helps locate expensive code?
-    a: CodeGuru Profiler collects runtime data and helps identify CPU bottlenecks.
-    facts: [profiler-runtime]
+    q: "An operations team plans to use CodeGuru Profiler heap summaries for both JVM and Python applications. What limitation must its monitoring plan account for?"
+    a: "Heap summary visualization is available only for JVM applications; Python applications need another way to inspect heap usage."
+    facts:
+      - profiler-languages
   - id: codeguru-005
-    q: What languages does Amazon CodeGuru Profiler support?
-    a: JVM languages and Python 3.6 or later. Heap summary visualization is JVM only.
-    facts: [profiler-languages]
+    q: "Which service can scan GitHub or GitLab repositories for vulnerabilities and unintended network exposure?"
+    a: "Amazon Inspector can scan discovered repositories for both."
+    facts:
+      - inspector
   - id: codeguru-006
     q: A team needs a new code review tool after CodeGuru Reviewer stopped accepting repository associations. What AWS option provides code review?
     a: Amazon Q Developer offers code review, including security and secrets detection.

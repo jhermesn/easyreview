@@ -65,9 +65,9 @@ cards:
     a: They sign programmatic requests from the AWS CLI, SDKs or API. They have an access key ID and a secret access key.
     facts: [access-keys]
   - id: iam-090
-    q: A developer lost the secret access key of an IAM access key. Can AWS show it again?
-    a: No. The secret is shown only at creation. Delete the key and create a new one.
-    facts: [secret-once]
+    q: "What does AWS recommend using for AWS access instead of long-term access keys?"
+    a: "Temporary security credentials, such as IAM roles."
+    facts: [prefer-temporary]
   - id: iam-091
     q: A company wants employees to sign in once and reach several AWS accounts with MFA. Which AWS service provides this?
     a: AWS IAM Identity Center, which gives MFA-protected single sign-on to assigned accounts.
@@ -81,9 +81,9 @@ cards:
     a: Passkeys and security keys, virtual MFA apps, and hardware TOTP tokens. A virtual MFA app runs on an existing phone or computer.
     facts: [mfa-types]
   - id: iam-099
-    q: Which IAM MFA type is a physical device plugged into a USB port, and which one displays a code to type?
-    a: A FIDO security key plugs in, for example a YubiKey; a hardware TOTP token displays a six-digit code.
-    facts: [mfa-devices]
+    q: "How does multi-factor authentication (MFA) help protect an AWS root or IAM user?"
+    a: "MFA requires authentication from a device in addition to sign-in credentials."
+    facts: [mfa]
 ---
 Credentials prove who is calling AWS. People sign in to the console with passwords and MFA; programs use access keys or, better, temporary credentials from roles. Fewer long-term credentials mean less to leak. [Access keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#id_credentials_access-keys)
 

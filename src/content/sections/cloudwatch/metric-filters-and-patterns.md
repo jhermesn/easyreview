@@ -127,14 +127,6 @@ cards:
     facts:
       - filter-zero
       - filter-no-logs
-  - id: cloudwatch-063
-    q: A team wants a CloudWatch Logs metric filter with service dimensions and a default value of zero.
-      Can it configure both?
-    a: No. A metric filter with dimensions cannot specify a default value. Choose the dimension design
-      and alarm missing-data behavior accordingly.
-    trap: true
-    facts:
-      - filter-dimensions
   - id: cloudwatch-119
     q: "A metric filter should add a dimension for each request ID. Is this a good idea?"
     a: "No. Metric filters allow up to three dimensions, and each distinct value is charged like a custom metric, so high-cardinality fields such as request IDs drive up cost."
@@ -147,7 +139,7 @@ A CloudWatch Logs metric filter converts matching incoming log events into numbe
 
 1. Collect application logs in a Standard log class group. Choose a filter pattern, which is an expression describing which events match.
 2. Set the metric namespace, name, and value. A value of 1 counts each matching event. For JSON, structured data with named fields, `{ $.status = 500 }` matches a numeric status field.
-3. Choose a default if the metric has no dimensions. Default 0 covers a minute with ingested logs but no matches. No ingestion still means no datapoint.
+3. Default 0 covers a minute with ingested logs but no matches. No ingestion still means no datapoint.
 4. Create a metric alarm on the generated metric. Use Logs Insights separately to investigate stored history.
 
 ### Exam cues
@@ -160,7 +152,6 @@ A CloudWatch Logs metric filter converts matching incoming log events into numbe
 
 - Standard log class only. New events only.
 - Value 1 counts matches. Default 0 requires incoming logs during that minute.
-- Dimensions and default values cannot be combined.
 - Filter patterns and Logs Insights queries have different syntax.
 
 > **Trap:** Default zero does not prove that logging is alive. A silent producer generates no datapoint.

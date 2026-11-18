@@ -115,14 +115,6 @@ cards:
     facts:
       - pooling
       - client-endpoint
-  - id: rds-014
-    q: An RDS Proxy workload must leave database connections available for other users. Which setting
-      caps the proxy connection pool?
-    a: MaxConnectionsPercent. It caps backend connections relative to database max_connections. Compare
-      DatabaseConnections with MaxDatabaseConnectionsAllowed to monitor actual usable capacity.
-    facts:
-      - connection-cap
-      - cap-monitoring
   - id: rds-031
     q: An application using RDS Proxy changes session state and database connections remain dedicated to
       individual clients. What explains the poor reuse?
@@ -130,13 +122,6 @@ cards:
       session state remains consistent.
     facts:
       - pinning
-  - id: rds-032
-    q: What are the default RDS Proxy ConnectionBorrowTimeout and IdleClientTimeout values?
-    a: ConnectionBorrowTimeout is 120 seconds. IdleClientTimeout is 1800 seconds. They control waiting
-      for backend capacity and closing idle client connections, respectively.
-    facts:
-      - borrow-default
-      - idle-default
   - id: rds-033
     q: An RDS application repeats expensive read queries whose results can tolerate some staleness.
       Which complementary technique reduces database query work?
@@ -152,15 +137,6 @@ cards:
     trap: true
     facts:
       - load-shedding
-  - id: rds-072
-    q: "Can a client on the internet connect straight to an RDS Proxy endpoint?"
-    a: "No. RDS Proxy is never publicly accessible; clients reach it from inside the VPC or through connected networks."
-    trap: true
-    facts: [proxy-private]
-  - id: rds-082
-    q: "An application connects to Aurora through RDS Proxy. During a writer failover, which client connections are affected?"
-    a: "Only connections **in the middle of a transaction or SQL statement** are canceled. Idle connections stay open and the proxy accepts new ones immediately, so the app must retry interrupted work."
-    facts: [failover-cancel]
 ---
 
 RDS Proxy reduces connection pressure by keeping a shared pool of database connections. A connection pool is a set of open connections that clients can reuse. The [RDS Proxy guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy) describes reuse, authentication, and recovery through a standby after database failure.
@@ -169,23 +145,17 @@ RDS Proxy reduces connection pressure by keeping a shared pool of database conne
 
 1. Point application clients at the proxy endpoint, the connection address for the proxy. Client connections end there; RDS Proxy manages separate connections to the database.
 2. The proxy shares backend connections among client requests. It can enforce IAM authentication, which uses AWS identities, and connect to the database using IAM authentication or credentials from Secrets Manager.
-3. Set `MaxConnectionsPercent` to cap backend connections relative to the database's `max_connections` setting. Compare `DatabaseConnections` with `MaxDatabaseConnectionsAllowed`; internal reservations can lower usable capacity.
-4. When no suitable backend connection is available, the proxy waits up to `ConnectionBorrowTimeout`. Under overload it can queue, throttle, or reject clients.
-5. Watch for session pinning, where a client keeps one backend connection until its session ends. This preserves session state but reduces sharing. For repeated reads that tolerate stale results, ElastiCache query caching can reduce database work further: a miss queries the database and stores the result.
+3. Under overload, the proxy can queue or throttle requests and reject client connections when configured limits are exceeded.
+4. Watch for session pinning, where a client keeps one backend connection until its session ends. This reduces sharing. For repeated reads that tolerate stale results, ElastiCache query caching can reduce database work: a miss queries the database and stores the result.
 
 ### Exam cues
 
 - If the question says bursts of short Lambda invocations exhaust RDS connections, think RDS Proxy, because it reuses connections across client requests.
-- If the question says reserve database connections for other clients, think `MaxConnectionsPercent`, because it caps the proxy's backend pool.
 - If the question says repeated read queries consume database CPU, think query caching when stale results are acceptable, because a cache hit avoids another database query.
 
 ### Remember
 
-| Setting or behavior | Meaning |
-|---|---|
-| `MaxConnectionsPercent` | Backend pool cap relative to `max_connections` |
-| `ConnectionBorrowTimeout` | Wait for a backend connection; default 120 seconds |
-| `IdleClientTimeout` | Close an idle client connection; default 1800 seconds |
-| Session pinning | One backend connection remains tied to a client session |
+- Session pinning ties one backend connection to a client session until it ends.
+- The proxy can queue or throttle requests and reject connections when configured limits are exceeded.
 
 > **Trap:** A proxy shares connections but still has capacity limits. It can reject demand, and pinning can reduce reuse. Query caching also needs a consistency decision: avoid it for reads that must always reflect the latest write.

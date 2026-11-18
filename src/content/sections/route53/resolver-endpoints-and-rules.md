@@ -130,11 +130,11 @@ diagrams:
       - The inbound endpoint hands the query to the VPC resolver, which answers from the private hosted zone.
 cards:
   - id: route53-021
-    q: A VPC has a Route 53 private zone and a Resolver forwarding rule for the same domain. Which one handles queries?
-    a: The forwarding rule takes precedence and sends the query to its configured DNS servers.
+    q: "A company needs on-premises DNS servers to resolve names in an AWS VPC over a private connection. What Route 53 feature fits?"
+    a: "A Route 53 Resolver inbound endpoint receives forwarded DNS queries from the on-premises network over VPN or Direct Connect."
     facts:
-      - precedence
-    trap: true
+      - inbound
+      - inbound-link
   - id: route53-022
     q: On-premises servers need Route 53 private-zone names over Direct Connect. What should the team configure?
     a: An inbound Resolver endpoint and an on-premises conditional forwarder that sends queries for that domain to the endpoint IPs.
@@ -150,11 +150,12 @@ cards:
       - rule
       - outbound-link
   - id: route53-046
-    q: Does a Route 53 outbound Resolver rule use its first target DNS server as a preferred primary?
-    a: No. VPC Resolver selects target IPs at random and retries a randomly selected target if one does not answer.
-    facts:
-      - target-choice
+    q: "A company needs multiple VPCs in one Region to resolve an on-premises domain. Can they share a Route 53 Resolver outbound endpoint?"
+    a: "Yes. One outbound endpoint can serve multiple VPCs in the same Region, using forwarding rules associated with the VPCs."
     trap: true
+    facts:
+      - endpoint-reuse
+      - outbound
 ---
 VPC Resolver looks up public names, VPC names and private-zone records. Resolver endpoints connect it to DNS servers in another network. Inbound and outbound describe the direction of the DNS query relative to AWS.
 

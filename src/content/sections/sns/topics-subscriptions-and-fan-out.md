@@ -125,32 +125,6 @@ cards:
     facts:
       - codedeploy
       - email-confirm
-  - id: sns-010
-    q: Which Auto Scaling notification types send successful launch and termination events to SNS?
-    a: autoscaling:EC2_INSTANCE_LAUNCH and autoscaling:EC2_INSTANCE_TERMINATE. Failure variants end in _ERROR.
-    facts:
-      - scaling-success
-      - scaling-failure
-  - id: sns-011
-    q: A Systems Manager operator needs SNS notifications for failed commands on individual nodes. What should be
-      configured?
-    a: Run Command SNS status notifications at invocation level, selecting the failure states, with an SNS
-      Standard topic.
-    facts:
-      - commands
-  - id: sns-012
-    q: A team needs SNS notifications for Organizations account activity or Trusted Advisor check changes. Where
-      should the routing be configured?
-    a: In us-east-1. Use Organizations EventBridge rules targeting SNS, or CloudWatch alarms on Trusted Advisor
-      metrics with an SNS action.
-    facts:
-      - organization
-      - advisor
-  - id: sns-013
-    q: Aurora event notifications must reach an SNS topic. What access policy is required at the destination?
-    a: The SNS topic policy must allow the RDS event service to publish the database event notifications.
-    facts:
-      - database
   - id: sns-026
     q: An SNS Standard subscriber receives a duplicate message and another message out of publication order. Is
       this outside the topic delivery contract?
@@ -170,9 +144,9 @@ cards:
     trap: true
     facts: [endpoint-types]
   - id: sns-029
-    q: "A marketing campaign must send SMS confirmations to subscribers and process their replies. Which service is built for that?"
-    a: "AWS End User Messaging SMS (formerly Amazon Pinpoint SMS), using a two-way SMS-enabled number."
-    facts: [end-user-messaging, two-way-sms]
+    q: "An application publishes events that several independent workers must process at their own pace. How can Amazon SNS and Amazon SQS support this?"
+    a: "Subscribe a separate SQS queue for each worker to an SNS topic. SNS fans out each message, and the queues retain messages for later polling."
+    facts: [fanout, push-poll]
   - id: sns-031
     q: "A publisher must send 700 KiB messages through an SNS topic to SQS and Lambda subscribers. Is S3 offloading required?"
     a: "Not necessarily. Set the topic **MaximumMessageSize** attribute, up to **1 MiB**. The default is 256 KiB, and larger topics support Firehose, SQS and Lambda subscriptions."
@@ -256,16 +230,7 @@ Amazon SNS is a publish/subscribe service: a publisher sends a message to a topi
 2. Confirm email and HTTP(S) subscriptions before expecting notifications. HTTP(S) endpoints must accept SNS POST requests, including subscription confirmation.
 3. Publish to the topic. SNS pushes to subscribers; SQS consumers poll, meaning they ask the queue for waiting messages. Separate queues let independent applications retain and process their own copies.
 4. For ordered processing, combine an SNS FIFO topic with an SQS FIFO queue. FIFO means first in, first out. Set `MessageGroupId` to identify events whose order must be preserved. Ordering applies within a group.
-5. Connect native event producers when they already provide the notification you need.
-
-   | Event source | Configuration that reaches SNS |
-   |---|---|
-   | CodeDeploy | Deployment-group event trigger, including failure events |
-   | EC2 Auto Scaling | Launch or termination notification types, including error variants |
-   | Systems Manager | Run Command or Maintenance Windows status notifications on a Standard topic |
-   | Aurora | Event notifications with permission for the RDS event service to publish |
-   | Organizations | EventBridge rule in `us-east-1` targeting SNS |
-   | Trusted Advisor | CloudWatch alarm on check metrics in `us-east-1` with SNS notification |
+5. For deployment notifications, configure a CodeDeploy deployment-group event trigger to send events, including failures, to an SNS topic.
 
 ### Exam cues
 
@@ -278,7 +243,6 @@ Amazon SNS is a publish/subscribe service: a publisher sends a message to a topi
 
 - SNS pushes; SQS consumers poll.
 - Standard topics: at-least-once delivery and best-effort ordering.
-- Auto Scaling success types: `autoscaling:EC2_INSTANCE_LAUNCH` and `autoscaling:EC2_INSTANCE_TERMINATE`. Failure types add `_ERROR`.
 - SNS FIFO can deliver to Standard queues, but strict consumer ordering requires FIFO queues.
 - FIFO topics do not directly support email, HTTP(S), SMS, or mobile push.
 

@@ -88,23 +88,6 @@ cards:
       - sticky-failure
       - shared-session
     trap: true
-  - id: elastic-load-balancing-025
-    q: A team enables ALB slow start before registering the first batch into an empty target group. Will
-      that batch ramp traffic?
-    a: No. The first batch registered together in an empty target group does not enter slow start. A new
-      target needs another healthy target outside slow start.
-    facts:
-      - slow-existing
-      - slow-baseline
-    trap: true
-  - id: elastic-load-balancing-026
-    q: An ALB target group uses least outstanding requests, but new targets need slow start. What must
-      change?
-    a: Use a compatible algorithm such as the default round robin. Slow start cannot run with least
-      outstanding requests or weighted random.
-    facts:
-      - algorithms
-      - algorithm-limits
   - id: elastic-load-balancing-027
     q: Which ALB target group defaults control draining, warm-up, and session affinity?
     a: Deregistration delay is 300 seconds. Slow start is disabled with value 0. Sticky sessions are
@@ -123,7 +106,7 @@ ALB target group attributes control how targets enter service, leave service, an
 
 ### How it works
 
-1. A newly healthy target normally receives its full share of requests. Enable slow start to raise that share linearly over a configured duration. A newly registered target needs another healthy target outside slow start; the first batch in an empty group does not ramp.
+1. A newly healthy target normally receives its full share of requests. Enable slow start to raise that share linearly over a configured duration. A newly registered target needs another healthy target outside slow start.
 2. Select a routing algorithm.
 
    | Algorithm | Target selection | Restrictions |
@@ -151,7 +134,6 @@ Session state is the application data retained between a user's requests. A shar
 - Deregistration delay: 300 seconds by default, configurable from 0 to 3600 seconds.
 - Slow start: disabled by default with value 0; enabled range 30 to 900 seconds.
 - Stickiness: disabled by default, enabled per target group.
-- Enabling slow start does not put already healthy targets into slow start.
 - Duration-based cookie: `AWSALB`.
 
 > **Trap:** Stickiness does not keep a failed target available. ALB selects another target when the duration-based cookie points to an unhealthy or deregistered target.

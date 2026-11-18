@@ -27,9 +27,9 @@ cards:
     a: Amazon Bedrock Prompt Management, with variables, variants and versions.
     facts: [prompt-management, variables, variants]
   - id: bedrock-050
-    q: A developer wants to chain a prompt, a knowledge base lookup, a guardrail and a Lambda function into one visual workflow. Which Amazon Bedrock feature fits?
-    a: Amazon Bedrock Flows.
-    facts: [flows]
+    q: How can a team manage changes to prompts with Amazon Bedrock Prompt Management?
+    a: Compare prompt variants and save versions as the team refines them.
+    facts: [variants]
   - id: bedrock-051
     q: Why version prompts instead of editing them in application code?
     a: Versions let teams test variants, roll back and reuse approved prompts across applications, like a prompt catalog.

@@ -206,21 +206,6 @@ cards:
     trap: true
     facts:
       - lifecycle-policy-deny
-  - id: s3-094
-    q: An S3 object qualifies for permanent deletion and a lifecycle transition on the same day. Which action wins?
-    a: Permanent deletion takes precedence over transition.
-    facts:
-      - lifecycle-precedence
-  - id: s3-095
-    q: An S3 lifecycle rule must retain a number of newer noncurrent versions before deleting older versions. What configuration is required?
-    a: Specify the noncurrent age, the number of newer versions to retain, and a Filter element.
-    facts:
-      - lifecycle-newer-versions
-  - id: s3-096
-    q: A queued S3 Lifecycle expiration uses a tag filter, but the triggering tag is removed before execution. What happens?
-    a: S3 rechecks the tags and skips expiration if the triggering tag is absent at execution.
-    facts:
-      - lifecycle-tag-recheck
   - id: s3-097
     q: Does S3 Lifecycle guarantee that an object is physically removed at its expiration time?
     a: No. Removal can occur after the expiration date.
@@ -232,11 +217,6 @@ cards:
     a: "Use a tag filter with key status and value processed. Both must match exactly; other tags on the object do not prevent the match."
     facts:
       - lifecycle-tag-filter
-  - id: s3-109
-    q: "A Lambda function adds a tag to S3 objects that already carry other tags, and the old tags disappear. Why?"
-    a: "PutObjectTagging replaces the whole tag set. Read the current set with GetObjectTagging, add the new tag and put the full set back."
-    facts:
-      - tag-set-replace
   - id: s3-110
     q: "A team must add the same tag to millions of existing S3 objects listed in an inventory report. Which feature does it in one managed job?"
     a: "S3 Batch Operations with a replace-tags operation over the supplied object list."
@@ -261,7 +241,7 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 3. Configure current-version and noncurrent-version actions separately. In a versioning-enabled bucket, current-version expiration adds a delete marker; noncurrent expiration removes old versions permanently.
 4. Add `AbortIncompleteMultipartUpload` for abandoned uploads. It removes unfinished parts after the configured age.
 5. Check minimum billing durations before moving or deleting data. Lifecycle cannot move Deep Archive objects back to Standard; restore and copy them.
-6. Rules apply to existing objects as well as new ones. To retain a number of newer noncurrent versions, set that count and an age with a filter.
+6. Rules apply to existing objects as well as new ones.
 
 | Choice | Suitable access pattern or tradeoff |
 |---|---|
@@ -277,7 +257,6 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 - If the question says S3 access patterns are unknown, think Intelligent-Tiering, because it monitors access and changes tiers automatically.
 - If the question says S3 logs should move to IA immediately, think a day-zero lifecycle rule, because July 2026 removed the old transition wait.
 - If an S3 bucket policy denies deletion, think lifecycle configuration separately, because bucket policies do not prevent lifecycle actions.
-- If multiple lifecycle actions are due on the same day, think permanent deletion before transition and transition before delete-marker creation.
 - If the question says act only on S3 objects that another process marked, think a Lifecycle tag filter, because it matches an exact tag key and value.
 
 ### Remember
@@ -287,6 +266,6 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 - Intelligent-Tiering moves unaccessed objects after 30 days to Infrequent Access and 90 days to Archive Instant Access.
 - Optional Archive Access and Deep Archive Access need activation, with minimum no-access periods of 90 and 180 days. Objects below 128 KB stay in Frequent Access. The optional archive tiers require restoration before reading.
 - Lifecycle does not expire locked noncurrent versions or act on versions with pending or failed replication.
-- Tag-filtered expiration rechecks the tag at execution. Physical removal may occur after expiration.
+- Physical removal may occur after expiration.
 
 > **Trap:** The 30-day IA billing minimum is not a 30-day wait in S3 Standard. The wait was removed in July 2026.

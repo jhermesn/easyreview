@@ -123,13 +123,6 @@ cards:
     facts:
       - fifo-order
       - fifo-group-required
-  - id: sqs-007
-    q: An SQS producer retries messages with identical bodies but different attributes under content-based FIFO deduplication. Are the attributes part of the deduplication hash?
-    a: No. The SHA-256 hash uses the message body only. Use an explicit MessageDeduplicationId when the intended identity must distinguish those messages.
-    trap: true
-    facts:
-      - fifo-content-hash
-      - fifo-dedup-choice
   - id: sqs-008
     q: A standard SQS queue must provide strict ordering for related messages. Can the team enable FIFO on the existing queue?
     a: No. Create a FIFO queue, whose name ends in .fifo, and send related messages with the same MessageGroupId. Queue type cannot be changed after creation.
@@ -162,7 +155,7 @@ SQS queues buffer work between producers, which send messages, and consumers, wh
 
 1. Choose the queue type when creating the queue. Standard is the default. Changing the type later requires a new queue; a FIFO name must end in `.fifo`.
 2. For FIFO, assign `MessageGroupId`, the identifier for one ordered sequence, to every message. Different groups can run concurrently. One group for every message creates one sequence.
-3. Supply `MessageDeduplicationId`, a token identifying a send for duplicate suppression, or enable content-based deduplication. The latter generates a SHA-256 hash, a fingerprint, from the body rather than its attributes, the message's metadata fields.
+3. Supply `MessageDeduplicationId`, a token identifying a send for duplicate suppression, or enable content-based deduplication.
 4. FIFO suppresses repeated sends with that deduplication ID within five minutes. This does not make the consumer's business operation idempotent, meaning safe to repeat without extra effects. A received message can become available again if it is not deleted before visibility timeout.
 5. A FIFO receive can return several messages from one group. Later receives cannot take more from that group until the received messages are deleted or visible again. Different groups can progress independently.
 6. For higher FIFO throughput, set `DeduplicationScope=messageGroup` and `FifoThroughputLimit=perMessageGroupId`. Use distinct groups for independent work so SQS can distribute it across partitions, the storage allocations that hold queue messages. Regional quotas still apply.
@@ -178,13 +171,12 @@ SQS queues buffer work between producers, which send messages, and consumers, wh
 
 - If the question says order per customer with parallel customers, think FIFO with a group per customer, because ordering is per group.
 - If the question says maximum queue throughput and duplicates are acceptable, think standard, because strict ordering is unnecessary for that requirement.
-- If the question says identical bodies but meaningful attribute differences, think explicit deduplication IDs, because content-based hashes exclude attributes.
 - If the question says FIFO throughput needs to grow, think independent groups and high-throughput mode, because a single ordered group limits parallel work.
 
 ### Remember
 
 - FIFO queue name: `.fifo` suffix. Every FIFO send needs `MessageGroupId`.
-- Send deduplication interval: 5 minutes. Content hash: SHA-256 of the body only.
+- Send deduplication interval: 5 minutes.
 - Non-high-throughput FIFO: 300 transactions per second per action per partition, up to 3,000 messages per second with batching.
 - High-throughput quotas vary by Region. Transactions per second count API requests; batching increases messages per request.
 

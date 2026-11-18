@@ -165,13 +165,6 @@ cards:
     trap: true
     facts:
       - mrk-auth
-  - id: kms-028
-    q: A team replicates an AWS KMS key with imported material and finds the new replica lacks usable material.
-      What must it do?
-    a: Import the same material into that replica. KMS synchronizes material identifiers but does not transport
-      EXTERNAL-origin material.
-    facts:
-      - mrk-import-material
   - id: kms-029
     q: A primary AWS KMS multi-Region key is disabled. Does that disable a related enabled replica?
     a: No. Enabled state is independent, and a replica can perform cryptographic operations while the primary is
@@ -201,7 +194,7 @@ Multi-Region KMS keys are related Regional keys with the same key ID and key mat
 
 - If the question says decrypt in a recovery Region without a cross-Region KMS request, think related multi-Region keys, because they share the material needed for local decryption.
 - If the question says a primary policy edit did not fix replica access, think the replica's own policy, because policies are independent.
-- If the question says imported material did not appear in a replica, think a separate import, because KMS synchronizes its identifier but does not copy the material.
+- If the question says the primary is disabled, think independently enabled replicas, because a replica can still perform cryptographic operations.
 
 ### Remember
 

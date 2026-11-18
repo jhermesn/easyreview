@@ -129,33 +129,6 @@ cards:
     facts:
       - auto-range
       - config-rule
-  - id: kms-023
-    q: A custom AWS KMS rotation-age check uses only key creation date. What does it miss after automatic
-      rotation?
-    a: Material can rotate while the key ID stays unchanged. Inspect rotation history and material rotation dates,
-      and treat manual replacement as a new logical key.
-    facts:
-      - rotation-id
-      - rotation-history
-      - material-date
-      - manual-new-key
-  - id: kms-024
-    q: A team imported new symmetric AWS KMS material and needs to activate it without changing the key ARN. Which
-      operation fits?
-    a: Stage the new material in Pending rotation state, then perform on-demand rotation. Imported symmetric keys
-      gained this support in June 2025.
-    facts:
-      - demand-import
-      - demand-eligible
-      - rotation-id
-      - imported-date
-  - id: kms-025
-    q: Does an AWS KMS on-demand rotation reset the next automatic rotation date?
-    a: No. It leaves the existing automatic schedule unchanged and is available even when automatic rotation is
-      disabled.
-    trap: true
-    facts:
-      - demand-schedule
 ---
 KMS rotation changes key material, the secret cryptographic value behind a key, while automatic and on-demand rotation keep the same logical key. Manual rotation replaces the key resource and redirects future use to it.
 
@@ -177,13 +150,12 @@ KMS rotation changes key material, the secret cryptographic value behind a key, 
 
 Custom automatic periods and on-demand rotation arrived in April 2024. Imported symmetric keys gained on-demand rotation in June 2025. AWS managed keys rotate annually; customers cannot change that setting.
 
-The Config managed rule `cmk-backing-key-rotation-enabled` checks automatic rotation enablement and has no parameters. A custom age check must distinguish creating a replacement key from rotating material within the same key. Use `GetKeyRotationStatus` for settings and in-progress rotation, and `ListKeyRotations` with material rotation dates for completed rotations.
+The Config managed rule `cmk-backing-key-rotation-enabled` checks automatic rotation enablement and has no parameters.
 
 ### Exam cues
 
 - If the question says rotate every 180 days, think a custom automatic period on an eligible symmetric key, because the allowed range is 90 to 2560 days.
-- If the question says prove a maximum rotation age, think a custom check using material rotation history, because the managed Config rule only tests enablement.
-- If the question says rotate imported symmetric material without changing the ARN, think on-demand rotation after staging new material, because that key type supports it.
+- If the question says enforce a maximum rotation age with the managed Config rule, think a custom age check, because the rule only tests enablement and has no parameters.
 - If the question says rotation should rewrite all stored ciphertext, think a separate data re-encryption process, because KMS rotation does not rewrite data or data keys.
 
 ### Remember
@@ -193,4 +165,4 @@ The Config managed rule `cmk-backing-key-rotation-enabled` checks automatic rota
 - Manual: new key resource and redirected future use.
 - AWS managed keys: annual rotation controlled by AWS.
 
-> **Trap:** An old key creation date does not prove old key material. Material rotation preserves the key ID.
+> **Trap:** Rotating key material does not re-encrypt stored data or rotate data keys.

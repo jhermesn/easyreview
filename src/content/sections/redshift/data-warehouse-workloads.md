@@ -93,31 +93,14 @@ diagrams:
       - Enhanced VPC routing sends COPY or UNLOAD traffic through the VPC.
       - An S3 endpoint provides a path to a bucket in the same Region.
 cards:
-  - id: redshift-001
-    q: Which AWS service provides a managed SQL data warehouse for analytics?
-    a: Amazon Redshift provides a managed cloud warehouse for SQL and business intelligence tools.
-    facts: [warehouse-purpose]
-  - id: redshift-002
-    q: How can Amazon Redshift query external files in S3 directly?
-    a: Use Redshift Spectrum with an external schema, an external table, and permission to access the catalog and S3.
-    facts: [warehouse-spectrum, warehouse-spectrum-setup, warehouse-spectrum-role]
-  - id: redshift-003
-    q: A team must control Redshift COPY and UNLOAD network traffic through its VPC. What should it enable?
-    a: Enhanced VPC routing, then configure a network path to the data resource.
-    facts: [warehouse-routing, warehouse-routing-path]
   - id: redshift-004
-    q: Does Redshift enhanced VPC routing apply to Redshift Spectrum queries?
-    a: No. Enhanced VPC routing cannot be used with Redshift Spectrum.
-    facts: [warehouse-spectrum-routing]
-    trap: true
-  - id: redshift-005
-    q: A Redshift cluster needs to load large S3 datasets into warehouse tables. Which command loads data in parallel?
-    a: COPY, with permission for Redshift to access the S3 data.
-    facts: [warehouse-copy]
+    q: "A team needs a data warehouse for SQL analytics without manually provisioning capacity. Which Amazon Redshift option fits?"
+    a: "Amazon Redshift Serverless automatically provisions resources and scales warehouse capacity."
+    facts: [warehouse-purpose, warehouse-serverless]
   - id: redshift-006
-    q: What Region constraint applies to a Redshift Spectrum cluster and the S3 data files it queries?
-    a: The cluster and S3 data files must be in the same AWS Region.
-    facts: [warehouse-spectrum-region]
+    q: "A team wants to query files in Amazon S3 directly from its Amazon Redshift analytics workflow. Which feature fits?"
+    a: "Amazon Redshift Spectrum queries data directly from files in S3."
+    facts: [warehouse-spectrum]
   - id: redshift-007
     q: A team wants Redshift warehouse capacity without manually managing a provisioned cluster. What can it choose?
     a: Redshift Serverless automatically provisions resources and scales warehouse capacity.
@@ -131,34 +114,29 @@ cards:
     a: "Cross-Region snapshot copy, so snapshots are copied automatically to another Region and the cluster can be restored there."
     facts: [cross-region-snapshot]
   - id: redshift-010
-    q: "How often does Redshift take automated snapshots by default?"
-    a: "About every eight hours or after 5 GB per node of data changes, whichever comes first."
-    facts: [auto-snapshots]
-  - id: redshift-011
-    q: "A Redshift data warehouse must survive an Availability Zone failure without a restore. What deployment fits?"
-    a: "A Multi-AZ deployment on RA3 nodes."
+    q: "A team wants to keep its Amazon Redshift data warehouse operating through an Availability Zone failure. What deployment option can help?"
+    a: "A supported provisioned Multi-AZ cluster runs compute in two Availability Zones."
     facts: [multi-az]
 ---
 Amazon Redshift is a managed cloud data warehouse for SQL analytics and business intelligence. A data warehouse is a store organized for analyzing data.
 
 ### How it works
 
-1. Choose a provisioned cluster for manual resource management or Redshift Serverless for automatically provisioned and scaled warehouse capacity.
-2. Load data into tables with COPY, which reads from sources such as S3 in parallel. Redshift needs permission to access the source.
-3. To query S3 files directly, use Redshift Spectrum. Give the cluster an IAM role with access to the data catalog and files. For example, the AWS Glue Data Catalog stores descriptions of data. An external schema references a database in that catalog, and an external table describes data outside the cluster. Query the external table.
-4. To control COPY and UNLOAD traffic, enable enhanced VPC routing and provide a network path. A virtual private cloud (VPC) is an isolated virtual network for AWS resources. UNLOAD exports query results; an S3 gateway endpoint connects the VPC to S3 without an internet gateway or NAT device. The bucket must be in the same Region for this path.
+1. Choose a provisioned cluster for manual resource management or [Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome) for automatically provisioned and scaled warehouse capacity.
+2. Redshift uses [massively parallel processing](https://docs.aws.amazon.com/redshift/latest/dg/c_challenges_achieving_high_performance_queries.html#massively-parallel-processing) (MPP): compute nodes run query segments on parts of the data. [Redshift ML](https://docs.aws.amazon.com/redshift/latest/dg/machine_learning.html#machine_learning) lets analysts create, train and run models with SQL, using SageMaker AI to create the model.
+3. [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum) queries S3 files directly. The cluster and files must be in the [same Region](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum-prerequisites). Spectrum cannot use [enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html#enhanced-vpc-routing).
+4. Redshift takes [automated snapshots](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html#about-automated-snapshots). Enable [cross-Region snapshot copy](https://docs.aws.amazon.com/redshift/latest/mgmt/cross-region-snapshot-copy.html#cross-region-snapshot-copy) to copy cluster snapshots to another Region for restoration if the primary Region fails.
 
 ### Exam cues
 
-- If the question says SQL analytics in a managed warehouse, think Redshift, because it supports SQL and business intelligence tools.
-- If the question says query S3 files without loading them into the warehouse, think Spectrum, because it queries files directly.
-- If the question says route COPY and UNLOAD through VPC controls, think enhanced VPC routing, because it forces that traffic through the VPC.
-- If the question says COPY fails after enabling enhanced routing, think network path, because the VPC must reach the data source.
+- If the question says warehouse capacity without managing a cluster, think Redshift Serverless, because it provisions resources and scales capacity automatically.
+- If the question says run machine learning models with SQL, think Redshift ML, because it lets analysts create, train and run models.
+- If the question says recover a cluster after a Region failure, think cross-Region snapshot copy, because the copied snapshots can restore the cluster in another Region.
 
 ### Remember
 
 - A Spectrum cluster and its S3 files must be in the same Region.
 - Enhanced VPC routing supports clusters and Serverless workgroups, but not Spectrum.
-- VPC flow logs can monitor COPY and UNLOAD traffic with enhanced routing.
+- Automated snapshots are taken about every eight hours or after 5 GB per node of changed data, whichever comes first.
 
-> **Trap:** Spectrum queries S3 files directly. COPY loads data into Redshift tables; they are different mechanisms.
+> **Trap:** Enhanced VPC routing supports clusters and Serverless workgroups, but it cannot be used with Spectrum.

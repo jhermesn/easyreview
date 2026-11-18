@@ -42,10 +42,6 @@ cards:
     q: Can Amazon Transcribe produce captions for a live stream as it happens?
     a: Yes. It supports real-time streaming transcription as well as batch files in Amazon S3.
     facts: [modes]
-  - id: transcribe-003
-    q: A meeting recording has three speakers. Which Amazon Transcribe feature labels who said what?
-    a: Speaker partitioning, which separates the speech of individual speakers.
-    facts: [features]
   - id: transcribe-004
     q: Does Amazon Transcribe translate the transcript into another language?
     a: No. It produces text in the spoken language; translation is Amazon Translate.
@@ -56,34 +52,26 @@ cards:
     a: "Amazon Transcribe Medical, speech recognition built for medical vocabulary."
     facts: [transcribe-medical]
   - id: transcribe-006
-    q: "Transcribe keeps writing a company acronym wrong. Which feature fixes individual words, and which one teaches the context of a specialized domain?"
-    a: "A custom vocabulary fixes specific words such as acronyms and brand names. A custom language model, trained on domain text, teaches the context in which words are used."
-    facts: [custom-vocabulary, custom-language-models]
-  - id: transcribe-007
-    q: "An online game must flag abusive voice chat. Which AWS feature analyzes both how something is said and what is said?"
-    a: "Amazon Transcribe toxicity detection, which combines tone and pitch with the text to classify seven categories of toxic speech."
-    facts: [toxicity-detection]
-  - id: transcribe-008
-    q: "Call recordings must be transcribed without customer names or card numbers in the text. What does Transcribe offer?"
-    a: "PII redaction, which outputs a redacted transcript (optionally also an unredacted one)."
-    facts: [pii-redaction]
+    q: "A company wants to convert recorded speech into text. Which AWS AI service fits?"
+    a: "Amazon Transcribe uses machine learning to convert audio to text."
+    facts: [purpose]
   - id: transcribe-009
     q: "A healthcare software vendor wants clinical notes drafted automatically from recorded doctor-patient visits. Which AWS capability fits?"
     a: "AWS HealthScribe, which transcribes the conversation and generates clinical notes with generative AI, and is HIPAA eligible."
     facts: [healthscribe]
 ---
-Amazon Transcribe turns speech into text. It works on live audio streams and on recorded files, and can separate speakers and filter sensitive content. [What is Amazon Transcribe?](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is)
+Amazon Transcribe turns speech into text. It works on live audio streams and on recorded files. [What is Amazon Transcribe?](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is)
 
 ### How it works
 
 1. Stream audio, or point Transcribe at a media file in Amazon S3.
-2. Transcribe returns the text, with options such as speaker labels and custom vocabulary.
+2. Transcribe returns the text, with options such as custom vocabulary.
 3. Feed the text to other services, such as Comprehend for analysis or Translate for other languages.
 
 ### Exam cues
 
 - If the question says speech to text, transcripts or captions, think Amazon Transcribe.
-- If the question says remove PII from call transcripts, think Transcribe PII redaction; abusive voice chat, think toxicity detection; domain jargon, think custom vocabulary or custom language models.
+- If the question says individual words such as acronyms, think custom vocabulary; for the context of specialized speech, think custom language models. [Custom vocabularies](https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html#custom-vocabulary) and [custom language models](https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html#custom-language-models)
 
 ### Remember
 

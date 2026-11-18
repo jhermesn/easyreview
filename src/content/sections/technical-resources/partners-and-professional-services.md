@@ -64,14 +64,13 @@ cards:
     a: The AWS Solutions Library.
     facts: [solutions-library]
   - id: technical-resources-018
-    q: "A company wants AWS staff to operate its AWS infrastructure for it, including patching, monitoring, backups and change requests. Which offering fits?"
-    a: "AWS Managed Services (AMS), an enterprise service in which AWS runs the infrastructure on the customer's behalf. AMS Advanced closed to new customers on June 30, 2026, so a new customer looks at AMS Accelerate or AWS Partner managed services."
-    facts: [ams, ams-advanced-end]
+    q: "Where do AWS Partners manage their relationship with AWS and unlock their AWS Partner Network benefits?"
+    a: "In AWS Partner Central, in the AWS Management Console."
+    facts: [partner-central]
   - id: technical-resources-019
-    q: "Is AWS Managed Services (AMS) the same thing as using managed services such as Amazon RDS?"
-    a: "No. Managed services such as RDS are AWS services that remove operational work for one resource type. AMS is an enterprise offering in which AWS operates a customer's infrastructure."
-    trap: true
-    facts: [ams]
+    q: "Which AWS team can help a company design and migrate its AWS workloads?"
+    a: "AWS Professional Services helps organizations design, build, migrate and manage AWS workloads."
+    facts: [proserve]
 ---
 When a customer needs more than documentation and support cases, AWS offers people. AWS Professional Services and AWS solutions architects come from AWS itself; AWS Partner Network members are outside companies. [AWS Partner Network](https://aws.amazon.com/partners/)
 

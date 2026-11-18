@@ -190,18 +190,10 @@ cards:
       - oac-https
       - oac-no-override
       - oac-auth-forward
-  - id: cloudfront-054
-    q: "An internal ALB in private subnets must serve users through CloudFront without any public endpoint of its own. What does CloudFront offer?"
-    a: "A VPC origin. CloudFront reaches ALBs, NLBs and EC2 instances in private subnets over a private connection and becomes the only way in."
-    facts: [vpc-origins]
   - id: cloudfront-056
     q: "An internet-facing ALB must accept traffic only from CloudFront. What restricts it at the network layer?"
     a: "An ALB security group inbound rule that allows only the CloudFront managed prefix list (a custom origin header checked by the ALB adds a second control)."
     facts: [managed-prefix-list]
-  - id: cloudfront-057
-    q: "Serving S3 content through CloudFront instead of straight from S3: is the S3 to CloudFront transfer billed?"
-    a: "No. Transfer from AWS origins to CloudFront is free; you pay CloudFront delivery to viewers."
-    facts: [origin-transfer-free]
 ---
 Origin access control (OAC) lets CloudFront authenticate to an S3 bucket so the bucket can serve content through a distribution without public read access. It protects the origin connection. Remove direct read permissions as well, so viewers cannot bypass CloudFront with S3 URLs.
 

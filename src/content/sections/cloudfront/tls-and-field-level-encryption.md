@@ -237,15 +237,6 @@ cards:
     facts:
       - tls-sni
       - tls-dedicated
-  - id: cloudfront-046
-    q: Which key, form format and origin capability does CloudFront field-level encryption require?
-    a: An RSA 2048-bit key pair, application/x-www-form-urlencoded content, and an origin supporting chunked
-      encoding. Upload the public key; keep the private key with the decrypting application.
-    facts:
-      - tls-fle
-      - tls-fle-rsa
-      - tls-fle-format
-      - tls-fle-chunk
 ---
 CloudFront uses Transport Layer Security (TLS) to protect HTTPS connections. The viewer connection and the custom-origin connection have separate settings. Field-level encryption protects selected form values beyond those connections so they stay encrypted inside the application until the component with the private key reads them.
 
@@ -255,7 +246,7 @@ CloudFront uses Transport Layer Security (TLS) to protect HTTPS connections. The
 2. With Server Name Indication (SNI), the viewer includes the domain in its TLS ClientHello, the message that starts negotiation. CloudFront selects the matching distribution and certificate without dedicated IP addresses. Dedicated IP HTTPS supports clients without SNI and adds a monthly charge.
 3. Set the viewer protocol policy to redirect HTTP or reject it. Choose the viewer security policy for the minimum TLS version and ciphers, the encryption algorithms allowed on the connection.
 4. Set the origin protocol policy separately. For HTTPS, the origin certificate must come from a trusted certificate authority (CA), an issuer CloudFront accepts. Its name must match the origin domain or forwarded `Host` domain. Invalid certificates or name mismatches can produce `502 Bad Gateway`.
-5. For field-level encryption, upload the public half of an RSA 2048-bit key pair. A profile selects the POST fields; a configuration chooses profiles and attaches to a cache behavior. CloudFront encrypts those fields, and the authorized application uses the private key to decrypt them.
+5. For field-level encryption, upload the public key. A profile selects the POST fields; a configuration chooses profiles and attaches to a cache behavior. CloudFront encrypts those fields, and the authorized application uses the private key to decrypt them.
 
 | Custom-origin protocol policy | Connection used |
 |---|---|
@@ -263,7 +254,7 @@ CloudFront uses Transport Layer Security (TLS) to protect HTTPS connections. The
 | HTTPS only | HTTPS |
 | Match viewer | The viewer request's protocol |
 
-Field-level encryption supports up to 10 fields per request in `application/x-www-form-urlencoded`, the encoded format for form name-value pairs. The origin must support chunked encoding, transferring a request body in chunks. Require viewer `Redirect HTTP to HTTPS` or `HTTPS only`, origin `Match viewer` or `HTTPS only`, and allow `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE` on the behavior.
+Field-level encryption supports up to 10 fields per request. Require viewer `Redirect HTTP to HTTPS` or `HTTPS only`, origin `Match viewer` or `HTTPS only`, and allow `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE` on the behavior.
 
 ### Exam cues
 
@@ -276,7 +267,7 @@ Field-level encryption supports up to 10 fields per request in `application/x-ww
 - `HTTPS only` viewer policy rejects HTTP with `403`.
 - Redirect mode uses `301` for GET and HEAD; for POST, PUT, DELETE, OPTIONS and PATCH over HTTP 1.1 or later it uses `307`, preserving method and body. Those methods below HTTP 1.1 get `403`.
 - The viewer ACM certificate belongs in `us-east-1`; an Elastic Load Balancing origin uses its own regional certificate. Provision it in the Region where the load balancer uses it.
-- Field-level encryption uses RSA 2048-bit keys and at most 10 fields.
+- Field-level encryption supports at most 10 fields per request.
 
 > **Trap:** Viewer HTTPS does not configure custom-origin HTTPS. An S3 website endpoint cannot use HTTPS on the origin connection.
 

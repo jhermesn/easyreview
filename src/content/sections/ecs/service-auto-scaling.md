@@ -73,13 +73,6 @@ cards:
       - ecs-scale-predictive
       - ecs-scale-queue
       - ecs-scale-zero
-  - id: ecs-013
-    q: Does ECS service auto scaling continue during a deployment?
-    a: Scale-in pauses; scale-out continues unless suspended. This behavior excludes EXTERNAL
-      controllers. RegisterScalableTarget can suspend dynamic scale-out explicitly.
-    facts:
-      - ecs-scale-deploy
-      - ecs-scale-suspend
   - id: ecs-041
     q: An ECS worker service processes SQS messages with variable backlog. What scaling metric fits?
     a: Use a custom backlog-per-task metric so capacity responds to queued work per worker.
@@ -109,7 +102,6 @@ ECS Service Auto Scaling adjusts how many tasks a service should run as demand c
 2. For target tracking, select a metric and target. Application Auto Scaling manages alarms and changes capacity to approach that target. ECS publishes CPU and memory metrics every minute.
 3. For queue workers, measure backlog per task, the queued work divided across workers. Use a custom SQS metric to scale with that work.
 4. Allow a cooldown, a wait for a prior change to take effect. Scale-out can interrupt a scale-in cooldown when demand rises.
-5. During deployments, scale-in pauses while scale-out continues unless suspended. This rule excludes `EXTERNAL` controllers. Use `RegisterScalableTarget` suspension settings when dynamic scaling must pause explicitly.
 
 | Policy | Trigger |
 | --- | --- |
@@ -122,7 +114,7 @@ ECS Service Auto Scaling adjusts how many tasks a service should run as demand c
 
 - If the question says an ECS service should maintain average CPU near a target, think target tracking, because it manages the alarms and adjustments.
 - If the question says SQS worker demand depends on queued work, think backlog per task, because it relates outstanding work to workers.
-- If the question says a deployment should prevent all dynamic scale-out, think explicit scaling suspension, because deployments ordinarily pause only scale-in.
+- If the question says one of several target tracking policies requests scale-out, think scale-out can proceed, because any policy can request it.
 
 ### Remember
 

@@ -22,9 +22,9 @@ cards:
     a: "Systems Manager Session Manager."
     facts: [no-ssh]
   - id: systems-manager-116
-    q: "What must be on a server before AWS Systems Manager can manage it?"
-    a: "SSM Agent, able to reach the Systems Manager service."
-    facts: [agent-required]
+    q: "Which AWS service helps a company centrally manage servers across AWS, on premises and other clouds?"
+    a: "AWS Systems Manager centrally manages and operates nodes across these environments."
+    facts: [manage-nodes]
 ---
 AWS Systems Manager is the operations hub for servers: it patches, runs commands, opens sessions and stores parameters for EC2 instances and on-premises machines. [What is AWS Systems Manager?](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html#what-is-systems-manager)
 

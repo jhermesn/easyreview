@@ -58,10 +58,9 @@ cards:
     a: The Amazon Bedrock playground.
     facts: [playground]
   - id: bedrock-006
-    q: Do models from Amazon Bedrock Marketplace run serverless like the standard Bedrock catalog?
-    a: "No. Marketplace models run on SageMaker AI-managed endpoints on instances you choose."
-    trap: true
-    facts: [marketplace]
+    q: How does Amazon Bedrock help a team choose a foundation model for a generative AI application?
+    a: "It provides access to models from Amazon and other providers, allowing teams to evaluate and switch models."
+    facts: [serverless, switch]
   - id: bedrock-055
     q: "An app must create illustrations from short story text, using a model in Amazon Bedrock. Which kind of model fits?"
     a: "A text-to-image model such as Stability AI Stable Diffusion 3.5 Large (or Amazon Nova Canvas)."

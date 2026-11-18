@@ -65,10 +65,6 @@ cards:
     q: Which service helps investigate the root cause of a GuardDuty finding?
     a: Amazon Detective. It connects activity over time in a behavior graph using core sources including CloudTrail, VPC Flow Logs and GuardDuty findings.
     facts: [purpose, core-sources, graph]
-  - id: detective-002
-    q: How much historical event data can Amazon Detective make available?
-    a: Up to one year.
-    facts: [history]
   - id: detective-003
     q: A security team needs to investigate related findings and affected resources together. What Amazon Detective feature helps?
     a: Finding groups. They bring related findings and entities together for investigation.
@@ -77,15 +73,6 @@ cards:
     q: A security team needs Amazon Detective to investigate suspicious activity across multiple AWS accounts. What can connect their data?
     a: A behavior graph. An administrator can invite member accounts to contribute data.
     facts: [accounts]
-  - id: detective-005
-    q: Are Amazon EKS audit logs always included in the Amazon Detective core source package?
-    a: No. EKS audit logs are a separate source package that must be enabled.
-    facts: [core-sources, eks-source]
-    trap: true
-  - id: detective-006
-    q: What does Amazon Detective Investigation analyze for indicators of compromise?
-    a: IAM users and roles.
-    facts: [investigations]
   - id: detective-007
     q: Must a team configure its existing CloudTrail trail or VPC Flow Logs for Amazon Detective to consume its core event streams?
     a: No. Detective uses independent streams and does not use existing logging configurations.
@@ -106,12 +93,12 @@ Amazon Detective helps investigate security findings and suspicious activity to 
 
 - If the question says investigate the context and root cause of a GuardDuty finding, think Detective, because it connects activity and resources over time.
 - If the question says find potentially malicious activity in AWS logs, think GuardDuty, because it analyzes logs for threats; use Detective to investigate findings.
-- If the question says investigate an IAM user or role for signs of compromise, think Detective Investigation, because it analyzes those identities for indicators of compromise, which are observed signs of malicious activity.
+- If the question says investigate related findings and entities together, think finding groups, because they bring them together for investigation.
+- If the question says investigate activity across accounts, think a behavior graph, because an administrator can invite member accounts to contribute data.
 
 ### Remember
 
-- Detective provides up to one year of historical event data.
-- Core sources include CloudTrail, VPC Flow Logs and GuardDuty findings. EKS audit logs require the separate source package.
-- The optional AWS security findings package brings in Security Hub CSPM findings. It is enabled by default for new behavior graphs created after May 16, 2023.
+- Core sources include CloudTrail, VPC Flow Logs and GuardDuty findings for accounts enrolled in GuardDuty.
+- Detective uses independent CloudTrail and VPC flow log streams without using existing logging configurations.
 
 > **Trap:** Detective investigates findings; GuardDuty identifies potentially malicious activity. They are complementary, not interchangeable.

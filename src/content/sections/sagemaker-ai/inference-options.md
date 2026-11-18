@@ -36,10 +36,9 @@ cards:
     a: Serverless Inference, which needs no instances and suits intermittent traffic.
     facts: [serverless]
   - id: sagemaker-ai-009
-    q: Can a large GPU-based foundation model run on SageMaker AI Serverless Inference?
-    a: "No. Serverless Inference doesn't support GPUs; large FMs typically need GPU real-time endpoints."
-    trap: true
-    facts: [serverless-gpu]
+    q: Which SageMaker AI inference option suits an interactive application that needs low-latency predictions?
+    a: "Real-time inference suits interactive workloads with low-latency requirements."
+    facts: [real-time]
 ---
 SageMaker AI offers four ways to serve a model, chosen by latency need, payload size and traffic pattern. [Deploy models for inference](https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html)
 

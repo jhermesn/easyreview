@@ -91,14 +91,6 @@ cards:
     facts:
       - failback-discard
       - failback-preserve
-  - id: efs-020
-    q: An EFS replication configuration spans AWS accounts. Can the team rely on the EFS service-linked
-      role?
-    a: No. It must supply an IAM role for cross-account replication, and the configuring identity needs
-      iam:PassRole.
-    trap: true
-    facts:
-      - cross-account-role
   - id: efs-021
     q: A team expects immediate access to a new EFS replica with a strict 15-minute lag guarantee for
       every workload. Which assumptions need correction?
@@ -180,6 +172,5 @@ EFS replication maintains a recovery file system by copying source files and met
 - RPO after initial sync: 15 minutes for most file systems, not an unconditional maximum.
 - Frequently changing sources with more than 100 million files or files larger than 100 GB may take longer.
 - Monitor `TimeSinceLastSync`; source changes after the last synced time might not have reached the replica.
-- Cross-account replication needs a supplied IAM role. The configuring identity needs `iam:PassRole`.
 
 > **Trap:** Failback direction determines which changes survive. Recreating the original replication direction can discard the writes made at the recovery site.

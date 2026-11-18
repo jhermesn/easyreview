@@ -162,40 +162,15 @@ cards:
       - convert
       - ctas
       - glue-convert
-  - id: athena-015
-    q: An Athena administrator runs MSCK REPAIR TABLE against standard CloudTrail date paths and finds
-      no partitions. What should the administrator use?
-    a: Use ALTER TABLE ADD PARTITION for non-Hive paths, or configure partition projection. MSCK
-      discovers Hive-style key=value paths.
-    facts:
-      - hive
-      - non-hive
-      - projection
-    trap: true
-  - id: athena-016
-    q: What is Athena partition projection, and when can it make query planning worse?
-    a: It calculates partition locations from table-property rules instead of catalog lookups. On sparse
-      datasets it can list many locations that contain no data.
-    facts:
-      - projection
-      - sparse
-  - id: athena-017
-    q: A team creates an Athena table over JSON data in S3. What should the table use to parse the data?
-    a: Specify a JSON SerDe, a serializer and deserializer suited to the data format.
-    facts:
-      - table-serde
 ---
 Partitioning and columnar storage reduce the data Athena needs to read. A partition groups objects by a key such as date. A columnar file groups values by column so a query can read the fields it needs.
 
 ### How it works
 
-An Athena table can specify a serializer and deserializer, or SerDe, matching its data format. For JSON data, use a JSON SerDe to parse the records.
-
 1. Choose partition keys that match common filters. Define partition columns as STRING so Athena can push their filtering into the Glue Data Catalog.
 2. Convert logs to Parquet or ORC with CREATE TABLE AS SELECT (CTAS), which creates a table from query output, or with a Glue extract, transform, and load (ETL) job.
-3. Register partition locations or configure partition projection. Projection computes locations from rules saved in table properties.
-4. Filter partition columns in SQL. Parquet and ORC also use block statistics for predicate pushdown, which skips blocks that cannot satisfy a filter.
-5. Compact small files, meaning combine them into larger files, to reduce listing and request overhead. Inspect planned partition values with EXPLAIN.
+3. Filter partition columns in SQL. Parquet and ORC also use block statistics for predicate pushdown, which skips blocks that cannot satisfy a filter.
+4. Compact small files, meaning combine them into larger files, to reduce listing and request overhead. Inspect planned partition values with EXPLAIN.
 
 | Technique | What it avoids reading or doing |
 |---|---|
@@ -203,16 +178,12 @@ An Athena table can specify a serializer and deserializer, or SerDe, matching it
 | Parquet or ORC | Unneeded columns and blocks excluded by statistics |
 | Column compression | Extra storage and data reading |
 | File compaction | Repeated work for many small files |
-| Partition projection | Catalog lookups for individual partition locations |
-
-Hive-style paths encode partition keys as key=value. MSCK REPAIR TABLE discovers this layout. For non-Hive paths such as typical CloudTrail date paths, use ALTER TABLE ADD PARTITION or projection.
 
 ### Exam cues
 
 - If the question says queries scan years of logs for a date range, think date partition filters, because only matching partition locations need reading.
 - If the question says Parquet queries remain slow with many tiny files, think compaction, because columnar storage still has per-file overhead.
-- If the question says automate predictable partition locations, think partition projection, because it calculates paths from rules.
-- If the question says the projected table has many empty combinations, think sparse-partition overhead, because Athena still lists those computed locations.
+- If the question says convert JSON logs to Parquet with Athena, think CTAS, because it creates a table from query output in the chosen format.
 
 ### Remember
 

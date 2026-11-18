@@ -11,14 +11,13 @@ facts:
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#vpc-network-acls
 cards:
   - id: vpc-062
-    q: "Which VPC control works at the instance level and only has allow rules: security groups or network ACLs?"
-    a: "Security groups. Network ACLs work at the subnet level and can allow or deny."
-    facts: [sg-basic, nacl-basic]
+    q: "What does a security group do in an Amazon VPC?"
+    a: "A security group acts as a virtual firewall for an instance and controls which traffic can reach it."
+    facts: [sg-basic]
   - id: vpc-063
-    q: "A team must block one IP address from reaching every instance in a subnet. Which VPC feature can deny it?"
-    a: "A network ACL, which can deny traffic at the subnet level; security groups only allow."
-    trap: true
-    facts: [nacl-basic, sg-basic]
+    q: "Which Amazon VPC security control allows or denies traffic at the subnet level?"
+    a: "A network ACL controls inbound and outbound traffic at the subnet level."
+    facts: [nacl-basic]
 ---
 A VPC has two built-in network filters: security groups around instances and network ACLs around subnets. [Security groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups)
 

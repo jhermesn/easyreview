@@ -326,15 +326,6 @@ cards:
     facts:
       - edge-origin-request
       - edge-viewer-request
-  - id: cloudfront-050
-    q: A CloudFront distribution uses mutual TLS and needs custom checks on client certificate properties during
-      connection establishment. Which edge function type should it use?
-    a: A CloudFront Connection Function. It evaluates certificate and connection information during the TLS
-      handshake and allows or denies the connection; it cannot modify HTTP requests or responses.
-    facts:
-      - edge-connection-events
-      - edge-connection-decision
-      - edge-connection-http
 ---
 CloudFront Functions and Lambda@Edge run code at CloudFront events so a request or response can be changed during delivery. A trigger is an association between a function and an event on a cache behavior, the rule for a set of URL paths. Event placement decides whether the function also runs for cached content.
 
@@ -354,8 +345,6 @@ The following table compares HTTP request and response functions.
 | Runtime | JavaScript | Node.js or Python |
 | Execution duration | Submillisecond | Up to 30 seconds |
 | Network, file system, request body | No access | Access supported |
-
-Since November 2025, CloudFront also supports Connection Functions for mutual TLS (mTLS), where client and server both prove identity with certificates. These functions run during the TLS handshake to allow or deny a connection using custom certificate checks. They cannot modify HTTP requests or responses.
 
 To expose the request body, the data sent with a request, to Lambda@Edge, select `Include Body`. CloudFront exposes it as base64, a text encoding for binary data, and truncates it at 40 KB for viewer request or 1 MB for origin request. Reading without replacement still forwards the full original body to the origin.
 

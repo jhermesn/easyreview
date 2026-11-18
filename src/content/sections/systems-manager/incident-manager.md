@@ -50,18 +50,17 @@ cards:
     facts:
       - incident-escalate
   - id: systems-manager-083
-    q: A team using Incident Manager wants to improve detection and mitigation after an incident is
-      resolved. Which feature fits?
-    a: Post-incident analysis, which identifies response improvements and follow-up actions.
+    q: "How can a CloudWatch alarm start an automated response using Systems Manager Incident Manager?"
+    a: "Configure the alarm to create an incident using a response plan. Incident Manager can initiate Systems Manager Automation runbooks for response actions."
     facts:
-      - incident-analysis
+      - incident-detect
+      - incident-plan
+      - incident-runbook
   - id: systems-manager-084
-    q: Can a new AWS customer adopt Systems Manager Incident Manager after November 7, 2025?
-    a: No. It is closed to new customers; existing customers can continue in accounts where it was
-      already enabled.
-    trap: true
+    q: "A Systems Manager Incident Manager response must notify an on-call team and escalate if needed. What should define the notification path?"
+    a: "Use an engagement plan specifying contacts or on-call schedules and an escalation path."
     facts:
-      - incident-availability
+      - incident-escalate
 ---
 Incident Manager coordinates people, collaboration and automated response when an incident occurs. It closed to new customers in November 2025; existing enabled accounts can continue using it.
 

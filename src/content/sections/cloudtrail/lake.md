@@ -70,17 +70,17 @@ cards:
       - lake-existing-account
       - lake-existing-org
   - id: cloudtrail-044
-    q: A team associates a customer KMS key with a CloudTrail Lake event data store and later wants to
-      switch keys. Can it replace the association?
-    a: No. The associated KMS key cannot be removed or changed.
-    trap: true
+    q: "How can an existing CloudTrail Lake customer analyze events collected across accounts and Regions?"
+    a: "Use an organization event data store to collect the events and run SQL queries in CloudTrail Lake."
     facts:
-      - lake-key
+      - lake-organization
+      - lake-query
   - id: cloudtrail-045
-    q: How is a CloudTrail Lake SQL query billed?
-    a: By the amount of data scanned.
+    q: "A team needs to analyze older trail events with SQL in CloudTrail Lake. How can it make those events available?"
+    a: "Copy the previously retained trail events into a new or existing event data store, then query them."
     facts:
-      - lake-scan-cost
+      - lake-copy
+      - lake-query
 ---
 CloudTrail Lake lets existing customers analyze retained audit events with SQL, a language for selecting and combining stored records. It stores selected events in an event data store, an immutable collection whose retained records cannot be changed. [AWS Lake model](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html#cloudtrail-lake)
 

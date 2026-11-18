@@ -86,14 +86,6 @@ cards:
       - credits
       - performance
       - automation
-  - id: ebs-033
-    q: An AWS team creates many volumes from one FSR-enabled snapshot in one AZ. Why might some volumes
-      lack the FSR performance benefit?
-    a: The snapshot-AZ volume creation credit bucket may lack credits. Each FSR restoration consumes one
-      credit.
-    trap: true
-    facts:
-      - credits
   - id: ebs-034
     q: An EBS recovery plan allows time to initialize disks but needs a predictable download rate. Which
       alternative to FSR fits?
@@ -101,22 +93,6 @@ cards:
       snapshots. The download still happens after creation.
     facts:
       - rate
-  - id: ebs-035
-    q: A team specifies a volume initialization rate while restoring from an FSR-enabled EBS snapshot.
-      Which initialization method is used?
-    a: The specified initialization rate overrides FSR. Omit the rate to use FSR.
-    trap: true
-    facts:
-      - rate-overrides
-  - id: ebs-036
-    q: Does enabling FSR for an EBS snapshot guarantee full performance for unlimited restores at any
-      provisioned IOPS level?
-    a: No. Check creation credits and FSR performance limits. AWS recommends initialization above 64000
-      IOPS or 1000 MiB/s.
-    trap: true
-    facts:
-      - credits
-      - performance
 ---
 Fast snapshot restore (FSR) prepares an EBS snapshot so restored volumes can start fully initialized. Initialization means loading snapshot blocks onto the volume. FSR avoids the latency of loading a block on its first access, within its supported performance limits.
 
@@ -137,7 +113,6 @@ Fast snapshot restore (FSR) prepares an EBS snapshot so restored volumes can sta
 
 - If the question says a restored database is slow on initial reads and must start at full performance, think FSR, because the restored volume starts initialized within its supported limits.
 - If the question says a copy of an FSR snapshot lacks the benefit, think explicit enablement, because copies do not inherit FSR.
-- If the question says many concurrent restores from one snapshot are inconsistent in performance, think volume creation credits, because FSR is limited by the snapshot-AZ credit bucket.
 
 ### Remember
 
@@ -146,6 +121,5 @@ Fast snapshot restore (FSR) prepares an EBS snapshot so restored volumes can sta
 - Billing: per minute per snapshot-AZ pair, with a one-hour minimum.
 - Snapshot size: at most 16 TiB.
 - Full performance benefit: up to 64000 IOPS and 1000 MiB/s. Above these, initialize the volume as AWS recommends.
-- An explicit provisioned initialization rate overrides FSR.
 
 > **Trap:** An enable request is not enough. Check `enabled` state, credits, target AZ and supported volume performance before relying on FSR for recovery.

@@ -93,9 +93,9 @@ cards:
     a: A permission set is a policy template. Assigning it to a user or group creates an IAM role in each assigned account; changes to the set update the roles and policies.
     facts: [permission-set, role-provisioning]
   - id: iam-identity-center-002
-    q: What are the default and maximum IAM Identity Center account and access portal session durations?
-    a: "Account session: one hour by default, maximum 12 hours. Portal session: eight hours by default, maximum 90 days."
-    facts: [account-session, portal-session]
+    q: "A company wants employees to use an existing external identity provider to sign in to the AWS access portal. How does IAM Identity Center support this?"
+    a: "The external identity provider authenticates users through SAML. IAM Identity Center grants access using its policies."
+    facts: [saml-sign-in]
   - id: iam-identity-center-003
     q: A workforce needs console and CLI access across many AWS accounts using existing identities. What IAM Identity Center setup should be used?
     a: Connect the identity source and assign permission sets to users or groups in the accounts. Identity Center creates the account roles.
@@ -110,10 +110,9 @@ cards:
     a: Enable attributes for access control, map Department to the populated department attribute, and use aws:PrincipalTag in a permission set policy to compare the session tag with the resource tag.
     facts: [enable-abac, attribute-mapping, abac]
   - id: iam-identity-center-006
-    q: A user signs out of the IAM Identity Center portal. Does an existing AWS account role session end immediately?
-    a: No. The role session continues for its configured duration independently of the portal session.
-    facts: [independent-session]
-    trap: true
+    q: "A company needs to assign consistent AWS account permissions to groups across multiple accounts. What does IAM Identity Center use?"
+    a: "Use permission sets. They define IAM policy templates, and assignments create IAM roles with those policies in the target accounts."
+    facts: [permission-set, role-provisioning]
   - id: iam-identity-center-007
     q: Who configures MFA when IAM Identity Center uses an external identity provider?
     a: The external identity provider manages MFA.

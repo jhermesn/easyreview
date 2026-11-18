@@ -56,61 +56,27 @@ cards:
     q: Ten developers need the same permissions in AWS. What is the simplest way to manage them in IAM?
     a: Put the developers in an IAM user group and attach the policy to the group. Every user in it gets the permissions.
     facts: [group]
-  - id: iam-079
-    q: What are the three kinds of identity-based policies in IAM?
-    a: "- AWS managed: created and maintained by AWS, can't be edited\n- Customer managed: you create and edit them, reusable\n- Inline: embedded in one user, group or role"
-    facts: [aws-managed, customer-managed, inline]
   - id: iam-080
     q: What does the principle of least privilege mean for IAM permissions?
     a: Grant only the permissions a task needs, on specific resources and under specific conditions.
     facts: [least-privilege]
-  - id: iam-081
-    q: A company needs a reusable policy it can edit, attached to several roles. Which IAM policy type fits?
-    a: A customer managed policy.
-    facts: [customer-managed]
-  - id: iam-082
-    q: Can one IAM user group contain another group?
-    a: No. Groups can't be nested; they contain only users.
-    trap: true
-    facts: [group-rules]
   - id: iam-083
     q: Do AWS managed policies always give least-privilege permissions?
     a: No. They cover common use cases and may grant more than a specific task needs. Move to customer managed policies for least privilege.
     trap: true
     facts: [start-managed]
-  - id: iam-084
-    q: An employee moves from the support team to the finance team. How should an administrator change the employee's IAM permissions?
-    a: Remove the user from the support group and add them to the finance group, instead of editing the user's own permissions.
-    facts: [group-change-job]
-  - id: iam-095
-    q: An auditor needs a list of all IAM users with the status of their passwords, access keys and MFA. Which IAM feature provides it?
-    a: The IAM credential report.
-    facts: [credential-report]
-  - id: iam-096
-    q: An administrator wants to see which permitted services an IAM role never uses, to trim its permissions. Which IAM feature helps?
-    a: IAM last accessed information, which shows when each service was last used.
-    facts: [last-accessed]
   - id: iam-100
     q: Which IAM best practices apply when a company still needs IAM users with long-term credentials?
     a: Require MFA, update (rotate) their access keys, and regularly remove unused users and credentials.
     facts: [best-practices]
-  - id: iam-104
-    q: "Which is true of IAM user groups: they can be nested, a user can be in several groups, or every account has a default group with all users?"
-    a: "A user can belong to several groups. Groups cannot be nested, and there is no default group that holds every user."
-    trap: true
-    facts: [groups-flat]
-  - id: iam-105
-    q: "Which IAM feature tests whether policies would allow an action without making the real request?"
-    a: "The IAM policy simulator. It evaluates identity-based policies, permissions boundaries, SCPs and resource-based policies against a simulated request."
-    facts: [policy-simulator]
   - id: iam-106
-    q: "What is an IAM account alias?"
-    a: "A friendly name that replaces the numeric account ID in the sign-in URL for IAM users."
-    facts: [account-alias]
+    q: "How can an administrator give the same IAM permissions to several users?"
+    a: "Attach a policy to an IAM user group. Its permissions apply to every user in the group."
+    facts: [group]
   - id: iam-107
-    q: "Which two AWS services can hold SSL/TLS server certificates for use with AWS resources?"
-    a: "AWS Certificate Manager, the preferred option, and IAM, which stores server certificates and is required in Regions where ACM is not available."
-    facts: [server-certs]
+    q: "What does least privilege mean when granting IAM permissions?"
+    a: "Give only the permissions needed for the task, scoped to the relevant actions, resources and conditions."
+    facts: [least-privilege]
 ---
 IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 
@@ -121,23 +87,16 @@ IAM controls who can do what in an AWS account. Users are identities for people,
 3. Attach policies to the group, user or role. A policy lists allowed or denied actions on resources.
 4. Start from AWS managed policies, then narrow them into customer managed policies that give only what each job needs. [Least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)
 
-| Policy type | Who manages it | Reusable | Typical use |
-|---|---|---|---|
-| AWS managed | AWS | Yes, attach to many | Quick start for common jobs |
-| Customer managed | You | Yes, attach to many | Least-privilege permissions you maintain |
-| Inline | You | No, one identity only | A strict one-to-one permission |
-
 ### Exam cues
 
-- If the question says many users with the same permissions, think IAM group.
-- If the question says only the permissions needed, think least privilege.
-- If the question says a reusable policy you can edit, think customer managed policy.
-- If the question says audit the status of all users' credentials, think IAM credential report, because it lists passwords, keys and MFA per user.
+- If the question says many users need the same permissions, think IAM group, because a group policy gives its permissions to each user in the group.
+- If the question says only the permissions needed for a task, think least privilege, because it limits actions on specific resources under specific conditions.
+- If the question says a friendly IAM user sign-in URL, think account alias, because it replaces the numeric account ID in the URL. [Account alias](https://docs.aws.amazon.com/IAM/latest/UserGuide/console-account-alias.html#console-account-alias)
+- If the question says store a server certificate, think AWS Certificate Manager (ACM), because it is preferred; use IAM in Regions ACM does not support. [Server certificates](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html#id_credentials_server-certs)
 
 ### Remember
 
-- Groups contain users only; no nesting, no default group of all users.
-- AWS managed policies can't be edited.
 - Prefer temporary credentials (roles) over long-term IAM user keys.
+- For IAM users with long-term credentials, require MFA, update access keys and remove unused users and credentials. [IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 
-> **Trap:** A group is not an identity that can sign in or be named as a principal. It only hands permissions to its users.
+> **Trap:** AWS managed policies do not always grant least privilege. They cover common use cases and can grant more than a specific task needs. [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-use-aws-defined-policies)

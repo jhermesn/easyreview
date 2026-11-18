@@ -181,33 +181,12 @@ cards:
     a: Grant the S3 service principal kms:GenerateDataKey and kms:Decrypt in the KMS key policy.
     facts:
       - events-kms
-  - id: s3-100
-    q: An S3 event consumer maintains an index and receives out-of-order PUT events for one key. How can it identify the later event?
-    a: Compare sequencer values for that key after left-padding the shorter value with zeros. Sequencers cannot order different keys.
-    facts:
-      - events-sequencer
-  - id: s3-101
-    q: An S3 notification is rejected by an SQS queue with a small message limit. What limit should the team check?
-    a: Set the queue MaximumMessageSize to at least 64 KB. Notifications can be up to that size.
-    facts:
-      - events-queue-size
-  - id: s3-102
-    q: A PutBucketNotificationConfiguration request adds an SQS target but an existing SNS destination fails validation. Is the new configuration saved?
-    a: No. Normal destination validation is atomic and failure rejects the whole request. The operation replaces the whole configuration.
-    trap: true
-    facts:
-      - events-replace-config
   - id: s3-103
     q: Will an S3 ObjectRemoved notification alert a consumer when S3 Lifecycle automatically deletes an object?
     a: No. Subscribe to lifecycle expiration events for automatic lifecycle deletions.
     trap: true
     facts:
       - events-lifecycle-delete
-  - id: s3-104
-    q: An S3 event consumer sees a plus sign in an object key that contains a space. How should it interpret the key?
-    a: Decode it as a URL-encoded key; a plus sign represents a space.
-    facts:
-      - events-key-encoding
   - id: s3-128
     q: A security team wants a Lambda function to run whenever someone changes an object's ACL in an S3 bucket. Which S3 event type does it subscribe to?
     a: s3:ObjectAcl:Put, which fires when an ACL is put on an object or changed.
@@ -227,7 +206,6 @@ S3 event notifications start work when selected bucket events occur. They let a 
 4. Make processing idempotent, meaning a repeated event does not duplicate its effects. S3 notifications can arrive more than once or out of order.
 5. Keep output writes outside the triggering bucket or input prefix so processing does not recursively trigger itself.
 6. For SNS or SQS, grant the S3 service principal publish or send access in the destination policy, scoped to the source bucket ARN and account. A customer managed KMS key also needs a key policy granting S3 data key generation and decryption.
-7. Updating the bucket notification configuration replaces it in full. By default S3 validates destinations and rejects the whole update if validation fails.
 
 ### Exam cues
 
@@ -235,7 +213,6 @@ S3 event notifications start work when selected bucket events occur. They let a 
 - If the question says S3 processing must survive consumer downtime, think SQS, because the queue stores notifications until consumers can handle them.
 - If the question says an S3-triggered Lambda repeatedly processes its own output, think input-prefix isolation or separate buckets, because output uploads can trigger the same notification.
 - If the question says an `s3:ObjectRemoved:Delete` notification arrived, think an object deletion, not an empty bucket, because the event describes the removed object.
-- If an index receives out-of-order events for the same S3 key, compare the sequencer, a hexadecimal ordering value, after left-padding the shorter value. Sequencers cannot order different keys.
 - If a notification must report S3 Lifecycle deletions, select lifecycle expiration events, because ObjectRemoved excludes automatic lifecycle deletions.
 
 ### Remember
@@ -244,7 +221,5 @@ S3 event notifications start work when selected bucket events occur. They let a 
 - Delivery is at least once, with possible duplicates and reordering.
 - Prefix and suffix filters do not support wildcards; overlapping filters for the same event types can be invalid.
 - `s3:ObjectCreated:*` includes completed multipart uploads.
-- An SQS queue must accept messages up to 64 KB to accommodate the maximum S3 notification size.
-- Event object keys are URL encoded; decode plus signs as spaces.
 
 > **Trap:** A FIFO destination does not retroactively make S3 emit events in object-operation order.

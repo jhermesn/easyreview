@@ -280,26 +280,20 @@ cards:
       - access-role
       - instance-role
   - id: app-runner-005
-    q: Which service principals do App Runner access and instance roles trust?
-    a: "Access role: build.apprunner.amazonaws.com. Instance role: tasks.apprunner.amazonaws.com."
+    q: "A team wants App Runner to deploy a web application directly from source code. What must it configure?"
+    a: "Configure the managed runtime, build command, start command, and listening port. App Runner builds and runs the container image."
     facts:
-      - access-role-trust
-      - instance-role-trust
+      - code-build
   - id: app-runner-006
-    q: An App Runner team wants scaling to react to simultaneous requests per instance. Which setting applies, and
-      what is its default?
-    a: MaxConcurrency, which defaults to 100 concurrent requests per instance.
+    q: "How can an App Runner service deploy new versions from a configured source automatically?"
+    a: "Enable automatic deployment. App Runner monitors the source and deploys new image versions or qualifying code changes."
     facts:
-      - concurrency-scaling
-      - concurrency-default
+      - automatic-deploy
   - id: app-runner-007
-    q: What do App Runner MinSize and MaxSize control, and what are their API defaults?
-    a: MinSize is the provisioned-instance minimum, default 1. MaxSize caps active instances, default 25. A higher
-      minimum spreads capacity across more Availability Zones at higher minimum cost.
+    q: "An App Runner code service uses a source directory inside a repository. Which commits trigger automatic deployments?"
+    a: "Commits that change the configured source directory. The default directory is the repository root."
     facts:
-      - minimum-scaling
-      - maximum-scaling
-      - minimum-azs
+      - source-directory
   - id: app-runner-008
     q: An App Runner service accepts a network connection but must test an application URL for health. What should
       the team configure?
@@ -310,40 +304,27 @@ cards:
       - health-protocol
       - health-path
   - id: app-runner-009
-    q: What are the default App Runner health-check path, interval, timeout and success/failure thresholds?
-    a: HTTP path /; interval 5 seconds; timeout 2 seconds; healthy after 1 consecutive success; unhealthy after 5
-      consecutive failures.
+    q: "A team wants to decide when to deploy a new App Runner source version. How can it start deployment?"
+    a: "Start a manual deployment through the console, CLI, or StartDeployment API."
     facts:
-      - health-path
-      - health-interval
-      - health-timeout
-      - health-healthy
-      - health-unhealthy
+      - manual-deploy
   - id: app-runner-010
-    q: An App Runner service needs a private RDS database, but public internet callers should still reach the
-      application. What should the team configure?
-    a: Use a VPC connector with private subnets for outbound database traffic. Keep the public incoming endpoint;
-      outbound and inbound configuration are separate.
+    q: "Can App Runner automatically deploy new images from an Amazon ECR repository in another AWS account?"
+    a: "No. Automatic deployment does not support cross-account ECR images; start deployments manually."
     facts:
-      - vpc-egress
-      - private-subnets
-      - egress-not-ingress
-      - public-ingress
+      - automatic-image-exclusions
+      - manual-deploy
   - id: app-runner-011
-    q: An App Runner application loses access to public APIs after its outbound traffic is connected to a VPC.
-      What connectivity should the team add?
-    a: A public NAT gateway for internet access, or VPC endpoints for the supported AWS services it needs.
+    q: "An App Runner service uses an ECR Public image. How should a team deploy a new image version?"
+    a: "Start a manual deployment. Automatic deployment is not supported for ECR Public images."
     facts:
-      - vpc-internet
+      - automatic-image-exclusions
+      - manual-deploy
   - id: app-runner-012
-    q: Can an existing App Runner customer create another service after April 30, 2026?
-    a: Yes. The restriction applies to new customers; existing customers can create resources and services. AWS
-      does not plan new App Runner features.
-    trap: true
+    q: "Which repository sources can App Runner use to deploy a web application?"
+    a: "Use source code from GitHub or Bitbucket, or a source image from Amazon ECR."
     facts:
-      - new-customer-cutoff
-      - existing-customer-access
-      - feature-roadmap
+      - source-providers
   - id: app-runner-013
     q: An App Runner deployment is temporarily blocked with OPERATION_IN_PROGRESS during maintenance. Does that
       state alone mean the application has stopped serving requests?
@@ -352,11 +333,10 @@ cards:
     facts:
       - maintenance-state
   - id: app-runner-014
-    q: Does App Runner stop charging for every provisioned instance that is not actively handling traffic?
-    a: No. Memory is charged for all provisioned instances; CPU usage charges apply to the active subset.
-    trap: true
+    q: "How does App Runner maintain capacity for old and new code during a deployment?"
+    a: "It temporarily doubles provisioned instances during deployment."
     facts:
-      - provisioned-cost
+      - deployment-capacity
 ---
 
 App Runner turns source code or a container image, a packaged application with its dependencies, into a managed web service. It handles building when needed, deployment and scaling so the team can run a web application without provisioning its compute resources directly.

@@ -112,8 +112,10 @@
               "sections": [
                 "sagemaker-ai/build-train-and-deploy-models",
                 "transcribe/speech-to-text",
+                "transcribe/more-essentials",
                 "translate/language-translation",
                 "comprehend/text-analysis",
+                "comprehend/more-essentials",
                 "lex/conversational-interfaces",
                 "polly/text-to-speech",
                 "rekognition/image-and-video-analysis",
@@ -163,7 +165,6 @@
               "sections": [
                 "generative-ai/choosing-aws-genai-services",
                 "sagemaker-ai/inference-options",
-                "ec2/instance-types",
                 "ecs/basics",
                 "eks/basics",
                 "lambda/basics"
@@ -360,8 +361,7 @@
                 "bedrock/pricing-and-throughput",
                 "generative-ai/choosing-aws-genai-services",
                 "billing-and-cost-management/budgets",
-                "billing-and-cost-management/cost-explorer",
-                "ec2/purchasing-options"
+                "billing-and-cost-management/cost-explorer"
               ]
             }
           ]
@@ -763,7 +763,6 @@
                 "config/basics",
                 "inspector/basics",
                 "artifact/reports-and-agreements",
-                "artifact/compliance-programs",
                 "cloudtrail/basics",
                 "trusted-advisor/basics"
               ]
@@ -787,8 +786,7 @@
               "sections": [
                 "ai-security-governance/securing-ai-workloads",
                 "ai-security-governance/data-governance",
-                "well-architected/well-architected-tool",
-                "well-architected/framework-pillars"
+                "well-architected/well-architected-tool"
               ]
             }
           ]

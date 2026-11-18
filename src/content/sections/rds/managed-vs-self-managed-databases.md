@@ -58,99 +58,45 @@ facts:
     text: "RDS instance usage is billed in one-second increments with a 10-minute minimum."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_OnDemandDBInstances.html
 cards:
-  - id: rds-041
-    q: What does Amazon RDS manage that a database on Amazon EC2 leaves to the customer?
-    a: Database and OS installation and patching, backups, scaling, high availability, and failure detection and recovery.
-    facts: [rds-manages, comparison]
-  - id: rds-042
-    q: A team wants a relational MySQL database without patching or backing it up themselves. Should they run it on EC2 or Amazon RDS?
-    a: Amazon RDS, which AWS recommends as the default for relational databases.
-    facts: [default-choice, rds-manages]
-  - id: rds-043
-    q: When does running a database yourself on Amazon EC2 make sense instead of Amazon RDS?
-    a: When you need full control of the operating system or database software, or an engine RDS doesn't support. RDS Custom is the managed option when you need OS access for some engines.
-    facts: [comparison, rds-custom, engines]
-  - id: rds-044
-    q: Which database engines does Amazon RDS support (besides Aurora)?
-    a: IBM Db2, MariaDB, Microsoft SQL Server, MySQL, Oracle Database and PostgreSQL.
-    facts: [engines]
-  - id: rds-045
-    q: With Amazon RDS, does AWS optimize the customer's application queries?
-    a: No. Application optimization stays with the customer on premises, on EC2 and on RDS.
-    trap: true
-    facts: [comparison]
   - id: rds-046
     q: "Which of these AWS databases are NoSQL: Amazon DynamoDB, Amazon Neptune, Amazon DocumentDB, Amazon Aurora?"
     a: DynamoDB (key-value), Neptune (graph) and DocumentDB (document). Aurora is relational.
     facts: [nosql-types]
-  - id: rds-047
-    q: A company runs an Amazon RDS database around the clock for the next three years. How can it lower the instance cost?
-    a: Buy RDS reserved DB instances for a three-year term (No, Partial or All Upfront).
-    facts: [reserved-db]
-  - id: rds-056
-    q: "A legacy Oracle application needs OS-level customization of the database host and higher availability. Which managed option fits?"
-    a: "RDS Custom for Oracle with a Multi-AZ deployment. Regular RDS for Oracle gives no OS access, and EC2 leaves all failover work to the team. Note that AWS ends support for RDS Custom for Oracle on March 31, 2027."
-    facts: [custom-multiaz, custom-oracle-eos]
-  - id: rds-057
-    q: "An RDS production database will run for years. How can its instance cost drop?"
-    a: "Buy RDS reserved DB instances for a one- or three-year term. They are a billing discount applied to matching DB instances."
-    facts: [reserved-db]
-  - id: rds-058
-    q: "Which RDS engine lets a company bring its own existing database licenses?"
-    a: "RDS for Oracle, which offers Bring Your Own License as well as License Included."
-    facts: [oracle-byol]
-  - id: rds-059
-    q: "IoT sensors write trillions of timestamped readings a day that must be queried by time window. Which AWS database family fits, and which option takes new customers?"
-    a: "Amazon Timestream, the time series database. Timestream for LiveAnalytics closed to new customers on June 20, 2025, so new workloads use Timestream for InfluxDB."
-    facts: [timestream, timestream-closed]
   - id: rds-060
-    q: "Which AWS service offered managed Hyperledger Fabric networks and Ethereum nodes, and what is its status?"
-    a: "Amazon Managed Blockchain. It stopped accepting new customers on October 29, 2026, and access ends after September 29, 2027."
-    facts: [managed-blockchain]
-  - id: rds-066
-    q: "A test database on RDS is used two days a week. Can the team simply keep it stopped between tests?"
-    a: "Only for up to 7 consecutive days; RDS then starts it automatically. For longer idle periods, take a snapshot and delete the instance, then restore when needed."
-    trap: true
-    facts: [stop-seven-days]
+    q: "Which managed AWS service helps a company run a relational database without handling routine database administration?"
+    a: "Amazon RDS. It helps set up, operate and scale relational databases and manages common administration tasks."
+    facts: [rds]
   - id: rds-067
-    q: "A DBA must install a third-party agent on the host of a managed SQL Server database. Which service allows it, and what should the DBA do first?"
-    a: "RDS Custom for SQL Server. Pause RDS Custom automation for the duration of the change so recovery automation does not act on it."
-    facts: [custom-engines, custom-pause]
+    q: "A company needs a managed relational database but also needs to customize its operating system for a legacy application. Which Amazon RDS option fits?"
+    a: "Amazon RDS Custom provides access to customize the database environment and operating system while automating administration tasks."
+    facts: [rds-custom]
 ---
-A database can run on servers you manage or as a managed AWS service. Amazon RDS runs relational databases for you: AWS installs, patches, backs up and scales them, and you focus on the data and the application. [What is Amazon RDS?](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome)
+AWS offers managed services for relational databases, NoSQL databases and blockchain networks. Amazon RDS handles common administration tasks for relational databases, while RDS Custom allows access to the database environment and operating system. [What is Amazon RDS?](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome)
 
 ### How it works
 
-| Task | On premises | Amazon EC2 | Amazon RDS |
-|---|---|---|---|
-| Application optimization | Customer | Customer | Customer |
-| Scaling, high availability, backups | Customer | Customer | AWS |
-| Database and OS patching and installation | Customer | Customer | AWS |
-| Server maintenance, hardware, power, network, cooling | Customer | AWS | AWS |
+1. Choose a database type for the data: relational databases include Amazon RDS and Amazon Aurora; NoSQL databases include key-value, document and graph databases. [Comparison of responsibilities](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison), [NoSQL databases](https://aws.amazon.com/nosql/)
+2. Use Amazon RDS Custom when a managed database needs customization of its database environment or operating system. [RDS Custom](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom)
+3. Before customizing an RDS Custom for SQL Server host, pause automation for the change so monitoring and recovery do not interfere. Automation resumes when the pause ends. [Pause automation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-managing-sqlserver.pausing.html#custom-managing-sqlserver.pausing)
 
-1. Choose Amazon RDS by default for relational databases. [Comparison of responsibilities](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison)
-2. Choose EC2 when you need full control of the OS or database software, or an unsupported engine.
-3. Choose Amazon RDS Custom when an application needs OS access but you still want automation. [RDS Custom](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom)
-
-AWS also offers purpose-built databases:
+Examples of database types:
 
 | Type | Service |
 |---|---|
 | Relational | Amazon RDS, Amazon Aurora |
 | Key-value NoSQL | Amazon DynamoDB |
-| In-memory | Amazon ElastiCache |
 | Document | Amazon DocumentDB |
 | Graph | Amazon Neptune |
 
 ### Exam cues
 
-- If the question says reduce database administration, think a managed database such as Amazon RDS.
-- If the question says full control of the OS or custom database software, think EC2 (or RDS Custom).
+- If the question says key-value, document or graph database, think NoSQL: DynamoDB, DocumentDB or Neptune, respectively.
+- If the question says install an agent on a managed SQL Server host, think RDS Custom for SQL Server and pause automation before the change.
+- If the question says managed Hyperledger Fabric networks or Ethereum nodes, think Amazon Managed Blockchain. [Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/what-is-managed-blockchain.html#what-is-managed-blockchain)
 
 ### Remember
 
-- RDS engines: Db2, MariaDB, SQL Server, MySQL, Oracle, PostgreSQL; plus Aurora.
-- RDS handles backups, patching, failover and read replicas.
 - NoSQL: DynamoDB, DocumentDB, Neptune. Relational: RDS, Aurora.
+- Amazon Managed Blockchain stopped accepting new customers on October 29, 2026; access ends after September 29, 2027.
 
-> **Trap:** A managed database doesn't make AWS responsible for your data or access. The customer still controls who can connect and what is stored.
+> **Trap:** Aurora is relational, while DynamoDB, DocumentDB and Neptune are NoSQL databases.

@@ -15,8 +15,8 @@ cards:
     a: AWS IoT Core.
     facts: [purpose]
   - id: iot-core-002
-    q: Which messaging protocols does AWS IoT Core support for devices?
-    a: MQTT, MQTT over WSS, HTTPS and LoRaWAN.
+    q: "Which AWS service helps manage IoT devices in the field?"
+    a: "AWS IoT Core supports connectivity for managing devices in the field."
     facts: [protocols]
   - id: iot-core-003
     q: Is Amazon SQS the service for managing and connecting IoT devices?

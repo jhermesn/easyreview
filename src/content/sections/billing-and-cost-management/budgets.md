@@ -32,46 +32,28 @@ cards:
     q: A company wants an email before its monthly AWS spend goes over 1,000 USD. Which AWS service does this?
     a: AWS Budgets, with an alert on forecasted spend, which fires before the cost accrues.
     facts: [purpose, actual-forecast]
-  - id: billing-and-cost-management-002
-    q: A team wants AWS to stop people from launching new resources in an account once it reaches its budget. What can do this?
-    a: An AWS Budgets action that applies a custom IAM policy denying new provisioning at the threshold.
-    facts: [actions]
-  - id: billing-and-cost-management-003
-    q: Which AWS service alerts when Reserved Instance or Savings Plans utilization falls below a target?
-    a: AWS Budgets, with a utilization or coverage budget notifying by email or Amazon SNS.
-    facts: [purpose, notifications]
   - id: billing-and-cost-management-004
     q: Does AWS Budgets only report costs after they happen?
     a: No. It can alert on forecasted spend before it accrues, as well as on actual spend.
     trap: true
     facts: [actual-forecast]
-  - id: billing-and-cost-management-038
-    q: "A team must be told when too much EC2, Fargate and Lambda usage runs outside its Compute Savings Plans. What fits?"
-    a: "An AWS Budgets Savings Plans coverage budget with a coverage threshold and notifications. A utilization budget tracks the opposite problem, unused commitment."
-    facts: [coverage-budgets]
-  - id: billing-and-cost-management-040
-    q: "A new learner wants an email as soon as the account spends anything beyond the Free Tier. What is the quickest setup?"
-    a: "The zero spend budget template in AWS Budgets."
-    facts: [budget-templates]
 ---
-AWS Budgets sets a spending or usage target and alerts, or acts, when the target is at risk. It looks forward, while Cost Explorer looks back. [Managing costs with AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs)
+AWS Budgets tracks costs against a spending target and can alert on actual or forecasted spending. [Managing costs with AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs)
 
 ### How it works
 
-1. Create a budget: cost, usage, or Reserved Instance and Savings Plans utilization or coverage.
-2. Choose the period: monthly, daily, or a custom one such as a fiscal year.
-3. Add thresholds on actual or forecasted values, with notifications by email or Amazon SNS.
-4. Optionally attach an action, such as applying an IAM policy that blocks new resources.
+1. Create a cost budget with a spending target and period, such as a monthly budget.
+2. Add a threshold for actual or forecasted spending.
+3. Set notifications by email or Amazon SNS.
 
 ### Exam cues
 
-- If the question says alert before spending passes a limit, think AWS Budgets with a forecast alert.
-- If the question says automatically restrict provisioning at a budget threshold, think a Budgets action.
-- If the question says track Reserved Instance or Savings Plans utilization, think AWS Budgets.
+- If the question says alert before spending passes a limit, think AWS Budgets with a forecast alert, because it can alert before the cost accrues.
+- If the question says alert on spending already incurred, think an actual spend alert, because it tracks costs after they accrue.
 
 ### Remember
 
 - Alerts on actual and forecasted spend.
 - Notifications through email and Amazon SNS.
 
-> **Trap:** AWS Budgets doesn't cap spending by itself. It alerts, and acts only if you configure an action.
+> **Trap:** AWS Budgets doesn't stop spending by itself. A cost budget alerts when actual or forecasted spending crosses its threshold.

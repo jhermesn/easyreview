@@ -65,16 +65,16 @@ cards:
       - automated-sampling
       - job-scope
   - id: macie-006
-    q: What does an Amazon Macie discovery result record when an analyzed S3 object produces no sensitive data finding?
-    a: Details of the analysis, including no detection or an analysis error. A finding specifically reports detected sensitive data.
+    q: "A security team needs to distinguish sensitive data discovered in S3 objects from bucket access risks. How does Amazon Macie report them?"
+    a: "Sensitive data findings report detected content. Policy findings report bucket security or privacy issues."
     facts:
-      - job-records
+      - finding-types
   - id: macie-007
-    q: A recurring Amazon Macie job has completed its initial run. Does every later run reread all unchanged objects?
-    a: No. Later runs analyze objects created or changed since the previous run.
-    trap: true
+    q: "A company needs Amazon Macie to inspect selected S3 buckets for sensitive data on a recurring schedule. What should it configure?"
+    a: "A periodic sensitive data discovery job with the selected bucket scope. Jobs can run daily, weekly or monthly."
     facts:
-      - job-incremental
+      - job-scope
+      - job-schedule
   - id: macie-012
     q: How does a security team get an alert as soon as Amazon Macie finds sensitive data?
     a: An EventBridge rule on Macie findings (source aws.macie) that targets SNS.

@@ -64,10 +64,6 @@ cards:
     q: An encrypted RDS snapshot must be shared with another AWS account, but sharing fails. The snapshot uses the default aws/rds key. What fixes it?
     a: "Copy the snapshot with a customer managed KMS key, share the copy, and grant the other account use of that key."
     facts: [share-cmk]
-  - id: rds-050
-    q: A Lambda function must connect to RDS for PostgreSQL without storing a database password. Which feature fits?
-    a: "IAM database authentication: the function's role generates a 15-minute token used instead of a password."
-    facts: [iam-auth]
   - id: rds-051
     q: How does a Multi-AZ RDS deployment reduce downtime during operating system maintenance?
     a: "RDS patches the standby, fails over to it, then patches the old primary, which becomes the standby."
@@ -98,11 +94,6 @@ cards:
     q: "Auditors need RDS for MySQL audit logs searchable and retained for a year. What do you configure?"
     a: "Publish the audit log to CloudWatch Logs and set the log group retention to a year."
     facts: [log-export]
-  - id: rds-076
-    q: "An RDS DB instance was created with Public access set to Yes, but its DB subnet group contains private subnets. Can clients on the internet reach it?"
-    a: "No. **Every** subnet in the DB subnet group must be public for a publicly accessible DB instance, and the VPC needs DNS hostnames and DNS resolution turned on."
-    trap: true
-    facts: [public-access]
   - id: rds-077
     q: "A company runs RDS for SQL Server and its auditors require the database engine itself to encrypt data files. Which feature fits?"
     a: "**Transparent Data Encryption (TDE)**, available on RDS for Oracle and RDS for SQL Server.\nIt uses its own keys and can run alongside RDS encryption at rest."
@@ -116,14 +107,14 @@ cards:
     a: "Its **logs, automated backups, read replicas and snapshots**, along with the instance storage."
     facts: [encryption-scope]
 ---
-RDS security comes down to three questions: is data encrypted at rest (decided at creation), is the connection encrypted (SSL/TLS), and how do clients authenticate (passwords or IAM tokens). Maintenance behavior on Multi-AZ is the other common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
+RDS security includes encryption at rest and SSL/TLS encryption for connections. Maintenance behavior on Multi-AZ is another common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
 
 ### How it works
 
 1. Choose encryption and a KMS key when creating the instance.
 2. To fix an unencrypted instance: snapshot, encrypted copy, restore (or blue/green).
 3. To share an encrypted snapshot: it must use a customer managed key shared with the target account.
-4. Clients use SSL/TLS in transit and, for MariaDB, MySQL and PostgreSQL, optional IAM authentication tokens.
+4. Clients use SSL/TLS to encrypt connections in transit.
 
 | Maintenance on Multi-AZ | Effect |
 |---|---|
@@ -134,12 +125,11 @@ RDS security comes down to three questions: is data encrypted at rest (decided a
 
 - If the question says encrypt an existing unencrypted RDS database, think encrypted snapshot copy and restore.
 - If the question says share an encrypted snapshot across accounts, think a customer managed key.
-- If the question says no database passwords for Lambda or EC2, think IAM database authentication (or Secrets Manager).
+- If the question says encrypt connections to an RDS database, think SSL/TLS.
 
 ### Remember
 
 - Encryption at rest is set at creation; the KMS key can't change later.
 - Default-key snapshots can't be shared; encrypted snapshots can't be public.
-- IAM auth tokens last 15 minutes; MariaDB, MySQL, PostgreSQL.
 
 > **Trap:** Multi-AZ protects against OS patching and instance failure, not engine upgrades. An engine version upgrade still causes downtime.

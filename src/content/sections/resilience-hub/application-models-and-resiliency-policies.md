@@ -84,9 +84,9 @@ cards:
     a: RTO is acceptable downtime; RPO is the acceptable period of data loss.
     facts: [rto-definition, rpo-definition]
   - id: resilience-hub-012
-    q: How does the next generation of AWS Resilience Hub change application modeling and assessment?
-    a: It groups services in systems, describes paths as user journeys, discovers dependencies and uses generative AI for failure mode assessments.
-    facts: [next-model, next-assessment, next-discovery]
+    q: "A business specifies maximum acceptable downtime and data loss for a Regional outage. How should a team express these needs in AWS Resilience Hub?"
+    a: "Set the Region disruption RTO and RPO targets in a resiliency policy. RTO covers restoration time; RPO covers the age of the recovery point."
+    facts: [policy-targets, rto-definition, rpo-definition]
 ---
 AWS Resilience Hub helps teams assess whether an application's recovery estimates meet business targets. In the original experience, the application model identifies resources to assess and the policy states the recovery targets.
 

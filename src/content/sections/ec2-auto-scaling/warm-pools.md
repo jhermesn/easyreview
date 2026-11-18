@@ -66,13 +66,6 @@ cards:
       - root
       - hibernation-support
       - mixed
-  - id: ec2-auto-scaling-048
-    q: How is an EC2 Auto Scaling warm pool sized by default, and what changes the calculation?
-    a: Maximum group capacity minus desired capacity. MaxGroupPreparedCapacity supplies a separate prepared-capacity limit; MinSize can maintain a minimum pool size.
-    facts:
-      - size
-      - prepared
-      - minimum
   - id: ec2-auto-scaling-049
     q: An EC2 Auto Scaling team wants initialized instances returned to its warm pool on scale-in. What must it configure?
     a: An instance reuse policy. Default scale-in terminates the instances.
@@ -83,20 +76,10 @@ cards:
     a: A launch lifecycle hook. It delays stopping or hibernation until initialization completes and can pause promotion into service again.
     facts:
       - hooks
-  - id: ec2-auto-scaling-051
-    q: An EC2 Auto Scaling warm pool is empty when demand rises. Does scale-out have to wait for it to refill?
-    a: No. Instances can cold-start directly into the group, subject to maximum capacity.
-    trap: true
-    facts:
-      - cold
   - id: ec2-auto-scaling-052
-    q: Do stopped EC2 Auto Scaling warm-pool instances have no continuing charges?
-    a: No. Volumes and attached Elastic IP addresses still incur charges. Hibernation also needs volume space for memory contents.
-    trap: true
-    facts:
-      - cost
-      - hibernation-cost
-      - running-cost
+    q: "An EC2 Auto Scaling application scales out slowly because new instances take a long time to initialize. What can reduce the delay?"
+    a: "Use a warm pool of pre-initialized instances so the group can add prepared capacity more quickly."
+    facts: [pool]
 diagrams:
   - id: asg-warm-pool-flow
     title: Prepare an instance before demand arrives
@@ -154,15 +137,14 @@ diagrams:
       - Draw prepared capacity from the pool on scale-out.
       - Finish the launch hook before service entry.
 ---
-A warm pool keeps initialized EC2 instances ready beside an Auto Scaling group. It reduces the time needed to add capacity when a fresh instance takes a long time to prepare. A warm start reuses preparation already done; a cold start launches directly into the group.
+A warm pool keeps initialized EC2 instances ready beside an Auto Scaling group. It reduces the time needed to add capacity when a fresh instance takes a long time to prepare.
 
 ### How it works
 
 1. Auto Scaling prepares pool instances. Use a launch lifecycle hook to finish initialization before they stop or hibernate.
 2. Keep prepared instances in a supported state. Hibernation saves memory contents to the EBS root volume so they can be restored when the instance starts.
 3. On scale-out, take an instance from the pool. A launch hook can pause it again before service entry; it counts toward desired capacity when it leaves the pool.
-4. Size the pool as maximum capacity minus desired capacity, or use MaxGroupPreparedCapacity as a separate prepared-capacity limit. MinSize can preserve a minimum pool size.
-5. On scale-in, instances terminate by default. Enable an instance reuse policy to return them to the pool. An instance refresh replaces serving instances first, then pool instances.
+4. On scale-in, instances terminate by default. Enable an instance reuse policy to return them to the pool. An instance refresh replaces serving instances first, then pool instances.
 
 | Pool state | Resource cost or requirement |
 |---|---|
@@ -175,12 +157,9 @@ A warm pool keeps initialized EC2 instances ready beside an Auto Scaling group. 
 - If the question says long first boot delays scale-out, think warm pool, because preparation happens before demand arrives.
 - If the question says reuse configured instances after scale-in, think instance reuse policy, because default scale-in terminates them.
 - If the question says setup is interrupted when pool instances stop, think launch lifecycle hook, because stopping does not wait for setup by itself.
-- If the question says the pool is depleted, think cold start into the group, because an empty pool does not prevent scale-out below maximum capacity.
 
 ### Remember
 
-- Default pool size = group maximum minus desired capacity.
-- MaxGroupPreparedCapacity sets a separate prepared-capacity limit; MinSize has no default minimum.
 - Mixed groups with warm pools cannot use instance weighting or Spot.
 - Stopped and Hibernated require EBS root volumes.
 

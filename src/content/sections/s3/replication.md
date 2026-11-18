@@ -234,28 +234,11 @@ cards:
     a: Enable S3 Replication Time Control. It replicates 99.9 percent of uploaded objects within 15 minutes and enables replication metrics.
     facts:
       - replication-rtc
-  - id: s3-085
-    q: An S3 Replication Time Control workload exceeds its default transfer rate quota. Does the SLA apply during that period?
-    a: No. The SLA does not apply when the replication transfer rate exceeds the default 1 Gbps quota.
-    trap: true
-    facts:
-      - replication-rtc-quota
   - id: s3-086
     q: How can a team retry failed S3 replicas or replicate objects that existed before a rule?
     a: Run S3 Batch Replication with an existing replication configuration and a manifest.
     facts:
       - replication-batch-retry
-  - id: s3-087
-    q: A destination S3 object version was deleted by version ID. Can S3 Batch Replication recreate that version?
-    a: No. Copy the source object in place to create a new source version eligible for live replication.
-    trap: true
-    facts:
-      - replication-batch-deleted
-  - id: s3-088
-    q: How can an operator distinguish pending from failed S3 object replication?
-    a: Use HeadObject and inspect the x-amz-replication-status header.
-    facts:
-      - replication-status
   - id: s3-089
     q: A team replicates SSE-KMS encrypted S3 objects to another account. Which destination key should it use?
     a: Use a customer managed KMS key owned by the destination account and grant the replication role access in the key policy.
@@ -267,22 +250,11 @@ cards:
     trap: true
     facts:
       - replication-requester-pays
-  - id: s3-091
-    q: When does an S3 destination lifecycle rule start counting the age of a replicated object?
-    a: From the original object's creation time, not its arrival at the destination.
-    facts:
-      - replication-destination-lifecycle
   - id: s3-105
     q: An administrator cannot configure an S3 replication role for a bucket. Which permissions must the caller have?
     a: The caller needs s3:PutReplicationConfiguration and iam:PassRole.
     facts:
       - replication-config-permission
-  - id: s3-106
-    q: A team wants S3 replication failure notifications without a replication time target. Must it enable S3 Replication Time Control?
-    a: No. Enable replication metrics on the rule and configure the failure notification. S3 RTC is required for threshold notifications.
-    trap: true
-    facts:
-      - replication-failure-events
   - id: s3-107
     q: An SSE-S3 encrypted S3 object is replicated to a bucket whose default encryption is SSE-KMS. Which encryption type does the replica use?
     a: SSE-S3. Replicas of encrypted objects use the source encryption type, not the destination default.
@@ -308,8 +280,8 @@ S3 Replication creates copies in other buckets without making the application up
 3. For a different destination account, grant replication access in its bucket policy. Use destination Bucket owner enforced Object Ownership when that account must own replicas.
 4. For server-side encryption using KMS keys (SSE-KMS), or its dual-layer form (DSSE-KMS), explicitly enable encrypted-object replication and specify a destination-Region KMS key. Grant source decrypt and destination encrypt access.
 5. S3 copies new matching versions. Configure destination lifecycle and other bucket settings separately.
-6. To backfill existing objects or retry failures, run S3 Batch Replication with a manifest and an existing replication configuration. Inspect the source object's `HeadObject` replication status to distinguish pending work from failures.
-7. The caller setting replication needs `s3:PutReplicationConfiguration` and `iam:PassRole`. Enable replication metrics and a failure notification to receive failure events; threshold events require S3 RTC.
+6. To backfill existing objects or retry failures, run S3 Batch Replication with a manifest and an existing replication configuration.
+7. The caller setting replication needs `s3:PutReplicationConfiguration` and `iam:PassRole`.
 
 ### Exam cues
 
@@ -318,7 +290,6 @@ S3 Replication creates copies in other buckets without making the application up
 - If the question says a replication chain misses copies from its first bucket, think direct source-to-destination rules, because live replication skips replicas from another rule.
 - If the question requires a replication time target and CloudWatch visibility, think S3 Replication Time Control, because it enables replication metrics and replicates 99.9 percent of uploaded objects within 15 minutes.
 - If the question says an SSE-KMS replica must be readable in another account, think a destination-owned customer managed KMS key and key policy access for the replication role.
-- If a destination version was deleted by version ID, think an in-place source copy to create a new version, because Batch Replication cannot recreate that deleted version.
 - If the question says copy every new object to buckets in several Regions, think S3 Replication to multiple destinations, because one source bucket can replicate to many.
 
 ### Remember
@@ -330,7 +301,5 @@ S3 Replication creates copies in other buckets without making the application up
 - SSE-S3 and SSE-C do not need the SSE-KMS opt-in.
 - Replicas of SSE-S3, SSE-KMS, or DSSE-KMS objects keep the source encryption type rather than using the destination bucket default.
 - Cross-account destinations cannot use Requester Pays.
-- Destination lifecycle rules measure age from the original object's creation time.
-- The S3 RTC SLA does not apply above the default 1 Gbps transfer rate quota.
 
 > **Trap:** A destination bucket does not automatically inherit the source lifecycle configuration. A version-specific source delete also does not remove the replica.

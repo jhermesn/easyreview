@@ -51,9 +51,9 @@ cards:
     trap: true
     facts: [cross-az, cross-az-ec2]
   - id: billing-and-cost-management-022
-    q: How much data transfer out to the internet does AWS include free each month?
-    a: 100 GB per month, aggregated across all services and Regions except China and GovCloud.
-    facts: [free-100gb]
+    q: How do AWS data transfer charges differ for traffic coming from and going to the internet?
+    a: Data transfer into AWS from the internet is free. Transfer from AWS to the internet can incur charges.
+    facts: [inbound-free, outbound-charged]
   - id: billing-and-cost-management-028
     q: An application on Amazon EC2 reads objects from an Amazon S3 bucket in the same Region. Is the data transfer from S3 to EC2 charged?
     a: No. Data transfer from S3 to any AWS service in the same Region is free.
@@ -64,14 +64,13 @@ cards:
     a: No. Direct transfer between S3 and EC2 in the same Region is free in both directions.
     facts: [ec2-s3-free]
   - id: billing-and-cost-management-037
-    q: "Two EC2 instances in different AZs replicate a database over their Elastic IP addresses and the transfer bill is high. What lowers it?"
-    a: "Replicate over the instances private IP addresses. Traffic to a public or Elastic IPv4 address is charged in each direction even inside the Region."
-    facts: [public-ip-in-region]
+    q: "How are transfers between Availability Zones in the same AWS Region generally charged?"
+    a: "They are charged in both directions, although some services have no charge for in-Region traffic."
+    facts: [cross-az]
   - id: billing-and-cost-management-039
-    q: "Is an Elastic IP address free while it is attached to a running instance?"
-    a: "No. AWS charges for every public IPv4 address, attached or not, including public IPs on running instances."
-    trap: true
-    facts: [public-ipv4-charge]
+    q: "How is data transfer between AWS Regions charged?"
+    a: "AWS charges for data leaving the source Region; data entering the destination Region is free."
+    facts: [inter-region]
   - id: billing-and-cost-management-047
     q: "Two chatty EC2 instances move terabytes between them. How can the transfer be free?"
     a: "Keep them in the same Availability Zone and use private IP addresses."

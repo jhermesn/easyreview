@@ -87,20 +87,6 @@ cards:
     facts:
       - ip-reputation
       - bots
-  - id: waf-014
-    q: What evaluation windows and minimum limit can an AWS WAF rate-based rule use?
-    a: 60, 120, 300 or 600 seconds; 300 seconds is the default. The lowest limit is 10 requests per
-      evaluation window.
-    facts:
-      - windows
-      - minimum
-  - id: waf-015
-    q: An AWS WAF rate-based rule groups by a custom session cookie. What happens to a request without
-      that cookie?
-    a: The rule omits it from evaluation because the required aggregation component is missing.
-    trap: true
-    facts:
-      - missing-keys
   - id: waf-016
     q: An API must accept exactly a fixed request quota with no delay. Does an AWS WAF rate-based rule
       guarantee that quota?
@@ -108,17 +94,6 @@ cards:
     trap: true
     facts:
       - approximate
-  - id: waf-017
-    q: A team edits the evaluation window of a live AWS WAF rate-based rule. What happens to its request
-      counts?
-    a: The counts reset, and rate limiting can pause for up to one minute.
-    facts:
-      - reset
-  - id: waf-018
-    q: Can an AWS WAF rate-based rule use Allow as its rate action?
-    a: No. Its rate action can use the other rule actions, but not Allow.
-    facts:
-      - rate-action
   - id: waf-019
     q: An AWS WAF managed rule group should inspect only requests to a login path. What should the team add?
     a: Add a scope-down statement matching the login path. Only matching requests are evaluated by the group.
@@ -131,7 +106,7 @@ AWS WAF managed rule groups provide maintained sets of request checks. Rate-base
 1. Choose managed rule groups for the application. SQL injection means adding unauthorized database query instructions to a request. Cross-site scripting means sending script content intended to run in a user's browser.
 2. For volume control, choose an aggregation key, the request value used to group requests into counters. The default is source IP. Custom keys can use headers, cookies, HTTP methods or paths.
 3. Add a scope-down statement, a filter that limits which requests are counted. For a combined limit on a login path, use Count all aggregation with a scope-down statement matching that path.
-4. WAF looks back over the evaluation window and applies the rate action when a grouping exceeds the limit. The action can be any rule action except Allow.
+4. WAF looks back over the evaluation window and applies the rate action when a grouping exceeds the limit.
 5. Test and tune in staging and Count mode before enforcing. Treat the rate limit as approximate availability protection, since detection can lag traffic changes.
 
 A scope-down statement can also restrict a managed rule group to matching requests.
@@ -152,10 +127,7 @@ A scope-down statement can also restrict a managed rule group to matching reques
 
 ### Remember
 
-- Window options: 60, 120, 300 and 600 seconds. Default: 300 seconds.
-- Minimum limit: 10 requests per window.
 - Count all requires a scope-down statement. It is an aggregation choice, separate from the Count rule action.
-- Missing a required custom key component excludes a request from that rule.
-- Editing rate settings resets counts and can pause limiting for up to one minute.
+- Rate limiting is approximate and can react after a delay.
 
 > **Trap:** A per-IP counter does not impose one shared limit on requests from all IPs. Choose aggregation to match the traffic grouping the question requires.

@@ -66,14 +66,6 @@ cards:
       - schedule-zones
       - rate-day
       - schedule-types
-  - id: eventbridge-034
-    q: An EventBridge Scheduler cron time occurs twice when clocks move backward. How many scheduled invocations
-      occur for that local time?
-    a: One. A repeated autumn time runs only once; a nonexistent spring time is skipped.
-    trap: true
-    facts:
-      - dst-once
-      - dst-skip
   - id: eventbridge-035
     q: A team needs EventBridge Scheduler failures retained after retries. Which configuration and permissions are
       needed?
@@ -90,13 +82,6 @@ cards:
     facts:
       - snapshot-target
       - legacy-rules
-  - id: eventbridge-037
-    q: Does disabling the EventBridge Scheduler flexible time window guarantee invocation at an exact second?
-    a: No. Scheduler still invokes with 60-second precision.
-    trap: true
-    facts:
-      - schedule-precision
-      - window
 ---
 EventBridge Scheduler invokes a target at a chosen time or on a recurring schedule. It supports local time zones and flexible delivery windows, so a job can follow a calendar or run within an acceptable interval.
 
@@ -110,8 +95,8 @@ EventBridge Scheduler invokes a target at a chosen time or on a recurring schedu
    | `cron` | Calendar-based recurrence | Six fields: minutes, hours, day of month, month, day of week, year |
    | `at` | One-time invocation | Runs at the specified date and time |
 
-2. For cron or one-time execution, choose an IANA time zone, a named set of local clock rules. Scheduler handles daylight saving changes. A nonexistent spring cron time is skipped; a repeated autumn time runs once.
-3. Set the flexible time window to `OFF` or choose a window within which invocation can occur. Even with the window off, precision is 60 seconds.
+2. For cron or one-time execution, choose an IANA time zone, a named set of local clock rules.
+3. Set the flexible time window to `OFF` or choose a window within which invocation can occur.
 4. Provide an execution role, an IAM role assumed by `scheduler.amazonaws.com`, with permission to call the target.
 5. Configure retry age, retry count, and a standard SQS DLQ for failed invocations. Grant the execution role permission to send messages to the DLQ.
 
@@ -127,8 +112,7 @@ Legacy scheduled rules use the default event bus, UTC, and at least one-minute p
 ### Remember
 
 - Types: `rate`, `cron`, and `at`.
-- Precision: 60 seconds with no flexible window.
 - Retry configuration: 60 to 86400 seconds of event age and 0 to 185 retries; the first exhausted limit stops retries.
 - A rate day is 24 hours, including daylight saving transitions.
 
-> **Trap:** Turning the flexible window off does not provide exact-second execution. Scheduler still uses 60-second precision.
+> **Trap:** A rate day is always 24 hours, so it can shift relative to local wall-clock time when daylight saving time changes.

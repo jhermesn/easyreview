@@ -106,21 +106,6 @@ cards:
     facts:
       - backup
       - dlm
-  - id: ebs-030
-    q: A DLM source account shares snapshots with an isolated recovery account. What automation must the
-      recovery account configure?
-    a: A cross-account copy event policy in the same Region as the source sharing policy. It can copy
-      shared snapshots to configured destination Regions.
-    facts:
-      - cross-account
-      - same-region
-  - id: ebs-031
-    q: A team wants an EventBridge rule to invoke the EBS CreateSnapshot operation directly without
-      Lambda. Is there a built-in target?
-    a: Yes. EBS CreateSnapshot is a built-in EventBridge target; create rules with built-in targets
-      through the console.
-    facts:
-      - eventbridge
   - id: ebs-032
     q: A database needs scheduled EBS snapshots with buffered writes flushed before capture. Which DLM
       feature fits?
@@ -146,20 +131,16 @@ Data Lifecycle Manager (DLM) automates EBS snapshot and EBS-backed Amazon Machin
 2. Choose a schedule and retention by count or age. The first run begins within an hour after its scheduled time in UTC, the reference time zone used by the schedule.
 3. For application-consistent snapshots, use an instance-targeted policy and Systems Manager pre and post scripts to pause application I/O, flush buffered data and resume normal I/O.
 4. Configure copies in another Region, sharing with other accounts or fast snapshot restore (FSR), which prepares snapshot restores for immediate volume performance.
-5. For isolated account copies, the source policy shares snapshots and the destination's event policy copies them. Create both policies in the same Region; the copies can go to other Regions.
 
 | Need | Mechanism | Scope |
 |---|---|---|
 | Scheduled EBS snapshots and cleanup | DLM policy | DLM-created resources |
 | One backup plan across supported services | AWS Backup | EBS and other supported services |
-| Direct event-triggered snapshot call | EventBridge built-in EBS CreateSnapshot target | Create rules with this target through the console |
 
 ### Exam cues
 
 - If the question says tagged EBS volumes need scheduled snapshots, cleanup and regional copies, think DLM, because its policy covers that lifecycle.
 - If the question says one backup plan spans storage and databases, think AWS Backup, because it supports multiple services.
-- If the question says another account must own automated copies of shared snapshots, think a destination DLM event policy, because source sharing alone does not create the owned copy.
-- If the question says invoke CreateSnapshot directly from an event rule without Lambda, think the EventBridge built-in target, because it can call the operation.
 
 ### Remember
 

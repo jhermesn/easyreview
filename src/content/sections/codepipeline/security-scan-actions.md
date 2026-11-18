@@ -69,11 +69,11 @@ cards:
       - scan-thresholds
       - scan-output
   - id: codepipeline-048
-    q: Does the CodePipeline InspectorScan action run without additional build compute charges?
-    a: No. It uses CodePipeline-managed CodeBuild compute and incurs separate CodeBuild charges.
-    trap: true
+    q: "What does the InspectorScan action in CodePipeline scan, and where are its findings recorded?"
+    a: "It scans source dependencies or container images for vulnerabilities and writes vulnerability information to an output software bill of materials."
     facts:
-      - scan-compute
+      - scan-purpose
+      - scan-output
 ---
 InspectorScan adds a vulnerability check to CodePipeline for source dependencies or container images. A vulnerability is a known software weakness; severity thresholds decide when findings block the action.
 

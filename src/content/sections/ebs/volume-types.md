@@ -172,9 +172,9 @@ cards:
     trap: true
     facts: [same-az]
   - id: ebs-042
-    q: What does Amazon EBS charge for?
-    a: Provisioned storage (GB-month, by volume type), provisioned IOPS and throughput above the included amount, and snapshot storage.
-    facts: [pricing-dimensions]
+    q: "An EC2 workload needs more EBS performance without increasing volume size. Which volume type supports this?"
+    a: "Use gp3. Its performance can be provisioned independently of volume size."
+    facts: [gp3-independent]
   - id: ebs-047
     q: "A team must keep an instance root volume after the instance is terminated. What do they change?"
     a: "Set DeleteOnTermination to false on the root volume; by default a root volume attached at launch is deleted with the instance."
@@ -191,10 +191,6 @@ cards:
     q: "A database needs more IOPS than one EBS volume can give. What block-level approach adds performance across volumes?"
     a: "A RAID 0 stripe across several EBS volumes, up to the instance EBS bandwidth limit. Avoid RAID 5 or 6, which waste IOPS on parity."
     facts: [raid0]
-  - id: ebs-051
-    q: "What is the maximum throughput of st1 and of sc1?"
-    a: "st1 up to 500 MiB/s, sc1 up to 250 MiB/s, depending on size and burst credits."
-    facts: [hdd-throughput]
 ---
 Amazon EBS provides block storage, disks attached to EC2 instances. Choose solid-state drive (SSD) storage for transactional I/O, meaning application reads and writes, and hard disk drive (HDD) storage for large sequential transfers.
 

@@ -170,16 +170,6 @@ cards:
       - group-members
       - group-not-principal
       - group-no-nesting
-  - id: iam-029
-    q: A security team wants stolen EC2 role credentials rejected outside their original VPC and private address.
-      Which IAM context keys should it compare?
-    a: Compare aws:SourceVpc with aws:Ec2InstanceSourceVpc and aws:VpcSourceIp with
-      aws:Ec2InstanceSourcePrivateIPv4. Scope the restriction to EC2 credentials and account for forwarded
-      service calls.
-    facts:
-      - credential-vpc
-      - credential-ip
-      - credential-scope
   - id: iam-030
     q: Why does enabling MFA on the AWS root user not enable MFA for every IAM user?
     a: Root and IAM users have separate MFA configurations. Each identity needs its own additional authentication
@@ -219,7 +209,6 @@ IAM identities determine who makes a request. A role supplies permissions throug
 
 - If the question says EC2 needs AWS access without embedded keys, think role plus instance profile, because the application can retrieve refreshed temporary credentials.
 - If the question says role assumption succeeds but a read fails, think role permissions policy, because trust only authorizes assumption.
-- If the question says EC2 credentials must work only from their original network location, think paired VPC (isolated virtual network) and private-address comparisons, because a private address alone is not globally unique. Compare `aws:SourceVpc` with `aws:Ec2InstanceSourceVpc`, and `aws:VpcSourceIp` with `aws:Ec2InstanceSourcePrivateIPv4`. Check `ec2:SourceInstanceARN` for presence and account for forwarded calls with `aws:ViaAWSService`.
 
 ### Remember
 

@@ -108,13 +108,6 @@ cards:
       trust policy allowing firehose.amazonaws.com to assume it.
     facts:
       - deliver-role
-  - id: firehose-010
-    q: AWS Network Firewall flow logs need direct delivery to Firehose. Which logging configuration
-      selects it?
-    a: Set LogDestinationType to KinesisDataFirehose and provide the Firehose stream name under the
-      deliveryStream key.
-    facts:
-      - deliver-firewall
   - id: firehose-011
     q: A team wants managed delivery of CloudWatch Logs events to S3. Which path fits?
     a: Use a CloudWatch Logs subscription filter targeting Firehose, with S3 as the Firehose
@@ -123,12 +116,6 @@ cards:
       - deliver-logs
       - deliver-managed
       - deliver-s3
-  - id: firehose-012
-    q: Can a Firehose stream with dynamic partitioning use zero buffering?
-    a: No. Zero buffering is unavailable with dynamic partitioning and for the S3 backup destination.
-    trap: true
-    facts:
-      - deliver-zero
   - id: firehose-021
     q: New CloudWatch log groups must automatically forward events through Firehose. How can the team
       automate subscription creation?
@@ -191,7 +178,7 @@ Amazon Data Firehose delivers streaming records to storage and analytics destina
 
 ### How it works
 
-1. Send records through a supported source. Direct PUT means application calls to Firehose through `PutRecord` or `PutRecordBatch`. CloudWatch Logs can use a subscription filter, which forwards selected log events. Network Firewall can send flow logs directly to a Firehose stream; WAF can also send request logs to Firehose.
+1. Send records through a supported source. Direct PUT means application calls to Firehose through `PutRecord` or `PutRecordBatch`. CloudWatch Logs can use a subscription filter, which forwards selected log events. WAF can also send request logs to Firehose.
 2. For automatic subscription setup on new log groups, an EventBridge rule can match the CloudTrail-backed `CreateLogGroup` API event and invoke Lambda. The function calls `PutSubscriptionFilter` for the group, Firehose destination, and delivery role. Its caller permissions need `iam:PassRole`.
 
 3. Give Firehose an IAM delivery role, a set of permissions it can assume. Its trust policy permits `firehose.amazonaws.com`; its permissions cover source reads and destination writes.
@@ -210,14 +197,12 @@ Amazon Data Firehose delivers streaming records to storage and analytics destina
 - If the question says Firehose loads Redshift, think S3 then `COPY`, because Firehose stages the objects before loading them.
 - If the question says new log groups need automatic Firehose subscriptions, think EventBridge to Lambda calling `PutSubscriptionFilter`, because log-group creation can trigger subscription setup.
 - If the question says retained Kinesis history must be copied when Firehose is attached, think a separate replay consumer, because Firehose starts at `LATEST`.
-- If the question says Network Firewall flow logs must go directly to Firehose, think `KinesisDataFirehose` with `deliveryStream`, because these are its logging destination settings.
 
 ### Remember
 
 - S3 destination defaults: 5 MB or 300 seconds, whichever is met first.
 - S3 concatenation adds no delimiter by default. Enable the newline option when needed.
 - OpenSearch expects UTF-8 single-line JSON objects.
-- Zero buffering is unavailable for S3 backup and dynamic partitioning.
 - WAF request logs can use CloudWatch Logs, S3, or Firehose.
 
 > **Trap:** The buffering range belongs to the selected destination. Do not apply the S3 destination range to HTTP delivery or to S3 backup.

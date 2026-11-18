@@ -77,76 +77,65 @@ facts:
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC
 cards:
   - id: appflow-001
-    q: Which AWS service transfers data between supported SaaS applications and AWS services without
-      custom integration code?
-    a: Amazon AppFlow. Configure a supported source and destination, such as Salesforce to S3, and
-      define its transfer trigger and mappings.
+    q: A team needs to ingest Salesforce data into Amazon S3 on a recurring schedule without custom
+      integration code. What can it use?
+    a: Amazon AppFlow can transfer data from supported SaaS applications to AWS services on a
+      schedule.
     facts:
       - saas-transfer
       - trigger-modes
-      - field-map
   - id: appflow-002
-    q: A team needs a recurring Salesforce-to-S3 transfer of newly created and updated records. How
-      should it configure AppFlow?
-    a: Use a schedule-triggered incremental flow and a timestamp field that captures the required
-      updates. Created Date alone selects new records and misses edits to existing ones.
+    q: A team needs a recurring Salesforce to S3 ingestion of new and changed records. Which AppFlow
+      transfer mode fits?
+    a: A scheduled incremental transfer copies new or changed records since the last successful run.
     facts:
       - saas-transfer
       - incremental-transfer
-      - creation-timestamp
   - id: appflow-003
-    q: A team wants AppFlow to start when a SaaS record changes. Is that possible for every connector?
-    a: No. Event-triggered flows require a source application that provides change events. Check source
-      support before choosing the trigger.
-    trap: true
+    q: A team wants Amazon AppFlow to ingest data when a SaaS record changes. What must the source
+      support?
+    a: The source SaaS application must supply change events for an event-triggered flow.
     facts:
       - event-source
   - id: appflow-004
-    q: An AppFlow integration must mask a field and exclude records that fail selection criteria before
-      transfer. Does it need a custom transformation service?
-    a: Use AppFlow value modification and record filters. Configuration supports masking or truncation,
-      field validation, and filters selecting records to transfer.
+    q: A team needs a complete snapshot of SaaS records in Amazon S3 every day. Which AppFlow
+      ingestion pattern fits?
+    a: Use a scheduled full transfer. Each run copies a snapshot of all source records.
     facts:
-      - field-transform
-      - record-filter
+      - saas-transfer
+      - full-transfer
   - id: appflow-005
-    q: A private AppFlow transfer still makes public calls while listing SaaS objects in the console.
-      Has its private data path necessarily failed?
-    a: No. Console metadata API calls use public endpoints, while the flow data transfer uses
-      PrivateLink. The connector and SaaS account must support that private transfer.
+    q: A team needs to start a SaaS data transfer manually when requested. Which Amazon AppFlow
+      trigger fits?
+    a: Use an on-demand flow.
+    facts:
+      - trigger-modes
+  - id: appflow-006
+    q: Which Amazon AppFlow trigger options support different data ingestion frequencies?
+    a: Flows can run on demand, on a schedule, or when a supported source supplies change events.
+    facts:
+      - trigger-modes
+      - event-source
+  - id: appflow-007
+    q: A team plans frequent scheduled SaaS ingestion with Amazon AppFlow. What determines the
+      available schedule frequency?
+    a: The source application capabilities determine the available frequency.
+    facts:
+      - scheduled-frequency
+  - id: appflow-008
+    q: An Amazon AppFlow scheduled ingestion must include edits to existing SaaS records. Is Created
+      Date alone a suitable incremental timestamp?
+    a: No. Created Date selects newly created records and misses edits to existing records. Choose a
+      timestamp that captures the required changes.
     trap: true
     facts:
-      - public-metadata
-      - private-transfer
-  - id: appflow-006
-    q: A team must copy an existing database and continuously apply changes from its transaction logs.
-      Which service fits this requirement?
-    a: AWS DMS with change data capture for ongoing database changes. AppFlow addresses data exchange
-      through supported application connectors.
-    facts:
-      - dms-cdc
-      - saas-transfer
-  - id: appflow-007
-    q: An AppFlow scheduled incremental transfer misses source changes whose timestamps arrive late.
-      Which option can account for this delay?
-    a: Configure an incremental time offset. It shifts the transfer window to allow source timestamp
-      delays; its default is zero and it must be less than ten hours.
-    facts:
-      - incremental-offset
-  - id: appflow-008
-    q: An AppFlow initial load needs more history than the first scheduled run provides. How can the
-      team choose another history window?
-    a: Run an on-demand flow with a filter for the required range, then change it to an incremental
-      schedule. The first scheduled run otherwise pulls 30 days of past records.
-    facts:
-      - initial-window
+      - creation-timestamp
+      - incremental-transfer
   - id: appflow-009
-    q: Where does AppFlow store SaaS connection credentials, and how does it protect transferred data?
-    a: Connection credentials are encrypted with KMS and stored in Secrets Manager. Data in transit uses
-      TLS 1.2; flow encryption can use AWS managed or customer managed KMS keys.
+    q: An Amazon AppFlow flow must regularly transfer only new or changed SaaS records. Which transfer option fits?
+    a: Use a scheduled incremental transfer. It copies records added or changed since the last successful run, based on the selected source timestamp field.
     facts:
-      - encrypted-credentials
-      - encrypted-transfer
+      - incremental-transfer
 diagrams:
   - id: appflow-saas-to-s3
     title: Move configured application records into S3

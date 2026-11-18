@@ -45,22 +45,10 @@ cards:
     a: No. Comprehend analyzes text it is given; extracting text from scanned documents is Amazon Textract.
     trap: true
     facts: [nlp]
-  - id: comprehend-005
-    q: "A food company must extract its own ingredient names from product descriptions, which aren't among Amazon Comprehend's built-in entity types. Which feature fits?"
-    a: "Amazon Comprehend **custom entity recognition**, trained on the company's own entity types."
-    facts: [custom-entities]
   - id: comprehend-006
     q: "Which AWS service extracts medical entities from physician notes, discharge summaries and test results?"
     a: "Amazon Comprehend Medical, the clinical-text version of Comprehend."
     facts: [comprehend-medical]
-  - id: comprehend-007
-    q: "A company wants to route incoming customer emails into its own categories, such as billing, support and complaints. Which Comprehend feature fits?"
-    a: "Custom classification: train a classifier on labeled examples of each category, then classify new emails in real time or in batch."
-    facts: [custom-classification]
-  - id: comprehend-008
-    q: "A review says \"the tacos were delicious but the service was slow\". Which Comprehend feature shows a separate sentiment for the food and for the service?"
-    a: "Targeted sentiment, which scores each entity. Plain sentiment analysis returns one dominant sentiment for the whole review."
-    facts: [targeted-sentiment]
 ---
 Amazon Comprehend reads text and tells you what's in it: the people, places and organizations mentioned, key phrases, the language and the sentiment. It needs no machine learning expertise. [What is Amazon Comprehend?](https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html#what-is)
 
@@ -68,12 +56,12 @@ Amazon Comprehend reads text and tells you what's in it: the people, places and 
 
 1. Send text to the API, or start a job over documents in Amazon S3.
 2. Comprehend returns entities, key phrases, language and sentiment.
-3. Train custom classifiers or entity recognizers when the built-in models aren't specific enough.
+3. For clinical text, use [Amazon Comprehend Medical](https://docs.aws.amazon.com/comprehend-medical/latest/dev/comprehendmedical-welcome.html#comprehendmedical-welcome) to detect medical information such as conditions and medications.
 
 ### Exam cues
 
 - If the question says sentiment, entities or key phrases in text, think Amazon Comprehend.
-- If the question says sort documents into your own categories, think Comprehend custom classification; sentiment per product or brand, think targeted sentiment.
+- If the question says extract medical information from physician notes, think Amazon Comprehend Medical, because it analyzes clinical text.
 
 ### Remember
 

@@ -128,12 +128,11 @@ cards:
     facts:
       - memory
   - id: elastic-disaster-recovery-008
-    q: Which AWS Elastic Disaster Recovery point-in-time retention setting is adjustable?
-    a: Daily retention, from 1 to 365 days. The minute and hourly snapshot schedules are fixed.
+    q: "A company needs to recover a server with AWS Elastic Disaster Recovery using an earlier state after data corruption. What recovery option fits?"
+    a: "Use point-in-time recovery. Elastic Disaster Recovery can launch a recovery instance from an earlier point using crash-consistent snapshots."
     facts:
-      - day-policy
-      - minute-policy
-      - hour-policy
+      - minutes
+      - pit
 ---
 AWS Elastic Disaster Recovery (DRS) keeps copies of supported servers' disk data in AWS so they can be recovered onto EC2. Its staging area stores replicated data with minimal compute while the source application continues running.
 

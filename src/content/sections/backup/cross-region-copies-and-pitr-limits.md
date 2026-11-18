@@ -126,12 +126,6 @@ cards:
       key can remain incremental.
     facts:
       - ebs-copy-key
-  - id: backup-026
-    q: An AWS Backup database PITR copy leaves an expired source recovery point. Which cleanup
-      permission should be checked?
-    a: rds:DeleteDBSnapshot. AWS Backup needs it to delete the temporary source snapshot after the copy.
-    facts:
-      - database-snapshot-cleanup
   - id: backup-027
     q: Can AWS Backup create an on-demand cross-Region copy of a continuous backup?
     a: No. Use a supported copy action in a continuous backup rule to create periodic snapshot copies.
@@ -159,7 +153,6 @@ Cross-Region copies keep AWS Backup recovery points, or saved backups, outside t
 - If the question says a copied continuous backup must support PITR in another Region, think snapshot limitation, because the copied recovery point has no PITR history.
 - If the question says Aurora needs backups in another Region, think supported AWS Backup snapshot copies, because native cross-Region automated snapshot-and-log replication is unsupported for Aurora clusters.
 - If the question says a remote Aurora recovery point must be fresh, account for copy time and queues, because a newer snapshot is not available until its copy completes.
-- If the question says a database PITR copy leaves an expired source recovery point, think `rds:DeleteDBSnapshot`, because the copy workflow removes a temporary source snapshot.
 - If the question says an RDS copy fails because of persistent database options, think destination option group, because AWS Backup does not transfer a custom option group.
 
 ### Remember

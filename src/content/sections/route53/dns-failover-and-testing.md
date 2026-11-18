@@ -104,19 +104,6 @@ cards:
     facts:
       - cache
     trap: true
-  - id: route53-019
-    q: A team wants to test Route 53 failover while its primary endpoint remains healthy. Which health-check setting can make it appear unhealthy?
-    a: Invert the healthy primary check. Disabling a non-inverted check makes it healthy and will not trigger this failover.
-    facts:
-      - invert
-      - disabled
-    trap: true
-  - id: route53-042
-    q: Both Route 53 primary and secondary failover records have failed their health checks. Which record is returned?
-    a: The primary record. Route 53 does not suppress both answers.
-    facts:
-      - both-failed
-    trap: true
   - id: route53-043
     q: A Route 53 primary fails, and the secondary has no health check. Is Route 53 checking whether the secondary works before returning it?
     a: No. It returns the unchecked secondary even if the resource is unhealthy.
@@ -134,20 +121,18 @@ Route 53 failover routing changes the DNS answer from a primary resource to a st
 
 1. Configure primary and secondary failover records for the application name, with health checks or applicable alias target health.
 2. With checks on both records, Route 53 returns the primary while it is healthy. It returns the secondary when the primary is unhealthy and the secondary is healthy.
-3. If both checked records are unhealthy, Route 53 returns the primary. An unchecked secondary is returned whenever the primary fails, regardless of the secondary resource's actual condition.
+3. An unchecked secondary is returned whenever the primary fails, regardless of the secondary resource's actual condition.
 4. A resolver can continue returning an earlier answer until its TTL expires. TTL means the time an answer may stay cached.
-5. To test while a primary endpoint remains healthy, invert its health-check result and query for the changed DNS answer. Restore the setting after the test.
 
 ### Exam cues
 
 - If the question says the secondary should answer only after a primary failure, think failover records, because the routing policy implements active-passive selection.
 - If the question says resolvers still return the primary after its check fails, think TTL, because a cached answer avoids another Route 53 lookup.
-- If the question says both checked endpoints are unhealthy, think the primary answer, because that is the failover fallback.
+- If the question says show an S3 error page after the primary ALB fails, think a primary ALB alias and a secondary S3 alias, because failover routing selects the standby after the primary becomes unhealthy.
 
 ### Remember
 
 - AWS recommends a TTL of 60 seconds or less for health-checked records.
 - Probes run separately from DNS queries.
-- A disabled non-inverted check counts as healthy.
 
-> **Trap:** Disabling the primary health check does not simulate failure. Invert a healthy check to test that path.
+> **Trap:** An unchecked secondary is treated as healthy even if its resource is unavailable.

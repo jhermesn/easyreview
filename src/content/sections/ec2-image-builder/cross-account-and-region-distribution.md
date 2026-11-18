@@ -125,22 +125,15 @@ cards:
       - key-policy
       - default-key-sharing
   - id: ec2-image-builder-019
-    q: A platform team wants other accounts to reuse an EC2 Image Builder recipe without maintaining
-      their own copies. Which sharing feature fits?
-    a: Create an AWS RAM resource share for the recipe in its Region. Consumers can use the shared
-      recipe but cannot modify it.
+    q: "An EC2 Image Builder pipeline must deliver an AMI to another account that can modify its copy. Which distribution approach fits?"
+    a: "Use cross-account distribution to deliver a copy to the destination account."
     facts:
-      - ram-resources
-      - ram-region
-      - ram-consumers
+      - copied-ownership
   - id: ec2-image-builder-020
-    q: A team shares an Image Builder component through AWS RAM and expects it to appear in another
-      Region. What must it change?
-    a: Provide the resource in the required Region. AWS RAM sharing does not replicate Image Builder
-      resources across Regions.
-    trap: true
+    q: "How can an EC2 Image Builder container pipeline distribute its output image?"
+    a: "Configure container distribution settings with the destination Amazon ECR repositories."
     facts:
-      - ram-region
+      - container-delivery
   - id: ec2-image-builder-021
     q: An account must own and modify an AMI produced by EC2 Image Builder. Should the producer only
       grant launch permission?

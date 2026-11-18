@@ -176,13 +176,6 @@ cards:
       - context-match
       - context-policy
       - context-logs
-  - id: kms-018
-    q: An application has AWS KMS decrypt permission but changed the letter case of the encryption context used
-      with its encrypted data key. Can decryption succeed?
-    a: No. The encryption context must match exactly, including case.
-    trap: true
-    facts:
-      - context-match
   - id: kms-019
     q: A team wants to put a secret identifier value in AWS KMS encryption context to hide it from logs. What
       should it do?
@@ -198,12 +191,6 @@ cards:
     facts:
       - local-decrypt
       - context-match
-  - id: kms-021
-    q: A team must restrict a CloudWatch Logs KMS key to a specific log group. Which encryption-context value
-      identifies the group?
-    a: The log group ARN, referenced in a `kms:EncryptionContext:aws:logs:arn` policy condition.
-    facts:
-      - logs-context
   - id: kms-047
     q: "Partners without AWS credentials must encrypt files that only your application can decrypt. Which KMS key type fits?"
     a: "An asymmetric KMS key. Partners encrypt with the downloaded public key; decryption happens in KMS with the private key, which never leaves it."
@@ -221,13 +208,11 @@ Envelope encryption protects data with a data key and protects that data key wit
 
 Encryption context is optional non-secret key-value information authenticated with symmetric-key ciphertext. It binds meaning to the encrypted value: changing or omitting the original context prevents decryption. Context can also limit access in policies and grants. It appears in plaintext in CloudTrail, so keep secrets out of it.
 
-CloudWatch Logs uses the log-group ARN, its AWS resource identifier, as encryption context. A key policy can restrict that use with `kms:EncryptionContext:aws:logs:arn`.
-
 ### Exam cues
 
 - If the question says encrypt a large file, think envelope encryption, because symmetric KMS `Encrypt` accepts only 4096 plaintext bytes.
 - If the question says decrypt is authorized but fails after context changes, think an exact context mismatch, because context is authenticated with the ciphertext.
-- If the question says restrict key use to one log group, think a condition on its log-group ARN context, because CloudWatch Logs supplies that identifier.
+- If the question says partners lack AWS credentials but need to encrypt, think an asymmetric public key, because they can encrypt outside AWS while the private key stays in KMS.
 
 ### Remember
 

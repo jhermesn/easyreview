@@ -186,35 +186,22 @@ cards:
       - kms-source
       - kms-output
   - id: athena-005
-    q: A team needs Athena SQL to query supported data outside S3 without first copying all of it. What
-      feature fits?
-    a: "Athena Federated Query with a suitable data source connector. Check the connector type: some
-      Glue catalog connectors created from April 21, 2026 do not use a Lambda in the customer
-      account; Athena catalog connectors do."
+    q: "A security team needs SQL analysis of CloudTrail logs stored in Amazon S3 without managing query servers. Which service fits?"
+    a: "Use Amazon Athena to query the logs directly in S3."
     facts:
-      - federated
-      - new-connectors
-      - athena-connectors
+      - sql
+      - logs
   - id: athena-006
-    q: Does every Athena SQL workgroup require a customer-owned S3 results bucket?
-    a: No. Athena managed query results handles result storage and deletes results after 24 hours.
-      Access is controlled through workgroup query-result permissions.
+    q: "How can a team prepare CloudTrail logs in Amazon S3 for analysis with Amazon Athena?"
+    a: "Create an external table with the log fields and an S3 LOCATION pointing to the log files."
     facts:
-      - managed
-      - managed-retention
-      - managed-deletion
-      - managed-access
-    trap: true
+      - cloudtrail
+      - schema-fields
   - id: athena-007
-    q: An Athena administrator sets a workgroup-wide scan alert, but queries continue after its
-      threshold. Which control cancels an oversized individual query?
-    a: A per-query data scan limit. Workgroup-wide alerts notify and do not automatically cancel
-      queries; canceled queries still incur charges.
+    q: "A team wants to rank S3 objects by request count using server access logs. How can Amazon Athena help?"
+    a: "Create an external table over the log bucket and query the logs with Athena."
     facts:
-      - per-query
-      - canceled-charge
-      - aggregate
-    trap: true
+      - s3-access-logs
   - id: athena-008
     q: A team denies Athena GetQueryResults but users can still retrieve files from its S3 results
       bucket. Why?
@@ -224,12 +211,12 @@ cards:
       - s3-bypass
     trap: true
   - id: athena-009
-    q: An Athena workgroup must enforce its S3 output location despite different client settings. What
-      should the administrator enable?
-    a: Override client-side settings in the workgroup. Its configured result settings then take
-      precedence.
+    q: "An Athena user can call the query API but cannot analyze encrypted logs in Amazon S3. What access should the team check?"
+    a: "Check access to the S3 data and relevant Glue catalog resources, plus kms:Decrypt for the encrypted dataset."
     facts:
-      - override
+      - source-access
+      - catalog-access
+      - kms-source
   - id: athena-010
     q: An Athena query reads data encrypted with one KMS key and writes results encrypted with another.
       Which keys must be authorized?

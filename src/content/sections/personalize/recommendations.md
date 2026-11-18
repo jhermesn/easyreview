@@ -31,9 +31,9 @@ cards:
     trap: true
     facts: [what]
   - id: personalize-005
-    q: "A news site wants Amazon Personalize to show breaking articles that many readers are interacting with right now. Which recipe type fits?"
-    a: "A POPULAR_ITEMS recipe, such as Trending-Now. USER_PERSONALIZATION recommends items for one user, and RELATED_ITEMS finds similar items."
-    facts: [recipes]
+    q: "Which AWS service can recommend products to shoppers based on their affinity for items?"
+    a: "Amazon Personalize is a fully managed ML service that generates item recommendations using your data."
+    facts: [what]
 ---
 Amazon Personalize builds recommendation systems from your users' interactions, such as views, clicks and purchases, with no ML to write. [What is Amazon Personalize?](https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html)
 

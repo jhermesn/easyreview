@@ -24,13 +24,13 @@ cards:
     a: "Run the VMs in a VMware environment on AWS: **VMware Cloud on AWS** (through Broadcom) or **Amazon EVS**.\nNo re-platforming and the IP addresses stay the same."
     facts: [fit, evs-migrate, resale]
   - id: vmware-cloud-on-aws-002
-    q: Which AWS option runs Oracle Real Application Clusters (RAC) in the cloud, according to AWS's Oracle guidance?
-    a: "VMware Cloud on AWS."
+    q: "A company needs to migrate many on-premises vSphere virtual machines to AWS quickly while keeping their IP addresses. Which hybrid compute option fits?"
+    a: "VMware Cloud on AWS is a fit for this migration."
     facts: [fit]
   - id: vmware-cloud-on-aws-003
-    q: Who sells VMware Cloud on AWS since April 30, 2024?
-    a: "Broadcom. AWS and its channel partners no longer resell it."
-    facts: [resale]
+    q: "A company wants to extend its on-premises network and move VMware workloads to AWS without changing their IP addresses. Which service fits?"
+    a: "Amazon Elastic VMware Service (Amazon EVS) supports this migration."
+    facts: [evs-migrate]
   - id: vmware-cloud-on-aws-004
     q: What does Amazon Elastic VMware Service (Amazon EVS) deploy, and where?
     a: "A VMware Cloud Foundation environment on EC2 bare metal instances inside your own VPC."

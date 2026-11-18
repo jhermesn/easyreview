@@ -210,7 +210,6 @@
         "codebuild",
         "codepipeline",
         "xray",
-        "deployment-strategies",
         "amplify",
         "iot-core",
         "appstream",

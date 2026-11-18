@@ -58,33 +58,14 @@ cards:
     q: A website on AWS needs a TLS certificate for HTTPS that renews automatically. Which AWS service provides it?
     a: AWS Certificate Manager (ACM). It creates, stores and renews SSL/TLS certificates, which encrypt data in transit.
     facts: [acm]
-  - id: kms-041
-    q: A company uploads new objects to Amazon S3 without configuring encryption. Are they stored unencrypted?
-    a: No. Since January 5, 2023, S3 encrypts all new uploads with SSE-S3 (AES-256) automatically, at no extra cost.
-    trap: true
-    facts: [s3-default]
   - id: kms-042
     q: Why is encrypting data stored on AWS one of the benefits of cloud security?
     a: Encrypted data is unreadable without the key, so a stolen copy of storage is useless; AWS services make encryption a setting, managed with AWS KMS.
     facts: [encryption, kms-integration]
   - id: kms-043
-    q: A company has an unencrypted Amazon RDS DB instance. Can it turn on encryption for that instance in place?
-    a: No. RDS encryption is chosen at creation. Copy a snapshot with encryption and restore a new, encrypted instance.
-    trap: true
-    facts: [rds-at-create]
-  - id: kms-044
-    q: "Which of these encrypt data by default with no setting to change: CloudTrail log files, Storage Gateway data in S3, a new Amazon EFS file system created through the API?"
-    a: CloudTrail log files (SSE-S3) and Storage Gateway data (SSE-S3, plus TLS in transit). EFS encryption at rest is a setting chosen when the file system is created.
-    trap: true
-    facts: [cloudtrail-default, storage-gateway-default, efs-at-create]
-  - id: kms-045
-    q: Are new Amazon Redshift provisioned clusters encrypted by default?
-    a: Yes, since January 10, 2025, unless they are restored from a snapshot.
-    facts: [redshift-default]
-  - id: kms-046
-    q: Which three kinds of KMS keys exist, and which one does a customer fully control?
-    a: Customer managed keys (full control), AWS managed keys (created by a service in your account) and AWS owned keys (owned by the service).
-    facts: [key-types]
+    q: "Which AWS service creates and controls encryption keys that can protect an Amazon RDS database?"
+    a: "AWS Key Management Service (AWS KMS) creates and controls keys and integrates with Amazon RDS encryption."
+    facts: [kms, kms-integration]
 ---
 Encryption protects data in two states. Data at rest sits in storage; data in transit moves between systems. AWS services offer encryption for both, and the customer decides how to use it. [Data at rest](https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/protecting-data-at-rest.html#protecting-data-at-rest) · [Data in transit](https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/protecting-data-in-transit.html#protecting-data-in-transit)
 
@@ -108,9 +89,7 @@ Encryption protects data in two states. Data at rest sits in storage; data in tr
 
 ### Remember
 
-- Amazon S3 encrypts new uploads by default with SSE-S3 since January 5, 2023.
 - KMS keys never leave AWS KMS unencrypted.
-- Encrypted by default: S3 new objects, CloudTrail logs, Storage Gateway data, new Redshift provisioned clusters (since January 2025).
-- Set at creation: RDS and EFS encryption.
+- RDS encryption is set at creation; encrypt a snapshot copy and restore it to encrypt an existing unencrypted instance.
 
 > **Trap:** TLS certificates protect data in transit, not at rest. For stored data, the answer is server-side encryption with AWS KMS keys.

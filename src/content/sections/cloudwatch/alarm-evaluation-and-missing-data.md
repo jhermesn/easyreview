@@ -89,13 +89,6 @@ cards:
     facts:
       - heartbeat
       - missing-bad
-  - id: cloudwatch-051
-    q: A CloudWatch alarm has a 30-second period. Does it wait 30 seconds between evaluations?
-    a: No. Alarms with 10-, 20-, or 30-second periods evaluate every 10 seconds. The period and
-      evaluation cadence are different settings.
-    trap: true
-    facts:
-      - short-cadence
 ---
 A CloudWatch metric alarm compares a measurement or expression with a threshold. Its period defines each measurement interval; its evaluation settings decide how many breaches indicate a problem.
 
@@ -123,7 +116,6 @@ A CloudWatch metric alarm compares a measurement or expression with a threshold.
 
 - Three out of five means any 3 breaches among 5 available periods, not necessarily consecutive.
 - Periods of at least 1 minute normally evaluate each minute.
-- Periods of 10, 20, or 30 seconds evaluate each 10 seconds.
 - Evaluation intervals longer than 1 day evaluate hourly.
 
 > **Trap:** Selecting `breaching` does not force every absent recent point to count as bad. The default sliding window first uses real points from its wider evaluation range.

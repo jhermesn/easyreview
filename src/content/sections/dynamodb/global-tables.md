@@ -123,10 +123,10 @@
     },
     {
       "id": "dynamodb-048",
-      "q": "Sensitive fields in a DynamoDB global table must stay unreadable even to database administrators, in every Region. What approach fits?",
-      "a": "Client-side encryption of those attributes with the AWS Database Encryption SDK, using a KMS multi-Region key so each Region can decrypt locally.",
+      "q": "A DynamoDB global table must provide the latest item on strong reads in each replica Region. Which consistency mode fits?",
+      "a": "Use multi-Region strong consistency (MRSC). It replicates a write to at least one other Region before reporting success.",
       "facts": [
-        "database-encryption-sdk"
+        "mrsc"
       ]
     }
   ],

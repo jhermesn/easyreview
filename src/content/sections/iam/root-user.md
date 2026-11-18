@@ -61,9 +61,9 @@ cards:
     a: Enabling MFA delete on an S3 bucket. The others work with IAM permissions.
     facts: [tasks-other]
   - id: iam-076
-    q: A company with AWS Organizations wants member accounts to have no root user passwords at all. What feature does this?
-    a: Centralized root access management. The management account removes member root credentials, and new member accounts have none by default.
-    facts: [central-root]
+    q: "What kind of email address does AWS recommend for a business account's root user?"
+    a: "A business-managed group email address so AWS messages reach multiple people."
+    facts: [group-email]
   - id: iam-077
     q: Should a team create access keys for the AWS account root user so scripts can run with full access?
     a: No. AWS recommends never creating root access keys; scripts should use roles with least-privilege permissions.
@@ -78,9 +78,9 @@ cards:
     a: A CloudWatch Events (EventBridge) rule that matches root user sign-in, with an Amazon SNS notification.
     facts: [cloudwatch-events-rule, monitor-root]
   - id: iam-103
-    q: "An operational alert went to a member account root email that nobody reads. How should every account be set up so this does not happen again?"
-    a: "Use a group email address managed by the business for each root user, forwarding to the admins, and set the billing, operations and security alternate contacts to team distribution lists."
-    facts: [group-email, alternate-contacts]
+    q: "How can an AWS account owner protect the root user credentials?"
+    a: "Use a strong password and multi-factor authentication, avoid root access keys and secure account recovery mechanisms."
+    facts: [protections]
 ---
 Every AWS account starts with a root user: the email address and password used to create it, with complete access to everything in the account. That power makes it the most valuable credential to protect, and AWS recommends keeping it locked away for the few tasks only it can do. [AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-tasks.html#id_root-user)
 

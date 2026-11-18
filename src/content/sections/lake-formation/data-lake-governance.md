@@ -27,9 +27,9 @@ cards:
     trap: true
     facts: [permissions]
   - id: lake-formation-004
-    q: "Several AWS accounts each hold part of a data lake, and access must follow user roles from a central account with the least overhead. Which service fits?"
-    a: "AWS Lake Formation, which centrally governs the data lake and shares Data Catalog resources across accounts through AWS RAM."
-    facts: [cross-account]
+    q: "Which AWS service centrally governs and controls access to data in an Amazon S3 data lake for analytics and machine learning?"
+    a: "AWS Lake Formation provides centralized governance and fine-grained access control for data lake data."
+    facts: [what]
 ---
 AWS Lake Formation is the governance layer of a data lake: it decides who may see which databases, tables and columns in S3 and the Glue Data Catalog, and shares data safely for analytics and ML. [What is Lake Formation?](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html)
 

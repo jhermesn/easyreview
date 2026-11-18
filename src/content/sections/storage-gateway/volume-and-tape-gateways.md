@@ -130,21 +130,12 @@ cards:
       - iscsi
       - not-objects
   - id: storage-gateway-013
-    q: A backup application needs an archived AWS Tape Gateway tape immediately. Can it read that tape
-      directly?
-    a: No. Retrieve it to Tape Gateway first. Typical retrieval takes 3 to 5 hours for Glacier Flexible
-      Retrieval or 12 hours for Deep Archive.
-    trap: true
+    q: "An on-premises application needs iSCSI block storage but has limited local capacity. Which AWS Storage Gateway volume type fits?"
+    a: "Cached volumes. Volume Gateway stores primary data in S3 and keeps frequently accessed data locally."
     facts:
-      - tape-retrieve
-      - tape-time
-  - id: storage-gateway-014
-    q: What are the per-volume size ranges for AWS Volume Gateway cached and stored volumes?
-    a: "Cached: 1 GiB to 32 TiB. Stored: 1 GiB to 16 TiB. Each mode supports up to 32 volumes per
-      gateway."
-    facts:
-      - cached-limit
-      - stored-limit
+      - iscsi
+      - cached
+
 ---
 Volume Gateway gives existing servers block storage, which they access as disks. Tape Gateway gives backup software a virtual tape library, a software replacement for tape drives and a tape changer. Both use iSCSI, a protocol that sends storage commands over an IP network.
 
@@ -170,8 +161,6 @@ Volume Gateway gives existing servers block storage, which they access as disks.
 
 ### Remember
 
-- Cached volumes: 1 GiB to 32 TiB each, up to 32 per gateway.
-- Stored volumes: 1 GiB to 16 TiB each, up to 32 per gateway.
 - EBS snapshots support gateway restoration or EC2 recovery through an EBS volume.
 - Typical archived tape retrieval: 3 to 5 hours from Flexible Retrieval, 12 hours from Deep Archive.
 

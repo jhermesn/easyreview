@@ -42,13 +42,13 @@ cards:
     trap: true
     facts: [activate]
   - id: billing-and-cost-management-044
-    q: "In an AWS cost allocation report, how are AWS-generated tags told apart from tags the company defined?"
-    a: "AWS-generated tags carry the aws: prefix (for example aws:createdBy); user-defined tags carry the user: prefix."
-    facts: [tag-prefixes]
+    q: "After a company activates its cost allocation tags, how does AWS use them?"
+    a: "It organizes resource costs by those tags on the cost allocation report, so the company can categorize and track its costs."
+    facts: [report]
   - id: billing-and-cost-management-046
-    q: "A team tags resources today and wants cost reports by that tag for the last quarter. Is that possible?"
-    a: "Partly. After activation (up to about 48 hours), the management account can backfill activation status for up to twelve months, but costs only carry tag values for periods when resources had the tag."
-    facts: [activation-delay, backfill]
+    q: "How do cost allocation tags help a company understand its AWS spending?"
+    a: "They organize resource costs in a cost allocation report so the company can categorize and track them."
+    facts: [report]
 ---
 Cost allocation tags split the AWS bill by business dimension, such as team, project or environment. A tag is a key and value on a resource; activating it makes billing tools use it. [Cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#cost-alloc-tags)
 

@@ -63,12 +63,6 @@ cards:
       - plan-purpose
       - rule-settings
       - resource-selection
-  - id: backup-014
-    q: An AWS Backup plan selects resources only by tags, but tagged resources are not protected. Which
-      setting should the team inspect?
-    a: Check service opt-in settings, because tag-only selections still respect them.
-    facts:
-      - tag-opt-in
   - id: backup-015
     q: An AWS Backup design needs recovery to a chosen time within the retention period. Which backup
       type should it use?
@@ -83,15 +77,6 @@ cards:
     trap: true
     facts:
       - vault-encryption
-  - id: backup-017
-    q: What are the AWS Backup console defaults for a rule start time and its start and completion
-      windows?
-    a: 00:30 in the local system time zone, an 8-hour start window, and a 7-day completion window. The
-      completion window does not apply to FSx.
-    facts:
-      - console-start-time
-      - console-start-window
-      - console-completion-window
   - id: backup-018
     q: What minimum cold-storage residence and continuous-backup retention should an AWS Backup plan
       account for?
@@ -107,7 +92,7 @@ AWS Backup schedules and retains backups for assigned AWS resources. A plan is t
 ### How it works
 
 1. Create a plan with backup rules. Each rule sets the schedule, start window, completion window, destination vault, and lifecycle. Lifecycle means when a backup changes storage tier or expires.
-2. Assign resources by type, tags, or individual Amazon Resource Names (ARNs), which identify AWS resources. Tags are key-value labels. Tag-only selection still depends on service opt-in settings.
+2. Assign resources by type, tags, or individual Amazon Resource Names (ARNs), which identify AWS resources. Tags are key-value labels.
 3. Choose snapshots for the state captured by each backup, or continuous backups for point-in-time recovery (PITR), which restores to a chosen time within the retention period.
 4. AWS Backup stores recovery points in the vault. For resource types that support incremental backups, it saves a full backup first and changes afterward. Other types use full backups.
 
@@ -120,13 +105,11 @@ AWS Backup schedules and retains backups for assigned AWS resources. A plan is t
 
 ### Exam cues
 
-- If the question says tagged resources are absent from a tag-only plan, think service opt-in, because tag selection still respects that setting.
 - If the question says two backup rule start windows overlap, think longer retention, because AWS Backup optimizes overlapping backups under that rule.
 - If the question says restore to a chosen time, think continuous backups, because snapshots only preserve captured states.
 
 ### Remember
 
-- Console defaults: 00:30 local start time, 8 hours to start, and 7 days to complete. The completion window does not apply to FSx.
 - Continuous retention: 1 to 35 days.
 - Eligible cold backups must stay cold for at least 90 days. Schedule deletion at least 90 days after transition.
 

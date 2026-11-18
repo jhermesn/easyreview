@@ -176,12 +176,11 @@ cards:
       - awsvpc
       - ecs
   - id: xray-019
-    q: What support change applies to the X-Ray SDKs and daemon, and what does AWS recommend?
-    a: They entered maintenance on February 25, 2026, with security fixes only. AWS recommends migrating
-      instrumentation to OpenTelemetry.
+    q: "A Lambda function forwards trace context but does not automatically send sampled traces to AWS X-Ray. What tracing mode should the team configure?"
+    a: "Enable Active tracing. The default PassThrough mode forwards context without automatically sending traces."
     facts:
-      - maintenance
-      - otel
+      - active
+      - pass
   - id: xray-031
     q: Must an OpenTelemetry collector use the X-Ray daemon UDP 2000 protocol?
     a: No. UDP 2000 describes the X-Ray daemon receiver. An OpenTelemetry collector uses its configured

@@ -72,17 +72,6 @@ cards:
     facts:
       - mfa-key-absence
       - mfa-deny-ifexists
-  - id: iam-050
-    q: An IAM user needs temporary credentials carrying MFA information while retaining user permissions. Which
-      STS operation fits?
-    a: GetSessionToken with MFA information.
-    facts:
-      - mfa-session-token
-  - id: iam-051
-    q: What does the IAM condition key aws:MultiFactorAuthAge measure?
-    a: Seconds since MFA authentication for temporary credentials created with MFA.
-    facts:
-      - mfa-age
 ---
 
 External IDs distinguish a vendor's customers during role assumption. They address the confused deputy problem, where someone tricks a service with legitimate authority into using it for the wrong customer. MFA conditions require extra authentication before sensitive access.
@@ -92,7 +81,6 @@ External IDs distinguish a vendor's customers during role assumption. They addre
 1. A vendor that serves several customers assigns each a unique external ID. The customer role trusts the vendor principal and requires a matching `sts:ExternalId`.
 2. The vendor calls `AssumeRole` with that customer's `ExternalId`. The condition ties the request to the customer context; the value is not an AWS secret.
 3. For an IAM user requiring MFA, the role trust policy can require `aws:MultiFactorAuthPresent` to be true. The caller supplies `SerialNumber` and `TokenCode` to `AssumeRole`.
-4. For user credentials carrying MFA information, use `GetSessionToken` with MFA. For an MFA age requirement, compare `aws:MultiFactorAuthAge`, the elapsed seconds since MFA authentication.
 
 ### Exam cues
 
@@ -103,7 +91,6 @@ External IDs distinguish a vendor's customers during role assumption. They addre
 ### Remember
 
 - External IDs are not passwords or secrets.
-- `aws:MultiFactorAuthAge` uses seconds and requires temporary credentials created with MFA.
 - `aws:MultiFactorAuthPresent` is absent for long-term keys and federated identities. Do not assume an external provider's MFA populates this IAM key.
 
 > **Trap:** A condition that only matches an existing false MFA value does not catch a request where the key is absent.

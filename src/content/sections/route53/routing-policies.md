@@ -109,41 +109,12 @@ cards:
     a: It covers unmapped IP addresses and locations without a specific record. Without a default, those queries receive no answer.
     facts:
       - geo-default
-  - id: route53-018
-    q: What does Route 53 multivalue answer routing return when resources are healthy, and when all are unhealthy?
-    a: Up to eight healthy records, or all healthy records if there are eight or fewer. If all are unhealthy, it returns up to eight unhealthy records.
-    facts:
-      - multivalue
-      - multivalue-unhealthy
   - id: route53-028
     q: A team changes Route 53 weights and expects each application request to follow the new ratio immediately. Why can that fail?
     a: Resolvers reuse cached answers until their TTL expires. Weights control DNS answer selection; cached answers can serve many application requests.
     facts:
       - weighted-ratio
       - ttl-cache
-    trap: true
-  - id: route53-030
-    q: Every Route 53 weighted record has weight 0. Does the group stop answering?
-    a: No. All resources have equal selection probability.
-    facts:
-      - all-zero
-    trap: true
-  - id: route53-031
-    q: A Route 53 latency alias points to a regional weighted group with no healthy endpoints. How can DNS choose another Region?
-    a: Enable Evaluate Target Health on the latency aliases and attach health checks to the non-alias weighted records. Route 53 can leave the failed regional branch.
-    facts:
-      - regional-tree
-      - tree-leaves
-  - id: route53-032
-    q: What weight range does a Route 53 weighted record accept?
-    a: An integer from 0 through 255.
-    facts:
-      - weight-range
-  - id: route53-033
-    q: A healthy Route 53 weighted record has weight 0 while all records with nonzero weights fail their checks. Can it answer?
-    a: Yes. Route 53 considers zero-weight records when every nonzero-weight record is unhealthy.
-    facts:
-      - zero-fallback
     trap: true
   - id: route53-064
     q: "A team moves traffic gradually from an Auto Scaling group behind an ALB to a new Auto Scaling group using Route 53. How should the new environment be exposed?"
@@ -237,7 +208,6 @@ Route 53 selects DNS answers using routing policies. DNS, the Domain Name System
 2. For weighted routing, give records the same name and type. Each record's share is its weight divided by the total weight.
 3. Route 53 applies the policy and checks the selected record's current health. Endpoint probes run independently of queries.
 4. A recursive resolver, the server that looks up names for a client, caches the answer for its time to live (TTL). Cached answers can serve many application requests.
-5. For regional selection plus local distribution, point latency aliases at regional weighted groups. Enable Evaluate Target Health, which inherits health from the target, and check each non-alias leaf. Route 53 can leave a Region with no healthy leaves.
 
 | Policy | Selection rule |
 |---|---|
@@ -255,15 +225,12 @@ A bias expands or shrinks the geographic area served by a geoproximity resource.
 ### Exam cues
 
 - If the question says gradually move DNS answers to a new stack, think weighted routing, because weights control relative answer shares.
-- If the question says use the lowest latency Region with local endpoint failover, think latency aliases over health-checked regional groups, because the tree combines both decisions.
 - If the question says route users by country, think geolocation with a default record, because unmapped locations otherwise receive no answer.
 - If the question says shift traffic gradually between two environments with DNS, think weighted records for two separate endpoints, because each environment needs its own load balancer to weight.
 
 ### Remember
 
-- Weights range from 0 through 255. All-zero weights give equal probability.
-- A zero-weight record can answer when all nonzero-weight records are unhealthy.
-- Multivalue returns up to eight healthy records. With no healthy records, it can return unhealthy records.
+- A simple record returns all its values; multivalue records can check each resource.
 - The smallest matching geolocation wins.
 - An unchecked record counts as healthy.
 

@@ -143,23 +143,6 @@
       ]
     },
     {
-      "id": "dynamodb-034",
-      "q": "A DynamoDB write consumer is falling behind. Which metric distinguishes write throttling from read throttling?",
-      "a": "WriteThrottleEvents. Compare ReadThrottleEvents and inspect table/index dimensions and exception reasons to locate the affected resource.",
-      "facts": [
-        "metrics",
-        "gsi"
-      ]
-    },
-    {
-      "id": "dynamodb-035",
-      "q": "A DynamoDB history table is rarely read and storage dominates cost. Which class fits?",
-      "a": "Standard-IA. Standard is the default, while Standard-IA targets storage-heavy infrequent access.",
-      "facts": [
-        "classes"
-      ]
-    },
-    {
       "id": "dynamodb-036",
       "q": "Does DynamoDB on-demand guarantee that requests can never throttle?",
       "a": "No. Quotas and any configured maximum throughput still apply.",
@@ -169,44 +152,11 @@
       "trap": true
     },
     {
-      "id": "dynamodb-042",
-      "q": "Does a DynamoDB table need extra setup to keep its data in more than one Availability Zone?",
-      "a": "No. DynamoDB automatically replicates table data across three Availability Zones in the Region.",
-      "trap": true,
-      "facts": [
-        "three-az"
-      ]
-    },
-    {
-      "id": "dynamodb-043",
-      "q": "A company runs steady DynamoDB traffic in provisioned capacity mode and wants a lower price for a one-year commitment. What should it buy?",
-      "a": "DynamoDB reserved capacity. It discounts provisioned read and write capacity; it does not apply to on-demand mode.",
-      "facts": [
-        "reserved-capacity"
-      ]
-    },
-    {
-      "id": "dynamodb-044",
-      "q": "A company stores product records whose attributes differ from item to item. Which AWS database fits without defining a fixed schema?",
-      "a": "Amazon DynamoDB. Only the primary key is fixed; each item can have different attributes.",
-      "facts": [
-        "schemaless"
-      ]
-    },
-    {
       "id": "dynamodb-046",
       "q": "A DynamoDB table throttles writes while most of its provisioned capacity sits unused. What partition key change helps?",
       "a": "Choose a high-cardinality partition key, one with many distinct values, so requests spread evenly across partitions.",
       "facts": [
         "partition-key-uniform"
-      ]
-    },
-    {
-      "id": "dynamodb-050",
-      "q": "A team switched a DynamoDB table from provisioned to on-demand and back several times today; the next switch to on-demand is rejected. Why?",
-      "a": "Provisioned-to-on-demand switches are limited to **four per rolling 24 hours**. Switching from on-demand to provisioned has no such limit.",
-      "facts": [
-        "mode-switch"
       ]
     },
     {
@@ -219,10 +169,10 @@
     },
     {
       "id": "dynamodb-052",
-      "q": "A DynamoDB table must be encrypted at rest at no extra KMS cost. What must the team configure?",
-      "a": "Nothing. DynamoDB encrypts every table at rest, by default with an **AWS owned key** at no extra charge.",
+      "q": "A DynamoDB workload has unpredictable request traffic and the team does not want to provision capacity units. Which capacity mode fits?",
+      "a": "Use on-demand capacity. It scales without provisioning read or write units and bills per request.",
       "facts": [
-        "encryption-default"
+        "on-demand"
       ]
     }
   ],
@@ -307,16 +257,12 @@ DynamoDB capacity controls how much read and write work a table can accept. On-d
 - If the question says avoid provisioning units, think on-demand, because capacity scales with requests.
 - If the question says table writes fail because of an index, think GSI write capacity, because index back-pressure can throttle base writes.
 - If the question says distinguish write bottlenecks from reads, think WriteThrottleEvents, because it counts write throttles.
-- If the question says infrequent access and storage-heavy cost, think Standard-IA, because that class targets storage-dominated workloads.
 
 ### Remember
 
 - Auto scaling utilization target: 20 to 90 percent, within capacity bounds.
 - Scale-out triggers after two consecutive minutes above target, followed by alarm and update delay.
 - An 8 KB item read uses 2 strong, 1 eventual, or 4 transactional read units.
-- Standard is the default table class; class selection is separate from capacity mode.
 - Index metrics use TableName and GlobalSecondaryIndexName.
-- DynamoDB data: three AZs automatically.
-- Reserved capacity: provisioned mode only.
 
 > **Trap:** Auto scaling does not react instantly to spikes. On-demand can also throttle at quotas or configured maximums.

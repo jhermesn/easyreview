@@ -68,28 +68,10 @@ cards:
     q: A company counts AWS License Manager licenses by physical sockets. What EC2 tenancy is required?
     a: Dedicated Hosts. Core and socket counting require them.
     facts: [tenancy]
-  - id: license-manager-005
-    q: Does AWS License Manager validate on-premises licensing rules when a server launches or terminates?
-    a: No. Use Systems Manager Inventory for discovery, attach rules, and refresh inventory periodically.
-    facts: [inventory, inventory-limit]
-    trap: true
-  - id: license-manager-006
-    q: A company wants one view of license usage across AWS accounts and Regions. What AWS License Manager feature helps?
-    a: License asset groups provide centralized monitoring and rule management.
-    facts: [asset-groups]
-  - id: license-manager-007
-    q: By default, does AWS License Manager count stopped instances against a self-managed license?
-    a: No. The include stopped instances rule defaults to false, releasing their licenses to the pool.
-    facts: [stopped]
   - id: license-manager-008
     q: A company must prevent a new deployment when its AWS License Manager license count would be exceeded. Which limit should it choose?
     a: A hard limit. A soft limit notifies when exceeded but does not prevent deployment.
     facts: [limits]
-  - id: license-manager-009
-    q: Does AWS License Manager automatically stop tracking an instance when discovered software is uninstalled?
-    a: No. Configure automated discovery to stop tracking on uninstall if needed.
-    facts: [discovery-uninstall]
-    trap: true
 ---
 
 AWS License Manager tracks software license use across AWS accounts and Regions and can manage licenses on servers outside AWS. Bring Your Own License (BYOL) means using existing licenses with cloud resources.
@@ -98,8 +80,7 @@ AWS License Manager tracks software license use across AWS accounts and Regions 
 
 1. Review the software agreement and create a self-managed license with rules that reflect its terms.
 2. Select a counting type: virtual CPUs (vCPUs), cores, sockets, or instances. Rules can include tenancy restrictions and license limits. A hard limit prevents deployment when exceeded; a soft limit notifies instead.
-3. Use Systems Manager Inventory to discover on-premises applications and attach rules. A Resource Data Sync stores inventory in an S3 bucket for querying. Add product information to a self-managed license to track matching software with automated discovery.
-4. Track usage and manage rules across accounts and Regions with license asset groups. AWS Resource Access Manager can share self-managed licenses with other accounts.
+3. Use Systems Manager to manage licenses on servers outside AWS.
 
 | Counting type | Supported tenancy |
 | --- | --- |
@@ -109,18 +90,14 @@ AWS License Manager tracks software license use across AWS accounts and Regions 
 ### Exam cues
 
 - If the question says reuse existing software licenses on AWS, think BYOL and self-managed licenses, because their rules reflect the agreement.
-- If the question says track licenses on servers outside AWS, think Systems Manager Inventory, because License Manager can discover and track those applications.
+- If the question says track licenses on servers outside AWS, think License Manager with Systems Manager, because it can manage those servers' licenses.
 - If the question says count physical cores or sockets, think Dedicated Hosts, because those counting types require that tenancy.
-- If the question says manage license usage across accounts and Regions, think license asset groups, because they provide centralized monitoring and rule management.
 - If the question says prevent deployment above a license limit, think a hard limit, because a soft limit only notifies.
 
 ### Remember
 
 - Counting types are vCPUs, cores, sockets, and instances.
-- Stopped instances are excluded by default; their licenses return to the available pool.
-- Host affinity for core or socket licenses ranges from 1 to 180 days. After it ends, licenses become available for reuse within 24 hours.
-- Inventory for non-AWS servers needs periodic refresh.
-- Automated discovery keeps tracking instances after software uninstall by default; configure it to stop if needed.
-- RDS for Oracle and RDS for Db2 automated discovery uses vCPU counting and does not support rules or hard limits.
+- Core and socket counting require Dedicated Hosts.
+- A hard limit prevents deployment when the license limit is exceeded; a soft limit notifies the administrator.
 
-> **Trap:** Inventory discovery does not validate licensing rules at launch or termination for non-AWS servers.
+> **Trap:** A soft limit does not prevent deployment when the license limit is exceeded. Choose a hard limit for that.

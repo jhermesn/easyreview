@@ -65,14 +65,11 @@ facts:
     source: https://docs.aws.amazon.com/codedeploy/latest/userguide/application-specification-files.html#application-specification-files
 cards:
   - id: codedeploy-029
-    q: A CodeDeploy group must select EC2 instances tagged Environment=Beta or Environment=Staging, and
-      Region=North or Region=South. How should the tags be grouped?
-    a: Use one tag group for the Environment alternatives and another for the Region alternatives. Tags
-      are OR within each group and AND across groups.
-    trap: true
+    q: "A team wants CodeDeploy to release a new version by replacing EC2 instances. Which deployment method fits?"
+    a: "Use an EC2 blue/green deployment. In-place deployment updates the application on existing instances."
     facts:
-      - tag-or
-      - tag-and
+      - ec2-bluegreen
+      - in-place
   - id: codedeploy-034
     q: Which CodeDeploy platforms support in-place and blue/green deployment?
     a: In-place supports EC2 and on-premises instances. Blue/green supports EC2, Lambda, and ECS; it

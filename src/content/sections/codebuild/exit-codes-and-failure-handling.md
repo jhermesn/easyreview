@@ -76,16 +76,11 @@ cards:
       - succeeding
       - upload-after-failure
   - id: codebuild-018
-    q: A CodeBuild phase using a CodeBuild-provided EC2 image encounters a temporary connection error.
-      How can the team retry only that error?
-    a: "Use phase `on-failure: RETRY-count-regex` to set a retry count and error pattern. Counts range
-      from `0` to `100`; plain `RETRY` allows up to `3` retries. This setting is unsupported for
-      Lambda compute and reserved capacity."
+    q: "A CodeBuild unit test command fails. How can a team stop the build while still running cleanup commands?"
+    a: "Use on-failure ABORT for the phase and put cleanup in finally. Finally commands run after a commands-block failure."
     facts:
-      - retry-regex
-      - retry-count
-      - retry
-      - retry-compute
+      - abort
+      - finally
   - id: codebuild-030
     q: A CodeBuild command fails, but the next phase still runs. Which buildspec setting allows this,
       and where should cleanup go?
@@ -96,13 +91,10 @@ cards:
       - finally
       - phase-success
   - id: codebuild-045
-    q: A CodeBuild project needs to retry a failed build rather than just one failed phase. Which
-      StartBuild setting controls this?
-    a: Use `autoRetryLimitOverride`. A limit of 2 permits up to 2 additional builds through
-      `RetryBuild`; phase `on-failure` instead controls phase failure behavior.
+    q: "A CodeBuild test phase fails, but the team needs to upload test artifacts for analysis. Is artifact upload attempted?"
+    a: "Yes. CodeBuild attempts UPLOAD_ARTIFACTS even when BUILD fails."
     facts:
-      - automatic-build-retry
-      - retry
+      - upload-after-failure
   - id: codebuild-047
     q: A CodePipeline CodeBuild action fails and the team wants an automatic retry. Should it rely on
       the CodeBuild project's automatic build retry?

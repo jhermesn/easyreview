@@ -28,13 +28,15 @@ cards:
     trap: true
     facts: [closed, migrate, glue-fit]
   - id: data-pipeline-002
-    q: Which three services does AWS recommend for moving workloads off AWS Data Pipeline?
-    a: "AWS Glue, AWS Step Functions and Amazon MWAA."
-    facts: [migrate]
+    q: A team is moving an AWS Data Pipeline data integration job that uses Spark and Python. Which
+      service is a suitable replacement?
+    a: "AWS Glue supports serverless data integration with Spark and Python jobs."
+    facts: [glue-fit]
   - id: data-pipeline-003
-    q: How does AWS Data Pipeline run the work in a pipeline?
-    a: "It creates EC2 instances (and can launch EMR clusters) where Task Runner polls for and performs the tasks."
-    facts: [ec2, what]
+    q: An existing AWS Data Pipeline workflow moves and transforms data through dependent tasks.
+      What does the service automate?
+    a: "AWS Data Pipeline automates data movement and transformation, with tasks that can depend on earlier tasks succeeding."
+    facts: [what]
   - id: data-pipeline-004
     q: A Data Pipeline workflow coordinates EMR steps, Lambda functions and DynamoDB writes. Which service is the recommended serverless replacement for the orchestration?
     a: "AWS Step Functions."

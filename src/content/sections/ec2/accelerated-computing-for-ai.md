@@ -25,9 +25,9 @@ cards:
     a: Amazon EC2 Inf2 instances, powered by AWS Inferentia.
     facts: [inferentia]
   - id: ec2-059
-    q: Which SDK runs models on AWS Trainium and Inferentia?
-    a: The AWS Neuron SDK.
-    facts: [neuron]
+    q: "A graphics application needs NVIDIA acceleration on Amazon EC2. Which type of compute should the company choose?"
+    a: "NVIDIA GPU instances, such as Amazon EC2 G6e."
+    facts: [gpu]
   - id: ec2-060
     q: Is AWS Inferentia meant for training large models?
     a: "No. Inferentia targets inference; Trainium targets training (and also serves models)."

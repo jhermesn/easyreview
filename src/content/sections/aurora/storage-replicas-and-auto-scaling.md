@@ -120,14 +120,6 @@ cards:
       - reader-limit
       - storage
       - readers
-  - id: aurora-002
-    q: How does an Aurora cluster automatically add read-serving instances as demand changes?
-    a: Aurora Auto Scaling uses Application Auto Scaling target tracking on rds:cluster:ReadReplicaCount. Predefined metrics are RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
-    facts:
-      - autoscaling
-      - dimension
-      - cpu
-      - connections
   - id: aurora-009
     q: An Aurora application sends every read over one persistent reader-endpoint connection. Why does one reader remain busy?
     a: The endpoint balances connections, not individual queries. A persistent connection stays with its selected reader.
@@ -141,80 +133,46 @@ cards:
       - writer-endpoint
       - readers
   - id: aurora-011
-    q: An Aurora Auto Scaling policy sees load from manually created readers. Can scale-in delete those readers?
-    a: No. All readers contribute to the metric average, but Auto Scaling removes only readers it created.
-    trap: true
+    q: An Aurora cluster needs to handle more read traffic and provide a failover target. What
+      should the team add?
+    a: Add an Aurora Replica. Readers serve read traffic and can be promoted if the writer fails.
     facts:
-      - aggregate
-      - remove
+      - readers
   - id: aurora-012
-    q: An Aurora cluster has no readers and a CPU-based reader Auto Scaling policy remains inactive. Why?
-    a: There is no reader metric to evaluate. Maintain at least one reader so metric-based alarms can operate.
-    trap: true
+    q: An Aurora cluster has variable read demand. How can it adjust read capacity automatically?
+    a: Use Aurora Auto Scaling to add or remove reader instances within configured limits. It does
+      not scale the writer.
     facts:
-      - minimum-reader
-  - id: aurora-013
-    q: Which class and promotion tier does Aurora Auto Scaling assign to a new reader by default?
-    a: The writer instance class and promotion tier 15, the lowest promotion priority.
-    facts:
-      - created
-      - tier
-      - tier-tie
-  - id: aurora-014
-    q: An Aurora application must cap connections opened to the database while retaining many client connections. Which setting and endpoint apply?
-    a: Connect through RDS Proxy and set MaxConnectionsPercent as a percentage of max_connections. Internal reserves mean MaxDatabaseConnectionsAllowed can be lower than that calculation.
-    facts:
-      - proxy
-      - proxy-cap
-      - proxy-reserve
-  - id: aurora-015
-    q: Can Aurora Auto Scaling add readers to a Global Database secondary or an Aurora Serverless v2 cluster?
-    a: No. Reader-count Auto Scaling does not support those configurations. Pre-created Serverless readers can scale their compute capacity.
-    trap: true
-    facts:
-      - secondary
-      - serverless
-  - id: aurora-016
-    q: How does Aurora normally select a reader to promote when several are available?
-    a: Lower promotion tier numbers take priority, from 0 to 15. Equal tiers favor the larger instance, then an arbitrary equal-size instance; tiers are ignored after five unsuccessful attempts.
-    facts:
-      - tier
-      - tier-tie
-      - tier-exception
+      - autoscaling
   - id: aurora-031
     q: A company runs MySQL and PostgreSQL applications and wants a managed relational database that AWS patches for it. Which AWS database fits?
     a: "Amazon Aurora.\nIt is compatible with MySQL and PostgreSQL, and AWS applies OS and engine patches in the maintenance window."
     facts: [engine-compat, managed-patching]
-  - id: aurora-036
-    q: "Developers need a full copy of a 5 TB production Aurora database for testing, created in minutes and at low storage cost. Which feature fits?"
-    a: "**Aurora cloning** (copy-on-write: shares pages until either side changes them)."
-    facts: [cloning]
   - id: aurora-037
     q: "Analytics queries must go only to two large Aurora replicas, while the app uses the others. Which Aurora feature fits?"
     a: "A **custom endpoint** that includes just those two replicas."
     facts: [custom-endpoint]
   - id: aurora-038
-    q: "How can a large self-managed MySQL 8.0 database move to Aurora MySQL faster than a logical dump?"
-    a: "Back it up with Percona XtraBackup, upload the files to S3 and restore an Aurora MySQL cluster from them."
-    facts: [xtrabackup]
+    q: How can an Aurora cluster improve database instance availability across Availability Zones?
+    a: Place Aurora Replicas in different Availability Zones. A reader can be promoted if the writer
+      fails.
+    facts: [readers]
   - id: aurora-039
     q: "The writer of a single-instance Aurora cluster fails. What does Aurora do, and how long can it take?"
     a: "It recreates the primary instance in the same AZ, typically within 10 minutes. Add an Aurora Replica in another AZ so failover becomes a fast promotion."
     trap: true
     facts: [no-replica-failover]
-  - id: aurora-040
-    q: "When a row is deleted in Aurora MySQL, a Lambda function must run and forward the change. How can the database call Lambda directly?"
-    a: "With the Aurora MySQL native functions lambda_sync or lambda_async, after granting the cluster access to Lambda."
-    facts: [lambda-native]
   - id: aurora-042
-    q: "A bad DELETE hit an Aurora MySQL cluster 20 minutes ago. Which feature undoes it fastest without creating a new cluster, and what must already be true?"
-    a: "Backtrack, which rewinds the cluster in place in minutes. It only works if Backtrack was enabled when the cluster was created or restored, and the window is at most 72 hours."
-    trap: true
-    facts: [backtrack]
+    q: An Aurora application needs read scaling without copying table data for each database
+      instance. How do replicas use storage?
+    a: Aurora readers share the cluster volume with the writer. Adding an instance does not make a
+      new copy of the table data.
+    facts: [cluster, reader-limit, compute]
   - id: aurora-043
-    q: "Analysts want sentiment scores on rows in Aurora without building an ML pipeline. What feature fits?"
-    a: "Aurora machine learning, which calls Amazon Comprehend (or Bedrock or SageMaker AI) from SQL."
-    facts: [aurora-ml]
+    q: An Aurora workload needs to distribute read connections across replicas. Which endpoint
+      should it use?
+    a: Use the reader endpoint. It balances new connections among available Aurora Replicas.
+    facts: [reader-endpoint]
   - id: aurora-045
     q: "A production RDS for MySQL database must move to Aurora MySQL with minimal downtime. What path does AWS recommend?"
     a: "Create an Aurora read replica of the RDS instance; when replica lag reaches 0, switch clients and promote the replica."
@@ -297,30 +255,18 @@ An Aurora cluster separates database instances from a shared storage volume. The
 2. Add up to 15 Aurora Replicas, meaning read-only instances sharing the same volume. Adding a reader does not copy all table data again.
 3. Send read/write connections to the cluster endpoint, the address that follows the writer. Send read-only connections to the reader endpoint, which balances connections across readers. It does not redistribute queries within a connection.
 4. For automatic reader counts, register rds:cluster:ReadReplicaCount in Application Auto Scaling and set target tracking limits and a CPU or connection target. The average includes every reader and excludes the writer. At least one reader must exist for these metrics to drive scaling.
-5. Auto Scaling adds readers using the writer's instance class and default promotion tier 15, and removes only readers it created. A promotion tier is a priority for taking over the writer role; 0 is highest and 15 lowest. Within a tier, Aurora prefers the larger instance, then an arbitrary equal-size instance. After five unsuccessful failover attempts, tiers are ignored.
-6. For connection pressure, use RDS Proxy, which reuses database connections for client requests. Connect clients to its endpoint and set MaxConnectionsPercent to cap backend connections as a percentage of max_connections, the database connection limit.
-
-| Capacity problem | Control |
-|---|---|
-| More stored data | Automatic cluster-volume growth |
-| More provisioned read traffic | Aurora Auto Scaling adds reader instances |
-| Variable Serverless v2 instance load | Pre-created instances scale their compute capacity |
-| Too many backend database connections | RDS Proxy pooling and MaxConnectionsPercent |
+5. Auto Scaling removes only the readers it created, even though manually added readers contribute to its metrics.
 
 ### Exam cues
 
 - If the question says durable storage but only one database instance, think add a reader in another zone, because storage copies alone are not spare compute.
 - If the question says automatically add provisioned read capacity, think Aurora Auto Scaling, because it changes reader count using average reader CPU or connections.
 - If the question says a single read session overloads one reader, think connection balancing, because the reader endpoint does not balance each query.
-- If the question says many clients exhaust database connections, think RDS Proxy and MaxConnectionsPercent, because client sessions and pooled database connections are separate.
 
 ### Remember
 
 - Six data copies across three zones; one writer and up to 15 readers.
-- Promotion tier 0 is highest; 15 is lowest. New Auto Scaling readers default to 15.
 - Metrics: RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
-- Reader Auto Scaling does not scale the writer and is unsupported for Global Database secondaries or Serverless v2.
-- MaxDatabaseConnectionsAllowed accounts for proxy internal reserves and can be below the simple percentage calculation.
 - Aurora is MySQL and PostgreSQL compatible; AWS patches it in the maintenance window.
 
 > **Trap:** Manually created readers affect Auto Scaling metrics but are not removed by its scale-in actions. With no readers, the reader endpoint reaches the writer and can accept writes.

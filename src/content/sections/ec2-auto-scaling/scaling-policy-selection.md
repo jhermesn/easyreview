@@ -82,12 +82,6 @@ cards:
     a: Step scaling. Define adjustments for different breach sizes and manage the CloudWatch alarm that invokes the policy.
     facts:
       - step
-  - id: ec2-auto-scaling-037
-    q: How much history does EC2 Auto Scaling predictive scaling need, and how far ahead does it forecast?
-    a: At least 24 hours of data; up to 14 days are analyzed. It forecasts hourly capacity for 48 hours and updates the forecast every 6 hours.
-    facts:
-      - forecast-data
-      - forecast-window
   - id: ec2-auto-scaling-070
     q: A team wants a CloudWatch PromQL alarm to scale an EC2 Auto Scaling group by different amounts for different threshold breaches. Which policy supports this?
     a: Step scaling. Since November 2026, PromQL alarms can trigger step and simple scaling, but not target tracking.
@@ -132,8 +126,6 @@ Scaling policies change the desired capacity of an EC2 Auto Scaling group as dem
 
 - Simple scaling cooldown defaults to 300 seconds. Target tracking and step scaling scale-out, scheduled actions and unhealthy replacement do not wait for it.
 - AWS recommends target tracking or step scaling over simple scaling.
-- Predictive scaling needs at least 24 hours of history and analyzes up to 14 days.
-- It forecasts hourly capacity for 48 hours and refreshes the forecast every 6 hours.
 - Forecast-only is the initial mode.
 - Since November 2026, PromQL alarms support simple and step scaling, not target tracking.
 

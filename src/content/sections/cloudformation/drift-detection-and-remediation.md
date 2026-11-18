@@ -219,11 +219,10 @@ cards:
     facts:
       - drift-rollback
   - id: cloudformation-146
-    q: A CloudFormation drift-aware change set encounters an unchanged AWS-managed scaling property and
-      an external tag not in the template. Are they reverted?
-    a: No. Unchanged AWS-managed properties and tag keys absent from the template are preserved.
+    q: "How can a security team audit CloudFormation stacks for configuration drift on a recurring basis?"
+    a: "Use the AWS Config cloudformation-stack-drift-detection-check rule. It runs periodically and on configuration changes, reporting drifted stacks as NON_COMPLIANT."
     facts:
-      - drift-managed
+      - config-rule
   - id: cloudformation-147
     q: An IAM policy in one CloudFormation stack attaches to a role in another. What risk does a
       drift-aware change set pose for that attachment?

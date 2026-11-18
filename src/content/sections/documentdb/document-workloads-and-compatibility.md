@@ -41,13 +41,9 @@ diagrams:
       - "The primary writes to the shared cluster volume."
       - "Replicas read from the shared volume."
 cards:
-  - id: documentdb-001
-    q: Which managed database supports MongoDB-compatible document workloads?
-    a: Amazon DocumentDB. Check the supported API operations and functional differences before migration.
-    facts: [managed, differences, api]
   - id: documentdb-002
-    q: How many read replicas can an instance-based Amazon DocumentDB cluster have?
-    a: Up to 15. Replicas also serve as failover targets.
+    q: "An instance-based Amazon DocumentDB cluster needs more read capacity and a failover target. What should the team add?"
+    a: "Add a read replica. It can serve reads and act as a failover target."
     facts: [replicas]
   - id: documentdb-003
     q: A team needs an Amazon DocumentDB connection that follows the current primary after failover. Which endpoint should it use?
@@ -62,41 +58,28 @@ cards:
     a: No. It balances connections, not individual requests.
     facts: [reader]
     trap: true
-  - id: documentdb-006
-    q: A team must retain an Amazon DocumentDB backup beyond the continuous backup retention period. What should it create?
-    a: A manual cluster snapshot.
-    facts: [snapshot]
   - id: documentdb-007
     q: What consistency should a client expect when reading from an Amazon DocumentDB replica?
     a: Eventual consistency with the primary.
     facts: [eventual]
-  - id: documentdb-008
-    q: "Do you need to provision storage size for an Amazon DocumentDB cluster?"
-    a: "No. The cluster volume grows automatically as data grows and you pay for what you use."
-    facts: [storage-growth]
 ---
 
-Amazon DocumentDB is a managed database for MongoDB-compatible document workloads. A document stores data in key-value pairs that can be nested. Compatibility does not mean every MongoDB operation behaves identically.
+Amazon DocumentDB is a managed database for MongoDB-compatible document workloads. A document stores data in key-value pairs that can be nested. Instance-based clusters use replicas and endpoints to support reads and failover.
 
 ### How it works
 
-1. Check the supported APIs and functional differences for the compatibility level before moving an application.
-2. Choose an instance-based or elastic cluster. In an instance-based cluster, the primary instance handles writes and reads. A replica is an additional instance that serves reads.
-3. Instances use a shared cluster volume, with six copies across three Availability Zones. An Availability Zone is an isolated location within an AWS Region.
-4. Connect through the cluster endpoint, a network address for the current primary. In replica set mode, a read preference can direct eligible reads to replicas.
-5. Continuous backups support point-in-time recovery, a restore to a chosen time within the retention period.
+1. Choose an instance-based or elastic cluster. In an instance-based cluster, the primary instance handles writes and reads. A replica is an additional instance that serves reads.
+2. Instances use a shared cluster volume, with six copies across three Availability Zones. An Availability Zone is an isolated location within an AWS Region.
+3. Connect through the cluster endpoint, a network address for the current primary. In replica set mode, a read preference can direct eligible reads to replicas.
 
 ### Exam cues
 
-- If the question says MongoDB-compatible managed document database, think Amazon DocumentDB, because it supports compatible APIs.
 - If the question says more read capacity and a failover target, think replicas, because replicas serve reads and can be promoted.
-- If the question says backup beyond the retention period, think manual snapshot, because it can be retained longer.
+- If the question says a connection must follow the primary after failover, think cluster endpoint, because it connects to the current primary.
 
 ### Remember
 
 - An instance-based cluster supports up to 15 replicas. Replica reads are eventually consistent, so they can lag behind writes.
-- Continuous backup retention is 1 to 35 days.
-- AWS KMS encryption at rest also covers cluster backups, snapshots and replicas.
 - The reader endpoint balances connections, not individual requests.
 
-> **Trap:** MongoDB compatibility does not guarantee identical support or behavior for every operation. Check the compatibility documentation.
+> **Trap:** The reader endpoint balances connections, not individual read requests.

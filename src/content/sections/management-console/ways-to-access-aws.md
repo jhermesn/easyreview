@@ -25,62 +25,36 @@ facts:
     text: "After opting in to multi-session support, one browser can be signed in to up to five identities at once in the AWS Management Console, mixing root, IAM and federated roles from the same or different accounts."
     source: https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/multisession.html#multisession
 cards:
-  - id: management-console-001
-    q: What are the main ways to access and operate AWS services?
-    a: "- AWS Management Console (web)\n- AWS CLI (command line)\n- AWS SDKs and APIs (code)\n- Infrastructure as code, such as AWS CloudFormation templates"
-    facts: [console, cli, sdks, iac]
-  - id: management-console-002
-    q: An administrator wants to run AWS commands from a terminal script. Which tool fits?
-    a: The AWS Command Line Interface (AWS CLI).
-    facts: [cli]
-  - id: management-console-003
-    q: A developer's Python application must create objects in Amazon S3. How should it call AWS?
-    a: Through the AWS SDK for Python, which handles request signing, retries and errors.
-    facts: [sdks]
   - id: management-console-004
     q: A company must build the same environment in three Regions, identically, again and again. Which approach fits?
     a: Infrastructure as code with an AWS CloudFormation template, reused in each Region.
     facts: [iac, repeatable]
-  - id: management-console-005
-    q: A user needs to create one resource once, by hand, and see it visually. Which access method fits?
-    a: The AWS Management Console.
-    facts: [console]
   - id: management-console-006
     q: Is clicking through the AWS Management Console a good way to build environments that must be repeated exactly?
     a: No. Manual steps aren't repeatable; use infrastructure as code such as CloudFormation for repeatable processes.
     trap: true
     facts: [repeatable, console]
   - id: management-console-007
-    q: "An administrator wants the console for two AWS accounts open in the same browser at the same time. What makes that possible?"
-    a: "Multi-session support. After opting in, one browser can hold up to five signed-in identities, each in its own tab."
-    facts: [multi-session]
+    q: "Which AWS access option lets a user manage services through a web browser?"
+    a: "The AWS Management Console provides web-based access to AWS service consoles."
+    facts: [console]
 ---
-Every AWS action can be done in more than one way. The web console suits one-time, visual work. The CLI and SDKs suit scripts and applications. Infrastructure as code suits anything that must be repeated exactly. [What is the AWS Management Console?](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/what-is.html#what-is)
+AWS CloudFormation templates help create resources consistently across Regions. The AWS Management Console also supports signing in to multiple identities in one browser. [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#welcome-quickly-replicate-your-infrastructure) | [Multi-session support](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/multisession.html#multisession)
 
 ### How it works
 
-1. **AWS Management Console:** a web interface to all services, including AWS CloudShell, a shell in the browser.
-2. **AWS CLI:** commands in a terminal, with the same functionality as the console. [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html#cli-chap-welcome)
-3. **SDKs and APIs:** application code calls AWS APIs through language-specific SDKs, signed with credentials.
-4. **Infrastructure as code (IaC):** a template describes the resources, and AWS CloudFormation creates them the same way every time. [What is CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome)
-
-| Method | Best for |
-|---|---|
-| Management Console | One-time tasks, exploring, visual checks |
-| AWS CLI | Scripts and automation from a terminal |
-| SDKs and APIs | Applications that call AWS |
-| Infrastructure as code | Repeatable, consistent environments |
+1. Describe the resources you want in a CloudFormation template. CloudFormation provisions and configures them, handling their dependencies. [What is CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome)
+2. Reuse the template to create the same resources consistently in multiple Regions. [Replicate your infrastructure](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#welcome-quickly-replicate-your-infrastructure)
+3. Opt in to multi-session support to sign in to multiple console identities in the same browser. [Signing in to multiple accounts](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/multisession.html#multisession)
 
 ### Exam cues
 
-- If the question says one-time setup or a visual interface, think the console.
-- If the question says scripting from a terminal, think the AWS CLI.
-- If the question says application code, think SDKs.
-- If the question says repeatable, consistent environments, think infrastructure as code (CloudFormation).
+- If the question says the same environment must be created repeatedly across Regions, think CloudFormation, because its template can be reused.
+- If the question says multiple accounts must be open in one browser, think multi-session support, because it allows simultaneous console identities.
 
 ### Remember
 
-- The CLI and SDKs authenticate programmatic calls with access keys or temporary credentials.
-- IaC templates can be reused across Regions and accounts.
+- A CloudFormation template can be reused to create resources consistently across Regions.
+- After opting in, a browser can hold up to five console identities from the same or different accounts.
 
-> **Trap:** The CLI is not only for Linux. It runs on Linux, macOS and Windows, and remotely from EC2 or AWS CloudShell.
+> **Trap:** Clicking through the console is a manual process. Use a CloudFormation template when resources must be created consistently and repeatedly.

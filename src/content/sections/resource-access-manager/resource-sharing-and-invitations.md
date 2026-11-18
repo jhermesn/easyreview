@@ -104,24 +104,10 @@ cards:
     q: A receiving account accepted an AWS RAM share but a user still lacks access. What must its administrator check?
     a: Grant the user an identity-based permission within the resource share's managed permission ceiling.
     facts: [ram-permission]
-  - id: resource-access-manager-005
-    q: Does enabling trusted access only in AWS Organizations complete setup for organization sharing in AWS RAM?
-    a: No. Enable sharing through AWS RAM so the required service-linked role is created.
-    facts: [ram-org-enable]
-    trap: true
   - id: resource-access-manager-006
-    q: How long does an AWS RAM invitation for a transit gateway remain valid?
-    a: Seven days. Resource types not on AWS's seven-day list have 12 hours.
-    facts: [ram-expiry]
-  - id: resource-access-manager-007
-    q: An account must retain an AWS RAM share after leaving its organization. What option can the owner use?
-    a: When creating an eligible individual-account share, enable RetainSharingOnAccountLeaveOrganization and allow external principals. The recipient must accept an invitation. Organization-only resources are not eligible.
-    facts: [ram-retain, ram-retain-limits]
-  - id: resource-access-manager-008
-    q: Does an existing AWS RAM resource share automatically switch to a new default managed permission version?
-    a: No. Existing shares are not automatically updated.
-    facts: [ram-version]
-    trap: true
+    q: "Who can modify a subnet shared through AWS RAM?"
+    a: "Only the VPC owner; participant accounts cannot modify the shared subnet."
+    facts: [ram-subnet-owner]
   - id: resource-access-manager-009
     q: A network account wants other accounts to attach VPCs to its transit gateway. What sharing service can it use?
     a: AWS RAM can share the transit gateway; recipients can create VPC attachments but cannot manage its route tables.
@@ -142,8 +128,8 @@ A virtual private cloud (VPC) is an isolated virtual network. A subnet is a rang
 
 - If the question says share subnets across accounts in one organization, think AWS RAM, because the VPC owner can share subnets with those accounts.
 - If the question says a recipient accepted a share but a user cannot use it, think identity-based permissions in the consuming account, because the share's managed permission is a ceiling.
-- If the question says an account must keep access after leaving an organization, think the retention option on an eligible new individual-account share, because it requires an invitation and allows external principals.
-- If the question says enable organization sharing, think the AWS RAM console or CLI, because enabling trusted access only in Organizations does not create the required service-linked role.
+- If the question says share a transit gateway for VPC attachments across accounts, think AWS RAM, because recipients can attach VPCs but cannot manage its route tables.
+- If the question says an invitation is for a transit gateway, think seven days, because AWS lists it among the resource types with that invitation period.
 
 ### Remember
 
@@ -153,7 +139,5 @@ A virtual private cloud (VPC) is an isolated virtual network. A subnet is a rang
 - Participants manage their own application resources in shared subnets, not those owned by other participants.
 - Only the VPC owner can modify the shared VPC or subnets.
 - AWS RAM can also share transit gateways and Route 53 Resolver forwarding rules across accounts. A transit gateway connects networks; a forwarding rule directs name queries.
-- The retention option cannot be used with resources limited to sharing within an organization.
-- A new share uses the managed permission's default version; existing shares do not automatically update to a new version.
 
 > **Trap:** A shared resource is not transferred to the consumer, and a consumer cannot share it onward. The original owner retains ownership.

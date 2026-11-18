@@ -88,10 +88,9 @@ cards:
     trap: true
     facts: [vpc-region]
   - id: vpc-049
-    q: "A team adds a second internet gateway to a VPC for redundancy. Does that work?"
-    a: "No. Only one internet gateway can be attached to a VPC at a time, and it is already a redundant, horizontally scaled component."
-    trap: true
-    facts: [vpc-quotas]
+    q: "What is the purpose of an internet gateway in Amazon VPC?"
+    a: "An internet gateway allows communication between a VPC and the internet for resources with a public IPv4 or IPv6 address."
+    facts: [igw]
   - id: vpc-050
     q: "What makes a subnet public?"
     a: "Its route table sends 0.0.0.0/0 (or ::/0) to an internet gateway."

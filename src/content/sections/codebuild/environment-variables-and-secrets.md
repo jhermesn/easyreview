@@ -105,19 +105,20 @@ cards:
       - masking
     trap: true
   - id: codebuild-033
-    q: A CodeBuild environment mapping sets PATH to $PATH:/tools. Why does the previous PATH disappear?
-    a: Mappings replace values literally. The `$PATH` text in the mapped value does not expand the
-      previous value.
+    q: "A CodeBuild project must retrieve a Parameter Store SecureString during a build. What should the team configure?"
+    a: "Map the parameter with env.parameter-store and grant the service role ssm:GetParameters and kms:Decrypt for its key."
     facts:
-      - literal-replacement
+      - parameter-mapping
+      - parameter-permission
+      - parameter-decrypt
   - id: codebuild-060
     q: A buildspec must tag an image with the exact commit that was built, even when a branch name triggered the build. Which variable fits?
     a: CODEBUILD_RESOLVED_SOURCE_VERSION, the resolved commit ID.
     facts: [source-version-vars]
   - id: codebuild-061
-    q: How can a CodeBuild build tell that the Jenkins plugin started it?
-    a: CODEBUILD_INITIATOR is CodeBuild-Jenkins-Plugin.
-    facts: [initiator-jenkins]
+    q: "A CodeBuild build needs a Secrets Manager secret encrypted with a customer managed KMS key. Which permissions are required?"
+    a: "Grant secretsmanager:GetSecretValue and kms:Decrypt for the key."
+    facts: [secret-permission]
 ---
 CodeBuild maps environment variable names to plain values or stored secrets. An environment variable is a named value available to build commands. Secret references let the build retrieve a value without putting it in the buildspec text.
 

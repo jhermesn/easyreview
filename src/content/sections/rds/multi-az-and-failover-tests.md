@@ -127,14 +127,6 @@ cards:
       connections must be re-established.
     facts:
       - endpoint-reconnect
-  - id: rds-006
-    q: How should a team deliberately test failover for an RDS Multi-AZ DB instance versus an RDS
-      Multi-AZ DB cluster?
-    a: Use Reboot with failover for the DB instance. Use FailoverDBCluster for the DB cluster. Stop
-      transactions before the abrupt instance failover.
-    facts:
-      - instance-test
-      - cluster-test
   - id: rds-015
     q: Must a team recreate an existing Single-AZ RDS DB instance to obtain a Multi-AZ standby?
     a: No. Modify the existing instance to enable Multi-AZ. Plan for possible write-performance impact
@@ -162,8 +154,7 @@ Multi-AZ keeps database copies in separate Availability Zones (AZs), which are i
 1. For a Multi-AZ DB instance, RDS maintains a synchronous standby: changes are copied as part of committing writes. The standby is in another AZ and does not accept application reads.
 2. A Multi-AZ DB cluster has a writer and two readable replicas across three AZs. It uses semisynchronous replication, where a replica acknowledges receipt before all replicas have applied the change.
 3. If a Multi-AZ DB instance suffers a qualifying outage, RDS promotes the standby and updates the database endpoint's DNS record. DNS maps the endpoint name to an address. Clients must resolve the endpoint and reconnect.
-4. Test an instance with **Reboot with failover**. Test a Multi-AZ DB cluster with **FailoverDBCluster**. Stop transactions before the abrupt instance failover.
-5. To add availability to an existing Single-AZ instance, modify it to enable Multi-AZ. RDS initializes standby storage from a snapshot and enables synchronous replication. Allow for write-performance impact.
+4. To add availability to an existing Single-AZ instance, modify it to enable Multi-AZ. RDS initializes standby storage from a snapshot and enables synchronous replication. Allow for write-performance impact.
 
 ### Exam cues
 

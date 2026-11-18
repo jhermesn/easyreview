@@ -60,27 +60,17 @@ cards:
     q: What is the default AWS Compute Optimizer lookback, and how can selected resources use a longer period?
     a: The default is 14 days. Paid enhanced infrastructure metrics extend it to 93 days for selected resources.
     facts: [lookback]
-  - id: compute-optimizer-003
-    q: A team sees no AWS Compute Optimizer recommendation for a new EC2 instance with only 10 hours of metrics. Why?
-    a: EC2 recommendations require at least 30 hours of CloudWatch metrics in the applicable lookback period.
-    facts: [ec2-requirements]
   - id: compute-optimizer-004
-    q: An organization wants AWS Compute Optimizer recommendations across all accounts. How can it enroll them?
-    a: Opt in all accounts from the management account. New member accounts are opted in automatically.
-    facts: [organization]
-  - id: compute-optimizer-005
-    q: A Lambda function has 20 invocations in 14 days. Why does AWS Compute Optimizer not recommend its memory size?
-    a: Lambda memory recommendations require at least 50 invocations in the last 14 days and configured memory of at most 1792 MB.
-    facts: [lambda-requirements]
+    q: A team needs to find idle resources and choose better EC2 instance sizes based on usage.
+      Which AWS service can help?
+    a: AWS Compute Optimizer analyzes configuration and utilization to identify idle resources and
+      recommend sizes.
+    facts: [purpose, supported]
   - id: compute-optimizer-006
-    q: Does AWS Compute Optimizer enforce software license consumption limits?
-    a: Use AWS License Manager for rule-based license controls. Compute Optimizer provides optimization recommendations.
-    trap: true
-    facts: [license-manager, purpose]
-  - id: compute-optimizer-007
-    q: A team detached an EBS volume and its AWS Compute Optimizer recommendation disappeared. Why?
-    a: Recommendations are unavailable when a volume is detached; supported volumes need at least 30 consecutive hours attached to a running instance.
-    facts: [ebs-requirements]
+    q: A team is evaluating an AWS Compute Optimizer rightsizing recommendation. What can it use to
+      assess the utilization trade-off?
+    a: Review the recent and projected utilization graphs provided by Compute Optimizer.
+    facts: [graphs]
   - id: compute-optimizer-008
     q: A team wants AWS Compute Optimizer EC2 recommendations to consider instance memory use. What can it configure?
     a: Collect memory metrics with the CloudWatch agent or ingest them from a supported external product.
@@ -100,16 +90,12 @@ AWS Compute Optimizer helps choose resource configurations based on usage. Right
 - If the question says find a better EC2 size based on usage, think Compute Optimizer, because it analyzes configuration and utilization.
 - If the question says analyze a longer usage history, think enhanced infrastructure metrics, because the paid preference extends the lookback for selected resources.
 - If the question says enforce software license consumption rules, think License Manager, because it tracks licenses and provides rule-based controls.
-- If the question says recommendations are missing for a recently launched EC2 instance, think insufficient metrics, because EC2 needs at least 30 hours of data.
 
 ### Remember
 
 - Default lookback: 14 days. Rightsizing preferences also offer 32 days without additional payment, or 93 days with paid enhanced infrastructure metrics for selected resources.
-- EC2 instances and Auto Scaling groups need 30 hours of metrics in the applicable lookback period.
 - For EC2 memory metrics, use the CloudWatch agent or supported external metrics ingestion.
 - Enable Cost Explorer for pricing and savings calculations using billing data.
-- EBS volumes need 30 consecutive hours attached to a running instance. Detaching removes their recommendations.
-- Lambda memory recommendations need at least 50 invocations in 14 days and configured memory at most 1792 MB.
 - Commercial software license recommendations cover Microsoft SQL Server on EC2.
 
 > **Trap:** Compute Optimizer recommends configurations, but License Manager provides rule-based license consumption controls.

@@ -109,9 +109,9 @@ cards:
       A build-completion rule can invoke Lambda to post results. CodeBuild can also post comments itself with the required permissions. Native CodeBuild webhooks do not support CodeCommit.
     facts: [pull-request-created, pull-request-updated, direct-build-target, build-source-version, result-lambda, build-comments, native-webhooks]
   - id: codecommit-021
-    q: A CodeCommit repository must email reviewers when someone comments on code. Which feature fits?
-    a: A repository notification rule for the comment event types, using an SNS topic. Repository triggers cover a narrower set of operational events.
-    facts: [notification-rules, trigger-scope]
+    q: "A team wants a CodePipeline release to start when a specific CodeCommit branch changes. How should it configure change detection?"
+    a: "Use an EventBridge rule for CodeCommit referenceCreated and referenceUpdated events, filtered by branch type and branch name."
+    facts: [release-trigger]
   - id: codecommit-022
     q: A release pipeline should start when the main branch in CodeCommit changes, while pull requests should run separate tests. Which events distinguish those paths?
     a: Use repository referenceUpdated events filtered to branch main for release changes. Use pullRequestCreated and pullRequestSourceBranchUpdated for pull request checks.

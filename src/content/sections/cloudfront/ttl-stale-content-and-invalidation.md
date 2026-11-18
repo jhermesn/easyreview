@@ -123,12 +123,6 @@ cards:
     facts:
       - ttl-shared
       - ttl-bounds
-  - id: cloudfront-033
-    q: "A client sends Cache-Control: no-cache on a GET to CloudFront. Must CloudFront fetch a fresh origin copy?"
-    a: No. Viewer GET Cache-Control and Pragma headers do not force CloudFront to contact the origin.
-    trap: true
-    facts:
-      - ttl-viewer-header
   - id: cloudfront-034
     q: How does a CloudFront cache policy disable caching completely?
     a: Set minimum, default and maximum TTLs all to 0.
@@ -165,5 +159,3 @@ CloudFront expiration settings control when a stored response needs another orig
 - Invalidation paths support `*`. Versioned names avoid invalidation charges.
 
 > **Trap:** A minimum TTL above 0 overrides origin `private`, `no-cache` and `no-store` for that minimum. Set minimum TTL to 0 to respect those directives.
-
-> **Trap:** A viewer's GET `Cache-Control: no-cache` or `Pragma` header does not force an origin fetch.

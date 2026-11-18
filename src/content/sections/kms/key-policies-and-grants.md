@@ -116,24 +116,6 @@ cards:
       - iam-delegation
       - iam-deny
       - cross-policies
-  - id: kms-003
-    q: Does the AWS KMS console default key-administrator statement allow cryptographic key use?
-    a: No. It grants management actions. Administrators with policy-edit or grant-creation permissions can still
-      give themselves use permissions, so this separation is not a security boundary against those
-      administrators.
-    trap: true
-    facts:
-      - admin-use
-      - admin-escalation
-  - id: kms-004
-    q: What is an AWS KMS grant and how can a new grant be used immediately?
-    a: A grant allows specified operations on one key for a grantee. It cannot deny access and can be retired or
-      revoked. Use its grant token before the permission change has propagated.
-    facts:
-      - grant-purpose
-      - grant-allow
-      - grant-lifecycle
-      - grant-token
   - id: kms-016
     q: An application in account B must decrypt using a customer managed KMS key in account A through policies.
       Which accounts need policy changes?
@@ -158,7 +140,7 @@ AWS KMS authorizes key management and cryptographic operations, such as encrypti
 
 1. Start with the key policy. Every KMS key has exactly one, and it controls that key in its own Region.
 2. For IAM-based access, allow IAM delegation in the key policy, then grant the caller the required operation in IAM. The default account-principal statement uses the account root ARN, an AWS resource identifier, and `kms:*` to enable that delegation. It does not grant every identity access.
-3. Keep management and use permissions separate. The console's key-administrator statement permits management; the symmetric key-user statement includes `Encrypt`, `Decrypt`, `ReEncrypt`, `GenerateDataKey`, and `DescribeKey`. Administrators who can change policy or create grants can give themselves use permissions.
+3. The console default policy adds the selected key administrators and key users to the account-delegation statement.
 4. For policy-based access from another account, allow access in the owning key policy and in the caller account's IAM policy. An IAM deny can still block access even when IAM delegation is not enabled.
 5. For task-specific access, create a grant, a removable set of allowed operations on one key. Its grantee is the identity receiving permission. Limit a symmetric key grant with encryption context, non-secret key-value data bound to the ciphertext. Retire or revoke the grant to remove its permissions.
 
@@ -168,20 +150,18 @@ AWS KMS authorizes key management and cryptographic operations, such as encrypti
 | IAM policy | On an identity | Grants delegated permissions or explicitly denies access |
 | Grant | On one key for a grantee | Allows selected operations until retired or revoked |
 
-Programmatic creation without a supplied policy produces the account-delegation statement. Console creation also adds the selected administrators and key users. Grant changes use eventual consistency, meaning permission updates take time to reach all KMS servers. Pass a grant token to use newly granted permissions immediately.
+Programmatic creation without a supplied policy produces the account-delegation statement.
 
 ### Exam cues
 
 - If the question says IAM allows decrypt but KMS denies it, think key-policy delegation and explicit denies, because an IAM allow needs the key policy's permission to delegate.
 - If the question says another account must use a key, think both owning key policy and caller IAM policy, because neither policy alone completes policy-based cross-account access.
 - If the question says a service needs access for a task, think a grant, because the service can use and retire that permission without editing policies.
-- If the question says a newly created grant does not work immediately, think a grant token, because grant changes need time to propagate.
 
 ### Remember
 
 - Exactly one key policy per key; its scope is Regional.
 - The account-principal statement enables IAM delegation.
 - Grants allow operations and can be retired or revoked; they cannot deny.
-- The console administrator statement does not itself grant cryptographic use.
 
-> **Trap:** Separating key users from administrators does not stop an administrator with policy-edit or grant-creation permissions from giving themselves access.
+> **Trap:** The default account-principal statement enables IAM delegation; it does not give every IAM identity access to the key.

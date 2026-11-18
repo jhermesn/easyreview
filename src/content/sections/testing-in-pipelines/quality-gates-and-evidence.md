@@ -101,13 +101,11 @@ cards:
       - retention
       - report-export
   - id: testing-in-pipelines-020
-    q: A pipeline must reject container images whose high-severity finding count exceeds a limit. Which
-      managed action and settings fit?
-    a: InspectorScan with ECRImageScan mode and HighThreshold. The action fails when the count exceeds
-      that threshold.
+    q: "A CodeDeploy deployment needs to check application health before it completes. How can a lifecycle script signal a failed check?"
+    a: "Run the check in the ValidateService hook and exit with a nonzero code on failure. CodeDeploy reports the lifecycle script failure."
     facts:
-      - scan
-      - scan-thresholds
+      - validate
+      - script-exit
   - id: testing-in-pipelines-021
     q: An existing CodeGuru Reviewer repository association reports hardcoded secrets. What remediation
       does AWS document, and can a new association be created?

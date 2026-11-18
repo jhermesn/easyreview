@@ -78,35 +78,11 @@ cards:
       target, including unhealthy ones.
     facts:
       - routing-failover
-  - id: elastic-load-balancing-021
-    q: What are the default ALB health check timings and failure thresholds for instance or IP targets?
-    a: 30-second interval, 5-second timeout, two consecutive failures to become unhealthy, and five
-      consecutive successes to recover. Initial registration needs one successful check.
-    facts:
-      - check-timing
-      - thresholds
-      - checks
-  - id: elastic-load-balancing-022
-    q: Does deregistering an ALB target increase UnHealthyHostCount?
-    a: No. It reduces HealthyHostCount without increasing UnHealthyHostCount.
-    facts:
-      - health-counts
-    trap: true
-  - id: elastic-load-balancing-038
-    q: An Application Load Balancer health check fails against a web server that responds only to its public domain name. What should the team check?
-    a: Configure a virtual host or default response for the health check Host header, which uses the target private IP and a nondefault health check port.
-    facts:
-      - health-host
   - id: elastic-load-balancing-039
     q: An NLB routes UDP traffic to a service. How should the team make its health check detect UDP service failure?
     a: Use a TCP, HTTP or HTTPS health check endpoint that reports the UDP service's availability.
     facts:
       - nlb-udp-check
-  - id: elastic-load-balancing-040
-    q: An NLB target supports only TLS 1.3 and fails HTTPS health checks. What must change?
-    a: Enable an earlier TLS version such as TLS 1.2 on the target for the health checks.
-    facts:
-      - nlb-https-tls
   - id: elastic-load-balancing-059
     q: ALB targets are unhealthy although the app answers the health check path with a 302 redirect. Why?
     a: The default success code is 200; add 302 to the success codes or point the check at a path that returns 200.
@@ -118,19 +94,16 @@ An ALB health check is a periodic request that tests whether a registered target
 ### How it works
 
 1. Configure the health check protocol, port, path, and thresholds for the target group. The defaults are HTTP GET on the traffic port and path `/` for HTTP target groups.
-2. A newly registered target must pass an initial check. For instance and IP targets, checks default to a 30-second interval and a 5-second timeout.
-3. Two consecutive failures mark a target unhealthy by default. An unhealthy target needs five consecutive successes to recover.
-4. Set minimum healthy counts or percentages for the actions below.
+2. A newly registered target must pass an initial check. The response code must match the configured success codes, which default to 200.
+3. Set minimum healthy counts or percentages for the actions below.
 
    | Action or measurement | Meaning |
    |---|---|
    | DNS failover | Stop advertising the affected zone node as healthy in DNS, the system that maps names to addresses |
    | Routing failover | Try all targets available to the node, including unhealthy ones |
-   | HealthyHostCount and UnHealthyHostCount | Count healthy and unhealthy targets; deregistration only lowers the healthy count |
 
-5. If all registered targets are unhealthy across enabled zones, ALB fails open: it continues sending requests to them regardless of health.
-6. An ALB health check uses the target private IP in its Host header, plus the health check port when nondefault. Configure a matching or default virtual host if needed.
-7. NLB checks UDP and QUIC services using TCP, HTTP or HTTPS checks. Make the check endpoint reflect the actual service's health. HTTPS checks require support for a TLS version earlier than 1.3.
+4. If all registered targets are unhealthy across enabled zones, ALB fails open: it continues sending requests to them regardless of health.
+5. NLB checks UDP and QUIC services using TCP, HTTP or HTTPS checks. Make the check endpoint reflect the actual service's health.
 
 ### Exam cues
 
@@ -141,7 +114,6 @@ An ALB health check is a periodic request that tests whether a registered target
 
 ### Remember
 
-- Instance and IP target defaults: 30-second interval, 5-second timeout, two failed checks, five recovery checks.
 - Initial registration requires one successful health check.
 - Default healthy count threshold: 1 for both failover actions; percentage thresholds default to off.
 - DNS failover thresholds must be greater than or equal to routing failover thresholds.

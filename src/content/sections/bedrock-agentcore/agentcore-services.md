@@ -81,18 +81,17 @@ cards:
     a: AgentCore Evaluations, with AgentCore Observability for tracing each step.
     facts: [observe-evaluate]
   - id: bedrock-agentcore-008
-    q: Should a new customer in 2026 build agents with Amazon Bedrock Agents?
-    a: "No. Bedrock Agents became Agents Classic and closed to new customers on July 30, 2026; use Amazon Bedrock AgentCore."
-    trap: true
-    facts: [agents-classic]
+    q: What is Amazon Bedrock AgentCore used for?
+    a: "It helps teams build, deploy and operate AI agents securely at scale."
+    facts: [what]
   - id: bedrock-agentcore-009
-    q: "In an Amazon Bedrock agent, how do you tell the agent which business actions it can take, and how are they carried out?"
-    a: "With action groups. Each action group is defined by an OpenAPI schema or by function details, and is fulfilled by a Lambda function or by returning control to your application."
-    facts: [action-group-definition, action-fulfillment]
+    q: "Which Amazon Bedrock AgentCore feature manages an agent's identity and access to services?"
+    a: "AgentCore Identity manages agent identity, access and credentials."
+    facts: [identity]
   - id: bedrock-agentcore-010
-    q: "A Bedrock agent gave an unexpected answer. How do you see which actions and knowledge base queries it ran?"
-    a: "Turn on the trace. It records every orchestration step with the inputs and outputs of each action group and knowledge base query."
-    facts: [agent-trace]
+    q: "How can Amazon Bedrock AgentCore help assess an AI agent's performance?"
+    a: "AgentCore Evaluations measures how well agents and tools perform tasks and handle edge cases."
+    facts: [observe-evaluate]
   - id: bedrock-agentcore-011
     q: "How can a Bedrock agent reduce the risk that a prompt injection triggers a harmful action?"
     a: "Turn on user confirmation for the action, so the application user must confirm before the agent invokes the action group function."

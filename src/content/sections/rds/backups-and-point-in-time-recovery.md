@@ -120,38 +120,19 @@ cards:
     trap: true
     facts:
       - regional-backups
-  - id: rds-035
-    q: An Amazon RDS DB instance is in storage_full state during its automated backup window. Will RDS take its automated backup?
-    a: No. Automated backups require the instance to be available. A same-Region snapshot copy of that database also prevents them.
-    facts:
-      - backup-availability
-  - id: rds-036
-    q: AWS Backup snapshot jobs for an Amazon RDS instance fail during the RDS automated backup window. What configuration can avoid the conflict?
-    a: Have AWS Backup manage both snapshots and continuous backups for the instance, or schedule the job outside the RDS backup window.
-    facts:
-      - aws-backup-window-conflict
-  - id: rds-040
-    q: An Amazon RDS for Oracle team copies a DB snapshot to another Region and needs its option group there. What can it do in the snapshot copy request?
-    a: Set CopyOptionGroup to true. Cross-Region option group copying was added in November 2026.
-    facts:
-      - oracle-option-copy
-  - id: rds-055
-    q: "Besides failover, what does a Multi-AZ DB instance deployment improve during the daily backup window?"
-    a: "It minimizes latency spikes on the primary during backups, because of the synchronous standby. Multi-AZ still does not serve reads."
-    facts: [multiaz-backup-latency]
   - id: rds-061
-    q: "An account runs 500 GB of provisioned RDS storage in one Region. How much RDS backup storage is free there?"
-    a: "Up to 500 GB: free backup storage equals 100 percent of the total provisioned database storage per Region."
-    facts: [free-backup-storage]
+    q: "A team needs to choose an RDS backup retention period for point-in-time recovery. What determines the available recovery window?"
+    a: "The backup retention period. Point-in-time recovery restores an instance to an available time within that period."
+    facts: [pitr-window]
   - id: rds-068
     q: "Can you set the backup retention of an Aurora cluster to 0 to turn automated backups off?"
     a: "No. Aurora automated backups cannot be disabled; only RDS DB instances can set retention to 0."
     trap: true
     facts: [aurora-no-disable]
   - id: rds-069
-    q: "An on-premises MySQL database must move to RDS for MySQL from a physical backup. How?"
-    a: "Upload the backup files to Amazon S3 and restore a new RDS for MySQL instance from them; binlog replication can then catch up the changes."
-    facts: [mysql-s3-import]
+    q: "A team needs to recover an RDS DB instance after an accidental change. What does point-in-time recovery create?"
+    a: "A new DB instance restored to an available time within the backup retention period. The source is unchanged."
+    facts: [pitr-window, restore-new]
   - id: rds-080
     q: "A team deletes an RDS DB instance without choosing to retain automated backups. What happens to its automated backups and to its manual DB snapshots?"
     a: "Automated backups are **deleted** with the instance. Manual and final snapshots are **kept** until you delete them."
@@ -168,16 +149,12 @@ RDS backups provide earlier copies of a database for recovery after a data error
 3. Use PITR to restore to an available time before the error. RDS creates a new DB instance and leaves the source unchanged.
 4. Preserve a manual or final snapshot when deleting an instance if you need a lasting recovery copy. Automated backups require an explicit retain choice to survive deletion for their retention period.
 5. For supported DB instances, cross-Region automated backup replication copies snapshots and transaction logs to a destination Region. Multi-AZ DB clusters do not support this feature.
-6. Check that the instance is available and no same-Region snapshot copy for it is running. Unless AWS Backup manages both snapshots and continuous backups, schedule its backup jobs outside the RDS automated backup window.
-7. An option group configures optional database features. Since November 2026, RDS for Oracle can copy the option group with a cross-Region snapshot copy by setting `CopyOptionGroup` to true.
 
 ### Exam cues
 
 - If the question says an accidental deletion has reached the Multi-AZ standby, think PITR before the deletion, because synchronous replication also copies unwanted changes.
 - If the question says recover a deleted DB instance after its automated backups are gone, think a retained manual or final snapshot, because those copies are independent of instance deletion.
 - If the question says restore without overwriting the source, think PITR, because it creates another DB instance.
-- If an AWS Backup job overlaps an RDS backup window, think scheduling conflict unless AWS Backup manages both snapshot and continuous backups.
-- If an RDS for Oracle snapshot and its option group must be copied to another Region, think `CopyOptionGroup` on the snapshot copy request.
 
 ### Remember
 

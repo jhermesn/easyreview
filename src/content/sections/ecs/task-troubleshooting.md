@@ -186,12 +186,11 @@ cards:
       - ecs-diagnose-driver
       - ecs-diagnose-log-permissions
   - id: ecs-050
-    q: An ECS application writes only to log files and cannot be changed. How can CloudWatch receive
-      them?
-    a: Mount a shared volume and use a Fluent Bit sidecar to read the files and forward them.
-      A sidecar is a helper container running alongside the application.
+    q: "An Amazon ECS container stopped unexpectedly. Which task details help diagnose the failure?"
+    a: "Use DescribeTasks to inspect the stopped reason and stop code, plus the container reason and exit code."
     facts:
-      - ecs-diagnose-sidecar
+      - ecs-diagnose-describe
+      - ecs-diagnose-exit
   - id: ecs-051
     q: An ECS task must send container logs to an external logging destination. Which routing feature
       fits?

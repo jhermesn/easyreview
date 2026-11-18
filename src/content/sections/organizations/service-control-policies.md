@@ -184,14 +184,6 @@ cards:
       - organizations-scp-linked
       - organizations-scp-exceptions
       - organizations-scp-member-root
-  - id: organizations-021
-    q: An AWS Organizations Region-deny SCP breaks IAM calls. How should the policy be corrected?
-    a: Use appropriate NotAction exceptions for required global services. aws:RequestedRegion evaluates
-      the endpoint Region; global endpoints may sit outside permitted workload Regions.
-    facts:
-      - organizations-scp-region
-      - organizations-scp-global
-      - organizations-scp-endpoint
   - id: organizations-022
     q: An AWS Organizations team must preserve baseline Config recording while leaving unrelated Config
       administration available. What SCP approach fits?
@@ -210,10 +202,6 @@ cards:
       - organizations-scp-allowlist
       - organizations-scp-path
       - organizations-scp-deny
-  - id: organizations-033
-    q: An organization must block use of instance role credentials obtained through IMDSv1 in every account. What fits?
-    a: An SCP that denies requests when ec2:RoleDelivery is below 2.0, so only IMDSv2 credentials work.
-    facts: [imdsv2-scp]
 ---
 
 A service control policy (SCP) is an organization-wide permissions limit for member-account identities. A principal is the identity making a request, such as a user or role. Passing SCP evaluation only leaves an action eligible; access still needs the appropriate IAM or resource policy.
@@ -226,15 +214,12 @@ A service control policy (SCP) is an organization-wide permissions limit for mem
 4. Evaluate permissions inside that ceiling. Even `AdministratorAccess` cannot override an SCP restriction. Member-account root users and delegated administrators remain subject to SCPs, apart from documented exceptions.
 5. Test restrictions on a limited set of accounts before widening their attachment.
 
-For a Region restriction, use `aws:RequestedRegion` and exempt required global-service actions with `NotAction`. Global services can have endpoints outside the permitted workload Regions. This condition controls the endpoint called, not every cross-Region effect of a request.
-
 For Config protection, deny selected baseline changes: `config:DeleteConfigurationRecorder`, `config:DeleteDeliveryChannel`, `config:PutConfigurationRecorder`, `config:PutDeliveryChannel`, and `config:StopConfigurationRecorder`. A recorder captures resource configurations; a delivery channel sends them to configured destinations. Conditions can preserve required administrative exceptions. Unrelated Config actions remain subject to their existing permissions.
 
 ### Exam cues
 
 - If the question says an IAM administrator is denied by an SCP, think the entire policy path, because IAM cannot override the ceiling.
 - If the question says a deny-only SCP replaces `FullAWSAccess`, think missing Allow, because a Deny statement does not supply the required Allow.
-- If the question says a Region restriction breaks global services, think `NotAction` exceptions, because those service endpoints may use another Region.
 - If the question says protect baseline Config without blocking all administration, think selected action denies, because SCPs can restrict specific operations.
 
 ### Remember

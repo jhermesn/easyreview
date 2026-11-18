@@ -80,26 +80,10 @@ cards:
     q: What are the six pillars of the AWS Well-Architected Framework?
     a: Operational excellence, security, reliability, performance efficiency, cost optimization and sustainability.
     facts: [six-pillars]
-  - id: well-architected-002
-    q: A team wants to run its workload effectively, learn from operations and keep improving its procedures. Which AWS Well-Architected pillar covers this?
-    a: Operational excellence.
-    facts: [operational-excellence]
   - id: well-architected-003
     q: A workload must perform its intended function correctly and consistently, and recover from failures. Which AWS Well-Architected pillar covers this?
     a: Reliability.
     facts: [reliability]
-  - id: well-architected-004
-    q: A company wants to keep using compute resources efficiently as demand changes and new instance types appear. Which AWS Well-Architected pillar covers this?
-    a: Performance efficiency.
-    facts: [performance-efficiency]
-  - id: well-architected-005
-    q: A company wants to deliver business value at the lowest price point. Which AWS Well-Architected pillar covers this?
-    a: Cost optimization.
-    facts: [cost-optimization]
-  - id: well-architected-006
-    q: A company wants to reduce the energy its workload consumes and the total resources it needs. Which AWS Well-Architected pillar covers this?
-    a: Sustainability.
-    facts: [sustainability]
   - id: well-architected-007
     q: A company wants to protect data, systems and assets using cloud technologies. Which AWS Well-Architected pillar covers this?
     a: Security.
@@ -113,55 +97,26 @@ cards:
     a: No. It means delivering business value at the lowest price point; the cheapest option can fail other pillars such as reliability.
     trap: true
     facts: [cost-optimization]
-  - id: well-architected-010
-    q: How does the AWS Cloud make testing at production scale affordable, according to the Well-Architected Framework?
-    a: Create the production-scale environment on demand, test, then decommission it. You pay only while it runs.
-    facts: [production-scale]
-  - id: well-architected-015
-    q: Which Well-Architected pillar includes the design principle of defining the workload and its operations as code?
-    a: Operational excellence (safely automate where possible).
-    facts: [safely-automate]
-  - id: well-architected-016
-    q: Which Well-Architected pillar has the design principles "maintain traceability" and "keep people away from data"?
-    a: Security.
-    facts: [security-principles]
   - id: well-architected-017
     q: A monolithic application fails completely when one component fails. Which Well-Architected recommendation addresses this?
     a: Loosely coupled dependencies (reliability pillar), for example with Amazon SQS queues between components.
     facts: [loose-coupling]
-  - id: well-architected-018
-    q: "\"Make frequent, small, reversible changes\" and \"anticipate failure\" are design principles of which Well-Architected pillar?"
-    a: Operational excellence.
-    facts: [oe-principles]
   - id: well-architected-019
     q: A company runs its Amazon RDS database in multiple Availability Zones so it fails over automatically. Which Well-Architected pillar does this serve?
     a: "Reliability: automatically recover from failure and remove single points of failure."
     facts: [reliability-principles, reliability]
   - id: well-architected-020
-    q: "What changed in the AWS Well-Architected Framework on November 16, 2026?"
-    a: "The six pillar whitepapers became one framework document, nearly all best practices were refreshed, and the guidance was split into Cloud Foundations (organization-wide) and Cloud Workloads (the six pillars)."
-    facts: [framework-update-2026, cloud-workloads]
+    q: "What is the AWS Well-Architected Framework used for?"
+    a: "It provides best practices and questions for evaluating how well an architecture aligns with AWS guidance."
+    facts: [framework]
   - id: well-architected-021
-    q: "A platform team must set up multi-account structure, central identity, logging, tagging, security tooling, cost visibility and networking before any workload runs. Which part of the AWS Well-Architected Framework guides this?"
-    a: "Well-Architected Cloud Foundations, the blueprint for a sound landing zone. Its seven capabilities cover exactly these areas."
-    facts: [cloud-foundations, foundations-landing-zone]
-  - id: well-architected-022
-    q: "\"Deploy workloads closer to your customers\" and \"consider mechanical sympathy\" are design principles of which Well-Architected pillar?"
-    a: "Performance efficiency."
-    facts: [performance-principles]
-  - id: well-architected-023
-    q: "\"Measure business outcomes relative to costs\" and \"implement granular cost allocation\" are design principles of which Well-Architected pillar?"
-    a: "Cost optimization."
-    facts: [cost-principles]
-  - id: well-architected-024
-    q: "\"Maximize utilization\" and \"minimize the footprint of data and its processing\" are design principles of which Well-Architected pillar?"
-    a: "Sustainability."
-    facts: [sustainability-principles]
+    q: "Which AWS Well-Architected pillar focuses on a workload performing its intended function consistently?"
+    a: "The reliability pillar focuses on a workload performing its intended function correctly and consistently when expected."
+    facts: [reliability]
   - id: well-architected-025
-    q: "Is the six-pillar list of the AWS Well-Architected Framework different after the November 16, 2026 update?"
-    a: "No. The six pillars stay the same; they now sit under Cloud Workloads, next to the new Cloud Foundations guidance."
-    trap: true
-    facts: [framework-update-2026, six-pillars, cloud-workloads]
+    q: "Which AWS Well-Architected pillar recommends scaling horizontally to improve workload availability?"
+    a: "The reliability pillar recommends horizontal scaling to increase availability."
+    facts: [reliability-principles]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
 
@@ -188,11 +143,10 @@ The general design principles apply across pillars: stop guessing capacity, test
 ### Exam cues
 
 - If the question says recover from failure or work consistently, think reliability.
-- If the question says choose the right resource types as demand changes, think performance efficiency.
 - If the question says lowest price point for the value delivered, think cost optimization.
-- If the question says reduce environmental impact or energy use, think sustainability.
-- If the question says improve operations and procedures, think operational excellence.
-- If the question says operations as code, think operational excellence, because defining operations as code is part of its safely automate principle.
+- If the question says protect data, systems and assets, think security.
+- If the question says simulate production events to find improvements, think game days.
+- If the question says reduce dependencies between components, think loosely coupled dependencies under reliability. [Reliability best practice](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel04-bp02.html#rel04-bp02)
 - If the question says organization-wide setup before the first workload, such as a landing zone, think Well-Architected Cloud Foundations.
 
 ### Remember

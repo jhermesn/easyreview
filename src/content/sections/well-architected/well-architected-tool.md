@@ -33,22 +33,22 @@ cards:
     a: The AWS Well-Architected Tool. It guides a self-review, lists high and medium risk issues, and builds an improvement plan.
     facts: [tool, output]
   - id: well-architected-012
-    q: A company wants AWS Well-Architected reviews to include its own internal standards. What does the AWS Well-Architected Tool offer for this?
-    a: Custom lenses, which add your own best practices and questions to the review.
-    facts: [custom-lenses]
+    q: "A company wants to document the architecture decisions for a workload and get improvement recommendations based on AWS best practices. Which AWS service fits?"
+    a: "The AWS Well-Architected Tool. It documents decisions and recommends improvements based on the Well-Architected Framework."
+    facts: [helps]
   - id: well-architected-013
-    q: How does the AWS Well-Architected Tool track a workload's progress after a review?
-    a: With milestones, point-in-time records of the review that show progress over time.
-    facts: [output]
+    q: "Besides reviewing a single workload, what can an organization use the AWS Well-Architected Tool for?"
+    a: "Documenting its architectures, governing product launches, and understanding and managing the risks across its technology portfolio."
+    facts: [audience]
   - id: well-architected-014
     q: Does the AWS Well-Architected Tool change a workload's resources to fix the risks it finds?
     a: No. It is a guided self-review that documents risks and an improvement plan; you make the changes.
     trap: true
     facts: [output, tool]
   - id: well-architected-026
-    q: "A company must report the carbon emissions caused by its AWS usage, by Region and by service. Which AWS tool shows this?"
-    a: "The AWS Sustainability console. Its carbon emissions view estimates emissions from AWS usage and breaks them down by scope, Region and service."
-    facts: [sustainability-console]
+    q: "Who carries out a review in the AWS Well-Architected Tool?"
+    a: "The customer's own team. The tool guides a self-review and produces the risks and an improvement plan."
+    facts: [output]
 ---
 The AWS Well-Architected Tool runs Well-Architected Framework reviews in the AWS console. You answer the questions for a workload, and the tool lists the risks and an improvement plan. [What is AWS WA Tool](https://docs.aws.amazon.com/wellarchitected/latest/userguide/tool.html#tool)
 

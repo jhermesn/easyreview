@@ -114,48 +114,15 @@ cards:
     q: A team does not want to manage replication instance capacity for AWS DMS. What feature should it consider?
     a: DMS Serverless automatically provisions and scales replication capacity.
     facts: [dms-serverless]
-  - id: dms-006
-    q: An AWS DMS task is running with errors. Does that mean every table migrated successfully?
-    a: No. One or more tables may have failed while the task continues loading others. Check table states and task logs.
-    trap: true
-    facts: [dms-task-state, dms-table-state, dms-task-logs]
-  - id: dms-007
-    q: AWS DMS CDCLatencyTarget is higher than CDCLatencySource. Which side should the team investigate first?
-    a: Investigate the target side for latency.
-    facts: [dms-metrics]
-  - id: dms-008
-    q: What should a team check before starting an AWS DMS migration to confirm connectivity?
-    a: Test the source and target endpoints from the replication instance.
-    facts: [dms-test, dms-endpoints]
   - id: dms-009
     q: Does AWS DMS CDC guarantee real-time replication with a latency SLA?
     a: No. CDC latency varies and has no SLA.
     trap: true
     facts: [dms-latency]
   - id: dms-010
-    q: An AWS DMS migration must include database views. Which task type supports migrating them?
-    a: Use a full-load-only task. Tasks that include CDC migrate tables, not views.
-    facts: [dms-views]
-  - id: dms-011
-    q: AWS DMS FreeableMemory approaches zero and SwapUsage rises. What might this indicate?
-    a: The replication instance may be overloaded.
-    facts: [dms-memory]
-  - id: dms-012
-    q: A team is migrating to a different database engine with AWS DMS. How can it convert the source schema?
-    a: Use DMS Schema Conversion or AWS Schema Conversion Tool. Manually convert objects that automatic conversion cannot handle.
-    facts: [dms-schema, dms-sct]
-  - id: dms-016
-    q: "Existing S3 data files and every later change to them must stream into Kinesis Data Streams quickly, with little code. What can bridge them?"
-    a: "AWS DMS, with S3 as the source endpoint and Kinesis Data Streams as the target endpoint, running a full load plus ongoing changes."
-    facts: [s3-source, kinesis-target]
-  - id: dms-017
-    q: "A DMS replication from an on-premises MySQL database must encrypt the connection to the source. What do you configure?"
-    a: "An SSL connection on the DMS endpoint, with the database CA certificate imported into DMS and assigned to it."
-    facts: [endpoint-ssl]
-  - id: dms-018
-    q: "An application embedded NoSQL data on its servers and now needs a managed NoSQL store. Can AWS DMS move MongoDB data into DynamoDB?"
-    a: "Yes. DMS supports DynamoDB as a target, with a relational database or MongoDB as the source."
-    facts: [dynamodb-target]
+    q: "A database is moving to a different engine. How can AWS DMS help with the schema and data?"
+    a: "Use DMS Schema Conversion to assess and convert the schema, and DMS to migrate data. Objects that cannot be converted automatically need manual conversion."
+    facts: [dms-schema, dms-purpose]
 diagrams:
   - id: dms-replication-flow
     title: DMS replication
@@ -178,9 +145,8 @@ AWS Database Migration Service (DMS) moves data between supported data stores an
 
 1. Define source and target endpoints, which contain each data store's connection details. At least one endpoint must be an AWS service. Test both endpoint connections from the replication instance.
 2. Select a replication instance, which reads and loads data, or use DMS Serverless to provision and scale capacity automatically. Multi-AZ gives a provisioned instance a synchronous standby in another Availability Zone.
-3. If changing database engines, assess and convert the schema, the structure of the database, with DMS Schema Conversion or AWS Schema Conversion Tool. Manually address objects that automatic conversion cannot handle.
-4. Choose the task type. Full load plus CDC copies existing data while caching changes for each table once its load starts, applies those changes, then continues replication from source logs. Configure the source for CDC as required by its engine.
-5. After replication reaches a steady state, stop the application, allow remaining changes to reach the target, and restart the application against the target.
+3. Choose the task type. Full load plus CDC copies existing data while caching changes for each table once its load starts, applies those changes, then continues replication from source logs. Configure the source for CDC as required by its engine.
+4. After replication reaches a steady state, stop the application, allow remaining changes to reach the target, and restart the application against the target.
 
 | Task | Use |
 | --- | --- |
@@ -192,17 +158,13 @@ AWS Database Migration Service (DMS) moves data between supported data stores an
 
 - If the question says reduce migration cutover downtime, think full load plus CDC, because ongoing changes are applied after the initial copy.
 - If the question says automatic failover of a provisioned DMS instance, think Multi-AZ, because it maintains a synchronous standby.
-- If the question says a task is running with errors, think table states and enabled CloudWatch task logs, because other tables may continue even when one fails.
-- If the question says target CDC latency exceeds source latency, think target-side investigation; when they are similar, check the source first.
+- If the question says the target already has its initial data, think CDC only, because the task replicates ongoing changes.
 - If the question says replication capacity should scale without instance management, think DMS Serverless.
 - If the question says a MongoDB-compatible database, think Amazon DocumentDB. If it says a data warehouse for large analytical queries, think Amazon Redshift. Redshift omits some features suited to small transactions, such as efficient single-row data manipulation. DMS moves data rather than serving as the destination database.
 
 ### Remember
 
 - CDC is not real time and has no latency SLA. Latency is the delay in applying changes.
-- `CDCLatencySource` measures the delay between source and replication instance; high `CDCLatencyTarget` indicates delay applying changes to the target.
-- Table states distinguish `Full load`, `Table completed` and `Table error`.
-- Falling `FreeableMemory` toward zero or rising `SwapUsage` can indicate an overloaded replication instance. `FreeableMemory` includes reclaimable buffers and cache, not just unused memory.
 - Use a full-load-only task to migrate views.
 
-> **Trap:** A task that is running with errors is not proof that all tables succeeded. Check the table states and logs before cutover.
+> **Trap:** CDC is not real time and has no latency SLA. Use a full-load-only task when the migration must include views.

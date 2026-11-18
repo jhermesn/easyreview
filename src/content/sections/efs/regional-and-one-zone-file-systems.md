@@ -149,14 +149,6 @@ cards:
     facts:
       - eks-persistence
       - eks-no-ebs
-  - id: efs-012
-    q: What are the documented EFS lifecycle transition defaults for IA and Archive?
-    a: After 30 days without access in Standard for IA, and after 90 days for Archive. Archive requires
-      Elastic throughput.
-    facts:
-      - lifecycle-ia
-      - lifecycle-archive
-      - archive-requires-elastic
   - id: efs-022
     q: Can on-premises Linux servers mount an Amazon EFS file system?
     a: Yes, when the data center connects to the VPC with AWS Direct Connect or Site-to-Site VPN.
@@ -244,8 +236,7 @@ Amazon EFS provides shared files that multiple clients can read and write over N
 
 - NFS versions: 4.0 and 4.1. Network port: TCP 2049.
 - Regional: one mount target per AZ. One Zone: a single target in its storage AZ; access from other AZs incurs cross-AZ data access charges.
-- Documented lifecycle defaults: IA after 30 days without Standard access, Archive after 90 days. Return to Standard on access is disabled by default.
-- Archive requires Elastic throughput. Configure `On first access` to return active files to Standard.
+- Return to Standard on access is disabled by default. Configure `On first access` to return active files to Standard.
 
 > **Trap:** A mount target in another AZ does not change One Zone's data placement. One Zone still keeps its copies in one AZ, where a disaster affecting those copies can cause data loss.
 

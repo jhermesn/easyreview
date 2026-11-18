@@ -46,55 +46,53 @@ diagrams:
       - "The primary coordinates optional task nodes, which process tasks without HDFS storage."
 cards:
   - id: emr-001
-    q: When should a team consider Amazon EMR for data processing?
-    a: Use EMR for managed clusters running big data frameworks such as Spark or Hadoop, including processing data in S3.
-    facts: [platform, s3]
-  - id: emr-002
-    q: A team needs managed Spark processing across a large dataset. Which service fits?
-    a: Amazon EMR. It runs distributed data processing frameworks such as Spark.
+    q: "A team needs a managed platform for processing a large dataset with Apache Spark. Which AWS service fits?"
+    a: "Amazon EMR runs data processing frameworks such as Apache Spark and Hadoop."
     facts: [platform]
+  - id: emr-002
+    q: "A team wants to process data stored in Amazon S3 using a managed Hadoop cluster. Which AWS service fits?"
+    a: "Amazon EMR can run Hadoop processing steps that read input from S3 and write output to S3."
+    facts: [platform, s3]
   - id: emr-003
-    q: Which Amazon EMR on EC2 nodes store data in HDFS and run processing tasks?
-    a: Core nodes. Terminating them risks losing HDFS data.
+    q: "An Amazon EMR on EC2 workload uses HDFS for cluster storage. Which nodes both store that data and run processing tasks?"
+    a: "Core nodes. Terminating them risks losing HDFS data."
     facts: [core, core-loss]
   - id: emr-004
-    q: A data-critical EMR cluster needs lower-cost extra processing capacity without placing HDFS data on interruptible capacity. Which nodes should use Spot?
-    a: Task nodes. Use On-Demand for primary and core nodes and Spot for task nodes.
+    q: "A data-critical Amazon EMR cluster needs lower-cost processing capacity while keeping HDFS data off interruptible instances. Which capacity mix fits?"
+    a: "Use On-Demand primary and core nodes with Spot task nodes. Task nodes do not store persistent HDFS data."
     facts: [ondemand, task-loss]
   - id: emr-005
-    q: Does losing a task node in an EMR cluster lose persistent HDFS data stored on that node?
-    a: No. Task nodes do not store persistent HDFS data.
-    trap: true
-    facts: [task-loss]
+    q: "An Amazon EMR cluster needs extra processing capacity without adding HDFS storage. Which node type fits?"
+    a: "Task nodes run processing tasks without storing data in HDFS. They are optional."
+    facts: [task]
   - id: emr-006
-    q: What happens when the only primary node of an EMR cluster terminates?
-    a: The cluster ends. A three-primary high-availability cluster can fail over to a standby when a primary fails.
-    facts: [spot-primary, ha]
+    q: "An Amazon EMR cluster must tolerate the failure of a primary node. Which configuration supports failover?"
+    a: "Use a cluster with three primary nodes. It can fail over and replace a failed primary."
+    facts: [ha]
   - id: emr-007
-    q: A team runs YARN jobs on EMR 6.x with Spot task nodes. Are application primary processes restricted to core nodes by default?
-    a: No. Node labels are disabled by default; enable them and set the application primary label expression to CORE to restrict placement.
-    trap: true
-    facts: [yarn-six, yarn-config]
+    q: "A team wants to add interruptible compute to an Amazon EMR cluster that stores data in HDFS. Why are task nodes a suitable choice?"
+    a: "Task nodes do not hold persistent HDFS data, so they are suitable for Spot capacity."
+    facts: [task-loss]
   - id: emr-008
-    q: A team must install custom software on each EMR node before cluster applications are installed. What should it use?
-    a: A bootstrap action. It runs before application installation and also runs on nodes added later.
+    q: "An Amazon EMR cluster needs custom setup on each node before data processing begins. Which feature fits?"
+    a: "Use bootstrap actions. They run after instance launch and before application installation and processing, including on nodes added later."
     facts: [bootstrap]
   - id: emr-009
-    q: A nightly Amazon EMR job should stop its cluster after processing finishes. What cluster setting fits?
-    a: Configure automatic termination after the last step.
+    q: "A nightly Amazon EMR processing job should release its cluster after the work finishes. What option fits?"
+    a: "Configure the cluster to terminate automatically after its last step."
     facts: [terminate]
   - id: emr-010
-    q: Which S3 connector is the default in Amazon EMR 7.10.0 and later?
-    a: S3A. Earlier releases used EMRFS for s3:// and s3n://; EMRFS remains configurable.
-    facts: [s3a, emrfs]
+    q: "An Amazon EMR processing job needs durable input and output outside its cluster. Which storage service can its steps use?"
+    a: "Amazon S3. EMR processing steps can read input from S3 and write output there."
+    facts: [s3]
   - id: emr-011
-    q: A team wants to run Spark with Amazon EMR without managing clusters or servers. Which deployment option fits?
-    a: EMR Serverless.
+    q: "A team needs Spark processing without configuring or scaling clusters or servers. Which Amazon EMR option fits?"
+    a: "Amazon EMR Serverless runs big data frameworks without configuring, managing or scaling clusters or servers."
     facts: [serverless]
   - id: emr-012
-    q: A team needs Hadoop processing of large newline-separated log files stored in S3. Which AWS service and input format fit?
-    a: Amazon EMR can run Hadoop over S3 input. Hadoop's default input format is newline-separated text.
-    facts: [platform, s3, text-input]
+    q: "A team already runs Amazon EKS and wants to submit Spark jobs without provisioning Amazon EMR clusters. Which EMR option fits?"
+    a: "Amazon EMR on EKS runs Spark jobs on EKS without provisioning EMR clusters."
+    facts: [eks]
 ---
 
 Amazon EMR is a managed platform for running distributed data processing frameworks such as Apache Spark and Hadoop. The examples below use EMR on EC2, where a cluster is a group of machines working on the data.

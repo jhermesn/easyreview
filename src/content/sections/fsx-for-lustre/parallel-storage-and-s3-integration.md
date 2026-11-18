@@ -101,23 +101,10 @@ cards:
     a: No. Configure automatic export or run an export task. Automatic export is asynchronous.
     trap: true
     facts: [export, asynchronous]
-  - id: fsx-for-lustre-006
-    q: What are the default automatic import and export settings for an FSx for Lustre S3 association created through the console versus the API?
-    a: The console enables new, changed and deleted events by default; the API disables automatic import and export by default.
-    facts: [defaults]
   - id: fsx-for-lustre-007
     q: How should applications handle concurrent writes to the same data in S3 and an FSx for Lustre file system?
     a: Coordinate writes at the application level. FSx for Lustre does not prevent conflicting writes.
     facts: [conflict]
-  - id: fsx-for-lustre-008
-    q: Can an FSx for Lustre export task run while automatic export is running?
-    a: No. Automatic export and export tasks cannot run at the same time.
-    trap: true
-    facts: [task-conflict]
-  - id: fsx-for-lustre-009
-    q: What links an FSx for Lustre directory to an S3 bucket or prefix, and how many links are supported?
-    a: A data repository association. A file system can have up to eight.
-    facts: [association]
   - id: fsx-for-lustre-011
     q: "An HPC job starts on FSx for Lustre linked to a 200 TB S3 bucket. Does the file system copy all object data before the job can read files?"
     a: "No. Metadata is imported, and **file content loads from S3 on first access**. Later reads come from the file system."
@@ -144,12 +131,14 @@ Amazon FSx for Lustre provides a managed high-performance file system for worklo
 - If the question says long-running processing must survive a file server failure, think persistent, because FSx replaces failed servers and replicates data.
 - If the question says process S3 objects through a Linux file interface, think FSx for Lustre with an S3 association, because objects are presented as files.
 - If the question says results must reach S3, think automatic export or an export task, because linking alone does not ensure export.
+- If the question says an S3-linked file system must read a large dataset, think lazy loading, because file content loads from S3 on first access.
+- If the question says an FSx for Lustre file system needs backups, think persistent without an S3 link, because scratch and S3-linked file systems do not support backups.
 
 ### Remember
 
 - Persistent SSD and HDD replicate within one Availability Zone; Intelligent-Tiering replicates across multiple Availability Zones.
-- A file system supports up to eight data repository associations. Lustre 2.10 and Scratch 1 do not support them or automatic export.
-- When adding a repository, automatic import and export of new, changed and deleted files default to enabled in the console and disabled in the CLI and API.
-- Automatic export and export tasks cannot run at the same time.
+- Lustre 2.10 and Scratch 1 do not support data repository associations or automatic export.
+- File content loads from S3 on first access; later reads come from the file system.
+- Backups are supported only on persistent file systems that are not linked to S3.
 
 > **Trap:** A linked S3 bucket is not an immediate, conflict-free mirror. Configure export and coordinate concurrent writes to the same file in S3 and the file system.

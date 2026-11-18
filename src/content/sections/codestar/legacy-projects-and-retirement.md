@@ -23,27 +23,29 @@ facts:
     source: https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CodestarConnectionSource.html#action-reference-CodestarConnectionSource
 cards:
   - id: codestar-001
-    q: Which retired AWS service provided a project interface for a continuous delivery toolchain?
-    a: AWS CodeStar. It reached full shutdown on July 25, 2024.
-    trap: true
-    facts: [project-toolchain, shutdown]
+    q: "What part of the software development lifecycle did AWS CodeStar support?"
+    a: "CodeStar provided a unified interface for development activities and setting up a continuous delivery toolchain."
+    facts:
+      - project-toolchain
   - id: codestar-002
-    q: What is the status of AWS CodeStar and AWS CodeStar Connections?
-    a: CodeStar shut down on July 25, 2024. CodeStar Connections was renamed AWS CodeConnections.
-    trap: true
-    facts: [shutdown, connections-rename]
+    q: "A legacy AWS CodeStar project used a continuous delivery toolchain. What development work did CodeStar bring together?"
+    a: "It provided a unified interface for setting up that toolchain and managing development activities."
+    facts:
+      - project-toolchain
   - id: codestar-003
     q: A team needs CodePipeline to start when a third-party repository receives a commit. Does CodeStar's shutdown prevent this?
     a: No. Use a CodePipeline connection source action with AWS CodeConnections.
     facts: [shutdown, source-action]
   - id: codestar-004
-    q: A policy grants access to an existing codestar-connections resource. Which IAM service prefix should match that resource?
-    a: Use the codestar-connections prefix for that resource. The prefix must match the resource.
-    facts: [connections-prefix]
+    q: "How can a CodePipeline source action start the release process when a developer commits to a third-party repository?"
+    a: "A connection source action uses CodeConnections to connect the repository and can start the pipeline on a new commit."
+    facts:
+      - source-action
   - id: codestar-005
-    q: Which access roles did AWS CodeStar projects support?
-    a: Owners, contributors, and viewers.
-    facts: [project-access]
+    q: "What development lifecycle toolchain could an AWS CodeStar project set up?"
+    a: "A continuous delivery toolchain, managed alongside development activities through a unified interface."
+    facts:
+      - project-toolchain
 ---
 AWS CodeStar was a project interface for organizing application development and setting up a continuous delivery toolchain, the tools that move changes toward release. It is now shut down.
 

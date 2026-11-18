@@ -65,13 +65,11 @@ cards:
       - search
       - logs
   - id: xray-022
-    q: How long does X-Ray retain traces and service graph data, and which managed policy supports an
-      analyst who only views X-Ray?
-    a: 30 days for both. AWSXrayReadOnlyAccess is the read-only managed policy.
+    q: "An application has intermittent server errors. How can AWS X-Ray help an operator narrow down their source?"
+    a: "Use the trace map to identify services with errors, then inspect a trace timeline of segments and subsegments."
     facts:
-      - trace-retention
-      - graph-retention
-      - readonly
+      - map
+      - timeline
   - id: xray-032
     q: A service handles downstream failures and returns success, so an X-Ray error filter misses the
       failing dependency. How should the team refine its search?
@@ -88,13 +86,10 @@ cards:
       - search
       - timeline
   - id: xray-034
-    q: Does the X-Ray service map provide permanent request history for an audit?
-    a: No. X-Ray trace and service graph retention is 30 days. Plan audit evidence around that retention
-      window.
+    q: "An upstream application handles a downstream error, so an AWS X-Ray trace-level error filter misses it. How can an operator find the downstream issue?"
+    a: "Use service() or edge() filters to search for downstream issues."
     facts:
-      - trace-retention
-      - graph-retention
-    trap: true
+      - downstream
 ---
 X-Ray analysis connects an application's symptoms to the service work recorded for a request. The trace map shows dependencies and their health; the timeline shows where a selected request spent its time.
 

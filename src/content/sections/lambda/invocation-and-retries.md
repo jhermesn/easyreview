@@ -184,14 +184,6 @@ cards:
       - sync-errors
       - async-function-retries
       - async-config
-  - id: lambda-019
-    q: A Lambda function has MaximumRetryAttempts set to 0, but asynchronous events still wait during throttling. Why?
-    a: The setting controls function-error retries. Throttles and system errors use a separate retry path, bounded by event age, with a six-hour default.
-    trap: true
-    facts:
-      - async-config
-      - async-system-retries
-      - async-age
   - id: lambda-020
     q: A CPU-bound Lambda function has enough memory but runs too slowly. Which resource setting should the team test increasing?
     a: Memory. Lambda increases CPU capacity in proportion to memory; 1,769 MB provides the equivalent of one vCPU.
@@ -204,16 +196,6 @@ cards:
     facts:
       - tmp-storage
       - tmp-encryption
-  - id: lambda-022
-    q: An ALB invokes a Lambda function, but repeated query parameters are lost. What should the team enable?
-    a: Enable lambda.multi_value_headers.enabled on the target group. The request uses arrays for repeated values, and the function must use multiValueHeaders in its response.
-    facts:
-      - alb-multivalue
-  - id: lambda-023
-    q: How do internal and external Lambda extensions differ?
-    a: An internal extension runs inside the runtime process. An external extension runs as a separate process in the same execution environment.
-    facts:
-      - extensions
   - id: lambda-054
     q: A Lambda workflow must wait for human approval for days and recover progress after interruptions. Which Lambda feature fits?
     a: Use a durable function with checkpointed steps and waits. A durable execution can last up to one year; replay uses stored results for completed checkpoints.
@@ -221,10 +203,10 @@ cards:
       - durable-execution
       - durable-replay
   - id: lambda-055
-    q: How did the default account quota for running Lambda durable executions change in November 2026?
-    a: It rose from one million to five million, except in N. Virginia, Oregon, and Ireland, where the new quota is twice as high.
+    q: "An application sends events to AWS Lambda asynchronously and cannot wait for processing to finish. How does Lambda receive the work?"
+    a: "Lambda places the events in a managed internal queue for asynchronous invocation."
     facts:
-      - durable-quota-change
+      - async-queue
   - id: lambda-057
     q: A company wants to run code in response to new uploads to an Amazon S3 bucket, with no servers to manage. Which service fits?
     a: "AWS Lambda, triggered by S3 events.\nAWS manages the servers, capacity and scaling."
@@ -234,10 +216,10 @@ cards:
     a: AWS. Lambda is serverless; you manage only your code.
     facts: [serverless]
   - id: lambda-059
-    q: After the free tier, what does AWS charge for when a company runs AWS Lambda functions?
-    a: The number of requests and the duration the code runs (GB-seconds, based on the memory chosen). Not the number of functions or versions.
+    q: "An AWS Lambda function processes asynchronous events. Can it receive the same event more than once after successful processing?"
+    a: "Yes. Asynchronous invocation can deliver duplicate events even when the function succeeds."
     trap: true
-    facts: [pricing]
+    facts: [async-duplicates]
   - id: lambda-067
     q: "A third-party service must call a Lambda function through an HTTPS webhook. What is the simplest option?"
     a: "A Lambda function URL: a dedicated HTTPS endpoint for the function, with no API Gateway to set up."
@@ -251,9 +233,8 @@ Lambda runs function code in response to invocations, meaning requests to execut
 2. For asynchronous invocation, Lambda queues the event and later runs the function. Function errors get two retries by default, after waits of one minute and then two minutes. Throttles, meaning rejected requests because capacity is unavailable, and system errors use a separate backoff path that increases the delay between attempts.
 3. Set `MaximumRetryAttempts` for function errors and `MaximumEventAgeInSeconds` for queue age. An event can arrive twice even after success, so processing must be idempotent: repeating the same event must not create extra effects.
 4. An event source mapping, a Lambda resource that reads a queue or stream, follows its source-specific retry rules. For SQS, configure visibility timeout and the source queue's redrive policy, which moves repeatedly received messages to a failure queue.
-5. Lambda initializes extensions, then the runtime that executes the language, then initialization code outside the handler. An internal extension runs inside the runtime; an external extension runs in a separate process in the same execution environment, the isolated space that holds function resources.
-6. Set timeout, memory, and temporary storage for the work. More memory also provides more CPU capacity. Each environment has its own encrypted `/tmp` scratch directory.
-7. For long-running workflows, a Lambda durable function uses checkpoints, saved progress for operations, and replay. Replay reuses completed checkpoint results; waits suspend execution without compute charges.
+5. Set timeout, memory, and temporary storage for the work. More memory also provides more CPU capacity. Each environment has its own encrypted `/tmp` scratch directory.
+6. For long-running workflows, a Lambda durable function uses checkpoints, saved progress for operations, and replay. Replay reuses completed checkpoint results; waits suspend execution without compute charges.
 
 | Invocation path | Result delivery | Function-error retry owner |
 |---|---|---|
@@ -261,20 +242,17 @@ Lambda runs function code in response to invocations, meaning requests to execut
 | Asynchronous | Lambda queues the event | Lambda |
 | SQS mapping | Lambda reads a queue batch | Mapping and queue settings |
 
-An Application Load Balancer (ALB) invokes a Lambda target directly with a JSON request, rather than opening a network connection to the function. Return a JSON response with `statusCode`, `isBase64Encoded`, `headers`, and `body`. Enable `lambda.multi_value_headers.enabled` on the target group to preserve repeated headers and query parameters as arrays, and then return headers in `multiValueHeaders`.
+An Application Load Balancer (ALB) invokes a Lambda target directly with a JSON request, rather than opening a network connection to the function. Return a JSON response with `statusCode`, `isBase64Encoded`, `headers`, and `body`.
 
 ### Exam cues
 
 - If the question says a synchronous Lambda call failed, think caller retry logic, because Lambda does not automatically retry that function error.
-- If the question says asynchronous events still wait with retries disabled, think throttling or system errors, because `MaximumRetryAttempts` only controls function errors.
 - If the question says CPU-bound Lambda processing is slow, think increasing memory, because CPU capacity scales with memory.
-- If the question says an ALB loses repeated query parameters, think multi-value headers, because that target-group setting preserves arrays of values.
 - If the question says a Lambda workflow must wait for a human decision for days and resume after interruption, think a durable function, because it checkpoints progress and supports long waits.
 
 ### Remember
 
-- Function-error retries: 2 by default, configurable from 0 to 2. Throttle/system-error retry duration: up to 6 hours by default, with backoff from 1 second to 5 minutes.
-- Maximum asynchronous queue age: 6 hours.
+- Function-error retries: 2 by default, configurable from 0 to 2.
 - Timeout: 3 seconds by default, normally 1 through 900 seconds. Lambda Managed Instances permit up to 5,400 seconds for asynchronous and event source mapping invocations except Amazon MQ and Amazon DocumentDB.
 - Memory: 128 MB by default, 128 through 10,240 MB in 1-MB steps. At 1,769 MB, CPU capacity equals one virtual CPU (vCPU).
 - Temporary storage: 512 through 10,240 MB in 1-MB steps, per environment.
@@ -282,4 +260,4 @@ An Application Load Balancer (ALB) invokes a Lambda target directly with a JSON 
 - Lambda: no servers to manage, pay for what you use; S3 and DynamoDB events can trigger it.
 - Lambda pricing: requests plus duration (GB-seconds); free tier 1 million requests and 400,000 GB-seconds a month.
 
-> **Trap:** Disabling asynchronous function-error retries does not prevent duplicate events or turn off the separate throttling retry path.
+> **Trap:** Disabling asynchronous function-error retries does not prevent duplicate events.

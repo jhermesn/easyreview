@@ -8,8 +8,8 @@ facts:
     source: https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome
 cards:
   - id: redshift-012
-    q: "A company needs a data warehouse for business intelligence queries over petabytes of data. Which service fits?"
-    a: "Amazon Redshift."
+    q: "Which AWS analytics service provides a managed data warehouse for large datasets?"
+    a: "Amazon Redshift is a fully managed data warehouse. Redshift Serverless runs it without managing capacity."
     facts: [warehouse]
 ---
 Amazon Redshift is AWS's data warehouse for analytics on large datasets. [What is Amazon Redshift?](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome)

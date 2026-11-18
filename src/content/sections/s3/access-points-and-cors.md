@@ -163,22 +163,6 @@ cards:
     trap: true
     facts:
       - cors-browser
-  - id: s3-065
-    q: A browser application on another origin cannot make an authorized S3 request. What CORS settings
-      should be checked?
-    a: AllowedOrigins, AllowedMethods, and AllowedHeaders. S3 uses the first rule that matches all
-      required request attributes.
-    facts:
-      - cors-fields
-      - cors-match
-  - id: s3-066
-    q: An S3 bucket policy restricts endpoint requests by private IP address. Which conditions prevent
-      matching another VPC with the same private range?
-    a: Use aws:VpcSourceIp together with aws:SourceVpc or aws:SourceVpce. Do not use aws:SourceIp for
-      requests through the endpoint.
-    facts:
-      - vpc-source
-      - vpc-pair
   - id: s3-067
     q: An S3 presigned URL was given a long lifetime but fails when its signing role session expires.
       Why?
@@ -218,8 +202,8 @@ S3 access points give a shared bucket separate named entry points and permission
 ### How it works
 
 1. Create an access point for each required access policy or private-network boundary. For a VPC, a private AWS network, restrict the point to that VPC. The access point policy and bucket policy work together.
-2. For browser access, configure `AllowedOrigins`, `AllowedMethods`, and `AllowedHeaders`. When a preflight check is needed, the browser sends `OPTIONS` before the actual request; S3 selects the first matching CORS rule.
-3. Authorize the actual request independently. A VPC endpoint provides private connectivity to AWS services. For its source-address conditions use `aws:VpcSourceIp`, paired with `aws:SourceVpc` or `aws:SourceVpce`, because private IP ranges can overlap.
+2. For browser access, configure CORS. When a preflight check is needed, the browser sends `OPTIONS` before the actual request.
+3. Authorize the actual request independently. A VPC endpoint provides private connectivity to AWS services.
 4. For temporary sharing, issue a presigned URL for a specific object and operation. A presigned `PUT` lets a recipient upload without AWS credentials, but does not outlive its signing credentials.
 5. For eligible existing users, S3 Object Lambda invokes Lambda through an Object Lambda Access Point to transform returned data. A supporting access point provides access to the original object.
 
@@ -238,4 +222,4 @@ S3 access points give a shared bucket separate named entry points and permission
 - A presigned upload to an existing key replaces its current data; versioning determines whether earlier versions remain.
 - Since November 2025, Object Lambda is restricted to existing customers and selected partner solutions.
 
-> **Trap:** An overlapping private IP range does not identify a VPC. Pair `aws:VpcSourceIp` with a VPC or endpoint identifier.
+> **Trap:** CORS permits a cross-origin browser request but does not grant permission to access the object.

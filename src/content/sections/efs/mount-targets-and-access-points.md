@@ -98,21 +98,6 @@ cards:
       - target-port
       - routed-clients
       - ap-target
-  - id: efs-015
-    q: An EFS IAM policy allows mounting, but writes fail. What additional permissions must the team
-      examine?
-    a: ClientWrite for write authorization and POSIX directory and file permissions for the effective
-      user and group. ClientMount grants read-only access.
-    facts:
-      - iam-actions
-      - posix-check
-  - id: efs-016
-    q: An EFS access point names a root directory that does not exist and supplies no creation
-      permissions. What happens?
-    a: The mount fails. Create the directory with appropriate permissions or provide access-point
-      creation ownership and permissions.
-    facts:
-      - missing-root
   - id: efs-017
     q: A Lambda function must share persistent files through EFS in a connected account. Are
       access-point permissions alone sufficient?
@@ -134,7 +119,7 @@ An EFS mount target provides network connectivity; an access point defines how a
 
 1. Create mount targets in the file system's VPC. Regional file systems allow one per AZ, and all targets for one file system belong to one VPC at a time.
 2. Establish private connectivity. The client security group allows outbound TCP 2049 and the target group allows inbound TCP 2049 from clients. Connected VPCs and on-premises networks need suitable private paths.
-3. Configure the access point's root directory and optional enforced user and group. Ensure the root exists with suitable permissions, or provide creation ownership and permissions.
+3. Configure the access point's root directory and optional enforced user and group.
 4. Mount using the EFS helper with `tls` and `accesspoint=`. TLS encrypts the connection in transit. IAM authorization also uses the helper.
 5. Evaluate identity and file system policies, then file permissions. Require the intended access point with `elasticfilesystem:AccessPointArn` when applications must not bypass that entry point.
 
@@ -154,7 +139,6 @@ An EFS mount target provides network connectivity; an access point defines how a
 ### Remember
 
 - Security groups attach to mount targets, not access points.
-- `ClientMount`: read-only access. `ClientWrite`: writes. `ClientRootAccess`: root identity.
 - EFS evaluates both identity and file system policies; permission does not universally need an allow in both.
 - Without a user-configured file system policy, the default permits reachable anonymous clients. POSIX file permissions still apply.
 

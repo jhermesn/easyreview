@@ -155,13 +155,6 @@ cards:
     facts:
       - copy-role-permissions
       - copy-vault-policy
-  - id: backup-023
-    q: An AWS Backup copy reached a new account, but restoring a resource from a service never used
-      there fails. What prerequisite may be absent?
-    a: The destination service-linked role. Ensure that the underlying service has created its role in
-      that account.
-    facts:
-      - restore-service-role
 ---
 
 Cross-account copies place AWS Backup recovery points, or saved backups, in another account in the same organization. They can protect recovery data if the production account is compromised. For standard vaults, recovery follows a copy-then-restore sequence.
@@ -172,7 +165,7 @@ Cross-account copies place AWS Backup recovery points, or saved backups, in anot
 2. Create a non-default destination vault. Its resource policy, which controls access to that vault, must allow the source caller to use `backup:CopyIntoBackupVault`.
 3. Give the source IAM role, an identity with backup permissions, `backup:CopyFromBackupVault` and `backup:CopyIntoBackupVault` in its identity policy.
 4. Permit destination-account access to the source customer managed encryption key, whose policy you control. For fully managed resources the destination can use `aws/backup` or a customer managed key; other types require a customer managed key.
-5. Copy the backup, then restore in the destination account. Ensure the underlying service has its service-linked role, a role created for that service to act in the account.
+5. Copy the backup, then restore in the destination account.
 
 ### Exam cues
 

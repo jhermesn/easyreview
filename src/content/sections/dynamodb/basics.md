@@ -8,8 +8,8 @@ facts:
     source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html#Introduction
 cards:
   - id: dynamodb-049
-    q: "An app needs a serverless key-value database with single-digit millisecond responses at any scale. Which service fits?"
-    a: "Amazon DynamoDB."
+    q: "Which AWS database service is a serverless, fully managed NoSQL database?"
+    a: "Amazon DynamoDB is a distributed NoSQL database with single-digit millisecond performance at any scale."
     facts: [nosql]
 ---
 Amazon DynamoDB is a serverless NoSQL database for fast key-value and document access. [What is Amazon DynamoDB?](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html#Introduction)

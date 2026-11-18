@@ -56,9 +56,9 @@ cards:
     a: "Regression (prices): RMSE or another error measure.\nClassification (images): accuracy, precision, recall, F1, confusion matrix."
     facts: [confusion-rmse]
   - id: ml-lifecycle-019
-    q: A binary classifier has an AUC of 0.5. What does that mean?
-    a: It's no better than random guessing. An AUC of 1 is perfect.
-    facts: [auc]
+    q: "Which model metric measures how often positive predictions are correct?"
+    a: "Precision measures the share of positive predictions that are correct."
+    facts: [precision]
   - id: ml-lifecycle-020
     q: Besides model metrics such as accuracy, what should an ML project measure to prove value?
     a: Business metrics tied to the goal, such as fraud detection rate, customer satisfaction, cost savings or return on investment.
@@ -68,9 +68,9 @@ cards:
     a: "MAE, RMSE and R2, because predicting a price is regression. Precision, recall, F1 and the confusion matrix are for classification."
     facts: [mae, rmse-outliers, r2]
   - id: ml-lifecycle-023
-    q: "A regression model has an R2 of 0.8. What does that say?"
-    a: "The model explains about 80% of the variance in the target value. Higher R2 means more explained variability."
-    facts: [r2]
+    q: "Why should an ML team consider business metrics as well as model performance metrics?"
+    a: "Business metrics connect technical model performance to outcomes such as customer satisfaction."
+    facts: [business-metrics]
 ---
 Model metrics say how well a model predicts; business metrics say whether that matters. For classification, the confusion matrix counts true and false positives and negatives, and precision, recall and F1 come from it. [Autopilot metrics](https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics)
 

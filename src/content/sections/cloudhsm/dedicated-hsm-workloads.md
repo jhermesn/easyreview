@@ -110,19 +110,6 @@ cards:
     a: No. CloudHSM key stores support symmetric encryption KMS keys.
     trap: true
     facts: [custom-limits]
-  - id: cloudhsm-008
-    q: Which AWS CloudHSM interfaces help integrate existing cryptographic applications?
-    a: PKCS 11, JCE, CNG and KSP are supported interfaces.
-    facts: [apis]
-  - id: cloudhsm-009
-    q: A team needs non-FIPS algorithms in an existing AWS CloudHSM FIPS-mode cluster. Can it change the cluster mode?
-    a: No. Cluster mode cannot be changed after creation; non-FIPS mode supports the additional algorithms.
-    trap: true
-    facts: [mode-fixed, modes]
-  - id: cloudhsm-010
-    q: Which CloudHSM user does KMS use to manage key material in a CloudHSM key store?
-    a: A dedicated crypto user named `kmsuser`.
-    facts: [kmsuser]
   - id: cloudhsm-011
     q: "A CloudHSM user mistypes the password repeatedly. What happens to the account?"
     a: "After five incorrect login attempts the account is locked out, and an admin must reset its password. The keys are not deleted."
@@ -154,7 +141,7 @@ AWS CloudHSM provides dedicated hardware security modules (HSMs), devices that s
 
 1. Create a cluster in a virtual private cloud (VPC), an isolated virtual network, and add HSMs. CloudHSM synchronizes the HSMs in the cluster.
 2. Create HSM users and keys, then integrate applications using the client software development kits (SDKs). HSM user credentials, not AWS Identity and Access Management (IAM) user credentials, authenticate operations on the HSM. CloudHSM periodically backs up users, keys and policies.
-3. Optionally connect a KMS CloudHSM key store to a customer-owned cluster. KMS uses a dedicated HSM user named `kmsuser`, generates non-extractable key material there and sends cryptographic operations to the HSMs.
+3. Optionally connect a KMS CloudHSM key store to a customer-owned cluster. KMS generates non-extractable key material there and sends cryptographic operations to the HSMs.
 
 | Need | Choice |
 |---|---|
@@ -164,14 +151,13 @@ AWS CloudHSM provides dedicated hardware security modules (HSMs), devices that s
 
 ### Exam cues
 
-- If the question says dedicated hardware and direct PKCS 11 access, think CloudHSM, because it provides single-tenant HSMs and supports that standard interface for HSM operations.
+- If the question says dedicated hardware under customer control, think CloudHSM, because it provides single-tenant HSMs and customer-managed users.
 - If the question says KMS integration and customer-controlled HSMs, think a CloudHSM key store, because its KMS key material and operations use the customer's cluster.
 - If the question says newly generated keys need durability across zones, think at least three HSMs in different Availability Zones, because AWS recommends that configuration.
 
 ### Remember
 
-- Federal Information Processing Standard (FIPS) mode uses validated keys and algorithms; non-FIPS mode supports all CloudHSM-supported keys and algorithms. Cluster mode cannot be changed after creation.
-- HSMs in FIPS-mode clusters are validated to FIPS 140-2 level 3 or FIPS 140-3 level 3.
+- AWS recommends at least three HSMs across different Availability Zones for durability of newly generated keys.
 - Creating KMS keys in a CloudHSM key store requires at least two active HSMs.
 - CloudHSM key stores support symmetric encryption KMS keys, not asymmetric KMS keys, imported key material, automatic rotation or multi-Region keys.
 - An asymmetric KMS key uses a related public and private key pair.

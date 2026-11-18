@@ -251,14 +251,11 @@ cards:
       - ecs-instrumentation
       - ecs-task-role
   - id: adot-005
-    q: An ADOT collector scrapes EKS metrics, but remote write to Amazon Managed Service for Prometheus
-      is denied. Which configuration should the team inspect?
-    a: Check the workspace remote write destination, `sigv4auth` with service `aps` and the workspace
-      Region, and credentials with remote write permissions.
+    q: "An Amazon ECS application emits traces, but its ADOT sidecar cannot send them to X-Ray. Which permissions should the team check?"
+    a: "Check the ECS task IAM role for permissions to send telemetry to X-Ray."
     facts:
-      - prometheus-export
-      - prometheus-signing
-      - prometheus-permissions
+      - ecs-sidecar
+      - ecs-task-role
   - id: adot-006
     q: A supported ADOT SDK sends traces directly to the X-Ray OTLP endpoint, but Transaction Search is
       disabled. What prerequisite is missing?
@@ -278,20 +275,16 @@ cards:
       - collector-processing
       - prometheus-export
   - id: adot-008
-    q: An ADOT collector configuration defines an exporter but the metrics pipeline does not reference
-      it. What should the team configure?
-    a: Wire the exporter into `service.pipelines` with the intended receivers and processors. Enable
-      required authentication extensions in `service.extensions`.
-    trap: true
+    q: "An ADOT collector receives application traces, but its X-Ray exporter is not referenced in the trace pipeline. What should the team change?"
+    a: "Connect the receiver, processors, and exporter in the collector service.pipelines configuration."
     facts:
       - collector-service-pipelines
+      - collector-role
   - id: adot-009
-    q: Are the ADOT Prometheus receiver and prometheusremotewrite exporter interchangeable?
-    a: No. The receiver scrapes metrics into the collector; the exporter sends metrics to the
-      destination workspace.
-    trap: true
+    q: "A Lambda team wants supported automatic instrumentation for X-Ray traces using ADOT. What can it configure?"
+    a: "Use an AWS-managed ADOT Lambda layer that packages OpenTelemetry with Lambda and X-Ray configuration."
     facts:
-      - receiver-exporter-difference
+      - lambda-layers
   - id: adot-010
     q: Which ADOT deployment forms fit EKS, ECS, and Lambda?
     a: EKS can manage the ADOT Operator. ECS can run a collector sidecar. Lambda can use AWS-managed

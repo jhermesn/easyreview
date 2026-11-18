@@ -149,14 +149,12 @@ cards:
       - promote
       - recovery-steps
   - id: rds-039
-    q: An RDS for MySQL read replica stops with a packet larger than max_allowed_packet error. What should the team change?
-    a: Match the max_allowed_packet values in the source and replica DB parameter groups.
+    q: "A company needs a regional disaster recovery option for an RDS database. How can a cross-Region read replica help?"
+    a: "Promote the replica if the source Region is unavailable, then redirect database traffic. Asynchronous replication can leave recent writes missing."
     facts:
-      - mysql-packet
-  - id: rds-081
-    q: "How many same-Region read replicas can one RDS for MySQL source DB instance have?"
-    a: "Up to **15**. Size each replica like the source, and scale replicas when you scale the source."
-    facts: [replica-count]
+      - regional-copy
+      - recovery-steps
+      - replica-lag
 ---
 
 A read replica is a database copy used to move read queries away from an RDS source. Supported replicas can also provide a recovery copy in another Region. The [RDS read-replica guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl) explains that replication is asynchronous: the source can commit a write before the replica receives it.

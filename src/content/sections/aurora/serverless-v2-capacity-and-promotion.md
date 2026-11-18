@@ -92,56 +92,6 @@ cards:
       - compute
       - acu
       - nondisruptive
-  - id: aurora-007
-    q: Which Aurora Serverless v2 capacity and configuration limits should be checked before deployment?
-    a: Check engine, platform and Region support. Supported MySQL configurations reach 256 ACUs and PostgreSQL 384; capacity changes can be as small as 0.5 ACU. A zero minimum enables auto-pause only on supported versions.
-    facts:
-      - upper
-      - postgres-upper
-      - platform
-      - increments
-      - auto-pause
-  - id: aurora-008
-    q: An Aurora Serverless v2 reader must be ready to take over the writer workload. Which promotion tier should it use?
-    a: Tier 0 or 1. Its capacity floor follows the writer within the configured maximum. Tiers 2 through 15 scale independently and can need to scale up after promotion.
-    trap: true
-    facts:
-      - high-priority
-      - independent
-  - id: aurora-024
-    q: An Aurora Serverless v2 development database should pause when unused. Which settings enable this?
-    a: On a supported version, set minimum capacity to 0 ACUs and configure SecondsUntilAutoPause. Its default is 300 seconds; the range is 300 to 86400 seconds.
-    facts:
-      - auto-pause
-      - pause-interval
-      - pause-default
-  - id: aurora-025
-    q: An Aurora Serverless v2 cluster has minimum capacity 0 but uses RDS Proxy. Why does it remain active?
-    a: RDS Proxy maintains database connections, preventing auto-pause. Zero minimum alone does not ensure pausing.
-    trap: true
-    facts:
-      - pause-proxy
-      - auto-pause
-  - id: aurora-026
-    q: Can an Aurora Global Database Serverless v2 secondary pause to zero during an idle period?
-    a: No. Serverless instances in global secondary clusters do not auto-pause, although they can scale compute within their configured range.
-    trap: true
-    facts:
-      - pause-global
-      - global
-      - compute
-  - id: aurora-027
-    q: An Aurora Serverless v2 writer is active while a reporting reader should scale independently. Which tier fits?
-    a: A promotion tier from 2 through 15. Those readers scale independently and can pause independently if all auto-pause conditions are met.
-    facts:
-      - independent
-      - pause-tiers
-  - id: aurora-028
-    q: Which Aurora Serverless v2 metrics show current compute capacity and capacity utilization?
-    a: ServerlessDatabaseCapacity reports current ACUs. ACUUtilization is that capacity as a percentage of the configured maximum.
-    facts:
-      - metrics
-      - acu-utilization
   - id: aurora-029
     q: Can Aurora Serverless v2 mix with provisioned instances, and what keeps a high-priority Serverless reader ready for a provisioned writer?
     a: Yes. Mixed clusters are supported; a tier 0 or 1 Serverless reader uses the ACU equivalent of the writer memory as its capacity floor.
@@ -201,39 +151,26 @@ diagrams:
     steps:
       - A tier 0 or 1 reader keeps its minimum tied to writer capacity within the configured maximum.
 ---
-Aurora Serverless v2 changes database compute capacity as load varies. Its writers and readers use Aurora capacity units (ACUs), which combine about 2 GiB of memory with corresponding CPU and networking resources. The cluster's stored data stays separate from this compute scaling.
+Aurora Serverless v2 changes database compute capacity as load varies. Each writer or reader uses Aurora capacity units (ACUs), which combine about 2 GiB of memory with corresponding CPU and networking resources. The cluster's stored data stays separate from compute scaling.
 
 ### How it works
 
-1. Set ServerlessV2ScalingConfiguration, the cluster's minimum and maximum capacity range, before adding db.serverless instances. Each Serverless instance has its own current capacity within that range.
-2. Aurora monitors CPU, memory and network load and adjusts capacity in increments as small as 0.5 ACU. Normal scaling can occur during active connections and transactions without waiting for a quiet point.
-3. Choose reader promotion tiers. Tiers 0 and 1 keep a capacity floor tied to the writer, within the configured maximum. With a provisioned writer, that floor uses the ACU equivalent of its memory size. Tiers 2 through 15 scale independently and might need more capacity after promotion.
-4. Monitor ServerlessDatabaseCapacity for current ACUs and ACUUtilization for that capacity as a percentage of the configured maximum. Provisioned and Serverless instances can coexist, and global secondary clusters can use Serverless capacity.
-5. For supported versions, a minimum of 0 enables auto-pause after an idle interval without user connections. A new connection waits for resume. The writer and tier 0 or 1 readers pause together; other readers can pause independently.
-
-| Capacity setting or mode | Meaning |
-|---|---|
-| Minimum 0 ACUs | Auto-pause on supported versions when other conditions permit |
-| Minimum 0.5 ACU or higher | Auto-pause disabled |
-| Supported MySQL upper bound | Up to 256 ACUs |
-| Supported PostgreSQL upper bound | Up to 384 ACUs |
-| Actual range | Limited by engine version, platform version and regional platform availability |
-
-Aurora Auto Scaling reader-count policies do not support Serverless v2. Create readers in advance and let their compute capacity change. Serverless uses the same six data copies across three Availability Zones as provisioned Aurora.
+1. Set the cluster's minimum and maximum capacity range before adding Serverless instances. Each instance has its own current capacity within that range.
+2. Aurora adjusts capacity during active connections and transactions without waiting for the database to become idle.
+3. Provisioned and Serverless instances can coexist. A Serverless reader in promotion tier 0 or 1 uses the ACU equivalent of a provisioned writer's memory as its capacity floor.
+4. To move a provisioned writer to Serverless v2, add or convert a Serverless reader and fail over to promote it. The existing cluster and data remain in place.
+5. When an instance auto-pauses, its compute-capacity charge stops, but storage and other cluster charges continue. A new connection waits for the instance to resume.
 
 ### Exam cues
 
-- If the question says unpredictable relational load without fixed instance sizing, think Serverless v2, because compute scales within a capacity range.
-- If the question says a reader must absorb the writer workload after failover, think tier 0 or 1, because its capacity floor follows the writer.
-- If the question says a reporting reader should shrink independently, think tier 2 through 15, because those readers have independent capacity.
-- If the question says minimum zero but the cluster never pauses, think open connections or incompatible features such as RDS Proxy, because auto-pause requires more than a zero minimum.
+- If the question says unpredictable database load with active transactions, think Serverless v2, because it scales instance compute without waiting for idle connections.
+- If the question says a provisioned writer must move to Serverless with little downtime, think add or convert a Serverless reader and promote it through failover, because the cluster and data remain in place.
+- If the question says a Serverless reader must be ready to replace a provisioned writer, think tier 0 or 1, because its capacity floor uses the ACU equivalent of the writer's memory.
 
 ### Remember
 
-- One ACU includes about 2 GiB of memory; capacity changes can be as small as 0.5 ACU.
-- Supported upper bounds are 256 ACUs for MySQL and 384 for PostgreSQL; actual support depends on engine and platform versions.
-- SecondsUntilAutoPause defaults to 300 seconds and supports 300 to 86400 seconds.
-- RDS Proxy prevents auto-pause. Global primary writers, their tier 0 or 1 readers and all global secondary instances do not auto-pause.
+- One ACU includes about 2 GiB of memory with corresponding CPU and networking.
+- Provisioned and Serverless instances can coexist in a cluster.
 - Paused instances have no compute-capacity charge; storage and other cluster charges continue.
 
-> **Trap:** Normal scaling keeps current operations running, but resuming from zero takes time. A Global Database secondary can use Serverless capacity without supporting auto-pause.
+> **Trap:** Normal capacity scaling can occur during active transactions, but a connection to a paused instance must wait for it to resume.

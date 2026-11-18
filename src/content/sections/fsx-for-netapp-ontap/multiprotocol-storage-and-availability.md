@@ -87,10 +87,6 @@ cards:
     q: An application needs shared SMB and NFS access to storage across Availability Zones. Which FSx for NetApp ONTAP deployment fits?
     a: Multi-AZ. It supports both protocols and synchronously replicates writes to a standby server in another Availability Zone.
     facts: [shared-volume, multi-az]
-  - id: fsx-for-netapp-ontap-003
-    q: How does an EC2 client in the same VPC and account mount an FSx for NetApp ONTAP volume over NFS or SMB?
-    a: Use the storage virtual machine DNS name and the volume junction for NFS or the SMB share for SMB.
-    facts: [svm-endpoints, mount]
   - id: fsx-for-netapp-ontap-004
     q: What latency should a team expect from FSx for NetApp ONTAP SSD storage and capacity pool storage?
     a: SSD file operations have sub-millisecond latency; capacity pool storage has tens of milliseconds of latency.
@@ -99,11 +95,6 @@ cards:
     q: A team needs cross-Region disaster recovery for an FSx for NetApp ONTAP volume. Which replication feature should it use?
     a: NetApp SnapMirror volume replication. It can schedule replication to a file system in another Region.
     facts: [snapmirror, asynchronous]
-  - id: fsx-for-netapp-ontap-006
-    q: Does FSx for NetApp ONTAP support synchronous SnapMirror replication between Regions?
-    a: No. Synchronous SnapMirror is not supported. Use scheduled volume-level replication.
-    trap: true
-    facts: [asynchronous, snapmirror]
   - id: fsx-for-netapp-ontap-007
     q: What happens when an FSx for NetApp ONTAP Multi-AZ active file server fails?
     a: FSx automatically fails over to the standby. Failover typically completes in less than 60 seconds.
@@ -112,17 +103,13 @@ cards:
     q: What must an iSCSI client configure for transparent failover on FSx for NetApp ONTAP?
     a: Client-side multipathing, so the client can switch between file servers.
     facts: [client-failover]
-  - id: fsx-for-netapp-ontap-009
-    q: A client in a peered VPC needs NFS access to an FSx for NetApp ONTAP Multi-AZ file system without a cache. What routing component is required?
-    a: AWS Transit Gateway, because Multi-AZ NFS endpoints use floating IP addresses.
-    facts: [multi-az-routing]
 ---
 Amazon FSx for NetApp ONTAP provides managed shared storage for applications that need NetApp features and multiple access protocols. A storage virtual machine (SVM) provides access endpoints for its volumes, which are isolated containers for files, directories or block storage units.
 
 ### How it works
 
 1. Choose Single-AZ or Multi-AZ. Both use active and standby file servers. Single-AZ keeps them in one Availability Zone; Multi-AZ places them in different zones and synchronously replicates writes.
-2. Create an SVM and volumes. Clients in the same virtual private cloud (VPC) and account mount a volume using the SVM DNS name and the NFS junction path, the volume's location in the SVM file tree, or the SMB share.
+2. Create an SVM and volumes. The SVM provides endpoints for clients to access its volumes.
 3. Use Network File System (NFS) or Server Message Block (SMB) for file access; both can access the same volume at once. Internet Small Computer Systems Interface (iSCSI) and NVMe over TCP provide block access, where clients see storage devices rather than shared files.
 4. When a server fails, FSx automatically promotes the standby. NFS and SMB clients retain the endpoint IP; iSCSI and NVMe clients need multipathing, meaning multiple client paths to the servers, for transparent failover.
 5. For a separate disaster recovery copy, schedule NetApp SnapMirror volume replication to another file system, including in another Region.
@@ -136,15 +123,11 @@ Amazon FSx for NetApp ONTAP provides managed shared storage for applications tha
 ### Exam cues
 
 - If the question says Windows and Linux clients need shared SMB and NFS access across zones, think Multi-AZ FSx for ONTAP, because it supports both protocols and replicates writes across zones.
-- If the question says replacement instances must access the shared files, think mount the volume on each client, because the SVM endpoint and volume path provide access.
 - If the question says recover a volume in another Region, think SnapMirror, because it schedules cross-Region volume replication.
-- If the question says a peered VPC must reach a Multi-AZ NFS endpoint without a cache, think Transit Gateway, because the endpoint uses a floating IP address.
 
 ### Remember
 
 - Failover typically completes in less than 60 seconds.
-- SnapMirror schedules volume replication as often as every five minutes. Synchronous SnapMirror is not supported.
 - iSCSI supports file systems with up to six high-availability pairs; NVMe over TCP also requires a second-generation file system.
-- Single-AZ NFS and SMB access can use VPC peering, Direct Connect or Site-to-Site VPN without Transit Gateway.
 
 > **Trap:** Multi-AZ synchronous replication is within one Region. It is not synchronous cross-Region SnapMirror replication.

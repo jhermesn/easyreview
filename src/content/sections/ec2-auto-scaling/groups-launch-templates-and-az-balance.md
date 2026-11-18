@@ -220,45 +220,18 @@ cards:
       zone.
     facts:
       - az-strategies
-  - id: ec2-auto-scaling-072
-    q: An EC2 Auto Scaling group must use its Capacity Reservations before balancing remaining instances across
-      Availability Zones. What does it configure?
-    a: Reservations then balanced, with a reservation ID or Capacity Reservation resource group as the target.
-    facts:
-      - reservation-strategy
   - id: ec2-auto-scaling-073
     q: An EC2 Auto Scaling group needs Spot and On-Demand instances across multiple instance types. What must its
       launch template include?
     a: Use a launch template with an AMI. Instance types can be specified when creating the group.
     facts:
       - template-requirements
-  - id: ec2-auto-scaling-074
-    q: An EC2 Auto Scaling launch template specifies tags, an instance profile and a private AMI owned by another
-      account. What should an administrator check after an authorization error?
-    a: Check ec2:RunInstances, ec2:CreateTags and iam:PassRole permissions, and ensure the AMI is shared with the
-      group account.
-    facts:
-      - template-permissions
-  - id: ec2-auto-scaling-075
-    q: An account cannot create another EC2 Auto Scaling group in a Region. Which default quota should it check?
-    a: The default is 500 groups per Region. Check Service Quotas for the account's actual limit and request an
-      increase if needed.
-    facts:
-      - group-quota
   - id: ec2-auto-scaling-076
     q: An EC2 Auto Scaling group switches to a new launch template, but existing instances still use the old AMI.
       How can the fleet be updated?
     a: Start an instance refresh. The updated template applies to new instances, not existing ones.
     facts:
       - template-update
-  - id: ec2-auto-scaling-077
-    q: EC2 Auto Scaling cannot launch instances with EBS volumes encrypted by a customer managed KMS key in
-      another account. What access must be configured?
-    a: Allow key use and grant creation in the key policy, then create a cross-account grant for the Auto Scaling
-      service-linked role.
-    facts:
-      - encrypted-volume-key
-      - encrypted-volume-cross-account
   - id: ec2-auto-scaling-078
     q: "An Auto Scaling group moved to a new launch template, and scale-in must remove instances from the old configuration first. Which termination policies target that?"
     a: "OldestLaunchTemplate, or OldestLaunchConfiguration for groups on launch configurations. Zone balance is still applied before either policy."
@@ -266,9 +239,9 @@ cards:
       - termination-oldest-config
       - termination-zone
   - id: ec2-auto-scaling-079
-    q: Does Amazon EC2 Auto Scaling itself cost extra?
-    a: No. You pay only for the EC2 instances, CloudWatch and other resources it uses.
-    facts: [no-fee]
+    q: "An EC2 Auto Scaling group spans multiple Availability Zones. How can it respond when one zone becomes unavailable?"
+    a: "With balanced best effort, it can launch instances in other enabled zones and rebalance when the zone recovers."
+    facts: [az-recovery]
   - id: ec2-auto-scaling-080
     q: After a scale-in, an Auto Scaling group with Spot and On-Demand instances is briefly uneven across AZs. Why?
     a: Scale-in first keeps the Spot and On-Demand allocation, then balances AZs and applies the termination policy.
@@ -288,11 +261,11 @@ An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces ins
 
 1. Set minimum, desired and maximum capacity. The group attempts to maintain desired capacity within those limits.
 2. Select subnets in the Availability Zones to use. An Availability Zone is an isolated location within a Region; a subnet belongs to one zone.
-3. Choose an Availability Zone distribution strategy. Balanced best effort is the default and can launch in another healthy zone after a failure. Balanced only keeps retrying the affected zone. Reservations then balanced fills targeted Capacity Reservations first and requires a reservation ID or resource group.
+3. Choose an Availability Zone distribution strategy. Balanced best effort is the default and can launch in another healthy zone after a failure. Balanced only keeps retrying the affected zone.
 4. With balanced best effort, if a zone becomes unavailable, the group can launch in other enabled zones. When it rebalances, it launches replacements before terminating existing instances. Capacity shortages can still prevent launches; additional instance types or zones provide more places to find capacity. A load balancer distributes application requests among the instances.
-5. During scale-in, which means removing capacity, zone balance normally takes priority. Reservations then balanced removes instances outside reservations first. Within the eligible zone, the default termination policy removes outdated configurations first, then considers the next billing hour and breaks remaining ties randomly. Unhealthy instances bypass this policy.
-6. Put the AMI in the launch template; instance types can be supplied when the group is created. For authorization failures, check launch and tagging permissions, permission to pass an instance role, and sharing of a private cross-account AMI.
-7. Updating the launch template affects new instances, not existing ones. Use instance refresh to replace the fleet. For customer managed KMS keys on encrypted EBS volumes, allow the Auto Scaling service-linked role to use the key and create grants. A cross-account key also needs a grant to that role.
+5. During scale-in, which means removing capacity, zone balance normally takes priority. Within the eligible zone, the default termination policy removes outdated configurations first, then considers the next billing hour and breaks remaining ties randomly. Unhealthy instances bypass this policy.
+6. Put the AMI in the launch template; instance types can be supplied when the group is created.
+7. Updating the launch template affects new instances, not existing ones. Use instance refresh to replace the fleet.
 
 | Termination choice | Selection rule |
 |---|---|
@@ -305,7 +278,7 @@ An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces ins
 ### Exam cues
 
 - If the question says a zone fails under balanced best effort, think replacement capacity in other enabled zones, because the group attempts to maintain desired capacity.
-- If preserving zone balance matters more than launching elsewhere, choose balanced only. If reservation use matters first, choose reservations then balanced and specify the reservation target.
+- If preserving zone balance matters more than launching elsewhere, choose balanced only.
 - If the question says a newer instance was removed under OldestInstance, think zone balance, because it takes priority over age.
 - If the question says only idle workers should be selected for scale-in, think a Lambda custom termination policy, because it can use application state to return candidates.
 - If the question says phase out instances from an earlier configuration during scale-in, think OldestLaunchTemplate or OldestLaunchConfiguration, because they terminate noncurrent configurations first.
@@ -315,6 +288,5 @@ An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces ins
 - Minimum <= desired <= maximum capacity.
 - Rebalancing launches before terminating.
 - Default rebalancing headroom is 10% of maximum capacity or one instance, whichever is greater. An instance maintenance policy can set replacement thresholds.
-- The default group quota is 500 per Region. EC2 and VPC quotas can also limit launches.
 
 > **Trap:** A termination policy does not override zone balance or protect an unhealthy instance from replacement.

@@ -66,9 +66,9 @@ cards:
     a: "Code chat, inline code completion, new code generation, security vulnerability scans, and code upgrades, debugging and optimization."
     facts: [qdev-ide]
   - id: amazon-q-007
-    q: "An operations team wants to ask about AWS resources from its Slack channel. What does AWS offer?"
-    a: "Amazon Q Developer in chat applications, which works in Slack and Microsoft Teams with the AmazonQDeveloperAccess policy and channel guardrails."
-    facts: [qdev-chat-apps]
+    q: "What can Amazon Q Developer help developers do in an IDE?"
+    a: "It can answer code questions, generate and complete code, and scan for security vulnerabilities."
+    facts: [qdev-ide]
 ---
 Amazon Q is AWS's family of generative AI assistants. Amazon Q Developer helps people build and run applications on AWS. Amazon Q Business answers employees' questions from company data. Both have changed recently, so exam questions may use older names. [What is Amazon Q Developer?](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#what-is)
 

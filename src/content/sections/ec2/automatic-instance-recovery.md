@@ -117,11 +117,6 @@ cards:
     q: Must an operator create a CloudWatch alarm to enable simplified automatic recovery for a supported EC2 instance?
     a: No. Simplified automatic recovery is enabled by default at launch. CloudWatch action based recovery requires an explicitly configured alarm action.
     facts: [simplified-default, cloudwatch-config]
-  - id: ec2-019
-    q: An EC2 workload uses an Elastic Fabric Adapter. Can either simplified automatic recovery or CloudWatch action based recovery restore the instance after a host failure?
-    a: No. Both mechanisms exclude instances using EFA.
-    facts: [efa-excluded]
-    trap: true
   - id: ec2-020
     q: How do simplified and CloudWatch action based EC2 recovery differ for instances with instance store volumes?
     a: Simplified recovery excludes them. CloudWatch recovery supports selected instance types with instance store attached at launch, but loses that data during recovery.
@@ -139,10 +134,6 @@ cards:
     q: A running EC2 instance has automatic recovery configured, but there is no capacity for its instance type. Is recovery guaranteed?
     a: No. Recovery requires available capacity. If recovery fails and the instance stays unreachable or keeps failing system checks, AWS recommends a manual stop and start.
     facts: [recovery-conditions, failed-recovery]
-  - id: ec2-024
-    q: How should missing data be handled for a CloudWatch alarm configured to recover an EC2 instance?
-    a: Treat missing data as missing and trigger the action only in ALARM state. AWS recommends this configuration for EC2 action alarms.
-    facts: [missing-data]
   - id: ec2-025
     q: A team needs an EC2 instance to resume in another Availability Zone after a zone outage. Does automatic instance recovery provide this?
     a: No. Automatic recovery retains the instance's Availability Zone.
@@ -186,12 +177,10 @@ EC2 automatic instance recovery attempts to restore an instance after a problem 
 
 | Situation | Mechanism | Deciding limitation |
 |---|---|---|
-| Supported standalone instance, default recovery | Simplified automatic recovery | No instance store volumes or EFA |
-| Supported standalone instance, alarm-controlled recovery | CloudWatch recover action | Selected instance store configurations supported, with data loss; no EFA |
+| Supported standalone instance, default recovery | Simplified automatic recovery | No instance store volumes |
+| Supported standalone instance, alarm-controlled recovery | CloudWatch recover action | Selected instance store configurations supported, with data loss |
 | Instance software failure, system check passes | CloudWatch reboot action | Recover cannot use StatusCheckFailed_Instance |
 | Unhealthy Auto Scaling group member | Auto Scaling replacement | Neither individual-instance recovery mechanism supports group members |
-
-An Elastic Fabric Adapter (EFA) is a network device for workloads such as machine learning and high performance computing. Both recovery mechanisms exclude instances using EFA.
 
 For a separate failover approach, a network interface is a virtual network card. A primary interface cannot be detached, but a secondary interface and its private IP addresses can move between EC2 instances within one Availability Zone.
 
@@ -208,7 +197,6 @@ For a separate failover approach, a network interface is a virtual network card.
 - `StatusCheckFailed_System`: 0 means passed; 1 means failed.
 - Simplified recovery is enabled by default only on supported instances. CloudWatch recovery needs an alarm action.
 - With instance store volumes attached at launch, CloudWatch recovery supports M3, C3, R3, X1, X1e, X2idn and X2iedn. It loses their local data.
-- For EC2 action alarms, treat missing data as `missing` and trigger actions only in `ALARM` state.
 
 > **Trap:** Recovery preserves instance identity, addresses and EBS volumes, but not RAM or instance store contents. It is not a guarantee of recovery when capacity is unavailable.
 

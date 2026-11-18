@@ -268,28 +268,13 @@ cards:
       - template-output
       - refresh-separate
   - id: deployment-strategies-027
-    q: What does Image Builder setDefaultVersion do when AMI distribution creates a launch template
-      version?
-    a: It controls whether the new launch template version becomes default. It defaults to true; false
-      creates a version without changing the default.
-    facts:
-      - template-output
+    q: "An EC2 Auto Scaling fleet needs a new application version using immutable instances. How should the team roll it out?"
+    a: "Build a new AMI, update the launch template, and start an instance refresh to replace existing instances."
+    facts: [ami-template, refresh-separate]
   - id: deployment-strategies-028
-    q: Does changing a Parameter Store base-image parameter instantly trigger an Image Builder scheduled
-      build?
-    a: No. It counts as a dependency update when the pipeline evaluates its scheduled start condition.
-    trap: true
-    facts:
-      - parameter-dependency
-      - schedule-evaluation
-  - id: deployment-strategies-029
-    q: An Auto Scaling instance refresh needs rollback, but the group uses $Latest or an AMI alias from
-      Parameter Store. What must the release plan change?
-    a: Use a supported explicit numbered launch template version and specify a desired configuration.
-      Instance refresh rollback does not support $Latest, $Default, or Parameter Store AMI aliases.
-    trap: true
-    facts:
-      - rollback-versions
+    q: "An EC2 fleet takes too long to scale because every instance downloads application software at launch. What image strategy helps?"
+    a: "Prebake the application components into an AMI to reduce startup work."
+    facts: [bake, bootstrap]
   - id: deployment-strategies-030
     q: An administrator creates an EC2 AMI from an instance whose user data configures the application. Will
       instances launched from that AMI inherit the user data?
@@ -311,59 +296,22 @@ cards:
     facts:
       - ami-share-encryption
   - id: deployment-strategies-033
-    q: An Image Builder pipeline must copy an AMI into another AWS account. What role is required in the target?
-    a: EC2ImageBuilderDistributionCrossAccountRole, with the managed cross-account distribution policy and
-      trust for the source account.
-    facts:
-      - cross-account-copy
+    q: "A team needs the same tested EC2 image available in multiple AWS Regions. How can Image Builder support an immutable deployment?"
+    a: "Distribute copies of the AMI to the required Regions, then launch instances from those images."
+    facts: [distribution, ami-template]
   - id: deployment-strategies-034
-    q: Image Builder cannot distribute an encrypted AMI across accounts and Regions because of KMS access. What
-      must the accounts configure?
-    a: Allow the destination account in the source key policies and grant the destination role access to the
-      keys in the source and destination Regions.
-    facts:
-      - cross-account-encryption
-  - id: deployment-strategies-035
-    q: An Image Builder image fails only during cross-account distribution because a role is missing. Must the
-      image be rebuilt after the role is fixed?
-    a: No. Retry the failed image; Image Builder can rerun distribution without rebuilding it.
+    q: "A team publishes a new AMI for its EC2 Auto Scaling group. Does publishing the image replace running instances?"
+    a: "No. Update the launch template and start an instance refresh to replace the existing instances."
     trap: true
-    facts:
-      - distribution-retry
-  - id: deployment-strategies-036
-    q: Image Builder copies an AMI to an opt-in Region but fails to publish its ID to Parameter Store. What
-      permissions and Region setting should be checked?
-    a: Enable the opt-in Region in the source account and grant the execution role ssm:PutParameter and, for
-      aws:ec2:image validation, ec2:DescribeImages.
-    facts:
-      - parameter-permissions
+    facts: [refresh-separate]
+  - id: deployment-strategies-035
+    q: "An EC2 team wants fast instance startup and environment-specific configuration. How can it combine image and launch strategies?"
+    a: "Prebake common software into the AMI and use bootstrapping for environment-specific customization."
+    facts: [combine]
   - id: deployment-strategies-037
-    q: An Image Builder test instance is terminated after a failed build. How can an operator retain a future
-      failed instance for diagnosis?
-    a: Disable termination on failure in the infrastructure configuration. The default is to terminate it.
-    facts:
-      - build-failure
-  - id: deployment-strategies-038
-    q: An Image Builder AMI build in a private subnet cannot run its test components. Which Systems Manager
-      prerequisites should an operator check?
-    a: Ensure build and test instances can reach Systems Manager and their instance profile has permissions for
-      the components. Image Builder uses Run Command to operate the instances.
-    facts:
-      - build-ssm
-  - id: deployment-strategies-039
-    q: An Image Builder instance cannot upload build logs to the configured Amazon S3 bucket. What permission
-      does its instance profile need?
-    a: Grant s3:PutObject for the target bucket's objects.
-    facts:
-      - build-logs
-  - id: deployment-strategies-040
-    q: An Image Builder pipeline must block AMI distribution when an Amazon Inspector on-demand scan finds
-      vulnerabilities above an allowed severity. What must it configure?
-    a: Enable on-demand AMI scanning and set a scan result condition. Without the condition, distribution can
-      proceed before the scan finishes. This scan option was added in October 2026.
-    facts:
-      - ami-scan-release
-      - ami-scan-gate
+    q: "An EC2 Image Builder pipeline must prevent an image from being distributed when validation fails. What should the team configure?"
+    a: "Configure image tests. Image Builder distributes the image only after all configured tests succeed."
+    facts: [test-before-distribute]
   - id: deployment-strategies-041
     q: A company wants each EC2 instance to install software automatically at first launch. Should it use instance metadata or user data?
     a: User data, which runs scripts at launch. Instance metadata only describes the running instance.
@@ -385,9 +333,6 @@ A golden AMI is a reusable EC2 launch image prepared with the software and setti
 4. Distribution can copy the AMI to Regions, grant launch permissions to accounts or organizational groups, write its ID to Parameter Store, and create a launch template version. A launch template stores settings for new EC2 instances.
 5. Start a rolling instance refresh to apply the new launch configuration to existing fleet instances. Use warmup, checkpoints, and supported rollback settings to control replacement. Keep remaining environment customization in bootstrap logic such as user data, the startup configuration supplied to EC2.
 6. For cross-account AMI copies, create the Image Builder distribution role in each destination with its managed policy and trust for the source. Encrypted copies also need destination role KMS permissions and key policies that permit destination access in the source and destination Regions. A distribution-phase failure can be retried without rebuilding.
-7. For output parameters, grant the execution role `ssm:PutParameter` and, for AMI validation, `ec2:DescribeImages`. Enable each targeted opt-in Region in the source account for parameter writes.
-8. Build and test instances need Systems Manager connectivity and an instance profile with component permissions. For S3 build logs, grant that profile `s3:PutObject` on the target bucket.
-9. Since October 2026, Image Builder can use an Amazon Inspector on-demand AMI scan without activating Inspector for the account. Set a scan result condition to wait for results and fail the image when findings exceed the allowed severity; without it, distribution can proceed before the scan finishes.
 
 ### Exam cues
 
@@ -406,6 +351,5 @@ A golden AMI is a reusable EC2 launch image prepared with the software and setti
 - The schedule defaults to EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE; EXPRESSION_MATCH_ONLY builds at every matching time.
 - Linux user data runs on first launch by default.
 - User data is limited to 16 KB before encoding and is not included in an AMI created from the instance.
-- Instance refresh rollback needs a desired configuration and an explicit numbered previous launch template version. It does not support $Latest, $Default, or a Parameter Store AMI alias.
 
-> **Trap:** A Parameter Store AMI alias is useful for selecting an image, but it is not a supported previous configuration for instance refresh rollback. Pin the supported launch configuration when rollback is required.
+> **Trap:** Publishing a new AMI and launch template version does not update existing instances. Start an instance refresh to replace them.

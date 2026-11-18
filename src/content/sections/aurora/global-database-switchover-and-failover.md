@@ -96,23 +96,6 @@ cards:
       - endpoint
       - versions
       - configuration
-  - id: aurora-005
-    q: How can an Aurora PostgreSQL global database enforce a recovery point threshold, and what availability tradeoff follows?
-    a: Set rds.global_db_rpo to at least 20 seconds. If every secondary exceeds it, primary commits block until one catches up. For two Regions, keep the secondary default until the failed Region is rebuilt.
-    facts:
-      - rpo-parameter
-      - rpo-block
-      - two-regions
-  - id: aurora-017
-    q: An Aurora Global Database team needs a lag metric before choosing a failover target. Which metric and units apply?
-    a: AuroraGlobalDBRPOLag in milliseconds for PostgreSQL and MySQL 3.04.0 or 2.12.0 and later. Older MySQL versions use AuroraGlobalDBReplicationLag.
-    facts:
-      - lag-metrics
-  - id: aurora-018
-    q: An Aurora Global Database has incompatible engine versions for managed failover. What recovery path remains?
-    a: "Manual failover: stop writes to the old primary, detach the least-lag secondary into a writable standalone cluster, redirect clients and rebuild the global topology."
-    facts:
-      - manual
   - id: aurora-019
     q: An Aurora cross-Region recovery design proposes native automated backup replication. Is that supported?
     a: No. Use copied cluster snapshots, supported AWS Backup copies or Global Database replication. A copied continuous backup is a snapshot recovery point without PITR.
@@ -138,17 +121,6 @@ cards:
     trap: true
     facts:
       - headless
-  - id: aurora-023
-    q: An Aurora Global Database uses the global writer endpoint. Is its unchanged hostname enough to restart writes immediately after failover?
-    a: No. Verify DNS changes and connectivity to the new primary before resuming writes. Stop old-primary writes to reduce split-brain risk because write fencing is best effort.
-    trap: true
-    facts:
-      - endpoint
-      - stop-writes
-  - id: aurora-044
-    q: "How many secondary Regions can an Aurora global database have, and how many readers can a secondary cluster run?"
-    a: "Up to 10 secondary Regions, each with up to 16 read-only instances."
-    facts: [global-limits]
 diagrams:
   - id: aurora-global-switchover
     title: Planned switchover synchronizes before changing the writer
@@ -217,7 +189,6 @@ Recovery point objective (RPO) measures how much recent data can be lost, expres
 3. For an outage, stop application writes to the old primary and select the least-lag secondary. Managed failover does not wait for synchronization and can lose unreplicated writes. Write fencing, Aurora's attempt to block writes to the old primary, is best effort; split-brain means both sides might accept writes.
 4. Use the global writer endpoint, the stable hostname that follows the primary Region. Confirm DNS changes, meaning the hostname resolves to the new destination, before resuming writes. With RDS Proxy, use the read/write proxy endpoint associated with the new primary.
 5. Align parameter groups, monitoring and regional service integrations. They are not inherited. Managed failover rebuilds the other secondaries and adds the recovered old primary back as a secondary; later switchover can return the primary role.
-6. If versions prevent managed failover, detach the least-lag secondary into a writable standalone cluster, redirect clients and recreate the global topology after stopping writes to the old primary.
 
 | Recovery choice | Data and operation behavior |
 |---|---|
@@ -228,23 +199,18 @@ Recovery point objective (RPO) measures how much recent data can be lost, expres
 
 Point-in-time recovery (PITR) means restoring to a selected time within retained backup history. Aurora does not support native cross-Region automated backup replication. Use copied cluster snapshots, supported AWS Backup copies or database replication for regional recovery.
 
-For Aurora PostgreSQL, rds.global_db_rpo can enforce a lag threshold. If every secondary exceeds it, commits on the primary block until at least one catches up. In a two-Region deployment, keep the secondary's default until the failed Region is rebuilt to avoid blocking the new primary.
-
 For event notifications, configure an Aurora event subscription with resources, event categories and an SNS topic. The topic must permit RDS event publishing; its policy can restrict source resources or allow cross-account notifications.
 
 ### Exam cues
 
 - If the question says a planned primary-Region move must avoid data loss, think switchover, because the target synchronizes first.
 - If the question says a primary Region is unavailable, think failover to the least-lag secondary, because waiting for the failed Region to synchronize is not the recovery path.
-- If the question says bound PostgreSQL global data loss, think rds.global_db_rpo, because it blocks commits when every secondary exceeds the threshold.
 - If the question says regional recovery from backup, think copied cluster snapshots or supported AWS Backup copies, because Aurora lacks native automated backup replication across Regions.
 - If the question says database events should notify recovery workflows, think event subscriptions to SNS, because they publish selected event categories from selected resources.
 
 ### Remember
 
 - Switchover RPO: 0. Failover can lose unreplicated writes; --allow-data-loss accepts this.
-- AuroraGlobalDBRPOLag uses milliseconds for PostgreSQL and MySQL 3.04.0 or 2.12.0 and later. Earlier MySQL versions use AuroraGlobalDBReplicationLag.
-- The configured PostgreSQL rds.global_db_rpo threshold starts at 20 seconds.
 - Parameter groups, alarms and service integrations need regional alignment.
 
 > **Trap:** Global replication is asynchronous. An unchanged endpoint name does not remove replication loss or DNS propagation concerns during failover.

@@ -167,51 +167,22 @@ cards:
       - kinesis-order
       - stream-recovery
       - stream-destination
-  - id: lambda-002
-    q: A Lambda SQS consumer reprocesses successful messages after one message fails. What settings and response should it use?
-    a: Enable ReportBatchItemFailures and return failed message IDs in batchItemFailures. For FIFO, stop at the first failure and also return unprocessed messages. AWS recommends visibility timeout of at least six times function timeout plus the batching window.
-    facts:
-      - sqs-partial
-      - sqs-fifo-partial
-      - sqs-visibility
-  - id: lambda-003
-    q: A Lambda consumer retries an entire SQS batch after one record fails. How can it avoid retrying successful records?
-    a: Enable ReportBatchItemFailures in the mapping FunctionResponseTypes and return failed message IDs as itemIdentifier entries in batchItemFailures.
-    facts:
-      - sqs-partial
   - id: lambda-008
     q: Does the asynchronous retry setting or function DLQ control failed SQS-triggered Lambda messages?
     a: No. Configure the SQS source queue visibility timeout and redrive policy with its DLQ. The event source mapping uses source-queue retry behavior.
     trap: true
     facts:
       - sqs-redrive
-  - id: lambda-009
-    q: A Lambda SQS consumer enables ReportBatchItemFailures but throws an exception after processing part of the batch. What is retried?
-    a: The entire batch fails. Catch item-level errors and return a partial response with failed message IDs to preserve successful results.
-    facts:
-      - sqs-throw
-      - sqs-partial
   - id: lambda-038
     q: A Lambda event source mapping cannot read its Kinesis stream. Where should the team check permissions?
     a: Check the function execution role for source-read permissions. AWSLambdaKinesisExecutionRole provides the relevant Kinesis permissions.
     facts:
       - kinesis-role
-  - id: lambda-039
-    q: A Lambda Kinesis consumer needs more parallel work per shard while retaining partition-key order. What setting applies?
-    a: ParallelizationFactor, from 1 by default through 10 concurrent batches per shard.
-    facts:
-      - parallel-factor
   - id: lambda-040
     q: A Lambda SQS source uses an encrypted queue. What additional execution-role permission can be needed beyond queue access?
     a: kms:Decrypt for the queue encryption key.
     facts:
       - sqs-role
-  - id: lambda-053
-    q: An SQS queue feeds Lambda and some messages routinely fail. How can the team avoid retrying successful messages without reducing polling on failures?
-    a: Enable `ReportBatchItemFailures` and return failed message IDs. Lambda does not scale down polling on function failures with that setting enabled.
-    facts:
-      - sqs-partial
-      - sqs-partial-scaling
   - id: lambda-056
     q: An SQS event source mapping for Lambda has a large configured batch size but sends fewer messages per invocation. What size limit can explain this?
     a: The 6 MB synchronous invocation payload limit includes message metadata. A batch can contain fewer messages than the configured maximum.
@@ -225,27 +196,21 @@ An event source mapping is a Lambda resource that reads a queue or stream and in
 
 1. Give the execution role permission to read the source. `AWSLambdaSQSQueueExecutionRole` and `AWSLambdaKinesisExecutionRole` provide source permissions; an encrypted SQS queue can also require `kms:Decrypt`.
 2. For SQS, keep the queue and function in the same Region, including when their accounts differ. Lambda reads messages for a batch; visibility timeout hides received messages while they are being processed.
-3. A failed SQS batch normally makes every message visible again after that timeout. Enable `ReportBatchItemFailures` in `FunctionResponseTypes`, then return only failed message IDs as `itemIdentifier` entries in `batchItemFailures`.
-4. For FIFO (first-in, first-out) queues, stop at the first failure and include failed and unprocessed messages in that response. Throwing an exception fails the whole batch even when partial responses are enabled.
-5. For Kinesis, a shard is a portion of the stream. By default Lambda processes one batch per shard at a time; an error blocks progress in that shard. `ParallelizationFactor` increases concurrent batches while preserving order for records sharing a partition key, the value that groups related records.
-6. Bound stream failures with `MaximumRecordAgeInSeconds` and `MaximumRetryAttempts`. Use `BisectBatchOnFunctionError` to split failed batches and isolate bad records. A mapping on-failure destination retains discarded-batch information; S3 also retains the full invocation record.
-7. With `ReportBatchItemFailures` enabled, Lambda does not scale down SQS polling when function invocations fail.
-8. A batch can be smaller than its configured maximum when messages and their metadata reach the 6 MB synchronous payload limit.
+3. A failed SQS batch normally makes every message visible again after that timeout. The source queue redrive policy moves repeatedly received messages to its DLQ.
+4. For Kinesis, a shard is a portion of the stream. By default Lambda processes one batch per shard at a time; an error blocks progress in that shard.
+5. Bound stream failures with `MaximumRecordAgeInSeconds` and `MaximumRetryAttempts`. Use `BisectBatchOnFunctionError` to split failed batches and isolate bad records. A mapping on-failure destination retains discarded-batch information; S3 also retains the full invocation record.
+6. A batch can be smaller than its configured maximum when messages and their metadata reach the 6 MB synchronous payload limit.
 
 ### Exam cues
 
-- If the question says successful SQS records run again after one failure, think partial batch responses, because the default retries the whole batch.
-- If the question says expected SQS message failures must not reduce polling, think `ReportBatchItemFailures`, because Lambda does not scale polling down on function failures with it enabled.
 - If the question says an SQS batch contains fewer records than configured, think the 6 MB payload limit, because message metadata also uses space.
-- If the question says a FIFO batch has a failure followed by unprocessed records, think return both sets, because continuing past the failure can violate order.
 - If the question says one Kinesis record stalls a shard, think bisection and bounded retries or age, because more capacity alone does not repair the bad record.
 - If the question says a stream consumer stops advancing, think `IteratorAge`, because it helps detect a stalled consumer.
 
 ### Remember
 
-- Required SQS rule: function timeout must be no greater than queue visibility timeout. AWS recommendation: visibility timeout at least `6 × function timeout + batching window`.
+- The function timeout must be no greater than the SQS queue visibility timeout.
 - SQS mapping maximum batch size: 10,000 for standard, 10 for FIFO. More than 10 records requires at least a 1-second batching window.
-- Kinesis `ParallelizationFactor`: 1 by default, up to 10.
 - Put the DLQ on the SQS source queue. Put stream failure settings and destinations on the event source mapping.
 
-> **Trap:** Returning partial failures without enabling `ReportBatchItemFailures` does not activate partial batch handling. Both mapping configuration and handler response are required.
+> **Trap:** A function DLQ and asynchronous retry settings do not control failed SQS messages. Configure the source queue redrive policy and visibility timeout.

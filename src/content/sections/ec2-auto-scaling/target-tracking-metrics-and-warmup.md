@@ -94,12 +94,6 @@ cards:
     trap: true
     facts:
       - queue
-  - id: ec2-auto-scaling-038
-    q: An EC2 Auto Scaling target tracking policy has no warmup override or group default warmup. Which fallback applies?
-    a: The group default cooldown. Configure group default instance warmup to give policies a shared initialization period.
-    trap: true
-    facts:
-      - fallback
   - id: ec2-auto-scaling-039
     q: An EC2 Auto Scaling target tracking alarm enters INSUFFICIENT_DATA. Should missing data be treated as permission to scale in?
     a: No. Target tracking cannot scale until new metric data arrives.
@@ -138,7 +132,6 @@ Target tracking adjusts EC2 Auto Scaling capacity toward a chosen utilization va
 ### Remember
 
 - Basic EC2 monitoring publishes every 5 minutes; detailed monitoring publishes every minute.
-- Omitted policy warmup uses group default instance warmup, then default cooldown if warmup is unset.
 - Total RequestCount, Latency and raw SQS ApproximateNumberOfMessagesVisible are unsuitable target tracking metrics.
 
 > **Trap:** A load balancer's total requests are not requests per target. Use ALBRequestCountPerTarget with the target group's ResourceLabel.
