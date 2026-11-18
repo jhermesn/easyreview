@@ -87,6 +87,12 @@ facts:
   - id: kinesis-target
     text: "AWS DMS can use Amazon Kinesis Data Streams as a target."
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kinesis.html#CHAP_Target.Kinesis
+  - id: endpoint-ssl
+    text: "AWS DMS can encrypt source and target endpoint connections with SSL by assigning a certificate, such as an imported certificate authority (CA) certificate, to the endpoint."
+    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.SSL.html#CHAP_Security.SSL
+  - id: dynamodb-target
+    text: "AWS DMS can migrate data into a DynamoDB table, with a relational database or MongoDB as the source."
+    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html#CHAP_Target.DynamoDB
 cards:
   - id: dms-001
     q: How do Amazon DocumentDB, Amazon Redshift and AWS DMS differ?
@@ -142,6 +148,14 @@ cards:
     q: "Existing S3 data files and every later change to them must stream into Kinesis Data Streams quickly, with little code. What can bridge them?"
     a: "AWS DMS, with S3 as the source endpoint and Kinesis Data Streams as the target endpoint, running a full load plus ongoing changes."
     facts: [s3-source, kinesis-target]
+  - id: dms-017
+    q: "A DMS replication from an on-premises MySQL database must encrypt the connection to the source. What do you configure?"
+    a: "An SSL connection on the DMS endpoint, with the database CA certificate imported into DMS and assigned to it."
+    facts: [endpoint-ssl]
+  - id: dms-018
+    q: "An application embedded NoSQL data on its servers and now needs a managed NoSQL store. Can AWS DMS move MongoDB data into DynamoDB?"
+    a: "Yes. DMS supports DynamoDB as a target, with a relational database or MongoDB as the source."
+    facts: [dynamodb-target]
 diagrams:
   - id: dms-replication-flow
     title: DMS replication

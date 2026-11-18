@@ -89,6 +89,9 @@ facts:
   - id: delete-on-termination
     text: "The DeleteOnTermination attribute decides whether an EBS volume is deleted when its instance terminates: a root volume attached at launch is deleted by default, while a data volume attached after launch is preserved."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/preserving-volumes-on-termination.html#how-instance-termination-affects-root-and-data-volumes
+  - id: io1-ratio
+    text: "io1 volumes allow at most 50 provisioned IOPS per GiB, from 100 to 64,000 IOPS per volume; io2 Block Express allows 1,000 IOPS per GiB, up to 256,000 IOPS."
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/provisioned-iops.html#EBSVolumeTypes_piops
 cards:
   - id: ebs-010
     q: When should an EC2 workload choose EBS gp3 rather than io2 Block Express?
@@ -158,6 +161,10 @@ cards:
     q: "A team must keep an instance root volume after the instance is terminated. What do they change?"
     a: "Set DeleteOnTermination to false on the root volume; by default a root volume attached at launch is deleted with the instance."
     facts: [delete-on-termination]
+  - id: ebs-048
+    q: "What is the most IOPS a 10 GiB io1 volume can be provisioned with?"
+    a: "500 IOPS, because io1 allows at most 50 IOPS per GiB."
+    facts: [io1-ratio]
 ---
 Amazon EBS provides block storage, disks attached to EC2 instances. Choose solid-state drive (SSD) storage for transactional I/O, meaning application reads and writes, and hard disk drive (HDD) storage for large sequential transfers.
 

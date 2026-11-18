@@ -52,6 +52,9 @@ facts:
   - id: state-types
     text: "Step Functions state types are Task (one unit of work), Choice (branch on input), Parallel (fixed parallel branches), Map (the same steps for each item of an array), Pass, Wait (pause for a time or until a date), and the terminal Succeed and Fail states."
     source: https://docs.aws.amazon.com/step-functions/latest/dg/workflow-states.html#workflow-states
+  - id: swf
+    text: "Amazon SWF coordinates tasks done by workers that run on EC2 or on premises; for most new workflows AWS recommends Step Functions instead."
+    source: https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-welcome.html#welcome
 cards:
   - id: step-functions-001
     q: How do Step Functions Standard and Express differ in duration, history, billing, and
@@ -108,6 +111,10 @@ cards:
     q: "A workflow must run the same processing steps for every file listed in its input, and pause until a set date before reporting. Which Step Functions states fit?"
     a: "A Map state for the per-file steps and a Wait state for the pause. Parallel runs fixed branches, and Choice picks one branch from the input."
     facts: [state-types]
+  - id: step-functions-025
+    q: "An exam option offers Amazon SWF for a new workflow. When does SWF still fit, and what does AWS recommend first?"
+    a: "SWF coordinates tasks run by workers on EC2 or on premises. For most new workflows AWS recommends Step Functions."
+    facts: [swf]
 ---
 
 Step Functions runs a workflow, a sequence of steps with rules for moving between them. Its state machine is the workflow definition; an execution is one run. Choose Standard for long processes and Express for short event processing.

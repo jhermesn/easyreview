@@ -95,6 +95,9 @@ facts:
   - id: sigv4-definition
     text: AWS Signature Version 4 (SigV4) adds authentication information to AWS API requests.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html#reference_sigv
+  - id: access-grants
+    text: "S3 Access Grants maps read-only, write-only or read-write access to S3 prefixes, buckets or objects for IAM principals and directly for users and groups from a corporate directory."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants.html#access-grants
 diagrams:
   - id: s3-object-lambda-response
     title: Transforming an Object Lambda response
@@ -199,6 +202,10 @@ cards:
       - lambda-transform-access
       - lambda-original
       - lambda-availability
+  - id: s3-159
+    q: "Thousands of corporate directory users each need access to their own S3 prefixes, beyond what bucket policies scale to. Which S3 feature fits?"
+    a: "S3 Access Grants, which maps prefix-level permissions to IAM principals and to directory users and groups."
+    facts: [access-grants]
 ---
 S3 access points give a shared bucket separate named entry points and permission controls. CORS, or cross-origin resource sharing, lets browser code use permitted resources from another origin; an origin combines protocol, host, and port.
 

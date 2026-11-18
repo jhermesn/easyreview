@@ -59,6 +59,9 @@ facts:
   - id: workforce-access
     text: AWS recommends IAM Identity Center for centrally managing human access to multiple accounts.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html#id_credentials_mfa
+  - id: identity-broker
+    text: "If an identity store is not compatible with SAML 2.0, a custom identity broker application can authenticate users, request temporary credentials from AWS STS and hand them to the users."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_federated-users.html#id_roles_common-scenarios_federated-users-idbroker
 diagrams:
   - id: iam-federation-exchange
     title: Provider evidence becomes AWS role credentials
@@ -158,6 +161,10 @@ cards:
     trap: true
     facts:
       - sessiontoken-duration
+  - id: iam-108
+    q: "An on-premises LDAP directory does not support SAML, and users must still get access to AWS without IAM users. What pattern fits?"
+    a: "A custom identity broker that authenticates users against LDAP and requests short-lived credentials from AWS STS for them."
+    facts: [identity-broker]
 ---
 
 Federation lets an identity provider, the system that authenticates a person or workload, supply evidence that AWS exchanges for temporary credentials. SAML uses an assertion, a signed statement about authentication. OpenID Connect (OIDC) uses a token describing the authenticated subject.

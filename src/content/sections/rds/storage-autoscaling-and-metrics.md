@@ -59,6 +59,15 @@ facts:
   - id: manual-replicas
     text: RDS DB instance read replicas do not automatically scale their count with read demand.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl
+  - id: enhanced-monitoring
+    text: "Enhanced Monitoring reads operating system metrics in real time from an agent on the DB instance, while standard CloudWatch metrics come from the hypervisor, and delivers them to CloudWatch Logs (log group RDSOSMetrics, 30 days by default)."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.CloudWatchComparison
+  - id: em-process-list
+    text: "The Enhanced Monitoring process list shows RDS child processes (such as mysqld), RDS processes and OS processes, with the memory and CPU each one uses."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Viewing.html#USER_Monitoring.OS.Viewing
+  - id: database-insights
+    text: "CloudWatch Database Insights, which builds on Performance Insights, shows database load and filters it by waits, SQL statements, hosts or users, so you can find the queries that load the database."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html#USER_PerfInsights
 cards:
   - id: rds-001
     q: An RDS DB instance is slow while disk requests accumulate. Which CloudWatch metrics distinguish
@@ -112,6 +121,18 @@ cards:
     facts:
       - bulk-risk
       - storage-growth
+  - id: rds-062
+    q: "An RDS team needs to see how much CPU and memory each database process uses, in real time. Standard CloudWatch metrics are not enough. What should they turn on?"
+    a: "Enhanced Monitoring. Its agent on the DB instance reports OS metrics and a process list (RDS child processes, RDS processes, OS processes) to CloudWatch Logs."
+    facts: [enhanced-monitoring, em-process-list]
+  - id: rds-063
+    q: "Why can RDS CPU numbers from Enhanced Monitoring differ from the CloudWatch CPUUtilization metric?"
+    a: "CloudWatch measures from the hypervisor, Enhanced Monitoring from an agent inside the instance, and the hypervisor does a little work of its own."
+    facts: [enhanced-monitoring]
+  - id: rds-064
+    q: "Which RDS feature shows which SQL statements cause the most database load?"
+    a: "CloudWatch Database Insights (built on Performance Insights), which filters DB load by waits, SQL statements, hosts or users."
+    facts: [database-insights]
 ---
 
 RDS storage autoscaling grows a DB instance's allocated disk space when free space stays low. It addresses storage capacity up to a configured ceiling. [CloudWatch metrics](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html#rds-cw-metrics) separately show disk queues, operation times, CPU use, and connections.

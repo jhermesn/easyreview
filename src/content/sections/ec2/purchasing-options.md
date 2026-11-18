@@ -60,6 +60,12 @@ facts:
   - id: sql-license-included
     text: "EC2 instances can run Microsoft SQL Server with the license included from AWS, launched from license-included Windows AMIs, or with licenses you bring yourself."
     source: https://docs.aws.amazon.com/sql-server-ec2/latest/userguide/sql-server-on-ec2-licensing.html#sql-server-on-ec2-licensing
+  - id: vcpu-quota
+    text: "On-Demand Instance quotas are counted in vCPUs per account per Region, whatever the instance types; launches that would exceed the quota fail until you request an increase."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits
+  - id: billing-states
+    text: "EC2 bills instance usage only in the running state, plus the stopping state when hibernating; EBS volumes and Elastic IP addresses bill whatever the instance state, and a Reserved Instance keeps billing to the end of its term after its instance is terminated."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html#instance-billing-by-state
 cards:
   - id: ec2-036
     q: A company runs a steady workload on EC2 for the next three years but may change instance families. Which purchasing option saves the most while staying flexible?
@@ -124,6 +130,15 @@ cards:
     q: "A DBA needs SQL Server Standard on a server reachable by RDP, must not buy a license separately, and is unsure about sizing. What fits?"
     a: "An EC2 instance from a Windows Server AMI with SQL Server Standard license included. AWS bills the license with the instance, and the instance type can be changed later."
     facts: [sql-license-included]
+  - id: ec2-089
+    q: "A script launching many On-Demand instances in one Region fails after a few dozen succeed. What limit is likely involved?"
+    a: "The On-Demand Instance quota, measured in vCPUs per account per Region. Request an increase through Service Quotas."
+    facts: [vcpu-quota]
+  - id: ec2-090
+    q: "Which EC2 states bill instance usage?"
+    a: "Running, and stopping when the instance is hibernating. EBS volumes and Elastic IPs still bill while stopped, and Reserved Instances bill for their full term even after termination."
+    trap: true
+    facts: [billing-states]
 ---
 Amazon EC2 charges the same instance in different ways depending on how much you commit and how much interruption you accept. Choosing well can cut compute costs sharply. [EC2 billing and purchasing options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html#instance-purchasing-options)
 

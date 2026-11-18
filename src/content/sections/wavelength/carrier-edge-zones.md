@@ -18,6 +18,9 @@ facts:
   - id: services
     text: In Wavelength Zones you can create EC2 instances, EBS volumes, VPC subnets and carrier gateways, and use EC2 Auto Scaling, Systems Manager and, in select zones, Application Load Balancers.
     source: https://docs.aws.amazon.com/wavelength/latest/developerguide/what-is-wavelength.html#services
+  - id: eks-wavelength
+    text: "An EKS cluster for Wavelength is created in a VPC Availability Zone, not a Wavelength Zone; its worker nodes run as self-managed node groups in Wavelength Zone subnets."
+    source: https://docs.aws.amazon.com/wavelength/latest/developerguide/wavelength-quotas.html#eks-considerations
 cards:
   - id: wavelength-001
     q: A mobile game needs single-digit-millisecond latency for players on a 5G carrier network. Where should the game servers run?
@@ -36,6 +39,10 @@ cards:
     a: "- Metro users: **Local Zones**.\n- 5G mobile devices: **Wavelength Zones**."
     trap: true
     facts: [what]
+  - id: wavelength-005
+    q: "A Kubernetes app must run at the edge of a carrier 5G network. How is it deployed with EKS?"
+    a: "Create the EKS cluster in a regular Availability Zone, then run self-managed node groups in Wavelength Zone subnets."
+    facts: [eks-wavelength]
 ---
 AWS Wavelength is for latency-sensitive mobile traffic: video analytics, game streaming, connected vehicles. The traffic stays inside the 5G carrier network instead of travelling to a Region. [What is AWS Wavelength?](https://docs.aws.amazon.com/wavelength/latest/developerguide/what-is-wavelength.html)
 

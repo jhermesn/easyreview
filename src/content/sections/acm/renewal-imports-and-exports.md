@@ -120,6 +120,9 @@ facts:
     text: The AWS private certificate renewal example uses EventBridge and Lambda to export a renewed
       certificate, followed by installation on its target.
     source: https://docs.aws.amazon.com/acm/latest/userguide/renew-private-cert.html#automating-export
+  - id: expiration-event-timing
+    text: "By default ACM sends the Approaching Expiration event daily, starting 45 days before expiry for imported and private certificates and 30 days before for public ones."
+    source: https://docs.aws.amazon.com/acm/latest/userguide/supported-events.html#expiration-approaching-event
 diagrams:
   - id: acm-private-export-renewal
     title: Renewed private certificate export and installation
@@ -269,6 +272,10 @@ cards:
     facts:
       - available-event
       - expiration-event
+  - id: acm-022
+    q: "Admins must get an email well before any ACM certificate on their load balancers expires, with the least custom code. What should they build?"
+    a: "An EventBridge rule matching ACM Certificate Approaching Expiration events, which ACM sends daily from 30 or 45 days before expiry, with an SNS topic as the target."
+    facts: [expiration-event, expiration-event-timing]
 ---
 ACM managed renewal replaces eligible certificates before expiration. Renewal and installation are separate steps: integrated services can receive replacements automatically, while exported certificates need deployment to their target hosts.
 

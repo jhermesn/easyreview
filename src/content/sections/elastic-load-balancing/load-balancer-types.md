@@ -176,6 +176,9 @@ facts:
   - id: alb-lambda
     text: "An ALB can forward a request to a target group whose target is a Lambda function, invoking the function with the request content."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#lambda-functions
+  - id: grpc
+    text: "An ALB target group can use protocol version HTTP/1.1 (default), HTTP/2 or gRPC; gRPC requires targets that support it."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-group-protocol-version
 cards:
   - id: elastic-load-balancing-002
     q: When should an application use an ALB, NLB, or GWLB?
@@ -369,6 +372,10 @@ cards:
     q: "Which load balancer supports path-based and host-based routing, WebSockets, and Lambda functions as targets?"
     a: "The Application Load Balancer. It routes on HTTP content, upgrades connections to WebSockets, and can invoke a Lambda function from a target group."
     facts: [alb-websockets, alb-lambda]
+  - id: elastic-load-balancing-067
+    q: "Microservices talk to each other with gRPC behind a load balancer. Which load balancer and setting fit?"
+    a: "An Application Load Balancer with a target group whose protocol version is gRPC."
+    facts: [grpc]
 diagrams:
   - id: alb-weighted-request-flow
     title: ALB rules select a weighted target group

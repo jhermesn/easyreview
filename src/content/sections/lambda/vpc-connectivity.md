@@ -48,6 +48,9 @@ facts:
   - id: efs-accesspoint
     text: An EFS access point can limit a Lambda client to a specific file-system path.
     source: https://aws.amazon.com/blogs/aws/new-a-shared-file-system-for-your-lambda-functions/
+  - id: eni-limit
+    text: "Network connectivity errors for a VPC-connected function can come from running out of IP addresses or network interfaces; ENILimitReachedException means the VPC hit its network interface quota (3,000 per VPC by default)."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-networking.html#troubleshooting-networking-limit
 diagrams:
   - id: lambda-vpc-ipv4-egress
     title: IPv4 internet access uses a private-to-public route
@@ -176,6 +179,10 @@ cards:
     facts:
       - ipv6
       - ipv6-egress
+  - id: lambda-064
+    q: "A VPC-connected Lambda function in a small /27 subnet starts failing with network interface errors as load grows. What are likely causes?"
+    a: "The subnet ran out of free IP addresses, or the VPC reached its network interface quota (ENILimitReachedException). Use larger subnets or raise the quota."
+    facts: [eni-limit]
 ---
 A Lambda VPC attachment lets function code reach resources in your private network. Lambda still runs in its own managed VPC and uses Hyperplane elastic network interfaces (ENIs), managed network connections into your selected subnets and security groups.
 

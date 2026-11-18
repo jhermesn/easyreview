@@ -69,6 +69,9 @@ facts:
   - id: asymmetric
     text: An asymmetric KMS key represents a mathematically related public and private key pair.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#symmetric-asymmetric
+  - id: login-lockout
+    text: "A CloudHSM user who exceeds five incorrect login attempts is locked out until an admin resets the password; clusters created before February 2018 allow 20 attempts."
+    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/cloudhsm_cli-login.html#cloudhsm_cli-login
 cards:
   - id: cloudhsm-001
     q: A security team requires dedicated hardware security modules under its control. Which AWS service fits?
@@ -114,6 +117,11 @@ cards:
     q: Which CloudHSM user does KMS use to manage key material in a CloudHSM key store?
     a: A dedicated crypto user named `kmsuser`.
     facts: [kmsuser]
+  - id: cloudhsm-011
+    q: "A CloudHSM user mistypes the password repeatedly. What happens to the account?"
+    a: "After five incorrect login attempts the account is locked out, and an admin must reset its password. The keys are not deleted."
+    trap: true
+    facts: [login-lockout]
 diagrams:
   - id: cloudhsm-kms-store
     title: KMS CloudHSM key store

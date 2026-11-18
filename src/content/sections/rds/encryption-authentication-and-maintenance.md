@@ -30,6 +30,9 @@ facts:
   - id: maz-engine
     text: A database engine upgrade on a Multi-AZ RDS instance modifies the primary and standby at the same time, so the database is unavailable until the upgrade finishes.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#USER_UpgradeDBInstance.Maintenance.Multi-AZ
+  - id: force-ssl
+    text: "To require encrypted connections, set rds.force_ssl to 1 for RDS for SQL Server (a static parameter, so reboot) or require_secure_transport to ON for RDS for MySQL (no reboot needed) in the DB parameter group."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/SQLServer.Concepts.General.SSL.Using.html#SQLServer.Concepts.General.SSL.Forcing
 cards:
   - id: rds-048
     q: A production RDS for MySQL instance was created without encryption. Compliance now requires encryption at rest. What is the supported path?
@@ -61,6 +64,10 @@ cards:
     q: Which mechanism encrypts data in transit between an application and an Amazon RDS database?
     a: "SSL/TLS connections to the DB instance."
     facts: [tls]
+  - id: rds-065
+    q: "All connections to an RDS for SQL Server instance must use SSL. Which setting enforces it?"
+    a: "Set rds.force_ssl to 1 in its DB parameter group and reboot, because the parameter is static. (For RDS for MySQL the parameter is require_secure_transport.)"
+    facts: [force-ssl]
 ---
 RDS security comes down to three questions: is data encrypted at rest (decided at creation), is the connection encrypted (SSL/TLS), and how do clients authenticate (passwords or IAM tokens). Maintenance behavior on Multi-AZ is the other common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
 

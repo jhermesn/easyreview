@@ -18,6 +18,9 @@ facts:
   - id: support-case
     text: Service limit increase requests can also be opened as cases in AWS Support by all customers, including Basic Support.
     source: https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#case-management
+  - id: automatic-management
+    text: "Service Quotas Automatic Management watches quota usage and notifies at 80% and 95% utilization through the AWS Health dashboard, email, Slack or EventBridge; Notify and Auto-Adjust mode also requests increases for you, while Notify Only just alerts."
+    source: https://docs.aws.amazon.com/servicequotas/latest/userguide/automatic-management.html#automatic-management-modes
 cards:
   - id: service-quotas-001
     q: A company hits the maximum number of EC2 instances allowed in its account. Where does it see the limit and ask for more?
@@ -36,6 +39,10 @@ cards:
     q: Does a company need a paid AWS Support plan to request a service quota increase?
     a: No. Quota increases are available to all customers, through Service Quotas or a Support case, even on Basic.
     facts: [support-case, increase]
+  - id: service-quotas-005
+    q: "Teams want warnings before any supported service quota runs out, without building custom checks. What should they turn on?"
+    a: "Service Quotas Automatic Management, in Notify Only mode (or Notify and Auto-Adjust to also request increases), which alerts at 80% and 95% usage."
+    facts: [automatic-management]
 ---
 Every AWS account has quotas, also called limits, on how many resources and actions it can use. Defaults protect accounts and AWS capacity; Service Quotas shows them and asks for more. [What is Service Quotas?](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html#intro)
 

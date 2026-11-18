@@ -27,6 +27,9 @@ facts:
   - id: stage-cache
     text: "REST API stage caching returns cached endpoint responses for a TTL that defaults to 300 seconds and can be at most 3,600 seconds; a TTL of 0 turns caching off, and methods can override the stage setting."
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#api-gateway-caching
+  - id: appsync
+    text: "AWS AppSync provides serverless GraphQL and Pub/Sub APIs that read from one or more data sources, such as DynamoDB, through a single GraphQL endpoint; pipeline resolvers run several functions in sequence to resolve one field."
+    source: https://docs.aws.amazon.com/appsync/latest/devguide/what-is-appsync.html#what-is-appsync
 cards:
   - id: api-gateway-031
     q: A REST API serves mobile users worldwide from one Region. Which API Gateway endpoint type reduces their latency with no extra setup?
@@ -61,6 +64,10 @@ cards:
     q: "A read-heavy REST API behind Lambda and Aurora serves data that changes rarely. What cuts backend load with the least change?"
     a: "Turn on API Gateway stage caching. Responses are served from the cache for the TTL, which defaults to 300 seconds and goes up to 3,600 seconds."
     facts: [stage-cache]
+  - id: api-gateway-047
+    q: "A mobile app needs a serverless GraphQL API that reads and writes several DynamoDB tables. Which service fits better than API Gateway?"
+    a: "AWS AppSync, a managed GraphQL service; pipeline resolvers can combine operations on several tables for one field."
+    facts: [appsync]
 ---
 API Gateway endpoint type decides where requests enter AWS, and throttling decides how many get through. [API endpoint types](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html)
 
