@@ -8,6 +8,8 @@ import { lintDiagram, withDefaults } from '../src/lib/diagram.ts';
 import { checkTranslations } from './translations.mjs';
 
 const DIR = 'src/content/sections';
+// Progress is stored per card id, so one id in two places would merge two cards' progress.
+const cardFiles = new Map();
 
 function check(file) {
   const problems = [];
@@ -23,6 +25,7 @@ function check(file) {
   const factIds = new Set(facts.map((f) => f.id));
   // A card that cites no fact, or a missing one, leaves the section unpublished (src/lib/content.ts).
   for (const c of data.cards ?? []) {
+    cardFiles.set(c.id, [...(cardFiles.get(c.id) ?? []), file]);
     if (!(c.facts ?? []).length) problems.push(`card ${c.id}: cite at least one fact`);
     for (const f of c.facts ?? []) if (!factIds.has(f)) problems.push(`card ${c.id}: unknown fact "${f}"`);
   }
@@ -46,6 +49,7 @@ for (const file of files) {
   if (problems.length) console.log(`FAIL ${file}\n  ${problems.join('\n  ')}`);
   failed += problems.length > 0;
 }
+for (const [id, where] of cardFiles) if (where.length > 1) { console.log(`FAIL card id ${id} is used ${where.length} times: ${where.join(', ')}`); failed++; }
 console.log(failed ? `${failed} of ${files.length} sections have problems.` : `${files.length} sections OK.`);
 if (!process.argv.slice(2).length) failed += checkTranslations();
 process.exit(failed ? 1 : 0);
