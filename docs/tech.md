@@ -22,6 +22,7 @@ Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.co
 |---|---|
 | `SITE_URL`, `BASE_PATH` | Site origin and path, default `https://jhermesn.dev` and `/easyreview`. The deploy workflow sets `BASE_PATH` to `/<repository name>`, where GitHub Pages serves a project site. Internal links go through `withBase()` (`src/lib/format.ts`) |
 | `SHOW_DRAFTS=1` | A production build also shows unpublished sections |
+| `DRAFT_CERTS=1` | A production build also shows certs marked `draft` in `src/lib/certs.ts`. CI sets it, with `STRICT_COVERAGE=1` |
 | `STRICT_COVERAGE=1` | The build fails on coverage gaps instead of warning |
 | `GH_TOKEN` | Optional. Raises the GitHub API rate limit for the "Who passed" profile lookups. Without it, a rate-limited build lists people by login, without name, bio or avatar |
 

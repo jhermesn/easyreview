@@ -35,6 +35,9 @@ jobs:
       - name: Build
         env:
           GH_TOKEN: ${{ github.token }}
+          # Draft certs are hidden from the deployed site but checked here like published ones.
+          DRAFT_CERTS: '1'
+          STRICT_COVERAGE: '1'
         run: npm run build
       - name: Smoke test
         run: |

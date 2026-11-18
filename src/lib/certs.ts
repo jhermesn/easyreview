@@ -1,6 +1,6 @@
 // Every current AWS certification. Codes and names come from
 // https://aws.amazon.com/certification/exams/ (checked 2026-11-09).
-// A cert is "available" once it has domains and topics; the rest show as Coming soon.
+// A cert is "available" once it has domains and is not a draft; the rest show as Coming soon.
 export type Level = 'foundational' | 'associate' | 'professional' | 'specialty' | 'business';
 
 export interface Domain {
@@ -19,6 +19,9 @@ export interface Cert {
   note?: string;
   // Beta exams don't count toward holding every AWS Certification at once.
   beta?: boolean;
+  // A cert in progress: hidden from the published site until its release review passes (docs/certifications.md).
+  // Dev builds and DRAFT_CERTS=1 (the CI build) show it, so every check runs on it from the first pull request.
+  draft?: boolean;
 }
 
 const awsCert = (slug: string) => `https://aws.amazon.com/certification/${slug}/`;
@@ -102,7 +105,8 @@ export const certs: Cert[] = [
   { id: 'aib-c01', code: 'AIB-C01', name: 'AI Business Strategist', level: 'business', page: awsCert('certified-ai-business-strategist'), domains: [], note: 'Beta exam', beta: true },
 ];
 
-export const isAvailable = (c: Cert) => c.domains.length > 0;
+const showDraftCerts = import.meta.env?.DEV || (typeof process !== 'undefined' && process.env.DRAFT_CERTS === '1');
+export const isAvailable = (c: Cert) => c.domains.length > 0 && (!c.draft || !!showDraftCerts);
 export const availableCerts = () => certs.filter(isAvailable);
 // AWS gives its Golden Jacket to people who hold every active AWS Certification at the same time.
 export const goldenJacketCerts = () => certs.filter((c) => !c.beta);
