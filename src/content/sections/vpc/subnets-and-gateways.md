@@ -39,6 +39,15 @@ facts:
   - id: vpc-region
     text: A VPC belongs to one Region and can have subnets in each of its Availability Zones; each subnet stays in one Availability Zone.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html
+  - id: default-vpc
+    text: "Each Region has a default VPC with a public subnet in every Availability Zone, an internet gateway and DNS resolution turned on, so instances can launch there right away."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#default-vpc
+  - id: vpc-quotas
+    text: "Default quotas allow 5 VPCs per Region and 5 IPv4 CIDR blocks per VPC (adjustable to 50), and only one internet gateway can be attached to a VPC at a time."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html
+  - id: igw-route
+    text: "A subnet is public when its route table sends 0.0.0.0/0 (or ::/0) to the internet gateway, or a narrower range of public addresses."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access
 cards:
   - id: vpc-026
     q: What is an Amazon VPC subnet, and how many Availability Zones can one subnet span?
@@ -78,6 +87,15 @@ cards:
     a: Only several Availability Zones. A VPC is in one Region and can have subnets in each of its AZs; each subnet is in one AZ.
     trap: true
     facts: [vpc-region]
+  - id: vpc-049
+    q: "A team adds a second internet gateway to a VPC for redundancy. Does that work?"
+    a: "No. Only one internet gateway can be attached to a VPC at a time, and it is already a redundant, horizontally scaled component."
+    trap: true
+    facts: [vpc-quotas]
+  - id: vpc-050
+    q: "What makes a subnet public?"
+    a: "Its route table sends 0.0.0.0/0 (or ::/0) to an internet gateway."
+    facts: [igw-route]
 ---
 Amazon VPC is your own isolated network in AWS. Inside it, subnets split the address range by Availability Zone, route tables steer traffic, and gateways connect the VPC to the internet, other networks or AWS services. [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc)
 

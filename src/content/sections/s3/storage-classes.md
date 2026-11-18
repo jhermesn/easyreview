@@ -36,6 +36,12 @@ facts:
   - id: availability
     text: "S3 storage classes are designed for different availability: S3 Standard 99.99%, Standard-IA, Intelligent-Tiering and Glacier Instant Retrieval 99.9%, and One Zone-IA 99.5%."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html
+  - id: express-directory
+    text: "S3 Express One Zone stores objects in directory buckets in one Availability Zone you choose, so compute in that zone can be co-located with its storage for the lowest latency."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-high-performance.html#s3-express-one-zone
+  - id: storage-class-analysis
+    text: "S3 Storage Class Analysis watches access patterns to help decide when to move data to STANDARD_IA; results appear after 24 to 48 hours and update daily, with optional daily export to a bucket."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/analytics-storage-class.html#analytics-storage-class-contents
 cards:
   - id: s3-118
     q: A company's data is accessed in unpredictable patterns. Which Amazon S3 storage class moves it between tiers automatically without retrieval fees?
@@ -70,6 +76,14 @@ cards:
     q: Which S3 storage class has the lowest designed availability, and why?
     a: S3 One Zone-IA, designed for 99.5%, because it stores data in a single Availability Zone.
     facts: [availability]
+  - id: s3-161
+    q: "A training job on EC2 reads millions of small objects and needs the lowest S3 latency. Which storage class and bucket type fit?"
+    a: "S3 Express One Zone in a directory bucket placed in the same Availability Zone as the compute."
+    facts: [express-directory]
+  - id: s3-162
+    q: "Which S3 feature observes access patterns to tell you when objects can move from Standard to Standard-IA?"
+    a: "Storage Class Analysis. Results start after 24 to 48 hours and update daily."
+    facts: [storage-class-analysis]
 ---
 Amazon S3 storage classes trade access speed and frequency for price. All are designed for the same 11 nines of durability; they differ in availability, retrieval time, retrieval fees and minimum storage duration. [Comparing the Amazon S3 storage classes](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-compare)
 

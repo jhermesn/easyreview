@@ -51,6 +51,9 @@ facts:
     text: Query caching is unsuitable when queries require strong consistency or read-after-write
       consistency inside multi-statement transactions.
     source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/caching-database-query-results.html
+  - id: proxy-private
+    text: "RDS Proxy must be in the same VPC as the database and cannot be publicly accessible, even when the database is."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations
 diagrams:
   - id: rds-proxy-client-backend
     title: Client connections and shared database connections
@@ -143,6 +146,11 @@ cards:
     trap: true
     facts:
       - load-shedding
+  - id: rds-072
+    q: "Can a client on the internet connect straight to an RDS Proxy endpoint?"
+    a: "No. RDS Proxy is never publicly accessible; clients reach it from inside the VPC or through connected networks."
+    trap: true
+    facts: [proxy-private]
 ---
 
 RDS Proxy reduces connection pressure by keeping a shared pool of database connections. A connection pool is a set of open connections that clients can reuse. The [RDS Proxy guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy) describes reuse, authentication, and recovery through a standby after database failure.

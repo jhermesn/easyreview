@@ -48,6 +48,11 @@
       "id": "table-ttl",
       "text": "DynamoDB table TTL expires stored items for background deletion, rather than expiring cached copies.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html"
+    },
+    {
+      "id": "dax-not-ideal",
+      "text": "DAX is not a fit for applications that need strongly consistent reads or that are write-intensive.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html#DAX.use-cases"
     }
   ],
   "cards": [
@@ -94,6 +99,14 @@
       "a": "Direct writes bypass the item-cache update. Standard writes through DAX update that cache after DynamoDB succeeds.",
       "facts": [
         "write"
+      ]
+    },
+    {
+      "id": "dynamodb-047",
+      "q": "An app on DynamoDB needs a cache of computed leaderboard aggregates, not of individual items or queries. DAX or ElastiCache?",
+      "a": "ElastiCache. DAX caches DynamoDB item and query results; computed values from application logic belong in a general-purpose cache.",
+      "facts": [
+        "dax"
       ]
     }
   ],

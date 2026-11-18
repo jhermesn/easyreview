@@ -51,6 +51,9 @@ facts:
     text: CloudWatch Logs uses the log-group ARN in encryption context, referenced by
       kms:EncryptionContext:aws:logs:arn policy conditions.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html
+  - id: asymmetric-outside
+    text: "With an asymmetric KMS key, the private key never leaves KMS, while the public key can be downloaded so users who cannot call KMS encrypt data outside AWS."
+    source: https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#symmetric-asymmetric
 diagrams:
   - id: kms-envelope-encryption
     title: Encrypt locally and retain only the encrypted data key
@@ -201,6 +204,10 @@ cards:
     a: The log group ARN, referenced in a `kms:EncryptionContext:aws:logs:arn` policy condition.
     facts:
       - logs-context
+  - id: kms-047
+    q: "Partners without AWS credentials must encrypt files that only your application can decrypt. Which KMS key type fits?"
+    a: "An asymmetric KMS key. Partners encrypt with the downloaded public key; decryption happens in KMS with the private key, which never leaves it."
+    facts: [asymmetric-outside]
 ---
 Envelope encryption protects data with a data key and protects that data key with a KMS key. A data key is a symmetric key, one secret used for both encryption and decryption. The file stays in the application; KMS protects the smaller key.
 

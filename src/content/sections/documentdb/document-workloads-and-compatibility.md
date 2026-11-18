@@ -19,6 +19,9 @@ facts:
   - { id: backup, text: "Continuous backups retain data for 1 to 35 days for point-in-time recovery.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/backup_restore.html#backup_restore" }
   - { id: snapshot, text: "A manual snapshot can retain backup data beyond the backup retention period.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/backup_restore.html#backup_restore" }
   - { id: encryption, text: "Encryption at rest uses AWS KMS keys and covers backups, snapshots and replicas in the cluster.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#overview" }
+  - id: storage-growth
+    text: "A DocumentDB cluster volume grows automatically with data, up to 256 TiB on engine version 8.0 and later (128 TiB before), and is billed for the space used."
+    source: https://docs.aws.amazon.com/documentdb/latest/devguide/how-it-works.html#how-it-works
 diagrams:
   - id: documentdb-instance-topology
     title: Instance-based cluster
@@ -67,6 +70,10 @@ cards:
     q: What consistency should a client expect when reading from an Amazon DocumentDB replica?
     a: Eventual consistency with the primary.
     facts: [eventual]
+  - id: documentdb-008
+    q: "Do you need to provision storage size for an Amazon DocumentDB cluster?"
+    a: "No. The cluster volume grows automatically as data grows and you pay for what you use."
+    facts: [storage-growth]
 ---
 
 Amazon DocumentDB is a managed database for MongoDB-compatible document workloads. A document stores data in key-value pairs that can be nested. Compatibility does not mean every MongoDB operation behaves identically.

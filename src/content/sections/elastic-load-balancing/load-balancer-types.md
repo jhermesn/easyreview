@@ -179,6 +179,9 @@ facts:
   - id: grpc
     text: "An ALB target group can use protocol version HTTP/1.1 (default), HTTP/2 or gRPC; gRPC requires targets that support it."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-group-protocol-version
+  - id: ip-targets-onprem
+    text: "A target group of type ip can register on-premises servers reached through Direct Connect or Site-to-Site VPN, so one ALB can front AWS and on-premises targets."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-type
 cards:
   - id: elastic-load-balancing-002
     q: When should an application use an ALB, NLB, or GWLB?
@@ -376,6 +379,10 @@ cards:
     q: "Microservices talk to each other with gRPC behind a load balancer. Which load balancer and setting fit?"
     a: "An Application Load Balancer with a target group whose protocol version is gRPC."
     facts: [grpc]
+  - id: elastic-load-balancing-069
+    q: "A hybrid app must send part of its traffic through an ALB to servers in a data center connected by Direct Connect. Which target type allows it?"
+    a: "The ip target type, which accepts private IP addresses of on-premises servers reachable over Direct Connect or Site-to-Site VPN."
+    facts: [ip-targets-onprem]
 diagrams:
   - id: alb-weighted-request-flow
     title: ALB rules select a weighted target group

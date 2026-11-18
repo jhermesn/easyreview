@@ -33,6 +33,9 @@ facts:
   - id: public-ipv4-charge
     text: "AWS charges for every public IPv4 address, including those on running instances and Elastic IP addresses."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-public-ipv4-addresses
+  - id: same-az-private-free
+    text: "Data transferred between EC2, RDS, Redshift and ElastiCache instances and network interfaces in the same Availability Zone over private IPs is free."
+    source: https://aws.amazon.com/ec2/pricing/on-demand/
 cards:
   - id: billing-and-cost-management-019
     q: Does AWS charge for data uploaded from the internet into AWS?
@@ -69,6 +72,10 @@ cards:
     a: "No. AWS charges for every public IPv4 address, attached or not, including public IPs on running instances."
     trap: true
     facts: [public-ipv4-charge]
+  - id: billing-and-cost-management-047
+    q: "Two chatty EC2 instances move terabytes between them. How can the transfer be free?"
+    a: "Keep them in the same Availability Zone and use private IP addresses."
+    facts: [same-az-private-free]
 ---
 Data transfer pricing depends on direction and distance. Data coming in from the internet is free. Data leaving AWS for the internet, crossing Regions, or crossing Availability Zones is generally charged. [Understanding data transfer charges](https://docs.aws.amazon.com/cur/latest/userguide/cur-data-transfers-charges.html#cur-data-transfers-charges)
 

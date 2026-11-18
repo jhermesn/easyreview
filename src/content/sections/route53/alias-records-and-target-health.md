@@ -48,6 +48,9 @@ facts:
   - id: accelerator-tcp
     text: Global Accelerator terminates client TCP connections at an AWS edge location and establishes TCP connections to application endpoints.
     source: https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html#how-it-works-summary
+  - id: alias-targets
+    text: "Alias targets are API Gateway APIs, VPC interface endpoints, CloudFront, App Runner, Elastic Beanstalk, Elastic Load Balancing, S3 website buckets, OpenSearch Service, Global Accelerator or another record in the same zone; an EC2 instance is reached with an A record to its Elastic IP."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-alias.html#rrsets-values-alias-alias-target
 cards:
   - id: route53-012
     q: What does Evaluate Target Health use for a Route 53 alias to an ALB or NLB?
@@ -92,6 +95,11 @@ cards:
     facts:
       - service-health
     trap: true
+  - id: route53-069
+    q: "Can a Route 53 alias record point at an EC2 instance public DNS name?"
+    a: "No. EC2 instances are not alias targets; use an A record with the instance Elastic IP."
+    trap: true
+    facts: [alias-targets]
 ---
 A Route 53 alias points a DNS name at a supported AWS resource or a same-type record in the same hosted zone. It lets a root domain use a changing AWS endpoint without storing that endpoint's IP addresses yourself.
 

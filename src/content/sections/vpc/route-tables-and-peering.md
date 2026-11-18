@@ -67,6 +67,12 @@ facts:
   - id: inter-region-peering
     text: "VPC peering also works between VPCs in different Regions; their resources talk over private IP addresses without a gateway or VPN, and inter-Region traffic is encrypted."
     source: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#what-is-vpc-peering
+  - id: local-route
+    text: "Every route table has a local route for each VPC CIDR, so subnets in a VPC can reach each other by default; a more specific route than the local one must match a whole subnet CIDR and target a NAT gateway, network interface or Gateway Load Balancer endpoint."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/subnet-route-tables.html#route-table-routes
+  - id: igw-nat
+    text: "For IPv4 an internet gateway performs the translation between an instance private address and its public IPv4 address; the instance itself only sees its private address."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access
 cards:
   - id: vpc-011
     q: A VPC subnet has no explicit route-table association. Which table directs its traffic?
@@ -119,6 +125,15 @@ cards:
     q: "EC2 instances in VPCs in Ohio and N. Virginia must exchange data privately. What is the simplest setup?"
     a: "An inter-Region VPC peering connection, plus routes to the peer CIDR in each route table."
     facts: [inter-region-peering]
+  - id: vpc-059
+    q: "Traffic between two subnets of a VPC must pass through a firewall appliance. How can the route tables force that?"
+    a: "Add a route more specific than the local route, matching the destination subnet CIDR and targeting the appliance network interface or a Gateway Load Balancer endpoint."
+    facts: [local-route]
+  - id: vpc-060
+    q: "Does an EC2 instance with a public IPv4 address see that public address on its own network interface?"
+    a: "No. The OS sees only the private address; the internet gateway translates to the public IPv4 address."
+    trap: true
+    facts: [igw-nat]
 diagrams:
   - id: vpc-direct-peering
     title: Peering needs routes on both sides

@@ -66,6 +66,9 @@ facts:
   - id: delivery-errors
     text: GetTrailStatus reports S3 errors in LatestDeliveryError and CloudWatch Logs errors in LatestCloudWatchLogsDeliveryError; the S3 field does not report request timeouts.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-troubleshooting.html#event-delivery-failure-optin
+  - id: free-copy
+    text: "One copy of ongoing management events delivered to S3 by a trail is free; additional copies of management events, data events and network activity events are charged, and S3 storage is billed separately."
+    source: https://aws.amazon.com/cloudtrail/pricing/
 cards:
   - id: cloudtrail-010
     q: How soon should a CloudTrail event reach S3 or CloudWatch Logs, and which time should
@@ -133,6 +136,11 @@ cards:
     facts:
       - delivery-errors
       - cw-permissions
+  - id: cloudtrail-052
+    q: "An organization trail already logs management events, and each account also creates its own trail for them. What does that cost?"
+    a: "The extra trails deliver additional copies of management events, which are charged; only one copy is free. S3 storage is billed too."
+    trap: true
+    facts: [free-copy]
 ---
 CloudTrail sends audit logs to S3 and can also send selected events to CloudWatch Logs for monitoring. Server-side encryption means the destination encrypts stored files: SSE-KMS uses an AWS KMS key, while SSE-S3 uses keys managed by S3. [Delivery and encryption](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html#encrypting-cloudtrail-log-files-with-aws-kms)
 

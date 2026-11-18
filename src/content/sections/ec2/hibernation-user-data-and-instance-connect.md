@@ -27,6 +27,24 @@ facts:
   - id: eic
     text: EC2 Instance Connect authorizes SSH with IAM policies; the API pushes a temporary SSH public key to the instance metadata, where it stays for 60 seconds.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-linux-inst-eic.html#connect-linux-inst-eic
+  - id: key-pairs
+    text: "An EC2 key pair is a public key that EC2 stores on the instance and a private key you keep; it proves identity for SSH on Linux and decrypts the administrator password on Windows."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#ec2-key-pairs
+  - id: imds
+    text: "Software on an instance reads instance metadata and user data from the Instance Metadata Service at 169.254.169.254 (or fd00:ec2::254 over IPv6); requests are free."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-service
+  - id: imdsv2
+    text: "IMDSv2 uses session tokens obtained with a PUT request; an instance can be set to IMDSv2 only (token required), which turns off tokenless IMDSv1 calls."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html#configuring-instance-metadata-options
+  - id: metadata-not-secret
+    text: "Instance metadata and user data are not protected by authentication or encryption inside the instance, so they should not hold passwords or other secrets."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#ec2-instance-metadata
+  - id: eic-prefix-list
+    text: "Browser-based EC2 Instance Connect to a public address needs the security group to allow port 22 from the Region EC2 Instance Connect prefix list (com.amazonaws.<region>.ec2-instance-connect)."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-tutorial.html
+  - id: eice
+    text: "EC2 Instance Connect Endpoint lets users connect from the internet to instances that have no public IP address, without a bastion host and without an internet gateway in the VPC."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-with-ec2-instance-connect-endpoint.html
 cards:
   - id: ec2-067
     q: A Java application on EC2 takes 20 minutes to load caches after boot. The instances are stopped at night and must resume ready to serve in the morning. Which EC2 feature fits?
@@ -53,6 +71,23 @@ cards:
     q: What is the size limit for EC2 user data?
     a: "16 KB before base64 encoding."
     facts: [user-data-size]
+  - id: ec2-100
+    q: "A security review wants to block SSRF-style theft of instance role credentials from metadata. What setting helps?"
+    a: "Require IMDSv2 (HttpTokens required), so metadata calls need a session token from a PUT request; tokenless IMDSv1 calls stop working."
+    facts: [imdsv2]
+  - id: ec2-101
+    q: "A launch script passes a database password in EC2 user data. Why is that a problem?"
+    a: "User data and metadata are readable by anyone or any software on the instance through IMDS, with no authentication or encryption. Use Secrets Manager or Parameter Store instead."
+    trap: true
+    facts: [metadata-not-secret]
+  - id: ec2-102
+    q: "From which IP address does software on an instance read its metadata?"
+    a: "169.254.169.254, the link-local IMDS address (fd00:ec2::254 for IPv6)."
+    facts: [imds]
+  - id: ec2-107
+    q: "Admins must SSH into instances in private subnets with no public IPs, no bastion host and no internet gateway. What fits?"
+    a: "An EC2 Instance Connect Endpoint in the VPC (Systems Manager Session Manager is the other agent-based option)."
+    facts: [eice]
 ---
 Three EC2 features that change how an instance starts and how you reach it: hibernation keeps memory across a stop, user data configures the first boot, and Instance Connect replaces long-lived SSH keys. [Hibernate your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 

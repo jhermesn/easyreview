@@ -65,6 +65,12 @@ facts:
   - id: free-backup-storage
     text: "RDS includes free backup storage up to 100 percent of the total provisioned database storage in the account for each Region, covering DB snapshots and DB cluster snapshots."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups
+  - id: aurora-no-disable
+    text: "Aurora automated backups cannot be turned off; the cluster keeps continuous, incremental backups for its retention period (1 day by default)."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.Backup
+  - id: mysql-s3-import
+    text: "RDS for MySQL can create a new DB instance from backup files that you upload to Amazon S3."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html#MySQL.Procedural.Importing
 cards:
   - id: rds-007
     q: An accidental table deletion is committed on an RDS Multi-AZ DB instance. Is failover sufficient
@@ -131,6 +137,15 @@ cards:
     q: "An account runs 500 GB of provisioned RDS storage in one Region. How much RDS backup storage is free there?"
     a: "Up to 500 GB: free backup storage equals 100 percent of the total provisioned database storage per Region."
     facts: [free-backup-storage]
+  - id: rds-068
+    q: "Can you set the backup retention of an Aurora cluster to 0 to turn automated backups off?"
+    a: "No. Aurora automated backups cannot be disabled; only RDS DB instances can set retention to 0."
+    trap: true
+    facts: [aurora-no-disable]
+  - id: rds-069
+    q: "An on-premises MySQL database must move to RDS for MySQL from a physical backup. How?"
+    a: "Upload the backup files to Amazon S3 and restore a new RDS for MySQL instance from them; binlog replication can then catch up the changes."
+    facts: [mysql-s3-import]
 ---
 
 RDS backups provide earlier copies of a database for recovery after a data error. Point-in-time recovery (PITR) combines backups and transaction logs, which record database changes, to recover to an available time within the retention window. The [backup guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups) describes backups of the whole DB instance.

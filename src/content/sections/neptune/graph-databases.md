@@ -15,6 +15,12 @@ facts:
   - id: use-cases
     text: Neptune powers graph use cases such as recommendation engines, fraud detection, knowledge graphs, drug discovery and network security.
     source: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro
+  - id: replicas
+    text: "A Neptune cluster can have up to 15 Neptune Replicas that share the primary storage volume, serve reads and sit in other Availability Zones for high availability."
+    source: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro
+  - id: streams
+    text: "Neptune Streams records every change to the graph, in order, so other systems can consume the changes."
+    source: https://docs.aws.amazon.com/neptune/latest/userguide/streams.html#streams
 cards:
   - id: neptune-001
     q: A social network must store and query relationships between billions of users quickly. Which AWS database fits?
@@ -33,6 +39,10 @@ cards:
     a: No. It is a graph database; relational databases on AWS are Amazon RDS and Aurora.
     trap: true
     facts: [purpose]
+  - id: neptune-005
+    q: "Changes to a Neptune graph must be pushed to a search index as they happen. What feature provides the change feed?"
+    a: "Neptune Streams, which logs each graph change in order."
+    facts: [streams]
 ---
 Amazon Neptune stores data as a graph: things and the relationships between them. That makes queries like "friends of friends" or "accounts linked to this device" fast, where a relational database would need many joins. [What is Amazon Neptune?](https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro)
 

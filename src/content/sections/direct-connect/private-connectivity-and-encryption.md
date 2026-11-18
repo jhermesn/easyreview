@@ -45,6 +45,9 @@ facts:
   - id: dedicated-link
     text: AWS Direct Connect links an internal network to AWS over a dedicated Ethernet fiber connection at a Direct Connect location, bypassing internet service providers.
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html
+  - id: maximum-resiliency
+    text: "Maximum resiliency uses separate connections ending on separate devices in more than one Direct Connect location, protecting against device, connection and full location failure."
+    source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html#maximum_resiliency
 cards:
   - id: direct-connect-001
     q: A company uses AWS Direct Connect and requires encryption in transit. What options should it consider?
@@ -81,6 +84,10 @@ cards:
     q: A company needs a dedicated private network connection from its data center to AWS that does not use the public internet. Which service fits?
     a: AWS Direct Connect.
     facts: [dedicated-link]
+  - id: direct-connect-013
+    q: "Critical workloads need Direct Connect to survive a device failure and the loss of a whole location. Which model fits?"
+    a: "Maximum resiliency: separate connections on separate devices in at least two locations."
+    facts: [maximum-resiliency]
 diagrams:
   - id: direct-connect-vpn-flow
     title: IPsec VPN over Direct Connect

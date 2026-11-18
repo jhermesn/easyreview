@@ -78,6 +78,9 @@ facts:
   - id: env-helpers
     text: "Beyond encryption at rest, the Lambda console can turn on helpers for encryption in transit, which encrypt chosen environment variables client-side with a KMS key before they are sent."
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars-encryption.html#configuration-envvars-encryption
+  - id: package-sizes
+    text: "A .zip deployment package uploaded directly is limited to 50 MB (larger files go through Amazon S3), and a container image can be up to 10 GB uncompressed."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#function-configuration-deployment-and-execution
 diagrams:
   - id: lambda-weighted-alias-routing
     title: Only alias invocations participate in a weighted release
@@ -198,6 +201,10 @@ cards:
     q: "Lambda environment variables hold third-party API keys that must also be protected in transit, not only at rest. What does Lambda offer?"
     a: "Console helpers for encryption in transit: they encrypt the chosen variables client-side with a KMS key, and the function decrypts them at runtime."
     facts: [env-helpers]
+  - id: lambda-069
+    q: "A Lambda function needs 3 GB of ML libraries. Which packaging works?"
+    a: "A container image, which can be up to 10 GB. A .zip package is capped at 250 MB unzipped, layers included."
+    facts: [package-sizes]
 ---
 Lambda versions preserve a release while aliases give callers a stable name for a published version. A weighted alias can send part of the traffic to a second version, allowing a canary release, where only some requests try the new code.
 

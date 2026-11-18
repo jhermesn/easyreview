@@ -15,6 +15,9 @@ facts:
   - id: job-bookmarks
     text: "Glue job bookmarks persist what a previous ETL job run already processed, so scheduled reruns process only new data instead of reprocessing old data."
     source: https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html#monitor-continuations
+  - id: streaming-etl
+    text: "AWS Glue streaming ETL jobs run continuously, read from Kinesis Data Streams, Apache Kafka or Amazon MSK, and load cleaned data into S3 or JDBC stores."
+    source: https://docs.aws.amazon.com/glue/latest/dg/add-job-streaming.html#add-job-streaming
 cards:
   - id: glue-001
     q: A company needs serverless ETL jobs to clean data from several sources and load it into an S3 data lake. Which AWS service fits?
@@ -33,6 +36,10 @@ cards:
     q: "A daily Glue ETL job keeps reprocessing files it already handled in earlier runs. What fixes this?"
     a: "Turn on job bookmarks, which track processed data between runs so each run picks up only new data."
     facts: [job-bookmarks]
+  - id: glue-007
+    q: "Events in an MSK topic must be cleaned and written to an S3 data lake continuously, with serverless ETL. What fits?"
+    a: "An AWS Glue streaming ETL job reading from the MSK cluster."
+    facts: [streaming-etl]
 ---
 AWS Glue prepares data for analytics. It discovers data in many sources, keeps a central catalog of it, and runs ETL jobs that clean and move data into a data lake, without servers to manage. [What is AWS Glue?](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html#what-is-glue)
 

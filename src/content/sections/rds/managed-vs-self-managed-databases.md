@@ -48,6 +48,15 @@ facts:
   - id: stop-seven-days
     text: "An RDS DB instance can be stopped for at most 7 consecutive days; after that RDS starts it automatically so it does not miss required maintenance."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html#USER_StopInstance
+  - id: custom-engines
+    text: "RDS Custom exists for Oracle and SQL Server and grants privileged access to the database and the host operating system."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom
+  - id: custom-pause
+    text: "Before customizing an RDS Custom host, pause RDS Custom automation for a set period so monitoring and instance recovery do not interfere; it resumes when the pause ends."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-managing-sqlserver.pausing.html#custom-managing-sqlserver.pausing
+  - id: per-second-billing
+    text: "RDS instance usage is billed in one-second increments with a 10-minute minimum."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_OnDemandDBInstances.html
 cards:
   - id: rds-041
     q: What does Amazon RDS manage that a database on Amazon EC2 leaves to the customer?
@@ -103,6 +112,10 @@ cards:
     a: "Only for up to 7 consecutive days; RDS then starts it automatically. For longer idle periods, take a snapshot and delete the instance, then restore when needed."
     trap: true
     facts: [stop-seven-days]
+  - id: rds-067
+    q: "A DBA must install a third-party agent on the host of a managed SQL Server database. Which service allows it, and what should the DBA do first?"
+    a: "RDS Custom for SQL Server. Pause RDS Custom automation for the duration of the change so recovery automation does not act on it."
+    facts: [custom-engines, custom-pause]
 ---
 A database can run on servers you manage or as a managed AWS service. Amazon RDS runs relational databases for you: AWS installs, patches, backs up and scales them, and you focus on the data and the application. [What is Amazon RDS?](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome)
 

@@ -88,6 +88,9 @@ facts:
   - id: real-time
     text: Amazon Kinesis Data Streams collects and processes large streams of data records in real time.
     source: https://docs.aws.amazon.com/streams/latest/dev/introduction.html
+  - id: kinesis-agent
+    text: "Kinesis Agent is a Java application for Linux servers that watches log files and sends new lines to a Kinesis data stream."
+    source: https://docs.aws.amazon.com/streams/latest/dev/writing-with-agents.html#writing-with-agents
 cards:
   - id: kinesis-data-streams-001
     q: What sustained write and shared-read capacity does one Kinesis Data Streams shard provide?
@@ -168,6 +171,10 @@ cards:
     q: A company must ingest and process website clickstream data in real time. Which AWS service fits?
     a: Amazon Kinesis Data Streams.
     facts: [real-time]
+  - id: kinesis-data-streams-025
+    q: "Web servers write log files, and the lines must reach a Kinesis data stream without changing the application. What tool does that?"
+    a: "Kinesis Agent, installed on the servers and configured with the files to watch and the target stream."
+    facts: [kinesis-agent]
 diagrams:
   - id: kinesis-partition-routing
     title: Partition keys distribute records among shards

@@ -42,6 +42,9 @@ facts:
   - id: policy-explicit-deny
     text: An explicit deny in an applicable IAM identity or resource policy overrides an allow.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#reference_policies_evaluation-logic
+  - id: rds-pg-invoke
+    text: "RDS for PostgreSQL can invoke Lambda functions through the aws_lambda extension once the instance has an outbound network path to Lambda and an IAM role allowed to invoke the function."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL-Lambda.html#PostgreSQL-Lambda
 diagrams:
   - id: lambda-permission-directions
     title: Invocation permission and execution permission have different owners
@@ -118,6 +121,10 @@ cards:
       - efs-policy-allow
       - efs-actions
       - policy-explicit-deny
+  - id: lambda-070
+    q: "A row inserted in RDS for PostgreSQL must trigger a Lambda function directly from the database. What is needed?"
+    a: "The aws_lambda extension, an IAM role on the instance that allows lambda:InvokeFunction, and outbound network access from the instance to Lambda."
+    facts: [rds-pg-invoke]
 ---
 A Lambda execution role is an AWS Identity and Access Management (IAM) role that grants the function access to AWS resources. A resource-based policy grants callers access to the function. A principal is the identity or service receiving permission; these policies control different directions of access.
 

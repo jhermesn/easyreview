@@ -42,6 +42,24 @@ facts:
   - id: ipv6-only-subnet
     text: "An IPv6-only subnet has an IPv6 CIDR block and no IPv4 CIDR block, in a VPC that has an IPv6 CIDR; its resources communicate over IPv6."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-basics
+  - id: subnet-size
+    text: "An IPv4 subnet is between /28 and /16, must sit inside a VPC CIDR and cannot overlap another subnet in the VPC; after the five reserved addresses a /28 has 11 usable addresses."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html#subnet-sizing-ipv4
+  - id: ipv6-sizes
+    text: "A VPC can have IPv6 CIDR blocks of /44 to /60, and IPv6 subnets are /44 to /64 in steps of /4."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html#vpc-cidr-blocks
+  - id: secondary-cidr
+    text: "An added IPv4 CIDR must not overlap any CIDR already on the VPC, and some ranges cannot be combined with the primary range (IPv4 CIDR block association restrictions)."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html#add-cidr-block-restrictions
+  - id: nat64
+    text: "A NAT gateway can do NAT64 so IPv6-only resources reach IPv4 services, used with DNS64 on Route 53 Resolver to synthesize IPv6 answers for IPv4-only names."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64
+  - id: default-vpc-components
+    text: "The default VPC uses 172.31.0.0/16 with a /20 default subnet in each Availability Zone, plus a default security group and network ACL."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc-components.html
+  - id: dhcp-immutable
+    text: "A DHCP option set cannot be modified; to change DNS, NTP or other options, create a new set and associate it with the VPC."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/DHCPOptionSet.html
 cards:
   - id: vpc-036
     q: How many usable IPv4 addresses does a /24 subnet in a VPC have, and why?
@@ -85,6 +103,23 @@ cards:
     q: "A dual-stack VPC has run out of IPv4 addresses for new instances, but has plenty of IPv6 space. What lets you keep launching?"
     a: "Create an IPv6-only subnet and launch the instances there, if the workloads can communicate over IPv6."
     facts: [ipv6-only-subnet]
+  - id: vpc-055
+    q: "How many usable IPv4 addresses does a /28 subnet have in a VPC?"
+    a: "11. A /28 has 16 addresses and AWS reserves five in every subnet."
+    facts: [subnet-size]
+  - id: vpc-056
+    q: "IPv6-only instances must reach an IPv4-only API on the internet. What VPC features make that work?"
+    a: "NAT64 on a NAT gateway with DNS64 on Route 53 Resolver, which returns synthesized IPv6 addresses for IPv4-only names."
+    facts: [nat64]
+  - id: vpc-057
+    q: "A team needs to change the DNS servers handed out in a VPC. Can it edit the current DHCP option set?"
+    a: "No. DHCP option sets cannot be modified; create a new one and associate it with the VPC."
+    trap: true
+    facts: [dhcp-immutable]
+  - id: vpc-058
+    q: "What CIDR and subnet size does a default VPC use?"
+    a: "172.31.0.0/16, with a /20 default subnet in each Availability Zone."
+    facts: [default-vpc-components]
 ---
 VPC addressing mistakes are hard to fix later, and NAT choices trade operations work for flexibility. [VPC CIDR blocks](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html)
 

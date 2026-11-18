@@ -77,6 +77,9 @@ facts:
   - id: vpc-definition
     text: A VPC is a logically isolated virtual network.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc
+  - id: user-quota
+    text: "An AWS account can have at most 5,000 IAM users, a quota that cannot be raised."
+    source: https://docs.aws.amazon.com/general/latest/gr/iam-service.html
 diagrams:
   - id: iam-ec2-credentials
     title: EC2 applications use temporary role credentials
@@ -188,6 +191,11 @@ cards:
     facts:
       - mfa-factors
       - mfa-purpose
+  - id: iam-109
+    q: "An app has 2 million customers who need AWS access. Should each get an IAM user?"
+    a: "No. An account allows at most 5,000 IAM users; use federation or Amazon Cognito for customer identities."
+    trap: true
+    facts: [user-quota]
 ---
 
 IAM identities determine who makes a request. A role supplies permissions through a temporary session, a period during which temporary credentials are valid. An instance profile connects a role to an EC2 instance so its applications can use those credentials.

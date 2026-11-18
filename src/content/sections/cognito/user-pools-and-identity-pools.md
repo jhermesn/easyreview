@@ -12,6 +12,12 @@ facts:
   - id: identity-pools
     text: A Cognito identity pool issues AWS credentials so authenticated or guest users can access AWS resources.
     source: https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html#what-is-amazon-cognito-identity-pools
+  - id: policy-variable
+    text: "Identity pool role policies can use the ${cognito-identity.amazonaws.com:sub} policy variable to scope access to each identity, for example to an S3 prefix named after the identity ID."
+    source: https://docs.aws.amazon.com/cognito/latest/developerguide/iam-roles.html#access-policies
+  - id: leading-keys
+    text: "The dynamodb:LeadingKeys condition key matches the partition key of the requested items, so a policy can limit each user to items whose partition key equals their own ID."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/specifying-conditions.html#FGAC_DDB.ConditionKeys
 cards:
   - id: cognito-001
     q: A mobile app needs user sign-up and sign-in, including "Sign in with Google". Which AWS service fits?
@@ -26,6 +32,10 @@ cards:
     a: No. Cognito is for app users. Employee access to AWS accounts is IAM Identity Center or IAM.
     trap: true
     facts: [purpose]
+  - id: cognito-004
+    q: "Mobile users signed in through a Cognito identity pool must read and write only their own DynamoDB items. How?"
+    a: "Use the user identity ID as the partition key and give the pool role a policy with a dynamodb:LeadingKeys condition equal to ${cognito-identity.amazonaws.com:sub}."
+    facts: [policy-variable, leading-keys]
 ---
 Amazon Cognito handles identity for the users of your web and mobile apps: sign-up, sign-in, social and enterprise logins, and access to AWS resources from the app. [What is Amazon Cognito?](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html#what-is-amazon-cognito)
 

@@ -24,6 +24,9 @@ facts:
   - id: user-role
     text: Each service-managed Transfer Family user gets a user role that Transfer Family assumes for that user, and a session policy can limit the user to their own home folder.
     source: https://docs.aws.amazon.com/transfer/latest/userguide/requirements-roles.html#requirements-roles
+  - id: identity-providers
+    text: "Transfer Family servers authenticate users as service-managed users, through AWS Directory Service for Microsoft Active Directory, or through a custom identity provider reached with Lambda or an API Gateway method."
+    source: https://docs.aws.amazon.com/transfer/latest/userguide/create-server-sftp.html#create-server-sftp
 cards:
   - id: transfer-family-001
     q: Dozens of vendors upload daily files with SFTP to an on-premises server that the company wants to retire. The files must land in Amazon S3, and vendors must not change their clients. Which service fits?
@@ -54,6 +57,10 @@ cards:
     a: "No. It supports up to 3 Availability Zones on an auto scaling, redundant fleet."
     trap: true
     facts: [multi-az]
+  - id: transfer-family-008
+    q: "An SFTP endpoint on Transfer Family must authenticate partners against an existing Okta or LDAP directory. How?"
+    a: "Use a custom identity provider: a Lambda function, or an API Gateway method backed by Lambda, that checks the credentials."
+    facts: [identity-providers]
 ---
 AWS Transfer Family replaces self-managed SFTP and FTP servers. Partners connect with the same clients as before; files go straight into Amazon S3 or Amazon EFS, where the rest of AWS can process them. [What is AWS Transfer Family?](https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html)
 

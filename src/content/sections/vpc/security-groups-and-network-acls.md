@@ -69,6 +69,15 @@ facts:
   - id: common-ports
     text: "Common security group rules open TCP 22 for SSH to Linux instances, 3389 for RDP to Windows instances, 80 for HTTP and 443 for HTTPS."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html#security-group-rules-reference
+  - id: acl-defaults
+    text: "The default network ACL allows all inbound and outbound traffic, while a new custom network ACL denies everything until you add allow rules."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/default-network-acl.html#default-network-acl
+  - id: peer-sg-reference
+    text: "A security group can reference a security group in a peered VPC in the same Region, even in another account (account-id/sg-id); for a peer in another Region use its CIDR block."
+    source: https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html#vpc-peering-security-groups
+  - id: acl-within-subnet
+    text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the same subnet."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
 cards:
   - id: vpc-001
     q: How do VPC security groups and network ACLs differ?
@@ -152,6 +161,21 @@ cards:
     q: "Which inbound ports does a security group open for SSH to a Linux instance, RDP to a Windows instance, and HTTPS?"
     a: "TCP 22 for SSH, 3389 for RDP and 443 for HTTPS (80 for plain HTTP)."
     facts: [common-ports]
+  - id: vpc-051
+    q: "A new custom network ACL is associated with a subnet and all traffic stops. Why?"
+    a: "A custom network ACL denies all inbound and outbound traffic until allow rules are added; only the default ACL allows everything."
+    trap: true
+    facts: [acl-defaults]
+  - id: vpc-052
+    q: "Can an inbound rule reference a security group in a peered VPC in another Region?"
+    a: "No. Cross-account references work within the same Region; for an inter-Region peer, use the peer VPC CIDR block."
+    trap: true
+    facts: [peer-sg-reference]
+  - id: vpc-061
+    q: "Two instances in the same subnet cannot talk. Can the subnet network ACL be the cause?"
+    a: "No. Network ACLs only filter traffic entering or leaving the subnet; check the security groups and the hosts."
+    trap: true
+    facts: [acl-within-subnet]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.

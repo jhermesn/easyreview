@@ -294,6 +294,10 @@ cards:
     a: "S3 Replication from the source bucket to each destination bucket. One source can replicate to multiple destination buckets across Regions."
     facts:
       - multi-destination
+  - id: s3-163
+    q: "Global users need faster reads of a website; separately, a copy of all data must exist in a second Region. Which feature serves which need?"
+    a: "CloudFront caches content at edge locations for the reads. Cross-Region Replication keeps a full, asynchronous copy in another Region; it does not cache near users."
+    facts: [replication-async, crr-srr]
 ---
 S3 Replication creates copies in other buckets without making the application upload each copy. It is asynchronous: the original write can finish before its replica is available.
 

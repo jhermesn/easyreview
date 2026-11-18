@@ -27,6 +27,9 @@ facts:
   - id: ce-api
     text: "The Cost Explorer API lets you query cost and usage data programmatically, from monthly totals down to granular usage, for custom reports and automation."
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-api.html#ce-api
+  - id: hourly-charge
+    text: "Hourly granularity in Cost Explorer is optional and billed daily per hourly usage record kept for the past 14 days."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-hourly-granularity.html#ce-hourly-granularity
 cards:
   - id: billing-and-cost-management-005
     q: A manager wants to see which AWS services drove last quarter's cost increase. Which tool fits?
@@ -42,8 +45,8 @@ cards:
     facts: [ri-recommendations]
   - id: billing-and-cost-management-008
     q: Is the AWS Cost Explorer console free to use?
-    a: Yes. The console is free; only API requests cost 0.01 USD each.
-    facts: [free-ui]
+    a: "Yes. The console is free; API requests cost 0.01 USD each, and optional hourly granularity data is billed per usage record."
+    facts: [free-ui, hourly-charge]
   - id: billing-and-cost-management-009
     q: Does AWS Cost Explorer send alerts when spending passes a threshold?
     a: No. Cost Explorer analyzes costs; threshold alerts come from AWS Budgets.

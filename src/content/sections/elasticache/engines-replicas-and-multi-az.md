@@ -84,6 +84,9 @@ facts:
   - id: durable-exclusions
     text: Durability is not supported with ElastiCache Serverless or Global Datastores.
     source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Durability.Limitations.html
+  - id: iam-auth
+    text: "ElastiCache for Valkey or Redis OSS version 7 or later can authenticate connections with IAM identities instead of passwords."
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth-iam.html#auth-iam-overview
 diagrams:
   - id: elasticache-multi-az
     title: A replica in another Availability Zone can become primary
@@ -204,6 +207,10 @@ cards:
     facts:
       - serverless
       - autoscale
+  - id: elasticache-025
+    q: "How can applications reach an ElastiCache for Valkey cache without storing a password?"
+    a: "IAM authentication (Valkey or Redis OSS 7 and later), with access granted by IAM policies."
+    facts: [iam-auth]
 ---
 ElastiCache keeps data in memory to serve application reads without repeatedly querying an underlying database. Choose an engine and a deployment type before deciding how to partition data, add replicas, or recover from failure.
 

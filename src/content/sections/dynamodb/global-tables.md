@@ -58,6 +58,11 @@
       "id": "failover",
       "text": "Applications can shift traffic to another global table replica if application processing is interrupted in a Region.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html"
+    },
+    {
+      "id": "database-encryption-sdk",
+      "text": "The AWS Database Encryption SDK encrypts chosen DynamoDB attributes on the client before they are sent, so the table holds only ciphertext for those fields.",
+      "source": "https://docs.aws.amazon.com/database-encryption-sdk/latest/devguide/what-is-database-encryption-sdk.html#what-is-database-encryption-sdk"
     }
   ],
   "cards": [
@@ -115,6 +120,14 @@
         "mrec-streams"
       ],
       "trap": true
+    },
+    {
+      "id": "dynamodb-048",
+      "q": "Sensitive fields in a DynamoDB global table must stay unreadable even to database administrators, in every Region. What approach fits?",
+      "a": "Client-side encryption of those attributes with the AWS Database Encryption SDK, using a KMS multi-Region key so each Region can decrypt locally.",
+      "facts": [
+        "database-encryption-sdk"
+      ]
     }
   ],
   "diagrams": [

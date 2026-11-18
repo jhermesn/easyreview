@@ -72,6 +72,9 @@ facts:
   - id: inventory-acl
     text: S3 Inventory reports can include an Object ACL field that lists the grantees and permissions of each object.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html
+  - id: logging-principal
+    text: "Server access log delivery needs the destination bucket policy to grant s3:PutObject to the logging service principal logging.s3.amazonaws.com."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-bucket-policy
 cards:
   - id: s3-034
     q: An S3 audit needs object reads recorded while a scheduled job lists bucket contents. Which
@@ -134,6 +137,10 @@ cards:
     q: A company must audit the ACLs of millions of objects on a schedule without calling an API per object. Which S3 feature fits?
     a: S3 Inventory with the Object ACL field in its reports.
     facts: [inventory-acl]
+  - id: s3-165
+    q: "Server access logging is on, but no logs reach the destination bucket. What permission is often missing?"
+    a: "A destination bucket policy that allows s3:PutObject for the logging.s3.amazonaws.com service principal."
+    facts: [logging-principal]
 ---
 S3 Inventory answers what objects exist and which metadata they have. Access logging and CloudTrail data events answer what requests were made; they serve different audit needs.
 

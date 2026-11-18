@@ -45,6 +45,12 @@ facts:
   - id: cli-sync
     text: "The AWS CLI aws s3 sync command recursively copies new and updated files between a local directory and an S3 prefix, or between two S3 prefixes, including buckets in different Regions."
     source: https://docs.aws.amazon.com/cli/latest/reference/s3/sync.html#description
+  - id: select-closed
+    text: "S3 Select is no longer available to new customers; existing customers can keep using it."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/selecting-content-from-objects.html
+  - id: multipart-guidance
+    text: "AWS suggests multipart upload once an object reaches about 100 MB; an upload can have up to 10,000 parts, and only the last part may be smaller than 5 MiB."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/qfacts.html#qfacts
 cards:
   - id: s3-132
     q: An application writes 20,000 objects per second into a single S3 prefix and gets HTTP 503 Slow Down errors. What design change fixes it?
@@ -84,6 +90,10 @@ cards:
     q: "What is a simple one-time way to copy all objects from one bucket to a bucket in another Region?"
     a: "Run aws s3 sync between the two bucket prefixes. S3 Batch Replication also works when a replication rule is set up."
     facts: [cli-sync]
+  - id: s3-164
+    q: "From what object size does AWS suggest multipart upload, and how many parts can one upload have?"
+    a: "Around 100 MB, with up to 10,000 parts."
+    facts: [multipart-guidance]
 ---
 Amazon S3 scales per prefix, so performance problems are usually design problems: one hot prefix, single-stream uploads, or long-distance transfers. [Optimizing Amazon S3 performance](https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html)
 

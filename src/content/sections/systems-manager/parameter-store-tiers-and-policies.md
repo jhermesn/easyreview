@@ -89,6 +89,9 @@ facts:
   - id: regional
     text: Parameter Store parameters belong to one account and Region, so each Region needs its own parameter, for example with that Region's AMI ID.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html
+  - id: higher-throughput
+    text: "Parameter Store has a default throughput quota for API transactions per second; higher throughput can be turned on for heavier workloads, at extra charge."
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-throughput.html#parameter-store-throughput
 cards:
   - id: systems-manager-005
     q: How do Systems Manager Parameter Store standard and advanced parameters differ?
@@ -172,6 +175,10 @@ cards:
     q: A template reads a golden AMI ID from Parameter Store and must deploy in three Regions. What is needed?
     a: A parameter in each Region holding that Region's AMI ID; parameters are Regional.
     facts: [regional]
+  - id: systems-manager-113
+    q: "An application reading parameters heavily gets ThrottlingException from Parameter Store. What setting helps?"
+    a: "Turn on higher throughput for Parameter Store (extra charge), or cache the values in the application."
+    facts: [higher-throughput]
 ---
 Parameter Store keeps application configuration as named values. The tier determines storage limits and policy support; the parameter type determines how the value is represented.
 

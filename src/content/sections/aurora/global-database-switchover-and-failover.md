@@ -75,6 +75,9 @@ facts:
   - id: sns-permissions
     text: RDS event publishing requires permissions on the SNS topic; a custom topic policy can restrict source resources or allow cross-account notification.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.GrantingPermissions.html#USER_Events.GrantingPermissions
+  - id: global-limits
+    text: "An Aurora global database has one primary Region and up to 10 read-only secondary Regions; a secondary cluster can hold up to 16 reader instances."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database-overview
 cards:
   - id: aurora-003
     q: An Aurora Global Database must move its primary Region during planned maintenance without data loss. How does this differ from disaster failover?
@@ -142,6 +145,10 @@ cards:
     facts:
       - endpoint
       - stop-writes
+  - id: aurora-044
+    q: "How many secondary Regions can an Aurora global database have, and how many readers can a secondary cluster run?"
+    a: "Up to 10 secondary Regions, each with up to 16 read-only instances."
+    facts: [global-limits]
 diagrams:
   - id: aurora-global-switchover
     title: Planned switchover synchronizes before changing the writer
