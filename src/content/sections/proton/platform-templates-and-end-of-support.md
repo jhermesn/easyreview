@@ -88,13 +88,13 @@ cards:
     trap: true
     facts: [end-support, git-sync]
   - id: proton-002
-    q: "A team needs a Git-based infrastructure automation workflow after AWS Proton support ended. What alternative does AWS list?"
-    a: "AWS CloudFormation Git sync. It does not provide Proton-style environments or advanced pipeline features."
-    facts: [end-support, git-sync]
+    q: "In a historical AWS Proton design, several applications needed shared infrastructure. Which template defined those common resources?"
+    a: "An environment template."
+    facts: [environment-template]
   - id: proton-003
-    q: "A team needs an alternative to AWS Proton with a pipeline for infrastructure automation. Which AWS services are listed as an option?"
-    a: "AWS CodePipeline and AWS CodeBuild. This option requires more implementation work and offers less built-in developer self-service."
-    facts: [pipeline-alternative]
+    q: "Before AWS Proton support ended, a team wanted to deploy services onto existing infrastructure while retaining its management. Which environment option fit?"
+    a: "A customer managed environment template. Proton connected to the existing infrastructure without managing it."
+    facts: [existing-infrastructure]
   - id: proton-004
     q: "A team used AWS Proton to deploy infrastructure through CloudFormation. What happened to the deployed stacks when Proton support ended?"
     a: "The deployed CloudFormation stacks and their resources remain intact."

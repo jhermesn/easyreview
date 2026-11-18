@@ -97,9 +97,9 @@ cards:
       - registration
       - slow-start
   - id: ec2-auto-scaling-045
-    q: "An EC2 Auto Scaling group must install software before a new instance receives traffic. Which event-driven approach fits?"
-    a: "Use a launch lifecycle hook and an EventBridge rule that invokes Systems Manager Run Command for setup. Complete the hook before registration."
-    facts: [launch, ssm, registration]
+    q: "An EC2 Auto Scaling lifecycle hook must send notifications directly to an SQS queue. What permission does Auto Scaling need?"
+    a: "An IAM role that allows Auto Scaling to publish notifications to the queue."
+    facts: [direct-notification-role]
   - id: ec2-auto-scaling-046
     q: An EC2 Auto Scaling fleet must install software on new managed instances after an event. Which event-driven integration fits?
     a: An EventBridge rule targeting Systems Manager Run Command. Use a launch lifecycle hook when setup must finish before load balancer registration.

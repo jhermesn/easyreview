@@ -79,9 +79,9 @@ cards:
     a: AWS Direct Connect.
     facts: [dedicated-link]
   - id: direct-connect-015
-    q: "A company needs encrypted traffic between its network and AWS over AWS Direct Connect without public IP addresses. What should it use?"
-    a: "Use private IP Site-to-Site VPN over Direct Connect. It encrypts traffic with IPsec."
-    facts: [private-ip-vpn]
+    q: "A company must keep AWS Direct Connect connectivity if an entire connection location fails. How should it arrange its links?"
+    a: "Use separate Direct Connect connections at multiple locations."
+    facts: [dx-redundancy]
   - id: direct-connect-016
     q: "A regulated company needs IPsec encryption over its Direct Connect link without exposing any public IP addresses. Which option fits?"
     a: "**Private IP Site-to-Site VPN** over Direct Connect. It encrypts the traffic without public tunnel addresses."

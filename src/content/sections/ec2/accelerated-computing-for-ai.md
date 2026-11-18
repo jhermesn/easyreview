@@ -25,9 +25,9 @@ cards:
     a: Amazon EC2 Inf2 instances, powered by AWS Inferentia.
     facts: [inferentia]
   - id: ec2-059
-    q: "Which Amazon EC2 instances use AWS Inferentia chips for deep learning and generative AI inference?"
-    a: "Amazon EC2 Inf2 instances use AWS Inferentia for high-performance, cost-efficient inference."
-    facts: [inferentia]
+    q: "A graphics application needs NVIDIA acceleration on Amazon EC2. Which type of compute should the company choose?"
+    a: "NVIDIA GPU instances, such as Amazon EC2 G6e."
+    facts: [gpu]
   - id: ec2-060
     q: Is AWS Inferentia meant for training large models?
     a: "No. Inferentia targets inference; Trainium targets training (and also serves models)."

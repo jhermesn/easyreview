@@ -49,10 +49,10 @@ cards:
     a: Reviewer integrates with AWS Secrets Manager to find unprotected secrets, which can then be moved to Secrets Manager.
     facts: [secrets, reviewer-availability]
   - id: codeguru-004
-    q: "A team wants to detect hardcoded secrets during a CodeGuru Reviewer code review. What integration helps?"
-    a: "CodeGuru Reviewer integrates with Secrets Manager to find unprotected secrets in code."
+    q: "An operations team plans to use CodeGuru Profiler heap summaries for both JVM and Python applications. What limitation must its monitoring plan account for?"
+    a: "Heap summary visualization is available only for JVM applications; Python applications need another way to inspect heap usage."
     facts:
-      - secrets
+      - profiler-languages
   - id: codeguru-005
     q: "Which service can scan GitHub or GitLab repositories for vulnerabilities and unintended network exposure?"
     a: "Amazon Inspector can scan discovered repositories for both."
