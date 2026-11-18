@@ -79,7 +79,8 @@
                 "iam/users-groups-and-policies",
                 "iam/identities-roles-and-instance-profiles",
                 "iam/rbac-and-abac",
-                "iam/permissions-boundaries-and-session-policies"
+                "iam/permissions-boundaries-and-session-policies",
+                "lambda/execution-roles-and-resource-policies"
               ]
             },
             {
@@ -113,7 +114,8 @@
               "sections": [
                 "iam/cross-account-roles-and-resource-policies",
                 "kms/key-policies-and-grants",
-                "s3/public-access-and-object-ownership"
+                "s3/public-access-and-object-ownership",
+                "lambda/execution-roles-and-resource-policies"
               ]
             },
             {
@@ -264,7 +266,8 @@
                 "macie/sensitive-data-discovery-and-jobs",
                 "cloudtrail/trails-and-event-selectors",
                 "cloudfront/origin-access-control",
-                "s3/inventory-and-access-logging"
+                "s3/inventory-and-access-logging",
+                "cloudtrail/event-history-and-event-types"
               ]
             },
             {
@@ -313,7 +316,8 @@
                 "s3/object-lock",
                 "backup/vault-lock-and-air-gapped-vaults",
                 "control-tower/basics",
-                "cloudtrail/log-integrity-and-protection"
+                "cloudtrail/log-integrity-and-protection",
+                "config/managed-custom-and-proactive-rules"
               ]
             },
             {
@@ -738,7 +742,8 @@
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
                 "cloudfront/origin-failover",
-                "reference-architectures/multi-region-warm-standby"
+                "reference-architectures/multi-region-warm-standby",
+                "route53/alarm-based-health-checks"
               ]
             },
             {
@@ -809,7 +814,8 @@
                 "cloudformation/template-structure-and-dependencies",
                 "config/automation-remediation-and-retries",
                 "proton/platform-templates-and-end-of-support",
-                "service-catalog/products-portfolios-and-versions"
+                "service-catalog/products-portfolios-and-versions",
+                "config/managed-custom-and-proactive-rules"
               ]
             },
             {
@@ -835,7 +841,8 @@
                 "route53/endpoint-and-calculated-health-checks",
                 "health/account-events-and-affected-resources",
                 "cloudwatch/agent-and-custom-metrics",
-                "cloudwatch/metric-filters-and-patterns"
+                "cloudwatch/metric-filters-and-patterns",
+                "cloudwatch/logs-insights"
               ]
             },
             {
