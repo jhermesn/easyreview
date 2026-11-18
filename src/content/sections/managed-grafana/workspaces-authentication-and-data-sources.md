@@ -71,9 +71,9 @@ diagrams:
       - Access to other networks requires routing from the VPC.
 cards:
   - id: managed-grafana-001
-    q: "A team needs to visualize operational metrics and logs from multiple sources. Which AWS service fits?"
-    a: "Amazon Managed Grafana. It queries and visualizes metrics, logs, and traces from multiple sources."
-    facts: [visualization]
+    q: "Which authentication methods can users use to sign in to an Amazon Managed Grafana workspace?"
+    a: "SAML 2.0, IAM Identity Center, or both."
+    facts: [authentication]
   - id: managed-grafana-002
     q: "A team wants one Amazon Managed Grafana dashboard to show data from several backends. What can it use?"
     a: "A dashboard combining multiple data sources. Each source is a backend that Grafana can query."

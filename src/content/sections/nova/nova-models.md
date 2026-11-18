@@ -71,9 +71,9 @@ cards:
     a: "Outpainting, which regenerates the area outside the masked subject. Inpainting changes only the area inside the mask."
     facts: [canvas-editing]
   - id: nova-009
-    q: "Which Amazon Nova model can generate images from text and image inputs?"
-    a: "Amazon Nova Canvas generates images from text and image inputs."
-    facts: [canvas-reel]
+    q: "What does Amazon Nova Canvas add to every generated image to help identify its origin?"
+    a: "An invisible watermark that watermark detection tools can check."
+    facts: [canvas-watermark]
 ---
 Amazon Nova is Amazon's own model family in Amazon Bedrock. Pick by modality and size: Micro for fast text, Lite and Pro for multimodal understanding, Premier for the hardest tasks, Canvas and Reel to create images and video, and Sonic for speech. [What is Amazon Nova?](https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html)
 

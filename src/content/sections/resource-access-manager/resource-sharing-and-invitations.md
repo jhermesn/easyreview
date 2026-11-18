@@ -105,9 +105,9 @@ cards:
     a: Grant the user an identity-based permission within the resource share's managed permission ceiling.
     facts: [ram-permission]
   - id: resource-access-manager-006
-    q: "A company wants application accounts to use subnets in a centrally owned VPC. How can AWS RAM help?"
-    a: "The VPC owner can share subnets with accounts in the same organization. Participants manage their own application resources in those subnets."
-    facts: [ram-subnets]
+    q: "Who can modify a subnet shared through AWS RAM?"
+    a: "Only the VPC owner; participant accounts cannot modify the shared subnet."
+    facts: [ram-subnet-owner]
   - id: resource-access-manager-009
     q: A network account wants other accounts to attach VPCs to its transit gateway. What sharing service can it use?
     a: AWS RAM can share the transit gateway; recipients can create VPC attachments but cannot manage its route tables.

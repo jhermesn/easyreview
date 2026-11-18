@@ -42,9 +42,9 @@ cards:
     trap: true
     facts: [activate]
   - id: billing-and-cost-management-044
-    q: "What are the two types of AWS cost allocation tags?"
-    a: "AWS-generated tags are created by AWS or an AWS Marketplace vendor. User-defined tags are created by the customer."
-    facts: [types]
+    q: "After a company activates its cost allocation tags, how does AWS use them?"
+    a: "It organizes resource costs by those tags on the cost allocation report, so the company can categorize and track its costs."
+    facts: [report]
   - id: billing-and-cost-management-046
     q: "How do cost allocation tags help a company understand its AWS spending?"
     a: "They organize resource costs in a cost allocation report so the company can categorize and track them."

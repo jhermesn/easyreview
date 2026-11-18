@@ -38,9 +38,9 @@ cards:
     a: EKS Anywhere. It automates cluster lifecycle operations and can run in air-gapped environments.
     facts: [anywhere, anywhere-airgap]
   - id: eks-distro-006
-    q: "A team needs an AWS-managed Kubernetes control plane in an AWS Region. Should it choose Amazon EKS Distro or Amazon EKS?"
-    a: "Choose Amazon EKS. EKS Distro is used for self-managed clusters."
-    facts: [eks, managed]
+    q: "What must a team prepare before creating an Amazon EKS Distro cluster?"
+    a: "Servers, networking, and an operating system on each server."
+    facts: [setup]
 ---
 
 Amazon EKS Distro is an open-source distribution of Kubernetes components used by Amazon EKS. It lets teams run Kubernetes clusters on infrastructure they manage.

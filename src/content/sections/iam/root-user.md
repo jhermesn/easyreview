@@ -61,9 +61,9 @@ cards:
     a: Enabling MFA delete on an S3 bucket. The others work with IAM permissions.
     facts: [tasks-other]
   - id: iam-076
-    q: "When should an AWS account root user be used?"
-    a: "Use the root user only for tasks that require root credentials, not for everyday work."
-    facts: [not-daily]
+    q: "What kind of email address does AWS recommend for a business account's root user?"
+    a: "A business-managed group email address so AWS messages reach multiple people."
+    facts: [group-email]
   - id: iam-077
     q: Should a team create access keys for the AWS account root user so scripts can run with full access?
     a: No. AWS recommends never creating root access keys; scripts should use roles with least-privilege permissions.

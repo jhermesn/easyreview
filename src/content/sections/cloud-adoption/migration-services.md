@@ -63,9 +63,9 @@ cards:
     trap: true
     facts: [hub, dms-tracking]
   - id: cloud-adoption-030
-    q: "How does AWS Application Discovery Service help plan a cloud migration?"
-    a: "It collects information about on-premises servers and databases, including usage and network connections. It is closed to new customers; AWS Transform offers similar capabilities."
-    facts: [ads, ads-closed]
+    q: "A company that has never used AWS Application Discovery Service wants to start using it for migration planning. What should it know?"
+    a: "The service closed to new customers on November 7, 2025. AWS Transform provides similar capabilities."
+    facts: [ads-closed]
   - id: cloud-adoption-031
     q: "How can Migration Evaluator help a company prepare for a move to AWS?"
     a: "It builds a data-driven business case and identifies over-provisioned on-premises instances."
