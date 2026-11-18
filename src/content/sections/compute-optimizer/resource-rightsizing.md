@@ -21,15 +21,6 @@ facts:
   - id: lookback-options
     text: Rightsizing preferences offer 14-day and 32-day lookbacks without additional payments and a paid 93-day option.
     source: https://docs.aws.amazon.com/compute-optimizer/latest/ug/rightsizing-preferences.html#rightsizing-preferences-lookback
-  - id: ec2-requirements
-    text: EC2 instances and Auto Scaling groups require at least 30 hours of CloudWatch metrics in the past 14 days, or 93 days with enhanced infrastructure metrics.
-    source: https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-ec2-instances
-  - id: ebs-requirements
-    text: Supported EBS volumes must be attached to a running instance for at least 30 consecutive hours; recommendations disappear when a volume is detached.
-    source: https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-ebs-volumes
-  - id: lambda-requirements
-    text: Lambda memory recommendations require configured memory of at most 1792 MB and at least 50 invocations in the last 14 days.
-    source: https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-lambda-functions
   - id: delay
     text: After sufficient metrics are available, analysis can take up to 24 hours.
     source: https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements

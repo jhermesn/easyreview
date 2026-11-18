@@ -6,12 +6,6 @@ facts:
   - id: console
     text: The AWS Management Console is a web-based application that provides centralized access to all individual AWS service consoles, with search, notifications, AWS CloudShell, and account and billing information.
     source: https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/what-is.html#what-is
-  - id: cli
-    text: The AWS Command Line Interface (AWS CLI) is an open source tool for interacting with AWS services through commands in a command-line shell, with functionality equivalent to the console.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html#cli-chap-welcome
-  - id: sdks
-    text: AWS SDKs provide language-specific APIs and handle connection details such as calculating signatures, retrying requests and handling errors.
-    source: https://docs.aws.amazon.com/local-zones/latest/ug/what-is-aws-local-zones.html#deploying-in-local-zones
   - id: access-keys
     text: Access keys sign programmatic requests made with the AWS CLI or the AWS API, directly or through an AWS SDK.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#id_credentials_access-keys

@@ -19,14 +19,6 @@ facts:
     text: Shared GetRecords consumers collectively have 2 MB per second per shard and up to 5 read
       transactions per second.
     source: https://docs.aws.amazon.com/streams/latest/dev/service-sizes-and-limits.html#service-sizes-and-limits
-  - id: shard-order
-    text: For strict write ordering, write PutRecord calls serially to one shard and use
-      SequenceNumberForOrdering; sequence numbers do not establish order across shards.
-    source: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html#API_PutRecord
-  - id: shard-batch-order
-    text: PutRecords can partially succeed and does not guarantee record ordering; retry failed entries
-      rather than assuming the whole request succeeded.
-    source: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html#API_PutRecords
   - id: shard-hot
     text: On-demand streams can still throttle when one partition key exceeds the shard limit; spreading
       traffic across keys avoids concentrating it on one shard.
@@ -60,14 +52,6 @@ facts:
   - id: shard-large-date
     text: AWS announced support for record sizes up to 10 MiB in October 2025.
     source: https://aws.amazon.com/blogs/big-data/amazon-kinesis-data-streams-now-supports-10x-larger-record-sizes-simplifying-real-time-data-processing/
-  - id: shard-kpl-aggregation
-    text: KPL aggregation combines multiple application records into one Kinesis record to reduce the
-      service-record rate and improve producer throughput.
-    source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-aggretation
-  - id: shard-kpl-collection
-    text: KPL collection uses PutRecords to send multiple Kinesis records in one request; aggregation
-      and collection are independently configurable and enabled by default.
-    source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-batching
   - id: shard-encryption
     text: Kinesis Data Streams supports server-side encryption of stored data with AWS KMS keys.
     source: https://docs.aws.amazon.com/streams/latest/dev/server-side-encryption.html#server-side-encryption

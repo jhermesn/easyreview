@@ -9,15 +9,6 @@ facts:
   - id: pool-desired
     text: Instances drawn from the warm pool count toward group desired capacity when they leave the pool.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts
-  - id: size
-    text: By default warm-pool size is group maximum capacity minus desired capacity.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts
-  - id: prepared
-    text: MaxGroupPreparedCapacity replaces group maximum capacity in the warm-pool sizing calculation.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts
-  - id: minimum
-    text: MinSize sets a minimum warm-pool size; by default no minimum is set.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts
   - id: states
     text: Warm-pool instances can be Stopped, Hibernated or Running.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts
@@ -42,9 +33,6 @@ facts:
   - id: reuse
     text: Scale-in terminates instances by default; an instance reuse policy can return them to the warm pool.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts
-  - id: cold
-    text: An empty warm pool causes scale-out to launch directly into the group as a cold start, subject to maximum capacity.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pool-instance-lifecycle.html#warm-pool-instance-lifecycle
   - id: hooks
     text: Launch hooks delay stopping or hibernation until initialization finishes and can pause instances again before they enter service from the pool.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pool-instance-lifecycle.html#warm-pool-instance-lifecycle

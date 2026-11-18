@@ -66,15 +66,9 @@ facts:
   - id: acl-definition
     text: An ACL is a list of grants attached to a bucket or object.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#acl-overview
-  - id: get-object-acl
-    text: The GetObjectAcl API returns the access control list (ACL) of an object.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html
   - id: access-analyzer-s3
     text: "IAM Access Analyzer for S3 reports general purpose buckets that allow access to the public or to other AWS accounts, and a public bucket can be blocked from that page with one action."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html#access-analyzer
-  - id: website-bucket-name
-    text: "To serve an S3 static website at a custom domain through a Route 53 alias, the bucket name must match the domain name exactly, for example example.com."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html#website-hosting-custom-domain-walkthrough
 cards:
   - id: s3-017
     q: How can an S3 administrator block public access even when bucket-level permissions grant it?

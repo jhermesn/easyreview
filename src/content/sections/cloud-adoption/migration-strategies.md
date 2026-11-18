@@ -6,27 +6,12 @@ facts:
   - id: seven-rs
     text: The seven migration strategies, the 7 Rs, are retire, retain, rehost, relocate, repurchase, replatform, and refactor or re-architect.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#migration-strategies
-  - id: retire
-    text: Retire decommissions or archives an application that has no business value to keep or move, which removes its maintenance and hosting cost.
-    source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#retire
-  - id: retain
-    text: Retain keeps an application in the source environment, for example for data residency, high risk, unresolved dependencies, recent upgrades or specialized hardware.
-    source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#retain
   - id: rehost
     text: Rehost, also called lift and shift, moves an application to AWS without changing it.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#rehost
-  - id: relocate
-    text: Relocate moves many servers at once from an on-premises platform to a cloud version of that platform without new hardware, rewrites or operational changes, and can also move resources to another VPC, Region or account.
-    source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#relocate
-  - id: repurchase
-    text: Repurchase, also called drop and shop, replaces an application with a different version or product, such as moving from a traditional license to software as a service (SaaS).
-    source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#repurchase
   - id: replatform
     text: Replatform, also called lift, tinker and shift, moves an application and adds some optimization, such as moving a SQL Server database to Amazon RDS for SQL Server.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#replatform
-  - id: refactor
-    text: Refactor or re-architect modifies the application's architecture to use cloud-native features for agility, performance and scalability.
-    source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#refactor
   - id: refactor-cost
     text: Refactoring is the most complex and costly migration strategy; for large migrations AWS recommends rehosting, relocating or replatforming first and modernizing afterward.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#refactor
@@ -49,7 +34,7 @@ cards:
     trap: true
     facts: [refactor-cost]
 ---
-A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs, from not moving at all to rebuilding for the cloud. [Migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#migration-strategies)
+A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs, for choosing how to move or handle a workload. [Migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#migration-strategies)
 
 ### How it works
 
@@ -59,13 +44,8 @@ A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs
 
 | Strategy | Also called | What happens |
 |---|---|---|
-| Retire | | Turn off what has no value |
-| Retain | | Keep in place for now |
 | Rehost | Lift and shift | Move unchanged |
-| Relocate | | Move to a cloud version of the same platform |
-| Repurchase | Drop and shop | Replace with another product, often SaaS |
 | Replatform | Lift, tinker and shift | Move with some optimization, such as a managed database |
-| Refactor | Re-architect | Redesign with cloud-native features |
 
 ### Exam cues
 
@@ -79,4 +59,4 @@ A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs
 - Refactor is the most complex and costly.
 - For a large migration, rehost, relocate or replatform first; modernization can follow.
 
-> **Trap:** Replatform is not refactor. Moving a database to Amazon RDS changes the platform, not the application's architecture.
+> **Trap:** Rehosting moves an application without changes. Replatforming adds some optimization during the move.

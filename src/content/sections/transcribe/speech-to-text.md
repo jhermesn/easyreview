@@ -9,15 +9,9 @@ facts:
   - id: modes
     text: Amazon Transcribe transcribes media in real time (streaming) or files stored in Amazon S3 (batch).
     source: https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is
-  - id: features
-    text: Amazon Transcribe supports language customization, content filtering for privacy, multi-channel audio and identifying individual speakers.
-    source: https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is
   - id: transcribe-medical
     text: "Amazon Transcribe Medical is automatic speech recognition for medical speech, such as physician-dictated notes, telemedicine appointments and physician-patient conversations."
     source: https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical.html#transcribe-medical
-  - id: pii-redaction
-    text: "Amazon Transcribe can redact PII from transcripts, producing only a redacted transcript or both redacted and unredacted versions."
-    source: https://docs.aws.amazon.com/transcribe/latest/dg/pii-redaction.html#pii-redaction
   - id: language-identification
     text: "Amazon Transcribe can identify the languages spoken in media without a language code, including all languages in multilingual media."
     source: https://docs.aws.amazon.com/transcribe/latest/dg/lang-id.html#lang-id
@@ -27,9 +21,6 @@ facts:
   - id: custom-language-models
     text: "Custom language models are trained on domain-specific text so Transcribe learns the context in which words are used; they improve accuracy for specialized speech beyond what custom vocabularies do."
     source: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html#custom-language-models
-  - id: toxicity-detection
-    text: "Transcribe toxicity detection uses audio cues such as tone and pitch together with text cues to classify toxic speech into seven categories: sexual harassment, hate speech, threat, abuse, profanity, insult and graphic."
-    source: https://docs.aws.amazon.com/transcribe/latest/dg/toxicity.html#toxicity
   - id: healthscribe
     text: "AWS HealthScribe is a HIPAA-eligible capability that combines speech recognition and generative AI to transcribe patient-clinician conversations and generate clinical notes for review."
     source: https://docs.aws.amazon.com/transcribe/latest/dg/health-scribe.html#health-scribe

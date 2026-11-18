@@ -30,15 +30,6 @@ facts:
   - id: transfer-acceleration
     text: S3 Transfer Acceleration speeds up long-distance transfers to a bucket by routing them through CloudFront edge locations.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
-  - id: bucket-naming
-    text: "General purpose bucket names are 3 to 63 characters of lowercase letters, numbers, periods and hyphens; they cannot look like an IP address, start with xn--, or end with -s3alias."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html#general-purpose-bucket-names
-  - id: account-regional-namespace
-    text: "Buckets can optionally be created in an account regional namespace, where only the owning account can create names ending in its account ID, Region code and -an, so a chosen prefix cannot be taken by another account."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html#account-regional-naming-rules
-  - id: object-tags
-    text: "An S3 object can carry up to 10 tags with unique keys, which access policies and lifecycle rule filters can use."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html#object-tagging
 cards:
   - id: s3-112
     q: What kind of storage is Amazon S3, and what are its two main building blocks?

@@ -6,24 +6,12 @@ facts:
   - id: insights-purpose
     text: CloudWatch Logs Insights interactively searches and analyzes stored CloudWatch log events.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html#AnalyzingLogData
-  - id: insights-languages
-    text: Supported query languages are Logs Insights QL, OpenSearch PPL, and OpenSearch SQL.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html#AnalyzingLogData
   - id: insights-fields
     text: Logs Insights automatically discovers fields in supported AWS service logs and JSON
       application logs.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html#AnalyzingLogData
-  - id: insights-timeout
-    text: Queries in any supported language time out after 60 minutes.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html#AnalyzingLogData
-  - id: insights-results
-    text: Query results remain available for 7 days.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html#AnalyzingLogData
   - id: insights-cost
     text: Logs Insights charges depend on data scanned regardless of query language.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html#AnalyzingLogData
-  - id: insights-creation
-    text: Logs Insights cannot read events whose timestamps precede creation of their log group.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html#AnalyzingLogData
   - id: insights-index
     text: Field indexes can reduce scan volume and improve query performance.

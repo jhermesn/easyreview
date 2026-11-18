@@ -101,9 +101,6 @@ facts:
   - id: piops-sizes
     text: "io1 volumes range from 4 GiB to 16 TiB; io2 Block Express goes up to 64 TiB and 4,000 MiB/s of throughput."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/provisioned-iops.html#provisioned-iops
-  - id: hdd-throughput
-    text: "st1 throughput reaches up to 500 MiB/s and sc1 up to 250 MiB/s, both governed by size-based baselines and burst credits."
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#hdd-vols
   - id: raid0
     text: "RAID 0 stripes I/O across EBS volumes so their IOPS and throughput add up; AWS does not recommend RAID 5 or 6 on EBS because parity writes cost 20 to 30 percent of usable IOPS."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/raid-config.html#raid-config

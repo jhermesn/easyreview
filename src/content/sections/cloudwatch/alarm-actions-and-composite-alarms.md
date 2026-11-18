@@ -7,10 +7,6 @@ facts:
     text: Metric alarms can trigger SNS notifications, Lambda functions, EC2 actions, Auto Scaling
       actions, and supported Systems Manager actions.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Alarms.html#CloudWatch_Alarms
-  - id: state-actions
-    text: Alarm actions normally run on state changes; Auto Scaling actions repeat once per minute while
-      the alarm stays in the relevant state.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Alarms.html#CloudWatch_Alarms
   - id: composite-rule
     text: A composite alarm evaluates states of other alarms rather than metric values.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_Composite_Alarm.html#Create_Composite_Alarm
@@ -41,41 +37,6 @@ facts:
     text: CloudWatch sends alarm state-change events to EventBridge, where rules can route them to
       targets.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-and-eventbridge.html#cloudwatch-and-eventbridge
-  - id: composite-suppression
-    text: A suppressor alarm in ALARM prevents composite alarm actions; WaitPeriod and ExtensionPeriod
-      delay actions around suppressor transitions. AWS recommends 60 seconds for each.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-suppression.html#Create_Composite_Alarm_Suppression_Wait_Extension
-  - id: composite-cycle
-    text: Cyclic composite alarm dependencies stop evaluation and prevent deletion; setting one AlarmRule
-      to False breaks the cycle.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_Composite_Alarm.html#Create_Composite_Alarm
-  - id: alarm-action-validation
-    text: CloudWatch does not validate configured alarm actions or detect errors from attempts to invoke
-      nonexistent EC2 Auto Scaling actions or SNS topics.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Alarms.html#CloudWatch_Alarms
-  - id: alarm-test-state
-    text: SetAlarmState temporarily changes an alarm state until the next alarm comparison.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Alarms.html#common-features-of-alarms
-  - id: alarm-lambda-permission
-    text: Lambda alarm actions can invoke a function in another account; its resource policy must allow
-      lambda.alarms.cloudwatch.amazonaws.com to invoke it, with source account and alarm ARN restrictions.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarms-and-actions-Lambda.html#alarms-and-actions-Lambda
-  - id: composite-create-permission
-    text: Creating a composite alarm requires cloudwatch:PutCompositeAlarm scoped to all resources; an IAM
-      user creating one with OpsItem actions also needs iam:CreateServiceLinkedRole.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutCompositeAlarm.html#API_PutCompositeAlarm
-  - id: composite-limits
-    text: A composite rule can reference up to 100 alarms, and a single alarm can be referenced by up to
-      150 composite alarms.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutCompositeAlarm.html#API_PutCompositeAlarm
-  - id: alarm-mute
-    text: Scheduled alarm mute rules suppress actions but not state evaluation for targeted metric and
-      composite alarms in the same account and Region.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-mute-rules.html#effects-of-mute-rules
-  - id: alarm-mute-end
-    text: After a mute window ends, CloudWatch executes actions for the current state if it differs from
-      the state at the start; otherwise it executes no actions.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-mute-rules.html#effects-of-mute-rules
   - id: billing-alarm
     text: A billing alarm watches the EstimatedCharges metric and notifies through Amazon SNS; billing alerts must be turned on first, and billing metric data is stored in US East (N. Virginia).
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html

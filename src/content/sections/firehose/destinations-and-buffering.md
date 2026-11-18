@@ -39,9 +39,6 @@ facts:
     text: HTTP endpoint destination buffer hints range from 1 to 64 MB, default 5 MB, and from 0 to 900
       seconds, default 60 seconds.
     source: https://docs.aws.amazon.com/firehose/latest/dev/create-configure-backup.html#buffering-hints
-  - id: deliver-zero
-    text: Zero buffering is unavailable for S3 backup and for dynamic partitioning.
-    source: https://docs.aws.amazon.com/firehose/latest/dev/create-configure-backup.html#buffering-hints
   - id: deliver-latest
     text: When Kinesis Data Streams is the Firehose source, Firehose starts at LATEST and disables its
       own PutRecord and PutRecordBatch ingestion operations.
@@ -53,10 +50,6 @@ facts:
   - id: deliver-logs
     text: CloudWatch Logs subscription filters can forward log events to Firehose.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html#FirehoseExample
-  - id: deliver-firewall
-    text: AWS Network Firewall supports direct log delivery to Firehose using LogDestinationType
-      KinesisDataFirehose and the deliveryStream destination key.
-    source: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_LogDestinationConfig.html#networkfirewall-Type-LogDestinationConfig-LogDestination
   - id: deliver-waf
     text: AWS WAF request logs can be sent to CloudWatch Logs, S3, or a Firehose delivery stream.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/logging.html#logging

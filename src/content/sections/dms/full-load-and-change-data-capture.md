@@ -6,12 +6,6 @@ facts:
   - id: dms-purpose
     text: AWS DMS migrates data between supported data stores and can replicate ongoing changes.
     source: https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html
-  - id: dms-endpoints
-    text: Source and target endpoints provide connection, data store type and location information.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.html
-  - id: dms-test
-    text: DMS can test endpoint connections using a VPC and replication instance.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.Creating.html
   - id: dms-aws-endpoint
     text: At least one endpoint must be on an AWS service; DMS cannot migrate between two on-premises databases.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.Creating.html
@@ -36,9 +30,6 @@ facts:
   - id: dms-schema
     text: DMS Schema Conversion assesses and converts schemas and code for a different target engine; objects it cannot convert automatically require manual conversion.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.HighLevelView.html
-  - id: dms-sct
-    text: AWS Schema Conversion Tool is an alternative to DMS Schema Conversion for converting source schemas.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html
   - id: dms-documentdb
     text: Amazon DocumentDB is a managed database service for MongoDB-compatible databases.
     source: https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html
@@ -54,45 +45,18 @@ facts:
   - id: dms-serverless
     text: DMS Serverless automatically provisions and scales replication capacity and provides built-in high availability.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html
-  - id: dms-task-state
-    text: A DMS task running with errors can continue loading other tables while one or more tables fail to migrate.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Tasks.Status
-  - id: dms-task-logs
-    text: DMS can log task information to CloudWatch when logging is enabled in the task settings.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.ManagingLogs
-  - id: dms-table-state
-    text: DMS table states distinguish an in-progress full load, a completed load and a table error.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Tasks.CustomizingTasks.TableState
-  - id: dms-metrics
-    text: Comparing CDCLatencySource and CDCLatencyTarget helps locate replication latency; similar values suggest checking the source first, while a higher target value suggests checking the target.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.Metrics
   - id: dms-source-latency
     text: CDCLatencySource measures the delay between the source and the replication instance.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.Metrics.Task
   - id: dms-target-latency
     text: High CDCLatencyTarget indicates a delay applying change events to the target.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.Metrics.Task
-  - id: dms-memory
-    text: FreeableMemory approaching zero or increasing SwapUsage can indicate that the replication instance is overloaded.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.Metrics
   - id: dms-freeable
     text: FreeableMemory includes memory in buffers and cache that can be freed and is not the same as actual free memory.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.Metrics
   - id: dms-views
     text: Views can be migrated with full-load-only tasks but not with tasks that include CDC.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html
-  - id: s3-source
-    text: "AWS DMS can use Amazon S3 as a source, reading CSV or Parquet files for a full load and new files for ongoing changes."
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.S3.html#CHAP_Source.S3
-  - id: kinesis-target
-    text: "AWS DMS can use Amazon Kinesis Data Streams as a target."
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kinesis.html#CHAP_Target.Kinesis
-  - id: endpoint-ssl
-    text: "AWS DMS can encrypt source and target endpoint connections with SSL by assigning a certificate, such as an imported certificate authority (CA) certificate, to the endpoint."
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.SSL.html#CHAP_Security.SSL
-  - id: dynamodb-target
-    text: "AWS DMS can migrate data into a DynamoDB table, with a relational database or MongoDB as the source."
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html#CHAP_Target.DynamoDB
 cards:
   - id: dms-001
     q: How do Amazon DocumentDB, Amazon Redshift and AWS DMS differ?
@@ -143,7 +107,7 @@ AWS Database Migration Service (DMS) moves data between supported data stores an
 
 ### How it works
 
-1. Define source and target endpoints, which contain each data store's connection details. At least one endpoint must be an AWS service. Test both endpoint connections from the replication instance.
+1. Use source and target endpoints. At least one endpoint must be an AWS service.
 2. Select a replication instance, which reads and loads data, or use DMS Serverless to provision and scale capacity automatically. Multi-AZ gives a provisioned instance a synchronous standby in another Availability Zone.
 3. Choose the task type. Full load plus CDC copies existing data while caching changes for each table once its load starts, applies those changes, then continues replication from source logs. Configure the source for CDC as required by its engine.
 4. After replication reaches a steady state, stop the application, allow remaining changes to reach the target, and restart the application against the target.

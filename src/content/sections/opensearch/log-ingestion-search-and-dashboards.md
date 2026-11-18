@@ -30,18 +30,9 @@ facts:
   - id: search-vpc
     text: A VPC is a logically isolated virtual network in which AWS resources can run.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc
-  - id: search-firehose
-    text: Firehose buffers records and sends bulk indexing requests to an OpenSearch Service domain; records must be UTF-8 encoded single-line JSON objects.
-    source: https://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#basic-deliver
   - id: search-cloudwatch-firehose
     text: Firehose does not support delivering CloudWatch Logs to an OpenSearch Service destination because CloudWatch combines multiple log events in one Firehose record.
     source: https://docs.aws.amazon.com/firehose/latest/dev/writing-with-cloudwatch-logs.html#writing-with-cloudwatch-logs
-  - id: search-subscription-limits
-    text: A CloudWatch log group can have up to five subscription filters; delivery of events is at least once and duplicates can occur.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html#Subscriptions
-  - id: search-retry
-    text: CloudWatch Logs retries retryable subscription delivery errors for up to 24 hours; non-retryable errors disable the filter temporarily and logs are skipped during that period.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html#Subscriptions
   - id: search-athena
     text: Athena runs interactive SQL queries directly against data stored in S3.
     source: https://docs.aws.amazon.com/athena/latest/ug/what-is.html#what-is

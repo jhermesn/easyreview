@@ -34,10 +34,6 @@ facts:
     text: Delegates must be prevented from removing the required boundary or changing its policy to escape its
       limits.
     source: https://aws.amazon.com/blogs/security/when-and-where-to-use-iam-permissions-boundaries/
-  - id: notprincipal-deny
-    text: A resource Deny with NotPrincipal denies IAM principals with boundaries regardless of the NotPrincipal
-      exceptions; AWS recommends ArnNotEquals on aws:PrincipalArn.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries
   - id: no-service-linked-boundary
     text: A permissions boundary cannot be set on a service-linked role.
     source: https://docs.aws.amazon.com/cli/latest/reference/iam/put-role-permissions-boundary.html

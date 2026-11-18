@@ -21,29 +21,6 @@ facts:
     text: S3 File Gateway data is directly accessible through S3 and can use S3 versioning, replication
       and lifecycle management.
     source: https://docs.aws.amazon.com/filegateway/latest/files3/what-is-file-s3.html
-  - id: notify-scope
-    text: NotifyWhenUploaded requests an EventBridge notification after all files written to a file
-      share up to the request time have uploaded to S3.
-    source: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_NotifyWhenUploaded.html
-  - id: notify-async
-    text: NotifyWhenUploaded returns a NotificationId and does not wait synchronously for file upload
-      completion.
-    source: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_NotifyWhenUploaded.html
-  - id: notify-targets
-    text: EventBridge can route the upload completion notification to targets such as SNS or Lambda.
-    source: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_NotifyWhenUploaded.html
-  - id: refresh-inventory
-    text: RefreshCache updates the cached inventory of S3 objects after changes outside the gateway; it
-      does not import file contents into local cache storage.
-    source: https://docs.aws.amazon.com/filegateway/latest/files3/refresh-cache.html
-  - id: ttl-refresh
-    text: TTL-based cache refresh runs when a directory is accessed after its time to live has expired;
-      it is non-recursive and blocks that directory access while refreshing.
-    source: https://docs.aws.amazon.com/filegateway/latest/files3/refresh-cache.html
-  - id: upload-notification
-    text: NotificationPolicy requests individual file upload notifications, whereas NotifyWhenUploaded
-      tracks a working file set.
-    source: https://docs.aws.amazon.com/filegateway/latest/files3/monitoring-file-gateway.html#get-notification
   - id: fsx-availability
     text: FSx File Gateway closed to new customers in October 2024; existing customers can continue
       using it.

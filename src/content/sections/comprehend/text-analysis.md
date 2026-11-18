@@ -12,21 +12,12 @@ facts:
   - id: modes
     text: Amazon Comprehend runs real-time analysis for small workloads or asynchronous jobs for large document sets, with pre-trained models or custom models for classification and entity recognition.
     source: https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html#what-is
-  - id: custom-entities
-    text: "Amazon Comprehend custom entity recognition finds entity types of your own, such as product codes or business-specific terms, beyond the preset generic entity types, with automatic annotation and model training."
-    source: https://docs.aws.amazon.com/comprehend/latest/dg/custom-entity-recognition.html#custom-entity-recognition
   - id: comprehend-medical
     text: "Amazon Comprehend Medical uses NLP to detect medical information such as conditions, medications and test results in unstructured clinical text like physician notes and discharge summaries."
     source: https://docs.aws.amazon.com/comprehend-medical/latest/dev/comprehendmedical-welcome.html#comprehendmedical-welcome
-  - id: custom-classification
-    text: "Comprehend custom classification trains a classifier on categories you define, such as support request types, then classifies a single document in real time or a document set asynchronously; it accepts plain text, PDF, Word and images."
-    source: https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html#how-document-classification
   - id: pii-detection
     text: "Amazon Comprehend detects PII entities in English or Spanish text and can locate them or redact them."
     source: https://docs.aws.amazon.com/comprehend/latest/dg/how-pii.html#how-pii
-  - id: targeted-sentiment
-    text: "Comprehend targeted sentiment gives the sentiment for each specific entity in a document, such as a product or brand, while sentiment analysis gives one dominant sentiment for the whole document."
-    source: https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html#how-targeted-sentiment
 cards:
   - id: comprehend-001
     q: A company wants to know whether customer reviews are positive or negative. Which AWS service fits?

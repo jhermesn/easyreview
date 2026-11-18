@@ -7,19 +7,6 @@ facts:
     text: RDS storage autoscaling automatically increases allocated storage up to a configured maximum
       threshold.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.Autoscaling.html#USER_PIOPS.Autoscaling
-  - id: trigger-space
-    text: RDS storage autoscaling requires free space at or below 10 percent of allocated storage for at
-      least five minutes.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.Autoscaling.html#USER_PIOPS.Autoscaling
-  - id: trigger-modifications
-    text: RDS storage autoscaling requires prior storage optimization to finish and fewer than four
-      storage modifications in the past 24 hours.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.Autoscaling.html#USER_PIOPS.Autoscaling
-  - id: growth-increment
-    text: RDS autoscaling adds the greatest of 10 GiB, 10 percent of allocated storage, or predicted
-      growth exceeding allocated storage over the next seven hours based on the past hour of
-      FreeStorageSpace.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.Autoscaling.html#USER_PIOPS.Autoscaling
   - id: maximum-threshold
     text: The RDS autoscaling maximum threshold must be at least 10 percent above current allocated
       storage; AWS recommends at least 26 percent above it.
@@ -145,4 +132,4 @@ RDS storage autoscaling grows a DB instance's allocated disk space when free spa
 | `DatabaseConnections` | Client network connections, excluding some internal sessions |
 | `ReplicaLag` | Supported replica delay in seconds |
 
-> **Trap:** Storage autoscaling cannot guarantee that a large import avoids a full disk. Growth is constrained by optimization, the modification limit, and the configured ceiling.
+> **Trap:** Storage autoscaling cannot guarantee that a large import avoids a full disk. Storage can fill before another modification is permitted, and growth stops at the configured ceiling.

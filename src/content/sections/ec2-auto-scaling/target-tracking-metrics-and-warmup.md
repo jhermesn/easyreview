@@ -36,9 +36,6 @@ facts:
   - id: scale-in-block
     text: Policy-driven scale-in is blocked during scale-out until the new instances finish warming up.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-target-tracking-scaling-warmup
-  - id: fallback
-    text: When policy warmup is omitted, target tracking uses group default instance warmup, or group default cooldown if default warmup is unset.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-target-tracking-scaling-warmup
   - id: monitoring
     text: EC2 metrics default to five-minute intervals; detailed monitoring provides one-minute intervals, which AWS recommends for target tracking.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#target-tracking-choose-metrics

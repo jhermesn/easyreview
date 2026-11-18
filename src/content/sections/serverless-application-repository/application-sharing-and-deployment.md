@@ -21,20 +21,11 @@ facts:
   - id: public-copy
     text: When a public application is deployed in another Region, the repository copies deployment artifacts to an S3 bucket in that Region and updates template references.
     source: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-publishing-applications.html#serverlessrepo-publishing-applications
-  - id: public-requirements
-    text: Public sharing requires SemanticVersion and LicenseUrl properties.
-    source: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-how-to-publish.html#share-application
-  - id: nested-permission
-    text: A consumer must have permission to deploy nested applications to deploy their parent application.
-    source: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/application-deployment-permissions.html#application-deployment-permissions
   - id: nested-definition
     text: A nested application is part of a larger serverless application.
     source: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-nested-applications.html#serverless-sam-template-nested-applications
   - id: capability-review
     text: The repository checks templates for IAM roles, resource policies and nested applications and requires acknowledgment of applicable capabilities before deployment.
-    source: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/acknowledging-application-capabilities.html#acknowledging-application-capabilities
-  - id: named-iam
-    text: Applications containing IAM resources with custom names require CAPABILITY_NAMED_IAM.
     source: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/acknowledging-application-capabilities.html#acknowledging-application-capabilities
   - id: iam-capability
     text: Specified IAM resources require CAPABILITY_IAM or CAPABILITY_NAMED_IAM.
@@ -42,12 +33,6 @@ facts:
   - id: resource-policy
     text: Certain resource policies require CAPABILITY_RESOURCE_POLICY.
     source: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/acknowledging-application-capabilities.html#acknowledging-application-capabilities
-  - id: nested-capability
-    text: Applications with nested applications require CAPABILITY_AUTO_EXPAND.
-    source: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/acknowledging-application-capabilities.html#acknowledging-application-capabilities
-  - id: cli-deployment
-    text: CLI deployment reviews requiredCapabilities, creates a CloudFormation change set with required capabilities and executes the change set.
-    source: https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-how-to-consume.html#acknowledging-application-capabilities-api
   - id: changeset-definition
     text: A CloudFormation change set previews proposed stack changes before execution.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html#using-cfn-updating-stacks-changesets

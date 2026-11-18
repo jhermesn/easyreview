@@ -30,9 +30,6 @@ facts:
     text: SNS filtering supports exact string matching, prefixes, suffixes, anything-but, numeric matching, and
       other documented operators.
     source: https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html#sns-subscription-filter-policies
-  - id: propagation
-    text: Filter policy additions or changes can take up to 15 minutes to fully take effect.
-    source: https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html#sns-subscription-filter-policies
   - id: nonmatch
     text: SNS does not deliver a message to a subscription when it fails that subscription filter.
     source: https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html#sns-message-filtering

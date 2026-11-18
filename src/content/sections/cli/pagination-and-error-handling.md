@@ -3,44 +3,17 @@ title: Pagination and error handling
 level: associate
 order: 10
 facts:
-  - id: auto-pages
-    text: For supported paginated list commands, the AWS CLI retrieves all pages by default using the
-      service-specific default page size.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-serverside
   - id: no-paginate
     text: The --no-paginate option stops automatic token following and returns only the first service
       page.
     source: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-nopaginate
-  - id: page-size
-    text: The --page-size option changes the items requested per service call without limiting the total
-      results retrieved; smaller pages can reduce timeouts.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-pagesize
-  - id: max-items
-    text: The --max-items option limits items in CLI output and returns a NextToken if more items remain.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-maxitems
-  - id: starting-token
-    text: Pass the CLI NextToken as --starting-token to resume; do not pass a null or empty starting
-      token.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-startingtoken
   - id: order
     text: If a service changes item order, different --page-size and --max-items values can cause
       missing or duplicate results; align them or retrieve the complete list.
     source: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html
-  - id: pager
-    text: AWS CLI v2 uses a client-side display pager by default; --no-cli-pager disables that display
-      pager without disabling API pagination.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-clientside
   - id: retry-default
     text: AWS CLI v2 uses standard retry mode by default, with two retries after the initial call for
       three total attempts.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-retries.html#cli-usage-retries-modes-standard.title
-  - id: retry-errors
-    text: Standard mode retries supported transient connection and timeout errors, throttling errors,
-      and HTTP 500, 502, 503 and 504 responses.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-retries.html#cli-usage-retries-modes-standard.title
-  - id: backoff
-    text: Standard retry mode uses exponential backoff with a base factor of two and a maximum backoff
-      of 20 seconds.
     source: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-retries.html#cli-usage-retries-modes-standard.title
   - id: attempt-config
     text: AWS_RETRY_MODE and AWS_MAX_ATTEMPTS configure retry behavior; max_attempts includes the
@@ -50,9 +23,6 @@ facts:
     text: Access denied errors require checking identity and permissions; invalid command parameters
       require correcting syntax or values.
     source: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-troubleshooting.html
-  - id: success-code
-    text: CLI return code 0 indicates command success with no CLI or service errors.
-    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-returncodes.html
   - id: syntax-code
     text: CLI return code 252 indicates invalid command syntax, an unknown parameter or an incorrect
       parameter value that prevents execution.

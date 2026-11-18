@@ -6,9 +6,6 @@ facts:
   - id: purpose
     text: AWS Proton provided automated infrastructure provisioning and deployment for serverless and container-based applications using versioned templates.
     source: https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#Welcome
-  - id: environment-template
-    text: A Proton environment template defines shared infrastructure used by multiple applications or resources.
-    source: https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#ag-admin
   - id: service-template
     text: A Proton service template defines the infrastructure needed to deploy and maintain an application or microservice in an environment.
     source: https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#ag-admin
@@ -27,30 +24,18 @@ facts:
   - id: versions
     text: Proton identified service instances using outdated template versions and allowed administrators to request upgrades.
     source: https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#Welcome
-  - id: existing-infrastructure
-    text: A customer managed environment template connects to existing provisioned infrastructure, which Proton does not manage.
-    source: https://docs.aws.amazon.com/proton/latest/userguide/ag-templates.html#ag-templates
   - id: end-support
     text: AWS Proton support ended on October 7, 2026.
     source: https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#proton-end-of-support
   - id: new-customers
     text: New customers could not sign up for Proton after October 7, 2025.
     source: https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#proton-end-of-support
-  - id: proton-inaccessible
-    text: After support ended, the Proton console and Proton resources became inaccessible.
-    source: https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#faqs
-  - id: migration-impact
-    text: Deployed CloudFormation stacks and their resources remain intact after Proton support ends.
-    source: https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#important-migration-information
   - id: data-deletion
     text: Proton data was retained until October 7, 2026 and deleted after that date.
     source: https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#faqs
   - id: git-sync
     text: AWS lists CloudFormation Git sync as an alternative for a Git-based workflow, with no Proton-style environments or advanced pipeline features.
     source: https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#cloudformation-git-sync
-  - id: pipeline-alternative
-    text: AWS lists CodePipeline and CodeBuild as an alternative with more implementation work and less built-in developer self-service.
-    source: https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#codepipeline-and-codebuild
   - id: minor-version
     text: Proton minor template versions require a backward-compatible schema.
     source: https://docs.aws.amazon.com/proton/latest/userguide/ag-template-versions.html#ag-template-versions
@@ -97,14 +82,14 @@ AWS Proton was a platform service for deploying serverless and container applica
 
 ### How it works
 
-1. A platform administrator registered an environment template defining shared infrastructure, and a service template defining application infrastructure and compatible environments.
-2. The team deployed an environment, a set of shared resources. A developer selected a service template and supplied a source code repository.
+1. A platform administrator registered templates, including a service template defining application infrastructure and compatible environments.
+2. A developer selected a service template and supplied a source code repository.
 3. Proton provisioned a service and a deployment pipeline, an automated sequence for delivering changes. Each service instance represented the service template in a specific environment.
 4. Proton identified instances using older template versions so an administrator could request an upgrade.
 
 ### Exam cues
 
-- If the question says a team wants to use Proton for a new workload, think support has ended, because Proton is no longer available.
+- If the question says a team wants to use Proton for a new workload, remember that support has ended.
 - If the question says replace Proton with a Git-driven CloudFormation workflow, think CloudFormation Git sync, because AWS lists it as an alternative, although it lacks Proton-style environments and advanced pipeline features.
 
 ### Remember

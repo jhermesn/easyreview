@@ -21,10 +21,6 @@ facts:
   - id: grace-configuration
     text: ChangeableForDays selects compliance mode; omitting it selects governance mode.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#lock-backup-vault-cli
-  - id: retention-check
-    text: Vault Lock retention bounds reject new backup and copy jobs with incompatible retention, but
-      do not change existing recovery point lifecycles.
-    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#lock-backup-vault-console
   - id: empty-vault
     text: A compliance-locked vault can be deleted when it contains no recovery points.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#backup-vault-lock-modes

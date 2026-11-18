@@ -51,16 +51,6 @@ facts:
   - id: cache-key-forwarded
     text: Values included in the cache key by a cache policy are automatically included in origin requests.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#controlling-origin-requests
-  - id: cache-response-policy
-    text: A response headers policy attached to a cache behavior adds or removes viewer response headers without
-      function code or origin changes.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html#modifying-response-headers
-  - id: cache-security-headers
-    text: A response headers policy can add Strict-Transport-Security, Content-Security-Policy and X-Frame-Options.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html#modifying-response-headers
-  - id: cache-response-hit
-    text: Response headers policies apply to cached responses and responses forwarded from the origin.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html#modifying-response-headers
   - id: cache-response-ttl
     text: Cache-Control added by a response headers policy affects viewer caching, not CloudFront object caching.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html#modifying-response-headers
@@ -70,10 +60,6 @@ facts:
   - id: cache-geo-unknown
     text: CloudFront serves the requested content if it cannot determine the viewer country.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html#georestrictions-cloudfront
-  - id: cache-geo-waf
-    text: CloudFront geographic restrictions do not forward blocked requests to AWS WAF; use WAF geo match to
-      combine geography with other conditions.
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html#cloudfront-distributions-geo-restriction
   - id: cache-geo-custom
     text: For location rules finer than country or applying to selected files, an application can use a
       geolocation service and issue signed URLs to eligible viewers.
@@ -94,9 +80,6 @@ facts:
   - id: custom-origin-anywhere
     text: "A CloudFront custom origin is any HTTP or HTTPS server with a publicly resolvable DNS name, hosted on AWS or elsewhere, such as an on-premises web server."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html#concept_CustomOrigin
-  - id: all-methods
-    text: "When a distribution allows all HTTP methods, CloudFront forwards PUT, POST, PATCH and DELETE requests to the origin, so uploads also travel over the AWS edge network; it caches only GET, HEAD and optionally OPTIONS responses."
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#RequestCustomHTTPMethods
   - id: flat-rate-plans
     text: "CloudFront flat-rate pricing plans (Free, Pro, Business and Premium) bundle the CDN with AWS WAF, DDoS protection, a TLS certificate and S3 storage credits for one monthly price per distribution, with usage allowances and no overage charges."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/flat-rate-pricing-plan.html#flat-rate-pricing-plan
@@ -182,13 +165,11 @@ A cookie is a value stored by the client and sent with later requests. A query s
 1. CloudFront compares the requested URL path with behavior patterns in order. The first match selects the settings and origin or origin group, a primary and secondary pair used for failover. The default `*` behavior is last; cookies and query strings do not select a behavior.
 2. The cache policy builds the cache key, the identifier used to find a stored response. Its default parts are the distribution domain and URL path. Add values that change the response, such as its language. The policy also sets time to live (TTL), how long cached content remains valid.
 3. A cache hit means a valid stored response matches the key. CloudFront serves it without contacting the origin. On a miss, CloudFront forwards the key values and any extra values selected by the origin request policy.
-4. A response headers policy changes HTTP headers, the name-value metadata sent with a response, before delivery. It applies to hits and origin responses. It can add security headers without code.
 
 | Policy | Controls | Typical use |
 |---|---|---|
 | Cache policy | Cache key and TTLs | Keep separate language variants |
 | Origin request policy | Extra values sent to the origin | Forward tracing information |
-| Response headers policy | Headers sent to viewers | Add standard security headers |
 
 For selected files or city-level rules, an application can check a geolocation service and issue a signed URL, a link carrying proof of permission. Use origin access control (OAC) with an S3 origin to prevent direct access around that check. Built-in geographic restrictions apply to the entire distribution at country level.
 

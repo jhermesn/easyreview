@@ -105,24 +105,12 @@ facts:
   - id: lifecycle-policy-deny
     text: A bucket policy cannot prevent deletions or transitions performed by an S3 Lifecycle rule.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-expire-general-considerations.html#lifecycle-expire-general-considerations
-  - id: lifecycle-precedence
-    text: When lifecycle actions conflict on the same day, permanent deletion takes precedence over transition, which takes precedence over creating a delete marker.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-expire-general-considerations.html#lifecycle-expire-general-considerations
-  - id: lifecycle-newer-versions
-    text: Noncurrent version expiration can retain a specified number of newer noncurrent versions; specifying that count requires a Filter element as well as an age.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-expire-general-considerations.html#lifecycle-expire-general-considerations
-  - id: lifecycle-tag-recheck
-    text: S3 rechecks tags when a queued tag-filtered expiration executes and skips the expiration if the triggering tag is absent.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-expire-general-considerations.html#lifecycle-tag-based-expiration-eligibility
   - id: lifecycle-expiration-delay
     text: S3 may remove an object after its lifecycle expiration date rather than at the exact expiration time.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-expire-general-considerations.html#lifecycle-expire-when
   - id: lifecycle-tag-filter
     text: "A Lifecycle rule tag filter matches only objects whose tag key and value both match exactly. Several tags go inside And, and the object must carry all of them; extra tags do not stop the match."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-filters.html#intro-lifecycle-filters
-  - id: tag-set-replace
-    text: "PutObjectTagging replaces the whole tag set of an object, so adding one tag means reading the set with GetObjectTagging, changing it and putting it back. An object can hold up to 10 tags."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html#tagging-apis
   - id: batch-tagging
     text: "S3 Batch Operations applies a tag set to every object in a supplied list in one job, which can cover billions of objects."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html#object-tagging

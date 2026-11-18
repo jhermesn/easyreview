@@ -19,23 +19,6 @@ facts:
     text: X-Ray derives inferred segments and graph nodes for services such as DynamoDB from
       instrumented client subsegments.
     source: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-subsegments
-  - id: viewpoints
-    text: A downstream segment records the service view of a call; the upstream subsegment records the
-      client view, including round-trip latency.
-    source: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-subsegments
-  - id: header
-    text: The X-Amzn-Trace-Id header carries trace context between instrumented HTTP services.
-    source: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader
-  - id: root
-    text: Root in an X-Ray trace header identifies the trace.
-    source: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader
-  - id: parent
-    text: Parent in an X-Ray trace header identifies the upstream segment or subsegment that connects
-      the downstream request.
-    source: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader
-  - id: sampled
-    text: Sampled in an X-Ray trace header carries the upstream recording decision.
-    source: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader
   - id: api
     text: API Gateway REST API stages can make sampling decisions and add trace headers to requests
       without one.
@@ -43,20 +26,6 @@ facts:
   - id: lambda
     text: Lambda Active tracing sends segments for sampled requests and follows the upstream sampling
       decision.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html
-  - id: lambda-segments
-    text: The AWS::Lambda trace segment records Lambda service work preparing the execution environment.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html#services-xray-traces
-  - id: function-segment
-    text: The AWS::Lambda::Function trace segment records function work.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html#services-xray-traces
-  - id: sqs
-    text: Traces from instrumented SQS message producers can be linked automatically to downstream
-      Lambda consumer traces.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html
-  - id: unsupported
-    text: X-Ray does not support Lambda event source mappings for MSK, self-managed Kafka, Amazon MQ, or
-      DocumentDB.
     source: https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html
   - id: size
     text: An X-Ray segment document can be at most 64 kB.
@@ -156,10 +125,9 @@ X-Ray follows recorded requests across a distributed application, meaning an app
 
 ### How it works
 
-1. The first integrated service establishes trace context, the identifiers and recording decision that relate work to a request. For API Gateway REST APIs, a stage can sample incoming requests and add a missing trace header.
-2. Instrumented HTTP clients forward `X-Amzn-Trace-Id`. Its `Root` identifies the trace, `Parent` connects the caller, and `Sampled` carries the recording decision.
-3. Services send segments for their work. Instrumented clients add subsegments for calls to other services or databases.
-4. X-Ray joins the records by trace ID. For a dependency that sends no segment, such as DynamoDB, it creates an inferred node from the caller's subsegment.
+1. For API Gateway REST APIs, a stage can sample incoming requests and add a missing trace header.
+2. Services send segments for their work. Instrumented clients add subsegments for calls to other services or databases.
+3. X-Ray collects segments associated with a request. For a dependency such as DynamoDB, it creates an inferred node from the client subsegment.
 
 An inferred node is X-Ray's reconstruction of a dependency from client observations. Lambda Active tracing follows upstream sampling and produces segments for sampled requests.
 
@@ -171,8 +139,7 @@ An inferred node is X-Ray's reconstruction of a dependency from client observati
 
 ### Remember
 
-- The HTTP context header is `X-Amzn-Trace-Id`, with `Root`, `Parent`, and `Sampled` fields.
 - A segment document has a maximum size of 64 kB.
 - Incoming trace headers can come from clients; applications can remove them to avoid client-controlled trace IDs and sampling decisions.
 
-> **Trap:** An inferred node does not mean the dependency emitted its own trace segment. Inspect the caller's subsegment for the recorded downstream latency and response.
+> **Trap:** An inferred node does not mean the dependency emitted its own trace segment. X-Ray derives it from the client subsegment.

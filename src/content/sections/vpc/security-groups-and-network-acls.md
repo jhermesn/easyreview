@@ -40,17 +40,6 @@ facts:
     text: ACL return-path rules must allow the client ephemeral ports, the temporary ports the client
       selects for connections; the range depends on the client.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/custom-network-acl.html#nacl-ephemeral-ports
-  - id: sg-exceptions
-    text: Security groups do not filter Amazon DNS, DHCP, EC2 instance metadata, ECS task metadata,
-      Windows activation, Time Sync, or reserved VPC router addresses.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#security-group-basics
-  - id: acl-exceptions
-    text: Network ACLs do not filter Amazon DNS, DHCP, EC2 instance metadata, ECS task metadata, Windows
-      activation, Time Sync, or reserved VPC router addresses.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
-  - id: dns-filter
-    text: Use Route 53 Resolver DNS Firewall to filter DNS requests through the VPC Resolver.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
   - id: reply-log
     text: An accepted request followed by a rejected response can indicate that the subnet ACL blocks
       the response despite stateful security-group permission.

@@ -75,15 +75,6 @@ facts:
   - id: tls-fle-individual
     text: Field-level encryption requires selected fields and cannot encrypt the entire request.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption
-  - id: tls-fle-rsa
-    text: Field-level encryption requires an RSA key pair of 2048 bits.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption-setting-up-step1
-  - id: tls-fle-format
-    text: The field-level encryption content type is application/x-www-form-urlencoded.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption-setting-up-step4
-  - id: tls-fle-chunk
-    text: The origin must support chunked encoding for field-level encryption.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption
   - id: tls-fle-profile
     text: A field-level encryption profile selects which fields to encrypt.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption-overview

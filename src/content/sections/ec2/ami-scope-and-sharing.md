@@ -24,12 +24,6 @@ facts:
   - id: share-storage
     text: The source account continues paying for the storage of a shared AMI.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ami-copy-works.html#copy-ami-across-accounts
-  - id: launch-snapshots
-    text: Launching from a shared AMI does not require separately sharing its backing EBS snapshots.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html#considerations-for-sharing-AMI-with-accounts
-  - id: copy-snapshots
-    text: Copying a shared EBS-backed AMI requires read permission for its backing snapshots.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ami-copy-works.html#copy-ami-across-accounts
   - id: encrypted-access
     text: A recipient of an encrypted AMI needs permission to use the KMS keys that encrypt its backing snapshots.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html#considerations-for-sharing-AMI-with-accounts
@@ -45,9 +39,6 @@ facts:
   - id: copy-owned
     text: Copying a shared AMI creates a target AMI owned by the recipient account.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ami-copy-works.html#copy-ami-across-accounts
-  - id: copy-distinct
-    text: An AMI copy has a new AMI ID and remains independent of changes to the source AMI.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ami-copy-works.html#how-ami-copy-works
   - id: cross-region
     text: To share an AMI in another Region, copy it to that Region and share the copy there.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html#considerations-for-sharing-AMI-with-accounts
@@ -60,15 +51,6 @@ facts:
   - id: no-decryption
     text: An encrypted AMI snapshot cannot become unencrypted through AMI copying.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ami-copy-works.html#ami-copy-encryption
-  - id: imagebuilder-distribution
-    text: Image Builder cross-account distribution delivers an AMI into destination accounts that can launch or modify it.
-    source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/cross-account-dist.html#cross-account-dist
-  - id: imagebuilder-keys
-    text: Encrypted Image Builder cross-account distribution requires access to source and destination KMS keys.
-    source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/cross-account-dist.html#cross-account-dist-prereqs
-  - id: imagebuilder-reencrypt
-    text: Image Builder re-encrypts distributed encrypted images using the designated destination Region key.
-    source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/cross-account-dist.html#cross-account-dist-prereqs
   - id: subnet-zone
     text: A subnet is an IP address range in a VPC that lies entirely within one Availability Zone.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#subnet-basics
@@ -84,12 +66,6 @@ facts:
   - id: ebs-backed-image
     text: An EBS-backed AMI uses EBS snapshots for its disk image data.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html#AMIEncryption
-  - id: approved-launch
-    text: Resource-level permissions on ec2:RunInstances can restrict the AMI resources a user may use to launch instances.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-ec2-console.html#iam-policies-ec2-console
-  - id: approved-running
-    text: The AWS Config rule approved-amis-by-id marks running EC2 instances NON_COMPLIANT when their AMI is outside the configured list of approved AMI IDs.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/approved-amis-by-id.html#approved-amis-by-id
   - id: copy-creates-snapshots
     text: "Copying an EBS-backed AMI to another Region creates copies of its backing snapshots there, billed as additional snapshot storage."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html#copy-ami-costs
@@ -176,7 +152,7 @@ An Amazon Machine Image (AMI) is a software template for setting up and booting 
 | Requirement | Mechanism | Ownership or scope |
 |---|---|---|
 | Another account needs to launch | Share the AMI and any required encryption keys | Source account owns the image |
-| Another account needs its own image | Copy the shared AMI with backing-storage access | Recipient owns the copy |
+| Another account needs its own image | Copy the shared AMI | Recipient owns the copy |
 | Instances must run in another Region | Copy the AMI into that Region | Launch from the destination image |
 | Instance must run in another zone | Launch a replacement from an AMI in the destination subnet | New instance and changed addresses |
 

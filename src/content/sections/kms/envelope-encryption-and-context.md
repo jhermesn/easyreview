@@ -47,10 +47,6 @@ facts:
   - id: context-key-types
     text: Asymmetric and HMAC KMS operations do not support encryption context.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/encrypt_context.html
-  - id: logs-context
-    text: CloudWatch Logs uses the log-group ARN in encryption context, referenced by
-      kms:EncryptionContext:aws:logs:arn policy conditions.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html
   - id: asymmetric-outside
     text: "With an asymmetric KMS key, the private key never leaves KMS, while the public key can be downloaded so users who cannot call KMS encrypt data outside AWS."
     source: https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#symmetric-asymmetric

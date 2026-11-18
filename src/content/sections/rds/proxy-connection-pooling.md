@@ -18,23 +18,6 @@ facts:
   - id: client-endpoint
     text: Clients connect to RDS Proxy, while the proxy manages separate database connections.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-connections.html#rds-proxy-connection-life
-  - id: connection-cap
-    text: MaxConnectionsPercent limits RDS Proxy backend connections as a percentage of the database
-      max_connections setting.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.maxconnectionspercent
-  - id: cap-monitoring
-    text: RDS Proxy DatabaseConnections and MaxDatabaseConnectionsAllowed show used and permitted
-      backend connections; reserved connections can make the latter lower than the configured
-      percentage suggests.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.maxconnectionspercent
-  - id: borrow-default
-    text: ConnectionBorrowTimeout defaults to 120 seconds and limits how long RDS Proxy waits for an
-      available database connection.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.connectionborrowtimeout
-  - id: idle-default
-    text: IdleClientTimeout defaults to 1800 seconds; closing an idle client connection returns its
-      backend connection to the pool.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.idleclienttimeout
   - id: pinning
     text: RDS Proxy session pinning reserves one underlying database connection for a client session
       until that session ends, reducing reuse.
@@ -51,12 +34,6 @@ facts:
     text: Query caching is unsuitable when queries require strong consistency or read-after-write
       consistency inside multi-statement transactions.
     source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/caching-database-query-results.html
-  - id: proxy-private
-    text: "RDS Proxy must be in the same VPC as the database and cannot be publicly accessible, even when the database is."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations
-  - id: failover-cancel
-    text: "During a failover, most client connections through RDS Proxy stay open; only connections in the middle of a transaction or SQL statement are canceled, and the proxy accepts new connections immediately."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html
   - id: proxy-endpoints
     text: "A proxy default endpoint is provisioned across two Availability Zones chosen from its subnets; up to 20 additional endpoints can be added per proxy."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html

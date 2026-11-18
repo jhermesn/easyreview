@@ -50,9 +50,6 @@ facts:
     text: RDS for MySQL replication can stop if the replica's max_allowed_packet is smaller than the
       source's; use matching values in their parameter groups to resolve this error.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.Troubleshooting.html#USER_ReadRepl.Troubleshooting
-  - id: replica-count
-    text: "RDS for MySQL supports up to 15 read replicas per source DB instance in the same Region."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_MySQL.Replication.ReadReplicas.html
 diagrams:
   - id: rds-regional-replica-promotion
     title: Cross-Region replica before and after promotion

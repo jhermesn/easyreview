@@ -61,21 +61,9 @@ facts:
   - id: events-kms
     text: For an SNS topic or SQS queue encrypted with a customer managed KMS key, its key policy must allow S3 kms:GenerateDataKey and kms:Decrypt.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/grant-destinations-permissions-to-s3.html#key-policy-sns-sqs
-  - id: events-sequencer
-    text: PUT and DELETE notification sequencers can order events for the same object key, but not different keys; left-pad shorter values with zeros before comparison.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-content-structure.html#notification-content-structure
-  - id: events-queue-size
-    text: S3 notifications can be up to 64 KB; SQS rejects a notification exceeding the queue's configured MaximumMessageSize.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-content-structure.html#notification-content-structure
-  - id: events-replace-config
-    text: PutBucketNotificationConfiguration replaces the whole configuration and normally validates destinations atomically; a failed test causes the entire request to fail.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html#API_PutBucketNotificationConfiguration
   - id: events-lifecycle-delete
     text: S3 ObjectRemoved notifications do not report automatic lifecycle deletions; lifecycle expiration has its own event types.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html#supported-notification-event-types
-  - id: events-key-encoding
-    text: The object key in an S3 event notification is URL encoded, with spaces represented by plus signs.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-content-structure.html#notification-content-structure
   - id: acl-event
     text: The s3:ObjectAcl:Put event notifies when an ACL is put on an object or an existing ACL changes.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html

@@ -51,18 +51,6 @@ facts:
   - id: mfa-separate
     text: Root and IAM users have separate credentials and MFA configurations.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html#id_credentials_mfa
-  - id: credential-vpc
-    text: Compare aws:SourceVpc with aws:Ec2InstanceSourceVpc to require EC2 role credentials to be used through
-      an endpoint in their original VPC.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-ec2instancesourcevpc
-  - id: credential-ip
-    text: Compare aws:VpcSourceIp with aws:Ec2InstanceSourcePrivateIPv4 along with the VPC comparison; private
-      addresses alone are not globally unique.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-ec2instancesourceprivateip4
-  - id: credential-scope
-    text: The EC2 credential restriction example checks ec2:SourceInstanceARN for presence and exempts forwarded
-      service calls using aws:ViaAWSService.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-ec2instancesourcevpc
   - id: codeartifact-token-permissions
     text: CodeArtifact authorization-token retrieval requires both sts:GetServiceBearerToken and
       codeartifact:GetAuthorizationToken.

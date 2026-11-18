@@ -18,9 +18,6 @@ facts:
   - id: columnar
     text: Parquet and ORC organize data by column so Athena loads only the columns required by the query.
     source: https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html#performance-tuning-use-columnar-file-formats
-  - id: table-serde
-    text: An Athena table can specify a SerDe that matches its data format, such as a JSON SerDe for JSON data.
-    source: https://docs.aws.amazon.com/athena/latest/ug/serde-reference.html#serde-reference
   - id: compression
     text: Columnar storage supports compression by column to reduce storage and query I/O.
     source: https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html
@@ -49,21 +46,6 @@ facts:
     text: Most compressed text files cannot be split across readers, so avoid reducing a dataset to too
       few such files.
     source: https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html#performance-tuning-compress-data
-  - id: hive
-    text: Hive-style partition paths use key=value components; MSCK REPAIR TABLE discovers this layout.
-    source: https://docs.aws.amazon.com/athena/latest/ug/partitions.html
-  - id: non-hive
-    text: Non-Hive partition paths, including typical CloudTrail paths, require explicit partition
-      additions such as ALTER TABLE ADD PARTITION.
-    source: https://docs.aws.amazon.com/athena/latest/ug/partitions.html
-  - id: projection
-    text: Partition projection stores rules in table properties and computes partition locations in
-      memory rather than looking them up in Glue.
-    source: https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html#performance-tuning-use-partition-projection
-  - id: sparse
-    text: Partition projection can perform worse for sparse tables because Athena lists calculated
-      locations even when they contain no data.
-    source: https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html#performance-tuning-use-partition-projection
   - id: explain
     text: EXPLAIN shows which partition values Athena plans to scan.
     source: https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html#performance-tuning-validate-that-your-queries-are-compatible-with-the-partitioning-scheme

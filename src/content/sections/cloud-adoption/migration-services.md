@@ -21,12 +21,6 @@ facts:
   - id: hub
     text: AWS Migration Hub provides a single place to discover servers, plan migrations and track the status of each application migration, whichever migration tool is used.
     source: https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub
-  - id: hub-closed
-    text: AWS Migration Hub closed to new customers on November 7, 2025; AWS Transform offers similar capabilities.
-    source: https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub
-  - id: evaluator
-    text: Migration Evaluator builds a data-driven business case for AWS, discovers over-provisioned on-premises instances and compares BYOL with License Included options.
-    source: https://aws.amazon.com/migration-evaluator/
   - id: dms-tracking
     text: AWS Migration Hub receives migration status updates from AWS Application Migration Service and AWS Database Migration Service.
     source: https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub
@@ -71,10 +65,9 @@ AWS migration services help discover on-premises servers, move them to AWS and t
 |---|---|---|
 | AWS Application Discovery Service | Discover | Closed to new customers since November 7, 2025 |
 | AWS Application Migration Service | Move servers (rehost) | Now named AWS Transform MGN |
-| AWS Migration Hub | Track | Closed to new customers since November 7, 2025 |
+| AWS Migration Hub | Track | Tracks application migration across tools |
 
-AWS Transform is the newer service AWS points to for discovery and migration capabilities.
-For a migration business case, see [Migration Evaluator](https://aws.amazon.com/migration-evaluator/).
+AWS Transform provides similar capabilities to Application Discovery Service.
 
 ### Exam cues
 
@@ -85,6 +78,6 @@ For a migration business case, see [Migration Evaluator](https://aws.amazon.com/
 ### Remember
 
 - Application Migration Service cutovers typically take minutes.
-- Application Discovery Service and Migration Hub stopped accepting new customers on November 7, 2025.
+- Application Discovery Service stopped accepting new customers on November 7, 2025.
 
 > **Trap:** AWS DMS moves databases, not servers. A question about migrating whole servers points to AWS Application Migration Service.

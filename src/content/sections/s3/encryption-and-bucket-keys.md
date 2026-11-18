@@ -68,13 +68,6 @@ facts:
   - id: ssec-https
     text: SSE-C requests require HTTPS.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html#ServerSideEncryptionCustomerKeys
-  - id: ssec-update
-    text: From April 2026, SSE-C is blocked by default for new general purpose buckets and existing
-      buckets in accounts without SSE-C objects.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html#ServerSideEncryptionCustomerKeys
-  - id: ssec-enable
-    text: To enable SSE-C explicitly, use PutBucketEncryption with BlockedEncryptionTypes set to NONE.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html#ServerSideEncryptionCustomerKeys
   - id: arn-definition
     text: An Amazon Resource Name (ARN) uniquely identifies an AWS resource.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns
@@ -97,12 +90,6 @@ facts:
   - id: sse-kms-permissions
     text: "Uploading an SSE-KMS object needs kms:GenerateDataKey on the key and downloading it needs kms:Decrypt, so S3 access alone does not let someone read the data."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#UsingKMSEncryption
-  - id: update-object-encryption
-    text: "UpdateObjectEncryption changes an existing SSE-S3 or SSE-KMS object to SSE-KMS, or to use an S3 Bucket Key, in place without copying data; it does not accept unencrypted, DSSE-KMS or SSE-C objects."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/update-sse-encryption.html#update-sse-encryption
-  - id: aws-s3-key
-    text: "When no KMS key is given for SSE-KMS, S3 uses the AWS managed key aws/s3 of the uploading account."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#aws-managed-customer-managed-keys
   - id: kms-same-region
     text: "With SSE-KMS, the KMS key must be in the same AWS Region as the S3 bucket."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html

@@ -3,20 +3,8 @@ title: Target health and fail open
 level: associate
 order: 20
 facts:
-  - id: checks
-    text: ALB health checks periodically test registered targets; targets must pass an initial health
-      check before receiving normal traffic.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html
   - id: check-settings
     text: ALB health checks default to HTTP GET on the traffic port, with path / for HTTP target groups.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html#health-check-settings
-  - id: check-timing
-    text: For ALB instance and IP targets, the default health check interval is 30 seconds and the
-      timeout is 5 seconds.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html#health-check-settings
-  - id: thresholds
-    text: ALB defaults are two consecutive failures to mark a target unhealthy and five consecutive
-      successes to recover an unhealthy target.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html#health-check-settings
   - id: fail-open
     text: If every registered target in an ALB target group is unhealthy across enabled zones, ALB
@@ -38,20 +26,9 @@ facts:
     text: ALB DNS failover thresholds must be at least as high as routing failover thresholds; if both
       count and percentage are configured, either breach triggers the action.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-group-health
-  - id: health-counts
-    text: Deregistering an ALB target reduces HealthyHostCount but does not increase UnHealthyHostCount.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html#health-check-settings
-  - id: health-host
-    text: An ALB health check Host header contains the target private IP address and, for a nondefault
-      port, the health check port; virtual hosts may need a default configuration.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html#target-not-inservice
   - id: nlb-udp-check
     text: NLB health checks for UDP and QUIC services use TCP, HTTP, or HTTPS; the checked service
       should reflect the UDP or QUIC application's availability.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html#target-group-health-checks
-  - id: nlb-https-tls
-    text: NLB HTTPS health checks fail against targets that support only TLS 1.3; targets must also
-      support an earlier version such as TLS 1.2.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html#target-group-health-checks
   - id: success-codes
     text: An ALB target passes its health check only if the response code is in the target group's success codes, 200 by default.
@@ -89,12 +66,12 @@ cards:
     trap: true
     facts: [success-codes]
 ---
-An ALB health check is a periodic request that tests whether a registered target can respond. Health thresholds decide when to avoid a target or change routing when too little healthy capacity remains.
+An ALB health check evaluates a target's response. Health thresholds decide when to avoid a target or change routing when too little healthy capacity remains.
 
 ### How it works
 
 1. Configure the health check protocol, port, path, and thresholds for the target group. The defaults are HTTP GET on the traffic port and path `/` for HTTP target groups.
-2. A newly registered target must pass an initial check. The response code must match the configured success codes, which default to 200.
+2. The response code must match the configured success codes, which default to 200.
 3. Set minimum healthy counts or percentages for the actions below.
 
    | Action or measurement | Meaning |
@@ -114,7 +91,6 @@ An ALB health check is a periodic request that tests whether a registered target
 
 ### Remember
 
-- Initial registration requires one successful health check.
 - Default healthy count threshold: 1 for both failover actions; percentage thresholds default to off.
 - DNS failover thresholds must be greater than or equal to routing failover thresholds.
 - When count and percentage thresholds are both set, either breach triggers that action.

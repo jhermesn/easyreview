@@ -18,9 +18,6 @@ facts:
   - id: kms-integration
     text: AWS KMS integrates with other AWS services to encrypt data at rest or in transit; common uses are encrypting Amazon EBS volumes, Amazon S3 buckets and Amazon RDS databases.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/service-integration.html#service-integration
-  - id: s3-default
-    text: Since January 5, 2023, Amazon S3 automatically encrypts all new object uploads with SSE-S3 (AES-256) at no additional cost and with no performance impact.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html#default-encryption-faq
   - id: acm
     text: AWS Certificate Manager (ACM) creates, stores and renews public and private SSL/TLS certificates that protect AWS websites and applications.
     source: https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html#acm-overview
@@ -30,21 +27,6 @@ facts:
   - id: rds-at-create
     text: An Amazon RDS DB instance can be encrypted only when it is created; to encrypt an existing one, copy an unencrypted snapshot with encryption and restore it.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
-  - id: efs-at-create
-    text: Amazon EFS encryption at rest is set when the file system is created and can't be added to an unencrypted file system later.
-    source: https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html
-  - id: redshift-default
-    text: Since January 10, 2025, new Amazon Redshift provisioned clusters are encrypted by default; clusters restored from snapshots are not affected.
-    source: https://docs.aws.amazon.com/redshift/latest/mgmt/behavior-changes.html#encryption-by-default
-  - id: cloudtrail-default
-    text: CloudTrail log files delivered to S3 are encrypted by default with SSE-S3, or with SSE-KMS if you choose a KMS key.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html
-  - id: storage-gateway-default
-    text: AWS Storage Gateway encrypts data in transit with TLS and, by default, encrypts the data it stores in Amazon S3 with SSE-S3.
-    source: https://docs.aws.amazon.com/filegateway/latest/files3/encryption.html
-  - id: key-types
-    text: KMS keys are customer managed keys (you create and control them), AWS managed keys (created in your account by a service, a legacy type) and AWS owned keys (owned by a service, used for encryption by default).
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html
 cards:
   - id: kms-038
     q: What is the difference between encryption at rest and encryption in transit on AWS?

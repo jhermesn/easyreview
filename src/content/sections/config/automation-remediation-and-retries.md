@@ -22,19 +22,6 @@ facts:
     text: A remediation parameter can use a static value or dynamically receive the noncompliant
       resource ID.
     source: https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation
-  - id: stale-snapshot
-    text: Automatic remediation uses periodically captured compliance snapshots and can run on resources
-      that became compliant after the snapshot.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation
-  - id: remediation-diagnostics
-    text: DescribeRemediationExecutionStatus and its CLI equivalent
-      describe-remediation-execution-status report execution states, step timestamps, and failure
-      messages.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation
-  - id: automation-permissions
-    text: Automation failures can result from insufficient action permissions, a missing Systems Manager
-      trust relationship, or missing iam:PassRole permission for the caller starting Automation.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-troubleshooting.html
   - id: service-linked-remediation
     text: PutRemediationConfigurations cannot add remediation to service-linked rules, including
       organization rules, pack rules, and Security Hub rules.
@@ -51,18 +38,6 @@ facts:
     text: RetryAttemptSeconds is the time window for counting attempts before adding a remediation
       exception and defaults to 60 seconds.
     source: https://docs.aws.amazon.com/config/latest/APIReference/API_RemediationConfiguration.html#config-Type-RemediationConfiguration-RetryAttemptSeconds
-  - id: exception-blocks
-    text: A remediation exception excludes a resource from automatic remediation until the exception is
-      cleared.
-    source: https://docs.aws.amazon.com/config/latest/APIReference/API_PutRemediationExceptions.html
-  - id: concurrency-control
-    text: ConcurrentExecutionRatePercentage limits the percentage of noncompliant resources remediated
-      in parallel and defaults to 10 percent.
-    source: https://docs.aws.amazon.com/config/latest/APIReference/API_SsmControls.html#config-Type-SsmControls-ConcurrentExecutionRatePercentage
-  - id: error-control
-    text: ErrorPercentage controls the error percentage allowed before Systems Manager stops running
-      automations for the rule and defaults to 50 percent.
-    source: https://docs.aws.amazon.com/config/latest/APIReference/API_SsmControls.html#config-Type-SsmControls-ErrorPercentage
   - id: compliance-events
     text: EventBridge can match Config Rules Compliance Change events from aws.config and
       ComplianceChangeNotification messages to react to changed compliance.
@@ -84,10 +59,6 @@ facts:
     text: The restricted-ssh rule flags unrestricted incoming SSH access from 0.0.0.0/0 or ::/0 as
       NON_COMPLIANT and uses configuration-change and periodic triggers.
     source: https://docs.aws.amazon.com/config/latest/developerguide/restricted-ssh.html#restricted-ssh
-  - id: s3-public-runbook
-    text: AWS-DisableS3BucketPublicReadWrite uses S3 Block Public Access and takes the target bucket in
-      S3BucketName.
-    source: https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-aws-disables3bucketpublicreadwrite.html
   - id: organization-pack
     text: An organization conformance pack deploys Config rules and remediation actions together across
       member accounts.

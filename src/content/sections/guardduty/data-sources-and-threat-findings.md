@@ -21,9 +21,6 @@ facts:
   - id: flow-stream
     text: GuardDuty uses an independent duplicate stream of EC2 VPC flow logs without requiring the customer to create or configure flow logs.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_vpc
-  - id: dns-stream
-    text: GuardDuty accesses EC2 DNS queries through AWS DNS resolvers, not other DNS resolvers, and does not require Resolver query logging to be configured.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_dns
   - id: logs-retention
     text: GuardDuty extracts fields for profiling and anomaly detection and discards the foundational source logs.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_data-sources
@@ -33,17 +30,8 @@ facts:
   - id: optional-eks
     text: EKS Audit Log Monitoring analyzes Kubernetes audit logs for suspicious activity.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty
-  - id: optional-runtime
-    text: Runtime Monitoring analyzes operating system events on EKS, EC2, and ECS including Fargate.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty
-  - id: runtime-agent
-    text: The GuardDuty security agent provides runtime events for Runtime Monitoring on EC2.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_vpc
   - id: optional-malware
     text: Malware Protection for EC2 scans associated EBS volumes, while Malware Protection for S3 scans newly uploaded S3 objects.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty
-  - id: optional-rds-lambda
-    text: RDS Protection analyzes supported database login activity, while Lambda Protection monitors Lambda network activity.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty
   - id: s3-independent
     text: Malware Protection for S3 can be used without enabling GuardDuty, unlike the other protection plans.
@@ -61,21 +49,10 @@ facts:
     text: GuardDuty retains findings for 90 days and exports active findings to EventBridge; new active
       findings are exported within about 5 minutes.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty_exportfindings
-  - id: finding-archive
-    text: Archived findings, including new occurrences of suppressed findings, are not exported by default.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-export-findings-considerations
   - id: finding-export-permissions
     text: S3 findings export requires a bucket policy allowing GuardDuty to upload and a KMS key policy
       allowing GuardDuty to generate a data key; source account and detector ARN can restrict access.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-exporting-findings-kms-policy
-  - id: finding-export-regions
-    text: Findings export settings are Regional. The S3 bucket and KMS key must share a Region, and
-      opt-in Region destinations have additional cross-Region restrictions.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-export-findings-considerations
-  - id: finding-org-export
-    text: A GuardDuty administrator's export includes findings from associated members generated in the
-      same Region.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-export-findings-considerations
   - id: global-events
     text: GuardDuty replicates relevant CloudTrail global service events for processing in each Region
       where GuardDuty is enabled.
@@ -84,18 +61,6 @@ facts:
     text: The GuardDuty delegated administrator and members must be configured in each desired Region,
       using the same delegated administrator account across Regions.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html#delegated_admin_important
-  - id: finding-aggregation
-    text: GuardDuty aggregates related recurring activity into the original finding, updating its count
-      and latest details; earlier details can be replaced.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/finding-aggregation.html#finding-aggregation
-  - id: finding-frequency
-    text: New GuardDuty findings are sent to EventBridge near real time; updates to existing findings
-      default to 6 hours and can be set to 15 minutes or 1 hour.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_eventbridge.html#eventbridge-freq-notifications-gdu
-  - id: org-auto-enable
-    text: GuardDuty organization auto-enable supports ALL, NEW, and NONE; changing to NONE does not
-      disable existing accounts. Malware Protection for S3 is excluded from these preferences.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/set-guardduty-auto-enable-preferences.html#set-guardduty-auto-enable-preferences
   - id: s3-malware-role
     text: Malware Protection for S3 requires a service role with permissions for the managed EventBridge
       rule and S3 objects; KMS access is needed for supported KMS-encrypted objects.
@@ -144,10 +109,10 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 
 ### How it works
 
-1. Enable GuardDuty in a Region. It starts analyzing CloudTrail management events, EC2 VPC flow logs, and DNS queries from AWS resolvers.
-2. GuardDuty receives independent streams. It does not need a customer-configured trail, flow log, or Resolver query log. It extracts fields for analysis and discards the source logs, so configure your own logging when you need retention.
+1. Enable GuardDuty in a Region. It starts analyzing CloudTrail management events, EC2 VPC flow logs, and DNS logs.
+2. GuardDuty receives independent streams. It does not need a customer-configured trail or VPC flow log. It extracts fields for analysis and discards the source logs, so configure your own logging when you need retention.
 3. GuardDuty compares activity with threat intelligence, such as known malicious addresses, and uses machine learning to identify anomalies. It creates findings for potential threats, including compromised credentials and unauthorized cryptomining.
-4. Choose protection plans for other signals. An audit log records actions; operating system events describe activity inside a running workload.
+4. Choose protection plans for other signals. An audit log records actions.
 5. Configure the same delegated administrator and members in each desired Region. GuardDuty processes
    relevant global service events in each enabled Region.
 6. Route active findings through EventBridge or configure S3 export for longer retention. S3 export
@@ -157,9 +122,7 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 | --- | --- |
 | S3 Protection | S3 data events for risks such as exfiltration, the unauthorized movement of data |
 | EKS Audit Log Monitoring | Kubernetes audit logs |
-| Runtime Monitoring | Operating system events on EKS, EC2, and ECS, including Fargate |
 | Malware Protection | EC2 EBS volumes or newly uploaded S3 objects, depending on the plan |
-| RDS and Lambda Protection | Supported database logins or Lambda network activity, respectively |
 
 ### Exam cues
 

@@ -27,15 +27,6 @@ facts:
   - id: no-lb-probes
     text: Use load-balancer health with Evaluate Target Health rather than separate Route 53 probes of the registered instances.
     source: https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-EvaluateTargetHealth
-  - id: cloudfront-health
-    text: An alias to CloudFront cannot set EvaluateTargetHealth to true.
-    source: https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-EvaluateTargetHealth
-  - id: cloudfront-private
-    text: CloudFront alias records are unsupported in a private hosted zone.
-    source: https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-DNSName
-  - id: service-health
-    text: For S3, API Gateway and interface endpoints, target health offers no operational benefit for application failover; AWS recommends Route 53 checks of application access.
-    source: https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-EvaluateTargetHealth
   - id: both-health
     text: If an alias has its own health check and Evaluate Target Health, both health conditions must pass.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html#dns-failover-complex-configs-hc-alias

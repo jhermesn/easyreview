@@ -6,36 +6,12 @@ facts:
   - id: rds
     text: Amazon RDS is a managed service that makes it easier to set up, operate and scale a relational database and manages common database administration tasks.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome
-  - id: engines
-    text: Amazon RDS supports IBM Db2, MariaDB, Microsoft SQL Server, MySQL, Oracle Database and PostgreSQL.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.on-prem
-  - id: rds-manages
-    text: Amazon RDS manages backups, software patching, automatic failure detection and recovery, and offers high availability with a synchronous secondary instance and read replicas for read scaling.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.on-prem
-  - id: comparison
-    text: On premises the customer manages everything; on Amazon EC2, AWS manages server maintenance, hardware lifecycle and power, network and cooling; with Amazon RDS, AWS also manages scaling, high availability, backups, database and OS patching and installation, while the customer still optimizes the application.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison
-  - id: default-choice
-    text: AWS recommends Amazon RDS as the default for most relational databases; running a database on EC2 means more time managing software and more risk of user error, for example when patching manually.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison
   - id: rds-custom
     text: Amazon RDS Custom gives database administrators access to customize the database environment and operating system for legacy, custom and packaged applications, while automating administration tasks.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom
   - id: nosql-types
     text: Key-value (DynamoDB), document (DocumentDB) and graph (Neptune) databases are NoSQL, non-relational databases.
     source: https://aws.amazon.com/nosql/
-  - id: reserved-db
-    text: RDS reserved DB instances give a discount for a one-year or three-year term, with No Upfront, Partial Upfront or All Upfront payment.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithReservedDBInstances.html
-  - id: custom-multiaz
-    text: "RDS Custom for Oracle and RDS Custom for SQL Server support Multi-AZ deployments with a synchronous standby in another AZ; unlike regular RDS Multi-AZ, they need prerequisites set up first because RDS Custom runs inside your account."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-sqlserver-multiaz.html#custom-sqlserver-multiaz
-  - id: custom-oracle-eos
-    text: "AWS will end support for RDS Custom for Oracle on March 31, 2027, after which its console and resources can no longer be accessed (noted November 2026)."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-oracle-multiaz.html#custom-oracle-multiaz
-  - id: oracle-byol
-    text: "RDS for Oracle offers two licensing models, License Included and Bring Your Own License (BYOL), and you can switch between them by modifying the DB instance."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Oracle.Concepts.Licensing.html#Oracle.Concepts.Licensing
   - id: timestream
     text: "Amazon Timestream is the purpose-built time series database; Timestream for LiveAnalytics is serverless with a memory store for recent data and a magnetic store for history, and Timestream for InfluxDB runs managed InfluxDB."
     source: https://docs.aws.amazon.com/timestream/latest/developerguide/what-is-timestream.html#what-is-timestream
@@ -45,9 +21,6 @@ facts:
   - id: managed-blockchain
     text: "Amazon Managed Blockchain provides Ethereum and Bitcoin public nodes and private Hyperledger Fabric networks; it stopped accepting new customers on October 29, 2026, and existing customers lose access after September 29, 2027."
     source: https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/what-is-managed-blockchain.html#what-is-managed-blockchain
-  - id: stop-seven-days
-    text: "An RDS DB instance can be stopped for at most 7 consecutive days; after that RDS starts it automatically so it does not miss required maintenance."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html#USER_StopInstance
   - id: custom-engines
     text: "RDS Custom exists for Oracle and SQL Server and grants privileged access to the database and the host operating system."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom
@@ -75,7 +48,7 @@ AWS offers managed services for relational databases, NoSQL databases and blockc
 
 ### How it works
 
-1. Choose a database type for the data: relational databases include Amazon RDS and Amazon Aurora; NoSQL databases include key-value, document and graph databases. [Comparison of responsibilities](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison), [NoSQL databases](https://aws.amazon.com/nosql/)
+1. Choose a database type for the data: relational databases include Amazon RDS and Amazon Aurora; NoSQL databases include key-value, document and graph databases. [Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome), [NoSQL databases](https://aws.amazon.com/nosql/)
 2. Use Amazon RDS Custom when a managed database needs customization of its database environment or operating system. [RDS Custom](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom)
 3. Before customizing an RDS Custom for SQL Server host, pause automation for the change so monitoring and recovery do not interfere. Automation resumes when the pause ends. [Pause automation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-managing-sqlserver.pausing.html#custom-managing-sqlserver.pausing)
 

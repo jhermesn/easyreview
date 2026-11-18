@@ -53,20 +53,10 @@ facts:
     text: EFS lifecycle policies apply across a file system and use an internal last-access timer rather
       than visible POSIX access attributes.
     source: https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs
-  - id: lifecycle-ia
-    text: The documented default IA transition moves files after 30 days without access in Standard.
-    source: https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs
-  - id: lifecycle-archive
-    text: The documented default Archive transition moves files after 90 days without access in Standard.
-    source: https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs
   - id: lifecycle-return
     text: Files do not return from IA or Archive to Standard on access by default; configure On first
       access to enable return.
     source: https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs
-  - id: archive-requires-elastic
-    text: Archive requires Elastic throughput; an Archive transition policy prevents switching to
-      Bursting or Provisioned.
-    source: https://docs.aws.amazon.com/efs/latest/ug/features.html#storage-classes
   - id: ecs-persistence
     text: EFS volumes let ECS tasks access the same persistent files across container instances; Linux
       Fargate tasks support EFS on platform 1.4.0 or later.

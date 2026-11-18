@@ -33,10 +33,6 @@ facts:
   - id: copy-restore-order
     text: With standard vaults, copy the backup into the target account before restoring it there.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#restore-cab
-  - id: restore-service-role
-    text: The destination account needs the service-linked role of the service whose resource it
-      restores.
-    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#restore-cab
   - id: default-vault
     text: The destination for a standard cross-account copy cannot be the default vault.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#security-considerations-cab

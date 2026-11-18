@@ -14,9 +14,6 @@ facts:
     text: Alarms with periods of at least 1 minute evaluate every minute unless their total evaluation
       interval exceeds 1 day.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-evaluation.html#alarm-evaluation-settings
-  - id: short-cadence
-    text: Alarms with 10-, 20-, or 30-second periods evaluate every 10 seconds.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-evaluation.html#alarm-evaluation-settings
   - id: multiday-cadence
     text: An alarm whose period multiplied by evaluation periods exceeds 1 day evaluates hourly.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-evaluation.html#evaluate-multiday-alarm

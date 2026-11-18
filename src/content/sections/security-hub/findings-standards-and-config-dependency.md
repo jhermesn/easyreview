@@ -30,9 +30,6 @@ facts:
   - id: recorder-date
     text: AWS added guidance for the CSPM service-linked configuration recorder in May 2026.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/doc-history.html#doc-history
-  - id: recording-gap
-    text: With manual recording, missing required resource recording can cause Config.1 FAILED findings and WARNING findings for the affected control.
-    source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-setup-prereqs.html#config-1-overview
   - id: daily-recording
     text: Daily AWS Config recording can delay change-triggered control findings until the 24-hour recording period ends.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-setup-prereqs.html#config-resource-recording
@@ -45,15 +42,6 @@ facts:
   - id: config-integration
     text: Activate the AWS Config integration to ingest managed and custom Config rule evaluations as CSPM findings through EventBridge.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html#securityhub-internal-providers
-  - id: config-integration-scope
-    text: The AWS Config integration sends evaluations performed after CSPM enablement.
-    source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html#securityhub-internal-providers
-  - id: config-rule-exclusions
-    text: The AWS Config integration excludes service-linked rule evaluations except those from Control Tower-managed rules.
-    source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html#securityhub-internal-providers
-  - id: post-enable
-    text: CSPM does not retroactively consolidate security findings generated before it was enabled.
-    source: https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html#what-is-securityhub
   - id: provider-services
     text: GuardDuty, Inspector, Macie, Firewall Manager, and IAM Access Analyzer can send findings to CSPM.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html#securityhub-internal-providers

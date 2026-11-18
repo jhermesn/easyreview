@@ -27,14 +27,6 @@ facts:
     text: CloudWatchAgentServerPolicy grants metric and log publishing permissions and GetParameter
       access to AmazonCloudWatch-* parameters.
     source: https://docs.aws.amazon.com/aws-managed-policy/latest/reference/CloudWatchAgentServerPolicy.html#CloudWatchAgentServerPolicy-json
-  - id: agent-admin-policy
-    text: CloudWatchAgentAdminPolicy also grants PutParameter access to AmazonCloudWatch-* parameters
-      for configuration management.
-    source: https://docs.aws.amazon.com/aws-managed-policy/latest/reference/CloudWatchAgentAdminPolicy.html#CloudWatchAgentAdminPolicy-json
-  - id: agent-credentials
-    text: The agent supports EC2 instance profile credentials and shared AWS credential profiles,
-      including for on-premises installations.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Credentials-Preference.html#CloudWatch-Agent-Credentials-Preference
   - id: emf
     text: Embedded metric format puts metric definitions and values inside structured logs so CloudWatch
       can extract custom metrics asynchronously.
@@ -51,9 +43,6 @@ facts:
     text: AWS recommends OpenTelemetry metrics for most new workloads; embedded metric format suits
       workloads that need metrics kept with their originating log events.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html#CloudWatch_Embedded_Metric_Format
-  - id: agent-logs-store
-    text: "Logs collected by the CloudWatch agent are stored in CloudWatch Logs, like logs from the older CloudWatch Logs agent."
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html#Install-CloudWatch-Agent
   - id: agent-swap
     text: "On Linux, the CloudWatch agent can collect swap metrics such as swap_used, swap_free and swap_used_percent, which EC2 does not publish by itself."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-CloudWatch-agent.html#linux-metrics-enabled-by-CloudWatch-agent

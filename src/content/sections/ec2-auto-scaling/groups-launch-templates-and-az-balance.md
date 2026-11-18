@@ -67,34 +67,14 @@ facts:
     text: Balanced best effort is the default and tries another healthy zone after a launch failure; balanced only
       keeps retrying the affected zone to preserve balance.
     source: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AvailabilityZoneDistribution.html#API_AvailabilityZoneDistribution_Contents
-  - id: reservation-strategy
-    text: Reservations then balanced fills targeted Capacity Reservations before distributing remaining capacity
-      evenly; a reservation ID or Capacity Reservation resource group is required.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-availability-zone-balanced.html
   - id: template-requirements
     text: A launch template for an Auto Scaling group must specify an AMI; instance types can be supplied when
       creating the group. Multiple instance types and mixed purchase options require a launch template.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html
-  - id: template-permissions
-    text: Launch template authorization requires ec2:RunInstances, ec2:CreateTags when tags are specified, and
-      iam:PassRole when an instance profile is specified. A private cross-account AMI must be shared.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-launch-template.html#ts-launch-template-unauthorized-error
-  - id: group-quota
-    text: The default quota is 500 Auto Scaling groups per Region; increases can be requested for supported
-      quotas, and EC2 and VPC quotas can also constrain a group.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-quotas.html
   - id: template-update
     text: A new launch template applies to new instances; existing instances keep their original configuration
       until replaced, for example by instance refresh.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/update-auto-scaling-group.html#update-auto-scaling-instances
-  - id: encrypted-volume-key
-    text: A customer managed KMS key for encrypted Auto Scaling EBS volumes needs a key policy allowing the
-      service-linked role to use the key and create grants.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html#configuring-key-policies
-  - id: encrypted-volume-cross-account
-    text: A KMS key in another account needs a key policy allowing the Auto Scaling account and a grant to the
-      Auto Scaling service-linked role.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html#policy-example-cmk-cross-account-access
   - id: termination-oldest-config
     text: "OldestLaunchConfiguration terminates instances on a noncurrent launch configuration first. OldestLaunchTemplate terminates instances on a noncurrent launch template first, then those on the oldest version of the current template."
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html#predefined-termination-policies

@@ -32,34 +32,15 @@ facts:
   - id: organizations-rcp-linked
     text: RCPs do not restrict calls made using service-linked roles.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html
-  - id: organizations-rcp-baseline
-    text: Enabling RCPs attaches RCPFullAWSAccess to the root, every OU, and every account; it cannot be
-      detached.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_evaluation.html
   - id: organizations-rcp-baseline-access
     text: RCPFullAWSAccess permits requests through RCP evaluation without granting resource access.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_evaluation.html
   - id: organizations-rcp-deny
     text: A Deny in any applicable RCP on the resource account path overrides a resource policy Allow.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_evaluation.html
-  - id: organizations-rcp-effect
-    text: Custom RCPs use Deny; Allow is reserved for the managed RCPFullAWSAccess policy.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_syntax.html
   - id: organizations-rcp-principal
     text: RCP Principal supports only the wildcard *; NotPrincipal is unsupported.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_syntax.html
-  - id: organizations-rcp-organization
-    text: aws:PrincipalOrgID identifies the requesting principal organization and avoids enumerating its
-      accounts.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid
-  - id: organizations-rcp-service-exception
-    text: An RCP using principal-organization restrictions must account for AWS service principals, for
-      example with aws:PrincipalIsAWSService exceptions.
-    source: https://docs.aws.amazon.com/whitepapers/latest/building-a-data-perimeter-on-aws/perimeter-implementation.html
-  - id: organizations-rcp-source-org
-    text: aws:SourceOrgID can restrict service-principal access to requests originating from resources
-      in a trusted organization.
-    source: https://docs.aws.amazon.com/whitepapers/latest/building-a-data-perimeter-on-aws/perimeter-implementation.html
   - id: organizations-rcp-test
     text: AWS recommends testing RCP restrictions on individual accounts before applying them more
       broadly.
@@ -162,8 +143,8 @@ A resource control policy (RCP) limits access to supported resources in member a
 ### How it works
 
 1. Enable all features and RCPs. Confirm that the resource's service supports RCPs; documented examples include S3, KMS, STS, SQS, and Secrets Manager.
-2. Organizations attaches `RCPFullAWSAccess` at the root, every OU, and every account. It cannot be detached and grants no resource access.
-3. Attach custom `Deny` policies where restrictions belong. A Deny anywhere on the resource account's path wins over a resource policy Allow. Custom RCPs cannot use `Allow`.
+2. `RCPFullAWSAccess` permits requests through RCP evaluation but grants no resource access.
+3. Attach RCPs where restrictions belong. A `Deny` anywhere on the resource account's path wins over a resource policy Allow.
 4. Evaluate actual access with the relevant IAM and resource policies. A resource policy is a policy attached to a resource, such as an S3 bucket. It can grant access only within applicable organization limits.
 5. Test on a small scope before broader use. Management-account resources and calls made through service-linked roles are exempt; delegated administrator member-account resources remain covered.
 
@@ -180,8 +161,8 @@ A resource control policy (RCP) limits access to supported resources in member a
 
 ### Remember
 
-- `RCPFullAWSAccess` is automatic and cannot be detached.
-- Custom RCPs use `Deny`; `Principal` supports only `*`, and `NotPrincipal` is unsupported.
+- `RCPFullAWSAccess` does not grant resource access.
+- `Principal` supports only `*`, and `NotPrincipal` is unsupported.
 - RCP coverage is service-specific; enabling RCPs does not restrict every AWS resource type.
 
 > **Trap:** An RCP passing a request does not grant it access. The required IAM or resource policy permissions must still exist.

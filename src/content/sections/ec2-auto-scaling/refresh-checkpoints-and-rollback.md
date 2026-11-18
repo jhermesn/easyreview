@@ -12,15 +12,6 @@ facts:
   - id: bake
     text: Bake time is the wait at the end of instance refresh before it is considered complete; its default is zero.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/understand-instance-refresh-default-values.html#understand-instance-refresh-default-values
-  - id: disabled
-    text: Instance refresh CloudWatch alarm specifications are disabled by default.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/understand-instance-refresh-default-values.html#understand-instance-refresh-default-values
-  - id: checkpoint-default
-    text: Instance refresh checkpoints are disabled by default.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/understand-instance-refresh-default-values.html#understand-instance-refresh-default-values
-  - id: rollback-default
-    text: Instance refresh auto rollback is disabled by default.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/understand-instance-refresh-default-values.html#understand-instance-refresh-default-values
   - id: alarm
     text: A configured CloudWatch alarm entering ALARM can fail a refresh; enabling auto rollback restores the previous configuration after failure.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-rollback.html#instance-refresh-rollback
@@ -128,7 +119,6 @@ Checkpoints pause an instance refresh after part of the fleet is replaced. Rollb
 
 ### Remember
 
-- Checkpoints, alarms and auto rollback default off.
 - Checkpoint delay defaults to 3600 seconds; bake time defaults to zero.
 - Wait for protected or Standby instances allows one hour before failure.
 - Active replacement can last at most 14 days.

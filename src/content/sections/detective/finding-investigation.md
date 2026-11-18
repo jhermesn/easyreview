@@ -9,9 +9,6 @@ facts:
   - id: core-sources
     text: Detective core sources include CloudTrail logs, VPC Flow Logs and GuardDuty findings for accounts enrolled in GuardDuty.
     source: https://docs.aws.amazon.com/detective/latest/userguide/detective-source-data-about.html#source-data-types
-  - id: eks-source
-    text: EKS audit logs are a source package that must be enabled for the behavior graph.
-    source: https://docs.aws.amazon.com/detective/latest/userguide/usage-tracking-admin.html#usage-cost-by-source
   - id: separate-streams
     text: Detective uses independent streams of CloudTrail and VPC flow log events without using existing logging configurations.
     source: https://docs.aws.amazon.com/detective/latest/userguide/detective-source-data-about.html#source-data-types
@@ -24,14 +21,8 @@ facts:
   - id: graph
     text: Detective uses event data and machine learning to create an interactive view of resource behavior and interactions over time.
     source: https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-how-works
-  - id: history
-    text: Detective provides access to up to one year of historical event data.
-    source: https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#what-is-detective
   - id: groups
     text: Detective finding groups bring related findings and entities together for investigation.
-    source: https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-features
-  - id: investigations
-    text: Detective Investigation analyzes IAM users and roles for indicators of compromise.
     source: https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-features
   - id: accounts
     text: A Detective behavior graph can link analyzed data from one or more AWS accounts; an administrator can invite member accounts to contribute.

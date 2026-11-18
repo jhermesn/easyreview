@@ -9,23 +9,14 @@ facts:
   - id: six-pillars
     text: "The framework has six pillars: operational excellence, security, reliability, performance efficiency, cost optimization and sustainability."
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions
-  - id: operational-excellence
-    text: Operational excellence is the ability to support development and run workloads effectively, gain insight into their operations, and continuously improve processes and procedures to deliver business value.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions
   - id: security
     text: The security pillar describes how to use cloud technologies to protect data, systems and assets in a way that improves security posture.
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions
   - id: reliability
     text: Reliability is the ability of a workload to perform its intended function correctly and consistently when expected, including operating and testing it through its total lifecycle.
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions
-  - id: performance-efficiency
-    text: Performance efficiency is the ability to use computing resources efficiently to meet system requirements and to keep that efficiency as demand changes and technologies evolve.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions
   - id: cost-optimization
     text: Cost optimization is the ability to run systems that deliver business value at the lowest price point.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions
-  - id: sustainability
-    text: Sustainability is the ability to continually improve sustainability impacts by reducing energy consumption and increasing efficiency, getting the most from provisioned resources and minimizing the total resources required.
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions
   - id: workload
     text: In the framework, a workload is a set of components that together deliver business value.
@@ -33,24 +24,12 @@ facts:
   - id: general-principles
     text: The general design principles are to stop guessing capacity needs, test systems at production scale, automate with architectural experimentation in mind, consider evolutionary architectures, drive architectures using data, and improve through game days.
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles
-  - id: production-scale
-    text: A production-scale test environment can be created on demand and decommissioned after testing, so you pay for it only while it runs.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles
   - id: game-days
     text: Game days simulate events in production on a regular schedule to find improvements and build experience in handling events.
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles
-  - id: safely-automate
-    text: "An operational excellence design principle is safely automate where possible: define the whole workload and its operations as code and run procedures automatically."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/ops-design-principles.html#ops-design-principles
-  - id: security-principles
-    text: "Security pillar design principles: implement a strong identity foundation, maintain traceability, apply security at all layers, automate security best practices, protect data in transit and at rest, keep people away from data, and prepare for security events."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/sec-design-principles.html#sec-design-principles
   - id: loose-coupling
     text: The reliability pillar recommends loosely coupled dependencies, such as queues, streams and workflows, ideally asynchronous; a monolithic workload is an anti-pattern.
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel04-bp02.html#rel04-bp02
-  - id: oe-principles
-    text: "Operational excellence design principles: implement observability for actionable insights, safely automate where possible, make frequent small reversible changes, refine operations frequently, anticipate failure, learn from all operational events and metrics, and use managed services."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/ops-design-principles.html#ops-design-principles
   - id: reliability-principles
     text: "Reliability pillar design principles: automatically recover from failure, test recovery procedures, scale horizontally to increase aggregate workload availability, stop guessing capacity, and manage change through automation."
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles
@@ -66,15 +45,6 @@ facts:
   - id: cloud-workloads
     text: "Cloud Workloads holds the six pillars and their workload best practices, which can be evaluated and tracked continually."
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/release-notes.html#release-notes-workloads
-  - id: performance-principles
-    text: "Performance efficiency design principles: use managed services to reduce operational complexity, deploy workloads closer to your customers, build scalable architectures, experiment more often, consider mechanical sympathy, and design for change and variable demand."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/perf-design-principles.html#perf-design-principles
-  - id: cost-principles
-    text: "Cost optimization design principles: implement Cloud Financial Management, adopt a consumption model, measure business outcomes relative to costs, use managed services and automation, and implement granular cost allocation."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/cost-design-principles.html#cost-design-principles
-  - id: sustainability-principles
-    text: "Sustainability design principles: understand your impact, establish sustainability goals, maximize utilization, anticipate and adopt more efficient hardware and software, align the computational approach to problem complexity, and minimize the footprint of data and its processing."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/sus-design-principles.html#sus-design-principles
 cards:
   - id: well-architected-001
     q: What are the six pillars of the AWS Well-Architected Framework?
@@ -129,12 +99,11 @@ The AWS Well-Architected Framework is AWS's set of best practices for cloud arch
 
 | Pillar | Focus |
 |---|---|
-| Operational excellence | Run workloads well, gain insight, keep improving processes |
 | Security | Protect data, systems and assets |
 | Reliability | Perform the intended function correctly and consistently |
-| Performance efficiency | Use resources efficiently as demand and technology change |
 | Cost optimization | Deliver business value at the lowest price point |
-| Sustainability | Reduce energy use and total resources |
+
+The other pillars are operational excellence, performance efficiency and sustainability.
 
 Since November 16, 2026, the framework is one document in two parts. Cloud Foundations covers what an organization sets up once for all workloads (accounts, identity, observability, inventory, security, cost, networking), and Cloud Workloads holds the six pillars. [Release notes](https://docs.aws.amazon.com/wellarchitected/latest/framework/release-notes.html#fw-11-16-2026-update)
 
@@ -156,4 +125,4 @@ The general design principles apply across pillars: stop guessing capacity, test
 - A workload is a set of components that deliver business value.
 - Game days simulate production events to practice handling them.
 
-> **Trap:** Performance efficiency is not the same as reliability. Using resources efficiently as demand changes is performance efficiency; working correctly and recovering from failure is reliability.
+> **Trap:** Reliability includes both performing the intended function consistently and testing recovery procedures.

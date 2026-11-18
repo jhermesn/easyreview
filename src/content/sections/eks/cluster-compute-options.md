@@ -31,13 +31,6 @@ facts:
     text: Self-managed nodes require the customer to maintain the nodes; Hybrid Nodes run on
       customer-managed machines outside AWS.
     source: https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html#_compare_compute_options
-  - id: fargate-selector
-    text: Fargate profile selectors require a namespace and can include labels; a Pod matching a
-      selector can run on Fargate.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html
-  - id: fargate-subnets
-    text: EKS Fargate Pods use private subnets without a direct route to an internet gateway.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html#fargate-profile-components
   - id: fargate-limits
     text: EKS Fargate does not support DaemonSets, privileged containers, GPUs, HostPort, or HostNetwork.
     source: https://docs.aws.amazon.com/eks/latest/userguide/fargate.html#fargate-considerations
@@ -65,10 +58,6 @@ facts:
     text: Associate the EBS CSI driver IAM role through Pod Identity or IAM roles for service accounts
       when configuring the add-on or controller service account.
     source: https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#csi-iam-role
-  - id: auto-storage-class
-    text: A StorageClass selects how storage is provisioned; Auto Mode uses ebs.csi.eks.amazonaws.com,
-      while the standard EBS CSI driver uses ebs.csi.aws.com and manages separate volumes.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi-considerations
   - id: fargate-ebs
     text: EBS volumes cannot be mounted by Fargate Pods.
     source: https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi-considerations
@@ -76,40 +65,6 @@ facts:
     text: Fargate Pods can mount statically provisioned EFS persistent volumes without manual EFS driver
       installation; dynamic provisioning is not supported on Fargate.
     source: https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html#efs-csi-considerations
-  - id: update-strategies
-    text: Managed node group default updates create new nodes before terminating old nodes; minimal
-      updates terminate old nodes first to avoid increasing total capacity.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/managed-node-update-behavior.html#managed-node-update-upgrade
-  - id: update-max-unavailable
-    text: Managed node group updates default to one unavailable node and allow a maximum of 100 nodes
-      unavailable in parallel.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/managed-node-update-behavior.html#managed-node-update-set-up
-  - id: update-eviction
-    text: If Pods do not leave a node within 15 minutes, a managed node update fails with
-      PodEvictionFailure unless forced; force deletes the Pods.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/managed-node-update-behavior.html#managed-node-update-upgrade
-  - id: update-pdb
-    text: Restrictive or overlapping Pod disruption budgets can cause PodEvictionFailure during a
-      managed node group update.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/managed-node-update-behavior.html#_podevictionfailure_errors_during_the_upgrade_phase
-  - id: sandbox-pods
-    text: EKS isolated and confidential Pods use individual Nitro Sandboxes on supported EC2 instances
-      with Kubernetes 1.36 or later; runtimeClassName selects the opt-in mode.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/sandboxing.html
-  - id: sandbox-date
-    text: AWS announced Nitro Sandboxes for EKS Pods in November 2026.
-    source: https://aws.amazon.com/about-aws/whats-new/2026/11/nitro-sandboxes-eks-ecs-ec2/
-  - id: auto-pod-sg
-    text: EKS Auto Mode security groups for Pods use SecurityGroupPolicy to assign different security
-      groups to Pods on the same node; unmatched Pods use node security groups.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/auto-sgp.html
-  - id: auto-pod-sg-date
-    text: EKS Auto Mode added security groups for Pods in November 2026 for Kubernetes 1.36 or later.
-    source: https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-eks-auto-mode-security-groups-for-pods/
-  - id: auto-pod-sg-api
-    text: Auto Mode SecurityGroupPolicy uses eks.amazonaws.com/v1 and is not spec-compatible with the
-      VPC CNI SecurityGroupPolicy in vpcresources.k8s.aws/v1beta1.
-    source: https://docs.aws.amazon.com/eks/latest/userguide/auto-sgp.html#_how_this_compares_to_other_ways_to_assign_security_groups
   - id: envelope-encryption
     text: "EKS clusters on Kubernetes 1.28 or later envelope-encrypt all Kubernetes API data, including Secrets, before it reaches etcd, using KMS with an AWS owned key by default or a customer managed KMS key you choose."
     source: https://docs.aws.amazon.com/eks/latest/userguide/envelope-encryption.html#envelope-encryption
@@ -177,7 +132,7 @@ Amazon EKS runs Kubernetes, a system that places and maintains container workloa
 | Auto Mode | EKS provisions, scales, and patches nodes and integrates load balancing and block storage | Managed cluster infrastructure |
 | Hybrid Nodes | You manage machines outside AWS | On-premises compute |
 
-2. For Fargate, create a profile. Its selectors match a namespace, a named grouping of Kubernetes resources, and optional labels, key-value tags on Pods. Use private subnets. A DaemonSet, which runs a copy of a Pod on nodes, cannot run on Fargate. Neither can privileged containers, GPUs, `HostPort`, or `HostNetwork`.
+2. A DaemonSet, which runs a copy of a Pod on nodes, cannot run on Fargate. Neither can privileged containers, GPUs, `HostPort`, or `HostNetwork`.
 3. Choose how operators and nodes reach the Kubernetes API endpoint, the cluster management address.
 
 | Public access | Private access | API path |
@@ -186,13 +141,12 @@ Amazon EKS runs Kubernetes, a system that places and maintains container workloa
 | Enabled | Enabled | Cluster VPC traffic uses the private endpoint; public access CIDRs restrict internet access |
 | Disabled | Enabled | Clients must be in the VPC or a connected network; cluster security group controls access |
 
-4. For persistent storage, choose a StorageClass, a configuration naming the storage provisioner. A persistent volume holds storage independently of a Pod. The Container Storage Interface (CSI) driver connects Kubernetes storage requests to AWS storage APIs. Give the EBS CSI driver IAM permissions through Pod Identity or IAM roles for service accounts.
+4. For persistent storage, use a persistent volume, which holds storage independently of a Pod. The Container Storage Interface (CSI) driver connects Kubernetes storage requests to AWS storage APIs. Give the EBS CSI driver IAM permissions through Pod Identity or IAM roles for service accounts.
 
-| Storage choice | Provisioner or method | Fargate support |
-|---|---|---|
-| Standard EBS CSI | `ebs.csi.aws.com` | Cannot mount EBS |
-| Auto Mode EBS | `ebs.csi.eks.amazonaws.com`; separate volume management | Cannot mount EBS |
-| EFS persistent volume | Static provisioning on Fargate; no manual driver installation there | Supported; dynamic provisioning is unavailable |
+| Storage choice | Fargate support |
+|---|---|
+| EBS | Cannot mount EBS |
+| EFS persistent volume | Static provisioning; no manual driver installation required |
 
 ### Exam cues
 
@@ -206,6 +160,5 @@ Amazon EKS runs Kubernetes, a system that places and maintains container workloa
 - New clusters default to public API access enabled and private access disabled.
 - Public access CIDRs, meaning allowed IP address ranges, do not control the private endpoint.
 - Managed node groups still require deployment of patched node images.
-- Auto Mode and the standard EBS driver use different provisioners and manage separate volumes.
 
 > **Trap:** Choosing managed node groups does not transfer deployment of patched AMIs to AWS. Auto Mode includes operating system patching.

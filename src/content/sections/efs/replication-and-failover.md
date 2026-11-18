@@ -52,10 +52,6 @@ facts:
     text: Recreating the original primary-to-replica configuration overwrites replica changes to match
       the primary, discarding failover changes.
     source: https://docs.aws.amazon.com/efs/latest/ug/replication-fail-over.html#replication-fail-over
-  - id: cross-account-role
-    text: Cross-account replication requires a supplied IAM role and cannot use the EFS service-linked
-      role; passing a role requires iam:PassRole.
-    source: https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html#efs-replication-permissions
 cards:
   - id: efs-004
     q: How should a team maintain an EFS disaster-recovery copy in another Region and monitor lag?

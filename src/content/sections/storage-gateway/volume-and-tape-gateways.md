@@ -25,12 +25,6 @@ facts:
     text: Cached Volume Gateway data and snapshots cannot be read with the S3 API or S3 console even
       though they are stored in S3.
     source: https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html
-  - id: cached-limit
-    text: Cached volumes support 1 GiB to 32 TiB per volume and up to 32 volumes per gateway.
-    source: https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html#storage-gateway-cached-concepts
-  - id: stored-limit
-    text: Stored volumes support 1 GiB to 16 TiB per volume and up to 32 volumes per gateway.
-    source: https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html#storage-gateway-stored-volume-concepts
   - id: vtl
     text: Tape Gateway presents a virtual tape library (VTL) with tape drives and a media changer as
       iSCSI devices to existing backup software.

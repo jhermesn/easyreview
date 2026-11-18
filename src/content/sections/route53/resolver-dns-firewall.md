@@ -15,10 +15,6 @@ facts:
     text: A rule group is a reusable collection of filtering rules; associating it with a VPC enables
       filtering for that VPC.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview
-  - id: firewall-order
-    text: Rule group associations and rules within a group are evaluated from lowest numeric priority
-      upward until a match or exhaustion.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview
   - id: firewall-no-match
     text: A query that matches no rule across the associated rule groups resolves normally.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html#resolver-dns-firewall-overview
@@ -34,42 +30,10 @@ facts:
     text: ALLOW stops inspection and permits the query; it is not available for DNS Firewall Advanced
       rules.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions
-  - id: firewall-alert
-    text: ALERT stops inspection, permits the query, and records an alert in configured VPC Resolver
-      query logs.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions
   - id: firewall-block
     text: BLOCK stops inspection and blocks the intended DNS destination, using the configured DNS block
       response.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions
-  - id: firewall-nodata
-    text: The NODATA block response reports a successful query without answer data.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions
-  - id: firewall-nxdomain
-    text: The NXDOMAIN block response reports that the queried domain does not exist.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions
-  - id: firewall-override
-    text: OVERRIDE returns a custom CNAME; its override TTL defaults to zero, so the override record is
-      not cached by default.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions
-  - id: firewall-test-alert
-    text: A blocking rule can first be tested with ALERT to observe queries that would be blocked.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html#resolver-dns-firewall-rule-actions
-  - id: firewall-failclosed
-    text: "With an associated rule group, DNS Firewall defaults to fail closed: a missing firewall
-      response makes Resolver block the query with SERVFAIL."
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html#resolver-dns-firewall-vpc-configuration
-  - id: firewall-failopen
-    text: Enabling FirewallFailOpen allows queries through when DNS Firewall does not respond.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html#resolver-dns-firewall-vpc-configuration
-  - id: firewall-log-destinations
-    text: Resolver query logging must be configured for the VPC; supported destinations include
-      CloudWatch Logs, S3, and Firehose in the query logging configuration Region.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/firewall-resolver-query-logs-configuring.html#firewall-resolver-query-logs-configuring
-  - id: firewall-wildcard
-    text: A domain entry does not implicitly include all subdomains; add a wildcard such as
-      *.example.com to include those subdomains.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-getting-started.html#resolver-dns-firewall-getting-started
   - id: firewall-walled-garden
     text: An allow-only design evaluates approved domains before a rule blocking the remaining domains.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-getting-started.html#resolver-dns-firewall-getting-started
@@ -186,14 +150,7 @@ Route 53 Resolver DNS Firewall controls which domain names clients can resolve t
 
 1. Create a domain list, a collection of names to match, or select an AWS-managed list. Foundational rules can also select a query type. DNS Firewall Advanced detects DNS tunneling, which carries data through DNS, and DGA threats, which generate domain names for malicious use.
 2. Add rules to a rule group, a reusable rule collection, and associate the group with a VPC. Filtering also covers on-premises queries entering that protected VPC through Resolver endpoints.
-3. Set both group-association and rule priorities. Lower numeric values run first. A matching action ends inspection; queries with no match resolve normally.
-4. Choose an action for each rule. Resolver query logging can help inspect results. [Logging configuration](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/firewall-resolver-query-logs-configuring.html)
-
-| Action | Query result | Inspection |
-|---|---|---|
-| `ALLOW` | Permit | Stop |
-| `ALERT` | Permit and log an alert | Stop |
-| `BLOCK` | Return the configured block response | Stop |
+3. Choose an action for each rule. `ALLOW` permits the query and stops inspection; `BLOCK` stops inspection and returns the configured block response. Queries with no match resolve normally.
 
 For an allow-only policy, allow approved domains before a rule blocking the rest. [Actions](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html) · [Policy examples](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-getting-started.html)
 
@@ -207,10 +164,9 @@ By default, domain-list rules inspect all names in a DNS redirection chain, wher
 
 ### Remember
 
-- Lower numeric priorities run first at both levels.
-- Queries that match no rule resolve normally. [Failure mode](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html)
+- Queries that match no rule resolve normally.
 - Advanced rules support `BLOCK` and `ALERT`, not `ALLOW`.
 
-> **Trap:** A matching allow or alert rule prevents a later block rule from inspecting that query. Ordering is part of the policy.
+> **Trap:** A matching allow rule stops inspection, so a later block rule does not inspect that query.
 
 > **Trap:** Blocking a DNS name does not inspect or deny all traffic to its destination. DNS filtering and application-traffic controls solve different problems.

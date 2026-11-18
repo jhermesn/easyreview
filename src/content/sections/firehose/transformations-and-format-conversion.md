@@ -13,14 +13,6 @@ facts:
   - id: transform-size
     text: The Lambda transformation buffer size hint is configurable from 0.2 to 3 MB.
     source: https://docs.aws.amazon.com/firehose/latest/dev/data-transformation.html#data-transformation-flow
-  - id: transform-contract
-    text: For Direct PUT and Kinesis Data Streams sources, every Lambda output record must preserve
-      recordId and include result and base64-encoded data.
-    source: https://docs.aws.amazon.com/firehose/latest/dev/data-transformation-status-model.html#data-transformation-status-model
-  - id: transform-status
-    text: The Lambda result values are Ok, Dropped, and ProcessingFailed; Firehose treats Ok and Dropped
-      as successfully processed.
-    source: https://docs.aws.amazon.com/firehose/latest/dev/data-transformation-status-model.html#data-transformation-status-model
   - id: transform-convert
     text: Firehose can convert JSON to Parquet or ORC before S3 delivery; non-JSON input can first be
       transformed to JSON with Lambda.

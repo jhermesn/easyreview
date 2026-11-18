@@ -21,26 +21,11 @@ facts:
   - id: sqs-timeout
     text: Lambda requires function timeout to be no greater than the SQS visibility timeout.
     source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#services-sqs-configure
-  - id: sqs-visibility
-    text: AWS recommends SQS visibility timeout of at least six times the function timeout plus MaximumBatchingWindowInSeconds.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#services-sqs-configure
   - id: sqs-redrive
     text: SQS visibility timeout and source-queue redrive policy govern retries and dead-letter routing rather than function asynchronous invocation settings.
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html#invocation-retries
   - id: sqs-batch-error
     text: By default, a failed SQS batch makes all messages visible again after visibility timeout, including successfully processed messages.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-errorhandling
-  - id: sqs-partial
-    text: Enable ReportBatchItemFailures in FunctionResponseTypes and return failed SQS message IDs as itemIdentifier entries in batchItemFailures to retry only failed messages.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-errorhandling
-  - id: sqs-partial-scaling
-    text: With ReportBatchItemFailures enabled, Lambda does not scale down SQS message polling when function invocations fail.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-batchfailurereporting
-  - id: sqs-fifo-partial
-    text: For SQS FIFO partial responses, stop after the first failure and return failed and unprocessed messages to preserve order.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-errorhandling
-  - id: sqs-throw
-    text: Throwing an exception from a Lambda SQS handler makes the entire batch fail even when partial responses are enabled.
     source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-errorhandling
   - id: sqs-batch-sizes
     text: The maximum SQS mapping batch size is 10,000 for standard queues and 10 for FIFO queues; a size over 10 requires a batching window of at least one second.
@@ -50,9 +35,6 @@ facts:
     source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#events-sqs-eventsource
   - id: kinesis-order
     text: By default, Lambda processes one batch at a time per Kinesis shard and a function error blocks further progress in that shard.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#with-kinesis
-  - id: parallel-factor
-    text: ParallelizationFactor can increase concurrent batches per Kinesis shard from the default 1 to 10, while preserving partition-key ordering.
     source: https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#with-kinesis
   - id: stream-recovery
     text: Kinesis mapping MaximumRecordAgeInSeconds and MaximumRetryAttempts bound failed-record processing; BisectBatchOnFunctionError splits failed batches to isolate bad records.

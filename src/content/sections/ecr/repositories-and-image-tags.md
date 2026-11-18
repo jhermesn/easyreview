@@ -24,24 +24,12 @@ facts:
     text: IMMUTABLE prevents overwriting image tags; a push using an existing immutable tag returns
       ImageTagAlreadyExistsException.
     source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html#image-tag-mutability
-  - id: exclusion-options
-    text: IMMUTABLE_WITH_EXCLUSION permits updates to matching excluded tags, while
-      MUTABLE_WITH_EXCLUSION protects matching excluded tags.
-    source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html#image-tag-mutability
   - id: exclusion-date
     text: AWS documented tag immutability exclusion patterns in July 2025.
     source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/doc-history.html#doc-history
-  - id: public-pulls
-    text: Anyone can pull images from an ECR public repository; pushing requires Docker client
-      authentication and appropriate permissions.
-    source: https://docs.aws.amazon.com/AmazonECR/latest/public/public-registries.html#public-registries
   - id: private-auth
     text: Private ECR push and pull operations require Docker client authentication and IAM permissions.
     source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html
-  - id: push-trigger
-    text: An ECR source action can trigger CodePipeline on image pushes and can be combined with another
-      source action for other deployment artifacts.
-    source: https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECR.html
 cards:
   - id: ecr-002
     q: A team must prevent release tags in an ECR repository from being overwritten. Which setting

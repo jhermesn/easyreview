@@ -21,15 +21,6 @@ facts:
   - id: readers
     text: Aurora Replicas serve reads and can be promoted when the writer fails; placing instances in different Availability Zones improves instance availability.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Concepts.AuroraHighAvailability.Instances
-  - id: tier
-    text: Aurora promotion priorities range from 0 for highest priority to 15 for lowest priority.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
-  - id: tier-tie
-    text: Within equal promotion priority, Aurora favors the larger instance, then an arbitrary instance if sizes also match.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
-  - id: tier-exception
-    text: After five unsuccessful Aurora failover attempts, promotion tiers are no longer considered.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
   - id: writer-endpoint
     text: The cluster endpoint follows the current writer and supports reconnection after failover.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html#Aurora.Overview.Endpoints.HA
@@ -42,15 +33,6 @@ facts:
   - id: autoscaling
     text: Aurora Auto Scaling uses target tracking to add and remove reader instances within configured limits; it does not scale the writer.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling
-  - id: dimension
-    text: Application Auto Scaling registers an Aurora cluster with service namespace rds and scalable dimension rds:cluster:ReadReplicaCount.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.Add.html#Aurora.Integrating.AutoScaling.AddCode.Register
-  - id: cpu
-    text: RDSReaderAverageCPUUtilization is average CPU utilization across Aurora readers.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.Add.html#Aurora.Integrating.AutoScaling.AddCode.DefineScalingPolicy.Predefined
-  - id: connections
-    text: RDSReaderAverageDatabaseConnections is the average connection count across Aurora readers.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.Add.html#Aurora.Integrating.AutoScaling.AddCode.DefineScalingPolicy.Predefined
   - id: aggregate
     text: Aurora Auto Scaling metric averages include all readers, including manually added readers and custom-endpoint members, and exclude the writer.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling.Concepts.TargetMetric
@@ -60,18 +42,6 @@ facts:
   - id: remove
     text: Aurora Auto Scaling removes only readers it created.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling
-  - id: created
-    text: Aurora Auto Scaling creates readers with the writer instance class and promotion tier 15 by default.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling
-  - id: secondary
-    text: Aurora Auto Scaling is unsupported on Global Database secondary clusters.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling
-  - id: serverless
-    text: Aurora Auto Scaling is unsupported for Serverless v2; pre-created Serverless readers scale compute capacity instead of being added by a reader-count policy.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html#aurora-serverless-v2.limitations
-  - id: proxy
-    text: RDS Proxy manages reusable database connections separately from client connections; clients connect to the proxy endpoint.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-connections.html#rds-proxy-connection-life
   - id: proxy-cap
     text: RDS Proxy MaxConnectionsPercent caps database connections as a percentage of the Aurora max_connections setting; it does not open all allowed connections in advance.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.maxconnectionspercent
@@ -84,9 +54,6 @@ facts:
   - id: managed-patching
     text: Aurora applies operating system and database engine patches during the cluster maintenance window, so the customer does not patch servers.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html
-  - id: cloning
-    text: "Aurora cloning creates a new cluster that initially shares the source's data pages using copy-on-write, so it is fast and uses little extra space; it suits test environments built from production data."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html#Aurora.Managing.Clone
   - id: custom-endpoint
     text: "An Aurora custom endpoint points to a set of DB instances you choose and balances connections among them, for example to send reporting queries to specific replicas."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Custom.html#Aurora.Endpoints.Custom
@@ -96,9 +63,6 @@ facts:
   - id: no-replica-failover
     text: "If an Aurora cluster has no Aurora Replicas, a failure recreates the primary instance in the same Availability Zone, which typically takes under 10 minutes; promoting a replica is much faster."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
-  - id: lambda-native
-    text: "Aurora MySQL can invoke a Lambda function from SQL with the native functions lambda_sync and lambda_async, once the cluster has access to Lambda."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Lambda.html#AuroraMySQL.Integrating.Lambda
   - id: volume-max
     text: "An Aurora cluster volume grows automatically up to 256 TiB on supported engine versions, and you pay only for the space used."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html#aurora-storage-growth
@@ -254,19 +218,18 @@ An Aurora cluster separates database instances from a shared storage volume. The
 1. Store six copies of the data across three Availability Zones. This storage replication exists even with only one database instance. Storage grows with data, subject to engine-version limits.
 2. Add up to 15 Aurora Replicas, meaning read-only instances sharing the same volume. Adding a reader does not copy all table data again.
 3. Send read/write connections to the cluster endpoint, the address that follows the writer. Send read-only connections to the reader endpoint, which balances connections across readers. It does not redistribute queries within a connection.
-4. For automatic reader counts, register rds:cluster:ReadReplicaCount in Application Auto Scaling and set target tracking limits and a CPU or connection target. The average includes every reader and excludes the writer. At least one reader must exist for these metrics to drive scaling.
+4. For automatic reader counts, use Aurora Auto Scaling target tracking and configure reader limits. The average includes every reader and excludes the writer. At least one reader must exist for these metrics to drive scaling.
 5. Auto Scaling removes only the readers it created, even though manually added readers contribute to its metrics.
 
 ### Exam cues
 
 - If the question says durable storage but only one database instance, think add a reader in another zone, because storage copies alone are not spare compute.
-- If the question says automatically add provisioned read capacity, think Aurora Auto Scaling, because it changes reader count using average reader CPU or connections.
+- If the question says automatically adjust reader count, think Aurora Auto Scaling, because it uses target tracking within configured limits.
 - If the question says a single read session overloads one reader, think connection balancing, because the reader endpoint does not balance each query.
 
 ### Remember
 
 - Six data copies across three zones; one writer and up to 15 readers.
-- Metrics: RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
 - Aurora is MySQL and PostgreSQL compatible; AWS patches it in the maintenance window.
 
 > **Trap:** Manually created readers affect Auto Scaling metrics but are not removed by its scale-in actions. With no readers, the reader endpoint reaches the writer and can accept writes.

@@ -75,15 +75,9 @@ facts:
   - id: oac-ownership-definition
     text: S3 Object Ownership controls ownership of uploaded objects and enables or disables access control lists.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html#about-object-ownership
-  - id: vpc-origins
-    text: "CloudFront VPC origins deliver content from Application Load Balancers, Network Load Balancers and EC2 instances in private subnets, so CloudFront becomes the single entry point and the origin needs no public access."
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-vpc-origins.html#private-content-vpc-origins
   - id: managed-prefix-list
     text: "The CloudFront managed prefix list holds the IP ranges of CloudFront origin-facing servers; referencing it in a security group lets only CloudFront reach an origin such as an ALB or EC2 instance."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/LocationsOfEdgeServers.html#managed-prefix-list
-  - id: origin-transfer-free
-    text: "Data transfer from AWS origins, such as S3 or an ALB, to CloudFront is not charged."
-    source: https://aws.amazon.com/cloudfront/pricing/
   - id: oac-lambda-url
     text: "Origin access control can also restrict access to a Lambda function URL origin, so only CloudFront can invoke the URL."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-lambda.html

@@ -36,9 +36,6 @@ facts:
     text: The parent execution exposes child Automation execution IDs; child output must be retrieved in
       its target account and Region.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/running-automations-multiple-accounts-regions.html#running-automations-multiple-accounts-regions
-  - id: cross-approval
-    text: aws:approve does not support multi-account and Region automations.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-action-approve.html#automation-action-approve
   - id: term-organizational-unit
     text: "Organizational unit: A group of AWS accounts within an AWS Organizations hierarchy."
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#orgs_getting-started_concepts
@@ -205,6 +202,5 @@ Multi-account and Region Automation runs a centrally selected runbook in other A
 - Administration role: central account. Execution role: every target account.
 - OU targeting requires the management account or a delegated administrator.
 - Custom runbooks must be shared with all targets.
-- `aws:approve` is unsupported in multi-account and Region automations.
 
 > **Trap:** Location concurrency does not limit how many resources run inside a location. Configure resource rate controls too.

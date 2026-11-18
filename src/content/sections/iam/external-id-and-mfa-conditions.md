@@ -24,9 +24,6 @@ facts:
     text: For MFA with AssumeRole, the caller supplies SerialNumber for the device and TokenCode for its one-time
       code.
     source: https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#API_AssumeRole
-  - id: mfa-session-token
-    text: GetSessionToken with MFA returns user temporary credentials with MFA authentication information.
-    source: https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html#API_GetSessionToken
   - id: mfa-key-absence
     text: aws:MultiFactorAuthPresent is absent for long-term access-key requests and is not provided for federated
       identities.
@@ -35,10 +32,6 @@ facts:
     text: A Deny with BoolIfExists aws:MultiFactorAuthPresent false rejects non-MFA temporary requests and
       long-term access-key requests.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-multifactorauthpresent
-  - id: mfa-age
-    text: aws:MultiFactorAuthAge measures seconds since MFA authentication and is available only for temporary
-      credentials created with MFA.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-multifactorauthage
 cards:
   - id: iam-012
     q: A vendor serves several customers and assumes an IAM role in each account. How can a customer reduce the

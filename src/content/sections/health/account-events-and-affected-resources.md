@@ -18,18 +18,6 @@ facts:
   - id: affected-resources
     text: The Affected resources tab lists resource IDs or ARNs when available.
     source: https://docs.aws.amazon.com/health/latest/ug/aws-health-account-views.html#event-details
-  - id: lifecycle-status
-    text: Planned lifecycle event resource statuses are Pending, Unknown, or Resolved and usually refresh every 24 hours but can take up to 72 hours.
-    source: https://docs.aws.amazon.com/health/latest/ug/aws-health-account-views.html#event-details
-  - id: history
-    text: The account event log shows events from the past 90 days.
-    source: https://docs.aws.amazon.com/health/latest/ug/aws-health-account-views.html#aws-health-account-views
-  - id: organization
-    text: Organizational view aggregates Health events across an AWS organization and supports a delegated administrator.
-    source: https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html#aggregate-events
-  - id: organization-prerequisite
-    text: Organizational view requires an organization with all features enabled.
-    source: https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html#prerequisites-organizational-view
   - id: eks-support-notice
     text: Amazon EKS sends a notice through AWS Health when an account has clusters running a Kubernetes version approaching the end of standard support.
     source: https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#version-faqs

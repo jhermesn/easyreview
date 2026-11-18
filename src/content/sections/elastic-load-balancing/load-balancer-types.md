@@ -99,10 +99,6 @@ facts:
   - id: quic
     text: QUIC is a transport protocol carried over UDP; NLB QUIC listeners pass this traffic to targets.
     source: https://aws.amazon.com/blogs/networking-and-content-delivery/introducing-quic-protocol-support-for-network-load-balancer-accelerating-mobile-first-applications/
-  - id: lambda-permission
-    text: An ALB Lambda target needs a function resource policy granting elasticloadbalancing.amazonaws.com
-      lambda:InvokeFunction; AWS recommends restricting it with aws:SourceArn and aws:SourceAccount.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#prepare-lambda-function
   - id: lambda-limits
     text: An ALB Lambda target and its target group must share an account and Region; request bodies
       and Lambda response JSON are each limited to 1 MB.
@@ -131,9 +127,6 @@ facts:
   - id: nlb-security-group-creation
     text: An NLB created without security groups cannot have them added later; NLB health checks are subject to outbound security group rules.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-security-groups.html#security-group-considerations
-  - id: nlb-quic-security
-    text: NLB QUIC and TCP_QUIC listeners require an IPv4 NLB without security groups, cannot coexist with UDP or TCP_UDP listeners, and are limited to one such listener per NLB.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-listener.html#listener-prereqs
   - id: nlb-zonal-routing
     text: NLB cross-zone load balancing is off by default; without a healthy target in a zone, its address can be removed from DNS.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html#network-load-balancer-overview

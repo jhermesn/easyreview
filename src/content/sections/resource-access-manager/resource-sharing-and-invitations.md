@@ -18,12 +18,6 @@ facts:
   - id: ram-invitations
     text: Sharing with accounts in an organization normally requires no invitation when organization sharing is enabled; external accounts or accounts in the organization without sharing enabled receive an invitation.
     source: https://docs.aws.amazon.com/ram/latest/userguide/working-with-shared-invitations.html#working-with-shared-invitations
-  - id: ram-retain
-    text: RetainSharingOnAccountLeaveOrganization can be enabled when creating an individual account share that allows external principals; it sends an invitation and preserves access if the account leaves the organization.
-    source: https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs
-  - id: ram-retain-limits
-    text: The retention option does not apply to organization or OU shares and cannot be used with resources shareable only within an organization.
-    source: https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs
   - id: ram-ou
     text: An organizational unit is a group of AWS accounts within an organization and can contain other organizational units.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#organizationalunit
@@ -69,9 +63,6 @@ facts:
   - id: ram-re-share
     text: A resource received through a share cannot be shared again by the recipient.
     source: https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing-create.html#working-with-sharing-create
-  - id: ram-version
-    text: A new share uses the default version of its managed permission, and existing shares do not automatically update when a new default version is released.
-    source: https://docs.aws.amazon.com/ram/latest/userguide/security-ram-permissions.html#security-ram-permissions
 diagrams:
   - id: ram-cross-account-sharing
     title: Cross-account resource sharing

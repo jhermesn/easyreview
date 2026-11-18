@@ -6,13 +6,6 @@ facts:
   - id: trail-destination
     text: A trail configures ongoing delivery of selected CloudTrail events to an S3 bucket.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-trails
-  - id: trail-regions
-    text: A multi-Region trail covers enabled Regions; all trails created in the CloudTrail console are
-      multi-Region.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-trails
-  - id: api-region-default
-    text: CreateTrail defaults IsMultiRegionTrail to false, creating a single-Region trail unless the setting is enabled.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html#awscloudtrail-CreateTrail-request-IsMultiRegionTrail
   - id: selector-default
     text: Trails created without specific selectors record all read and write management events, with no
       data or network activity events.
@@ -32,37 +25,10 @@ facts:
     text: Advanced data event selectors can filter eventName and readOnly to include specific operations
       or read versus write activity.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/filtering-data-events.html#filtering-data-events
-  - id: selector-replace
-    text: A trail uses basic or advanced selectors, not both; applying advanced selectors overwrites
-      basic selectors.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#API_PutEventSelectors
-  - id: recursive-events
-    text: Logging S3 data events on the trail destination bucket can record CloudTrail PutObject
-      deliveries and create repeated delivery events.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-recursive-logging.html#cloudtrail-trail-recursive-logging
-  - id: recursive-suppression
-    text: RecursiveLogging false suppresses CloudTrail-invoked S3 PutObject and CloudWatch Logs
-      PutLogEvents delivery events while preserving other callers' events.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-recursive-logging.html#cloudtrail-trail-recursive-logging
-  - id: recursive-default
-    text: RecursiveLogging defaults to true on trails.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html#API_CreateTrail_RequestParameters
   - id: global-services
     text: Global service events are included by default in console-created trails; multiple
       single-Region trails should include them only once to avoid duplicates.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-global-service-events
-  - id: sts-regions
-    text: CloudTrail logs STS global endpoint requests in us-east-1, while Regional STS endpoint
-      requests are logged in their respective Region.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration
-  - id: start-logging
-    text: StartLogging starts API recording and log delivery for an existing trail and must be called in
-      the home Region for a multi-Region trail.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_StartLogging.html#API_StartLogging
-  - id: create-start
-    text: "Trail creation and starting event logging are separate CLI operations: create-trail and
-      start-logging."
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.html#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli
   - id: console-multi-region
     text: "A trail created in the CloudTrail console applies to all enabled Regions (a multi-Region trail); a single-Region trail can only be created with the CLI or API."
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html#cloudtrail-create-a-trail-using-the-console-first-time
@@ -114,7 +80,7 @@ A trail is the CloudTrail configuration that sends selected events to S3 for an 
 
 [AWS data event selection](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events-with-cloudtrail) · [Advanced selector fields](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/filtering-data-events.html#filtering-data-events)
 
-For trail setup and delivery details, see [CLI operations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.html#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli), [STS logging](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration), [global event handling](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-global-service-events), and [recursive event handling](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-recursive-logging.html#cloudtrail-trail-recursive-logging).
+See also [global event handling](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-global-service-events).
 
 ### Exam cues
 

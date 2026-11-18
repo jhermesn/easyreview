@@ -21,9 +21,6 @@ facts:
   - id: sharing
     text: The management account of an organization controls Reserved Instance and Savings Plans discount sharing across its accounts, organization-wide, by account group or per account.
     source: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ri-turn-off.html#ri-turn-off
-  - id: ri-marketplace
-    text: The EC2 Reserved Instance Marketplace lets customers sell unused Standard Reserved Instances, for example after moving Regions or changing instance types.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html#ri-market-general
   - id: payment-options
     text: Reserved Instances can be paid All Upfront, Partial Upfront or No Upfront; with Partial or No Upfront the rest is billed monthly over the term.
     source: https://aws.amazon.com/ec2/pricing/reserved-instances/

@@ -9,9 +9,6 @@ facts:
   - id: secondary
     text: When the checked primary is unhealthy and checked secondary is healthy, Route 53 returns the secondary.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records
-  - id: both-failed
-    text: If both checked failover records are unhealthy, Route 53 returns the primary.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records
   - id: unchecked-secondary
     text: A secondary without a health check is returned whenever the primary is unhealthy, even if the secondary resource has failed.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records
@@ -21,12 +18,6 @@ facts:
   - id: ttl-advice
     text: For records associated with health checks, AWS recommends a TTL of 60 seconds or less.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-weighted.html#rrsets-values-weighted-ttl
-  - id: invert
-    text: Inverted reverses a health check result; a healthy check becomes unhealthy.
-    source: https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-Inverted
-  - id: disabled
-    text: Disabling a check stops monitoring and makes it healthy unless its result is inverted.
-    source: https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-Disabled
   - id: async
     text: DNS queries use existing health status rather than starting a probe.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records

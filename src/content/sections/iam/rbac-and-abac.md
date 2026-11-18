@@ -20,13 +20,6 @@ facts:
   - id: abac-session-tags
     text: SAML and OIDC providers can pass identity attributes as STS session tags.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_operations
-  - id: tag-session-permission
-    text: Roles receiving session tags from an identity provider need sts:TagSession permission in their trust
-      policy.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_know
-  - id: tag-controls
-    text: sts:TagSession permissions can restrict allowed session tag keys and values.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_permissions-required
   - id: home-policy-variable
     text: An IAM user home-directory policy can use ${aws:username} in S3 object ARNs and s3:prefix conditions on
       s3:ListBucket.
@@ -35,18 +28,6 @@ facts:
     text: The aws:username variable is unavailable for IAM role requests, so that user home-directory example does
       not work unchanged for roles.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_s3_home-directory-console.html#reference_policies_examples_s3_home-directory-console
-  - id: identity-center-abac
-    text: IAM Identity Center passes selected access-control attributes to accounts as session tags referenced
-      through aws:PrincipalTag.
-    source: https://docs.aws.amazon.com/singlesignon/latest/userguide/attributesforaccesscontrol.html#attributesforaccesscontrol
-  - id: department-mapping
-    text: An Identity Center attribute named Department can map to the supported external-identity source value
-      ${path:enterprise.department}.
-    source: https://docs.aws.amazon.com/singlesignon/latest/userguide/attributemappingsconcept.html#attributemappingsconcept
-  - id: identity-center-config
-    text: Select attributes for access control, map source values to keys, and add ABAC rules to permission set
-      policies or resource policies.
-    source: https://docs.aws.amazon.com/singlesignon/latest/userguide/configure-abac-attributes.html#configure-abac-attributes
   - id: permission-set-definition
     text: A permission set is a collection of IAM policies used to assign account access in IAM Identity Center.
     source: https://docs.aws.amazon.com/singlesignon/latest/userguide/permissionsetsconcept.html#permissionsetsconcept
