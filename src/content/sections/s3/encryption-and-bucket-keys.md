@@ -100,6 +100,9 @@ facts:
   - id: update-object-encryption
     text: "UpdateObjectEncryption changes an existing SSE-S3 or SSE-KMS object to SSE-KMS, or to use an S3 Bucket Key, in place without copying data; it does not accept unencrypted, DSSE-KMS or SSE-C objects."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/update-sse-encryption.html#update-sse-encryption
+  - id: aws-s3-key
+    text: "When no KMS key is given for SSE-KMS, S3 uses the AWS managed key aws/s3 of the uploading account."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#aws-managed-customer-managed-keys
 cards:
   - id: s3-014
     q: What encryption does S3 apply to a new upload with no encryption settings?
@@ -181,6 +184,10 @@ cards:
     q: "Existing SSE-S3 objects must move to SSE-KMS with a Bucket Key without rewriting them. Which operation does that?"
     a: "UpdateObjectEncryption, which updates the encryption in place with no data copy. CopyObject also works but rewrites each object."
     facts: [update-object-encryption, bucket-key-existing]
+  - id: s3-171
+    q: "An object is uploaded with SSE-KMS but no key ID, and the bucket default names no key. Which key encrypts it?"
+    a: "The AWS managed key aws/s3 of the uploading account."
+    facts: [aws-s3-key]
 ---
 S3 server-side encryption protects object data at rest, meaning while stored on disk. S3 encrypts data during storage and decrypts it for authorized reads; the encryption option determines who controls the keys.
 

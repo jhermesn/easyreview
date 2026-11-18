@@ -64,6 +64,15 @@ facts:
   - id: glacier-large
     text: Large archive datasets can take longer to restore than typical retrieval times.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html#restoring-objects-retrieval-options
+  - id: ia-minimums
+    text: "Standard-IA and One Zone-IA bill each object as at least 128 KB and at least 30 days of storage; deleting earlier still bills the 30 days."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-compare
+  - id: it-small-objects
+    text: "In S3 Intelligent-Tiering, objects smaller than 128 KB are not monitored or auto-tiered and always stay in the Frequent Access tier."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering-overview.html
+  - id: bulk-cheapest
+    text: "Bulk is the lowest-cost retrieval option in the S3 Glacier storage classes, suited to retrieving large amounts of data inexpensively."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html#restoring-objects-retrieval-options
 diagrams:
   - id: s3-archive-restore-copy
     title: Making an archive permanently readable
@@ -153,6 +162,15 @@ cards:
     facts:
       - glacier-temporary
       - glacier-copy
+  - id: s3-169
+    q: "Millions of 20 KB objects are moved to S3 Standard-IA to save money, and the bill goes up. Why?"
+    a: "Standard-IA bills every object as at least 128 KB (and 30 days), so tiny objects cost more there than in Standard."
+    trap: true
+    facts: [ia-minimums]
+  - id: s3-170
+    q: "Does S3 Intelligent-Tiering move a 50 KB object to the Infrequent Access tier when it is not read?"
+    a: "No. Objects under 128 KB are not monitored and always stay in Frequent Access."
+    facts: [it-small-objects]
 ---
 S3 Glacier storage classes trade access speed for archive storage costs. Instant Retrieval stays directly readable; Flexible Retrieval and Deep Archive require a restore job before an application can read the data.
 

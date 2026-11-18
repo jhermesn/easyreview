@@ -75,6 +75,9 @@ facts:
   - id: peer-sg-reference
     text: "A security group can reference a security group in a peered VPC in the same Region, even in another account (account-id/sg-id); for a peer in another Region use its CIDR block."
     source: https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html#vpc-peering-security-groups
+  - id: acl-within-subnet
+    text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the same subnet."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
 cards:
   - id: vpc-001
     q: How do VPC security groups and network ACLs differ?
@@ -168,6 +171,11 @@ cards:
     a: "No. Cross-account references work within the same Region; for an inter-Region peer, use the peer VPC CIDR block."
     trap: true
     facts: [peer-sg-reference]
+  - id: vpc-061
+    q: "Two instances in the same subnet cannot talk. Can the subnet network ACL be the cause?"
+    a: "No. Network ACLs only filter traffic entering or leaving the subnet; check the security groups and the hosts."
+    trap: true
+    facts: [acl-within-subnet]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.

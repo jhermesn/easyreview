@@ -24,6 +24,12 @@ facts:
   - id: rule-priority
     text: An associated Resolver forwarding rule for the same domain takes precedence over a private hosted zone.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-considerations.html#hosted-zone-private-considerations
+  - id: vpc-dns-attributes
+    text: "enableDnsSupport (default true) lets a VPC use the Amazon-provided DNS server, and enableDnsHostnames (default false except in a default VPC) assigns public DNS hostnames to instances with public IPs; private hosted zones need both turned on."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/AmazonDNS-concepts.html#vpc-dns-support
+  - id: resolver-address
+    text: "The Route 53 Resolver in a VPC answers at 169.254.169.253 (fd00:ec2::253 for IPv6) and at the VPC primary IPv4 CIDR base plus two."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/AmazonDNS-concepts.html
 cards:
   - id: route53-020
     q: A Route 53 private hosted zone matches a name but lacks the requested record. Does Resolver try public DNS?
@@ -49,6 +55,15 @@ cards:
     a: Set enableDnsSupport and enableDnsHostnames to true.
     facts:
       - dns-flags
+  - id: route53-070
+    q: "Instances in a new custom VPC cannot resolve names in a private hosted zone associated with that VPC. Which VPC settings should be checked?"
+    a: "enableDnsSupport and enableDnsHostnames must both be true. In a nondefault VPC, DNS hostnames start disabled."
+    trap: true
+    facts: [vpc-dns-attributes]
+  - id: route53-071
+    q: "At which addresses can instances reach the Amazon-provided DNS resolver in a VPC?"
+    a: "169.254.169.253 (or fd00:ec2::253) and the VPC primary CIDR base address plus two."
+    facts: [resolver-address]
 ---
 A private hosted zone is a collection of DNS records available through associated VPCs. It supports internal names and split-view DNS, where the same domain has different internal and external records.
 

@@ -18,6 +18,9 @@ facts:
   - id: tools
     text: CUR files can be read with spreadsheet software or from applications through the Amazon S3 API.
     source: https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html#what-is-cur
+  - id: export-formats
+    text: "Data Exports delivers CUR 2.0 data to an S3 bucket as gzip-compressed CSV or Parquet files, with a manifest describing the export."
+    source: https://docs.aws.amazon.com/cur/latest/userguide/dataexports-export-delivery.html
 cards:
   - id: billing-and-cost-management-010
     q: A finance team needs the most detailed AWS billing data, line by line and hour by hour, delivered to Amazon S3. Which AWS feature provides it?

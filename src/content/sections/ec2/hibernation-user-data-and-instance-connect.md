@@ -42,6 +42,9 @@ facts:
   - id: eic-prefix-list
     text: "Browser-based EC2 Instance Connect to a public address needs the security group to allow port 22 from the Region EC2 Instance Connect prefix list (com.amazonaws.<region>.ec2-instance-connect)."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-tutorial.html
+  - id: eice
+    text: "EC2 Instance Connect Endpoint lets users connect from the internet to instances that have no public IP address, without a bastion host and without an internet gateway in the VPC."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-with-ec2-instance-connect-endpoint.html
 cards:
   - id: ec2-067
     q: A Java application on EC2 takes 20 minutes to load caches after boot. The instances are stopped at night and must resume ready to serve in the morning. Which EC2 feature fits?
@@ -81,6 +84,10 @@ cards:
     q: "From which IP address does software on an instance read its metadata?"
     a: "169.254.169.254, the link-local IMDS address (fd00:ec2::254 for IPv6)."
     facts: [imds]
+  - id: ec2-107
+    q: "Admins must SSH into instances in private subnets with no public IPs, no bastion host and no internet gateway. What fits?"
+    a: "An EC2 Instance Connect Endpoint in the VPC (Systems Manager Session Manager is the other agent-based option)."
+    facts: [eice]
 ---
 Three EC2 features that change how an instance starts and how you reach it: hibernation keeps memory across a stop, user data configures the first boot, and Instance Connect replaces long-lived SSH keys. [Hibernate your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 
