@@ -346,8 +346,6 @@ The following table compares HTTP request and response functions.
 | Execution duration | Submillisecond | Up to 30 seconds |
 | Network, file system, request body | No access | Access supported |
 
-Since November 2025, CloudFront also supports Connection Functions for mutual TLS (mTLS), where client and server both prove identity with certificates. These functions run during the TLS handshake to allow or deny a connection using custom certificate checks. They cannot modify HTTP requests or responses.
-
 To expose the request body, the data sent with a request, to Lambda@Edge, select `Include Body`. CloudFront exposes it as base64, a text encoding for binary data, and truncates it at 40 KB for viewer request or 1 MB for origin request. Reading without replacement still forwards the full original body to the origin.
 
 ### Exam cues

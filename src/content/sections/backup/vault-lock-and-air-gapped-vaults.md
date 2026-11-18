@@ -132,9 +132,8 @@ Vault Lock protects AWS Backup recovery points against early deletion or lifecyc
 
 1. Select governance mode for a lock that authorized users can remove, or compliance mode for an immutable lock after grace time.
 2. For compliance mode, set `ChangeableForDays` to give at least 3 days to review the configuration. Omitting that parameter selects governance mode.
-3. Set retention bounds. Incompatible new backup and copy jobs fail. Existing recovery points keep their lifecycle settings.
-4. For protected backups with direct sharing, use a logically air-gapped vault. It includes compliance-mode lock and stores backups in an AWS Backup service-owned account.
-5. Share that vault using AWS RAM, which grants other accounts access to the shared resource. Receiving accounts can restore directly, including accounts in another organization.
+3. For protected backups with direct sharing, use a logically air-gapped vault. It includes compliance-mode lock and stores backups in an AWS Backup service-owned account.
+4. Share that vault using AWS RAM, which grants other accounts access to the shared resource. Receiving accounts can restore directly, including accounts in another organization.
 
 | Protection | Lock removal | Recovery path |
 |---|---|---|
@@ -146,7 +145,6 @@ Vault Lock protects AWS Backup recovery points against early deletion or lifecyc
 
 - If the question says privileged users must not delete backups early, think compliance mode after grace time, because a governance lock can be removed.
 - If the question says another organization must restore directly, think a RAM-shared logically air-gapped vault, because it supports that sharing path.
-- If the question says new copy jobs fail after retention bounds are added, think lifecycle mismatch, because Vault Lock rejects incompatible new jobs.
 
 ### Remember
 
@@ -154,4 +152,4 @@ Vault Lock protects AWS Backup recovery points against early deletion or lifecyc
 - A logically air-gapped vault defaults to an AWS owned key; a customer managed key is optional.
 - A compliance-locked standard vault can be deleted when empty.
 
-> **Trap:** Adding retention bounds does not lengthen the lifecycle of backups already in the vault. Existing recovery points keep their original lifecycle.
+> **Trap:** Governance mode does not prevent every privileged user from removing the lock. Compliance mode becomes immutable after its grace time.

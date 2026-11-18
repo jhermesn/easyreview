@@ -249,7 +249,6 @@ ACM issues and manages certificates for TLS, the protocol that authenticates ser
 |---|---|---|
 | DNS | Publish the ACM CNAME. | Public domains, including wildcard requests. |
 | Email | Approve the validation email. | Legacy workflows being phased out during 2027. |
-| HTTP | Redirect a domain URL to the ACM token location. | CloudFront Distribution Tenants; no wildcards. |
 
 | Endpoint | Certificate Region |
 |---|---|
@@ -263,14 +262,11 @@ ACM issues and manages certificates for TLS, the protocol that authenticates ser
 - If the question says public browsers and internal clients need different trust, think public ACM certificates and private CA certificates, because private trust must be installed in client trust stores.
 - If the question says renew without repeated email approval, think DNS validation, because public CNAME records provide reusable domain-control proof.
 - If the question says a certificate is unavailable to an endpoint, think its Region, because ALB and Regional APIs need local certificates while CloudFront and edge-optimized API domains use `us-east-1`.
-- If the question says preserve an email-validated certificate ARN, its AWS resource identifier, during migration, think `UpdateCertificateOptions`, because the August 2026 change permits an email-to-DNS switch in place.
 
 ### Remember
 
-- From February 2026, new and renewed ACM public certificates have a maximum validity of 198 days.
 - `*.example.com` covers one subdomain level. It does not cover `example.com` or `a.b.example.com`.
 - The wildcard and base name share a DNS validation record; the token works across Regions.
-- Since August 2026, email-to-DNS migration preserves the ARN. Add the supplied CNAME records within 72 hours.
 - Public certificate domain validation does not apply to imported or private CA certificates.
 
 > **Trap:** Sharing a DNS validation record does not extend a wildcard's name coverage. Request the base domain separately when it also needs coverage.

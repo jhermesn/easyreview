@@ -78,7 +78,7 @@ CloudWatch Logs Insights searches stored log events to answer questions about pa
 ### How it works
 
 1. Choose the log groups and time range for the investigation.
-2. Select Logs Insights QL, OpenSearch PPL, or OpenSearch SQL. A query language specifies how to select and combine records.
+2. Select a query language to specify how to select and combine records.
 3. With Logs Insights QL, use `fields` to select fields, `filter` to restrict events, `stats` to calculate aggregates, and `sort` to order results. Pipes pass results between commands.
 4. Use automatically discovered fields in supported logs and JSON. Field indexes, lookup structures for selected fields, can reduce how much data a query scans.
 5. Inspect results or add a query to a dashboard for repeated viewing.
@@ -93,8 +93,6 @@ CloudWatch Logs Insights searches stored log events to answer questions about pa
 
 ### Remember
 
-- Query timeout: 60 minutes. Results remain available for 7 days.
-- Query languages: Logs Insights QL, OpenSearch PPL, OpenSearch SQL.
-- Events with timestamps before log group creation cannot be read by Logs Insights.
+- Field indexes can reduce query scan volume.
 
 > **Trap:** A metric filter does not count yesterday's stored events when created today. Use a historical query.

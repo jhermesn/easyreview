@@ -187,20 +187,16 @@ A cookie is a value stored by the client and sent with later requests. A query s
 | Origin request policy | Extra values sent to the origin | Forward tracing information |
 | Response headers policy | Headers sent to viewers | Add standard security headers |
 
-For country rules across a distribution, use a geographic allowlist or denylist, a list of permitted or blocked countries. CloudFront serves content when it cannot determine the country. Use AWS WAF geo match when a rule must combine geography with other conditions. For selected files or city-level rules, an application can check a geolocation service and issue a signed URL, a link carrying proof of permission. Use origin access control (OAC) with an S3 origin to prevent direct access around that check.
+For selected files or city-level rules, an application can check a geolocation service and issue a signed URL, a link carrying proof of permission. Use origin access control (OAC) with an S3 origin to prevent direct access around that check. Built-in geographic restrictions apply to the entire distribution at country level.
 
 ### Exam cues
 
 - If the question says a tracing header must reach the origin without creating extra cached copies, think origin request policy, because forwarding and cache identity are separate.
-- If the question says add security headers without function code, think response headers policy, because it changes both cached and origin responses.
 - If the question says authorize selected downloads by city, think application geolocation plus signed URLs and an S3 origin protected by OAC, because built-in geographic restrictions cover a whole distribution at country level.
 
 ### Remember
 
 - The first matching behavior wins; the default `*` rule is last.
 - Cache key values are forwarded automatically.
-- Response policies can add `Strict-Transport-Security`, `Content-Security-Policy` and `X-Frame-Options`.
 
 > **Trap:** Adding `Cache-Control` with a response headers policy changes viewer caching. It does not set CloudFront's object TTL.
-
-> **Trap:** CloudFront geographic restrictions block requests before AWS WAF sees them. WAF cannot allow an exception for those blocked requests.

@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER dynamodb/design-details"
+title: "Table settings and cost choices"
 level: associate
 order: 90
 facts:
@@ -41,18 +41,26 @@ cards:
     a: "Amazon DynamoDB. Only the primary key is fixed; each item can have different attributes."
     facts: [schemaless]
 ---
-PLACEHOLDER first paragraph.
+DynamoDB tables allow items with different attributes and provide settings for deletion protection and storage costs. DynamoDB also replicates table data across Availability Zones automatically.
 
 ### How it works
 
-PLACEHOLDER
+1. Define the primary key. Other attributes and their data types can differ between items in the same [table](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html).
+2. Choose a [table class](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.TableClasses.html). Standard is the default; Standard-IA targets infrequently accessed data where storage dominates costs.
+3. Enable [deletion protection](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.Basics.html#WorkingWithTables.Basics.DeletionProtection) to prevent table deletion until an authorized administrator turns it off.
+4. DynamoDB [replicates data](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/disaster-recovery-resiliency.html) across three Availability Zones in the Region. For provisioned capacity, [reserved capacity](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/reserved-capacity.html) can discount read and write capacity for a commitment term.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says items have different attributes, think DynamoDB, because only the primary key requires a fixed schema.
+- If the question says infrequent access and storage dominates costs, think Standard-IA, because it targets that usage.
+- If the question says prevent accidental table deletion, think deletion protection, because it blocks deletion until an authorized administrator disables it.
+- If the question says steady provisioned traffic and a one-year commitment, think reserved capacity, because it discounts provisioned read and write capacity.
 
 ### Remember
 
-PLACEHOLDER
+- Standard is the default table class; deletion protection is off by default.
+- Data is automatically replicated across three Availability Zones in a Region.
+- Reserved capacity has a one-year term, or three years in some Regions, and is unavailable for on-demand capacity.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A table does not need extra setup for replication across Availability Zones. Deletion protection, however, must be enabled.

@@ -137,9 +137,6 @@ CloudWatch alarm actions turn a detected condition into a notification or respon
 2. Create a composite rule such as `ALARM("cpu") AND ALARM("errors")`. It reads child alarm states, not metric values.
 3. Notify from the composite when the combined condition holds. Use SNS, a message delivery service, or another supported action.
 4. Keep EC2 and Auto Scaling actions on metric alarms. EventBridge rules can also route alarm state-change events to automation.
-5. To suppress composite actions during maintenance, configure a suppressor alarm. Its wait period gives
-   the suppressor time to enter ALARM; its extension period gives the composite time to recover after
-   the suppressor returns to OK.
 
 | Action | Metric alarm | Composite alarm |
 | --- | --- | --- |
@@ -153,21 +150,12 @@ CloudWatch alarm actions turn a detected condition into a notification or respon
 - If the question says several related alarms cause duplicate paging, think a composite condition, because it combines child states before notifying.
 - If the question says one combined alert and EC2 recovery, think separate composite and metric actions, because a composite cannot recover EC2.
 - If the question says the EC2 host has a system status failure, think recovery with `StatusCheckFailed_System`, because recovery addresses underlying host impairment.
-- If composite alarms form a dependency cycle and cannot be deleted, set one rule to `False` to break the cycle.
-- If a configured SNS action does not run, check that the topic exists. CloudWatch does not validate configured actions.
-- If an alarm invokes Lambda in another account, grant the CloudWatch alarm service principal access in the function resource policy.
-- If maintenance follows a schedule, use a mute rule for metric or composite actions without stopping evaluation. After the window, actions run if the final state differs from the initial state.
-- If creating a composite alarm is denied, check that `cloudwatch:PutCompositeAlarm` is scoped to `*`. OpsItem actions also require `iam:CreateServiceLinkedRole` for an IAM user.
 - If the question says alert when estimated charges pass a threshold, think a CloudWatch billing alarm in US East (N. Virginia) or AWS Budgets, because both alert on spend.
 
 ### Remember
 
 - Composite rules use AND, OR, NOT and state tests ALARM, OK, INSUFFICIENT_DATA.
-- Auto Scaling actions repeat each minute while the relevant state persists. Other actions normally run on state changes.
 - Reboot suits an instance status failure; recovery suits a system status failure.
 - Cross-account composite alarm creation is unsupported.
-- AWS recommends 60 seconds each for composite action suppression wait and extension periods.
-- `SetAlarmState` is temporary, ending at the next alarm comparison.
-- A composite rule can reference up to 100 alarms; an alarm can be referenced by up to 150 composites.
 
 > **Trap:** A composite alarm that invokes Lambda does not gain a native EC2 recovery action. Put the native recovery action on the metric alarm.

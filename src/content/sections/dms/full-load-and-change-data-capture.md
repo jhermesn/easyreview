@@ -145,9 +145,8 @@ AWS Database Migration Service (DMS) moves data between supported data stores an
 
 1. Define source and target endpoints, which contain each data store's connection details. At least one endpoint must be an AWS service. Test both endpoint connections from the replication instance.
 2. Select a replication instance, which reads and loads data, or use DMS Serverless to provision and scale capacity automatically. Multi-AZ gives a provisioned instance a synchronous standby in another Availability Zone.
-3. If changing database engines, assess and convert the schema, the structure of the database, with DMS Schema Conversion or AWS Schema Conversion Tool. Manually address objects that automatic conversion cannot handle.
-4. Choose the task type. Full load plus CDC copies existing data while caching changes for each table once its load starts, applies those changes, then continues replication from source logs. Configure the source for CDC as required by its engine.
-5. After replication reaches a steady state, stop the application, allow remaining changes to reach the target, and restart the application against the target.
+3. Choose the task type. Full load plus CDC copies existing data while caching changes for each table once its load starts, applies those changes, then continues replication from source logs. Configure the source for CDC as required by its engine.
+4. After replication reaches a steady state, stop the application, allow remaining changes to reach the target, and restart the application against the target.
 
 | Task | Use |
 | --- | --- |
@@ -159,17 +158,13 @@ AWS Database Migration Service (DMS) moves data between supported data stores an
 
 - If the question says reduce migration cutover downtime, think full load plus CDC, because ongoing changes are applied after the initial copy.
 - If the question says automatic failover of a provisioned DMS instance, think Multi-AZ, because it maintains a synchronous standby.
-- If the question says a task is running with errors, think table states and enabled CloudWatch task logs, because other tables may continue even when one fails.
-- If the question says target CDC latency exceeds source latency, think target-side investigation; when they are similar, check the source first.
+- If the question says the target already has its initial data, think CDC only, because the task replicates ongoing changes.
 - If the question says replication capacity should scale without instance management, think DMS Serverless.
 - If the question says a MongoDB-compatible database, think Amazon DocumentDB. If it says a data warehouse for large analytical queries, think Amazon Redshift. Redshift omits some features suited to small transactions, such as efficient single-row data manipulation. DMS moves data rather than serving as the destination database.
 
 ### Remember
 
 - CDC is not real time and has no latency SLA. Latency is the delay in applying changes.
-- `CDCLatencySource` measures the delay between source and replication instance; high `CDCLatencyTarget` indicates delay applying changes to the target.
-- Table states distinguish `Full load`, `Table completed` and `Table error`.
-- Falling `FreeableMemory` toward zero or rising `SwapUsage` can indicate an overloaded replication instance. `FreeableMemory` includes reclaimable buffers and cache, not just unused memory.
 - Use a full-load-only task to migrate views.
 
-> **Trap:** A task that is running with errors is not proof that all tables succeeded. Check the table states and logs before cutover.
+> **Trap:** CDC is not real time and has no latency SLA. Use a full-load-only task when the migration must include views.

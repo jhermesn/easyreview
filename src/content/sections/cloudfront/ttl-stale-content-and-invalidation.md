@@ -159,5 +159,3 @@ CloudFront expiration settings control when a stored response needs another orig
 - Invalidation paths support `*`. Versioned names avoid invalidation charges.
 
 > **Trap:** A minimum TTL above 0 overrides origin `private`, `no-cache` and `no-store` for that minimum. Set minimum TTL to 0 to respect those directives.
-
-> **Trap:** A viewer's GET `Cache-Control: no-cache` or `Pragma` header does not force an origin fetch.

@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER dynamodb/operations-in-depth"
+title: "Operational diagnosis and cache behavior"
 level: professional
 order: 80
 facts:
@@ -60,18 +60,26 @@ cards:
     a: "**Five**, a fixed quota. LSIs are also created only with the table."
     facts: [lsi-limit, lsi]
 ---
-PLACEHOLDER first paragraph.
+DynamoDB operations can involve table and index capacity, cached reads, and index projections. Understanding which resource or cache holds the data helps explain throttling, stale results, and extra reads.
 
 ### How it works
 
-PLACEHOLDER
+1. Compare [`WriteThrottleEvents` and `ReadThrottleEvents`](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/metrics-dimensions.html) to distinguish write and read throttling. For index metrics, use both `TableName` and `GlobalSecondaryIndexName`. An `IndexWriteProvisionedThroughputExceeded` reason can point to [GSI write back-pressure](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/throttling-provisioned-capacity-exceeded-mitigation.html) throttling base table writes.
+2. Check the [capacity mode switch limit](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html) before switching from provisioned to on-demand. The reverse switch is allowed at any time.
+3. DAX keeps [`GetItem` and `BatchGetItem` results by primary key in an item cache](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html). It stores `Query` and `Scan` result sets in a separate query cache. A cache time to live (TTL) sets how long a result remains cached. [Writes do not invalidate cached query results](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.consistency.html); they are read again after the query-cache TTL expires.
+4. A [local secondary index (LSI)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html) keeps the table partition key and uses another sort key. Choose its [projection](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html), the attributes copied into the index: `KEYS_ONLY` copies table and index keys, `INCLUDE` adds selected attributes, and `ALL` copies all attributes. An LSI query can fetch unprojected attributes from the table, with extra latency and read capacity cost.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a write consumer is falling behind, think `WriteThrottleEvents`, because it counts write throttles separately from read throttles.
+- If the question says table writes throttle due to a GSI, think index write capacity, because back-pressure can affect base table writes.
+- If the question says a query stays stale after an item update, think query-cache TTL, because writes do not invalidate cached query results.
+- If the question says an LSI repeatedly fetches attributes from the table, think `INCLUDE` or `ALL`, because projecting those attributes can avoid the fetches.
 
 ### Remember
 
-PLACEHOLDER
+- A table can switch from provisioned to on-demand up to four times in a rolling 24-hour window; on-demand to provisioned is allowed at any time.
+- DAX item-cache default TTL: five minutes.
+- A table can have at most [five LSIs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html), a fixed quota. LSIs must be created with the table.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Updating an item does not refresh a cached DAX `Query` or `Scan` result. The query cache is separate from the item cache.

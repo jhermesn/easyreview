@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER aurora/operations-in-depth"
+title: Global recovery and capacity operations
 level: professional
 order: 50
 facts:
@@ -181,18 +181,28 @@ cards:
       - tier-tie
       - tier-exception
 ---
-PLACEHOLDER first paragraph.
+Aurora operations involve recovery choices, Serverless v2 capacity settings and reader promotion priorities. These controls affect recovery point objectives, instance capacity and failover readiness.
 
 ### How it works
 
-PLACEHOLDER
+1. For an Aurora PostgreSQL global database, set `rds.global_db_rpo` to a recovery point objective (RPO) threshold of at least 20 seconds. If all secondary clusters exceed it, primary commits block until one catches up. In a two-Region database, leave the secondary's parameter at its default until the old primary is rebuilt after failover. See [setting the RPO](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-set-rpo) and [managing recovery](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-manage-recovery).
+2. Before managed failover, take applications offline to stop writes to the old primary. Check lag when choosing a target. The global writer endpoint keeps its name but applications must observe its DNS change before resuming writes. If incompatible engine versions prevent managed failover, stop old-primary writes, detach the least-lag secondary as a writable standalone cluster, redirect clients and rebuild the global topology. See [managed failover](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned) and [manual failover](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.manual-unplanned).
+3. Set a cluster capacity range for Serverless v2 instances. The available range depends on the less capable of the engine and platform versions, and platform availability varies by Region. Capacity can change in increments as small as 0.5 Aurora capacity units (ACUs). See [capacity](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.capacity) and [scaling](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.scaling).
+4. Choose promotion tiers for readers. Serverless readers in tiers 0 and 1 have a capacity floor tied to the writer, within the configured maximum. Readers in tiers 2 through 15 scale independently and might need to scale up after promotion. Aurora normally favors lower tier numbers, then the larger instance when tiers match; if sizes also match, it picks arbitrarily. After five unsuccessful attempts, tiers are ignored. See [Serverless scaling](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.scaling) and [fault tolerance](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance).
+5. On supported versions, set the minimum to 0 ACUs to enable auto-pause after an interval without user connections. A connection attempt resumes the instance. The writer and tier 0 or 1 readers pause and resume together; tiers 2 through 15 can pause independently. See [enabling auto-pause](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-enabling) and [cluster configurations](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-multi-az).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says choose a global failover target, think replication lag: `AuroraGlobalDBRPOLag` reports milliseconds for PostgreSQL and MySQL 3.04.0 or 2.12.0 and later; older MySQL versions use `AuroraGlobalDBReplicationLag`. See [managed failover](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned).
+- If the question says a Serverless reader must be ready for the writer workload, think tier 0 or 1, because its capacity floor follows the writer within the configured maximum. For an independently scaling reporting reader, think tier 2 through 15. See [Serverless scaling](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.scaling).
+- If the question says measure Serverless compute, think `ServerlessDatabaseCapacity` for current ACUs and `ACUUtilization` for current capacity as a percentage of the configured maximum. See [monitoring capacity](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html#aurora-serverless-v2.viewing.monitoring).
+- If the question says a new Auto Scaling reader's promotion priority, think tier 15 and the writer's instance class. See [Aurora Auto Scaling](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling).
 
 ### Remember
 
-PLACEHOLDER
+- A global database has one primary Region and up to 10 secondary Regions, each secondary cluster with up to 16 readers. See [global database overview](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database-overview).
+- Supported Serverless v2 configurations reach up to 256 ACUs for MySQL and 384 ACUs for PostgreSQL, depending on engine and platform versions. See [capacity](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.capacity).
+- `SecondsUntilAutoPause` defaults to 300 seconds and accepts 300 to 86400 seconds. See [auto-pause timeout](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-timeout).
+- Global secondary clusters can use Serverless v2 compute, but their Serverless instances do not auto-pause. Global primary writers and their tier 0 or 1 readers do not auto-pause either. See [high availability](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless.ha) and [auto-pause limitations](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-whynot).
 
-> **Trap:** PLACEHOLDER
+> **Trap:** An unchanged global writer hostname does not mean applications have observed the new DNS destination. Stop old-primary writes because automatic write fencing is best effort and split-brain remains possible. A zero Serverless minimum does not guarantee auto-pause either: RDS Proxy keeps database connections open. See [managed failover](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned) and [auto-pause limitations](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-whynot).

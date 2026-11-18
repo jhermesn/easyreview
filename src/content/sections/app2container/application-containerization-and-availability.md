@@ -191,17 +191,15 @@ AWS App2Container packages a supported application that is already running on a 
 ### How it works
 
 1. Check support and eligibility. Java on Linux and ASP.NET on Windows or Linux are supported application types. App2Container closed to new customers on November 7, 2025. Existing customers can finish ongoing projects; AWS recommends Transform for new modernization projects.
-2. Run init to configure the workspace, then inventory to discover running applications and assign IDs. Run analyze for the chosen ID. Its analysis.json records the dependencies needed at runtime, meaning files and processes the running application relies on.
-3. Choose where to build. A worker machine is a separate machine used for containerization and deployment. It must use the same Linux or Windows platform and support containers. Use extract to create an application archive for transfer when following that workflow.
-4. Run containerize. It generates a Dockerfile, the image-build instructions, plus an image and deployment.json. It pre-validates the image by default; --no-validate skips this check. Application mode selects required application files; process mode takes all non-system files when broader discovery is needed.
-5. Review deployment.json and run generate app-deployment. It uses ECR as the container registry, a store for images, and generates target deployment files. Even without --deploy it can create the ECR repository and push the image. Review and customize the files before deploying, or use --deploy for direct stack deployment. A stack is a set of resources managed together through CloudFormation.
-6. Optionally review the generated pipeline.json and run generate pipeline for delivery automation. Configure database connectivity separately: App2Container does not package the database layer.
+2. Discover the running application and analyze its runtime dependencies, meaning the files and processes it relies on.
+3. Package the application into an image and generate deployment artifacts for Amazon ECS, Amazon EKS, or AWS App Runner. Amazon ECR stores the image.
+4. Configure database connectivity separately: App2Container does not package the database layer.
 
 ### Exam cues
 
 - If the question says an existing customer must containerize a supported running application without source code, think App2Container, because it discovers the running application's files and dependencies.
-- If the question says Docker cannot run on the application server, think a compatible worker machine and extracted archive, because build and deployment can happen separately from discovery.
-- If the question says generate deployment files without deploying the application, think omit --deploy and review the artifacts, because direct stack deployment is optional. ECR resource creation can still occur.
+- If the question asks where a packaged application can run, think Amazon ECS, Amazon EKS, or AWS App Runner, because App2Container generates deployment artifacts for these targets. App Runner supports Linux applications only.
+- If the question asks about the application database, think separate database access, because App2Container does not package the database layer.
 - If the question says a new customer wants to adopt App2Container after November 2025, think the availability restriction, because AWS closed new access on November 7, 2025.
 
 ### Remember
@@ -213,9 +211,6 @@ AWS App2Container packages a supported application that is already running on a 
 | AWS App Runner | Linux applications only; closed to new customers in March 2026 |
 
 - App2Container's [availability notice](https://docs.aws.amazon.com/app2container/latest/UserGuide/dotnet-modernization-tools-availability-change.html#dotnet-modernization-tools-availability-change) permits existing projects to continue with security and availability maintenance, without new features.
-- Optional pipeline artifacts support CodePipeline, Jenkins, or Microsoft Azure DevOps.
 - App2Container has no additional tool charge; the AWS resources used by its outputs are billed.
 
 > **Trap:** Packaging the application does not package its database. The application container still needs access to the database server.
-
-> **Trap:** Generating deployment artifacts without --deploy is not a guarantee of zero AWS changes. The command can create an ECR repository and push an image.

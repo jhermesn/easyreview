@@ -55,14 +55,14 @@ cards:
     a: "**Configure CORS on the HTTP API.** API Gateway then answers preflight OPTIONS requests automatically and adds the CORS headers."
     facts: [http-api-cors]
 ---
-An integration connects an API method to its backend. The integration type decides how much mapping you configure, and API Gateway metrics show where time and cache hits go. [Choose an API Gateway API integration type](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html)
+An integration connects an API method to its backend. The integration type decides how much mapping you configure. [Choose an API Gateway API integration type](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html)
 
 ### How it works
 
 1. A client calls a method. If request validation is on, API Gateway rejects an invalid request with 400 before going further.
 2. The integration request sends the call to the backend: as is for proxy types, or through mapping templates for AWS and HTTP custom types.
 3. The backend has up to the integration timeout to answer (29 seconds by default).
-4. API Gateway returns the response and publishes Latency, IntegrationLatency and, with caching on, CacheHitCount and CacheMissCount. [API Gateway metrics](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html#api-gateway-metrics)
+4. API Gateway returns the response. With HTTP API CORS configured, it also answers preflight OPTIONS requests automatically. [HTTP API CORS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) [API Gateway metrics](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html#api-gateway-metrics)
 
 | Integration type | Backend | Mappings |
 |---|---|---|
@@ -75,14 +75,11 @@ An integration connects an API method to its backend. The integration type decid
 ### Exam cues
 
 - If the question says call Lambda with the least configuration, think Lambda proxy integration.
-- If the question says test an API without a backend, think a MOCK integration.
 - If the question says reject bad input before it reaches the backend, think request validation.
-- If the question says find whether the backend or API Gateway is slow, compare IntegrationLatency with Latency.
+- If a browser fails an HTTP API preflight request, configure CORS so API Gateway answers OPTIONS requests automatically.
 
 ### Remember
 
 - Integration timeout: 50 ms to 29 seconds; raise it only for Regional or private APIs.
-- Latency includes IntegrationLatency.
-- Cache effectiveness: CacheHitCount and CacheMissCount.
 
 > **Trap:** The Lambda function timeout and the API Gateway integration timeout are separate limits. A function allowed 15 minutes still fails the API call after 29 seconds by default.

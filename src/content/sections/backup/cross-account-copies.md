@@ -165,7 +165,7 @@ Cross-account copies place AWS Backup recovery points, or saved backups, in anot
 2. Create a non-default destination vault. Its resource policy, which controls access to that vault, must allow the source caller to use `backup:CopyIntoBackupVault`.
 3. Give the source IAM role, an identity with backup permissions, `backup:CopyFromBackupVault` and `backup:CopyIntoBackupVault` in its identity policy.
 4. Permit destination-account access to the source customer managed encryption key, whose policy you control. For fully managed resources the destination can use `aws/backup` or a customer managed key; other types require a customer managed key.
-5. Copy the backup, then restore in the destination account. Ensure the underlying service has its service-linked role, a role created for that service to act in the account.
+5. Copy the backup, then restore in the destination account.
 
 ### Exam cues
 

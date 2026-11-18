@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER comprehend/more-essentials"
+title: Custom analysis and targeted sentiment
 level: foundational
 order: 20
 facts:
@@ -26,18 +26,23 @@ cards:
     a: "Targeted sentiment, which scores each entity. Plain sentiment analysis returns one dominant sentiment for the whole review."
     facts: [targeted-sentiment]
 ---
-PLACEHOLDER first paragraph.
+Amazon Comprehend can find entity types and classify documents using categories you define. It can also report sentiment for individual entities, such as products or brands.
 
 ### How it works
 
-PLACEHOLDER
+1. For business-specific terms or product codes, use [custom entity recognition](https://docs.aws.amazon.com/comprehend/latest/dg/custom-entity-recognition.html#custom-entity-recognition) to train a model for your entity types.
+2. For your own document categories, train a [custom classifier](https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html#how-document-classification), then classify a single document in real time or a set asynchronously.
+3. For sentiment about each product or brand in a document, use [targeted sentiment](https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html#how-targeted-sentiment).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says extract ingredient names outside the preset entity types, think custom entity recognition, because it finds types you define.
+- If the question says sort customer emails into support categories, think custom classification, because it uses your categories.
+- If the question says find separate sentiment for a product and a brand, think targeted sentiment, because it reports sentiment for each entity.
 
 ### Remember
 
-PLACEHOLDER
+- Custom classification accepts plain text, PDF, Word and images.
+- Sentiment analysis gives one dominant sentiment for a document; targeted sentiment gives sentiment for each specific entity.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A document's dominant sentiment does not tell you the sentiment for each product or brand. Use targeted sentiment for that detail.

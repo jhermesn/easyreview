@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER config/operations-in-depth"
+title: Remediation controls and rule operations
 level: professional
 order: 60
 facts:
@@ -190,18 +190,29 @@ cards:
       - host-tenancy
       - tenancy-values
 ---
-PLACEHOLDER first paragraph.
+AWS Config operational controls help manage automatic remediation and interpret rule evaluations. Use them to limit remediation runs, investigate failures, and assess proposed resource properties before deployment.
 
 ### How it works
 
-PLACEHOLDER
+1. For automatic remediation, supply `AutomationAssumeRole`. A runbook parameter can hold a fixed value or receive the noncompliant resource ID dynamically. For a service-linked rule in a conformance pack, add remediation to the template and update the pack. See [automatic remediation](https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation), [role requirements](https://docs.aws.amazon.com/config/latest/APIReference/API_PutRemediationConfigurations.html), and [service-linked rules](https://docs.aws.amazon.com/config/latest/developerguide/service-linked-awsconfig-rules.html#service-linked-awsconfig-rules).
+2. Set the [execution controls](https://docs.aws.amazon.com/config/latest/APIReference/API_SsmControls.html#config-Type-SsmControls-ConcurrentExecutionRatePercentage): `ConcurrentExecutionRatePercentage` limits the share of noncompliant resources remediated in parallel, while [`ErrorPercentage`](https://docs.aws.amazon.com/config/latest/APIReference/API_SsmControls.html#config-Type-SsmControls-ErrorPercentage) sets the allowed error percentage before Systems Manager stops automations for the rule.
+3. Set `MaximumAutomaticAttempts` and `RetryAttemptSeconds` to control failed attempts within a counting window. When the threshold is reached within that window, Config adds a remediation exception. The exception blocks automatic remediation for that resource until cleared. See [attempts](https://docs.aws.amazon.com/config/latest/APIReference/API_RemediationConfiguration.html#config-Type-RemediationConfiguration-MaximumAutomaticAttempts), the [retry window](https://docs.aws.amazon.com/config/latest/APIReference/API_RemediationConfiguration.html#config-Type-RemediationConfiguration-RetryAttemptSeconds), and [exceptions](https://docs.aws.amazon.com/config/latest/APIReference/API_PutRemediationExceptions.html).
+4. Investigate failed runs with [`DescribeRemediationExecutionStatus`](https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation) or `describe-remediation-execution-status`. Review execution states, step timestamps, failure messages, and parameter values. Check the Automation role's action permissions and Systems Manager trust relationship, plus `iam:PassRole` for the caller starting Automation. See [Automation troubleshooting](https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-troubleshooting.html).
+5. For proactive evaluation, enable `PROACTIVE` on a supporting rule, call [`StartResourceEvaluation`](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_turn-on-proactive-rules.html#evaluate-config_turn-on-proactive-rules) with resource properties, then pass the returned `ResourceEvaluationId` to `GetResourceEvaluationSummary`. Only supporting managed rules and resource types can be used. The pipeline must enforce any rejection because [proactive rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-proactive-detective) do not block deployment or remediate failures.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a compliant resource was remediated, think a stale compliance snapshot, because [automatic remediation](https://docs.aws.amazon.com/config/latest/developerguide/setup-autoremediation.html#setup-autoremediation) can use a snapshot captured before the resource became compliant.
+- If the question says remediate public S3 bucket access, think [`AWS-DisableS3BucketPublicReadWrite`](https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-aws-disables3bucketpublicreadwrite.html), because it uses S3 Block Public Access and takes the bucket in `S3BucketName`. Supply `AutomationAssumeRole` for automatic remediation.
+- If the question says choose a rotation age in `cmk-backing-key-rotation-enabled`, think no parameter, because this [periodic rule](https://docs.aws.amazon.com/config/latest/developerguide/cmk-backing-key-rotation-enabled.html#cmk-backing-key-rotation-enabled) checks whether automatic KMS key rotation is enabled and has no inputs.
+- If the question says remediate `required-tags` with `AWS-SetRequiredTags`, think a custom Systems Manager Automation document, because [the managed document does not work with this rule](https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html#required-tags). The rule checks up to six tags and does not prevent resource creation.
+- If the question says require EC2 Dedicated Hosts, think `Tenancy=host`, because [`dedicated` is a distinct value](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-dedicated-hosts-instances.html). [`ModifyInstancePlacement`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstancePlacement.html) accepts `default`, `dedicated`, and `host`.
+- If the question asks for evaluation results, think [rule status](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config-how-rules-work): `COMPLIANT` means pass, `NON_COMPLIANT` means fail, `ERROR` means invalid parameters, and `NOT_APPLICABLE` means the rule logic does not apply.
 
 ### Remember
 
-PLACEHOLDER
+- `ConcurrentExecutionRatePercentage` defaults to 10 percent; `ErrorPercentage` defaults to 50 percent.
+- `MaximumAutomaticAttempts` defaults to 5 and accepts 1 through 25. `RetryAttemptSeconds` defaults to 60 seconds.
+- A remediation exception blocks automatic remediation until cleared.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A proactive `NON_COMPLIANT` result does not stop deployment or fix the resource. A pipeline must enforce its own rejection decision.

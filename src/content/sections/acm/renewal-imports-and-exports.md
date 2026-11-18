@@ -250,9 +250,6 @@ ACM managed renewal replaces eligible certificates before expiration. Renewal an
 | Exported ACM-issued certificate | ACM, while eligible. | Customer exports and installs the replacement. |
 | Imported certificate | Customer and original issuer. | Reimport to preserve ARN and service associations. |
 | Direct Private CA `IssueCertificate` | Customer. | Customer installs the certificate. |
-| ACME client issuance | ACME client. | Client holds the key; certificates cannot bind to integrated services. |
-
-ACME is a protocol for automating certificate issuance and renewal on customer-managed infrastructure. It has a separate renewal lifecycle from ACM managed renewal.
 
 ### Exam cues
 
@@ -263,10 +260,6 @@ ACME is a protocol for automating certificate issuance and renewal on customer-m
 
 ### Remember
 
-- Public renewal: 198-day certificates renew 45 days before expiry. Older 395-day certificates renew 60 days before expiry into 198-day replacements.
-- Eligible private certificate renewal starts 60 days before expiry.
-- Public certificates created before June 17, 2025 cannot be exported. Choose `Export: ENABLED` for an exportable replacement; the setting cannot change after creation.
-- In August 2026 AWS announced the email phaseout: new email-validated issuance stops March 31, 2027; email-validated renewal stops September 30, 2027.
 - Imported, expired, and directly issued Private CA certificates are ineligible for ACM managed renewal.
 - `ACM Certificate Approaching Expiration` covers active public, private, and imported certificates.
 

@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER cloudfront/operations-in-depth"
+title: Response and request operations
 level: professional
 order: 90
 facts:
@@ -67,18 +67,25 @@ cards:
     facts:
       - ttl-viewer-header
 ---
-PLACEHOLDER first paragraph.
+CloudFront provides settings for response headers, origin failover and field-level encryption. These settings control how responses reach viewers and how selected request fields are protected.
 
 ### How it works
 
-PLACEHOLDER
+1. Attach a [response headers policy](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html#modifying-response-headers) to a cache behavior to add or remove viewer response headers without function code or origin changes. The policy applies to cached responses and responses forwarded from the origin.
+2. For origin failover of `OPTIONS` requests, include `OPTIONS` in the behavior's [cached HTTP methods](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html#high_availability_origin_failover).
+3. For [field-level encryption](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption), CloudFront uses a public key at the edge to encrypt selected POST fields. Only applications with the corresponding private key can decrypt them. The origin must support chunked encoding, which sends a message body in chunks.
+4. A viewer's GET request with [`Cache-Control` or `Pragma`](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#expiration-individual-objects) does not force CloudFront to fetch the object from the origin.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says add security headers to cached and origin responses without function code, think response headers policy, because it applies to both.
+- If the question says allowed `OPTIONS` requests do not fail over, think cached HTTP methods, because `OPTIONS` must be included there.
+- If the question says protect selected POST fields for a specific application, think field-level encryption, because only the holder of the private key can decrypt them.
+- If the question says a viewer sends `Cache-Control: no-cache` on a GET, think CloudFront may still serve a cached object, because the header does not force an origin fetch.
 
 ### Remember
 
-PLACEHOLDER
+- A response headers policy can add `Strict-Transport-Security`, `Content-Security-Policy` and `X-Frame-Options`.
+- Field-level encryption requires an [RSA 2048-bit key pair](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption-setting-up-step1) and [`application/x-www-form-urlencoded` content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption-setting-up-step4).
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Allowing `OPTIONS` is not enough for origin failover. The method must also be included in cached HTTP methods.

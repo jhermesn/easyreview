@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER detective/operations-in-depth"
+title: Investigation sources and history
 level: professional
 order: 20
 facts:
@@ -30,18 +30,23 @@ cards:
     a: IAM users and roles.
     facts: [investigations]
 ---
-PLACEHOLDER first paragraph.
+Amazon Detective provides historical event data and source packages for investigation. Detective Investigation analyzes IAM users and roles for indicators of compromise, or signs of malicious activity. [Detective features](https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-features)
 
 ### How it works
 
-PLACEHOLDER
+1. The core sources include CloudTrail logs, VPC Flow Logs and GuardDuty findings for accounts enrolled in GuardDuty. [Core sources](https://docs.aws.amazon.com/detective/latest/userguide/detective-source-data-about.html#source-data-types)
+2. EKS audit logs require a separate source package enabled for the behavior graph. [Source packages](https://docs.aws.amazon.com/detective/latest/userguide/usage-tracking-admin.html#usage-cost-by-source)
+3. Detective provides access to historical event data. Detective Investigation analyzes IAM users and roles for indicators of compromise. [History](https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#what-is-detective) | [Detective Investigation](https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-features)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says investigate an IAM user or role for indicators of compromise, think Detective Investigation, because it analyzes those identities.
+- If the question says include EKS audit logs in a behavior graph, think of enabling their source package, because they are separate from the core sources.
+- If the question asks how far back event data is available, think up to one year, because that is the historical data Detective provides.
 
 ### Remember
 
-PLACEHOLDER
+- Detective provides access to up to one year of historical event data.
+- GuardDuty findings are a core source for accounts enrolled in GuardDuty. EKS audit logs require a separate source package.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** EKS audit logs are not part of the core source package. Enable their separate package for the behavior graph.

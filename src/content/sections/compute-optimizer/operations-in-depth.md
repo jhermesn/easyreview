@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER compute-optimizer/operations-in-depth"
+title: Recommendation eligibility
 level: professional
 order: 20
 facts:
@@ -26,18 +26,24 @@ cards:
     a: Recommendations are unavailable when a volume is detached; supported volumes need at least 30 consecutive hours attached to a running instance.
     facts: [ebs-requirements]
 ---
-PLACEHOLDER first paragraph.
+AWS Compute Optimizer recommendations depend on resource-specific requirements. When a recommendation is missing, check the requirements for that resource type.
 
 ### How it works
 
-PLACEHOLDER
+1. For [EC2 instances and Auto Scaling groups](https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-ec2-instances), check for at least 30 hours of CloudWatch metrics in the past 14 days, or in the past 93 days with enhanced infrastructure metrics.
+2. For [Lambda memory recommendations](https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-lambda-functions), check both configured memory and invocation count in the last 14 days.
+3. For a supported [EBS volume](https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-ebs-volumes), check that it has been attached to a running instance for at least 30 consecutive hours. Its recommendation is unavailable after detachment.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a new EC2 instance has only 10 hours of metrics, think insufficient data, because it needs at least 30 hours in the applicable lookback period.
+- If the question says a Lambda function has only 20 invocations in 14 days, think insufficient invocations, because memory recommendations require at least 50.
+- If the question says an EBS recommendation disappeared after detachment, think attachment state, because recommendations are unavailable for detached volumes.
 
 ### Remember
 
-PLACEHOLDER
+- EC2 instances and Auto Scaling groups need 30 hours of CloudWatch metrics in 14 days, or 93 days with enhanced infrastructure metrics.
+- Lambda memory recommendations require at least 50 invocations in the last 14 days and configured memory of at most 1792 MB.
+- Supported EBS volumes need 30 consecutive hours attached to a running instance.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** The 30-hour EC2 metric requirement and the 30-consecutive-hour EBS attachment requirement are different checks.

@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER cloud-adoption/more-essentials"
+title: Migration strategy choices
 level: foundational
 order: 40
 facts:
@@ -43,18 +43,34 @@ cards:
     a: Relocate. It moves servers to a cloud version of the same platform.
     facts: [relocate]
 ---
-PLACEHOLDER first paragraph.
+Migration strategies describe what to do with an application when moving to the cloud. The choice can be to replace it, redesign it, move it to a cloud version of its platform, keep it where it is, or retire it.
 
 ### How it works
 
-PLACEHOLDER
+1. Consider whether the application has business value. If it does not, retire it by decommissioning or archiving it. If it needs to stay in its source environment, retain it. [Retire](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#retire), [retain](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#retain)
+2. To replace it with a different product or version, choose repurchase. For example, a traditionally licensed application can be replaced by software as a service (SaaS). [Repurchase](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#repurchase)
+3. To move servers to a cloud version of the same platform without rewriting applications or changing operations, choose relocate. [Relocate](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#relocate)
+4. To change the application's architecture to use cloud-native features, choose refactor. [Refactor](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#refactor)
+
+| Strategy | What happens |
+|---|---|
+| Retire | Decommission or archive an application with no business value |
+| Retain | Keep an application in the source environment |
+| Repurchase | Replace an application with another product or version |
+| Relocate | Move servers to a cloud version of the same platform |
+| Refactor | Change the architecture to use cloud-native features |
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says replace an on-premises application with SaaS, think repurchase, because a different product takes its place.
+- If the question says redesign an application for scalability, think refactor, because its architecture changes to use cloud-native features.
+- If the question says an application has no business value, think retire, because decommissioning or archiving it removes maintenance and hosting costs.
+- If the question says an application depends on specialized hardware, think retain, because it can remain in the source environment.
+- If the question says move servers to a cloud version of the same platform without changing operations, think relocate, because it preserves the existing operations.
 
 ### Remember
 
-PLACEHOLDER
+- Repurchase is also called drop and shop; refactor is also called re-architect.
+- Refactor is the most complex and costly strategy. For large migrations, AWS recommends rehosting, relocating or replatforming first, then modernizing.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Retire and retain are different choices. Retire decommissions or archives an application with no business value; retain keeps it in the source environment.

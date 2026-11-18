@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER direct-connect/design-details"
+title: Virtual interfaces and resiliency
 level: associate
 order: 30
 facts:
@@ -33,18 +33,24 @@ cards:
     a: "Maximum resiliency: separate connections on separate devices in at least two locations."
     facts: [maximum-resiliency]
 ---
-PLACEHOLDER first paragraph.
+AWS Direct Connect designs use virtual interfaces to reach different AWS destinations and backup paths to maintain connectivity when a connection fails. [Virtual interface types](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html#dx-vif-types) and [backup VPN](https://aws.amazon.com/directconnect/faqs/#high-availability-and-resilience--1f5cnkc)
 
 ### How it works
 
-PLACEHOLDER
+1. Choose a virtual interface for the destination: private for a virtual private cloud (VPC), public for public AWS services, or transit for transit gateways through a Direct Connect gateway. [Interface types](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html#dx-vif-types)
+2. Configure a backup IPsec VPN to provide VPC connectivity if Direct Connect fails. [Backup VPN](https://aws.amazon.com/directconnect/faqs/#high-availability-and-resilience--1f5cnkc)
+3. For matching destination prefixes at a virtual private gateway, routes learned through Border Gateway Protocol (BGP) from Direct Connect take priority over Site-to-Site VPN routes, subject to endpoint health. [Route priority](https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-route-priority.html)
+4. For maximum resiliency, use separate connections on separate devices in more than one Direct Connect location. This protects against device, connection and full location failure. [Maximum resiliency](https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html#maximum_resiliency)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says reach public AWS services, think public virtual interface, because each interface type reaches a different destination.
+- If the question says provide a backup path to a VPC, think a configured IPsec VPN, because it can provide connectivity if Direct Connect fails.
+- If the question says survive the loss of a Direct Connect location, think maximum resiliency, because it uses separate connections across multiple locations.
 
 ### Remember
 
-PLACEHOLDER
+- Private interface: VPC. Public interface: public AWS services. Transit interface: transit gateways through a Direct Connect gateway.
+- Maximum resiliency uses more than one location and separate devices.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A VPN backup does not automatically take priority over Direct Connect. At a virtual private gateway, Direct Connect BGP routes are preferred for matching prefixes, subject to endpoint health.

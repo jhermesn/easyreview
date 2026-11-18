@@ -272,7 +272,7 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 | Periodic | At the selected frequency |
 | Hybrid | Both on changes and periodically |
 
-4. Use **detective evaluation** for deployed resources. For **proactive evaluation**, enable `PROACTIVE` on a supporting rule, submit proposed properties with `StartResourceEvaluation`, then retrieve `GetResourceEvaluationSummary` using the returned `ResourceEvaluationId`. A pipeline must enforce its own rejection decision.
+4. Use **detective evaluation** for deployed resources and **proactive evaluation** for proposed properties before deployment. A pipeline must enforce its own rejection decision.
 5. Read the result: `COMPLIANT` passes, `NON_COMPLIANT` fails, `ERROR` means invalid rule parameters, and `NOT_APPLICABLE` means the rule logic does not apply.
 6. To see evaluations as Security Hub CSPM findings, activate the AWS Config integration. It sends managed and custom evaluations through EventBridge. A **finding** is a security or compliance report about a resource.
 
@@ -280,9 +280,7 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 
 - If the question says find running EC2 instances using unapproved images, think `approved-amis-by-id` with `amiIds`, because it compares their Amazon Machine Image (AMI) IDs with the approved list. An AMI supplies the software used to boot an instance.
 - If the question says check encryption on attached EBS volumes, think `encrypted-volumes`, because it checks encryption and can require the KMS key in `kmsId`.
-- If the question says check whether automatic KMS rotation is enabled, think `cmk-backing-key-rotation-enabled`, because this periodic rule checks enablement and has no rotation-age parameter.
 - If the question says detect that no CloudTrail trail is enabled, think `cloudtrail-enabled`, because it checks that condition periodically. Evaluation alone does not configure a fix.
-- If the question says require Dedicated Hosts, think a custom check for placement tenancy `host`, because `dedicated` is a different value. **Tenancy** selects shared instances, Dedicated Instances, or Dedicated Hosts; a Dedicated Host is a physical server allocated for your use.
 - If the question says check recorded properties without writing a Lambda function, think a Guard custom policy rule, because the policy expresses the check.
 - If the question says reject noncompliant proposed infrastructure before deployment, think proactive evaluation plus a pipeline decision, because Config supplies a result without blocking deployment.
 - If the question says check S3 public read or write access, think `s3-bucket-public-read-prohibited` or `s3-bucket-public-write-prohibited`. Both consider Block Public Access, the bucket policy, and the bucket access control list (ACL). For public bucket-level settings with exclusions, think `s3-bucket-level-public-access-prohibited` and `excludedPublicBuckets`.
@@ -291,7 +289,6 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 
 - Trigger type and evaluation mode answer different questions: when to run and which resource state to assess.
 - Proactive evaluation supports only supporting rules and resource types. It does not remediate or prevent deployment.
-- `required-tags` checks up to six tags. It needs a custom remediation document; `AWS-SetRequiredTags` is incompatible with this rule.
 - The Security Hub CSPM integration sends evaluations performed after Security Hub CSPM was enabled. Service-linked rules are excluded except rules created and managed by Control Tower.
 
 > **Trap:** A rule reports noncompliance; a remediation action performs the fix. A proactive result is not a deployment block.

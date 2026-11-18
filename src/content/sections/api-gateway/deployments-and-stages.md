@@ -203,30 +203,23 @@ A REST API deployment is a fixed snapshot of the API configuration. A stage is t
 3. After resource or integration changes, deploy the updated API to the stage. Updates to stage settings or usage plans do not require redeployment.
 4. Use stage variables, per-stage key-value settings, to select a backend URL or Lambda version or alias. A Lambda alias is an updatable pointer to a function version.
 5. Configure Lambda invoke permissions manually for stage-variable targets. The selected function must belong to the API's account.
-6. Use `GetSdk` to generate a client software development kit (SDK) for a REST API stage. Provision a stage cache and enable method caching to serve cached responses and reduce calls to the endpoint.
+6. Provision a stage cache and enable method caching to serve cached responses and reduce calls to the endpoint.
 7. Roll back an API snapshot by changing the stage's active deployment to an earlier deployment. Configure an API Gateway account IAM role for CloudWatch Logs when enabling stage logging.
-8. Select request parameters as cache keys when responses differ by those parameters. To refresh one entry, a client can use `Cache-Control: max-age=0`. If authorization is required, grant `execute-api:InvalidateCache`.
+8. Select request parameters as cache keys when responses differ by those parameters.
 
 ### Exam cues
 
 - If the question says a REST API integration edit is invisible to callers, think create and associate a new deployment, because the stage still references an earlier snapshot.
 - If the question says test and production should call different Lambda aliases, think stage variables plus explicit invoke permissions, because selecting a function does not grant permission to call it.
 - If the question says HTTP API changes publish automatically, think automatic deployments on that HTTP API stage, because that option releases changes without a manual deployment.
-- If the question says generate a client library for a REST API stage, think `GetSdk`, because it generates a client SDK for that API and stage.
 - If the question says reduce repeated backend calls, think REST API stage caching, because cached responses can be served without calling the endpoint.
 - If an API Gateway deployment breaks production, think changing the active deployment back to an earlier snapshot.
 - If requests with different query values receive the same cached response, include the distinguishing parameter in the cache key.
 - If CloudFormation deploys a REST API before its methods exist, add deployment dependencies on the methods.
-- If the question says reshape a REST API request body before the backend receives it, think an integration request mapping template, because it transforms the payload with VTL.
 
 ### Remember
 
 - Resource changes need deployment; stage configuration changes do not.
-- Stage variables can select backend values, but cannot switch the integration type.
 - Keep credentials out of stage variables.
-- REST API caching defaults to 300 seconds, permits at most 3600 seconds, and is disabled by a zero TTL. Default method-level caching covers GET; other methods need an override.
-- Resizing the cache deletes its entries. Cross-account cache invalidation is unsupported.
-- The HTTP API `$default` stage uses the base URL without a stage path.
-- The default REST API quota is 10 stages per API, adjustable; the limit of 100 variables per stage is not adjustable.
 
 > **Trap:** A stage variable containing a Lambda target does not create its invoke permission. Configure that permission on the selected target.

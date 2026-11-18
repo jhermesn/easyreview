@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER backup/operations-in-depth"
+title: Backup operational checks
 level: professional
 order: 70
 facts:
@@ -64,18 +64,26 @@ cards:
     facts:
       - retention-check
 ---
-PLACEHOLDER first paragraph.
+AWS Backup operations depend on resource selection, rule settings, permissions, and retention bounds. Check each setting against the job or restore that failed.
 
 ### How it works
 
-PLACEHOLDER
+1. For a tag-only resource assignment, check [service opt-in settings](https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html). They still apply to the selected resources.
+2. Review the backup rule's [console defaults](https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-a-backup-plan.html) for start time and windows. The [completion window](https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html) does not apply to Amazon FSx.
+3. For a database point-in-time recovery (PITR) copy, check `rds:DeleteDBSnapshot`. AWS Backup uses it to remove a temporary source snapshot; without it, an expired recovery point can require [manual deletion](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-copying.html).
+4. Before restoring a copy in another account, ensure that account has the [service-linked role](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#restore-cab) for the resource's service.
+5. Compare new backup and copy job retention with the vault's [Vault Lock bounds](https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#lock-backup-vault-console). Incompatible jobs fail, while existing recovery points keep their lifecycles.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says tagged resources are missing from a tag-only assignment, think service opt-in, because that setting still applies.
+- If the question says a database PITR copy leaves an expired source recovery point, think `rds:DeleteDBSnapshot`, because AWS Backup needs it to clean up the temporary snapshot.
+- If the question says a copy reached a new account but restore fails, think service-linked role, because the destination needs the role for the resource's service.
+- If the question says jobs fail after Vault Lock retention bounds are set, think retention mismatch, because new jobs must meet those bounds.
 
 ### Remember
 
-PLACEHOLDER
+- Console start time: 00:30 in the local system time zone.
+- Console start window: 8 hours; completion window: 7 days. The completion window does not apply to Amazon FSx.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Vault Lock retention bounds do not rewrite existing recovery point lifecycles. They reject incompatible new backup and copy jobs.

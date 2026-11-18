@@ -93,12 +93,12 @@ Amazon Detective helps investigate security findings and suspicious activity to 
 
 - If the question says investigate the context and root cause of a GuardDuty finding, think Detective, because it connects activity and resources over time.
 - If the question says find potentially malicious activity in AWS logs, think GuardDuty, because it analyzes logs for threats; use Detective to investigate findings.
-- If the question says investigate an IAM user or role for signs of compromise, think Detective Investigation, because it analyzes those identities for indicators of compromise, which are observed signs of malicious activity.
+- If the question says investigate related findings and entities together, think finding groups, because they bring them together for investigation.
+- If the question says investigate activity across accounts, think a behavior graph, because an administrator can invite member accounts to contribute data.
 
 ### Remember
 
-- Detective provides up to one year of historical event data.
-- Core sources include CloudTrail, VPC Flow Logs and GuardDuty findings. EKS audit logs require the separate source package.
-- The optional AWS security findings package brings in Security Hub CSPM findings. It is enabled by default for new behavior graphs created after May 16, 2023.
+- Core sources include CloudTrail, VPC Flow Logs and GuardDuty findings for accounts enrolled in GuardDuty.
+- Detective uses independent CloudTrail and VPC flow log streams without using existing logging configurations.
 
 > **Trap:** Detective investigates findings; GuardDuty identifies potentially malicious activity. They are complementary, not interchangeable.

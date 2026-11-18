@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER athena/operations-in-depth"
+title: Partition discovery and SerDes
 level: professional
 order: 30
 facts:
@@ -45,18 +45,24 @@ cards:
     facts:
       - table-serde
 ---
-PLACEHOLDER first paragraph.
+Athena tables need partition locations and a serializer and deserializer, or SerDe, suited to the data format. The path layout determines how partitions can be discovered, while partition projection calculates locations from rules.
 
 ### How it works
 
-PLACEHOLDER
+1. Check the partition path layout. [Hive-style paths](https://docs.aws.amazon.com/athena/latest/ug/partitions.html) use `key=value` components and can be discovered with `MSCK REPAIR TABLE`. For non-Hive paths, such as typical CloudTrail date paths, add partitions explicitly with `ALTER TABLE ADD PARTITION`.
+2. Alternatively, configure [partition projection](https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html#performance-tuning-use-partition-projection). Athena computes locations in memory from rules in table properties instead of looking them up in the Glue Data Catalog.
+3. Choose a [SerDe](https://docs.aws.amazon.com/athena/latest/ug/serde-reference.html#serde-reference) matching the table data, such as a JSON SerDe for JSON records.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says `MSCK REPAIR TABLE` finds no partitions in standard CloudTrail date paths, think `ALTER TABLE ADD PARTITION` or partition projection, because those paths are not Hive-style.
+- If the question says a projected table has many empty partition combinations, think sparse partition overhead, because Athena lists calculated locations even when they contain no data.
+- If the question says an Athena table must parse JSON, think JSON SerDe, because the SerDe should match the data format.
 
 ### Remember
 
-PLACEHOLDER
+- Hive-style paths use `key=value` components.
+- Partition projection uses table-property rules instead of Glue partition lookups.
+- Sparse tables can perform worse with projection when calculated locations contain no data.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** `MSCK REPAIR TABLE` discovers Hive-style paths; it does not discover typical non-Hive CloudTrail date paths. Use explicit partition additions or partition projection for those paths.

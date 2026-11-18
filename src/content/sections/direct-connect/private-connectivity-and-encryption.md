@@ -109,13 +109,13 @@ AWS Direct Connect links an internal network to AWS without using internet servi
 1. Connect your network to a Direct Connect location. A virtual interface is a logical connection to an AWS destination.
 2. Choose a private interface for a virtual private cloud (VPC), an isolated AWS network, a public interface for public AWS services, or a transit interface for transit gateways through a Direct Connect gateway.
 3. If encryption is required, use Site-to-Site VPN tunnels, encrypted links using IPsec, over a public interface, or MACsec, link-level encryption, on a supported connection. IPsec encrypts between VPN endpoints; MACsec encrypts the link between the customer device and the Direct Connect device.
-4. For a backup, configure Site-to-Site VPN separately. A virtual private gateway routes between a VPC and these connections. For matching destination prefixes at that gateway, Direct Connect routes learned through Border Gateway Protocol (BGP), a way to exchange routes, take priority over VPN routes, subject to endpoint health.
+4. To encrypt traffic without public IP addresses, use private IP Site-to-Site VPN over Direct Connect. For active and passive private virtual interfaces, use local preference Border Gateway Protocol (BGP) communities to influence route selection. [Private IP VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/private-ip-dx.html) and [routing](https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html)
 
 ### Exam cues
 
 - If the question says traffic must remain encrypted when MACsec negotiation fails, think `must_encrypt`, because `should_encrypt` can fall back to cleartext.
-- If the question says the Direct Connect link fails, think a separately configured Site-to-Site VPN backup, because it can carry VPC traffic.
-- If the question says protect against a location failure, think connections at multiple Direct Connect locations, because a single location remains a shared failure point.
+- If the question says IPsec without public IP addresses, think private IP Site-to-Site VPN over Direct Connect, because it encrypts traffic without public tunnel addresses.
+- If the question says prefer one private interface as active and another as passive, think local preference BGP communities, because AWS recommends them for active and passive paths.
 
 ### Remember
 

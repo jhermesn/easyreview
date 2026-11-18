@@ -88,16 +88,12 @@ AWS Compute Optimizer helps choose resource configurations based on usage. Right
 - If the question says find a better EC2 size based on usage, think Compute Optimizer, because it analyzes configuration and utilization.
 - If the question says analyze a longer usage history, think enhanced infrastructure metrics, because the paid preference extends the lookback for selected resources.
 - If the question says enforce software license consumption rules, think License Manager, because it tracks licenses and provides rule-based controls.
-- If the question says recommendations are missing for a recently launched EC2 instance, think insufficient metrics, because EC2 needs at least 30 hours of data.
 
 ### Remember
 
 - Default lookback: 14 days. Rightsizing preferences also offer 32 days without additional payment, or 93 days with paid enhanced infrastructure metrics for selected resources.
-- EC2 instances and Auto Scaling groups need 30 hours of metrics in the applicable lookback period.
 - For EC2 memory metrics, use the CloudWatch agent or supported external metrics ingestion.
 - Enable Cost Explorer for pricing and savings calculations using billing data.
-- EBS volumes need 30 consecutive hours attached to a running instance. Detaching removes their recommendations.
-- Lambda memory recommendations need at least 50 invocations in 14 days and configured memory at most 1792 MB.
 - Commercial software license recommendations cover Microsoft SQL Server on EC2.
 
 > **Trap:** Compute Optimizer recommends configurations, but License Manager provides rule-based license consumption controls.

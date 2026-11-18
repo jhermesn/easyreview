@@ -125,14 +125,13 @@ AWS Control Tower sets up and governs a multi-account landing zone. A landing zo
 
 1. Use the management account to launch and administer Control Tower. It coordinates services such as Organizations, Service Catalog, and IAM Identity Center.
 2. Choose service integrations and the accounts that host their central resources. Service integration accounts share a parent OU; this placement rule excludes the management account.
-3. Use centralized CloudTrail logging in the CloudTrail administrator account and Config aggregation in the Config aggregator account when those integrations are enabled. An aggregator collects configuration information across accounts.
-4. For landing zone 4.0 member accounts, enable the Config baseline on each managed OU that needs Config recording. A baseline is a collection of resources and settings applied for governance.
+3. Apply controls to landing zone accounts. Controls can be preventive, detective, or proactive rules.
 
 ### Exam cues
 
 - If the question says centrally govern account creation and compliance across an organization, think Control Tower landing zone, because it coordinates account provisioning and governance services.
-- If the question says collect activity logs separately from configuration information, think logging and Config integration accounts, because landing zone 4.0 separates their storage.
-- If the question says enabling landing-zone Config integration did not configure member accounts, think OU-level Config baseline, because the central integration alone covers service integration accounts.
+- If the question says keep an existing organizational structure and choose integrations, think landing zone 4.0, because integrations are optional and a Security OU is no longer required.
+- If the question says change the home Region after setup, think choose it during setup, because it cannot be changed later.
 
 ### Remember
 

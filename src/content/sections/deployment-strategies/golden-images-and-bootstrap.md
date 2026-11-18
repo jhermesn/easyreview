@@ -349,9 +349,6 @@ A golden AMI is a reusable EC2 launch image prepared with the software and setti
 4. Distribution can copy the AMI to Regions, grant launch permissions to accounts or organizational groups, write its ID to Parameter Store, and create a launch template version. A launch template stores settings for new EC2 instances.
 5. Start a rolling instance refresh to apply the new launch configuration to existing fleet instances. Use warmup, checkpoints, and supported rollback settings to control replacement. Keep remaining environment customization in bootstrap logic such as user data, the startup configuration supplied to EC2.
 6. For cross-account AMI copies, create the Image Builder distribution role in each destination with its managed policy and trust for the source. Encrypted copies also need destination role KMS permissions and key policies that permit destination access in the source and destination Regions. A distribution-phase failure can be retried without rebuilding.
-7. For output parameters, grant the execution role `ssm:PutParameter` and, for AMI validation, `ec2:DescribeImages`. Enable each targeted opt-in Region in the source account for parameter writes.
-8. Build and test instances need Systems Manager connectivity and an instance profile with component permissions. For S3 build logs, grant that profile `s3:PutObject` on the target bucket.
-9. Since October 2026, Image Builder can use an Amazon Inspector on-demand AMI scan without activating Inspector for the account. Set a scan result condition to wait for results and fail the image when findings exceed the allowed severity; without it, distribution can proceed before the scan finishes.
 
 ### Exam cues
 
@@ -370,6 +367,5 @@ A golden AMI is a reusable EC2 launch image prepared with the software and setti
 - The schedule defaults to EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE; EXPRESSION_MATCH_ONLY builds at every matching time.
 - Linux user data runs on first launch by default.
 - User data is limited to 16 KB before encoding and is not included in an AMI created from the instance.
-- Instance refresh rollback needs a desired configuration and an explicit numbered previous launch template version. It does not support $Latest, $Default, or a Parameter Store AMI alias.
 
-> **Trap:** A Parameter Store AMI alias is useful for selecting an image, but it is not a supported previous configuration for instance refresh rollback. Pin the supported launch configuration when rollback is required.
+> **Trap:** Publishing a new AMI and launch template version does not update existing instances. Start an instance refresh to replace them.

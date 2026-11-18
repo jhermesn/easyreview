@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER dms/operations-in-depth"
+title: Monitoring and troubleshooting
 level: professional
 order: 20
 facts:
@@ -43,18 +43,25 @@ cards:
     a: The replication instance may be overloaded.
     facts: [dms-memory]
 ---
-PLACEHOLDER first paragraph.
+AWS Database Migration Service (DMS) provides endpoint tests, task and table states, logs, and metrics to help diagnose migration problems. Use the task status to find errors, then check individual tables and metrics to narrow down the issue.
 
 ### How it works
 
-PLACEHOLDER
+1. Define source and target endpoints with the data stores' connection, type, and location information. [Test each endpoint connection](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.Creating.html) using a VPC and replication instance.
+2. Check the [task status](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Tasks.Status) and [table states](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Tasks.CustomizingTasks.TableState). A task can continue loading other tables when one or more fail. Enable task logging in the settings to send [task information to CloudWatch](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.ManagingLogs).
+3. Compare [replication metrics](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.Metrics). Similar `CDCLatencySource` and `CDCLatencyTarget` values suggest checking the source first; a higher target value suggests checking the target. Also check `FreeableMemory` and `SwapUsage` for signs of an overloaded replication instance.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a task is running with errors, think table states and enabled task logs, because other tables can keep loading while some fail.
+- If the question says `CDCLatencyTarget` is higher than `CDCLatencySource`, think target investigation, because the comparison points to the target side.
+- If the question says endpoint connectivity needs checking before migration, think endpoint tests using the replication instance and VPC.
+- If the question says `FreeableMemory` is approaching zero and `SwapUsage` is rising, think replication instance overload.
 
 ### Remember
 
-PLACEHOLDER
+- Table states distinguish a full load in progress, a completed load, and a table error.
+- Task logging to CloudWatch requires logging to be enabled in task settings.
+- Similar source and target CDC latency values suggest checking the source first.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A task running with errors can still load other tables. Its status does not mean every table migrated successfully; check the table states and task logs.

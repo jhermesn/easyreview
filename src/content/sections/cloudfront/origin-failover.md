@@ -201,7 +201,6 @@ CloudFront origin failover retries eligible requests on a secondary origin when 
 ### Exam cues
 
 - If the question says an S3 site needs read availability across Regions, think replicated buckets plus an origin group, because the secondary must have the objects that CloudFront requests.
-- If the question says failover works for GET but not allowed OPTIONS, think cached HTTP methods, because OPTIONS must also be cached.
 - If the question says shorten connection failure recovery, think fewer attempts or a shorter connection timeout, because default connection attempts can take up to 30 seconds.
 - If the question says CloudFront origin failover already covers two Regions, think a plain Route 53 alias to the distribution, because the origin group handles failover.
 

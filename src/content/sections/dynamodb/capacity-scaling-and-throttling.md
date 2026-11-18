@@ -257,16 +257,12 @@ DynamoDB capacity controls how much read and write work a table can accept. On-d
 - If the question says avoid provisioning units, think on-demand, because capacity scales with requests.
 - If the question says table writes fail because of an index, think GSI write capacity, because index back-pressure can throttle base writes.
 - If the question says distinguish write bottlenecks from reads, think WriteThrottleEvents, because it counts write throttles.
-- If the question says infrequent access and storage-heavy cost, think Standard-IA, because that class targets storage-dominated workloads.
 
 ### Remember
 
 - Auto scaling utilization target: 20 to 90 percent, within capacity bounds.
 - Scale-out triggers after two consecutive minutes above target, followed by alarm and update delay.
 - An 8 KB item read uses 2 strong, 1 eventual, or 4 transactional read units.
-- Standard is the default table class; class selection is separate from capacity mode.
 - Index metrics use TableName and GlobalSecondaryIndexName.
-- DynamoDB data: three AZs automatically.
-- Reserved capacity: provisioned mode only.
 
 > **Trap:** Auto scaling does not react instantly to spikes. On-demand can also throttle at quotas or configured maximums.

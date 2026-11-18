@@ -94,7 +94,6 @@ CloudWatch Logs stores timestamped events from applications and infrastructure. 
 1. Create a log group for streams with a shared storage and access policy. Each producer writes its events to a stream.
 2. Choose how long to retain events. Without configured retention or an overriding account policy, storage does not expire.
 3. For a common account rule, apply an account-level retention policy. RETROACTIVE includes matching existing groups; NEW_ONLY applies to groups created after the policy.
-4. Expired events are marked for deletion. They stop adding archival storage charges before physical deletion completes.
 
 ### Exam cues
 
@@ -102,14 +101,12 @@ CloudWatch Logs stores timestamped events from applications and infrastructure. 
 - If the question says existing groups must inherit a common account retention policy, think RETROACTIVE, because NEW_ONLY covers future groups.
 - If the question says protect a log group from accidental deletion, think deletion protection, because deletion remains blocked until protection is disabled.
 - If the question says cheaper ingestion for rarely queried logs, think the Essentials log class (formerly Infrequent Access), chosen when the log group is created.
-- If the question says watch logs arrive live during an incident, think Live Tail.
 
 ### Remember
 
 - Default retention: indefinite. Streams per group: no limit.
 - An applicable account-level policy overrides the group's own retention setting.
 - Among overlapping account policies, the longest retention wins; NEVER_EXPIRE is longest.
-- Physical deletion normally takes up to 72 hours after expiry and can rarely take longer.
 - Deletion protection is off by default.
 
 > **Trap:** A longer group retention value does not defeat a shorter applicable account policy. The account policy overrides the group value.

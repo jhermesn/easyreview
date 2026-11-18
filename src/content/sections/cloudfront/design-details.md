@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER cloudfront/design-details"
+title: Distribution design choices
 level: associate
 order: 100
 facts:
@@ -60,18 +60,26 @@ cards:
     a: "No. Transfer from AWS origins to CloudFront is free; you pay CloudFront delivery to viewers."
     facts: [origin-transfer-free]
 ---
-PLACEHOLDER first paragraph.
+CloudFront offers distribution settings for access, origin connectivity and request handling. These choices help control who can connect, where requests go and which responses can be cached.
 
 ### How it works
 
-PLACEHOLDER
+1. Use a [country allowlist or denylist](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html#georestrictions-cloudfront) to restrict an entire distribution. For geography combined with other conditions, use [AWS WAF geo match](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html#cloudfront-distributions-geo-restriction).
+2. For custom client certificate checks during the TLS handshake, use a [CloudFront Connection Function](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/function-code-choose-purpose.html#function-code-connection-request). It allows or denies the connection and cannot modify HTTP requests or responses.
+3. For an origin in a private subnet, use a [VPC origin](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-vpc-origins.html#private-content-vpc-origins). It supports Application Load Balancers, Network Load Balancers and EC2 instances, with CloudFront as the single entry point and no public access needed at the origin.
+4. When all HTTP methods are allowed, CloudFront forwards uploads and other requests using `PUT`, `POST`, `PATCH` and `DELETE` to the origin over the edge network. It caches only `GET`, `HEAD` and optionally `OPTIONS` responses. See [HTTP methods](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#RequestCustomHTTPMethods).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says restrict a whole distribution by country, think CloudFront geographic restrictions, because they use a distribution-wide allowlist or denylist.
+- If the question says combine geography with other conditions, think AWS WAF geo match, because CloudFront geo-blocked requests do not reach WAF.
+- If the question says check client certificates during connection establishment, think Connection Function, because it can allow or deny the TLS connection.
+- If the question says serve an internal load balancer without a public origin, think VPC origin, because CloudFront can reach it in a private subnet.
+- If the question says upload through CloudFront, think allow all HTTP methods, because `PUT` and `POST` are forwarded to the origin.
 
 ### Remember
 
-PLACEHOLDER
+- CloudFront caches `GET` and `HEAD` responses and can cache `OPTIONS` responses, but does not cache responses to the other methods.
+- [Data transfer from AWS origins to CloudFront](https://aws.amazon.com/cloudfront/pricing/), such as from S3 or an Application Load Balancer, is not charged.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A CloudFront geographic restriction blocks requests before AWS WAF receives them. Use WAF geo match when geography must be combined with other conditions.

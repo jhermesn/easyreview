@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER deployment-strategies/operations-in-depth"
+title: Image pipeline controls and rollback
 level: professional
 order: 60
 facts:
@@ -65,18 +65,26 @@ cards:
       - ami-scan-release
       - ami-scan-gate
 ---
-PLACEHOLDER first paragraph.
+EC2 Image Builder pipelines depend on instance connectivity and permissions to build, test, log, and publish AMIs. A scan result condition can gate distribution, while instance refresh rollback needs a supported launch configuration.
 
 ### How it works
 
-PLACEHOLDER
+1. Give build and test instances access to Systems Manager and an instance profile with permissions for their components. Image Builder uses [Run Command](https://docs.aws.amazon.com/imagebuilder/latest/userguide/set-up-ib-env.html#prereq-config) to operate those instances. If build logs go to Amazon S3, the [instance profile](https://docs.aws.amazon.com/imagebuilder/latest/userguide/set-up-ib-env.html#image-builder-IAM-prereq) also needs `s3:PutObject` for the bucket.
+2. For an [output Parameter Store value](https://docs.aws.amazon.com/imagebuilder/latest/userguide/cr-upd-ami-distribution-settings.html#ami-distribution-prereqs-ssm-param), grant the execution role `ssm:PutParameter` and, for `aws:ec2:image` validation, `ec2:DescribeImages`. Enable a targeted opt-in Region in the source account for parameter writes.
+3. Enable an [Amazon Inspector on-demand AMI scan](https://docs.aws.amazon.com/imagebuilder/latest/userguide/integ-inspector.html#integ-inspector-ami-scan) and set a scan result condition to make Image Builder wait for the result. Findings above the allowed severity fail the image. This scan does not require Inspector account activation.
+4. For [instance refresh rollback](https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-rollback.html), specify a desired configuration and use an explicit numbered previous launch template version. Rollback does not support `$Latest`, `$Default`, or a Parameter Store AMI alias.
 
 ### Exam cues
 
-PLACEHOLDER
+- If a private build or test instance cannot run components, think Systems Manager access and instance profile permissions, because Image Builder sends actions through Run Command.
+- If an AMI copy reaches an opt-in Region but its output parameter fails, think source account Region enablement and execution role permissions, because the parameter write has its own prerequisites.
+- If findings above a severity must block AMI distribution, think on-demand scanning with a scan result condition, because the condition makes Image Builder wait and evaluate the results.
+- If a release needs instance refresh rollback, think a desired configuration and a numbered previous launch template version, because aliases and symbolic versions are unsupported.
 
 ### Remember
 
-PLACEHOLDER
+- The instance profile needs `s3:PutObject` for configured S3 build logs.
+- The execution role needs `ssm:PutParameter` for output parameters and `ec2:DescribeImages` for `aws:ec2:image` validation.
+- On-demand AMI scanning does not require Inspector account activation.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Enabling an on-demand AMI scan alone does not make distribution wait. Set a scan result condition to fail the image when findings exceed the allowed severity.

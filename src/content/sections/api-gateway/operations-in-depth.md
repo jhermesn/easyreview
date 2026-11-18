@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER api-gateway/operations-in-depth"
+title: Operational settings and diagnostics
 level: professional
 order: 60
 facts:
@@ -153,18 +153,32 @@ cards:
     a: "The function returns a response **not in the proxy integration format** (statusCode, headers, body). API Gateway answers 502 when it cannot use the output."
     facts: [proxy-502]
 ---
-PLACEHOLDER first paragraph.
+API Gateway offers settings and diagnostics for operating deployed APIs, from stage configuration and caching to integration troubleshooting and client SDK generation.
 
 ### How it works
 
-PLACEHOLDER
+1. For a REST API, redeploy changes to resources, methods, integrations, authorizers or models. Changes to stage settings and usage plans do not need redeployment. [Updates that require redeployment](https://docs.aws.amazon.com/apigateway/latest/developerguide/updating-api.html)
+2. Stage variables can select a backend endpoint within the configured integration type. When a variable supplies a Lambda function name, configure invoke permission manually. [Stage variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/stage-variables.html#use-cases)
+3. Configure REST API caching for methods and choose a time to live (TTL). A client can refresh an entry with `Cache-Control: max-age=0`; when authorization is required, it needs `execute-api:InvalidateCache`. Resizing replaces the cache and deletes its data. [Cache settings](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#invalidate-method-caching)
+4. Use a mapping template in Velocity Template Language (VTL) to transform a REST API integration request or response. A MOCK integration returns a response without calling a backend. [Mapping templates](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-request) | [Integration types](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html#api-gateway-api-integration-types)
+5. Compare `Latency`, which includes the backend response time, with `IntegrationLatency`, which measures that backend time. With caching on, use the `Average` statistic of `CacheHitCount` and `CacheMissCount` for hit and miss rates. [API Gateway metrics](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html#api-gateway-metrics)
+6. Import an OpenAPI definition to create or update a REST API, or export the API as a definition. After deploying to a stage, use `GetSdk` to generate a client software development kit (SDK) for that API and stage. [OpenAPI import and export](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api.html#api-gateway-import-api) | [GetSdk](https://docs.aws.amazon.com/apigateway/latest/api/API_GetSdk.html#API_GetSdk)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a stage variable selects a Lambda function but invocation fails, check the target's invoke permission, because it must be configured manually.
+- If the question says a backend needs a different request body, think an integration request mapping template, because it transforms the payload before the backend is called.
+- If the question says a frontend needs responses before the backend exists, think MOCK integration, because API Gateway answers without a backend.
+- If the question says overall latency is high but integration latency is low, compare the two metrics, because overall latency includes more than the backend response time.
+- If the question says a Lambda proxy integration returns 502, check the function response format, because an incorrectly formatted response causes that error. [Lambda proxy integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html)
+- If the question says automate SDK generation for a stage, think `GetSdk`, because it generates an SDK for the specified REST API and stage. [SDK generation](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-generate-sdk.html#how-to-generate-sdk)
 
 ### Remember
 
-PLACEHOLDER
+- REST API cache TTL defaults to 300 seconds, has a maximum of 3600 seconds, and zero disables caching. Default method caching covers GET; other methods need an override. [Cache settings](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#enable-api-gateway-caching)
+- Cross-account cache invalidation is unsupported. [Invalidate a cache entry](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#invalidate-method-caching)
+- An HTTP API `$default` stage uses the base API URL without a stage name in the path. [HTTP API stages](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-stages.html)
+- A REST API defaults to 10 stages per API, an adjustable quota. The limit of 100 stage variables per stage cannot be increased. [REST API quotas](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-execution-service-limits-table.html#api-gateway-execution-service-limits-table)
+- OpenAPI 2.0 and 3.0 definitions can be imported. [OpenAPI import](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api.html#api-gateway-import-api)
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A stage variable can change the backend endpoint, but it cannot switch an HTTP proxy integration to a Lambda proxy integration. [Stage variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/stage-variables.html#use-cases)

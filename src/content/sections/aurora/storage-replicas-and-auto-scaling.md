@@ -253,30 +253,18 @@ An Aurora cluster separates database instances from a shared storage volume. The
 2. Add up to 15 Aurora Replicas, meaning read-only instances sharing the same volume. Adding a reader does not copy all table data again.
 3. Send read/write connections to the cluster endpoint, the address that follows the writer. Send read-only connections to the reader endpoint, which balances connections across readers. It does not redistribute queries within a connection.
 4. For automatic reader counts, register rds:cluster:ReadReplicaCount in Application Auto Scaling and set target tracking limits and a CPU or connection target. The average includes every reader and excludes the writer. At least one reader must exist for these metrics to drive scaling.
-5. Auto Scaling adds readers using the writer's instance class and default promotion tier 15, and removes only readers it created. A promotion tier is a priority for taking over the writer role; 0 is highest and 15 lowest. Within a tier, Aurora prefers the larger instance, then an arbitrary equal-size instance. After five unsuccessful failover attempts, tiers are ignored.
-6. For connection pressure, use RDS Proxy, which reuses database connections for client requests. Connect clients to its endpoint and set MaxConnectionsPercent to cap backend connections as a percentage of max_connections, the database connection limit.
-
-| Capacity problem | Control |
-|---|---|
-| More stored data | Automatic cluster-volume growth |
-| More provisioned read traffic | Aurora Auto Scaling adds reader instances |
-| Variable Serverless v2 instance load | Pre-created instances scale their compute capacity |
-| Too many backend database connections | RDS Proxy pooling and MaxConnectionsPercent |
+5. Auto Scaling removes only the readers it created, even though manually added readers contribute to its metrics.
 
 ### Exam cues
 
 - If the question says durable storage but only one database instance, think add a reader in another zone, because storage copies alone are not spare compute.
 - If the question says automatically add provisioned read capacity, think Aurora Auto Scaling, because it changes reader count using average reader CPU or connections.
 - If the question says a single read session overloads one reader, think connection balancing, because the reader endpoint does not balance each query.
-- If the question says many clients exhaust database connections, think RDS Proxy and MaxConnectionsPercent, because client sessions and pooled database connections are separate.
 
 ### Remember
 
 - Six data copies across three zones; one writer and up to 15 readers.
-- Promotion tier 0 is highest; 15 is lowest. New Auto Scaling readers default to 15.
 - Metrics: RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
-- Reader Auto Scaling does not scale the writer and is unsupported for Global Database secondaries or Serverless v2.
-- MaxDatabaseConnectionsAllowed accounts for proxy internal reserves and can be below the simple percentage calculation.
 - Aurora is MySQL and PostgreSQL compatible; AWS patches it in the maintenance window.
 
 > **Trap:** Manually created readers affect Auto Scaling metrics but are not removed by its scale-in actions. With no readers, the reader endpoint reaches the writer and can accept writes.

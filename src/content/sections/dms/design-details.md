@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER dms/design-details"
+title: Schema and endpoint choices
 level: associate
 order: 30
 facts:
@@ -46,18 +46,25 @@ cards:
     a: Run an assessment. It shows what converts automatically and what needs manual work.
     facts: [assessment]
 ---
-PLACEHOLDER first paragraph.
+AWS Database Migration Service (AWS DMS) offers schema conversion and endpoint options for different migration needs. A schema describes the structure of a database; converting it helps when the target uses a different engine. [DMS overview](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html)
 
 ### How it works
 
-PLACEHOLDER
+1. For a different target engine, use DMS Schema Conversion or AWS Schema Conversion Tool to convert the source schema. With DMS Schema Conversion, run an assessment to see which objects need manual work. [DMS overview](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html) [Assessment](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#CHAP_SchemaConversion)
+2. Convert the schema and code, manually handle objects that cannot be converted automatically, then apply the converted code to the target or export it as SQL scripts. [Conversion](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.HighLevelView.html) [Assessment](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#CHAP_SchemaConversion)
+3. Choose source and target endpoints for the data. For example, DMS can read CSV or Parquet files from Amazon S3 for a full load and new files for ongoing changes, with Amazon Kinesis Data Streams as the target. [S3 source](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.S3.html#CHAP_Source.S3) [Kinesis target](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kinesis.html#CHAP_Target.Kinesis)
+4. To encrypt a source or target endpoint connection with SSL, assign a certificate to the endpoint, such as an imported certificate authority (CA) certificate. [SSL](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.SSL.html#CHAP_Security.SSL)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says estimate manual schema conversion work, think DMS Schema Conversion assessment, because it shows what converts automatically and what needs manual work.
+- If the question says load S3 files and ongoing changes into a stream, think S3 source and Kinesis Data Streams target, because DMS supports both endpoints.
+- If the question says move MongoDB data to Amazon DynamoDB, think DMS, because DynamoDB can be a target for a MongoDB or relational source. [DynamoDB target](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html#CHAP_Target.DynamoDB)
+- If the question says encrypt a database endpoint connection, think SSL and a certificate assigned to the endpoint.
 
 ### Remember
 
-PLACEHOLDER
+- AWS Schema Conversion Tool is an alternative to DMS Schema Conversion.
+- An assessment identifies conversion work that needs manual attention.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Schema conversion does not automatically handle every object. Review the assessment and convert unsupported objects manually.

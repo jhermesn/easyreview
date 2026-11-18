@@ -112,9 +112,9 @@ The CloudWatch agent collects measurements and log files from inside a server. I
 
 ### How it works
 
-1. Grant the server permission to publish telemetry, meaning operational measurements and events. EC2 can use an instance profile, which supplies a role to the instance. An on-premises agent can use a shared credential profile.
+1. Grant the server permission to publish telemetry, meaning operational measurements and events.
 2. Install the agent and configure which guest metrics and file paths to collect. Start the agent to send the data.
-3. Use Systems Manager for fleet management and Parameter Store to hold the configuration. `CloudWatchAgentServerPolicy` reads configuration parameters named `AmazonCloudWatch-*`; `CloudWatchAgentAdminPolicy` also writes them.
+3. Use Systems Manager for fleet management and Parameter Store to hold the configuration.
 4. For application metrics carried in logs, emit embedded metric format (EMF), structured log data containing metric definitions. CloudWatch extracts those metrics asynchronously without a separate PutMetricData call.
 
 ### Exam cues
@@ -122,7 +122,6 @@ The CloudWatch agent collects measurements and log files from inside a server. I
 - If the question says EC2 memory and disk space are missing, think CloudWatch agent, because it collects guest measurements.
 - If the question says Lambda should emit metrics without PutMetricData, think EMF, because extraction happens from log events.
 - If the question says configure many agents consistently, think Systems Manager and Parameter Store, because they manage installation and shared configuration.
-- If the question says ship instance log files to another service through the CloudWatch agent, think agent to CloudWatch Logs first, because the agent stores collected logs there.
 
 ### Remember
 
