@@ -44,6 +44,9 @@ facts:
   - id: infrastructure-composer
     text: "AWS Infrastructure Composer visualizes and builds CloudFormation templates on a drag-and-drop canvas; its standalone console ends on December 7, 2026, leaving a visual editor in the console pages that embedded it and the full experience in the AWS Toolkit for VS Code."
     source: https://docs.aws.amazon.com/infrastructure-composer/latest/dg/what-is-composer.html#what-is-composer
+  - id: generated-names
+    text: "If a template omits a resource name, CloudFormation generates a unique physical ID; custom names must be unique across active stacks, so a reused template must change or drop them."
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-name.html
 cards:
   - id: cloudformation-028
     q: Which section must a CloudFormation template contain, and what does it define?
@@ -81,6 +84,10 @@ cards:
     q: "A team wants to see the resources in a CloudFormation template and how they connect, as a diagram. What does AWS provide?"
     a: "AWS Infrastructure Composer, a visual canvas for CloudFormation templates. Its standalone console ends on December 7, 2026; a visual editor stays in the CloudFormation console and the full tool in the AWS Toolkit for VS Code."
     facts: [infrastructure-composer]
+  - id: cloudformation-158
+    q: "A CloudFormation template sets BucketName: app-logs. Deploying it as a second stack in the same account fails. What change lets the template be reused?"
+    a: "**Remove the custom name.** CloudFormation then generates a unique physical ID; custom names must be unique across active stacks."
+    facts: [generated-names]
 diagrams:
   - id: cfn-dependency-order
     title: Create dependencies before their consumers

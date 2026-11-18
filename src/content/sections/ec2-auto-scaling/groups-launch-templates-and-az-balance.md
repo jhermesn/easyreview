@@ -104,6 +104,12 @@ facts:
   - id: mixed-scale-in
     text: In a group with mixed instance purchase options, scale-in first picks whether to terminate Spot or On-Demand capacity to match the allocation, then applies AZ balance and the termination policy.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html
+  - id: template-version
+    text: "An Auto Scaling group can launch from the default, the latest or a specific version of its launch template when it scales out."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html
+  - id: memory-agent
+    text: "EC2 does not publish memory metrics; the CloudWatch agent collects memory metrics such as mem_used_percent from inside the instance."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-CloudWatch-agent.html
 diagrams:
   - id: asg-alb-zones
     title: Load balancing across an Auto Scaling group
@@ -267,6 +273,14 @@ cards:
     q: After a scale-in, an Auto Scaling group with Spot and On-Demand instances is briefly uneven across AZs. Why?
     a: Scale-in first keeps the Spot and On-Demand allocation, then balances AZs and applies the termination policy.
     facts: [mixed-scale-in]
+  - id: ec2-auto-scaling-086
+    q: "A team wants new instances in an Auto Scaling group to use each new launch template version automatically. Which version setting fits?"
+    a: "**Latest**. The group can use the default, the latest or a specific version; a pinned or default version does not follow new versions."
+    facts: [template-version]
+  - id: ec2-auto-scaling-087
+    q: "An Auto Scaling group must scale on memory utilization, but no memory metric appears in CloudWatch. What is missing?"
+    a: "The **CloudWatch agent** on the instances. EC2 does not publish memory metrics; the agent sends them as custom metrics a scaling policy can use."
+    facts: [memory-agent]
 ---
 An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces instances that terminate unexpectedly. A launch template is its versioned recipe for new instances, including the machine image, instance type and security groups. A machine image supplies the software to boot the instance; security groups are network traffic rules for its connections.
 

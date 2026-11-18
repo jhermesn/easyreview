@@ -65,6 +65,9 @@ facts:
     text: AWS recommends CreationPolicy with cfn-signal rather than a separate wait condition for EC2
       and Auto Scaling bootstrap readiness.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-waitcondition.html#using-cfn-waitcondition
+  - id: cfn-hup-interval
+    text: "cfn-hup checks resource metadata for changes every 15 minutes by default; the interval setting in cfn-hup.conf changes it."
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/cfn-hup.html
 cards:
   - id: cloudformation-011
     q: A CloudFormation stack must wait for EC2 software setup before creation completes. What should

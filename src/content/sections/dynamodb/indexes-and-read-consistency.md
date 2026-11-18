@@ -73,6 +73,16 @@
       "id": "conditional",
       "text": "A conditional write succeeds only if the current item satisfies its condition, protecting against concurrent conflicting updates.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"
+    },
+    {
+      "id": "lsi-limit",
+      "text": "A DynamoDB table can have at most five local secondary indexes, and this quota cannot be increased.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html"
+    },
+    {
+      "id": "sparse-index",
+      "text": "DynamoDB writes an index entry only when the item has the index key attributes, so a sparse index holds just the items that carry them.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes-general-sparse-indexes.html"
     }
   ],
   "cards": [
@@ -145,6 +155,23 @@
       "a": "Use a conditional write that updates an allocation only while it is free. DynamoDB checks the latest item version.",
       "facts": [
         "conditional"
+      ]
+    },
+    {
+      "id": "dynamodb-053",
+      "q": "Only orders with an open status should be queryable cheaply in a large DynamoDB table. How can an index hold just those items?",
+      "a": "A **sparse index**: set the index key attribute (such as OpenFlag) only on open orders. DynamoDB writes index entries only for items that have the index key attributes.",
+      "facts": [
+        "sparse-index"
+      ]
+    },
+    {
+      "id": "dynamodb-054",
+      "q": "How many local secondary indexes can a DynamoDB table have?",
+      "a": "**Five**, a fixed quota. LSIs are also created only with the table.",
+      "facts": [
+        "lsi-limit",
+        "lsi"
       ]
     }
   ]

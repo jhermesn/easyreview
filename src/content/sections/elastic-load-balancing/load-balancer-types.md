@@ -182,6 +182,15 @@ facts:
   - id: ip-targets-onprem
     text: "A target group of type ip can register on-premises servers reached through Direct Connect or Site-to-Site VPN, so one ALB can front AWS and on-premises targets."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-type
+  - id: clb-no-sni
+    text: "Classic Load Balancers do not support Server Name Indication (SNI); to serve several HTTPS sites, use one certificate with a Subject Alternative Name for each site."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-https-load-balancers.html
+  - id: alb-subnets
+    text: "An Application Load Balancer needs subnets in at least two Availability Zones, each with at least a /27 CIDR and eight free IP addresses so the load balancer can scale."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html
+  - id: nlb-one-az
+    text: "A Network Load Balancer can be created with subnets in just one Availability Zone; it handles requests when each enabled zone has a healthy target."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-network-load-balancer.html
 cards:
   - id: elastic-load-balancing-002
     q: When should an application use an ALB, NLB, or GWLB?
@@ -383,6 +392,15 @@ cards:
     q: "A hybrid app must send part of its traffic through an ALB to servers in a data center connected by Direct Connect. Which target type allows it?"
     a: "The ip target type, which accepts private IP addresses of on-premises servers reachable over Direct Connect or Site-to-Site VPN."
     facts: [ip-targets-onprem]
+  - id: elastic-load-balancing-071
+    q: "A Classic Load Balancer must serve HTTPS for app.example.com and shop.example.org. Can it pick a certificate per hostname with SNI?"
+    a: "No. **Classic Load Balancers do not support SNI.** Use one certificate with a Subject Alternative Name per site, or move to an ALB or NLB, which support SNI."
+    trap: true
+    facts: [clb-no-sni]
+  - id: elastic-load-balancing-072
+    q: "What subnet requirements does an Application Load Balancer have?"
+    a: "Subnets in **at least two AZs**, each with at least a **/27** CIDR and **eight free IP addresses** for scaling. An NLB can use a single AZ."
+    facts: [alb-subnets, nlb-one-az]
 diagrams:
   - id: alb-weighted-request-flow
     title: ALB rules select a weighted target group

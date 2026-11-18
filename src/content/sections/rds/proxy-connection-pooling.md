@@ -54,6 +54,12 @@ facts:
   - id: proxy-private
     text: "RDS Proxy must be in the same VPC as the database and cannot be publicly accessible, even when the database is."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations
+  - id: failover-cancel
+    text: "During a failover, most client connections through RDS Proxy stay open; only connections in the middle of a transaction or SQL statement are canceled, and the proxy accepts new connections immediately."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html
+  - id: proxy-endpoints
+    text: "A proxy default endpoint is provisioned across two Availability Zones chosen from its subnets; up to 20 additional endpoints can be added per proxy."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html
 diagrams:
   - id: rds-proxy-client-backend
     title: Client connections and shared database connections
@@ -151,6 +157,10 @@ cards:
     a: "No. RDS Proxy is never publicly accessible; clients reach it from inside the VPC or through connected networks."
     trap: true
     facts: [proxy-private]
+  - id: rds-082
+    q: "An application connects to Aurora through RDS Proxy. During a writer failover, which client connections are affected?"
+    a: "Only connections **in the middle of a transaction or SQL statement** are canceled. Idle connections stay open and the proxy accepts new ones immediately, so the app must retry interrupted work."
+    facts: [failover-cancel]
 ---
 
 RDS Proxy reduces connection pressure by keeping a shared pool of database connections. A connection pool is a set of open connections that clients can reuse. The [RDS Proxy guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy) describes reuse, authentication, and recovery through a standby after database failure.

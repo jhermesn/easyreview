@@ -73,6 +73,15 @@ facts:
   - id: igw-nat
     text: "For IPv4 an internet gateway performs the translation between an instance private address and its public IPv4 address; the instance itself only sees its private address."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access
+  - id: peer-accounts
+    text: "VPC peering can connect VPCs in different AWS accounts, in the same Region or in different Regions."
+    source: https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html
+  - id: peer-sg-region
+    text: "A security group rule can reference a security group of a peered VPC in the same Region; for a peer in another Region, use the peer VPC CIDR block instead."
+    source: https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html
+  - id: peer-dns
+    text: "Peering DNS resolution is off by default; once enabled, a peer instance public IPv4 DNS hostname resolves to its private IPv4 address across the peering connection."
+    source: https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-dns.html
 cards:
   - id: vpc-011
     q: A VPC subnet has no explicit route-table association. Which table directs its traffic?
@@ -134,6 +143,15 @@ cards:
     a: "No. The OS sees only the private address; the internet gateway translates to the public IPv4 address."
     trap: true
     facts: [igw-nat]
+  - id: vpc-066
+    q: "VPC A in us-east-1 is peered with VPC B in eu-west-1. Can a security group in VPC A allow traffic by referencing a security group in VPC B?"
+    a: "No. Security group references work only for peers **in the same Region**. For an inter-Region peer, allow the **peer VPC CIDR block**."
+    trap: true
+    facts: [peer-sg-region]
+  - id: vpc-067
+    q: "Instances in peered VPCs call each other by public DNS hostname, and the traffic resolves to public IP addresses. How can the hostnames resolve to private IPs?"
+    a: "Turn on **DNS resolution for the peering connection** (off by default). Public IPv4 DNS hostnames then resolve to private IPv4 addresses."
+    facts: [peer-dns]
 diagrams:
   - id: vpc-direct-peering
     title: Peering needs routes on both sides

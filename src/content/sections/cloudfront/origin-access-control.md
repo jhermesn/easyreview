@@ -84,6 +84,9 @@ facts:
   - id: origin-transfer-free
     text: "Data transfer from AWS origins, such as S3 or an ALB, to CloudFront is not charged."
     source: https://aws.amazon.com/cloudfront/pricing/
+  - id: oac-lambda-url
+    text: "Origin access control can also restrict access to a Lambda function URL origin, so only CloudFront can invoke the URL."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-lambda.html
 diagrams:
   - id: cloudfront-oac-private-origin
     title: CloudFront signs requests to a private S3 origin

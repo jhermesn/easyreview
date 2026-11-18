@@ -71,6 +71,12 @@ facts:
   - id: mysql-s3-import
     text: "RDS for MySQL can create a new DB instance from backup files that you upload to Amazon S3."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html#MySQL.Procedural.Importing
+  - id: snapshot-incremental
+    text: "The first snapshot of a DB instance holds the full database; later snapshots of it store only the data changed since the most recent snapshot."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html
+  - id: snapshots-outlive-instance
+    text: "Final and manual DB snapshots are kept after the DB instance is deleted, independent of the backup retention period; automated backups are deleted with the instance unless you choose to retain them."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html
 cards:
   - id: rds-007
     q: An accidental table deletion is committed on an RDS Multi-AZ DB instance. Is failover sufficient
@@ -146,6 +152,11 @@ cards:
     q: "An on-premises MySQL database must move to RDS for MySQL from a physical backup. How?"
     a: "Upload the backup files to Amazon S3 and restore a new RDS for MySQL instance from them; binlog replication can then catch up the changes."
     facts: [mysql-s3-import]
+  - id: rds-080
+    q: "A team deletes an RDS DB instance without choosing to retain automated backups. What happens to its automated backups and to its manual DB snapshots?"
+    a: "Automated backups are **deleted** with the instance. Manual and final snapshots are **kept** until you delete them."
+    trap: true
+    facts: [snapshots-outlive-instance]
 ---
 
 RDS backups provide earlier copies of a database for recovery after a data error. Point-in-time recovery (PITR) combines backups and transaction logs, which record database changes, to recover to an available time within the retention window. The [backup guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups) describes backups of the whole DB instance.

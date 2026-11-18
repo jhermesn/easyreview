@@ -54,6 +54,9 @@ facts:
   - id: subnet-group-azs
     text: "An RDS DB instance needs a VPC with subnets in at least two Availability Zones, even for Single-AZ, so a standby can be created later."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html
+  - id: cluster-failover-time
+    text: "Multi-AZ DB cluster failover typically completes in under 35 seconds, once both readers have applied the outstanding transactions of the failed writer."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts-failover.html
 diagrams:
   - id: rds-instance-multi-az
     title: Multi-AZ DB instance connection and replication paths
@@ -146,6 +149,10 @@ cards:
     trap: true
     facts:
       - oracle-rac
+  - id: rds-079
+    q: "An RDS for PostgreSQL workload needs faster failover than the 60 to 120 seconds of a Multi-AZ DB instance, plus readable standbys. Which RDS deployment fits?"
+    a: "A **Multi-AZ DB cluster**: a writer and two readable replicas in three AZs. Failover is typically **under 35 seconds**."
+    facts: [cluster-failover-time, failover-duration, cluster-topology]
 ---
 
 Multi-AZ keeps database copies in separate Availability Zones (AZs), which are isolated locations within an AWS Region. It lets RDS move database service to another AZ after an infrastructure failure. The [RDS deployment models](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html#Concepts.MultiAZ) differ in whether their standby copies can serve reads.

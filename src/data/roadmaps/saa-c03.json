@@ -334,7 +334,8 @@
         "pt-br": "Cost Explorer, Budgets, detecção de anomalias, custos de transferência de dados e Savings Plans."
       },
       "units": [
-        "billing-and-cost-management"
+        "billing-and-cost-management",
+        "trusted-advisor"
       ]
     }
   ]

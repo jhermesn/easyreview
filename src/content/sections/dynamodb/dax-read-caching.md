@@ -53,6 +53,16 @@
       "id": "dax-not-ideal",
       "text": "DAX is not a fit for applications that need strongly consistent reads or that are write-intensive.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html#DAX.use-cases"
+    },
+    {
+      "id": "dax-nodes",
+      "text": "A DAX cluster has one primary node and up to 10 read replicas; if the primary fails, DAX promotes a read replica.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.cluster.html"
+    },
+    {
+      "id": "dax-three-azs",
+      "text": "AWS recommends at least three DAX nodes in different Availability Zones for production; three nodes are required for a fault-tolerant cluster.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.cluster.html"
     }
   ],
   "cards": [
@@ -107,6 +117,15 @@
       "a": "ElastiCache. DAX caches DynamoDB item and query results; computed values from application logic belong in a general-purpose cache.",
       "facts": [
         "dax"
+      ]
+    },
+    {
+      "id": "dynamodb-055",
+      "q": "How should a production DAX cluster be sized for fault tolerance?",
+      "a": "At least **three nodes in different AZs**. A cluster has one primary and up to 10 read replicas, and DAX promotes a replica if the primary fails.",
+      "facts": [
+        "dax-three-azs",
+        "dax-nodes"
       ]
     }
   ],

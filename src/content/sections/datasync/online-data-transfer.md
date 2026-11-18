@@ -36,6 +36,9 @@ facts:
   - id: region-cost
     text: Copying between Regions with DataSync is billed as data transfer out from the source Region.
     source: https://docs.aws.amazon.com/datasync/latest/userguide/how-datasync-transfer-works.html#in-cloud-transfer
+  - id: task-throughput
+    text: "A DataSync task reaches up to 10 Gbps when it uses an agent and up to 5 Gbps without one."
+    source: https://docs.aws.amazon.com/general/latest/gr/datasync.html
 cards:
   - id: datasync-001
     q: A company must copy 200 TB from an on-premises NFS server to Amazon EFS over its existing network link, with encryption in transit and integrity checks, and then keep syncing changes nightly. Which service fits?

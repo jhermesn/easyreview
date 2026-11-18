@@ -54,6 +54,12 @@ facts:
   - id: traffic-mirroring
     text: "VPC Traffic Mirroring copies packets from an elastic network interface to a target (another network interface, a Network Load Balancer or a Gateway Load Balancer endpoint) for content inspection; flow logs record only metadata."
     source: https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-targets.html
+  - id: athena-query
+    text: "Flow logs published to S3 can be queried with SQL in Amazon Athena to investigate traffic patterns and threats."
+    source: https://docs.aws.amazon.com/athena/latest/ug/vpc-flow-logs.html
+  - id: not-logged
+    text: "Flow logs do not record traffic to the Amazon DNS server, instance metadata at 169.254.169.254, Amazon Time Sync at 169.254.169.123, DHCP or Windows license activation."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-limitations.html
 cards:
   - id: vpc-007
     q: What do VPC Flow Logs record, and where can the records be published?
@@ -102,6 +108,15 @@ cards:
     q: "A security appliance must inspect full packet contents from production instances. Flow logs or Traffic Mirroring?"
     a: "Traffic Mirroring, sending copies to the appliance through an NLB or Gateway Load Balancer endpoint for availability. Flow logs hold no packet payloads."
     facts: [traffic-mirroring]
+  - id: vpc-064
+    q: "A security team wants to run ad hoc SQL queries over months of VPC Flow Logs without loading a database. Which design fits?"
+    a: "Publish the flow logs to **S3** and query them with **Amazon Athena**."
+    facts: [athena-query]
+  - id: vpc-065
+    q: "An engineer searches VPC Flow Logs for instance calls to 169.254.169.254 and to the Amazon-provided DNS server and finds none. Why?"
+    a: "Flow logs **do not record** traffic to instance metadata, the Amazon DNS server, Amazon Time Sync, DHCP or Windows license activation."
+    trap: true
+    facts: [not-logged]
 ---
 
 VPC Flow Logs record information about IP traffic at network interfaces. They help investigate allowed and rejected connections without collecting packet contents. A network interface is the virtual network attachment through which a resource sends and receives traffic.

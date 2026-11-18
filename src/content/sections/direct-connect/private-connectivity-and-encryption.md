@@ -48,6 +48,9 @@ facts:
   - id: maximum-resiliency
     text: "Maximum resiliency uses separate connections ending on separate devices in more than one Direct Connect location, protecting against device, connection and full location failure."
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html#maximum_resiliency
+  - id: bgp-path-order
+    text: "On private and transit virtual interfaces, Direct Connect selects routes by longest prefix first, then local preference BGP communities, then AS_PATH length, then MED; local preference communities are recommended for active/passive paths."
+    source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html
 cards:
   - id: direct-connect-001
     q: A company uses AWS Direct Connect and requires encryption in transit. What options should it consider?
@@ -88,6 +91,10 @@ cards:
     q: "Critical workloads need Direct Connect to survive a device failure and the loss of a whole location. Which model fits?"
     a: "Maximum resiliency: separate connections on separate devices in at least two locations."
     facts: [maximum-resiliency]
+  - id: direct-connect-015
+    q: "Two Direct Connect private VIFs advertise the same prefixes, and traffic from AWS should prefer one as active and the other as passive. Which mechanism does AWS recommend?"
+    a: "**Local preference BGP community tags.** Route selection uses longest prefix, then local preference, then AS_PATH length, then MED."
+    facts: [bgp-path-order]
 diagrams:
   - id: direct-connect-vpn-flow
     title: IPsec VPN over Direct Connect

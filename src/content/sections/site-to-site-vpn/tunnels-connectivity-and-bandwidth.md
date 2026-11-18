@@ -66,6 +66,12 @@ facts:
   - id: cgw-behind-nat
     text: "If the customer gateway device sits behind NAT, register the NAT device public IP address as the customer gateway address and allow UDP 500 and 4500 for NAT traversal."
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/cgw-options.html
+  - id: second-cgw
+    text: "A second Site-to-Site VPN connection with a second customer gateway device protects against losing connectivity when one customer device fails and allows maintenance on a device."
+    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-redundant-connection.html
+  - id: tunnel-auth
+    text: "Site-to-Site VPN tunnel endpoints authenticate with a pre-shared key, the default, or with certificates."
+    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-tunnel-authentication-options.html
 diagrams:
   - id: vpn-two-tunnels
     title: Two VPN tunnels
@@ -142,6 +148,11 @@ cards:
     q: "A Site-to-Site VPN is up, but instances cannot reach on-premises hosts. The VPC uses a virtual private gateway. What is often missing?"
     a: "Route propagation (or static routes) in the subnet route tables toward the virtual private gateway."
     facts: [route-propagation]
+  - id: site-to-site-vpn-018
+    q: "A Site-to-Site VPN already has two tunnels, but both end on a single on-premises router. How can the design survive that router failing?"
+    a: "Add a **second VPN connection to a second customer gateway device**. The two tunnels protect the AWS side; the customer device stays a single point of failure."
+    trap: true
+    facts: [second-cgw]
 ---
 AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud (VPC), an isolated virtual network in AWS, using IPsec, a protocol for securing IP traffic. Each connection has two encrypted tunnels for availability.
 

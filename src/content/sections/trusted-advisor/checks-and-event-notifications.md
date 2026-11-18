@@ -78,6 +78,12 @@ facts:
   - id: cloudtrail-check
     text: The AWS CloudTrail Management Event Logging security check checks whether CloudTrail is recording management events in the account.
     source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html#aws-cloudtrail-man-events-log
+  - id: rds-public-snapshots
+    text: "The Trusted Advisor Amazon RDS Public Snapshots security check alerts when an RDS DB snapshot is marked as public."
+    source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html
+  - id: limit-80
+    text: "Trusted Advisor service limit checks turn yellow when usage reaches 80% of a quota."
+    source: https://docs.aws.amazon.com/awssupport/latest/user/service-limits.html
 diagrams:
   - id: trusted-advisor-events
     title: Check status notification
@@ -156,6 +162,10 @@ cards:
     q: Which AWS Trusted Advisor category checks whether AWS CloudTrail is logging management events?
     a: Security, through the AWS CloudTrail Management Event Logging check.
     facts: [cloudtrail-check]
+  - id: trusted-advisor-018
+    q: "At what share of a service quota do Trusted Advisor service limit checks start warning?"
+    a: "**80%** of the quota (yellow status)."
+    facts: [limit-80]
 ---
 AWS Trusted Advisor inspects your AWS environment and recommends improvements to cost, availability, performance and security. A check evaluates resources and reports results for review.
 
