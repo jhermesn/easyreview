@@ -28,4 +28,9 @@ describe('lintDiagram', () => {
     const problems = lintDiagram(diagram({ edges: [{ from: 'a', to: 'ghost' }], steps: ['Orphan step.'] }));
     expect(problems).toEqual(expect.arrayContaining(['edge a->ghost references a missing node', 'step 1 has no edge']));
   });
+
+  it('reports text that YAML flow style cut at a comma', () => {
+    const nodes = [{ ...node('a', 20), sub: 'Wait', 'then poll again': null }, node('b', 300)];
+    expect(lintDiagram(diagram({ nodes }))).toContain('node "a" has text cut at a comma before "then poll again"; quote the value');
+  });
 });

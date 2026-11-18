@@ -76,6 +76,8 @@ export function lintDiagram(d: DiagramInput): string[] {
   const edges = layoutEdges(d);
 
   for (const n of d.nodes) {
+    // In YAML flow style, `sub: Wait, then poll again` ends the value at the comma and adds a key with no value.
+    for (const [key, value] of Object.entries(n)) if (value === null) problems.push(`node "${n.id}" has text cut at a comma before "${key}"; quote the value`);
     if (n.x < 0 || n.y < 0 || n.x + n.w > d.width || n.y + n.h > d.height) problems.push(`node "${n.id}" leaves the viewBox`);
     for (const m of d.nodes) if (n.id < m.id && hit(n, m)) problems.push(`nodes "${n.id}" and "${m.id}" overlap`);
     if (n.label.length * CHAR_WIDTH.label > n.w - 14) problems.push(`label of "${n.id}" overflows its box (needs w >= ${Math.ceil(n.label.length * CHAR_WIDTH.label + 14)})`);
