@@ -610,7 +610,8 @@
                 "disaster-recovery/availability-replication-and-backup",
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
-                "global-infrastructure/multi-region-use-cases"
+                "global-infrastructure/multi-region-use-cases",
+                "reference-architectures/multi-region-warm-standby"
               ]
             },
             {
@@ -645,7 +646,8 @@
               "sections": [
                 "availability-targets/failure-domains-and-spare-capacity",
                 "disaster-recovery/availability-replication-and-backup",
-                "global-infrastructure/regions-availability-zones-and-edge-locations"
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -711,7 +713,8 @@
                 "route53/dns-failover-and-testing",
                 "elastic-load-balancing/draining-slow-start-and-stickiness",
                 "secrets-manager/regional-replication",
-                "application-recovery-controller/routing-controls"
+                "application-recovery-controller/routing-controls",
+                "reference-architectures/three-tier-web-application"
               ]
             }
           ]
@@ -737,7 +740,8 @@
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "event-processing-patterns/durable-fan-out",
                 "event-processing-patterns/backpressure-and-idempotency",
-                "scalable-architectures/scaling-state-and-coupling"
+                "scalable-architectures/scaling-state-and-coupling",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -749,7 +753,8 @@
                 "lambda/invocation-and-retries",
                 "step-functions/standard-and-express",
                 "aurora/serverless-v2-capacity-and-promotion",
-                "redshift/data-warehouse-workloads"
+                "redshift/data-warehouse-workloads",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -796,7 +801,8 @@
                 "cloudfront/origin-shield",
                 "dynamodb/dax-read-caching",
                 "scalable-architectures/scaling-state-and-coupling",
-                "elasticache/use-cases-and-engine-choice"
+                "elasticache/use-cases-and-engine-choice",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -853,7 +859,8 @@
               "kind": "knowledge",
               "text": "Disaster recovery concepts (for example, RTO, RPO)",
               "sections": [
-                "disaster-recovery/rto-and-rpo"
+                "disaster-recovery/rto-and-rpo",
+                "reference-architectures/multi-region-warm-standby"
               ]
             },
             {
@@ -1311,7 +1318,8 @@
               "sections": [
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "event-processing-patterns/durable-fan-out",
-                "sns/topics-subscriptions-and-fan-out"
+                "sns/topics-subscriptions-and-fan-out",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -1347,7 +1355,8 @@
                 "lambda/async-destinations-and-dead-letter-queues",
                 "sns/subscription-filters",
                 "sqs/standard-and-fifo-queues",
-                "sqs/large-payloads"
+                "sqs/large-payloads",
+                "reference-architectures/serverless-event-driven-application"
               ]
             }
           ]

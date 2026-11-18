@@ -337,6 +337,20 @@
         "billing-and-cost-management",
         "trusted-advisor"
       ]
+    },
+    {
+      "id": "reference-architectures",
+      "title": {
+        "en": "Reference architectures",
+        "pt-br": "Arquiteturas de referência"
+      },
+      "goal": {
+        "en": "Complete designs that combine the services above, as scenario questions describe them.",
+        "pt-br": "Arquiteturas completas que combinam os serviços acima, como as questões de cenário descrevem."
+      },
+      "units": [
+        "reference-architectures"
+      ]
     }
   ]
 }

@@ -111,8 +111,8 @@ diagrams:
       - { id: session, label: AppConfig, sub: Initial token, icon: appconfig, x: 580, y: 30, w: 180, h: 86, tone: mgmt }
       - { id: poll, label: Client, sub: Get configuration, icon: res-client, x: 20, y: 220, w: 180, h: 86, tone: user }
       - { id: data, label: AppConfig, sub: Data and next token, icon: appconfig, x: 580, y: 220, w: 180, h: 86, tone: mgmt, info: "The response includes the next token and polling interval. Configuration data can be empty when unchanged." }
-      - { id: next, label: Client, sub: Wait, then poll again, icon: res-client, x: 20, y: 410, w: 180, h: 86, tone: user }
-      - { id: updated, label: AppConfig, sub: Same session, new token, icon: appconfig, x: 580, y: 410, w: 180, h: 86, tone: mgmt }
+      - { id: next, label: Client, sub: "Wait, then poll again", icon: res-client, x: 20, y: 410, w: 180, h: 86, tone: user }
+      - { id: updated, label: AppConfig, sub: "Same session, new token", icon: appconfig, x: 580, y: 410, w: 180, h: 86, tone: mgmt }
     edges:
       - { from: start, to: session, step: 1, label: StartConfigurationSession }
       - { from: session, to: poll, step: 2, label: InitialConfigurationToken }
