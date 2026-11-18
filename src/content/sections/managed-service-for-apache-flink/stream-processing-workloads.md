@@ -69,9 +69,9 @@ cards:
     a: "It uses the newest automatically created checkpoint."
     facts: [flink-checkpoint]
   - id: managed-service-for-apache-flink-005
-    q: "A team must transform records from an Amazon MSK topic and write the results to another destination. What does a Managed Service for Apache Flink application do?"
-    a: "It reads the topic as a source, applies the transformations, and writes the results to a sink."
-    facts: [flink-flow]
+    q: "A team wants to run a real-time log analytics application on Apache Flink without managing servers, scaling or checkpoints. Which service fits?"
+    a: "Amazon Managed Service for Apache Flink. It provisions the compute and handles scaling, checkpoints and snapshots for the application."
+    facts: [flink-management]
   - id: managed-service-for-apache-flink-006
     q: Does Amazon Data Firehose need to run an Apache Flink application to transform data before delivery?
     a: "No. Firehose can transform data before delivering it."

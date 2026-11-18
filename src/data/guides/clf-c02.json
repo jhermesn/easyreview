@@ -669,8 +669,7 @@
                 "lightsail/simple-virtual-servers",
                 "batch/managed-batch-computing",
                 "elastic-beanstalk/basics",
-                "outposts/on-premises-aws-infrastructure",
-                "deployment-strategies/basics"
+                "outposts/on-premises-aws-infrastructure"
               ]
             },
             {
@@ -1225,7 +1224,6 @@
               "text": "Understanding the appropriate uses and capabilities of AWS Budgets and AWS Cost Explorer",
               "sections": [
                 "billing-and-cost-management/budgets",
-                "billing-and-cost-management/more-essentials",
                 "billing-and-cost-management/cost-explorer"
               ]
             },

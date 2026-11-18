@@ -335,6 +335,7 @@
               "kind": "skill",
               "text": "Using different deployment methods (for example, blue/green, canary)",
               "sections": [
+                "deployment-strategies/basics",
                 "deployment-strategies/traffic-shifting-and-health-gates",
                 "codedeploy/appspec-and-file-handling",
                 "codedeploy/ec2-blue-green",
