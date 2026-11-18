@@ -103,6 +103,9 @@ facts:
   - id: aws-s3-key
     text: "When no KMS key is given for SSE-KMS, S3 uses the AWS managed key aws/s3 of the uploading account."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#aws-managed-customer-managed-keys
+  - id: kms-same-region
+    text: "With SSE-KMS, the KMS key must be in the same AWS Region as the S3 bucket."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html
 cards:
   - id: s3-014
     q: What encryption does S3 apply to a new upload with no encryption settings?
@@ -188,6 +191,11 @@ cards:
     q: "An object is uploaded with SSE-KMS but no key ID, and the bucket default names no key. Which key encrypts it?"
     a: "The AWS managed key aws/s3 of the uploading account."
     facts: [aws-s3-key]
+  - id: s3-174
+    q: "A bucket in eu-west-1 must use SSE-KMS with a customer managed key that lives in us-east-1. Will that work?"
+    a: "No. The KMS key must be in the **same Region as the bucket**. Use a KMS key in eu-west-1."
+    trap: true
+    facts: [kms-same-region]
 ---
 S3 server-side encryption protects object data at rest, meaning while stored on disk. S3 encrypts data during storage and decrypts it for authorized reads; the encryption option determines who controls the keys.
 

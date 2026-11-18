@@ -84,6 +84,9 @@ facts:
   - id: limit-80
     text: "Trusted Advisor service limit checks turn yellow when usage reaches 80% of a quota."
     source: https://docs.aws.amazon.com/awssupport/latest/user/service-limits.html
+  - id: sg-ipv6-skip
+    text: "The Trusted Advisor security group specific ports check does not evaluate security group rules for IPv6 traffic."
+    source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html
 diagrams:
   - id: trusted-advisor-events
     title: Check status notification

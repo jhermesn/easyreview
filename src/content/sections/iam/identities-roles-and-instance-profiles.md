@@ -80,6 +80,9 @@ facts:
   - id: user-quota
     text: "An AWS account can have at most 5,000 IAM users, a quota that cannot be raised."
     source: https://docs.aws.amazon.com/general/latest/gr/iam-service.html
+  - id: attach-running
+    text: "An IAM role can be attached to a running or stopped EC2 instance; an instance with a role must have it replaced to use a different one."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/attach-iam-role.html
 diagrams:
   - id: iam-ec2-credentials
     title: EC2 applications use temporary role credentials
@@ -196,6 +199,10 @@ cards:
     a: "No. An account allows at most 5,000 IAM users; use federation or Amazon Cognito for customer identities."
     trap: true
     facts: [user-quota]
+  - id: iam-112
+    q: "An application on a running EC2 instance now needs S3 access, and the instance has no IAM role. Must it be relaunched?"
+    a: "No. **Attach an IAM role** (through an instance profile) to the running instance. An existing role would be replaced, not stacked."
+    facts: [attach-running]
 ---
 
 IAM identities determine who makes a request. A role supplies permissions through a temporary session, a period during which temporary credentials are valid. An instance profile connects a role to an EC2 instance so its applications can use those credentials.

@@ -191,6 +191,9 @@ facts:
   - id: nlb-one-az
     text: "A Network Load Balancer can be created with subnets in just one Availability Zone; it handles requests when each enabled zone has a healthy target."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-network-load-balancer.html
+  - id: clb-previous-generation
+    text: "Classic Load Balancers are the previous generation of Elastic Load Balancing; AWS recommends migrating to a current-generation load balancer."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html
 cards:
   - id: elastic-load-balancing-002
     q: When should an application use an ALB, NLB, or GWLB?

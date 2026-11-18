@@ -51,6 +51,9 @@ facts:
   - id: bgp-path-order
     text: "On private and transit virtual interfaces, Direct Connect selects routes by longest prefix first, then local preference BGP communities, then AS_PATH length, then MED; local preference communities are recommended for active/passive paths."
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html
+  - id: private-ip-vpn
+    text: "Private IP Site-to-Site VPN runs IPsec over Direct Connect without public IP addresses, encrypting traffic between on premises and AWS."
+    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/private-ip-dx.html
 cards:
   - id: direct-connect-001
     q: A company uses AWS Direct Connect and requires encryption in transit. What options should it consider?
@@ -95,6 +98,10 @@ cards:
     q: "Two Direct Connect private VIFs advertise the same prefixes, and traffic from AWS should prefer one as active and the other as passive. Which mechanism does AWS recommend?"
     a: "**Local preference BGP community tags.** Route selection uses longest prefix, then local preference, then AS_PATH length, then MED."
     facts: [bgp-path-order]
+  - id: direct-connect-016
+    q: "A regulated company needs IPsec encryption over its Direct Connect link without exposing any public IP addresses. Which option fits?"
+    a: "**Private IP Site-to-Site VPN** over Direct Connect. It encrypts the traffic without public tunnel addresses."
+    facts: [private-ip-vpn]
 diagrams:
   - id: direct-connect-vpn-flow
     title: IPsec VPN over Direct Connect

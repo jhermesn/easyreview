@@ -83,6 +83,11 @@
       "id": "sparse-index",
       "text": "DynamoDB writes an index entry only when the item has the index key attributes, so a sparse index holds just the items that carry them.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes-general-sparse-indexes.html"
+    },
+    {
+      "id": "consistent-read-param",
+      "text": "GetItem, Query and Scan take an optional ConsistentRead parameter; setting it to true requests a strongly consistent read.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html"
     }
   ],
   "cards": [

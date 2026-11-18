@@ -4579,6 +4579,17 @@
   "https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-redundant-connection.html": "7571e71d8766da34",
   "https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-tunnel-authentication-options.html": "40e52cc36a084422",
   "https://docs.aws.amazon.com/waf/latest/developerguide/aws-waf-capacity-units.html": "56e55b0cf91019b6",
-  "https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html": "d044888b3c0a7dd8"
+  "https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html": "d044888b3c0a7dd8",
+  "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html": "6d72ff969ff2a0eb",
+  "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery_Howitworks.html": "04741d6f7fe6f896",
+  "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html": "9ae7fef2b79489e7",
+  "https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html": "5f83cb4367d548a6",
+  "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html": "c1a6ec067638ea52",
+  "https://docs.aws.amazon.com/vpn/latest/s2svpn/private-ip-dx.html": "4c8c34be17b554c0",
+  "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/attach-iam-role.html": "bb4c093a98129479",
+  "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html": "d25c8f04e626dc99",
+  "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html": "4751651fa63f3c2f",
+  "https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html": "f452e734b09bf5ac",
+  "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html": "fd8626e1f7a7ac39"
  }
 }

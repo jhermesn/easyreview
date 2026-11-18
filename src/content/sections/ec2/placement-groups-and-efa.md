@@ -27,6 +27,9 @@ facts:
   - id: efa
     text: An Elastic Fabric Adapter (EFA) is a network device for EC2 instances that gives lower, more consistent latency and higher throughput for inter-instance communication in AI, ML and HPC workloads, with support for MPI and NCCL.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa
+  - id: no-dedicated-hosts
+    text: "Dedicated Hosts cannot be launched in placement groups."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
 cards:
   - id: ec2-061
     q: A tightly coupled HPC job needs the lowest network latency and highest throughput between 16 EC2 instances. Which placement strategy fits?

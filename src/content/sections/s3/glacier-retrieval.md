@@ -73,6 +73,12 @@ facts:
   - id: bulk-cheapest
     text: "Bulk is the lowest-cost retrieval option in the S3 Glacier storage classes, suited to retrieving large amounts of data inexpensively."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html#restoring-objects-retrieval-options
+  - id: archive-metadata
+    text: "Each object in Glacier Flexible Retrieval or Glacier Deep Archive adds 40 KB of metadata: 32 KB billed at the archive class rate and 8 KB at the S3 Standard rate."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html
+  - id: gir-min-size
+    text: "Glacier Instant Retrieval bills each object as at least 128 KB."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html
 diagrams:
   - id: s3-archive-restore-copy
     title: Making an archive permanently readable
@@ -171,6 +177,11 @@ cards:
     q: "Does S3 Intelligent-Tiering move a 50 KB object to the Infrequent Access tier when it is not read?"
     a: "No. Objects under 128 KB are not monitored and always stay in Frequent Access."
     facts: [it-small-objects]
+  - id: s3-173
+    q: "A team plans to archive millions of 2 KB log objects in S3 Glacier Deep Archive to cut costs. What overhead undermines the plan?"
+    a: "Each archived object adds **40 KB of metadata** (32 KB at the archive rate, 8 KB at the Standard rate). Bundle small files into larger objects before archiving."
+    trap: true
+    facts: [archive-metadata]
 ---
 S3 Glacier storage classes trade access speed for archive storage costs. Instant Retrieval stays directly readable; Flexible Retrieval and Deep Archive require a restore job before an application can read the data.
 
