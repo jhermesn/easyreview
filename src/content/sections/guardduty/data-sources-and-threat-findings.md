@@ -110,23 +110,10 @@ cards:
     a: Yes. GuardDuty consumes independent streams without changing the customer's CloudTrail or flow log configuration.
     trap: true
     facts: [cloudtrail-stream, flow-stream]
-  - id: guardduty-008
-    q: An EC2 instance uses a non-AWS DNS resolver. Can GuardDuty analyze its DNS queries through its foundational DNS source?
-    a: No. GuardDuty accesses that source through AWS DNS resolvers.
-    trap: true
-    facts: [dns-stream]
   - id: guardduty-009
     q: Which GuardDuty protection plans address suspicious S3 data activity and malware in newly uploaded S3 objects?
     a: S3 Protection analyzes data events; Malware Protection for S3 scans newly uploaded objects.
     facts: [optional-s3, optional-malware]
-  - id: guardduty-010
-    q: What does GuardDuty Runtime Monitoring analyze, and does it use an agent on EC2?
-    a: Operating system events on supported EKS, EC2, and ECS workloads, including Fargate. EC2 runtime events come from the GuardDuty security agent.
-    facts: [optional-runtime, runtime-agent]
-  - id: guardduty-011
-    q: A team needs GuardDuty detection of unusual database logins and Lambda network activity. Which plans apply?
-    a: RDS Protection analyzes supported database logins; Lambda Protection analyzes Lambda network activity.
-    facts: [optional-rds-lambda]
   - id: guardduty-012
     q: How long is the first GuardDuty foundational detection trial in an AWS Region?
     a: 30 days.
@@ -136,49 +123,18 @@ cards:
       should it configure?
     a: Export findings to S3. GuardDuty retains findings for 90 days and sends active findings to EventBridge.
     facts: [finding-retention]
-  - id: guardduty-024
-    q: A GuardDuty suppression rule archives a recurring finding. Will new occurrences be exported to
-      the configured S3 bucket by default?
-    a: No. Archived findings and new occurrences of suppressed findings are not exported by default.
-    trap: true
-    facts: [finding-archive]
   - id: guardduty-025
     q: A central S3 bucket receives GuardDuty findings encrypted with a KMS key. What resource
       permissions are required?
     a: Allow GuardDuty to upload in the bucket policy and generate a data key in the KMS key policy.
       Restrict access with the source account and detector ARN.
     facts: [finding-export-permissions]
-  - id: guardduty-026
-    q: A company exports GuardDuty member findings from multiple Regions to a central S3 bucket. What
-      Regional configuration and encryption constraints apply?
-    a: Configure export in each source Region. The destination bucket and KMS key must share a Region;
-      opt-in destination Regions have additional restrictions. An administrator exports associated
-      member findings from its Region.
-    facts: [finding-export-regions, finding-org-export]
   - id: guardduty-027
     q: A company enables GuardDuty in one Region and expects centralized protection across every Region
       in AWS Organizations. What else must it configure?
     a: Configure the same delegated administrator and its members in each desired Region. GuardDuty
       processes relevant global service events in each Region where it is enabled.
     facts: [org-regional, global-events]
-  - id: guardduty-028
-    q: Repeated SSH brute-force attempts produce one GuardDuty finding instead of a new finding each
-      time. How does GuardDuty handle the repeated activity?
-    a: It aggregates related occurrences, increasing the count and updating details. Older details can
-      be replaced, so retain VPC Flow Logs for individual activity.
-    facts: [finding-aggregation, flow-stream]
-  - id: guardduty-029
-    q: A team needs faster EventBridge notifications for recurring GuardDuty findings. Which setting
-      should it change?
-    a: Set the update frequency to 15 minutes or 1 hour instead of the default 6 hours. New findings
-      are sent near real time.
-    facts: [finding-frequency]
-  - id: guardduty-030
-    q: An organization wants GuardDuty automatically enabled for existing and future member accounts.
-      Which auto-enable setting applies, and does it cover Malware Protection for S3?
-    a: Choose ALL in each desired Region. Malware Protection for S3 is not covered by organization
-      auto-enable preferences.
-    facts: [org-auto-enable, org-regional]
   - id: guardduty-031
     q: Malware Protection for S3 must scan KMS-encrypted uploads. What should the team configure for
       GuardDuty to access the objects?

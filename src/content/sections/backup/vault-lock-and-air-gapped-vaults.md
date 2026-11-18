@@ -124,12 +124,6 @@ cards:
       outside the organization.
     facts:
       - air-gap-sharing
-  - id: backup-029
-    q: Do new AWS Backup Vault Lock retention bounds rewrite the retention of existing recovery points?
-    a: No. Existing recovery points keep their lifecycle. Incompatible new backup or copy jobs fail.
-    trap: true
-    facts:
-      - retention-check
 ---
 
 Vault Lock protects AWS Backup recovery points against early deletion or lifecycle changes. Its write-once, read-many model means backups remain readable while their retention period, the time they must be kept, is enforced.

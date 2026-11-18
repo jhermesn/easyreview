@@ -149,14 +149,6 @@ cards:
     facts:
       - eks-persistence
       - eks-no-ebs
-  - id: efs-012
-    q: What are the documented EFS lifecycle transition defaults for IA and Archive?
-    a: After 30 days without access in Standard for IA, and after 90 days for Archive. Archive requires
-      Elastic throughput.
-    facts:
-      - lifecycle-ia
-      - lifecycle-archive
-      - archive-requires-elastic
   - id: efs-022
     q: Can on-premises Linux servers mount an Amazon EFS file system?
     a: Yes, when the data center connects to the VPC with AWS Direct Connect or Site-to-Site VPN.

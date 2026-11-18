@@ -286,11 +286,6 @@ cards:
       - alb
       - nlb
       - gwlb
-  - id: elastic-load-balancing-041
-    q: An Application Load Balancer must invoke an AWS Lambda function registered through the CLI. What permission is required?
-    a: Grant the ELB service principal lambda:InvokeFunction in the function resource policy, restricted to the target group and account.
-    facts:
-      - lambda-permission
   - id: elastic-load-balancing-042
     q: Can an Application Load Balancer forward a 2 MB request body to a Lambda target in another account?
     a: No. The Lambda function and target group must share an account and Region, and the request body limit is 1 MB.
@@ -324,11 +319,6 @@ cards:
     a: No. An NLB created without security groups cannot have them added later.
     trap: true
     facts: [nlb-security-group-creation]
-  - id: elastic-load-balancing-048
-    q: A team wants an NLB with a QUIC listener and an attached security group. Is that supported?
-    a: No. QUIC and TCP_QUIC listeners require an IPv4 NLB without security groups and cannot coexist with UDP or TCP_UDP listeners.
-    trap: true
-    facts: [nlb-quic-security]
   - id: elastic-load-balancing-049
     q: An NLB has cross-zone routing disabled and a zone loses all healthy targets. What happens to that zone's DNS address?
     a: It can be removed from DNS. Cross-zone load balancing is off by default.
@@ -355,11 +345,6 @@ cards:
     q: An NLB target becomes unhealthy after its NLB security group outbound rules change. What should the team check?
     a: Allow the health check traffic in the NLB security group's outbound rules.
     facts: [nlb-security-group-creation]
-  - id: elastic-load-balancing-055
-    q: Can an NLB listener rule match a specific client CIDR range like an ALB source-ip condition?
-    a: No. NLB listener rules match the source IP address type, IPv4 or IPv6, on a dualstack NLB.
-    trap: true
-    facts: [nlb-ip-routing]
   - id: elastic-load-balancing-056
     q: "An ALB serves five API paths from EC2 instances and must send a small share of each path to its own Lambda function. How many Lambda target groups are needed, and where are the weights set?"
     a: "Five Lambda target groups, one per function. Each path gets its own listener rule whose forward action weights that Lambda group against the instance target group."

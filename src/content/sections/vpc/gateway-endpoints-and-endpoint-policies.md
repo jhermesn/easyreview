@@ -84,13 +84,6 @@ cards:
     facts:
       - vpc-source-ip
       - pair-source-conditions
-  - id: vpc-020
-    q: A team wants EC2 role credentials usable only through an endpoint in the VPC where they were
-      issued. Which condition values should it compare?
-    a: aws:Ec2InstanceSourceVpc and aws:SourceVpc. Scope the policy to EC2 role credentials and account
-      for AWS services making calls on their behalf.
-    facts:
-      - credential-vpc
 diagrams:
   - id: vpc-s3-gateway-path
     title: S3 traffic follows the gateway endpoint route

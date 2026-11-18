@@ -96,10 +96,6 @@ cards:
     q: What role do edge locations play in the AWS global infrastructure?
     a: They serve Amazon CloudFront content from the location nearest the user, returning cached content or fetching it from the origin.
     facts: [edge, regional-edge-cache]
-  - id: global-infrastructure-008
-    q: A game studio needs single-digit millisecond latency for players in a large city that has no AWS Region. Which AWS infrastructure option fits?
-    a: AWS Local Zones. They place compute, storage and database resources close to large population centers.
-    facts: [local-zones]
   - id: global-infrastructure-009
     q: Does an outage in one AWS Region normally affect workloads running in other Regions?
     a: No. Regions are isolated and independent, which limits a service failure to one Region.
@@ -118,10 +114,6 @@ cards:
     a: No. Bucket names share a global namespace by default, but each bucket and its data live in one Region.
     trap: true
     facts: [s3-namespace]
-  - id: global-infrastructure-018
-    q: Is traffic between Availability Zones in a Region encrypted?
-    a: Yes. All traffic between AZs is encrypted.
-    facts: [az-encryption]
   - id: global-infrastructure-019
     q: Is Amazon Rekognition a global or a Regional service?
     a: Regional. Like EC2, RDS and Lambda, it has Regional endpoints and runs in the Region you choose.
@@ -135,10 +127,6 @@ cards:
     q: "Sort these by scope: IAM, CloudFront, Route 53, S3, EFS, AWS Batch, EC2, EBS."
     a: "Global: IAM, CloudFront, Route 53. Regional: S3, EFS, AWS Batch. Zonal: EC2 instances and EBS volumes, which live in one Availability Zone."
     facts: [global-services, regional-services, zonal-services]
-  - id: global-infrastructure-022
-    q: "Besides latency, legal requirements and service availability, what else can differ between two AWS Regions that host the same workload?"
-    a: "Price. Each Region has its own resource prices, so with no residency or latency constraint the cheaper Region can lower cost."
-    facts: [region-pricing]
 diagrams:
   - id: region-azs-edge
     title: A Region, its Availability Zones, and edge locations

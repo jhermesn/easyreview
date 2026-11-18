@@ -40,6 +40,7 @@
               "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "global-infrastructure/multi-region-use-cases"
               ]
             },
@@ -49,6 +50,7 @@
               "text": "AWS security best practices (for example, the principle of least privilege)",
               "sections": [
                 "iam/users-groups-and-policies",
+                "iam/more-essentials",
                 "iam/policy-evaluation",
                 "iam/access-analyzer",
                 "iam/root-user"
@@ -77,6 +79,7 @@
               "text": "Designing a flexible authorization model that includes IAM users, groups, roles, and policies",
               "sections": [
                 "iam/users-groups-and-policies",
+                "iam/more-essentials",
                 "iam/identities-roles-and-instance-profiles",
                 "iam/rbac-and-abac",
                 "iam/permissions-boundaries-and-session-policies",
@@ -88,7 +91,6 @@
               "kind": "skill",
               "text": "Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)",
               "sections": [
-                "iam/sts-sessions-and-role-chaining",
                 "iam/cross-account-roles-and-resource-policies",
                 "iam/rbac-and-abac",
                 "iam/external-id-and-mfa-conditions"
@@ -115,6 +117,7 @@
                 "iam/cross-account-roles-and-resource-policies",
                 "kms/key-policies-and-grants",
                 "s3/public-access-and-object-ownership",
+                "s3/design-details",
                 "lambda/execution-roles-and-resource-policies"
               ]
             },
@@ -139,7 +142,6 @@
               "kind": "knowledge",
               "text": "Application configuration and credentials security",
               "sections": [
-                "secrets-manager/secret-versions-and-runtime-access",
                 "secrets-manager/managed-and-lambda-rotation",
                 "systems-manager/parameter-store-tiers-and-policies",
                 "iam/identities-roles-and-instance-profiles"
@@ -164,7 +166,6 @@
                 "vpc/security-groups-and-network-acls",
                 "network-firewall/firewall-endpoints-and-routing",
                 "vpc/flow-logs",
-                "systems-manager/session-manager",
                 "route53/resolver-dns-firewall"
               ]
             },
@@ -177,7 +178,8 @@
                 "elastic-load-balancing/alb-authentication-and-certificates",
                 "api-gateway/authentication-and-api-keys",
                 "cloudfront/signed-urls-and-cookies",
-                "cloudfront/origin-access-control"
+                "cloudfront/origin-access-control",
+                "cloudfront/design-details"
               ]
             },
             {
@@ -233,7 +235,6 @@
                 "shield/standard-and-advanced-protection",
                 "waf/managed-and-rate-based-rules",
                 "waf/web-acl-scope-and-rule-actions",
-                "secrets-manager/secret-versions-and-runtime-access",
                 "iam-identity-center/identity-sources-permission-sets-and-sessions",
                 "elastic-load-balancing/alb-authentication-and-certificates"
               ]
@@ -244,7 +245,9 @@
               "text": "Securing external network connections to and from the AWS Cloud (for example, VPN, AWS Direct Connect)",
               "sections": [
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "site-to-site-vpn/design-details",
                 "direct-connect/private-connectivity-and-encryption",
+                "direct-connect/design-details",
                 "client-vpn/remote-user-connectivity",
                 "reference-architectures/hybrid-network-hub"
               ]
@@ -262,10 +265,12 @@
               "sections": [
                 "lake-formation/data-lake-governance",
                 "s3/public-access-and-object-ownership",
+                "s3/design-details",
                 "iam/policy-evaluation",
                 "macie/sensitive-data-discovery-and-jobs",
                 "cloudtrail/trails-and-event-selectors",
                 "cloudfront/origin-access-control",
+                "cloudfront/design-details",
                 "s3/inventory-and-access-logging",
                 "cloudtrail/event-history-and-event-types"
               ]
@@ -277,7 +282,9 @@
               "sections": [
                 "backup/plans-vaults-and-recovery-points",
                 "rds/backups-and-point-in-time-recovery",
+                "rds/design-details",
                 "dynamodb/backups-and-point-in-time-recovery",
+                "dynamodb/design-details",
                 "s3/versioning-and-delete-markers",
                 "ebs/snapshots-and-cross-az-recovery"
               ]
@@ -288,6 +295,7 @@
               "text": "Data retention and classification",
               "sections": [
                 "s3/object-lock",
+                "s3/design-details",
                 "s3/lifecycle-and-retention",
                 "macie/sensitive-data-discovery-and-jobs",
                 "cloudwatch/log-groups-and-retention"
@@ -314,6 +322,7 @@
                 "config/basics",
                 "security-hub/findings-standards-and-config-dependency",
                 "s3/object-lock",
+                "s3/design-details",
                 "backup/vault-lock-and-air-gapped-vaults",
                 "control-tower/basics",
                 "cloudtrail/log-integrity-and-protection",
@@ -326,10 +335,12 @@
               "text": "Encrypting data at rest (for example, AWS KMS)",
               "sections": [
                 "kms/encryption-at-rest-and-in-transit",
+                "kms/more-essentials",
                 "kms/envelope-encryption-and-context",
                 "s3/encryption-and-bucket-keys",
                 "ebs/encryption-and-regional-copies",
-                "rds/encryption-authentication-and-maintenance"
+                "rds/encryption-authentication-and-maintenance",
+                "rds/design-details"
               ]
             },
             {
@@ -340,7 +351,8 @@
                 "acm/public-certificates-and-domain-validation",
                 "cloudfront/tls-and-field-level-encryption",
                 "elastic-load-balancing/alb-authentication-and-certificates",
-                "rds/encryption-authentication-and-maintenance"
+                "rds/encryption-authentication-and-maintenance",
+                "rds/design-details"
               ]
             },
             {
@@ -360,6 +372,7 @@
                 "s3/replication",
                 "backup/cross-account-copies",
                 "rds/read-replicas-and-regional-recovery",
+                "rds/design-details",
                 "efs/replication-and-failover"
               ]
             },
@@ -371,6 +384,7 @@
                 "s3/lifecycle-and-retention",
                 "s3/object-lock",
                 "s3/public-access-and-object-ownership",
+                "s3/design-details",
                 "s3/requester-pays-and-presigned-urls"
               ]
             },
@@ -404,7 +418,6 @@
                 "api-gateway/deployments-and-stages",
                 "api-gateway/authentication-and-api-keys",
                 "api-gateway/endpoint-types-and-throttling",
-                "api-gateway/canary-releases",
                 "api-gateway/integrations-and-monitoring"
               ]
             },
@@ -415,7 +428,6 @@
               "sections": [
                 "transfer-family/managed-file-transfer-endpoints",
                 "sqs/standard-and-fifo-queues",
-                "secrets-manager/secret-versions-and-runtime-access",
                 "amazon-mq/managed-message-brokers"
               ]
             },
@@ -427,6 +439,7 @@
                 "elasticache/engines-replicas-and-multi-az",
                 "elasticache/use-cases-and-engine-choice",
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/design-details",
                 "dynamodb/dax-read-caching"
               ]
             },
@@ -450,7 +463,6 @@
                 "sns/topics-subscriptions-and-fan-out",
                 "lambda/queue-and-stream-event-sources",
                 "event-processing-patterns/durable-fan-out",
-                "dynamodb/streams-and-consumer-limits",
                 "eventbridge/scheduler",
                 "reference-architectures/serverless-event-driven-application"
               ]
@@ -462,7 +474,8 @@
               "sections": [
                 "scalable-architectures/scaling-state-and-coupling",
                 "ec2-auto-scaling/scaling-policy-selection",
-                "aurora/storage-replicas-and-auto-scaling"
+                "aurora/storage-replicas-and-auto-scaling",
+                "aurora/design-details"
               ]
             },
             {
@@ -471,6 +484,7 @@
               "text": "How to appropriately use edge accelerators (for example, content delivery network [CDN])",
               "sections": [
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/design-details",
                 "global-accelerator/regional-endpoint-routing",
                 "s3/performance-and-large-uploads"
               ]
@@ -516,7 +530,6 @@
                 "sqs/visibility-retention-and-polling",
                 "sns/topics-subscriptions-and-fan-out",
                 "amazon-mq/managed-message-brokers",
-                "sqs/dead-letter-queues-and-redrive",
                 "sns/subscription-filters"
               ]
             },
@@ -562,7 +575,9 @@
               "text": "When to use read replicas",
               "sections": [
                 "rds/read-replicas-and-regional-recovery",
-                "aurora/storage-replicas-and-auto-scaling"
+                "rds/design-details",
+                "aurora/storage-replicas-and-auto-scaling",
+                "aurora/design-details"
               ]
             },
             {
@@ -572,7 +587,6 @@
               "sections": [
                 "step-functions/standard-and-express",
                 "step-functions/service-integration-patterns",
-                "step-functions/retry-and-catch",
                 "data-pipeline/legacy-data-workflows"
               ]
             },
@@ -586,7 +600,6 @@
                 "scalable-architectures/scaling-state-and-coupling",
                 "eventbridge/event-buses-and-patterns",
                 "step-functions/service-integration-patterns",
-                "dynamodb/streams-and-consumer-limits",
                 "reference-architectures/three-tier-web-application"
               ]
             },
@@ -599,6 +612,7 @@
                 "ec2-auto-scaling/target-tracking-metrics-and-warmup",
                 "application-auto-scaling/scalable-targets-and-policies",
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "scalable-architectures/scaling-state-and-coupling"
               ]
             },
@@ -648,10 +662,14 @@
               "text": "Recommending appropriate compute, storage, networking, and database technologies based on requirements",
               "sections": [
                 "ec2/instance-types",
+                "ec2/design-details",
                 "s3/storage-classes",
                 "elastic-load-balancing/load-balancer-types",
                 "rds/managed-vs-self-managed-databases",
-                "dynamodb/capacity-scaling-and-throttling"
+                "rds/design-details",
+                "rds/more-essentials",
+                "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details"
               ]
             },
             {
@@ -660,10 +678,13 @@
               "text": "Using purpose-built AWS services for workloads",
               "sections": [
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "neptune/graph-databases",
                 "documentdb/document-workloads-and-compatibility",
+                "documentdb/design-details",
                 "keyspaces/serverless-cassandra-tables",
                 "redshift/data-warehouse-workloads",
+                "redshift/design-details",
                 "memorydb/durable-in-memory-workloads",
                 "device-farm/device-and-browser-tests"
               ]
@@ -680,6 +701,7 @@
               "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions, Amazon Route 53)",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "global-infrastructure/multi-region-use-cases",
                 "route53/routing-policies",
                 "route53/dns-failover-and-testing"
@@ -691,10 +713,12 @@
               "text": "AWS managed services with appropriate use cases (for example, Amazon Comprehend, Amazon Polly)",
               "sections": [
                 "comprehend/text-analysis",
+                "comprehend/more-essentials",
                 "polly/text-to-speech",
                 "rekognition/image-and-video-analysis",
                 "textract/document-text-extraction",
                 "transcribe/speech-to-text",
+                "transcribe/more-essentials",
                 "translate/language-translation",
                 "lex/conversational-interfaces",
                 "sagemaker-ai/build-train-and-deploy-models"
@@ -742,8 +766,7 @@
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
                 "cloudfront/origin-failover",
-                "reference-architectures/multi-region-warm-standby",
-                "route53/alarm-based-health-checks"
+                "reference-architectures/multi-region-warm-standby"
               ]
             },
             {
@@ -770,7 +793,8 @@
               "kind": "knowledge",
               "text": "Proxy concepts (for example, Amazon RDS Proxy)",
               "sections": [
-                "rds/proxy-connection-pooling"
+                "rds/proxy-connection-pooling",
+                "rds/design-details"
               ]
             },
             {
@@ -800,8 +824,6 @@
               "text": "Workload visibility (for example, AWS X-Ray)",
               "sections": [
                 "xray/traces-segments-and-propagation",
-                "xray/service-instrumentation",
-                "cloudwatch/container-insights",
                 "cloudwatch/application-signals-and-slos",
                 "managed-prometheus/workspaces-ingestion-and-promql"
               ]
@@ -827,8 +849,7 @@
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
-                "route53/dns-failover-and-testing",
-                "dynamodb/global-tables"
+                "route53/dns-failover-and-testing"
               ]
             },
             {
@@ -899,10 +920,13 @@
               "text": "Using purpose-built AWS services for workloads",
               "sections": [
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "neptune/graph-databases",
                 "documentdb/document-workloads-and-compatibility",
+                "documentdb/design-details",
                 "keyspaces/serverless-cassandra-tables",
                 "redshift/data-warehouse-workloads",
+                "redshift/design-details",
                 "memorydb/durable-in-memory-workloads",
                 "device-farm/device-and-browser-tests"
               ]
@@ -989,6 +1013,7 @@
                 "emr/distributed-processing-workloads",
                 "fargate/compute-and-isolation",
                 "ec2/instance-types",
+                "ec2/design-details",
                 "lambda/concurrency-controls",
                 "elastic-beanstalk/applications-environments-and-roles"
               ]
@@ -999,7 +1024,9 @@
               "text": "Distributed computing concepts supported by AWS global infrastructure and edge services",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "cloudfront/functions-and-lambda-at-edge",
+                "cloudfront/design-details",
                 "global-accelerator/regional-endpoint-routing",
                 "wavelength/carrier-edge-zones"
               ]
@@ -1012,8 +1039,7 @@
                 "sqs/standard-and-fifo-queues",
                 "sqs/visibility-retention-and-polling",
                 "sns/topics-subscriptions-and-fan-out",
-                "amazon-mq/managed-message-brokers",
-                "sqs/dead-letter-queues-and-redrive"
+                "amazon-mq/managed-message-brokers"
               ]
             },
             {
@@ -1081,6 +1107,7 @@
               "text": "Selecting the appropriate compute options and features (for example, EC2 instance types) to meet business requirements",
               "sections": [
                 "ec2/instance-types",
+                "ec2/design-details",
                 "ec2/placement-groups-and-efa",
                 "ec2/accelerated-computing-for-ai",
                 "ec2/hibernation-user-data-and-instance-connect",
@@ -1095,6 +1122,7 @@
                 "lambda/concurrency-controls",
                 "compute-optimizer/resource-rightsizing",
                 "ec2/instance-types",
+                "ec2/design-details",
                 "lambda/memory-timeout-and-snapstart"
               ]
             }
@@ -1110,6 +1138,7 @@
               "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "global-infrastructure/multi-region-use-cases"
               ]
             },
@@ -1121,7 +1150,8 @@
                 "elasticache/engines-replicas-and-multi-az",
                 "elasticache/use-cases-and-engine-choice",
                 "dynamodb/dax-read-caching",
-                "cloudfront/cache-behaviors-and-policies"
+                "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/design-details"
               ]
             },
             {
@@ -1130,7 +1160,9 @@
               "text": "Data access patterns (for example, read-intensive compared with write-intensive)",
               "sections": [
                 "rds/read-replicas-and-regional-recovery",
+                "rds/design-details",
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "dynamodb/dax-read-caching",
                 "elasticache/engines-replicas-and-multi-az",
                 "dynamodb/indexes-and-read-consistency"
@@ -1142,6 +1174,7 @@
               "text": "Database capacity planning (for example, capacity units, instance types, Provisioned IOPS)",
               "sections": [
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "rds/storage-autoscaling-and-metrics",
                 "ebs/volume-types",
                 "aurora/serverless-v2-capacity-and-promotion"
@@ -1152,7 +1185,8 @@
               "kind": "knowledge",
               "text": "Database connections and proxies",
               "sections": [
-                "rds/proxy-connection-pooling"
+                "rds/proxy-connection-pooling",
+                "rds/design-details"
               ]
             },
             {
@@ -1162,6 +1196,7 @@
               "sections": [
                 "dms/full-load-and-change-data-capture",
                 "dms/schema-conversion-tool",
+                "dms/design-details",
                 "aurora/storage-configurations-and-babelfish"
               ]
             },
@@ -1171,10 +1206,11 @@
               "text": "Database replication (for example, read replicas)",
               "sections": [
                 "rds/read-replicas-and-regional-recovery",
+                "rds/design-details",
                 "rds/multi-az-and-failover-tests",
                 "aurora/storage-replicas-and-auto-scaling",
-                "aurora/global-database-switchover-and-failover",
-                "dynamodb/global-tables"
+                "aurora/design-details",
+                "aurora/global-database-switchover-and-failover"
               ]
             },
             {
@@ -1184,9 +1220,11 @@
               "sections": [
                 "aurora/serverless-v2-capacity-and-promotion",
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "elasticache/engines-replicas-and-multi-az",
                 "memorydb/durable-in-memory-workloads",
                 "documentdb/document-workloads-and-compatibility",
+                "documentdb/design-details",
                 "neptune/graph-databases",
                 "keyspaces/serverless-cassandra-tables"
               ]
@@ -1197,7 +1235,9 @@
               "text": "Configuring read replicas to meet business requirements",
               "sections": [
                 "rds/read-replicas-and-regional-recovery",
-                "aurora/storage-replicas-and-auto-scaling"
+                "rds/design-details",
+                "aurora/storage-replicas-and-auto-scaling",
+                "aurora/design-details"
               ]
             },
             {
@@ -1208,8 +1248,8 @@
                 "rds/multi-az-and-failover-tests",
                 "rds/read-replicas-and-regional-recovery",
                 "aurora/global-database-switchover-and-failover",
-                "dynamodb/global-tables",
                 "rds/proxy-connection-pooling",
+                "rds/design-details",
                 "dynamodb/indexes-and-read-consistency"
               ]
             },
@@ -1219,8 +1259,10 @@
               "text": "Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
               "sections": [
                 "rds/managed-vs-self-managed-databases",
+                "rds/more-essentials",
                 "aurora/storage-configurations-and-babelfish",
-                "rds/encryption-authentication-and-maintenance"
+                "rds/encryption-authentication-and-maintenance",
+                "rds/design-details"
               ]
             },
             {
@@ -1229,11 +1271,15 @@
               "text": "Determining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB)",
               "sections": [
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/design-details",
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "documentdb/document-workloads-and-compatibility",
+                "documentdb/design-details",
                 "neptune/graph-databases",
                 "keyspaces/serverless-cassandra-tables",
-                "redshift/data-warehouse-workloads"
+                "redshift/data-warehouse-workloads",
+                "redshift/design-details"
               ]
             },
             {
@@ -1259,6 +1305,7 @@
               "text": "Edge networking services with appropriate use cases (for example, Amazon CloudFront, AWS Global Accelerator)",
               "sections": [
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/design-details",
                 "cloudfront/origin-failover",
                 "global-accelerator/regional-endpoint-routing",
                 "s3/performance-and-large-uploads"
@@ -1291,7 +1338,9 @@
               "text": "Network connection options (for example, AWS VPN, AWS Direct Connect, AWS PrivateLink)",
               "sections": [
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "site-to-site-vpn/design-details",
                 "direct-connect/private-connectivity-and-encryption",
+                "direct-connect/design-details",
                 "privatelink/interface-endpoints-and-private-access",
                 "client-vpn/remote-user-connectivity",
                 "reference-architectures/hybrid-network-hub"
@@ -1356,6 +1405,7 @@
                 "lake-formation/data-lake-governance",
                 "quicksight/datasets-visuals-and-dashboards",
                 "redshift/data-warehouse-workloads",
+                "redshift/design-details",
                 "opensearch/log-ingestion-search-and-dashboards",
                 "emr/distributed-processing-workloads",
                 "data-exchange/third-party-data",
@@ -1428,7 +1478,6 @@
                 "managed-service-for-apache-flink/stream-processing-workloads",
                 "kinesis-video-streams/video-ingestion-and-processing",
                 "msk/managed-kafka-clusters",
-                "kinesis-data-streams/retention-and-replay",
                 "reference-architectures/streaming-data-lake"
               ]
             },
@@ -1450,7 +1499,6 @@
               "text": "Designing data streaming architectures",
               "sections": [
                 "kinesis-data-streams/shards-partition-keys-and-capacity",
-                "kinesis-data-streams/enhanced-fan-out-and-checkpoints",
                 "firehose/destinations-and-buffering",
                 "managed-service-for-apache-flink/stream-processing-workloads",
                 "msk/managed-kafka-clusters",
@@ -1530,7 +1578,8 @@
               "sections": [
                 "s3/requester-pays-and-presigned-urls",
                 "s3/access-points-and-cors",
-                "s3/public-access-and-object-ownership"
+                "s3/public-access-and-object-ownership",
+                "s3/design-details"
               ]
             },
             {
@@ -1576,7 +1625,9 @@
                 "backup/plans-vaults-and-recovery-points",
                 "ebs/snapshot-lifecycle-management",
                 "rds/backups-and-point-in-time-recovery",
+                "rds/design-details",
                 "dynamodb/backups-and-point-in-time-recovery",
+                "dynamodb/design-details",
                 "s3/versioning-and-delete-markers"
               ]
             },
@@ -1628,7 +1679,8 @@
               "sections": [
                 "s3/storage-classes",
                 "s3/lifecycle-and-retention",
-                "s3/glacier-retrieval"
+                "s3/glacier-retrieval",
+                "s3/design-details"
               ]
             },
             {
@@ -1679,6 +1731,7 @@
               "sections": [
                 "rds/storage-autoscaling-and-metrics",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/design-details",
                 "efs/regional-and-one-zone-file-systems"
               ]
             },
@@ -1698,6 +1751,7 @@
               "sections": [
                 "backup/plans-vaults-and-recovery-points",
                 "s3/glacier-retrieval",
+                "s3/design-details",
                 "storage-gateway/volume-and-tape-gateways",
                 "s3/storage-classes"
               ]
@@ -1710,8 +1764,7 @@
                 "datasync/online-data-transfer",
                 "snow-family/offline-transfer-and-edge-devices",
                 "transfer-family/managed-file-transfer-endpoints",
-                "storage-gateway/file-gateways",
-                "cloud-adoption/migration-services"
+                "storage-gateway/file-gateways"
               ]
             },
             {
@@ -1730,7 +1783,8 @@
               "text": "Selecting the correct data lifecycle for storage",
               "sections": [
                 "s3/lifecycle-and-retention",
-                "s3/glacier-retrieval"
+                "s3/glacier-retrieval",
+                "s3/design-details"
               ]
             },
             {
@@ -1778,6 +1832,7 @@
               "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "global-infrastructure/multi-region-use-cases"
               ]
             },
@@ -1788,6 +1843,7 @@
               "sections": [
                 "ec2/purchasing-options",
                 "ec2/reserved-instance-flexibility-and-sharing",
+                "ec2/design-details",
                 "ec2/fleets-and-spot-requests",
                 "license-manager/license-inventory-and-rules"
               ]
@@ -1798,6 +1854,7 @@
               "text": "Distributed compute strategies (for example, edge processing)",
               "sections": [
                 "cloudfront/functions-and-lambda-at-edge",
+                "cloudfront/design-details",
                 "outposts/on-premises-aws-infrastructure",
                 "wavelength/carrier-edge-zones",
                 "snow-family/offline-transfer-and-edge-devices"
@@ -1821,6 +1878,7 @@
               "text": "Instance types, families, and sizes (for example, memory optimized, compute optimized, virtualization)",
               "sections": [
                 "ec2/instance-types",
+                "ec2/design-details",
                 "ec2/accelerated-computing-for-ai"
               ]
             },
@@ -1873,7 +1931,8 @@
                 "lambda/concurrency-controls",
                 "fargate/compute-and-isolation",
                 "ec2/purchasing-options",
-                "ec2/instance-types"
+                "ec2/instance-types",
+                "ec2/design-details"
               ]
             },
             {
@@ -1883,7 +1942,8 @@
               "sections": [
                 "availability-targets/service-slas-and-workload-targets",
                 "availability-targets/downtime-budgets-and-nines",
-                "ec2/purchasing-options"
+                "ec2/purchasing-options",
+                "ec2/design-details"
               ]
             },
             {
@@ -1892,6 +1952,7 @@
               "text": "Selecting the appropriate instance family for a workload",
               "sections": [
                 "ec2/instance-types",
+                "ec2/design-details",
                 "ec2/accelerated-computing-for-ai"
               ]
             },
@@ -1901,6 +1962,7 @@
               "text": "Selecting the appropriate instance size for a workload",
               "sections": [
                 "ec2/instance-types",
+                "ec2/design-details",
                 "compute-optimizer/resource-rightsizing",
                 "scalable-architectures/scaling-state-and-coupling"
               ]
@@ -1940,6 +2002,7 @@
                 "elasticache/engines-replicas-and-multi-az",
                 "elasticache/use-cases-and-engine-choice",
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/design-details",
                 "dynamodb/dax-read-caching"
               ]
             },
@@ -1951,6 +2014,7 @@
                 "s3/lifecycle-and-retention",
                 "backup/plans-vaults-and-recovery-points",
                 "rds/backups-and-point-in-time-recovery",
+                "rds/design-details",
                 "dynamodb/time-to-live"
               ]
             },
@@ -1960,6 +2024,7 @@
               "text": "Database capacity planning (for example, capacity units)",
               "sections": [
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "aurora/serverless-v2-capacity-and-promotion",
                 "keyspaces/serverless-cassandra-tables"
               ]
@@ -1969,7 +2034,8 @@
               "kind": "knowledge",
               "text": "Database connections and proxies",
               "sections": [
-                "rds/proxy-connection-pooling"
+                "rds/proxy-connection-pooling",
+                "rds/design-details"
               ]
             },
             {
@@ -1979,6 +2045,7 @@
               "sections": [
                 "dms/full-load-and-change-data-capture",
                 "dms/schema-conversion-tool",
+                "dms/design-details",
                 "aurora/storage-configurations-and-babelfish"
               ]
             },
@@ -1988,10 +2055,11 @@
               "text": "Database replication (for example, read replicas)",
               "sections": [
                 "rds/read-replicas-and-regional-recovery",
+                "rds/design-details",
                 "rds/multi-az-and-failover-tests",
                 "aurora/storage-replicas-and-auto-scaling",
-                "aurora/global-database-switchover-and-failover",
-                "dynamodb/global-tables"
+                "aurora/design-details",
+                "aurora/global-database-switchover-and-failover"
               ]
             },
             {
@@ -2000,9 +2068,14 @@
               "text": "Database types and services (for example, relational compared with non-relational, Amazon Aurora, Amazon DynamoDB)",
               "sections": [
                 "rds/managed-vs-self-managed-databases",
+                "rds/design-details",
+                "rds/more-essentials",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/design-details",
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "documentdb/document-workloads-and-compatibility",
+                "documentdb/design-details",
                 "neptune/graph-databases",
                 "keyspaces/serverless-cassandra-tables"
               ]
@@ -2015,6 +2088,7 @@
                 "backup/plans-vaults-and-recovery-points",
                 "ebs/snapshot-lifecycle-management",
                 "rds/backups-and-point-in-time-recovery",
+                "rds/design-details",
                 "backup/cross-region-copies-and-pitr-limits"
               ]
             },
@@ -2024,8 +2098,10 @@
               "text": "Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
               "sections": [
                 "rds/managed-vs-self-managed-databases",
+                "rds/more-essentials",
                 "aurora/storage-configurations-and-babelfish",
-                "rds/encryption-authentication-and-maintenance"
+                "rds/encryption-authentication-and-maintenance",
+                "rds/design-details"
               ]
             },
             {
@@ -2034,9 +2110,12 @@
               "text": "Determining cost-effective AWS database services with appropriate use cases (for example, DynamoDB compared with Amazon RDS, serverless)",
               "sections": [
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/design-details",
                 "aurora/serverless-v2-capacity-and-promotion",
                 "aurora/storage-configurations-and-babelfish",
-                "rds/managed-vs-self-managed-databases"
+                "rds/managed-vs-self-managed-databases",
+                "rds/design-details",
+                "rds/more-essentials"
               ]
             },
             {
@@ -2045,6 +2124,7 @@
               "text": "Determining cost-effective AWS database types (for example, time series format, columnar format)",
               "sections": [
                 "redshift/data-warehouse-workloads",
+                "redshift/design-details",
                 "athena/partitions-and-columnar-formats",
                 "keyspaces/serverless-cassandra-tables"
               ]
@@ -2056,6 +2136,7 @@
               "sections": [
                 "dms/full-load-and-change-data-capture",
                 "dms/schema-conversion-tool",
+                "dms/design-details",
                 "aurora/storage-configurations-and-babelfish"
               ]
             }
@@ -2112,6 +2193,7 @@
               "sections": [
                 "direct-connect/connections-lags-and-gateways",
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "site-to-site-vpn/design-details",
                 "site-to-site-vpn/vpn-cloudhub"
               ]
             },
@@ -2151,8 +2233,10 @@
               "text": "Configuring appropriate network connections (for example, AWS Direct Connect compared with VPN compared with internet)",
               "sections": [
                 "direct-connect/private-connectivity-and-encryption",
+                "direct-connect/design-details",
                 "direct-connect/connections-lags-and-gateways",
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "site-to-site-vpn/design-details",
                 "client-vpn/remote-user-connectivity"
               ]
             },
@@ -2173,6 +2257,7 @@
               "text": "Determining strategic needs for content delivery networks (CDNs) and edge caching",
               "sections": [
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/design-details",
                 "cloudfront/ttl-stale-content-and-invalidation",
                 "cloudfront/origin-shield",
                 "global-accelerator/regional-endpoint-routing"
@@ -2185,8 +2270,7 @@
               "sections": [
                 "billing-and-cost-management/data-transfer-costs",
                 "vpc/flow-logs",
-                "vpc/gateway-endpoints-and-endpoint-policies",
-                "well-architected/well-architected-tool"
+                "vpc/gateway-endpoints-and-endpoint-policies"
               ]
             },
             {
@@ -2206,6 +2290,7 @@
               "text": "Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed)",
               "sections": [
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
+                "site-to-site-vpn/design-details",
                 "direct-connect/connections-lags-and-gateways"
               ]
             }

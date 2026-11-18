@@ -149,12 +149,6 @@ cards:
       - public-subnet
       - ipv4-nat
       - vpc-endpoint
-  - id: lambda-047
-    q: Several Lambda functions use the same subnet and security groups. Does Lambda need a separate network interface for every function?
-    a: No. Functions in the same account can share a Hyperplane ENI for the same subnet and security-group combination.
-    trap: true
-    facts:
-      - eni-reuse
   - id: lambda-048
     q: A team cannot attach a Lambda function to a VPC because network-interface creation is denied. What role permission should it inspect?
     a: Check the execution role network-interface management permissions, supplied by AWSLambdaVPCAccessExecutionRole. Those permissions establish the attachment, rather than authorizing every invocation.

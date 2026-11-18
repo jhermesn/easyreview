@@ -282,14 +282,6 @@ cards:
     facts:
       - parameter-dependency
       - schedule-evaluation
-  - id: deployment-strategies-029
-    q: An Auto Scaling instance refresh needs rollback, but the group uses $Latest or an AMI alias from
-      Parameter Store. What must the release plan change?
-    a: Use a supported explicit numbered launch template version and specify a desired configuration.
-      Instance refresh rollback does not support $Latest, $Default, or Parameter Store AMI aliases.
-    trap: true
-    facts:
-      - rollback-versions
   - id: deployment-strategies-030
     q: An administrator creates an EC2 AMI from an instance whose user data configures the application. Will
       instances launched from that AMI inherit the user data?
@@ -330,40 +322,12 @@ cards:
     trap: true
     facts:
       - distribution-retry
-  - id: deployment-strategies-036
-    q: Image Builder copies an AMI to an opt-in Region but fails to publish its ID to Parameter Store. What
-      permissions and Region setting should be checked?
-    a: Enable the opt-in Region in the source account and grant the execution role ssm:PutParameter and, for
-      aws:ec2:image validation, ec2:DescribeImages.
-    facts:
-      - parameter-permissions
   - id: deployment-strategies-037
     q: An Image Builder test instance is terminated after a failed build. How can an operator retain a future
       failed instance for diagnosis?
     a: Disable termination on failure in the infrastructure configuration. The default is to terminate it.
     facts:
       - build-failure
-  - id: deployment-strategies-038
-    q: An Image Builder AMI build in a private subnet cannot run its test components. Which Systems Manager
-      prerequisites should an operator check?
-    a: Ensure build and test instances can reach Systems Manager and their instance profile has permissions for
-      the components. Image Builder uses Run Command to operate the instances.
-    facts:
-      - build-ssm
-  - id: deployment-strategies-039
-    q: An Image Builder instance cannot upload build logs to the configured Amazon S3 bucket. What permission
-      does its instance profile need?
-    a: Grant s3:PutObject for the target bucket's objects.
-    facts:
-      - build-logs
-  - id: deployment-strategies-040
-    q: An Image Builder pipeline must block AMI distribution when an Amazon Inspector on-demand scan finds
-      vulnerabilities above an allowed severity. What must it configure?
-    a: Enable on-demand AMI scanning and set a scan result condition. Without the condition, distribution can
-      proceed before the scan finishes. This scan option was added in October 2026.
-    facts:
-      - ami-scan-release
-      - ami-scan-gate
   - id: deployment-strategies-041
     q: A company wants each EC2 instance to install software automatically at first launch. Should it use instance metadata or user data?
     a: User data, which runs scripts at launch. Instance metadata only describes the running instance.

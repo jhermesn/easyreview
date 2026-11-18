@@ -107,15 +107,6 @@ cards:
     facts:
       - access-log-delay
       - audit-data
-  - id: s3-079
-    q: An S3 team sends server access logs directly to a different account log bucket. What destination
-      requirement prevents this?
-    a: Direct S3 server access-log delivery requires the same account and Region as the source bucket.
-      Inventory has a different rule and can use another account in the same Region.
-    trap: true
-    facts:
-      - access-log-destination
-      - inventory-destination
   - id: s3-080
     q: An S3 auditor sees no GetObject calls in CloudTrail Event history. Where should object activity
       be configured?
@@ -126,13 +117,6 @@ cards:
       - audit-default
       - audit-history
       - audit-select
-  - id: s3-081
-    q: Which report schedules and file formats does S3 Inventory support?
-    a: Daily or weekly reports in CSV, ORC, or Parquet. The first report can take up to 48 hours.
-    facts:
-      - inventory-purpose
-      - inventory-formats
-      - inventory-first
   - id: s3-130
     q: A company must audit the ACLs of millions of objects on a schedule without calling an API per object. Which S3 feature fits?
     a: S3 Inventory with the Object ACL field in its reports.

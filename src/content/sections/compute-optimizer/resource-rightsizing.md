@@ -60,27 +60,15 @@ cards:
     q: What is the default AWS Compute Optimizer lookback, and how can selected resources use a longer period?
     a: The default is 14 days. Paid enhanced infrastructure metrics extend it to 93 days for selected resources.
     facts: [lookback]
-  - id: compute-optimizer-003
-    q: A team sees no AWS Compute Optimizer recommendation for a new EC2 instance with only 10 hours of metrics. Why?
-    a: EC2 recommendations require at least 30 hours of CloudWatch metrics in the applicable lookback period.
-    facts: [ec2-requirements]
   - id: compute-optimizer-004
     q: An organization wants AWS Compute Optimizer recommendations across all accounts. How can it enroll them?
     a: Opt in all accounts from the management account. New member accounts are opted in automatically.
     facts: [organization]
-  - id: compute-optimizer-005
-    q: A Lambda function has 20 invocations in 14 days. Why does AWS Compute Optimizer not recommend its memory size?
-    a: Lambda memory recommendations require at least 50 invocations in the last 14 days and configured memory of at most 1792 MB.
-    facts: [lambda-requirements]
   - id: compute-optimizer-006
     q: Does AWS Compute Optimizer enforce software license consumption limits?
     a: Use AWS License Manager for rule-based license controls. Compute Optimizer provides optimization recommendations.
     trap: true
     facts: [license-manager, purpose]
-  - id: compute-optimizer-007
-    q: A team detached an EBS volume and its AWS Compute Optimizer recommendation disappeared. Why?
-    a: Recommendations are unavailable when a volume is detached; supported volumes need at least 30 consecutive hours attached to a running instance.
-    facts: [ebs-requirements]
   - id: compute-optimizer-008
     q: A team wants AWS Compute Optimizer EC2 recommendations to consider instance memory use. What can it configure?
     a: Collect memory metrics with the CloudWatch agent or ingest them from a supported external product.

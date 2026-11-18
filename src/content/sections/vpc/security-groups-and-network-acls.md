@@ -109,15 +109,6 @@ cards:
     facts:
       - acl-order
       - sg-allows
-  - id: vpc-004
-    q: Which AWS platform traffic bypasses VPC security-group and network-ACL filtering?
-    a: Amazon DNS, DHCP, EC2 instance metadata, ECS task metadata, Windows activation, Time Sync, and
-      reserved VPC router addresses. Use Resolver DNS Firewall for DNS filtering.
-    trap: true
-    facts:
-      - sg-exceptions
-      - acl-exceptions
-      - dns-filter
   - id: vpc-008
     q: VPC Flow Logs show an accepted inbound request followed by a rejected response. Which control
       should the team inspect first?

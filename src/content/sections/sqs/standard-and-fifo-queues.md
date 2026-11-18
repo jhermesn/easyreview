@@ -123,13 +123,6 @@ cards:
     facts:
       - fifo-order
       - fifo-group-required
-  - id: sqs-007
-    q: An SQS producer retries messages with identical bodies but different attributes under content-based FIFO deduplication. Are the attributes part of the deduplication hash?
-    a: No. The SHA-256 hash uses the message body only. Use an explicit MessageDeduplicationId when the intended identity must distinguish those messages.
-    trap: true
-    facts:
-      - fifo-content-hash
-      - fifo-dedup-choice
   - id: sqs-008
     q: A standard SQS queue must provide strict ordering for related messages. Can the team enable FIFO on the existing queue?
     a: No. Create a FIFO queue, whose name ends in .fifo, and send related messages with the same MessageGroupId. Queue type cannot be changed after creation.

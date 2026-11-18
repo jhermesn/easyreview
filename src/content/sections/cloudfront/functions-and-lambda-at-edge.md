@@ -326,15 +326,6 @@ cards:
     facts:
       - edge-origin-request
       - edge-viewer-request
-  - id: cloudfront-050
-    q: A CloudFront distribution uses mutual TLS and needs custom checks on client certificate properties during
-      connection establishment. Which edge function type should it use?
-    a: A CloudFront Connection Function. It evaluates certificate and connection information during the TLS
-      handshake and allows or denies the connection; it cannot modify HTTP requests or responses.
-    facts:
-      - edge-connection-events
-      - edge-connection-decision
-      - edge-connection-http
 ---
 CloudFront Functions and Lambda@Edge run code at CloudFront events so a request or response can be changed during delivery. A trigger is an association between a function and an event on a cache behavior, the rule for a set of URL paths. Event placement decides whether the function also runs for cached content.
 

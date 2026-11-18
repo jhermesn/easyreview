@@ -25,6 +25,7 @@
               "text": "Understanding the benefits of global infrastructure (for example, speed of deployment, global reach)",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "cloud-value/benefits-of-the-cloud"
               ]
             },
@@ -49,7 +50,7 @@
               "text": "AWS Well-Architected Framework",
               "sections": [
                 "well-architected/framework-pillars",
-                "well-architected/well-architected-tool"
+                "well-architected/more-essentials"
               ]
             },
             {
@@ -57,7 +58,8 @@
               "kind": "skill",
               "text": "Understanding the pillars of the Well-Architected Framework (for example, operational excellence, security, reliability, performance efficiency, cost optimization, sustainability)",
               "sections": [
-                "well-architected/framework-pillars"
+                "well-architected/framework-pillars",
+                "well-architected/more-essentials"
               ]
             },
             {
@@ -65,7 +67,8 @@
               "kind": "skill",
               "text": "Identifying differences between the pillars of the Well-Architected Framework",
               "sections": [
-                "well-architected/framework-pillars"
+                "well-architected/framework-pillars",
+                "well-architected/more-essentials"
               ]
             }
           ]
@@ -80,7 +83,8 @@
               "text": "Cloud adoption strategies",
               "sections": [
                 "cloud-adoption/cloud-adoption-framework",
-                "cloud-adoption/migration-strategies"
+                "cloud-adoption/migration-strategies",
+                "cloud-adoption/more-essentials"
               ]
             },
             {
@@ -105,6 +109,7 @@
               "text": "Identifying appropriate migration strategies (for example, database replication)",
               "sections": [
                 "cloud-adoption/migration-strategies",
+                "cloud-adoption/more-essentials",
                 "dms/basics",
                 "datasync/basics",
                 "snow-family/basics",
@@ -264,7 +269,8 @@
               "kind": "knowledge",
               "text": "Benefits of cloud security (for example, encryption)",
               "sections": [
-                "kms/encryption-at-rest-and-in-transit"
+                "kms/encryption-at-rest-and-in-transit",
+                "kms/more-essentials"
               ]
             },
             {
@@ -311,6 +317,7 @@
               "text": "Identifying encryption options (for example, encryption in transit, encryption at rest)",
               "sections": [
                 "kms/encryption-at-rest-and-in-transit",
+                "kms/more-essentials",
                 "acm/basics",
                 "cloudhsm/basics"
               ]
@@ -346,6 +353,7 @@
               "text": "Identity and access management (for example, AWS Identity and Access Management [IAM])",
               "sections": [
                 "iam/users-groups-and-policies",
+                "iam/more-essentials",
                 "iam/roles-basics"
               ]
             },
@@ -362,7 +370,8 @@
               "kind": "knowledge",
               "text": "Principle of least privilege",
               "sections": [
-                "iam/users-groups-and-policies"
+                "iam/users-groups-and-policies",
+                "iam/more-essentials"
               ]
             },
             {
@@ -398,7 +407,8 @@
               "kind": "skill",
               "text": "Defining groups, users, custom policies, and managed policies in compliance with the principle of least privilege",
               "sections": [
-                "iam/users-groups-and-policies"
+                "iam/users-groups-and-policies",
+                "iam/more-essentials"
               ]
             },
             {
@@ -504,6 +514,7 @@
               "text": "Various ways of provisioning and operating in the AWS Cloud",
               "sections": [
                 "management-console/ways-to-access-aws",
+                "management-console/more-essentials",
                 "cloudformation/basics",
                 "elastic-beanstalk/basics",
                 "systems-manager/basics",
@@ -516,6 +527,7 @@
               "text": "Various ways to access AWS services",
               "sections": [
                 "management-console/ways-to-access-aws",
+                "management-console/more-essentials",
                 "cli/basics",
                 "sdks/basics",
                 "cloudshell/basics"
@@ -535,6 +547,7 @@
               "text": "Deciding between options such as programmatic access (for example, APIs, SDKs, CLI), the AWS Management Console, and infrastructure as code (IaC)",
               "sections": [
                 "management-console/ways-to-access-aws",
+                "management-console/more-essentials",
                 "cloudformation/basics"
               ]
             },
@@ -544,6 +557,7 @@
               "text": "Evaluating requirements to determine whether to use one-time operations or repeatable processes",
               "sections": [
                 "management-console/ways-to-access-aws",
+                "management-console/more-essentials",
                 "cloudformation/basics"
               ]
             },
@@ -567,7 +581,8 @@
               "kind": "knowledge",
               "text": "AWS Regions, Availability Zones, and edge locations",
               "sections": [
-                "global-infrastructure/regions-availability-zones-and-edge-locations"
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials"
               ]
             },
             {
@@ -576,6 +591,7 @@
               "text": "High availability",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "rds/basics"
               ]
             },
@@ -593,6 +609,7 @@
               "text": "Benefits of edge locations",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "cloudfront/basics",
                 "global-accelerator/basics"
               ]
@@ -602,7 +619,8 @@
               "kind": "skill",
               "text": "Describing relationships among Regions, Availability Zones, and edge locations",
               "sections": [
-                "global-infrastructure/regions-availability-zones-and-edge-locations"
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials"
               ]
             },
             {
@@ -611,6 +629,7 @@
               "text": "Describing how to achieve high availability by using multiple Availability Zones",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials",
                 "ec2-auto-scaling/basics"
               ]
             },
@@ -619,7 +638,8 @@
               "kind": "skill",
               "text": "Recognizing that Availability Zones do not share single points of failure",
               "sections": [
-                "global-infrastructure/regions-availability-zones-and-edge-locations"
+                "global-infrastructure/regions-availability-zones-and-edge-locations",
+                "global-infrastructure/more-essentials"
               ]
             },
             {
@@ -707,6 +727,7 @@
               "text": "AWS database services",
               "sections": [
                 "rds/managed-vs-self-managed-databases",
+                "rds/more-essentials",
                 "neptune/graph-databases",
                 "documentdb/basics"
               ]
@@ -725,7 +746,8 @@
               "kind": "skill",
               "text": "Deciding when to use EC2 hosted databases or AWS managed databases",
               "sections": [
-                "rds/managed-vs-self-managed-databases"
+                "rds/managed-vs-self-managed-databases",
+                "rds/more-essentials"
               ]
             },
             {
@@ -734,6 +756,7 @@
               "text": "Identifying relational databases (for example, Amazon RDS, Amazon Aurora)",
               "sections": [
                 "rds/managed-vs-self-managed-databases",
+                "rds/more-essentials",
                 "aurora/basics"
               ]
             },

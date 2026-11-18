@@ -100,15 +100,6 @@ cards:
       - shard-write
       - shard-read
       - shard-record-rate
-  - id: kinesis-data-streams-002
-    q: How does Kinesis Data Streams choose a shard, and how should a producer preserve strict write
-      order?
-    a: By default it hashes the partition key with MD5 into a shard hash range. For strict ordering,
-      make serial PutRecord calls to the same shard with SequenceNumberForOrdering. There is no
-      stream-wide shard order.
-    facts:
-      - shard-hash
-      - shard-order
   - id: kinesis-data-streams-003
     q: A Kinesis Data Streams stream throttles writes while most shards are idle. What should the team
       investigate?
@@ -125,14 +116,6 @@ cards:
     facts:
       - shard-provisioned
       - shard-standard
-  - id: kinesis-data-streams-008
-    q: A Kinesis producer sends many tiny application records and reaches the shard record-rate limit
-      before its byte limit. Which KPL feature helps?
-    a: Aggregation. It packs multiple application records into one Kinesis record, reducing the number
-      of service records written. Collection also reduces request overhead by using PutRecords.
-    facts:
-      - shard-kpl-aggregation
-      - shard-kpl-collection
   - id: kinesis-data-streams-009
     q: A Kinesis application needs occasional 4 MiB records. Is the default stream setting enough, and
       does enabling large records raise sustained shard throughput?
@@ -159,14 +142,6 @@ cards:
     facts:
       - shard-encryption
       - shard-tls
-  - id: kinesis-data-streams-012
-    q: Does Kinesis PutRecords guarantee strict ordering when some records in the batch fail?
-    a: No. PutRecords can partially succeed and does not guarantee ordering. Use serial PutRecord writes
-      to the same shard with SequenceNumberForOrdering when strict ordering is required.
-    trap: true
-    facts:
-      - shard-batch-order
-      - shard-order
   - id: kinesis-data-streams-023
     q: A company must ingest and process website clickstream data in real time. Which AWS service fits?
     a: Amazon Kinesis Data Streams.

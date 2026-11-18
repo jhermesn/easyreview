@@ -120,25 +120,6 @@ cards:
     trap: true
     facts:
       - regional-backups
-  - id: rds-035
-    q: An Amazon RDS DB instance is in storage_full state during its automated backup window. Will RDS take its automated backup?
-    a: No. Automated backups require the instance to be available. A same-Region snapshot copy of that database also prevents them.
-    facts:
-      - backup-availability
-  - id: rds-036
-    q: AWS Backup snapshot jobs for an Amazon RDS instance fail during the RDS automated backup window. What configuration can avoid the conflict?
-    a: Have AWS Backup manage both snapshots and continuous backups for the instance, or schedule the job outside the RDS backup window.
-    facts:
-      - aws-backup-window-conflict
-  - id: rds-040
-    q: An Amazon RDS for Oracle team copies a DB snapshot to another Region and needs its option group there. What can it do in the snapshot copy request?
-    a: Set CopyOptionGroup to true. Cross-Region option group copying was added in November 2026.
-    facts:
-      - oracle-option-copy
-  - id: rds-055
-    q: "Besides failover, what does a Multi-AZ DB instance deployment improve during the daily backup window?"
-    a: "It minimizes latency spikes on the primary during backups, because of the synchronous standby. Multi-AZ still does not serve reads."
-    facts: [multiaz-backup-latency]
   - id: rds-061
     q: "An account runs 500 GB of provisioned RDS storage in one Region. How much RDS backup storage is free there?"
     a: "Up to 500 GB: free backup storage equals 100 percent of the total provisioned database storage per Region."

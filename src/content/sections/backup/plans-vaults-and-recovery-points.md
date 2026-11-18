@@ -63,12 +63,6 @@ cards:
       - plan-purpose
       - rule-settings
       - resource-selection
-  - id: backup-014
-    q: An AWS Backup plan selects resources only by tags, but tagged resources are not protected. Which
-      setting should the team inspect?
-    a: Check service opt-in settings, because tag-only selections still respect them.
-    facts:
-      - tag-opt-in
   - id: backup-015
     q: An AWS Backup design needs recovery to a chosen time within the retention period. Which backup
       type should it use?
@@ -83,15 +77,6 @@ cards:
     trap: true
     facts:
       - vault-encryption
-  - id: backup-017
-    q: What are the AWS Backup console defaults for a rule start time and its start and completion
-      windows?
-    a: 00:30 in the local system time zone, an 8-hour start window, and a 7-day completion window. The
-      completion window does not apply to FSx.
-    facts:
-      - console-start-time
-      - console-start-window
-      - console-completion-window
   - id: backup-018
     q: What minimum cold-storage residence and continuous-backup retention should an AWS Backup plan
       account for?

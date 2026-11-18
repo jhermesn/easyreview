@@ -47,10 +47,6 @@ cards:
     q: A company has Reserved Instances in one account of an AWS Organization. Can other accounts in the organization benefit from the discount?
     a: Yes. The management account controls RI and Savings Plans discount sharing across the organization's accounts.
     facts: [sharing]
-  - id: ec2-048
-    q: A company no longer needs a Standard Reserved Instance after moving Regions. What can it do with it?
-    a: Sell it in the EC2 Reserved Instance Marketplace.
-    facts: [ri-marketplace]
   - id: ec2-049
     q: Does a regional Reserved Instance guarantee EC2 capacity?
     a: No. Only a zonal Reserved Instance (or a Capacity Reservation) reserves capacity, in one AZ.

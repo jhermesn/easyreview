@@ -87,10 +87,6 @@ cards:
     q: A batch job can stop and restart at any time. Which EC2 purchasing option is cheapest?
     a: Spot Instances, which use spare capacity at steep discounts and can be interrupted.
     facts: [spot]
-  - id: ec2-038
-    q: How much warning does EC2 give before interrupting a Spot Instance?
-    a: Two minutes, through an interruption notice.
-    facts: [spot-notice]
   - id: ec2-039
     q: A developer needs an EC2 instance for a short test of unknown length with no commitment. Which purchasing option fits?
     a: On-Demand Instances, billed by the second with no commitment.
@@ -129,11 +125,6 @@ cards:
     q: Which four Savings Plans types does AWS offer?
     a: Compute, EC2 Instance, Database and SageMaker AI Savings Plans.
     facts: [sp-types]
-  - id: ec2-083
-    q: "A launch template asks for dedicated tenancy, but the VPC has default tenancy. Where do the instances run?"
-    a: "On dedicated hardware. A default-tenancy VPC lets the launch template choose dedicated, and a dedicated-tenancy VPC forces dedicated for every instance."
-    trap: true
-    facts: [vpc-tenancy]
   - id: ec2-086
     q: "In which instance state is only EBS storage billed, not the instance itself?"
     a: "Stopped. Instance usage stops being billed, but attached EBS volumes are still charged."
@@ -146,20 +137,6 @@ cards:
     q: "A script launching many On-Demand instances in one Region fails after a few dozen succeed. What limit is likely involved?"
     a: "The On-Demand Instance quota, measured in vCPUs per account per Region. Request an increase through Service Quotas."
     facts: [vcpu-quota]
-  - id: ec2-090
-    q: "Which EC2 states bill instance usage?"
-    a: "Running, and stopping when the instance is hibernating. EBS volumes and Elastic IPs still bill while stopped, and Reserved Instances bill for their full term even after termination."
-    trap: true
-    facts: [billing-states]
-  - id: ec2-091
-    q: "A team creates a Capacity Reservation for a week but launches nothing into it. What do they pay?"
-    a: "The On-Demand rate for the reserved capacity for the whole week. A Capacity Reservation is charged whether or not it is used; only Savings Plans or Regional Reserved Instances lower that price."
-    trap: true
-    facts: [cr-billing]
-  - id: ec2-096
-    q: "Development EC2 and RDS instances in several accounts should stop outside business hours automatically. What ready-made AWS solution fits?"
-    a: "Instance Scheduler on AWS, which stops and starts tagged instances on defined schedules across accounts and Regions."
-    facts: [instance-scheduler]
   - id: ec2-105
     q: "A team buys a Compute Savings Plan to be sure capacity exists for a big launch. Is that enough?"
     a: "No. Savings Plans only lower prices for committed hourly usage; to hold capacity in an Availability Zone, use an On-Demand Capacity Reservation."

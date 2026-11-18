@@ -72,17 +72,6 @@ cards:
     facts:
       - mfa-key-absence
       - mfa-deny-ifexists
-  - id: iam-050
-    q: An IAM user needs temporary credentials carrying MFA information while retaining user permissions. Which
-      STS operation fits?
-    a: GetSessionToken with MFA information.
-    facts:
-      - mfa-session-token
-  - id: iam-051
-    q: What does the IAM condition key aws:MultiFactorAuthAge measure?
-    a: Seconds since MFA authentication for temporary credentials created with MFA.
-    facts:
-      - mfa-age
 ---
 
 External IDs distinguish a vendor's customers during role assumption. They address the confused deputy problem, where someone tricks a service with legitimate authority into using it for the wrong customer. MFA conditions require extra authentication before sensitive access.

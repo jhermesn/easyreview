@@ -175,14 +175,6 @@ cards:
     facts:
       - failover-methods
       - failover-options
-  - id: cloudfront-038
-    q: A CloudFront origin group fails over GET requests but not OPTIONS requests, even though OPTIONS is allowed.
-      Which behavior setting should the team inspect?
-    a: Cached HTTP methods. OPTIONS must be cached to qualify for origin failover; merely allowing it is
-      insufficient.
-    trap: true
-    facts:
-      - failover-options
   - id: cloudfront-051
     q: "A CloudFront distribution uses an origin group to fail over between S3 buckets in two Regions. What Route 53 record should send the site domain to it?"
     a: "A simple alias record to the distribution. Failover between the buckets happens inside CloudFront through the origin group, so DNS failover routing has nothing to switch."

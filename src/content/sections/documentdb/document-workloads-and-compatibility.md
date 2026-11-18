@@ -41,10 +41,6 @@ diagrams:
       - "The primary writes to the shared cluster volume."
       - "Replicas read from the shared volume."
 cards:
-  - id: documentdb-001
-    q: Which managed database supports MongoDB-compatible document workloads?
-    a: Amazon DocumentDB. Check the supported API operations and functional differences before migration.
-    facts: [managed, differences, api]
   - id: documentdb-002
     q: How many read replicas can an instance-based Amazon DocumentDB cluster have?
     a: Up to 15. Replicas also serve as failover targets.
@@ -62,18 +58,10 @@ cards:
     a: No. It balances connections, not individual requests.
     facts: [reader]
     trap: true
-  - id: documentdb-006
-    q: A team must retain an Amazon DocumentDB backup beyond the continuous backup retention period. What should it create?
-    a: A manual cluster snapshot.
-    facts: [snapshot]
   - id: documentdb-007
     q: What consistency should a client expect when reading from an Amazon DocumentDB replica?
     a: Eventual consistency with the primary.
     facts: [eventual]
-  - id: documentdb-008
-    q: "Do you need to provision storage size for an Amazon DocumentDB cluster?"
-    a: "No. The cluster volume grows automatically as data grows and you pay for what you use."
-    facts: [storage-growth]
 ---
 
 Amazon DocumentDB is a managed database for MongoDB-compatible document workloads. A document stores data in key-value pairs that can be nested. Compatibility does not mean every MongoDB operation behaves identically.

@@ -120,14 +120,6 @@ cards:
       - reader-limit
       - storage
       - readers
-  - id: aurora-002
-    q: How does an Aurora cluster automatically add read-serving instances as demand changes?
-    a: Aurora Auto Scaling uses Application Auto Scaling target tracking on rds:cluster:ReadReplicaCount. Predefined metrics are RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
-    facts:
-      - autoscaling
-      - dimension
-      - cpu
-      - connections
   - id: aurora-009
     q: An Aurora application sends every read over one persistent reader-endpoint connection. Why does one reader remain busy?
     a: The endpoint balances connections, not individual queries. A persistent connection stays with its selected reader.
@@ -153,42 +145,10 @@ cards:
     trap: true
     facts:
       - minimum-reader
-  - id: aurora-013
-    q: Which class and promotion tier does Aurora Auto Scaling assign to a new reader by default?
-    a: The writer instance class and promotion tier 15, the lowest promotion priority.
-    facts:
-      - created
-      - tier
-      - tier-tie
-  - id: aurora-014
-    q: An Aurora application must cap connections opened to the database while retaining many client connections. Which setting and endpoint apply?
-    a: Connect through RDS Proxy and set MaxConnectionsPercent as a percentage of max_connections. Internal reserves mean MaxDatabaseConnectionsAllowed can be lower than that calculation.
-    facts:
-      - proxy
-      - proxy-cap
-      - proxy-reserve
-  - id: aurora-015
-    q: Can Aurora Auto Scaling add readers to a Global Database secondary or an Aurora Serverless v2 cluster?
-    a: No. Reader-count Auto Scaling does not support those configurations. Pre-created Serverless readers can scale their compute capacity.
-    trap: true
-    facts:
-      - secondary
-      - serverless
-  - id: aurora-016
-    q: How does Aurora normally select a reader to promote when several are available?
-    a: Lower promotion tier numbers take priority, from 0 to 15. Equal tiers favor the larger instance, then an arbitrary equal-size instance; tiers are ignored after five unsuccessful attempts.
-    facts:
-      - tier
-      - tier-tie
-      - tier-exception
   - id: aurora-031
     q: A company runs MySQL and PostgreSQL applications and wants a managed relational database that AWS patches for it. Which AWS database fits?
     a: "Amazon Aurora.\nIt is compatible with MySQL and PostgreSQL, and AWS applies OS and engine patches in the maintenance window."
     facts: [engine-compat, managed-patching]
-  - id: aurora-036
-    q: "Developers need a full copy of a 5 TB production Aurora database for testing, created in minutes and at low storage cost. Which feature fits?"
-    a: "**Aurora cloning** (copy-on-write: shares pages until either side changes them)."
-    facts: [cloning]
   - id: aurora-037
     q: "Analytics queries must go only to two large Aurora replicas, while the app uses the others. Which Aurora feature fits?"
     a: "A **custom endpoint** that includes just those two replicas."
@@ -202,10 +162,6 @@ cards:
     a: "It recreates the primary instance in the same AZ, typically within 10 minutes. Add an Aurora Replica in another AZ so failover becomes a fast promotion."
     trap: true
     facts: [no-replica-failover]
-  - id: aurora-040
-    q: "When a row is deleted in Aurora MySQL, a Lambda function must run and forward the change. How can the database call Lambda directly?"
-    a: "With the Aurora MySQL native functions lambda_sync or lambda_async, after granting the cluster access to Lambda."
-    facts: [lambda-native]
   - id: aurora-042
     q: "A bad DELETE hit an Aurora MySQL cluster 20 minutes ago. Which feature undoes it fastest without creating a new cluster, and what must already be true?"
     a: "Backtrack, which rewinds the cluster in place in minutes. It only works if Backtrack was enabled when the cluster was created or restored, and the window is at most 72 hours."

@@ -137,22 +137,6 @@ cards:
     facts:
       - kms-upload-policy
       - kms-default-override
-  - id: s3-057
-    q: An S3 team enabled Bucket Keys and KMS policies scoped to object ARNs stopped working. What
-      should it inspect?
-    a: Encryption-context conditions. Bucket Keys use the bucket ARN, so policies that require an object
-      ARN must be updated.
-    trap: true
-    facts:
-      - bucket-key-context
-  - id: s3-058
-    q: A new S3 bucket rejects SSE-C uploads although the caller supplies the correct key. Which dated
-      default should be checked?
-    a: SSE-C is blocked by default from April 2026 for new general purpose buckets. Explicitly enable it
-      through PutBucketEncryption with BlockedEncryptionTypes set to NONE if required.
-    facts:
-      - ssec-update
-      - ssec-enable
   - id: s3-059
     q: An S3 team wants another account to read SSE-KMS objects. Is the AWS managed S3 key sufficient?
     a: No. Use a customer managed KMS key with access configured for the other account.
@@ -183,14 +167,6 @@ cards:
     q: "S3 administrators must manage a bucket of SSE-KMS objects without being able to read the data. How?"
     a: "Give them S3 permissions but no kms:Decrypt on the KMS key. Reading an SSE-KMS object needs both S3 access and kms:Decrypt."
     facts: [sse-kms-permissions]
-  - id: s3-168
-    q: "Existing SSE-S3 objects must move to SSE-KMS with a Bucket Key without rewriting them. Which operation does that?"
-    a: "UpdateObjectEncryption, which updates the encryption in place with no data copy. CopyObject also works but rewrites each object."
-    facts: [update-object-encryption, bucket-key-existing]
-  - id: s3-171
-    q: "An object is uploaded with SSE-KMS but no key ID, and the bucket default names no key. Which key encrypts it?"
-    a: "The AWS managed key aws/s3 of the uploading account."
-    facts: [aws-s3-key]
   - id: s3-174
     q: "A bucket in eu-west-1 must use SSE-KMS with a customer managed key that lives in us-east-1. Will that work?"
     a: "No. The KMS key must be in the **same Region as the bucket**. Use a KMS key in eu-west-1."

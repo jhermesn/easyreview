@@ -58,60 +58,14 @@ facts:
     text: "RDS instance usage is billed in one-second increments with a 10-minute minimum."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_OnDemandDBInstances.html
 cards:
-  - id: rds-041
-    q: What does Amazon RDS manage that a database on Amazon EC2 leaves to the customer?
-    a: Database and OS installation and patching, backups, scaling, high availability, and failure detection and recovery.
-    facts: [rds-manages, comparison]
-  - id: rds-042
-    q: A team wants a relational MySQL database without patching or backing it up themselves. Should they run it on EC2 or Amazon RDS?
-    a: Amazon RDS, which AWS recommends as the default for relational databases.
-    facts: [default-choice, rds-manages]
-  - id: rds-043
-    q: When does running a database yourself on Amazon EC2 make sense instead of Amazon RDS?
-    a: When you need full control of the operating system or database software, or an engine RDS doesn't support. RDS Custom is the managed option when you need OS access for some engines.
-    facts: [comparison, rds-custom, engines]
-  - id: rds-044
-    q: Which database engines does Amazon RDS support (besides Aurora)?
-    a: IBM Db2, MariaDB, Microsoft SQL Server, MySQL, Oracle Database and PostgreSQL.
-    facts: [engines]
-  - id: rds-045
-    q: With Amazon RDS, does AWS optimize the customer's application queries?
-    a: No. Application optimization stays with the customer on premises, on EC2 and on RDS.
-    trap: true
-    facts: [comparison]
   - id: rds-046
     q: "Which of these AWS databases are NoSQL: Amazon DynamoDB, Amazon Neptune, Amazon DocumentDB, Amazon Aurora?"
     a: DynamoDB (key-value), Neptune (graph) and DocumentDB (document). Aurora is relational.
     facts: [nosql-types]
-  - id: rds-047
-    q: A company runs an Amazon RDS database around the clock for the next three years. How can it lower the instance cost?
-    a: Buy RDS reserved DB instances for a three-year term (No, Partial or All Upfront).
-    facts: [reserved-db]
-  - id: rds-056
-    q: "A legacy Oracle application needs OS-level customization of the database host and higher availability. Which managed option fits?"
-    a: "RDS Custom for Oracle with a Multi-AZ deployment. Regular RDS for Oracle gives no OS access, and EC2 leaves all failover work to the team. Note that AWS ends support for RDS Custom for Oracle on March 31, 2027."
-    facts: [custom-multiaz, custom-oracle-eos]
-  - id: rds-057
-    q: "An RDS production database will run for years. How can its instance cost drop?"
-    a: "Buy RDS reserved DB instances for a one- or three-year term. They are a billing discount applied to matching DB instances."
-    facts: [reserved-db]
-  - id: rds-058
-    q: "Which RDS engine lets a company bring its own existing database licenses?"
-    a: "RDS for Oracle, which offers Bring Your Own License as well as License Included."
-    facts: [oracle-byol]
-  - id: rds-059
-    q: "IoT sensors write trillions of timestamped readings a day that must be queried by time window. Which AWS database family fits, and which option takes new customers?"
-    a: "Amazon Timestream, the time series database. Timestream for LiveAnalytics closed to new customers on June 20, 2025, so new workloads use Timestream for InfluxDB."
-    facts: [timestream, timestream-closed]
   - id: rds-060
     q: "Which AWS service offered managed Hyperledger Fabric networks and Ethereum nodes, and what is its status?"
     a: "Amazon Managed Blockchain. It stopped accepting new customers on October 29, 2026, and access ends after September 29, 2027."
     facts: [managed-blockchain]
-  - id: rds-066
-    q: "A test database on RDS is used two days a week. Can the team simply keep it stopped between tests?"
-    a: "Only for up to 7 consecutive days; RDS then starts it automatically. For longer idle periods, take a snapshot and delete the instance, then restore when needed."
-    trap: true
-    facts: [stop-seven-days]
   - id: rds-067
     q: "A DBA must install a third-party agent on the host of a managed SQL Server database. Which service allows it, and what should the DBA do first?"
     a: "RDS Custom for SQL Server. Pause RDS Custom automation for the duration of the change so recovery automation does not act on it."

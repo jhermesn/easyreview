@@ -66,13 +66,6 @@ cards:
       - root
       - hibernation-support
       - mixed
-  - id: ec2-auto-scaling-048
-    q: How is an EC2 Auto Scaling warm pool sized by default, and what changes the calculation?
-    a: Maximum group capacity minus desired capacity. MaxGroupPreparedCapacity supplies a separate prepared-capacity limit; MinSize can maintain a minimum pool size.
-    facts:
-      - size
-      - prepared
-      - minimum
   - id: ec2-auto-scaling-049
     q: An EC2 Auto Scaling team wants initialized instances returned to its warm pool on scale-in. What must it configure?
     a: An instance reuse policy. Default scale-in terminates the instances.
@@ -83,12 +76,6 @@ cards:
     a: A launch lifecycle hook. It delays stopping or hibernation until initialization completes and can pause promotion into service again.
     facts:
       - hooks
-  - id: ec2-auto-scaling-051
-    q: An EC2 Auto Scaling warm pool is empty when demand rises. Does scale-out have to wait for it to refill?
-    a: No. Instances can cold-start directly into the group, subject to maximum capacity.
-    trap: true
-    facts:
-      - cold
   - id: ec2-auto-scaling-052
     q: Do stopped EC2 Auto Scaling warm-pool instances have no continuing charges?
     a: No. Volumes and attached Elastic IP addresses still incur charges. Hibernation also needs volume space for memory contents.

@@ -87,20 +87,6 @@ cards:
     facts:
       - ip-reputation
       - bots
-  - id: waf-014
-    q: What evaluation windows and minimum limit can an AWS WAF rate-based rule use?
-    a: 60, 120, 300 or 600 seconds; 300 seconds is the default. The lowest limit is 10 requests per
-      evaluation window.
-    facts:
-      - windows
-      - minimum
-  - id: waf-015
-    q: An AWS WAF rate-based rule groups by a custom session cookie. What happens to a request without
-      that cookie?
-    a: The rule omits it from evaluation because the required aggregation component is missing.
-    trap: true
-    facts:
-      - missing-keys
   - id: waf-016
     q: An API must accept exactly a fixed request quota with no delay. Does an AWS WAF rate-based rule
       guarantee that quota?
@@ -108,17 +94,6 @@ cards:
     trap: true
     facts:
       - approximate
-  - id: waf-017
-    q: A team edits the evaluation window of a live AWS WAF rate-based rule. What happens to its request
-      counts?
-    a: The counts reset, and rate limiting can pause for up to one minute.
-    facts:
-      - reset
-  - id: waf-018
-    q: Can an AWS WAF rate-based rule use Allow as its rate action?
-    a: No. Its rate action can use the other rule actions, but not Allow.
-    facts:
-      - rate-action
   - id: waf-019
     q: An AWS WAF managed rule group should inspect only requests to a login path. What should the team add?
     a: Add a scope-down statement matching the login path. Only matching requests are evaluated by the group.

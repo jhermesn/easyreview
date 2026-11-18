@@ -129,33 +129,6 @@ cards:
     facts:
       - auto-range
       - config-rule
-  - id: kms-023
-    q: A custom AWS KMS rotation-age check uses only key creation date. What does it miss after automatic
-      rotation?
-    a: Material can rotate while the key ID stays unchanged. Inspect rotation history and material rotation dates,
-      and treat manual replacement as a new logical key.
-    facts:
-      - rotation-id
-      - rotation-history
-      - material-date
-      - manual-new-key
-  - id: kms-024
-    q: A team imported new symmetric AWS KMS material and needs to activate it without changing the key ARN. Which
-      operation fits?
-    a: Stage the new material in Pending rotation state, then perform on-demand rotation. Imported symmetric keys
-      gained this support in June 2025.
-    facts:
-      - demand-import
-      - demand-eligible
-      - rotation-id
-      - imported-date
-  - id: kms-025
-    q: Does an AWS KMS on-demand rotation reset the next automatic rotation date?
-    a: No. It leaves the existing automatic schedule unchanged and is available even when automatic rotation is
-      disabled.
-    trap: true
-    facts:
-      - demand-schedule
 ---
 KMS rotation changes key material, the secret cryptographic value behind a key, while automatic and on-demand rotation keep the same logical key. Manual rotation replaces the key resource and redirects future use to it.
 

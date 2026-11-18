@@ -56,53 +56,19 @@ cards:
     q: Ten developers need the same permissions in AWS. What is the simplest way to manage them in IAM?
     a: Put the developers in an IAM user group and attach the policy to the group. Every user in it gets the permissions.
     facts: [group]
-  - id: iam-079
-    q: What are the three kinds of identity-based policies in IAM?
-    a: "- AWS managed: created and maintained by AWS, can't be edited\n- Customer managed: you create and edit them, reusable\n- Inline: embedded in one user, group or role"
-    facts: [aws-managed, customer-managed, inline]
   - id: iam-080
     q: What does the principle of least privilege mean for IAM permissions?
     a: Grant only the permissions a task needs, on specific resources and under specific conditions.
     facts: [least-privilege]
-  - id: iam-081
-    q: A company needs a reusable policy it can edit, attached to several roles. Which IAM policy type fits?
-    a: A customer managed policy.
-    facts: [customer-managed]
-  - id: iam-082
-    q: Can one IAM user group contain another group?
-    a: No. Groups can't be nested; they contain only users.
-    trap: true
-    facts: [group-rules]
   - id: iam-083
     q: Do AWS managed policies always give least-privilege permissions?
     a: No. They cover common use cases and may grant more than a specific task needs. Move to customer managed policies for least privilege.
     trap: true
     facts: [start-managed]
-  - id: iam-084
-    q: An employee moves from the support team to the finance team. How should an administrator change the employee's IAM permissions?
-    a: Remove the user from the support group and add them to the finance group, instead of editing the user's own permissions.
-    facts: [group-change-job]
-  - id: iam-095
-    q: An auditor needs a list of all IAM users with the status of their passwords, access keys and MFA. Which IAM feature provides it?
-    a: The IAM credential report.
-    facts: [credential-report]
-  - id: iam-096
-    q: An administrator wants to see which permitted services an IAM role never uses, to trim its permissions. Which IAM feature helps?
-    a: IAM last accessed information, which shows when each service was last used.
-    facts: [last-accessed]
   - id: iam-100
     q: Which IAM best practices apply when a company still needs IAM users with long-term credentials?
     a: Require MFA, update (rotate) their access keys, and regularly remove unused users and credentials.
     facts: [best-practices]
-  - id: iam-104
-    q: "Which is true of IAM user groups: they can be nested, a user can be in several groups, or every account has a default group with all users?"
-    a: "A user can belong to several groups. Groups cannot be nested, and there is no default group that holds every user."
-    trap: true
-    facts: [groups-flat]
-  - id: iam-105
-    q: "Which IAM feature tests whether policies would allow an action without making the real request?"
-    a: "The IAM policy simulator. It evaluates identity-based policies, permissions boundaries, SCPs and resource-based policies against a simulated request."
-    facts: [policy-simulator]
   - id: iam-106
     q: "What is an IAM account alias?"
     a: "A friendly name that replaces the numeric account ID in the sign-in URL for IAM users."

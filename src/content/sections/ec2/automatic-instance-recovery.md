@@ -117,11 +117,6 @@ cards:
     q: Must an operator create a CloudWatch alarm to enable simplified automatic recovery for a supported EC2 instance?
     a: No. Simplified automatic recovery is enabled by default at launch. CloudWatch action based recovery requires an explicitly configured alarm action.
     facts: [simplified-default, cloudwatch-config]
-  - id: ec2-019
-    q: An EC2 workload uses an Elastic Fabric Adapter. Can either simplified automatic recovery or CloudWatch action based recovery restore the instance after a host failure?
-    a: No. Both mechanisms exclude instances using EFA.
-    facts: [efa-excluded]
-    trap: true
   - id: ec2-020
     q: How do simplified and CloudWatch action based EC2 recovery differ for instances with instance store volumes?
     a: Simplified recovery excludes them. CloudWatch recovery supports selected instance types with instance store attached at launch, but loses that data during recovery.
@@ -139,10 +134,6 @@ cards:
     q: A running EC2 instance has automatic recovery configured, but there is no capacity for its instance type. Is recovery guaranteed?
     a: No. Recovery requires available capacity. If recovery fails and the instance stays unreachable or keeps failing system checks, AWS recommends a manual stop and start.
     facts: [recovery-conditions, failed-recovery]
-  - id: ec2-024
-    q: How should missing data be handled for a CloudWatch alarm configured to recover an EC2 instance?
-    a: Treat missing data as missing and trigger the action only in ALARM state. AWS recommends this configuration for EC2 action alarms.
-    facts: [missing-data]
   - id: ec2-025
     q: A team needs an EC2 instance to resume in another Availability Zone after a zone outage. Does automatic instance recovery provide this?
     a: No. Automatic recovery retains the instance's Availability Zone.

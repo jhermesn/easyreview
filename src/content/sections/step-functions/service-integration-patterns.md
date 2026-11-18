@@ -102,13 +102,6 @@ cards:
       - task-work
       - choice-state
       - wait-state
-  - id: step-functions-014
-    q: An on-premises worker must pull Step Functions work when it has capacity. How does an activity
-      supply and complete a task?
-    a: Poll GetActivityTask using the activity ARN. Process the returned input and use its taskToken in
-      SendTaskSuccess or SendTaskFailure.
-    facts:
-      - activity-worker
   - id: step-functions-015
     q: A Step Functions workflow must process each item in an array, then run two different checks
       concurrently. Which states fit?
@@ -117,12 +110,6 @@ cards:
     facts:
       - map-state
       - parallel-state
-  - id: step-functions-016
-    q: A Step Functions workflow must keep an API result for a later step without forwarding it through
-      every intermediate step. What feature fits?
-    a: Workflow variables. Store the result once and reference it in later steps.
-    facts:
-      - workflow-variables
   - id: step-functions-017
     q: A Step Functions state machine definition calls a service, but the call is denied. Which identity
       needs permission?
@@ -130,14 +117,6 @@ cards:
       resource.
     facts:
       - execution-role
-  - id: step-functions-018
-    q: Which Step Functions states transform data without external work and explicitly end a workflow?
-    a: Pass forwards or transforms data. Succeed ends successfully; Fail ends with failure unless
-      enclosing error handling catches it.
-    facts:
-      - pass-state
-      - succeed-state
-      - fail-state
   - id: step-functions-022
     q: A team must coordinate credential remediation after AWS Health reports an exposed IAM access key.
       How can it start a Step Functions workflow?

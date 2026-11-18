@@ -41,14 +41,6 @@ cards:
     q: Which REST API integration type should you use to call a Lambda function with the least setup?
     a: Lambda proxy integration (AWS_PROXY). API Gateway passes the whole request to the function, with no integration request or response mappings to configure.
     facts: [integration-types, lambda-proxy]
-  - id: api-gateway-041
-    q: A frontend team needs a working API endpoint that returns fixed responses before the backend exists. Which integration type fits?
-    a: A MOCK integration, which answers from API Gateway without calling any backend.
-    facts: [mock]
-  - id: api-gateway-042
-    q: An API's Latency metric is high, but IntegrationLatency is low. Where is the time going?
-    a: In API Gateway itself rather than the backend, since Latency includes IntegrationLatency plus API Gateway overhead.
-    facts: [latency-metrics]
   - id: api-gateway-043
     q: A REST API backend keeps receiving malformed requests. How can API Gateway stop them before they reach the integration?
     a: Turn on request validation for the method. Invalid requests get a 400 response and never reach the backend.
@@ -58,18 +50,6 @@ cards:
     a: No. The default maximum is 29 seconds. A Regional or private API can request a higher integration timeout quota; an edge-optimized API can't, so long jobs usually move to an asynchronous pattern.
     trap: true
     facts: [integration-timeout]
-  - id: api-gateway-045
-    q: How do you measure whether an API Gateway cache is effective?
-    a: Watch CacheHitCount and CacheMissCount. Their Average statistic gives the cache hit and miss rates.
-    facts: [cache-metrics]
-  - id: api-gateway-046
-    q: "A team keeps its REST API definition in an OpenAPI file in Git. How does it create the API in API Gateway from that file?"
-    a: "Import the OpenAPI 2.0 or 3.0 definition into API Gateway, which builds or updates the REST API from it."
-    facts: [openapi-import]
-  - id: api-gateway-049
-    q: "A REST API with Lambda proxy integration returns 502 Bad Gateway although the function runs without errors. What is the likely cause?"
-    a: "The function returns a response **not in the proxy integration format** (statusCode, headers, body). API Gateway answers 502 when it cannot use the output."
-    facts: [proxy-502]
   - id: api-gateway-050
     q: "A browser app on another origin calls an API Gateway HTTP API and fails on the preflight request. What fixes it?"
     a: "**Configure CORS on the HTTP API.** API Gateway then answers preflight OPTIONS requests automatically and adds the CORS headers."

@@ -134,14 +134,6 @@
       "trap": true
     },
     {
-      "id": "dynamodb-045",
-      "q": "A DynamoDB table holding orders must never be dropped by mistake during routine administration. Which table setting fits?",
-      "a": "Enable **deletion protection** on the table (it is off by default).",
-      "facts": [
-        "deletion-protection"
-      ]
-    },
-    {
       "id": "dynamodb-056",
       "q": "A DynamoDB table was created with default settings. Can it be restored to its state from two hours ago?",
       "a": "No. **PITR is off by default**; enable it first, then restores are possible within its retention window.",

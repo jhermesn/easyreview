@@ -68,28 +68,10 @@ cards:
     q: A company counts AWS License Manager licenses by physical sockets. What EC2 tenancy is required?
     a: Dedicated Hosts. Core and socket counting require them.
     facts: [tenancy]
-  - id: license-manager-005
-    q: Does AWS License Manager validate on-premises licensing rules when a server launches or terminates?
-    a: No. Use Systems Manager Inventory for discovery, attach rules, and refresh inventory periodically.
-    facts: [inventory, inventory-limit]
-    trap: true
-  - id: license-manager-006
-    q: A company wants one view of license usage across AWS accounts and Regions. What AWS License Manager feature helps?
-    a: License asset groups provide centralized monitoring and rule management.
-    facts: [asset-groups]
-  - id: license-manager-007
-    q: By default, does AWS License Manager count stopped instances against a self-managed license?
-    a: No. The include stopped instances rule defaults to false, releasing their licenses to the pool.
-    facts: [stopped]
   - id: license-manager-008
     q: A company must prevent a new deployment when its AWS License Manager license count would be exceeded. Which limit should it choose?
     a: A hard limit. A soft limit notifies when exceeded but does not prevent deployment.
     facts: [limits]
-  - id: license-manager-009
-    q: Does AWS License Manager automatically stop tracking an instance when discovered software is uninstalled?
-    a: No. Configure automated discovery to stop tracking on uninstall if needed.
-    facts: [discovery-uninstall]
-    trap: true
 ---
 
 AWS License Manager tracks software license use across AWS accounts and Regions and can manage licenses on servers outside AWS. Bring Your Own License (BYOL) means using existing licenses with cloud resources.

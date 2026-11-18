@@ -191,10 +191,6 @@ cards:
     q: "A database needs more IOPS than one EBS volume can give. What block-level approach adds performance across volumes?"
     a: "A RAID 0 stripe across several EBS volumes, up to the instance EBS bandwidth limit. Avoid RAID 5 or 6, which waste IOPS on parity."
     facts: [raid0]
-  - id: ebs-051
-    q: "What is the maximum throughput of st1 and of sc1?"
-    a: "st1 up to 500 MiB/s, sc1 up to 250 MiB/s, depending on size and burst credits."
-    facts: [hdd-throughput]
 ---
 Amazon EBS provides block storage, disks attached to EC2 instances. Choose solid-state drive (SSD) storage for transactional I/O, meaning application reads and writes, and hard disk drive (HDD) storage for large sequential transfers.
 

@@ -101,23 +101,10 @@ cards:
     a: No. Configure automatic export or run an export task. Automatic export is asynchronous.
     trap: true
     facts: [export, asynchronous]
-  - id: fsx-for-lustre-006
-    q: What are the default automatic import and export settings for an FSx for Lustre S3 association created through the console versus the API?
-    a: The console enables new, changed and deleted events by default; the API disables automatic import and export by default.
-    facts: [defaults]
   - id: fsx-for-lustre-007
     q: How should applications handle concurrent writes to the same data in S3 and an FSx for Lustre file system?
     a: Coordinate writes at the application level. FSx for Lustre does not prevent conflicting writes.
     facts: [conflict]
-  - id: fsx-for-lustre-008
-    q: Can an FSx for Lustre export task run while automatic export is running?
-    a: No. Automatic export and export tasks cannot run at the same time.
-    trap: true
-    facts: [task-conflict]
-  - id: fsx-for-lustre-009
-    q: What links an FSx for Lustre directory to an S3 bucket or prefix, and how many links are supported?
-    a: A data repository association. A file system can have up to eight.
-    facts: [association]
   - id: fsx-for-lustre-011
     q: "An HPC job starts on FSx for Lustre linked to a 200 TB S3 bucket. Does the file system copy all object data before the job can read files?"
     a: "No. Metadata is imported, and **file content loads from S3 on first access**. Later reads come from the file system."

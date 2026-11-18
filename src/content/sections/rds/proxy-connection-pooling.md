@@ -115,14 +115,6 @@ cards:
     facts:
       - pooling
       - client-endpoint
-  - id: rds-014
-    q: An RDS Proxy workload must leave database connections available for other users. Which setting
-      caps the proxy connection pool?
-    a: MaxConnectionsPercent. It caps backend connections relative to database max_connections. Compare
-      DatabaseConnections with MaxDatabaseConnectionsAllowed to monitor actual usable capacity.
-    facts:
-      - connection-cap
-      - cap-monitoring
   - id: rds-031
     q: An application using RDS Proxy changes session state and database connections remain dedicated to
       individual clients. What explains the poor reuse?
@@ -130,13 +122,6 @@ cards:
       session state remains consistent.
     facts:
       - pinning
-  - id: rds-032
-    q: What are the default RDS Proxy ConnectionBorrowTimeout and IdleClientTimeout values?
-    a: ConnectionBorrowTimeout is 120 seconds. IdleClientTimeout is 1800 seconds. They control waiting
-      for backend capacity and closing idle client connections, respectively.
-    facts:
-      - borrow-default
-      - idle-default
   - id: rds-033
     q: An RDS application repeats expensive read queries whose results can tolerate some staleness.
       Which complementary technique reduces database query work?
@@ -152,15 +137,6 @@ cards:
     trap: true
     facts:
       - load-shedding
-  - id: rds-072
-    q: "Can a client on the internet connect straight to an RDS Proxy endpoint?"
-    a: "No. RDS Proxy is never publicly accessible; clients reach it from inside the VPC or through connected networks."
-    trap: true
-    facts: [proxy-private]
-  - id: rds-082
-    q: "An application connects to Aurora through RDS Proxy. During a writer failover, which client connections are affected?"
-    a: "Only connections **in the middle of a transaction or SQL statement** are canceled. Idle connections stay open and the proxy accepts new ones immediately, so the app must retry interrupted work."
-    facts: [failover-cancel]
 ---
 
 RDS Proxy reduces connection pressure by keeping a shared pool of database connections. A connection pool is a set of open connections that clients can reuse. The [RDS Proxy guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy) describes reuse, authentication, and recovery through a standby after database failure.

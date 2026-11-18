@@ -184,14 +184,6 @@ cards:
       - organizations-scp-linked
       - organizations-scp-exceptions
       - organizations-scp-member-root
-  - id: organizations-021
-    q: An AWS Organizations Region-deny SCP breaks IAM calls. How should the policy be corrected?
-    a: Use appropriate NotAction exceptions for required global services. aws:RequestedRegion evaluates
-      the endpoint Region; global endpoints may sit outside permitted workload Regions.
-    facts:
-      - organizations-scp-region
-      - organizations-scp-global
-      - organizations-scp-endpoint
   - id: organizations-022
     q: An AWS Organizations team must preserve baseline Config recording while leaving unrelated Config
       administration available. What SCP approach fits?
@@ -210,10 +202,6 @@ cards:
       - organizations-scp-allowlist
       - organizations-scp-path
       - organizations-scp-deny
-  - id: organizations-033
-    q: An organization must block use of instance role credentials obtained through IMDSv1 in every account. What fits?
-    a: An SCP that denies requests when ec2:RoleDelivery is below 2.0, so only IMDSv2 credentials work.
-    facts: [imdsv2-scp]
 ---
 
 A service control policy (SCP) is an organization-wide permissions limit for member-account identities. A principal is the identity making a request, such as a user or role. Passing SCP evaluation only leaves an action eligible; access still needs the appropriate IAM or resource policy.

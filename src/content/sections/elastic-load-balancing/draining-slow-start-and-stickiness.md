@@ -88,23 +88,6 @@ cards:
       - sticky-failure
       - shared-session
     trap: true
-  - id: elastic-load-balancing-025
-    q: A team enables ALB slow start before registering the first batch into an empty target group. Will
-      that batch ramp traffic?
-    a: No. The first batch registered together in an empty target group does not enter slow start. A new
-      target needs another healthy target outside slow start.
-    facts:
-      - slow-existing
-      - slow-baseline
-    trap: true
-  - id: elastic-load-balancing-026
-    q: An ALB target group uses least outstanding requests, but new targets need slow start. What must
-      change?
-    a: Use a compatible algorithm such as the default round robin. Slow start cannot run with least
-      outstanding requests or weighted random.
-    facts:
-      - algorithms
-      - algorithm-limits
   - id: elastic-load-balancing-027
     q: Which ALB target group defaults control draining, warm-up, and session affinity?
     a: Deregistration delay is 300 seconds. Slow start is disabled with value 0. Sticky sessions are

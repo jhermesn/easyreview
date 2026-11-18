@@ -237,15 +237,6 @@ cards:
     facts:
       - tls-sni
       - tls-dedicated
-  - id: cloudfront-046
-    q: Which key, form format and origin capability does CloudFront field-level encryption require?
-    a: An RSA 2048-bit key pair, application/x-www-form-urlencoded content, and an origin supporting chunked
-      encoding. Upload the public key; keep the private key with the decrypting application.
-    facts:
-      - tls-fle
-      - tls-fle-rsa
-      - tls-fle-format
-      - tls-fle-chunk
 ---
 CloudFront uses Transport Layer Security (TLS) to protect HTTPS connections. The viewer connection and the custom-origin connection have separate settings. Field-level encryption protects selected form values beyond those connections so they stay encrypted inside the application until the component with the private key reads them.
 

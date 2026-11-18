@@ -122,28 +122,6 @@ cards:
       - ca
       - node-shape
     trap: true
-  - id: eks-022
-    q: An EKS team wants replicas to scale from queue depth. What does HPA need?
-    a: An external metrics source exposed through an appropriate metrics API adapter, plus an HPA
-      configured for that metric. CPU Metrics Server data alone does not supply queue depth.
-    facts:
-      - metrics
-  - id: eks-023
-    q: An EKS node is below 50% requested utilization. Must Cluster Autoscaler delete it immediately?
-    a: No. The default 0.5 threshold makes it a candidate. The default unneeded time is 10 minutes, and
-      a Pod marked `cluster-autoscaler.kubernetes.io/safe-to-evict=false` can prevent removal.
-    facts:
-      - ca-utilization
-      - ca-delay
-      - eviction
-    trap: true
-  - id: eks-024
-    q: EKS stateful Pods use EBS volumes in different Availability Zones. What node-group design helps
-      Cluster Autoscaler place them?
-    a: Use similar node groups scoped to individual Availability Zones and enable
-      `balance-similar-node-groups=true`, because an EBS volume is tied to its zone.
-    facts:
-      - zonal-ebs
   - id: eks-025
     q: Does an EKS cluster need a separately managed Karpenter installation to get Auto Mode compute
       scaling?

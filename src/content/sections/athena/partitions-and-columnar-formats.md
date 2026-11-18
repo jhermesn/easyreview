@@ -162,28 +162,6 @@ cards:
       - convert
       - ctas
       - glue-convert
-  - id: athena-015
-    q: An Athena administrator runs MSCK REPAIR TABLE against standard CloudTrail date paths and finds
-      no partitions. What should the administrator use?
-    a: Use ALTER TABLE ADD PARTITION for non-Hive paths, or configure partition projection. MSCK
-      discovers Hive-style key=value paths.
-    facts:
-      - hive
-      - non-hive
-      - projection
-    trap: true
-  - id: athena-016
-    q: What is Athena partition projection, and when can it make query planning worse?
-    a: It calculates partition locations from table-property rules instead of catalog lookups. On sparse
-      datasets it can list many locations that contain no data.
-    facts:
-      - projection
-      - sparse
-  - id: athena-017
-    q: A team creates an Athena table over JSON data in S3. What should the table use to parse the data?
-    a: Specify a JSON SerDe, a serializer and deserializer suited to the data format.
-    facts:
-      - table-serde
 ---
 Partitioning and columnar storage reduce the data Athena needs to read. A partition groups objects by a key such as date. A columnar file groups values by column so a query can read the fields it needs.
 

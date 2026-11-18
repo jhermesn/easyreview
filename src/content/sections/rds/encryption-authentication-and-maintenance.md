@@ -64,10 +64,6 @@ cards:
     q: An encrypted RDS snapshot must be shared with another AWS account, but sharing fails. The snapshot uses the default aws/rds key. What fixes it?
     a: "Copy the snapshot with a customer managed KMS key, share the copy, and grant the other account use of that key."
     facts: [share-cmk]
-  - id: rds-050
-    q: A Lambda function must connect to RDS for PostgreSQL without storing a database password. Which feature fits?
-    a: "IAM database authentication: the function's role generates a 15-minute token used instead of a password."
-    facts: [iam-auth]
   - id: rds-051
     q: How does a Multi-AZ RDS deployment reduce downtime during operating system maintenance?
     a: "RDS patches the standby, fails over to it, then patches the old primary, which becomes the standby."
@@ -98,11 +94,6 @@ cards:
     q: "Auditors need RDS for MySQL audit logs searchable and retained for a year. What do you configure?"
     a: "Publish the audit log to CloudWatch Logs and set the log group retention to a year."
     facts: [log-export]
-  - id: rds-076
-    q: "An RDS DB instance was created with Public access set to Yes, but its DB subnet group contains private subnets. Can clients on the internet reach it?"
-    a: "No. **Every** subnet in the DB subnet group must be public for a publicly accessible DB instance, and the VPC needs DNS hostnames and DNS resolution turned on."
-    trap: true
-    facts: [public-access]
   - id: rds-077
     q: "A company runs RDS for SQL Server and its auditors require the database engine itself to encrypt data files. Which feature fits?"
     a: "**Transparent Data Encryption (TDE)**, available on RDS for Oracle and RDS for SQL Server.\nIt uses its own keys and can run alongside RDS encryption at rest."

@@ -40,6 +40,7 @@
                 "codecommit/repositories-and-git-access",
                 "codeartifact/domains-and-repositories",
                 "ecr/repositories-and-image-tags",
+                "ecr/operations-in-depth",
                 "s3/artifact-and-log-bucket-management",
                 "codeartifact/upstream-repositories",
                 "codecommit/repository-migration"
@@ -73,6 +74,7 @@
                 "codebuild/environment-variables-and-secrets",
                 "cloudformation/dynamic-references",
                 "systems-manager/parameter-store-tiers-and-policies",
+                "systems-manager/operations-in-depth",
                 "systems-manager/securestring-encryption",
                 "secrets-manager/secret-versions-and-runtime-access",
                 "systems-manager/cross-account-parameter-sharing"
@@ -195,7 +197,8 @@
               "sections": [
                 "codeartifact/package-version-lifecycle",
                 "ecr/lifecycle-policies",
-                "s3/lifecycle-and-retention"
+                "s3/lifecycle-and-retention",
+                "s3/operations-in-depth"
               ]
             },
             {
@@ -205,6 +208,7 @@
               "sections": [
                 "codeartifact/domains-and-repositories",
                 "ecr/repositories-and-image-tags",
+                "ecr/operations-in-depth",
                 "s3/artifact-and-log-bucket-management"
               ]
             },
@@ -227,6 +231,7 @@
                 "ec2-image-builder/build-and-test-workflows",
                 "ec2-image-builder/schedules-and-base-image-updates",
                 "ec2/ami-scope-and-sharing",
+                "ec2/operations-in-depth",
                 "ec2-image-builder/launch-template-and-parameter-outputs"
               ]
             }
@@ -255,16 +260,23 @@
                 "artifact-management/source-packages-images-and-build-outputs",
                 "fsx-for-windows/smb-directory-integration-and-availability",
                 "ebs/volume-types",
+                "ebs/operations-in-depth",
                 "ebs/multi-attach",
                 "ec2/instance-store-lifecycle",
                 "efs/regional-and-one-zone-file-systems",
                 "efs/mount-targets-and-access-points",
+                "efs/operations-in-depth",
                 "fsx-for-lustre/parallel-storage-and-s3-integration",
+                "fsx-for-lustre/operations-in-depth",
                 "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
+                "fsx-for-netapp-ontap/operations-in-depth",
                 "fsx-for-openzfs/nfs-snapshots-and-clones",
+                "fsx-for-openzfs/operations-in-depth",
                 "storage-gateway/file-gateways",
                 "storage-gateway/volume-and-tape-gateways",
+                "storage-gateway/operations-in-depth",
                 "s3/buckets-objects-and-durability",
+                "s3/operations-in-depth",
                 "s3/storage-classes"
               ]
             },
@@ -274,7 +286,8 @@
               "text": "Mutable deployment patterns in contrast to immutable deployment patterns",
               "sections": [
                 "deployment-strategies/mutable-and-immutable",
-                "deployment-strategies/golden-images-and-bootstrap"
+                "deployment-strategies/golden-images-and-bootstrap",
+                "deployment-strategies/operations-in-depth"
               ]
             },
             {
@@ -336,7 +349,6 @@
                 "ecs/deployment-circuit-breaker-and-alarms",
                 "ecs/native-traffic-shifting",
                 "eks/canary-and-blue-green",
-                "elastic-beanstalk/applications-environments-and-roles",
                 "elastic-beanstalk/rolling-deployment-policies",
                 "elastic-beanstalk/immutable-and-traffic-splitting",
                 "elastic-beanstalk/blue-green-environments",
@@ -446,6 +458,7 @@
                 "cloudformation/cross-account-and-region-outputs",
                 "cloudformation/macros-and-transforms",
                 "serverless-application-repository/application-sharing-and-deployment",
+                "serverless-application-repository/operations-in-depth",
                 "service-catalog/notification-and-tag-update-constraints",
                 "cloudformation/reusable-modules"
               ]
@@ -463,8 +476,11 @@
               "sections": [
                 "multi-account-strategy/baseline-rollout-and-delegation",
                 "control-tower/landing-zone-and-shared-accounts",
+                "control-tower/operations-in-depth",
                 "resource-access-manager/resource-sharing-and-invitations",
-                "multi-account-strategy/account-boundaries-and-shared-services"
+                "resource-access-manager/operations-in-depth",
+                "multi-account-strategy/account-boundaries-and-shared-services",
+                "multi-account-strategy/operations-in-depth"
               ]
             },
             {
@@ -483,6 +499,7 @@
               "text": "Creating, consolidating, and centrally managing accounts (for example, AWS Organizations, AWS Control Tower)",
               "sections": [
                 "organizations/accounts-ous-and-consolidated-billing",
+                "organizations/operations-in-depth",
                 "control-tower/account-factory-and-enrollment"
               ]
             },
@@ -492,6 +509,7 @@
               "text": "Applying IAM solutions for multi-account and complex organization structures (for example, SCPs, assuming roles)",
               "sections": [
                 "organizations/service-control-policies",
+                "organizations/operations-in-depth",
                 "iam/cross-account-roles-and-resource-policies",
                 "iam-identity-center/identity-sources-permission-sets-and-sessions"
               ]
@@ -510,6 +528,7 @@
                 "backup/organization-backup-policies",
                 "control-tower/landing-zone-drift",
                 "organizations/resource-control-policies",
+                "organizations/operations-in-depth",
                 "organizations/trusted-access-and-delegated-administration",
                 "security-hub/cross-account-and-region-aggregation"
               ]
@@ -528,7 +547,9 @@
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "systems-manager/automation-runbooks-and-approvals",
                 "step-functions/service-integration-patterns",
-                "eventbridge/scheduler"
+                "step-functions/operations-in-depth",
+                "eventbridge/scheduler",
+                "eventbridge/operations-in-depth"
               ]
             },
             {
@@ -563,6 +584,7 @@
                 "lambda/idempotent-automation",
                 "step-functions/retry-and-catch",
                 "step-functions/service-integration-patterns",
+                "step-functions/operations-in-depth",
                 "sdks/credential-providers-pagination-and-retries",
                 "cloudformation/custom-resources",
                 "step-functions/task-token-callbacks"
@@ -586,7 +608,8 @@
               "sections": [
                 "systems-manager/patch-compliance-and-remediation",
                 "systems-manager/inventory-and-compliance-reporting",
-                "license-manager/license-inventory-and-rules"
+                "license-manager/license-inventory-and-rules",
+                "license-manager/operations-in-depth"
               ]
             }
           ]
@@ -609,6 +632,7 @@
                 "availability-targets/failure-domains-and-spare-capacity",
                 "disaster-recovery/availability-replication-and-backup",
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "ec2-auto-scaling/operations-in-depth",
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
                 "global-infrastructure/multi-region-use-cases",
                 "reference-architectures/multi-region-warm-standby"
@@ -629,13 +653,17 @@
               "sections": [
                 "disaster-recovery/availability-replication-and-backup",
                 "rds/multi-az-and-failover-tests",
+                "rds/operations-in-depth",
                 "aurora/global-database-switchover-and-failover",
                 "dynamodb/global-tables",
                 "s3/replication",
+                "s3/operations-in-depth",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/operations-in-depth",
                 "elasticache/global-datastore",
                 "memorydb/durable-in-memory-workloads",
                 "dms/full-load-and-change-data-capture",
+                "dms/operations-in-depth",
                 "documentdb/document-workloads-and-compatibility"
               ]
             },
@@ -680,16 +708,18 @@
                 "dynamodb/global-tables",
                 "rds/read-replicas-and-regional-recovery",
                 "aurora/global-database-switchover-and-failover",
+                "aurora/operations-in-depth",
                 "route53/routing-policies",
+                "route53/operations-in-depth",
                 "s3/multi-region-access-points",
                 "cloudfront/origin-failover",
+                "cloudfront/operations-in-depth",
                 "efs/replication-and-failover",
+                "efs/operations-in-depth",
                 "cloudfront/functions-and-lambda-at-edge",
-                "route53/private-hosted-zones",
-                "route53/resolver-endpoints-and-rules",
                 "route53/cross-account-dns-sharing",
                 "dynamodb/indexes-and-read-consistency",
-                "dynamodb/time-to-live",
+                "dynamodb/operations-in-depth",
                 "route53/public-zone-delegation"
               ]
             },
@@ -698,7 +728,8 @@
               "kind": "skill",
               "text": "Configuring load balancing to support cross-AZ services",
               "sections": [
-                "elastic-load-balancing/cross-zone-balancing"
+                "elastic-load-balancing/cross-zone-balancing",
+                "elastic-load-balancing/operations-in-depth"
               ]
             },
             {
@@ -707,11 +738,16 @@
               "text": "Configuring applications and related services to support multiple Availability Zones and AWS Regions while minimizing downtime",
               "sections": [
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "ec2-auto-scaling/operations-in-depth",
                 "rds/multi-az-and-failover-tests",
+                "rds/operations-in-depth",
                 "aurora/global-database-switchover-and-failover",
+                "aurora/operations-in-depth",
                 "route53/routing-policies",
                 "route53/dns-failover-and-testing",
+                "route53/operations-in-depth",
                 "elastic-load-balancing/draining-slow-start-and-stickiness",
+                "elastic-load-balancing/operations-in-depth",
                 "secrets-manager/regional-replication",
                 "application-recovery-controller/routing-controls",
                 "reference-architectures/three-tier-web-application"
@@ -729,7 +765,9 @@
               "text": "Appropriate metrics for scaling services",
               "sections": [
                 "ec2-auto-scaling/target-tracking-metrics-and-warmup",
-                "ecs/service-auto-scaling"
+                "ec2-auto-scaling/operations-in-depth",
+                "ecs/service-auto-scaling",
+                "ecs/operations-in-depth"
               ]
             },
             {
@@ -740,6 +778,7 @@
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "event-processing-patterns/durable-fan-out",
                 "event-processing-patterns/backpressure-and-idempotency",
+                "event-processing-patterns/operations-in-depth",
                 "scalable-architectures/scaling-state-and-coupling",
                 "reference-architectures/serverless-event-driven-application"
               ]
@@ -751,8 +790,10 @@
               "sections": [
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "lambda/invocation-and-retries",
+                "lambda/operations-in-depth",
                 "step-functions/standard-and-express",
                 "aurora/serverless-v2-capacity-and-promotion",
+                "aurora/operations-in-depth",
                 "redshift/data-warehouse-workloads",
                 "reference-architectures/serverless-event-driven-application"
               ]
@@ -764,10 +805,12 @@
               "sections": [
                 "fargate/compute-and-isolation",
                 "eks/cluster-compute-options",
+                "eks/operations-in-depth",
                 "ecs/task-definitions-tasks-and-services",
                 "eks-distro/self-managed-kubernetes",
                 "rosa/managed-openshift",
                 "ecs/ecs-anywhere",
+                "ecs/operations-in-depth",
                 "eks-anywhere/on-premises-kubernetes"
               ]
             },
@@ -778,12 +821,18 @@
               "sections": [
                 "ec2-auto-scaling/target-tracking-metrics-and-warmup",
                 "ecs/capacity-providers",
+                "ecs/operations-in-depth",
                 "eks/pod-and-node-scaling",
+                "eks/operations-in-depth",
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/operations-in-depth",
                 "compute-optimizer/resource-rightsizing",
+                "compute-optimizer/operations-in-depth",
                 "ec2-auto-scaling/warm-pools",
+                "ec2-auto-scaling/operations-in-depth",
                 "lambda/concurrency-controls",
                 "rds/proxy-connection-pooling",
+                "rds/operations-in-depth",
                 "lambda/memory-timeout-and-snapstart"
               ]
             },
@@ -793,13 +842,17 @@
               "text": "Identifying and implementing appropriate auto scaling, load balancing, and caching solutions",
               "sections": [
                 "ec2-auto-scaling/scaling-policy-selection",
+                "ec2-auto-scaling/operations-in-depth",
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/operations-in-depth",
                 "cloudfront/cache-behaviors-and-policies",
                 "disaster-recovery/availability-replication-and-backup",
                 "elasticache/engines-replicas-and-multi-az",
                 "cloudfront/ttl-stale-content-and-invalidation",
+                "cloudfront/operations-in-depth",
                 "cloudfront/origin-shield",
                 "dynamodb/dax-read-caching",
+                "dynamodb/operations-in-depth",
                 "scalable-architectures/scaling-state-and-coupling",
                 "elasticache/use-cases-and-engine-choice",
                 "reference-architectures/three-tier-web-application"
@@ -814,6 +867,7 @@
                 "ecs/rolling-deployments",
                 "eks/deployments-and-readiness",
                 "app2container/application-containerization-and-availability",
+                "app2container/operations-in-depth",
                 "codepipeline/container-deployment-artifacts",
                 "copilot/container-application-workflows-and-support",
                 "eks/services-and-load-balancers"
@@ -825,6 +879,7 @@
               "text": "Deploying workloads in multiple Regions for global scalability",
               "sections": [
                 "route53/routing-policies",
+                "route53/operations-in-depth",
                 "codepipeline/cross-region-actions",
                 "dynamodb/global-tables",
                 "ecr/image-replication",
@@ -844,8 +899,10 @@
                 "ecs/task-definitions-tasks-and-services",
                 "fargate/private-subnet-connectivity",
                 "lambda/vpc-connectivity",
+                "lambda/operations-in-depth",
                 "lambda/memory-timeout-and-snapstart",
-                "api-gateway/integrations-and-monitoring"
+                "api-gateway/integrations-and-monitoring",
+                "api-gateway/operations-in-depth"
               ]
             }
           ]
@@ -873,7 +930,9 @@
                 "elastic-disaster-recovery/replication-and-staging",
                 "backup/cross-account-copies",
                 "backup/vault-lock-and-air-gapped-vaults",
+                "backup/operations-in-depth",
                 "ebs/snapshot-lifecycle-management",
+                "ebs/operations-in-depth",
                 "s3/glacier-retrieval"
               ]
             },
@@ -888,6 +947,7 @@
                 "dynamodb/backups-and-point-in-time-recovery",
                 "ebs/snapshots-and-cross-az-recovery",
                 "rds/backups-and-point-in-time-recovery",
+                "rds/operations-in-depth",
                 "s3/versioning-and-delete-markers"
               ]
             },
@@ -913,9 +973,12 @@
                 "disaster-recovery/recovery-strategy-selection",
                 "backup/plans-vaults-and-recovery-points",
                 "backup/cross-region-copies-and-pitr-limits",
+                "backup/operations-in-depth",
                 "s3/replication",
+                "s3/operations-in-depth",
                 "systems-manager/cross-account-and-region-automation",
                 "ebs/fast-snapshot-restore",
+                "ebs/operations-in-depth",
                 "s3/batch-replication",
                 "s3/replication-time-control-and-monitoring"
               ]
@@ -926,6 +989,7 @@
               "text": "Configuring a load balancer to recover from backend failure",
               "sections": [
                 "elastic-load-balancing/target-health-and-fail-open",
+                "elastic-load-balancing/operations-in-depth",
                 "ec2-auto-scaling/health-checks-and-grace-periods"
               ]
             }
@@ -949,13 +1013,15 @@
                 "observability-strategy/signal-and-tool-selection",
                 "cloudwatch/metrics-dimensions-and-resolution",
                 "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/operations-in-depth",
                 "xray/service-instrumentation",
                 "cloudwatch/cross-account-observability",
                 "cloudwatch/real-user-monitoring",
                 "cloudwatch/container-insights",
                 "managed-prometheus/workspaces-ingestion-and-promql",
                 "managed-prometheus/managed-collectors-and-remote-write",
-                "api-gateway/integrations-and-monitoring"
+                "api-gateway/integrations-and-monitoring",
+                "api-gateway/operations-in-depth"
               ]
             },
             {
@@ -972,7 +1038,8 @@
               "text": "Real-time log ingestion",
               "sections": [
                 "cloudwatch/subscription-filters-and-central-log-delivery",
-                "firehose/destinations-and-buffering"
+                "firehose/destinations-and-buffering",
+                "firehose/operations-in-depth"
               ]
             },
             {
@@ -981,7 +1048,8 @@
               "text": "Encryption options for at-rest and in-transit logs and metrics (for example, client-side and server-side, AWS KMS)",
               "sections": [
                 "cloudwatch/log-encryption-and-data-protection",
-                "kms/encryption-at-rest-and-in-transit"
+                "kms/encryption-at-rest-and-in-transit",
+                "kms/more-essentials"
               ]
             },
             {
@@ -990,6 +1058,7 @@
               "text": "Security configurations (for example, IAM roles and permissions to allow for log collection)",
               "sections": [
                 "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/operations-in-depth",
                 "cloudwatch/subscription-filters-and-central-log-delivery",
                 "cloudtrail/log-delivery-and-encryption"
               ]
@@ -1000,8 +1069,10 @@
               "text": "Securely storing and managing logs",
               "sections": [
                 "cloudwatch/log-groups-and-retention",
+                "cloudwatch/operations-in-depth",
                 "cloudwatch/log-encryption-and-data-protection",
                 "cloudtrail/log-integrity-and-protection",
+                "cloudtrail/operations-in-depth",
                 "s3/object-lock",
                 "cloudwatch/s3-log-exports"
               ]
@@ -1011,7 +1082,8 @@
               "kind": "skill",
               "text": "Creating CloudWatch metrics from log events by using metric filters",
               "sections": [
-                "cloudwatch/metric-filters-and-patterns"
+                "cloudwatch/metric-filters-and-patterns",
+                "cloudwatch/operations-in-depth"
               ]
             },
             {
@@ -1027,7 +1099,8 @@
               "kind": "skill",
               "text": "Collecting custom metrics (for example, using the CloudWatch agent)",
               "sections": [
-                "cloudwatch/agent-and-custom-metrics"
+                "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/operations-in-depth"
               ]
             },
             {
@@ -1036,7 +1109,9 @@
               "text": "Managing log storage lifecycles (for example, Amazon S3 lifecycles, CloudWatch log group retention)",
               "sections": [
                 "cloudwatch/log-groups-and-retention",
+                "cloudwatch/operations-in-depth",
                 "s3/lifecycle-and-retention",
+                "s3/operations-in-depth",
                 "s3/storage-classes"
               ]
             },
@@ -1047,6 +1122,7 @@
               "sections": [
                 "cloudwatch/subscription-filters-and-central-log-delivery",
                 "firehose/transformations-and-format-conversion",
+                "firehose/operations-in-depth",
                 "firehose/delivery-failures-and-backup"
               ]
             },
@@ -1056,7 +1132,8 @@
               "text": "Searching log data by using filter and pattern syntax or Amazon CloudWatch Logs Insights",
               "sections": [
                 "cloudwatch/metric-filters-and-patterns",
-                "cloudwatch/logs-insights"
+                "cloudwatch/logs-insights",
+                "cloudwatch/operations-in-depth"
               ]
             },
             {
@@ -1088,6 +1165,7 @@
               "sections": [
                 "cloudwatch/metrics-dimensions-and-resolution",
                 "rds/storage-autoscaling-and-metrics",
+                "rds/operations-in-depth",
                 "elastic-load-balancing/error-metrics-and-access-logs"
               ]
             },
@@ -1096,7 +1174,8 @@
               "kind": "knowledge",
               "text": "Amazon Inspector and common assessment templates",
               "sections": [
-                "inspector/ec2-ecr-and-lambda-scanning"
+                "inspector/ec2-ecr-and-lambda-scanning",
+                "inspector/operations-in-depth"
               ]
             },
             {
@@ -1104,7 +1183,8 @@
               "kind": "knowledge",
               "text": "AWS Config rules",
               "sections": [
-                "config/managed-custom-and-proactive-rules"
+                "config/managed-custom-and-proactive-rules",
+                "config/operations-in-depth"
               ]
             },
             {
@@ -1113,7 +1193,8 @@
               "text": "AWS CloudTrail log events",
               "sections": [
                 "cloudtrail/event-history-and-event-types",
-                "cloudtrail/trails-and-event-selectors"
+                "cloudtrail/trails-and-event-selectors",
+                "cloudtrail/operations-in-depth"
               ]
             },
             {
@@ -1131,7 +1212,8 @@
               "kind": "skill",
               "text": "Associating CloudWatch alarms with CloudWatch metrics (standard and custom)",
               "sections": [
-                "cloudwatch/alarm-evaluation-and-missing-data"
+                "cloudwatch/alarm-evaluation-and-missing-data",
+                "cloudwatch/operations-in-depth"
               ]
             },
             {
@@ -1150,6 +1232,7 @@
               "text": "Analyzing real-time log streams (for example, using Amazon Kinesis Data Streams)",
               "sections": [
                 "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "kinesis-data-streams/operations-in-depth",
                 "managed-service-for-apache-flink/stream-processing-workloads"
               ]
             },
@@ -1160,11 +1243,14 @@
               "sections": [
                 "observability-strategy/signal-and-tool-selection",
                 "cloudwatch/logs-insights",
+                "cloudwatch/operations-in-depth",
                 "athena/s3-log-queries-and-permissions",
                 "athena/partitions-and-columnar-formats",
+                "athena/operations-in-depth",
                 "cloudtrail/lake",
                 "emr/distributed-processing-workloads",
-                "opensearch/log-ingestion-search-and-dashboards"
+                "opensearch/log-ingestion-search-and-dashboards",
+                "opensearch/operations-in-depth"
               ]
             }
           ]
@@ -1180,8 +1266,11 @@
               "sections": [
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "s3/event-notifications",
+                "s3/operations-in-depth",
                 "eventbridge/event-buses-and-patterns",
-                "lambda/invocation-and-retries"
+                "eventbridge/operations-in-depth",
+                "lambda/invocation-and-retries",
+                "lambda/operations-in-depth"
               ]
             },
             {
@@ -1191,10 +1280,15 @@
               "sections": [
                 "application-auto-scaling/scalable-targets-and-policies",
                 "ec2-auto-scaling/scaling-policy-selection",
+                "ec2-auto-scaling/operations-in-depth",
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/operations-in-depth",
                 "rds/storage-autoscaling-and-metrics",
+                "rds/operations-in-depth",
                 "ecs/capacity-providers",
-                "eks/pod-and-node-scaling"
+                "ecs/operations-in-depth",
+                "eks/pod-and-node-scaling",
+                "eks/operations-in-depth"
               ]
             },
             {
@@ -1203,7 +1297,9 @@
               "text": "Alert notification and action capabilities (for example, CloudWatch alarms to Amazon SNS, Lambda, EC2 automatic recovery)",
               "sections": [
                 "cloudwatch/alarm-actions-and-composite-alarms",
+                "cloudwatch/operations-in-depth",
                 "ec2/automatic-instance-recovery",
+                "ec2/operations-in-depth",
                 "managed-prometheus/alerting-rules-and-sns",
                 "systems-manager/incident-manager"
               ]
@@ -1214,9 +1310,11 @@
               "text": "Health check capabilities in AWS services (for example, ALB target groups, Amazon Route 53)",
               "sections": [
                 "elastic-load-balancing/target-health-and-fail-open",
+                "elastic-load-balancing/operations-in-depth",
                 "route53/endpoint-and-calculated-health-checks",
                 "route53/alarm-based-health-checks",
-                "route53/alias-records-and-target-health"
+                "route53/alias-records-and-target-health",
+                "route53/operations-in-depth"
               ]
             },
             {
@@ -1225,10 +1323,14 @@
               "text": "Configuring solutions for auto scaling (for example, DynamoDB, EC2 Auto Scaling groups, RDS storage auto scaling, ECS capacity provider)",
               "sections": [
                 "ec2-auto-scaling/scaling-policy-selection",
+                "ec2-auto-scaling/operations-in-depth",
                 "dynamodb/capacity-scaling-and-throttling",
+                "dynamodb/operations-in-depth",
                 "rds/storage-autoscaling-and-metrics",
+                "rds/operations-in-depth",
                 "ecs/service-auto-scaling",
-                "ecs/capacity-providers"
+                "ecs/capacity-providers",
+                "ecs/operations-in-depth"
               ]
             },
             {
@@ -1239,7 +1341,8 @@
                 "cloudwatch/agent-and-custom-metrics",
                 "cloudwatch/metric-filters-and-patterns",
                 "cloudwatch/alarm-evaluation-and-missing-data",
-                "cloudwatch/alarm-actions-and-composite-alarms"
+                "cloudwatch/alarm-actions-and-composite-alarms",
+                "cloudwatch/operations-in-depth"
               ]
             },
             {
@@ -1248,6 +1351,7 @@
               "text": "Configuring S3 events to process log files (for example, by using Lambda) and deliver log files to another destination (for example, OpenSearch Service, CloudWatch Logs)",
               "sections": [
                 "s3/event-notifications",
+                "s3/operations-in-depth",
                 "s3/artifact-and-log-bucket-management"
               ]
             },
@@ -1256,7 +1360,8 @@
               "kind": "skill",
               "text": "Configuring EventBridge to send notifications based on a particular event pattern",
               "sections": [
-                "eventbridge/event-buses-and-patterns"
+                "eventbridge/event-buses-and-patterns",
+                "eventbridge/operations-in-depth"
               ]
             },
             {
@@ -1265,7 +1370,8 @@
               "text": "Installing and configuring agents on EC2 instances (for example, AWS Systems Manager Agent [SSM Agent], CloudWatch agent)",
               "sections": [
                 "systems-manager/managed-nodes-and-hybrid-activation",
-                "cloudwatch/agent-and-custom-metrics"
+                "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/operations-in-depth"
               ]
             },
             {
@@ -1274,7 +1380,8 @@
               "text": "Configuring AWS Config rules to remediate issues",
               "sections": [
                 "config/managed-custom-and-proactive-rules",
-                "config/automation-remediation-and-retries"
+                "config/automation-remediation-and-retries",
+                "config/operations-in-depth"
               ]
             },
             {
@@ -1285,7 +1392,9 @@
                 "route53/endpoint-and-calculated-health-checks",
                 "route53/alarm-based-health-checks",
                 "route53/alias-records-and-target-health",
-                "elastic-load-balancing/target-health-and-fail-open"
+                "route53/operations-in-depth",
+                "elastic-load-balancing/target-health-and-fail-open",
+                "elastic-load-balancing/operations-in-depth"
               ]
             }
           ]
@@ -1306,7 +1415,9 @@
               "text": "AWS services that generate, capture, and process events (for example, AWS Health, Amazon EventBridge, AWS CloudTrail)",
               "sections": [
                 "health/account-events-and-affected-resources",
+                "health/operations-in-depth",
                 "eventbridge/event-buses-and-patterns",
+                "eventbridge/operations-in-depth",
                 "cloudtrail/event-history-and-event-types",
                 "appflow/saas-data-integration"
               ]
@@ -1319,6 +1430,7 @@
                 "event-processing-patterns/routing-queuing-and-streaming",
                 "event-processing-patterns/durable-fan-out",
                 "sns/topics-subscriptions-and-fan-out",
+                "sns/operations-in-depth",
                 "reference-architectures/serverless-event-driven-application"
               ]
             },
@@ -1329,6 +1441,7 @@
               "sections": [
                 "health/eventbridge-routing-and-region-coverage",
                 "eventbridge/event-buses-and-patterns",
+                "eventbridge/operations-in-depth",
                 "cloudtrail/api-event-alerts",
                 "eventbridge/cross-account-routing"
               ]
@@ -1344,8 +1457,10 @@
                 "sqs/dead-letter-queues-and-redrive",
                 "lambda/queue-and-stream-event-sources",
                 "kinesis-data-streams/shards-partition-keys-and-capacity",
+                "kinesis-data-streams/operations-in-depth",
                 "step-functions/retry-and-catch",
                 "step-functions/service-integration-patterns",
+                "step-functions/operations-in-depth",
                 "dynamodb/streams-and-consumer-limits",
                 "eventbridge/target-retries-and-dead-letter-queues",
                 "eventbridge/archive-and-replay",
@@ -1353,8 +1468,11 @@
                 "kinesis-data-streams/retention-and-replay",
                 "kinesis-data-streams/enhanced-fan-out-and-checkpoints",
                 "lambda/async-destinations-and-dead-letter-queues",
+                "lambda/operations-in-depth",
                 "sns/subscription-filters",
+                "sns/operations-in-depth",
                 "sqs/standard-and-fifo-queues",
+                "sqs/operations-in-depth",
                 "sqs/large-payloads",
                 "reference-architectures/serverless-event-driven-application"
               ]
@@ -1371,7 +1489,8 @@
               "text": "Fleet management services (for example, AWS Systems Manager, AWS Auto Scaling)",
               "sections": [
                 "systems-manager/managed-nodes-and-hybrid-activation",
-                "ec2-auto-scaling/groups-launch-templates-and-az-balance"
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "ec2-auto-scaling/operations-in-depth"
               ]
             },
             {
@@ -1399,9 +1518,11 @@
               "text": "Modifying infrastructure configurations in response to events",
               "sections": [
                 "eventbridge/event-buses-and-patterns",
+                "eventbridge/operations-in-depth",
                 "systems-manager/automation-runbooks-and-approvals",
                 "systems-manager/cross-account-and-region-automation",
-                "ec2-auto-scaling/lifecycle-hooks"
+                "ec2-auto-scaling/lifecycle-hooks",
+                "ec2-auto-scaling/operations-in-depth"
               ]
             },
             {
@@ -1410,6 +1531,7 @@
               "text": "Remediating a non-desired system state",
               "sections": [
                 "config/automation-remediation-and-retries",
+                "config/operations-in-depth",
                 "systems-manager/state-manager-associations"
               ]
             }
@@ -1425,7 +1547,8 @@
               "text": "AWS metrics and logging services (for example, Amazon CloudWatch, AWS X-Ray)",
               "sections": [
                 "observability-strategy/signal-and-tool-selection",
-                "xray/traces-segments-and-propagation"
+                "xray/traces-segments-and-propagation",
+                "xray/operations-in-depth"
               ]
             },
             {
@@ -1434,7 +1557,7 @@
               "text": "AWS service health services (for example, AWS Health, CloudWatch, Systems Manager OpsCenter)",
               "sections": [
                 "health/account-events-and-affected-resources",
-                "cloudwatch/application-signals-and-slos",
+                "health/operations-in-depth",
                 "systems-manager/opscenter",
                 "systems-manager/application-manager"
               ]
@@ -1494,9 +1617,11 @@
                 "iam/policy-evaluation",
                 "iam/permissions-boundaries-and-session-policies",
                 "iam/saml-and-oidc-federation",
+                "iam/operations-in-depth",
                 "api-gateway/authentication-and-api-keys",
                 "iam/root-user",
-                "iam/users-groups-and-policies"
+                "iam/users-groups-and-policies",
+                "iam/more-essentials"
               ]
             },
             {
@@ -1505,6 +1630,7 @@
               "text": "Identity federation techniques (for example, using IAM identity providers and AWS IAM Identity Center)",
               "sections": [
                 "iam/saml-and-oidc-federation",
+                "iam/operations-in-depth",
                 "iam-identity-center/identity-sources-permission-sets-and-sessions",
                 "directory-service/managed-ad-ad-connector-and-simple-ad"
               ]
@@ -1514,7 +1640,8 @@
               "kind": "knowledge",
               "text": "Permission management delegation by using IAM permissions boundaries",
               "sections": [
-                "iam/permissions-boundaries-and-session-policies"
+                "iam/permissions-boundaries-and-session-policies",
+                "iam/operations-in-depth"
               ]
             },
             {
@@ -1522,7 +1649,8 @@
               "kind": "knowledge",
               "text": "Organizational SCPs",
               "sections": [
-                "organizations/service-control-policies"
+                "organizations/service-control-policies",
+                "organizations/operations-in-depth"
               ]
             },
             {
@@ -1532,9 +1660,11 @@
               "sections": [
                 "iam/policy-evaluation",
                 "iam/access-analyzer",
+                "iam/operations-in-depth",
                 "iam/resource-policy-principal-edge-cases",
                 "iam/passrole-and-service-linked-roles",
-                "iam/users-groups-and-policies"
+                "iam/users-groups-and-policies",
+                "iam/more-essentials"
               ]
             },
             {
@@ -1542,7 +1672,8 @@
               "kind": "skill",
               "text": "Implementing role-based and attribute-based access control patterns",
               "sections": [
-                "iam/rbac-and-abac"
+                "iam/rbac-and-abac",
+                "iam/operations-in-depth"
               ]
             },
             {
@@ -1551,6 +1682,7 @@
               "text": "Automating credential rotation for machine identities (for example, AWS Secrets Manager)",
               "sections": [
                 "secrets-manager/managed-and-lambda-rotation",
+                "secrets-manager/operations-in-depth",
                 "secrets-manager/rotation-failures-and-client-caching"
               ]
             },
@@ -1562,6 +1694,7 @@
                 "iam/identities-roles-and-instance-profiles",
                 "iam/sts-sessions-and-role-chaining",
                 "iam/external-id-and-mfa-conditions",
+                "iam/operations-in-depth",
                 "ecs/task-and-execution-roles",
                 "eks/pod-identity",
                 "lambda/execution-roles-and-resource-policies",
@@ -1584,14 +1717,17 @@
                 "vpc/security-groups-and-network-acls",
                 "network-firewall/firewall-endpoints-and-routing",
                 "waf/web-acl-scope-and-rule-actions",
+                "waf/operations-in-depth",
                 "shield/standard-and-advanced-protection",
                 "privatelink/interface-endpoints-and-private-access",
                 "client-vpn/remote-user-connectivity",
                 "network-firewall/stateful-domain-and-suricata-rules",
                 "route53/resolver-dns-firewall",
+                "route53/operations-in-depth",
                 "shield/response-team-and-proactive-engagement",
                 "transit-gateway/attachments-route-tables-and-sharing",
                 "vpc/gateway-endpoints-and-endpoint-policies",
+                "vpc/operations-in-depth",
                 "vpc/route-tables-and-peering",
                 "vpc/subnets-and-gateways"
               ]
@@ -1603,6 +1739,7 @@
               "sections": [
                 "acm/public-certificates-and-domain-validation",
                 "acm/renewal-imports-and-exports",
+                "acm/operations-in-depth",
                 "private-ca/private-certificates-and-trust"
               ]
             },
@@ -1614,13 +1751,16 @@
                 "macie/sensitive-data-discovery-and-jobs",
                 "kms/key-policies-and-grants",
                 "kms/key-rotation",
+                "kms/operations-in-depth",
                 "s3/encryption-and-bucket-keys",
                 "s3/public-access-and-object-ownership",
                 "cloudfront/origin-access-control",
                 "cloudfront/signed-urls-and-cookies",
                 "kms/key-disablement-and-deletion",
                 "s3/access-points-and-cors",
-                "kms/encryption-at-rest-and-in-transit"
+                "s3/operations-in-depth",
+                "kms/encryption-at-rest-and-in-transit",
+                "kms/more-essentials"
               ]
             },
             {
@@ -1658,14 +1798,19 @@
               "sections": [
                 "kms/envelope-encryption-and-context",
                 "cloudhsm/dedicated-hsm-workloads",
+                "cloudhsm/operations-in-depth",
                 "acm/public-certificates-and-domain-validation",
+                "acm/operations-in-depth",
                 "cloudfront/tls-and-field-level-encryption",
+                "cloudfront/operations-in-depth",
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "direct-connect/private-connectivity-and-encryption",
                 "ebs/encryption-and-regional-copies",
                 "kms/multi-region-keys",
+                "kms/operations-in-depth",
                 "kms/custom-key-stores",
                 "kms/encryption-at-rest-and-in-transit",
+                "kms/more-essentials",
                 "rds/encryption-authentication-and-maintenance",
                 "elastic-load-balancing/alb-authentication-and-certificates"
               ]
@@ -1682,7 +1827,8 @@
               "text": "Security auditing services and features (for example, AWS CloudTrail, AWS Config, VPC Flow Logs, AWS CloudFormation drift detection)",
               "sections": [
                 "observability-strategy/signal-and-tool-selection",
-                "s3/inventory-and-access-logging"
+                "s3/inventory-and-access-logging",
+                "s3/operations-in-depth"
               ]
             },
             {
@@ -1692,7 +1838,9 @@
               "sections": [
                 "observability-strategy/signal-and-tool-selection",
                 "iam/access-analyzer",
-                "config/managed-custom-and-proactive-rules"
+                "iam/operations-in-depth",
+                "config/managed-custom-and-proactive-rules",
+                "config/operations-in-depth"
               ]
             },
             {
@@ -1701,13 +1849,17 @@
               "text": "Common cloud security threats (for example, insecure web traffic, exposed AWS access keys, S3 buckets with public access enabled or encryption disabled)",
               "sections": [
                 "guardduty/data-sources-and-threat-findings",
+                "guardduty/operations-in-depth",
                 "guardduty/organization-enablement-and-response",
                 "waf/managed-and-rate-based-rules",
+                "waf/operations-in-depth",
                 "s3/encryption-and-bucket-keys",
                 "s3/public-access-and-object-ownership",
                 "trusted-advisor/checks-and-event-notifications",
+                "trusted-advisor/operations-in-depth",
                 "iam/credentials-and-mfa",
-                "s3/buckets-objects-and-durability"
+                "s3/buckets-objects-and-durability",
+                "s3/operations-in-depth"
               ]
             },
             {
@@ -1717,10 +1869,13 @@
               "sections": [
                 "cloudtrail/organization-trails",
                 "cloudtrail/log-integrity-and-protection",
+                "cloudtrail/operations-in-depth",
                 "config/recorders-and-configuration-history",
                 "config/managed-custom-and-proactive-rules",
+                "config/operations-in-depth",
                 "cloudformation/drift-detection-and-remediation",
                 "vpc/flow-logs",
+                "vpc/operations-in-depth",
                 "config/aggregators-and-advanced-queries",
                 "route53/public-dns-query-logging"
               ]
@@ -1742,9 +1897,11 @@
               "text": "Configuring service and application logging (for example, CloudTrail, Amazon CloudWatch Logs)",
               "sections": [
                 "cloudtrail/trails-and-event-selectors",
+                "cloudtrail/operations-in-depth",
                 "cloudtrail/log-delivery-and-encryption",
                 "cloudwatch/agent-and-custom-metrics",
-                "cloudwatch/log-groups-and-retention"
+                "cloudwatch/log-groups-and-retention",
+                "cloudwatch/operations-in-depth"
               ]
             },
             {
@@ -1754,8 +1911,11 @@
               "sections": [
                 "observability-strategy/signal-and-tool-selection",
                 "cloudwatch/logs-insights",
+                "cloudwatch/operations-in-depth",
                 "security-hub/findings-standards-and-config-dependency",
+                "security-hub/operations-in-depth",
                 "detective/finding-investigation",
+                "detective/operations-in-depth",
                 "inspector/ami-scanning-and-finding-prioritization"
               ]
             }

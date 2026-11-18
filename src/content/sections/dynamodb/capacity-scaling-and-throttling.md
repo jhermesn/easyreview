@@ -143,23 +143,6 @@
       ]
     },
     {
-      "id": "dynamodb-034",
-      "q": "A DynamoDB write consumer is falling behind. Which metric distinguishes write throttling from read throttling?",
-      "a": "WriteThrottleEvents. Compare ReadThrottleEvents and inspect table/index dimensions and exception reasons to locate the affected resource.",
-      "facts": [
-        "metrics",
-        "gsi"
-      ]
-    },
-    {
-      "id": "dynamodb-035",
-      "q": "A DynamoDB history table is rarely read and storage dominates cost. Which class fits?",
-      "a": "Standard-IA. Standard is the default, while Standard-IA targets storage-heavy infrequent access.",
-      "facts": [
-        "classes"
-      ]
-    },
-    {
       "id": "dynamodb-036",
       "q": "Does DynamoDB on-demand guarantee that requests can never throttle?",
       "a": "No. Quotas and any configured maximum throughput still apply.",
@@ -169,44 +152,11 @@
       "trap": true
     },
     {
-      "id": "dynamodb-042",
-      "q": "Does a DynamoDB table need extra setup to keep its data in more than one Availability Zone?",
-      "a": "No. DynamoDB automatically replicates table data across three Availability Zones in the Region.",
-      "trap": true,
-      "facts": [
-        "three-az"
-      ]
-    },
-    {
-      "id": "dynamodb-043",
-      "q": "A company runs steady DynamoDB traffic in provisioned capacity mode and wants a lower price for a one-year commitment. What should it buy?",
-      "a": "DynamoDB reserved capacity. It discounts provisioned read and write capacity; it does not apply to on-demand mode.",
-      "facts": [
-        "reserved-capacity"
-      ]
-    },
-    {
-      "id": "dynamodb-044",
-      "q": "A company stores product records whose attributes differ from item to item. Which AWS database fits without defining a fixed schema?",
-      "a": "Amazon DynamoDB. Only the primary key is fixed; each item can have different attributes.",
-      "facts": [
-        "schemaless"
-      ]
-    },
-    {
       "id": "dynamodb-046",
       "q": "A DynamoDB table throttles writes while most of its provisioned capacity sits unused. What partition key change helps?",
       "a": "Choose a high-cardinality partition key, one with many distinct values, so requests spread evenly across partitions.",
       "facts": [
         "partition-key-uniform"
-      ]
-    },
-    {
-      "id": "dynamodb-050",
-      "q": "A team switched a DynamoDB table from provisioned to on-demand and back several times today; the next switch to on-demand is rejected. Why?",
-      "a": "Provisioned-to-on-demand switches are limited to **four per rolling 24 hours**. Switching from on-demand to provisioned has no such limit.",
-      "facts": [
-        "mode-switch"
       ]
     },
     {

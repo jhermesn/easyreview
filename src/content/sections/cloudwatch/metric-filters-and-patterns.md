@@ -127,14 +127,6 @@ cards:
     facts:
       - filter-zero
       - filter-no-logs
-  - id: cloudwatch-063
-    q: A team wants a CloudWatch Logs metric filter with service dimensions and a default value of zero.
-      Can it configure both?
-    a: No. A metric filter with dimensions cannot specify a default value. Choose the dimension design
-      and alarm missing-data behavior accordingly.
-    trap: true
-    facts:
-      - filter-dimensions
   - id: cloudwatch-119
     q: "A metric filter should add a dimension for each request ID. Is this a good idea?"
     a: "No. Metric filters allow up to three dimensions, and each distinct value is charged like a custom metric, so high-cardinality fields such as request IDs drive up cost."

@@ -85,14 +85,6 @@ cards:
       flow logs.
     facts:
       - flow-guardduty
-  - id: vpc-023
-    q: A VPC Flow Log shows NODATA for one interval and SKIPDATA for another. Do both mean there was no
-      traffic?
-    a: No. NODATA means no traffic in the interval. SKIPDATA means records were skipped because of
-      internal capacity constraints or errors.
-    trap: true
-    facts:
-      - flow-status
   - id: vpc-024
     q: What aggregation intervals are available for VPC Flow Logs, and what happens on Nitro instance
       interfaces?

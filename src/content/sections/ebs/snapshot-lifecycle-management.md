@@ -106,21 +106,6 @@ cards:
     facts:
       - backup
       - dlm
-  - id: ebs-030
-    q: A DLM source account shares snapshots with an isolated recovery account. What automation must the
-      recovery account configure?
-    a: A cross-account copy event policy in the same Region as the source sharing policy. It can copy
-      shared snapshots to configured destination Regions.
-    facts:
-      - cross-account
-      - same-region
-  - id: ebs-031
-    q: A team wants an EventBridge rule to invoke the EBS CreateSnapshot operation directly without
-      Lambda. Is there a built-in target?
-    a: Yes. EBS CreateSnapshot is a built-in EventBridge target; create rules with built-in targets
-      through the console.
-    facts:
-      - eventbridge
   - id: ebs-032
     q: A database needs scheduled EBS snapshots with buffered writes flushed before capture. Which DLM
       feature fits?

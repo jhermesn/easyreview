@@ -90,27 +90,6 @@ cards:
     a: No. Private and privately shared applications are available only in their creation Region.
     facts: [regions]
     trap: true
-  - id: serverless-application-repository-005
-    q: What properties are required to share an AWS Serverless Application Repository application publicly?
-    a: SemanticVersion and LicenseUrl.
-    facts: [public-requirements]
-  - id: serverless-application-repository-006
-    q: A public AWS Serverless Application Repository parent contains a private nested application. Why might another account be unable to deploy the parent?
-    a: The account also needs permission to deploy the nested application.
-    facts: [nested-permission]
-    trap: true
-  - id: serverless-application-repository-007
-    q: Which capability must be acknowledged when an AWS Serverless Application Repository application contains nested applications?
-    a: CAPABILITY_AUTO_EXPAND.
-    facts: [nested-capability]
-  - id: serverless-application-repository-008
-    q: Which capability is required when an AWS Serverless Application Repository application creates IAM resources with custom names?
-    a: CAPABILITY_NAMED_IAM.
-    facts: [named-iam]
-  - id: serverless-application-repository-009
-    q: After creating an AWS Serverless Application Repository CloudFormation change set using the CLI, what deploys the application?
-    a: Execute the change set.
-    facts: [cli-deployment]
 ---
 AWS Serverless Application Repository helps teams find, publish and deploy serverless applications, which use services that run code without managing servers. A publisher provides an AWS Serverless Application Model (SAM) template, a file defining the application's AWS resources, so others can reuse the application.
 

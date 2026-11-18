@@ -143,25 +143,6 @@ cards:
     facts:
       - long-poll
       - poll-values
-  - id: sqs-012
-    q: An SQS FIFO producer needs a different initial delay for each message. Can it use per-message DelaySeconds timers?
-    a: No. FIFO does not support individual message timers. It can use a queue-level delay of up to fifteen minutes.
-    trap: true
-    facts:
-      - message-timer
-      - delay-values
-  - id: sqs-013
-    q: An SQS delete request succeeds, yet the message remains after several receives. Which identifier should the consumer check?
-    a: Use the ReceiptHandle from the latest receive, not MessageId or an older receipt handle. An old handle can succeed without deleting the message.
-    facts:
-      - delete-handle
-  - id: sqs-014
-    q: An SQS standard queue has many received messages and long polling returns no new work without OverLimit. What should the team investigate?
-    a: Check the in-flight message limit and deletion rate. At that limit, long polling stops returning new messages without returning the short-poll OverLimit error.
-    facts:
-      - inflight
-      - inflight-standard-limit
-      - inflight-polling
   - id: sqs-015
     q: A worker repeatedly extends SQS message visibility. Does each extension begin a new twelve-hour allowance?
     a: No. The twelve-hour maximum is measured from initial receipt; extending visibility does not reset it.

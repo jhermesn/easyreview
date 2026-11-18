@@ -163,22 +163,6 @@ cards:
     trap: true
     facts:
       - cors-browser
-  - id: s3-065
-    q: A browser application on another origin cannot make an authorized S3 request. What CORS settings
-      should be checked?
-    a: AllowedOrigins, AllowedMethods, and AllowedHeaders. S3 uses the first rule that matches all
-      required request attributes.
-    facts:
-      - cors-fields
-      - cors-match
-  - id: s3-066
-    q: An S3 bucket policy restricts endpoint requests by private IP address. Which conditions prevent
-      matching another VPC with the same private range?
-    a: Use aws:VpcSourceIp together with aws:SourceVpc or aws:SourceVpce. Do not use aws:SourceIp for
-      requests through the endpoint.
-    facts:
-      - vpc-source
-      - vpc-pair
   - id: s3-067
     q: An S3 presigned URL was given a long lifetime but fails when its signing role session expires.
       Why?

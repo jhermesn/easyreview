@@ -73,13 +73,6 @@ cards:
       - ecs-scale-predictive
       - ecs-scale-queue
       - ecs-scale-zero
-  - id: ecs-013
-    q: Does ECS service auto scaling continue during a deployment?
-    a: Scale-in pauses; scale-out continues unless suspended. This behavior excludes EXTERNAL
-      controllers. RegisterScalableTarget can suspend dynamic scale-out explicitly.
-    facts:
-      - ecs-scale-deploy
-      - ecs-scale-suspend
   - id: ecs-041
     q: An ECS worker service processes SQS messages with variable backlog. What scaling metric fits?
     a: Use a custom backlog-per-task metric so capacity responds to queued work per worker.

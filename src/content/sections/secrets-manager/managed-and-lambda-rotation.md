@@ -99,15 +99,6 @@ cards:
       - managed
       - external
       - lambda
-  - id: secrets-manager-003
-    q: What does a Secrets Manager Lambda rotation function do, in order?
-    a: createSecret stores AWSPENDING; setSecret changes the target credential; testSecret tests access;
-      finishSecret promotes AWSCURRENT and retains the old version as AWSPREVIOUS.
-    facts:
-      - create
-      - set
-      - test
-      - finish
   - id: secrets-manager-010
     q: Can Parameter Store Expiration or NoChangeNotification policies replace Secrets Manager automatic
       rotation for a database password?
@@ -131,17 +122,6 @@ cards:
     facts:
       - managed
       - managed-db
-  - id: secrets-manager-020
-    q: What prevents retries of a Secrets Manager rotation request from creating the same new version
-      twice?
-    a: The ClientRequestToken identifying the version supports idempotency across retries.
-    facts:
-      - repeat
-  - id: secrets-manager-021
-    q: What time zone and minimum interval can a Secrets Manager rotation schedule use?
-    a: UTC, using rate() or cron(); rotation can run as often as every four hours.
-    facts:
-      - schedule
   - id: secrets-manager-032
     q: A CloudFormation database secret lacks host and connection fields needed for rotation. Which
       resource fills them in?
@@ -149,20 +129,6 @@ cards:
       secret JSON.
     facts:
       - attachment
-  - id: secrets-manager-033
-    q: An Aurora DB cluster declared in CloudFormation should have its master password managed in
-      Secrets Manager. Which property enables this?
-    a: Set ManageMasterUserPassword on AWS::RDS::DBCluster.
-    facts:
-      - managed-property
-  - id: secrets-manager-034
-    q: A CloudFront origin header stored in Secrets Manager must rotate without WAF rejecting requests
-      during propagation. What must the rotation coordinate?
-    a: Update both the CloudFront custom origin header and the WAF rule on the origin ALB. Temporarily
-      accept AWSPENDING and AWSCURRENT while the distribution change propagates.
-    facts:
-      - origin-sync
-      - origin-overlap
 diagrams:
   - id: secret-lambda-rotation-order
     title: Create, apply, test, then promote the pending value

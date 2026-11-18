@@ -42,10 +42,6 @@ cards:
     q: Can Amazon Transcribe produce captions for a live stream as it happens?
     a: Yes. It supports real-time streaming transcription as well as batch files in Amazon S3.
     facts: [modes]
-  - id: transcribe-003
-    q: A meeting recording has three speakers. Which Amazon Transcribe feature labels who said what?
-    a: Speaker partitioning, which separates the speech of individual speakers.
-    facts: [features]
   - id: transcribe-004
     q: Does Amazon Transcribe translate the transcript into another language?
     a: No. It produces text in the spoken language; translation is Amazon Translate.
@@ -59,14 +55,6 @@ cards:
     q: "Transcribe keeps writing a company acronym wrong. Which feature fixes individual words, and which one teaches the context of a specialized domain?"
     a: "A custom vocabulary fixes specific words such as acronyms and brand names. A custom language model, trained on domain text, teaches the context in which words are used."
     facts: [custom-vocabulary, custom-language-models]
-  - id: transcribe-007
-    q: "An online game must flag abusive voice chat. Which AWS feature analyzes both how something is said and what is said?"
-    a: "Amazon Transcribe toxicity detection, which combines tone and pitch with the text to classify seven categories of toxic speech."
-    facts: [toxicity-detection]
-  - id: transcribe-008
-    q: "Call recordings must be transcribed without customer names or card numbers in the text. What does Transcribe offer?"
-    a: "PII redaction, which outputs a redacted transcript (optionally also an unredacted one)."
-    facts: [pii-redaction]
   - id: transcribe-009
     q: "A healthcare software vendor wants clinical notes drafted automatically from recorded doctor-patient visits. Which AWS capability fits?"
     a: "AWS HealthScribe, which transcribes the conversation and generates clinical notes with generative AI, and is HIPAA eligible."

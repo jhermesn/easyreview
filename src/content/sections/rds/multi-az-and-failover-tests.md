@@ -127,14 +127,6 @@ cards:
       connections must be re-established.
     facts:
       - endpoint-reconnect
-  - id: rds-006
-    q: How should a team deliberately test failover for an RDS Multi-AZ DB instance versus an RDS
-      Multi-AZ DB cluster?
-    a: Use Reboot with failover for the DB instance. Use FailoverDBCluster for the DB cluster. Stop
-      transactions before the abrupt instance failover.
-    facts:
-      - instance-test
-      - cluster-test
   - id: rds-015
     q: Must a team recreate an existing Single-AZ RDS DB instance to obtain a Multi-AZ standby?
     a: No. Modify the existing instance to enable Multi-AZ. Plan for possible write-performance impact

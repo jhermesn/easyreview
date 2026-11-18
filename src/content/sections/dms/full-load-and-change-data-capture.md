@@ -114,19 +114,6 @@ cards:
     q: A team does not want to manage replication instance capacity for AWS DMS. What feature should it consider?
     a: DMS Serverless automatically provisions and scales replication capacity.
     facts: [dms-serverless]
-  - id: dms-006
-    q: An AWS DMS task is running with errors. Does that mean every table migrated successfully?
-    a: No. One or more tables may have failed while the task continues loading others. Check table states and task logs.
-    trap: true
-    facts: [dms-task-state, dms-table-state, dms-task-logs]
-  - id: dms-007
-    q: AWS DMS CDCLatencyTarget is higher than CDCLatencySource. Which side should the team investigate first?
-    a: Investigate the target side for latency.
-    facts: [dms-metrics]
-  - id: dms-008
-    q: What should a team check before starting an AWS DMS migration to confirm connectivity?
-    a: Test the source and target endpoints from the replication instance.
-    facts: [dms-test, dms-endpoints]
   - id: dms-009
     q: Does AWS DMS CDC guarantee real-time replication with a latency SLA?
     a: No. CDC latency varies and has no SLA.
@@ -136,26 +123,6 @@ cards:
     q: An AWS DMS migration must include database views. Which task type supports migrating them?
     a: Use a full-load-only task. Tasks that include CDC migrate tables, not views.
     facts: [dms-views]
-  - id: dms-011
-    q: AWS DMS FreeableMemory approaches zero and SwapUsage rises. What might this indicate?
-    a: The replication instance may be overloaded.
-    facts: [dms-memory]
-  - id: dms-012
-    q: A team is migrating to a different database engine with AWS DMS. How can it convert the source schema?
-    a: Use DMS Schema Conversion or AWS Schema Conversion Tool. Manually convert objects that automatic conversion cannot handle.
-    facts: [dms-schema, dms-sct]
-  - id: dms-016
-    q: "Existing S3 data files and every later change to them must stream into Kinesis Data Streams quickly, with little code. What can bridge them?"
-    a: "AWS DMS, with S3 as the source endpoint and Kinesis Data Streams as the target endpoint, running a full load plus ongoing changes."
-    facts: [s3-source, kinesis-target]
-  - id: dms-017
-    q: "A DMS replication from an on-premises MySQL database must encrypt the connection to the source. What do you configure?"
-    a: "An SSL connection on the DMS endpoint, with the database CA certificate imported into DMS and assigned to it."
-    facts: [endpoint-ssl]
-  - id: dms-018
-    q: "An application embedded NoSQL data on its servers and now needs a managed NoSQL store. Can AWS DMS move MongoDB data into DynamoDB?"
-    a: "Yes. DMS supports DynamoDB as a target, with a relational database or MongoDB as the source."
-    facts: [dynamodb-target]
 diagrams:
   - id: dms-replication-flow
     title: DMS replication

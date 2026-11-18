@@ -25,26 +25,10 @@ facts:
     text: "After opting in to multi-session support, one browser can be signed in to up to five identities at once in the AWS Management Console, mixing root, IAM and federated roles from the same or different accounts."
     source: https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/multisession.html#multisession
 cards:
-  - id: management-console-001
-    q: What are the main ways to access and operate AWS services?
-    a: "- AWS Management Console (web)\n- AWS CLI (command line)\n- AWS SDKs and APIs (code)\n- Infrastructure as code, such as AWS CloudFormation templates"
-    facts: [console, cli, sdks, iac]
-  - id: management-console-002
-    q: An administrator wants to run AWS commands from a terminal script. Which tool fits?
-    a: The AWS Command Line Interface (AWS CLI).
-    facts: [cli]
-  - id: management-console-003
-    q: A developer's Python application must create objects in Amazon S3. How should it call AWS?
-    a: Through the AWS SDK for Python, which handles request signing, retries and errors.
-    facts: [sdks]
   - id: management-console-004
     q: A company must build the same environment in three Regions, identically, again and again. Which approach fits?
     a: Infrastructure as code with an AWS CloudFormation template, reused in each Region.
     facts: [iac, repeatable]
-  - id: management-console-005
-    q: A user needs to create one resource once, by hand, and see it visually. Which access method fits?
-    a: The AWS Management Console.
-    facts: [console]
   - id: management-console-006
     q: Is clicking through the AWS Management Console a good way to build environments that must be repeated exactly?
     a: No. Manual steps aren't repeatable; use infrastructure as code such as CloudFormation for repeatable processes.

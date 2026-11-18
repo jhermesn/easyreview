@@ -121,11 +121,6 @@ cards:
       not a substitute for the consumer account's identity permissions.
     facts:
       - ram-permissions
-  - id: multi-account-strategy-023
-    q: In which Region must an AWS RAM share be created for a Regional resource?
-    a: In the resource's Region. A share containing global resources uses us-east-1.
-    facts:
-      - ram-regions
   - id: multi-account-strategy-024
     q: A network account shares an Amazon VPC subnet with workload accounts in its organization. Can one workload
       account manage another participant's EC2 instances?
@@ -148,13 +143,6 @@ cards:
     facts:
       - ram-enable
       - ram-org-requirements
-  - id: multi-account-strategy-027
-    q: An AWS RAM resource must remain shared with a specific account after that account leaves the organization.
-      How should the share be created?
-    a: Enable RetainSharingOnAccountLeaveOrganization on a new direct account share, allow external principals
-      and have the consumer accept its invitation.
-    facts:
-      - ram-leave
   - id: multi-account-strategy-028
     q: A team shares a resource using AWS RAM to avoid the resource owner's quota. Does sharing increase that
       quota?
@@ -162,19 +150,6 @@ cards:
     trap: true
     facts:
       - ram-owner-quota
-  - id: multi-account-strategy-029
-    q: An AWS Organizations management account cannot add another member account. Which account quota and
-      pending invitations should it check?
-    a: The default account quota is 10 and is adjustable, though new organizations can have a lower quota.
-      Pending invitations count against it.
-    facts:
-      - org-account-quota
-  - id: multi-account-strategy-030
-    q: A platform team wants other AWS accounts to reuse its customer managed AWS RAM permission on their own
-      resource shares. What feature can it use?
-    a: Share the customer managed permission. RAM added this capability in November 2026.
-    facts:
-      - shared-permissions
   - id: multi-account-strategy-032
     q: "Every new account in an AWS organization needs higher quotas for some services from day one. What avoids manual requests per account?"
     a: "A Service Quotas quota request template with trusted access enabled in Organizations. It requests the increases automatically when accounts are created."

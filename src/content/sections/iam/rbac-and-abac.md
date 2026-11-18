@@ -77,24 +77,6 @@ cards:
     facts:
       - home-role-limit
       - abac-session-tags
-  - id: iam-059
-    q: An Identity Center team wants access based on a populated external Department attribute. What should it
-      configure?
-    a: Map an access-control key such as Department to ${path:enterprise.department}, then use its session tag
-      through aws:PrincipalTag/Department in ABAC policies that compare resource attributes.
-    facts:
-      - department-mapping
-      - identity-center-abac
-      - identity-center-config
-      - abac-keys
-  - id: iam-060
-    q: A SAML provider starts sending IAM session tags and role assumption fails. Which trust permission may be
-      missing?
-    a: sts:TagSession. Roles receiving provider session tags need it in their trust policy. Restrict tag keys and
-      values to the intended attributes.
-    facts:
-      - tag-session-permission
-      - tag-controls
 ---
 
 Role-based access control (RBAC) assigns permissions by job function. Attribute-based access control (ABAC) uses attributes, represented as key-value tags in AWS. A tag such as `project=payments` can connect an identity's access to the resources it should use.

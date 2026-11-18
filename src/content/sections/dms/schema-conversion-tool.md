@@ -28,10 +28,6 @@ cards:
     a: No. Schema conversion converts the schema; AWS DMS migrates the data.
     trap: true
     facts: [schema-not-data]
-  - id: dms-015
-    q: Before converting a database schema with DMS Schema Conversion, how can a team see how much manual work the conversion needs?
-    a: Run an assessment. It shows what converts automatically and what needs manual work.
-    facts: [assessment]
 ---
 When a database moves to a different engine, such as Oracle to Amazon Aurora PostgreSQL, its schema has to be converted before the data can follow. That conversion covers tables, views and code. AWS SCT and DMS Schema Conversion do it; AWS DMS moves the data. [AWS SCT](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_Welcome.html#CHAP_Welcome)
 

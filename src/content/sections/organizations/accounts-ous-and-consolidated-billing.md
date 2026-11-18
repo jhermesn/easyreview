@@ -177,16 +177,6 @@ cards:
       - organizations-accounts-create-role
       - organizations-accounts-invite-role
       - organizations-accounts-assume
-  - id: organizations-015
-    q: A consolidated-billing-only AWS organization needs SCPs. What migration must it complete?
-    a: Enable all features. In the standard migration, invited accounts must approve. Created accounts
-      do not need approval, but missing AWSServiceRoleForOrganizations roles must be restored. The
-      completed migration is one-way.
-    facts:
-      - organizations-accounts-billing-only
-      - organizations-accounts-approval
-      - organizations-accounts-service-role
-      - organizations-accounts-one-way
   - id: organizations-016
     q: Two AWS Organizations accounts cannot share an otherwise eligible Savings Plans discount. Which
       setting should be checked?
@@ -195,15 +185,6 @@ cards:
     facts:
       - organizations-accounts-sharing
       - organizations-accounts-sharing-controls
-  - id: organizations-017
-    q: Must an AWS member account become standalone before joining another organization?
-    a: No. Since November 2025, direct transfer uses a destination invitation and acceptance. The moving
-      account still needs organizations:LeaveOrganization, and a source SCP can block it.
-    trap: true
-    facts:
-      - organizations-accounts-transfer
-      - organizations-accounts-transfer-date
-      - organizations-accounts-leave
   - id: organizations-018
     q: An account leaves AWS Organizations, but a role still trusts its old management account. Is that
       role removed automatically?
@@ -220,16 +201,6 @@ cards:
     facts:
       - organizations-accounts-events-region
       - organizations-accounts-events
-  - id: organizations-020
-    q: Can AWS Config record the structure and policies of AWS Organizations?
-    a: Yes. Supported resource types include AWS::Organizations::Account, Organization,
-      OrganizationalUnit, Policy, and ResourcePolicy.
-    facts:
-      - organizations-accounts-config
-  - id: organizations-032
-    q: What must a member account of an AWS organization have before it can be removed to become a standalone account?
-    a: A support plan, verified contact information and a current payment method.
-    facts: [remove-standalone]
   - id: organizations-034
     q: "Cost allocation reports break because teams tag resources as CostCenter, costcenter and cost-center. Which AWS Organizations feature enforces one standard?"
     a: "**Tag policies**."

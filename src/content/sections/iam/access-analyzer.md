@@ -71,14 +71,6 @@ cards:
     facts:
       - external-zone
       - external-region
-  - id: iam-061
-    q: A CI pipeline must reject an IAM policy that adds access beyond an approved baseline. Which Access Analyzer
-      capability fits?
-    a: A custom policy check against a reference policy. Grammar validation alone does not compare permission
-      scope with your baseline.
-    facts:
-      - custom-policy-checks
-      - policy-validation
   - id: iam-062
     q: A team wants a narrower IAM policy based on observed application activity. How should it use Access
       Analyzer?
@@ -90,23 +82,6 @@ cards:
       - generation-trail
       - generation-data-gap
       - generation-passrole-gap
-  - id: iam-063
-    q: Should an IAM unused access analyzer be created in every AWS Region like an external access analyzer?
-    a: No. Unused access findings do not vary by Region; external analysis is Regional.
-    trap: true
-    facts:
-      - unused-region
-      - external-region
-  - id: iam-064
-    q: An IAM policy generated from CloudTrail omits iam:PassRole and S3 data-event actions. Does that prove the
-      application does not need them?
-    a: No. Policy generation does not include PassRole or identify action-level data-event activity. Review and
-      customize the template.
-    trap: true
-    facts:
-      - generation-passrole-gap
-      - generation-data-gap
-      - policy-generation
 ---
 
 IAM Access Analyzer helps identify who can access resources, which access is unused, and how a policy changes permissions. Its findings guide a permission review; external findings describe what policy permits, not proof that anyone used that permission.

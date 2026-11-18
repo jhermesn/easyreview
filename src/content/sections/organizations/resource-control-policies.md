@@ -148,24 +148,6 @@ cards:
       - organizations-rcp-scp
       - organizations-rcp-external
       - organizations-rcp-ceiling
-  - id: organizations-024
-    q: Can an AWS Organizations administrator detach RCPFullAWSAccess to build an RCP allow list?
-    a: No. The managed policy cannot be detached. Custom RCPs use Deny; only the managed
-      RCPFullAWSAccess policy supports Allow.
-    trap: true
-    facts:
-      - organizations-rcp-baseline
-      - organizations-rcp-effect
-  - id: organizations-025
-    q: An AWS Organizations team applies an RCP using aws:PrincipalOrgID and breaks CloudTrail log
-      delivery. What exception may be missing?
-    a: Account for AWS service principals with an aws:PrincipalIsAWSService condition. A service
-      principal is not an IAM principal belonging to your organization; aws:SourceOrgID can
-      constrain the service request origin.
-    facts:
-      - organizations-rcp-organization
-      - organizations-rcp-service-exception
-      - organizations-rcp-source-org
   - id: organizations-026
     q: An AWS Organizations RCP denies S3 reads, but the bucket policy grants them. Which policy wins?
     a: The applicable RCP Deny wins. Resource-policy access must fit within the RCP ceiling.

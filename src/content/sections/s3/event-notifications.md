@@ -181,33 +181,12 @@ cards:
     a: Grant the S3 service principal kms:GenerateDataKey and kms:Decrypt in the KMS key policy.
     facts:
       - events-kms
-  - id: s3-100
-    q: An S3 event consumer maintains an index and receives out-of-order PUT events for one key. How can it identify the later event?
-    a: Compare sequencer values for that key after left-padding the shorter value with zeros. Sequencers cannot order different keys.
-    facts:
-      - events-sequencer
-  - id: s3-101
-    q: An S3 notification is rejected by an SQS queue with a small message limit. What limit should the team check?
-    a: Set the queue MaximumMessageSize to at least 64 KB. Notifications can be up to that size.
-    facts:
-      - events-queue-size
-  - id: s3-102
-    q: A PutBucketNotificationConfiguration request adds an SQS target but an existing SNS destination fails validation. Is the new configuration saved?
-    a: No. Normal destination validation is atomic and failure rejects the whole request. The operation replaces the whole configuration.
-    trap: true
-    facts:
-      - events-replace-config
   - id: s3-103
     q: Will an S3 ObjectRemoved notification alert a consumer when S3 Lifecycle automatically deletes an object?
     a: No. Subscribe to lifecycle expiration events for automatic lifecycle deletions.
     trap: true
     facts:
       - events-lifecycle-delete
-  - id: s3-104
-    q: An S3 event consumer sees a plus sign in an object key that contains a space. How should it interpret the key?
-    a: Decode it as a URL-encoded key; a plus sign represents a space.
-    facts:
-      - events-key-encoding
   - id: s3-128
     q: A security team wants a Lambda function to run whenever someone changes an object's ACL in an S3 bucket. Which S3 event type does it subscribe to?
     a: s3:ObjectAcl:Put, which fires when an ACL is put on an object or changed.

@@ -78,35 +78,11 @@ cards:
       target, including unhealthy ones.
     facts:
       - routing-failover
-  - id: elastic-load-balancing-021
-    q: What are the default ALB health check timings and failure thresholds for instance or IP targets?
-    a: 30-second interval, 5-second timeout, two consecutive failures to become unhealthy, and five
-      consecutive successes to recover. Initial registration needs one successful check.
-    facts:
-      - check-timing
-      - thresholds
-      - checks
-  - id: elastic-load-balancing-022
-    q: Does deregistering an ALB target increase UnHealthyHostCount?
-    a: No. It reduces HealthyHostCount without increasing UnHealthyHostCount.
-    facts:
-      - health-counts
-    trap: true
-  - id: elastic-load-balancing-038
-    q: An Application Load Balancer health check fails against a web server that responds only to its public domain name. What should the team check?
-    a: Configure a virtual host or default response for the health check Host header, which uses the target private IP and a nondefault health check port.
-    facts:
-      - health-host
   - id: elastic-load-balancing-039
     q: An NLB routes UDP traffic to a service. How should the team make its health check detect UDP service failure?
     a: Use a TCP, HTTP or HTTPS health check endpoint that reports the UDP service's availability.
     facts:
       - nlb-udp-check
-  - id: elastic-load-balancing-040
-    q: An NLB target supports only TLS 1.3 and fails HTTPS health checks. What must change?
-    a: Enable an earlier TLS version such as TLS 1.2 on the target for the health checks.
-    facts:
-      - nlb-https-tls
   - id: elastic-load-balancing-059
     q: ALB targets are unhealthy although the app answers the health check path with a 302 redirect. Why?
     a: The default success code is 200; add 302 to the success codes or point the check at a path that returns 200.

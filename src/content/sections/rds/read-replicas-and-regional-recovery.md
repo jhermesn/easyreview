@@ -153,10 +153,6 @@ cards:
     a: Match the max_allowed_packet values in the source and replica DB parameter groups.
     facts:
       - mysql-packet
-  - id: rds-081
-    q: "How many same-Region read replicas can one RDS for MySQL source DB instance have?"
-    a: "Up to **15**. Size each replica like the source, and scale replicas when you scale the source."
-    facts: [replica-count]
 ---
 
 A read replica is a database copy used to move read queries away from an RDS source. Supported replicas can also provide a recovery copy in another Region. The [RDS read-replica guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl) explains that replication is asynchronous: the source can commit a write before the replica receives it.

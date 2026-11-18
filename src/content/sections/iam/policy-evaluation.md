@@ -142,12 +142,6 @@ cards:
       An AMI is the image used to launch an instance.
     facts:
       - launch-ami
-  - id: iam-065
-    q: An IAM policy expects aws:SourceAccount on a direct request made by an IAM user. Will that key be present?
-    a: No. The key is available only for qualifying direct AWS service principal calls on behalf of a triggering resource, and not every service integration uses it.
-    facts:
-      - source-account
-    trap: true
   - id: iam-094
     q: "Which element of an IAM identity-based policy statement is optional: Effect, Action, Resource or Condition?"
     a: Condition. Effect, Action and Resource define the statement; Principal appears in resource-based policies.

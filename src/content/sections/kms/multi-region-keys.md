@@ -165,13 +165,6 @@ cards:
     trap: true
     facts:
       - mrk-auth
-  - id: kms-028
-    q: A team replicates an AWS KMS key with imported material and finds the new replica lacks usable material.
-      What must it do?
-    a: Import the same material into that replica. KMS synchronizes material identifiers but does not transport
-      EXTERNAL-origin material.
-    facts:
-      - mrk-import-material
   - id: kms-029
     q: A primary AWS KMS multi-Region key is disabled. Does that disable a related enabled replica?
     a: No. Enabled state is independent, and a replica can perform cryptographic operations while the primary is

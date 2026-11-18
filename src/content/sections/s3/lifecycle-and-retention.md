@@ -206,21 +206,6 @@ cards:
     trap: true
     facts:
       - lifecycle-policy-deny
-  - id: s3-094
-    q: An S3 object qualifies for permanent deletion and a lifecycle transition on the same day. Which action wins?
-    a: Permanent deletion takes precedence over transition.
-    facts:
-      - lifecycle-precedence
-  - id: s3-095
-    q: An S3 lifecycle rule must retain a number of newer noncurrent versions before deleting older versions. What configuration is required?
-    a: Specify the noncurrent age, the number of newer versions to retain, and a Filter element.
-    facts:
-      - lifecycle-newer-versions
-  - id: s3-096
-    q: A queued S3 Lifecycle expiration uses a tag filter, but the triggering tag is removed before execution. What happens?
-    a: S3 rechecks the tags and skips expiration if the triggering tag is absent at execution.
-    facts:
-      - lifecycle-tag-recheck
   - id: s3-097
     q: Does S3 Lifecycle guarantee that an object is physically removed at its expiration time?
     a: No. Removal can occur after the expiration date.
@@ -232,11 +217,6 @@ cards:
     a: "Use a tag filter with key status and value processed. Both must match exactly; other tags on the object do not prevent the match."
     facts:
       - lifecycle-tag-filter
-  - id: s3-109
-    q: "A Lambda function adds a tag to S3 objects that already carry other tags, and the old tags disappear. Why?"
-    a: "PutObjectTagging replaces the whole tag set. Read the current set with GetObjectTagging, add the new tag and put the full set back."
-    facts:
-      - tag-set-replace
   - id: s3-110
     q: "A team must add the same tag to millions of existing S3 objects listed in an inventory report. Which feature does it in one managed job?"
     a: "S3 Batch Operations with a replace-tags operation over the supplied object list."

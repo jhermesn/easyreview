@@ -98,21 +98,6 @@ cards:
       - target-port
       - routed-clients
       - ap-target
-  - id: efs-015
-    q: An EFS IAM policy allows mounting, but writes fail. What additional permissions must the team
-      examine?
-    a: ClientWrite for write authorization and POSIX directory and file permissions for the effective
-      user and group. ClientMount grants read-only access.
-    facts:
-      - iam-actions
-      - posix-check
-  - id: efs-016
-    q: An EFS access point names a root directory that does not exist and supplies no creation
-      permissions. What happens?
-    a: The mount fails. Create the directory with appropriate permissions or provide access-point
-      creation ownership and permissions.
-    facts:
-      - missing-root
   - id: efs-017
     q: A Lambda function must share persistent files through EFS in a connected account. Are
       access-point permissions alone sufficient?

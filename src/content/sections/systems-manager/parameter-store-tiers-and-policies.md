@@ -110,33 +110,6 @@ cards:
       - parameter-advanced-policy
       - parameter-share
       - parameter-tier
-  - id: systems-manager-030
-    q: Can a Systems Manager Parameter Store advanced parameter be changed to standard after its value
-      becomes smaller?
-    a: No. Standard can be upgraded to advanced, but an advanced parameter cannot be downgraded.
-    trap: true
-    facts:
-      - parameter-tier
-  - id: systems-manager-031
-    q: Which Systems Manager Parameter Store policies exist, and how do they notify?
-    a: Expiration deletes the parameter; ExpirationNotification and NoChangeNotification emit
-      EventBridge events. Advanced parameters support up to ten policies; a newly supplied policy
-      array replaces the existing policies.
-    facts:
-      - parameter-expiry
-      - parameter-expiry-notify
-      - parameter-nochange
-      - parameter-policy-count
-      - parameter-policy-replace
-  - id: systems-manager-071
-    q: An application needs all Systems Manager parameters below its environment path. Which API and
-      naming structure fit?
-    a: Use slash-separated parameter hierarchies and GetParametersByPath with recursive retrieval.
-      Hierarchies support up to 15 levels.
-    facts:
-      - parameter-path
-      - parameter-path-depth
-      - parameter-recursive
   - id: systems-manager-072
     q: A deployment must keep using a reviewed Systems Manager parameter value after later edits. How
       should it retrieve the value?
@@ -147,15 +120,6 @@ cards:
       - parameter-version-increment
       - parameter-version-latest
       - parameter-missing-version
-  - id: systems-manager-073
-    q: A Systems Manager parameter already has 100 versions and the oldest has a deployment label. What
-      happens when its value is updated?
-    a: The update fails because the labeled oldest version cannot be deleted. Move the label to a newer
-      version before continuing updates.
-    trap: true
-    facts:
-      - parameter-history
-      - parameter-history-label
   - id: systems-manager-074
     q: A team wants a Systems Manager notification when an approved AMI parameter remains unchanged too
       long. Which policy fits?

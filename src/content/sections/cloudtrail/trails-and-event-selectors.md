@@ -84,25 +84,6 @@ cards:
       - s3-selector
       - lambda-selector
       - selector-fields
-  - id: cloudtrail-006
-    q: A CloudTrail trail records its own S3 log deliveries as data events. How can it suppress that
-      repeated activity?
-    a: Set RecursiveLogging to false. CloudTrail suppresses its own delivery events; other callers
-      remain logged. A destination excluded from the S3 selector also avoids the loop.
-    trap: true
-    facts:
-      - recursive-events
-      - recursive-suppression
-      - s3-selector
-  - id: cloudtrail-007
-    q: Does CloudTrail log every STS request in us-east-1, even when the caller uses a Regional STS
-      endpoint?
-    a: No. Global endpoint requests are logged in us-east-1; Regional endpoint requests are logged in
-      their respective Region. Use a multi-Region trail for enabled Regions.
-    trap: true
-    facts:
-      - sts-regions
-      - trail-regions
   - id: cloudtrail-024
     q: How does a CloudTrail trail capture S3 GetObject and DeleteObject for a chosen bucket?
     a: Enable S3 object data events for that bucket. Data event logging is opt-in and incurs additional
@@ -110,35 +91,6 @@ cards:
     facts:
       - data-opt-in
       - s3-selector
-  - id: cloudtrail-027
-    q: A team applies advanced data selectors to a CloudTrail trail that used basic management
-      selectors. What must it preserve explicitly?
-    a: Include the required management selection in the new configuration. Advanced selectors overwrite
-      basic selectors.
-    trap: true
-    facts:
-      - selector-replace
-      - selector-default
-  - id: cloudtrail-028
-    q: Automation recreates a CloudTrail trail through the CLI after deletion. Which additional
-      operation begins recording and log delivery?
-    a: Call StartLogging for the new trail. For a multi-Region trail, call it in the home Region.
-    facts:
-      - create-start
-      - start-logging
-  - id: cloudtrail-029
-    q: What is the default RecursiveLogging value on a CloudTrail trail?
-    a: True. Set it to false to suppress CloudTrail-generated delivery events.
-    facts:
-      - recursive-default
-      - recursive-suppression
-  - id: cloudtrail-050
-    q: A team creates a CloudTrail trail using CreateTrail without setting IsMultiRegionTrail. Does it collect events in all enabled Regions?
-    a: No. The API defaults to a single-Region trail. Set IsMultiRegionTrail to true for multi-Region coverage.
-    trap: true
-    facts:
-      - api-region-default
-      - trail-regions
   - id: cloudtrail-051
     q: "A trail is created in the CloudTrail console. Which Regions does it log?"
     a: "All enabled Regions. Console trails are multi-Region; a single-Region trail needs the CLI or API."

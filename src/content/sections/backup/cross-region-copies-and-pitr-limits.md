@@ -126,12 +126,6 @@ cards:
       key can remain incremental.
     facts:
       - ebs-copy-key
-  - id: backup-026
-    q: An AWS Backup database PITR copy leaves an expired source recovery point. Which cleanup
-      permission should be checked?
-    a: rds:DeleteDBSnapshot. AWS Backup needs it to delete the temporary source snapshot after the copy.
-    facts:
-      - database-snapshot-cleanup
   - id: backup-027
     q: Can AWS Backup create an on-demand cross-Region copy of a continuous backup?
     a: No. Use a supported copy action in a continuous backup rule to create periodic snapshot copies.

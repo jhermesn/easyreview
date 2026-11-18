@@ -124,19 +124,6 @@ cards:
     a: Set EnableDefaultStandards to false in EnableSecurityHub. Omitting it defaults to true.
     facts:
       - enable-default
-  - id: security-hub-008
-    q: A team enabled AWS Security Hub CSPM without Security Hub, but a control shows WARNING and Config.1 shows FAILED. What recording issue should it check?
-    a: Check whether AWS Config records the resource type required by that control in the affected account and Region.
-    facts:
-      - manual-config
-      - recording-gap
-  - id: security-hub-009
-    q: An AWS Security Hub CSPM team needs managed and custom AWS Config rule evaluations in the findings list. Is enabling a CSPM standard sufficient?
-    a: Activate the AWS Config integration. It imports rule evaluations through EventBridge; this is separate from the service-linked Config rules used by CSPM controls.
-    trap: true
-    facts:
-      - config-integration
-      - control-config
   - id: security-hub-010
     q: Which standards does the EnableSecurityHub API enable by default for AWS Security Hub CSPM?
     a: AWS Foundational Security Best Practices and CIS AWS Foundations Benchmark v1.2.0. Set EnableDefaultStandards to false to opt out.
@@ -149,14 +136,6 @@ cards:
     trap: true
     facts:
       - service-recorder
-  - id: security-hub-012
-    q: A team expects old AWS Config evaluations to appear after it activates the AWS Security Hub CSPM integration. What is the limitation?
-    a: The integration sends evaluations performed after CSPM was enabled. CSPM does not retroactively consolidate older findings.
-    trap: true
-    facts:
-      - config-integration-scope
-      - config-rule-exclusions
-      - post-enable
   - id: security-hub-033
     q: A team wants patch compliance alongside security control findings in AWS Security Hub CSPM. Which integration supplies it?
     a: Systems Manager Patch Manager can send patch compliance findings to Security Hub CSPM.

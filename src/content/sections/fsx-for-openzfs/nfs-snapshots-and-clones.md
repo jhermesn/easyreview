@@ -49,19 +49,6 @@ cards:
     q: A team needs an almost immediate writable copy of an FSx for OpenZFS dataset for testing. What should it create?
     a: Create a clone volume from a snapshot. It initially consumes no additional capacity.
     facts: [clone]
-  - id: fsx-for-openzfs-004
-    q: Can a team delete an FSx for OpenZFS snapshot while a clone that depends on it is in use?
-    a: No. The clone depends on its source snapshot.
-    facts: [clone-dependency]
-    trap: true
-  - id: fsx-for-openzfs-005
-    q: A team needs a writable FSx for OpenZFS volume that is independent of its source snapshot. What should it create?
-    a: A full-copy volume. It is read-only while the snapshot data is copied.
-    facts: [full-copy, full-copy-readonly]
-  - id: fsx-for-openzfs-006
-    q: How can a client restore one file from an FSx for OpenZFS snapshot?
-    a: Copy it from the hidden `.zfs/snapshot` directory. The volume's NFS exports must include `crossmnt`.
-    facts: [restore-file]
   - id: fsx-for-openzfs-007
     q: A team needs an FSx for OpenZFS backup copy in another AWS Region. Are local snapshots sufficient?
     a: No. Use a cross-Region backup copy; snapshots are stored locally on the file system.
@@ -71,11 +58,6 @@ cards:
     q: A team needs FSx for OpenZFS to fail over across Availability Zones. Which deployment should it choose?
     a: Multi-AZ. Single-AZ HA keeps its primary and standby in one Availability Zone.
     facts: [availability]
-  - id: fsx-for-openzfs-009
-    q: Does an FSx for OpenZFS volume quota guarantee that the volume has that much space available?
-    a: No. A quota sets a limit; a reservation guarantees space.
-    facts: [quota-reservation]
-    trap: true
 ---
 
 Amazon FSx for OpenZFS provides managed shared file storage for clients using Network File System (NFS), a protocol for accessing files over a network. It supports point-in-time snapshots and writable copies of a dataset.

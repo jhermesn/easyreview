@@ -76,32 +76,16 @@ cards:
     facts:
       - account-retention
       - retention-overlap
-  - id: cloudwatch-060
-    q: CloudWatch log events have expired but have not been physically deleted. Are they still charged
-      as archival storage?
-    a: No. Events marked for deletion no longer add archival storage charges. Physical deletion normally
-      takes up to 72 hours and can occasionally take longer.
-    facts:
-      - retention-expiry
-      - retention-delay
   - id: cloudwatch-061
     q: An organization wants an account-level CloudWatch retention policy to affect existing matching
       log groups. Which enforcement mode fits?
     a: RETROACTIVE. NEW_ONLY applies only to log groups created after the policy.
     facts:
       - retention-modes
-  - id: cloudwatch-116
-    q: Which CloudWatch metric shows which log groups ingest the most data and drive the CloudWatch Logs bill?
-    a: AWS/Logs IncomingBytes, with the LogGroupName dimension.
-    facts: [incoming-bytes]
   - id: cloudwatch-117
     q: "A team wants to cut ingestion cost for logs it only keeps for occasional cross-account analysis. Which log class fits, and can an existing log group switch to it?"
     a: "The Essentials log class (formerly Infrequent Access), which has a lower ingestion price and fewer features. A log group's class is fixed at creation, so it needs a new log group."
     facts: [log-classes]
-  - id: cloudwatch-118
-    q: "During an incident, an engineer wants to watch new log events appear and filter them for an error string. Which CloudWatch feature fits?"
-    a: "CloudWatch Logs Live Tail, which streams newly ingested events with filtering and highlighting."
-    facts: [live-tail]
 ---
 CloudWatch Logs stores timestamped events from applications and infrastructure. A log stream holds events from one source; a log group collects streams that need the same retention, monitoring, and access settings.
 

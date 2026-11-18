@@ -41,20 +41,6 @@ cards:
       - purpose
       - ecr-enhanced
       - lambda-types
-  - id: inspector-002
-    q: How does Amazon Inspector collect EC2 software information, and what scan mode is the default?
-    a: Systems Manager Agent or EBS snapshots. The default hybrid mode combines agent-based scanning for managed instances with agentless scanning for eligible unmanaged instances.
-    facts:
-      - ec2-methods
-      - hybrid-default
-  - id: inspector-005
-    q: An older Amazon Inspector design uses tag-selected assessment targets, assessment templates, and an Inspector agent. Which version is this?
-    a: Inspector Classic. Its support ended May 20, 2026. Current Inspector uses workload scan types.
-    trap: true
-    facts:
-      - classic-model
-      - classic-retired
-      - initial-types
   - id: inspector-006
     q: A team wants private ECR images reassessed when new relevant CVEs appear after image push. Which Inspector setting fits?
     a: ECR enhanced continuous scanning. It rescans images that remain eligible when relevant new CVEs appear.
@@ -66,12 +52,6 @@ cards:
     a: Lambda code scanning. Standard scanning checks dependencies; code scanning checks custom application code.
     facts:
       - lambda-types
-  - id: inspector-008
-    q: An Amazon Inspector Lambda function has not been invoked or updated for more than 90 days. Why might it be outside scan coverage?
-    a: Lambda scan eligibility requires an invocation or update within 90 days, a supported runtime, $LATEST, and no exclusion tag.
-    trap: true
-    facts:
-      - lambda-eligibility
 ---
 
 Amazon Inspector finds vulnerable software and unintended network exposure. A finding is a report of a detected issue. A CVE, or Common Vulnerabilities and Exposures entry, identifies a publicly known vulnerability.

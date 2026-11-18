@@ -184,14 +184,6 @@ cards:
       - sync-errors
       - async-function-retries
       - async-config
-  - id: lambda-019
-    q: A Lambda function has MaximumRetryAttempts set to 0, but asynchronous events still wait during throttling. Why?
-    a: The setting controls function-error retries. Throttles and system errors use a separate retry path, bounded by event age, with a six-hour default.
-    trap: true
-    facts:
-      - async-config
-      - async-system-retries
-      - async-age
   - id: lambda-020
     q: A CPU-bound Lambda function has enough memory but runs too slowly. Which resource setting should the team test increasing?
     a: Memory. Lambda increases CPU capacity in proportion to memory; 1,769 MB provides the equivalent of one vCPU.
@@ -204,16 +196,6 @@ cards:
     facts:
       - tmp-storage
       - tmp-encryption
-  - id: lambda-022
-    q: An ALB invokes a Lambda function, but repeated query parameters are lost. What should the team enable?
-    a: Enable lambda.multi_value_headers.enabled on the target group. The request uses arrays for repeated values, and the function must use multiValueHeaders in its response.
-    facts:
-      - alb-multivalue
-  - id: lambda-023
-    q: How do internal and external Lambda extensions differ?
-    a: An internal extension runs inside the runtime process. An external extension runs as a separate process in the same execution environment.
-    facts:
-      - extensions
   - id: lambda-054
     q: A Lambda workflow must wait for human approval for days and recover progress after interruptions. Which Lambda feature fits?
     a: Use a durable function with checkpointed steps and waits. A durable execution can last up to one year; replay uses stored results for completed checkpoints.

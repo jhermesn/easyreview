@@ -108,13 +108,6 @@ cards:
       trust policy allowing firehose.amazonaws.com to assume it.
     facts:
       - deliver-role
-  - id: firehose-010
-    q: AWS Network Firewall flow logs need direct delivery to Firehose. Which logging configuration
-      selects it?
-    a: Set LogDestinationType to KinesisDataFirehose and provide the Firehose stream name under the
-      deliveryStream key.
-    facts:
-      - deliver-firewall
   - id: firehose-011
     q: A team wants managed delivery of CloudWatch Logs events to S3. Which path fits?
     a: Use a CloudWatch Logs subscription filter targeting Firehose, with S3 as the Firehose
@@ -123,12 +116,6 @@ cards:
       - deliver-logs
       - deliver-managed
       - deliver-s3
-  - id: firehose-012
-    q: Can a Firehose stream with dynamic partitioning use zero buffering?
-    a: No. Zero buffering is unavailable with dynamic partitioning and for the S3 backup destination.
-    trap: true
-    facts:
-      - deliver-zero
   - id: firehose-021
     q: New CloudWatch log groups must automatically forward events through Firehose. How can the team
       automate subscription creation?

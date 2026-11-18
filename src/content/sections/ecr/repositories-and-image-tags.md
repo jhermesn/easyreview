@@ -52,27 +52,6 @@ cards:
       - immutable-tags
       - image-identifiers
       - digest-definition
-  - id: ecr-009
-    q: A team wants ECR release tags protected but wants its latest tag to remain movable. What can it
-      configure?
-    a: Use IMMUTABLE_WITH_EXCLUSION and an exclusion filter matching latest. Matching excluded tags can
-      be updated.
-    facts:
-      - exclusion-options
-  - id: ecr-010
-    q: Can anonymous users push images to an ECR public repository because anonymous pulls are allowed?
-    a: No. Public pulls are available to anyone, but Docker pushes require authentication and
-      permission.
-    trap: true
-    facts:
-      - public-pulls
-  - id: ecr-011
-    q: A release pipeline must start when an image is pushed to ECR and also needs deployment files from
-      source control. How should its source stage be configured?
-    a: Use an ECR source action alongside another source action for the deployment files. The ECR source
-      action triggers on an image push.
-    facts:
-      - push-trigger
 ---
 Amazon ECR stores container images in repositories. A registry is the collection of repositories for an account. An image tag is a name used to select an image; an image digest is the SHA-256 content identifier of its manifest, the image description used to retrieve it.
 

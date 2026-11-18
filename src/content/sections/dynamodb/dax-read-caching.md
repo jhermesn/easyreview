@@ -77,16 +77,6 @@
       ]
     },
     {
-      "id": "dynamodb-037",
-      "q": "An application updates a DynamoDB item through DAX but an identical Query still returns an old result. Why?",
-      "a": "The query cache is separate. Item writes do not invalidate Query or Scan results; the cached query must expire.",
-      "facts": [
-        "query",
-        "freshness"
-      ],
-      "trap": true
-    },
-    {
       "id": "dynamodb-038",
       "q": "A DynamoDB application requires every read to be strongly consistent. Will DAX serve those reads from memory?",
       "a": "No. DAX forwards strong reads and TransactGetItems to DynamoDB without caching results.",
@@ -94,14 +84,6 @@
         "strong"
       ],
       "trap": true
-    },
-    {
-      "id": "dynamodb-039",
-      "q": "What keys and default expiration does the DAX item cache use?",
-      "a": "Primary keys for GetItem and BatchGetItem results, with a five-minute default item-cache TTL.",
-      "facts": [
-        "item"
-      ]
     },
     {
       "id": "dynamodb-040",

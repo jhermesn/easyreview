@@ -70,15 +70,6 @@ cards:
     facts:
       - integrity-purpose
       - object-lock
-  - id: cloudtrail-017
-    q: CloudTrail validate-logs reports an invalid or missing digest. Can the affected log files be
-      treated as proven unchanged?
-    a: No. The affected integrity evidence failed. The CLI checks only digest-referenced logs and
-      requires the original S3 locations.
-    trap: true
-    facts:
-      - invalid-digest
-      - cli-original
   - id: cloudtrail-022
     q: An audit archive needs tamper detection and protection against permanent deletion of stored
       CloudTrail versions. Which controls address both needs?
@@ -97,20 +88,6 @@ cards:
     facts:
       - validation-separate
       - cli-validation
-  - id: cloudtrail-036
-    q: An auditor validates one member account's CloudTrail organization logs using the CLI. What
-      additional selector is required?
-    a: Pass --account-id for that member account, along with --trail-arn and --start-time. Use --region
-      for the Region being validated.
-    facts:
-      - cli-parameters
-  - id: cloudtrail-049
-    q: A team disables CloudTrail log file integrity validation for a week and then reenables it. Can it validate the gap with newly generated digests?
-    a: No. CloudTrail does not create digests for files delivered while validation was disabled; the digest chain breaks after one hour.
-    trap: true
-    facts:
-      - validation-gap
-      - cli-original
 ---
 CloudTrail log file integrity validation gives auditors evidence that delivered files stayed unchanged. A hash is a fingerprint calculated from file contents. A signed digest is an index of those fingerprints whose signature can be checked. It acts as a tamper-evident seal on the archive. [AWS integrity validation](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html#cloudtrail-log-file-validation-intro)
 

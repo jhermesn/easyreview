@@ -60,12 +60,6 @@ cards:
     facts:
       - match
       - nonmatch
-  - id: sns-016
-    q: A new SNS subscription filter seems to behave inconsistently immediately after an update. What documented
-      behavior explains this?
-    a: Eventual consistency. Filter policy changes can take up to 15 minutes to fully take effect.
-    facts:
-      - propagation
   - id: sns-017
     q: Does an additional SNS message attribute absent from the subscription filter make the message fail
       filtering?

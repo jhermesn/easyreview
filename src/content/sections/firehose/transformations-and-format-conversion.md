@@ -88,14 +88,6 @@ cards:
       - transform-convert
       - transform-schema
       - transform-order
-  - id: firehose-014
-    q: A Firehose Lambda transformation returns new recordId values for transformed records. What
-      happens?
-    a: Firehose treats the mismatch as transformation failure. Preserve each original recordId and
-      return result and base64-encoded data.
-    trap: true
-    facts:
-      - transform-contract
   - id: firehose-015
     q: A team only needs compressed S3 output from Firehose, without changing record fields. Must it
       deploy a Lambda transformation?
@@ -103,12 +95,6 @@ cards:
       transformation.
     facts:
       - transform-compression
-  - id: firehose-016
-    q: What do Ok, Dropped, and ProcessingFailed mean in a Firehose transformation response?
-    a: Ok means transformed successfully, Dropped means intentionally discarded, and ProcessingFailed
-      means transformation failed. Ok and Dropped count as successful processing.
-    facts:
-      - transform-status
 diagrams:
   - id: firehose-transform-convert
     title: Transform content before S3 format conversion

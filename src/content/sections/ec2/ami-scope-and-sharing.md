@@ -113,11 +113,6 @@ cards:
     a: Copy the AMI to the destination Region and grant launch permission there. Sharing the source image does not make it available in another Region.
     trap: true
     facts: [regional, cross-region, copy-permissions]
-  - id: ec2-006
-    q: A team can launch from a shared EBS-backed EC2 AMI but cannot copy it. Which additional resource permission should it check?
-    a: Read permission on the backing EBS snapshots. Launch permission alone does not grant that access for copying.
-    facts: [launch-snapshots, copy-snapshots]
-    trap: true
   - id: ec2-007
     q: An EC2 AMI uses EBS snapshots encrypted with aws/ebs. How can its owner make an image available to another account?
     a: Copy the AMI using a customer managed KMS key, then share the copy and grant the recipient key access. The default AWS managed key cannot support this sharing.
@@ -131,28 +126,11 @@ cards:
     q: What does an EC2 AMI provide, and what compatibility must a launch satisfy?
     a: The software to set up and boot an instance. The AMI must support the chosen instance type.
     facts: [ami-template, compatible-type]
-  - id: ec2-010
-    q: A team copies an EC2 AMI that was shared with several accounts. Does the new AMI retain those launch permissions?
-    a: No. Reapply launch permissions to the copy. It has its own AMI ID and is independent of the source image.
-    facts: [copy-permissions, copy-distinct]
-    trap: true
   - id: ec2-011
     q: Can EC2 CopyImage turn an encrypted EBS-backed AMI into an unencrypted AMI?
     a: No. Copying can encrypt or re-encrypt the backing snapshots, but cannot remove their encryption.
     facts: [no-decryption, copy-encryption]
     trap: true
-  - id: ec2-012
-    q: A team needs encrypted EC2 images delivered into other accounts through Image Builder. What key access is required?
-    a: Access to source and destination KMS keys. Image Builder re-encrypts the distributed image with the designated destination Region key; destination accounts can launch or modify their images.
-    facts: [imagebuilder-distribution, imagebuilder-keys, imagebuilder-reencrypt]
-  - id: ec2-026
-    q: A team must restrict which AMIs a user can use to launch EC2 instances. Which permission should it scope to approved image resources?
-    a: ec2:RunInstances in the user's IAM policy. Resource-level permissions can restrict which AMIs the user may launch.
-    facts: [approved-launch]
-  - id: ec2-027
-    q: A team needs to identify running EC2 instances whose AMI IDs are outside its approved list. Which AWS Config rule fits?
-    a: approved-amis-by-id. Configure the approved AMI IDs; the rule marks running instances using other images NON_COMPLIANT.
-    facts: [approved-running]
   - id: ec2-082
     q: "An AMI made from a snapshot in Region A is copied to Region B, and one instance is launched from it in Region B. What exists in Region B?"
     a: "One instance, one AMI and one snapshot. Copying an EBS-backed AMI also copies its backing snapshot into the destination Region."

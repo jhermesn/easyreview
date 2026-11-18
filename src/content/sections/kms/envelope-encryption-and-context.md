@@ -176,13 +176,6 @@ cards:
       - context-match
       - context-policy
       - context-logs
-  - id: kms-018
-    q: An application has AWS KMS decrypt permission but changed the letter case of the encryption context used
-      with its encrypted data key. Can decryption succeed?
-    a: No. The encryption context must match exactly, including case.
-    trap: true
-    facts:
-      - context-match
   - id: kms-019
     q: A team wants to put a secret identifier value in AWS KMS encryption context to hide it from logs. What
       should it do?
@@ -198,12 +191,6 @@ cards:
     facts:
       - local-decrypt
       - context-match
-  - id: kms-021
-    q: A team must restrict a CloudWatch Logs KMS key to a specific log group. Which encryption-context value
-      identifies the group?
-    a: The log group ARN, referenced in a `kms:EncryptionContext:aws:logs:arn` policy condition.
-    facts:
-      - logs-context
   - id: kms-047
     q: "Partners without AWS credentials must encrypt files that only your application can decrypt. Which KMS key type fits?"
     a: "An asymmetric KMS key. Partners encrypt with the downloaded public key; decryption happens in KMS with the private key, which never leaves it."

@@ -82,15 +82,6 @@ cards:
       - registration
       - launch-result
       - launch-abandon
-  - id: ec2-auto-scaling-015
-    q: What does ABANDON do for EC2 Auto Scaling launch and termination lifecycle hooks?
-    a: On launch, it permits termination and replacement. On termination, it permits termination and skips remaining hooks; CONTINUE lets remaining hooks complete.
-    trap: true
-    facts:
-      - launch-result
-      - launch-abandon
-      - termination-result
-      - termination-abandon
   - id: ec2-auto-scaling-016
     q: An EC2 Auto Scaling instance must send logs before termination. Which automation fits?
     a: Use a termination lifecycle hook with EventBridge automation, such as Lambda, while the instance waits in Terminating:Wait. Complete the action afterward; the hook cannot prevent a Spot interruption.
@@ -105,22 +96,6 @@ cards:
     facts:
       - registration
       - slow-start
-  - id: ec2-auto-scaling-043
-    q: How long can an EC2 Auto Scaling lifecycle hook wait, and how can automation keep it alive?
-    a: Heartbeat timeout defaults to one hour. RecordLifecycleActionHeartbeat extends the wait, up to the smaller of 48 hours or 100 times the heartbeat timeout.
-    facts:
-      - timeout
-      - global-timeout
-      - complete
-  - id: ec2-auto-scaling-044
-    q: An EC2 Auto Scaling team needs emails for successful launches and terminations. What configuration is required?
-    a: Configure an SNS topic with a confirmed email subscription and the group notification types autoscaling:EC2_INSTANCE_LAUNCH and autoscaling:EC2_INSTANCE_TERMINATE.
-    facts:
-      - sns-launch
-      - sns-launch-error
-      - sns-terminate
-      - sns-terminate-error
-      - sns-email
   - id: ec2-auto-scaling-045
     q: Which EC2 Auto Scaling SNS notification types report launch and termination failures?
     a: autoscaling:EC2_INSTANCE_LAUNCH_ERROR and autoscaling:EC2_INSTANCE_TERMINATE_ERROR.
@@ -135,23 +110,6 @@ cards:
     facts:
       - ssm
       - registration
-  - id: ec2-auto-scaling-047
-    q: An EC2 Auto Scaling team wants different automation for launch waits, termination waits and scaling failures. What should route the events?
-    a: EventBridge rules filtering source aws.autoscaling and the event type, then routing matching notifications to the required targets.
-    facts:
-      - event-filter
-      - event-lambda
-  - id: ec2-auto-scaling-068
-    q: An EC2 Auto Scaling launch lifecycle hook times out without an explicit default result. What happens to the instance?
-    a: The default is ABANDON, which permits Auto Scaling to terminate and replace the instance.
-    facts:
-      - default-result
-      - launch-abandon
-  - id: ec2-auto-scaling-069
-    q: An EC2 Auto Scaling lifecycle hook sends notifications directly to an Amazon SQS queue. What permission configuration does the hook need?
-    a: An IAM role that allows Auto Scaling to publish to the queue.
-    facts:
-      - direct-notification-role
 diagrams:
   - id: asg-launch-hook-flow
     title: Launch hook before load balancer registration

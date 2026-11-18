@@ -82,26 +82,6 @@ cards:
     facts:
       - pressure-visibility
       - pressure-lambda-duplicates
-  - id: event-processing-patterns-015
-    q: A Lambda SQS batch contains successful messages and one failure. How can the team retry only
-      failed messages?
-    a: Enable ReportBatchItemFailures and return failed message IDs in batchItemFailures. By default a
-      batch failure returns every message for retry.
-    facts:
-      - pressure-batch
-  - id: event-processing-patterns-016
-    q: A Lambda function uses an SQS batching window. What visibility timeout does AWS recommend?
-    a: At least six times the function timeout, plus the configured batching window. This leaves time
-      for processing and throttling retries.
-    facts:
-      - pressure-timeout
-  - id: event-processing-patterns-017
-    q: A Lambda function processes an SQS FIFO batch and encounters a failed message. How should its
-      partial batch response preserve order?
-    a: Stop processing after the first failure and report both failed and unprocessed messages in
-      batchItemFailures.
-    facts:
-      - pressure-fifo-batch
   - id: event-processing-patterns-018
     q: What does idempotent processing mean for an SQS consumer?
     a: Processing the same message again causes no unintended extra effect. Standard queues and Lambda

@@ -60,10 +60,6 @@ cards:
     a: Use an IPsec VPN over Direct Connect, or MACsec on a supported connection. MACsec protects the point-to-point link, not every network segment.
     trap: true
     facts: [dx-no-default-encryption, dx-vpn, dx-macsec-scope]
-  - id: direct-connect-002
-    q: Which AWS Direct Connect virtual interface types reach a VPC, public AWS services and transit gateways?
-    a: A private interface reaches a VPC, a public interface reaches public AWS services, and a transit interface reaches transit gateways through a Direct Connect gateway.
-    facts: [dx-vifs]
   - id: direct-connect-003
     q: A company wants an encrypted connection to its VPC over AWS Direct Connect using a public VPN endpoint. What should it configure?
     a: Establish Site-to-Site VPN IPsec tunnels over a Direct Connect public virtual interface.
@@ -78,22 +74,10 @@ cards:
     a: No. MACsec is not supported on hosted connections.
     trap: true
     facts: [dx-macsec-support]
-  - id: direct-connect-006
-    q: A company needs a backup path to its VPC if AWS Direct Connect fails. What can it use?
-    a: Configure a backup Site-to-Site IPsec VPN.
-    facts: [dx-backup]
-  - id: direct-connect-007
-    q: A virtual private gateway receives the same destination prefix from AWS Direct Connect and Site-to-Site VPN using BGP. Which route is preferred?
-    a: The Direct Connect route is preferred for matching prefixes.
-    facts: [dx-routes]
   - id: direct-connect-008
     q: A company needs a dedicated private network connection from its data center to AWS that does not use the public internet. Which service fits?
     a: AWS Direct Connect.
     facts: [dedicated-link]
-  - id: direct-connect-013
-    q: "Critical workloads need Direct Connect to survive a device failure and the loss of a whole location. Which model fits?"
-    a: "Maximum resiliency: separate connections on separate devices in at least two locations."
-    facts: [maximum-resiliency]
   - id: direct-connect-015
     q: "Two Direct Connect private VIFs advertise the same prefixes, and traffic from AWS should prefer one as active and the other as passive. Which mechanism does AWS recommend?"
     a: "**Local preference BGP community tags.** Route selection uses longest prefix, then local preference, then AS_PATH length, then MED."

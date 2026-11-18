@@ -150,20 +150,6 @@ cards:
       guest identities.
     facts:
       - cognito-credentials
-  - id: iam-055
-    q: An IAM-user broker calls GetFederationToken without requesting a duration. What are its default and maximum
-      durations?
-    a: Twelve hours by default and thirty-six hours maximum for IAM user credentials. Root-based sessions are
-      limited to one hour.
-    facts:
-      - federation-duration
-  - id: iam-056
-    q: Does the IAM user GetSessionToken operation have the same one-hour default as AssumeRole?
-    a: No. GetSessionToken for IAM users defaults to twelve hours and supports fifteen minutes to thirty-six
-      hours. Root-based sessions default to and cannot exceed one hour.
-    trap: true
-    facts:
-      - sessiontoken-duration
   - id: iam-108
     q: "An on-premises LDAP directory does not support SAML, and users must still get access to AWS without IAM users. What pattern fits?"
     a: "A custom identity broker that authenticates users against LDAP and requests short-lived credentials from AWS STS for them."

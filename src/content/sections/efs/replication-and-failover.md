@@ -91,14 +91,6 @@ cards:
     facts:
       - failback-discard
       - failback-preserve
-  - id: efs-020
-    q: An EFS replication configuration spans AWS accounts. Can the team rely on the EFS service-linked
-      role?
-    a: No. It must supply an IAM role for cross-account replication, and the configuring identity needs
-      iam:PassRole.
-    trap: true
-    facts:
-      - cross-account-role
   - id: efs-021
     q: A team expects immediate access to a new EFS replica with a strict 15-minute lag guarantee for
       every workload. Which assumptions need correction?

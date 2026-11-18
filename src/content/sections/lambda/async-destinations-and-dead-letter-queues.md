@@ -110,12 +110,6 @@ cards:
     facts:
       - dest-conditions
       - dlq-event
-  - id: lambda-025
-    q: A Lambda on-failure destination receives no records after its permissions change. What should the team inspect?
-    a: Inspect DestinationDeliveryFailures and the function execution role permission to send to the target. Destination delivery itself can fail.
-    facts:
-      - dest-failures
-      - dest-permissions
   - id: lambda-026
     q: Can an asynchronous Lambda destination send failed execution records to an SQS FIFO queue?
     a: No. The SQS destination must be a standard queue. FIFO is also unsupported for a function DLQ.
@@ -123,13 +117,6 @@ cards:
     facts:
       - dest-targets
       - dlq-targets
-  - id: lambda-052
-    q: Large asynchronous Lambda failure records exceed the SNS destination message limit. Which destination can retain them, and what permissions does it need?
-    a: Use an S3 on-failure destination. Grant the execution role `s3:PutObject` and `s3:ListBucket`; a KMS-encrypted bucket also needs `kms:GenerateDataKey`.
-    facts:
-      - sns-record-size
-      - dest-s3
-      - s3-destination-permissions
 ---
 Asynchronous destinations retain invocation records so another service can act on a successful or failed execution. A dead-letter queue (DLQ) retains discarded events for later processing. Think of a destination as an execution report and a DLQ as the event to revisit.
 

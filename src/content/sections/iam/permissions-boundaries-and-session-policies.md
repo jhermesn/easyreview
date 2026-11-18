@@ -73,14 +73,6 @@ cards:
     trap: true
     facts:
       - boundary-no-grant
-  - id: iam-038
-    q: A resource Deny with NotPrincipal lists an exception for an IAM role, but attaching a boundary makes the
-      role lose access. What should the policy author inspect?
-    a: The NotPrincipal Deny. For principals with boundaries it denies regardless of those exceptions. AWS
-      recommends ArnNotEquals with aws:PrincipalArn.
-    trap: true
-    facts:
-      - notprincipal-deny
 ---
 
 Permissions boundaries let an administrator delegate IAM management while limiting what identity policies may grant. A session policy applies a further limit to a temporary session. Think of each as a filter on a grant.

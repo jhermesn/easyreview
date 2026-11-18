@@ -116,24 +116,6 @@ cards:
       - iam-delegation
       - iam-deny
       - cross-policies
-  - id: kms-003
-    q: Does the AWS KMS console default key-administrator statement allow cryptographic key use?
-    a: No. It grants management actions. Administrators with policy-edit or grant-creation permissions can still
-      give themselves use permissions, so this separation is not a security boundary against those
-      administrators.
-    trap: true
-    facts:
-      - admin-use
-      - admin-escalation
-  - id: kms-004
-    q: What is an AWS KMS grant and how can a new grant be used immediately?
-    a: A grant allows specified operations on one key for a grantee. It cannot deny access and can be retired or
-      revoked. Use its grant token before the permission change has propagated.
-    facts:
-      - grant-purpose
-      - grant-allow
-      - grant-lifecycle
-      - grant-token
   - id: kms-016
     q: An application in account B must decrypt using a customer managed KMS key in account A through policies.
       Which accounts need policy changes?

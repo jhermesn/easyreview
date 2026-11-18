@@ -115,10 +115,6 @@ cards:
     q: Which current support plans provide all Trusted Advisor checks and API access?
     a: "Business Support+, Enterprise Support and Unified Operations."
     facts: [full]
-  - id: trusted-advisor-004
-    q: A team wants immediate custom notifications for Trusted Advisor status changes. Where should it create the EventBridge rule?
-    a: "US East (N. Virginia), or us-east-1. Trusted Advisor emits events there; delivery is best effort."
-    facts: [event-region, eventbridge]
   - id: trusted-advisor-005
     q: Can a Trusted Advisor weekly summary email replace a timely check-status event notification?
     a: "No. The built-in summary is weekly. Use an EventBridge rule for check status events, noting that delivery is best effort."
@@ -128,23 +124,10 @@ cards:
     q: How can a CloudWatch alarm notify an SNS topic about Trusted Advisor check results?
     a: "Monitor the published Trusted Advisor metric with an alarm in US East (N. Virginia), and configure an SNS alarm action."
     facts: [metrics]
-  - id: trusted-advisor-007
-    q: How should a program retrieve fresh Trusted Advisor check results through the Support API?
-    a: "Refresh a supported check, poll its refresh status until success, then call DescribeTrustedAdvisorCheckResult. Handle failed refreshes."
-    facts: [refresh, refresh-status, refresh-outcome, result]
-  - id: trusted-advisor-008
-    q: Can every Trusted Advisor check be refreshed with RefreshTrustedAdvisorCheck?
-    a: "No. Some automatically refreshed checks reject refresh requests."
-    trap: true
-    facts: [refresh]
   - id: trusted-advisor-009
     q: A team wants to investigate low-usage EC2 instances with Trusted Advisor before reducing costs. Which check and filter help?
     a: "Use Low Utilization Amazon EC2 Instances and filter check results by resource tag."
     facts: [low-utilization, tags]
-  - id: trusted-advisor-010
-    q: Which endpoint must an application use for Trusted Advisor operations in the AWS Support API?
-    a: "The US East (N. Virginia) endpoint."
-    facts: [api-endpoint]
   - id: trusted-advisor-011
     q: How can a team run a scheduled custom Trusted Advisor check notification?
     a: "Schedule a Lambda function to query check results through the Support API and publish a message to an SNS topic."
@@ -153,18 +136,10 @@ cards:
     q: How can automation select tagged low-utilization EC2 instances from Trusted Advisor events?
     a: "Route check events to Lambda, retrieve EC2 tags for the resource and apply the team's selection policy before acting."
     facts: [low-utilization, eventbridge, ec2-tags-api]
-  - id: trusted-advisor-013
-    q: Which security checks can a Basic Support customer use in Trusted Advisor?
-    a: "Examples include S3 bucket permissions, MFA on the root account and security groups with specific unrestricted ports."
-    facts: [basic-security-examples]
   - id: trusted-advisor-014
     q: Which AWS Trusted Advisor check finds EBS volumes that are unattached or barely used?
     a: Underutilized Amazon EBS volumes, a cost optimization check.
     facts: [ebs-underutilized]
-  - id: trusted-advisor-015
-    q: Which AWS Trusted Advisor category checks whether AWS CloudTrail is logging management events?
-    a: Security, through the AWS CloudTrail Management Event Logging check.
-    facts: [cloudtrail-check]
   - id: trusted-advisor-018
     q: "At what share of a service quota do Trusted Advisor service limit checks start warning?"
     a: "**80%** of the quota (yellow status)."

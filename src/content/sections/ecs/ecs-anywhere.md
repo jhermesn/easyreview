@@ -22,10 +22,6 @@ cards:
     a: "No. Service load balancing isn't supported for external instances, so they suit outbound or data processing workloads."
     trap: true
     facts: [outbound]
-  - id: ecs-074
-    q: How do Amazon ECS Anywhere external instances get AWS credentials?
-    a: "Through the SSM Agent, which holds IAM credentials rotated every 30 minutes."
-    facts: [ssm-agent]
 ---
 ECS Anywhere extends an ECS cluster to servers you own: the same task definitions and console, with the containers running on premises. [Amazon ECS clusters for external instances](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-anywhere.html)
 

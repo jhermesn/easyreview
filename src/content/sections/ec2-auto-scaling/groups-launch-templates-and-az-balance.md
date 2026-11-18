@@ -220,45 +220,18 @@ cards:
       zone.
     facts:
       - az-strategies
-  - id: ec2-auto-scaling-072
-    q: An EC2 Auto Scaling group must use its Capacity Reservations before balancing remaining instances across
-      Availability Zones. What does it configure?
-    a: Reservations then balanced, with a reservation ID or Capacity Reservation resource group as the target.
-    facts:
-      - reservation-strategy
   - id: ec2-auto-scaling-073
     q: An EC2 Auto Scaling group needs Spot and On-Demand instances across multiple instance types. What must its
       launch template include?
     a: Use a launch template with an AMI. Instance types can be specified when creating the group.
     facts:
       - template-requirements
-  - id: ec2-auto-scaling-074
-    q: An EC2 Auto Scaling launch template specifies tags, an instance profile and a private AMI owned by another
-      account. What should an administrator check after an authorization error?
-    a: Check ec2:RunInstances, ec2:CreateTags and iam:PassRole permissions, and ensure the AMI is shared with the
-      group account.
-    facts:
-      - template-permissions
-  - id: ec2-auto-scaling-075
-    q: An account cannot create another EC2 Auto Scaling group in a Region. Which default quota should it check?
-    a: The default is 500 groups per Region. Check Service Quotas for the account's actual limit and request an
-      increase if needed.
-    facts:
-      - group-quota
   - id: ec2-auto-scaling-076
     q: An EC2 Auto Scaling group switches to a new launch template, but existing instances still use the old AMI.
       How can the fleet be updated?
     a: Start an instance refresh. The updated template applies to new instances, not existing ones.
     facts:
       - template-update
-  - id: ec2-auto-scaling-077
-    q: EC2 Auto Scaling cannot launch instances with EBS volumes encrypted by a customer managed KMS key in
-      another account. What access must be configured?
-    a: Allow key use and grant creation in the key policy, then create a cross-account grant for the Auto Scaling
-      service-linked role.
-    facts:
-      - encrypted-volume-key
-      - encrypted-volume-cross-account
   - id: ec2-auto-scaling-078
     q: "An Auto Scaling group moved to a new launch template, and scale-in must remove instances from the old configuration first. Which termination policies target that?"
     a: "OldestLaunchTemplate, or OldestLaunchConfiguration for groups on launch configurations. Zone balance is still applied before either policy."

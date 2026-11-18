@@ -104,19 +104,6 @@ cards:
     facts:
       - cache
     trap: true
-  - id: route53-019
-    q: A team wants to test Route 53 failover while its primary endpoint remains healthy. Which health-check setting can make it appear unhealthy?
-    a: Invert the healthy primary check. Disabling a non-inverted check makes it healthy and will not trigger this failover.
-    facts:
-      - invert
-      - disabled
-    trap: true
-  - id: route53-042
-    q: Both Route 53 primary and secondary failover records have failed their health checks. Which record is returned?
-    a: The primary record. Route 53 does not suppress both answers.
-    facts:
-      - both-failed
-    trap: true
   - id: route53-043
     q: A Route 53 primary fails, and the secondary has no health check. Is Route 53 checking whether the secondary works before returning it?
     a: No. It returns the unchecked secondary even if the resource is unhealthy.

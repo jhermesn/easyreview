@@ -138,13 +138,6 @@ cards:
     facts:
       - tape-retrieve
       - tape-time
-  - id: storage-gateway-014
-    q: What are the per-volume size ranges for AWS Volume Gateway cached and stored volumes?
-    a: "Cached: 1 GiB to 32 TiB. Stored: 1 GiB to 16 TiB. Each mode supports up to 32 volumes per
-      gateway."
-    facts:
-      - cached-limit
-      - stored-limit
 ---
 Volume Gateway gives existing servers block storage, which they access as disks. Tape Gateway gives backup software a virtual tape library, a software replacement for tape drives and a tape changer. Both use iSCSI, a protocol that sends storage commands over an IP network.
 

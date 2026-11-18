@@ -94,12 +94,6 @@ cards:
     trap: true
     facts:
       - queue
-  - id: ec2-auto-scaling-038
-    q: An EC2 Auto Scaling target tracking policy has no warmup override or group default warmup. Which fallback applies?
-    a: The group default cooldown. Configure group default instance warmup to give policies a shared initialization period.
-    trap: true
-    facts:
-      - fallback
   - id: ec2-auto-scaling-039
     q: An EC2 Auto Scaling target tracking alarm enters INSUFFICIENT_DATA. Should missing data be treated as permission to scale in?
     a: No. Target tracking cannot scale until new metric data arrives.

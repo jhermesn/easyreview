@@ -98,20 +98,6 @@ cards:
       - space-metric
       - connections-metric
       - lag-metric
-  - id: rds-013
-    q: When can RDS storage autoscaling start a storage modification?
-    a: Free space must be at or below 10 percent for at least five minutes, prior storage optimization
-      must be complete, and fewer than four storage modifications must have occurred in the past 24
-      hours.
-    facts:
-      - trigger-space
-      - trigger-modifications
-  - id: rds-025
-    q: How does RDS storage autoscaling choose the size of a growth increment?
-    a: Use the greatest of 10 GiB, 10 percent of allocated storage, or predicted growth exceeding
-      allocated storage over seven hours based on the past hour of FreeStorageSpace.
-    facts:
-      - growth-increment
   - id: rds-026
     q: A large RDS data import fills the disk even though storage autoscaling is enabled. Can
       autoscaling guarantee the import will finish?
@@ -125,10 +111,6 @@ cards:
     q: "An RDS team needs to see how much CPU and memory each database process uses, in real time. Standard CloudWatch metrics are not enough. What should they turn on?"
     a: "Enhanced Monitoring. Its agent on the DB instance reports OS metrics and a process list (RDS child processes, RDS processes, OS processes) to CloudWatch Logs."
     facts: [enhanced-monitoring, em-process-list]
-  - id: rds-063
-    q: "Why can RDS CPU numbers from Enhanced Monitoring differ from the CloudWatch CPUUtilization metric?"
-    a: "CloudWatch measures from the hypervisor, Enhanced Monitoring from an agent inside the instance, and the hypervisor does a little work of its own."
-    facts: [enhanced-monitoring]
   - id: rds-064
     q: "Which RDS feature shows which SQL statements cause the most database load?"
     a: "CloudWatch Database Insights (built on Performance Insights), which filters DB load by waits, SQL statements, hosts or users."

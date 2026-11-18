@@ -76,18 +76,6 @@ cards:
     a: "No. Firehose does not support that CloudWatch Logs destination path; use the OpenSearch subscription filter."
     facts: [search-cloudwatch-firehose, search-subscription]
     trap: true
-  - id: opensearch-003
-    q: A team sends application records directly to Firehose for indexing in OpenSearch Service. What record format is required?
-    a: "UTF-8 encoded, single-line JSON objects. Firehose buffers records and sends bulk indexing requests."
-    facts: [search-firehose]
-  - id: opensearch-004
-    q: How many subscription filters can a CloudWatch Logs log group have, and can delivery contain duplicates?
-    a: "Up to five filters. Delivery is at least once, so duplicates can occur."
-    facts: [search-subscription-limits]
-  - id: opensearch-005
-    q: How long does CloudWatch Logs retry a retryable error when delivering a subscription to OpenSearch Service?
-    a: "Up to 24 hours. Non-retryable errors behave differently and can cause logs to be skipped."
-    facts: [search-retry]
   - id: opensearch-006
     q: A team wants to query archived logs directly in S3 using SQL rather than operate a search cluster. Which AWS service fits?
     a: "Amazon Athena. It runs interactive SQL queries directly against data in S3."

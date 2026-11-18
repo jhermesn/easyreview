@@ -110,19 +110,6 @@ cards:
     a: No. CloudHSM key stores support symmetric encryption KMS keys.
     trap: true
     facts: [custom-limits]
-  - id: cloudhsm-008
-    q: Which AWS CloudHSM interfaces help integrate existing cryptographic applications?
-    a: PKCS 11, JCE, CNG and KSP are supported interfaces.
-    facts: [apis]
-  - id: cloudhsm-009
-    q: A team needs non-FIPS algorithms in an existing AWS CloudHSM FIPS-mode cluster. Can it change the cluster mode?
-    a: No. Cluster mode cannot be changed after creation; non-FIPS mode supports the additional algorithms.
-    trap: true
-    facts: [mode-fixed, modes]
-  - id: cloudhsm-010
-    q: Which CloudHSM user does KMS use to manage key material in a CloudHSM key store?
-    a: A dedicated crypto user named `kmsuser`.
-    facts: [kmsuser]
   - id: cloudhsm-011
     q: "A CloudHSM user mistypes the password repeatedly. What happens to the account?"
     a: "After five incorrect login attempts the account is locked out, and an admin must reset its password. The keys are not deleted."

@@ -136,15 +136,6 @@
       ]
     },
     {
-      "id": "dynamodb-014",
-      "q": "A DynamoDB LSI query repeatedly fetches extra attributes from the table. How can the team reduce those reads?",
-      "a": "Project required attributes with INCLUDE or ALL. This trades index storage for fewer base table fetches.",
-      "facts": [
-        "projection",
-        "fetch"
-      ]
-    },
-    {
       "id": "dynamodb-015",
       "q": "How do DynamoDB keys and size limits constrain flexible item attributes?",
       "a": "Non-key attributes can vary. A simple key identifies by partition key; a composite key identifies by partition and sort key. Each item is at most 400 KB, including names and values.",
@@ -168,15 +159,6 @@
       "a": "A **sparse index**: set the index key attribute (such as OpenFlag) only on open orders. DynamoDB writes index entries only for items that have the index key attributes.",
       "facts": [
         "sparse-index"
-      ]
-    },
-    {
-      "id": "dynamodb-054",
-      "q": "How many local secondary indexes can a DynamoDB table have?",
-      "a": "**Five**, a fixed quota. LSIs are also created only with the table.",
-      "facts": [
-        "lsi-limit",
-        "lsi"
       ]
     }
   ]

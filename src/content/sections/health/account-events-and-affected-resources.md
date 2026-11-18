@@ -48,19 +48,6 @@ cards:
     q: How do public AWS Health events differ from account-specific events?
     a: Public events describe regional service availability; account-specific events concern the account and its resources.
     facts: [account-events, public-events]
-  - id: health-005
-    q: A team needs a central view of AWS Health events across an organization without using its management account for daily work. What should it use?
-    a: Enable organizational view and delegate administrator access to a member account. The organization must have all features enabled.
-    facts: [organization, organization-prerequisite]
-  - id: health-006
-    q: After remediation of a planned AWS Health lifecycle event, can an affected resource remain listed as pending?
-    a: Yes. Resource status usually refreshes every 24 hours, but can take up to 72 hours.
-    facts: [lifecycle-status]
-    trap: true
-  - id: health-007
-    q: How far back does the AWS Health account event log show events?
-    a: The past 90 days.
-    facts: [history]
   - id: health-014
     q: Where can a team find an AWS notice that an Amazon EKS cluster's Kubernetes version is approaching the end of standard support?
     a: AWS Health Dashboard. Amazon EKS sends a notice for accounts with affected clusters.

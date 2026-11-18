@@ -96,23 +96,6 @@ cards:
       - endpoint
       - versions
       - configuration
-  - id: aurora-005
-    q: How can an Aurora PostgreSQL global database enforce a recovery point threshold, and what availability tradeoff follows?
-    a: Set rds.global_db_rpo to at least 20 seconds. If every secondary exceeds it, primary commits block until one catches up. For two Regions, keep the secondary default until the failed Region is rebuilt.
-    facts:
-      - rpo-parameter
-      - rpo-block
-      - two-regions
-  - id: aurora-017
-    q: An Aurora Global Database team needs a lag metric before choosing a failover target. Which metric and units apply?
-    a: AuroraGlobalDBRPOLag in milliseconds for PostgreSQL and MySQL 3.04.0 or 2.12.0 and later. Older MySQL versions use AuroraGlobalDBReplicationLag.
-    facts:
-      - lag-metrics
-  - id: aurora-018
-    q: An Aurora Global Database has incompatible engine versions for managed failover. What recovery path remains?
-    a: "Manual failover: stop writes to the old primary, detach the least-lag secondary into a writable standalone cluster, redirect clients and rebuild the global topology."
-    facts:
-      - manual
   - id: aurora-019
     q: An Aurora cross-Region recovery design proposes native automated backup replication. Is that supported?
     a: No. Use copied cluster snapshots, supported AWS Backup copies or Global Database replication. A copied continuous backup is a snapshot recovery point without PITR.
@@ -138,17 +121,6 @@ cards:
     trap: true
     facts:
       - headless
-  - id: aurora-023
-    q: An Aurora Global Database uses the global writer endpoint. Is its unchanged hostname enough to restart writes immediately after failover?
-    a: No. Verify DNS changes and connectivity to the new primary before resuming writes. Stop old-primary writes to reduce split-brain risk because write fencing is best effort.
-    trap: true
-    facts:
-      - endpoint
-      - stop-writes
-  - id: aurora-044
-    q: "How many secondary Regions can an Aurora global database have, and how many readers can a secondary cluster run?"
-    a: "Up to 10 secondary Regions, each with up to 16 read-only instances."
-    facts: [global-limits]
 diagrams:
   - id: aurora-global-switchover
     title: Planned switchover synchronizes before changing the writer

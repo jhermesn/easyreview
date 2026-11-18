@@ -158,26 +158,6 @@ cards:
       - purpose
       - supported-applications
       - analyze
-  - id: app2container-003
-    q: An existing App2Container customer cannot install Docker on the application server. Where should
-      containerization run?
-    a: Use a worker machine on the same Linux or Windows platform that supports containers. Extract and
-      transfer the application archive for the build.
-    facts:
-      - worker
-      - extract
-  - id: app2container-004
-    q: What is the App2Container command order from discovery to optional deployment automation?
-    a: Initialize, inventory, analyze, containerize, generate app-deployment, then optionally generate
-      pipeline. A worker workflow can extract an archive before containerize.
-    facts:
-      - initialize
-      - inventory
-      - analyze
-      - extract
-      - containerize
-      - deploy-option
-      - pipeline-config
   - id: app2container-005
     q: Does App2Container migrate an application database into the generated container image?
     a: No. It does not containerize the database layer. Configure the application container to reach the
@@ -185,22 +165,6 @@ cards:
     trap: true
     facts:
       - database-excluded
-  - id: app2container-006
-    q: How do App2Container application mode and process mode differ?
-    a: Application mode selects required application files and dependencies. Process mode includes all
-      non-system files when broader dependency discovery is required.
-    facts:
-      - app-mode
-      - process-mode
-  - id: app2container-007
-    q: An App2Container team runs generate app-deployment without --deploy. Can it assume no AWS
-      resources are created?
-    a: No. Artifact generation can create an ECR repository and push an image. --deploy adds direct
-      deployment of the target stack.
-    trap: true
-    facts:
-      - generate-resources
-      - deploy-option
   - id: app2container-008
     q: Does the November 2025 App2Container availability change shut down every existing customer
       project?
@@ -211,14 +175,6 @@ cards:
       - closed-date
       - existing-customers
       - alternative
-  - id: app2container-009
-    q: Which App2Container output file configures container deployment and which configures an optional
-      delivery pipeline?
-    a: deployment.json configures generate app-deployment. pipeline.json is created during
-      deployment-artifact generation and consumed by generate pipeline.
-    facts:
-      - deploy-option
-      - pipeline-config
   - id: app2container-010
     q: Which platforms can host an App2Container-generated application, subject to support and customer
       eligibility?
@@ -228,11 +184,6 @@ cards:
       - targets
       - apprunner-linux
       - apprunner-date
-  - id: app2container-011
-    q: Does App2Container containerize test the generated container image by default?
-    a: Yes. It pre-validates the image. The --no-validate option bypasses that check.
-    facts:
-      - prevalidation
 ---
 
 AWS App2Container packages a supported application that is already running on a server into a container image without requiring source code. A container image is the packaged application and dependencies used to start a container. The [App2Container guide](https://docs.aws.amazon.com/app2container/latest/UserGuide/what-is-a2c.html#what-is-a2c) describes discovery, packaging, and generation of AWS deployment artifacts, meaning files used to build or deploy the application.

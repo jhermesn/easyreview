@@ -102,38 +102,6 @@ cards:
       - firewall-groups
       - firewall-sg-exclusion
       - firewall-acl-exclusion
-  - id: route53-056
-    q: A Route 53 DNS Firewall ALERT rule matches a query before a later BLOCK rule. Does evaluation
-      continue to the BLOCK rule?
-    a: No. ALERT permits the query, records an alert in configured Resolver logs, and stops inspection.
-      Put rules in the intended priority order.
-    trap: true
-    facts:
-      - firewall-alert
-      - firewall-order
-  - id: route53-057
-    q: A protected VPC receives no response from Route 53 DNS Firewall. What is the default result, and
-      how can availability be favored?
-    a: The default fail-closed mode returns SERVFAIL. Enable FirewallFailOpen to allow queries through
-      when the firewall does not respond.
-    facts:
-      - firewall-failclosed
-      - firewall-failopen
-  - id: route53-058
-    q: How do the Route 53 DNS Firewall NODATA, NXDOMAIN, and OVERRIDE block responses differ?
-    a: NODATA returns success without answer data. NXDOMAIN reports a nonexistent domain. OVERRIDE
-      returns a custom CNAME with a default TTL of zero.
-    facts:
-      - firewall-nodata
-      - firewall-nxdomain
-      - firewall-override
-  - id: route53-059
-    q: A Route 53 DNS Firewall rule lists example.com, but queries for its subdomains are still allowed.
-      What list entry is missing?
-    a: A matching subdomain entry, such as *.example.com for all subdomains. The parent domain entry
-      alone does not cover them.
-    facts:
-      - firewall-wildcard
   - id: route53-060
     q: A team adds only an approved-domain ALLOW list to Route 53 DNS Firewall and expects all other
       domains to be denied. What else is required?
@@ -142,14 +110,6 @@ cards:
     facts:
       - firewall-walled-garden
       - firewall-no-match
-  - id: route53-061
-    q: A team wants to test a Route 53 DNS Firewall blocking policy without denying matching queries.
-      What should it configure?
-    a: Use ALERT first and enable Resolver query logging for the VPC. Logs can go to CloudWatch Logs,
-      S3, or Firehose.
-    facts:
-      - firewall-test-alert
-      - firewall-log-destinations
   - id: route53-062
     q: A central security account must reuse Route 53 DNS Firewall rules across application accounts.
       Which sharing and enforcement options apply?

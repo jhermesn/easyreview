@@ -66,14 +66,6 @@ cards:
       - schedule-zones
       - rate-day
       - schedule-types
-  - id: eventbridge-034
-    q: An EventBridge Scheduler cron time occurs twice when clocks move backward. How many scheduled invocations
-      occur for that local time?
-    a: One. A repeated autumn time runs only once; a nonexistent spring time is skipped.
-    trap: true
-    facts:
-      - dst-once
-      - dst-skip
   - id: eventbridge-035
     q: A team needs EventBridge Scheduler failures retained after retries. Which configuration and permissions are
       needed?
@@ -90,13 +82,6 @@ cards:
     facts:
       - snapshot-target
       - legacy-rules
-  - id: eventbridge-037
-    q: Does disabling the EventBridge Scheduler flexible time window guarantee invocation at an exact second?
-    a: No. Scheduler still invokes with 60-second precision.
-    trap: true
-    facts:
-      - schedule-precision
-      - window
 ---
 EventBridge Scheduler invokes a target at a chosen time or on a recurring schedule. It supports local time zones and flexible delivery windows, so a job can follow a calendar or run within an acceptable interval.
 

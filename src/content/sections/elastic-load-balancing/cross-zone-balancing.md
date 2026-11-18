@@ -57,13 +57,6 @@ cards:
     facts:
       - scope
       - imbalance
-  - id: elastic-load-balancing-024
-    q: Can an ALB target group combine disabled cross-zone balancing with sticky sessions or Lambda
-      targets?
-    a: No. Neither target stickiness nor Lambda targets is supported with cross-zone balancing disabled.
-    facts:
-      - incompatible
-    trap: true
   - id: elastic-load-balancing-068
     q: "Turning on cross-zone load balancing adds data transfer charges for which load balancer: ALB or NLB?"
     a: "NLB. Traffic it sends across Availability Zones is billed as regional data transfer; ALB always balances across zones at no such charge."

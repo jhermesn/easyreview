@@ -135,14 +135,6 @@ cards:
     facts:
       - cache-origin-policy
       - cache-key-forwarded
-  - id: cloudfront-027
-    q: When should a CloudFront distribution use geographic restrictions rather than AWS WAF geo match?
-    a: Use CloudFront geographic restrictions for a distribution-wide country allowlist or denylist. Use WAF geo
-      match when geography must be combined with other conditions. CloudFront geo-blocked requests never reach
-      WAF.
-    facts:
-      - cache-geo
-      - cache-geo-waf
   - id: cloudfront-028
     q: A CloudFront origin returns different pages by language and records a tracing header. How should the team
       choose cache and origin request policy inputs?
@@ -151,15 +143,6 @@ cards:
     facts:
       - cache-vary
       - cache-origin-policy
-  - id: cloudfront-030
-    q: A team needs standard security headers on cached and uncached CloudFront responses without maintaining
-      function code. What should it attach?
-    a: A response headers policy on the cache behavior. It can add Strict-Transport-Security,
-      Content-Security-Policy and X-Frame-Options to both kinds of response.
-    facts:
-      - cache-response-policy
-      - cache-security-headers
-      - cache-response-hit
   - id: cloudfront-031
     q: A CloudFront application licenses only selected files to users in approved cities. How should it authorize
       downloads?
@@ -174,10 +157,6 @@ cards:
     q: "A dynamic site must stay in an on-premises data center in the US but load faster for new users in Asia within days. What fits?"
     a: "A CloudFront distribution with a custom origin that points to the on-premises web servers. A custom origin can be any publicly resolvable HTTP server."
     facts: [custom-origin-anywhere]
-  - id: cloudfront-053
-    q: "Can CloudFront speed up uploads to an S3 bucket, or only downloads?"
-    a: "Both. With all HTTP methods allowed, CloudFront forwards PUT and POST requests to the origin over the edge network. Only GET, HEAD and optionally OPTIONS responses are cached."
-    facts: [all-methods]
   - id: cloudfront-055
     q: "A small site wants a predictable CloudFront bill that does not grow during a traffic spike or attack, with WAF included. Which pricing option fits?"
     a: "A CloudFront flat-rate pricing plan (Free, Pro, Business or Premium): one monthly price with usage allowances, WAF and DDoS protection, and no overage charges."

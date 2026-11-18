@@ -69,32 +69,12 @@ cards:
       - alias-ttl
       - alias-price
     trap: true
-  - id: route53-026
-    q: Can a Route 53 private hosted zone alias to CloudFront and evaluate its target health?
-    a: No. Private zones cannot contain CloudFront aliases, and a CloudFront alias cannot enable Evaluate Target Health.
-    facts:
-      - cloudfront-private
-      - cloudfront-health
-    trap: true
-  - id: route53-039
-    q: A Route 53 ALB alias has Evaluate Target Health enabled. One associated target group has no registered targets. Can it make the alias unhealthy?
-    a: Yes. An empty target group is unhealthy even if another target group has healthy targets.
-    facts:
-      - lb-health
-      - empty-group
-    trap: true
   - id: route53-040
     q: A team needs a custom hostname and fixed network entry IPs for healthy application endpoints across Regions. What AWS combination fits?
     a: A Route 53 alias to a standard Global Accelerator. The accelerator routes traffic through its fixed IP entry points to healthy regional endpoints.
     facts:
       - accelerator-alias
       - accelerator-network
-  - id: route53-041
-    q: A team needs application-aware DNS failover for API Gateway. Is Evaluate Target Health sufficient?
-    a: Use a Route 53 health check that monitors application access. AWS says inherited target health for API Gateway provides no operational benefit for this purpose.
-    facts:
-      - service-health
-    trap: true
   - id: route53-069
     q: "Can a Route 53 alias record point at an EC2 instance public DNS name?"
     a: "No. EC2 instances are not alias targets; use an A record with the instance Elastic IP."

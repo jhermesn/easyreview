@@ -223,17 +223,6 @@ cards:
     facts:
       - proactive-api
       - proactive-no-enforcement
-  - id: config-024
-    q: Which AWS Config API sequence lets a pipeline assess proposed resource properties before
-      deployment?
-    a: Enable proactive mode on a supporting rule, call StartResourceEvaluation, then retrieve
-      GetResourceEvaluationSummary using the returned ResourceEvaluationId. The pipeline must
-      enforce any rejection.
-    trap: true
-    facts:
-      - proactive-api
-      - proactive-support
-      - proactive-no-enforcement
   - id: config-031
     q: A team needs AWS Config to find running EC2 instances launched from images outside an approved
       AMI ID list. Which rule and parameter fit?
@@ -248,14 +237,6 @@ cards:
       volumes, and its trigger is configuration changes.
     facts:
       - encrypted-volume
-  - id: config-033
-    q: Can the AWS Config cmk-backing-key-rotation-enabled rule enforce a chosen rotation age through a
-      parameter?
-    a: No. It checks whether automatic rotation is enabled, runs periodically, and has no input
-      parameters.
-    trap: true
-    facts:
-      - rotation-check
   - id: config-034
     q: A team wants AWS Config to detect when no CloudTrail trail is enabled. Which managed rule fits,
       and does it run on every change?
@@ -263,15 +244,6 @@ cards:
       every configuration change.
     facts:
       - trail-check
-  - id: config-035
-    q: A team uses AWS Config required-tags and wants to attach AWS-SetRequiredTags as remediation. Is
-      that supported?
-    a: No. Use a custom Systems Manager Automation document for this rule. required-tags checks up to
-      six tags and does not prevent creation of incorrectly tagged resources.
-    trap: true
-    facts:
-      - tag-check
-      - tag-remediation
   - id: config-036
     q: A security team wants AWS Config managed and custom rule evaluations alongside Security Hub CSPM
       findings. Which integration is needed?
@@ -281,21 +253,6 @@ cards:
     facts:
       - security-hub-integration
       - security-hub-exclusions
-  - id: config-037
-    q: What do COMPLIANT, NON_COMPLIANT, ERROR, and NOT_APPLICABLE mean for an AWS Config rule?
-    a: Pass, fail, invalid rule parameters, and rule logic that does not apply to the resource,
-      respectively.
-    facts:
-      - rule-results
-  - id: config-047
-    q: A custom AWS Config rule must require EC2 placement on Dedicated Hosts. Is placement tenancy
-      dedicated sufficient?
-    a: No. Check placement tenancy for host. dedicated and host are different EC2 tenancy values;
-      launching on a Dedicated Host uses Tenancy=host.
-    trap: true
-    facts:
-      - host-tenancy
-      - tenancy-values
   - id: config-049
     q: Which AWS Config managed rules check S3 buckets for public read access, public write access, or public bucket-level settings with an exclusion list?
     a: Use s3-bucket-public-read-prohibited, s3-bucket-public-write-prohibited, and s3-bucket-level-public-access-prohibited, respectively. The first two check Block Public Access, bucket policy, and bucket ACL; the last accepts excludedPublicBuckets.

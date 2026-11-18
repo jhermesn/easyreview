@@ -83,16 +83,6 @@ cards:
       - emf
       - emf-permissions
       - emf-cardinality
-  - id: cloudwatch-035
-    q: How do CloudWatchAgentServerPolicy and CloudWatchAgentAdminPolicy differ for agent configuration
-      in Parameter Store?
-    a: ServerPolicy can read AmazonCloudWatch-* parameters and publish telemetry. AdminPolicy also
-      writes those parameters. EC2 can use instance profile credentials; on-premises agents can use
-      a shared credential profile.
-    facts:
-      - agent-server-policy
-      - agent-admin-policy
-      - agent-credentials
   - id: cloudwatch-048
     q: A team wants centrally managed CloudWatch agent configuration across many servers. Where can it
       store the configuration?
@@ -109,11 +99,6 @@ cards:
     facts:
       - emf
       - emf-cardinality
-  - id: cloudwatch-112
-    q: "An application on EC2 writes log files that must end up in Amazon Data Firehose. Can the CloudWatch agent deliver them straight to Firehose?"
-    a: "No. The agent stores the logs it collects in CloudWatch Logs. Deliver them onward with a subscription filter on the log group."
-    facts:
-      - agent-logs-store
   - id: cloudwatch-121
     q: "EC2 instances fail for lack of swap space. How do you monitor available swap on each instance?"
     a: "Install the CloudWatch agent and collect its swap metrics (for example swap_used_percent); EC2 does not report swap by default."

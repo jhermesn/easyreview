@@ -125,32 +125,6 @@ cards:
     facts:
       - codedeploy
       - email-confirm
-  - id: sns-010
-    q: Which Auto Scaling notification types send successful launch and termination events to SNS?
-    a: autoscaling:EC2_INSTANCE_LAUNCH and autoscaling:EC2_INSTANCE_TERMINATE. Failure variants end in _ERROR.
-    facts:
-      - scaling-success
-      - scaling-failure
-  - id: sns-011
-    q: A Systems Manager operator needs SNS notifications for failed commands on individual nodes. What should be
-      configured?
-    a: Run Command SNS status notifications at invocation level, selecting the failure states, with an SNS
-      Standard topic.
-    facts:
-      - commands
-  - id: sns-012
-    q: A team needs SNS notifications for Organizations account activity or Trusted Advisor check changes. Where
-      should the routing be configured?
-    a: In us-east-1. Use Organizations EventBridge rules targeting SNS, or CloudWatch alarms on Trusted Advisor
-      metrics with an SNS action.
-    facts:
-      - organization
-      - advisor
-  - id: sns-013
-    q: Aurora event notifications must reach an SNS topic. What access policy is required at the destination?
-    a: The SNS topic policy must allow the RDS event service to publish the database event notifications.
-    facts:
-      - database
   - id: sns-026
     q: An SNS Standard subscriber receives a duplicate message and another message out of publication order. Is
       this outside the topic delivery contract?

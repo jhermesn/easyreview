@@ -93,27 +93,11 @@ diagrams:
       - Enhanced VPC routing sends COPY or UNLOAD traffic through the VPC.
       - An S3 endpoint provides a path to a bucket in the same Region.
 cards:
-  - id: redshift-001
-    q: Which AWS service provides a managed SQL data warehouse for analytics?
-    a: Amazon Redshift provides a managed cloud warehouse for SQL and business intelligence tools.
-    facts: [warehouse-purpose]
-  - id: redshift-002
-    q: How can Amazon Redshift query external files in S3 directly?
-    a: Use Redshift Spectrum with an external schema, an external table, and permission to access the catalog and S3.
-    facts: [warehouse-spectrum, warehouse-spectrum-setup, warehouse-spectrum-role]
-  - id: redshift-003
-    q: A team must control Redshift COPY and UNLOAD network traffic through its VPC. What should it enable?
-    a: Enhanced VPC routing, then configure a network path to the data resource.
-    facts: [warehouse-routing, warehouse-routing-path]
   - id: redshift-004
     q: Does Redshift enhanced VPC routing apply to Redshift Spectrum queries?
     a: No. Enhanced VPC routing cannot be used with Redshift Spectrum.
     facts: [warehouse-spectrum-routing]
     trap: true
-  - id: redshift-005
-    q: A Redshift cluster needs to load large S3 datasets into warehouse tables. Which command loads data in parallel?
-    a: COPY, with permission for Redshift to access the S3 data.
-    facts: [warehouse-copy]
   - id: redshift-006
     q: What Region constraint applies to a Redshift Spectrum cluster and the S3 data files it queries?
     a: The cluster and S3 data files must be in the same AWS Region.
@@ -134,10 +118,6 @@ cards:
     q: "How often does Redshift take automated snapshots by default?"
     a: "About every eight hours or after 5 GB per node of data changes, whichever comes first."
     facts: [auto-snapshots]
-  - id: redshift-011
-    q: "A Redshift data warehouse must survive an Availability Zone failure without a restore. What deployment fits?"
-    a: "A Multi-AZ deployment on RA3 nodes."
-    facts: [multi-az]
 ---
 Amazon Redshift is a managed cloud data warehouse for SQL analytics and business intelligence. A data warehouse is a store organized for analyzing data.
 

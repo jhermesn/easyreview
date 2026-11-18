@@ -170,16 +170,6 @@ cards:
       - group-members
       - group-not-principal
       - group-no-nesting
-  - id: iam-029
-    q: A security team wants stolen EC2 role credentials rejected outside their original VPC and private address.
-      Which IAM context keys should it compare?
-    a: Compare aws:SourceVpc with aws:Ec2InstanceSourceVpc and aws:VpcSourceIp with
-      aws:Ec2InstanceSourcePrivateIPv4. Scope the restriction to EC2 credentials and account for forwarded
-      service calls.
-    facts:
-      - credential-vpc
-      - credential-ip
-      - credential-scope
   - id: iam-030
     q: Why does enabling MFA on the AWS root user not enable MFA for every IAM user?
     a: Root and IAM users have separate MFA configurations. Each identity needs its own additional authentication

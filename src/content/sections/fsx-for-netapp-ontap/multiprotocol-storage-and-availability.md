@@ -87,10 +87,6 @@ cards:
     q: An application needs shared SMB and NFS access to storage across Availability Zones. Which FSx for NetApp ONTAP deployment fits?
     a: Multi-AZ. It supports both protocols and synchronously replicates writes to a standby server in another Availability Zone.
     facts: [shared-volume, multi-az]
-  - id: fsx-for-netapp-ontap-003
-    q: How does an EC2 client in the same VPC and account mount an FSx for NetApp ONTAP volume over NFS or SMB?
-    a: Use the storage virtual machine DNS name and the volume junction for NFS or the SMB share for SMB.
-    facts: [svm-endpoints, mount]
   - id: fsx-for-netapp-ontap-004
     q: What latency should a team expect from FSx for NetApp ONTAP SSD storage and capacity pool storage?
     a: SSD file operations have sub-millisecond latency; capacity pool storage has tens of milliseconds of latency.
@@ -99,11 +95,6 @@ cards:
     q: A team needs cross-Region disaster recovery for an FSx for NetApp ONTAP volume. Which replication feature should it use?
     a: NetApp SnapMirror volume replication. It can schedule replication to a file system in another Region.
     facts: [snapmirror, asynchronous]
-  - id: fsx-for-netapp-ontap-006
-    q: Does FSx for NetApp ONTAP support synchronous SnapMirror replication between Regions?
-    a: No. Synchronous SnapMirror is not supported. Use scheduled volume-level replication.
-    trap: true
-    facts: [asynchronous, snapmirror]
   - id: fsx-for-netapp-ontap-007
     q: What happens when an FSx for NetApp ONTAP Multi-AZ active file server fails?
     a: FSx automatically fails over to the standby. Failover typically completes in less than 60 seconds.
@@ -112,10 +103,6 @@ cards:
     q: What must an iSCSI client configure for transparent failover on FSx for NetApp ONTAP?
     a: Client-side multipathing, so the client can switch between file servers.
     facts: [client-failover]
-  - id: fsx-for-netapp-ontap-009
-    q: A client in a peered VPC needs NFS access to an FSx for NetApp ONTAP Multi-AZ file system without a cache. What routing component is required?
-    a: AWS Transit Gateway, because Multi-AZ NFS endpoints use floating IP addresses.
-    facts: [multi-az-routing]
 ---
 Amazon FSx for NetApp ONTAP provides managed shared storage for applications that need NetApp features and multiple access protocols. A storage virtual machine (SVM) provides access endpoints for its volumes, which are isolated containers for files, directories or block storage units.
 

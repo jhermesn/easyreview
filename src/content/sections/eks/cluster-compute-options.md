@@ -131,14 +131,6 @@ cards:
     a: Use suitable EC2 nodes. Fargate supports neither GPUs nor privileged containers nor DaemonSets.
     facts:
       - fargate-limits
-  - id: eks-008
-    q: EKS Fargate Pods remain Pending after a profile is created. What selection settings should the
-      team check?
-    a: Check that the Pods match a profile selector namespace and any required labels, and that the
-      profile uses private subnets.
-    facts:
-      - fargate-selector
-      - fargate-subnets
   - id: eks-009
     q: An EKS team disables public API access. Where must its kubectl client run?
     a: Inside the cluster VPC or a connected network, with access allowed by the cluster security group.
@@ -162,56 +154,6 @@ cards:
     facts:
       - driver-permissions
       - driver-role
-  - id: eks-012
-    q: Which EKS StorageClass provisioners distinguish Auto Mode EBS storage from the standard EBS CSI
-      driver?
-    a: Auto Mode uses `ebs.csi.eks.amazonaws.com`; the standard driver uses `ebs.csi.aws.com`. They
-      manage separate volumes.
-    facts:
-      - auto-storage-class
-  - id: eks-053
-    q: An EKS managed node group has scarce GPU capacity and cannot temporarily add nodes during an
-      update. Which update strategy fits?
-    a: Use the minimal strategy, which terminates old nodes before creating replacements. The default
-      strategy creates replacements first to maintain capacity.
-    facts:
-      - update-strategies
-  - id: eks-054
-    q: An EKS managed node group update fails with PodEvictionFailure because a Pod disruption budget
-      blocks eviction. What should the operator consider?
-    a: Review the budget and workload availability before retrying. A forced update deletes Pods if
-      eviction cannot complete within 15 minutes.
-    facts:
-      - update-eviction
-      - update-pdb
-  - id: eks-055
-    q: What is the default maximum unavailable node count during an EKS managed node group update?
-    a: One node. The configured maximum unavailable is capped at 100 nodes.
-    facts:
-      - update-max-unavailable
-  - id: eks-056
-    q: An EKS application requires hardware isolation between Pods sharing an EC2 node. What option
-      provides this on supported instances?
-    a: Use isolated or confidential Pods with the appropriate runtimeClassName. Each runs in a Nitro
-      Sandbox; Kubernetes 1.36 or later is required.
-    facts:
-      - sandbox-pods
-      - sandbox-date
-  - id: eks-057
-    q: An EKS Auto Mode cluster needs different security groups for Pods sharing one node so only
-      selected workloads can connect to an RDS database. What should the team configure?
-    a: Use an Auto Mode SecurityGroupPolicy selecting those Pods. Unmatched Pods keep node security
-      groups. This feature requires Kubernetes 1.36 or later.
-    facts:
-      - auto-pod-sg
-      - auto-pod-sg-date
-  - id: eks-058
-    q: Can an EKS team reuse a VPC CNI SecurityGroupPolicy manifest unchanged for EKS Auto Mode Pods?
-    a: No. Auto Mode uses eks.amazonaws.com/v1 and its policy spec differs from the VPC CNI
-      vpcresources.k8s.aws/v1beta1 resource.
-    trap: true
-    facts:
-      - auto-pod-sg-api
   - id: eks-060
     q: "Kubernetes Secrets on an EKS cluster must be encrypted with a key the company controls and audits in CloudTrail. What should they configure?"
     a: "EKS envelope encryption with their own customer managed KMS key. EKS already envelope-encrypts API data with an AWS owned key by default."

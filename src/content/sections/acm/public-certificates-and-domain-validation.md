@@ -225,29 +225,6 @@ cards:
       - public-dns
       - dns
     trap: true
-  - id: acm-008
-    q: A CloudFront distribution tenant needs an ACM wildcard certificate. Can HTTP validation issue it?
-    a: No. HTTP validation is available through CloudFront Distribution Tenants but does not support
-      wildcards. Use DNS validation for a wildcard certificate.
-    facts:
-      - http-tenants
-      - http-no-wildcard
-      - dns
-    trap: true
-  - id: acm-009
-    q: An existing email-validated ACM certificate must move to DNS validation while preserving ALB
-      references to its ARN. What operation fits?
-    a: Use `UpdateCertificateOptions` to switch to DNS validation, then add the CNAME records within `72
-      hours`. AWS introduced this in August 2026 without changing the ARN.
-    facts:
-      - switch-validation
-      - switch-window
-  - id: acm-010
-    q: What validity period applies to newly issued or renewed ACM public certificates from February
-      2026?
-    a: A maximum of `198 days`, effective February 18, 2026.
-    facts:
-      - current-validity
   - id: acm-021
     q: "Third-party certificates imported into ACM must trigger an alert 30 days before they expire. What fits with the least effort?"
     a: "The AWS Config managed rule acm-certificate-expiration-check with daysToExpiration set to 30, sending noncompliance to SNS. ACM never renews imported certificates, so they need this watch. A CloudWatch alarm on DaysToExpiry also works."
