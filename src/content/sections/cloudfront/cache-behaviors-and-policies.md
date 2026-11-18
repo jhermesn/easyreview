@@ -100,6 +100,15 @@ facts:
   - id: flat-rate-plans
     text: "CloudFront flat-rate pricing plans (Free, Pro, Business and Premium) bundle the CDN with AWS WAF, DDoS protection, a TLS certificate and S3 storage credits for one monthly price per distribution, with usage allowances and no overage charges."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/flat-rate-pricing-plan.html#flat-rate-pricing-plan
+  - id: default-root-object
+    text: "A default root object is the object CloudFront returns when a viewer requests the root URL of the distribution, which avoids exposing a listing of its contents."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html
+  - id: custom-error-pages
+    text: "CloudFront can return a custom error page for chosen HTTP status codes; you pay standard charges for the error page instead of the requested object."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GeneratingCustomErrorResponses.html
+  - id: price-class
+    text: "A price class other than PriceClass_All limits which edge locations serve a distribution to lower cost; viewers in excluded regions may see slower performance."
+    source: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DistributionConfig.html
 cards:
   - id: cloudfront-001
     q: What decides which CloudFront origin and settings handle a request?
@@ -173,6 +182,14 @@ cards:
     q: "A small site wants a predictable CloudFront bill that does not grow during a traffic spike or attack, with WAF included. Which pricing option fits?"
     a: "A CloudFront flat-rate pricing plan (Free, Pro, Business or Premium): one monthly price with usage allowances, WAF and DDoS protection, and no overage charges."
     facts: [flat-rate-plans]
+  - id: cloudfront-059
+    q: "A company serves viewers mostly in North America and Europe and wants to lower CloudFront delivery costs, accepting slower access elsewhere. Which setting fits?"
+    a: "A cheaper **price class** (such as Price Class 100). It limits the edge locations used; viewers in excluded regions may see more latency."
+    facts: [price-class]
+  - id: cloudfront-060
+    q: "Requests to https://d111111abcdef8.cloudfront.net/ should return index.html instead of an error or a listing. Which CloudFront setting fits?"
+    a: "The **default root object**, set to index.html."
+    facts: [default-root-object]
 ---
 CloudFront delivers web content through edge locations, which are servers that keep copies near viewers, the clients requesting content. An origin holds the original content. A distribution is the configuration that connects those origins to viewers; its cache behaviors are ordered rules for different URL paths.
 

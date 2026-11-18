@@ -39,6 +39,18 @@ facts:
   - id: log-export
     text: "RDS can publish database logs, such as the MySQL audit, error, general and slow query logs, to CloudWatch Logs, where they are kept until a retention period is set."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Procedural.UploadtoCloudWatch.html#rds-integration-cw-logs
+  - id: public-access
+    text: "Every DB instance has a private IP address in its VPC. To make it publicly accessible, every subnet in its DB subnet group must be public and the VPC needs DNS hostnames and DNS resolution turned on."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html
+  - id: auto-minor-upgrade
+    text: "RDS major version upgrades are always started manually; minor version upgrades can be applied manually or automatically by turning on Auto minor version upgrade."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Upgrading.html
+  - id: tde
+    text: "RDS for Oracle and RDS for SQL Server also support Transparent Data Encryption (TDE), an engine feature with its own keys that can run alongside RDS encryption at rest."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
+  - id: cross-region-key
+    text: "KMS keys belong to one Region, so copying an encrypted DB snapshot or creating an encrypted read replica in another Region requires a KMS key in the destination Region."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
 cards:
   - id: rds-048
     q: A production RDS for MySQL instance was created without encryption. Compliance now requires encryption at rest. What is the supported path?
@@ -83,6 +95,19 @@ cards:
     q: "Auditors need RDS for MySQL audit logs searchable and retained for a year. What do you configure?"
     a: "Publish the audit log to CloudWatch Logs and set the log group retention to a year."
     facts: [log-export]
+  - id: rds-076
+    q: "An RDS DB instance was created with Public access set to Yes, but its DB subnet group contains private subnets. Can clients on the internet reach it?"
+    a: "No. **Every** subnet in the DB subnet group must be public for a publicly accessible DB instance, and the VPC needs DNS hostnames and DNS resolution turned on."
+    trap: true
+    facts: [public-access]
+  - id: rds-077
+    q: "A company runs RDS for SQL Server and its auditors require the database engine itself to encrypt data files. Which feature fits?"
+    a: "**Transparent Data Encryption (TDE)**, available on RDS for Oracle and RDS for SQL Server.\nIt uses its own keys and can run alongside RDS encryption at rest."
+    facts: [tde]
+  - id: rds-078
+    q: "Copying an encrypted RDS snapshot from us-east-1 to eu-west-1 fails when the team selects the source KMS key. What is required?"
+    a: "A **KMS key in the destination Region** (eu-west-1). KMS keys are Regional, so a cross-Region copy or encrypted read replica must use a key from the target Region."
+    facts: [cross-region-key]
 ---
 RDS security comes down to three questions: is data encrypted at rest (decided at creation), is the connection encrypted (SSL/TLS), and how do clients authenticate (passwords or IAM tokens). Maintenance behavior on Multi-AZ is the other common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
 

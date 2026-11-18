@@ -84,6 +84,12 @@ facts:
   - id: size-constraint
     text: "An AWS WAF size constraint statement compares the byte size of a request component, such as the query string or body, with a number you set, without inspecting its contents."
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-size-constraint-match.html#waf-rule-statement-type-size-constraint-match
+  - id: wcu
+    text: "A web ACL can use up to 5,000 WAF capacity units (WCUs); its base price includes 1,500 WCUs and higher usage costs extra. A rule group can have at most 5,000 WCUs."
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/aws-waf-capacity-units.html
+  - id: custom-block
+    text: "A WAF Block action can return a custom response code, headers and body in place of the default 403 Forbidden response."
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html
 diagrams:
   - id: waf-rule-evaluation
     title: Evaluation when no rule terminates
@@ -228,6 +234,10 @@ cards:
     q: "A web app must reject requests whose query string is longer than 100 bytes. Which AWS WAF rule statement fits?"
     a: "A size constraint statement on the query string with a greater-than comparison."
     facts: [size-constraint]
+  - id: waf-026
+    q: "Blocked requests must get a branded HTML page with status 429 instead of the default AWS WAF response. What should the team configure?"
+    a: "A **custom response** on the Block action: status code, headers and body. It replaces the default 403 Forbidden."
+    facts: [custom-block]
 ---
 AWS WAF filters web requests using a web access control list (web ACL), also called a protection pack. A web ACL contains rules associated with a supported application endpoint. It lets you choose which matching requests to allow, block, count or challenge.
 

@@ -60,6 +60,9 @@ facts:
   - id: dhcp-immutable
     text: "A DHCP option set cannot be modified; to change DNS, NTP or other options, create a new set and associate it with the VPC."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/DHCPOptionSet.html
+  - id: ipam-share
+    text: "An IPAM pool can be shared with other accounts through AWS RAM so they allocate CIDRs for their VPCs from it; sharing requires integrating IPAM with AWS Organizations."
+    source: https://docs.aws.amazon.com/vpc/latest/ipam/share-pool-ipam.html
 cards:
   - id: vpc-036
     q: How many usable IPv4 addresses does a /24 subnet in a VPC have, and why?
@@ -120,6 +123,10 @@ cards:
     q: "What CIDR and subnet size does a default VPC use?"
     a: "172.31.0.0/16, with a /20 default subnet in each Availability Zone."
     facts: [default-vpc-components]
+  - id: vpc-068
+    q: "A network team wants every account in an AWS Organization to allocate non-overlapping VPC CIDRs from a central address plan. Which design fits?"
+    a: "**VPC IPAM integrated with AWS Organizations**, with IPAM pools shared through **AWS RAM**. Accounts allocate VPC CIDRs from the shared pool."
+    facts: [ipam-share, ipam]
 ---
 VPC addressing mistakes are hard to fix later, and NAT choices trade operations work for flexibility. [VPC CIDR blocks](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html)
 

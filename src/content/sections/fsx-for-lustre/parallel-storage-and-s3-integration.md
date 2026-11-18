@@ -51,6 +51,18 @@ facts:
   - id: task-conflict
     text: Automatic export and export data repository tasks cannot run at the same time.
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-changed-data-meta-dra.html#export-changed-data-meta-dra
+  - id: lazy-load
+    text: "With a linked S3 repository, FSx for Lustre loads a file content from S3 the first time an application accesses it; later reads come from the file system."
+    source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/importing-files-dra.html
+  - id: it-no-s3-link
+    text: "FSx for Lustre Intelligent-Tiering file systems cannot link to an S3 data repository."
+    source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/fsx-data-repositories.html
+  - id: backup-scope
+    text: "FSx for Lustre backups are supported only on persistent file systems not linked to S3; scratch and S3-linked file systems have no backups."
+    source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html
+  - id: hybrid-access
+    text: "On-premises clients can mount FSx for Lustre over Direct Connect or Site-to-Site VPN."
+    source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/fsx-on-premises.html
 diagrams:
   - id: lustre-s3-transfer
     title: Transfer between S3 and Lustre
@@ -106,6 +118,15 @@ cards:
     q: What links an FSx for Lustre directory to an S3 bucket or prefix, and how many links are supported?
     a: A data repository association. A file system can have up to eight.
     facts: [association]
+  - id: fsx-for-lustre-011
+    q: "An HPC job starts on FSx for Lustre linked to a 200 TB S3 bucket. Does the file system copy all object data before the job can read files?"
+    a: "No. Metadata is imported, and **file content loads from S3 on first access**. Later reads come from the file system."
+    facts: [lazy-load]
+  - id: fsx-for-lustre-012
+    q: "A team needs FSx backups for a scratch FSx for Lustre file system used by a nightly job. Is that supported?"
+    a: "No. Backups work only on **persistent** file systems **not linked to S3**. Keep durable data in S3 or use a persistent deployment."
+    trap: true
+    facts: [backup-scope]
 ---
 Amazon FSx for Lustre provides a managed high-performance file system for workloads such as machine learning and high-performance computing. Linux applications can use its POSIX file interface, a standard way to access files.
 

@@ -30,6 +30,12 @@ facts:
   - id: openapi-import
     text: "API Gateway can create or update a REST API by importing an OpenAPI 2.0 or 3.0 definition file, and can export an API as an OpenAPI definition."
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api.html#api-gateway-import-api
+  - id: http-api-cors
+    text: "When CORS is configured on an HTTP API, API Gateway answers preflight OPTIONS requests automatically, even without an OPTIONS route."
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html
+  - id: proxy-502
+    text: "With a Lambda proxy integration, a function response that is not in the required format makes API Gateway return 502 Bad Gateway."
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
 cards:
   - id: api-gateway-040
     q: Which REST API integration type should you use to call a Lambda function with the least setup?
@@ -60,6 +66,14 @@ cards:
     q: "A team keeps its REST API definition in an OpenAPI file in Git. How does it create the API in API Gateway from that file?"
     a: "Import the OpenAPI 2.0 or 3.0 definition into API Gateway, which builds or updates the REST API from it."
     facts: [openapi-import]
+  - id: api-gateway-049
+    q: "A REST API with Lambda proxy integration returns 502 Bad Gateway although the function runs without errors. What is the likely cause?"
+    a: "The function returns a response **not in the proxy integration format** (statusCode, headers, body). API Gateway answers 502 when it cannot use the output."
+    facts: [proxy-502]
+  - id: api-gateway-050
+    q: "A browser app on another origin calls an API Gateway HTTP API and fails on the preflight request. What fixes it?"
+    a: "**Configure CORS on the HTTP API.** API Gateway then answers preflight OPTIONS requests automatically and adds the CORS headers."
+    facts: [http-api-cors]
 ---
 An integration connects an API method to its backend. The integration type decides how much mapping you configure, and API Gateway metrics show where time and cache hits go. [Choose an API Gateway API integration type](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html)
 

@@ -45,6 +45,15 @@ facts:
   - id: dfs-support
     text: "FSx for Windows File Server supports DFS Namespaces on every deployment type, but DFS Replication only on Single-AZ 1 file systems; Multi-AZ file systems provide their own cross-AZ redundancy."
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html#deployment-type-features-summary
+  - id: no-ad-connector
+    text: "FSx for Windows File Server does not support AD Connector or Simple AD; join it to AWS Managed Microsoft AD or a self-managed Active Directory."
+    source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/aws-ad-integration-fsxW.html
+  - id: dedup
+    text: "FSx for Windows File Server Data Deduplication lowers storage costs by storing duplicated portions of a dataset only once."
+    source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-data-dedup.html
+  - id: smb-encryption
+    text: "You can require SMB encryption for the whole file system or for selected file shares, so only clients that support SMB encryption can connect."
+    source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/encryption-in-transit.html
 diagrams:
   - id: fsx-windows-multi-az
     title: Multi-AZ failover
@@ -99,6 +108,15 @@ cards:
     q: "An on-premises DFS Replication (DFSR) setup keeps files in sync across several Windows servers. What replaces it on AWS?"
     a: "Amazon FSx for Windows File Server. A Multi-AZ file system gives built-in redundancy across AZs, and DFS Namespaces can group shares; DFS Replication itself is only supported on Single-AZ 1."
     facts: [dfs-support]
+  - id: fsx-for-windows-011
+    q: "A company plans to join FSx for Windows File Server to its on-premises Active Directory through an existing AD Connector. Will that work?"
+    a: "No. FSx for Windows **does not support AD Connector or Simple AD**. Join it to AWS Managed Microsoft AD or directly to the self-managed AD."
+    trap: true
+    facts: [no-ad-connector]
+  - id: fsx-for-windows-012
+    q: "An FSx for Windows File Server share holds many near-identical user files, and storage costs keep growing. Which feature reduces them?"
+    a: "**Data Deduplication**. It stores duplicated portions of the data only once."
+    facts: [dedup]
 ---
 
 Amazon FSx for Windows File Server provides managed Windows file servers for shared files. Clients use Server Message Block (SMB), a network file-sharing protocol, and Microsoft Active Directory identifies users.

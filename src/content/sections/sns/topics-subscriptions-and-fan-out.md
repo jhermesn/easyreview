@@ -70,6 +70,12 @@ facts:
   - id: two-way-sms
     text: "With two-way SMS, AWS End User Messaging SMS receives incoming replies from customers, which can feed services such as Lambda or Amazon Lex."
     source: https://docs.aws.amazon.com/sms-voice/latest/userguide/two-way-sms.html#two-way-sms
+  - id: max-message-size
+    text: "SNS topics accept messages up to 256 KiB by default; the MaximumMessageSize topic attribute raises this to 1 MiB, and topics above 256 KiB support Firehose, SQS and Lambda subscriptions."
+    source: https://docs.aws.amazon.com/sns/latest/dg/large-message-payloads.html
+  - id: fifo-dedup
+    text: "An SNS FIFO topic accepts but does not deliver a message whose deduplication ID was already published within the five-minute deduplication interval."
+    source: https://docs.aws.amazon.com/sns/latest/dg/fifo-message-dedup.html
 cards:
   - id: sns-003
     q: What do an Amazon SNS topic and subscription represent?
@@ -167,6 +173,10 @@ cards:
     q: "A marketing campaign must send SMS confirmations to subscribers and process their replies. Which service is built for that?"
     a: "AWS End User Messaging SMS (formerly Amazon Pinpoint SMS), using a two-way SMS-enabled number."
     facts: [end-user-messaging, two-way-sms]
+  - id: sns-031
+    q: "A publisher must send 700 KiB messages through an SNS topic to SQS and Lambda subscribers. Is S3 offloading required?"
+    a: "Not necessarily. Set the topic **MaximumMessageSize** attribute, up to **1 MiB**. The default is 256 KiB, and larger topics support Firehose, SQS and Lambda subscriptions."
+    facts: [max-message-size]
 diagrams:
   - id: sns-independent-queues
     title: One publication, separate subscriber queues

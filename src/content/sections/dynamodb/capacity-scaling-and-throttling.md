@@ -83,6 +83,26 @@
       "id": "partition-key-uniform",
       "text": "DynamoDB uses provisioned throughput best when the workload is spread across many distinct partition key values; a key with few values, such as a creation date, concentrates traffic on a few partitions.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-uniform-load.html#bp-partition-key-uniform-load"
+    },
+    {
+      "id": "on-demand-default",
+      "text": "On-demand is the default and recommended throughput mode for most DynamoDB workloads.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/capacity-mode.html"
+    },
+    {
+      "id": "mode-switch",
+      "text": "A table can switch from provisioned to on-demand up to four times in a rolling 24-hour window; switching from on-demand to provisioned is allowed at any time.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html"
+    },
+    {
+      "id": "burst-capacity",
+      "text": "DynamoDB retains up to five minutes (300 seconds) of unused read and write capacity that short bursts can consume.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/burst-adaptive-capacity.html"
+    },
+    {
+      "id": "encryption-default",
+      "text": "DynamoDB encrypts all table data at rest; the default AWS owned key has no extra charge, while AWS managed and customer managed keys incur KMS charges.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html"
     }
   ],
   "cards": [
@@ -179,6 +199,30 @@
       "a": "Choose a high-cardinality partition key, one with many distinct values, so requests spread evenly across partitions.",
       "facts": [
         "partition-key-uniform"
+      ]
+    },
+    {
+      "id": "dynamodb-050",
+      "q": "A team switched a DynamoDB table from provisioned to on-demand and back several times today; the next switch to on-demand is rejected. Why?",
+      "a": "Provisioned-to-on-demand switches are limited to **four per rolling 24 hours**. Switching from on-demand to provisioned has no such limit.",
+      "facts": [
+        "mode-switch"
+      ]
+    },
+    {
+      "id": "dynamodb-051",
+      "q": "A provisioned DynamoDB table briefly exceeds its write capacity for a few seconds without throttling. Which feature explains it?",
+      "a": "**Burst capacity**: DynamoDB keeps up to **300 seconds** of unused capacity for short bursts. It is not guaranteed, because background work can use it.",
+      "facts": [
+        "burst-capacity"
+      ]
+    },
+    {
+      "id": "dynamodb-052",
+      "q": "A DynamoDB table must be encrypted at rest at no extra KMS cost. What must the team configure?",
+      "a": "Nothing. DynamoDB encrypts every table at rest, by default with an **AWS owned key** at no extra charge.",
+      "facts": [
+        "encryption-default"
       ]
     }
   ],

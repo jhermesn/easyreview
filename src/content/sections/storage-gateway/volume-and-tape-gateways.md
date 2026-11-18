@@ -49,6 +49,9 @@ facts:
     text: Archived tape retrieval typically takes 3 to 5 hours from S3 Glacier Flexible Retrieval or 12
       hours from S3 Glacier Deep Archive.
     source: https://docs.aws.amazon.com/storagegateway/latest/tgw/StorageGatewayConcepts.html
+  - id: tape-limits
+    text: "A virtual tape is 100 GiB to 15 TiB; a Tape Gateway holds up to 1,500 tapes and 1 PiB of tapes in total."
+    source: https://docs.aws.amazon.com/storagegateway/latest/tgw/resource-gateway-limits.html
 diagrams:
   - id: storage-tape-archive
     title: Tape writes and archival
