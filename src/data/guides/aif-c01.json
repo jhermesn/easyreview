@@ -164,9 +164,9 @@
                 "generative-ai/choosing-aws-genai-services",
                 "sagemaker-ai/inference-options",
                 "ec2/instance-types",
-                "ecs/task-definitions-tasks-and-services",
-                "eks/cluster-compute-options",
-                "lambda/invocation-and-retries"
+                "ecs/basics",
+                "eks/basics",
+                "lambda/basics"
               ]
             },
             {
@@ -175,17 +175,17 @@
               "text": "Identify relevant AWS services and features for each stage of an AI/ML pipeline (for example, Amazon Bedrock, Amazon Quick, Kiro, SageMaker AI).",
               "sections": [
                 "bedrock/foundation-models-on-bedrock",
-                "quicksight/datasets-visuals-and-dashboards",
+                "quicksight/basics",
                 "kiro/agentic-development",
                 "sagemaker-ai/data-and-labeling-tools",
                 "glue/data-integration-and-catalog",
                 "glue/databrew",
-                "emr/distributed-processing-workloads",
-                "redshift/data-warehouse-workloads",
+                "emr/basics",
+                "redshift/basics",
                 "data-exchange/third-party-data",
                 "s3/storage-classes",
-                "dynamodb/capacity-scaling-and-throttling",
-                "elasticache/engines-replicas-and-multi-az",
+                "dynamodb/basics",
+                "elasticache/basics",
                 "rds/managed-vs-self-managed-databases",
                 "ec2/accelerated-computing-for-ai"
               ]
@@ -326,7 +326,7 @@
                 "generative-ai/choosing-aws-genai-services",
                 "bedrock/foundation-models-on-bedrock",
                 "sagemaker-ai/jumpstart-and-no-code-tools",
-                "quicksight/datasets-visuals-and-dashboards",
+                "quicksight/basics",
                 "kiro/agentic-development",
                 "strands-agents/agent-sdk",
                 "bedrock-agentcore/agentcore-services",
@@ -408,10 +408,10 @@
               "text": "Identify AWS services that help store embeddings within vector databases (for example, Amazon OpenSearch Service, Amazon Aurora, Amazon Neptune, Amazon RDS for PostgreSQL).",
               "sections": [
                 "bedrock/knowledge-bases-and-rag",
-                "opensearch/log-ingestion-search-and-dashboards",
+                "opensearch/basics",
                 "neptune/graph-databases",
-                "aurora/storage-replicas-and-auto-scaling",
-                "documentdb/document-workloads-and-compatibility"
+                "aurora/basics",
+                "documentdb/basics"
               ]
             },
             {
@@ -695,12 +695,12 @@
                 "ai-security-governance/securing-ai-workloads",
                 "bedrock/security-and-monitoring",
                 "iam/users-groups-and-policies",
-                "iam/identities-roles-and-instance-profiles",
+                "iam/roles-basics",
                 "kms/encryption-at-rest-and-in-transit",
-                "macie/sensitive-data-discovery-and-jobs",
-                "privatelink/interface-endpoints-and-private-access",
+                "macie/basics",
+                "privatelink/basics",
                 "shared-responsibility/security-of-and-in-the-cloud",
-                "secrets-manager/secret-versions-and-runtime-access",
+                "secrets-manager/basics",
                 "bedrock-agentcore/agentcore-services",
                 "bedrock/guardrails"
               ]
@@ -735,9 +735,9 @@
                 "prompt-engineering/prompt-attacks",
                 "bedrock/guardrails",
                 "bedrock/security-and-monitoring",
-                "inspector/ec2-ecr-and-lambda-scanning",
-                "vpc/security-groups-and-network-acls",
-                "cloudfront/cache-behaviors-and-policies"
+                "inspector/basics",
+                "vpc/security-basics",
+                "cloudfront/basics"
               ]
             },
             {
@@ -760,12 +760,12 @@
               "kind": "objective",
               "text": "Identify AWS services and features to assist with governance and regulation compliance (for example, AWS Config, Amazon Inspector, AWS Artifact, AWS CloudTrail, AWS Trusted Advisor).",
               "sections": [
-                "config/managed-custom-and-proactive-rules",
-                "inspector/ec2-ecr-and-lambda-scanning",
+                "config/basics",
+                "inspector/basics",
                 "artifact/reports-and-agreements",
                 "artifact/compliance-programs",
-                "cloudtrail/event-history-and-event-types",
-                "trusted-advisor/checks-and-event-notifications"
+                "cloudtrail/basics",
+                "trusted-advisor/basics"
               ]
             },
             {
@@ -774,10 +774,10 @@
               "text": "Describe data governance strategies (for example, data lifecycles, logging, residency, monitoring, observation, retention).",
               "sections": [
                 "ai-security-governance/data-governance",
-                "s3/lifecycle-and-retention",
-                "s3/glacier-retrieval",
-                "cloudwatch/log-groups-and-retention",
-                "cloudtrail/trails-and-event-selectors"
+                "s3/lifecycle-basics",
+                "s3/storage-classes",
+                "cloudwatch/basics",
+                "cloudtrail/basics"
               ]
             },
             {
@@ -1061,13 +1061,13 @@
           "name": "Amazon S3",
           "sections": [
             "s3/storage-classes",
-            "s3/lifecycle-and-retention"
+            "s3/lifecycle-basics"
           ]
         },
         {
           "name": "Amazon S3 Glacier",
           "sections": [
-            "s3/glacier-retrieval"
+            "s3/storage-classes"
           ]
         }
       ]

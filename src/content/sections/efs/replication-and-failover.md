@@ -1,6 +1,6 @@
 ---
 title: Replication and failover
-level: professional
+level: associate
 order: 30
 facts:
   - id: replica-scope

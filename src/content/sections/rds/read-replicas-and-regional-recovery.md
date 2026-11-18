@@ -1,6 +1,6 @@
 ---
 title: Read replicas and Regional recovery
-level: professional
+level: associate
 order: 20
 facts:
   - id: async-reads

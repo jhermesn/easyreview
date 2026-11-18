@@ -1,0 +1,40 @@
+---
+title: "IAM roles basics"
+level: foundational
+order: 5
+facts:
+  - id: role-basic
+    text: "An IAM role is an identity with permissions that anyone or anything allowed can assume, such as a service or application, and it provides temporary credentials instead of long-term keys."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles
+  - id: prefer-federation
+    text: "AWS recommends identity federation with temporary credentials for people, and IAM users with long-term keys only for use cases federation does not support."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles
+cards:
+  - id: iam-110
+    q: "An application on EC2 needs to read from S3. What is the recommended way to give it permissions?"
+    a: "Attach an IAM role to the instance, so the app gets temporary credentials instead of stored access keys."
+    facts: [role-basic]
+  - id: iam-111
+    q: "Employees already sign in to a corporate identity provider. How should they get access to AWS?"
+    a: "Through identity federation, which gives them temporary credentials by assuming roles, instead of creating IAM users."
+    facts: [prefer-federation, role-basic]
+---
+An IAM role gives temporary permissions to whoever is allowed to assume it, such as an AWS service, an application or a federated user. [IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles)
+
+### How it works
+
+1. Create a role with permission policies.
+2. Say who may assume it, such as EC2 or a federated user.
+3. The identity assumes the role and gets temporary credentials.
+
+### Exam cues
+
+- If the question says give an AWS service or app permissions without stored keys, think an IAM role.
+- If the question says employees sign in with a corporate directory, think federation.
+
+### Remember
+
+- Roles use temporary credentials.
+- Federation is preferred over IAM users for people.
+
+> **Trap:** A role is not tied to one person and has no long-term password or keys.

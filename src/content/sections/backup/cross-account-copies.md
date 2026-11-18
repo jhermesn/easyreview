@@ -1,6 +1,6 @@
 ---
 title: Cross-account copies
-level: professional
+level: associate
 order: 30
 facts:
   - id: copy-organization

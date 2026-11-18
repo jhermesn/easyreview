@@ -1,6 +1,6 @@
 ---
 title: DNS failover and testing
-level: professional
+level: associate
 order: 50
 facts:
   - id: primary

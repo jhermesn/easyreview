@@ -1,6 +1,6 @@
 ---
 title: Pod and node scaling
-level: professional
+level: associate
 order: 60
 facts:
   - id: hpa

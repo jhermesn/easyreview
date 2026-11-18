@@ -1,6 +1,6 @@
 ---
 title: Backpressure and idempotency
-level: professional
+level: associate
 order: 30
 facts:
   - id: pressure-visibility

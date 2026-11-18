@@ -99,12 +99,11 @@
               "text": "Designing a security strategy for multiple AWS accounts (for example, AWS Control Tower, service control policies [SCPs])",
               "sections": [
                 "control-tower/landing-zone-and-shared-accounts",
-                "control-tower/control-behaviors-and-guidance",
+                "control-tower/basics",
                 "organizations/service-control-policies",
                 "organizations/accounts-ous-and-consolidated-billing",
-                "multi-account-strategy/defense-in-depth-and-audit-architecture",
-                "firewall-manager/organization-policies-and-config-prerequisites",
-                "service-catalog/portfolio-sharing-and-local-access"
+                "firewall-manager/basics",
+                "service-catalog/basics"
               ]
             },
             {
@@ -113,7 +112,6 @@
               "text": "Determining the appropriate use of resource policies for AWS services",
               "sections": [
                 "iam/cross-account-roles-and-resource-policies",
-                "iam/resource-policy-principal-edge-cases",
                 "kms/key-policies-and-grants",
                 "s3/public-access-and-object-ownership"
               ]
@@ -303,11 +301,11 @@
               "text": "Aligning AWS technologies to meet compliance requirements",
               "sections": [
                 "artifact/reports-and-agreements",
-                "config/conformance-packs-and-organization-rules",
+                "config/basics",
                 "security-hub/findings-standards-and-config-dependency",
                 "s3/object-lock",
                 "backup/vault-lock-and-air-gapped-vaults",
-                "control-tower/control-behaviors-and-guidance",
+                "control-tower/basics",
                 "cloudtrail/log-integrity-and-protection"
               ]
             },
@@ -719,8 +717,7 @@
                 "route53/dns-failover-and-testing",
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
-                "cloudfront/origin-failover",
-                "disaster-recovery/data-plane-and-control-plane-failover"
+                "cloudfront/origin-failover"
               ]
             },
             {
@@ -789,9 +786,7 @@
               "text": "Determining automation strategies to ensure infrastructure integrity",
               "sections": [
                 "cloudformation/template-structure-and-dependencies",
-                "cloudformation/drift-detection-and-remediation",
                 "config/automation-remediation-and-retries",
-                "cloudformation/stackset-permissions-and-targeting",
                 "proton/platform-templates-and-end-of-support",
                 "service-catalog/products-portfolios-and-versions"
               ]
@@ -828,7 +823,6 @@
                 "scalable-architectures/scaling-state-and-coupling",
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
                 "rds/multi-az-and-failover-tests",
-                "availability-targets/failure-domains-and-spare-capacity",
                 "well-architected/framework-pillars",
                 "ec2/ip-addresses-and-network-interfaces"
               ]
@@ -851,7 +845,7 @@
               "sections": [
                 "disaster-recovery/recovery-strategy-selection",
                 "disaster-recovery/rto-and-rpo",
-                "elastic-disaster-recovery/drills-failover-and-failback"
+                "elastic-disaster-recovery/basics"
               ]
             },
             {

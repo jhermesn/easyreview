@@ -1,6 +1,6 @@
 ---
 title: Enhanced fan-out and checkpoints
-level: professional
+level: associate
 order: 30
 facts:
   - id: consumer-shared

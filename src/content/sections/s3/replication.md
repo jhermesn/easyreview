@@ -1,6 +1,6 @@
 ---
 title: Replication
-level: professional
+level: associate
 order: 20
 facts:
   - id: replication-async

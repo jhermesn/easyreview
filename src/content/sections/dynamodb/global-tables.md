@@ -1,7 +1,7 @@
 ---
 {
   "title": "Global tables",
-  "level": "professional",
+  "level": "associate",
   "order": 50,
   "facts": [
     {

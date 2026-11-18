@@ -10,7 +10,7 @@ The `Content health` workflow (`.github/workflows/content-health.yml`) runs ever
 | Dated content | `node scripts/date-watch.mjs` | Dates in facts, cards and bodies that passed in the last 8 days, such as a support plan or service end date |
 | Who passed | `node scripts/verify-passed.mjs` | Entries whose Credly badges expired or disappeared, or whose Credly profile no longer links their GitHub profile. The same script checks new entries in pull requests (see CONTRIBUTING.md) |
 | Section lint | `npm run lint` | Cards citing missing facts, cut-off bodies, diagram layout problems |
-| Strict coverage | `STRICT_COVERAGE=1 npm run build` | Guide items without a section, in-scope services without a section in the cert, sections no cert maps |
+| Strict coverage | `STRICT_COVERAGE=1 npm run build` | Guide items without a section, in-scope services without a section in the cert, guide items mapping a section above the exam's level, sections no cert maps |
 
 ## When the issue fires
 

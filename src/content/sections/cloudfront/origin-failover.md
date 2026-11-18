@@ -1,6 +1,6 @@
 ---
 title: Origin failover
-level: professional
+level: associate
 order: 40
 facts:
   - id: failover-group

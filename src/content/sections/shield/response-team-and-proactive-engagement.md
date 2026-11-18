@@ -1,6 +1,6 @@
 ---
 title: Response team and proactive engagement
-level: professional
+level: associate
 order: 20
 facts:
   - id: srt-role
