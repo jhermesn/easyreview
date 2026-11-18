@@ -13,6 +13,8 @@ Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.co
 | `npm test` | Unit tests (Vitest) for the logic behind the pages: spaced repetition, diagram lint, progress codes, Who passed tiers. Tests sit next to the code as `src/lib/<name>.test.ts` |
 | `npm run test:e2e` | Browser smoke test (Playwright) of the built site on desktop and phone: run `npm run build` first. The first run needs `npx playwright install chromium` |
 | `npm run lint:links` | Every fact and glossary source URL still resolves. Needs [lychee](https://lychee.cli.rs) installed |
+| `node scripts/doc-watch.mjs --add-new` | Adds the doc sections that new facts cite to the content-health snapshot, keeping every saved hash. Run it in each content PR; `--update` is for maintenance, after changed facts were re-checked |
+| `node scripts/unmapped-sections.mjs <cert>` | Sections at or below the exam's level, in units the cert already uses, that its guide doesn't map. Review it when adding or auditing a cert |
 
 ## Environment
 
@@ -21,13 +23,14 @@ Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.co
 | `SITE_URL`, `BASE_PATH` | Site origin and path, default `https://jhermesn.dev` and `/easyreview`. The deploy workflow sets `BASE_PATH` to `/<repository name>`, where GitHub Pages serves a project site. Internal links go through `withBase()` (`src/lib/format.ts`) |
 | `SHOW_DRAFTS=1` | A production build also shows unpublished sections |
 | `STRICT_COVERAGE=1` | The build fails on coverage gaps instead of warning |
-| `GH_TOKEN` | Optional. Raises the GitHub API rate limit for the "Who passed" profile lookups |
+| `GH_TOKEN` | Optional. Raises the GitHub API rate limit for the "Who passed" profile lookups. Without it, a rate-limited build lists people by login, without name, bio or avatar |
 
 ## Before you finish
 
 1. `npm run lint`, `npm test` and `npm run build`, with no new `[coverage <cert>]` warnings, then `npm run test:e2e` after UI changes. CI runs all of them on every pull request, plus `scripts/check-card-ids.mjs`, which fails if a card id from the base branch is gone.
-2. `STRICT_COVERAGE=1 npm run build` passes before a cert is called complete. An unpublished section counts as a gap.
-3. For UI changes, look at the page in a browser at desktop width and at about 400 px.
+2. Content PRs: `node scripts/doc-watch.mjs --add-new`, and commit `src/data/doc-watch.json`.
+3. `STRICT_COVERAGE=1 npm run build` passes before a cert is called complete. An unpublished section counts as a gap.
+4. For UI changes, look at the page in a browser at desktop width and at about 400 px.
 
 ## Working with others
 

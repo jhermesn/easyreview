@@ -18,8 +18,9 @@ export interface Person {
 }
 
 async function load(): Promise<Person[]> {
-  // A malformed entry fails the build with its file name. A profile that can't be loaded (GitHub or Credly down)
-  // is left out of this build with a warning instead of failing the deploy.
+  // A malformed entry fails the build with its file name. Credly proves the badges, so a profile whose Credly page
+  // can't be loaded is left out of this build with a warning. GitHub only adds the name, bio and avatar: when it
+  // fails (rate limits hit unauthenticated local builds first), the person is still listed under their login.
   const files = import.meta.glob<{ default: unknown }>('../content/passed/*.json', { eager: true });
   const loaded = await Promise.all(
     Object.entries(files).map(async ([file, mod]): Promise<Person | undefined> => {
@@ -27,7 +28,11 @@ async function load(): Promise<Person[]> {
       if (!parsed.success) throw new Error(`${file}: ${parsed.error.issues.map((i) => `${i.path.join('.')} ${i.message}`).join('; ')}`);
       const entry = parsed.data;
       try {
-        const [user, earned] = await Promise.all([githubApi(`users/${entry.github}`, process.env.GH_TOKEN), credlyAwsCerts(entry.credly)]);
+        const profile = githubApi(`users/${entry.github}`, process.env.GH_TOKEN).catch((err: Error) => {
+          console.warn(`[passed] ${entry.github}: GitHub profile unavailable (${err.message}); listed by login`);
+          return {} as Awaited<ReturnType<typeof githubApi>>;
+        });
+        const [user, earned] = await Promise.all([profile, credlyAwsCerts(entry.credly)]);
         if (!earned.length) return undefined;
         return {
           login: entry.github,

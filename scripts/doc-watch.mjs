@@ -3,6 +3,8 @@
 // and hashed. A changed or vanished section lists the facts to re-check.
 // Usage: node scripts/doc-watch.mjs           report changes against the snapshot (exit 1 when something changed)
 //        node scripts/doc-watch.mjs --update  write a fresh snapshot after the facts were re-checked
+//        node scripts/doc-watch.mjs --add-new snapshot only newly cited sections, keeping every saved hash, so a
+//                                              content PR doesn't mark unrelated changes as re-checked
 // Snapshot: src/data/doc-watch.json
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -78,8 +80,11 @@ async function hashAll(urls) {
   return { hashes, texts, failed };
 }
 
+const saved = existsSync(SNAPSHOT) ? JSON.parse(readFileSync(SNAPSHOT, 'utf8')) : undefined;
+const addNew = process.argv.includes('--add-new') && saved;
 const cited = citations();
-const { hashes, texts, failed } = await hashAll([...cited.keys()]);
+// --add-new only needs the pages of sections the snapshot doesn't have yet.
+const { hashes, texts, failed } = await hashAll([...cited.keys()].filter((url) => !addNew || !saved.sections[url]));
 
 // Numbers in a fact that the current section text no longer contains: the likeliest facts to have gone stale.
 const numbersOf = (s) => (s.match(/\d[\d,.]*\d|\d/g) ?? []).map((n) => n.replace(/,/g, ''));
@@ -87,17 +92,17 @@ function goneNumbers(fact, url) {
   const page = (texts[url] ?? '').replace(/,/g, '');
   return [...new Set(numbersOf(fact))].filter((n) => !page.includes(n));
 }
-const saved = existsSync(SNAPSHOT) ? JSON.parse(readFileSync(SNAPSHOT, 'utf8')) : undefined;
 
-if (process.argv.includes('--update') || !saved) {
+if (process.argv.includes('--update') || addNew || !saved) {
   // A page that fails to load keeps the hash already in the snapshot, so it stays watched.
   const sections = Object.fromEntries(
     [...cited.keys()].sort().flatMap((url) => {
-      const hash = hashes[url] ?? saved?.sections[url];
+      const hash = addNew ? (saved.sections[url] ?? hashes[url]) : (hashes[url] ?? saved?.sections[url]);
       return hash ? [[url, hash]] : [];
     }),
   );
-  writeFileSync(SNAPSHOT, JSON.stringify({ checked: new Date().toISOString().slice(0, 10), sections }, null, 1) + '\n');
+  const checked = addNew ? saved.checked : new Date().toISOString().slice(0, 10);
+  writeFileSync(SNAPSHOT, JSON.stringify({ checked, sections }, null, 1) + '\n');
   console.log(`snapshot written: ${Object.keys(sections).length} cited sections, ${failed.length} pages could not be loaded`);
   process.exit(0);
 }
