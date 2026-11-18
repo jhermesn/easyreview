@@ -130,7 +130,6 @@ A Patch Manager baseline is the rulebook that decides which patches are approved
 
 - One patch group per node; one baseline per operating system per patch group.
 - Use `PatchGroup` when instance metadata tags are enabled.
-- Patch policy operations do not use patch groups.
 - December 2022: patch-group console support became limited to account-Region pairs already using it before December 22.
 
 > **Trap:** Adding an alternative repository replaces the sources used for that patching operation. Include default repositories too if their updates are required.

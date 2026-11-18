@@ -152,7 +152,7 @@ An Amazon Machine Image (AMI) is a software template for setting up and booting 
 | Requirement | Mechanism | Ownership or scope |
 |---|---|---|
 | Another account needs to launch | Share the AMI and any required encryption keys | Source account owns the image |
-| Another account needs its own image | Copy the shared AMI with backing-storage access | Recipient owns the copy |
+| Another account needs its own image | Copy the shared AMI | Recipient owns the copy |
 | Instances must run in another Region | Copy the AMI into that Region | Launch from the destination image |
 | Instance must run in another zone | Launch a replacement from an AMI in the destination subnet | New instance and changed addresses |
 

@@ -102,7 +102,7 @@ cards:
     facts: [other-region]
 ---
 
-An EFS mount target provides network connectivity; an access point defines how an application sees and identifies itself to the shared file system. A root directory is the top folder visible through that mount. A POSIX identity is the numeric Unix-style user and group used for file permission checks.
+An EFS mount target provides network connectivity; an access point defines how an application sees and identifies itself to the shared file system. A root directory is the top folder visible through that mount. A POSIX identity is a Unix-style user and group used for file operations.
 
 ### How it works
 
@@ -116,8 +116,8 @@ An EFS mount target provides network connectivity; an access point defines how a
 |---|---|
 | Mount target and security group | The network path and permitted clients |
 | Access point | Application root directory and optional enforced POSIX identity |
-| IAM client authorization | Permission to mount, write, or use root |
-| POSIX file permissions | File and directory operations for the effective user and group |
+| IAM client authorization | NFS client permissions |
+| File permissions | Access to files |
 
 ### Exam cues
 
@@ -130,7 +130,5 @@ An EFS mount target provides network connectivity; an access point defines how a
 - Security groups attach to mount targets, not access points.
 - EFS evaluates both identity and file system policies; permission does not universally need an allow in both.
 - Without a user-configured file system policy, the default permits reachable anonymous clients. POSIX file permissions still apply.
-
-> **Trap:** A fixed access-point user does not grant every file operation. EFS still checks that effective user's file and directory permissions.
 
 > **Trap:** An access point does not replace a mount target. Both the network path and application authorization must work.

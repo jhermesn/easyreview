@@ -34,7 +34,7 @@ cards:
     trap: true
     facts: [refactor-cost]
 ---
-A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs, from not moving at all to rebuilding for the cloud. [Migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#migration-strategies)
+A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs, for choosing how to move or handle a workload. [Migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#migration-strategies)
 
 ### How it works
 
@@ -44,13 +44,8 @@ A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs
 
 | Strategy | Also called | What happens |
 |---|---|---|
-| Retire | | Turn off what has no value |
-| Retain | | Keep in place for now |
 | Rehost | Lift and shift | Move unchanged |
-| Relocate | | Move to a cloud version of the same platform |
-| Repurchase | Drop and shop | Replace with another product, often SaaS |
 | Replatform | Lift, tinker and shift | Move with some optimization, such as a managed database |
-| Refactor | Re-architect | Redesign with cloud-native features |
 
 ### Exam cues
 
@@ -64,4 +59,4 @@ A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs
 - Refactor is the most complex and costly.
 - For a large migration, rehost, relocate or replatform first; modernization can follow.
 
-> **Trap:** Replatform is not refactor. Moving a database to Amazon RDS changes the platform, not the application's architecture.
+> **Trap:** Rehosting moves an application without changes. Replatforming adds some optimization during the move.

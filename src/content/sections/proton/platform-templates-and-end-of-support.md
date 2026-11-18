@@ -82,14 +82,14 @@ AWS Proton was a platform service for deploying serverless and container applica
 
 ### How it works
 
-1. A platform administrator registered an environment template defining shared infrastructure, and a service template defining application infrastructure and compatible environments.
-2. The team deployed an environment, a set of shared resources. A developer selected a service template and supplied a source code repository.
+1. A platform administrator registered templates, including a service template defining application infrastructure and compatible environments.
+2. A developer selected a service template and supplied a source code repository.
 3. Proton provisioned a service and a deployment pipeline, an automated sequence for delivering changes. Each service instance represented the service template in a specific environment.
 4. Proton identified instances using older template versions so an administrator could request an upgrade.
 
 ### Exam cues
 
-- If the question says a team wants to use Proton for a new workload, think support has ended, because Proton is no longer available.
+- If the question says a team wants to use Proton for a new workload, remember that support has ended.
 - If the question says replace Proton with a Git-driven CloudFormation workflow, think CloudFormation Git sync, because AWS lists it as an alternative, although it lacks Proton-style environments and advanced pipeline features.
 
 ### Remember

@@ -165,13 +165,11 @@ A cookie is a value stored by the client and sent with later requests. A query s
 1. CloudFront compares the requested URL path with behavior patterns in order. The first match selects the settings and origin or origin group, a primary and secondary pair used for failover. The default `*` behavior is last; cookies and query strings do not select a behavior.
 2. The cache policy builds the cache key, the identifier used to find a stored response. Its default parts are the distribution domain and URL path. Add values that change the response, such as its language. The policy also sets time to live (TTL), how long cached content remains valid.
 3. A cache hit means a valid stored response matches the key. CloudFront serves it without contacting the origin. On a miss, CloudFront forwards the key values and any extra values selected by the origin request policy.
-4. A response headers policy changes HTTP headers, the name-value metadata sent with a response, before delivery. It applies to hits and origin responses. It can add security headers without code.
 
 | Policy | Controls | Typical use |
 |---|---|---|
 | Cache policy | Cache key and TTLs | Keep separate language variants |
 | Origin request policy | Extra values sent to the origin | Forward tracing information |
-| Response headers policy | Headers sent to viewers | Add standard security headers |
 
 For selected files or city-level rules, an application can check a geolocation service and issue a signed URL, a link carrying proof of permission. Use origin access control (OAC) with an S3 origin to prevent direct access around that check. Built-in geographic restrictions apply to the entire distribution at country level.
 

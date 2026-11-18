@@ -202,6 +202,5 @@ Multi-account and Region Automation runs a centrally selected runbook in other A
 - Administration role: central account. Execution role: every target account.
 - OU targeting requires the management account or a delegated administrator.
 - Custom runbooks must be shared with all targets.
-- `aws:approve` is unsupported in multi-account and Region automations.
 
 > **Trap:** Location concurrency does not limit how many resources run inside a location. Configure resource rate controls too.

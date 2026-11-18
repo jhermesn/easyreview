@@ -102,26 +102,24 @@ AWS Control Tower sets up and governs a multi-account landing zone. A landing zo
 
 ### How it works
 
-1. Use the management account to launch and administer Control Tower. It coordinates services such as Organizations, Service Catalog, and IAM Identity Center.
+1. Use the management account to launch and administer Control Tower.
 2. Choose service integrations and the accounts that host their central resources. Service integration accounts share a parent OU; this placement rule excludes the management account.
 3. Apply controls to landing zone accounts. Controls can be preventive, detective, or proactive rules.
 
 ### Exam cues
 
-- If the question says centrally govern account creation and compliance across an organization, think Control Tower landing zone, because it coordinates account provisioning and governance services.
+- If the question says apply governance controls across accounts, think Control Tower landing zone, because its controls apply to landing zone accounts.
 - If the question says keep an existing organizational structure and choose integrations, think landing zone 4.0, because integrations are optional and a Security OU is no longer required.
 - If the question says change the home Region after setup, think choose it during setup, because it cannot be changed later.
 
 ### Remember
 
-| Role | Earlier default name | Current purpose when enabled |
-|---|---|---|
-| Management account | Management | Administers the landing zone |
-| CloudTrail administrator | Log Archive | Central CloudTrail log storage |
-| Config aggregator | Audit | Configuration aggregation and dedicated Config storage |
+| Earlier default name | Version 4.0 default name |
+|---|---|
+| Log Archive | CloudTrail Administrator |
+| Audit | Aggregator account |
 
 - Landing zone 4.0 was released in November 2025. It makes service integrations optional and removes the mandatory Security OU structure.
-- Versions 3.3 and earlier use the shared Log Archive and Audit accounts in a Security OU.
 - Account names can be customized. The home Region cannot change after setup.
 
 > **Trap:** Do not assume every landing zone always creates the same shared-account structure. The version and enabled service integrations determine the configuration.

@@ -99,12 +99,11 @@ The AWS Well-Architected Framework is AWS's set of best practices for cloud arch
 
 | Pillar | Focus |
 |---|---|
-| Operational excellence | Run workloads well, gain insight, keep improving processes |
 | Security | Protect data, systems and assets |
 | Reliability | Perform the intended function correctly and consistently |
-| Performance efficiency | Use resources efficiently as demand and technology change |
 | Cost optimization | Deliver business value at the lowest price point |
-| Sustainability | Reduce energy use and total resources |
+
+The other pillars are operational excellence, performance efficiency and sustainability.
 
 Since November 16, 2026, the framework is one document in two parts. Cloud Foundations covers what an organization sets up once for all workloads (accounts, identity, observability, inventory, security, cost, networking), and Cloud Workloads holds the six pillars. [Release notes](https://docs.aws.amazon.com/wellarchitected/latest/framework/release-notes.html#fw-11-16-2026-update)
 
@@ -126,4 +125,4 @@ The general design principles apply across pillars: stop guessing capacity, test
 - A workload is a set of components that deliver business value.
 - Game days simulate production events to practice handling them.
 
-> **Trap:** Performance efficiency is not the same as reliability. Using resources efficiently as demand changes is performance efficiency; working correctly and recovering from failure is reliability.
+> **Trap:** Reliability includes both performing the intended function consistently and testing recovery procedures.

@@ -143,8 +143,8 @@ A resource control policy (RCP) limits access to supported resources in member a
 ### How it works
 
 1. Enable all features and RCPs. Confirm that the resource's service supports RCPs; documented examples include S3, KMS, STS, SQS, and Secrets Manager.
-2. Organizations attaches `RCPFullAWSAccess` at the root, every OU, and every account. It cannot be detached and grants no resource access.
-3. Attach custom `Deny` policies where restrictions belong. A Deny anywhere on the resource account's path wins over a resource policy Allow. Custom RCPs cannot use `Allow`.
+2. `RCPFullAWSAccess` permits requests through RCP evaluation but grants no resource access.
+3. Attach RCPs where restrictions belong. A `Deny` anywhere on the resource account's path wins over a resource policy Allow.
 4. Evaluate actual access with the relevant IAM and resource policies. A resource policy is a policy attached to a resource, such as an S3 bucket. It can grant access only within applicable organization limits.
 5. Test on a small scope before broader use. Management-account resources and calls made through service-linked roles are exempt; delegated administrator member-account resources remain covered.
 
@@ -161,8 +161,8 @@ A resource control policy (RCP) limits access to supported resources in member a
 
 ### Remember
 
-- `RCPFullAWSAccess` is automatic and cannot be detached.
-- Custom RCPs use `Deny`; `Principal` supports only `*`, and `NotPrincipal` is unsupported.
+- `RCPFullAWSAccess` does not grant resource access.
+- `Principal` supports only `*`, and `NotPrincipal` is unsupported.
 - RCP coverage is service-specific; enabling RCPs does not restrict every AWS resource type.
 
 > **Trap:** An RCP passing a request does not grant it access. The required IAM or resource policy permissions must still exist.

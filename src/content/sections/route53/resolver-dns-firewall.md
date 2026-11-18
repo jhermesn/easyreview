@@ -150,14 +150,7 @@ Route 53 Resolver DNS Firewall controls which domain names clients can resolve t
 
 1. Create a domain list, a collection of names to match, or select an AWS-managed list. Foundational rules can also select a query type. DNS Firewall Advanced detects DNS tunneling, which carries data through DNS, and DGA threats, which generate domain names for malicious use.
 2. Add rules to a rule group, a reusable rule collection, and associate the group with a VPC. Filtering also covers on-premises queries entering that protected VPC through Resolver endpoints.
-3. Set both group-association and rule priorities. Lower numeric values run first. A matching action ends inspection; queries with no match resolve normally.
-4. Choose an action for each rule. Resolver query logging can help inspect results. [Logging configuration](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/firewall-resolver-query-logs-configuring.html)
-
-| Action | Query result | Inspection |
-|---|---|---|
-| `ALLOW` | Permit | Stop |
-| `ALERT` | Permit and log an alert | Stop |
-| `BLOCK` | Return the configured block response | Stop |
+3. Choose an action for each rule. `ALLOW` permits the query and stops inspection; `BLOCK` stops inspection and returns the configured block response. Queries with no match resolve normally.
 
 For an allow-only policy, allow approved domains before a rule blocking the rest. [Actions](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html) · [Policy examples](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-getting-started.html)
 
@@ -171,10 +164,9 @@ By default, domain-list rules inspect all names in a DNS redirection chain, wher
 
 ### Remember
 
-- Lower numeric priorities run first at both levels.
-- Queries that match no rule resolve normally. [Failure mode](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html)
+- Queries that match no rule resolve normally.
 - Advanced rules support `BLOCK` and `ALERT`, not `ALLOW`.
 
-> **Trap:** A matching allow or alert rule prevents a later block rule from inspecting that query. Ordering is part of the policy.
+> **Trap:** A matching allow rule stops inspection, so a later block rule does not inspect that query.
 
 > **Trap:** Blocking a DNS name does not inspect or deny all traffic to its destination. DNS filtering and application-traffic controls solve different problems.

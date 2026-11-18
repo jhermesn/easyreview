@@ -113,7 +113,7 @@ Parameter Store keeps application configuration as named values. The tier determ
 1. Choose `String` for text, `StringList` for a comma-separated list, or `SecureString` for an encrypted value.
 2. Choose the standard or advanced tier. Upgrade a standard parameter if its size, policy or sharing needs require advanced.
 3. Update the value to create a numbered version. Request a specific version when a deployment must retain a reviewed value.
-4. Attach an advanced parameter policy such as `NoChangeNotification` to emit an EventBridge event when a value remains unchanged for the specified period.
+4. Attach parameter policies to an advanced parameter when needed.
 
 | Property | Standard | Advanced |
 |---|---|---|
@@ -125,7 +125,7 @@ Parameter Store keeps application configuration as named values. The tier determ
 
 ### Exam cues
 
-- If the question says configuration needs expiration or stale-value alerts, think advanced parameter policies, because standard parameters do not support policies.
+- If the question says configuration needs parameter policies, think the advanced tier, because standard parameters do not support policies.
 - If the question says credentials require automatic rotation, think Secrets Manager, because AWS recommends it for that requirement.
 - If the question says reuse configuration across accounts, think advanced parameters with AWS RAM, because standard parameters cannot use that sharing feature.
 - If the question says an AMI parameter is needed in multiple Regions, think a parameter in each Region, because parameters belong to one account and Region.

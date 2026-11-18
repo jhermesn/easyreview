@@ -148,6 +148,6 @@ Programmatic creation without a supplied policy produces the account-delegation 
 
 - Exactly one key policy per key; its scope is Regional.
 - The account-principal statement enables IAM delegation.
-- Grants allow operations and can be retired or revoked; they cannot deny.
+- Grants allow operations and can be retired or revoked.
 
 > **Trap:** The default account-principal statement enables IAM delegation; it does not give every IAM identity access to the key.

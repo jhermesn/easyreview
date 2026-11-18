@@ -247,8 +247,7 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 | Hybrid | Both on changes and periodically |
 
 4. Use **detective evaluation** for deployed resources and **proactive evaluation** for proposed properties before deployment. A pipeline must enforce its own rejection decision.
-5. Read the result: `COMPLIANT` passes, `NON_COMPLIANT` fails, `ERROR` means invalid rule parameters, and `NOT_APPLICABLE` means the rule logic does not apply.
-6. To see evaluations as Security Hub CSPM findings, activate the AWS Config integration. It sends managed and custom evaluations through EventBridge. A **finding** is a security or compliance report about a resource.
+5. To see evaluations as Security Hub CSPM findings, activate the AWS Config integration. It sends managed and custom evaluations through EventBridge. A **finding** is a security or compliance report about a resource.
 
 ### Exam cues
 
@@ -262,7 +261,7 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 ### Remember
 
 - Trigger type and evaluation mode answer different questions: when to run and which resource state to assess.
-- Proactive evaluation supports only supporting rules and resource types. It does not remediate or prevent deployment.
+- Proactive evaluation does not remediate or prevent deployment.
 - The Security Hub CSPM integration sends evaluations performed after Security Hub CSPM was enabled. Service-linked rules are excluded except rules created and managed by Control Tower.
 
 > **Trap:** A rule reports noncompliance; a remediation action performs the fix. A proactive result is not a deployment block.

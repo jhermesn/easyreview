@@ -147,7 +147,7 @@ A lifecycle hook pauses an EC2 Auto Scaling instance while custom work finishes.
 
 ### Remember
 
-- Lifecycle events are best effort.
+- A hook defaults to ABANDON when it times out or fails unexpectedly, unless configured otherwise.
 - Slow start requires a compatible ALB routing algorithm; least outstanding requests and weighted random do not support it.
 
 > **Trap:** A termination hook is best effort by default. It cannot keep a Spot instance alive when capacity is interrupted.

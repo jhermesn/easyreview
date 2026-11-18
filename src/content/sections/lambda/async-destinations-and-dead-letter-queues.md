@@ -111,7 +111,7 @@ Asynchronous destinations retain invocation records so another service can act o
 ### How it works
 
 1. Choose `On success` or `On failure` for the asynchronous destination. Failure includes exhausting attempts or exceeding maximum event age.
-2. Lambda sends a JSON invocation record containing the request and response details to the chosen target. Configure the function execution role, the permissions Lambda uses while running the function, to deliver that record.
+2. Lambda sends a JSON invocation record containing the request and response details to the chosen target.
 3. Alternatively, configure a function DLQ. It receives discarded event content without the function response details included in a destination record.
 
 | Target | Asynchronous destination | Function DLQ |

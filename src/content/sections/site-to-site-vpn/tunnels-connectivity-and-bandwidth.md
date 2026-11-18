@@ -88,10 +88,9 @@ AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud 
 
 ### How it works
 
-1. Define a customer gateway resource describing the physical or software device on your network.
-2. Select an AWS endpoint: a virtual private gateway for one VPC, or a transit gateway for multiple VPCs and on-premises networks.
-3. Configure both tunnels on the customer device. They terminate in different Availability Zones, and traffic can use the available tunnel if one fails.
-4. Configure VPC route tables to send traffic for the remote network to the AWS gateway.
+1. Select an AWS endpoint: a virtual private gateway for one VPC, or a transit gateway for multiple VPCs and on-premises networks.
+2. Configure the customer gateway device. The connection has two tunnels that terminate in different Availability Zones.
+3. Configure VPC route tables to send traffic for the remote network to the AWS gateway.
 
 ### Exam cues
 

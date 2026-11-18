@@ -203,7 +203,7 @@ ACM managed renewal replaces eligible certificates before expiration. Renewal an
 2. Preserve domain-control proof for public renewal. For a certificate used by an AWS service, the required DNS CNAME records must remain publicly accessible. Email renewal requires owner approval while that method remains supported.
 3. Let ACM renew eligible certificates. The ARN, the AWS resource identifier, stays the same; copies in different Regions renew independently.
 4. Replace an imported certificate by renewing it with its issuer and reimporting it into the existing ARN. Supply PEM, a text encoding for certificate material, and an unencrypted private key. The certificate must be within its validity period.
-5. For an exported certificate, export the renewed certificate and install it on the host. An export includes the certificate, its chain of issuing CA certificates, and an encrypted private key protected by a passphrase. `ACM Certificate Available` can signal that a replacement is ready.
+5. For an exported certificate, export the renewed certificate and install it on the host. `ACM Certificate Available` can signal that a replacement is ready.
 
 | Certificate path | Renewal owner | Deployment |
 |---|---|---|
@@ -224,6 +224,6 @@ ACM managed renewal replaces eligible certificates before expiration. Renewal an
 - Imported, expired, and directly issued Private CA certificates are ineligible for ACM managed renewal.
 - `ACM Certificate Approaching Expiration` covers active public, private, and imported certificates.
 
-> **Trap:** Import requires an unencrypted private key, while export returns an encrypted private key. Do not interchange the input and output requirements.
+> **Trap:** Imported certificates are not eligible for ACM managed renewal. Renew with the issuer and reimport the replacement.
 
 > **Trap:** An exportable certificate is not automatically deployed to an external server after renewal. Your deployment process must retrieve and install the replacement.

@@ -109,10 +109,10 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 
 ### How it works
 
-1. Enable GuardDuty in a Region. It starts analyzing CloudTrail management events, EC2 VPC flow logs, and DNS queries from AWS resolvers.
-2. GuardDuty receives independent streams. It does not need a customer-configured trail, flow log, or Resolver query log. It extracts fields for analysis and discards the source logs, so configure your own logging when you need retention.
+1. Enable GuardDuty in a Region. It starts analyzing CloudTrail management events, EC2 VPC flow logs, and DNS logs.
+2. GuardDuty receives independent streams. It does not need a customer-configured trail or VPC flow log. It extracts fields for analysis and discards the source logs, so configure your own logging when you need retention.
 3. GuardDuty compares activity with threat intelligence, such as known malicious addresses, and uses machine learning to identify anomalies. It creates findings for potential threats, including compromised credentials and unauthorized cryptomining.
-4. Choose protection plans for other signals. An audit log records actions; operating system events describe activity inside a running workload.
+4. Choose protection plans for other signals. An audit log records actions.
 5. Configure the same delegated administrator and members in each desired Region. GuardDuty processes
    relevant global service events in each enabled Region.
 6. Route active findings through EventBridge or configure S3 export for longer retention. S3 export
@@ -122,9 +122,7 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 | --- | --- |
 | S3 Protection | S3 data events for risks such as exfiltration, the unauthorized movement of data |
 | EKS Audit Log Monitoring | Kubernetes audit logs |
-| Runtime Monitoring | Operating system events on EKS, EC2, and ECS, including Fargate |
 | Malware Protection | EC2 EBS volumes or newly uploaded S3 objects, depending on the plan |
-| RDS and Lambda Protection | Supported database logins or Lambda network activity, respectively |
 
 ### Exam cues
 

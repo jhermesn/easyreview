@@ -40,14 +40,11 @@ Amazon Inspector finds vulnerable software and unintended network exposure. A fi
 
 ### How it works
 
-1. Activate the required scan types. Initial activation includes EC2, ECR, and Lambda standard scanning.
-2. For EC2, collect software information with Systems Manager Agent, the software that lets Systems Manager manage a server, or from EBS disk snapshots. Hybrid mode combines these methods.
-3. For private ECR images, use enhanced scanning and choose scan on push or continuous scanning. Continuous scans respond to relevant new CVEs while images remain eligible.
-4. For Lambda, scan dependencies in functions and layers. Add code scanning to inspect custom application code.
+1. For private ECR images, use enhanced scanning and choose scan on push or continuous scanning. Continuous scans respond to relevant new CVEs while images remain eligible.
+2. For Lambda, scan dependencies in functions and layers. Add code scanning to inspect custom application code.
 
 | Workload | Scan method | Selection cue |
 |---|---|---|
-| EC2 instance | Agent or snapshots | Installed packages and network exposure |
 | Private ECR image | Enhanced scanning | Operating system and language packages |
 | Lambda function | Standard plus optional code scanning | Dependencies plus custom code |
 
@@ -55,12 +52,10 @@ Amazon Inspector finds vulnerable software and unintended network exposure. A fi
 
 - If the question says container images need rescanning for new CVEs, think ECR enhanced continuous scanning, because it reassesses eligible images.
 - If the question says Lambda dependencies are covered but custom code is not, think Lambda code scanning, because standard scanning covers dependencies.
-- If the question says vulnerable packages across EC2, private ECR images, and Lambda functions, think Amazon Inspector, because it scans those workloads.
 
 ### Remember
 
 - ECR enhanced scanning offers scan on push and continuous scanning.
-- Lambda code scanning and machine image scanning require separate activation.
 - Lambda code scanning requires standard scanning.
 
 > **Trap:** Lambda standard scanning checks dependencies, not custom application code. Add Lambda code scanning to inspect custom code.

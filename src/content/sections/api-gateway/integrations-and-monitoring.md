@@ -47,7 +47,7 @@ An integration connects an API method to its backend. The integration type decid
 1. A client calls a method. If request validation is on, API Gateway rejects an invalid request with 400 before going further.
 2. The integration request sends the call to the backend: as is for proxy types, or through mapping templates for AWS and HTTP custom types.
 3. The backend has up to the integration timeout to answer (29 seconds by default).
-4. API Gateway returns the response. With HTTP API CORS configured, it also answers preflight OPTIONS requests automatically. [HTTP API CORS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) [API Gateway metrics](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html#api-gateway-metrics)
+4. API Gateway returns the response. With HTTP API CORS configured, it also answers preflight OPTIONS requests automatically. [HTTP API CORS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html)
 
 | Integration type | Backend | Mappings |
 |---|---|---|
@@ -55,7 +55,6 @@ An integration connects an API method to its backend. The integration type decid
 | AWS | AWS service action, or Lambda custom | Request and response |
 | HTTP_PROXY | HTTP endpoint | None |
 | HTTP | HTTP endpoint | Request and response |
-| MOCK | None | Response from API Gateway |
 
 ### Exam cues
 
@@ -67,4 +66,4 @@ An integration connects an API method to its backend. The integration type decid
 
 - Integration timeout: 50 ms to 29 seconds; raise it only for Regional or private APIs.
 
-> **Trap:** The Lambda function timeout and the API Gateway integration timeout are separate limits. A function allowed 15 minutes still fails the API call after 29 seconds by default.
+> **Trap:** Regional and private APIs can request a higher integration timeout quota, but edge-optimized APIs cannot.

@@ -132,4 +132,4 @@ RDS storage autoscaling grows a DB instance's allocated disk space when free spa
 | `DatabaseConnections` | Client network connections, excluding some internal sessions |
 | `ReplicaLag` | Supported replica delay in seconds |
 
-> **Trap:** Storage autoscaling cannot guarantee that a large import avoids a full disk. Growth is constrained by optimization, the modification limit, and the configured ceiling.
+> **Trap:** Storage autoscaling cannot guarantee that a large import avoids a full disk. Storage can fill before another modification is permitted, and growth stops at the configured ceiling.

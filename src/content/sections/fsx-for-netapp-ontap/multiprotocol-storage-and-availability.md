@@ -95,12 +95,12 @@ cards:
     a: Client-side multipathing, so the client can switch between file servers.
     facts: [client-failover]
 ---
-Amazon FSx for NetApp ONTAP provides managed shared storage for applications that need NetApp features and multiple access protocols. A storage virtual machine (SVM) provides access endpoints for its volumes, which are isolated containers for files, directories or block storage units.
+Amazon FSx for NetApp ONTAP provides managed shared storage for applications that need NetApp features and multiple access protocols. A volume is an isolated container for files, directories or block storage units.
 
 ### How it works
 
 1. Choose Single-AZ or Multi-AZ. Both use active and standby file servers. Single-AZ keeps them in one Availability Zone; Multi-AZ places them in different zones and synchronously replicates writes.
-2. Create an SVM and volumes. The SVM provides endpoints for clients to access its volumes.
+2. Create volumes for the data.
 3. Use Network File System (NFS) or Server Message Block (SMB) for file access; both can access the same volume at once. Internet Small Computer Systems Interface (iSCSI) and NVMe over TCP provide block access, where clients see storage devices rather than shared files.
 4. When a server fails, FSx automatically promotes the standby. NFS and SMB clients retain the endpoint IP; iSCSI and NVMe clients need multipathing, meaning multiple client paths to the servers, for transparent failover.
 5. For a separate disaster recovery copy, schedule NetApp SnapMirror volume replication to another file system, including in another Region.

@@ -230,7 +230,7 @@ Managed external secrets launched in November 2025.
 ### Exam cues
 
 - If the question says supported database master credentials with no custom function, think managed rotation, because the database service manages the updates.
-- If the question says a custom service password must change with its stored value, think Lambda rotation, because the function can update and test the target system.
+- If the question says a custom service password must change with its stored value, think Lambda rotation, because the function can update the secret and target system.
 - If the question says credentials must stay usable during rotation, think alternating users, because the current user stays valid while the other user's password changes.
 - If the question says expire or notify about an old Parameter Store value, think parameter policies, because those actions do not change a database password.
 - If the question says a database secret lacks connection information for rotation, think SecretTargetAttachment, because it adds those fields to the secret JSON.
@@ -241,4 +241,4 @@ Managed external secrets launched in November 2025.
 - Alternating users requires a separate privileged secret for cloning.
 - Managed rotation for supported services and managed external secrets rotation do not require a Lambda function.
 
-> **Trap:** Saving a new password value is only one part of rotation. The target system must accept it before it becomes the current value.
+> **Trap:** Saving a new password value is only one part of rotation. The target credential must also be updated.

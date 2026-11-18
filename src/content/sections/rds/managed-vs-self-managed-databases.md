@@ -48,7 +48,7 @@ AWS offers managed services for relational databases, NoSQL databases and blockc
 
 ### How it works
 
-1. Choose a database type for the data: relational databases include Amazon RDS and Amazon Aurora; NoSQL databases include key-value, document and graph databases. [Comparison of responsibilities](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison), [NoSQL databases](https://aws.amazon.com/nosql/)
+1. Choose a database type for the data: relational databases include Amazon RDS and Amazon Aurora; NoSQL databases include key-value, document and graph databases. [Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome), [NoSQL databases](https://aws.amazon.com/nosql/)
 2. Use Amazon RDS Custom when a managed database needs customization of its database environment or operating system. [RDS Custom](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom)
 3. Before customizing an RDS Custom for SQL Server host, pause automation for the change so monitoring and recovery do not interfere. Automation resumes when the pause ends. [Pause automation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-managing-sqlserver.pausing.html#custom-managing-sqlserver.pausing)
 

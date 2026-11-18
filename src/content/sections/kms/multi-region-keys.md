@@ -176,13 +176,13 @@ Multi-Region KMS keys are related Regional keys with the same key ID and key mat
 
 1. Create a multi-Region primary key. This property is fixed at creation; an existing single-Region key cannot be converted.
 2. Explicitly create replicas in the Regions that need them. A replica is a fully usable related key, not a pointer to the primary. A related set has one primary and at most one related key per Region, within one AWS partition, a boundary separating groups of AWS Regions.
-3. For `AWS_KMS` origin, KMS transports key material to replicas within KMS. For imported `EXTERNAL` material, import the same material into each replica yourself.
+3. For `AWS_KMS` origin, KMS transports key material to replicas within KMS.
 4. Configure a key policy and other local settings for each key. Policies, grants, aliases, tags, descriptions, and enabled states are independent. Related keys have different ARNs because their Region components differ.
 5. Configure or initiate rotation on the primary. KMS synchronizes shared properties; each enabled replica can serve local cryptographic requests even when the primary is disabled.
 
 | Property | Shared across related keys | Local responsibility |
 | --- | --- | --- |
-| ID, material, origin, specification, algorithms, usage | Yes | Import external material into each replica |
+| ID, material, origin, specification, algorithms, usage | Yes | Create replicas explicitly |
 | Rotation | Yes | Configure or initiate it on the primary |
 | Policy, grants, aliases, tags, description, enabled state | No | Manage each Regional key independently |
 

@@ -218,19 +218,18 @@ An Aurora cluster separates database instances from a shared storage volume. The
 1. Store six copies of the data across three Availability Zones. This storage replication exists even with only one database instance. Storage grows with data, subject to engine-version limits.
 2. Add up to 15 Aurora Replicas, meaning read-only instances sharing the same volume. Adding a reader does not copy all table data again.
 3. Send read/write connections to the cluster endpoint, the address that follows the writer. Send read-only connections to the reader endpoint, which balances connections across readers. It does not redistribute queries within a connection.
-4. For automatic reader counts, register rds:cluster:ReadReplicaCount in Application Auto Scaling and set target tracking limits and a CPU or connection target. The average includes every reader and excludes the writer. At least one reader must exist for these metrics to drive scaling.
+4. For automatic reader counts, use Aurora Auto Scaling target tracking and configure reader limits. The average includes every reader and excludes the writer. At least one reader must exist for these metrics to drive scaling.
 5. Auto Scaling removes only the readers it created, even though manually added readers contribute to its metrics.
 
 ### Exam cues
 
 - If the question says durable storage but only one database instance, think add a reader in another zone, because storage copies alone are not spare compute.
-- If the question says automatically add provisioned read capacity, think Aurora Auto Scaling, because it changes reader count using average reader CPU or connections.
+- If the question says automatically adjust reader count, think Aurora Auto Scaling, because it uses target tracking within configured limits.
 - If the question says a single read session overloads one reader, think connection balancing, because the reader endpoint does not balance each query.
 
 ### Remember
 
 - Six data copies across three zones; one writer and up to 15 readers.
-- Metrics: RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
 - Aurora is MySQL and PostgreSQL compatible; AWS patches it in the maintenance window.
 
 > **Trap:** Manually created readers affect Auto Scaling metrics but are not removed by its scale-in actions. With no readers, the reader endpoint reaches the writer and can accept writes.

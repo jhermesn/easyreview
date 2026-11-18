@@ -132,7 +132,7 @@ Amazon EKS runs Kubernetes, a system that places and maintains container workloa
 | Auto Mode | EKS provisions, scales, and patches nodes and integrates load balancing and block storage | Managed cluster infrastructure |
 | Hybrid Nodes | You manage machines outside AWS | On-premises compute |
 
-2. For Fargate, create a profile. Its selectors match a namespace, a named grouping of Kubernetes resources, and optional labels, key-value tags on Pods. Use private subnets. A DaemonSet, which runs a copy of a Pod on nodes, cannot run on Fargate. Neither can privileged containers, GPUs, `HostPort`, or `HostNetwork`.
+2. A DaemonSet, which runs a copy of a Pod on nodes, cannot run on Fargate. Neither can privileged containers, GPUs, `HostPort`, or `HostNetwork`.
 3. Choose how operators and nodes reach the Kubernetes API endpoint, the cluster management address.
 
 | Public access | Private access | API path |
@@ -141,13 +141,12 @@ Amazon EKS runs Kubernetes, a system that places and maintains container workloa
 | Enabled | Enabled | Cluster VPC traffic uses the private endpoint; public access CIDRs restrict internet access |
 | Disabled | Enabled | Clients must be in the VPC or a connected network; cluster security group controls access |
 
-4. For persistent storage, choose a StorageClass, a configuration naming the storage provisioner. A persistent volume holds storage independently of a Pod. The Container Storage Interface (CSI) driver connects Kubernetes storage requests to AWS storage APIs. Give the EBS CSI driver IAM permissions through Pod Identity or IAM roles for service accounts.
+4. For persistent storage, use a persistent volume, which holds storage independently of a Pod. The Container Storage Interface (CSI) driver connects Kubernetes storage requests to AWS storage APIs. Give the EBS CSI driver IAM permissions through Pod Identity or IAM roles for service accounts.
 
-| Storage choice | Provisioner or method | Fargate support |
-|---|---|---|
-| Standard EBS CSI | `ebs.csi.aws.com` | Cannot mount EBS |
-| Auto Mode EBS | `ebs.csi.eks.amazonaws.com`; separate volume management | Cannot mount EBS |
-| EFS persistent volume | Static provisioning on Fargate; no manual driver installation there | Supported; dynamic provisioning is unavailable |
+| Storage choice | Fargate support |
+|---|---|
+| EBS | Cannot mount EBS |
+| EFS persistent volume | Static provisioning; no manual driver installation required |
 
 ### Exam cues
 
@@ -161,6 +160,5 @@ Amazon EKS runs Kubernetes, a system that places and maintains container workloa
 - New clusters default to public API access enabled and private access disabled.
 - Public access CIDRs, meaning allowed IP address ranges, do not control the private endpoint.
 - Managed node groups still require deployment of patched node images.
-- Auto Mode and the standard EBS driver use different provisioners and manage separate volumes.
 
 > **Trap:** Choosing managed node groups does not transfer deployment of patched AMIs to AWS. Auto Mode includes operating system patching.

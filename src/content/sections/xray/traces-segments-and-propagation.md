@@ -125,10 +125,9 @@ X-Ray follows recorded requests across a distributed application, meaning an app
 
 ### How it works
 
-1. The first integrated service establishes trace context, the identifiers and recording decision that relate work to a request. For API Gateway REST APIs, a stage can sample incoming requests and add a missing trace header.
-2. Instrumented HTTP clients forward `X-Amzn-Trace-Id`. Its `Root` identifies the trace, `Parent` connects the caller, and `Sampled` carries the recording decision.
-3. Services send segments for their work. Instrumented clients add subsegments for calls to other services or databases.
-4. X-Ray joins the records by trace ID. For a dependency that sends no segment, such as DynamoDB, it creates an inferred node from the caller's subsegment.
+1. For API Gateway REST APIs, a stage can sample incoming requests and add a missing trace header.
+2. Services send segments for their work. Instrumented clients add subsegments for calls to other services or databases.
+3. X-Ray collects segments associated with a request. For a dependency such as DynamoDB, it creates an inferred node from the client subsegment.
 
 An inferred node is X-Ray's reconstruction of a dependency from client observations. Lambda Active tracing follows upstream sampling and produces segments for sampled requests.
 
@@ -140,8 +139,7 @@ An inferred node is X-Ray's reconstruction of a dependency from client observati
 
 ### Remember
 
-- The HTTP context header is `X-Amzn-Trace-Id`, with `Root`, `Parent`, and `Sampled` fields.
 - A segment document has a maximum size of 64 kB.
 - Incoming trace headers can come from clients; applications can remove them to avoid client-controlled trace IDs and sampling decisions.
 
-> **Trap:** An inferred node does not mean the dependency emitted its own trace segment. Inspect the caller's subsegment for the recorded downstream latency and response.
+> **Trap:** An inferred node does not mean the dependency emitted its own trace segment. X-Ray derives it from the client subsegment.

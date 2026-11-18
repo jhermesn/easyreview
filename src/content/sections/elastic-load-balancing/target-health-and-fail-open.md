@@ -66,12 +66,12 @@ cards:
     trap: true
     facts: [success-codes]
 ---
-An ALB health check is a periodic request that tests whether a registered target can respond. Health thresholds decide when to avoid a target or change routing when too little healthy capacity remains.
+An ALB health check evaluates a target's response. Health thresholds decide when to avoid a target or change routing when too little healthy capacity remains.
 
 ### How it works
 
 1. Configure the health check protocol, port, path, and thresholds for the target group. The defaults are HTTP GET on the traffic port and path `/` for HTTP target groups.
-2. A newly registered target must pass an initial check. The response code must match the configured success codes, which default to 200.
+2. The response code must match the configured success codes, which default to 200.
 3. Set minimum healthy counts or percentages for the actions below.
 
    | Action or measurement | Meaning |
@@ -91,7 +91,6 @@ An ALB health check is a periodic request that tests whether a registered target
 
 ### Remember
 
-- Initial registration requires one successful health check.
 - Default healthy count threshold: 1 for both failover actions; percentage thresholds default to off.
 - DNS failover thresholds must be greater than or equal to routing failover thresholds.
 - When count and percentage thresholds are both set, either breach triggers that action.

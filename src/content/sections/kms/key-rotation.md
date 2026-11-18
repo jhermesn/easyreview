@@ -122,16 +122,16 @@ KMS rotation changes key material, the secret cryptographic value behind a key, 
    | Key type | Automatic rotation | On-demand rotation | Manual replacement |
    | --- | --- | --- | --- |
    | Symmetric encryption, standard store, `AWS_KMS` origin | Optional | Supported | Supported |
-   | Symmetric encryption, imported `EXTERNAL` material | Unsupported | Supported after staging material | Supported |
+   | Symmetric encryption, imported `EXTERNAL` material | Unsupported | Supported | Supported |
    | Asymmetric, HMAC, or custom-key-store key | Unsupported | Unsupported | Required to replace material |
 
    An asymmetric key has a public and private key pair. An HMAC key generates and verifies a keyed authentication code, a value used to detect changed or unauthentic messages.
 2. Enable automatic rotation for an eligible customer managed key. It is off by default. Once enabled, the default period is 365 days, configurable from 90 to 2560 days.
-3. For eligible keys needing immediate rotation, use on-demand rotation. Imported symmetric keys need new material in `Pending rotation` state first. On-demand rotation leaves any automatic schedule unchanged and supports at most 25 rotations per key.
+3. For eligible keys needing immediate rotation, use on-demand rotation. A key supports at most 25 on-demand rotations.
 4. Keep the key ID and ARN unchanged during automatic or on-demand rotation. For KMS-generated material, KMS retains older material and selects it when decrypting older ciphertext. Stored data and generated data keys are not re-encrypted or rotated.
 5. For manual replacement, create a new key and redirect the application or alias, a name pointing to a KMS key. Keep track of the original key for operations on earlier data. An asymmetric decrypt or HMAC verification cannot use an alias that now points to a different key.
 
-Custom automatic periods and on-demand rotation arrived in April 2024. Imported symmetric keys gained on-demand rotation in June 2025. AWS managed keys rotate annually; customers cannot change that setting.
+Custom automatic periods and on-demand rotation arrived in April 2024. AWS managed keys rotate annually; customers cannot change that setting.
 
 The Config managed rule `cmk-backing-key-rotation-enabled` checks automatic rotation enablement and has no parameters.
 

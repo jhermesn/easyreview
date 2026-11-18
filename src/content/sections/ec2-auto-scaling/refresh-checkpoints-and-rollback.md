@@ -119,7 +119,6 @@ Checkpoints pause an instance refresh after part of the fleet is replaced. Rollb
 
 ### Remember
 
-- Checkpoints, alarms and auto rollback default off.
 - Checkpoint delay defaults to 3600 seconds; bake time defaults to zero.
 - Wait for protected or Standby instances allows one hour before failure.
 - Active replacement can last at most 14 days.

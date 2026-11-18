@@ -233,7 +233,7 @@ Cross-account CDK deployment lets a pipeline use roles in a separate target acco
 
 1. Bootstrap the pipeline environment and every target account and Region.
 2. An Amazon Resource Name (ARN) identifies the execution policy to use. In each target, set `--trust <pipeline-account-id>` together with `--cloudformation-execution-policies <policy-ARN>`.
-3. Publish assets using the target's file and image publishing roles. Use `DeploymentActionRole` to submit the CloudFormation deployment.
+3. Publish file assets using the target's `FilePublishingRole`. Use `DeploymentActionRole` to submit the CloudFormation deployment.
 4. CloudFormation assumes `CloudFormationExecutionRole` and provisions the resources allowed by its policies.
 
 ### Exam cues
@@ -246,6 +246,6 @@ Cross-account CDK deployment lets a pipeline use roles in a separate target acco
 
 - Execution policies default to `AdministratorAccess`. Scope them to the required resources and actions.
 - Updating `--trust` replaces the trusted account list; include every account to retain.
-- File and image publishing use separate roles from the deployment role.
+- File publishing and deployment use separate roles.
 
 > **Trap:** Trust grants access to deployment roles. It does not restrict their execution policies to the pipeline author's intended resources.

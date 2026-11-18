@@ -101,11 +101,7 @@ ALB target group attributes control how targets enter service, leave service, an
 1. A newly healthy target normally receives its full share of requests. Enable slow start to raise that share linearly over a configured duration. A newly registered target needs another healthy target outside slow start.
 2. Select a routing algorithm.
 
-   | Algorithm | Target selection | Restrictions |
-   |---|---|---|
-   | Round robin | Take turns across healthy targets; the default | Supports slow start |
-   | Least outstanding requests | Choose the target with the least in-progress work | No slow start |
-   | Weighted random | Choose randomly across healthy targets | No slow start or sticky sessions |
+   Slow start cannot be combined with least outstanding requests or weighted random. Weighted random also cannot be combined with sticky sessions.
 
 3. Enable stickiness per target group if a client session needs one target. Duration-based stickiness uses `AWSALB`. Application-based stickiness uses the configured application cookie plus a load balancer cookie. A cookie is a value the client returns with later requests.
 4. Deregister a leaving target. It enters `draining`, stops receiving new requests, and allows active work to complete. The default delay is 300 seconds before it becomes `unused`.

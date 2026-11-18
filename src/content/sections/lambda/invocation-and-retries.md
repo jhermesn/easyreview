@@ -218,8 +218,8 @@ Lambda runs function code in response to invocations, meaning requests to execut
 ### How it works
 
 1. For a direct synchronous request, Lambda runs the handler, the function that processes the event, and returns its result. The caller decides whether to retry a function error.
-2. For asynchronous invocation, Lambda queues the event and later runs the function. Function errors get two retries by default, after waits of one minute and then two minutes. Throttles, meaning rejected requests because capacity is unavailable, and system errors use a separate backoff path that increases the delay between attempts.
-3. Set `MaximumRetryAttempts` for function errors and `MaximumEventAgeInSeconds` for queue age. An event can arrive twice even after success, so processing must be idempotent: repeating the same event must not create extra effects.
+2. For asynchronous invocation, Lambda queues the event and later runs the function. Function errors get two retries by default, after waits of one minute and then two minutes.
+3. Set `MaximumRetryAttempts` for function errors. An event can arrive twice even after success, so processing must be idempotent: repeating the same event must not create extra effects.
 4. An event source mapping, a Lambda resource that reads a queue or stream, follows its source-specific retry rules. For SQS, configure visibility timeout and the source queue's redrive policy, which moves repeatedly received messages to a failure queue.
 5. Set timeout, memory, and temporary storage for the work. More memory also provides more CPU capacity. Each environment has its own encrypted `/tmp` scratch directory.
 6. For long-running workflows, a Lambda durable function uses checkpoints, saved progress for operations, and replay. Replay reuses completed checkpoint results; waits suspend execution without compute charges.

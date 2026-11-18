@@ -149,10 +149,9 @@ SQS queues buffer work between producers, which send messages, and consumers, wh
 
 1. Choose the queue type when creating the queue. Standard is the default. Changing the type later requires a new queue; a FIFO name must end in `.fifo`.
 2. For FIFO, assign `MessageGroupId`, the identifier for one ordered sequence, to every message. Different groups can run concurrently. One group for every message creates one sequence.
-3. Supply `MessageDeduplicationId`, a token identifying a send for duplicate suppression, or enable content-based deduplication.
-4. FIFO suppresses repeated sends with that deduplication ID within five minutes. This does not make the consumer's business operation idempotent, meaning safe to repeat without extra effects. A received message can become available again if it is not deleted before visibility timeout.
-5. A FIFO receive can return several messages from one group. Later receives cannot take more from that group until the received messages are deleted or visible again. Different groups can progress independently.
-6. For higher FIFO throughput, set `DeduplicationScope=messageGroup` and `FifoThroughputLimit=perMessageGroupId`. Use distinct groups for independent work so SQS can distribute it across partitions, the storage allocations that hold queue messages. Regional quotas still apply.
+3. FIFO suppresses repeated sends with the same deduplication ID within five minutes. This does not make the consumer's business operation idempotent, meaning safe to repeat without extra effects. A received message can become available again if it is not deleted before visibility timeout.
+4. A FIFO receive can return several messages from one group. Later receives cannot take more from that group until the received messages are deleted or visible again. Different groups can progress independently.
+5. For higher FIFO throughput, set `DeduplicationScope=messageGroup` and `FifoThroughputLimit=perMessageGroupId`. Use distinct groups for independent work so SQS can distribute it across partitions, the storage allocations that hold queue messages. Regional quotas still apply.
 
 | Property | Standard | FIFO |
 |---|---|---|
