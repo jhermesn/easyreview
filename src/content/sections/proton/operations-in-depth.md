@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER proton/operations-in-depth"
+title: Environment management and migration
 level: professional
 order: 20
 facts:
@@ -57,18 +57,25 @@ cards:
     trap: true
     facts: [git-sync]
 ---
-PLACEHOLDER first paragraph.
+AWS Proton environment templates defined shared infrastructure for applications. After Proton support ended, teams needed an alternative for infrastructure automation, while deployed CloudFormation stacks and their resources remained intact.
 
 ### How it works
 
-PLACEHOLDER
+1. An [environment template](https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#ag-admin) defined infrastructure shared by multiple applications or resources.
+2. A [customer managed environment template](https://docs.aws.amazon.com/proton/latest/userguide/ag-templates.html#ag-templates) connected to existing provisioned infrastructure without Proton managing it.
+3. After [support ended](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#proton-end-of-support), the Proton console and resources became [inaccessible](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#faqs). Deployed [CloudFormation stacks and their resources](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#important-migration-information) remained intact.
+4. AWS lists [CloudFormation Git sync](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#cloudformation-git-sync) and [CodePipeline with CodeBuild](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#codepipeline-and-codebuild) as alternatives, with different tradeoffs.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says multiple applications need shared infrastructure, think environment template, because it defined their common resources.
+- If the question says retain management of existing infrastructure, think customer managed environment template, because Proton connected to that infrastructure without managing it.
+- If the question says use a Git-based workflow, think CloudFormation Git sync, because AWS lists it as an alternative, though it lacks Proton-style environments and advanced pipeline features.
+- If the question says use CodePipeline and CodeBuild as an alternative, think more implementation work and less built-in developer self-service, because those are the tradeoffs AWS lists.
 
 ### Remember
 
-PLACEHOLDER
+- Proton support ended on October 7, 2026.
+- Deployed CloudFormation stacks and their resources remained intact after support ended.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Intact CloudFormation stacks do not mean Proton is still accessible. The Proton console and resources became inaccessible after support ended. CloudFormation Git sync does not provide Proton-style environments.

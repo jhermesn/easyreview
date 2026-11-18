@@ -73,13 +73,13 @@ cards:
     a: S3 Standard is for frequently accessed data. S3 Standard-IA is for long-lived data accessed infrequently and charges retrieval fees.
     facts: [standard, standard-ia]
   - id: s3-125
-    q: Which S3 storage class has the lowest designed availability, and why?
-    a: S3 One Zone-IA, designed for 99.5%, because it stores data in a single Availability Zone.
-    facts: [availability]
+    q: What should a company consider before using Amazon S3 One Zone-IA for infrequently accessed data?
+    a: S3 One Zone-IA stores data in one Availability Zone and is not resilient to its loss. It suits data that can be recreated.
+    facts: [one-zone-ia]
   - id: s3-161
-    q: "A training job on EC2 reads millions of small objects and needs the lowest S3 latency. Which storage class and bucket type fit?"
-    a: "S3 Express One Zone in a directory bucket placed in the same Availability Zone as the compute."
-    facts: [express-directory]
+    q: "Which Amazon S3 storage class suits a latency-sensitive application that needs fast access to objects?"
+    a: "S3 Express One Zone provides single-digit millisecond access in one Availability Zone."
+    facts: [express]
   - id: s3-162
     q: "Which Amazon S3 storage class suits data with unpredictable access patterns?"
     a: "S3 Intelligent-Tiering is designed for unknown or changing access patterns. It charges monitoring and automation fees but no retrieval fees."

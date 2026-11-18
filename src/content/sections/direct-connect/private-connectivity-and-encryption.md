@@ -79,9 +79,9 @@ cards:
     a: AWS Direct Connect.
     facts: [dedicated-link]
   - id: direct-connect-015
-    q: "A company must keep AWS Direct Connect connectivity if an entire connection location fails. How should it arrange its links?"
-    a: "Use separate Direct Connect connections at multiple locations."
-    facts: [dx-redundancy]
+    q: "Does AWS Direct Connect encrypt traffic in transit by default?"
+    a: "No. Add encryption in transit, such as an IPsec VPN over the connection or MACsec on a supported connection."
+    facts: [dx-no-default-encryption]
   - id: direct-connect-016
     q: "A regulated company needs IPsec encryption over its Direct Connect link without exposing any public IP addresses. Which option fits?"
     a: "**Private IP Site-to-Site VPN** over Direct Connect. It encrypts the traffic without public tunnel addresses."

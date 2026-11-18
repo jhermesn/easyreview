@@ -1,5 +1,5 @@
 ---
-source: cf6d22509ffe
+source: a6be5fba5990
 title: Parceiros e Professional Services
 facts:
   apn: A AWS Partner Network (APN) é uma comunidade global de organizações que usam tecnologias, programas, financiamento e ferramentas da AWS para criar soluções e serviços para clientes.
@@ -38,8 +38,8 @@ cards:
     q: Onde os AWS Partners gerenciam o relacionamento com a AWS e liberam os benefícios da AWS Partner Network?
     a: No AWS Partner Central, no AWS Management Console.
   technical-resources-019:
-    q: A experiência de quem deu forma às boas práticas do AWS Well-Architected Framework?
-    a: Dos arquitetos de soluções da AWS, a partir de anos construindo soluções para muitas empresas.
+    q: Qual equipe da AWS pode ajudar uma empresa a projetar e migrar suas cargas de trabalho na AWS?
+    a: O AWS Professional Services ajuda organizações a projetar, construir, migrar e gerenciar cargas de trabalho na AWS.
 ---
 Quando um cliente precisa de mais do que documentação e casos de suporte, a AWS oferece pessoas. O AWS Professional Services e os arquitetos de soluções da AWS vêm da própria AWS; os membros da AWS Partner Network são empresas externas. [AWS Partner Network](https://aws.amazon.com/partners/)
 

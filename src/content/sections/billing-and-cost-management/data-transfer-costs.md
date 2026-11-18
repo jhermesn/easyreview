@@ -51,9 +51,9 @@ cards:
     trap: true
     facts: [cross-az, cross-az-ec2]
   - id: billing-and-cost-management-022
-    q: How much data transfer out to the internet does AWS provide free each month?
-    a: 100 GB total across AWS services and Regions, excluding China and GovCloud.
-    facts: [free-100gb]
+    q: How do AWS data transfer charges differ for traffic coming from and going to the internet?
+    a: Data transfer into AWS from the internet is free. Transfer from AWS to the internet can incur charges.
+    facts: [inbound-free, outbound-charged]
   - id: billing-and-cost-management-028
     q: An application on Amazon EC2 reads objects from an Amazon S3 bucket in the same Region. Is the data transfer from S3 to EC2 charged?
     a: No. Data transfer from S3 to any AWS service in the same Region is free.

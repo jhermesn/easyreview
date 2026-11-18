@@ -68,9 +68,9 @@ cards:
     a: "In AWS Partner Central, in the AWS Management Console."
     facts: [partner-central]
   - id: technical-resources-019
-    q: "Whose experience shaped the best practices in the AWS Well-Architected Framework?"
-    a: "AWS solutions architects, from years of building solutions for many businesses."
-    facts: [solutions-architects]
+    q: "Which AWS team can help a company design and migrate its AWS workloads?"
+    a: "AWS Professional Services helps organizations design, build, migrate and manage AWS workloads."
+    facts: [proserve]
 ---
 When a customer needs more than documentation and support cases, AWS offers people. AWS Professional Services and AWS solutions architects come from AWS itself; AWS Partner Network members are outside companies. [AWS Partner Network](https://aws.amazon.com/partners/)
 

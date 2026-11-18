@@ -55,36 +55,32 @@ cards:
     trap: true
     facts: [hub, dms-tracking]
   - id: cloud-adoption-030
-    q: "A company that has never used AWS Application Discovery Service wants to start using it for migration planning. What should it know?"
-    a: "The service closed to new customers on November 7, 2025. AWS Transform provides similar capabilities."
-    facts: [ads-closed]
+    q: "A company moves its databases with AWS Database Migration Service and its servers with AWS Application Migration Service. Where can it follow the status of both?"
+    a: "In AWS Migration Hub, which receives migration status updates from both services."
+    facts: [dms-tracking]
 ---
-AWS migration services cover the three stages of a move: build the case, discover what you run, then move and track it. Several were renamed or closed to new customers in late 2025, so exam questions may use older names. [Migration Hub](https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub)
+AWS migration services help discover on-premises servers, move them to AWS and track migration progress. Some were renamed or closed to new customers, so exam questions may use older names. [Migration Hub](https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub)
 
 ### How it works
 
-1. **Business case:** Migration Evaluator compares on-premises costs with AWS and finds over-provisioned servers. [Migration Evaluator](https://aws.amazon.com/migration-evaluator/)
-2. **Discovery:** AWS Application Discovery Service collects server configuration, usage and network connections, so servers can be grouped into applications. [Application Discovery Service](https://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html#what-is-appdiscovery)
-3. **Move servers:** AWS Application Migration Service replicates servers continuously and launches them on AWS with short cutovers. [AWS Transform MGN](https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html#what-is-mgn)
-4. **Move databases:** AWS Database Migration Service (AWS DMS) migrates data, and schema conversion handles engine changes.
-5. **Track:** AWS Migration Hub shows each application's migration status across tools.
+1. **Discovery:** AWS Application Discovery Service collects server configuration, usage and network connections, so servers can be grouped into applications. [Application Discovery Service](https://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html#what-is-appdiscovery)
+2. **Move servers:** AWS Application Migration Service replicates servers continuously and launches them on AWS with short cutovers. [AWS Transform MGN](https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html#what-is-mgn)
+3. **Track:** AWS Migration Hub shows each application's migration status across tools, including AWS Application Migration Service and AWS Database Migration Service (AWS DMS).
 
 | Service | Stage | Status (November 2026) |
 |---|---|---|
-| Migration Evaluator | Business case | Available |
 | AWS Application Discovery Service | Discover | Closed to new customers since November 7, 2025 |
 | AWS Application Migration Service | Move servers (rehost) | Now named AWS Transform MGN |
-| AWS DMS | Move databases | Available |
 | AWS Migration Hub | Track | Closed to new customers since November 7, 2025 |
 
 AWS Transform is the newer service AWS points to for discovery and migration capabilities.
+For a migration business case, see [Migration Evaluator](https://aws.amazon.com/migration-evaluator/).
 
 ### Exam cues
 
 - If the question says lift and shift servers with minimal downtime, think AWS Application Migration Service.
 - If the question says discover on-premises servers and their dependencies, think AWS Application Discovery Service.
 - If the question says track migration progress in one place, think AWS Migration Hub.
-- If the question says business case or TCO before migrating, think Migration Evaluator.
 
 ### Remember
 

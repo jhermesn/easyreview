@@ -132,12 +132,10 @@ cards:
       - creation-timestamp
       - incremental-transfer
   - id: appflow-009
-    q: An Amazon AppFlow ingestion needs an initial history followed by scheduled incremental
-      transfers. How can it load a different initial date range?
-    a: Run an on-demand filtered initial transfer for the desired range, then switch to an
-      incremental schedule. The first scheduled run otherwise pulls 30 days of past records.
+    q: An Amazon AppFlow flow must regularly transfer only new or changed SaaS records. Which transfer option fits?
+    a: Use a scheduled incremental transfer. It copies records added or changed since the last successful run, based on the selected source timestamp field.
     facts:
-      - initial-window
+      - incremental-transfer
 diagrams:
   - id: appflow-saas-to-s3
     title: Move configured application records into S3

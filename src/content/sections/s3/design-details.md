@@ -32,10 +32,10 @@ cards:
     a: "No. Objects under 128 KB are not monitored and always stay in Frequent Access."
     facts: [it-small-objects]
   - id: s3-173
-    q: "A team plans to archive millions of 2 KB log objects in S3 Glacier Deep Archive to cut costs. What overhead undermines the plan?"
-    a: "Each archived object adds **40 KB of metadata** (32 KB at the archive rate, 8 KB at the Standard rate). Bundle small files into larger objects before archiving."
+    q: "A team deletes objects from S3 Standard-IA after 10 days. Will it pay for only 10 days of storage?"
+    a: "No. S3 Standard-IA charges for at least 30 days of storage per object, even when it is deleted earlier."
     trap: true
-    facts: [archive-metadata]
+    facts: [ia-minimums]
   - id: s3-148
     q: "Older exam questions ask how to make archives in an Amazon Glacier vault immutable for compliance. What was the answer, and what should a new design use?"
     a: "- Old answer: a **Glacier Vault Lock** policy, which can't change once locked.\n- New designs: S3 Glacier storage classes with **S3 Object Lock** (compliance mode), since standalone Glacier vaults are closed to new customers."

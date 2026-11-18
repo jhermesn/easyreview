@@ -22,9 +22,9 @@ cards:
     a: "Data grants and AWS Marketplace data subscriptions in one place."
     facts: [what]
   - id: data-exchange-003
-    q: "Can an ML team find public Open Data on AWS datasets through AWS Data Exchange without an AWS account?"
-    a: "Yes. Anyone can find and use these public datasets without an AWS account."
-    facts: [open-data]
+    q: "How can AWS Data Exchange help a data provider offer datasets to analytics teams?"
+    a: "It helps providers share data without building their own delivery infrastructure. Eligible providers can also sell data products in AWS Marketplace."
+    facts: [senders]
 ---
 AWS Data Exchange is where organizations share, sell and subscribe to data sets, so ML and analytics teams can use outside data without building delivery pipelines. [What is AWS Data Exchange?](https://docs.aws.amazon.com/data-exchange/latest/userguide/what-is.html)
 

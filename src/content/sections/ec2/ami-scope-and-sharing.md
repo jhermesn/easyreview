@@ -140,8 +140,8 @@ cards:
     a: "Copy the AMI to the recovery Region. AMIs can launch instances only in their own Region."
     facts: [regional, cross-region]
   - id: ec2-104
-    q: "An EC2 instance must be relocated to another Availability Zone for recovery. How can an AMI help?"
-    a: "Use AWSSupport-CopyEC2Instance to create an AMI and launch a replacement in a subnet in the target zone."
+    q: "An EC2 instance needs a replacement in another Availability Zone for recovery. How can an AMI help?"
+    a: "Create an AMI from the instance and launch a replacement in a subnet in the target Availability Zone."
     facts: [az-replacement, subnet-zone]
 diagrams:
   - id: ec2-ami-zone-replacement

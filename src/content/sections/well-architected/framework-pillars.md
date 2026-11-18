@@ -114,9 +114,9 @@ cards:
     a: "The reliability pillar focuses on a workload performing its intended function correctly and consistently when expected."
     facts: [reliability]
   - id: well-architected-025
-    q: "Which AWS Well-Architected pillar focuses on protecting data, systems and assets?"
-    a: "The security pillar focuses on protecting data, systems and assets."
-    facts: [security]
+    q: "Which AWS Well-Architected pillar recommends scaling horizontally to improve workload availability?"
+    a: "The reliability pillar recommends horizontal scaling to increase availability."
+    facts: [reliability-principles]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
 

@@ -46,12 +46,9 @@ cards:
       - cpu
       - connections
   - id: aurora-014
-    q: An Aurora application must cap connections opened to the database while retaining many client connections. Which setting and endpoint apply?
-    a: Connect through RDS Proxy and set MaxConnectionsPercent as a percentage of max_connections. Internal reserves mean MaxDatabaseConnectionsAllowed can be lower than that calculation.
-    facts:
-      - proxy
-      - proxy-cap
-      - proxy-reserve
+    q: "A serverless application opens many short-lived connections to an Amazon Aurora database. What reduces the connection load on the database?"
+    a: "Amazon RDS Proxy. It pools and reuses database connections, and clients connect to the proxy endpoint."
+    facts: [proxy]
   - id: aurora-015
     q: Can Aurora Auto Scaling add readers to a Global Database secondary or an Aurora Serverless v2 cluster?
     a: No. Reader-count Auto Scaling does not support those configurations. Pre-created Serverless readers can scale their compute capacity.

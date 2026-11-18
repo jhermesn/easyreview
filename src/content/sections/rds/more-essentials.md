@@ -65,9 +65,9 @@ cards:
     a: "RDS for Oracle, which offers Bring Your Own License as well as License Included."
     facts: [oracle-byol]
   - id: rds-059
-    q: "IoT sensors write trillions of timestamped readings a day that must be queried by time window. Which AWS database family fits, and which option takes new customers?"
-    a: "Amazon Timestream, the time series database. Timestream for LiveAnalytics closed to new customers on June 20, 2025, so new workloads use Timestream for InfluxDB."
-    facts: [timestream, timestream-closed]
+    q: "A company needs a managed relational database that supports PostgreSQL. Which AWS service can it choose?"
+    a: "Amazon RDS supports PostgreSQL and manages tasks such as backups and software patching."
+    facts: [engines, rds-manages]
 ---
 Amazon RDS manages common database tasks, so teams can run relational databases with less administration. Choosing between RDS and a database on Amazon EC2 depends on how much control the application needs. [RDS responsibilities](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison)
 

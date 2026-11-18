@@ -104,17 +104,12 @@ AWS Proton was a platform service for deploying serverless and container applica
 
 ### Exam cues
 
-- If the question says a platform team defines shared resources for several applications, think environment template, because it defines their common infrastructure.
-- If the question says developers select a standardized application stack, think service template, because it defines the application infrastructure and compatible environments.
+- If the question says a team wants to use Proton for a new workload, think support has ended, because Proton is no longer available.
 - If the question says replace Proton with a Git-driven CloudFormation workflow, think CloudFormation Git sync, because AWS lists it as an alternative, although it lacks Proton-style environments and advanced pipeline features.
-- If the question says replace Proton with flexible delivery tooling, think CodePipeline and CodeBuild, because AWS lists them as an alternative that requires more implementation work.
 
 ### Remember
 
 - New customer signup ended after October 7, 2025; support ended October 7, 2026.
-- The Proton console and resources are inaccessible after support ended. Deployed CloudFormation stacks and their resources remain intact.
-- Proton data was retained until October 7, 2026 and deleted after that date.
-- A customer managed environment connected existing infrastructure without Proton managing it.
-- Minor template versions could not require new developer inputs; major versions could. Proton checked the template's input schema, but schema compatibility did not guarantee compatible infrastructure code.
+- CloudFormation Git sync does not include Proton-style environments or advanced pipeline features.
 
-> **Trap:** End of Proton support did not delete deployed CloudFormation stacks. It ended access to Proton management and affected delivery pipelines.
+> **Trap:** CloudFormation Git sync is an alternative for a Git-driven workflow, but it does not provide Proton-style environments or advanced pipeline features.

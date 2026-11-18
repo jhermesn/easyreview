@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER cloud-adoption/migration-planning-tools"
+title: Migration planning and tracking
 level: foundational
 order: 50
 facts:
@@ -29,18 +29,20 @@ cards:
     a: "It builds a data-driven business case and identifies over-provisioned on-premises instances."
     facts: [evaluator]
 ---
-PLACEHOLDER first paragraph.
+Migration planning tools help a company build a business case for AWS and follow application migrations. [Migration Evaluator](https://aws.amazon.com/migration-evaluator/) supports the business case, while [AWS Migration Hub](https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub) provides one place to plan and track migrations.
 
 ### How it works
 
-PLACEHOLDER
+1. **Build the case:** Migration Evaluator finds over-provisioned on-premises instances and compares bring your own license (BYOL) with License Included options. [Migration Evaluator](https://aws.amazon.com/migration-evaluator/)
+2. **Plan and track:** Migration Hub discovers servers, helps plan migrations and shows each application's migration status across tools. It receives updates from AWS Application Migration Service and AWS Database Migration Service. [Migration Hub](https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question asks for a data-driven business case for AWS, think Migration Evaluator, because it identifies over-provisioned instances and compares licensing options.
+- If the question asks for one place to track application migrations across tools, think AWS Migration Hub, because it receives migration status updates from other services.
 
 ### Remember
 
-PLACEHOLDER
+- Migration Hub closed to new customers on November 7, 2025. AWS Transform offers similar capabilities. [Migration Hub availability change](https://docs.aws.amazon.com/migrationhub/latest/ug/migrationhub-availability-change.html)
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Migration Hub tracks migration status across tools; Migration Evaluator builds the business case. Choose the tool that fits the question.

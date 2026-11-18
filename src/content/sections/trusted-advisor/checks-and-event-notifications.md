@@ -141,9 +141,9 @@ cards:
     a: Underutilized Amazon EBS volumes, a cost optimization check.
     facts: [ebs-underutilized]
   - id: trusted-advisor-018
-    q: "A team wants to find potentially unsafe S3 bucket permissions and unrestricted security group ports. Which AWS Trusted Advisor checks can help?"
-    a: "Use the security checks for S3 bucket permissions and security groups with specific unrestricted ports. These checks are available with Basic Support."
-    facts: [basic-security-examples]
+    q: "A team wants to find Amazon EBS volumes that may be wasting money. How can AWS Trusted Advisor help?"
+    a: "Use the Underutilized Amazon EBS volumes check to identify unattached volumes or volumes with very low write activity for cost review."
+    facts: [ebs-underutilized]
 
 ---
 AWS Trusted Advisor inspects your AWS environment and recommends improvements to cost, availability, performance and security. A check evaluates resources and reports results for review.

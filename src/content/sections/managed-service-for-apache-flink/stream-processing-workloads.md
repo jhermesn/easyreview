@@ -69,9 +69,9 @@ cards:
     a: "It uses the newest automatically created checkpoint."
     facts: [flink-checkpoint]
   - id: managed-service-for-apache-flink-005
-    q: "A streaming application must recover its processing state after a failure. How can Amazon Managed Service for Apache Flink help?"
-    a: "Enable checkpointing. The application automatically creates checkpoints and recovers using the newest one."
-    facts: [flink-checkpoint]
+    q: "A team must transform records from an Amazon MSK topic and write the results to another destination. What does a Managed Service for Apache Flink application do?"
+    a: "It reads the topic as a source, applies the transformations, and writes the results to a sink."
+    facts: [flink-flow]
   - id: managed-service-for-apache-flink-006
     q: Does Amazon Data Firehose need to run an Apache Flink application to transform data before delivery?
     a: "No. Firehose can transform data before delivering it."

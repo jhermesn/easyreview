@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER billing-and-cost-management/more-essentials"
+title: Budget actions and coverage
 level: foundational
 order: 90
 facts:
@@ -36,18 +36,25 @@ cards:
     a: "The zero spend budget template in AWS Budgets."
     facts: [budget-templates]
 ---
-PLACEHOLDER first paragraph.
+AWS Budgets can monitor Reserved Instance and Savings Plans coverage and utilization, send notifications, and trigger actions at a budget threshold. These options help a team track its commitments and respond to costs. [Managing costs with AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs)
 
 ### How it works
 
-PLACEHOLDER
+1. Choose a budget for Reserved Instance or Savings Plans coverage or utilization, and set a threshold. [Creating a budget](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-create.html#budgets-create)
+2. Set notifications by email or Amazon SNS. A utilization notification can alert when utilization falls below a target.
+3. For a budget action, configure a custom IAM policy that denies provisioning more resources when the threshold is reached.
+4. For a quick setup, use the zero spend template to get notified when spending exceeds AWS Free Tier limits. [Budget templates](https://docs.aws.amazon.com/cost-management/latest/userguide/budget-templates.html#budget-templates)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says stop new resource provisioning at a budget threshold, think an AWS Budgets action, because it can apply a custom IAM policy.
+- If the question says notify when Reserved Instance or Savings Plans utilization falls below a target, think a utilization budget, because it can send notifications by email or Amazon SNS.
+- If the question says alert when Savings Plans coverage falls below a target, think a coverage budget, because it tracks coverage against a threshold.
+- If the question says get notified about spending beyond AWS Free Tier limits with a quick setup, think the zero spend budget template, because it creates a budget in one step.
 
 ### Remember
 
-PLACEHOLDER
+- A utilization notification can use a target such as 80 percent for a day.
+- The zero spend template notifies after spending exceeds AWS Free Tier limits.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Coverage and utilization are different measures. A coverage budget alerts when coverage falls below its threshold; a utilization budget alerts when utilization falls below its target.

@@ -40,9 +40,9 @@ cards:
     a: No. Quota increases are available to all customers, through Service Quotas or a Support case, even on Basic.
     facts: [support-case, increase]
   - id: service-quotas-005
-    q: "Teams want warnings before any supported service quota runs out, without building custom checks. What should they turn on?"
-    a: "Service Quotas Automatic Management, in Notify Only mode (or Notify and Auto-Adjust to also request increases), which alerts at 80% and 95% usage."
-    facts: [automatic-management]
+    q: "A company is planning a standby environment for an AWS workload. Why should it review service quotas?"
+    a: "Quotas set maximum values for AWS resources and actions. The company can request increases if the defaults do not meet its needs."
+    facts: [definition, increase]
 ---
 Every AWS account has quotas, also called limits, on how many resources and actions it can use. Defaults protect accounts and AWS capacity; Service Quotas shows them and asks for more. [What is Service Quotas?](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html#intro)
 
