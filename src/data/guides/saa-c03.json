@@ -209,7 +209,8 @@
                 "vpc/security-groups-and-network-acls",
                 "vpc/route-tables-and-peering",
                 "vpc/subnets-and-gateways",
-                "vpc/ip-addressing-and-nat-instances"
+                "vpc/ip-addressing-and-nat-instances",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -242,7 +243,8 @@
               "sections": [
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "direct-connect/private-connectivity-and-encryption",
-                "client-vpn/remote-user-connectivity"
+                "client-vpn/remote-user-connectivity",
+                "reference-architectures/hybrid-network-hub"
               ]
             }
           ]
@@ -445,7 +447,8 @@
                 "lambda/queue-and-stream-event-sources",
                 "event-processing-patterns/durable-fan-out",
                 "dynamodb/streams-and-consumer-limits",
-                "eventbridge/scheduler"
+                "eventbridge/scheduler",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -496,7 +499,8 @@
               "sections": [
                 "scalable-architectures/scaling-state-and-coupling",
                 "vpc/subnets-and-gateways",
-                "elastic-load-balancing/load-balancer-types"
+                "elastic-load-balancing/load-balancer-types",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -521,7 +525,8 @@
                 "lambda/concurrency-controls",
                 "fargate/compute-and-isolation",
                 "step-functions/standard-and-express",
-                "amplify/frontend-and-mobile-apps"
+                "amplify/frontend-and-mobile-apps",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -577,7 +582,8 @@
                 "scalable-architectures/scaling-state-and-coupling",
                 "eventbridge/event-buses-and-patterns",
                 "step-functions/service-integration-patterns",
-                "dynamodb/streams-and-consumer-limits"
+                "dynamodb/streams-and-consumer-limits",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -602,7 +608,8 @@
                 "sns/topics-subscriptions-and-fan-out",
                 "eventbridge/event-buses-and-patterns",
                 "amazon-mq/managed-message-brokers",
-                "lambda/async-destinations-and-dead-letter-queues"
+                "lambda/async-destinations-and-dead-letter-queues",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -627,7 +634,8 @@
                 "step-functions/standard-and-express",
                 "api-gateway/deployments-and-stages",
                 "serverless-application-repository/application-sharing-and-deployment",
-                "lambda/memory-timeout-and-snapstart"
+                "lambda/memory-timeout-and-snapstart",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -707,7 +715,8 @@
                 "disaster-recovery/rto-and-rpo",
                 "elastic-disaster-recovery/replication-and-staging",
                 "backup/plans-vaults-and-recovery-points",
-                "ec2/ami-scope-and-sharing"
+                "ec2/ami-scope-and-sharing",
+                "reference-architectures/multi-region-warm-standby"
               ]
             },
             {
@@ -728,7 +737,8 @@
                 "route53/dns-failover-and-testing",
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
-                "cloudfront/origin-failover"
+                "cloudfront/origin-failover",
+                "reference-architectures/multi-region-warm-standby"
               ]
             },
             {
@@ -838,7 +848,8 @@
                 "rds/multi-az-and-failover-tests",
                 "well-architected/framework-pillars",
                 "ec2/ip-addresses-and-network-interfaces",
-                "ec2-auto-scaling/health-checks-and-grace-periods"
+                "ec2-auto-scaling/health-checks-and-grace-periods",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -859,7 +870,8 @@
               "sections": [
                 "disaster-recovery/recovery-strategy-selection",
                 "disaster-recovery/rto-and-rpo",
-                "elastic-disaster-recovery/basics"
+                "elastic-disaster-recovery/basics",
+                "reference-architectures/multi-region-warm-standby"
               ]
             },
             {
@@ -1274,7 +1286,8 @@
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "direct-connect/private-connectivity-and-encryption",
                 "privatelink/interface-endpoints-and-private-access",
-                "client-vpn/remote-user-connectivity"
+                "client-vpn/remote-user-connectivity",
+                "reference-architectures/hybrid-network-hub"
               ]
             },
             {
@@ -1286,7 +1299,8 @@
                 "vpc/subnets-and-gateways",
                 "direct-connect/connections-lags-and-gateways",
                 "site-to-site-vpn/vpn-cloudhub",
-                "global-accelerator/regional-endpoint-routing"
+                "global-accelerator/regional-endpoint-routing",
+                "reference-architectures/hybrid-network-hub"
               ]
             },
             {
@@ -1337,7 +1351,8 @@
                 "redshift/data-warehouse-workloads",
                 "opensearch/log-ingestion-search-and-dashboards",
                 "emr/distributed-processing-workloads",
-                "data-exchange/third-party-data"
+                "data-exchange/third-party-data",
+                "reference-architectures/streaming-data-lake"
               ]
             },
             {
@@ -1406,7 +1421,8 @@
                 "managed-service-for-apache-flink/stream-processing-workloads",
                 "kinesis-video-streams/video-ingestion-and-processing",
                 "msk/managed-kafka-clusters",
-                "kinesis-data-streams/retention-and-replay"
+                "kinesis-data-streams/retention-and-replay",
+                "reference-architectures/streaming-data-lake"
               ]
             },
             {
@@ -1417,7 +1433,8 @@
                 "lake-formation/data-lake-governance",
                 "glue/data-integration-and-catalog",
                 "athena/partitions-and-columnar-formats",
-                "s3/encryption-and-bucket-keys"
+                "s3/encryption-and-bucket-keys",
+                "reference-architectures/streaming-data-lake"
               ]
             },
             {
@@ -1430,7 +1447,8 @@
                 "firehose/destinations-and-buffering",
                 "managed-service-for-apache-flink/stream-processing-workloads",
                 "msk/managed-kafka-clusters",
-                "kinesis-video-streams/video-ingestion-and-processing"
+                "kinesis-video-streams/video-ingestion-and-processing",
+                "reference-architectures/streaming-data-lake"
               ]
             },
             {
