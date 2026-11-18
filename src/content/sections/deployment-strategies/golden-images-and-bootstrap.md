@@ -71,10 +71,6 @@ facts:
   - id: refresh-options
     text: Rolling instance refresh supports instance warmup, checkpoints, and optional rollback.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html#instance-refresh-how-it-works
-  - id: rollback-versions
-    text: Instance refresh rollback requires a desired configuration and an explicit numbered previous
-      launch template version; $Latest, $Default, and Parameter Store AMI aliases are not supported.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-rollback.html
   - id: user-data-limit
     text: EC2 user data is limited to 16 KB before base64 encoding and is not included when an AMI is created
       from an instance.
@@ -98,30 +94,10 @@ facts:
   - id: distribution-retry
     text: After a distribution-phase failure, Image Builder can retry distribution without rebuilding the image.
     source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/cross-account-dist.html#cross-account-dist-prereqs
-  - id: parameter-permissions
-    text: Image Builder output parameters require ssm:PutParameter on the execution role and ec2:DescribeImages
-      for aws:ec2:image validation; the source account must enable a targeted opt-in Region for parameter writes.
-    source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/cr-upd-ami-distribution-settings.html#ami-distribution-prereqs-ssm-param
   - id: build-failure
     text: Image Builder terminates build or test instances on failure by default; infrastructure configuration
       can retain them for troubleshooting.
     source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/troubleshooting.html#troubleshooting-pipelines
-  - id: build-ssm
-    text: Image Builder build and test instances must reach Systems Manager. Image Builder uses Run Command
-      and requires an instance profile with permissions for the build and test components.
-    source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/set-up-ib-env.html#prereq-config
-  - id: build-logs
-    text: If Image Builder writes build logs to an S3 bucket, its instance profile needs s3:PutObject for that
-      bucket.
-    source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/set-up-ib-env.html#image-builder-IAM-prereq
-  - id: ami-scan-release
-    text: Image Builder added on-demand AMI scanning with Amazon Inspector in October 2026.
-    source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/doc-history.html
-  - id: ami-scan-gate
-    text: On-demand AMI scanning does not require Inspector account activation. A scan result condition makes
-      Image Builder wait and fail the image for findings above the allowed severity; without one, it can distribute
-      before the scan finishes.
-    source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/integ-inspector.html#integ-inspector-ami-scan
   - id: instance-metadata
     text: Instance metadata is data about a running EC2 instance, such as its ID and type, that software on the instance can read; it is not the launch script, which is user data.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html

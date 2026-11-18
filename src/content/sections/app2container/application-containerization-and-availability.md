@@ -11,44 +11,17 @@ facts:
     text: App2Container supports Java applications on Linux and ASP.NET applications on Windows and
       Linux.
     source: https://docs.aws.amazon.com/app2container/latest/UserGuide/supported-applications.html#supported-applications
-  - id: app-mode
-    text: App2Container application mode includes the application files and dependencies required by a
-      supported framework.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/supported-applications.html#supported-applications
-  - id: process-mode
-    text: App2Container process mode includes all non-system files when a supported framework is not
-      found or dependent processes require broader discovery.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/supported-applications.html#supported-applications
   - id: database-excluded
     text: App2Container does not containerize database-layer components; application containers must be
       configured to access the database server.
     source: https://docs.aws.amazon.com/app2container/latest/UserGuide/supported-applications.html#supported-applications
-  - id: initialize
-    text: App2Container init configures the local workspace before analysis, transformation, and
-      deployment commands.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/a2c-commands.html#a2c-commands
-  - id: inventory
-    text: App2Container inventory lists running candidate applications and assigns application IDs.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/a2c-commands.html#a2c-commands
   - id: analyze
     text: App2Container analyze identifies runtime dependencies and writes analysis.json for
       transformation.
     source: https://docs.aws.amazon.com/app2container/latest/UserGuide/a2c-commands.html#a2c-commands
-  - id: extract
-    text: App2Container extract creates an application archive that can be transferred to a worker for
-      containerization.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/a2c-commands.html#a2c-commands
-  - id: worker
-    text: App2Container can build and deploy on a worker instead of the application server; the worker
-      must use the same Linux or Windows platform and support containers.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/start-intro.html#start-intro
   - id: containerize
     text: App2Container containerize generates a Dockerfile, container image, and deployment.json from
       analysis results or an extracted application archive.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-containerize.html#cmd-containerize
-  - id: prevalidation
-    text: App2Container containerize pre-validates generated images by default; --no-validate skips that
-      check.
     source: https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-containerize.html#cmd-containerize
   - id: targets
     text: App2Container generates deployment artifacts for Amazon ECS, Amazon EKS, or App Runner, using
@@ -57,19 +30,6 @@ facts:
   - id: apprunner-linux
     text: App2Container deployment to App Runner supports Linux applications only.
     source: https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-appdeploy.html#cmd-generate-appdeploy
-  - id: generate-resources
-    text: App2Container generate app-deployment can create an ECR repository and push the container
-      image even when the deployment itself is performed later.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-appdeploy.html#cmd-generate-appdeploy
-  - id: deploy-option
-    text: App2Container generate app-deployment uses deployment.json; --deploy creates and deploys the
-      target stack directly, while generated artifacts can be reviewed and customized for manual
-      deployment.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-appdeploy.html#cmd-generate-appdeploy
-  - id: pipeline-config
-    text: App2Container generate app-deployment creates pipeline.json, which generate pipeline uses to
-      produce optional delivery-pipeline artifacts.
-    source: https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-pipeline.html#cmd-generate-pipeline
   - id: pipeline-types
     text: App2Container can generate pipeline artifacts for CodePipeline, Jenkins, or Microsoft Azure
       DevOps.

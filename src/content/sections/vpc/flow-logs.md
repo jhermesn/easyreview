@@ -25,10 +25,6 @@ facts:
     text: ACCEPT means accepted traffic; REJECT can indicate security group or ACL rejection or packets
       arriving after connection closure.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields
-  - id: flow-status
-    text: OK means normal logging, NODATA means no traffic during the interval, and SKIPDATA means some
-      records were skipped because of internal capacity constraints or errors.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields
   - id: flow-interval
     text: The default maximum aggregation interval is ten minutes; one minute is selectable, and Nitro
       instance interfaces aggregate in one minute or less.

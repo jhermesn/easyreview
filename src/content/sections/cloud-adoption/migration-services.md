@@ -21,12 +21,6 @@ facts:
   - id: hub
     text: AWS Migration Hub provides a single place to discover servers, plan migrations and track the status of each application migration, whichever migration tool is used.
     source: https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub
-  - id: hub-closed
-    text: AWS Migration Hub closed to new customers on November 7, 2025; AWS Transform offers similar capabilities.
-    source: https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub
-  - id: evaluator
-    text: Migration Evaluator builds a data-driven business case for AWS, discovers over-provisioned on-premises instances and compares BYOL with License Included options.
-    source: https://aws.amazon.com/migration-evaluator/
   - id: dms-tracking
     text: AWS Migration Hub receives migration status updates from AWS Application Migration Service and AWS Database Migration Service.
     source: https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub

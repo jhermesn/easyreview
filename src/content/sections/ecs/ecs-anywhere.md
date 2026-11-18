@@ -9,9 +9,6 @@ facts:
   - id: outbound
     text: ECS Anywhere external instances suit applications that generate outbound traffic or process data, because service load balancing isn't supported for them.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-anywhere.html#ecs-anywhere-considerations
-  - id: ssm-agent
-    text: The SSM Agent on an ECS Anywhere external instance holds IAM credentials that rotate every 30 minutes and refresh after a lost connection is restored.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-anywhere.html#ecs-anywhere-considerations
 cards:
   - id: ecs-072
     q: A company wants to run containerized batch jobs on its own on-premises servers but manage them from the same Amazon ECS control plane as its cloud tasks. Which feature fits?

@@ -24,24 +24,9 @@ facts:
     text: Enabling integrity validation creates digest files but does not itself validate delivered
       files.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html#cloudtrail-log-file-validation-intro
-  - id: validation-gap
-    text: Disabling validation breaks the digest chain after one hour, and CloudTrail does not create digests for files delivered while validation was disabled.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html#awscloudtrail-CreateTrail-request-EnableLogFileValidation
   - id: cli-validation
     text: The validate-logs CLI command checks digest files and referenced log files for modification or
       deletion.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-cli.html#cloudtrail-log-file-validation-cli
-  - id: cli-original
-    text: AWS CLI validation requires online access, read permission and log and digest files in their
-      original S3 locations; it checks only logs referenced by digests.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-cli.html#cloudtrail-log-file-validation-cli
-  - id: cli-parameters
-    text: validate-logs requires trail-arn and start-time; organization trails also require account-id,
-      and region selects the Region being validated.
-    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-cli.html#cloudtrail-log-file-validation-cli
-  - id: invalid-digest
-    text: An invalid signature, modified or missing digest, or missing log file is a validation failure
-      and does not establish log integrity for affected files.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-cli.html#cloudtrail-log-file-validation-cli
   - id: object-lock
     text: S3 Object Lock uses write-once-read-many storage to protect object versions against deletion

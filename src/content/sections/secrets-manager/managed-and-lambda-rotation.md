@@ -22,23 +22,6 @@ facts:
     text: Other Secrets Manager secrets can use a Lambda rotation function, with a custom function when
       no suitable template exists.
     source: https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda-functions.html
-  - id: create
-    text: The createSecret step stores the new secret version with the AWSPENDING staging label.
-    source: https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda-functions.html#rotate-secrets_lambda-functions-code
-  - id: set
-    text: The setSecret step changes the database or service credential to match AWSPENDING.
-    source: https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda-functions.html#rotate-secrets_lambda-functions-code
-  - id: test
-    text: The testSecret step uses AWSPENDING to test access to the database or service.
-    source: https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda-functions.html#rotate-secrets_lambda-functions-code
-  - id: finish
-    text: The finishSecret step moves AWSCURRENT to the new version, and Secrets Manager assigns
-      AWSPREVIOUS to the former current version.
-    source: https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda-functions.html#rotate-secrets_lambda-functions-code
-  - id: repeat
-    text: The rotation ClientRequestToken identifies the new version and supports idempotency, meaning
-      retries avoid creating the same change twice.
-    source: https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda.html
   - id: single
     text: Single-user database rotation changes one user password; existing open connections remain, but
       new authentication can fail briefly between the database update and secret promotion.
@@ -47,10 +30,6 @@ facts:
     text: Alternating-users rotation switches between an original and cloned database user, using a
       separate privileged secret to clone the user; both credentials remain valid after rotation.
     source: https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotation-strategy.html#rotating-secrets-two-users
-  - id: schedule
-    text: Secrets Manager rotation schedules use UTC rate() or cron() expressions and can rotate as
-      frequently as every four hours.
-    source: https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_managed.html
   - id: policies
     text: Parameter Store advanced parameter policies are Expiration, ExpirationNotification, and
       NoChangeNotification; they delete or notify rather than rotate database credentials.
@@ -58,22 +37,10 @@ facts:
   - id: external-launch
     text: Secrets Manager managed external secrets launched in November 2025.
     source: https://aws.amazon.com/about-aws/whats-new/2025/11/aws-secrets-manager-managed-external-secrets/
-  - id: managed-property
-    text: CloudFormation ManageMasterUserPassword enables Secrets Manager management of master
-      credentials for supported RDS and Aurora DB clusters.
-    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-managemasteruserpassword
   - id: attachment
     text: CloudFormation AWS::SecretsManager::SecretTargetAttachment adds the target database connection
       information to the secret JSON required for database rotation.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-secretsmanager-secrettargetattachment.html
-  - id: origin-sync
-    text: AWS documents Lambda rotation that updates both a CloudFront origin custom header and the WAF
-      rule protecting the origin ALB.
-    source: https://aws.amazon.com/blogs/security/how-to-enhance-amazon-cloudfront-origin-security-with-aws-waf-and-aws-secrets-manager/
-  - id: origin-overlap
-    text: The documented CloudFront origin-header rotation accepts both AWSPENDING and AWSCURRENT in the
-      WAF rule while the distribution change propagates.
-    source: https://aws.amazon.com/blogs/security/how-to-enhance-amazon-cloudfront-origin-security-with-aws-waf-and-aws-secrets-manager/
   - id: origin-test
     text: The documented origin-header rotation tests both AWSPENDING and AWSCURRENT header values
       against the ALB before finishSecret.

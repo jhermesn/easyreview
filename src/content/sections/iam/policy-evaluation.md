@@ -47,9 +47,6 @@ facts:
   - id: condition-element
     text: Condition tests request context against specified values.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#reference_policies_elements_condition_operators
-  - id: source-account
-    text: aws:SourceAccount is included only when an AWS service principal directly calls a resource on behalf of a resource that triggered the service request; not all service integrations use the key.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount
   - id: s3-arn-scope
     text: s3:ListBucket uses the bucket ARN; object permissions use an ARN with an object key or object wildcard.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_s3_home-directory-console.html#reference_policies_examples_s3_home-directory-console

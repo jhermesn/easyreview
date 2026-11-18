@@ -39,10 +39,6 @@ facts:
   - id: hybrid-trigger
     text: Hybrid rules evaluate both on configuration changes and periodically.
     source: https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-trigger
-  - id: rule-results
-    text: Rule results include COMPLIANT for passing, NON_COMPLIANT for failing, ERROR for invalid
-      parameters, and NOT_APPLICABLE when rule logic does not apply.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config-how-rules-work
   - id: detective-mode
     text: Detective evaluation checks the configurations of already deployed resources.
     source: https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-proactive-detective
@@ -58,9 +54,6 @@ facts:
       resource properties and use its ResourceEvaluationId with GetResourceEvaluationSummary to
       retrieve the result.
     source: https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_turn-on-proactive-rules.html#evaluate-config_turn-on-proactive-rules
-  - id: proactive-support
-    text: Only supporting resource types and managed rules can be used for proactive evaluation.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_turn-on-proactive-rules.html#evaluate-config_turn-on-proactive-rules
   - id: approved-ami
     text: The configuration-change rule approved-amis-by-id checks EC2 instances against the amiIds list
       and marks running instances with unlisted AMIs NON_COMPLIANT.
@@ -69,22 +62,10 @@ facts:
     text: The configuration-change rule encrypted-volumes checks attached EBS volumes for encryption and
       optionally checks the KMS key specified by kmsId.
     source: https://docs.aws.amazon.com/config/latest/developerguide/encrypted-volumes.html#encrypted-volumes
-  - id: rotation-check
-    text: The periodic cmk-backing-key-rotation-enabled rule checks whether automatic KMS key rotation
-      is enabled and has no input parameters.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/cmk-backing-key-rotation-enabled.html#cmk-backing-key-rotation-enabled
   - id: trail-check
     text: The periodic cloudtrail-enabled rule reports NON_COMPLIANT if a CloudTrail trail is not
       enabled.
     source: https://docs.aws.amazon.com/config/latest/developerguide/cloudtrail-enabled.html#cloudtrail-enabled
-  - id: tag-check
-    text: The configuration-change required-tags rule checks specified resource tags, supports up to six
-      tags, and does not prevent resource creation.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html#required-tags
-  - id: tag-remediation
-    text: AWS-SetRequiredTags does not work as remediation for required-tags; that rule requires a
-      custom Systems Manager Automation document for remediation.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html#required-tags
   - id: s3-public-read
     text: The s3-bucket-public-read-prohibited rule evaluates public read access using S3 Block Public Access settings, the bucket policy, and bucket ACL.
     source: https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-public-read-prohibited.html#s3-bucket-public-read-prohibited
@@ -111,13 +92,6 @@ facts:
   - id: tenancy-choices
     text: EC2 tenancy choices distinguish shared instances, Dedicated Instances, and Dedicated Hosts.
     source: https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-tenancy.html
-  - id: host-tenancy
-    text: Launching an instance on a Dedicated Host uses Tenancy=host; dedicated is a distinct tenancy
-      value.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-dedicated-hosts-instances.html
-  - id: tenancy-values
-    text: ModifyInstancePlacement accepts default, dedicated, and host for its Tenancy parameter.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstancePlacement.html
   - id: dedicated-host-definition
     text: A Dedicated Host is a physical server with EC2 instance capacity dedicated to your use.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html

@@ -9,21 +9,12 @@ facts:
   - id: schedule-zones
     text: Cron and one-time schedules can use an IANA time zone.
     source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#time-zones
-  - id: schedule-precision
-    text: Scheduler invokes targets with 60-second precision when no flexible time window is set.
-    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#schedule-types
   - id: rate-start
     text: A rate schedule without StartDate begins invoking its target immediately.
     source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#rate-based
   - id: cron-fields
     text: "Scheduler cron expressions have six fields: minutes, hours, day of month, month, day of week, and year."
     source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#cron-based
-  - id: dst-skip
-    text: A cron invocation at a nonexistent local time during the spring daylight saving transition is skipped.
-    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time
-  - id: dst-once
-    text: A cron invocation at a repeated local time during the autumn daylight saving transition runs only once, at the second occurrence after the shift.
-    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time
   - id: rate-day
     text: A day in a rate schedule is a 24-hour duration even across daylight saving changes.
     source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time

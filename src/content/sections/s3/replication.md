@@ -74,33 +74,18 @@ facts:
   - id: replication-rtc
     text: S3 Replication Time Control replicates 99.9 percent of uploaded objects within 15 minutes and enables replication metrics.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-time-control.html#replication-time-control
-  - id: replication-rtc-quota
-    text: The S3 RTC SLA does not apply when the replication transfer rate exceeds the default 1 Gbps quota.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-time-control.html#exceed-rtc-data-transfer-limits
   - id: replication-batch-retry
     text: S3 Batch Replication uses an existing replication configuration and a manifest to retry failed objects or copy existing and previously replicated objects.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html#batch-replication-considerations
-  - id: replication-batch-deleted
-    text: Batch Replication cannot restore a destination version deleted by version ID; copying the source object in place creates a new version eligible for live replication.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html#batch-replication-considerations
-  - id: replication-status
-    text: HeadObject exposes source replication status as PENDING, COMPLETED or FAILED in the x-amz-replication-status header.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-troubleshoot.html#troubleshoot-replication-tips
   - id: replication-cross-account-kms
     text: For cross-account SSE-KMS replication, use a customer managed key owned by the destination account and grant the replication role access in its key policy.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-troubleshoot.html#troubleshoot-replication-tips
   - id: replication-requester-pays
     text: A cross-account replication destination cannot be a Requester Pays bucket.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-requirements.html#replication-requirements
-  - id: replication-destination-lifecycle
-    text: Destination lifecycle rules use the original object's creation time, not the time the replica arrived.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-requirements.html#replica-and-lifecycle
   - id: replication-config-permission
     text: Setting a replication configuration requires s3:PutReplicationConfiguration and iam:PassRole for the caller.
     source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html#API_PutBucketReplication
-  - id: replication-failure-events
-    text: Replication failure notifications require replication metrics on the rule, but not S3 Replication Time Control; threshold notifications require S3 RTC.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-metrics-events.html#replication-metrics-events
   - id: replication-encryption-default
     text: Replicas of SSE-S3, SSE-KMS or DSSE-KMS source objects use the source encryption type rather than the destination bucket default.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-config-for-kms-objects.html#replication-default-encryption

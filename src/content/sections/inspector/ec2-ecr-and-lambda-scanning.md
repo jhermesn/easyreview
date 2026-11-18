@@ -6,15 +6,6 @@ facts:
   - id: purpose
     text: Amazon Inspector finds software vulnerabilities and unintended network exposure in supported workloads.
     source: https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html
-  - id: initial-types
-    text: First activation enables EC2, ECR, and Lambda standard scanning; Lambda code scanning and machine image scanning require separate activation.
-    source: https://docs.aws.amazon.com/inspector/latest/user/scanning-resources.html
-  - id: ec2-methods
-    text: EC2 scans compare collected software metadata with security advisories; agent-based scanning uses Systems Manager Agent and agentless scanning uses EBS snapshots.
-    source: https://docs.aws.amazon.com/inspector/latest/user/scanning-ec2.html
-  - id: hybrid-default
-    text: Hybrid is the default EC2 scanning mode and uses agent-based scanning for managed instances and agentless scanning for eligible unmanaged instances.
-    source: https://docs.aws.amazon.com/inspector/latest/user/scanning-ec2.html
   - id: ecr-enhanced
     text: ECR enhanced scanning uses Inspector to find operating system and programming language package vulnerabilities in private registry images.
     source: https://docs.aws.amazon.com/inspector/latest/user/scanning-ecr.html
@@ -24,15 +15,6 @@ facts:
   - id: lambda-types
     text: Lambda standard scanning checks dependencies in functions and layers; optional Lambda code scanning checks custom code and requires standard scanning.
     source: https://docs.aws.amazon.com/inspector/latest/user/scanning-lambda.html
-  - id: lambda-eligibility
-    text: Eligible Lambda functions use a supported runtime, are $LATEST, were invoked or updated within 90 days, and are not excluded by tags.
-    source: https://docs.aws.amazon.com/inspector/latest/user/scanning-lambda.html#supported-functions
-  - id: classic-retired
-    text: Amazon Inspector Classic reached end of support on May 20, 2026.
-    source: https://docs.aws.amazon.com/managedservices/latest/onboardingguide/inspector.html
-  - id: classic-model
-    text: Historically, Inspector Classic assessed EC2 instances launched from golden AMIs using an Inspector agent, tag-selected assessment targets, and assessment templates.
-    source: https://aws.amazon.com/blogs/security/how-to-set-up-continuous-golden-ami-vulnerability-assessments-with-amazon-inspector/
 cards:
   - id: inspector-001
     q: Which AWS service finds vulnerable packages in EC2 instances, private ECR images, and Lambda functions?

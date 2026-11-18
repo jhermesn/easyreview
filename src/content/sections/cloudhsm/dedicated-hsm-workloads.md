@@ -6,15 +6,9 @@ facts:
   - id: dedicated
     text: CloudHSM provides single-tenant hardware security modules that process cryptographic operations and store cryptographic keys.
     source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html#introduction
-  - id: modes
-    text: FIPS mode uses validated keys and algorithms; non-FIPS mode supports all keys and algorithms supported by CloudHSM.
-    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/clusters.html#clusters
   - id: fips-level
     text: HSMs in FIPS-mode clusters are validated to either FIPS 140-2 level 3 or FIPS 140-3 level 3.
     source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html#introduction
-  - id: mode-fixed
-    text: A CloudHSM cluster's mode cannot be changed after creation.
-    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/cluster-hsm-types.html#cluster-hsm-types
   - id: control
     text: CloudHSM data plane traffic is end-to-end encrypted and not visible to AWS.
     source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html#introduction
@@ -27,9 +21,6 @@ facts:
   - id: vpc-definition
     text: A VPC is a logically isolated virtual network in which AWS resources can be launched.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc
-  - id: apis
-    text: CloudHSM supports PKCS 11, JCE, CNG and KSP interfaces for cryptographic workloads.
-    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html#introduction
   - id: pkcs11
     text: PKCS 11 is a standard for performing cryptographic operations on HSMs.
     source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/pkcs11-library.html#pkcs11-library
@@ -57,9 +48,6 @@ facts:
   - id: custom-minimum
     text: Creating KMS keys in a CloudHSM key store requires at least two active HSMs in the associated cluster.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/keystore-cloudhsm.html#concept-cluster
-  - id: kmsuser
-    text: KMS uses a dedicated CloudHSM crypto user named kmsuser to create and manage key material in the associated cluster.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/keystore-cloudhsm.html#concept-kmsuser
   - id: custom-disconnect
     text: A disconnected CloudHSM key store cannot create KMS keys or perform cryptographic operations with its KMS keys.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/keystore-cloudhsm.html#concept-cluster

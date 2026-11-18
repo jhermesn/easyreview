@@ -30,9 +30,6 @@ facts:
   - id: lag
     text: Choose the secondary with the least replication lag to minimize failover data loss.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned
-  - id: lag-metrics
-    text: AuroraGlobalDBRPOLag reports lag in milliseconds for Aurora PostgreSQL and Aurora MySQL 3.04.0 or 2.12.0 and later; older MySQL versions use AuroraGlobalDBReplicationLag.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned
   - id: stop-writes
     text: AWS recommends taking applications offline before managed failover to prevent writes to the old primary; automatic write fencing is best effort and split-brain remains possible.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned
@@ -48,21 +45,9 @@ facts:
   - id: rebuild
     text: Managed failover rebuilds other secondary clusters and adds the recovered old primary back as a secondary; switchover can later return the primary role to the original Region.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned
-  - id: manual
-    text: If engine versions prevent managed failover, manual failover stops old-primary writes, detaches the least-lag secondary as a writable standalone cluster, redirects clients and recreates the global topology.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.manual-unplanned
   - id: headless
     text: A secondary without database instances needs an instance added before switchover or failover.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-bcdr-planning
-  - id: rpo-parameter
-    text: Aurora PostgreSQL rds.global_db_rpo supports a configured RPO threshold starting at 20 seconds.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-set-rpo
-  - id: rpo-block
-    text: When all secondary clusters exceed the configured rds.global_db_rpo threshold, Aurora PostgreSQL blocks primary commits until at least one secondary catches up.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-manage-recovery
-  - id: two-regions
-    text: For a two-Region PostgreSQL global database, AWS recommends leaving rds.global_db_rpo at its default in the secondary until the old primary has been rebuilt after failover.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-manage-recovery
   - id: snapshot-copy
     text: Aurora DB clusters do not support native cross-Region automated backup replication; cluster snapshots can be copied to another Region for recovery.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.Retaining.html#Aurora.Managing.Backups.Retaining.Limits
@@ -75,9 +60,6 @@ facts:
   - id: sns-permissions
     text: RDS event publishing requires permissions on the SNS topic; a custom topic policy can restrict source resources or allow cross-account notification.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.GrantingPermissions.html#USER_Events.GrantingPermissions
-  - id: global-limits
-    text: "An Aurora global database has one primary Region and up to 10 read-only secondary Regions; a secondary cluster can hold up to 16 reader instances."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database-overview
 cards:
   - id: aurora-003
     q: An Aurora Global Database must move its primary Region during planned maintenance without data loss. How does this differ from disaster failover?

@@ -7,10 +7,6 @@ facts:
     text: The Horizontal Pod Autoscaler changes Pod replica counts to meet a configured metric target;
       it does not provision nodes.
     source: https://docs.aws.amazon.com/eks/latest/userguide/horizontal-pod-autoscaler.html
-  - id: metrics
-    text: HPA requires a metrics source such as Metrics Server; resource metrics provide CPU and memory
-      data, while adapters can expose custom or external metrics.
-    source: https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_horizontal_pod_autoscaler_hpa
   - id: requests
     text: Resource requests are the CPU and memory reservations used when scheduling Pods; node groups
       must have capacity and scheduling properties that fit unscheduled Pods.
@@ -31,21 +27,6 @@ facts:
     text: Auto Mode builds on Karpenter, creates nodes when Pods do not fit existing nodes, and
       consolidates workloads and removes nodes.
     source: https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html#_eks_auto_mode
-  - id: ca-utilization
-    text: The default Cluster Autoscaler scale-down-utilization-threshold is 0.5, based on requested
-      resources divided by capacity; being below it makes a node a candidate for scale-down.
-    source: https://docs.aws.amazon.com/eks/latest/best-practices/cas.html#_additional_parameters
-  - id: ca-delay
-    text: The default Cluster Autoscaler scale-down-unneeded-time is 10 minutes.
-    source: https://docs.aws.amazon.com/eks/latest/best-practices/cas.html#_additional_parameters
-  - id: eviction
-    text: A Pod annotated cluster-autoscaler.kubernetes.io/safe-to-evict=false can prevent its node from
-      being scaled down.
-    source: https://docs.aws.amazon.com/eks/latest/best-practices/cas.html
-  - id: zonal-ebs
-    text: EBS volumes are limited to one Availability Zone; AWS recommends balancing similar per-zone
-      node groups for these workloads with balance-similar-node-groups=true.
-    source: https://docs.aws.amazon.com/eks/latest/best-practices/cas.html#_ebs_volumes
   - id: hpa-downscale
     text: The EKS HPA walkthrough documents a default five-minute scale-down timeframe that can be
       changed.

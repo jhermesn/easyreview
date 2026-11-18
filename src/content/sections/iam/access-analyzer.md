@@ -21,9 +21,6 @@ facts:
   - id: unused-analysis
     text: Unused access findings identify unused roles, user access keys, passwords, services and actions.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-unused-access-analysis
-  - id: unused-region
-    text: Unused access findings do not depend on Region, so an analyzer is not needed in every Region.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification
   - id: policy-validation
     text: Policy validation checks grammar and AWS best practices and returns errors, security warnings, warnings
       and suggestions.

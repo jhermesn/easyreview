@@ -15,13 +15,6 @@ facts:
   - id: inventory-metadata
     text: Inventory can include encryption status and replication status metadata.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory-contents
-  - id: inventory-first
-    text: The first Inventory report can take up to 48 hours to arrive.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory
-  - id: inventory-destination
-    text: An Inventory destination bucket must be in the source Region, may be in a different account,
-      and needs a delivery bucket policy.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory-buckets
   - id: inventory-query
     text: Athena can query S3 Inventory files using SQL.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory
@@ -34,10 +27,6 @@ facts:
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html#ServerLogs
   - id: access-log-default
     text: Server access logging is not enabled by default.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#enable-server-access-logging
-  - id: access-log-destination
-    text: For direct delivery to S3, the access-log destination bucket must be in the same Region and
-      account as the source.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#enable-server-access-logging
   - id: access-log-loop
     text: Use a separate access-log destination bucket without its own access logging to avoid recursive

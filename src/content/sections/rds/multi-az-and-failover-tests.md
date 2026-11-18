@@ -31,14 +31,6 @@ facts:
   - id: jvm-dns
     text: AWS recommends a Java DNS cache time-to-live no greater than 60 seconds for RDS failover.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.Failover.html#Concepts.MultiAZ.Failover.Java-DNS
-  - id: instance-test
-    text: Reboot with failover tests a Multi-AZ DB instance by switching to its standby; AWS recommends
-      stopping transactions before this abrupt interruption.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RebootInstance.html#USER_RebootInstance
-  - id: cluster-test
-    text: A Multi-AZ DB cluster supports a manual failover through FailoverDBCluster or
-      failover-db-cluster.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts-failover.html#multi-az-db-clusters-concepts-failover-manual
   - id: convert-instance
     text: An existing Single-AZ DB instance can be modified to Multi-AZ by adding a standby in another
       Availability Zone.

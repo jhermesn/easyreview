@@ -27,9 +27,6 @@ facts:
     text: A metric filter emits no value for a minute in which no logs are ingested, even if its default
       value is 0.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html#search-filter-concepts
-  - id: filter-dimensions
-    text: Metric filters with dimensions cannot have a default value.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html#search-filter-concepts
   - id: filter-json
     text: A JSON filter can compare a numeric field with a value, such as { $.status = 500 }.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#matching-terms-json-log-events

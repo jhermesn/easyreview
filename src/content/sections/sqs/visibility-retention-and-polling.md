@@ -27,9 +27,6 @@ facts:
   - id: delay-values
     text: A queue delay hides newly sent messages before their first receive, defaults to zero, and can be up to fifteen minutes.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-delay-queues.html#sqs-delay-queues
-  - id: message-timer
-    text: A standard-queue per-message DelaySeconds timer overrides queue delay; FIFO queues do not support timers on individual messages.
-    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-timers.html#sqs-message-timers
   - id: delay-retroactive
     text: Changing queue delay affects messages already queued for FIFO but not for standard queues.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-delay-queues.html#sqs-delay-queues
@@ -45,18 +42,6 @@ facts:
   - id: receive-size
     text: ReceiveMessage retrieves up to ten messages per request.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html#API_ReceiveMessage
-  - id: delete-handle
-    text: DeleteMessage requires the most recently received ReceiptHandle rather than MessageId; an old handle can succeed without deleting the message.
-    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html#API_DeleteMessage
-  - id: inflight
-    text: An in-flight SQS message has been received but not yet deleted.
-    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#inflight-messages
-  - id: inflight-standard-limit
-    text: Standard queues allow approximately 120,000 in-flight messages depending on traffic and backlog.
-    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-queues.html#quotas-queues
-  - id: inflight-polling
-    text: At the in-flight limit, short polling returns OverLimit while long polling returns no new messages until in-flight count drops.
-    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#inflight-messages
   - id: message-size
     text: The maximum SQS message size is 1,048,576 bytes, or 1 MiB.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html#quotas-messages

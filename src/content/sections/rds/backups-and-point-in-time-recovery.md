@@ -47,21 +47,6 @@ facts:
   - id: standby-replicates
     text: RDS Multi-AZ DB instance replication copies database changes synchronously to the standby.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby
-  - id: backup-availability
-    text: RDS automated backups do not occur unless the DB instance is available, or while a snapshot
-      copy for that database runs in the same Region.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups
-  - id: aws-backup-window-conflict
-    text: Unless AWS Backup manages both RDS snapshots and continuous backups, its RDS backup jobs fail
-      when initiated during the RDS automated backup window.
-    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/troubleshooting.html#troubleshooting-create-backup
-  - id: oracle-option-copy
-    text: Since November 2026, RDS for Oracle can copy the snapshot's option group to another Region
-      in the same snapshot copy request using CopyOptionGroup.
-    source: https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-rds-oracle-cross-region-snapshot-copy-option-group/
-  - id: multiaz-backup-latency
-    text: "Synchronous replication to a Multi-AZ standby also minimizes latency spikes on the primary during system backups."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby
   - id: free-backup-storage
     text: "RDS includes free backup storage up to 100 percent of the total provisioned database storage in the account for each Region, covering DB snapshots and DB cluster snapshots."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups

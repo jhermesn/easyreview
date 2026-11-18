@@ -35,10 +35,6 @@ facts:
   - id: same-account
     text: Lambda functions referenced through stage variables must be in the same account as the API.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/aws-api-gateway-stage-variables-reference.html#stage-variables-in-integration-lambda-functions
-  - id: integration-type
-    text: Stage variables can change the backend endpoint but cannot switch the integration type between
-      HTTP proxy and Lambda proxy.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/stage-variables.html#use-cases
   - id: sensitive
     text: Stage variables are not intended to hold sensitive data such as credentials.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/stage-variables.html
@@ -48,54 +44,27 @@ facts:
   - id: alias-definition
     text: A Lambda alias is an updatable pointer to a function version.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html
-  - id: client-sdk
-    text: API Gateway GetSdk generates a client SDK for a REST API and a stage.
-    source: https://docs.aws.amazon.com/apigateway/latest/api/API_GetSdk.html#API_GetSdk
   - id: stage-cache
     text: With a provisioned API Gateway REST API stage cache and method caching enabled, cached responses can be served instead of calling the endpoint, reducing calls.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#api-gateway-caching
   - id: stage-rollback
     text: A REST API stage can be pointed to an earlier deployment to roll back the API snapshot.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-deployments.html#apigateway-deployment-next-steps
-  - id: stage-cache-ttl
-    text: REST API cache TTL defaults to 300 seconds, has a maximum of 3600 seconds, and zero disables caching.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#api-gateway-caching
-  - id: stage-cache-method
-    text: Default method-level caching applies to GET methods; other methods require a method override.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#enable-api-gateway-caching
-  - id: stage-cache-resize
-    text: Changing REST API cache capacity replaces the cache instance and deletes its existing cached data.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#enable-api-gateway-caching
   - id: stage-cache-keys
     text: REST API cache keys can include request parameters such as headers, paths, or query strings; requests sharing the selected key can reuse a cached response.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#enable-api-gateway-cache-keys
-  - id: stage-cache-invalidate
-    text: A client can refresh a REST API cache entry with Cache-Control max-age=0; if authorization is required, the client needs execute-api:InvalidateCache. Cross-account invalidation is unsupported.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#invalidate-method-caching
-  - id: http-default-stage
-    text: An HTTP API $default stage is served from the base API URL without a stage name in the path.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-stages.html
   - id: stage-logging-role
     text: CloudWatch Logs for a REST API stage requires an IAM role configured on the API Gateway account that permits API Gateway to write logs.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-stages.html#how-to-stage-settings
-  - id: stage-quotas
-    text: REST APIs have a default quota of 10 stages per API, which can be increased, and a non-increasable limit of 100 stage variables per stage.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-execution-service-limits-table.html#api-gateway-execution-service-limits-table
   - id: stage-cfn-dependency
     text: When a CloudFormation template creates a REST API, its methods and its deployment together, the deployment must depend on the methods.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-apigateway-deployment.html#aws-resource-apigateway-deployment--examples--AWS::ApiGateway::Method_Dependency
-  - id: mapping-template
-    text: "A REST API mapping template, written in VTL, transforms the integration request body before API Gateway calls the backend, or the integration response before it reaches the client. Without a template for the Content-Type, the body passes through unchanged."
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-request
   - id: front-door
     text: Amazon API Gateway creates, publishes and secures REST, HTTP and WebSocket APIs and acts as a front door to backends such as Lambda functions, EC2 and web applications.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html
   - id: aws-integration
     text: An API Gateway REST API can integrate directly with AWS services, for example as a proxy to Amazon Kinesis, without a Lambda function in between.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-kinesis.html
-  - id: sdk-generation
-    text: "API Gateway generates a client SDK for a REST API after it is deployed to a stage, in Java, JavaScript, Java for Android, Objective-C or Swift for iOS, and Ruby; the GetSdk API returns it for automation."
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-generate-sdk.html#how-to-generate-sdk
 diagrams:
   - id: api-deployment-stage
     title: Publishing a REST API configuration

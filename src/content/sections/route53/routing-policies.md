@@ -18,15 +18,6 @@ facts:
   - id: weighted-ratio
     text: Weighted records with the same name and type receive DNS answers in proportion to their weight divided by the total weight.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html#routing-policy-weighted
-  - id: weight-range
-    text: Weighted record weights are integers from 0 through 255.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-weighted.html#rrsets-values-weighted-weight
-  - id: all-zero
-    text: When every record in a weighted group has weight 0, Route 53 gives the resources equal probability.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-weighted.html#rrsets-values-weighted-weight
-  - id: zero-fallback
-    text: With health checks on weighted records, Route 53 considers zero-weight records when all nonzero-weight records are unhealthy.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html#routing-policy-weighted-healthchecks
   - id: ttl-cache
     text: Recursive resolvers cache answers for the record TTL, so a cached answer can serve requests without another Route 53 query.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-weighted.html#rrsets-values-weighted-ttl
@@ -48,21 +39,12 @@ facts:
   - id: multivalue
     text: Multivalue answer routing returns up to eight healthy records selected at random, or all healthy records when there are eight or fewer.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html#routing-policy-multivalue
-  - id: multivalue-unhealthy
-    text: If all multivalue records are unhealthy, Route 53 returns up to eight unhealthy records.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html#routing-policy-multivalue
   - id: unchecked
     text: A record without an associated health check is treated as healthy.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records
   - id: selection
     text: Route 53 chooses a record using the routing policy, checks its current health status, and tries another if it is unhealthy; probes run separately from DNS queries.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records
-  - id: regional-tree
-    text: Latency aliases can point to regional groups of weighted records; Evaluate Target Health lets Route 53 leave a Region with no healthy records and try another Region.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html#dns-failover-complex-configs
-  - id: tree-leaves
-    text: Non-alias leaves in a health-aware alias tree need health checks; an unchecked leaf can keep a failed branch eligible.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html#dns-failover-complex-configs-hc-omitting
   - id: bg-weighted-endpoints
     text: "For a blue/green shift with Route 53, each environment exposes its own endpoint, such as its own load balancer, and weighted records send a percentage of traffic to green, raised step by step until green carries all traffic."
     source: https://docs.aws.amazon.com/whitepapers/latest/blue-green-deployments/update-dns-routing-with-amazon-route-53.html#update-dns-routing-with-amazon-route-53

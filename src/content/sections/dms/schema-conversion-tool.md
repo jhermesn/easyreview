@@ -15,9 +15,6 @@ facts:
   - id: schema-not-data
     text: DMS Schema Conversion converts the database schema, not the data; data migration uses the data migration features of AWS DMS.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#CHAP_SchemaConversion
-  - id: assessment
-    text: DMS Schema Conversion can run an assessment showing what converts automatically and what needs manual work, then apply the converted code to the target or export it as SQL scripts.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#CHAP_SchemaConversion
 cards:
   - id: dms-013
     q: A company is migrating an Oracle database to Amazon Aurora PostgreSQL. Which AWS tools convert the schema?

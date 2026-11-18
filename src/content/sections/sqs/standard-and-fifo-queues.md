@@ -24,12 +24,6 @@ facts:
   - id: fifo-dedup-window
     text: FIFO suppresses duplicate sends using the same deduplication ID within a five-minute interval.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing
-  - id: fifo-content-hash
-    text: Content-based FIFO deduplication uses a SHA-256 hash of the message body, excluding message attributes.
-    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing
-  - id: fifo-dedup-choice
-    text: A FIFO producer must provide a MessageDeduplicationId unless content-based deduplication is enabled.
-    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing
   - id: fifo-receive-block
     text: A FIFO receive can contain multiple messages from one group; later receives cannot take more from that group until the received messages are deleted or visible again.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html#FIFO-queues-understanding-logic

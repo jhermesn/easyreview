@@ -38,9 +38,6 @@ facts:
     text: If a node has no patch group or its patch group has no registered baseline, Patch Manager uses
       the current default baseline for the operating system.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-patch-groups.html#patch-manager-patch-groups
-  - id: baseline-policy
-    text: Patch policy operations do not use patch groups.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-patch-groups.html#patch-manager-patch-groups
   - id: baseline-console
     text: Patch group functionality is unavailable in the console for account-Region pairs that did not
       use it before December 22, 2022.

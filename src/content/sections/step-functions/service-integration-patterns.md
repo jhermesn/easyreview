@@ -46,9 +46,6 @@ facts:
     text: Parallel runs separate branches concurrently and waits for all branches to terminate before
       continuing.
     source: https://docs.aws.amazon.com/step-functions/latest/dg/state-parallel.html#state-parallel
-  - id: pass-state
-    text: Pass forwards input without doing work and can transform or add data to output.
-    source: https://docs.aws.amazon.com/step-functions/latest/dg/state-pass.html#state-pass
   - id: map-state
     text: Map repeats a set of steps for each input item; Inline is the default mode and Distributed
       runs child workflows.
@@ -57,23 +54,9 @@ facts:
     text: Inline Map supports up to 40 concurrent iterations; Distributed Map supports up to 10,000
       parallel child workflow executions.
     source: https://docs.aws.amazon.com/step-functions/latest/dg/state-map.html#concepts-map-process-modes
-  - id: succeed-state
-    text: Succeed ends a workflow, branch, or iteration successfully.
-    source: https://docs.aws.amazon.com/step-functions/latest/dg/state-succeed.html#state-succeed
-  - id: fail-state
-    text: Fail stops execution with failure unless enclosing error handling catches it.
-    source: https://docs.aws.amazon.com/step-functions/latest/dg/state-fail.html#state-fail
-  - id: workflow-variables
-    text: Workflow variables store values for later steps without passing them through every
-      intermediate state output.
-    source: https://docs.aws.amazon.com/step-functions/latest/dg/workflow-variables.html#workflow-variables
   - id: execution-role
     text: The state machine IAM execution role grants permission to call integrated AWS resources.
     source: https://docs.aws.amazon.com/step-functions/latest/dg/procedure-create-iam-role.html#procedure-create-iam-role
-  - id: activity-worker
-    text: An activity worker polls GetActivityTask with the activity ARN, receives input and a
-      taskToken, then reports using SendTaskSuccess or SendTaskFailure.
-    source: https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html#activities-overview
   - id: event-target
     text: An EventBridge rule can target a Step Functions state machine and start a workflow when
       another service event matches.

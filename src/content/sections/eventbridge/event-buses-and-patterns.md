@@ -24,19 +24,9 @@ facts:
     text: An event must contain all pattern fields at the same nesting level; fields omitted from the pattern are
       ignored.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern.html#eb-create-pattern
-  - id: pattern-and-or
-    text: Pattern fields combine with AND, values in one array combine with OR, and $or combines alternatives
-      across fields.
-    source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-create-pattern-operators
-  - id: exact-match
-    text: Ordinary string matching is case sensitive.
-    source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern.html#eb-create-pattern-considerations
   - id: prefix
     text: The prefix operator matches the beginning of a string.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-filtering-prefix-matching
-  - id: suffix
-    text: The suffix operator matches the end of a string.
-    source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-filtering-suffix-matching
   - id: numeric
     text: The numeric operator compares numeric values and ranges.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#filtering-numeric-matching
@@ -46,12 +36,6 @@ facts:
   - id: anything-but
     text: The anything-but operator excludes specified values.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-filtering-anything-but
-  - id: ignore-case
-    text: The equals-ignore-case operator matches strings regardless of letter case.
-    source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-filtering-equals-ignore-case-matching
-  - id: cidr
-    text: The cidr operator matches IP addresses within an IPv4 or IPv6 network range.
-    source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-create-pattern-operators
   - id: test-pattern
     text: TestEventPattern tests whether a supplied event matches an event pattern.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern.html#eb-create-pattern
@@ -123,20 +107,9 @@ facts:
     text: Elastic Beanstalk emits environment health transitions and operation state changes for EventBridge
       response rules.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.eventbridge.html
-  - id: asg-lifecycle
-    text: Auto Scaling lifecycle hooks generate EventBridge events when instances enter a wait state.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-event-reference.html
   - id: asg-scaling
     text: Auto Scaling emits successful and unsuccessful scaling events that EventBridge rules can match.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-event-reference.html
-  - id: asg-refresh
-    text: Auto Scaling instance refresh emits events for checkpoints, start, success, failure, cancellation, and
-      rollback state changes.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-eventbridge-events.html
-  - id: health-exposure
-    text: An AWS Health AWS_RISK_CREDENTIALS_EXPOSED event can trigger a rule that starts a Step Functions
-      remediation workflow.
-    source: https://aws.amazon.com/blogs/compute/automate-your-it-operations-using-aws-step-functions-and-amazon-cloudwatch-events/
   - id: ta-events
     text: Trusted Advisor check status changes can trigger EventBridge targets, and those events are emitted in US
       East (N. Virginia).
@@ -147,9 +120,6 @@ facts:
   - id: ta-low-use
     text: Trusted Advisor has a low-utilization EC2 instance check for identifying potential cost savings.
     source: https://docs.aws.amazon.com/awssupport/latest/user/cost-optimization-checks.html
-  - id: xray-insights
-    text: Enable insights and notifications on an X-Ray group to send insight events through EventBridge.
-    source: https://docs.aws.amazon.com/xray/latest/devguide/xray-console-insights.html
   - id: org-events
     text: Organizations activity can trigger EventBridge notification rules in US East (N. Virginia).
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_cloudwatch-integration.html

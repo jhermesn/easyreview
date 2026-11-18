@@ -57,10 +57,6 @@ facts:
     text: WAF request logs can be sent to CloudWatch Logs, an S3 bucket or a Data Firehose delivery
       stream.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/logging.html
-  - id: log-redaction
-    text: WAF logging redaction does not affect request sampling; web ACL data protection can exclude
-      fields from sampling.
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/logging.html
   - id: origin-header
     text: CloudFront can add a secret origin header that an ALB WAF rule checks to block requests
       bypassing CloudFront.
@@ -75,9 +71,6 @@ facts:
   - id: sqli
     text: An AWS WAF SQL injection rule statement inspects web requests for malicious SQL code.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-sqli-match.html
-  - id: log-prefix
-    text: AWS WAF logging destinations (S3 bucket, CloudWatch Logs group or Firehose stream) must have names starting with aws-waf-logs-.
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/logging-s3.html
   - id: ip-set
     text: An IP set match statement checks the request IP against a list of CIDR ranges; an Allow rule on it with a Block default action restricts access to those ranges.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-ipset-match.html
@@ -87,9 +80,6 @@ facts:
   - id: wcu
     text: "A web ACL can use up to 5,000 WAF capacity units (WCUs); its base price includes 1,500 WCUs and higher usage costs extra. A rule group can have at most 5,000 WCUs."
     source: https://docs.aws.amazon.com/waf/latest/developerguide/aws-waf-capacity-units.html
-  - id: custom-block
-    text: "A WAF Block action can return a custom response code, headers and body in place of the default 403 Forbidden response."
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html
 diagrams:
   - id: waf-rule-evaluation
     title: Evaluation when no rule terminates

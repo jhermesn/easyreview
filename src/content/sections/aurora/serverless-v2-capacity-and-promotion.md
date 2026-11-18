@@ -9,18 +9,6 @@ facts:
   - id: acu
     text: An Aurora capacity unit represents approximately 2 GiB of memory with corresponding CPU and networking resources.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.capacity
-  - id: increments
-    text: Aurora Serverless v2 capacity scales in increments as small as 0.5 ACU.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.scaling
-  - id: upper
-    text: Supported Aurora MySQL Serverless v2 configurations can reach 256 ACUs, depending on engine and platform version.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.capacity
-  - id: postgres-upper
-    text: Supported Aurora PostgreSQL Serverless v2 configurations can reach 384 ACUs, depending on engine and platform version.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.capacity
-  - id: platform
-    text: The available Aurora Serverless v2 range is limited by the less capable of its engine version and platform version; platform availability also varies by Region.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.capacity
   - id: range
     text: A cluster must define ServerlessV2ScalingConfiguration before instances of class db.serverless can be added.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html#aurora-serverless-v2.requirements.capacity-range
@@ -30,48 +18,15 @@ facts:
   - id: mixed
     text: Aurora clusters can combine provisioned and Serverless v2 instances.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.cluster_topology
-  - id: metrics
-    text: ServerlessDatabaseCapacity reports the current capacity of a Serverless instance in ACUs.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html#aurora-serverless-v2.viewing.monitoring
-  - id: acu-utilization
-    text: ACUUtilization is current ServerlessDatabaseCapacity divided by configured maximum ACUs, expressed as a percentage.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html#aurora-serverless-v2.viewing.monitoring
-  - id: high-priority
-    text: Serverless v2 readers in promotion tiers 0 and 1 have a minimum tied to current writer capacity, within the configured maximum, to prepare for failover.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.scaling
   - id: provisioned-writer
     text: With a provisioned writer, a tier 0 or 1 Serverless v2 reader uses the ACU equivalent of writer memory for its capacity floor.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.scaling
-  - id: independent
-    text: Serverless v2 readers in promotion tiers 2 through 15 scale independently within the cluster range and might need to scale up after promotion.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.scaling
   - id: storage
     text: Serverless v2 uses the same six-copy, three-Availability-Zone Aurora storage as provisioned capacity; compute scaling does not resize stored data.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless.storage
-  - id: global
-    text: Aurora Global Database secondary clusters can use Serverless v2 compute capacity for disaster recovery.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless.ha
-  - id: auto-pause
-    text: On supported versions, setting minimum capacity to 0 ACUs enables auto-pause after a period without user connections; a connection attempt resumes the instance.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-enabling
   - id: nonzero
     text: Setting minimum capacity to 0.5 ACU or greater turns off auto-pause.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-disabling
-  - id: pause-interval
-    text: SecondsUntilAutoPause allows an idle interval from 300 to 86400 seconds.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-timeout
-  - id: pause-default
-    text: SecondsUntilAutoPause defaults to 300 seconds when no interval is specified.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-timeout
-  - id: pause-tiers
-    text: The Serverless writer and tier 0 or 1 readers pause and resume together; readers in tiers 2 through 15 can pause independently.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-multi-az
-  - id: pause-proxy
-    text: RDS Proxy prevents Serverless v2 auto-pause because it keeps database connections open.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-whynot
-  - id: pause-global
-    text: Global Database primary writers and their tier 0 or 1 readers do not auto-pause; Serverless instances in secondary global clusters do not auto-pause either.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-whynot
   - id: pause-cost
     text: Paused Serverless v2 instances have no instance-capacity charge, but storage and other cluster charges continue.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-billing

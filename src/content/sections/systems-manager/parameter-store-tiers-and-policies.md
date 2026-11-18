@@ -37,32 +37,6 @@ facts:
   - id: parameter-share
     text: Cross-account sharing through AWS RAM requires advanced parameters.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html#prereqs
-  - id: parameter-expiry
-    text: Expiration deletes a parameter after the specified timestamp through asynchronous periodic
-      policy processing.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#parameter-store-policies
-  - id: parameter-expiry-notify
-    text: ExpirationNotification emits an EventBridge event before or after the expiration time.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#parameter-store-policies
-  - id: parameter-nochange
-    text: NoChangeNotification emits an EventBridge event when a parameter has remained unchanged for
-      the specified period.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#parameter-store-policies
-  - id: parameter-policy-count
-    text: An advanced parameter can have up to ten policies.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#parameter-store-policies
-  - id: parameter-policy-replace
-    text: Supplying a new policy array replaces the policies already attached to the parameter.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#sysman-paramstore-su-policy-create
-  - id: parameter-path
-    text: Parameter hierarchies use slash-separated names.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-examples
-  - id: parameter-path-depth
-    text: Parameter hierarchies support up to 15 levels.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-examples
-  - id: parameter-recursive
-    text: GetParametersByPath supports recursive retrieval of parameters below a path.
-    source: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html#systemsmanager-GetParametersByPath-request-Recursive
   - id: parameter-version
     text: Parameter values begin at version one.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions
@@ -71,14 +45,6 @@ facts:
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions
   - id: parameter-version-latest
     text: Requests without a parameter version use the latest version.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions
-  - id: parameter-history
-    text: Parameter Store retains up to 100 versions, normally deleting the oldest to make room for the
-      next.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions
-  - id: parameter-history-label
-    text: If the oldest of 100 retained versions has a label, creation of a new version fails instead of
-      deleting the labeled version.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions
   - id: parameter-missing-version
     text: Requesting a nonexistent parameter version fails rather than falling back to latest.

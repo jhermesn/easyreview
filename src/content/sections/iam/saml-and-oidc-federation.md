@@ -32,14 +32,6 @@ facts:
   - id: federation-broker
     text: GetFederationToken supports a custom broker using an IAM user long-term credentials.
     source: https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html#API_GetFederationToken
-  - id: federation-duration
-    text: GetFederationToken for IAM users defaults to twelve hours and supports fifteen minutes to thirty-six
-      hours; root-based sessions are capped at one hour.
-    source: https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html#API_GetFederationToken
-  - id: sessiontoken-duration
-    text: GetSessionToken for IAM users defaults to twelve hours and supports fifteen minutes to thirty-six hours;
-      root sessions default to and are capped at one hour.
-    source: https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html#API_GetSessionToken
   - id: sessiontoken-user
     text: GetSessionToken returns credentials based on the calling user permissions and can include MFA
       authentication information.

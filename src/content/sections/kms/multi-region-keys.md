@@ -34,10 +34,6 @@ facts:
   - id: mrk-kms-material
     text: For AWS_KMS-origin keys, KMS transports material from the primary to replicas within KMS.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#mrk-sync-properties
-  - id: mrk-import-material
-    text: For EXTERNAL-origin keys, import the same material into each replica independently; KMS synchronizes
-      material identifiers rather than the material.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#mrk-sync-properties
   - id: mrk-auth
     text: Each related key needs its own Regional key policy, and policy edits are not synchronized.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-auth.html

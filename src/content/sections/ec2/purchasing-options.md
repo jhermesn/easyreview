@@ -51,9 +51,6 @@ facts:
   - id: sp-rates
     text: EC2 Instance Savings Plans save up to 72% for a commitment to one instance family in one Region; Compute Savings Plans save up to 66% but apply across instance families, Regions, Fargate and Lambda.
     source: https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html
-  - id: vpc-tenancy
-    text: "Instances in a VPC with dedicated tenancy always run as Dedicated Instances; in a VPC with default tenancy, an instance or launch template can still request dedicated tenancy."
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html#dedicated-howitworks
   - id: stopped-billing
     text: "A stopped EC2 instance is not billed for usage or data transfer, but its attached EBS volumes keep being charged."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html#instance-stop-start
@@ -63,15 +60,9 @@ facts:
   - id: vcpu-quota
     text: "On-Demand Instance quotas are counted in vCPUs per account per Region, whatever the instance types; launches that would exceed the quota fail until you request an increase."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits
-  - id: billing-states
-    text: "EC2 bills instance usage only in the running state, plus the stopping state when hibernating; EBS volumes and Elastic IP addresses bill whatever the instance state, and a Reserved Instance keeps billing to the end of its term after its instance is terminated."
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html#instance-billing-by-state
   - id: cr-billing
     text: "A Capacity Reservation is billed at the On-Demand rate whether or not instances run in it; Savings Plans and Regional Reserved Instances can apply their discount to it."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-pricing-billing.html
-  - id: instance-scheduler
-    text: "Instance Scheduler on AWS is a deployable solution that uses resource tags and Lambda to stop and start EC2 and RDS instances on custom schedules across accounts and Regions."
-    source: https://docs.aws.amazon.com/solutions/latest/instance-scheduler-on-aws/solution-overview.html#solution-overview
   - id: cr-matching
     text: "An open Capacity Reservation is used automatically by any running or new instance with matching type, platform and Availability Zone; a targeted one only by instances that name it, and future-dated reservations start as targeted."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cr-concepts.html#cr-instance-eligibility

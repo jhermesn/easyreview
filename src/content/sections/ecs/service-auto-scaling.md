@@ -38,14 +38,6 @@ facts:
     text: A cooldown is a wait for a scaling activity to take effect; scale-out can interrupt a scale-in
       cooldown.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html
-  - id: ecs-scale-deploy
-    text: During ECS deployments, scale-in is suspended and scale-out continues unless suspended; this
-      exception does not apply to EXTERNAL controllers.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html#service-auto-scaling-deployments
-  - id: ecs-scale-suspend
-    text: RegisterScalableTarget can suspend dynamic scaling with DynamicScalingInSuspended and
-      DynamicScalingOutSuspended.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html#service-auto-scaling-deployments
   - id: ecs-scale-missing
     text: Target tracking takes no scaling action when the metric has insufficient data.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-autoscaling-targettracking.html

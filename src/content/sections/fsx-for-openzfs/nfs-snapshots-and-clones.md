@@ -12,30 +12,15 @@ facts:
   - id: snapshot
     text: A snapshot is a read-only point-in-time image of a volume, stored on the file system, that consumes capacity for changed file portions.
     source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-openzfs
-  - id: restore-file
-    text: Clients can restore individual files by copying them from the hidden .zfs/snapshot directory; the volume's NFS exports must include crossmnt.
-    source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-user-restore
   - id: clone
     text: A clone is a writable volume initialized from a snapshot; it is created almost instantly and initially consumes no additional capacity.
     source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-volumes
-  - id: clone-dependency
-    text: A clone depends on its source snapshot, which cannot be deleted while the clone is in use.
-    source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-volumes
-  - id: full-copy
-    text: A full-copy volume is an independent writable copy of a snapshot; copying the data takes longer than creating a clone.
-    source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-volumes
-  - id: full-copy-readonly
-    text: A full-copy volume is read-only while its data is being copied.
-    source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/creating-volumes.html#volume-properties
   - id: backup
     text: FSx backups are stored in S3 and support cross-Region backup copies, while snapshots are stored locally on the file system.
     source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/what-is-fsx.html#fsx-openzfs-feature-overview
   - id: availability
     text: Multi-AZ file systems replicate data and support failover across Availability Zones in the same Region; Single-AZ HA uses a primary and standby in one Availability Zone.
     source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/what-is-fsx.html#what-is-availability-durability
-  - id: quota-reservation
-    text: A volume quota limits capacity but does not guarantee space; a reservation guarantees space for the volume.
-    source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/creating-volumes.html#volume-properties
 cards:
   - id: fsx-for-openzfs-001
     q: Which managed file service provides OpenZFS features and NFS access on AWS?

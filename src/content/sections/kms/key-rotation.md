@@ -32,13 +32,6 @@ facts:
     text: On-demand rotation supports symmetric encryption customer managed keys with AWS_KMS or imported EXTERNAL
       material.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works
-  - id: demand-import
-    text: Imported symmetric material must be staged in Pending rotation state before on-demand rotation.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/rotating-keys-on-demand.html#rotate-on-demand-console
-  - id: demand-schedule
-    text: On-demand rotation works with automatic rotation disabled and does not change an existing automatic
-      rotation schedule.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/rotating-keys-on-demand.html#rotating-keys-on-demand
   - id: demand-limit
     text: A KMS key supports at most 25 on-demand rotations.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/rotating-keys-on-demand.html#rotating-keys-on-demand
@@ -59,23 +52,13 @@ facts:
   - id: rotation-status
     text: GetKeyRotationStatus reports automatic rotation settings and on-demand rotation in progress.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys
-  - id: rotation-history
-    text: ListKeyRotations reports completed rotations.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/rotating-keys-on-demand.html#rotating-keys-on-demand
   - id: config-rule
     text: The cmk-backing-key-rotation-enabled managed Config rule checks whether automatic rotation is enabled
       and has no parameters.
     source: https://docs.aws.amazon.com/config/latest/developerguide/cmk-backing-key-rotation-enabled.html
-  - id: material-date
-    text: The rotation date in key material history identifies when that material became current, distinct from
-      creating a new logical key.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/list-rotations.html
   - id: flexible-date
     text: Custom automatic rotation periods and on-demand rotation were introduced in April 2024.
     source: https://aws.amazon.com/about-aws/whats-new/2024/04/aws-kms-automatic-key-rotation/
-  - id: imported-date
-    text: On-demand rotation of imported symmetric key material was introduced in June 2025.
-    source: https://aws.amazon.com/about-aws/whats-new/2025/06/aws-kms-on-demand-key-rotation-imported-keys/
   - id: asymmetric-term
     text: An asymmetric key has a related public key and private key.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html

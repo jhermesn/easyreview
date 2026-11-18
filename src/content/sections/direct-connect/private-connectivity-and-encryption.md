@@ -6,9 +6,6 @@ facts:
   - id: dx-connection
     text: Direct Connect links an internal network to a Direct Connect location and bypasses internet service providers in the path to AWS.
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html
-  - id: dx-vifs
-    text: A private virtual interface reaches a VPC, a public virtual interface reaches public AWS services, and a transit virtual interface reaches transit gateways through a Direct Connect gateway.
-    source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html#dx-vif-types
   - id: dx-vpc
     text: A VPC is a logically isolated virtual network in AWS.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
@@ -30,12 +27,6 @@ facts:
   - id: dx-mode-default
     text: New MACsec-enabled connections default to should_encrypt.
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/MACsec.html#concepts
-  - id: dx-backup
-    text: A configured backup IPsec VPN can provide VPC connectivity if a Direct Connect connection fails.
-    source: https://aws.amazon.com/directconnect/faqs/#high-availability-and-resilience--1f5cnkc
-  - id: dx-routes
-    text: For identical destination prefixes at a virtual private gateway, BGP routes from Direct Connect take priority over Site-to-Site VPN routes, subject to endpoint health.
-    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-route-priority.html
   - id: dx-bgp
     text: BGP exchanges routing information between AWS and remote endpoints.
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-site-to-site-vpn.html
@@ -45,9 +36,6 @@ facts:
   - id: dedicated-link
     text: AWS Direct Connect links an internal network to AWS over a dedicated Ethernet fiber connection at a Direct Connect location, bypassing internet service providers.
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html
-  - id: maximum-resiliency
-    text: "Maximum resiliency uses separate connections ending on separate devices in more than one Direct Connect location, protecting against device, connection and full location failure."
-    source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html#maximum_resiliency
   - id: bgp-path-order
     text: "On private and transit virtual interfaces, Direct Connect selects routes by longest prefix first, then local preference BGP communities, then AS_PATH length, then MED; local preference communities are recommended for active/passive paths."
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html

@@ -60,9 +60,6 @@ facts:
   - id: cloudwatch-store-loss
     text: CloudWatch action based recovery loses instance store data.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cloudwatch-recovery.html#cloudwatch-recovery
-  - id: efa-excluded
-    text: Neither simplified automatic recovery nor CloudWatch action based recovery supports instances using an Elastic Fabric Adapter.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cloudwatch-recovery.html#requirements-for-cloudwatch-action-based-recovery
   - id: efa-definition
     text: An Elastic Fabric Adapter (EFA) is an EC2 network device for workloads such as machine learning and high performance computing.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa
@@ -81,9 +78,6 @@ facts:
   - id: restart-address
     text: Unlike automatic recovery, a manual stop and start assigns a new public IPv4 address unless the instance has an Elastic IP address.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html#ec2-instance-recover
-  - id: missing-data
-    text: AWS recommends treating missing data as missing and triggering EC2 action alarms only in ALARM state.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html#UsingAlarmActions
   - id: metric-alarm
     text: A CloudWatch metric records measurements over time.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Metric

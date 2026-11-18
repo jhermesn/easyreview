@@ -30,13 +30,6 @@ facts:
     text: The console default policy adds selected key administrators and key users to the account-delegation
       statement.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html#key-policy-default
-  - id: admin-use
-    text: The console key-administrator statement grants management actions, not cryptographic use.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html#key-policy-default-allow-administrators
-  - id: admin-escalation
-    text: Key administrators able to change policy or create grants can give themselves or others key-use
-      permissions.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html#key-policy-default-allow-administrators
   - id: user-use
     text: For symmetric encryption keys, the console key-user statement grants Encrypt, Decrypt, ReEncrypt,
       GenerateDataKey, and DescribeKey permissions.
@@ -48,18 +41,11 @@ facts:
   - id: grant-purpose
     text: A grant gives a grantee specified allowed operations on one KMS key without editing key or IAM policies.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants
-  - id: grant-allow
-    text: Grants can allow access but cannot deny access.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants
   - id: grant-lifecycle
     text: Authorized callers remove grant permissions by retiring or revoking the grant.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants
   - id: grant-services
     text: AWS services commonly create grants to use KMS keys for a task and retire them when the task finishes.
-    source: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants
-  - id: grant-token
-    text: Grant changes propagate with eventual consistency; a grant token allows immediate use of newly granted
-      permissions.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants
   - id: grant-context
     text: Encryption-context constraints can limit grant permissions for symmetric encryption keys.

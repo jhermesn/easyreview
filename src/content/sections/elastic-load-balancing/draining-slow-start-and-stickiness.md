@@ -21,18 +21,10 @@ facts:
     text: ALB slow start defaults to 0 seconds, meaning disabled; the enabled duration range is 30 to
       900 seconds.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-group-attributes
-  - id: slow-existing
-    text: ALB slow start does not apply to already healthy targets when enabled, or to the first batch
-      registered together in an empty target group.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#slow-start-mode
   - id: slow-baseline
     text: A newly registered ALB target enters slow start only when another healthy target is outside
       slow start.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#slow-start-mode
-  - id: algorithms
-    text: ALB defaults to round robin; least outstanding requests selects targets with the least
-      in-progress work, and weighted random is another algorithm.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#modify-routing-algorithm
   - id: algorithm-limits
     text: ALB slow start cannot use least outstanding requests or weighted random; weighted random also
       cannot use sticky sessions.

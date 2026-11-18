@@ -12,9 +12,6 @@ facts:
   - id: warehouse-provisioned
     text: Provisioned Redshift clusters are an alternative for manual resource management.
     source: https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome
-  - id: warehouse-copy
-    text: COPY reads and loads data in parallel into Redshift tables from sources including S3, subject to resource permissions.
-    source: https://docs.aws.amazon.com/redshift/latest/dg/t_Loading_tables_with_the_COPY_command.html#t_Loading_tables_with_the_COPY_command
   - id: warehouse-unload
     text: UNLOAD writes query results to files in S3.
     source: https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html#r_UNLOAD
@@ -24,21 +21,12 @@ facts:
   - id: warehouse-spectrum-region
     text: A Redshift Spectrum cluster and its S3 data files must be in the same AWS Region.
     source: https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum-prerequisites
-  - id: warehouse-spectrum-role
-    text: A cluster needs an IAM role authorizing access to the external data catalog and S3 files for Spectrum.
-    source: https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum-create-role
-  - id: warehouse-spectrum-setup
-    text: Spectrum setup includes an external schema and external table before querying S3 data.
-    source: https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum-steps
   - id: warehouse-external-definitions
     text: A Redshift external schema references an external database in a data catalog; an external table contains metadata referring to data outside the cluster.
     source: https://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-external-schemas.html#c-spectrum-external-schemas
   - id: warehouse-catalog
     text: The AWS Glue Data Catalog stores technical metadata, including table descriptions, for use by Redshift Spectrum.
     source: https://docs.aws.amazon.com/glue/latest/dg/components-overview.html#data-catalog-intro
-  - id: warehouse-routing
-    text: Enhanced VPC routing forces COPY and UNLOAD traffic between a cluster and data repositories through its VPC, allowing VPC controls and flow logs.
-    source: https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html#enhanced-vpc-routing
   - id: warehouse-routing-support
     text: Redshift clusters and Serverless workgroups support enhanced VPC routing.
     source: https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html#enhanced-vpc-routing
@@ -51,9 +39,6 @@ facts:
   - id: warehouse-gateway-endpoint
     text: An S3 gateway endpoint allows access to S3 from a VPC without an internet gateway or NAT device.
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-s3
-  - id: warehouse-routing-path
-    text: With enhanced VPC routing, COPY and UNLOAD can fail if the VPC lacks a network path to the data resource.
-    source: https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html#enhanced-vpc-routing
   - id: warehouse-vpc
     text: A VPC is a logically isolated virtual network for AWS resources.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc

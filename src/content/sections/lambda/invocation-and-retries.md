@@ -18,12 +18,6 @@ facts:
   - id: async-config
     text: MaximumRetryAttempts controls asynchronous function-error retries and accepts 0 through 2.
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-configuring.html#invocation-async-configuring
-  - id: async-system-retries
-    text: Lambda retries asynchronous throttles and system errors for up to six hours by default, with exponential backoff from one second to five minutes.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-error-handling.html#invocation-async-error-handling
-  - id: async-age
-    text: MaximumEventAgeInSeconds limits time in the asynchronous queue to at most six hours.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-configuring.html#invocation-async-configuring
   - id: async-duplicates
     text: Asynchronous invocation can deliver duplicate events even when the function succeeds.
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-error-handling.html#invocation-async-error-handling
@@ -69,12 +63,6 @@ facts:
   - id: alb-response
     text: An ALB Lambda response uses JSON fields including statusCode, isBase64Encoded, headers, and body.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#respond-to-load-balancer
-  - id: alb-multivalue
-    text: Enabling lambda.multi_value_headers.enabled on the ALB target group preserves repeated headers and query parameters as arrays; responses must then use multiValueHeaders.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#multi-value-headers
-  - id: extensions
-    text: An external Lambda extension is a separate process in the execution environment; an internal extension runs within the runtime process.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html#lambda-extensions
   - id: init-order
     text: Lambda initialization runs extension initialization, runtime initialization, and function initialization before invoking the handler.
     source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html#using-extensions-env

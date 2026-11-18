@@ -38,22 +38,10 @@ facts:
     text: DLM has no additional service charge; storage and other enabled features can still incur
       charges.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-lifecycle.html#snapshot-lifecycle
-  - id: cross-account
-    text: DLM cross-account automation uses a source snapshot policy that shares snapshots and a
-      destination event policy that copies them.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/event-policy.html#event-policy
-  - id: same-region
-    text: The DLM source sharing policy and destination cross-account event policy must be created in
-      the same Region; copies can target other Regions.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/event-policy.html#event-policy
   - id: backup
     text: AWS Backup centrally configures, schedules and monitors backups for EBS and other supported
       AWS services.
     source: https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#backup-and-restore
-  - id: eventbridge
-    text: EventBridge supports EBS CreateSnapshot as a built-in target; rules with built-in targets are
-      created through the console.
-    source: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutTargets.html#API_PutTargets
   - id: app-consistent
     text: DLM pre and post scripts can pause application I/O and flush buffered data before snapshots,
       then resume normal I/O after creation.

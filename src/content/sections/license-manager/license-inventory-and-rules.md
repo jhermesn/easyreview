@@ -18,32 +18,17 @@ facts:
   - id: tenancy
     text: Core and socket counting require Dedicated Hosts; instance and vCPU counting support shared, Dedicated Host, and Dedicated Instance tenancy.
     source: https://docs.aws.amazon.com/license-manager/latest/userguide/config-overview.html
-  - id: stopped
-    text: The include stopped instances rule defaults to false, releasing stopped instances' licenses back to the available pool.
-    source: https://docs.aws.amazon.com/license-manager/latest/userguide/config-overview.html
   - id: affinity
     text: Host affinity applies to core or socket counting for 1 to 180 days; after the period licenses become available for reuse within 24 hours.
     source: https://docs.aws.amazon.com/license-manager/latest/userguide/config-overview.html
-  - id: inventory
-    text: Systems Manager Inventory can discover on-premises applications so licensing rules can be attached and tracked alongside AWS servers.
-    source: https://docs.aws.amazon.com/license-manager/latest/userguide/inventory.html
-  - id: inventory-limit
-    text: License Manager cannot validate licensing rules for non-AWS servers at launch or termination, and their inventory must be refreshed periodically.
-    source: https://docs.aws.amazon.com/license-manager/latest/userguide/inventory.html
   - id: inventory-sync
     text: Querying Systems Manager Inventory requires a Resource Data Sync that stores inventory in an S3 bucket.
     source: https://docs.aws.amazon.com/license-manager/latest/userguide/inventory.html
-  - id: asset-groups
-    text: License asset groups manage and monitor usage across accounts and Regions, with rules managed from a management or delegated administrator account.
-    source: https://docs.aws.amazon.com/license-manager/latest/userguide/license-asset-groups-overview.html
   - id: limits
     text: When a license limit is exceeded, a soft limit notifies the administrator while a hard limit prevents a resource from deploying.
     source: https://docs.aws.amazon.com/license-manager/latest/userguide/create-license-configuration.html
   - id: discovery
     text: Automated discovery uses Systems Manager Inventory and product information in a self-managed license to track instances with matching software.
-    source: https://docs.aws.amazon.com/license-manager/latest/userguide/automated-discovery.html
-  - id: discovery-uninstall
-    text: Automated discovery does not stop tracking an instance after software is uninstalled by default, but it can be configured to do so.
     source: https://docs.aws.amazon.com/license-manager/latest/userguide/automated-discovery.html
   - id: sharing
     text: AWS Resource Access Manager can share self-managed licenses with AWS accounts or an organization.

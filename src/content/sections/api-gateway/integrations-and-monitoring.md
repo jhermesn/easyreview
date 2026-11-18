@@ -12,30 +12,15 @@ facts:
   - id: custom-mapping
     text: Lambda custom and HTTP custom integrations need mapping templates for the integration request and response, but let you reuse those mappings across backends with similar formats.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html#api-gateway-api-integration-types
-  - id: mock
-    text: A MOCK integration returns a response from API Gateway without calling a backend, which helps test the integration setup without backend charges and lets teams work in parallel.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html#api-gateway-api-integration-types
   - id: request-validation
     text: REST API request validation checks a request before the integration request; on failure API Gateway returns 400 to the caller and logs the result in CloudWatch Logs, which saves backend calls.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html#api-gateway-method-request-validation
   - id: integration-timeout
     text: The integration timeout is 50 milliseconds to 29 seconds for every integration type; Regional and private APIs can request a higher quota, edge-optimized APIs can't.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-execution-service-limits-table.html#api-gateway-execution-service-limits-table
-  - id: latency-metrics
-    text: The Latency metric covers the time from receiving a client request to returning the response, including IntegrationLatency, which is only the time the backend takes to respond.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html#api-gateway-metrics
-  - id: cache-metrics
-    text: With API caching on, CacheHitCount counts requests served from the cache and CacheMissCount counts requests served by the backend; their Average statistic gives the hit and miss rates.
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html#api-gateway-metrics
-  - id: openapi-import
-    text: "API Gateway can create or update a REST API by importing an OpenAPI 2.0 or 3.0 definition file, and can export an API as an OpenAPI definition."
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-import-api.html#api-gateway-import-api
   - id: http-api-cors
     text: "When CORS is configured on an HTTP API, API Gateway answers preflight OPTIONS requests automatically, even without an OPTIONS route."
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html
-  - id: proxy-502
-    text: "With a Lambda proxy integration, a function response that is not in the required format makes API Gateway return 502 Bad Gateway."
-    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
 cards:
   - id: api-gateway-040
     q: Which REST API integration type should you use to call a Lambda function with the least setup?

@@ -39,15 +39,9 @@ facts:
   - id: regional-edge-cache
     text: CloudFront regional edge caches keep content closer to viewers even when it isn't popular enough to stay at an edge location.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html#CloudFrontRegionaledgecaches
-  - id: local-zones
-    text: AWS Local Zones place compute, storage, database and other select resources close to large population and industry centers for low-latency access.
-    source: https://docs.aws.amazon.com/local-zones/latest/ug/what-is-aws-local-zones.html#what-is-aws-local-zones
   - id: global-services
     text: A few AWS services are global within a partition, such as IAM, AWS Organizations, Amazon CloudFront, AWS Global Accelerator and Amazon Route 53; most services, such as EC2, RDS and Lambda, are Regional.
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/global-services.html
-  - id: az-encryption
-    text: All traffic between Availability Zones is encrypted.
-    source: https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
   - id: s3-namespace
     text: By default, S3 general purpose bucket names must be unique across all AWS accounts in a partition, but each bucket is created in one Region.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html
@@ -63,9 +57,6 @@ facts:
   - id: regional-services
     text: "Regional services, such as Amazon S3, are built across several Availability Zones of one Region and spread data and requests over them."
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/regional-services.html#regional-services
-  - id: region-pricing
-    text: "Resource pricing can differ between Regions because of local costs such as land, electricity and taxes, so Region cost is a selection factor alongside latency, data residency and service availability."
-    source: https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/cost_pricing_model_region_cost.html#cost_pricing_model_region_cost
 cards:
   - id: global-infrastructure-001
     q: How do AWS Regions and Availability Zones relate to each other?

@@ -23,19 +23,9 @@ facts:
     text: A rate-based rule counts request groupings over an evaluation window and applies its action to
       requests above the configured limit.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-high-level-settings.html
-  - id: windows
-    text: WAF rate evaluation windows are 60, 120, 300 or 600 seconds, with 300 seconds as the default.
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-high-level-settings.html
-  - id: minimum
-    text: The minimum rate-based rule limit is 10 requests per evaluation window.
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-high-level-settings.html
   - id: aggregation
     text: Rate-based rules group by source IP by default, or can use forwarded IPs and custom keys such
       as headers, cookies, HTTP methods or paths.
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html
-  - id: missing-keys
-    text: A request missing a component required by a custom aggregation key is omitted from that
-      rate-based rule evaluation.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html
   - id: scope
     text: A scope-down statement narrows the requests counted and rate limited; Count all aggregates all
@@ -44,16 +34,9 @@ facts:
   - id: managed-scope
     text: A scope-down statement in a managed rule group limits evaluation to requests matching the statement.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-scope-down-statements.html#waf-rule-scope-down-statements
-  - id: rate-action
-    text: A WAF rate-based rule can use any rule action except Allow.
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-high-level-settings.html
   - id: approximate
     text: WAF rate limiting is approximate and can react after a delay; it does not guarantee an exact
       request quota.
-    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-caveats.html
-  - id: reset
-    text: Changing rate-based rule rate settings resets its counts and can pause rate limiting for up to
-      one minute.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-caveats.html
   - id: testing
     text: Test and tune WAF protections in staging, then Count mode on production traffic before

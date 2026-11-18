@@ -36,9 +36,6 @@ facts:
     text: The parent execution exposes child Automation execution IDs; child output must be retrieved in
       its target account and Region.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/running-automations-multiple-accounts-regions.html#running-automations-multiple-accounts-regions
-  - id: cross-approval
-    text: aws:approve does not support multi-account and Region automations.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-action-approve.html#automation-action-approve
   - id: term-organizational-unit
     text: "Organizational unit: A group of AWS accounts within an AWS Organizations hierarchy."
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#orgs_getting-started_concepts

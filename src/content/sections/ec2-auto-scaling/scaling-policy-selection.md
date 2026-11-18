@@ -27,12 +27,6 @@ facts:
   - id: predictive
     text: Predictive scaling forecasts recurring demand from historical metric data and starts in forecast-only mode.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-policy-overview.html#how-predictive-scaling-works
-  - id: forecast-data
-    text: Predictive scaling requires at least 24 hours of metric data and analyzes up to 14 days of history.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-policy-overview.html#how-predictive-scaling-works
-  - id: forecast-window
-    text: Predictive scaling produces an hourly forecast for the next 48 hours and updates it every 6 hours.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-policy-overview.html#how-predictive-scaling-works
   - id: forecast-scale
     text: Forecast-and-scale mode adds capacity for predicted demand but does not scale in; dynamic policies can remove excess capacity and handle unexpected demand.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-policy-overview.html#how-predictive-scaling-works

@@ -31,10 +31,6 @@ facts:
   - id: no-on-demand-continuous
     text: AWS Backup does not support on-demand copies of continuous backups.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-copying.html
-  - id: database-snapshot-cleanup
-    text: Database PITR copy jobs need rds:DeleteDBSnapshot to remove temporary source snapshots;
-      missing permission can leave expired recovery points requiring manual deletion.
-    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-copying.html
   - id: cold-region-limit
     text: Backups in cold storage cannot be copied across Regions.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/recov-point-create-a-copy.html

@@ -32,21 +32,6 @@ facts:
     text: A browser can send an OPTIONS preflight request to check whether a cross-origin method and
       headers are allowed before the actual request.
     source: https://aws.amazon.com/what-is/cross-origin-resource-sharing/
-  - id: cors-match
-    text: S3 uses the first CORS rule matching the request origin, method, and requested headers.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html#cors
-  - id: cors-fields
-    text: AllowedOrigins, AllowedMethods, and AllowedHeaders define the origins, methods, and headers a
-      CORS rule permits.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html#cors
-  - id: vpc-source
-    text: For requests through an S3 VPC endpoint, use aws:VpcSourceIp rather than aws:SourceIp for
-      source-address conditions.
-    source: https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-s3
-  - id: vpc-pair
-    text: Pair aws:VpcSourceIp with aws:SourceVpc or aws:SourceVpce because private IP ranges can
-      overlap between VPCs.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-vpcsourceip
   - id: presign-purpose
     text: Presigned URLs grant time-limited access to an object operation using the permissions of the
       signing identity.

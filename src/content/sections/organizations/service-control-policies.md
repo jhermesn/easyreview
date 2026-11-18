@@ -54,18 +54,6 @@ facts:
     text: SCPs on a resource-owning member account do not restrict principals in accounts outside that
       organization.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#scp-effects-on-permissions
-  - id: organizations-scp-region
-    text: A Region-deny SCP can use aws:RequestedRegion with NotAction exceptions for global services
-      such as IAM.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_syntax.html
-  - id: organizations-scp-endpoint
-    text: aws:RequestedRegion controls the endpoint called, not all cross-Region effects of that
-      operation.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-requestedregion
-  - id: organizations-scp-global
-    text: Some global services use endpoints outside permitted workload Regions, so a Region deny needs
-      appropriate service exceptions.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_deny-requested-region.html
   - id: organizations-scp-config
     text: An SCP can deny config:DeleteConfigurationRecorder, config:DeleteDeliveryChannel,
       config:PutConfigurationRecorder, config:PutDeliveryChannel, and
@@ -86,9 +74,6 @@ facts:
     text: A Config recorder captures resource configurations, and its delivery channel selects
       destinations for recorded data.
     source: https://docs.aws.amazon.com/config/latest/developerguide/update-dc-console.html
-  - id: imdsv2-scp
-    text: A policy can deny requests signed with EC2 role credentials when ec2:RoleDelivery is below 2.0, which forces credentials to come from IMDSv2; in an SCP this applies across member accounts.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html
 diagrams:
   - id: organizations-scp-path
     title: Every level must permit the action

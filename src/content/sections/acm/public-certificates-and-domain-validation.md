@@ -57,12 +57,6 @@ facts:
     text: HTTP validation uses a redirect from a domain URL to an ACM-controlled token location for
       CloudFront.
     source: https://docs.aws.amazon.com/acm/latest/userguide/http-validation.html
-  - id: http-tenants
-    text: HTTP validation is available through CloudFront Distribution Tenants.
-    source: https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate-characteristics.html
-  - id: http-no-wildcard
-    text: HTTP validation does not support wildcard certificates.
-    source: https://docs.aws.amazon.com/acm/latest/userguide/http-validation.html
   - id: wildcard
     text: A wildcard in the leftmost domain label covers one subdomain level, not the base domain or
       deeper subdomains.
@@ -83,17 +77,6 @@ facts:
   - id: api-regional
     text: A Regional API Gateway custom domain requires an ACM certificate in the API Region.
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-regional-api-custom-domain-create.html
-  - id: current-validity
-    text: From February 18, 2026, newly issued and renewed ACM public certificates have a maximum
-      validity of 198 days.
-    source: https://aws.amazon.com/about-aws/whats-new/2026/02/aws-certificate-manager-updates-default/
-  - id: switch-validation
-    text: Since August 13, 2026, an existing ACM-issued public certificate can switch from email to DNS
-      through UpdateCertificateOptions without changing its ARN.
-    source: https://aws.amazon.com/about-aws/whats-new/2026/08/AWS-Certificate-Manager-Email-DNS-Switch/
-  - id: switch-window
-    text: Email-to-DNS migration provides 72 hours to add ACM CNAME records.
-    source: https://aws.amazon.com/about-aws/whats-new/2026/08/AWS-Certificate-Manager-Email-DNS-Switch/
   - id: regional-resource
     text: ACM certificates are Regional resources.
     source: https://docs.aws.amazon.com/acm/latest/userguide/managed-renewal.html

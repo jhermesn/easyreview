@@ -18,17 +18,8 @@ facts:
   - id: complete
     text: CompleteLifecycleAction completes a lifecycle action and RecordLifecycleActionHeartbeat extends its wait within the overall timeout.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/completing-lifecycle-hooks.html#completing-lifecycle-hooks
-  - id: timeout
-    text: The default lifecycle hook heartbeat timeout is one hour.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hook-considerations
-  - id: global-timeout
-    text: A lifecycle hook global timeout is the smaller of 48 hours or 100 times its heartbeat timeout.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hook-considerations
   - id: default-result
     text: When a lifecycle hook times out or has an unexpected failure, its default result is ABANDON unless configured otherwise.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutLifecycleHook.html#API_PutLifecycleHook_RequestParameters
-  - id: direct-notification-role
-    text: A direct SNS or SQS lifecycle hook notification target requires an IAM role that allows Auto Scaling to publish to the target.
     source: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutLifecycleHook.html#API_PutLifecycleHook_RequestParameters
   - id: launch-result
     text: CONTINUE on a launch lifecycle hook permits the instance to enter service.
@@ -36,39 +27,15 @@ facts:
   - id: launch-abandon
     text: ABANDON on a launch lifecycle hook permits termination and replacement of the instance.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hook-considerations
-  - id: termination-result
-    text: CONTINUE on a termination hook permits termination after any remaining lifecycle hooks complete.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hook-considerations
-  - id: termination-abandon
-    text: ABANDON on a termination hook permits termination and skips remaining hooks.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hook-considerations
   - id: best-effort
     text: Termination lifecycle hooks are best effort by default, and a hook cannot prevent a Spot capacity interruption.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hook-considerations
-  - id: event-filter
-    text: Auto Scaling emits best-effort EventBridge events with source aws.autoscaling for lifecycle wait states and successful or failed scaling actions.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-event-reference.html#ec2-auto-scaling-event-reference
   - id: event-lambda
     text: EventBridge rules can filter lifecycle notifications and route them to Lambda, SNS or SQS.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hooks
   - id: ssm
     text: An EventBridge rule can target Systems Manager Run Command to install software on a newly created Auto Scaling managed node or collect logs before termination.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-systems-manager-targets.html#monitoring-systems-manager-targets
-  - id: sns-launch
-    text: The autoscaling:EC2_INSTANCE_LAUNCH SNS notification reports a successful launch.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#auto-scaling-sns-notifications
-  - id: sns-launch-error
-    text: The autoscaling:EC2_INSTANCE_LAUNCH_ERROR SNS notification reports a failed launch.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#auto-scaling-sns-notifications
-  - id: sns-terminate
-    text: The autoscaling:EC2_INSTANCE_TERMINATE SNS notification reports successful termination.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#auto-scaling-sns-notifications
-  - id: sns-terminate-error
-    text: The autoscaling:EC2_INSTANCE_TERMINATE_ERROR SNS notification reports failed termination.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#auto-scaling-sns-notifications
-  - id: sns-email
-    text: To receive Auto Scaling event email, create an SNS topic, subscribe and confirm the email address, then configure group notification types; delivery is best effort.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#as-configure-sns
   - id: slow-start
     text: ALB slow start gradually increases traffic to a new healthy target; it is incompatible with least outstanding requests and weighted random routing.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#slow-start-mode

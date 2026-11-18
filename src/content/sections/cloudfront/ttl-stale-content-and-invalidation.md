@@ -64,10 +64,6 @@ facts:
   - id: ttl-browser
     text: CloudFront invalidation does not clear browser or corporate proxy caches.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#Invalidation_Expiration
-  - id: ttl-viewer-header
-    text: Cache-Control or Pragma headers in a viewer GET request do not force CloudFront to retrieve the object
-      from the origin.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#expiration-individual-objects
   - id: ttl-wildcard
     text: Invalidation paths support the * wildcard.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation_Requests.html#invalidating-objects-console

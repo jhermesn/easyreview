@@ -38,21 +38,6 @@ facts:
     text: All features is the default feature set and includes consolidated billing and advanced
       organization management.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html
-  - id: organizations-accounts-billing-only
-    text: Consolidated-billing-only mode does not support authorization policies or trusted service
-      integrations.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html
-  - id: organizations-accounts-approval
-    text: In the standard migration to all features, every invited member must approve; accounts created
-      in Organizations do not need migration approval.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html#before-enabling-all
-  - id: organizations-accounts-one-way
-    text: Once all features is enabled, the organization cannot return to consolidated-billing-only mode.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html
-  - id: organizations-accounts-service-role
-    text: All-features mode requires AWSServiceRoleForOrganizations in every member account; a missing
-      role can require a recreation invitation.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html#before-enabling-all
   - id: organizations-accounts-create-role
     text: Accounts created in Organizations receive OrganizationAccountAccessRole by default.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html
@@ -64,18 +49,6 @@ facts:
     text: Using OrganizationAccountAccessRole requires the management-account caller to have permission
       to assume it.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_access-cross-account-role.html
-  - id: organizations-accounts-transfer
-    text: An existing account can move directly between organizations by accepting an invitation from
-      the destination management account.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_account_migration.html
-  - id: organizations-accounts-transfer-date
-    text: Direct account transfers without an intermediate standalone phase were introduced in November
-      2025.
-    source: https://aws.amazon.com/about-aws/whats-new/2025/11/aws-organizations-direct-account-transfers/
-  - id: organizations-accounts-leave
-    text: Direct transfer requires organizations:LeaveOrganization, and a source SCP denying that action
-      blocks the transfer.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_account_migration.html#migrate-account-step-1
   - id: organizations-accounts-old-trust
     text: Access roles trusting the old management account are not automatically removed when an account
       leaves.
@@ -84,10 +57,6 @@ facts:
     text: Account migration preparation includes checking organization-dependent policies and
       deregistering delegated administrator permissions.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_account_migration.html#migrate-account-step-4
-  - id: organizations-accounts-config
-    text: AWS Config supports recording AWS::Organizations::Account, Organization, OrganizationalUnit,
-      Policy, and ResourcePolicy resource types.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html
   - id: organizations-accounts-events-region
     text: Organizations EventBridge monitoring is configured in US East (N. Virginia), us-east-1.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_cloudwatch-integration.html
@@ -99,9 +68,6 @@ facts:
     text: The AWS account root user is the account identity created with access to all its services and
       resources, subject to applicable controls.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html
-  - id: remove-standalone
-    text: "To remove a member account from an organization, the account needs the information to stand alone: a support plan, verified contact information and a current payment method."
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_account-before-remove
   - id: tag-policies
     text: "AWS Organizations tag policies standardize the tags on resources across the organization's accounts, including the case of tag keys and values."
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html#orgs_manage_policies_tag-policies

@@ -19,13 +19,6 @@ facts:
     text: CloudWatch Logs stores data indefinitely by default unless retention is configured or an
       applicable account policy overrides it.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#SttingLogRetention
-  - id: retention-expiry
-    text: Log events older than the applicable retention period are marked for deletion.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#SttingLogRetention
-  - id: retention-delay
-    text: Deletion normally takes up to 72 hours after expiry and can rarely take longer; marked events
-      no longer incur archival storage charges.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#SttingLogRetention
   - id: account-retention
     text: An applicable account-level retention policy overrides a log group retention setting.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#account-level-retention-policies
@@ -41,15 +34,9 @@ facts:
     text: Log group deletion protection is disabled by default and, when enabled, blocks deletion until
       disabled.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogsConcepts.html#CloudWatchLogsConcepts
-  - id: incoming-bytes
-    text: The AWS/Logs metric IncomingBytes, by LogGroupName, shows how much data each log group ingests, which finds the costliest groups.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Monitoring-CloudWatch-Metrics.html
   - id: log-classes
     text: "CloudWatch Logs has a full-featured Standard log class and a lower-cost Essentials log class (formerly Infrequent Access) with a subset of features; the classes differ only in ingestion price, and a log group's class can't be changed after creation."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html#CloudWatch_Logs_Log_Classes
-  - id: live-tail
-    text: "CloudWatch Logs Live Tail streams new log events as they are ingested so you can filter and highlight them in near real time during an incident; sessions are billed per minute."
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html#CloudWatchLogs_LiveTail
 cards:
   - id: cloudwatch-057
     q: What is the difference between a CloudWatch Logs log stream and a log group?

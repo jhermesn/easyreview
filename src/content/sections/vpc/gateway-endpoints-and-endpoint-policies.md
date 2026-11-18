@@ -42,11 +42,6 @@ facts:
     text: Pair aws:VpcSourceIp with aws:SourceVpc, aws:SourceVpce, or aws:SourceVpcArn because unrelated
       VPCs can use overlapping private addresses.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-vpcsourceip
-  - id: credential-vpc
-    text: Compare aws:Ec2InstanceSourceVpc with endpoint-only aws:SourceVpc to restrict EC2 role
-      credentials to requests from their original VPC; account for AWS service calls on the role
-      behalf.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-ec2instancesourcevpc
   - id: interface-network
     text: An interface endpoint creates a private-addressed network interface in each selected subnet
       for reaching a PrivateLink service.

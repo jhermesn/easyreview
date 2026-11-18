@@ -9,9 +9,6 @@ facts:
   - id: categories
     text: Check categories are Cost optimization, Performance, Security, Fault tolerance, Service limits and Operational Excellence.
     source: https://docs.aws.amazon.com/awssupport/latest/user/get-started-with-aws-trusted-advisor.html#view-check-categories
-  - id: basic-security-examples
-    text: Basic Support includes checks for S3 bucket permissions, MFA on the root account and security groups with specific unrestricted ports.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor-check-reference.html
   - id: basic
     text: Basic Support provides all Service Limits checks and selected Security and Fault tolerance checks in the console; automatic check updates are unavailable.
     source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html
@@ -42,15 +39,6 @@ facts:
   - id: email
     text: Trusted Advisor sends a check summary by email once a week to configured recipients.
     source: https://docs.aws.amazon.com/awssupport/latest/user/get-started-with-aws-trusted-advisor.html#notification-preferences
-  - id: refresh
-    text: The Support API can refresh eligible checks; some automatically refreshed checks reject refresh requests.
-    source: https://docs.aws.amazon.com/awssupport/latest/APIReference/API_RefreshTrustedAdvisorCheck.html
-  - id: refresh-status
-    text: Poll refresh status after submitting a refresh request to determine when new data is ready.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/trustedadvisor.html#getcheckstatus
-  - id: refresh-outcome
-    text: Refresh status success means the check refreshed successfully; abandoned means refresh failed.
-    source: https://docs.aws.amazon.com/awssupport/latest/APIReference/API_TrustedAdvisorCheckRefreshStatus.html
   - id: result
     text: DescribeTrustedAdvisorCheckResult returns check results but does not generate updated results.
     source: https://docs.aws.amazon.com/awssupport/latest/user/trustedadvisor.html#requestcheck
@@ -75,9 +63,6 @@ facts:
   - id: ebs-underutilized
     text: The Underutilized Amazon EBS volumes check flags volumes that are unattached or have had very low write activity.
     source: https://docs.aws.amazon.com/awssupport/latest/user/cost-optimization-checks.html#underutilized-amazon-ebs-volumes
-  - id: cloudtrail-check
-    text: The AWS CloudTrail Management Event Logging security check checks whether CloudTrail is recording management events in the account.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html#aws-cloudtrail-man-events-log
   - id: rds-public-snapshots
     text: "The Trusted Advisor Amazon RDS Public Snapshots security check alerts when an RDS DB snapshot is marked as public."
     source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html

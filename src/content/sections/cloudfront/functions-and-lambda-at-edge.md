@@ -115,16 +115,6 @@ facts:
   - id: edge-connection-introduced
     text: CloudFront added Connection Functions for viewer mutual TLS in November 2025.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/WhatsNew.html#WhatsNew
-  - id: edge-connection-events
-    text: Connection Functions are a type of CloudFront Functions for custom client certificate checks during the
-      TLS handshake.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/function-code-choose-purpose.html#function-code-connection-request
-  - id: edge-connection-decision
-    text: A CloudFront Connection Function allows or denies a TLS connection.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/function-code-choose-purpose.html#function-code-connection-request
-  - id: edge-connection-http
-    text: CloudFront Connection Functions cannot modify HTTP requests or responses.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/function-code-choose-purpose.html#function-code-connection-request
   - id: edge-mtls-definition
     text: Mutual TLS extends TLS authentication so both client and server prove their identities using
       certificates.

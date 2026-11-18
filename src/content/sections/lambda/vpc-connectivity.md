@@ -21,9 +21,6 @@ facts:
   - id: ipv6-egress
     text: An egress-only internet gateway provides an outbound internet route for IPv6 in the Lambda VPC internet-access setup.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc-internet.html#configuration-vpc-internet
-  - id: eni-reuse
-    text: Lambda shares Hyperplane network interfaces among functions in the same account that use the same subnet and security-group combination.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html#configuration-vpc-enis
   - id: eni-role
     text: AWSLambdaVPCAccessExecutionRole grants the execution role permissions to create and manage the network interfaces used for a VPC attachment.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html#configuration-vpc-permissions

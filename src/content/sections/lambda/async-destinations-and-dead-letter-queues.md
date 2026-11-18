@@ -27,24 +27,12 @@ facts:
   - id: dlq-scope
     text: The function-level dead-letter queue setting is shared by published versions and $LATEST.
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-dlq
-  - id: dest-permissions
-    text: The function execution role needs permission to deliver to its destination, such as sqs:SendMessage or sns:Publish.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#destinations-permissions
-  - id: dest-failures
-    text: DestinationDeliveryFailures reports failed delivery of invocation records, including permission, size, and unsupported-target errors.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-retain-records
   - id: sqs-source-dlq
     text: SQS-triggered Lambda retries and failure routing use the source queue visibility timeout and redrive policy.
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html#invocation-retries
   - id: zero-routing
     text: For asynchronous invocations, setting reserved concurrency to zero sends new events to the configured DLQ or on-failure destination without retries.
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-retain-records
-  - id: sns-record-size
-    text: SNS destination messages are limited to 256 KB by default, so an invocation record containing a large asynchronous payload can fail delivery.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations
-  - id: s3-destination-permissions
-    text: An S3 failure destination needs s3:PutObject and s3:ListBucket on the execution role; a bucket encrypted with a KMS key also requires kms:GenerateDataKey.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#destinations-permissions
 diagrams:
   - id: lambda-async-outcome-routing
     title: Route asynchronous outcomes to separate destinations

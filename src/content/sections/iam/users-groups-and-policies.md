@@ -6,21 +6,6 @@ facts:
   - id: group
     text: An IAM user group is a collection of IAM users; policies attached to the group give its permissions to every user in it.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups
-  - id: group-change-job
-    text: When a person changes jobs, an administrator can remove the user from the old groups and add them to the new ones instead of editing the user's permissions.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups
-  - id: group-rules
-    text: A user group can contain many users and a user can belong to multiple groups; groups can't be nested, and no default group includes all users.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups
-  - id: aws-managed
-    text: AWS managed policies are standalone policies created and administered by AWS; customers can't modify them, and they can be attached to many identities.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline
-  - id: customer-managed
-    text: Customer managed policies are standalone policies that you create for specific use cases, change as often as you like, and attach to many identities.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline
-  - id: inline
-    text: An inline policy is created for a single user, group or role and keeps a strict one-to-one relationship with that identity.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline
   - id: least-privilege
     text: Least-privilege permissions grant only the permissions required for a task, by defining the actions allowed on specific resources under specific conditions.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege
@@ -30,21 +15,9 @@ facts:
   - id: temporary
     text: AWS recommends that human users and workloads use temporary credentials, such as IAM roles, instead of IAM users with long-term passwords and access keys.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#root-user-best-practices
-  - id: last-accessed
-    text: IAM last accessed information shows which services an identity or policy has actually used, to remove unused permissions and keep least privilege.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_last-accessed.html
-  - id: credential-report
-    text: The IAM credential report lists all users in the account and the status of their passwords, access keys and MFA devices.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html
   - id: best-practices
     text: IAM best practices include requiring MFA for IAM users and the root user, updating access keys when long-term credentials are needed, and regularly removing unused users, roles, permissions and credentials.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html
-  - id: groups-flat
-    text: "IAM user groups cannot be nested: a group contains only users, and one user can belong to several groups, up to an account quota."
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups
-  - id: policy-simulator
-    text: "The IAM policy simulator tests identity-based policies, permissions boundaries, SCPs and resource-based policies against a simulated request, without sending a real request to any service."
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html#access_policies_testing-policies
   - id: account-alias
     text: "An account alias replaces the numeric account ID in the IAM user sign-in URL with an easier name."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/console-account-alias.html#console-account-alias

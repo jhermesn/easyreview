@@ -32,34 +32,15 @@ facts:
   - id: organizations-rcp-linked
     text: RCPs do not restrict calls made using service-linked roles.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html
-  - id: organizations-rcp-baseline
-    text: Enabling RCPs attaches RCPFullAWSAccess to the root, every OU, and every account; it cannot be
-      detached.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_evaluation.html
   - id: organizations-rcp-baseline-access
     text: RCPFullAWSAccess permits requests through RCP evaluation without granting resource access.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_evaluation.html
   - id: organizations-rcp-deny
     text: A Deny in any applicable RCP on the resource account path overrides a resource policy Allow.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_evaluation.html
-  - id: organizations-rcp-effect
-    text: Custom RCPs use Deny; Allow is reserved for the managed RCPFullAWSAccess policy.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_syntax.html
   - id: organizations-rcp-principal
     text: RCP Principal supports only the wildcard *; NotPrincipal is unsupported.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_syntax.html
-  - id: organizations-rcp-organization
-    text: aws:PrincipalOrgID identifies the requesting principal organization and avoids enumerating its
-      accounts.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid
-  - id: organizations-rcp-service-exception
-    text: An RCP using principal-organization restrictions must account for AWS service principals, for
-      example with aws:PrincipalIsAWSService exceptions.
-    source: https://docs.aws.amazon.com/whitepapers/latest/building-a-data-perimeter-on-aws/perimeter-implementation.html
-  - id: organizations-rcp-source-org
-    text: aws:SourceOrgID can restrict service-principal access to requests originating from resources
-      in a trusted organization.
-    source: https://docs.aws.amazon.com/whitepapers/latest/building-a-data-perimeter-on-aws/perimeter-implementation.html
   - id: organizations-rcp-test
     text: AWS recommends testing RCP restrictions on individual accounts before applying them more
       broadly.

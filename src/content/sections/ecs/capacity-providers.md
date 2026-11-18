@@ -10,24 +10,6 @@ facts:
     text: Managed scaling lets ECS control the Auto Scaling group using a target tracking policy and
       CloudWatch alarms.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html
-  - id: ecs-capacity-formula
-    text: CapacityProviderReservation equals instances needed divided by running instances, multiplied
-      by 100.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html
-  - id: ecs-capacity-target
-    text: targetCapacity defaults to 100%; above target ECS scales out, while below target it can scale
-      in.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html
-  - id: ecs-capacity-wait
-    text: At targetCapacity 100%, new tasks can wait PENDING for new instances to register.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html
-  - id: ecs-capacity-policy
-    text: Do not add competing scaling policies that manage desired capacity on an ECS managed Auto
-      Scaling group.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html
-  - id: ecs-capacity-tag
-    text: Removing the AmazonECSManaged Auto Scaling group tag prevents ECS from managing scaling.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html
   - id: ecs-capacity-max
     text: The Auto Scaling group MaxSize must exceed 0 to allow scale-out.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html
@@ -46,9 +28,6 @@ facts:
     text: Strategy weight controls relative task distribution after base; at least one provider must
       have positive weight.
     source: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CapacityProviderStrategyItem.html
-  - id: ecs-capacity-weight-default
-    text: An omitted weight defaults to 1 in the console and 0 in the API or CLI.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html
   - id: ecs-capacity-mix
     text: A cluster can have both ASG and Fargate capacity providers, but a strategy cannot mix those
       two provider types.
@@ -59,10 +38,6 @@ facts:
   - id: ecs-capacity-fallback
     text: Fargate does not automatically replace unavailable Spot capacity with on-demand capacity.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-capacity-providers.html
-  - id: ecs-capacity-protect
-    text: Managed termination protection requires Auto Scaling instance scale-in protection and protects
-      instances with non-daemon tasks from scale-in.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/managed-termination-protection.html
   - id: ecs-capacity-spare
     text: A targetCapacity below 100% retains spare instance capacity for future tasks.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/managed-termination-protection.html

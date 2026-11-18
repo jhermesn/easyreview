@@ -50,12 +50,6 @@ facts:
     text: An ordinary DELETE of a protected object can succeed by adding a delete marker while the
       protected version remains locked.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock-how-deletes-work
-  - id: glacier-vault-lock
-    text: "Amazon Glacier Vault Lock enforces compliance controls such as WORM on a standalone Glacier vault through a Vault Lock policy, which can't be changed or deleted once locked."
-    source: https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html#vault-lock-overview
-  - id: glacier-closed
-    text: "The original standalone Amazon Glacier vault service no longer accepts new customers; AWS recommends the S3 Glacier storage classes in Amazon S3 instead."
-    source: https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html
 cards:
   - id: s3-019
     q: What distinguishes S3 Object Lock governance and compliance retention modes?

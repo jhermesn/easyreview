@@ -43,10 +43,6 @@ facts:
     text: For a cross-account RAM share, its managed permission sets the maximum available permissions; the consumer
       account must also grant its users or roles access through identity policies.
     source: https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is-how-sharing
-  - id: ram-regions
-    text: A RAM share holds Regional resources in the same Region as the share; global resources use a share in
-      us-east-1.
-    source: https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is-how-sharing
   - id: subnet-sharing
     text: A VPC owner can share subnets with accounts in the same organization; participants manage their own
       resources but cannot manage other participants' resources.
@@ -60,21 +56,9 @@ facts:
       ram:EnableSharingWithAwsOrganization, iam:CreateServiceLinkedRole, organizations:EnableAWSServiceAccess,
       and organizations:DescribeOrganization.
     source: https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs
-  - id: ram-leave
-    text: Organization sharing normally ends when a consumer leaves. For a new direct account share,
-      RetainSharingOnAccountLeaveOrganization requires external principals to be allowed and an accepted invitation.
-    source: https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs
   - id: ram-owner-quota
     text: Sharing a resource does not change the permissions or quotas applying to it in its owner account.
     source: https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html
-  - id: org-account-quota
-    text: The default Organizations account quota is 10 and is adjustable; new organizations can have a lower
-      quota, and pending invitations count against it.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html#default-maximum-number-of-accounts
-  - id: shared-permissions
-    text: In November 2026 AWS RAM added sharing of customer managed permissions so receiving accounts can
-      associate them with their own resource shares.
-    source: https://docs.aws.amazon.com/ram/latest/userguide/doc-history.html
   - id: quota-request-template
     text: "With Service Quotas trusted access in AWS Organizations, a quota request template automatically requests quota increases when new accounts are created in the organization."
     source: https://docs.aws.amazon.com/organizations/latest/userguide/services-that-can-integrate-servicequotas.html#services-that-can-integrate-servicequotas

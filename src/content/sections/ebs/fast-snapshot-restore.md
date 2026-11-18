@@ -47,9 +47,6 @@ facts:
     text: A provisioned initialization rate from 100 to 300 MiB/s downloads snapshot blocks after
       creation for predictable initialization time.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/initalize-volume.html#volume-initialization-rate
-  - id: rate-overrides
-    text: Specifying a volume initialization rate overrides FSR even if the snapshot has FSR enabled.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/initalize-volume.html#consistent-rate-considerations
   - id: automation
     text: DLM snapshot schedules can enable FSR in selected AZs and control how long or how many
       snapshots retain it.

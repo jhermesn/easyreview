@@ -23,22 +23,10 @@ facts:
     text: If a Lambda function has reserved concurrency, it should be at least the sum of maximum
       concurrency values for all its SQS mappings to avoid throttling.
     source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-scaling.html#events-sqs-max-concurrency
-  - id: pressure-timeout
-    text: AWS recommends SQS visibility timeout of at least six times the Lambda function timeout, plus
-      the batch window when one is configured.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#events-sqs-queueconfig
-  - id: pressure-batch
-    text: A Lambda SQS batch failure retries the entire batch by default; ReportBatchItemFailures with a
-      batchItemFailures response retries only reported failed messages.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-batchfailurereporting
   - id: pressure-fifo
     text: SQS FIFO ordering applies within a message group; different message groups can be processed
       independently.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html#FIFO-queues-understanding-logic
-  - id: pressure-fifo-batch
-    text: For a FIFO partial batch response, stop after the first failed message and report failed and
-      unprocessed messages to preserve ordering.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-batchfailurereporting
   - id: pressure-dlq
     text: The SQS redrive policy maxReceiveCount controls how many receives a message can have before
       movement to a dead-letter queue.

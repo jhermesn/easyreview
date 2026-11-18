@@ -35,28 +35,6 @@ facts:
   - id: codedeploy
     text: CodeDeploy deployment-group triggers send deployment events, including failures, to an SNS topic.
     source: https://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications.html
-  - id: scaling-success
-    text: Auto Scaling SNS notification types autoscaling:EC2_INSTANCE_LAUNCH and
-      autoscaling:EC2_INSTANCE_TERMINATE report successful instance launch and termination.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#ec2-auto-scaling-sns-notifications
-  - id: scaling-failure
-    text: Auto Scaling SNS notification types autoscaling:EC2_INSTANCE_LAUNCH_ERROR and
-      autoscaling:EC2_INSTANCE_TERMINATE_ERROR report failed launch and termination.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#ec2-auto-scaling-sns-notifications
-  - id: commands
-    text: Systems Manager Run Command and Maintenance Windows can publish command or per-node invocation status
-      changes to SNS Standard topics.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-sns-notifications.html
-  - id: database
-    text: Aurora event notifications use an SNS destination topic whose policy allows the RDS event service to
-      publish.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.GrantingPermissions.html#USER_Events.GrantingPermissions
-  - id: organization
-    text: Organizations activity can trigger EventBridge rules in us-east-1 with SNS as a notification target.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_cloudwatch-integration.html#orgs_cloudwatch-integration
-  - id: advisor
-    text: Trusted Advisor check metrics in us-east-1 can be monitored by CloudWatch alarms that notify SNS.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-metrics-ta.html#cloudwatch-metrics-ta
   - id: standard-delivery
     text: SNS Standard topics provide at-least-once delivery and best-effort ordering, so duplicates and
       out-of-order messages can occur.

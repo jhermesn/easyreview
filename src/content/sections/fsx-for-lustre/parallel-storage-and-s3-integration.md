@@ -27,9 +27,6 @@ facts:
   - id: s3-files
     text: A linked S3 data repository presents S3 objects as files on FSx for Lustre.
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#s3-integration
-  - id: association
-    text: A data repository association links a file system directory to an S3 bucket or prefix, with up to eight associations per file system.
-    source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html#create-dra-linked-data-repo
   - id: unsupported
     text: Data repository associations and automatic export are unavailable on Lustre 2.10 or Scratch 1 file systems.
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html#create-dra-linked-data-repo
@@ -42,15 +39,9 @@ facts:
   - id: asynchronous
     text: Automatic export sends file changes asynchronously after the application finishes modifying the file.
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html#create-dra-linked-data-repo
-  - id: defaults
-    text: Automatic import and export of new, changed and deleted files are enabled by default when adding a repository in the console but disabled by default through the CLI or API.
-    source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html#create-dra-linked-data-repo
   - id: conflict
     text: FSx for Lustre does not prevent conflicting writes to the same file in both the file system and S3.
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html#create-dra-linked-data-repo
-  - id: task-conflict
-    text: Automatic export and export data repository tasks cannot run at the same time.
-    source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-changed-data-meta-dra.html#export-changed-data-meta-dra
   - id: lazy-load
     text: "With a linked S3 repository, FSx for Lustre loads a file content from S3 the first time an application accesses it; later reads come from the file system."
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/importing-files-dra.html

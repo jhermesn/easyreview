@@ -12,18 +12,12 @@ facts:
   - id: block-limit
     text: iSCSI is available on file systems with six or fewer high-availability pairs; NVMe over TCP requires a second-generation file system with six or fewer pairs.
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients
-  - id: svm-endpoints
-    text: A storage virtual machine provides NFS and SMB endpoints for clients to access its volumes.
-    source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients
   - id: shared-volume
     text: FSx for ONTAP supports concurrent NFS and SMB access to the same volume.
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#managing-volumes
   - id: volume
     text: A volume is an isolated container for files, directories or iSCSI storage units; its junction path is its location in the storage virtual machine file tree.
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#managing-volumes
-  - id: mount
-    text: A client in the same VPC and account can mount a volume using the storage virtual machine DNS name and the volume junction or SMB share.
-    source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#same-vpc-access
   - id: single-az
     text: Single-AZ deployments place active and standby file servers in separate fault domains within one Availability Zone and replicate data within that zone.
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-AZ.html#single-az
@@ -36,9 +30,6 @@ facts:
   - id: client-failover
     text: NFS and SMB failovers are transparent because the endpoint IP remains the same; transparent iSCSI and NVMe over TCP failover requires client multipathing.
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-AZ.html#Failover
-  - id: multi-az-routing
-    text: Multi-AZ NFS, SMB and management endpoints use floating IP addresses and external peered networks require Transit Gateway unless using the documented cache alternatives.
-    source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#when-is-transit-gateway-required
   - id: single-az-routing
     text: Single-AZ NFS, SMB and management endpoints can be accessed using VPC peering, Direct Connect or Site-to-Site VPN without requiring Transit Gateway.
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#access-saz

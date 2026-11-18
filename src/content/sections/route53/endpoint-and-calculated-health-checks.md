@@ -6,29 +6,8 @@ facts:
   - id: probe
     text: Endpoint checks send HTTP, HTTPS or TCP requests to the endpoint configured in the health check.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-endpoint
-  - id: interval
-    text: Each checker uses a request interval of 30 seconds or 10 seconds; the 10-second option costs extra.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-advanced
-  - id: consecutive
-    text: The failure threshold is the number of consecutive successes or failures required to change a checker status.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-advanced
-  - id: aggregate
-    text: Route 53 considers an endpoint healthy when more than 18% of checkers report healthy.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
-  - id: http-connect
-    text: HTTP and HTTPS checks must establish a TCP connection within four seconds.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
-  - id: http-status
-    text: HTTP and HTTPS checks need a 2xx or 3xx status within two seconds after connecting.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
-  - id: string-body
-    text: String checks need the body within two more seconds after the status, with the full search string in the first 5,120 bytes.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
   - id: tcp-time
     text: TCP-only checks must establish a connection within ten seconds.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
-  - id: tls-cert
-    text: HTTPS checks do not validate the TLS certificate and can pass with an expired or invalid certificate.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
   - id: check-types
     text: The health-check settings support monitoring endpoints, child health checks, or a CloudWatch alarm data stream.
@@ -48,9 +27,6 @@ facts:
   - id: prefix-list
     text: Security groups can allow the AWS-managed com.amazonaws.<region>.route53-healthchecks prefix list and the ipv6.route53-healthchecks list for IPv6 endpoints.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-router-firewall-rules.html#dns-failover-router-firewall-rules
-  - id: notify
-    text: The health-check console can create a CloudWatch alarm that notifies an SNS topic in us-east-1 after the endpoint has been unhealthy for one minute.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-alarm
   - id: independent
     text: Endpoint probes run periodically rather than when a DNS query arrives.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records

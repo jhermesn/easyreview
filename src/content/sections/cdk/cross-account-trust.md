@@ -25,9 +25,6 @@ facts:
   - id: publish-files
     text: FilePublishingRole publishes file assets to the bootstrap S3 bucket.
     source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-env.html#bootstrapping-env-default
-  - id: publish-images
-    text: ImagePublishingRole publishes image assets to the bootstrap ECR repository.
-    source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-env.html#bootstrapping-env-default
   - id: lookup-only
     text: --trust-for-lookup permits context lookups without granting deployment permission.
     source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-customizing.html#bootstrapping-customizing-cli

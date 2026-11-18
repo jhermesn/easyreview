@@ -21,9 +21,6 @@ facts:
   - id: tls
     text: SSL/TLS connections encrypt data moving between a client and an RDS DB instance and can verify the server's identity with its certificate.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html#UsingWithRDS.SSL
-  - id: iam-auth
-    text: IAM database authentication works with RDS for MariaDB, MySQL and PostgreSQL; clients connect with an authentication token that lasts 15 minutes instead of a password.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth
   - id: maz-os
     text: In a Multi-AZ deployment, RDS applies operating system updates to the standby first, promotes it to primary, then updates the old primary, which becomes the new standby.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#USER_UpgradeDBInstance.Maintenance.Multi-AZ
@@ -39,9 +36,6 @@ facts:
   - id: log-export
     text: "RDS can publish database logs, such as the MySQL audit, error, general and slow query logs, to CloudWatch Logs, where they are kept until a retention period is set."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Procedural.UploadtoCloudWatch.html#rds-integration-cw-logs
-  - id: public-access
-    text: "Every DB instance has a private IP address in its VPC. To make it publicly accessible, every subnet in its DB subnet group must be public and the VPC needs DNS hostnames and DNS resolution turned on."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html
   - id: auto-minor-upgrade
     text: "RDS major version upgrades are always started manually; minor version upgrades can be applied manually or automatically by turning on Auto minor version upgrade."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Upgrading.html

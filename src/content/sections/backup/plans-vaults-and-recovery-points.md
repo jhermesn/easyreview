@@ -15,9 +15,6 @@ facts:
     text: Backup plan resource assignments can select resource types or use tags and conditions; local
       assignments can target individual resource ARNs.
     source: https://docs.aws.amazon.com/aws-backup/latest/APIReference/API_BackupSelection.html
-  - id: tag-opt-in
-    text: When resource assignment uses only tags, AWS Backup service opt-in settings still apply.
-    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html
   - id: vault-container
     text: A backup vault is a container that stores and organizes backups, also called recovery points.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/vaults.html
@@ -40,16 +37,6 @@ facts:
     text: Backups transitioned to cold storage must remain there for at least 90 days, so deletion must
       be scheduled at least 90 days after transition.
     source: https://docs.aws.amazon.com/aws-backup/latest/APIReference/API_BackupRule.html#Backup-Type-BackupRule-Lifecycle
-  - id: console-start-time
-    text: The backup rule console defaults to a start time of 00:30 in the local system time zone.
-    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-a-backup-plan.html
-  - id: console-start-window
-    text: The backup rule console defaults to an 8-hour start window.
-    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-a-backup-plan.html
-  - id: console-completion-window
-    text: The backup rule console defaults to a 7-day completion window; the completion-window parameter
-      does not apply to Amazon FSx.
-    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html
   - id: overlap-retention
     text: When backup rule start windows overlap, AWS Backup optimizes backups using the rule with the
       longer retention period.
