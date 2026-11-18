@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER lambda/operations-in-depth"
+title: Operational controls and failure handling
 level: professional
 order: 100
 facts:
@@ -122,18 +122,32 @@ cards:
     facts:
       - eni-reuse
 ---
-PLACEHOLDER first paragraph.
+Lambda operational settings control how asynchronous errors are retried, how failed records are delivered, and how queue and stream consumers handle batches. These controls also help diagnose delivery, networking, and integration issues.
 
 ### How it works
 
-PLACEHOLDER
+1. For asynchronous function errors, set [`MaximumRetryAttempts`](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-configuring.html#invocation-async-configuring) from 0 to 2. `MaximumEventAgeInSeconds` limits queue age to at most six hours. [Throttles and system errors](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-error-handling.html#invocation-async-error-handling) follow a separate retry path with exponential backoff.
+2. If a destination receives no invocation records, check [`DestinationDeliveryFailures`](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-retain-records) and the [execution role permissions](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#destinations-permissions). Delivery can fail because of permissions, record size, or an unsupported target.
+3. An [S3 destination](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations) is available for failures, including large records that exceed the SNS message limit. Its execution role needs `s3:PutObject` and `s3:ListBucket`; a KMS-encrypted bucket also needs `kms:GenerateDataKey`.
+4. For [SQS partial batch responses](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-errorhandling), enable `ReportBatchItemFailures` in `FunctionResponseTypes` and return failed message IDs as `itemIdentifier` entries in `batchItemFailures`. For FIFO (first-in, first-out), stop at the first failure and return failed and unprocessed messages. Throwing an exception fails the entire batch. With this setting enabled, Lambda does not scale down polling when function invocations fail.
+5. Set the [SQS visibility timeout](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#services-sqs-configure) to at least six times the function timeout plus `MaximumBatchingWindowInSeconds`, as AWS recommends. For Kinesis, [`ParallelizationFactor`](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#with-kinesis) increases concurrent batches per shard while preserving partition-key order.
+6. For an Application Load Balancer (ALB) Lambda target, enable [multi-value headers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#multi-value-headers) to preserve repeated headers and query parameters as arrays. The response must then use `multiValueHeaders`.
+7. An [external extension](https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html#lambda-extensions) runs as a separate process in the execution environment; an internal extension runs inside the runtime process. Lambda can also [share Hyperplane network interfaces](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html#configuration-vpc-enis) between functions in the same account that use the same subnet and security-group combination.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says events still wait after function-error retries are disabled, think throttling or system errors, because they use a separate retry path.
+- If the question says a destination stopped receiving records after a permissions change, think `DestinationDeliveryFailures` and the execution role, because delivery can fail independently.
+- If the question says successful SQS messages are retried with failed ones, think partial batch responses, because the handler can report failed IDs.
+- If the question says a Kinesis consumer needs more concurrent batches per shard while retaining partition-key order, think `ParallelizationFactor`, because it controls that concurrency.
+- If the question says an ALB loses repeated query parameters, think multi-value headers, because the setting preserves them as arrays.
+- If the question says functions in one account use the same subnet and security groups, think Hyperplane interface reuse, because they can share an interface.
 
 ### Remember
 
-PLACEHOLDER
+- Asynchronous throttles and system errors retry for up to six hours by default, with backoff from one second to five minutes.
+- SNS destination messages have a 256 KB default limit; S3 is an asynchronous on-failure destination only.
+- SQS visibility timeout recommendation: at least `6 × function timeout + batching window`.
+- Kinesis `ParallelizationFactor`: 1 by default, up to 10 concurrent batches per shard.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Setting `MaximumRetryAttempts` to 0 stops function-error retries, but does not disable the separate retry path for asynchronous throttles and system errors. An SQS handler that throws an exception also fails the whole batch, even with partial responses enabled.

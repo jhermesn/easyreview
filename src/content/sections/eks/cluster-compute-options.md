@@ -177,12 +177,6 @@ Amazon EKS runs Kubernetes, a system that places and maintains container workloa
 | Auto Mode | EKS provisions, scales, and patches nodes and integrates load balancing and block storage | Managed cluster infrastructure |
 | Hybrid Nodes | You manage machines outside AWS | On-premises compute |
 
-For managed node updates, the default strategy adds replacement nodes before terminating old nodes. The minimal strategy terminates old nodes first, which avoids temporarily increasing capacity but reduces available capacity during replacement. A Pod disruption budget limits voluntary Pod evictions. Restrictive or overlapping budgets can block an update; forcing it can delete Pods after the eviction timeout.
-
-For hardware isolation on supported EC2 instances, opt into an isolated or confidential Pod using its `runtimeClassName`. Each Pod runs in a Nitro Sandbox, a hardware-isolated virtual machine.
-
-In Auto Mode, a `SecurityGroupPolicy` selects Pods for dedicated security groups, including different groups on the same node. Unmatched Pods use node security groups. Auto Mode and VPC CNI policies use different API groups and incompatible specs.
-
 2. For Fargate, create a profile. Its selectors match a namespace, a named grouping of Kubernetes resources, and optional labels, key-value tags on Pods. Use private subnets. A DaemonSet, which runs a copy of a Pod on nodes, cannot run on Fargate. Neither can privileged containers, GPUs, `HostPort`, or `HostNetwork`.
 3. Choose how operators and nodes reach the Kubernetes API endpoint, the cluster management address.
 
@@ -206,8 +200,6 @@ In Auto Mode, a `SecurityGroupPolicy` selects Pods for dedicated security groups
 - If the question says the Kubernetes API must have no public access, think private endpoint access with public access disabled, because management clients must then use the VPC or a connected network.
 - If the question says a Fargate Pod needs persistent file storage, think statically provisioned EFS, because Fargate cannot mount EBS.
 - If the question says EBS volume creation fails with `UnauthorizedOperation`, think CSI driver IAM permissions and role association, because the driver calls AWS APIs.
-- If an EKS managed node update must avoid extra GPU capacity, think the minimal strategy, because it terminates old nodes before creating replacements.
-- If a managed node update reports `PodEvictionFailure`, inspect Pod disruption budgets, because they can block eviction.
 
 ### Remember
 
@@ -215,7 +207,5 @@ In Auto Mode, a `SecurityGroupPolicy` selects Pods for dedicated security groups
 - Public access CIDRs, meaning allowed IP address ranges, do not control the private endpoint.
 - Managed node groups still require deployment of patched node images.
 - Auto Mode and the standard EBS driver use different provisioners and manage separate volumes.
-- Managed node updates default to one unavailable node and allow at most 100. Pod eviction can fail after 15 minutes unless the update is forced.
-- Nitro Sandboxes for EKS Pods and Auto Mode security groups for Pods launched in November 2026; both require Kubernetes 1.36 or later.
 
 > **Trap:** Choosing managed node groups does not transfer deployment of patched AMIs to AWS. Auto Mode includes operating system patching.

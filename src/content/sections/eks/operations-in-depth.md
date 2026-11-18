@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER eks/operations-in-depth"
+title: EKS operational controls
 level: professional
 order: 80
 facts:
@@ -149,18 +149,32 @@ cards:
     facts:
       - zonal-ebs
 ---
-PLACEHOLDER first paragraph.
+Amazon EKS operations involve choices about Pod placement, node updates, isolation and scaling. The right setting depends on the workload and on how much capacity is available during changes.
 
 ### How it works
 
-PLACEHOLDER
+1. For Fargate placement, check that a profile selector matches the Pod's namespace and any specified labels. The profile uses private subnets without a direct route to an internet gateway. [Fargate profiles](https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html) and [subnets](https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html#fargate-profile-components)
+2. For EBS storage, a StorageClass selects the provisioner. Auto Mode uses `ebs.csi.eks.amazonaws.com`; the standard EBS CSI driver uses `ebs.csi.aws.com`. They manage separate volumes. [EBS CSI considerations](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi-considerations)
+3. Choose a managed node group update strategy. The default creates new nodes before terminating old ones. The minimal strategy terminates old nodes first, avoiding an increase in total capacity. A Pod disruption budget can block eviction; restrictive or overlapping budgets can cause `PodEvictionFailure`. A forced update deletes Pods that do not leave within the eviction period. [Update strategies and eviction](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-update-behavior.html#managed-node-update-upgrade) and [disruption budgets](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-update-behavior.html#_podevictionfailure_errors_during_the_upgrade_phase)
+4. For hardware isolation on supported EC2 instances, opt into isolated or confidential Pods with `runtimeClassName`. Each Pod uses its own Nitro Sandbox. In Auto Mode, a `SecurityGroupPolicy` assigns security groups to selected Pods; unmatched Pods use the node security groups. Auto Mode uses `eks.amazonaws.com/v1`, whose policy spec differs from the VPC CNI `vpcresources.k8s.aws/v1beta1` spec. [Pod sandboxing](https://docs.aws.amazon.com/eks/latest/userguide/sandboxing.html), [Auto Mode Pod security groups](https://docs.aws.amazon.com/eks/latest/userguide/auto-sgp.html) and [policy comparison](https://docs.aws.amazon.com/eks/latest/userguide/auto-sgp.html#_how_this_compares_to_other_ways_to_assign_security_groups)
+5. Supply the Horizontal Pod Autoscaler (HPA) with metrics. Metrics Server provides CPU and memory resource metrics; adapters can expose custom or external metrics. [HPA metrics](https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_horizontal_pod_autoscaler_hpa)
+6. For Cluster Autoscaler scale-down, compare requested resources with node capacity. A node below the utilization threshold is a candidate, while a Pod marked `cluster-autoscaler.kubernetes.io/safe-to-evict=false` can prevent removal. For EBS workloads, use similar node groups per Availability Zone and enable `balance-similar-node-groups=true`, because an EBS volume is limited to one zone. [Scale-down parameters](https://docs.aws.amazon.com/eks/latest/best-practices/cas.html#_additional_parameters), [Cluster Autoscaler](https://docs.aws.amazon.com/eks/latest/best-practices/cas.html) and [EBS volumes](https://docs.aws.amazon.com/eks/latest/best-practices/cas.html#_ebs_volumes)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says Fargate Pods remain Pending, think profile namespace, labels and private subnets, because the selector and subnet settings determine their placement.
+- If the question says an update cannot add capacity, think the minimal strategy, because it terminates old nodes first.
+- If the question says a node update fails with `PodEvictionFailure`, think Pod disruption budgets, because restrictive or overlapping budgets can block eviction.
+- If the question says Pods on one node need hardware isolation, think isolated or confidential Pods, because each uses a Nitro Sandbox.
+- If the question says Pods on one Auto Mode node need different security groups, think `SecurityGroupPolicy`, because it assigns groups to selected Pods.
+- If the question says HPA must scale on queue depth, think an external metrics adapter, because resource metrics supply CPU and memory data.
+- If the question says stateful Pods use EBS in different zones, think similar per-zone node groups, because each volume is limited to one Availability Zone.
 
 ### Remember
 
-PLACEHOLDER
+- Managed node updates default to one unavailable node, with a maximum of 100 in parallel. [Update setup](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-update-behavior.html#managed-node-update-set-up)
+- Pod eviction can fail after 15 minutes; forcing the update deletes Pods that have not left. [Update upgrade phase](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-update-behavior.html#managed-node-update-upgrade)
+- Cluster Autoscaler's default utilization threshold is 0.5 of requested resources divided by capacity; its default unneeded time is 10 minutes. [Scale-down parameters](https://docs.aws.amazon.com/eks/latest/best-practices/cas.html#_additional_parameters)
+- Nitro Sandboxes for EKS Pods and Auto Mode Pod security groups were announced in November 2026. Both require Kubernetes 1.36 or later. [Nitro announcement](https://aws.amazon.com/about-aws/whats-new/2026/11/nitro-sandboxes-eks-ecs-ec2/) and [Auto Mode announcement](https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-eks-auto-mode-security-groups-for-pods/)
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A node below the Cluster Autoscaler utilization threshold is only a scale-down candidate. The unneeded time and a Pod's safe-to-evict annotation can affect removal. Auto Mode and VPC CNI `SecurityGroupPolicy` specs are also incompatible.

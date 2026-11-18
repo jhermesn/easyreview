@@ -83,9 +83,9 @@ cards:
     a: AWS Quick Sight, formerly Amazon QuickSight. It connects to sources such as Athena, Redshift, and S3.
     facts: [sight-purpose, sight-name, sight-sources]
   - id: quicksight-004
-    q: How does a direct S3 dataset identify files to import into Quick Sight?
-    a: Use a manifest file stored locally or in S3.
-    facts: [sight-manifest]
+    q: "A team wants to create a chart from a dataset in AWS Quick Sight. What should the author configure?"
+    a: "In an analysis, select the dataset fields and a visual type to create a graphical representation."
+    facts: [sight-analysis, sight-visual]
   - id: quicksight-005
     q: A Quick Sight author publishes a dashboard but colleagues cannot see it. What should the author check?
     a: Share it with the intended users or groups. By default only the owner can access it.

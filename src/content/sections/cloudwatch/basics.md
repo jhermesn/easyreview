@@ -14,8 +14,8 @@ facts:
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html#WhatIsCloudWatch
 cards:
   - id: cloudwatch-124
-    q: "A team wants an email when the CPU of an EC2 instance stays above 80 percent. Which service fits?"
-    a: "Amazon CloudWatch: a metric alarm on CPU utilization that notifies through Amazon SNS."
+    q: "How can Amazon CloudWatch support data governance through logging?"
+    a: "It collects, stores and queries logs."
     facts: [metrics-alarms-logs]
   - id: cloudwatch-125
     q: "Which AWS service collects and searches application log files from EC2 instances?"

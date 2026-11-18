@@ -70,13 +70,13 @@ cards:
     a: Require MFA, update (rotate) their access keys, and regularly remove unused users and credentials.
     facts: [best-practices]
   - id: iam-106
-    q: "What is an IAM account alias?"
-    a: "A friendly name that replaces the numeric account ID in the sign-in URL for IAM users."
-    facts: [account-alias]
+    q: "How can an administrator give the same IAM permissions to several users?"
+    a: "Attach a policy to an IAM user group. Its permissions apply to every user in the group."
+    facts: [group]
   - id: iam-107
-    q: "Which two AWS services can hold SSL/TLS server certificates for use with AWS resources?"
-    a: "AWS Certificate Manager, the preferred option, and IAM, which stores server certificates and is required in Regions where ACM is not available."
-    facts: [server-certs]
+    q: "What does least privilege mean when granting IAM permissions?"
+    a: "Give only the permissions needed for the task, scoped to the relevant actions, resources and conditions."
+    facts: [least-privilege]
 ---
 IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 
@@ -87,23 +87,16 @@ IAM controls who can do what in an AWS account. Users are identities for people,
 3. Attach policies to the group, user or role. A policy lists allowed or denied actions on resources.
 4. Start from AWS managed policies, then narrow them into customer managed policies that give only what each job needs. [Least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)
 
-| Policy type | Who manages it | Reusable | Typical use |
-|---|---|---|---|
-| AWS managed | AWS | Yes, attach to many | Quick start for common jobs |
-| Customer managed | You | Yes, attach to many | Least-privilege permissions you maintain |
-| Inline | You | No, one identity only | A strict one-to-one permission |
-
 ### Exam cues
 
-- If the question says many users with the same permissions, think IAM group.
-- If the question says only the permissions needed, think least privilege.
-- If the question says a reusable policy you can edit, think customer managed policy.
-- If the question says audit the status of all users' credentials, think IAM credential report, because it lists passwords, keys and MFA per user.
+- If the question says many users need the same permissions, think IAM group, because a group policy gives its permissions to each user in the group.
+- If the question says only the permissions needed for a task, think least privilege, because it limits actions on specific resources under specific conditions.
+- If the question says a friendly IAM user sign-in URL, think account alias, because it replaces the numeric account ID in the URL. [Account alias](https://docs.aws.amazon.com/IAM/latest/UserGuide/console-account-alias.html#console-account-alias)
+- If the question says store a server certificate, think AWS Certificate Manager (ACM), because it is preferred; use IAM in Regions ACM does not support. [Server certificates](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html#id_credentials_server-certs)
 
 ### Remember
 
-- Groups contain users only; no nesting, no default group of all users.
-- AWS managed policies can't be edited.
 - Prefer temporary credentials (roles) over long-term IAM user keys.
+- For IAM users with long-term credentials, require MFA, update access keys and remove unused users and credentials. [IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 
-> **Trap:** A group is not an identity that can sign in or be named as a principal. It only hands permissions to its users.
+> **Trap:** AWS managed policies do not always grant least privilege. They cover common use cases and can grant more than a specific task needs. [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-use-aws-defined-policies)

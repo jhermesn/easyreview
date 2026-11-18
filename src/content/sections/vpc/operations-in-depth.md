@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER vpc/operations-in-depth"
+title: VPC operational checks
 level: professional
 order: 60
 facts:
@@ -49,18 +49,24 @@ cards:
       - acl-exceptions
       - dns-filter
 ---
-PLACEHOLDER first paragraph.
+VPC operations require interpreting flow log status, restricting where EC2 role credentials are used, and knowing which platform traffic bypasses network filters. These checks help distinguish missing records from idle traffic and identify the right control for DNS requests.
 
 ### How it works
 
-PLACEHOLDER
+1. Read the [flow log status](https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields): `OK` means normal logging, `NODATA` means no traffic during the interval, and `SKIPDATA` means some records were skipped because of internal capacity constraints or errors.
+2. To restrict EC2 role credentials to their original VPC, compare `aws:Ec2InstanceSourceVpc` with `aws:SourceVpc`. The latter applies to requests through a VPC endpoint. Scope the policy to EC2 role credentials and account for AWS services calling on the role's behalf. See the [IAM condition key guidance](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-ec2instancesourcevpc).
+3. Check the exceptions for both [security groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#security-group-basics) and [network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics). Neither filters Amazon DNS, DHCP, EC2 instance metadata, ECS task metadata, Windows activation, Time Sync, or reserved VPC router addresses. Use Route 53 Resolver DNS Firewall to filter DNS requests through the VPC Resolver.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a flow log reports `SKIPDATA`, think skipped records, because capacity constraints or errors can prevent some records from being captured.
+- If the question says EC2 role credentials must be used through an endpoint in their original VPC, think `aws:Ec2InstanceSourceVpc` and `aws:SourceVpc`, because the policy can compare the credential's VPC with the endpoint request's VPC.
+- If the question says filter DNS requests through the VPC Resolver, think Route 53 Resolver DNS Firewall, because security groups and network ACLs do not filter Amazon DNS traffic.
 
 ### Remember
 
-PLACEHOLDER
+- `OK` means normal logging; `NODATA` means no traffic during the interval; `SKIPDATA` means some records were skipped.
+- `aws:SourceVpc` applies to requests through a VPC endpoint. Account for AWS service calls on the role's behalf when restricting EC2 role credentials.
+- Security groups and network ACLs do not filter the listed AWS platform traffic.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** `SKIPDATA` does not mean the interval had no traffic. It means some flow log records were skipped.

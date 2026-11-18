@@ -172,6 +172,5 @@ EFS replication maintains a recovery file system by copying source files and met
 - RPO after initial sync: 15 minutes for most file systems, not an unconditional maximum.
 - Frequently changing sources with more than 100 million files or files larger than 100 GB may take longer.
 - Monitor `TimeSinceLastSync`; source changes after the last synced time might not have reached the replica.
-- Cross-account replication needs a supplied IAM role. The configuring identity needs `iam:PassRole`.
 
 > **Trap:** Failback direction determines which changes survive. Recreating the original replication direction can discard the writes made at the recovery site.

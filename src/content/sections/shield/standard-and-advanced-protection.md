@@ -89,21 +89,16 @@ cards:
       - waf-integration
       - automatic-mitigation
   - id: shield-006
-    q: An ALB was added to AWS Shield Advanced during an attack. Can its attack-related charges qualify
-      for Shield cost protection?
-    a: No. The resource must have been protected before the attack. Applicable ALB protection also
-      requires a WAF rate-based rule in Block mode before the attack.
-    trap: true
+    q: "A web application faces a flood of HTTP requests. How does AWS Shield Advanced integrate with AWS WAF to protect it?"
+    a: "Shield Advanced uses WAF web ACLs and rules for application layer protection. Automatic mitigation can count or block attack requests."
     facts:
-      - cost-eligibility
-      - cost-web-prerequisite
+      - waf-integration
+      - automatic-mitigation
   - id: shield-007
-    q: How does a team request AWS Shield Advanced cost protection after an eligible attack?
-    a: Request service credits within 15 days after the billing month of the attack. Credits apply to
-      Shield Advanced usage, and eligibility conditions still apply.
+    q: "A company wants to improve DDoS resilience by absorbing attack traffic at AWS edge locations. Which services should it use?"
+    a: "Amazon CloudFront and Amazon Route 53. Serving traffic through these edge services helps absorb attacks at the edge."
     facts:
-      - cost-eligibility
-      - cost-application
+      - edge-services
   - id: shield-008
     q: What do AWS Shield Advanced protection groups do?
     a: Group protected resources for detection and mitigation across the group. A resource can belong to

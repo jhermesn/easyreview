@@ -132,7 +132,6 @@ Target tracking adjusts EC2 Auto Scaling capacity toward a chosen utilization va
 ### Remember
 
 - Basic EC2 monitoring publishes every 5 minutes; detailed monitoring publishes every minute.
-- Omitted policy warmup uses group default instance warmup, then default cooldown if warmup is unset.
 - Total RequestCount, Latency and raw SQS ApproximateNumberOfMessagesVisible are unsuitable target tracking metrics.
 
 > **Trap:** A load balancer's total requests are not requests per target. Use ALBRequestCountPerTarget with the target group's ResourceLabel.

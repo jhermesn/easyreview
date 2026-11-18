@@ -158,17 +158,20 @@ cards:
     a: "A CloudFront distribution with a custom origin that points to the on-premises web servers. A custom origin can be any publicly resolvable HTTP server."
     facts: [custom-origin-anywhere]
   - id: cloudfront-055
-    q: "A small site wants a predictable CloudFront bill that does not grow during a traffic spike or attack, with WAF included. Which pricing option fits?"
-    a: "A CloudFront flat-rate pricing plan (Free, Pro, Business or Premium): one monthly price with usage allowances, WAF and DDoS protection, and no overage charges."
-    facts: [flat-rate-plans]
+    q: A website needs to serve cached content from locations close to viewers. Which AWS service
+      fits?
+    a: Amazon CloudFront delivers content through edge locations and retrieves missing content from
+      the configured origin.
+    facts: [cache-delivery]
   - id: cloudfront-059
     q: "A company serves viewers mostly in North America and Europe and wants to lower CloudFront delivery costs, accepting slower access elsewhere. Which setting fits?"
     a: "A cheaper **price class** (such as Price Class 100). It limits the edge locations used; viewers in excluded regions may see more latency."
     facts: [price-class]
   - id: cloudfront-060
-    q: "Requests to https://d111111abcdef8.cloudfront.net/ should return index.html instead of an error or a listing. Which CloudFront setting fits?"
-    a: "The **default root object**, set to index.html."
-    facts: [default-root-object]
+    q: A CloudFront origin returns different content for different query values. How should the team
+      prevent those responses from sharing the same cache key?
+    a: Use a cache policy to include the relevant query strings in the cache key.
+    facts: [cache-policy, cache-vary]
 ---
 CloudFront delivers web content through edge locations, which are servers that keep copies near viewers, the clients requesting content. An origin holds the original content. A distribution is the configuration that connects those origins to viewers; its cache behaviors are ordered rules for different URL paths.
 

@@ -166,24 +166,21 @@ cards:
     facts:
       - alias-probability
   - id: lambda-042
-    q: A ZIP-based Lambda package exceeds 250 MB after extraction. Can moving dependencies into five Lambda layers bypass the limit?
-    a: No. The 250 MB unzipped limit includes the function, layers, and custom runtime together.
-    trap: true
+    q: "A team wants to send a small portion of Lambda traffic to a new release during a canary deployment. What should it configure?"
+    a: "Publish both versions and configure a weighted alias to route invocations between them."
     facts:
-      - zip-size
-      - layer-zip-only
+      - weighted-alias
   - id: lambda-043
-    q: A Python Lambda ZIP works locally but fails to load a native library. What compatibility should the team check?
-    a: Match the library to the Lambda Linux environment and target instruction-set architecture. Include compatible dependencies with the handler.
+    q: "A Lambda canary uses a weighted alias, but some callers invoke a version ARN directly. Are those calls included in the traffic split?"
+    a: "No. Only calls through the alias use its traffic weights."
     facts:
-      - native-dependencies
-      - zip-dependencies
+      - alias-call
+    trap: true
   - id: lambda-044
-    q: A team wants to run a custom Linux image in Lambda. What protocol support must the image include?
-    a: Implement the Lambda Runtime API, typically through a runtime interface client. AWS Lambda base images also include a runtime interface emulator for local tests.
+    q: "A Lambda weighted alias cannot route traffic to a newly published version. Which execution settings must match between the two versions?"
+    a: "They must use the same execution role and the same dead-letter queue configuration, or neither can have a dead-letter queue."
     facts:
-      - image-runtime
-      - image-emulator
+      - alias-requirements
   - id: lambda-045
     q: A team changes Lambda environment variables after publishing a release. Will existing published versions get those new values?
     a: No. Environment variables are version-specific and locked on publication. Publish a new version and move the alias to adopt the new configuration.
@@ -202,9 +199,9 @@ cards:
     a: "Console helpers for encryption in transit: they encrypt the chosen variables client-side with a KMS key, and the function decrypts them at runtime."
     facts: [env-helpers]
   - id: lambda-069
-    q: "A Lambda function needs 3 GB of ML libraries. Which packaging works?"
-    a: "A container image, which can be up to 10 GB. A .zip package is capped at 250 MB unzipped, layers included."
-    facts: [package-sizes]
+    q: "A Lambda canary receives few requests, and the observed traffic split differs from the alias weights. Why?"
+    a: "Weighted alias routing is probabilistic, so low request counts can differ substantially from the configured percentages."
+    facts: [alias-probability]
 ---
 Lambda versions preserve a release while aliases give callers a stable name for a published version. A weighted alias can send part of the traffic to a second version, allowing a canary release, where only some requests try the new code.
 

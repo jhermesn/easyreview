@@ -31,9 +31,9 @@ cards:
     a: It ranks text by semantic and contextual relevance using NLP and deep learning, so it can answer a natural language question with a phrase, a passage or a document.
     facts: [what, query-types]
   - id: kendra-003
-    q: An Amazon Kendra search portal must hide documents a user is not allowed to read. What does Kendra provide, and what stays with the customer?
-    a: Kendra filters results by the user's or group's document access. Authenticating and authorizing the user is still the customer's responsibility.
-    facts: [access-filtering]
+    q: "How does Amazon Kendra help users find relevant information in documents?"
+    a: "Amazon Kendra uses natural language processing and deep learning to rank documents and passages by meaning and context."
+    facts: [what]
   - id: kendra-004
     q: A team plans a new enterprise search application on AWS in late 2026. Should it start on Amazon Kendra?
     a: No. Kendra is in maintenance mode and closed to new customers on July 30, 2026. AWS recommends Amazon Bedrock Managed Knowledge Base.

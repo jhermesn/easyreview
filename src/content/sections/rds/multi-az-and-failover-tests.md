@@ -154,8 +154,7 @@ Multi-AZ keeps database copies in separate Availability Zones (AZs), which are i
 1. For a Multi-AZ DB instance, RDS maintains a synchronous standby: changes are copied as part of committing writes. The standby is in another AZ and does not accept application reads.
 2. A Multi-AZ DB cluster has a writer and two readable replicas across three AZs. It uses semisynchronous replication, where a replica acknowledges receipt before all replicas have applied the change.
 3. If a Multi-AZ DB instance suffers a qualifying outage, RDS promotes the standby and updates the database endpoint's DNS record. DNS maps the endpoint name to an address. Clients must resolve the endpoint and reconnect.
-4. Test an instance with **Reboot with failover**. Test a Multi-AZ DB cluster with **FailoverDBCluster**. Stop transactions before the abrupt instance failover.
-5. To add availability to an existing Single-AZ instance, modify it to enable Multi-AZ. RDS initializes standby storage from a snapshot and enables synchronous replication. Allow for write-performance impact.
+4. To add availability to an existing Single-AZ instance, modify it to enable Multi-AZ. RDS initializes standby storage from a snapshot and enables synchronous replication. Allow for write-performance impact.
 
 ### Exam cues
 

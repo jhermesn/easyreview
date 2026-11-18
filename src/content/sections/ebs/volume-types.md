@@ -172,9 +172,9 @@ cards:
     trap: true
     facts: [same-az]
   - id: ebs-042
-    q: What does Amazon EBS charge for?
-    a: Provisioned storage (GB-month, by volume type), provisioned IOPS and throughput above the included amount, and snapshot storage.
-    facts: [pricing-dimensions]
+    q: "An EC2 workload needs more EBS performance without increasing volume size. Which volume type supports this?"
+    a: "Use gp3. Its performance can be provisioned independently of volume size."
+    facts: [gp3-independent]
   - id: ebs-047
     q: "A team must keep an instance root volume after the instance is terminated. What do they change?"
     a: "Set DeleteOnTermination to false on the root volume; by default a root volume attached at launch is deleted with the instance."

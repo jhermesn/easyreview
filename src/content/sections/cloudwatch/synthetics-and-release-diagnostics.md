@@ -106,11 +106,10 @@ cards:
       - canary-purpose
       - rum-sessions
   - id: cloudwatch-090
-    q: What CloudWatch Synthetics blueprint detects broken page links, and what counts toward its
-      configured link count?
-    a: The broken link checker. The starting URL counts toward the limit along with followed links.
+    q: "After a deployment, a CloudWatch Synthetics canary fails. What evidence can help diagnose the failure?"
+    a: "Inspect the failed steps, screenshots, HAR files, logs, and SuccessPercent, and compare them with a successful run."
     facts:
-      - blue-links
+      - canary-debug
   - id: cloudwatch-091
     q: A release changes a web layout unexpectedly while HTTP requests still succeed. Which CloudWatch
       Synthetics check detects this?
@@ -129,9 +128,9 @@ cards:
       - canary-artifacts
       - canary-har
   - id: cloudwatch-122
-    q: "The network team must track latency and packet loss on the Direct Connect path to the data center without installing agents. What service fits?"
-    a: "CloudWatch Network Synthetic Monitor, which probes from a VPC subnet to on-premises IP addresses."
-    facts: [network-synthetic-monitor]
+    q: "A team needs to detect a broken API flow after deployment without waiting for customers. Which CloudWatch feature fits?"
+    a: "Use a Synthetics API canary to run scripted checks, including multiple API calls."
+    facts: [canary-purpose, blue-api]
 diagrams:
   - id: cloudwatch-canary-run-evidence
     title: A canary exercises an endpoint and records its run

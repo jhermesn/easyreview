@@ -8,8 +8,8 @@ facts:
     source: https://docs.aws.amazon.com/quicksight/latest/user/welcome.html#what-is
 cards:
   - id: quicksight-011
-    q: "Managers want interactive dashboards of sales data without running BI servers. Which AWS service fits?"
-    a: "Amazon Quick Sight, the AWS business intelligence service."
+    q: "Which AWS service helps an analytics team visualize data from connected sources?"
+    a: "Amazon Quick provides business intelligence and visualization, including dashboards and embedded analytics."
     facts: [bi]
 ---
 Amazon Quick Sight is AWS's business intelligence service for dashboards and visual analysis. [What is AWS Quick?](https://docs.aws.amazon.com/quicksight/latest/user/welcome.html#what-is)

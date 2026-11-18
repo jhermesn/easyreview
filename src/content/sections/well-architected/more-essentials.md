@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER well-architected/more-essentials"
+title: Pillar design principles
 level: foundational
 order: 30
 facts:
@@ -82,18 +82,30 @@ cards:
     a: "Sustainability."
     facts: [sustainability-principles]
 ---
-PLACEHOLDER first paragraph.
+The AWS Well-Architected pillars address different aspects of a workload, from running it effectively to using resources efficiently and reducing its environmental impact. Their design principles help teams identify practices for each goal. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
 
 ### How it works
 
-PLACEHOLDER
+1. For operational excellence, define the workload and its operations as code and automate procedures safely. Make small, reversible changes and anticipate failure. [Operational excellence principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/ops-design-principles.html#ops-design-principles)
+2. For security, maintain traceability and keep people away from data. Other principles include a strong identity foundation and protection for data in transit and at rest. [Security principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/sec-design-principles.html#sec-design-principles)
+3. For performance efficiency, deploy closer to customers and consider mechanical sympathy: choose technology that fits the workload's needs. [Performance efficiency principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/perf-design-principles.html#perf-design-principles)
+4. For cost optimization, measure business outcomes against costs and allocate costs at a granular level. [Cost optimization principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/cost-design-principles.html#cost-design-principles)
+5. For sustainability, increase resource utilization and reduce the footprint of data and its processing. [Sustainability principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/sus-design-principles.html#sus-design-principles)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says improve procedures and learn from operations, think operational excellence, because it focuses on running workloads effectively and improving operations.
+- If the question says keep computing resources efficient as demand changes, think performance efficiency, because it addresses efficiency as requirements and technology change.
+- If the question says deliver business value at the lowest price point, think cost optimization, because its goal includes both value and cost.
+- If the question says reduce energy consumption and resources, think sustainability, because it focuses on reducing environmental impact.
+- If the question says trace actions or keep people away from data, think security, because both are security design principles.
+- If the question says test at production scale without keeping the environment running, think create it on demand and decommission it after testing. You pay while it runs. [Framework design principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles)
 
 ### Remember
 
-PLACEHOLDER
+- Operations as code and frequent, small, reversible changes are operational excellence principles.
+- Deploying closer to customers and mechanical sympathy are performance efficiency principles.
+- Measuring business outcomes against costs and granular cost allocation are cost optimization principles.
+- Maximizing utilization and minimizing the footprint of data processing are sustainability principles.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Cost optimization focuses on the price of delivering business value. Sustainability focuses on reducing energy consumption and the resources needed.

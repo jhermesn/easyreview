@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER eventbridge/operations-in-depth"
+title: Operational events and timing
 level: professional
 order: 70
 facts:
@@ -98,18 +98,28 @@ cards:
       - schedule-precision
       - window
 ---
-PLACEHOLDER first paragraph.
+EventBridge patterns select operational events for a response, while EventBridge Scheduler controls when a target is invoked. Pattern operators and schedule timing determine which events and invocations reach their targets.
 
 ### How it works
 
-PLACEHOLDER
+1. Build an [event pattern](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-create-pattern-operators). Different fields combine with AND, values in one array combine with OR, and `$or` offers alternatives across fields.
+2. Select operators for the values: [`suffix`](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-filtering-suffix-matching) matches a string ending, [`cidr`](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-create-pattern-operators) matches an IPv4 or IPv6 network range, and [`equals-ignore-case`](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern-operators.html#eb-filtering-equals-ignore-case-matching) ignores letter case.
+3. Select operational events. Auto Scaling lifecycle hooks emit events when an instance enters a [wait state](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-event-reference.html). Instance refresh emits [checkpoint and status events](https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-eventbridge-events.html), including rollback changes.
+4. For an exposed credential, match the [AWS Health event](https://aws.amazon.com/blogs/compute/automate-your-it-operations-using-aws-step-functions-and-amazon-cloudwatch-events/) `AWS_RISK_CREDENTIALS_EXPOSED` and start a Step Functions remediation workflow. For [X-Ray insight events](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-insights.html), enable both insights and notifications on the group.
+5. For Scheduler, choose a [flexible time window](https://docs.aws.amazon.com/scheduler/latest/UserGuide/managing-schedule-flexible-time-windows.html) to spread invocations, or set it to `OFF`. Consider [daylight saving transitions](https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time) when a cron schedule uses local time.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says accept either of two states from one source, think two values in one array and a separate source field, because values combine with OR and fields with AND.
+- If the question says match a filename ending, an IP network, or a string in any letter case, think `suffix`, `cidr`, or `equals-ignore-case`, respectively.
+- If the question says respond to a lifecycle hook wait or track an instance refresh, think lifecycle action events or instance refresh events, because they report those respective conditions.
+- If the question says remediate an exposed access key, think `AWS_RISK_CREDENTIALS_EXPOSED` and a Step Functions target.
+- If the question says X-Ray insights are missing from EventBridge, think both group settings, because insights and notifications must be enabled.
 
 ### Remember
 
-PLACEHOLDER
+- Ordinary [string matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-pattern.html#eb-create-pattern-considerations) is case sensitive.
+- A nonexistent spring cron time is skipped. A repeated autumn time runs once, at its second occurrence after the shift.
+- With no flexible time window, Scheduler invokes with [60-second precision](https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#schedule-types).
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A repeated autumn cron time does not run twice. Disabling the flexible window also does not guarantee an exact-second invocation.

@@ -115,9 +115,9 @@ cards:
     a: S3 Protection analyzes data events; Malware Protection for S3 scans newly uploaded objects.
     facts: [optional-s3, optional-malware]
   - id: guardduty-012
-    q: How long is the first GuardDuty foundational detection trial in an AWS Region?
-    a: 30 days.
-    facts: [trial]
+    q: "A security team needs to detect potentially compromised AWS credentials and unauthorized cryptomining. Which service fits?"
+    a: "Amazon GuardDuty analyzes AWS data sources to identify suspicious activity, including compromised credentials and unauthorized cryptomining."
+    facts: [detection, threats]
   - id: guardduty-023
     q: A security team needs GuardDuty findings retained beyond the service retention period. What
       should it configure?
@@ -136,10 +136,9 @@ cards:
       processes relevant global service events in each Region where it is enabled.
     facts: [org-regional, global-events]
   - id: guardduty-031
-    q: Malware Protection for S3 must scan KMS-encrypted uploads. What should the team configure for
-      GuardDuty to access the objects?
-    a: A service role with managed EventBridge rule, S3 object, and KMS permissions for the protected bucket.
-    facts: [s3-malware-role]
+    q: "A team wants to scan newly uploaded Amazon S3 objects for malware. Which GuardDuty feature fits?"
+    a: "GuardDuty Malware Protection for S3 scans newly uploaded S3 objects."
+    facts: [optional-malware]
 ---
 Amazon GuardDuty detects potential threats by analyzing AWS activity and threat intelligence. A finding is a report of a potential security issue, not proof that a resource is compromised.
 
@@ -167,20 +166,13 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 - If the question says unusual API calls or cryptomining, think GuardDuty, because it identifies potentially malicious activity from AWS signals.
 - If the question says no trail or VPC flow log delivery exists, think foundational detection still works, because GuardDuty receives independent streams.
 - If the question says scan new S3 objects for malware, think Malware Protection for S3, because S3 Protection focuses on data activity rather than object scanning.
-- If the question says observe operating system activity, think Runtime Monitoring, because foundational flow logs describe network traffic rather than runtime events.
-- If an organization needs centralized findings, configure export per Region in its GuardDuty administrator account. It includes associated members' findings from that Region.
-- If a suppressed finding is missing from S3, check its archived status. Archived findings are not exported by default.
-- If existing and future organization members need protection, use `ALL` auto-enable per Region. Malware Protection for S3 is configured separately.
 - If S3 malware scanning cannot access encrypted uploads, check the service role's EventBridge, S3, and KMS permissions.
 
 ### Remember
 
 - First-time foundational detection has a 30-day trial per Region.
 - Finding severity is 1.0 to 10.0; higher numbers indicate greater risk.
-- Runtime Monitoring is not enabled by default and uses a security agent for EC2 runtime events.
 - Malware Protection for S3 can be used without enabling GuardDuty.
 - Findings are retained for 90 days. New active findings are exported to EventBridge within about 5 minutes.
-- The export bucket and KMS key must share a Region. Cross-Region export to opt-in Regions has restrictions.
-- Related recurring activity can update an existing finding and replace older details. New findings reach EventBridge near real time; updates default to 6 hours and can be set to 15 minutes or 1 hour.
 
 > **Trap:** GuardDuty's access to independent log streams does not provide retained customer logs. Configure the relevant logging service when you need to access or retain those logs.

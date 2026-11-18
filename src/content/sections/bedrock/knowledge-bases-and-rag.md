@@ -84,14 +84,13 @@ cards:
     a: "Amazon Neptune Analytics, the graph option among the supported knowledge base vector stores."
     facts: [kb-vector-stores]
   - id: bedrock-058
-    q: "In late 2026 a team wants a new Bedrock knowledge base fed from Confluence and SharePoint. Can it add those connectors to a customer-managed knowledge base?"
-    a: "No. Since September 30, 2026 new Confluence, SharePoint, Salesforce and web crawler connectors are not supported on customer-managed knowledge bases; existing ones keep working. AWS recommends Bedrock Managed Knowledge Base."
-    trap: true
-    facts: [kb-connector-change, kb-data-sources]
+    q: "Why might a generative AI application use Amazon Bedrock Knowledge Bases?"
+    a: "It brings proprietary information into responses using retrieval augmented generation without retraining the model."
+    facts: [kb]
   - id: bedrock-066
-    q: "A team wants Bedrock Knowledge Bases to create and configure the vector store for it. Which stores can the quick-create option build?"
-    a: "Amazon OpenSearch Serverless, Amazon Aurora PostgreSQL Serverless and Amazon S3 Vectors. Other supported stores, such as Pinecone or MongoDB Atlas, must be set up first."
-    facts: [kb-quick-create, kb-vector-stores]
+    q: "Which AWS databases can store embeddings for an Amazon Bedrock knowledge base?"
+    a: "Amazon Aurora and Amazon OpenSearch Service are among the supported options."
+    facts: [vector-stores, kb-vector-stores]
 ---
 Retrieval augmented generation (RAG) gives a model the facts it needs at question time: find the relevant passages in your data and put them in the prompt. Amazon Bedrock Knowledge Bases runs that pipeline for you, from ingestion to citations. [Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)
 

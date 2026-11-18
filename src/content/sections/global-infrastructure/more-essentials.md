@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER global-infrastructure/more-essentials"
+title: Local Zones, encryption, and regional pricing
 level: foundational
 order: 30
 facts:
@@ -26,18 +26,24 @@ cards:
     a: "Price. Each Region has its own resource prices, so with no residency or latency constraint the cheaper Region can lower cost."
     facts: [region-pricing]
 ---
-PLACEHOLDER first paragraph.
+AWS Local Zones bring selected resources close to large population and industry centers for low-latency access. When choosing where to run resources, also consider Region pricing and encryption between Availability Zones. [Local Zones](https://docs.aws.amazon.com/local-zones/latest/ug/what-is-aws-local-zones.html#what-is-aws-local-zones)
 
 ### How it works
 
-PLACEHOLDER
+1. Use a Local Zone to place compute, storage, database and other selected resources closer to users who need low latency.
+2. Consider Region pricing alongside latency, data residency and service availability. Local costs, including land, electricity and taxes, can make resource prices differ by Region. [Region cost](https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/cost_pricing_model_region_cost.html#cost_pricing_model_region_cost)
+3. All traffic between Availability Zones is encrypted. [Regions and Availability Zones](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a game studio needs very low latency for players in a large city without a Region, think Local Zones, because they place selected resources close to population centers.
+- If the question says the same workload could run in different Regions, think about price as well as latency, data residency and service availability, because resource prices can differ.
+- If the question asks about traffic between Availability Zones, remember that it is encrypted.
 
 ### Remember
 
-PLACEHOLDER
+- Local Zones offer selected compute, storage and database resources near population and industry centers.
+- Region prices can differ with local costs.
+- All traffic between Availability Zones is encrypted.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Do not assume the same resource costs the same in every Region. Compare prices along with latency, data residency and service availability.

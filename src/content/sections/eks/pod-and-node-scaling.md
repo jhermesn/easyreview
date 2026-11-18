@@ -134,8 +134,8 @@ EKS scaling has separate workload and compute decisions. The Horizontal Pod Auto
 
 ### How it works
 
-1. Give Pods resource requests, the CPU and memory reservations used for placement. Configure HPA with a metric target and a metrics source.
-2. HPA adjusts replica count. Metrics Server supplies CPU and memory metrics. An adapter can expose custom or external metrics, such as queue depth, through a metrics API.
+1. Give Pods resource requests, the CPU and memory reservations used for placement. Configure HPA with a metric target.
+2. HPA adjusts the replica count to meet its metric target.
 3. When replicas cannot be scheduled, use a compute scaling mechanism.
 
 | Mechanism | Scaling action | Capacity model |
@@ -145,19 +145,13 @@ EKS scaling has separate workload and compute decisions. The Horizontal Pod Auto
 | EKS Auto Mode | Provisions, consolidates, and removes nodes | Managed compute scaling built on Karpenter |
 
 4. Check that resource requests fit the possible nodes. A node group must have compatible labels, key-value attributes, and taints, restrictions on which Pods it accepts. More nodes with incompatible scheduling properties will not solve placement.
-5. For EBS workloads, account for the volume's Availability Zone. AWS recommends similar node groups per zone and `balance-similar-node-groups=true`.
-6. On scale-in, Cluster Autoscaler considers underused nodes and whether workloads can move. A Pod with `cluster-autoscaler.kubernetes.io/safe-to-evict=false` can keep its node from removal.
 
 ### Exam cues
 
 - If the question says HPA increased replicas but they cannot be scheduled, think node capacity and placement constraints, because HPA changes replicas without provisioning nodes.
-- If the question says scale EKS Pods using queue backlog, think an external metrics adapter with HPA, because Metrics Server supplies resource usage rather than queue depth.
-- If the question says a stateful Pod must use its EBS volume, think capacity in that volume's zone, because EBS storage is zonal.
 
 ### Remember
 
-- Cluster Autoscaler's default utilization threshold is 0.5 of requested resources divided by capacity. It identifies candidates, not guaranteed removals.
-- Its default `scale-down-unneeded-time` is 10 minutes.
 - The HPA walkthrough documents a five-minute default scale-down timeframe; it is configurable.
 
-> **Trap:** A low observed CPU graph is not the same as low requested utilization. Autoscaler placement and scale-down decisions depend on reservations and whether Pods can move.
+> **Trap:** HPA changes Pod replicas, but it does not add nodes. Unschedulable Pods need compatible node capacity.

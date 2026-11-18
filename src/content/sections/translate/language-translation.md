@@ -33,13 +33,13 @@ cards:
     trap: true
     facts: [purpose]
   - id: translate-004
-    q: "Amazon Translate keeps translating a product brand name into the target language. How do you keep it unchanged?"
-    a: "Use a custom terminology file that specifies how the brand name must be translated."
-    facts: [custom-terminology]
+    q: "A company wants to translate customer service chat for a multilingual application. Which AWS service fits?"
+    a: "Amazon Translate can translate communications such as customer service chat and help build multilingual applications."
+    facts: [uses]
   - id: translate-005
-    q: "A law firm wants Amazon Translate batch output to follow its formal style and word choices. What does it provide?"
-    a: "Parallel data: example source texts with the desired translations, used by an Active Custom Translation batch job."
-    facts: [parallel-data]
+    q: "Which AWS service uses machine learning to translate text on demand?"
+    a: "Amazon Translate provides text translation on demand using machine learning."
+    facts: [purpose]
 ---
 Amazon Translate translates text between languages on demand. Applications use it to serve customers in their own language and to process content written in other languages. [What is Amazon Translate?](https://docs.aws.amazon.com/translate/latest/dg/what-is.html#what-is)
 

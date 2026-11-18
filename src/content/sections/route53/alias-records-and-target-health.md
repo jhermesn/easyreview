@@ -88,27 +88,19 @@ A Route 53 alias points a DNS name at a supported AWS resource or a same-type re
 1. Choose the supported target and an appropriate record type, such as A for an IPv4 answer or AAAA for an IPv6 answer. The zone apex is the hosted-zone name itself.
 2. Route 53 answers with the target's values. It uses the AWS resource TTL, or the target record TTL for an alias to another record.
 3. Enable Evaluate Target Health when inherited target health fits the requirement. For an Application Load Balancer (ALB) or Network Load Balancer (NLB), it uses target groups, the collections of destinations behind the load balancer.
-4. Every associated target group must have a healthy target. An empty group counts as unhealthy.
-5. If you also attach a separate check to the alias, both health conditions must pass.
-
-| Target | Health consideration |
-|---|---|
-| ALB or NLB | Inherit target-group health; separate instance probes are unnecessary |
-| CloudFront | Evaluate Target Health cannot be enabled; private-zone aliases are unsupported |
-| S3, API Gateway or interface endpoint | Use an application-access check for application-aware failover |
+4. If you also attach a separate check to the alias, both health conditions must pass.
 
 For fixed network entry addresses across Regions, a Route 53 alias can point to a standard Global Accelerator. The accelerator selects healthy regional endpoints using its routing settings. It terminates client TCP connections at AWS edge locations and opens connections to the endpoints. TCP is a protocol for reliable network connections.
 
 ### Exam cues
 
 - If the question says the root domain must point to an ALB, think an alias, because a CNAME cannot exist at the zone apex.
-- If the question says an ALB alias is unhealthy despite some working targets, think every associated target group, because an empty or entirely unhealthy group can fail target health.
+- If the question says an ALB alias needs a health signal, think Evaluate Target Health, because it uses the load balancer target groups.
 - If the question says fixed entry IPs and healthy endpoints across Regions, think an alias to Global Accelerator, because the accelerator handles network routing behind those addresses.
 
 ### Remember
 
 - AWS-resource alias queries have no Route 53 query charge.
 - You cannot set a custom TTL for an alias to an AWS resource.
-- CloudFront cannot use Evaluate Target Health or a private-zone alias.
 
-> **Trap:** Evaluate Target Health is not a universal application check for every AWS alias target. For API Gateway, S3 and interface endpoints, AWS recommends checking application access for failover.
+> **Trap:** An alias cannot point directly to an EC2 instance public DNS name. Choose a supported target.

@@ -194,7 +194,7 @@ Multi-Region KMS keys are related Regional keys with the same key ID and key mat
 
 - If the question says decrypt in a recovery Region without a cross-Region KMS request, think related multi-Region keys, because they share the material needed for local decryption.
 - If the question says a primary policy edit did not fix replica access, think the replica's own policy, because policies are independent.
-- If the question says imported material did not appear in a replica, think a separate import, because KMS synchronizes its identifier but does not copy the material.
+- If the question says the primary is disabled, think independently enabled replicas, because a replica can still perform cryptographic operations.
 
 ### Remember
 

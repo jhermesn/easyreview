@@ -33,9 +33,9 @@ cards:
     trap: true
     facts: [no-expertise]
   - id: lex-004
-    q: "A Lex hotel booking bot needs the city, check-in date and number of nights before it books. What are these in Lex, and what usually does the booking?"
-    a: "They are slots of the BookHotel intent. When all required slots are filled, Lex fulfills the intent, usually by invoking a Lambda function."
-    facts: [intents, slots]
+    q: "Which AWS service can build a conversational interface that accepts both voice and text?"
+    a: "Amazon Lex builds conversational interfaces using speech recognition and natural language understanding."
+    facts: [purpose]
 ---
 Amazon Lex builds chatbots and voice bots. It understands what a user means, manages the conversation, and plugs into web, mobile and chat channels. [What is Amazon Lex V2?](https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html#what-is)
 

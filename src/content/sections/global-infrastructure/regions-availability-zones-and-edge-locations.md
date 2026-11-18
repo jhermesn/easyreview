@@ -115,14 +115,13 @@ cards:
     trap: true
     facts: [s3-namespace]
   - id: global-infrastructure-019
-    q: Is Amazon Rekognition a global or a Regional service?
-    a: Regional. Like EC2, RDS and Lambda, it has Regional endpoints and runs in the Region you choose.
-    facts: [regional-endpoints]
+    q: "How are AWS Regions and Availability Zones related?"
+    a: "Each AWS Region is a geographical location made up of multiple independent, physically separate Availability Zones."
+    facts: [region]
   - id: global-infrastructure-020
-    q: "Two AWS accounts must place resources in the same physical Availability Zone. Why is the AZ name not enough, and what should they use?"
-    a: "AZ names map randomly per account; use the **AZ ID** (for example use1-az1), which is the same in every account."
-    trap: true
-    facts: [az-ids]
+    q: "Why can using multiple Availability Zones improve an application’s availability?"
+    a: "An application designed across multiple Availability Zones is better protected from a failure affecting one zone."
+    facts: [multi-az]
   - id: global-infrastructure-021
     q: "Sort these by scope: IAM, CloudFront, Route 53, S3, EFS, AWS Batch, EC2, EBS."
     a: "Global: IAM, CloudFront, Route 53. Regional: S3, EFS, AWS Batch. Zonal: EC2 instances and EBS volumes, which live in one Availability Zone."
@@ -155,21 +154,18 @@ The AWS global infrastructure has three building blocks. A Region is a geographi
 2. Inside the Region, you spread resources over two or more AZs. Each AZ has its own power, networking and connectivity, and AZs share no generators or cooling.
 3. AZs are close enough for synchronous replication, so a database or load-balanced fleet can span them.
 4. Edge locations cache content for Amazon CloudFront near users; on a miss they fetch it from the origin in the Region. [How CloudFront delivers content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html#HowCloudFrontWorksContentDelivery)
-5. Local Zones extend a Region with compute and storage near large cities for low latency. [Local Zones](https://docs.aws.amazon.com/local-zones/latest/ug/what-is-aws-local-zones.html#what-is-aws-local-zones)
 
 | Building block | What it is | Used for |
 |---|---|---|
 | Region | Geographic area with at least three AZs | Where resources and data live; latency, data residency |
 | Availability Zone | One or more data centers with independent power and networking | High availability inside a Region |
 | Edge location | Cache site near users | Fast content delivery with CloudFront |
-| Local Zone | Compute and storage near a large city | Single-digit millisecond latency for local users |
 
 ### Exam cues
 
 - If the question says survive a data center failure, think multiple Availability Zones.
 - If the question says users far away see slow static content, think edge locations with CloudFront.
 - If the question says data must stay in a country, think choose a Region there; data stays in its Region unless copied.
-- If the question says very low latency in a city without a Region, think Local Zones.
 
 ### Remember
 
@@ -177,6 +173,5 @@ The AWS global infrastructure has three building blocks. A Region is a geographi
 - AZs are up to about 100 km (60 miles) apart, with single-digit millisecond latency between them.
 - AZ codes are the Region code plus a letter, such as us-east-2a.
 - Global: IAM, Organizations, CloudFront, Route 53, Global Accelerator. Most others are Regional.
-- Traffic between AZs is encrypted.
 
 > **Trap:** One AZ is not highly available. A single AZ can fail as a unit, so high availability needs at least two AZs.

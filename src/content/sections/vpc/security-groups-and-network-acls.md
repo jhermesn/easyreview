@@ -201,12 +201,10 @@ Before retiring an environment, preserve the replacement application's access an
 
 - If the question says block an IP range for an entire subnet, think an early ACL deny rule, because security groups cannot express deny rules.
 - If the question says inbound access works but replies fail, think the ACL return path, because responses need their own allow rule and the correct client ports.
-- If the question says filter queries through Amazon's VPC DNS resolver, think Resolver DNS Firewall, because security groups and ACLs do not filter that resolver traffic.
 
 ### Remember
 
 - Numbered ACL rules: 1 to 32766. The asterisk rule denies unmatched traffic.
 - A new custom security group starts with no inbound rules and an allow-all outbound rule.
-- Both controls bypass Amazon DNS, DHCP, EC2 instance metadata, ECS task metadata, Windows activation, Time Sync, and reserved VPC router addresses. DNS resolves names to addresses; DHCP supplies network configuration. Metadata endpoints expose instance or task information.
 
 > **Trap:** An inbound allow rule on a stateless ACL does not permit the response automatically. Choose return-path ports for the actual client, whose ephemeral range can vary.

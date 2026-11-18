@@ -141,24 +141,24 @@ cards:
     a: Underutilized Amazon EBS volumes, a cost optimization check.
     facts: [ebs-underutilized]
   - id: trusted-advisor-018
-    q: "At what share of a service quota do Trusted Advisor service limit checks start warning?"
-    a: "**80%** of the quota (yellow status)."
-    facts: [limit-80]
+    q: "A team wants to find potentially unsafe S3 bucket permissions and unrestricted security group ports. Which AWS Trusted Advisor checks can help?"
+    a: "Use the security checks for S3 bucket permissions and security groups with specific unrestricted ports. These checks are available with Basic Support."
+    facts: [basic-security-examples]
+
 ---
 AWS Trusted Advisor inspects your AWS environment and recommends improvements to cost, availability, performance and security. A check evaluates resources and reports results for review.
 
 ### How it works
 
 1. Trusted Advisor checks resources in categories including cost optimization, security, performance, fault tolerance, service limits and operational excellence.
-2. Review check results and recommended actions. Security examples include S3 bucket permissions, root account multi-factor authentication (MFA), and security groups with unrestricted ports. The low-utilization EC2 check identifies instances for cost review; the console can filter results by resource tag.
+2. Review check results and recommended actions. The low-utilization EC2 check identifies instances for cost review; the console can filter results by resource tag. The underutilized EBS volumes check flags unattached volumes or those with very low write activity.
 3. Configure notifications: a weekly summary email, an EventBridge rule for check status events, or a CloudWatch metric alarm that sends to an SNS topic.
-4. For custom polling, use the Support API in US East (N. Virginia). Refresh a supported check, poll its refresh status until success, then retrieve the result. Handle a failed refresh rather than treating it as fresh data.
+4. For scheduled custom notifications, EventBridge Scheduler can invoke Lambda to query check results through the Support API and publish to SNS.
 
 ### Exam cues
 
 - If the question says a team needs custom check status notifications, think EventBridge in US East (N. Virginia), because Trusted Advisor emits events there. Delivery is best effort.
 - If the question says alert on a check-result metric, think a CloudWatch alarm and SNS, because Trusted Advisor publishes metrics when checks refresh.
-- If the question says a scheduled function needs fresh check results, think Support API refresh, status polling and result retrieval, because retrieving a result alone does not refresh it.
 - If the question says notify on a schedule, think EventBridge Scheduler invoking Lambda to query results and publish to SNS, because the Support API exposes check results.
 - If the question says automate selection of low-usage EC2 instances by tag, think check events routed to Lambda, because the function can retrieve resource tags and apply the team's policy before acting. A recommendation alone does not establish that deletion is safe.
 
@@ -171,6 +171,6 @@ AWS Trusted Advisor inspects your AWS environment and recommends improvements to
 
 - Business Support and Enterprise On-Ramp are discontinued in January 2027, but remain available in AWS GovCloud (US). Legacy Support API eligibility also applies before transition or in Regions without a current eligible plan.
 - Weekly email is a summary, not an immediate event. EventBridge events are best effort.
-- Some automatically refreshed checks reject API refresh requests.
+- Service limit checks turn yellow at 80% of a quota.
 
-> **Trap:** A successful refresh request does not mean new results are ready. Poll for refresh success before reading fresh results.
+> **Trap:** The weekly summary email is not a timely check status notification. Use EventBridge for status events, but remember that delivery is best effort.

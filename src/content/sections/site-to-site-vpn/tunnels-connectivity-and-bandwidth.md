@@ -122,18 +122,15 @@ AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud 
 
 ### Exam cues
 
-- If the question says a Direct Connect circuit needs a backup, think Site-to-Site VPN, because Large Bandwidth Tunnels can provide backup connectivity.
 - If the question says encrypt Direct Connect traffic without public addresses, think private IP Site-to-Site VPN, because it encrypts traffic over Direct Connect.
-- If the question says more aggregate bandwidth than one large tunnel is needed, think Equal Cost Multi Path routing across multiple VPN connections, because it can spread traffic over multiple paths.
+- If the question says a VPN is up but VPC instances cannot reach the remote network, think subnet route tables, because route propagation can add VPN routes for a virtual private gateway. [Configure routing](https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-configure-routing)
+- If the question asks for tunnel bandwidth, think standard or Large Bandwidth Tunnels, because their per-tunnel limits differ. [Tunnel bandwidth options](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html#tunnel-bandwidth-options)
 
 ### Remember
 
 - Standard tunnels support up to 1.25 Gbps each by default; Large Bandwidth Tunnels support up to 5 Gbps each.
 - Both tunnels must use the same bandwidth setting. Large Bandwidth Tunnels require Transit Gateway or Cloud WAN and a fixed customer gateway IP address.
 - Large Bandwidth Tunnels do not support accelerated VPN.
-- Outside addresses can be public IPv4, private IPv4 or IPv6; public IPv4 is the default.
-- Routing can be static or dynamic using Border Gateway Protocol (BGP), which exchanges routes. Cloud WAN VPN connections require BGP.
-- One VPN connection cannot carry both IPv4 and IPv6 traffic simultaneously. A virtual private gateway VPN does not support IPv6 traffic.
 - Direct Connect does not encrypt traffic by default.
 
 > **Trap:** A virtual private gateway cannot use Large Bandwidth Tunnels. Use Transit Gateway or Cloud WAN for that option.

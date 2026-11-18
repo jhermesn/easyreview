@@ -154,12 +154,10 @@ cards:
       - application
       - environments
   - id: elastic-beanstalk-035
-    q: An Elastic Beanstalk source ZIP has all application files inside an extra parent folder. What should the team change?
-    a: Place the application files at the archive root. A source bundle must not contain an enclosing parent directory.
+    q: "A team wants AWS to provision and run EC2 resources for an uploaded application while retaining control of those resources. Which service fits?"
+    a: "AWS Elastic Beanstalk. It provisions resources such as EC2 instances, a load balancer and Auto Scaling for the application."
     facts:
-      - source-bundle
-      - bundle-size
-      - bundle-root
+      - upload-code
   - id: elastic-beanstalk-036
     q: Does an Elastic Beanstalk single-instance environment use Auto Scaling or a load balancer?
     a: It uses an Auto Scaling group fixed at one instance, with an Elastic IP and no load balancer. The group replaces terminated instances.
@@ -169,11 +167,11 @@ cards:
       - single-asg
       - asg-replacement
   - id: elastic-beanstalk-037
-    q: Several Elastic Beanstalk environments need to share an existing Application Load Balancer. When is this configured?
-    a: Choose the shared ALB when creating each environment. A running environment cannot switch between a dedicated and shared load balancer.
+    q: "An Elastic Beanstalk application must distribute requests across instances in multiple Availability Zones. Which environment fits?"
+    a: "A load-balanced environment. It distributes requests across EC2 instances and can run them in multiple Availability Zones."
     facts:
-      - shared-alb
-      - shared-creation
+      - scalable
+      - multi-az
   - id: elastic-beanstalk-038
     q: An Elastic Beanstalk application needs HTTPS at its ALB and traffic forwarded to a custom backend port. What must be configured?
     a: Assign a certificate to an HTTPS listener and allow traffic from the load balancer to the application port in the instance security group.
@@ -181,16 +179,15 @@ cards:
       - https-listener
       - backend-access
   - id: elastic-beanstalk-039
-    q: An Elastic Beanstalk Standard Docker application already has an image in a hosted repository and uses no Compose. Which file identifies the image?
-    a: Dockerrun.aws.json v1. A Dockerfile is used when Beanstalk should build an image locally.
+    q: "A team wants to deploy a containerized application with AWS Elastic Beanstalk. Which platform supports this use case?"
+    a: "An Elastic Beanstalk Docker platform. It runs applications packaged as container images."
     facts:
-      - dockerfile
-      - dockerrun
+      - docker-platform
   - id: elastic-beanstalk-040
-    q: An Elastic Beanstalk custom instance profile causes enhanced health to show No Data. Which permission should be checked?
-    a: elasticbeanstalk:PutInstanceStatistics, when enhanced health authorization is enabled.
+    q: "An application on Elastic Beanstalk EC2 instances needs access to permitted AWS resources. How should the team grant that access?"
+    a: "Use an instance profile to pass an IAM role to the instances. The application can use that role to access permitted resources."
     facts:
-      - custom-health
+      - instance-profile
   - id: elastic-beanstalk-060
     q: A developer wants to upload a web application and have AWS provision the servers, load balancing and scaling, with no extra service fee. Which service fits?
     a: "AWS Elastic Beanstalk.\nIt has no additional charge; you pay for the EC2 instances and other resources it creates."

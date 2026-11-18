@@ -270,14 +270,11 @@ cards:
     facts:
       - input-transform
   - id: eventbridge-020
-    q: An application team wants EventBridge to track changing event shapes and generate language bindings. Which
-      features fit?
-    a: Enable schema discovery and use the schema registry and downloadable code bindings. Changes create new
-      schema versions; discovery sees the original event.
+    q: "A team wants an Amazon EventBridge rule to start a workflow when an S3 object is created. What should it configure?"
+    a: "Enable EventBridge notifications for the bucket, then create a matching rule with a Step Functions workflow as its target."
     facts:
-      - schema-bindings
-      - schema-versions
-      - schema-original
+      - s3-to-eventbridge
+      - bus-routing
   - id: eventbridge-021
     q: An EventBridge rule must call an HTTPS application with configured authorization. Which target fits and
       what response deadline matters?
@@ -320,19 +317,9 @@ An EventBridge event bus routes JSON events, which are messages describing somet
 
 1. Choose the bus for the producer, the system sending events. The default bus receives AWS service events. A custom Classic bus separates application traffic, and a partner bus receives events from a software as a service (SaaS) provider.
 2. Create a rule with an event pattern, a JSON filter over fields such as `source`, `detail-type`, and `detail.state`. Required fields must exist at the same nesting level. Omitted fields are ignored.
-3. Combine different fields with AND and values in one array with OR. Use `$or` for alternatives across fields. Test the pattern with `TestEventPattern`.
+3. Test the pattern with `TestEventPattern`.
 4. Grant permission to invoke each target. A rule can send matches directly to SNS, Lambda, Step Functions, Systems Manager Automation or Run Command, or an ECS task.
 5. If the target needs a different message shape, use an input transformer. JSONPath, a path expression that selects a JSON value, extracts fields from the original event into a target template.
-
-| Matching need | Operator | Meaning |
-| --- | --- | --- |
-| Start of a string | `prefix` | Matches the beginning of the value |
-| End of a string, such as a file extension | `suffix` | Matches the end of the value |
-| Any letter case | `equals-ignore-case` | Ordinary string matching is case sensitive |
-| Number or range | `numeric` | Compares numeric values and ranges |
-| Field present or absent | `exists` | Tests a leaf field |
-| Everything except some values | `anything-but` | Excludes the listed values |
-| IP address in a network | `cidr` | Matches an IPv4 or IPv6 range |
 
 AWS API calls reach the default bus as `AWS API Call via CloudTrail` events only when a trail with logging is enabled. Match `detail.eventSource` and `detail.eventName`. S3 object calls also need the trail's data events, and read-only management events need the rule state `ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS`.
 
@@ -346,7 +333,6 @@ The Custom Event Bus model uses subscribers instead of rules. Each subscriber fi
 - If the question says catch a specific API call, think `AWS API Call via CloudTrail` with `eventSource` and `eventName`, because those fields sit inside `detail` and need an enabled trail.
 - If the question says email the team when a pipeline fails, think a rule on `CodePipeline Pipeline Execution State Change` with state `FAILED` and an SNS target.
 - If the question says route GuardDuty or Security Hub findings to remediation, think a finding pattern with a Lambda, Step Functions, or Systems Manager Automation target.
-- If the question says an exposed access key must start a remediation workflow, think the AWS Health `AWS_RISK_CREDENTIALS_EXPOSED` event with a Step Functions target.
 - If the question says reformat an event for a target without code, think an input transformer, because JSONPath variables fill a target template.
 - If the question says call a third-party HTTPS API with credentials, think an API destination with a connection, because it holds the authorization.
 
@@ -355,8 +341,6 @@ The Custom Event Bus model uses subscribers instead of rules. Each subscriber fi
 - At most five targets per rule.
 - API destination requests time out after five seconds, then follow the retry policy.
 - Trusted Advisor and Organizations events arrive in US East (N. Virginia). Trusted Advisor's built-in emails are weekly.
-- X-Ray insight events need both insights and notifications enabled on the group.
-- Auto Scaling emits lifecycle hook, scaling, and instance refresh events. CodeDeploy uses source `aws.codedeploy`, and Elastic Beanstalk emits health transitions and operation state changes.
 
 > **Trap:** A rule that matches CloudTrail API calls receives nothing without a trail that has logging enabled, and S3 object calls also need the trail's data events.
 

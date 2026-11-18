@@ -106,7 +106,7 @@ AWS WAF managed rule groups provide maintained sets of request checks. Rate-base
 1. Choose managed rule groups for the application. SQL injection means adding unauthorized database query instructions to a request. Cross-site scripting means sending script content intended to run in a user's browser.
 2. For volume control, choose an aggregation key, the request value used to group requests into counters. The default is source IP. Custom keys can use headers, cookies, HTTP methods or paths.
 3. Add a scope-down statement, a filter that limits which requests are counted. For a combined limit on a login path, use Count all aggregation with a scope-down statement matching that path.
-4. WAF looks back over the evaluation window and applies the rate action when a grouping exceeds the limit. The action can be any rule action except Allow.
+4. WAF looks back over the evaluation window and applies the rate action when a grouping exceeds the limit.
 5. Test and tune in staging and Count mode before enforcing. Treat the rate limit as approximate availability protection, since detection can lag traffic changes.
 
 A scope-down statement can also restrict a managed rule group to matching requests.
@@ -127,10 +127,7 @@ A scope-down statement can also restrict a managed rule group to matching reques
 
 ### Remember
 
-- Window options: 60, 120, 300 and 600 seconds. Default: 300 seconds.
-- Minimum limit: 10 requests per window.
 - Count all requires a scope-down statement. It is an aggregation choice, separate from the Count rule action.
-- Missing a required custom key component excludes a request from that rule.
-- Editing rate settings resets counts and can pause limiting for up to one minute.
+- Rate limiting is approximate and can react after a delay.
 
 > **Trap:** A per-IP counter does not impose one shared limit on requests from all IPs. Choose aggregation to match the traffic grouping the question requires.

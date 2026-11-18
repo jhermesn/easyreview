@@ -8,8 +8,8 @@ facts:
     source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/WhatIs.html#WhatIs
 cards:
   - id: elasticache-026
-    q: "A database is slow for repeated reads. Which AWS service adds an in-memory cache in front of it?"
-    a: "Amazon ElastiCache."
+    q: "Which AWS service manages and scales a distributed in-memory data store or cache?"
+    a: "Amazon ElastiCache sets up, manages and scales an in-memory data store or cache."
     facts: [in-memory]
 ---
 Amazon ElastiCache is a managed in-memory cache that speeds up reads. [What is Amazon ElastiCache?](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/WhatIs.html#WhatIs)

@@ -133,18 +133,17 @@ cards:
       - writer-endpoint
       - readers
   - id: aurora-011
-    q: An Aurora Auto Scaling policy sees load from manually created readers. Can scale-in delete those readers?
-    a: No. All readers contribute to the metric average, but Auto Scaling removes only readers it created.
-    trap: true
+    q: An Aurora cluster needs to handle more read traffic and provide a failover target. What
+      should the team add?
+    a: Add an Aurora Replica. Readers serve read traffic and can be promoted if the writer fails.
     facts:
-      - aggregate
-      - remove
+      - readers
   - id: aurora-012
-    q: An Aurora cluster has no readers and a CPU-based reader Auto Scaling policy remains inactive. Why?
-    a: There is no reader metric to evaluate. Maintain at least one reader so metric-based alarms can operate.
-    trap: true
+    q: An Aurora cluster has variable read demand. How can it adjust read capacity automatically?
+    a: Use Aurora Auto Scaling to add or remove reader instances within configured limits. It does
+      not scale the writer.
     facts:
-      - minimum-reader
+      - autoscaling
   - id: aurora-031
     q: A company runs MySQL and PostgreSQL applications and wants a managed relational database that AWS patches for it. Which AWS database fits?
     a: "Amazon Aurora.\nIt is compatible with MySQL and PostgreSQL, and AWS applies OS and engine patches in the maintenance window."
@@ -154,23 +153,26 @@ cards:
     a: "A **custom endpoint** that includes just those two replicas."
     facts: [custom-endpoint]
   - id: aurora-038
-    q: "How can a large self-managed MySQL 8.0 database move to Aurora MySQL faster than a logical dump?"
-    a: "Back it up with Percona XtraBackup, upload the files to S3 and restore an Aurora MySQL cluster from them."
-    facts: [xtrabackup]
+    q: How can an Aurora cluster improve database instance availability across Availability Zones?
+    a: Place Aurora Replicas in different Availability Zones. A reader can be promoted if the writer
+      fails.
+    facts: [readers]
   - id: aurora-039
     q: "The writer of a single-instance Aurora cluster fails. What does Aurora do, and how long can it take?"
     a: "It recreates the primary instance in the same AZ, typically within 10 minutes. Add an Aurora Replica in another AZ so failover becomes a fast promotion."
     trap: true
     facts: [no-replica-failover]
   - id: aurora-042
-    q: "A bad DELETE hit an Aurora MySQL cluster 20 minutes ago. Which feature undoes it fastest without creating a new cluster, and what must already be true?"
-    a: "Backtrack, which rewinds the cluster in place in minutes. It only works if Backtrack was enabled when the cluster was created or restored, and the window is at most 72 hours."
-    trap: true
-    facts: [backtrack]
+    q: An Aurora application needs read scaling without copying table data for each database
+      instance. How do replicas use storage?
+    a: Aurora readers share the cluster volume with the writer. Adding an instance does not make a
+      new copy of the table data.
+    facts: [cluster, reader-limit, compute]
   - id: aurora-043
-    q: "Analysts want sentiment scores on rows in Aurora without building an ML pipeline. What feature fits?"
-    a: "Aurora machine learning, which calls Amazon Comprehend (or Bedrock or SageMaker AI) from SQL."
-    facts: [aurora-ml]
+    q: An Aurora workload needs to distribute read connections across replicas. Which endpoint
+      should it use?
+    a: Use the reader endpoint. It balances new connections among available Aurora Replicas.
+    facts: [reader-endpoint]
   - id: aurora-045
     q: "A production RDS for MySQL database must move to Aurora MySQL with minimal downtime. What path does AWS recommend?"
     a: "Create an Aurora read replica of the RDS instance; when replica lag reaches 0, switch clients and promote the replica."

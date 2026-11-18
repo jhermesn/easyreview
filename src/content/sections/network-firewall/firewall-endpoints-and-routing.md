@@ -52,10 +52,11 @@ cards:
       - own-subnet
       - routing
   - id: network-firewall-005
-    q: A team needs AWS Network Firewall flow logs delivered directly to a managed delivery stream. Is a custom forwarding function required?
-    a: No. Configure a Firehose delivery stream as the Network Firewall log destination. S3 and CloudWatch Logs are also supported.
+    q: "How should a team route traffic for stateful inspection by AWS Network Firewall?"
+    a: "Route both directions of each traffic flow through the same firewall endpoint."
     facts:
-      - logging-destinations
+      - routing
+      - symmetric-flow
   - id: network-firewall-006
     q: Which Firewall Manager management models are available for AWS Network Firewall across an organization?
     a: Distributed deployment, centralized deployment in one VPC, and importing existing firewalls.

@@ -11,12 +11,12 @@ facts:
     source: https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html#compute-platform
 cards:
   - id: deployment-strategies-044
-    q: "A release must avoid updating running servers and allow a quick switch back. Which deployment type fits?"
-    a: "Blue/green: deploy to new resources, move traffic, and keep the old set to roll back."
-    facts: [blue-green]
+    q: "Which AWS compute service provides the existing instances that CodeDeploy can update during an in-place deployment?"
+    a: "Amazon EC2 provides the instances that CodeDeploy updates in place."
+    facts: [in-place]
   - id: deployment-strategies-045
-    q: "Which deployment type updates the existing instances a few at a time?"
-    a: "In-place (rolling) deployment."
+    q: "How does CodeDeploy update Amazon EC2 instances in an in-place deployment?"
+    a: "It updates the existing instances in a rolling manner, taking a set of instances offline at a time."
     facts: [in-place]
 ---
 A deployment strategy decides how a new version replaces the old one. The main choices are updating servers in place or switching traffic to a new environment. [What is CodeDeploy?](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html#welcome)

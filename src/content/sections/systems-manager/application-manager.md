@@ -75,14 +75,10 @@ cards:
       - app-compliance
       - app-opsitems
   - id: systems-manager-091
-    q: A new AWS account tries to adopt Systems Manager Application Manager after July 30, 2026. Is it
-      available?
-    a: No. Accounts that did not previously use Application Manager cannot access it from that date.
-      Existing customers can continue in established accounts in maintenance mode.
-    trap: true
+    q: "An existing Systems Manager Application Manager user wants to see application alarms and logs. What must be configured?"
+    a: "Configure CloudWatch alarms and logs for display in Application Manager. The logs integration applies to applications, not clusters."
     facts:
-      - app-closure
-      - app-maintenance
+      - app-monitoring
   - id: systems-manager-092
     q: An existing Application Manager customer needs alarms, compliance status, and operational work
       records together for an application. Which source services supply them?
@@ -108,30 +104,20 @@ cards:
     facts:
       - app-eks-boundary
   - id: systems-manager-095
-    q: A team leaving Application Manager wants a named group of resources selected by resource types
-      and tags in one Region. Which AWS alternative fits?
-    a: AWS Resource Groups. Tag-based queries select resources by their types and tag filters.
+    q: "An operations team needs application context when reviewing resource health information in Systems Manager Application Manager. What does the service aggregate?"
+    a: "It aggregates AWS resource operations information in the context of an application, a logical resource group operated as a unit."
     facts:
-      - app-regional-groups
-      - app-tag-groups
-      - app-alternatives
+      - app-purpose
   - id: systems-manager-096
-    q: Must an existing Application Manager customer delete awsApplication tags and AppManager groups
-      after the July 2026 maintenance-mode change?
-    a: No. Those tags and groups remain usable and do not require replacement. Existing applications and
-      underlying Systems Manager APIs continue to work.
-    trap: true
+    q: "An existing Systems Manager Application Manager user wants operational work records alongside application information. Which service supplies them?"
+    a: "OpsCenter supplies operational work records called OpsItems."
     facts:
-      - app-tag-persistence
-      - app-api-continuity
-      - app-closure
+      - app-opsitems
   - id: systems-manager-097
-    q: A team needs resource discovery across accounts and Regions after Application Manager closes to
-      new users. Which AWS alternative matches that requirement?
-    a: AWS Resource Explorer. For application observability, AWS points to CloudWatch Application
-      Signals; for named Regional tag groupings, use Resource Groups.
+    q: "A team needs to review application resource compliance in Systems Manager Application Manager. Which services supply the compliance information?"
+    a: "AWS Config supplies resource-rule compliance; State Manager associations supply desired-state compliance."
     facts:
-      - app-alternatives
+      - app-compliance
 ---
 Systems Manager Application Manager collects operations information for resources treated as one application. It helps existing users investigate problems with application context and run remediation. In July 2026 it entered maintenance mode: accounts that had not used it before July 30, 2026 cannot start using it, while existing customers can continue in established accounts. [Purpose](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager.html) · [Availability change](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager-availability-change.html)
 

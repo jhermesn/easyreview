@@ -33,9 +33,9 @@ cards:
     trap: true
     facts: [purpose]
   - id: cognito-004
-    q: "Mobile users signed in through a Cognito identity pool must read and write only their own DynamoDB items. How?"
-    a: "Use the user identity ID as the partition key and give the pool role a policy with a dynamodb:LeadingKeys condition equal to ${cognito-identity.amazonaws.com:sub}."
-    facts: [policy-variable, leading-keys]
+    q: "A mobile app needs to let signed-in or guest users access AWS resources. Which Amazon Cognito feature supplies their AWS credentials?"
+    a: "An Amazon Cognito identity pool issues AWS credentials for authenticated or guest users."
+    facts: [identity-pools]
 ---
 Amazon Cognito handles identity for the users of your web and mobile apps: sign-up, sign-in, social and enterprise logins, and access to AWS resources from the app. [What is Amazon Cognito?](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html#what-is-amazon-cognito)
 

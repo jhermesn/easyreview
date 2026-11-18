@@ -220,8 +220,6 @@ An AWS account is an isolation boundary for resources, access, and billing. Sepa
 5. For cross-account shares, the RAM managed permission sets the maximum actions. The consumer account must grant its identities access too. For role-based access, configure destination role trust and permissions and allow the originating identity to assume it.
 6. A network account can share VPC subnets with accounts in the same organization. Each participant manages its own resources, not another participant's resources.
 7. Enable organization sharing from the management account through RAM with all Organizations features and the required RAM, IAM and Organizations permissions. Sharing does not raise the resource owner's quota.
-8. A consumer normally loses organization-shared access when it leaves. To retain a direct account share, set `RetainSharingOnAccountLeaveOrganization` when creating it, allow external principals and have the consumer accept the invitation.
-9. Since November 2026, teams can share customer managed RAM permissions for receiving accounts to use on their own resource shares.
 
 ### Exam cues
 
@@ -237,7 +235,6 @@ An AWS account is an isolation boundary for resources, access, and billing. Sepa
 - Group OUs by control requirements.
 - SCPs do not constrain the management account.
 - Ordinary RAM shares inside an enabled organization do not require invitations.
-- Regional RAM resources and their share must be in the same Region. Shares for global resources use `us-east-1`.
-- The default Organizations account quota is 10 and is adjustable. New organizations can have a lower quota; pending invitations count against it.
+- Sharing a resource does not raise the owner's quota.
 
 > **Trap:** An OU groups accounts for governance. It does not replace the account boundary or automatically grant access between accounts.

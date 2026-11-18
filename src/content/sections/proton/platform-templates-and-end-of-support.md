@@ -83,45 +83,45 @@ diagrams:
       - The pipeline deploys code to a service instance in an environment.
 cards:
   - id: proton-001
-    q: What happened to AWS Proton after its end of support?
-    a: Support ended October 7, 2026. Proton became inaccessible, but deployed CloudFormation stacks and their resources remained intact.
+    q: "A team is choosing an infrastructure automation service for a new workload. Is AWS Proton available for this purpose?"
+    a: "No. AWS Proton support ended on October 7, 2026. AWS lists CloudFormation Git sync as an alternative for a Git-based workflow."
     trap: true
-    facts: [end-support, proton-inaccessible, migration-impact]
+    facts: [end-support, git-sync]
   - id: proton-002
-    q: Which former AWS service used platform-team templates to provision standardized application infrastructure and deployment pipelines?
-    a: AWS Proton. It supported serverless and container-based applications and ended support in October 2026.
-    trap: true
-    facts: [purpose, end-support]
+    q: "A team needs a Git-based infrastructure automation workflow after AWS Proton support ended. What alternative does AWS list?"
+    a: "AWS CloudFormation Git sync. It does not provide Proton-style environments or advanced pipeline features."
+    facts: [end-support, git-sync]
   - id: proton-003
-    q: A platform team using AWS Proton needed shared infrastructure for multiple applications. Which template described it?
-    a: An environment template.
-    facts: [environment-template]
+    q: "A team needs an alternative to AWS Proton with a pipeline for infrastructure automation. Which AWS services are listed as an option?"
+    a: "AWS CodePipeline and AWS CodeBuild. This option requires more implementation work and offers less built-in developer self-service."
+    facts: [pipeline-alternative]
   - id: proton-004
-    q: A developer using AWS Proton needed to deploy an application using a platform-approved definition. What did the developer select?
-    a: A compatible service template and a source repository.
-    facts: [service-template, workflow]
+    q: "A team used AWS Proton to deploy infrastructure through CloudFormation. What happened to the deployed stacks when Proton support ended?"
+    a: "The deployed CloudFormation stacks and their resources remain intact."
+    facts: [migration-impact, end-support]
   - id: proton-005
-    q: What was an AWS Proton service instance?
-    a: An instance of a service template in a specific environment.
-    facts: [service-instance]
+    q: "Can a team continue using the AWS Proton console to automate infrastructure after support ended?"
+    a: "No. The Proton console and Proton resources became inaccessible after support ended."
+    trap: true
+    facts: [end-support, proton-inaccessible]
   - id: proton-006
     q: A team replacing AWS Proton wants CloudFormation changes driven by a Git repository. Which AWS-documented alternative fits?
     a: CloudFormation Git sync, although it does not provide Proton-style environments or advanced pipeline features.
     facts: [git-sync]
   - id: proton-007
-    q: Did AWS Proton manage existing infrastructure connected through a customer managed environment?
-    a: No. It connected to the existing infrastructure without managing it.
-    facts: [existing-infrastructure]
+    q: "A team is considering CloudFormation Git sync as an AWS Proton alternative. Does it include Proton-style environments?"
+    a: "No. CloudFormation Git sync supports a Git-based workflow but does not include Proton-style environments or advanced pipeline features."
     trap: true
+    facts: [git-sync]
   - id: proton-008
-    q: What happened to AWS Proton data after October 7, 2026?
-    a: It was deleted after the retention date.
-    facts: [data-deletion]
+    q: "A team wants infrastructure automation after AWS Proton support ended. What tradeoff comes with the CodePipeline and CodeBuild alternative?"
+    a: "It requires more implementation work and has less built-in developer self-service."
+    facts: [end-support, pipeline-alternative]
   - id: proton-009
-    q: Could a minor AWS Proton template version guarantee that infrastructure code changes were backward compatible?
-    a: No. Proton checked schema compatibility, not compatibility of the infrastructure code.
-    facts: [minor-version, minor-iac]
+    q: "A team wants to retain AWS Proton-style environments when moving to CloudFormation Git sync. Does Git sync provide them?"
+    a: "No. AWS lists Git sync as a Git-based alternative, but it has no Proton-style environments."
     trap: true
+    facts: [git-sync]
 ---
 
 AWS Proton was a platform service for deploying serverless and container applications from standardized infrastructure templates. Support ended on October 7, 2026, so the workflow below is historical.

@@ -104,13 +104,11 @@ cards:
       - proactive-types
       - contacts
   - id: shield-010
-    q: An Anti-DDoS managed rule group detects an event with no Shield Advanced event. Will SRT
-      proactive engagement start automatically?
-    a: No. Only Shield Advanced detections can trigger proactive engagement. Configure notifications
-      using the managed rule group events and metrics.
-    trap: true
+    q: "A team needs expert help analyzing AWS WAF logs during a DDoS attack. What can the AWS Shield Response Team do?"
+    a: "Analyze WAF logs and, with customer approval, change the web ACL to block identified attacks."
     facts:
-      - managed-rule-exclusion
+      - srt-role
+      - srt-actions
   - id: shield-011
     q: A company has AWS Shield Advanced but lacks Business or Enterprise Support. Can it use SRT
       services?
@@ -125,10 +123,12 @@ cards:
     facts:
       - srt-actions
   - id: shield-013
-    q: How many contacts can AWS Shield Advanced proactive engagement use?
-    a: At least one contact is required, and up to ten can be configured.
+    q: "How can AWS Shield Advanced use application health to support DDoS response?"
+    a: "Associate a Route 53 health check. Shield Advanced can use it to inform detection and assess impact for proactive engagement."
     facts:
-      - contacts
+      - health
+      - proactive-trigger
+
 ---
 The Shield Response Team (SRT) provides specialist help during DDoS events for Shield Advanced customers. Proactive engagement lets the SRT contact your operations team when a Shield-detected event affects application health.
 

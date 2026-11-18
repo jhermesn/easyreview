@@ -89,19 +89,17 @@ An SNS subscription filter selects messages before delivery to that subscriber. 
    | Anything-but | A value outside an excluded selection |
    | Numeric match | A number matching the chosen condition |
 
-5. SNS delivers matching messages to that subscription and omits nonmatches. After a policy change, allow time for eventual consistency, meaning the distributed service may temporarily use the older policy.
+5. SNS delivers matching messages to that subscription and omits nonmatches.
 
 ### Exam cues
 
 - If the question says a routing field is inside the JSON payload, think `MessageBody`, because the default scope looks at attributes.
 - If the question says different subscribers need different event categories, think subscription filter policies, because each subscription selects its own messages.
-- If the question says a policy changed moments ago, think the propagation interval, because changes can take up to 15 minutes to fully apply.
 
 ### Remember
 
 - Default scope: `MessageAttributes`.
 - Body scope: `MessageBody`, requiring a well-formed JSON object.
 - All named policy properties must match; values within a property provide alternatives.
-- Policy updates can take up to 15 minutes.
 
 > **Trap:** Creating a filter for a body field while leaving the default scope unchanged does not make SNS inspect the body.

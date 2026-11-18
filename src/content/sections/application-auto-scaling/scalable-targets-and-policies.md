@@ -124,11 +124,12 @@ cards:
       - ec2-distinction
       - ecs-capacity
   - id: application-auto-scaling-002
-    q: What uniquely identifies an Application Auto Scaling scalable target?
-    a: The service namespace, resource ID and scalable dimension. Register it with minimum and maximum
-      capacity.
+    q: An Amazon ECS service needs to scale its task count as demand changes. Which AWS scaling
+      service fits?
+    a: Application Auto Scaling can adjust the ECS service task count within configured minimum and
+      maximum capacity.
     facts:
-      - target-id
+      - service-scope
       - bounds
   - id: application-auto-scaling-003
     q: An ECS service should maintain a chosen average CPU utilization without manually maintained
@@ -176,12 +177,12 @@ cards:
       - service-scope
       - ecs-capacity
   - id: application-auto-scaling-009
-    q: Which default target tracking cooldowns apply to ECS, Aurora, DynamoDB and Lambda provisioned
-      concurrency?
-    a: "ECS and Aurora: 300 seconds. DynamoDB and Lambda provisioned concurrency: 0 or null, with null
-      treated as zero."
+    q: An application has a predictable daily traffic peak. How can Application Auto Scaling prepare
+      capacity?
+    a: Use scheduled scaling to change minimum or maximum capacity at configured times. It can work
+      alongside dynamic scaling.
     facts:
-      - cooldown-defaults
+      - scheduled
   - id: application-auto-scaling-010
     q: An ECS service has recurring demand patterns and slow task startup. How should the team assess
       predictive scaling?

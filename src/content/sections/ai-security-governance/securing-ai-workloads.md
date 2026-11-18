@@ -26,17 +26,17 @@ facts:
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-data-considerations-gen-ai/security.html#security-privacy
 cards:
   - id: ai-security-governance-001
-    q: A company fine-tunes a third-party foundation model on its own data. Which scope of the Generative AI Security Scoping Matrix is this?
-    a: Scope 4, fine-tuned models.
-    facts: [scopes]
+    q: What is the Generative AI Security Scoping Matrix used for?
+    a: It groups generative AI workloads by model and data ownership to help identify applicable security controls.
+    facts: [matrix]
   - id: ai-security-governance-002
-    q: Employees paste text into a free public chatbot. Which scope is this, and what's the main data rule?
-    a: Scope 1 (consumer app). Use only public, non-proprietary data; the provider may use inputs to improve its models.
-    facts: [scopes, scope1-data]
+    q: How can a team protect training data and prompts in an AI workload?
+    a: Encrypt datasets and vector databases at rest, and protect prompts and outputs in transit with TLS.
+    facts: [encryption]
   - id: ai-security-governance-003
-    q: A company builds its own app that calls a foundation model through Amazon Bedrock without changing the model. Which scope is this?
-    a: Scope 3, pre-trained models.
-    facts: [scopes]
+    q: How can data governance reduce privacy risks in AI training and inference?
+    a: Classify data and restrict its use, such as excluding personal information from prompts unless anonymized.
+    facts: [data-policy]
   - id: ai-security-governance-004
     q: Name the five security disciplines in the Generative AI Security Scoping Matrix.
     a: Governance and compliance, legal and privacy, risk management, controls, resilience.

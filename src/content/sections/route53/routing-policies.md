@@ -208,7 +208,6 @@ Route 53 selects DNS answers using routing policies. DNS, the Domain Name System
 2. For weighted routing, give records the same name and type. Each record's share is its weight divided by the total weight.
 3. Route 53 applies the policy and checks the selected record's current health. Endpoint probes run independently of queries.
 4. A recursive resolver, the server that looks up names for a client, caches the answer for its time to live (TTL). Cached answers can serve many application requests.
-5. For regional selection plus local distribution, point latency aliases at regional weighted groups. Enable Evaluate Target Health, which inherits health from the target, and check each non-alias leaf. Route 53 can leave a Region with no healthy leaves.
 
 | Policy | Selection rule |
 |---|---|
@@ -226,15 +225,12 @@ A bias expands or shrinks the geographic area served by a geoproximity resource.
 ### Exam cues
 
 - If the question says gradually move DNS answers to a new stack, think weighted routing, because weights control relative answer shares.
-- If the question says use the lowest latency Region with local endpoint failover, think latency aliases over health-checked regional groups, because the tree combines both decisions.
 - If the question says route users by country, think geolocation with a default record, because unmapped locations otherwise receive no answer.
 - If the question says shift traffic gradually between two environments with DNS, think weighted records for two separate endpoints, because each environment needs its own load balancer to weight.
 
 ### Remember
 
-- Weights range from 0 through 255. All-zero weights give equal probability.
-- A zero-weight record can answer when all nonzero-weight records are unhealthy.
-- Multivalue returns up to eight healthy records. With no healthy records, it can return unhealthy records.
+- A simple record returns all its values; multivalue records can check each resource.
 - The smallest matching geolocation wins.
 - An unchecked record counts as healthy.
 

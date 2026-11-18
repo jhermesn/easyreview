@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER kms/operations-in-depth"
+title: KMS operational controls
 level: professional
 order: 80
 facts:
@@ -129,18 +129,29 @@ cards:
     facts:
       - mrk-import-material
 ---
-PLACEHOLDER first paragraph.
+AWS KMS operations depend on the exact encryption context, permissions, and key material in use. These details help diagnose decryption failures, control access, and track rotation without confusing key material with the KMS key itself.
 
 ### How it works
 
-PLACEHOLDER
+1. Supply the original encryption context when decrypting ciphertext or an encrypted data key. The key-value pairs must match exactly, including case. CloudWatch Logs uses the log group ARN in its context; a policy can use `kms:EncryptionContext:aws:logs:arn` to restrict the key to that group. See [GenerateDataKey](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey.html) and [CloudWatch Logs encryption](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html).
+2. Review who can manage access. The console's default key-administrator statement permits management, not cryptographic use. An administrator who can change the policy or create grants can still give themselves or others use permissions. See the [default key policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html#key-policy-default-allow-administrators).
+3. Use a grant to allow a grantee specified operations on one key without editing policies. Grants cannot deny access. Authorized callers can retire or revoke them. Changes take time to propagate, so use a grant token for immediate use of a new grant. See [grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grants).
+4. Distinguish rotating material within a key from manual replacement. Rotation within a key preserves its ID, ARN, policies, and permissions. Manual rotation creates a new key and redirects applications or aliases. Use `ListKeyRotations` for completed rotations and material rotation dates to see when material became current. See [automatic rotation](https://docs.aws.amazon.com/kms/latest/developerguide/rotating-keys-enable.html#rotating-keys-enable), [manual rotation](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys-manually.html), and [rotation history](https://docs.aws.amazon.com/kms/latest/developerguide/list-rotations.html).
+5. For an eligible symmetric encryption customer managed key, use on-demand rotation with `AWS_KMS` or imported `EXTERNAL` material. Stage imported material in `Pending rotation` first. On-demand rotation works even when automatic rotation is disabled and does not change an existing automatic schedule. See [rotation eligibility](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works) and [on-demand rotation](https://docs.aws.amazon.com/kms/latest/developerguide/rotating-keys-on-demand.html#rotate-on-demand-console).
+6. For an `EXTERNAL` multi-Region key, import the same material into each replica independently. KMS synchronizes the material identifiers, not the material. See [shared multi-Region properties](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#mrk-sync-properties).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says an authorized decrypt fails after a context change, think exact case-sensitive matching, because the original context is required.
+- If the question says a new grant must work immediately, think a grant token, because the permission change takes time to propagate.
+- If the question says check rotation age from a key creation date, think material rotation history, because rotation can preserve the original key ID.
+- If the question says activate imported symmetric material without changing the ARN, think on-demand rotation after staging it, because the existing key is retained.
+- If the question says an imported multi-Region replica lacks material, think a separate import, because KMS synchronizes identifiers rather than the material.
 
 ### Remember
 
-PLACEHOLDER
+- CloudWatch Logs identifies the log group by ARN in its encryption context.
+- On-demand rotation of imported symmetric material was introduced in [June 2025](https://aws.amazon.com/about-aws/whats-new/2025/06/aws-kms-on-demand-key-rotation-imported-keys/).
+- `ListKeyRotations` reports [completed rotations](https://docs.aws.amazon.com/kms/latest/developerguide/rotating-keys-on-demand.html#rotating-keys-on-demand).
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A key administrator's management statement does not itself allow cryptographic use, but an administrator who can change policies or create grants can obtain that access.

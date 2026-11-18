@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER elastic-load-balancing/operations-in-depth"
+title: Load balancer configuration and diagnostics
 level: professional
 order: 70
 facts:
@@ -121,18 +121,29 @@ cards:
     facts:
       - nlb-https-tls
 ---
-PLACEHOLDER first paragraph.
+Application Load Balancer (ALB) and Network Load Balancer (NLB) settings have compatibility rules that affect routing and health checks. Check those rules when a target does not receive traffic or a listener cannot be configured.
 
 ### How it works
 
-PLACEHOLDER
+1. For an ALB target group, choose a [routing algorithm](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#modify-routing-algorithm). Round robin is the default; least outstanding requests chooses the target with the least work in progress. Slow start cannot use least outstanding requests or weighted random, and weighted random cannot use sticky sessions.
+2. With [slow start](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#slow-start-mode), a newly registered target needs another healthy target outside slow start. Already healthy targets and the first batch registered together in an empty target group do not enter slow start.
+3. Check [cross-zone compatibility](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#modify-cross-zone): disabling it on an ALB target group does not support target stickiness or Lambda targets. For a Lambda target, the [function resource policy](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#prepare-lambda-function) must grant `elasticloadbalancing.amazonaws.com` the `lambda:InvokeFunction` action. AWS recommends restricting it with `aws:SourceArn` and `aws:SourceAccount`.
+4. Check [NLB listener prerequisites](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-listener.html#listener-prereqs). QUIC and TCP_QUIC require an IPv4 NLB without security groups. They cannot coexist with UDP or TCP_UDP listeners, and only one QUIC or TCP_QUIC listener is allowed per NLB. On a dualstack NLB, [listener rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html#listener-rules) match the source address type, IPv4 or IPv6, rather than a specific CIDR range.
+5. Check the target's [health check settings](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html#health-check-settings) and response. An ALB target must pass an initial check before normal traffic. Its health check Host header uses the target's private IP and includes the health check port when it is nondefault, so a [default virtual host](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html#target-not-inservice) may be needed. NLB HTTPS checks against a target supporting only TLS 1.3 fail; the target must also support an [earlier version](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html#target-group-health-checks), such as TLS 1.2.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a new ALB target needs slow start with least outstanding requests, think round robin, because the default algorithm is compatible with slow start.
+- If the question says an ALB cannot invoke a Lambda target, check its function resource policy, because ELB needs permission to invoke it.
+- If the question says an NLB rule must distinguish IPv4 from IPv6 clients, think a dualstack NLB listener rule, because it matches the source address type.
+- If the question says an ALB health check fails on a name-based virtual host, check the Host header, because it contains the target private IP rather than the public domain name.
+- If the question says an NLB HTTPS check fails against a TLS 1.3-only target, enable an earlier TLS version on the target, because the check requires it.
 
 ### Remember
 
-PLACEHOLDER
+- ALB instance and IP target health checks default to a 30-second interval and a 5-second timeout.
+- ALB defaults to two consecutive failures to mark a target unhealthy and five consecutive successes to recover; initial registration needs one successful check.
+- Deregistration reduces `HealthyHostCount` without increasing `UnHealthyHostCount`.
+- An NLB allows one QUIC or TCP_QUIC listener, with no security groups or UDP or TCP_UDP listeners.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Enabling slow start does not make the first batch registered together in an empty ALB target group ramp up. A new target needs another healthy target outside slow start.

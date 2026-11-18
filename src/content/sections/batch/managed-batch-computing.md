@@ -40,9 +40,9 @@ cards:
     a: "AWS Batch. Lambda stops at 15 minutes; Batch runs any container image as long as needed on EC2, Spot or Fargate capacity."
     facts: [capacity-types]
   - id: batch-005
-    q: "An MPI simulation must run as one job across many instances. Which Batch feature handles it?"
-    a: "Multi-node parallel jobs, which launch a main node and child nodes for a single job."
-    facts: [multi-node-parallel]
+    q: "Which AWS service manages infrastructure for batch computing workloads?"
+    a: "AWS Batch runs batch jobs and manages the underlying infrastructure."
+    facts: [purpose]
 ---
 AWS Batch runs batch jobs: units of work, such as simulations or data processing, that run to completion without user interaction. You submit jobs; Batch finds and provisions the compute and spreads the work. [What is AWS Batch?](https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html#what-is-batch)
 

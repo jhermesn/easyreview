@@ -39,10 +39,9 @@ cards:
     a: SageMaker Data Wrangler.
     facts: [data-wrangler]
   - id: sagemaker-ai-019
-    q: Can a new AWS customer start using SageMaker Ground Truth or Amazon A2I today?
-    a: "No. Both are closed to new customers; existing customers keep access."
-    trap: true
-    facts: [closed]
+    q: How can Amazon SageMaker Ground Truth help prepare data for machine learning?
+    a: "It helps build labeled training datasets using human workers and automated data labeling."
+    facts: [ground-truth]
 ---
 Good models need prepared data and, often, people in the loop. SageMaker AI has tools to prepare and share data, to label it, and to send uncertain predictions to human reviewers. [Ground Truth](https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html)
 

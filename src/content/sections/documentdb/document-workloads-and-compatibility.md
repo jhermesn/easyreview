@@ -42,8 +42,8 @@ diagrams:
       - "Replicas read from the shared volume."
 cards:
   - id: documentdb-002
-    q: How many read replicas can an instance-based Amazon DocumentDB cluster have?
-    a: Up to 15. Replicas also serve as failover targets.
+    q: "An instance-based Amazon DocumentDB cluster needs more read capacity and a failover target. What should the team add?"
+    a: "Add a read replica. It can serve reads and act as a failover target."
     facts: [replicas]
   - id: documentdb-003
     q: A team needs an Amazon DocumentDB connection that follows the current primary after failover. Which endpoint should it use?

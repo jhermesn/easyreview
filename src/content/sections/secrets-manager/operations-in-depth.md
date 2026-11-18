@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER secrets-manager/operations-in-depth"
+title: Rotation workflow and coordination
 level: professional
 order: 60
 facts:
@@ -72,18 +72,27 @@ cards:
       - origin-sync
       - origin-overlap
 ---
-PLACEHOLDER first paragraph.
+Secrets Manager Lambda rotation coordinates a new secret version with the credential used by a database or service. Staging labels track the pending, current, and previous versions through the [rotation workflow](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda-functions.html#rotate-secrets_lambda-functions-code).
 
 ### How it works
 
-PLACEHOLDER
+1. `createSecret` stores the new version with the `AWSPENDING` label.
+2. `setSecret` changes the database or service credential to match `AWSPENDING`, and `testSecret` uses that value to test access.
+3. `finishSecret` moves `AWSCURRENT` to the new version. Secrets Manager assigns `AWSPREVIOUS` to the former current version.
+4. For retries, the [ClientRequestToken](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda.html) identifies the new version and supports idempotency, so a retry does not create the same change twice.
+
+In AWS's [CloudFront origin-header example](https://aws.amazon.com/blogs/security/how-to-enhance-amazon-cloudfront-origin-security-with-aws-waf-and-aws-secrets-manager/), Lambda rotation updates both the CloudFront custom origin header and the WAF rule protecting the origin Application Load Balancer (ALB). The rule accepts both `AWSPENDING` and `AWSCURRENT` while the distribution change propagates.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a rotation retry must not create the same version twice, think `ClientRequestToken`, because it identifies the new version and supports idempotency.
+- If the question says an Aurora cluster in CloudFormation needs its master password managed in Secrets Manager, think `ManageMasterUserPassword` on [`AWS::RDS::DBCluster`](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-managemasteruserpassword), because the property enables that management.
+- If the question says a CloudFront origin header must rotate during distribution propagation, think coordinated CloudFront and WAF updates, because the documented rule accepts both pending and current values during the change.
 
 ### Remember
 
-PLACEHOLDER
+- Lambda order: `createSecret`, `setSecret`, `testSecret`, `finishSecret`.
+- `AWSPENDING` is tested before `AWSCURRENT` moves; the former current version becomes `AWSPREVIOUS`.
+- [Rotation schedules](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_managed.html) use UTC `rate()` or `cron()` expressions and can run as often as every four hours.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Updating the CloudFront header alone is not enough in the documented origin-header rotation. The WAF rule must accept both the current and pending values while the distribution change propagates.

@@ -126,8 +126,6 @@ Scaling policies change the desired capacity of an EC2 Auto Scaling group as dem
 
 - Simple scaling cooldown defaults to 300 seconds. Target tracking and step scaling scale-out, scheduled actions and unhealthy replacement do not wait for it.
 - AWS recommends target tracking or step scaling over simple scaling.
-- Predictive scaling needs at least 24 hours of history and analyzes up to 14 days.
-- It forecasts hourly capacity for 48 hours and refreshes the forecast every 6 hours.
 - Forecast-only is the initial mode.
 - Since November 2026, PromQL alarms support simple and step scaling, not target tracking.
 

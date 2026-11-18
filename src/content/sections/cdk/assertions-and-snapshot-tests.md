@@ -60,13 +60,12 @@ cards:
       - snapshot
       - snapshot-upgrade
   - id: cdk-034
-    q: An AWS CDK team wants to invoke a Lambda function locally before deployment. What must it
-      generate and pass to AWS SAM?
-    a: Run cdk synth, then sam local invoke with the synthesized template path and the function
-      identifier.
+    q: "How can a team automate unit tests of specific resource properties in an AWS CDK stack?"
+    a: "Create a template with Template.fromStack and use CDK assertions with a test framework such as Jest or pytest."
     facts:
-      - sam-synth
-      - sam
+      - template
+      - fine
+      - framework
   - id: cdk-035
     q: An AWS CDK snapshot test changes after a library upgrade. Does that prove the infrastructure is
       incorrect?

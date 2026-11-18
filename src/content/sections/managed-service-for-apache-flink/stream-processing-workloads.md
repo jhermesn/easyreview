@@ -69,9 +69,9 @@ cards:
     a: "It uses the newest automatically created checkpoint."
     facts: [flink-checkpoint]
   - id: managed-service-for-apache-flink-005
-    q: What are the default checkpoint settings in Managed Service for Apache Flink?
-    a: "Checkpointing is enabled. The interval is 60 seconds and the minimum pause is 5 seconds."
-    facts: [flink-defaults]
+    q: "A streaming application must recover its processing state after a failure. How can Amazon Managed Service for Apache Flink help?"
+    a: "Enable checkpointing. The application automatically creates checkpoints and recovers using the newest one."
+    facts: [flink-checkpoint]
   - id: managed-service-for-apache-flink-006
     q: Does Amazon Data Firehose need to run an Apache Flink application to transform data before delivery?
     a: "No. Firehose can transform data before delivering it."

@@ -180,7 +180,6 @@ Federation lets an identity provider, the system that authenticates a person or 
 
 ### Remember
 
-- For IAM users, `GetFederationToken` and `GetSessionToken` default to twelve hours, with a fifteen-minute minimum and thirty-six-hour maximum. Root-based sessions cannot exceed one hour; `GetSessionToken` also defaults to one hour for root.
 - For centrally managed workforce access to multiple accounts, consider IAM Identity Center.
 - IAM rejects GitHub trust policies whose `token.actions.githubusercontent.com:sub` is absent, null or solely a wildcard.
 

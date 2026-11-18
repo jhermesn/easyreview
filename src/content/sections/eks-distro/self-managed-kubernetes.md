@@ -26,10 +26,9 @@ cards:
     a: Amazon EKS Distro. It runs on self-provisioned infrastructure, including other clouds.
     facts: [distro, locations]
   - id: eks-distro-003
-    q: Does an AWS Support Plan cover an Amazon EKS Distro deployment?
-    a: No. EKS Distro deployments are not covered by AWS Support Plans.
-    trap: true
-    facts: [support]
+    q: "A team wants Kubernetes components used by Amazon EKS on infrastructure it manages. Which distribution fits?"
+    a: "Use Amazon EKS Distro to run a self-managed Kubernetes cluster."
+    facts: [distro, managed]
   - id: eks-distro-004
     q: A team needs an AWS-managed Kubernetes control plane in an AWS Region. Should it choose Amazon EKS or a self-managed EKS Distro cluster?
     a: Amazon EKS. AWS manages the control plane for EKS in AWS Regions.
@@ -39,9 +38,9 @@ cards:
     a: EKS Anywhere. It automates cluster lifecycle operations and can run in air-gapped environments.
     facts: [anywhere, anywhere-airgap]
   - id: eks-distro-006
-    q: What must a team prepare before creating an Amazon EKS Distro cluster?
-    a: Servers, networking and a supported operating system on each server.
-    facts: [setup]
+    q: "A team needs an AWS-managed Kubernetes control plane in an AWS Region. Should it choose Amazon EKS Distro or Amazon EKS?"
+    a: "Choose Amazon EKS. EKS Distro is used for self-managed clusters."
+    facts: [eks, managed]
 ---
 
 Amazon EKS Distro is an open-source distribution of Kubernetes components used by Amazon EKS. It lets teams run Kubernetes clusters on infrastructure they manage.

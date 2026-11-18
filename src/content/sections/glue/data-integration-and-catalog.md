@@ -24,8 +24,8 @@ cards:
     a: AWS Glue, a serverless data integration and ETL service.
     facts: [purpose, etl]
   - id: glue-002
-    q: Which AWS Glue feature keeps a central inventory of table definitions that Amazon Athena can query?
-    a: The AWS Glue Data Catalog.
+    q: "What does the AWS Glue Data Catalog help an analytics team do?"
+    a: "It lets the team manage data in a centralized catalog that analytics services can query."
     facts: [catalog]
   - id: glue-003
     q: Does AWS Glue require provisioning servers for ETL jobs?
@@ -33,13 +33,13 @@ cards:
     trap: true
     facts: [purpose]
   - id: glue-006
-    q: "A daily Glue ETL job keeps reprocessing files it already handled in earlier runs. What fixes this?"
-    a: "Turn on job bookmarks, which track processed data between runs so each run picks up only new data."
-    facts: [job-bookmarks]
+    q: "What can AWS Glue do to prepare data for a data lake?"
+    a: "AWS Glue can create and run extract, transform and load pipelines that load data into data lakes."
+    facts: [etl]
   - id: glue-007
-    q: "Events in an MSK topic must be cleaned and written to an S3 data lake continuously, with serverless ETL. What fits?"
-    a: "An AWS Glue streaming ETL job reading from the MSK cluster."
-    facts: [streaming-etl]
+    q: "Which AWS service helps discover and prepare data from multiple sources for machine learning?"
+    a: "AWS Glue is a serverless data integration service for discovering and preparing data for machine learning and analytics."
+    facts: [purpose]
 ---
 AWS Glue prepares data for analytics. It discovers data in many sources, keeps a central catalog of it, and runs ETL jobs that clean and move data into a data lake, without servers to manage. [What is AWS Glue?](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html#what-is-glue)
 

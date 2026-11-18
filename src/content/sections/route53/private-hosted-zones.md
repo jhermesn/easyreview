@@ -32,18 +32,15 @@ facts:
     source: https://docs.aws.amazon.com/vpc/latest/userguide/AmazonDNS-concepts.html
 cards:
   - id: route53-020
-    q: A Route 53 private hosted zone matches a name but lacks the requested record. Does Resolver try public DNS?
-    a: No. It returns NXDOMAIN. The most specific matching private zone controls the lookup.
+    q: "A team needs DNS records that are available to resources in selected VPCs. What Route 53 feature fits?"
+    a: "A private hosted zone associated with those VPCs supplies records through VPC Resolver."
     facts:
-      - specific
-      - no-fallback
-    trap: true
+      - private-scope
   - id: route53-029
-    q: An application has a public DNS record but receives NXDOMAIN inside an associated VPC. A matching Route 53 private zone lacks that name and type. Why?
-    a: The matching private hosted zone controls the lookup, and there is no fallback to the public record. Add the required record to the private zone.
+    q: "A company needs the same domain name to return different DNS records to internal and external clients. What Route 53 design fits?"
+    a: "Use split-view DNS with public and private hosted zones that have the same name."
     facts:
-      - no-fallback
-    trap: true
+      - split
   - id: route53-044
     q: A team needs one application hostname to give internal and external clients different addresses through Route 53. What should it use?
     a: "Split-view DNS: public and private hosted zones with the same name, with the private zone associated to the VPCs."
@@ -61,9 +58,9 @@ cards:
     trap: true
     facts: [vpc-dns-attributes]
   - id: route53-071
-    q: "At which addresses can instances reach the Amazon-provided DNS resolver in a VPC?"
-    a: "169.254.169.253 (or fd00:ec2::253) and the VPC primary CIDR base address plus two."
-    facts: [resolver-address]
+    q: "How do resources in an associated VPC resolve names in a Route 53 private hosted zone?"
+    a: "VPC Resolver answers using records from the associated private hosted zone."
+    facts: [private-scope]
 ---
 A private hosted zone is a collection of DNS records available through associated VPCs. It supports internal names and split-view DNS, where the same domain has different internal and external records.
 

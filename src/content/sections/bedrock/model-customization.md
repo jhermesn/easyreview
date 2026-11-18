@@ -74,9 +74,9 @@ cards:
     trap: true
     facts: [custom-inference]
   - id: bedrock-063
-    q: "A Bedrock fine-tuning job fails to read training data in an S3 bucket encrypted with SSE-KMS. What must its service role have?"
-    a: "Access to the S3 objects and permission to decrypt with the KMS key that encrypts them."
-    facts: [customization-role]
+    q: "How does continued pre-training customize a foundation model in Amazon Bedrock?"
+    a: "It trains the model on your own unlabeled data to make it more specific to a domain."
+    facts: [cpt]
   - id: bedrock-064
     q: "Does Amazon Bedrock fine-tuning guarantee a custom model never reveals its training data?"
     a: "No. Bedrock doesn't keep the data after the job, but a fine-tuned model can replay some of it. Remove confidential data before tuning."

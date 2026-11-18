@@ -8,8 +8,8 @@ facts:
     source: https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html#what-is-aws-transfer-family
 cards:
   - id: transfer-family-009
-    q: "Partners upload files by SFTP and the company wants them stored in Amazon S3 without running an SFTP server. Which service fits?"
-    a: "AWS Transfer Family."
+    q: "A company is moving files into AWS storage and wants a managed service that supports SFTP. Which service fits?"
+    a: "AWS Transfer Family transfers files into and out of AWS storage over protocols such as SFTP."
     facts: [managed-sftp]
 ---
 AWS Transfer Family gives partners a managed SFTP (and similar protocols) endpoint backed by AWS storage. [What is AWS Transfer Family?](https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html#what-is-aws-transfer-family)

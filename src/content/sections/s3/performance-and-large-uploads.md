@@ -73,9 +73,9 @@ cards:
     a: "Multipart upload, so only the failed parts are retried."
     facts: [multipart]
   - id: s3-137
-    q: Which endpoint does a client use for an S3 bucket with Transfer Acceleration enabled, and what naming rule must the bucket meet?
-    a: "`bucket-name.s3-accelerate.amazonaws.com`; the bucket name must be DNS-compliant with no periods."
-    facts: [ta-endpoint]
+    q: "A company uploads large files to one Amazon S3 bucket from clients around the world. Which S3 feature can improve long-distance transfer performance?"
+    a: "S3 Transfer Acceleration routes transfers through CloudFront edge locations."
+    facts: [ta-what, ta-when]
   - id: s3-138
     q: Does an incomplete S3 multipart upload expire on its own?
     a: "No. Its parts stay until you complete or stop the upload; a lifecycle rule (AbortIncompleteMultipartUpload) can clean them up."

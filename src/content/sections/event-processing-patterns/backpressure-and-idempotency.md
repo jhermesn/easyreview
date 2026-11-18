@@ -98,20 +98,19 @@ Backpressure occurs when a producer consistently sends work faster than its cons
 1. Buffer work in SQS. Monitor visible messages and the approximate age of the oldest unprocessed message to detect a growing backlog. To increase processing capacity, investigate function speed, batch size, concurrency quotas, or provisioned polling.
 2. For an SQS Lambda mapping without provisioned mode, set maximum concurrency to limit simultaneous invocations. Reserved concurrency is the function-level allocation; keep it sufficient for the sum of its SQS mapping limits.
 3. Receiving a message starts its visibility timeout, the period during which it is hidden from other receives. Delete it after success. Undeleted messages can return after that period.
-4. Make the handler idempotent because processing can repeat. For mixed-success Lambda batches, enable `ReportBatchItemFailures` and return the failed message IDs.
-5. Use a redrive policy to move repeatedly unsuccessful messages to a dead-letter queue for investigation. For FIFO, meaning first in, first out, preserve order within each message group when reporting partial failures.
+4. Make the handler idempotent because processing can repeat, including with FIFO, meaning first in, first out, queues.
+5. Use a redrive policy to move repeatedly unsuccessful messages to a dead-letter queue for investigation.
 
 ### Exam cues
 
 - If the question says a queue-triggered function overwhelms its downstream service, think maximum concurrency on the mapping, because it caps simultaneous invocations from that queue.
-- If the question says successful messages repeat after one batch item fails, think partial batch responses, because the default retries the entire batch.
+- If the question says repeated messages must not cause extra effects, think idempotent processing, because standard queues and Lambda SQS mappings can process messages more than once.
 - If the question says a payment succeeded before the handler crashed, think idempotent handling, because deleting or acknowledging work can fail after its side effect succeeds.
 
 ### Remember
 
-- Recommended visibility timeout: at least 6 times the function timeout, plus any batching window.
-- `ReportBatchItemFailures` requires the handler to return `batchItemFailures`.
-- FIFO order is per message group. For partial failure, stop after the first failure and report failed and unprocessed messages.
+- FIFO order is per message group; different groups can be processed independently.
+- Reserved concurrency should cover the sum of maximum concurrency values for the function's SQS mappings.
 - `maxReceiveCount` controls SQS movement to a dead-letter queue.
 
 > **Trap:** FIFO deduplication removes repeated producer sends within a 5-minute interval. It does not make a Lambda handler's side effects execute exactly once: Lambda SQS mappings can process a message more than once.

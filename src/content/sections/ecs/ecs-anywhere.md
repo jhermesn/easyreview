@@ -29,7 +29,6 @@ ECS Anywhere extends an ECS cluster to servers you own: the same task definition
 
 1. Register an on-premises server or VM with Systems Manager and the ECS cluster (the install script adds the SSM and ECS agents).
 2. ECS schedules tasks on it with the `EXTERNAL` launch type.
-3. The SSM Agent keeps rotating IAM credentials for the instance.
 
 ### Exam cues
 
@@ -40,6 +39,5 @@ ECS Anywhere extends an ECS cluster to servers you own: the same task definition
 
 - External instances join an existing ECS cluster.
 - No service load balancing; best for outbound or processing work.
-- Credentials rotate every 30 minutes through the SSM Agent.
 
 > **Trap:** ECS Anywhere and EKS Anywhere differ: ECS Anywhere keeps the AWS-managed ECS control plane, while EKS Anywhere puts the Kubernetes control plane on your hardware.

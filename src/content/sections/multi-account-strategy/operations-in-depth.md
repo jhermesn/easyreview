@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER multi-account-strategy/operations-in-depth"
+title: RAM sharing and account quotas
 level: professional
 order: 40
 facts:
@@ -46,18 +46,26 @@ cards:
     facts:
       - shared-permissions
 ---
-PLACEHOLDER first paragraph.
+AWS Resource Access Manager (AWS RAM) shares require planning for Region, account departures and reusable permissions. AWS Organizations account quotas also affect how many accounts an organization can add.
 
 ### How it works
 
-PLACEHOLDER
+1. Create a share for a Regional resource in the same Region as the resource. For global resources, use a share in `us-east-1`. [AWS RAM](https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is-how-sharing)
+2. Organization sharing normally ends when a consumer account leaves. To retain access, create a new direct account share with `RetainSharingOnAccountLeaveOrganization`, allow external principals and have the consumer accept the invitation. [AWS RAM sharing](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs)
+3. Share a customer managed RAM permission so receiving accounts can associate it with their own resource shares. AWS added this capability in November 2026. [AWS RAM document history](https://docs.aws.amazon.com/ram/latest/userguide/doc-history.html)
+4. Check the Organizations account quota when adding accounts. Pending invitations count against the quota. [AWS Organizations quotas](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html#default-maximum-number-of-accounts)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a Regional resource needs a RAM share, think the resource's Region, because the share must be in that Region.
+- If the question says a specific account must retain a share after leaving the organization, think a new direct account share with `RetainSharingOnAccountLeaveOrganization`, because ordinary organization sharing normally ends on departure.
+- If the question says accounts need to reuse a customer managed RAM permission, think sharing the permission, because receiving accounts can associate it with their own shares.
+- If the question says an organization cannot add another account, think the account quota and pending invitations, because invitations count against the quota.
 
 ### Remember
 
-PLACEHOLDER
+- Global resources use a RAM share in `us-east-1`.
+- The default Organizations account quota is 10 and is adjustable. New organizations can have a lower quota.
+- Retaining a direct share on account departure requires external principals to be allowed and the invitation to be accepted.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** An ordinary organization share does not normally persist when a consumer leaves. Retention requires the setting on a new direct account share, plus external principals and an accepted invitation.

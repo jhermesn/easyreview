@@ -17,9 +17,9 @@ facts:
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/https-listener-certificates.html#sni-certificate-list
 cards:
   - id: elastic-load-balancing-060
-    q: A web app behind an Application Load Balancer must let users sign in with Google or Facebook, without adding sign-in code to the app. What fits?
-    a: "An ALB listener rule with an **authenticate-cognito** action, using an Amazon Cognito user pool with social identity providers."
-    facts: [auth-offload, auth-idps]
+    q: "An Application Load Balancer must authenticate users before forwarding requests to an application. What can the team configure?"
+    a: "Configure authentication on an HTTPS listener using an OIDC identity provider or an Amazon Cognito user pool."
+    facts: [auth-offload, auth-idps, auth-https]
   - id: elastic-load-balancing-061
     q: An ALB authenticate-oidc action fails to save on an HTTP listener on port 80. Why?
     a: "User authentication actions are supported only on HTTPS listeners."

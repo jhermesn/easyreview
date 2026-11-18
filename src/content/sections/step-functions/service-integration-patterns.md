@@ -176,8 +176,6 @@ Step Functions service integrations call work from a state machine, the definiti
 1. Define the work in a `Task` state. Grant its state machine an IAM execution role, the permission-bearing identity Step Functions uses to access AWS resources.
 2. Choose the integration pattern below. Only use a job or callback pattern where that integration supports it.
 3. Route results with `Choice`, delay with `Wait`, or coordinate concurrent work with `Parallel` and `Map`.
-4. Use `Pass` to forward or transform data without external work. Workflow variables preserve values for later steps without carrying them through every output.
-5. End successfully with `Succeed` or signal failure with `Fail`. For a worker that pulls work, define an activity: the worker polls `GetActivityTask`, receives input and a task token, then reports completion with that token.
 
 | Pattern | Continue when | Workflow support |
 |---|---|---|
@@ -191,17 +189,12 @@ Step Functions service integrations call work from a state machine, the definiti
 | `Wait` | Delay for a duration or until a timestamp |
 | `Parallel` | Run different branches and wait for all to terminate |
 | `Map` | Repeat steps for every dataset item |
-| `Pass` | Forward, transform, or add data without external work |
-| `Succeed` | End successfully |
-| `Fail` | End with failure unless enclosing handling catches it |
 
 ### Exam cues
 
 - If the question says a Batch job must finish before the next step, think `.sync` on Standard, because submission success only means the API accepted the job.
-- If the question says an existing worker must pull tasks, think activities, because workers poll `GetActivityTask` and report using its token.
 - If the question says repeat steps for each record, think Map; if it says run different checks together, think Parallel, because their units of concurrency differ.
 - If the question says wait until a future time, think Wait, because it delays workflow progress without invoking a worker.
-
 - If the question says coordinate remediation for an exposed IAM access key, think an EventBridge rule matching AWS Health `AWS_RISK_CREDENTIALS_EXPOSED` and targeting Step Functions, because service events can start a response workflow.
 
 ### Remember

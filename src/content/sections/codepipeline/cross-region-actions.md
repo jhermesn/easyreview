@@ -90,12 +90,10 @@ cards:
       - regional-stores
       - regional-copy
   - id: codepipeline-049
-    q: A CodePipeline Lambda action runs in a different Region from the pipeline and its result callback
-      is not completing the job. Which endpoint should receive the result?
-    a: The CodePipeline endpoint in the Lambda function Region, using `PutJobSuccessResult` or
-      `PutJobFailureResult`.
+    q: "A CodePipeline deploys workloads in multiple Regions. Where must it have artifact buckets?"
+    a: "In the pipeline Region and in every Region where it runs an action."
     facts:
-      - regional-lambda-result
+      - regional-buckets
   - id: codepipeline-050
     q: Which CodePipeline action types cannot be cross-Region?
     a: Source, third-party, and custom actions.

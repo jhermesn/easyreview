@@ -53,20 +53,19 @@
     },
     {
       "id": "dynamodb-021",
-      "q": "A DynamoDB application stores TTL values as millisecond strings and items remain. What representation is required?",
-      "a": "A Number containing Unix epoch seconds in the configured TTL attribute. Non-number values are ignored.",
+      "q": "A DynamoDB table stores temporary session records. Which feature can remove records after their retention period?",
+      "a": "Use time to live (TTL). Expired items are usually deleted within a few days, not at an exact deadline.",
       "facts": [
-        "timestamp"
+        "ttl"
       ]
     },
     {
       "id": "dynamodb-022",
-      "q": "Are DynamoDB TTL expiration deletes free in every Region of an MREC global table?",
-      "a": "No. The initial delete uses no write capacity in its Region, but replicated deletes consume replicated write units in replica Regions.",
+      "q": "An application must hide expired DynamoDB records immediately, but TTL deletion has not happened yet. What should it do?",
+      "a": "Filter expired items from Query or Scan results. Expired items remain readable until TTL deletes them.",
       "facts": [
-        "cost"
-      ],
-      "trap": true
+        "visible"
+      ]
     },
     {
       "id": "dynamodb-023",

@@ -68,18 +68,17 @@ AWS Health reports service events and changes that can affect AWS resources. The
 1. Review open issues, scheduled changes, notifications, or the event log in the account dashboard.
 2. Select an event to see its description, update timeline, Region, status, and affected resource count.
 3. Open Affected resources to find resource IDs or Amazon Resource Names (ARNs), which identify AWS resources.
-4. For multiple accounts, enable organizational view in an organization with all features enabled. A delegated administrator, a member account authorized to manage the view, can access the aggregated events.
 
 ### Exam cues
 
 - If the question says a maintenance notice identifies instances, think account-specific event and Affected resources, because the event concerns the account's resources.
-- If the question says a team needs a central view across accounts, think organizational view and a delegated administrator, because the view aggregates organization events.
 - If the question says a regional service is impaired, think public event, because public events describe regional service availability rather than a particular account.
 - If the question says an Amazon EKS cluster version is approaching the end of standard support, think AWS Health, because EKS sends a notice to accounts with affected clusters.
+- If the question says anyone needs service history without an AWS account, think the service health page, because it is public and needs no sign-in.
 
 ### Remember
 
-- The account event log covers the past 90 days.
-- Planned lifecycle resource status is Pending, Unknown, or Resolved. It usually refreshes every 24 hours and can take up to 72 hours.
+- The service health page shows 12 months of service history. Account health requires sign-in.
+- The AWS Health Dashboard is available to all AWS customers at no additional cost, including on Basic Support.
 
 > **Trap:** A public event is not proof that a particular account resource is affected. Check the account-specific event and affected resources.

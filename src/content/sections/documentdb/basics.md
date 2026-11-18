@@ -8,8 +8,8 @@ facts:
     source: https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is
 cards:
   - id: documentdb-009
-    q: "An application uses MongoDB and should move to a managed AWS database. Which service fits?"
-    a: "Amazon DocumentDB (with MongoDB compatibility)."
+    q: "Which managed AWS database service supports MongoDB-compatible workloads?"
+    a: "Amazon DocumentDB is a fully managed service for MongoDB-compatible workloads."
     facts: [mongo-compatible]
 ---
 Amazon DocumentDB is a managed document database compatible with MongoDB. [What is Amazon DocumentDB?](https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is)

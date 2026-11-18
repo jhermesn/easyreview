@@ -119,20 +119,15 @@ cards:
       - shared
       - ec2
   - id: fargate-003
-    q: An ECS Fargate service scales out after a newer platform version becomes available. Does scale-out automatically adopt that new version?
-    a: No. New tasks use the current deployment platform version, with its latest revision. Update the platform version through a deployment to change versions.
-    trap: true
+    q: "A team wants to run Amazon ECS containers without provisioning or patching container hosts. Which compute option fits?"
+    a: "AWS Fargate runs ECS containers without customers provisioning, patching or scaling container hosts."
     facts:
-      - scale
-      - revision
-      - platform
+      - compute
   - id: fargate-004
-    q: An ECS team needs to replace running Fargate tasks to pick up the latest revision of their selected platform version. What should it do?
-    a: Start a new deployment, using force new deployment if no service definition change is needed. Existing tasks keep their revision for their lifetime.
+    q: "An ECS application on AWS Fargate needs a shared persistent file system for its tasks. Which storage option fits?"
+    a: "Use Amazon EFS. ECS tasks on Fargate Linux platform 1.4.0 or later can mount shared persistent EFS file systems."
     facts:
-      - deploy
-      - platform
-      - revision
+      - efs
   - id: fargate-005
     q: Two ECS Fargate tasks must share persistent files across replacements. Which storage service fits?
     a: Amazon EFS, supported by Linux Fargate platform 1.4.0 or later.
@@ -169,9 +164,9 @@ cards:
     facts:
       - roles
   - id: fargate-016
-    q: "How is Amazon ECS on AWS Fargate billed compared with the ECS EC2 launch type?"
-    a: "- Fargate: per second for the vCPU and memory allocated to each task (one-minute minimum).\n- EC2 launch type: for the EC2 instances and EBS volumes in the cluster."
-    facts: [pricing]
+    q: "A team wants to run Kubernetes pods without managing the underlying compute hosts. Which AWS Fargate integration fits?"
+    a: "Use Amazon EKS on Fargate. Each pod runs with its own compute boundary."
+    facts: [eks]
 ---
 Fargate supplies container compute without requiring you to manage worker hosts. ECS runs tasks, groups of containers deployed together, while EKS runs Kubernetes pods. The isolation boundary surrounds each task or pod, not every container inside it.
 

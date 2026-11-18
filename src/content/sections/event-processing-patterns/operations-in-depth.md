@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER event-processing-patterns/operations-in-depth"
+title: Lambda SQS batch failures
 level: professional
 order: 40
 facts:
@@ -37,18 +37,24 @@ cards:
     facts:
       - pressure-fifo-batch
 ---
-PLACEHOLDER first paragraph.
+Lambda can process SQS messages in batches. Partial batch responses let failed messages be retried without retrying the successful messages in the same batch.
 
 ### How it works
 
-PLACEHOLDER
+1. Set the SQS visibility timeout to at least six times the Lambda function timeout, plus the batching window when configured. See [queue configuration](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#events-sqs-queueconfig).
+2. Enable `ReportBatchItemFailures` on the event source mapping and return failed message IDs in `batchItemFailures`. By default, a batch failure retries every message in the batch. See [partial batch responses](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-batchfailurereporting).
+3. For a FIFO queue, stop processing after the first failure and report both failed and unprocessed messages to preserve order.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says one message fails in a batch of successful messages, think partial batch responses, because they retry only the reported failures.
+- If the question says an SQS batching window is configured, think visibility timeout of at least six times the function timeout plus the window, because the recommendation accounts for both.
+- If the question says a FIFO batch has a failure, think stop at the first failure and report failed and unprocessed messages, because this preserves order.
 
 ### Remember
 
-PLACEHOLDER
+- Visibility timeout: at least 6 times the function timeout, plus any configured batching window.
+- Enable `ReportBatchItemFailures` and return failed message IDs in `batchItemFailures`.
+- For FIFO, include unprocessed messages in the response after the first failure.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Enabling partial batch responses alone does not identify failed messages. The function must return their IDs in `batchItemFailures`; for FIFO, it must also report unprocessed messages after the first failure.

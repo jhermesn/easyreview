@@ -166,15 +166,13 @@ cards:
     facts:
       - database-excluded
   - id: app2container-008
-    q: Does the November 2025 App2Container availability change shut down every existing customer
-      project?
-    a: No. New customers were excluded from November 7, 2025. Existing customers can finish ongoing
-      projects; AWS recommends Transform for new modernization work.
-    trap: true
+    q: An existing App2Container customer wants to deploy a packaged application to Amazon ECS. What
+      artifacts can the tool provide?
+    a: App2Container creates a container image and ECS deployment artifacts, using Amazon ECR as the
+      image registry.
     facts:
-      - closed-date
-      - existing-customers
-      - alternative
+      - containerize
+      - targets
   - id: app2container-010
     q: Which platforms can host an App2Container-generated application, subject to support and customer
       eligibility?

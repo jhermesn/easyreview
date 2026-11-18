@@ -57,28 +57,23 @@ Amazon ECR stores container images in repositories. A registry is the collection
 
 ### How it works
 
-1. Use a private repository for controlled image access or a public repository for images anyone may pull. Authenticate the Docker client before private pushes or pulls, or before public pushes.
+1. Use a private repository for controlled image access. Authenticate the Docker client before private pushes or pulls.
 2. Push an image with a tag and choose the repository's tag mutability setting. Mutability determines whether a later push can reuse that tag for different content.
 3. Pull by tag for a named reference or by digest for a specific manifest.
-4. To start a release on an image push, use a CodePipeline ECR source action. Add another source action when deployment files live in source control.
 
 | Setting | Tags that can be overwritten |
 |---|---|
 | `MUTABLE` | All tags; default when omitted in CreateRepository |
 | `IMMUTABLE` | No tags |
-| `IMMUTABLE_WITH_EXCLUSION` | Only tags matching exclusion filters |
-| `MUTABLE_WITH_EXCLUSION` | Tags that do not match exclusion filters |
 
 ### Exam cues
 
 - If the question says release tags must never move, think `IMMUTABLE`, because it rejects overwriting an existing tag.
-- If the question says protect releases but keep `latest` movable, think immutability with an exclusion, because matching tags can remain mutable.
-- If the question says distribute images for anonymous downloads, think ECR Public, because anyone can pull public images.
+- If the question says pull a specific image manifest, think image digest, because it identifies the manifest by its SHA-256 digest.
 
 ### Remember
 
 - CreateRepository defaults to `MUTABLE`.
 - Reusing an immutable tag returns `ImageTagAlreadyExistsException`.
-- AWS documented tag exclusion patterns in July 2025; older questions may assume immutability applies to every tag.
 
-> **Trap:** Public pull access does not grant public push access. Publishing an image still requires authentication and permission.
+> **Trap:** A mutable tag can be overwritten. Use an immutable tag to prevent reuse, or pull by digest to select a specific manifest.

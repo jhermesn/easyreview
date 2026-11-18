@@ -91,30 +91,16 @@ Route 53 health checks supply a health signal for DNS routing. An endpoint check
 
 1. Choose an endpoint, child health checks, or a CloudWatch alarm data stream to monitor. An endpoint is the network address and port receiving the probe.
 2. For an endpoint, allow the checker addresses through routing and firewall rules. A security group can use the AWS-managed health-check prefix lists.
-3. Each checker sends requests at a 30-second or 10-second interval and applies the configured consecutive-success or failure threshold.
-4. Route 53 aggregates the results. More than 18% of checkers must report healthy.
-5. For a calculated check, count healthy children and compare the count with the required threshold. Calculated checks cannot be children of another calculated check.
-6. Attach the check to the record whose selection should depend on it. The check continues probing its configured target independently of DNS queries.
-
-| Endpoint protocol | Passing response |
-|---|---|
-| HTTP or HTTPS | TCP connection within four seconds, then 2xx or 3xx within two seconds |
-| HTTP or HTTPS with string match | The same connection and status, then body within two more seconds; string entirely in the first 5,120 bytes |
-| TCP | Connection within ten seconds |
-
-TLS is the protocol that protects an HTTPS connection. Route 53 HTTPS checks do not validate its certificate.
+3. For a calculated check, count healthy children and compare the count with the required threshold. Calculated checks cannot be children of another calculated check.
+4. Attach the check to the record whose selection should depend on it. The check continues probing its configured target independently of DNS queries.
 
 ### Exam cues
 
 - If the question says users can connect but checkers cannot, think firewall and routing access for checker addresses, because probes must reach the configured port.
 - If the question says every application component must be healthy, think a calculated check with an all-children threshold, because it combines child results.
-- If the question says send an email after a health failure, think a CloudWatch alarm and an SNS notification, because health checks can drive that alarm.
 
 ### Remember
 
-- More than 18% healthy checkers means healthy.
-- The 10-second interval costs extra.
-- The default console notification waits for one minute of unhealthy status and uses an SNS topic in us-east-1.
 - The health check probes its own configured target.
 
-> **Trap:** An HTTPS health check can pass with an expired certificate. It is not a certificate-expiry test.
+> **Trap:** Attaching a check to a record does not make the check probe the address in that record. It probes its own configured target.

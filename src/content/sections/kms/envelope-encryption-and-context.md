@@ -208,13 +208,11 @@ Envelope encryption protects data with a data key and protects that data key wit
 
 Encryption context is optional non-secret key-value information authenticated with symmetric-key ciphertext. It binds meaning to the encrypted value: changing or omitting the original context prevents decryption. Context can also limit access in policies and grants. It appears in plaintext in CloudTrail, so keep secrets out of it.
 
-CloudWatch Logs uses the log-group ARN, its AWS resource identifier, as encryption context. A key policy can restrict that use with `kms:EncryptionContext:aws:logs:arn`.
-
 ### Exam cues
 
 - If the question says encrypt a large file, think envelope encryption, because symmetric KMS `Encrypt` accepts only 4096 plaintext bytes.
 - If the question says decrypt is authorized but fails after context changes, think an exact context mismatch, because context is authenticated with the ciphertext.
-- If the question says restrict key use to one log group, think a condition on its log-group ARN context, because CloudWatch Logs supplies that identifier.
+- If the question says partners lack AWS credentials but need to encrypt, think an asymmetric public key, because they can encrypt outside AWS while the private key stays in KMS.
 
 ### Remember
 

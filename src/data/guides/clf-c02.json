@@ -50,7 +50,8 @@
               "text": "AWS Well-Architected Framework",
               "sections": [
                 "well-architected/framework-pillars",
-                "well-architected/more-essentials"
+                "well-architected/more-essentials",
+                "well-architected/well-architected-tool"
               ]
             },
             {

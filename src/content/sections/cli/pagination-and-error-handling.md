@@ -115,67 +115,60 @@ diagrams:
       - Follow continuation
 cards:
   - id: cli-001
-    q: A paginated AWS CLI inventory command must retrieve every resource. What is the default
-      pagination behavior?
-    a: It automatically follows service pagination and retrieves all pages. Avoid --no-paginate if a
-      complete inventory is required.
+    q: A script uses the AWS CLI to inventory resources across a paginated list operation. Does it
+      need to request each page manually?
+    a: No. For supported paginated list commands, the AWS CLI retrieves all pages by default.
     facts:
       - auto-pages
-      - no-paginate
   - id: cli-002
-    q: An AWS CLI list operation times out on large service pages. How can a team reduce each call size
-      without truncating the inventory?
-    a: Lower --page-size. The CLI makes more service calls while still retrieving the full list.
+    q: An AWS CLI inventory times out while retrieving a large list. How can the team reduce the
+      size of each service request?
+    a: Reduce the service page size. The CLI can still retrieve the complete list across multiple
+      requests.
     facts:
       - page-size
   - id: cli-003
-    q: An AWS CLI script needs a limited batch of list results and must resume later. Which options
-      should it use?
-    a: Use --max-items and preserve the returned NextToken. Resume with --starting-token; align page
-      size and max items when service ordering can vary.
+    q: An AWS CLI automation needs to process a limited batch of list results and continue later.
+      What should it retain?
+    a: Retain the returned continuation token and use it to resume the listing.
     facts:
       - max-items
       - starting-token
-      - order
   - id: cli-004
-    q: Does AWS CLI --no-cli-pager have the same effect as --no-paginate?
-    a: No. --no-cli-pager disables the display pager. --no-paginate disables automatic API page
-      retrieval and returns only the first page.
+    q: A team disables the AWS CLI display pager in an inventory script. Does this stop automatic
+      retrieval of service pages?
+    a: No. The display pager and API pagination are separate. Disabling the display pager does not
+      disable pagination.
     trap: true
     facts:
       - pager
-      - no-paginate
   - id: cli-005
-    q: How many total calls does AWS CLI v2 standard retry mode allow by default?
-    a: "Three total attempts: the initial call plus two retries. Configured max_attempts includes the
-      initial call."
-    facts:
-      - retry-default
-      - attempt-config
-  - id: cli-006
-    q: An AWS CLI command receives throttling errors, while another receives AccessDenied. Should both
-      use the same retry-only response?
-    a: No. Standard mode retries supported throttling and transient errors. AccessDenied needs identity
-      and permission correction.
-    trap: true
+    q: An AWS CLI automation encounters a temporary service throttling error. What built-in behavior
+      can help?
+    a: Standard retry mode retries supported throttling and transient errors with exponential
+      backoff.
     facts:
       - retry-errors
+      - backoff
+  - id: cli-006
+    q: An AWS CLI command returns an access denied error during an infrastructure deployment. What
+      should the team check?
+    a: Check the caller identity and permissions.
+    facts:
       - authorization
   - id: cli-007
-    q: What do AWS CLI return codes 252, 253 and 254 mean?
-    a: "252: syntax or parameter problem. 253: invalid environment or configuration, including missing
-      credentials. 254: a request reached the service and received an error."
+    q: An AWS CLI automation checks whether a command completed without CLI or service errors. Which
+      return code indicates success?
+    a: Return code 0 indicates success without CLI or service errors.
     facts:
-      - syntax-code
-      - config-code
-      - service-code
+      - success-code
   - id: cli-008
-    q: Does an AWS CLI S3 transfer return code of 2 always mean invalid command syntax?
-    a: No. For S3 transfers it can mean some files were skipped. Inspect the command output to
-      distinguish this from parsing failures.
-    trap: true
+    q: An AWS CLI automation receives a transient connection error. How does standard retry mode
+      space its retry attempts?
+    a: It uses exponential backoff between retries.
     facts:
-      - s3-codes
+      - retry-errors
+      - backoff
 ---
 The AWS Command Line Interface (CLI) calls AWS services from a terminal or script. Reliable automation must retrieve complete result sets and distinguish temporary failures from requests that need correction. Pagination splits a result set into pages that the CLI retrieves through multiple service calls.
 

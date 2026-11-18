@@ -8,8 +8,8 @@ facts:
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html#CHAP_AuroraOverview
 cards:
   - id: aurora-046
-    q: "A company wants a managed, MySQL-compatible relational database built for the cloud. Which AWS engine fits?"
-    a: "Amazon Aurora."
+    q: "What kind of database is Amazon Aurora?"
+    a: "Amazon Aurora is a fully managed relational database engine compatible with MySQL and PostgreSQL."
     facts: [relational]
 ---
 Amazon Aurora is AWS's MySQL- and PostgreSQL-compatible relational database, managed through Amazon RDS. [What is Amazon Aurora?](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html#CHAP_AuroraOverview)

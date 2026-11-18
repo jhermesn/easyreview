@@ -147,10 +147,10 @@
     },
     {
       "id": "dynamodb-016",
-      "q": "Concurrent workers claim free resources in a DynamoDB allocation table. How should they prevent duplicate assignment?",
-      "a": "Use a conditional write that updates an allocation only while it is free. DynamoDB checks the latest item version.",
+      "q": "A DynamoDB application needs to query the same items using a different partition key. Which index fits?",
+      "a": "Use a global secondary index. It can use different keys, but its reads are eventually consistent.",
       "facts": [
-        "conditional"
+        "gsi"
       ]
     },
     {

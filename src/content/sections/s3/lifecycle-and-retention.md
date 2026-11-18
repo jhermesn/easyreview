@@ -241,7 +241,7 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 3. Configure current-version and noncurrent-version actions separately. In a versioning-enabled bucket, current-version expiration adds a delete marker; noncurrent expiration removes old versions permanently.
 4. Add `AbortIncompleteMultipartUpload` for abandoned uploads. It removes unfinished parts after the configured age.
 5. Check minimum billing durations before moving or deleting data. Lifecycle cannot move Deep Archive objects back to Standard; restore and copy them.
-6. Rules apply to existing objects as well as new ones. To retain a number of newer noncurrent versions, set that count and an age with a filter.
+6. Rules apply to existing objects as well as new ones.
 
 | Choice | Suitable access pattern or tradeoff |
 |---|---|
@@ -257,7 +257,6 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 - If the question says S3 access patterns are unknown, think Intelligent-Tiering, because it monitors access and changes tiers automatically.
 - If the question says S3 logs should move to IA immediately, think a day-zero lifecycle rule, because July 2026 removed the old transition wait.
 - If an S3 bucket policy denies deletion, think lifecycle configuration separately, because bucket policies do not prevent lifecycle actions.
-- If multiple lifecycle actions are due on the same day, think permanent deletion before transition and transition before delete-marker creation.
 - If the question says act only on S3 objects that another process marked, think a Lifecycle tag filter, because it matches an exact tag key and value.
 
 ### Remember
@@ -267,6 +266,6 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 - Intelligent-Tiering moves unaccessed objects after 30 days to Infrequent Access and 90 days to Archive Instant Access.
 - Optional Archive Access and Deep Archive Access need activation, with minimum no-access periods of 90 and 180 days. Objects below 128 KB stay in Frequent Access. The optional archive tiers require restoration before reading.
 - Lifecycle does not expire locked noncurrent versions or act on versions with pending or failed replication.
-- Tag-filtered expiration rechecks the tag at execution. Physical removal may occur after expiration.
+- Physical removal may occur after expiration.
 
 > **Trap:** The 30-day IA billing minimum is not a 30-day wait in S3 Standard. The wait was removed in July 2026.

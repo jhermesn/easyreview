@@ -169,14 +169,13 @@ cards:
     facts:
       - cached-data
   - id: ebs-028
-    q: Which EC2 status metric helps identify an attached EBS volume that cannot complete I/O?
-    a: StatusCheckFailed_AttachedEBS. It reports attached-volume reachability or I/O impairment.
-    facts:
-      - attached-check
+    q: "An EC2 instance needs data restored from an EBS snapshot in another Availability Zone in the same Region. What should the team do?"
+    a: "Create a volume from the snapshot in the target Availability Zone, then attach and mount it on the instance."
+    facts: [regional, az-attach, restore]
   - id: ebs-043
-    q: Where are Amazon EBS snapshots stored, and can a customer browse them in the S3 console?
-    a: In Amazon S3, in AWS-managed buckets the customer can't access directly.
-    facts: [stored-in-s3]
+    q: "A disaster recovery plan needs an EBS snapshot available in another AWS Region. What must happen before recovery there?"
+    a: "Copy the completed snapshot to the recovery Region, then restore a volume from that copy."
+    facts: [cross-region, restore]
   - id: ebs-044
     q: A 500 GiB EBS volume has 20 GiB of changes since its last snapshot. Does the new snapshot add 500 GiB of storage charges?
     a: No. Snapshots are incremental and billed on data stored, so the new snapshot adds only the changed blocks.

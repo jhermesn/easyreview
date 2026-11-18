@@ -268,20 +268,13 @@ cards:
       - template-output
       - refresh-separate
   - id: deployment-strategies-027
-    q: What does Image Builder setDefaultVersion do when AMI distribution creates a launch template
-      version?
-    a: It controls whether the new launch template version becomes default. It defaults to true; false
-      creates a version without changing the default.
-    facts:
-      - template-output
+    q: "An EC2 Auto Scaling fleet needs a new application version using immutable instances. How should the team roll it out?"
+    a: "Build a new AMI, update the launch template, and start an instance refresh to replace existing instances."
+    facts: [ami-template, refresh-separate]
   - id: deployment-strategies-028
-    q: Does changing a Parameter Store base-image parameter instantly trigger an Image Builder scheduled
-      build?
-    a: No. It counts as a dependency update when the pipeline evaluates its scheduled start condition.
-    trap: true
-    facts:
-      - parameter-dependency
-      - schedule-evaluation
+    q: "An EC2 fleet takes too long to scale because every instance downloads application software at launch. What image strategy helps?"
+    a: "Prebake the application components into an AMI to reduce startup work."
+    facts: [bake, bootstrap]
   - id: deployment-strategies-030
     q: An administrator creates an EC2 AMI from an instance whose user data configures the application. Will
       instances launched from that AMI inherit the user data?
@@ -303,31 +296,22 @@ cards:
     facts:
       - ami-share-encryption
   - id: deployment-strategies-033
-    q: An Image Builder pipeline must copy an AMI into another AWS account. What role is required in the target?
-    a: EC2ImageBuilderDistributionCrossAccountRole, with the managed cross-account distribution policy and
-      trust for the source account.
-    facts:
-      - cross-account-copy
+    q: "A team needs the same tested EC2 image available in multiple AWS Regions. How can Image Builder support an immutable deployment?"
+    a: "Distribute copies of the AMI to the required Regions, then launch instances from those images."
+    facts: [distribution, ami-template]
   - id: deployment-strategies-034
-    q: Image Builder cannot distribute an encrypted AMI across accounts and Regions because of KMS access. What
-      must the accounts configure?
-    a: Allow the destination account in the source key policies and grant the destination role access to the
-      keys in the source and destination Regions.
-    facts:
-      - cross-account-encryption
-  - id: deployment-strategies-035
-    q: An Image Builder image fails only during cross-account distribution because a role is missing. Must the
-      image be rebuilt after the role is fixed?
-    a: No. Retry the failed image; Image Builder can rerun distribution without rebuilding it.
+    q: "A team publishes a new AMI for its EC2 Auto Scaling group. Does publishing the image replace running instances?"
+    a: "No. Update the launch template and start an instance refresh to replace the existing instances."
     trap: true
-    facts:
-      - distribution-retry
+    facts: [refresh-separate]
+  - id: deployment-strategies-035
+    q: "An EC2 team wants fast instance startup and environment-specific configuration. How can it combine image and launch strategies?"
+    a: "Prebake common software into the AMI and use bootstrapping for environment-specific customization."
+    facts: [combine]
   - id: deployment-strategies-037
-    q: An Image Builder test instance is terminated after a failed build. How can an operator retain a future
-      failed instance for diagnosis?
-    a: Disable termination on failure in the infrastructure configuration. The default is to terminate it.
-    facts:
-      - build-failure
+    q: "An EC2 Image Builder pipeline must prevent an image from being distributed when validation fails. What should the team configure?"
+    a: "Configure image tests. Image Builder distributes the image only after all configured tests succeed."
+    facts: [test-before-distribute]
   - id: deployment-strategies-041
     q: A company wants each EC2 instance to install software automatically at first launch. Should it use instance metadata or user data?
     a: User data, which runs scripts at launch. Instance metadata only describes the running instance.

@@ -121,14 +121,10 @@ cards:
       - parameter-version-latest
       - parameter-missing-version
   - id: systems-manager-074
-    q: A team wants a Systems Manager notification when an approved AMI parameter remains unchanged too
-      long. Which policy fits?
-    a: NoChangeNotification on an advanced parameter. It emits an EventBridge event after the configured
-      unchanged interval.
+    q: "A deployment needs to store an encrypted credential in AWS Systems Manager Parameter Store. Which parameter type should it use?"
+    a: "SecureString. Parameter Store supports encrypted SecureString values."
     facts:
-      - parameter-nochange
-      - parameter-advanced
-      - parameter-advanced-policy
+      - parameter-types
   - id: systems-manager-088
     q: Which Systems Manager Parameter Store types represent text, a comma-separated list and an
       encrypted value?
@@ -149,10 +145,9 @@ Parameter Store keeps application configuration as named values. The tier determ
 ### How it works
 
 1. Choose `String` for text, `StringList` for a comma-separated list, or `SecureString` for an encrypted value.
-2. Organize names with slash-separated paths. A hierarchy is a nested name structure; `GetParametersByPath` with recursive retrieval reads below the requested path.
-3. Choose the standard or advanced tier. Upgrade a standard parameter if its size, policy or sharing needs require advanced.
-4. Update the value to create a numbered version. Request a specific version when a deployment must retain a reviewed value.
-5. Attach advanced parameter policies for expiration or EventBridge notifications. Send the full desired policy array when updating policies.
+2. Choose the standard or advanced tier. Upgrade a standard parameter if its size, policy or sharing needs require advanced.
+3. Update the value to create a numbered version. Request a specific version when a deployment must retain a reviewed value.
+4. Attach an advanced parameter policy such as `NoChangeNotification` to emit an EventBridge event when a value remains unchanged for the specified period.
 
 | Property | Standard | Advanced |
 |---|---|---|
@@ -167,15 +162,13 @@ Parameter Store keeps application configuration as named values. The tier determ
 - If the question says configuration needs expiration or stale-value alerts, think advanced parameter policies, because standard parameters do not support policies.
 - If the question says credentials require automatic rotation, think Secrets Manager, because AWS recommends it for that requirement.
 - If the question says reuse configuration across accounts, think advanced parameters with AWS RAM, because standard parameters cannot use that sharing feature.
+- If the question says an AMI parameter is needed in multiple Regions, think a parameter in each Region, because parameters belong to one account and Region.
+- If the question says heavy parameter reads are throttled, think higher throughput, because it raises the API transaction quota at extra charge.
 
 ### Remember
 
-- Policy types: `Expiration`, `ExpirationNotification`, `NoChangeNotification`.
-- Maximum ten policies per advanced parameter; new policy arrays replace the old array.
-- Hierarchies support 15 levels.
-- Version one is initial; edits increment it. Up to 100 versions are retained.
+- Version one is initial; edits increment it.
 - No version specified means latest; a nonexistent version causes an error.
 
 > **Trap:** Shrinking an advanced value does not permit downgrading the parameter.
 
-> **Trap:** A label on the oldest retained version prevents its automatic deletion and can block the next update.

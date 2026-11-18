@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER ec2/design-details"
+title: EC2 configuration and cost details
 level: associate
 order: 100
 facts:
@@ -57,18 +57,27 @@ cards:
     a: Sell it in the EC2 Reserved Instance Marketplace.
     facts: [ri-marketplace]
 ---
-PLACEHOLDER first paragraph.
+EC2 design choices include the instance type, tenancy and how capacity is paid for. Reading the instance name and understanding charges across its lifecycle helps you choose and operate instances. [Instance type names](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html#instance-type-names)
 
 ### How it works
 
-PLACEHOLDER
+1. Read an instance type name as family and size. In `c7gn.4xlarge`, `c` is the series, `7` the generation, `gn` the options and `4xlarge` the size. [Instance type names](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html#instance-type-names)
+2. Choose tenancy for the VPC and instance. A dedicated-tenancy VPC runs all instances as Dedicated Instances. In a default-tenancy VPC, an instance or launch template can still request dedicated tenancy. [Dedicated Instance basics](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html#dedicated-howitworks)
+3. Account for instance state and reserved capacity. Instance usage is billed while running and while stopping for hibernation. A Capacity Reservation is billed at the On-Demand rate even when unused, with applicable Savings Plans or Regional Reserved Instance discounts. [Instance billing by state](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html#instance-billing-by-state) [Capacity Reservation billing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-pricing-billing.html)
+4. Use Instance Scheduler on AWS to start and stop tagged EC2 and RDS instances on custom schedules across accounts and Regions. [Instance Scheduler](https://docs.aws.amazon.com/solutions/latest/instance-scheduler-on-aws/solution-overview.html#solution-overview)
+5. Consider the Reserved Instance Marketplace when a Standard Reserved Instance is no longer needed, such as after a move to another Region. [Reserved Instance Marketplace](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html#ri-market-general)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says `m5.2xlarge`, think series `m`, generation `5` and size `2xlarge`, because the name separates the family from the size.
+- If the question says a default-tenancy VPC and a dedicated launch template, think Dedicated Instances, because the template can request dedicated tenancy.
+- If the question says stop development instances outside business hours across accounts, think Instance Scheduler on AWS, because it uses tags and schedules.
+- If the question says an unused Standard Reserved Instance after a Region move, think Reserved Instance Marketplace, because customers can sell unused Standard reservations there.
 
 ### Remember
 
-PLACEHOLDER
+- EC2 issues a Spot interruption notice two minutes before stopping or terminating the instance. [Spot interruption notices](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html#spot-instance-termination-notices)
+- EBS volumes and Elastic IP addresses can incur charges regardless of instance state. A Reserved Instance continues billing through its term after its instance is terminated.
+- A Capacity Reservation incurs the On-Demand rate even when no instances use it.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Stopping an instance does not stop every charge. EBS volumes and Elastic IP addresses can still incur charges, and a Capacity Reservation is billed even when unused.

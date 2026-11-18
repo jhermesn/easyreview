@@ -60,9 +60,9 @@ cards:
     trap: true
     facts: [pipelines, drift]
   - id: sagemaker-ai-026
-    q: "A team wants a model version to reach production only after someone approves it. Which SageMaker feature controls this?"
-    a: "SageMaker Model Registry approval status: setting a version to Approved can start the CI/CD deployment."
-    facts: [registry-approval]
+    q: "How does SageMaker Model Registry help teams manage models for production?"
+    a: "It catalogs models for production and manages their versions."
+    facts: [registry]
 ---
 MLOps applies DevOps habits to ML: automated, repeatable pipelines, versioned models, monitoring in production and retraining when the world changes. SageMaker AI has a tool for each step and for documenting models. [Model Monitor](https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html)
 

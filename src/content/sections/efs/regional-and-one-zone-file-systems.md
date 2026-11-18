@@ -236,8 +236,7 @@ Amazon EFS provides shared files that multiple clients can read and write over N
 
 - NFS versions: 4.0 and 4.1. Network port: TCP 2049.
 - Regional: one mount target per AZ. One Zone: a single target in its storage AZ; access from other AZs incurs cross-AZ data access charges.
-- Documented lifecycle defaults: IA after 30 days without Standard access, Archive after 90 days. Return to Standard on access is disabled by default.
-- Archive requires Elastic throughput. Configure `On first access` to return active files to Standard.
+- Return to Standard on access is disabled by default. Configure `On first access` to return active files to Standard.
 
 > **Trap:** A mount target in another AZ does not change One Zone's data placement. One Zone still keeps its copies in one AZ, where a disaster affecting those copies can cause data loss.
 

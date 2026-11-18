@@ -97,13 +97,9 @@ cards:
       - registration
       - slow-start
   - id: ec2-auto-scaling-045
-    q: Which EC2 Auto Scaling SNS notification types report launch and termination failures?
-    a: autoscaling:EC2_INSTANCE_LAUNCH_ERROR and autoscaling:EC2_INSTANCE_TERMINATE_ERROR.
-    facts:
-      - sns-launch
-      - sns-launch-error
-      - sns-terminate
-      - sns-terminate-error
+    q: "An EC2 Auto Scaling group must install software before a new instance receives traffic. Which event-driven approach fits?"
+    a: "Use a launch lifecycle hook and an EventBridge rule that invokes Systems Manager Run Command for setup. Complete the hook before registration."
+    facts: [launch, ssm, registration]
   - id: ec2-auto-scaling-046
     q: An EC2 Auto Scaling fleet must install software on new managed instances after an event. Which event-driven integration fits?
     a: An EventBridge rule targeting Systems Manager Run Command. Use a launch lifecycle hook when setup must finish before load balancer registration.
@@ -175,29 +171,15 @@ A lifecycle hook pauses an EC2 Auto Scaling instance while custom work finishes.
 2. A script or event-triggered action finishes setup. EventBridge can route notifications to Lambda; a Run Command target can install software on a Systems Manager managed node, meaning an instance managed by Systems Manager.
 3. Complete the action with CONTINUE to allow registration and service entry. Send heartbeats if work needs more time, within the global timeout.
 4. A termination hook holds an instance in Terminating:Wait while automation collects logs. Completing the action permits termination.
-5. For notification emails, configure an SNS topic, confirm the email subscription and select the group's notification types. For filtered automation, match EventBridge source aws.autoscaling and the event type.
-6. For a direct SNS or SQS lifecycle hook notification target, supply an IAM role that lets Auto Scaling publish to that target.
-
-| Native SNS notification type | Event |
-|---|---|
-| autoscaling:EC2_INSTANCE_LAUNCH | Launch succeeded |
-| autoscaling:EC2_INSTANCE_LAUNCH_ERROR | Launch failed |
-| autoscaling:EC2_INSTANCE_TERMINATE | Termination succeeded |
-| autoscaling:EC2_INSTANCE_TERMINATE_ERROR | Termination failed |
-
 ### Exam cues
 
 - If the question says finish setup before receiving traffic, think launch hook, because registration waits for the action to complete.
 - If the question says collect logs before removal, think termination hook with EventBridge automation, because the instance pauses in Terminating:Wait.
 - If the question says initialize first and gradually increase traffic afterward, think launch hook plus ALB slow start, because they control different parts of startup.
-- If the question says send scaling event emails, think native SNS notification types and a confirmed subscription, because those notifications report launch and termination outcomes.
 
 ### Remember
 
-- Default heartbeat timeout: 1 hour. Global timeout: 48 hours or 100 times heartbeat timeout, whichever is smaller.
-- The default result on timeout or unexpected failure is ABANDON unless configured otherwise.
-- Launch ABANDON permits termination and replacement. Termination ABANDON skips remaining hooks; CONTINUE lets them finish.
-- Lifecycle events and native SNS notifications are best effort.
+- Lifecycle events are best effort.
 - Slow start requires a compatible ALB routing algorithm; least outstanding requests and weighted random do not support it.
 
 > **Trap:** A termination hook is best effort by default. It cannot keep a Spot instance alive when capacity is interrupted.

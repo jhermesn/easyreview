@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER transcribe/more-essentials"
+title: Speakers, privacy and toxicity
 level: foundational
 order: 20
 facts:
@@ -26,18 +26,23 @@ cards:
     a: "PII redaction, which outputs a redacted transcript (optionally also an unredacted one)."
     facts: [pii-redaction]
 ---
-PLACEHOLDER first paragraph.
+Amazon Transcribe can identify individual speakers and help handle sensitive or toxic speech in transcripts. [What is Amazon Transcribe?](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is)
 
 ### How it works
 
-PLACEHOLDER
+1. Use speaker partitioning to distinguish individual speakers in the audio. [What is Amazon Transcribe?](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is)
+2. Use toxicity detection to classify speech using text and audio cues such as tone and pitch. [Detecting toxic speech](https://docs.aws.amazon.com/transcribe/latest/dg/toxicity.html#toxicity)
+3. Use personally identifiable information (PII) redaction to remove PII from the transcript. Choose a redacted transcript alone or both redacted and unredacted versions. [PII redaction](https://docs.aws.amazon.com/transcribe/latest/dg/pii-redaction.html#pii-redaction)
 
 ### Exam cues
 
-PLACEHOLDER
+- If a meeting transcript needs to show who spoke, think speaker partitioning, because it identifies individual speakers.
+- If a game needs to flag abusive voice chat, think toxicity detection, because it uses both audio and text cues.
+- If a call transcript must omit customer names or card numbers, think PII redaction, because it produces a redacted transcript.
 
 ### Remember
 
-PLACEHOLDER
+- Toxicity detection classifies speech into seven categories, including abuse, threats and profanity.
+- PII redaction can produce a redacted transcript alone or alongside an unredacted transcript.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Toxicity detection uses tone and pitch as well as text; it does not rely on text cues alone.

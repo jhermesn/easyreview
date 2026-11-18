@@ -120,9 +120,9 @@ cards:
     trap: true
     facts: [dms-latency]
   - id: dms-010
-    q: An AWS DMS migration must include database views. Which task type supports migrating them?
-    a: Use a full-load-only task. Tasks that include CDC migrate tables, not views.
-    facts: [dms-views]
+    q: "A database is moving to a different engine. How can AWS DMS help with the schema and data?"
+    a: "Use DMS Schema Conversion to assess and convert the schema, and DMS to migrate data. Objects that cannot be converted automatically need manual conversion."
+    facts: [dms-schema, dms-purpose]
 diagrams:
   - id: dms-replication-flow
     title: DMS replication

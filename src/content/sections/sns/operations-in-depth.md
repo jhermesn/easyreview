@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER sns/operations-in-depth"
+title: Operational notifications and filter changes
 level: professional
 order: 40
 facts:
@@ -62,18 +62,34 @@ cards:
     facts:
       - database
 ---
-PLACEHOLDER first paragraph.
+Amazon SNS can carry operational notifications from several AWS services. The configuration depends on the event source, and subscription filter changes need time to take effect.
 
 ### How it works
 
-PLACEHOLDER
+1. Select the event source and its notification path:
+
+   | Event source | Path to SNS |
+   |---|---|
+   | EC2 Auto Scaling | Select [launch or termination notification types](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#ec2-auto-scaling-sns-notifications), including error types for failures. |
+   | Systems Manager | Send [Run Command or Maintenance Windows status changes](https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-sns-notifications.html) to an SNS Standard topic. An invocation is a command sent to an individual node. |
+   | AWS Organizations | Configure an [EventBridge rule](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_cloudwatch-integration.html#orgs_cloudwatch-integration) in `us-east-1` with SNS as the target. |
+   | AWS Trusted Advisor | Monitor [check metrics with a CloudWatch alarm](https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-metrics-ta.html#cloudwatch-metrics-ta) in `us-east-1` and notify SNS. |
+   | Amazon Aurora | Allow the RDS event service to publish in the [destination topic policy](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.GrantingPermissions.html#USER_Events.GrantingPermissions). |
+
+2. When a subscription filter policy is added or changed, allow for [eventual consistency](https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html#sns-subscription-filter-policies): the change can take up to 15 minutes to fully take effect.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says an Auto Scaling launch or termination failed, think notification types ending in `_ERROR`, because the types without that suffix report success.
+- If the question says a command failed on an individual node, think Systems Manager invocation status notifications on a Standard topic, because an invocation is the per-node command.
+- If the question says Organizations account activity or Trusted Advisor check changes need SNS notifications, think `us-east-1`, because the paths use an EventBridge rule or a CloudWatch alarm there, respectively.
+- If the question says Aurora event notifications need to reach SNS, think the destination topic policy, because it must allow the RDS event service to publish.
+- If the question says a filter behaves inconsistently just after an update, think eventual consistency, because the change may still be propagating.
 
 ### Remember
 
-PLACEHOLDER
+- Auto Scaling success types: `autoscaling:EC2_INSTANCE_LAUNCH` and `autoscaling:EC2_INSTANCE_TERMINATE`. Failure types add `_ERROR`.
+- Systems Manager status notifications use SNS Standard topics.
+- Filter policy additions and changes can take up to 15 minutes to fully take effect.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A newly changed filter policy may not take effect immediately. Allow up to 15 minutes before judging its behavior.

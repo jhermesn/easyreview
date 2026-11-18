@@ -177,12 +177,10 @@ EC2 automatic instance recovery attempts to restore an instance after a problem 
 
 | Situation | Mechanism | Deciding limitation |
 |---|---|---|
-| Supported standalone instance, default recovery | Simplified automatic recovery | No instance store volumes or EFA |
-| Supported standalone instance, alarm-controlled recovery | CloudWatch recover action | Selected instance store configurations supported, with data loss; no EFA |
+| Supported standalone instance, default recovery | Simplified automatic recovery | No instance store volumes |
+| Supported standalone instance, alarm-controlled recovery | CloudWatch recover action | Selected instance store configurations supported, with data loss |
 | Instance software failure, system check passes | CloudWatch reboot action | Recover cannot use StatusCheckFailed_Instance |
 | Unhealthy Auto Scaling group member | Auto Scaling replacement | Neither individual-instance recovery mechanism supports group members |
-
-An Elastic Fabric Adapter (EFA) is a network device for workloads such as machine learning and high performance computing. Both recovery mechanisms exclude instances using EFA.
 
 For a separate failover approach, a network interface is a virtual network card. A primary interface cannot be detached, but a secondary interface and its private IP addresses can move between EC2 instances within one Availability Zone.
 
@@ -199,7 +197,6 @@ For a separate failover approach, a network interface is a virtual network card.
 - `StatusCheckFailed_System`: 0 means passed; 1 means failed.
 - Simplified recovery is enabled by default only on supported instances. CloudWatch recovery needs an alarm action.
 - With instance store volumes attached at launch, CloudWatch recovery supports M3, C3, R3, X1, X1e, X2idn and X2iedn. It loses their local data.
-- For EC2 action alarms, treat missing data as `missing` and trigger actions only in `ALARM` state.
 
 > **Trap:** Recovery preserves instance identity, addresses and EBS volumes, but not RAM or instance store contents. It is not a guarantee of recovery when capacity is unavailable.
 

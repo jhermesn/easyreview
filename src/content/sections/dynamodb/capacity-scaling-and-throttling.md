@@ -169,10 +169,10 @@
     },
     {
       "id": "dynamodb-052",
-      "q": "A DynamoDB table must be encrypted at rest at no extra KMS cost. What must the team configure?",
-      "a": "Nothing. DynamoDB encrypts every table at rest, by default with an **AWS owned key** at no extra charge.",
+      "q": "A DynamoDB workload has unpredictable request traffic and the team does not want to provision capacity units. Which capacity mode fits?",
+      "a": "Use on-demand capacity. It scales without provisioning read or write units and bills per request.",
       "facts": [
-        "encryption-default"
+        "on-demand"
       ]
     }
   ],

@@ -209,7 +209,6 @@ IAM identities determine who makes a request. A role supplies permissions throug
 
 - If the question says EC2 needs AWS access without embedded keys, think role plus instance profile, because the application can retrieve refreshed temporary credentials.
 - If the question says role assumption succeeds but a read fails, think role permissions policy, because trust only authorizes assumption.
-- If the question says EC2 credentials must work only from their original network location, think paired VPC (isolated virtual network) and private-address comparisons, because a private address alone is not globally unique. Compare `aws:SourceVpc` with `aws:Ec2InstanceSourceVpc`, and `aws:VpcSourceIp` with `aws:Ec2InstanceSourcePrivateIPv4`. Check `ec2:SourceInstanceARN` for presence and account for forwarded calls with `aws:ViaAWSService`.
 
 ### Remember
 

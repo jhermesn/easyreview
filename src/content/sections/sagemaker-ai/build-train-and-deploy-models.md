@@ -37,9 +37,9 @@ cards:
     trap: true
     facts: [purpose]
   - id: sagemaker-ai-027
-    q: "A training job must have no way to send data out, not even to Amazon S3. Which SageMaker setting does this?"
-    a: "Network isolation (EnableNetworkIsolation): the container can make no outbound calls and receives no AWS credentials."
-    facts: [network-isolation]
+    q: "Which AWS service helps developers build, train and deploy machine learning models without managing their own servers?"
+    a: "Amazon SageMaker AI provides managed tools for building, training and deploying machine learning models."
+    facts: [purpose, no-servers]
 ---
 Amazon SageMaker AI is the AWS platform for custom machine learning. Data scientists prepare data, train models and deploy them to production in one managed service, without running their own servers. [What is Amazon SageMaker AI?](https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html#whatis)
 

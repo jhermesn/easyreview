@@ -8,8 +8,8 @@ facts:
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction
 cards:
   - id: cloudfront-058
-    q: "Users around the world load a website's images slowly from one Region. Which service reduces the latency?"
-    a: "Amazon CloudFront, which caches content at edge locations near users."
+    q: "How do Amazon CloudFront edge locations benefit users around the world?"
+    a: "They speed up delivery of static and dynamic web content through a worldwide network."
     facts: [cdn]
 ---
 Amazon CloudFront is AWS's content delivery network (CDN): copies of content are served from edge locations close to users. [What is Amazon CloudFront?](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction)

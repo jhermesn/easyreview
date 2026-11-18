@@ -99,18 +99,19 @@ cards:
     a: "Create static routes pointing to the peering attachment."
     facts: [peering]
   - id: transit-gateway-007
-    q: Can a participant create a Site-to-Site VPN attachment in its account on a Transit Gateway shared by another account?
-    a: "No. The VPN attachment must be created in the gateway owner's account."
+    q: "Can an AWS Transit Gateway attachment reach another VPC without the required VPC subnet routes?"
+    a: "No. Configure routes toward the transit gateway and routes from the attachment subnets to destinations within the VPC."
     trap: true
-    facts: [share-vpn]
+    facts: [subnet-routes]
   - id: transit-gateway-008
     q: What happens when static and propagated Transit Gateway routes have the same destination?
     a: "The static route takes priority."
     facts: [static]
   - id: transit-gateway-009
-    q: "A trading application must send one multicast stream to many instances across VPCs. Which AWS service supports it?"
-    a: "AWS Transit Gateway with multicast enabled."
-    facts: [multicast]
+    q: "A company connects many VPCs and an on-premises network and needs a scalable hub for routing. Which AWS service fits?"
+    a: "AWS Transit Gateway. It is a regional virtual router that connects VPCs and on-premises networks through attachments."
+    facts: [hub, attachments]
+
 ---
 AWS Transit Gateway is a Regional virtual router that connects virtual private clouds (VPCs), which are isolated AWS networks, and on-premises networks. Think of it as a hub whose attachments connect networks and whose route tables choose paths.
 

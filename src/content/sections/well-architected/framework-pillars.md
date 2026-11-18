@@ -106,18 +106,17 @@ cards:
     a: "Reliability: automatically recover from failure and remove single points of failure."
     facts: [reliability-principles, reliability]
   - id: well-architected-020
-    q: "What changed in the AWS Well-Architected Framework on November 16, 2026?"
-    a: "The six pillar whitepapers became one framework document, nearly all best practices were refreshed, and the guidance was split into Cloud Foundations (organization-wide) and Cloud Workloads (the six pillars)."
-    facts: [framework-update-2026, cloud-workloads]
+    q: "What is the AWS Well-Architected Framework used for?"
+    a: "It provides best practices and questions for evaluating how well an architecture aligns with AWS guidance."
+    facts: [framework]
   - id: well-architected-021
-    q: "A platform team must set up multi-account structure, central identity, logging, tagging, security tooling, cost visibility and networking before any workload runs. Which part of the AWS Well-Architected Framework guides this?"
-    a: "Well-Architected Cloud Foundations, the blueprint for a sound landing zone. Its seven capabilities cover exactly these areas."
-    facts: [cloud-foundations, foundations-landing-zone]
+    q: "Which AWS Well-Architected pillar focuses on a workload performing its intended function consistently?"
+    a: "The reliability pillar focuses on a workload performing its intended function correctly and consistently when expected."
+    facts: [reliability]
   - id: well-architected-025
-    q: "Is the six-pillar list of the AWS Well-Architected Framework different after the November 16, 2026 update?"
-    a: "No. The six pillars stay the same; they now sit under Cloud Workloads, next to the new Cloud Foundations guidance."
-    trap: true
-    facts: [framework-update-2026, six-pillars, cloud-workloads]
+    q: "Which AWS Well-Architected pillar focuses on protecting data, systems and assets?"
+    a: "The security pillar focuses on protecting data, systems and assets."
+    facts: [security]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
 
@@ -144,11 +143,10 @@ The general design principles apply across pillars: stop guessing capacity, test
 ### Exam cues
 
 - If the question says recover from failure or work consistently, think reliability.
-- If the question says choose the right resource types as demand changes, think performance efficiency.
 - If the question says lowest price point for the value delivered, think cost optimization.
-- If the question says reduce environmental impact or energy use, think sustainability.
-- If the question says improve operations and procedures, think operational excellence.
-- If the question says operations as code, think operational excellence, because defining operations as code is part of its safely automate principle.
+- If the question says protect data, systems and assets, think security.
+- If the question says simulate production events to find improvements, think game days.
+- If the question says reduce dependencies between components, think loosely coupled dependencies under reliability. [Reliability best practice](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel04-bp02.html#rel04-bp02)
 - If the question says organization-wide setup before the first workload, such as a landing zone, think Well-Architected Cloud Foundations.
 
 ### Remember

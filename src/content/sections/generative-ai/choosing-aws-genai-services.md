@@ -46,10 +46,9 @@ cards:
     a: Amazon Bedrock, then SageMaker AI, then self-managed EC2 (full control, full responsibility).
     facts: [ops-burden]
   - id: generative-ai-038
-    q: Can a new customer start using Amazon Q Business today?
-    a: "No. Amazon Q Business closed to new customers on July 31, 2026; Amazon Quick Suite is its successor. Existing customers can keep using it."
-    trap: true
-    facts: [q-business]
+    q: "Which AWS service is a managed starting point for building a generative AI application with available models from multiple providers?"
+    a: "Amazon Bedrock provides serverless access to models from Amazon and other providers."
+    facts: [bedrock-default]
 ---
 AWS offers generative AI at three levels: ready-made assistants, a managed platform to build your own apps and agents, and infrastructure to host or train models yourself. Pick the most managed option that meets the need. [Choosing a generative AI service](https://docs.aws.amazon.com/decision-guides/latest/generative-ai-on-aws-how-to-choose/guide.html)
 

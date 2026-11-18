@@ -58,9 +58,9 @@ cards:
     a: "An automatic model evaluation job with a built-in prompt dataset such as BOLD, which tests fairness across those groups."
     facts: [builtin-datasets]
   - id: bedrock-060
-    q: "How many models can one Amazon Bedrock human evaluation job compare?"
-    a: "Up to two models, rated by a work team of human evaluators."
-    facts: [human-two-models]
+    q: "How can people help evaluate foundation model responses in Amazon Bedrock?"
+    a: "Human evaluation lets employees or subject-matter experts rate the responses."
+    facts: [human]
 ---
 Amazon Bedrock evaluations compare models, and RAG pipelines, on your own prompts or standard datasets, scored by metrics, by a judge model or by your own people. [Evaluate performance](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html)
 

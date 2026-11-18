@@ -108,21 +108,22 @@
     },
     {
       "id": "dynamodb-025",
-      "q": "A team needs DynamoDB data in S3 for analysis without consuming table read capacity. What should it use?",
-      "a": "Enable PITR and export a point within its recovery window to S3.",
+      "q": "A DynamoDB table has an accidental overwrite that also reaches its global table replicas. How can the team recover an earlier state?",
+      "a": "Restore a point before the overwrite with point-in-time recovery into a new table.",
       "facts": [
-        "export"
+        "writes",
+        "restore"
       ]
     },
     {
       "id": "dynamodb-026",
-      "q": "A team needs to import S3 data into DynamoDB without consuming write capacity. What constraints apply?",
-      "a": "S3 import creates a new table and does not use write capacity. It cannot load an existing table; GSIs are supported at import but LSIs are not.",
+      "q": "A team needs a DynamoDB backup retained beyond the point-in-time recovery window. What should it use?",
+      "a": "Use an on-demand backup. It is retained until explicitly deleted.",
       "facts": [
-        "import",
-        "import-options"
-      ],
-      "trap": true
+        "pitr",
+        "backup",
+        "retention"
+      ]
     },
     {
       "id": "dynamodb-027",

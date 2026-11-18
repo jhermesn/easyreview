@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER systems-manager/operations-in-depth"
+title: Parameter Store operational controls
 level: professional
 order: 190
 facts:
@@ -79,18 +79,26 @@ cards:
       - parameter-history
       - parameter-history-label
 ---
-PLACEHOLDER first paragraph.
+Systems Manager Parameter Store uses hierarchies, policies and version history to organize parameters and manage their lifecycle. These controls affect how applications retrieve values and how updates behave over time.
 
 ### How it works
 
-PLACEHOLDER
+1. Organize parameter names in a [slash-separated hierarchy](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-examples). Use [`GetParametersByPath` with recursive retrieval](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html#systemsmanager-GetParametersByPath-request-Recursive) to read parameters below a path.
+2. Use [policies](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#parameter-store-policies) on an advanced parameter to delete it after an expiration timestamp or emit EventBridge events. `ExpirationNotification` alerts before or after expiration; `NoChangeNotification` alerts when the parameter has remained unchanged for the specified period. Expiration is processed asynchronously through periodic scans.
+3. When updating policies, supply the [complete desired policy array](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#sysman-paramstore-su-policy-create): a new array replaces the existing policies.
+4. Parameter Store retains [version history](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions). Once the history is full, the oldest version is normally removed to make room for a new one. If the oldest version has a label, the update fails; move the label to a newer version before retrying.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says an application needs parameters below an environment path, think a hierarchy and recursive `GetParametersByPath`, because it retrieves parameters below the requested path.
+- If the question says to alert on a parameter that has not changed, think `NoChangeNotification`, because it emits an EventBridge event after the specified unchanged period.
+- If the question says an update fails with a full version history, think a label on the oldest version, because that label prevents its removal.
 
 ### Remember
 
-PLACEHOLDER
+- Hierarchies support up to 15 levels.
+- An advanced parameter supports up to ten policies.
+- Parameter Store retains up to 100 versions.
+- A standard parameter can become advanced; an [advanced parameter cannot be changed back to standard](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html#parameter-store-tiers-limitations).
 
-> **Trap:** PLACEHOLDER
+> **Trap:** `Expiration` deletes the parameter; `ExpirationNotification` emits an event. Also, supplying a new policy array replaces the existing array rather than adding to it.

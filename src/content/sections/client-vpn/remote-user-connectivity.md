@@ -173,13 +173,11 @@ cards:
       - split-tunnel
       - split-change
   - id: client-vpn-006
-    q: What subnet design improves AWS Client VPN availability for a subnet-based endpoint?
-    a: Associate at least two subnets in different Availability Zones of the same VPC. Keep an identical
-      destination route set on each association.
+    q: Remote users need access to an additional network through AWS Client VPN. What network
+      controls must be configured?
+    a: Add an endpoint route and an authorization rule for the destination network.
     facts:
-      - subnet
-      - redundancy
-      - route-consistency
+      - routing
   - id: client-vpn-007
     q: What IPv4 client CIDR constraints apply when creating an AWS Client VPN endpoint?
     a: Choose /22 through /12 without overlapping the VPC, target networks or endpoint routes. The

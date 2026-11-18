@@ -33,9 +33,9 @@ cards:
     trap: true
     facts: [purpose]
   - id: ses-004
-    q: "A company sending bulk mail through SES does not want other senders to affect its IP reputation. What should it use?"
-    a: "Dedicated IP addresses leased for its account instead of the default shared pool."
-    facts: [dedicated-ips]
+    q: "Which AWS service can send order confirmations and marketing emails using a company domain?"
+    a: "Amazon Simple Email Service (Amazon SES) sends transactional and marketing emails using your own email addresses and domains."
+    facts: [purpose, send-types]
 ---
 Amazon SES sends email at scale, such as marketing campaigns, receipts and newsletters, from your own domains, and can also receive email. [What is Amazon SES?](https://docs.aws.amazon.com/ses/latest/dg/Welcome.html#Welcome)
 

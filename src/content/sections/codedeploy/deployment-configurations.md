@@ -131,10 +131,10 @@ cards:
     facts:
       - inplace-duration
   - id: codedeploy-067
-    q: Can two CodeDeploy releases run concurrently against the same deployment group?
-    a: No. A deployment group allows one concurrent deployment.
+    q: "What does a deployment configuration control during an EC2 blue/green CodeDeploy deployment?"
+    a: "It controls installation on replacement instances and the rate at which replacements are registered for traffic."
     facts:
-      - group-concurrency
+      - bluegreen-rate
 ---
 A deployment configuration defines how quickly CodeDeploy updates instances and when it calls the release successful. Minimum healthy hosts means the number or percentage of instances that must stay available during deployment.
 

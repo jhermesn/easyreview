@@ -58,9 +58,9 @@ cards:
     a: AWS Directory Service. Choose AWS Managed Microsoft AD for a managed directory or AD Connector to forward requests to an existing directory.
     facts: [ds-managed, ds-proxy]
   - id: directory-service-003
-    q: A team needs RDS for SQL Server integrated with a directory. Which AWS Directory Service option should it choose?
-    a: AWS Managed Microsoft AD. AD Connector and Simple AD are not compatible with RDS for SQL Server.
-    facts: [ds-rds]
+    q: "A company wants IAM Identity Center users to sign in with their existing Active Directory credentials. Where does authentication occur?"
+    a: "Against the source Active Directory. IAM Identity Center synchronizes users, groups and memberships, but not passwords."
+    facts: [ds-identity-sync]
   - id: directory-service-004
     q: A company wants AWS applications to authenticate against its existing on-premises AD without caching directory data in AWS. What should it use?
     a: AD Connector forwards directory requests to the existing AD without caching directory information in the cloud.

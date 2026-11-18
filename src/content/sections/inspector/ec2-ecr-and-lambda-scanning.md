@@ -73,13 +73,12 @@ Amazon Inspector finds vulnerable software and unintended network exposure. A fi
 
 - If the question says container images need rescanning for new CVEs, think ECR enhanced continuous scanning, because it reassesses eligible images.
 - If the question says Lambda dependencies are covered but custom code is not, think Lambda code scanning, because standard scanning covers dependencies.
-- If the question says assessment targets and templates, think Inspector Classic, because that was its assessment model.
+- If the question says vulnerable packages across EC2, private ECR images, and Lambda functions, think Amazon Inspector, because it scans those workloads.
 
 ### Remember
 
-- EC2 hybrid scanning is the default.
+- ECR enhanced scanning offers scan on push and continuous scanning.
 - Lambda code scanning and machine image scanning require separate activation.
-- Lambda eligibility includes a supported runtime, `$LATEST`, activity within 90 days, and no exclusion tag.
-- Inspector Classic support ended May 20, 2026.
+- Lambda code scanning requires standard scanning.
 
-> **Trap:** A legacy golden-AMI design launched EC2 instances and used tag-selected Classic assessment targets. Recognize that historical mechanism; current AMI scanning is a separate scan type.
+> **Trap:** Lambda standard scanning checks dependencies, not custom application code. Add Lambda code scanning to inspect custom code.

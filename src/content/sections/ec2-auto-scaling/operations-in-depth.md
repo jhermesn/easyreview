@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER ec2-auto-scaling/operations-in-depth"
+title: Launch and scaling operations
 level: professional
 order: 100
 facts:
@@ -188,18 +188,38 @@ cards:
     facts:
       - cold
 ---
-PLACEHOLDER first paragraph.
+EC2 Auto Scaling operations depend on launch permissions, lifecycle decisions and scaling settings. Knowing where each setting applies helps diagnose failed launches and control what happens as instances enter or leave a group.
 
 ### How it works
 
-PLACEHOLDER
+1. Choose [Reservations then balanced](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-availability-zone-balanced.html) to fill targeted Capacity Reservations before distributing remaining capacity evenly. Supply a reservation ID or Capacity Reservation resource group.
+2. For launch authorization errors, check `ec2:RunInstances`, `ec2:CreateTags` when tags are specified, and `iam:PassRole` when an instance profile is specified. A private AMI from another account must be shared with the group account. See [launch template troubleshooting](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-launch-template.html#ts-launch-template-unauthorized-error).
+3. For encrypted EBS volumes, allow the Auto Scaling service-linked role to use the customer managed KMS key and create grants in its [key policy](https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html#configuring-key-policies). For a [cross-account key](https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html#policy-example-cmk-cross-account-access), also allow the Auto Scaling account in the key policy and create a grant for its service-linked role.
+4. Complete a lifecycle action with `CompleteLifecycleAction`, or extend its wait with `RecordLifecycleActionHeartbeat` within the overall timeout. On launch, `CONTINUE` permits service entry and `ABANDON` permits termination and replacement. On termination, `CONTINUE` allows remaining hooks to complete, while `ABANDON` skips them. See [completing lifecycle actions](https://docs.aws.amazon.com/autoscaling/ec2/userguide/completing-lifecycle-hooks.html#completing-lifecycle-hooks) and [hook considerations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hook-considerations).
+5. Route lifecycle wait and scaling outcome events with [EventBridge rules](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-event-reference.html#ec2-auto-scaling-event-reference), filtering source `aws.autoscaling` and event type. Lifecycle notifications can target Lambda, SNS or SQS. A [direct SNS or SQS hook target](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutLifecycleHook.html#API_PutLifecycleHook_RequestParameters) needs an IAM role that permits Auto Scaling to publish.
+6. For scaling event email, create an SNS topic, subscribe and confirm the email address, then configure group notification types. Both [SNS delivery](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#as-configure-sns) and EventBridge events are best effort.
+
+| SNS notification type | Outcome |
+|---|---|
+| `autoscaling:EC2_INSTANCE_LAUNCH` | Successful launch |
+| `autoscaling:EC2_INSTANCE_LAUNCH_ERROR` | Failed launch |
+| `autoscaling:EC2_INSTANCE_TERMINATE` | Successful termination |
+| `autoscaling:EC2_INSTANCE_TERMINATE_ERROR` | Failed termination |
+
+See the [SNS notification types](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#auto-scaling-sns-notifications).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a launch hook times out without a configured result, think `ABANDON`, because it is the default and permits termination and replacement.
+- If the question says route different lifecycle waits or scaling failures to automation, think EventBridge rules, because they filter events by source and type.
+- If the question says target tracking has no policy warmup or group default warmup, think group default cooldown, because it is the [fallback](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-target-tracking-scaling-warmup).
+- If the question says an empty warm pool must scale out, think a cold start directly into the group, because [scale-out](https://docs.aws.amazon.com/autoscaling/ec2/userguide/warm-pool-instance-lifecycle.html#warm-pool-instance-lifecycle) is subject to maximum capacity.
+- If the question says a group cannot be created, think [regional group quota](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-quotas.html), because the default is 500 groups per Region. EC2 and VPC quotas can also constrain a group.
 
 ### Remember
 
-PLACEHOLDER
+- The lifecycle hook heartbeat timeout defaults to 1 hour. The global timeout is the smaller of 48 hours or 100 times the heartbeat timeout. The default result on timeout or unexpected failure is `ABANDON` unless configured otherwise. See [hook considerations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hook-considerations) and [PutLifecycleHook](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutLifecycleHook.html#API_PutLifecycleHook_RequestParameters).
+- [Predictive scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-policy-overview.html#how-predictive-scaling-works) needs at least 24 hours of data and analyzes up to 14 days. It forecasts hourly capacity for 48 hours and updates the forecast every 6 hours.
+- [Warm-pool sizing](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html#warm-pool-core-concepts) defaults to group maximum capacity minus desired capacity. `MaxGroupPreparedCapacity` replaces the maximum in that calculation; `MinSize` sets a minimum, with none set by default.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** `ABANDON` has different effects at launch and termination. A launch can be terminated and replaced; a termination proceeds while remaining hooks are skipped.

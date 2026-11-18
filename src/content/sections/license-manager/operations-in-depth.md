@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER license-manager/operations-in-depth"
+title: License tracking operations
 level: professional
 order: 20
 facts:
@@ -38,18 +38,23 @@ cards:
     facts: [discovery-uninstall]
     trap: true
 ---
-PLACEHOLDER first paragraph.
+AWS License Manager can track licenses for on-premises applications alongside AWS servers and monitor usage across accounts and Regions. [Inventory search](https://docs.aws.amazon.com/license-manager/latest/userguide/inventory.html) and [license asset groups](https://docs.aws.amazon.com/license-manager/latest/userguide/license-asset-groups-overview.html) support these views.
 
 ### How it works
 
-PLACEHOLDER
+1. Use Systems Manager Inventory to discover on-premises applications, attach licensing rules, and refresh non-AWS inventory periodically. License Manager cannot validate those servers' rules at launch or termination. [Inventory search](https://docs.aws.amazon.com/license-manager/latest/userguide/inventory.html)
+2. Use license asset groups to monitor usage across accounts and Regions. Manage their rules from a management or delegated administrator account. [License asset groups](https://docs.aws.amazon.com/license-manager/latest/userguide/license-asset-groups-overview.html)
+3. Review the stopped instances rule and automated discovery behavior. The former controls whether stopped instances count; the latter can be configured to stop tracking instances after software is uninstalled. [License rules](https://docs.aws.amazon.com/license-manager/latest/userguide/config-overview.html), [automated discovery](https://docs.aws.amazon.com/license-manager/latest/userguide/automated-discovery.html)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says track on-premises applications, think Systems Manager Inventory and periodic refresh, because License Manager cannot validate non-AWS servers at launch or termination.
+- If the question says monitor license usage across accounts and Regions, think license asset groups, because they centralize monitoring and rule management.
+- If the question says stop tracking after software uninstall, think automated discovery configuration, because tracking continues by default.
 
 ### Remember
 
-PLACEHOLDER
+- Include stopped instances defaults to false, so their licenses return to the available pool.
+- Automated discovery keeps tracking instances after software uninstall by default.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Discovering an on-premises application does not mean License Manager validates its licensing rules when the server launches or terminates.

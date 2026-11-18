@@ -280,8 +280,8 @@ S3 Replication creates copies in other buckets without making the application up
 3. For a different destination account, grant replication access in its bucket policy. Use destination Bucket owner enforced Object Ownership when that account must own replicas.
 4. For server-side encryption using KMS keys (SSE-KMS), or its dual-layer form (DSSE-KMS), explicitly enable encrypted-object replication and specify a destination-Region KMS key. Grant source decrypt and destination encrypt access.
 5. S3 copies new matching versions. Configure destination lifecycle and other bucket settings separately.
-6. To backfill existing objects or retry failures, run S3 Batch Replication with a manifest and an existing replication configuration. Inspect the source object's `HeadObject` replication status to distinguish pending work from failures.
-7. The caller setting replication needs `s3:PutReplicationConfiguration` and `iam:PassRole`. Enable replication metrics and a failure notification to receive failure events; threshold events require S3 RTC.
+6. To backfill existing objects or retry failures, run S3 Batch Replication with a manifest and an existing replication configuration.
+7. The caller setting replication needs `s3:PutReplicationConfiguration` and `iam:PassRole`.
 
 ### Exam cues
 
@@ -290,7 +290,6 @@ S3 Replication creates copies in other buckets without making the application up
 - If the question says a replication chain misses copies from its first bucket, think direct source-to-destination rules, because live replication skips replicas from another rule.
 - If the question requires a replication time target and CloudWatch visibility, think S3 Replication Time Control, because it enables replication metrics and replicates 99.9 percent of uploaded objects within 15 minutes.
 - If the question says an SSE-KMS replica must be readable in another account, think a destination-owned customer managed KMS key and key policy access for the replication role.
-- If a destination version was deleted by version ID, think an in-place source copy to create a new version, because Batch Replication cannot recreate that deleted version.
 - If the question says copy every new object to buckets in several Regions, think S3 Replication to multiple destinations, because one source bucket can replicate to many.
 
 ### Remember
@@ -302,7 +301,5 @@ S3 Replication creates copies in other buckets without making the application up
 - SSE-S3 and SSE-C do not need the SSE-KMS opt-in.
 - Replicas of SSE-S3, SSE-KMS, or DSSE-KMS objects keep the source encryption type rather than using the destination bucket default.
 - Cross-account destinations cannot use Requester Pays.
-- Destination lifecycle rules measure age from the original object's creation time.
-- The S3 RTC SLA does not apply above the default 1 Gbps transfer rate quota.
 
 > **Trap:** A destination bucket does not automatically inherit the source lifecycle configuration. A version-specific source delete also does not remove the replica.

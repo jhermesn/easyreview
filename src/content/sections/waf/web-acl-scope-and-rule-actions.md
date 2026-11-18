@@ -257,6 +257,6 @@ For an ALB origin behind CloudFront, an origin is the backend serving CloudFront
 - Each resource has at most one web ACL.
 - Allow and Block stop evaluation. Count continues.
 - CAPTCHA and Challenge depend on token validity.
-- Logging redaction does not redact sampled requests. Use web ACL data protection for sampling exclusions.
+- WAF logs can go to CloudWatch Logs, S3 or Data Firehose.
 
 > **Trap:** Count does not guarantee that a request reaches the application. A later rule or the default action can still block it.

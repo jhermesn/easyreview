@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER rds/operations-in-depth"
+title: RDS operational troubleshooting
 level: professional
 order: 90
 facts:
@@ -114,18 +114,31 @@ cards:
     a: "CloudWatch measures from the hypervisor, Enhanced Monitoring from an agent inside the instance, and the hypervisor does a little work of its own."
     facts: [enhanced-monitoring]
 ---
-PLACEHOLDER first paragraph.
+RDS operational troubleshooting connects backup timing, failover tests, connection capacity, storage growth, and monitoring to the conditions that control them.
 
 ### How it works
 
-PLACEHOLDER
+1. Check [automated backup conditions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups): the instance must be available, and a same-Region snapshot copy for that database must not be running. For [AWS Backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/troubleshooting.html#troubleshooting-create-backup), schedule jobs outside the RDS backup window unless AWS Backup manages both snapshots and continuous backups.
+2. For an RDS for Oracle cross-Region snapshot copy, set [`CopyOptionGroup` to true](https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-rds-oracle-cross-region-snapshot-copy-option-group/) to copy the option group in the same request. This capability was added in November 2026.
+3. To test a Multi-AZ DB instance, stop transactions and [reboot with failover](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RebootInstance.html#USER_RebootInstance), which switches to the standby. For a Multi-AZ DB cluster, use [manual failover](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts-failover.html#multi-az-db-clusters-concepts-failover-manual) with `FailoverDBCluster` or `failover-db-cluster`.
+4. Set [`MaxConnectionsPercent`](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.maxconnectionspercent) to limit proxy connections to the database relative to `max_connections`. Compare `DatabaseConnections` with `MaxDatabaseConnectionsAllowed`: reserved connections can reduce the usable limit. [`ConnectionBorrowTimeout`](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.connectionborrowtimeout) controls the wait for a database connection; [`IdleClientTimeout`](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.idleclienttimeout) closes idle clients and returns their database connections to the pool.
+5. [Storage autoscaling](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.Autoscaling.html#USER_PIOPS.Autoscaling) starts a modification only after free space remains at or below 10 percent for at least five minutes, prior storage optimization finishes, and fewer than four storage modifications have occurred in the past 24 hours. It chooses the greatest of 10 GiB, 10 percent of allocated storage, or predicted growth exceeding allocation over the next seven hours, based on the past hour of `FreeStorageSpace`.
+6. Compare CPU measurements with their source in mind. Standard CloudWatch metrics come from the hypervisor, while [Enhanced Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.CloudWatchComparison) uses an agent on the DB instance and sends operating system metrics to CloudWatch Logs.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says an automated backup was missed while an instance was `storage_full`, think instance availability, because automated backups require the available state.
+- If the question says AWS Backup jobs fail during the RDS backup window, think backup scheduling or AWS Backup managing both backup types, because the window can cause a conflict.
+- If the question says test failover, think reboot with failover for a DB instance and manual cluster failover for a DB cluster, because they use different operations.
+- If the question says reserve database connections for other users, think `MaxConnectionsPercent` and the proxy capacity metrics, because the configured percentage and usable limit can differ.
+- If the question says storage remains low despite autoscaling, think the low-space duration and previous modifications, because all trigger conditions must be met.
+- If the question says CPU readings differ, think the hypervisor and instance agent, because they collect metrics from different places.
 
 ### Remember
 
-PLACEHOLDER
+- Proxy connection borrow timeout: 120 seconds by default. Idle client timeout: 1800 seconds by default.
+- Storage trigger: free space at or below 10 percent for at least five minutes, completed optimization, and fewer than four modifications in 24 hours.
+- Storage increment: the greatest of 10 GiB, 10 percent of allocation, or the seven-hour predicted growth exceeding allocation.
+- Enhanced Monitoring writes to the `RDSOSMetrics` log group, with 30 days of retention by default.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A configured proxy connection percentage does not directly give the usable connection count. Reserved connections can make `MaxDatabaseConnectionsAllowed` lower.

@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER waf/operations-in-depth"
+title: Rate rules and logging operations
 level: professional
 order: 30
 facts:
@@ -74,18 +74,26 @@ cards:
     a: "A **custom response** on the Block action: status code, headers and body. It replaces the default 403 Forbidden."
     facts: [custom-block]
 ---
-PLACEHOLDER first paragraph.
+AWS WAF rate-based rules and logging have settings that affect how requests are evaluated and what data is recorded. Plan these settings alongside custom Block responses when operating a web ACL.
 
 ### How it works
 
-PLACEHOLDER
+1. Choose a rate evaluation window and limit. A rate-based rule can use any rule action except Allow. See [rate-based rule settings](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-high-level-settings.html).
+2. Check the custom aggregation key, the request components used to group requests. A request missing any required component is omitted from that rule's evaluation. See [aggregation options](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html).
+3. Plan changes to a live rule: changing rate settings resets its counts and can pause rate limiting for up to one minute. See [rate-based rule caveats](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-caveats.html).
+4. Name a logging destination with the required prefix. Logging redaction does not affect request sampling; web ACL data protection can exclude fields from sampling. See [S3 logging](https://docs.aws.amazon.com/waf/latest/developerguide/logging-s3.html) and [WAF logging](https://docs.aws.amazon.com/waf/latest/developerguide/logging.html).
+5. For a tailored Block response, configure its response code, headers and body in place of the default 403 Forbidden. See [custom responses](https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a session cookie is missing from a request, think omission from the rate rule, because every custom aggregation key component is required.
+- If the question says a live rate rule's window changed, think reset counts and a possible pause, because changing rate settings resets rate limiting counts.
+- If the question says a blocked request needs a branded page, think a custom Block response, because it can set the status code, headers and body.
 
 ### Remember
 
-PLACEHOLDER
+- Evaluation windows: 60, 120, 300 or 600 seconds; default: 300 seconds. Minimum limit: 10 requests per window.
+- Rate-based rules cannot use Allow as their action.
+- S3 buckets, CloudWatch Logs groups and Firehose streams used for WAF logging need names starting with `aws-waf-logs-`.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Redacting a field in WAF logs does not remove it from sampled requests. Use web ACL data protection to exclude fields from sampling.

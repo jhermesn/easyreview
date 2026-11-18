@@ -75,15 +75,17 @@ cards:
     facts:
       - explicit-order
   - id: cloudformation-065
-    q: Which CloudFormation functions build strings from deployment values?
-    a: Fn::Sub replaces variables in a string. Fn::Join joins a list with a separator.
+    q: A team needs to provision and manage the same infrastructure from a reusable definition. What
+      should it use?
+    a: Use an AWS CloudFormation JSON or YAML template to provision and manage a stack of resources.
     facts:
-      - sub
-      - join
+      - template-stack
   - id: cloudformation-155
-    q: "A team wants to see the resources in a CloudFormation template and how they connect, as a diagram. What does AWS provide?"
-    a: "AWS Infrastructure Composer, a visual canvas for CloudFormation templates. Its standalone console ends on December 7, 2026; a visual editor stays in the CloudFormation console and the full tool in the AWS Toolkit for VS Code."
-    facts: [infrastructure-composer]
+    q: A CloudFormation deployment has resources that must be created in a specific order. How can
+      the template express that requirement?
+    a: Use resource references for implicit dependencies, or DependsOn to specify an explicit
+      dependency.
+    facts: [implicit-order, explicit-order]
   - id: cloudformation-158
     q: "A CloudFormation template sets BucketName: app-logs. Deploying it as a second stack in the same account fails. What change lets the template be reused?"
     a: "**Remove the custom name.** CloudFormation then generates a unique physical ID; custom names must be unique across active stacks."

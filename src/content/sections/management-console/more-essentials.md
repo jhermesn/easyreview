@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER management-console/more-essentials"
+title: Choosing an access method
 level: foundational
 order: 20
 facts:
@@ -33,18 +33,25 @@ cards:
     a: The AWS Management Console.
     facts: [console]
 ---
-PLACEHOLDER first paragraph.
+AWS offers several ways to work with services, from a web interface to commands, application code and templates. Choose the method that fits how you want to operate. [AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/what-is.html#what-is)
 
 ### How it works
 
-PLACEHOLDER
+1. Use the [AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/what-is.html#what-is) to access service consoles on the web.
+2. Run commands in a shell with the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html#cli-chap-welcome).
+3. Use an [AWS SDK](https://docs.aws.amazon.com/local-zones/latest/ug/what-is-aws-local-zones.html#deploying-in-local-zones) to call AWS from code through a language-specific API. The SDK handles details such as signing requests, retries and errors.
+4. Describe resources in a template and let [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome) provision and configure them, including their dependencies.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a one-time, visual task, think the console, because it provides web access to service consoles.
+- If the question says commands in a terminal script, think the AWS CLI, because it runs commands in a shell.
+- If the question says an application calls AWS, think an AWS SDK, because it provides a language-specific API and handles connection details.
+- If the question says a template describes resources, think CloudFormation, because it provisions and configures them.
 
 ### Remember
 
-PLACEHOLDER
+- The console provides access to search, notifications, AWS CloudShell, and account and billing information.
+- AWS SDKs handle request signing, retries and errors.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** An application does not need the console to call AWS. It can use a language-specific SDK.

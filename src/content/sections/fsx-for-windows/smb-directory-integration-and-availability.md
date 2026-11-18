@@ -83,10 +83,9 @@ cards:
     a: Enable and schedule shadow copies. Users can restore earlier versions from them.
     facts: [shadow-copies]
   - id: fsx-for-windows-004
-    q: Are shadow copies enabled by default on FSx for Windows File Server?
-    a: No. Enable them and configure a schedule; keep backups too.
-    facts: [shadow-copies]
-    trap: true
+    q: "A Windows application needs a managed shared file system with SMB access and Active Directory authentication. Which service fits?"
+    a: "Amazon FSx for Windows File Server provides managed Windows file servers and joins a supported Active Directory domain."
+    facts: [smb, active-directory]
   - id: fsx-for-windows-005
     q: How can multiple FSx for Windows File Server shares appear under one common folder structure?
     a: Use DFS Namespaces to group the shares under a common namespace.

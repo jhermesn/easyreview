@@ -49,10 +49,9 @@ cards:
     a: "Put it on a separate **elastic network interface** and move that interface to the new instance (same AZ)."
     facts: [eni]
   - id: ec2-079
-    q: An EC2 instance has termination protection enabled, yet it was terminated after an admin ran `shutdown` inside the OS. Why?
-    a: "Termination protection only blocks API and console termination; an OS shutdown still terminates the instance when its shutdown behavior is set to terminate."
-    trap: true
-    facts: [termination-protection]
+    q: "An application needs a fixed public IPv4 address that can move to a replacement EC2 instance. What should it use?"
+    a: "Use an Elastic IP address and remap it to the replacement instance."
+    facts: [eip]
   - id: ec2-080
     q: A database on EC2 shows EBS latency spikes when the instance's network traffic is high. Which instance capability fixes the contention?
     a: "**EBS optimization**, which gives EBS I/O dedicated bandwidth."
@@ -70,14 +69,13 @@ cards:
     a: "At the network path: the security group and network ACL rules for port 22 (and NACL return ports), and the subnet route to the internet gateway."
     facts: [connect-timeout]
   - id: ec2-097
-    q: "An admin runs shutdown inside an EBS-backed Linux instance with default settings. What state does the instance end in?"
-    a: "Stopped. It only terminates if the instance-initiated shutdown behavior was set to terminate."
-    facts: [shutdown-behavior]
+    q: "A network interface carrying an EC2 instance network identity must move to a replacement instance. What Availability Zone constraint applies?"
+    a: "The replacement must be in the same Availability Zone as the network interface."
+    facts: [eni]
   - id: ec2-098
-    q: "Does stop protection keep an Auto Scaling group from terminating an unhealthy instance?"
-    a: "No. Stop protection does not affect Auto Scaling terminations or OS-initiated shutdowns; use scale-in protection for the group."
-    trap: true
-    facts: [stop-protection]
+    q: "An EC2 workload needs EBS I/O that does not compete with other instance network traffic. Which compute feature fits?"
+    a: "Use an EBS-optimized instance with dedicated bandwidth for EBS I/O."
+    facts: [ebs-optimized]
   - id: ec2-103
     q: "Two instances in the same VPC talk using each other public DNS names. Does the traffic leave the VPC?"
     a: "No. Inside the VPC the public DNS name resolves to the private IP address, so traffic stays private."

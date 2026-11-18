@@ -32,38 +32,37 @@ facts:
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-hourly-granularity.html#ce-hourly-granularity
 cards:
   - id: billing-and-cost-management-005
-    q: A manager wants to see which AWS services drove last quarter's cost increase. Which tool fits?
-    a: AWS Cost Explorer, which analyzes costs and usage over up to the last 13 months.
-    facts: [purpose, history-forecast]
+    q: Which AWS tool helps a company view and analyze its costs and usage?
+    a: AWS Cost Explorer provides graphs and reports for costs and usage.
+    facts: [purpose]
   - id: billing-and-cost-management-006
-    q: How far back and how far forward does AWS Cost Explorer show costs?
-    a: Up to 13 months back, and a forecast for the next 18 months.
+    q: How can AWS Cost Explorer help a team plan its cloud budget?
+    a: It shows past costs and forecasts future spending.
     facts: [history-forecast]
   - id: billing-and-cost-management-007
-    q: Which AWS tool recommends which Reserved Instances to buy based on past usage?
-    a: AWS Cost Explorer.
+    q: How can AWS Cost Explorer help a company choose Reserved Instances?
+    a: It recommends Reserved Instances to purchase.
     facts: [ri-recommendations]
   - id: billing-and-cost-management-008
-    q: Is the AWS Cost Explorer console free to use?
-    a: "Yes. The console is free; API requests cost 0.01 USD each, and optional hourly granularity data is billed per usage record."
-    facts: [free-ui, hourly-charge]
+    q: Does a company pay to use the AWS Cost Explorer user interface?
+    a: "No. The user interface is free; API requests have a charge."
+    facts: [free-ui]
   - id: billing-and-cost-management-009
-    q: Does AWS Cost Explorer send alerts when spending passes a threshold?
-    a: No. Cost Explorer analyzes costs; threshold alerts come from AWS Budgets.
-    trap: true
-    facts: [purpose]
+    q: How can a team ask AWS Cost Explorer about the drivers of a spending trend?
+    a: Use AWS assistant to ask cost questions in plain language.
+    facts: [assistant]
   - id: billing-and-cost-management-029
-    q: A company with many AWS accounts wants one view of underutilized EC2 instances to downsize, without extra tooling. Which feature fits?
-    a: "Cost Explorer rightsizing recommendations.\nThey list underutilized EC2 instances across member accounts and suggest downsizing or terminating them."
+    q: How can AWS Cost Explorer help identify underused Amazon EC2 capacity?
+    a: "Its rightsizing recommendations show underutilized instances and suggest downsizing or terminating them."
     facts: [rightsizing]
   - id: billing-and-cost-management-030
-    q: A company wants AWS to suggest a Savings Plans commitment from its past usage. Where does it get this?
-    a: Savings Plans recommendations, in the Billing and Cost Management console or the Cost Explorer API, based on past usage.
+    q: What information supports AWS Savings Plans recommendations in Cost Explorer?
+    a: Past usage informs the recommendations.
     facts: [sp-recommendations]
   - id: billing-and-cost-management-045
-    q: "An internal tool must pull AWS cost and usage data and forecasts on a schedule with the least overhead. What should it call?"
-    a: "The Cost Explorer API, which returns cost and usage data programmatically; Cost Explorer also forecasts spending."
-    facts: [ce-api, history-forecast]
+    q: "What kind of information can a company analyze with AWS Cost Explorer?"
+    a: "Costs and usage, including Reserved Instance reports."
+    facts: [purpose]
 ---
 AWS Cost Explorer is the analysis tool for past and forecast costs. It charts spending by service, account, tag or other dimensions and helps find what drives cost. [AWS Cost Explorer](https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html#ce-what-is)
 

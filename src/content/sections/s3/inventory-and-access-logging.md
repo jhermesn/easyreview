@@ -131,8 +131,8 @@ S3 Inventory answers what objects exist and which metadata they have. Access log
 ### How it works
 
 1. Configure Inventory for a daily or weekly report, selecting current versions or all versions and metadata such as encryption and replication status.
-2. Choose comma-separated text (CSV) or a column-oriented format, ORC or Parquet, as output and a same-Region destination bucket with a delivery policy. That bucket can belong to another account. Query reports with Athena when needed.
-3. Enable server access logging for request records. Direct S3 delivery requires a same-account, same-Region destination; a separate destination without access logging avoids a recursive stream of logs.
+2. Choose an output format and destination bucket for the report. Query reports with Athena when needed.
+3. Enable server access logging for request records. A separate destination without access logging avoids a recursive stream of logs.
 4. Enable CloudTrail S3 data events on a trail for object-level API auditing. Select the required buckets; these events are not included in Event history.
 
 | Requirement | Feature |
@@ -149,10 +149,8 @@ S3 Inventory answers what objects exist and which metadata they have. Access log
 
 ### Remember
 
-- Inventory runs daily or weekly; the first report can take up to 48 hours.
-- ORC and Parquet support column-oriented querying; choose the format your analysis tools use.
 - Server access logging is off by default and can also deliver structured records to CloudWatch Logs.
 - A direct S3 access-log destination cannot use Object Lock or Requester Pays.
 - CloudTrail data events are off by default, incur charges, and do not appear in Event history.
 
-> **Trap:** Inventory cross-account delivery does not mean direct server access-log delivery has the same permission model.
+> **Trap:** Inventory lists objects and metadata; it does not record object API requests.

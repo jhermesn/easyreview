@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER organizations/operations-in-depth"
+title: Account migrations and policy controls
 level: professional
 order: 50
 facts:
@@ -132,18 +132,29 @@ cards:
     a: An SCP that denies requests when ec2:RoleDelivery is below 2.0, so only IMDSv2 credentials work.
     facts: [imdsv2-scp]
 ---
-PLACEHOLDER first paragraph.
+AWS Organizations feature settings, account transfers, and policies affect how accounts are managed. The feature set determines whether authorization policies are available, while policy conditions can restrict requests across member accounts.
 
 ### How it works
 
-PLACEHOLDER
+1. To use authorization policies in a billing-only organization, [enable all features](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html#before-enabling-all). In the standard migration, invited members approve; accounts created in Organizations do not. Each member needs `AWSServiceRoleForOrganizations`; a missing role can require a recreation invitation.
+2. To move an account, accept an invitation from the destination management account. A [source SCP denying `organizations:LeaveOrganization`](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_account_migration.html#migrate-account-step-1) blocks the direct transfer. To remove an account to become standalone, it needs a [support plan, verified contact information, and a current payment method](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_account-before-remove).
+3. AWS Config can record Organizations [account, organization, OU, policy, and resource policy resource types](https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html).
+4. When RCPs are enabled, [RCPFullAWSAccess is attached](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_evaluation.html) to the root, each OU, and each account. It cannot be detached. [Custom RCPs use `Deny`](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps_syntax.html); `Allow` is reserved for the managed policy.
+5. In an RCP, [`aws:PrincipalOrgID`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid) identifies the requesting principal's organization. Account for AWS service principals with an `aws:PrincipalIsAWSService` exception; [`aws:SourceOrgID`](https://docs.aws.amazon.com/whitepapers/latest/building-a-data-perimeter-on-aws/perimeter-implementation.html) can restrict service requests to those originating from resources in a trusted organization.
+6. A Region-deny SCP can use [`aws:RequestedRegion` with `NotAction` exceptions](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_syntax.html) for global services. The condition checks the [endpoint called](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-requestedregion), not every cross-Region effect. An SCP can also deny requests signed with EC2 role credentials when [`ec2:RoleDelivery` is below 2.0](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html), requiring IMDSv2 credentials across member accounts.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says billing-only mode needs SCPs, think all-features migration, because billing-only mode does not support authorization policies.
+- If the question says an account transfer is blocked, think `organizations:LeaveOrganization`, because a source SCP can deny that action.
+- If the question says an organization-only RCP breaks service delivery, think a service-principal exception, because the restriction must account for AWS service principals.
+- If the question says a Region deny breaks IAM, think `NotAction` exceptions, because [global service endpoints](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_deny-requested-region.html) can be outside the permitted workload Regions.
+- If the question says block requests using IMDSv1 role credentials across member accounts, think an SCP denying `ec2:RoleDelivery` below 2.0, because that requires IMDSv2 credentials.
 
 ### Remember
 
-PLACEHOLDER
+- All-features migration is [one-way](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html).
+- [Direct transfers](https://aws.amazon.com/about-aws/whats-new/2025/11/aws-organizations-direct-account-transfers/) have been available since November 2025 without an intermediate standalone phase.
+- `RCPFullAWSAccess` cannot be detached; custom RCPs use `Deny`.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A direct account transfer does not require the account to become standalone first, but a source SCP denying `organizations:LeaveOrganization` can still block it.

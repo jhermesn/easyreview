@@ -144,6 +144,6 @@ Cross-zone load balancing controls which Availability Zones a load balancer node
 
 - ALB: always on at the load balancer, inherited by target groups unless overridden.
 - NLB and GWLB: off by default.
-- ALB target stickiness and Lambda targets require cross-zone balancing.
+- ALB cross-zone traffic has no regional data transfer charge; NLB cross-zone traffic incurs regional data transfer charges.
 
 > **Trap:** Turning off cross-zone balancing does not balance capacity between zones. Every participating zone needs its own target capacity.

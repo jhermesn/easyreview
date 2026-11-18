@@ -125,8 +125,6 @@ Asynchronous destinations retain invocation records so another service can act o
 1. Choose `On success` or `On failure` for the asynchronous destination. Failure includes exhausting attempts or exceeding maximum event age.
 2. Lambda sends a JSON invocation record containing the request and response details to the chosen target. Configure the function execution role, the permissions Lambda uses while running the function, to deliver that record.
 3. Alternatively, configure a function DLQ. It receives discarded event content without the function response details included in a destination record.
-4. Watch `DestinationDeliveryFailures` for failures sending the record itself, including permissions, size limits, or an unsupported target.
-5. For large failure records, use an S3 on-failure destination rather than SNS when the SNS message limit would be exceeded. Grant `s3:PutObject` and `s3:ListBucket`; a KMS-encrypted bucket also needs `kms:GenerateDataKey`.
 
 | Target | Asynchronous destination | Function DLQ |
 |---|---|---|
@@ -141,15 +139,11 @@ Asynchronous destinations retain invocation records so another service can act o
 - If the question says retain the response and error details, think on-failure destination, because it includes an invocation record.
 - If the question says start work after a successful asynchronous execution, think on-success destination, because a DLQ only retains discarded events.
 - If the question says SQS-triggered messages need a failure queue, think source-queue redrive policy, because the function's asynchronous settings do not control SQS polling.
-- If the question says destination records vanished after a permission change, think `DestinationDeliveryFailures`, because delivery to the target can fail independently.
-- If the question says a large failure record cannot fit in SNS, think an S3 on-failure destination, because SNS topics accept 256 KB messages by default.
 
 ### Remember
 
 - Asynchronous destinations can be set on a function, version, or alias. The function DLQ is configured at function level and shared by versions.
 - SQS and SNS targets must be standard. S3 is an on-failure destination only.
-- Destination permissions belong to the function execution role, such as `sqs:SendMessage` or `sns:Publish`.
-- SNS destination message limit: 256 KB by default, including the invocation record.
 - Reserved concurrency of 0 sends new asynchronous events to the configured failure destination or DLQ without retries.
 
 > **Trap:** A function DLQ does not capture failed SQS-triggered batches. Configure the DLQ on the source SQS queue.

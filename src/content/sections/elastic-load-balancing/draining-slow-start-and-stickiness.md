@@ -106,7 +106,7 @@ ALB target group attributes control how targets enter service, leave service, an
 
 ### How it works
 
-1. A newly healthy target normally receives its full share of requests. Enable slow start to raise that share linearly over a configured duration. A newly registered target needs another healthy target outside slow start; the first batch in an empty group does not ramp.
+1. A newly healthy target normally receives its full share of requests. Enable slow start to raise that share linearly over a configured duration. A newly registered target needs another healthy target outside slow start.
 2. Select a routing algorithm.
 
    | Algorithm | Target selection | Restrictions |
@@ -134,7 +134,6 @@ Session state is the application data retained between a user's requests. A shar
 - Deregistration delay: 300 seconds by default, configurable from 0 to 3600 seconds.
 - Slow start: disabled by default with value 0; enabled range 30 to 900 seconds.
 - Stickiness: disabled by default, enabled per target group.
-- Enabling slow start does not put already healthy targets into slow start.
 - Duration-based cookie: `AWSALB`.
 
 > **Trap:** Stickiness does not keep a failed target available. ALB selects another target when the duration-based cookie points to an unhealthy or deregistered target.

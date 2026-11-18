@@ -88,13 +88,11 @@ cards:
       - launch-result
       - termination
   - id: codedeploy-057
-    q: A CodeDeploy deployment needs graceful application shutdown during Auto Scaling scale-in. What
-      should be enabled?
-    a: Add a termination hook to the Auto Scaling groups and attach shutdown scripts to supported events
-      such as ApplicationStop. Termination proceeds even if those scripts fail.
+    q: "During a CodeDeploy in-place deployment, can suspending scheduled actions prevent all Auto Scaling scale-outs?"
+    a: "No. Scaling policies can still launch instances while scheduled actions are suspended."
+    trap: true
     facts:
-      - termination
-      - termination-result
+      - scheduled
   - id: codedeploy-058
     q: A CodeDeploy team suspended ScheduledActions but a scaling policy still launched instances during
       deployment. Is this expected?
@@ -103,26 +101,22 @@ cards:
     facts:
       - scheduled
   - id: codedeploy-059
-    q: A team adds a custom Auto Scaling hook to guarantee bootstrap completes before CodeDeploy runs.
-      Does the hook guarantee order?
-    a: No. Custom hook order relative to CodeDeploy events is not predetermined.
-    trap: true
+    q: "During a CodeDeploy rollout, an Auto Scaling group launches an instance. Which revision does it receive?"
+    a: "The previously deployed revision. After a successful rollout, CodeDeploy starts a follow-on deployment for outdated instances."
     facts:
-      - custom-order
+      - old-revision
+      - follow-on
   - id: codedeploy-069
-    q: Several CodeDeploy deployment groups share an EC2 Auto Scaling group. One launch deployment
-      fails and the instance shuts down. Why can other deployments remain pending?
-    a: Other deployments on the shutting-down instance can take up to an hour to time out. Avoid
-      associating multiple deployment groups with the same Auto Scaling group.
+    q: "How can a team disable automatic follow-on updates for instances left on an older revision during a CodeDeploy rollout?"
+    a: "Set `outdatedInstancesStrategy` to `IGNORE`. Use `UPDATE` to enable automatic updates."
     facts:
-      - multiple-groups
+      - outdated-option
+      - old-revision
   - id: codedeploy-070
-    q: A new Auto Scaling instance spends over an hour initializing before its CodeDeploy agent starts.
-      Why can its launch deployment fail?
-    a: CodeDeploy waits one hour for the agent to respond to pending deployments. Move lengthy
-      initialization into the revision so the agent can start in time.
+    q: "Why can Auto Scaling scale-in cause an in-place CodeDeploy rollout to fail?"
+    a: "Scale-in can interrupt instance hooks and reduce healthy capacity below the required minimum."
     facts:
-      - agent-launch-timeout
+      - scale-in-risk
 diagrams:
   - id: codedeploy-autoscaling-launch
     title: Auto Scaling waits for a launch deployment

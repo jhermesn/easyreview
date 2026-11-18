@@ -40,13 +40,13 @@ cards:
     a: AWS Artifact. It reviews and accepts agreements such as the BAA, for one account or a whole organization.
     facts: [baa, agreements]
   - id: artifact-003
-    q: How much does AWS Artifact charge for compliance reports and agreements?
-    a: Nothing. AWS Artifact documents and agreements are free.
-    facts: [free]
+    q: Where can a company find AWS compliance reports for an audit?
+    a: AWS Artifact provides on-demand access to AWS security and compliance documents.
+    facts: [reports, auditors]
   - id: artifact-004
-    q: A company uses AWS Organizations and wants a BAA to cover every current and future account. What can it do in AWS Artifact?
-    a: Accept the agreement at the organization level. Existing and future member accounts are covered automatically.
-    facts: [org-agreement]
+    q: What compliance documents must an AWS customer provide beyond AWS Artifact reports?
+    a: The customer must develop or obtain documents demonstrating its own security and compliance.
+    facts: [own-documents]
   - id: artifact-005
     q: Does an AWS SOC report from AWS Artifact prove that the customer's own application is compliant?
     a: No. It covers the AWS infrastructure and services. The customer must demonstrate the compliance of its own systems.

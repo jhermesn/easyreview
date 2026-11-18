@@ -14,17 +14,16 @@ facts:
     source: https://docs.aws.amazon.com/data-exchange/latest/userguide/what-is.html#what-is
 cards:
   - id: data-exchange-001
-    q: A data science team needs to subscribe to third-party weather data to enrich a forecasting model. Which AWS service fits?
-    a: AWS Data Exchange, which provides data subscriptions from other organizations.
-    facts: [what]
+    q: "An analytics team needs public datasets from other organizations. Which AWS service can help it find them?"
+    a: "AWS Data Exchange provides access to public datasets from the Open Data on AWS program."
+    facts: [open-data]
   - id: data-exchange-002
-    q: A company wants to sell its anonymized market data to other AWS customers. Which service handles delivery and entitlements?
-    a: AWS Data Exchange, with data products listed in AWS Marketplace.
-    facts: [senders]
+    q: "An ML team needs to manage access to data shared by other organizations. What can AWS Data Exchange help the team track?"
+    a: "Data grants and AWS Marketplace data subscriptions in one place."
+    facts: [what]
   - id: data-exchange-003
-    q: Do you need to pay or have an AWS account to use Open Data on AWS data sets?
-    a: "No account is required; anyone can find and use the public Open Data on AWS sets."
-    trap: true
+    q: "Can an ML team find public Open Data on AWS datasets through AWS Data Exchange without an AWS account?"
+    a: "Yes. Anyone can find and use these public datasets without an AWS account."
     facts: [open-data]
 ---
 AWS Data Exchange is where organizations share, sell and subscribe to data sets, so ML and analytics teams can use outside data without building delivery pipelines. [What is AWS Data Exchange?](https://docs.aws.amazon.com/data-exchange/latest/userguide/what-is.html)

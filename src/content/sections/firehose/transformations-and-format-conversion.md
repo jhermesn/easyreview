@@ -162,15 +162,8 @@ Firehose transformation changes record content before delivery. Format conversio
 
 1. Firehose separates aggregated records, meaning records combined by a producer. When configured, Kinesis Producer Library deaggregation runs before JSON or delimiter deaggregation.
 2. Firehose buffers the source records and invokes Lambda synchronously, meaning it waits for the response. Lambda can enrich records or change CSV input into JSON.
-3. For Direct PUT or Kinesis Data Streams sources, return each original `recordId`, a `result`, and base64-encoded `data`. Base64 is the text encoding used to carry the record bytes in the response.
-4. If configured, partition data into S3 destination prefixes, then convert JSON to Parquet or ORC. Conversion uses a deserializer to read JSON, a schema describing fields and types in the Glue Data Catalog, and a serializer to write the output format.
-5. Firehose applies destination buffering before S3 delivery. Configure S3 compression separately and enable source record backup when the original input must also be kept.
-
-| Lambda result | Meaning | Firehose treatment |
-|---|---|---|
-| `Ok` | Transformed successfully | Successful processing |
-| `Dropped` | Intentionally discarded | Successful processing |
-| `ProcessingFailed` | Could not transform | Unsuccessful processing |
+3. If configured, partition data into S3 destination prefixes, then convert JSON to Parquet or ORC. Conversion uses a deserializer to read JSON, a schema describing fields and types in the Glue Data Catalog, and a serializer to write the output format.
+4. Firehose applies destination buffering before S3 delivery. Configure S3 compression separately and enable source record backup when the original input must also be kept.
 
 ### Exam cues
 
@@ -187,4 +180,4 @@ Firehose transformation changes record content before delivery. Format conversio
 - Conversion order: Lambda, data partitioning, format conversion, S3 delivery.
 - S3 compression options include GZIP, Snappy, Zip, Hadoop-Compatible Snappy, and none.
 
-> **Trap:** Changing `recordId` breaks the Firehose transformation contract. Keep the original identifier even when the record data changes.
+> **Trap:** Compression does not require a Lambda transformation. Configure it separately in the S3 destination settings.

@@ -85,8 +85,7 @@ Role-based access control (RBAC) assigns permissions by job function. Attribute-
 
 1. With RBAC, attach the policies for each job function to the relevant identities. With ABAC, define a comparison between principal attributes and resource attributes.
 2. For supported operations, compare `aws:PrincipalTag/project` with `aws:ResourceTag/project`, or the service's supported resource-tag key. Check support for the selected service and action.
-3. Let a SAML or OIDC provider pass identity attributes as session tags. The receiving role trust needs `sts:TagSession`; restrict permitted tag keys and values so the caller cannot choose arbitrary authorization attributes.
-4. With IAM Identity Center, select attributes for access control and map their source values. For example, map `Department` to the populated `${path:enterprise.department}` attribute. Permission set policies, the policies defining assigned account permissions, or resource policies can reference `aws:PrincipalTag/Department` and compare resource tags.
+3. A SAML or OIDC provider can pass identity attributes as session tags.
 
 ### Exam cues
 
@@ -98,6 +97,5 @@ Role-based access control (RBAC) assigns permissions by job function. Attribute-
 
 - A job function in RBAC is not the same thing as an IAM role.
 - Provider attributes can become temporary session tags.
-- Identity Center mapping alone grants no resource access; the permission policy must use the attribute.
 
 > **Trap:** ABAC works only where the service and action support the tag conditions you use.

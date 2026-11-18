@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER rds/design-details"
+title: RDS design choices and limits
 level: associate
 order: 100
 facts:
@@ -67,18 +67,29 @@ cards:
     a: "Up to **15**. Size each replica like the source, and scale replicas when you scale the source."
     facts: [replica-count]
 ---
-PLACEHOLDER first paragraph.
+RDS design choices affect database access, availability and operations. These details help you choose how clients connect and what to expect from backups, failover and stopped instances.
 
 ### How it works
 
-PLACEHOLDER
+1. A [Multi-AZ DB instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby) uses a synchronous standby, which also minimizes latency spikes on the primary during system backups. RDS Custom for Oracle and SQL Server also support a synchronous standby in another Availability Zone, but require [prerequisites](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-sqlserver-multiaz.html#custom-sqlserver-multiaz).
+2. For MariaDB, MySQL and PostgreSQL, [IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth) lets clients use a short-lived token instead of a password.
+3. Every DB instance has a private IP address in its VPC, a private virtual network. To make an instance publicly accessible, every subnet in its DB subnet group must be public, and the VPC must have DNS hostnames and DNS resolution enabled. See [working with a DB instance in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html).
+4. [RDS Proxy](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations) must be in the database's VPC and cannot be public. During [failover](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html), most client connections remain open, but connections in the middle of a transaction or SQL statement are canceled. The proxy accepts new connections immediately.
+5. A stopped DB instance [starts automatically](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html#USER_StopInstance) after its maximum stop period, so it does not miss required maintenance.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says avoid storing a database password for a PostgreSQL client, think IAM database authentication, because it uses a token.
+- If the question says public access is enabled but the DB subnet group contains private subnets, think subnet configuration, because every subnet in the group must be public.
+- If the question says RDS Custom needs a standby, think Multi-AZ and its prerequisites, because RDS Custom runs inside your account.
+- If the question says a proxy client was executing a transaction during failover, think canceled connection, because in-flight work is interrupted.
+- If the question says a test instance should remain stopped indefinitely, think automatic restart, because RDS limits the stop period.
 
 ### Remember
 
-PLACEHOLDER
+- IAM authentication tokens last 15 minutes.
+- A DB instance can remain stopped for at most 7 consecutive days.
+- [RDS for MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_MySQL.Replication.ReadReplicas.html) supports up to 15 read replicas per source DB instance in the same Region.
+- [RDS Custom for Oracle](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-oracle-multiaz.html#custom-oracle-multiaz) support ends March 31, 2027; its console and resources cannot be accessed afterward.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Public access on a DB instance does not make RDS Proxy public. The proxy remains private even when its database is publicly accessible.

@@ -71,39 +71,37 @@ diagrams:
       - Access to other networks requires routing from the VPC.
 cards:
   - id: managed-grafana-001
-    q: What is an Amazon Managed Grafana workspace and how do users sign in?
-    a: A workspace is a managed, logically isolated Grafana server. Users sign in with IAM Identity Center, SAML 2.0, or both.
-    facts: [workspace, authentication]
+    q: "A team needs to visualize operational metrics and logs from multiple sources. Which AWS service fits?"
+    a: "Amazon Managed Grafana. It queries and visualizes metrics, logs, and traces from multiple sources."
+    facts: [visualization]
   - id: managed-grafana-002
-    q: Where does Amazon Managed Grafana obtain the data shown in its dashboards?
-    a: It queries configured data sources, which are storage backends. The workspace needs permission to access AWS data sources.
-    facts: [data-sources, service-managed, customer-managed]
-    trap: true
+    q: "A team wants one Amazon Managed Grafana dashboard to show data from several backends. What can it use?"
+    a: "A dashboard combining multiple data sources. Each source is a backend that Grafana can query."
+    facts: [data-sources]
   - id: managed-grafana-003
-    q: A team wants one Amazon Managed Grafana dashboard for CloudWatch and Amazon Managed Service for Prometheus. What should it configure?
-    a: Add both data sources to the workspace and grant the workspace access. A dashboard can combine sources.
-    facts: [aws-sources, data-sources, add-source, service-managed]
+    q: "A team wants to visualize CloudWatch and Amazon Managed Service for Prometheus data together. What can it use?"
+    a: "Amazon Managed Grafana. Its dashboard can combine these AWS data sources."
+    facts: [aws-sources, data-sources]
   - id: managed-grafana-004
-    q: A team selected CloudWatch during Amazon Managed Grafana workspace creation but cannot query it yet. What configuration remains?
-    a: Add CloudWatch as a data source in the Grafana workspace console. Selecting it during creation provisions permissions but does not add it.
-    facts: [add-source]
-    trap: true
+    q: "A team wants an Amazon Managed Grafana panel to query more than one data source. Which option fits?"
+    a: "The Mixed data source lets a panel query multiple data sources."
+    facts: [mixed]
   - id: managed-grafana-005
-    q: How can Amazon Managed Grafana automatically provision AWS data source access across an organization?
-    a: Choose organization service-managed permissions in a management or delegated administrator account and enable trusted access for CloudFormation StackSets.
-    facts: [organization, organization-location]
+    q: "A team needs to visualize operational traces alongside metrics and logs. Which AWS service fits?"
+    a: "Amazon Managed Grafana can query and visualize all three from multiple sources."
+    facts: [visualization]
   - id: managed-grafana-006
-    q: An Amazon Managed Grafana workspace must query a private data source in a VPC. What should be configured?
-    a: Connect the workspace to the VPC. Provide private subnets in at least two Availability Zones with at least 15 available IP addresses each.
-    facts: [private-source, vpc-prerequisites]
+    q: "A team needs an Amazon Managed Grafana dashboard to visualize data stored in a private VPC. How can the workspace reach it?"
+    a: "Connect the workspace to the VPC to reach the private data source."
+    facts: [private-source]
   - id: managed-grafana-007
-    q: A team connects Amazon Managed Grafana to a VPC and loses access to an external data source. What should it check?
-    a: Check routing from the VPC to the other network. Outbound traffic goes through the VPC after connection.
-    facts: [private-source, external-routing]
+    q: "A team wants a managed Grafana server for operational dashboards without maintaining the server itself. What should it use?"
+    a: "An Amazon Managed Grafana workspace. AWS manages its provisioning, scaling, and maintenance."
+    facts: [workspace, visualization]
   - id: managed-grafana-008
-    q: Which IAM role does an Amazon Managed Grafana workspace use with customer-managed permissions?
-    a: An existing role that trusts grafana.amazonaws.com and permits access to the required data sources.
-    facts: [customer-managed]
+    q: "Which AWS data sources can a team visualize with Amazon Managed Grafana?"
+    a: "Examples include CloudWatch, Amazon OpenSearch Service, AWS X-Ray, and Amazon Managed Service for Prometheus."
+    facts: [aws-sources, visualization]
 ---
 
 Amazon Managed Grafana provides managed Grafana workspaces for viewing operational metrics, logs, and traces from multiple sources. A workspace is a logically isolated Grafana server; a data source is a storage backend that Grafana queries.

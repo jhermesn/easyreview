@@ -63,13 +63,13 @@ cards:
     trap: true
     facts: [hub, dms-tracking]
   - id: cloud-adoption-030
-    q: "Discovery of VMware vCenter VMs must avoid installing anything on each VM, yet the team also needs process and network connection data. What does each Application Discovery Service option provide?"
-    a: "The Agentless Collector (an OVA in vCenter) reports VM performance and utilization only. Process and network connection data needs the Discovery Agent on each server."
-    facts: [ads-collectors]
+    q: "How does AWS Application Discovery Service help plan a cloud migration?"
+    a: "It collects information about on-premises servers and databases, including usage and network connections. It is closed to new customers; AWS Transform offers similar capabilities."
+    facts: [ads, ads-closed]
   - id: cloud-adoption-031
-    q: "A team wants to test an Amazon Linux EC2 instance on its on-premises VMware vSphere hosts. Which AWS capability produces the VM image?"
-    a: "VM Import/Export instance export, which writes the VM image to S3. It cannot export instances with Windows, SQL Server or AWS Marketplace software."
-    facts: [vm-export]
+    q: "How can Migration Evaluator help a company prepare for a move to AWS?"
+    a: "It builds a data-driven business case and identifies over-provisioned on-premises instances."
+    facts: [evaluator]
 ---
 AWS migration services cover the three stages of a move: build the case, discover what you run, then move and track it. Several were renamed or closed to new customers in late 2025, so exam questions may use older names. [Migration Hub](https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub)
 

@@ -21,9 +21,10 @@ cards:
     a: "Switch the cluster to **Aurora I/O-Optimized**: no per-I/O charges, best when I/O is 25% or more of spend."
     facts: [io-optimized, standard]
   - id: aurora-033
-    q: How often can an Aurora cluster switch from Standard to I/O-Optimized storage?
-    a: "Once every 30 days (switching back to Standard is allowed any time)."
-    facts: [switch]
+    q: A SQL Server application needs to move to Aurora PostgreSQL with few code changes. Which
+      Aurora feature supports this migration?
+    a: "Babelfish for Aurora PostgreSQL accepts SQL Server client connections without changing database drivers."
+    facts: [babelfish]
   - id: aurora-034
     q: A company wants to move a SQL Server application to Aurora PostgreSQL with minimal code changes and without changing database drivers. Which feature fits?
     a: "**Babelfish for Aurora PostgreSQL**, which understands the SQL Server TDS protocol and T-SQL."

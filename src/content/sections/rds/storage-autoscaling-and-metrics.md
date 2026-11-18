@@ -122,15 +122,15 @@ RDS storage autoscaling grows a DB instance's allocated disk space when free spa
 ### How it works
 
 1. Enable autoscaling and set a maximum storage threshold. It must be at least 10 percent above current allocation; AWS recommends 26 percent or more. Changing this setting does not require downtime.
-2. RDS waits until free space is at or below 10 percent for at least five minutes. Prior storage optimization must be complete, and fewer than four storage modifications must have occurred in the past 24 hours.
-3. RDS chooses the largest growth increment: 10 GiB, 10 percent of current allocation, or predicted growth exceeding allocated storage over the next seven hours using the past hour's free-space metrics.
-4. Monitor the remaining space and I/O, meaning disk reads and writes. A large load can still fill storage before another modification is permitted. Autoscaling never shrinks allocated storage.
+2. Monitor the remaining space and I/O, meaning disk reads and writes. A large load can still fill storage before another modification is permitted. Autoscaling never shrinks allocated storage.
+3. Use Enhanced Monitoring to see real-time CPU and memory use by database and operating system processes. Use CloudWatch Database Insights to examine database load by waits, SQL statements, hosts, or users.
 
 ### Exam cues
 
 - If the question says unpredictable disk growth, think storage autoscaling with a suitable maximum, because RDS can increase allocation when its low-space conditions are met.
 - If the question says rising disk queues and slow queries, think queue, latency, IOPS, and throughput metrics together, because they describe different parts of disk activity. IOPS means operations per second; throughput means bytes transferred per second.
-- If the question says read demand should add RDS DB instance replicas automatically, think manual replica management, because storage autoscaling changes disk allocation rather than replica count.
+- If the question says CPU and memory use by process, think Enhanced Monitoring, because its process list reports both.
+- If the question says identify SQL statements behind database load, think CloudWatch Database Insights, because it can filter load by SQL statement.
 
 ### Remember
 

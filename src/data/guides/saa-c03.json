@@ -1764,7 +1764,8 @@
                 "datasync/online-data-transfer",
                 "snow-family/offline-transfer-and-edge-devices",
                 "transfer-family/managed-file-transfer-endpoints",
-                "storage-gateway/file-gateways"
+                "storage-gateway/file-gateways",
+                "cloud-adoption/migration-services"
               ]
             },
             {
@@ -2270,7 +2271,8 @@
               "sections": [
                 "billing-and-cost-management/data-transfer-costs",
                 "vpc/flow-logs",
-                "vpc/gateway-endpoints-and-endpoint-policies"
+                "vpc/gateway-endpoints-and-endpoint-policies",
+                "well-architected/well-architected-tool"
               ]
             },
             {

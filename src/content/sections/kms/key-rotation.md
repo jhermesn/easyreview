@@ -150,13 +150,12 @@ KMS rotation changes key material, the secret cryptographic value behind a key, 
 
 Custom automatic periods and on-demand rotation arrived in April 2024. Imported symmetric keys gained on-demand rotation in June 2025. AWS managed keys rotate annually; customers cannot change that setting.
 
-The Config managed rule `cmk-backing-key-rotation-enabled` checks automatic rotation enablement and has no parameters. A custom age check must distinguish creating a replacement key from rotating material within the same key. Use `GetKeyRotationStatus` for settings and in-progress rotation, and `ListKeyRotations` with material rotation dates for completed rotations.
+The Config managed rule `cmk-backing-key-rotation-enabled` checks automatic rotation enablement and has no parameters.
 
 ### Exam cues
 
 - If the question says rotate every 180 days, think a custom automatic period on an eligible symmetric key, because the allowed range is 90 to 2560 days.
-- If the question says prove a maximum rotation age, think a custom check using material rotation history, because the managed Config rule only tests enablement.
-- If the question says rotate imported symmetric material without changing the ARN, think on-demand rotation after staging new material, because that key type supports it.
+- If the question says enforce a maximum rotation age with the managed Config rule, think a custom age check, because the rule only tests enablement and has no parameters.
 - If the question says rotation should rewrite all stored ciphertext, think a separate data re-encryption process, because KMS rotation does not rewrite data or data keys.
 
 ### Remember
@@ -166,4 +165,4 @@ The Config managed rule `cmk-backing-key-rotation-enabled` checks automatic rota
 - Manual: new key resource and redirected future use.
 - AWS managed keys: annual rotation controlled by AWS.
 
-> **Trap:** An old key creation date does not prove old key material. Material rotation preserves the key ID.
+> **Trap:** Rotating key material does not re-encrypt stored data or rotate data keys.

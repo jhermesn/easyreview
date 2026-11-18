@@ -136,14 +136,13 @@ cards:
     a: "One instance, one AMI and one snapshot. Copying an EBS-backed AMI also copies its backing snapshot into the destination Region."
     facts: [copy-creates-snapshots]
   - id: ec2-099
-    q: "A new account tries to make an AMI public and fails. What setting is likely in the way?"
-    a: "Block public access for AMIs, which is enabled by default in new accounts."
-    facts: [ami-bpa-default]
+    q: "A disaster recovery plan needs to launch EC2 instances from an AMI in a different AWS Region. What must the team do?"
+    a: "Copy the AMI to the recovery Region. AMIs can launch instances only in their own Region."
+    facts: [regional, cross-region]
   - id: ec2-104
-    q: "Block public access for AMIs is turned on in an account that already has public AMIs. What happens to them?"
-    a: "They stay public; the setting only blocks new attempts to make AMIs public."
-    trap: true
-    facts: [ami-bpa-existing]
+    q: "An EC2 instance must be relocated to another Availability Zone for recovery. How can an AMI help?"
+    a: "Use AWSSupport-CopyEC2Instance to create an AMI and launch a replacement in a subnet in the target zone."
+    facts: [az-replacement, subnet-zone]
 diagrams:
   - id: ec2-ami-zone-replacement
     title: Relocate within a Region by launching from an AMI
@@ -168,9 +167,9 @@ An Amazon Machine Image (AMI) is a software template for setting up and booting 
 ### How it works
 
 1. Select an AMI in the launch Region that supports the chosen instance type, the instance's hardware configuration. A Region is a separate geographic area containing isolated locations called Availability Zones.
-2. To let another account launch from your AMI, grant it launch permission. The source AMI remains yours. Launching does not require separate snapshot-sharing permissions.
+2. To let another account launch from your AMI, grant it launch permission. The source AMI remains yours.
 3. For encrypted snapshots, grant access to their KMS encryption keys too. Use a customer managed key, which you create and control. An AWS managed key, whose permissions AWS controls, cannot support cross-account AMI sharing.
-4. To give the recipient its own image, also grant read access to the backing snapshots and let it copy the AMI. The copy gets a new ID. Image Builder cross-account distribution can deliver images into destination accounts; encrypted distribution needs access to both source and destination keys.
+4. To give the recipient its own image, let it copy the shared AMI.
 5. For another Region, copy the AMI there and set launch permissions on the copy. Copying does not carry over those permissions. To select a different encryption key for the copy, set `Encrypted` and `KmsKeyId` on `CopyImage`.
 6. For another Availability Zone in the same Region, create an AMI and launch a replacement in the destination subnet. A subnet is a range of addresses in your virtual private cloud (VPC) within one zone. `AWSSupport-CopyEC2Instance` automates this procedure. Update references to changed addresses.
 
@@ -181,14 +180,10 @@ An Amazon Machine Image (AMI) is a software template for setting up and booting 
 | Instances must run in another Region | Copy the AMI into that Region | Launch from the destination image |
 | Instance must run in another zone | Launch a replacement from an AMI in the destination subnet | New instance and changed addresses |
 
-To restrict which images a user can launch, scope `ec2:RunInstances` permissions in an IAM policy to approved AMI resources. To find running instances using other images, configure AWS Config's `approved-amis-by-id` rule with the approved image IDs. It marks running instances outside that list `NON_COMPLIANT`.
-
 ### Exam cues
 
-- If the question says launch succeeds but copying a shared AMI fails, think snapshot read permission, because launching and copying have different backing-storage access requirements.
 - If the question says an encrypted shared AMI cannot launch, think KMS key access, because image permission alone does not authorize use of the encryption keys.
 - If the question says relocate an instance to another Availability Zone, think an AMI and a replacement launch, because the target subnet determines the zone.
-- If the question says identify running instances using unapproved images, think `approved-amis-by-id`, because the rule compares their AMI IDs with the configured list.
 
 ### Remember
 
@@ -197,4 +192,4 @@ To restrict which images a user can launch, scope `ec2:RunInstances` permissions
 - `aws/ebs` is an AWS managed key. An AMI encrypted with the default AWS managed key cannot be shared.
 - Copies need their own launch permissions. Encrypted snapshots cannot become unencrypted through copying.
 
-> **Trap:** A shared AMI is permission to use the owner's image. It does not create an image owned by the recipient. Copying requires backing-snapshot read access as well as any required KMS key access.
+> **Trap:** A shared AMI is permission to use the owner's image. It does not create an image owned by the recipient.

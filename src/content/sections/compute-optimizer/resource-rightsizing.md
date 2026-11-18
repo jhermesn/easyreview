@@ -61,14 +61,16 @@ cards:
     a: The default is 14 days. Paid enhanced infrastructure metrics extend it to 93 days for selected resources.
     facts: [lookback]
   - id: compute-optimizer-004
-    q: An organization wants AWS Compute Optimizer recommendations across all accounts. How can it enroll them?
-    a: Opt in all accounts from the management account. New member accounts are opted in automatically.
-    facts: [organization]
+    q: A team needs to find idle resources and choose better EC2 instance sizes based on usage.
+      Which AWS service can help?
+    a: AWS Compute Optimizer analyzes configuration and utilization to identify idle resources and
+      recommend sizes.
+    facts: [purpose, supported]
   - id: compute-optimizer-006
-    q: Does AWS Compute Optimizer enforce software license consumption limits?
-    a: Use AWS License Manager for rule-based license controls. Compute Optimizer provides optimization recommendations.
-    trap: true
-    facts: [license-manager, purpose]
+    q: A team is evaluating an AWS Compute Optimizer rightsizing recommendation. What can it use to
+      assess the utilization trade-off?
+    a: Review the recent and projected utilization graphs provided by Compute Optimizer.
+    facts: [graphs]
   - id: compute-optimizer-008
     q: A team wants AWS Compute Optimizer EC2 recommendations to consider instance memory use. What can it configure?
     a: Collect memory metrics with the CloudWatch agent or ingest them from a supported external product.

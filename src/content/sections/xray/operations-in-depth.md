@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER xray/operations-in-depth"
+title: Trace propagation and diagnostics
 level: professional
 order: 60
 facts:
@@ -85,18 +85,26 @@ cards:
     facts:
       - viewpoints
 ---
-PLACEHOLDER first paragraph.
+X-Ray trace context connects work across instrumented HTTP services. Segments and subsegments also give different views of a call, helping you identify where recorded work belongs.
 
 ### How it works
 
-PLACEHOLDER
+1. Instrumented HTTP services pass trace context in the [`X-Amzn-Trace-Id` header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader). `Root` identifies the trace, `Parent` identifies the upstream segment or subsegment, and `Sampled` carries the upstream recording decision.
+2. A [subsegment](https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-subsegments) describes part of a segment, such as an outgoing call, SQL query, or custom code block. X-Ray uses instrumented client subsegments to create [inferred nodes](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-subsegments) for services such as DynamoDB.
+3. Compare the upstream client subsegment with the downstream service segment. The client view includes round-trip latency, while the service segment records the downstream service's view of the call.
+4. In Lambda traces, [`AWS::Lambda` records execution environment preparation and `AWS::Lambda::Function` records function work](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html#services-xray-traces). Traces from instrumented SQS producers can also be [linked to downstream Lambda consumer traces](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says downstream HTTP work appears in a separate trace, think trace-header propagation, because `Root` and `Parent` carry the trace and upstream context.
+- If the question says DynamoDB appears as an inferred node, think instrumented client subsegment, because X-Ray derives the node from the client record.
+- If the question says Lambda preparation and function work need separate inspection, think `AWS::Lambda` and `AWS::Lambda::Function`, because they record those respective activities.
+- If the question says an instrumented SQS producer sends messages to a Lambda consumer, think linked traces, because X-Ray can connect the producer and consumer work.
 
 ### Remember
 
-PLACEHOLDER
+- `Sampled` carries the upstream recording decision.
+- The upstream client subsegment includes round-trip latency; the downstream segment records the service view.
+- X-Ray does not support Lambda event source mappings for MSK, self-managed Kafka, Amazon MQ, or DocumentDB.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** An inferred DynamoDB node does not come from a DynamoDB segment. Inspect the instrumented client subsegment for the call.

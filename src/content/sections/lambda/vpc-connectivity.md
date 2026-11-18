@@ -191,7 +191,7 @@ A Lambda VPC attachment lets function code reach resources in your private netwo
 ### How it works
 
 1. Select the customer VPC subnets and security groups, rules that control allowed network traffic. Give the execution role the interface-management permissions supplied by `AWSLambdaVPCAccessExecutionRole` to establish the attachment.
-2. Lambda creates or reuses a Hyperplane ENI. Functions in the same account with the same subnet and security-group combination can share it. Interface-management permissions establish connectivity; they do not authorize each function invocation.
+2. Lambda uses a Hyperplane ENI for the attachment. Interface-management permissions establish connectivity; they do not authorize each function invocation.
 3. For IPv4 internet access, route private-subnet traffic through a NAT gateway in a public subnet, then through an internet gateway. A NAT gateway translates the private source address so replies can return. Selecting a public subnet alone gives the function neither a public IP nor internet access.
 4. For S3 access, an S3 gateway endpoint provides a VPC path to the service. For IPv6 internet access, enable outbound IPv6, use dual-stack subnets that support both IPv4 and IPv6, and configure the IPv6 route through an egress-only internet gateway.
 5. For shared persistent files, mount EFS through an access point, a configured entry path into the file system, under `/mnt/`. Make a mount target, the network endpoint for the file system, available in each function Availability Zone. Allow Network File System (NFS) traffic on port 2049 between the function and mount-target security groups.
@@ -200,7 +200,7 @@ A Lambda VPC attachment lets function code reach resources in your private netwo
 ### Exam cues
 
 - If the question says Lambda lost IPv4 internet access after VPC attachment, think private-subnet NAT routing, because attachment does not assign a public IP.
-- If the question says many functions share subnets and security groups, think Hyperplane ENI reuse, because Lambda can share that network attachment.
+- If the question says the VPC attachment fails with network interface errors, think available subnet IP addresses and the VPC interface quota, because either can limit connectivity.
 - If the question says files must be shared across Lambda environments, think EFS access points, because they expose shared files through a local mount.
 - If the question says cross-account EFS has IAM permissions but times out, think routing and NFS rules, because authorization does not provide network connectivity.
 

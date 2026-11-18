@@ -79,9 +79,9 @@ cards:
     a: AWS Direct Connect.
     facts: [dedicated-link]
   - id: direct-connect-015
-    q: "Two Direct Connect private VIFs advertise the same prefixes, and traffic from AWS should prefer one as active and the other as passive. Which mechanism does AWS recommend?"
-    a: "**Local preference BGP community tags.** Route selection uses longest prefix, then local preference, then AS_PATH length, then MED."
-    facts: [bgp-path-order]
+    q: "A company needs encrypted traffic between its network and AWS over AWS Direct Connect without public IP addresses. What should it use?"
+    a: "Use private IP Site-to-Site VPN over Direct Connect. It encrypts traffic with IPsec."
+    facts: [private-ip-vpn]
   - id: direct-connect-016
     q: "A regulated company needs IPsec encryption over its Direct Connect link without exposing any public IP addresses. Which option fits?"
     a: "**Private IP Site-to-Site VPN** over Direct Connect. It encrypts the traffic without public tunnel addresses."

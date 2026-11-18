@@ -70,7 +70,6 @@ Reserved Instances are discounts on EC2 usage that matches their attributes. The
 2. Pick the class: Standard (biggest discount, modify only) or Convertible (exchangeable). [Offering class](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html#ri-pricing-variable-offering-class)
 3. Pick the scope: regional for flexibility, zonal for a capacity reservation.
 4. In an organization, the management account decides how discounts are shared among accounts. [Discount sharing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ri-turn-off.html#ri-turn-off)
-5. Sell unused Standard RIs in the Reserved Instance Marketplace.
 
 | Scope | Reserves capacity | AZ flexibility | Size flexibility |
 |---|---|---|---|

@@ -73,18 +73,19 @@ cards:
     a: The environment contains resources shared by its deployed services.
     facts: [environment]
   - id: copilot-003
-    q: A team has an AWS Copilot deployment after support ended. Does it immediately stop working?
-    a: No. Existing deployments continue to function, but without ongoing maintenance.
-    facts: [existing]
-    trap: true
+    q: "A team needs to deploy an internet-facing container application to Amazon ECS using AWS Copilot. Which service pattern fits?"
+    a: "The Load Balanced Web Service pattern runs the application on ECS Fargate with an Application Load Balancer."
+    facts:
+      - web-service
   - id: copilot-004
     q: A team wants to move away from AWS Copilot after support ended. Which deployment options does AWS describe?
     a: Amazon ECS Express Mode and AWS CDK. Teams can also manage Copilot-generated CloudFormation stacks.
     facts: [migration, adoption]
   - id: copilot-005
-    q: What can AWS Copilot use to build and deploy code when changes are pushed to a Git repository?
-    a: A deployment pipeline based on AWS CodePipeline.
-    facts: [pipelines]
+    q: "What are the main steps in an AWS Copilot container application deployment?"
+    a: "Initialize an application, create a service, and deploy it to an environment using a manifest."
+    facts:
+      - workflow
   - id: copilot-006
     q: Which AWS Copilot pattern processes messages from Amazon SQS queues?
     a: Worker Service.

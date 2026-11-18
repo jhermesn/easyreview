@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER ecr/operations-in-depth"
+title: Tag exclusions and image delivery
 level: professional
 order: 60
 facts:
@@ -38,18 +38,23 @@ cards:
     facts:
       - push-trigger
 ---
-PLACEHOLDER first paragraph.
+Amazon ECR supports tag exclusions, public image access and image push triggers for delivery pipelines. These settings let a team choose which tags can move, who can publish an image and how an image push starts a pipeline.
 
 ### How it works
 
-PLACEHOLDER
+1. Choose an [exclusion setting](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html#image-tag-mutability). With `IMMUTABLE_WITH_EXCLUSION`, matching tags can be updated. With `MUTABLE_WITH_EXCLUSION`, matching tags are protected from updates.
+2. Anyone can pull from a [public repository](https://docs.aws.amazon.com/AmazonECR/latest/public/public-registries.html#public-registries). To push, authenticate the Docker client and have the required permissions.
+3. Use an [ECR source action](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECR.html) to trigger CodePipeline on an image push. Add another source action when the pipeline also needs deployment files from source control.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says release tags must stay protected while `latest` can move, think `IMMUTABLE_WITH_EXCLUSION` with a filter matching `latest`, because excluded tags can be updated.
+- If the question says an image push should start a pipeline that also needs deployment files, think an ECR source action plus another source action, because each can supply its respective source.
 
 ### Remember
 
-PLACEHOLDER
+- `IMMUTABLE_WITH_EXCLUSION` allows updates to matching excluded tags.
+- `MUTABLE_WITH_EXCLUSION` protects matching excluded tags.
+- Public image pushes require Docker authentication and permission.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Anyone can pull a public image, but public access does not allow anonymous pushes. A push still requires an authenticated Docker client and permission.

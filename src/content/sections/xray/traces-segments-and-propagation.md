@@ -161,21 +161,18 @@ X-Ray follows recorded requests across a distributed application, meaning an app
 3. Services send segments for their work. Instrumented clients add subsegments for calls to other services or databases.
 4. X-Ray joins the records by trace ID. For a dependency that sends no segment, such as DynamoDB, it creates an inferred node from the caller's subsegment.
 
-An inferred node is X-Ray's reconstruction of a dependency from client observations. The client measures round-trip time, including travel between services. A downstream service segment measures that service's own work.
-
-Lambda Active tracing follows upstream sampling and produces service and function segments. For SQS-driven Lambda consumers, producer and consumer traces can be linked rather than represented as one synchronous call.
+An inferred node is X-Ray's reconstruction of a dependency from client observations. Lambda Active tracing follows upstream sampling and produces segments for sampled requests.
 
 ### Exam cues
 
-- If the question says downstream work appears in a separate trace, think trace-header propagation, because the shared trace ID and parent context connect the request.
-- If the question says DynamoDB has an inferred node, think instrumented client subsegments, because DynamoDB does not send its own segment.
-- If the question says separate Lambda preparation from function work, think `AWS::Lambda` and `AWS::Lambda::Function`, because they describe those different activities.
+- If the question says a request crosses several services, think an X-Ray trace, because it groups the recorded segments for that request.
+- If the question says one service operation needs more detail, think a subsegment, because it records part of the work within a segment.
+- If the question says DynamoDB has an inferred node, think instrumented client subsegments, because X-Ray derives the node from the client record.
 
 ### Remember
 
 - The HTTP context header is `X-Amzn-Trace-Id`, with `Root`, `Parent`, and `Sampled` fields.
 - A segment document has a maximum size of 64 kB.
-- MSK, self-managed Kafka, Amazon MQ, and DocumentDB Lambda event source mappings do not support X-Ray tracing.
 - Incoming trace headers can come from clients; applications can remove them to avoid client-controlled trace IDs and sampling decisions.
 
 > **Trap:** An inferred node does not mean the dependency emitted its own trace segment. Inspect the caller's subsegment for the recorded downstream latency and response.

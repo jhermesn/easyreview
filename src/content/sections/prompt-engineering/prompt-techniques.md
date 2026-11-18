@@ -56,9 +56,9 @@ cards:
     a: An output indicator, such as "Summarize in one sentence."
     facts: [output-indicator]
   - id: prompt-engineering-007
-    q: Where in a prompt should the question or instruction go for best results with Amazon Bedrock models?
-    a: At the end, after the context, so the model knows what to find.
-    facts: [placement]
+    q: "Why should a prompt for an Amazon Bedrock model use clear and complete instructions?"
+    a: "Clear and complete instructions reduce ambiguity about the task."
+    facts: [instructions]
   - id: prompt-engineering-008
     q: Is prompt engineering a way to change a model's weights?
     a: "No. It changes only the input. It's the cheapest customization: no training, no new model."

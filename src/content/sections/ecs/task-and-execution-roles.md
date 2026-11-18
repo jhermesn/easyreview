@@ -167,12 +167,10 @@ cards:
     facts:
       - ecs-roles-trust-scope
   - id: ecs-063
-    q: An ECS workload requires isolation between tasks that belong to different tenants. Why choose
-      Fargate over ordinary tasks sharing an EC2 host?
-    a: Fargate isolates each task. Ordinary EC2 containers can potentially reach other tasks'
-      credentials or instance metadata on the same host.
+    q: "An application running in an Amazon ECS task needs AWS API permissions. Which role should carry them?"
+    a: "Use the task IAM role. It supplies temporary AWS credentials to application code in the task."
     facts:
-      - ecs-roles-isolation
+      - ecs-roles-task
   - id: ecs-064
     q: An ECS service injects a Secrets Manager secret into container environment variables. How can
       the service pick up a rotated secret?
@@ -181,19 +179,17 @@ cards:
     facts:
       - ecs-roles-secret-rotation
   - id: ecs-065
-    q: An ECS Fargate Linux task must inject one JSON key from a Secrets Manager secret. What is the
-      minimum Fargate platform version?
-    a: Linux platform version 1.4.0. For Windows, use platform version 1.0.0.
+    q: "An Amazon ECS task injects a Secrets Manager secret encrypted with a customer managed KMS key. What permissions are needed?"
+    a: "The execution role needs `secretsmanager:GetSecretValue` and `kms:Decrypt`."
     facts:
-      - ecs-roles-secret-version
+      - ecs-roles-secrets
+      - ecs-roles-kms
   - id: ecs-069
-    q: An ECS workload needs hardware isolation between tasks while retaining multiple tasks per EC2
-      instance. Which ECS compute option supports this?
-    a: Use isolated tasks on ECS Managed Instances with Nitro Sandboxes. Each task gets a separate
-      hardware-isolated virtual machine.
+    q: "Which IAM role lets the Amazon ECS agent register an EC2 container instance and call ECS APIs?"
+    a: "The EC2 container instance role, attached through an instance profile."
     facts:
-      - ecs-roles-nitro
-      - ecs-roles-nitro-date
+      - ecs-roles-instance
+      - ecs-roles-instance-trust
   - id: ecs-071
     q: ECS tasks on EC2 with the awslogs driver send no logs, and the task has no execution role. Which role needs logs:PutLogEvents?
     a: The container instance role (or the task execution role, if one is assigned). The task role is for the application's own calls.

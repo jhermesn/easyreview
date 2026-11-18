@@ -136,10 +136,9 @@ cards:
     a: One subnet per Availability Zone.
     facts: [subnet]
   - id: privatelink-008
-    q: A ping to an AWS PrivateLink interface endpoint fails. Does that alone prove the endpoint is unavailable?
-    a: No. Interface endpoints do not respond to ping.
-    facts: [ping]
-    trap: true
+    q: "A VPC application needs private access to a supported AWS service without an internet gateway or NAT device. What should it use?"
+    a: "An interface VPC endpoint using AWS PrivateLink."
+    facts: [private-connectivity, interface-eni]
   - id: privatelink-009
     q: An on-premises application needs private S3 access over Direct Connect. Should it use an S3 gateway endpoint or an AWS PrivateLink interface endpoint?
     a: Use an S3 interface endpoint. An S3 gateway endpoint cannot be used from on-premises.

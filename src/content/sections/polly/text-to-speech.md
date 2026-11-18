@@ -36,17 +36,17 @@ cards:
     trap: true
     facts: [purpose]
   - id: polly-004
-    q: "Polly must say \"World Wide Web Consortium\" every time the text says W3C. Which feature does this?"
-    a: "A pronunciation lexicon, which defines how specific words or abbreviations are spoken."
-    facts: [lexicons]
+    q: "How is Amazon Polly usage charged when an application replays speech it already generated?"
+    a: "You pay for the text synthesized. Cached speech can be replayed at no additional cost."
+    facts: [pricing]
   - id: polly-005
-    q: "An app must highlight each word on screen as Polly speaks it. What does it request from Polly?"
-    a: "Speech marks, metadata that give where each word and sentence starts and ends in the audio."
-    facts: [speech-marks]
+    q: "Which AWS service can turn written content into spoken audio?"
+    a: "Amazon Polly converts text into lifelike speech in multiple languages and voices."
+    facts: [purpose]
   - id: polly-006
-    q: "How do you add a pause or change the speaking rate in one part of a Polly text?"
-    a: "Write the text in SSML, whose tags control pauses, speech rate, volume and pronunciation."
-    facts: [ssml]
+    q: "An application needs to provide spoken versions of text in different languages. Which AWS service fits?"
+    a: "Amazon Polly converts text to speech and supports multiple languages and voices."
+    facts: [purpose]
 ---
 Amazon Polly reads text out loud in natural-sounding voices, in many languages. It's used for accessibility, e-learning, newsreaders and voice responses. [What is Amazon Polly?](https://docs.aws.amazon.com/polly/latest/dg/what-is.html#what-is)
 

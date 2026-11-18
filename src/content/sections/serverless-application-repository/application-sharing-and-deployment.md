@@ -97,8 +97,7 @@ AWS Serverless Application Repository helps teams find, publish and deploy serve
 
 1. Define the application in a SAM template and publish it with the console, SAM CLI or an AWS SDK.
 2. Choose who can deploy it. New applications start private. A publisher can share with specific accounts, an AWS organization or everyone.
-3. A consumer reviews the template and permissions, configures the application and acknowledges any required capabilities, which declare the sensitive resources or nested applications to be created. A nested application is an application included inside another.
-4. For CLI deployment, inspect `requiredCapabilities`, create a CloudFormation change set, a proposed set of changes to a stack, with those capabilities, then execute it to deploy. A stack is a collection of AWS resources managed as one unit.
+3. Check Region availability. Private and privately shared applications are available in their creation Region; public applications are available in all AWS Regions.
 
 | Sharing setting | Who can deploy | Region availability |
 | --- | --- | --- |
@@ -110,22 +109,13 @@ When a public application is deployed in another Region, the repository copies i
 
 ### Exam cues
 
+- If the question says find and deploy a reusable serverless application, think AWS Serverless Application Repository, because it lets developers find, deploy and publish applications.
 - If the question says reuse a serverless application across accounts in one organization, think private sharing, because the publisher can grant the organization access.
-- If the question says deploy a public parent with a restricted nested application, think nested application permissions, because the consumer must be allowed to deploy the nested application too.
-- If the question says a template creates named IAM resources, think `CAPABILITY_NAMED_IAM`, because deployment requires that acknowledgment.
-- If the question says an application contains nested applications, think `CAPABILITY_AUTO_EXPAND`, because deployment requires that capability.
+- If the question says deploy a privately shared application in another Region, think creation Region, because privately shared applications are only available there.
 
 ### Remember
 
-- Public sharing requires `SemanticVersion` and `LicenseUrl`.
+- Applications are private by default.
 - Private application policies grant or deny access at the account level, not to individual users in an account.
-- Review application permissions before acknowledging capabilities.
 
-| Capability | When required |
-| --- | --- |
-| `CAPABILITY_IAM` | Specified IAM resources without custom names, unless `CAPABILITY_NAMED_IAM` is used |
-| `CAPABILITY_NAMED_IAM` | IAM resources with custom names |
-| `CAPABILITY_RESOURCE_POLICY` | Certain resource policies |
-| `CAPABILITY_AUTO_EXPAND` | Nested applications |
-
-> **Trap:** Public access to a parent does not override a nested application's sharing restrictions.
+> **Trap:** Sharing an application privately does not make it available in another Region.

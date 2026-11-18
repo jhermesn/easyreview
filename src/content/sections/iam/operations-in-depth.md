@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER iam/operations-in-depth"
+title: IAM operational safeguards
 level: professional
 order: 130
 facts:
@@ -179,18 +179,29 @@ cards:
     facts:
       - sessiontoken-duration
 ---
-PLACEHOLDER first paragraph.
+
+IAM operational safeguards help teams review policies and control how temporary credentials are used. The right check depends on the policy, the request context and the source of the session.
 
 ### How it works
 
-PLACEHOLDER
+1. Use [policy validation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html#access-analyzer-policy-validation) for grammar and AWS best practices. To detect added access, use a [custom policy check](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-checks-validating-policies.html#access-analyzer-custom-policy-checks-overview) against a reference policy. Custom checks can also examine specified actions or resources, or public access.
+2. Create external access analyzers in each Region with supported resources. [Unused access findings](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification) do not depend on Region. Review and customize a [policy template generated from CloudTrail activity](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html#access-analyzer-policy-generation-howitworks).
+3. Use [`GetSessionToken` with MFA](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html#API_GetSessionToken) for IAM user temporary credentials carrying MFA information. [`aws:MultiFactorAuthAge`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-multifactorauthage) measures seconds since authentication and is available only for temporary credentials created with MFA.
+4. To restrict EC2 role credentials to their original network, compare [`aws:SourceVpc` with `aws:Ec2InstanceSourceVpc`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-ec2instancesourcevpc), and [`aws:VpcSourceIp` with `aws:Ec2InstanceSourcePrivateIPv4`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-ec2instancesourceprivateip4). AWS's example checks for `ec2:SourceInstanceARN` and exempts forwarded service calls with `aws:ViaAWSService`.
+5. For IAM Identity Center attribute-based access control (ABAC), [select and map access-control attributes](https://docs.aws.amazon.com/singlesignon/latest/userguide/configure-abac-attributes.html#configure-abac-attributes). For example, map `Department` to [`${path:enterprise.department}`](https://docs.aws.amazon.com/singlesignon/latest/userguide/attributemappingsconcept.html#attributemappingsconcept). Identity Center passes selected attributes as [session tags](https://docs.aws.amazon.com/singlesignon/latest/userguide/attributesforaccesscontrol.html#attributesforaccesscontrol); policies can compare [`aws:PrincipalTag/Department`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principaltag) with a supported resource tag.
+6. A role receiving provider session tags needs [`sts:TagSession` in its trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_know). Restrict the permitted [tag keys and values](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_permissions-required).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a pipeline must reject access beyond a baseline, think custom policy check against a reference policy, because grammar validation does not compare access.
+- If the question says generated permissions omit `iam:PassRole` or S3 data-event actions, think [generation limits](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html#access-analyzer-policy-generation-know), because `iam:PassRole` is not a CloudTrail API action and data-event activity is not identified at action level.
+- If the question says EC2 credentials must stay at their original private address, think both VPC and IP comparisons, because private addresses alone are not globally unique.
+- If the question says an IAM user request lacks [`aws:SourceAccount`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount), think request context, because the key applies to qualifying direct service principal calls and not every service integration uses it.
+- If the question says a resource Deny with `NotPrincipal` blocks a role with a boundary, think [`ArnNotEquals` with `aws:PrincipalArn`](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries), because the Deny applies to principals with boundaries regardless of its exceptions.
 
 ### Remember
 
-PLACEHOLDER
+- IAM user sessions from [`GetFederationToken`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html#API_GetFederationToken) and [`GetSessionToken`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html#API_GetSessionToken) default to twelve hours and support fifteen minutes to thirty-six hours.
+- Root sessions from either operation are capped at one hour. `GetSessionToken` also defaults to one hour for root.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A generated policy omitting an action does not prove the application does not need it. Review the template and its generation limits.

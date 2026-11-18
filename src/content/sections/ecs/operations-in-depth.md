@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER ecs/operations-in-depth"
+title: ECS scaling and credentials
 level: professional
 order: 100
 facts:
@@ -86,18 +86,26 @@ cards:
       - ecs-scale-deploy
       - ecs-scale-suspend
 ---
-PLACEHOLDER first paragraph.
+Amazon ECS operations depend on capacity provider settings, external instance credentials, and service scaling controls. Understanding these settings helps diagnose tasks that cannot start and scaling that behaves differently during deployments.
 
 ### How it works
 
-PLACEHOLDER
+1. ECS compares `CapacityProviderReservation` with `targetCapacity` to manage instance capacity. The metric is instances needed divided by running instances, multiplied by 100. Above target, ECS scales out; below target, it can scale in. [Cluster auto scaling](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html)
+2. A capacity provider strategy distributes tasks by relative weight after meeting the base. At least one weight must be positive. An omitted weight defaults to 1 in the console but 0 in the API or CLI. [Strategy item](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CapacityProviderStrategyItem.html), [Auto Scaling group capacity providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html)
+3. On an ECS Anywhere external instance, the Systems Manager Agent holds IAM credentials. They rotate every 30 minutes and refresh after a lost connection is restored. [External instance considerations](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-anywhere.html#ecs-anywhere-considerations)
+4. During an ECS deployment, service scale-in pauses while scale-out continues unless suspended. This behavior does not apply to `EXTERNAL` controllers. `RegisterScalableTarget` can suspend dynamic scale-in or scale-out using `DynamicScalingInSuspended` and `DynamicScalingOutSuspended`. [Service auto scaling and deployments](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html#service-auto-scaling-deployments)
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says tasks wait for new EC2 hosts, think about `targetCapacity`, because its default of 100% can leave tasks `PENDING` until instances register. [Cluster auto scaling](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html)
+- If the question says managed scaling stopped after an Auto Scaling group change, check `AmazonECSManaged`, competing desired-capacity policies, and `MaxSize`, because each can prevent ECS from managing or adding capacity. [Cluster auto scaling](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html), [Auto Scaling group capacity providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html)
+- If the question says a CLI strategy has no positive weights, set one above 0, because omitted CLI weights default to 0. [Auto Scaling group capacity providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html)
+- If the question says dynamic scale-out must pause during a deployment, think explicit suspension, because scale-out normally continues. [Service auto scaling and deployments](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html#service-auto-scaling-deployments)
 
 ### Remember
 
-PLACEHOLDER
+- `targetCapacity` defaults to 100%, and the Auto Scaling group `MaxSize` must exceed 0 for scale-out. [Cluster auto scaling](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html), [Auto Scaling group capacity providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html)
+- Managed termination protection requires instance scale-in protection and protects instances with non-daemon tasks from scale-in. [Managed termination protection](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/managed-termination-protection.html)
+- ECS Anywhere credentials rotate every 30 minutes. [External instance considerations](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-anywhere.html#ecs-anywhere-considerations)
 
-> **Trap:** PLACEHOLDER
+> **Trap:** An omitted capacity provider weight does not have the same default everywhere: it is 1 in the console and 0 in the API or CLI. A strategy needs at least one positive weight. [Auto Scaling group capacity providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html), [Strategy item](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CapacityProviderStrategyItem.html)

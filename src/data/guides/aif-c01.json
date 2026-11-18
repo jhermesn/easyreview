@@ -184,6 +184,7 @@
                 "emr/basics",
                 "redshift/basics",
                 "data-exchange/third-party-data",
+                "s3/storage-classes",
                 "dynamodb/basics",
                 "elasticache/basics",
                 "rds/managed-vs-self-managed-databases",
@@ -359,6 +360,7 @@
               "sections": [
                 "bedrock/pricing-and-throughput",
                 "generative-ai/choosing-aws-genai-services",
+                "billing-and-cost-management/budgets",
                 "billing-and-cost-management/cost-explorer"
               ]
             }
@@ -772,6 +774,7 @@
               "sections": [
                 "ai-security-governance/data-governance",
                 "s3/lifecycle-basics",
+                "s3/storage-classes",
                 "cloudwatch/basics",
                 "cloudtrail/basics"
               ]

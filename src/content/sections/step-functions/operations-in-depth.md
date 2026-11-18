@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER step-functions/operations-in-depth"
+title: Activities, variables, and terminal states
 level: professional
 order: 50
 facts:
@@ -43,18 +43,24 @@ cards:
       - succeed-state
       - fail-state
 ---
-PLACEHOLDER first paragraph.
+Step Functions can coordinate work pulled by an activity worker, retain values for later states, and control how a workflow ends. These features separate task execution, data handling, and completion.
 
 ### How it works
 
-PLACEHOLDER
+1. An [activity worker](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html#activities-overview) polls `GetActivityTask` with the activity ARN. It receives input and a task token, then uses the token with `SendTaskSuccess` or `SendTaskFailure` to report the result.
+2. Store a result in a [workflow variable](https://docs.aws.amazon.com/step-functions/latest/dg/workflow-variables.html#workflow-variables) for a later step without passing it through every intermediate state output.
+3. Use [Pass](https://docs.aws.amazon.com/step-functions/latest/dg/state-pass.html#state-pass) to forward input without doing work, or to transform or add output data. [Succeed](https://docs.aws.amazon.com/step-functions/latest/dg/state-succeed.html#state-succeed) ends a workflow, branch, or iteration successfully. [Fail](https://docs.aws.amazon.com/step-functions/latest/dg/state-fail.html#state-fail) stops execution with failure unless enclosing error handling catches it.
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says an on-premises worker pulls tasks when it has capacity, think activity, because the worker polls for input and reports the result with its task token.
+- If the question says keep an API result for a later step, think workflow variables, because intermediate states need not pass the value through their outputs.
+- If the question says transform data without external work, think Pass. If it says explicitly end successfully or signal failure, think Succeed or Fail, respectively.
 
 ### Remember
 
-PLACEHOLDER
+- `GetActivityTask` uses the activity ARN; the response includes input and a task token.
+- `SendTaskSuccess` and `SendTaskFailure` use the task token to report the result.
+- Fail stops execution with failure unless enclosing error handling catches it.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Pass handles data without doing work; it does not report an activity result. The worker reports success or failure using the task token.

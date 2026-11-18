@@ -192,15 +192,15 @@ cards:
       - durable-sync
       - durable-scope
   - id: elasticache-010
-    q: How does a team troubleshoot slow commands in a supported node-based ElastiCache Valkey cluster?
-    a: Configure slow log delivery to CloudWatch Logs or Data Firehose. Engine logs provide supported operational events. This log delivery is unavailable for serverless caches.
+    q: "A read-heavy application needs to reduce database reads with Amazon ElastiCache. How does lazy loading work?"
+    a: "The application checks the cache first. On a miss, it reads the database and stores the result in the cache."
     facts:
-      - log-delivery
+      - cache-aside
   - id: elasticache-011
-    q: How do ElastiCache node-based and serverless deployments select VPC subnets?
-    a: Node-based caches use a subnet group. Serverless caches receive subnet IDs directly.
+    q: "A team wants an in-memory cache without provisioning or configuring cache nodes. Which Amazon ElastiCache option fits?"
+    a: "ElastiCache Serverless manages cache capacity without requiring customers to provision or configure nodes."
     facts:
-      - subnets
+      - serverless
   - id: elasticache-012
     q: A team wants ElastiCache to adjust its cache capacity automatically. Which deployment or feature fits?
     a: Serverless manages capacity automatically. Supported node-based cluster mode enabled configurations can use ElastiCache Auto Scaling for shards or replicas.

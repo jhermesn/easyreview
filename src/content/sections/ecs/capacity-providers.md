@@ -150,22 +150,20 @@ A capacity provider connects ECS task demand to the compute that runs it. For EC
 
 1. Associate an Auto Scaling group capacity provider with the ECS cluster. Use it in the service's capacity provider strategy, the task distribution rules across providers.
 2. Satisfy `base`, a minimum task count assigned to one provider. Distribute remaining tasks by `weight`, a relative share. Base defaults to 0; at least one weight must be positive.
-3. Enable managed scaling. ECS manages a target tracking policy using `CapacityProviderReservation = instances needed / running instances x 100`.
-4. Compare that metric with `targetCapacity`. Above the target, ECS requests more hosts. Below it, ECS can remove hosts. The default target is 100%, so new tasks can wait `PENDING` while hosts register.
-5. Keep `MaxSize` above 0, preserve the `AmazonECSManaged` tag, and avoid competing desired-capacity scaling policies. Enable instance scale-in protection when using managed termination protection, which protects hosts with non-daemon tasks during scale-in.
+3. Enable managed scaling so ECS adjusts the Auto Scaling group as tasks need EC2 capacity. Keep `MaxSize` above 0 so the group can grow.
+4. Set `targetCapacity` below 100% when tasks need spare host capacity.
 
 A cluster can contain ASG and Fargate providers, but one strategy cannot mix those types. `FARGATE_SPOT` uses spare capacity for work that tolerates interruption. It gives a two-minute warning; unavailable Spot capacity does not automatically fall back to on-demand capacity.
 
 ### Exam cues
 
 - If the question says ECS service scale-out leaves tasks waiting for EC2 resources, think managed capacity provider, because desired task count and host count are separate controls.
-- If the question says ECS scaling broke after tags changed, think `AmazonECSManaged`, because ECS needs that tag.
+- If the question says a strategy needs a minimum task count on one provider, think `base`, because ECS meets it before distributing by weight.
 - If the question says tasks should start without waiting for hosts, think a target below 100%, because it retains spare capacity.
 
 ### Remember
 
-- `weight` defaults to 1 in the console and 0 in the API or CLI.
+- `base` defaults to 0; at least one provider weight must be positive.
 - A group that cannot grow can leave tasks in `PROVISIONING`.
-- Managed termination protection requires instance scale-in protection; daemon tasks do not prevent scale-in.
 
 > **Trap:** Fargate Spot does not promise automatic on-demand replacement when Spot capacity is unavailable.

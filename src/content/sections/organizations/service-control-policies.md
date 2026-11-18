@@ -214,15 +214,12 @@ A service control policy (SCP) is an organization-wide permissions limit for mem
 4. Evaluate permissions inside that ceiling. Even `AdministratorAccess` cannot override an SCP restriction. Member-account root users and delegated administrators remain subject to SCPs, apart from documented exceptions.
 5. Test restrictions on a limited set of accounts before widening their attachment.
 
-For a Region restriction, use `aws:RequestedRegion` and exempt required global-service actions with `NotAction`. Global services can have endpoints outside the permitted workload Regions. This condition controls the endpoint called, not every cross-Region effect of a request.
-
 For Config protection, deny selected baseline changes: `config:DeleteConfigurationRecorder`, `config:DeleteDeliveryChannel`, `config:PutConfigurationRecorder`, `config:PutDeliveryChannel`, and `config:StopConfigurationRecorder`. A recorder captures resource configurations; a delivery channel sends them to configured destinations. Conditions can preserve required administrative exceptions. Unrelated Config actions remain subject to their existing permissions.
 
 ### Exam cues
 
 - If the question says an IAM administrator is denied by an SCP, think the entire policy path, because IAM cannot override the ceiling.
 - If the question says a deny-only SCP replaces `FullAWSAccess`, think missing Allow, because a Deny statement does not supply the required Allow.
-- If the question says a Region restriction breaks global services, think `NotAction` exceptions, because those service endpoints may use another Region.
 - If the question says protect baseline Config without blocking all administration, think selected action denies, because SCPs can restrict specific operations.
 
 ### Remember

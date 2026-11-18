@@ -39,10 +39,9 @@ cards:
     a: Yes. Service limit increase requests are available to all customers, including Basic.
     facts: [all-customers]
   - id: support-013
-    q: Should a team open every AWS Support case at the highest severity to get faster answers?
-    a: No. Use the highest severity only when there's no workaround or production is directly affected.
-    trap: true
-    facts: [highest-only]
+    q: Where can an AWS customer open an account or billing support case?
+    a: In the AWS Support Center. Account and billing cases are available to all customers.
+    facts: [case-types, all-customers]
 ---
 The AWS Support Center is where customers open and track cases with AWS Support. The case type and the support plan decide what help is available, and the severity sets how fast the first response comes. [Case management](https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#case-management)
 

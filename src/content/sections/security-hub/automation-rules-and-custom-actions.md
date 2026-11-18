@@ -169,18 +169,16 @@ cards:
       - automation-trigger
       - no-update-trigger
   - id: security-hub-026
-    q: An AWS Security Hub CSPM operator wants to send selected findings for manual remediation. What should be configured?
-    a: Create a custom action and an EventBridge rule matching its ARN, then select findings and the action. For aggregated findings, create the action in the home Region.
+    q: "A team needs an SNS notification for selected AWS Security Hub CSPM findings as they arrive. What should it configure?"
+    a: "Configure an EventBridge rule that filters finding attributes and targets an SNS topic. Match Security Hub Findings - Imported events from aws.securityhub."
     facts:
-      - custom-arn
-      - manual-action
-      - custom-home
+      - imported-event
+      - event-targets
   - id: security-hub-027
-    q: An AWS Security Hub CSPM administrator launches a custom action against a member finding. In which account is the event emitted, and how can the target change the member resource?
-    a: The event is emitted in the administrator viewing account. The target code must assume an authorized role deployed in the member account.
+    q: "A team filters Security Hub CSPM findings in EventBridge for security alerts. Do CSPM automation rule updates occur before EventBridge evaluates the findings?"
+    a: "Yes. CSPM automation rules update findings before EventBridge rules receive and evaluate them."
     facts:
-      - cross-account-target
-      - member-response-role
+      - before-events
   - id: security-hub-028
     q: Two matching AWS Security Hub CSPM automation rules change the same finding field. Which update has the final effect?
     a: Rules run in ascending RuleOrder, so the later matching rule has the final effect on that field.
@@ -188,11 +186,11 @@ cards:
       - automation-order
       - last-action
   - id: security-hub-029
-    q: An AWS Security Hub CSPM team wants an irrelevant control to stop generating findings. Should it suppress every finding?
-    a: Disable the control. Suppression changes finding handling but does not stop the checks.
-    trap: true
+    q: "A security team uses EventBridge to alert on AWS Security Hub CSPM findings. Can a BatchUpdateFindings call generate an imported finding event?"
+    a: "Yes. Both BatchUpdateFindings and BatchImportFindings can generate Security Hub Findings - Imported events."
     facts:
-      - suppress-not-disable
+      - imported-event
+    trap: true
   - id: security-hub-030
     q: What event source and detail type should an EventBridge rule match for automatic AWS Security Hub CSPM finding responses?
     a: Source aws.securityhub and detail type Security Hub Findings - Imported. Add finding attribute filters to select relevant events.

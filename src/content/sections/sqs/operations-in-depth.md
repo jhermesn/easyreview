@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER sqs/operations-in-depth"
+title: Deduplication and message handling
 level: professional
 order: 50
 facts:
@@ -55,18 +55,26 @@ cards:
       - inflight-standard-limit
       - inflight-polling
 ---
-PLACEHOLDER first paragraph.
+SQS message handling depends on how producers identify and delay messages and how consumers delete them. These choices also affect how to investigate a queue that stops returning work.
 
 ### How it works
 
-PLACEHOLDER
+1. For FIFO deduplication, provide a `MessageDeduplicationId` or enable content-based deduplication. Content-based deduplication uses a SHA-256 hash, a fingerprint, of the message body and excludes message attributes. See [FIFO deduplication](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing).
+2. A [queue delay](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-delay-queues.html#sqs-delay-queues) hides new messages before their first receive. For standard queues, a per-message `DelaySeconds` timer overrides that delay. FIFO queues do not support [individual message timers](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-timers.html#sqs-message-timers).
+3. A received message remains in flight until it is deleted. To delete it, use the `ReceiptHandle` from the most recent receive, not its `MessageId`. An old handle can return success without deleting the message. See [DeleteMessage](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html#API_DeleteMessage).
+4. If a standard queue reaches its [in-flight limit](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-queues.html#quotas-queues), short polling returns `OverLimit`. Long polling returns no new messages until the in-flight count drops, without that error. See [in-flight messages and quotas](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#inflight-messages).
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says FIFO messages have identical bodies but different attributes, think explicit deduplication IDs, because the content-based hash excludes attributes.
+- If the question says a FIFO message needs its own initial delay, think queue-level delay instead, because FIFO does not support individual message timers.
+- If the question says a successful delete leaves a message in the queue, think the latest receipt handle, because an old handle can succeed without deleting it.
+- If the question says long polling returns no work without `OverLimit`, think in-flight count and deletion rate, because the queue may have reached its in-flight limit.
 
 ### Remember
 
-PLACEHOLDER
+- Queue delay defaults to 0 seconds and can be up to 15 minutes.
+- A standard queue allows approximately 120,000 in-flight messages, depending on traffic and backlog.
+- Short polling returns `OverLimit` at the in-flight limit; long polling returns no new messages until the count drops.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** Different message attributes do not make content-based FIFO deduplication treat identical bodies as different. Use explicit deduplication IDs when the messages need distinct identities.

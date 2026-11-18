@@ -187,8 +187,7 @@ Route 53 Resolver DNS Firewall controls which domain names clients can resolve t
 1. Create a domain list, a collection of names to match, or select an AWS-managed list. Foundational rules can also select a query type. DNS Firewall Advanced detects DNS tunneling, which carries data through DNS, and DGA threats, which generate domain names for malicious use.
 2. Add rules to a rule group, a reusable rule collection, and associate the group with a VPC. Filtering also covers on-premises queries entering that protected VPC through Resolver endpoints.
 3. Set both group-association and rule priorities. Lower numeric values run first. A matching action ends inspection; queries with no match resolve normally.
-4. Choose block responses and failure behavior. Fail closed blocks queries when the firewall does not reply; fail open lets them through.
-5. Enable VPC Resolver query logging to inspect results. Choose CloudWatch Logs, S3, or Firehose in the logging configuration's Region. [Logging configuration](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/firewall-resolver-query-logs-configuring.html)
+4. Choose an action for each rule. Resolver query logging can help inspect results. [Logging configuration](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/firewall-resolver-query-logs-configuring.html)
 
 | Action | Query result | Inspection |
 |---|---|---|
@@ -196,29 +195,20 @@ Route 53 Resolver DNS Firewall controls which domain names clients can resolve t
 | `ALERT` | Permit and log an alert | Stop |
 | `BLOCK` | Return the configured block response | Stop |
 
-| Block response | Meaning |
-|---|---|
-| `NODATA` | Query succeeds with no answer data |
-| `NXDOMAIN` | Domain does not exist |
-| `OVERRIDE` | Return a custom `CNAME`, a record naming another domain; default cache lifetime is zero |
-
-Test intended blocking rules with `ALERT` first. For an allow-only policy, allow approved domains before a rule blocking the rest. An entry for `example.com` does not cover all its subdomains; include `*.example.com` for those. [Actions](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html) · [Policy examples](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-getting-started.html)
+For an allow-only policy, allow approved domains before a rule blocking the rest. [Actions](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html) · [Policy examples](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-getting-started.html)
 
 By default, domain-list rules inspect all names in a DNS redirection chain, where one name points to another. A setting that trusts redirected names applies only to that query; a direct query for the destination is evaluated independently. [Redirection behavior](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html)
 
 ### Exam cues
 
 - If the question says block malicious domain lookups through Amazon-provided DNS, think DNS Firewall, because security groups and network ACLs cannot block that resolver path.
-- If the question says permit queries while measuring a proposed block policy, think `ALERT` with Resolver logging, because matching queries continue to resolve.
 - If the question says an allow list must deny everything else, think a later catch-all block rule, because unmatched queries resolve normally.
 - If the question says deploy common DNS controls across accounts, think RAM sharing or Firewall Manager policies, because rule groups can be reused across VPCs. [Sharing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-group-sharing.html) · [Organization policies](https://docs.aws.amazon.com/waf/latest/developerguide/dns-firewall-policies.html)
 
 ### Remember
 
 - Lower numeric priorities run first at both levels.
-- `ALERT` stops inspection and permits the query.
-- Default fail closed returns `SERVFAIL`, a DNS failure response, when the firewall does not respond. `FirewallFailOpen` changes that behavior. [Failure mode](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html)
-- `OVERRIDE` must return a CNAME; default TTL, the cache lifetime, is zero.
+- Queries that match no rule resolve normally. [Failure mode](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-vpc-configuration.html)
 - Advanced rules support `BLOCK` and `ALERT`, not `ALLOW`.
 
 > **Trap:** A matching allow or alert rule prevents a later block rule from inspecting that query. Ordering is part of the policy.

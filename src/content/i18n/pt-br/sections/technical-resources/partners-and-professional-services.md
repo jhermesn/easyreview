@@ -1,5 +1,5 @@
 ---
-source: a8479be5de14
+source: cf6d22509ffe
 title: Parceiros e Professional Services
 facts:
   apn: A AWS Partner Network (APN) é uma comunidade global de organizações que usam tecnologias, programas, financiamento e ferramentas da AWS para criar soluções e serviços para clientes.
@@ -35,11 +35,11 @@ cards:
     q: Onde uma empresa encontra soluções prontas e revisadas, criadas pela AWS e por AWS Partners, que substituem o AWS Quick Starts?
     a: Na AWS Solutions Library.
   technical-resources-018:
-    q: Uma empresa quer que a equipe da AWS opere sua infraestrutura na AWS, incluindo patches, monitoramento, backups e solicitações de mudança. Qual oferta atende?
-    a: O AWS Managed Services (AMS), um serviço corporativo em que a AWS opera a infraestrutura em nome do cliente. O AMS Advanced fechou para novos clientes em 30 de junho de 2026, então um cliente novo avalia o AMS Accelerate ou serviços gerenciados de AWS Partners.
+    q: Onde os AWS Partners gerenciam o relacionamento com a AWS e liberam os benefícios da AWS Partner Network?
+    a: No AWS Partner Central, no AWS Management Console.
   technical-resources-019:
-    q: O AWS Managed Services (AMS) é a mesma coisa que usar serviços gerenciados como o Amazon RDS?
-    a: Não. Serviços gerenciados como o RDS são serviços da AWS que eliminam trabalho operacional de um tipo de recurso. O AMS é uma oferta corporativa em que a AWS opera a infraestrutura do cliente.
+    q: A experiência de quem deu forma às boas práticas do AWS Well-Architected Framework?
+    a: Dos arquitetos de soluções da AWS, a partir de anos construindo soluções para muitas empresas.
 ---
 Quando um cliente precisa de mais do que documentação e casos de suporte, a AWS oferece pessoas. O AWS Professional Services e os arquitetos de soluções da AWS vêm da própria AWS; os membros da AWS Partner Network são empresas externas. [AWS Partner Network](https://aws.amazon.com/partners/)
 

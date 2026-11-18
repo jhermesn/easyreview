@@ -63,10 +63,9 @@ cards:
     a: Encrypted data is unreadable without the key, so a stolen copy of storage is useless; AWS services make encryption a setting, managed with AWS KMS.
     facts: [encryption, kms-integration]
   - id: kms-043
-    q: A company has an unencrypted Amazon RDS DB instance. Can it turn on encryption for that instance in place?
-    a: No. RDS encryption is chosen at creation. Copy a snapshot with encryption and restore a new, encrypted instance.
-    trap: true
-    facts: [rds-at-create]
+    q: "Which AWS service creates and controls encryption keys that can protect an Amazon RDS database?"
+    a: "AWS Key Management Service (AWS KMS) creates and controls keys and integrates with Amazon RDS encryption."
+    facts: [kms, kms-integration]
 ---
 Encryption protects data in two states. Data at rest sits in storage; data in transit moves between systems. AWS services offer encryption for both, and the customer decides how to use it. [Data at rest](https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/protecting-data-at-rest.html#protecting-data-at-rest) · [Data in transit](https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/protecting-data-in-transit.html#protecting-data-in-transit)
 
@@ -90,9 +89,7 @@ Encryption protects data in two states. Data at rest sits in storage; data in tr
 
 ### Remember
 
-- Amazon S3 encrypts new uploads by default with SSE-S3 since January 5, 2023.
 - KMS keys never leave AWS KMS unencrypted.
-- Encrypted by default: S3 new objects, CloudTrail logs, Storage Gateway data, new Redshift provisioned clusters (since January 2025).
-- Set at creation: RDS and EFS encryption.
+- RDS encryption is set at creation; encrypt a snapshot copy and restore it to encrypt an existing unencrypted instance.
 
 > **Trap:** TLS certificates protect data in transit, not at rest. For stored data, the answer is server-side encryption with AWS KMS keys.

@@ -154,12 +154,11 @@ SQS separates when a message becomes available, how long a consumer can process 
 
 ### How it works
 
-1. A producer sends a message. Queue delay hides new messages before their first receive. On standard queues, an individual `DelaySeconds` timer overrides queue delay. FIFO does not support per-message timers.
+1. A producer sends a message. Queue delay hides new messages before their first receive.
 2. The consumer calls `ReceiveMessage`. Short polling samples some servers and responds immediately. Long polling queries all servers and waits for an available message or its wait deadline, reducing empty results and false-empty results, where messages exist but the response contains none.
-3. Receiving leaves the message in the queue but starts visibility timeout. A received message that is not yet deleted is in flight. Process it and delete it using the latest `ReceiptHandle`, the identifier for that particular receive, rather than its `MessageId`.
+3. Receiving leaves the message in the queue but starts visibility timeout. Process and delete the message after success.
 4. If processing needs longer, call `ChangeMessageVisibility`. Extensions do not reset the maximum allowance measured from initial receipt. Set visibility to 0 to release the message immediately. An undeleted message becomes available again when visibility expires.
 5. SQS deletes messages after retention expires. A delay or a longer visibility timeout is not a replacement for choosing enough retention.
-6. Monitor in-flight work and deletion. At the standard-queue in-flight limit, short polling returns `OverLimit`; long polling returns no new messages until in-flight work drops below the limit.
 
 | Control | Starts when | Default | Range or maximum |
 |---|---|---|---|
@@ -173,14 +172,12 @@ SQS separates when a message becomes available, how long a consumer can process 
 - If the question says two workers repeat work while one is still processing, think visibility timeout and safe duplicate handling, because the processing window may have expired.
 - If the question says reduce empty receive calls, think long polling, because it waits and queries all servers.
 - If the question says postpone a new message, think delay, because visibility only starts after receiving it.
-- If the question says a delete succeeded but work reappears, think latest receipt handle, because an older handle can succeed without removing the message.
 
 ### Remember
 
 - Maximum visibility is 12 hours from initial receipt, including extensions.
 - `WaitTimeSeconds > 0` enables long polling. The queue default `ReceiveMessageWaitTimeSeconds` is 0.
 - `ReceiveMessage` returns up to 10 messages. Individual message maximum: 1 MiB (1,048,576 bytes).
-- Standard queue in-flight limit: approximately 120,000, depending on traffic and backlog.
 - Changing queue delay applies to already queued FIFO messages, but not to already queued standard messages.
 
-> **Trap:** Receiving a message does not delete it. Visibility hides it temporarily; deletion requires the latest receipt handle.
+> **Trap:** Receiving a message does not delete it. Visibility hides it temporarily, and an undeleted message becomes available again when visibility expires.

@@ -466,7 +466,7 @@ An Elastic Load Balancing listener is the entry point that accepts connections o
 
 6. Allow listener and health check traffic through security group rules in both directions. A security group is a firewall that controls allowed network traffic.
 7. Choose encryption and addresses separately. TLS, the protocol that encrypts a connection, can terminate at an NLB TLS listener or pass through an NLB TCP listener on port 443. A dualstack ALB accepts both IPv4 and IPv6 clients while its target group controls the target address type.
-8. For Lambda targets, grant ELB invocation permission in the function resource policy and restrict the permission to the target group and account. The function and target group must share an account and Region.
+8. For Lambda targets, the function and target group must share an account and Region.
 9. ALB HTTPS target connections use encryption, but ALB does not validate the target certificate.
 10. Since October 2025, a nondefault ALB rule can rewrite the host header or URL after matching, without changing its routing decision. Since November 2025, an HTTPS rule can validate a JSON Web Token (JWT), a signed set of claims, before routing. This requires RS256 signatures and a publicly accessible JSON Web Key Set endpoint that supplies verification keys.
 
@@ -476,9 +476,9 @@ NLB added QUIC and TCP_QUIC listeners in November 2025. QUIC is a transport prot
 
 For static addresses or AWS PrivateLink with HTTP routing, an NLB can forward to an ALB in the same account and VPC. Use a TCP target group whose port matches the ALB listener. For inspection across VPCs, route application traffic to a Gateway Load Balancer endpoint in a separate subnet from the application servers.
 
-An NLB created without security groups cannot add them later. QUIC and TCP_QUIC listeners require IPv4 and no security groups, cannot coexist with UDP or TCP_UDP listeners, and allow only one such listener per NLB. NLB health checks must be allowed by outbound security group rules.
+An NLB created without security groups cannot add them later. NLB health checks must be allowed by outbound security group rules.
 
-Since November 2025, NLB default actions can use weighted target groups. Since July 2026, listener rules on dualstack NLBs can route IPv4 and IPv6 clients to different target groups. Unlike ALB source-IP conditions, NLB rules match the IP address type, not a CIDR range.
+Since November 2025, NLB default actions can use weighted target groups. Since July 2026, listener rules on dualstack NLBs can route IPv4 and IPv6 clients to different target groups.
 
 ### Exam cues
 
@@ -486,7 +486,6 @@ Since November 2025, NLB default actions can use weighted target groups. Since J
 - If the question says gradually expose a release, think weighted forward actions, because group weights divide matching requests.
 - If the question says the application must decrypt TLS, think an NLB TCP listener on port 443, because it passes encrypted traffic through.
 - If the question says keep backend instances private, think either load balancer scheme with private targets, because internet access terminates at the internet-facing load balancer.
-- If a CLI-registered Lambda target cannot be invoked by an ALB, check the function resource policy.
 - If the backend needs a different path but clients should keep their URL, think a URL rewrite transform, not a redirect.
 - If static IP addresses and path-based routing are both required, think NLB forwarding to an ALB, because the two can combine transport and HTTP features.
 - If a zone loses healthy NLB targets, check cross-zone routing and DNS: cross-zone is off by default and the zone's address can be removed.

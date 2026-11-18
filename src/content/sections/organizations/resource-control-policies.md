@@ -173,13 +173,10 @@ A resource control policy (RCP) limits access to supported resources in member a
 | RCP | Supported member-account resources, including outside access | No |
 | Resource policy | Access to its attached resource | Can grant access within applicable limits |
 
-To build an identity perimeter, a rule about who may reach data, use `aws:PrincipalOrgID` to identify the caller's organization. Account for AWS service principals with `aws:PrincipalIsAWSService` exceptions so services such as CloudTrail can deliver logs. `aws:SourceOrgID` can constrain which organization a service request originates from.
-
 ### Exam cues
 
 - If the question says outside principals must be blocked from member-account S3 data, think RCP or bucket policy, because the bucket owner's SCP does not constrain those outside identities.
 - If the question says a bucket policy Allow conflicts with an RCP Deny, think denied, because the resource grant cannot override the ceiling.
-- If the question says organization-only access breaks AWS service delivery, think service-principal exceptions, because AWS services do not belong to the organization like IAM roles do.
 
 ### Remember
 

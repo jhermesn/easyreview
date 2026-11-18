@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER iam/more-essentials"
+title: IAM policy types and review tools
 level: foundational
 order: 120
 facts:
@@ -66,18 +66,33 @@ cards:
     a: "The IAM policy simulator. It evaluates identity-based policies, permissions boundaries, SCPs and resource-based policies against a simulated request."
     facts: [policy-simulator]
 ---
-PLACEHOLDER first paragraph.
+IAM offers different policy types and tools to manage and review permissions. User groups help administrators organize users as their jobs change. [IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline) [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 
 ### How it works
 
-PLACEHOLDER
+1. Choose a policy type for the identity. [Managed and inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline)
+2. Place users in groups. When someone changes jobs, remove the user from the old groups and add them to the new ones. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
+3. Review credential status with the [credential report](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html), and use [last accessed information](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_last-accessed.html) to identify unused permissions.
+4. Test a simulated request with the [IAM policy simulator](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html#access_policies_testing-policies), without sending a real request to a service.
+
+| Policy type | Managed by | Attachment |
+|---|---|---|
+| AWS managed | AWS; customers cannot modify it | Many identities |
+| Customer managed | You create and edit it | Many identities |
+| Inline | You create it | One user, group or role |
 
 ### Exam cues
 
-PLACEHOLDER
+- If the question says a reusable policy you can edit, think customer managed policy, because it can be attached to many identities.
+- If the question says a person changes jobs, think changing their group memberships, because an administrator can move the user from the old groups to the new ones.
+- If the question says audit users' passwords, access keys and MFA, think credential report, because it lists their status for all account users.
+- If the question says remove unused service permissions, think last accessed information, because it shows service usage for an identity or policy.
+- If the question says test whether a request would be allowed, think policy simulator, because it evaluates a simulated request.
 
 ### Remember
 
-PLACEHOLDER
+- A user can belong to multiple groups; groups contain only users and cannot be nested.
+- There is no default group containing all users.
+- The policy simulator can test identity-based policies, permissions boundaries, service control policies and resource-based policies.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** An AWS managed policy cannot be edited by customers. For an editable policy shared by multiple identities, use a customer managed policy.

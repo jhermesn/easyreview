@@ -95,10 +95,9 @@ cards:
     a: AWS, as part of security of the cloud.
     facts: [global-infra]
   - id: shared-responsibility-012
-    q: Does a customer need AWS approval before running a penetration test against its own EC2 instances?
-    a: No, for permitted services. DoS and DDoS testing are prohibited outside AWS's simulated DDoS testing policy.
-    trap: true
-    facts: [pentest]
+    q: Under the AWS shared responsibility model, who secures the physical facilities that run AWS services?
+    a: AWS is responsible for physical security of its facilities as part of security of the cloud.
+    facts: [aws-part, of-cloud]
   - id: shared-responsibility-013
     q: "Which control is solely the customer responsibility: patch management, awareness and training, or service and communications protection (zone security)?"
     a: "Service and communications protection, also called zone security, which is customer-specific. Patch management and awareness and training are shared controls."

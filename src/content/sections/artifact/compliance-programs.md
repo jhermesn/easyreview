@@ -39,9 +39,9 @@ cards:
     trap: true
     facts: [customer-laws]
   - id: artifact-009
-    q: Into which three groups does AWS sort the compliance standards it meets?
-    a: Certifications and attestations; laws, regulations and privacy; alignments and frameworks.
-    facts: [categories]
+    q: How can a customer check which AWS services are covered by a compliance program?
+    a: Consult the AWS Services in Scope by Compliance Program page.
+    facts: [in-scope]
   - id: artifact-010
     q: A service the company needs is not yet listed in scope for a compliance program. Can the company still use it?
     a: Yes. The customer decides whether the service will touch data that affects its compliance.

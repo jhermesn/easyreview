@@ -107,14 +107,14 @@ cards:
     a: "Its **logs, automated backups, read replicas and snapshots**, along with the instance storage."
     facts: [encryption-scope]
 ---
-RDS security comes down to three questions: is data encrypted at rest (decided at creation), is the connection encrypted (SSL/TLS), and how do clients authenticate (passwords or IAM tokens). Maintenance behavior on Multi-AZ is the other common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
+RDS security includes encryption at rest and SSL/TLS encryption for connections. Maintenance behavior on Multi-AZ is another common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
 
 ### How it works
 
 1. Choose encryption and a KMS key when creating the instance.
 2. To fix an unencrypted instance: snapshot, encrypted copy, restore (or blue/green).
 3. To share an encrypted snapshot: it must use a customer managed key shared with the target account.
-4. Clients use SSL/TLS in transit and, for MariaDB, MySQL and PostgreSQL, optional IAM authentication tokens.
+4. Clients use SSL/TLS to encrypt connections in transit.
 
 | Maintenance on Multi-AZ | Effect |
 |---|---|
@@ -125,12 +125,11 @@ RDS security comes down to three questions: is data encrypted at rest (decided a
 
 - If the question says encrypt an existing unencrypted RDS database, think encrypted snapshot copy and restore.
 - If the question says share an encrypted snapshot across accounts, think a customer managed key.
-- If the question says no database passwords for Lambda or EC2, think IAM database authentication (or Secrets Manager).
+- If the question says encrypt connections to an RDS database, think SSL/TLS.
 
 ### Remember
 
 - Encryption at rest is set at creation; the KMS key can't change later.
 - Default-key snapshots can't be shared; encrypted snapshots can't be public.
-- IAM auth tokens last 15 minutes; MariaDB, MySQL, PostgreSQL.
 
 > **Trap:** Multi-AZ protects against OS patching and instance failure, not engine upgrades. An engine version upgrade still causes downtime.

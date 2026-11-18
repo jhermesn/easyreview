@@ -175,22 +175,21 @@ cards:
     a: Use AppConfig Agent. It caches configuration locally and polls asynchronously for updates.
     facts: [agent-cache-poll]
   - id: appconfig-022
-    q: An application cannot use AWS AppConfig Agent. What API sequence retrieves configuration changes directly?
-    a: Call StartConfigurationSession once, then poll GetLatestConfiguration. Use InitialConfigurationToken first and the returned NextPollConfigurationToken for each later poll.
-    facts: [direct-session, session-once, initial-token, polling-token-chain]
+    q: "A team must change application behavior without releasing new application code. Which configuration service fits?"
+    a: "Use AWS AppConfig feature flags or dynamic configuration."
+    facts: [configuration-without-code-release]
   - id: appconfig-023
-    q: Can an AWS AppConfig retrieval client reuse a configuration token for 24 hours?
-    a: No. A token is valid for up to 24 hours but is single use. Replace it with NextPollConfigurationToken after each request.
-    trap: true
-    facts: [token-lifetime, polling-token-chain]
+    q: "A team needs a gradual configuration rollout with automatic recovery when a CloudWatch alarm triggers. Which service fits?"
+    a: "Use AWS AppConfig with a deployment strategy and an alarm associated with the environment. An alarm in ALARM or INSUFFICIENT_DATA causes rollback."
+    facts: [environment-targets, deployment-inputs, alarm-rollback-states]
   - id: appconfig-024
-    q: An AWS AppConfig GetLatestConfiguration response has no configuration body. What should a client that already has configuration do?
-    a: Keep its existing configuration, wait NextPollIntervalInSeconds, and poll with the new token. An empty body can mean the configuration is unchanged.
-    facts: [unchanged-empty-response, polling-interval, polling-token-chain]
+    q: "A team needs to release a configuration to all targets immediately but monitor alarms before completion. Which AWS AppConfig strategy fits?"
+    a: "Use AppConfig.AllAtOnce. It releases immediately and then monitors alarms for 10 minutes."
+    facts: [predefined-all-at-once]
   - id: appconfig-025
-    q: Which value controls the wait between direct AWS AppConfig configuration polls, and what is its default?
-    a: NextPollIntervalInSeconds, normally 60 seconds unless RequiredMinimumPollIntervalInSeconds specifies a desired interval. Follow the interval returned by the service.
-    facts: [polling-interval]
+    q: "A team wants AWS AppConfig to roll out a configuration in equal increments and monitor alarms after reaching all targets. What should it configure?"
+    a: "Use a LINEAR deployment strategy and configure final bake time for alarm monitoring."
+    facts: [linear-growth, final-bake]
 ---
 
 AWS AppConfig releases configuration changes separately from application code. A deployment strategy controls how quickly targets receive a setting or feature flag. CloudWatch alarms can restore the previous version if the change causes problems.

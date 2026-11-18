@@ -57,24 +57,16 @@ cards:
       - variable-syntax
       - variable-order
   - id: codepipeline-007
-    q: What are CodePipeline pipeline-level variables?
-    a: V2 execution inputs referenced as `#{variables.variable_name}`. If an input has no default,
-      supply it when starting the execution. They cannot be used in Source actions.
+    q: "How does CodePipeline pass files from a source action to a later action?"
+    a: "Actions pass named input and output artifacts, which CodePipeline stores in an S3 artifact bucket."
     facts:
-      - pipeline-inputs
-      - pipeline-syntax
-      - required-input
-      - no-source-inputs
+      - artifact-files
+      - artifact-s3
   - id: codepipeline-021
-    q: A CodeBuild build must send a generated image tag to a later CodePipeline action without a file.
-      What configuration is needed?
-    a: List the tag variable under `env/exported-variables`, give the CodeBuild action a namespace, and
-      reference the variable from a later action.
+    q: "What does a CodePipeline action consume when it needs files produced by another action?"
+    a: "A named input artifact. An artifact is a file or set of files passed between actions."
     facts:
-      - build-exports
-      - buildspec-exports
-      - variable-syntax
-      - variable-order
+      - artifact-files
   - id: codepipeline-036
     q: A CodePipeline action references a build output variable but runs at the same runOrder as the
       build in the same stage. How should the team fix it?

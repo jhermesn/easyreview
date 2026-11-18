@@ -67,30 +67,30 @@ cards:
     a: Device Farm desktop browser testing. It also produces videos and Selenium logs.
     facts: [browser]
   - id: device-farm-003
-    q: A developer needs to reproduce a mobile app problem interactively on a physical device. Which AWS Device Farm feature fits?
-    a: Remote access. It allows real-time interaction through a browser.
-    facts: [remote, purpose]
+    q: "A release pipeline needs automated tests for an app on multiple physical mobile devices. How can AWS Device Farm help?"
+    a: "Run Device Farm tests from the pipeline using service-side execution. Tests can run in parallel on managed devices."
+    facts: [pipeline, automated]
   - id: device-farm-004
-    q: In AWS Device Farm, how does a run differ from a job?
-    a: A run combines an app build, tests and devices; each job tests one app on one device.
-    facts: [run, job]
+    q: "How can AWS Device Farm help a team inspect the outcome of automated mobile app tests?"
+    a: "It provides test reports with results, logs, screenshots and artifacts."
+    facts: [results]
   - id: device-farm-005
     q: Can AWS Device Farm test an Android or iOS app without a user-written test script?
     a: Yes. Its built-in fuzz test does not require one.
     facts: [fuzz]
     trap: true
   - id: device-farm-006
-    q: How long does AWS Device Farm retain uploaded apps and test results?
-    a: Uploaded apps and files are retained for 30 days; run results, logs and screenshots for 400 days.
-    facts: [retention]
+    q: "A team wants to test an Android app on several physical devices at once without managing the devices. Which AWS service fits?"
+    a: "AWS Device Farm runs uploaded tests in parallel on managed physical devices."
+    facts: [purpose, automated]
   - id: device-farm-007
-    q: Which AWS Region hosts AWS Device Farm?
-    a: US West (Oregon), us-west-2.
-    facts: [region]
+    q: "A team needs automated Selenium tests across hosted desktop browsers. Which AWS service supports this?"
+    a: "AWS Device Farm runs Selenium tests in parallel on hosted desktop browsers."
+    facts: [browser]
   - id: device-farm-008
-    q: What is the default per-device job timeout when creating an AWS Device Farm test run in the console?
-    a: 150 minutes.
-    facts: [job-timeout]
+    q: "A team wants to test an iOS app without writing test scripts. Which AWS Device Farm test can it use?"
+    a: "Use the built-in fuzz test. It sends random user interface events and reports the results."
+    facts: [fuzz, fuzz-events]
 ---
 
 AWS Device Farm tests mobile and web applications on physical phones and tablets hosted by AWS. It also runs Selenium tests on hosted desktop browsers. Selenium is a framework for scripts that control a browser and simulate user actions.

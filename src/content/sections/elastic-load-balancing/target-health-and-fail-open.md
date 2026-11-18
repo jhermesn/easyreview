@@ -94,19 +94,16 @@ An ALB health check is a periodic request that tests whether a registered target
 ### How it works
 
 1. Configure the health check protocol, port, path, and thresholds for the target group. The defaults are HTTP GET on the traffic port and path `/` for HTTP target groups.
-2. A newly registered target must pass an initial check. For instance and IP targets, checks default to a 30-second interval and a 5-second timeout.
-3. Two consecutive failures mark a target unhealthy by default. An unhealthy target needs five consecutive successes to recover.
-4. Set minimum healthy counts or percentages for the actions below.
+2. A newly registered target must pass an initial check. The response code must match the configured success codes, which default to 200.
+3. Set minimum healthy counts or percentages for the actions below.
 
    | Action or measurement | Meaning |
    |---|---|
    | DNS failover | Stop advertising the affected zone node as healthy in DNS, the system that maps names to addresses |
    | Routing failover | Try all targets available to the node, including unhealthy ones |
-   | HealthyHostCount and UnHealthyHostCount | Count healthy and unhealthy targets; deregistration only lowers the healthy count |
 
-5. If all registered targets are unhealthy across enabled zones, ALB fails open: it continues sending requests to them regardless of health.
-6. An ALB health check uses the target private IP in its Host header, plus the health check port when nondefault. Configure a matching or default virtual host if needed.
-7. NLB checks UDP and QUIC services using TCP, HTTP or HTTPS checks. Make the check endpoint reflect the actual service's health. HTTPS checks require support for a TLS version earlier than 1.3.
+4. If all registered targets are unhealthy across enabled zones, ALB fails open: it continues sending requests to them regardless of health.
+5. NLB checks UDP and QUIC services using TCP, HTTP or HTTPS checks. Make the check endpoint reflect the actual service's health.
 
 ### Exam cues
 
@@ -117,7 +114,6 @@ An ALB health check is a periodic request that tests whether a registered target
 
 ### Remember
 
-- Instance and IP target defaults: 30-second interval, 5-second timeout, two failed checks, five recovery checks.
 - Initial registration requires one successful health check.
 - Default healthy count threshold: 1 for both failover actions; percentage thresholds default to off.
 - DNS failover thresholds must be greater than or equal to routing failover thresholds.

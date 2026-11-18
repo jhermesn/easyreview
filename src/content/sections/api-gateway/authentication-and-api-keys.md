@@ -112,10 +112,13 @@ cards:
       - jwt
       - scopes
   - id: api-gateway-015
-    q: Can an API Gateway usage plan guarantee a strict request ceiling or spending cap?
-    a: No. Throttles and quotas are best-effort targets and can be exceeded.
+    q: A team needs per-client request throttling for an API Gateway REST API. What should it use,
+      and is the limit guaranteed?
+    a: Use an API key and usage plan with a throttling target. The target is best effort and can be
+      exceeded.
     trap: true
     facts:
+      - plans
       - best-effort
 ---
 API Gateway access controls decide who may invoke an API. Authentication checks a caller's identity; authorization checks which calls that identity may make. API keys identify clients for usage measurement and throttling targets.

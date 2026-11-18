@@ -68,12 +68,9 @@ diagrams:
       - git-remote-codecommit uses role credentials to access the repository with that role's permissions.
 cards:
   - id: codecommit-001
-    q: Is CodeCommit available to new customers?
-    a: |-
-      Yes. AWS reopened new customer sign-ups on November 24, 2025, when CodeCommit returned to full general availability.
-      This followed the July 2024 de-emphasis announcement.
-    trap: true
-    facts: [new-customers]
+    q: "A team needs a private Git repository without operating its own source control server. How does AWS CodeCommit support its workflow?"
+    a: "Use a CodeCommit repository. Developers clone it, commit changes locally, and push them to CodeCommit."
+    facts: [private-git, git-workflow]
   - id: codecommit-002
     q: How can a Git client authenticate to CodeCommit?
     a: |-

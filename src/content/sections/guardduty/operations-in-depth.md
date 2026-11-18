@@ -1,5 +1,5 @@
 ---
-title: "PLACEHOLDER guardduty/operations-in-depth"
+title: Monitoring and finding delivery
 level: professional
 order: 30
 facts:
@@ -91,18 +91,29 @@ cards:
       auto-enable preferences.
     facts: [org-auto-enable, org-regional]
 ---
-PLACEHOLDER first paragraph.
+GuardDuty monitoring and finding delivery depend on the data source, protection plan, and Regional configuration. Understand which signals GuardDuty receives and how recurring findings are reported before designing a centralized workflow.
 
 ### How it works
 
-PLACEHOLDER
+1. GuardDuty accesses EC2 DNS queries through [AWS DNS resolvers](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_dns) without requiring Resolver query logging. It also receives an [independent stream of EC2 VPC flow logs](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_vpc), without a customer-configured flow log.
+2. Select the [protection plan](https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty) for the signal: Runtime Monitoring analyzes operating system events on EKS, EC2, and ECS, including Fargate; RDS Protection analyzes supported database logins; Lambda Protection monitors Lambda network activity. The GuardDuty security agent provides EC2 runtime events.
+3. Configure the same delegated administrator and its members in [each desired Region](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html#delegated_admin_important). Choose [organization auto-enable](https://docs.aws.amazon.com/guardduty/latest/ug/set-guardduty-auto-enable-preferences.html#set-guardduty-auto-enable-preferences) as `ALL`, `NEW`, or `NONE`. Malware Protection for S3 is excluded from these preferences.
+4. GuardDuty [aggregates related recurring activity](https://docs.aws.amazon.com/guardduty/latest/ug/finding-aggregation.html#finding-aggregation) into the original finding, increasing its count and updating details. Earlier details can be replaced. Configure VPC Flow Logs to retain individual activity.
+5. Configure [findings export](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-export-findings-considerations) per Region. An administrator's export includes associated member findings generated in the same Region. The destination S3 bucket and KMS key must share a Region; opt-in destination Regions have additional cross-Region restrictions.
 
 ### Exam cues
 
-PLACEHOLDER
+- If EC2 uses a non-AWS DNS resolver, think the foundational DNS source cannot see those queries, because it accesses queries through AWS DNS resolvers.
+- If a team needs operating system events, think Runtime Monitoring and the security agent for EC2, because the agent supplies its runtime events.
+- If a team needs database login and Lambda network detection, think RDS Protection and Lambda Protection, respectively, because they analyze those signals.
+- If existing and future organization accounts need GuardDuty, think `ALL` in each desired Region, because auto-enable is Regional. Malware Protection for S3 is excluded.
+- If repeated activity appears in one finding, think aggregation, because GuardDuty updates its count and latest details. Retain VPC Flow Logs for individual activity.
+- If recurring findings need faster EventBridge notifications, change the update frequency, because new findings and updates have different timing.
 
 ### Remember
 
-PLACEHOLDER
+- New findings reach EventBridge near real time. Updates default to 6 hours and can be set to 15 minutes or 1 hour. [EventBridge notification frequency](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_eventbridge.html#eventbridge-freq-notifications-gdu)
+- Changing organization auto-enable to `NONE` does not disable existing accounts.
+- Archived findings, including new occurrences of suppressed findings, are not exported by default.
 
-> **Trap:** PLACEHOLDER
+> **Trap:** A suppression rule can archive a recurring finding, so its new occurrences are not exported to S3 by default.

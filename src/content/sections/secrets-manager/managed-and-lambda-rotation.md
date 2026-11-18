@@ -256,16 +256,9 @@ Secret rotation periodically changes a credential in both Secrets Manager and it
    | Lambda rotation | A configured function updates the secret and target | Required |
 
 2. For Lambda database rotation, choose a strategy. Single user changes one user's password. Alternating users switches between an original and cloned user, with a separate privileged secret to create the clone. Both credentials remain valid after alternating-users rotation.
-3. Run createSecret to save a new AWSPENDING value. The ClientRequestToken identifies the version so retries are idempotent, meaning they do not repeat the same change as a new version.
-4. Run setSecret to change the credential accepted by the database or service, then testSecret to use AWSPENDING for an access test.
-5. Run finishSecret to move AWSCURRENT to the tested version. Secrets Manager assigns AWSPREVIOUS to the old current version.
-6. Configure a UTC rotation schedule using rate() or cron(). Rotation can run as often as every four hours.
+3. For a CloudFormation database secret, use AWS::SecretsManager::SecretTargetAttachment to add the connection information needed for rotation to the secret JSON.
 
 Managed external secrets launched in November 2025.
-
-For CloudFormation database setup, ManageMasterUserPassword enables service management of supported cluster master credentials. AWS::SecretsManager::SecretTargetAttachment fills database connection fields into a secret used for rotation.
-
-For a CloudFront origin-header secret, the documented Lambda rotation updates both CloudFront's custom header and the WAF request-filtering rule protecting the origin ALB. The rule accepts both pending and current values while the distribution change propagates. An origin is the backend from which CloudFront fetches content.
 
 ### Exam cues
 
@@ -273,13 +266,12 @@ For a CloudFront origin-header secret, the documented Lambda rotation updates bo
 - If the question says a custom service password must change with its stored value, think Lambda rotation, because the function can update and test the target system.
 - If the question says credentials must stay usable during rotation, think alternating users, because the current user stays valid while the other user's password changes.
 - If the question says expire or notify about an old Parameter Store value, think parameter policies, because those actions do not change a database password.
+- If the question says a database secret lacks connection information for rotation, think SecretTargetAttachment, because it adds those fields to the secret JSON.
 
 ### Remember
 
-- Lambda order: createSecret, setSecret, testSecret, finishSecret.
-- AWSPENDING is tested before AWSCURRENT moves.
 - Single-user rotation keeps open database connections but can briefly affect new authentication.
 - Alternating users requires a separate privileged secret for cloning.
-- Rotation schedules use UTC; the shortest interval is four hours.
+- Managed rotation for supported services and managed external secrets rotation do not require a Lambda function.
 
 > **Trap:** Saving a new password value is only one part of rotation. The target system must accept it before it becomes the current value.

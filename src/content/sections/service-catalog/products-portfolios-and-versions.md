@@ -60,17 +60,18 @@ cards:
       - version
       - instance
   - id: service-catalog-025
-    q: A team adds a new version to an AWS Service Catalog product. Who can select it?
-    a: Users who already have access to a portfolio containing that product.
+    q: "A platform team needs approved infrastructure templates that users can deploy with their own launch inputs. What should it use in AWS Service Catalog?"
+    a: "A product based on a CloudFormation template. The template describes the resources and accepts parameters at launch."
     facts:
-      - version
+      - product
+      - template
   - id: service-catalog-037
-    q: A team creates a new AWS Service Catalog product for Terraform Community Edition. Which product type should it use?
-    a: External, with a configured Terraform provisioning engine. Terraform Open Source is the legacy product type and cannot be used for new products or provisioned products.
+    q: "How can an organization control who can deploy approved AWS Service Catalog products?"
+    a: "Group products in a portfolio and grant access to IAM users, groups, or roles. IAM permissions also govern catalog actions."
     facts:
-      - product-types
-      - terraform-engine
-      - legacy-terraform
+      - portfolio
+      - access
+
 ---
 AWS Service Catalog gives users approved infrastructure templates they can deploy themselves. A product is the offering, a portfolio is its access-controlled collection, and a provisioned product is a deployed instance.
 
