@@ -51,6 +51,9 @@ facts:
   - id: eni-limit
     text: "Network connectivity errors for a VPC-connected function can come from running out of IP addresses or network interfaces; ENILimitReachedException means the VPC hit its network interface quota (3,000 per VPC by default)."
     source: https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-networking.html#troubleshooting-networking-limit
+  - id: default-internet
+    text: "By default a Lambda function can reach the public internet; once attached to a VPC it reaches only what that VPC can reach, so internet access then needs a VPC path such as a NAT gateway."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html
 diagrams:
   - id: lambda-vpc-ipv4-egress
     title: IPv4 internet access uses a private-to-public route
@@ -183,6 +186,11 @@ cards:
     q: "A VPC-connected Lambda function in a small /27 subnet starts failing with network interface errors as load grows. What are likely causes?"
     a: "The subnet ran out of free IP addresses, or the VPC reached its network interface quota (ENILimitReachedException). Use larger subnets or raise the quota."
     facts: [eni-limit]
+  - id: lambda-073
+    q: "A Lambda function calls a public API successfully, but after it is attached to private subnets to reach RDS, the API calls time out. Why?"
+    a: "Attached to a VPC, the function reaches **only what the VPC can reach**. Give the private subnets a route to a **NAT gateway** for internet access."
+    trap: true
+    facts: [default-internet]
 ---
 A Lambda VPC attachment lets function code reach resources in your private network. Lambda still runs in its own managed VPC and uses Hyperplane elastic network interfaces (ENIs), managed network connections into your selected subnets and security groups.
 

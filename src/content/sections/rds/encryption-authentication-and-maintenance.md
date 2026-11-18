@@ -51,6 +51,9 @@ facts:
   - id: cross-region-key
     text: "KMS keys belong to one Region, so copying an encrypted DB snapshot or creating an encrypted read replica in another Region requires a KMS key in the destination Region."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
+  - id: encryption-scope
+    text: "RDS encryption at rest covers the DB instance storage plus its logs, automated backups, read replicas and snapshots."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
 cards:
   - id: rds-048
     q: A production RDS for MySQL instance was created without encryption. Compliance now requires encryption at rest. What is the supported path?
@@ -108,6 +111,10 @@ cards:
     q: "Copying an encrypted RDS snapshot from us-east-1 to eu-west-1 fails when the team selects the source KMS key. What is required?"
     a: "A **KMS key in the destination Region** (eu-west-1). KMS keys are Regional, so a cross-Region copy or encrypted read replica must use a key from the target Region."
     facts: [cross-region-key]
+  - id: rds-083
+    q: "An RDS DB instance is encrypted at rest with KMS. Which related data is also encrypted?"
+    a: "Its **logs, automated backups, read replicas and snapshots**, along with the instance storage."
+    facts: [encryption-scope]
 ---
 RDS security comes down to three questions: is data encrypted at rest (decided at creation), is the connection encrypted (SSL/TLS), and how do clients authenticate (passwords or IAM tokens). Maintenance behavior on Multi-AZ is the other common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
 

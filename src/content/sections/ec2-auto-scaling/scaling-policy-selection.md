@@ -42,6 +42,9 @@ facts:
   - id: scheduled-desired
     text: "A scheduled action sets a new desired capacity at a specific time, optionally with new minimum and maximum values, so the group scales out before a predictable peak."
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scheduled-scaling.html#scheduled-scaling-how-it-works
+  - id: suspend-processes
+    text: "Auto Scaling processes such as Launch, Terminate, HealthCheck, ReplaceUnhealthy, AddToLoadBalancer and AZRebalance can be suspended and resumed, for example to troubleshoot without scaling policies or health replacements interfering."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html
 cards:
   - id: ec2-auto-scaling-003
     q: Which EC2 Auto Scaling policy keeps average CPU near a target without manually maintaining its alarms?
@@ -95,6 +98,10 @@ cards:
     q: "A workload peaks at a known hour on the last day of every month. How should an Auto Scaling group be ready with 10 instances before the peak?"
     a: "Create a scheduled action for that time that sets the desired capacity to 10. Target tracking and simple scaling only react after the load arrives."
     facts: [scheduled-desired]
+  - id: ec2-auto-scaling-088
+    q: "Engineers must troubleshoot an instance in an Auto Scaling group without the group terminating or replacing it. What should they do?"
+    a: "**Suspend Auto Scaling processes** such as Terminate, ReplaceUnhealthy or HealthCheck, then resume them after the investigation."
+    facts: [suspend-processes]
 ---
 Scaling policies change the desired capacity of an EC2 Auto Scaling group as demand changes. Scale-out adds capacity; scale-in removes it. Choose a policy based on whether the trigger is current utilization, a known time or a recurring demand pattern.
 

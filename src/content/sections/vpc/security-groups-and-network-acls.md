@@ -78,6 +78,9 @@ facts:
   - id: acl-within-subnet
     text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the same subnet."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
+  - id: nacl-subnet-boundary
+    text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the subnet."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
 cards:
   - id: vpc-001
     q: How do VPC security groups and network ACLs differ?
@@ -176,6 +179,11 @@ cards:
     a: "No. Network ACLs only filter traffic entering or leaving the subnet; check the security groups and the hosts."
     trap: true
     facts: [acl-within-subnet]
+  - id: vpc-069
+    q: "A network ACL denies TCP 5432, yet two instances in the same subnet still connect on that port. Why?"
+    a: "Network ACLs filter traffic **entering or leaving the subnet**, not traffic within it. Use security groups to control instance-to-instance traffic in one subnet."
+    trap: true
+    facts: [nacl-subnet-boundary]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.

@@ -57,6 +57,9 @@ facts:
   - id: client-affinity
     text: "Setting client affinity to Source IP makes a standard accelerator send every connection from the same client IP to the same endpoint, for stateful applications; the default None hashes the 5-tuple."
     source: https://docs.aws.amazon.com/global-accelerator/latest/dg/about-listeners-client-affinity.html#about-listeners-client-affinity
+  - id: anycast
+    text: "Global Accelerator static IP addresses are anycast from the AWS edge network, so clients enter at a nearby edge location."
+    source: https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html
 diagrams:
   - id: accelerator-regional-routing
     title: Standard accelerator routing
@@ -124,6 +127,10 @@ cards:
     q: "A stateful game server behind Global Accelerator must keep each player on the same endpoint. What setting does that?"
     a: "Client affinity set to Source IP on the listener."
     facts: [client-affinity]
+  - id: global-accelerator-013
+    q: "A gaming company needs fixed IP addresses that route TCP and UDP players to the nearest healthy Region, with no content caching. Which service fits?"
+    a: "**AWS Global Accelerator.** Its static IPs are anycast from the AWS edge network and route over the AWS backbone; CloudFront would add caching for HTTP content instead."
+    facts: [anycast]
 ---
 
 AWS Global Accelerator gives clients fixed IP addresses for applications running in AWS Regions. It brings traffic onto the AWS global network at an edge location, an entry point near users, then routes it to application endpoints, the receiving resources.
