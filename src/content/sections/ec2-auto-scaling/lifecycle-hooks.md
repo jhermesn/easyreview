@@ -97,9 +97,10 @@ cards:
       - registration
       - slow-start
   - id: ec2-auto-scaling-045
-    q: "An EC2 Auto Scaling lifecycle hook must send notifications directly to an SQS queue. What permission does Auto Scaling need?"
-    a: "An IAM role that allows Auto Scaling to publish notifications to the queue."
-    facts: [direct-notification-role]
+    q: "A launch lifecycle hook times out before the instance's setup finishes, and no default result was configured. What happens to the instance?"
+    a: "The hook falls back to ABANDON, so Auto Scaling terminates the instance and launches a replacement."
+    trap: true
+    facts: [default-result, launch-abandon]
   - id: ec2-auto-scaling-046
     q: An EC2 Auto Scaling fleet must install software on new managed instances after an event. Which event-driven integration fits?
     a: An EventBridge rule targeting Systems Manager Run Command. Use a launch lifecycle hook when setup must finish before load balancer registration.
