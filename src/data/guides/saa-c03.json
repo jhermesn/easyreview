@@ -161,7 +161,9 @@
               "sections": [
                 "vpc/security-groups-and-network-acls",
                 "network-firewall/firewall-endpoints-and-routing",
-                "vpc/flow-logs"
+                "vpc/flow-logs",
+                "systems-manager/session-manager",
+                "route53/resolver-dns-firewall"
               ]
             },
             {
@@ -172,7 +174,8 @@
                 "cognito/user-pools-and-identity-pools",
                 "elastic-load-balancing/alb-authentication-and-certificates",
                 "api-gateway/authentication-and-api-keys",
-                "cloudfront/signed-urls-and-cookies"
+                "cloudfront/signed-urls-and-cookies",
+                "cloudfront/origin-access-control"
               ]
             },
             {
@@ -257,7 +260,9 @@
                 "s3/public-access-and-object-ownership",
                 "iam/policy-evaluation",
                 "macie/sensitive-data-discovery-and-jobs",
-                "cloudtrail/trails-and-event-selectors"
+                "cloudtrail/trails-and-event-selectors",
+                "cloudfront/origin-access-control",
+                "s3/inventory-and-access-logging"
               ]
             },
             {
@@ -438,7 +443,9 @@
                 "s3/event-notifications",
                 "sns/topics-subscriptions-and-fan-out",
                 "lambda/queue-and-stream-event-sources",
-                "event-processing-patterns/durable-fan-out"
+                "event-processing-patterns/durable-fan-out",
+                "dynamodb/streams-and-consumer-limits",
+                "eventbridge/scheduler"
               ]
             },
             {
@@ -501,7 +508,8 @@
                 "sqs/visibility-retention-and-polling",
                 "sns/topics-subscriptions-and-fan-out",
                 "amazon-mq/managed-message-brokers",
-                "sqs/dead-letter-queues-and-redrive"
+                "sqs/dead-letter-queues-and-redrive",
+                "sns/subscription-filters"
               ]
             },
             {
@@ -568,7 +576,8 @@
                 "event-processing-patterns/durable-fan-out",
                 "scalable-architectures/scaling-state-and-coupling",
                 "eventbridge/event-buses-and-patterns",
-                "step-functions/service-integration-patterns"
+                "step-functions/service-integration-patterns",
+                "dynamodb/streams-and-consumer-limits"
               ]
             },
             {
@@ -592,7 +601,8 @@
                 "sqs/standard-and-fifo-queues",
                 "sns/topics-subscriptions-and-fan-out",
                 "eventbridge/event-buses-and-patterns",
-                "amazon-mq/managed-message-brokers"
+                "amazon-mq/managed-message-brokers",
+                "lambda/async-destinations-and-dead-letter-queues"
               ]
             },
             {
@@ -696,7 +706,8 @@
                 "disaster-recovery/recovery-strategy-selection",
                 "disaster-recovery/rto-and-rpo",
                 "elastic-disaster-recovery/replication-and-staging",
-                "backup/plans-vaults-and-recovery-points"
+                "backup/plans-vaults-and-recovery-points",
+                "ec2/ami-scope-and-sharing"
               ]
             },
             {
@@ -812,7 +823,9 @@
                 "availability-targets/service-slas-and-workload-targets",
                 "cloudwatch/alarm-actions-and-composite-alarms",
                 "route53/endpoint-and-calculated-health-checks",
-                "health/account-events-and-affected-resources"
+                "health/account-events-and-affected-resources",
+                "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/metric-filters-and-patterns"
               ]
             },
             {
@@ -824,7 +837,8 @@
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
                 "rds/multi-az-and-failover-tests",
                 "well-architected/framework-pillars",
-                "ec2/ip-addresses-and-network-interfaces"
+                "ec2/ip-addresses-and-network-interfaces",
+                "ec2-auto-scaling/health-checks-and-grace-periods"
               ]
             },
             {
@@ -927,7 +941,8 @@
                 "efs/regional-and-one-zone-file-systems",
                 "fsx-for-lustre/parallel-storage-and-s3-integration",
                 "s3/performance-and-large-uploads",
-                "ec2/instance-store-lifecycle"
+                "ec2/instance-store-lifecycle",
+                "ebs/fast-snapshot-restore"
               ]
             },
             {
@@ -989,7 +1004,9 @@
               "sections": [
                 "ec2-auto-scaling/scaling-policy-selection",
                 "application-auto-scaling/scalable-targets-and-policies",
-                "ec2-auto-scaling/groups-launch-templates-and-az-balance"
+                "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "ec2-auto-scaling/lifecycle-hooks",
+                "ec2-auto-scaling/health-checks-and-grace-periods"
               ]
             },
             {
@@ -1035,7 +1052,8 @@
                 "ec2-auto-scaling/target-tracking-metrics-and-warmup",
                 "ec2-auto-scaling/scaling-policy-selection",
                 "cloudwatch/alarm-evaluation-and-missing-data",
-                "ecs/service-auto-scaling"
+                "ecs/service-auto-scaling",
+                "cloudwatch/agent-and-custom-metrics"
               ]
             },
             {
@@ -1095,7 +1113,8 @@
                 "rds/read-replicas-and-regional-recovery",
                 "dynamodb/capacity-scaling-and-throttling",
                 "dynamodb/dax-read-caching",
-                "elasticache/engines-replicas-and-multi-az"
+                "elasticache/engines-replicas-and-multi-az",
+                "dynamodb/indexes-and-read-consistency"
               ]
             },
             {
@@ -1171,7 +1190,8 @@
                 "rds/read-replicas-and-regional-recovery",
                 "aurora/global-database-switchover-and-failover",
                 "dynamodb/global-tables",
-                "rds/proxy-connection-pooling"
+                "rds/proxy-connection-pooling",
+                "dynamodb/indexes-and-read-consistency"
               ]
             },
             {
@@ -1385,7 +1405,8 @@
                 "firehose/destinations-and-buffering",
                 "managed-service-for-apache-flink/stream-processing-workloads",
                 "kinesis-video-streams/video-ingestion-and-processing",
-                "msk/managed-kafka-clusters"
+                "msk/managed-kafka-clusters",
+                "kinesis-data-streams/retention-and-replay"
               ]
             },
             {
@@ -1722,7 +1743,8 @@
                 "billing-and-cost-management/budgets",
                 "billing-and-cost-management/cost-and-usage-reports",
                 "billing-and-cost-management/anomaly-detection-and-optimization-hub",
-                "compute-optimizer/resource-rightsizing"
+                "compute-optimizer/resource-rightsizing",
+                "trusted-advisor/checks-and-event-notifications"
               ]
             },
             {
