@@ -377,7 +377,8 @@
               "text": "Infrastructure as code (IaC) options and tools for AWS",
               "sections": [
                 "configuration-management/provisioning-tool-selection",
-                "proton/platform-templates-and-end-of-support"
+                "proton/platform-templates-and-end-of-support",
+                "proton/operations-in-depth"
               ]
             },
             {
@@ -560,6 +561,7 @@
                 "sdks/credential-providers-pagination-and-retries",
                 "cloudformation/template-structure-and-dependencies",
                 "cli/pagination-and-error-handling",
+                "cli/operations-in-depth",
                 "cloudshell/browser-shell-and-permissions"
               ]
             },

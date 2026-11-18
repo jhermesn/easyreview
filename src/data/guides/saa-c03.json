@@ -1598,6 +1598,7 @@
               "sections": [
                 "billing-and-cost-management/cost-explorer",
                 "billing-and-cost-management/budgets",
+                "billing-and-cost-management/more-essentials",
                 "billing-and-cost-management/cost-and-usage-reports",
                 "billing-and-cost-management/anomaly-detection-and-optimization-hub",
                 "compute-optimizer/resource-rightsizing"
@@ -1821,6 +1822,7 @@
               "sections": [
                 "billing-and-cost-management/cost-explorer",
                 "billing-and-cost-management/budgets",
+                "billing-and-cost-management/more-essentials",
                 "billing-and-cost-management/cost-and-usage-reports",
                 "billing-and-cost-management/anomaly-detection-and-optimization-hub",
                 "compute-optimizer/resource-rightsizing",
@@ -1990,6 +1992,7 @@
               "sections": [
                 "billing-and-cost-management/cost-explorer",
                 "billing-and-cost-management/budgets",
+                "billing-and-cost-management/more-essentials",
                 "billing-and-cost-management/cost-and-usage-reports",
                 "billing-and-cost-management/anomaly-detection-and-optimization-hub",
                 "compute-optimizer/resource-rightsizing"
@@ -2163,6 +2166,7 @@
               "sections": [
                 "billing-and-cost-management/cost-explorer",
                 "billing-and-cost-management/budgets",
+                "billing-and-cost-management/more-essentials",
                 "billing-and-cost-management/cost-and-usage-reports",
                 "billing-and-cost-management/anomaly-detection-and-optimization-hub",
                 "compute-optimizer/resource-rightsizing"

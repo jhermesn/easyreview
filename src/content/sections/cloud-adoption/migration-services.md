@@ -45,14 +45,6 @@ cards:
     q: Which AWS service collected configuration, usage and network connection data about on-premises servers to plan a migration?
     a: AWS Application Discovery Service. It closed to new customers on November 7, 2025; AWS Transform offers similar capabilities.
     facts: [ads, ads-closed]
-  - id: cloud-adoption-021
-    q: Which AWS service gives one place to track the migration status of each application across migration tools?
-    a: AWS Migration Hub. It closed to new customers on November 7, 2025; AWS Transform offers similar capabilities.
-    facts: [hub, hub-closed, dms-tracking]
-  - id: cloud-adoption-022
-    q: A company needs a business case comparing its current on-premises costs with AWS before deciding to migrate. Which AWS offering helps?
-    a: Migration Evaluator. It finds over-provisioned servers and compares license options.
-    facts: [evaluator]
   - id: cloud-adoption-023
     q: Which AWS service does AWS recommend first for a lift-and-shift migration of servers?
     a: AWS Application Migration Service (AWS Transform MGN).
@@ -66,10 +58,6 @@ cards:
     q: "A company that has never used AWS Application Discovery Service wants to start using it for migration planning. What should it know?"
     a: "The service closed to new customers on November 7, 2025. AWS Transform provides similar capabilities."
     facts: [ads-closed]
-  - id: cloud-adoption-031
-    q: "How can Migration Evaluator help a company prepare for a move to AWS?"
-    a: "It builds a data-driven business case and identifies over-provisioned on-premises instances."
-    facts: [evaluator]
 ---
 AWS migration services cover the three stages of a move: build the case, discover what you run, then move and track it. Several were renamed or closed to new customers in late 2025, so exam questions may use older names. [Migration Hub](https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub)
 

@@ -93,7 +93,8 @@
               "kind": "knowledge",
               "text": "Resources to support the cloud migration journey",
               "sections": [
-                "cloud-adoption/migration-services"
+                "cloud-adoption/migration-services",
+                "cloud-adoption/migration-planning-tools"
               ]
             },
             {
@@ -1224,6 +1225,7 @@
               "text": "Understanding the appropriate uses and capabilities of AWS Budgets and AWS Cost Explorer",
               "sections": [
                 "billing-and-cost-management/budgets",
+                "billing-and-cost-management/more-essentials",
                 "billing-and-cost-management/cost-explorer"
               ]
             },

@@ -114,61 +114,12 @@ diagrams:
       - Fetch page
       - Follow continuation
 cards:
-  - id: cli-001
-    q: A script uses the AWS CLI to inventory resources across a paginated list operation. Does it
-      need to request each page manually?
-    a: No. For supported paginated list commands, the AWS CLI retrieves all pages by default.
-    facts:
-      - auto-pages
-  - id: cli-002
-    q: An AWS CLI inventory times out while retrieving a large list. How can the team reduce the
-      size of each service request?
-    a: Reduce the service page size. The CLI can still retrieve the complete list across multiple
-      requests.
-    facts:
-      - page-size
-  - id: cli-003
-    q: An AWS CLI automation needs to process a limited batch of list results and continue later.
-      What should it retain?
-    a: Retain the returned continuation token and use it to resume the listing.
-    facts:
-      - max-items
-      - starting-token
-  - id: cli-004
-    q: A team disables the AWS CLI display pager in an inventory script. Does this stop automatic
-      retrieval of service pages?
-    a: No. The display pager and API pagination are separate. Disabling the display pager does not
-      disable pagination.
-    trap: true
-    facts:
-      - pager
-  - id: cli-005
-    q: An AWS CLI automation encounters a temporary service throttling error. What built-in behavior
-      can help?
-    a: Standard retry mode retries supported throttling and transient errors with exponential
-      backoff.
-    facts:
-      - retry-errors
-      - backoff
   - id: cli-006
     q: An AWS CLI command returns an access denied error during an infrastructure deployment. What
       should the team check?
     a: Check the caller identity and permissions.
     facts:
       - authorization
-  - id: cli-007
-    q: An AWS CLI automation checks whether a command completed without CLI or service errors. Which
-      return code indicates success?
-    a: Return code 0 indicates success without CLI or service errors.
-    facts:
-      - success-code
-  - id: cli-008
-    q: An AWS CLI automation receives a transient connection error. How does standard retry mode
-      space its retry attempts?
-    a: It uses exponential backoff between retries.
-    facts:
-      - retry-errors
-      - backoff
 ---
 The AWS Command Line Interface (CLI) calls AWS services from a terminal or script. Reliable automation must retrieve complete result sets and distinguish temporary failures from requests that need correction. Pagination splits a result set into pages that the CLI retrieves through multiple service calls.
 
