@@ -44,7 +44,8 @@
                 "ecr/operations-in-depth",
                 "s3/artifact-and-log-bucket-management",
                 "codeartifact/upstream-repositories",
-                "codecommit/repository-migration"
+                "codecommit/repository-migration",
+                "reference-architectures/container-delivery-pipeline"
               ]
             },
             {
@@ -162,7 +163,8 @@
               "text": "Invoking AWS services in a pipeline for testing",
               "sections": [
                 "codepipeline/test-and-invoke-actions",
-                "codebuild/vpc-builds"
+                "codebuild/vpc-builds",
+                "reference-architectures/container-delivery-pipeline"
               ]
             }
           ]
@@ -211,7 +213,8 @@
                 "codeartifact/domains-and-repositories",
                 "ecr/repositories-and-image-tags",
                 "ecr/operations-in-depth",
-                "s3/artifact-and-log-bucket-management"
+                "s3/artifact-and-log-bucket-management",
+                "reference-architectures/container-delivery-pipeline"
               ]
             },
             {
@@ -234,7 +237,8 @@
                 "ec2-image-builder/schedules-and-base-image-updates",
                 "ec2/ami-scope-and-sharing",
                 "ec2/operations-in-depth",
-                "ec2-image-builder/launch-template-and-parameter-outputs"
+                "ec2-image-builder/launch-template-and-parameter-outputs",
+                "reference-architectures/golden-image-pipeline"
               ]
             }
           ]
@@ -250,7 +254,8 @@
               "sections": [
                 "deployment-strategies/traffic-shifting-and-health-gates",
                 "app-runner/web-application-deployment-and-availability",
-                "rds/blue-green-deployments"
+                "rds/blue-green-deployments",
+                "reference-architectures/container-delivery-pipeline"
               ]
             },
             {
@@ -294,7 +299,8 @@
               "sections": [
                 "deployment-strategies/mutable-and-immutable",
                 "deployment-strategies/golden-images-and-bootstrap",
-                "deployment-strategies/operations-in-depth"
+                "deployment-strategies/operations-in-depth",
+                "reference-architectures/golden-image-pipeline"
               ]
             },
             {
@@ -303,7 +309,8 @@
               "text": "Tools and services available for distributing code (for example, CodeDeploy, Image Builder)",
               "sections": [
                 "deployment-strategies/mutable-and-immutable",
-                "ec2-image-builder/cross-account-and-region-distribution"
+                "ec2-image-builder/cross-account-and-region-distribution",
+                "reference-architectures/golden-image-pipeline"
               ]
             },
             {
@@ -597,7 +604,8 @@
                 "systems-manager/patch-baselines-and-groups",
                 "systems-manager/maintenance-windows",
                 "config/recorders-and-configuration-history",
-                "systems-manager/quick-setup-patch-policies"
+                "systems-manager/quick-setup-patch-policies",
+                "reference-architectures/golden-image-pipeline"
               ]
             },
             {
@@ -660,7 +668,8 @@
                 "ec2-auto-scaling/operations-in-depth",
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
                 "global-infrastructure/multi-region-use-cases",
-                "reference-architectures/multi-region-warm-standby"
+                "reference-architectures/multi-region-warm-standby",
+                "reference-architectures/multi-region-automated-failover"
               ]
             },
             {
@@ -690,7 +699,8 @@
                 "memorydb/durable-in-memory-workloads",
                 "dms/full-load-and-change-data-capture",
                 "dms/operations-in-depth",
-                "documentdb/document-workloads-and-compatibility"
+                "documentdb/document-workloads-and-compatibility",
+                "reference-architectures/multi-region-automated-failover"
               ]
             },
             {
@@ -748,7 +758,8 @@
                 "route53/cross-account-dns-sharing",
                 "dynamodb/indexes-and-read-consistency",
                 "dynamodb/operations-in-depth",
-                "route53/public-zone-delegation"
+                "route53/public-zone-delegation",
+                "reference-architectures/multi-region-automated-failover"
               ]
             },
             {
@@ -905,7 +916,8 @@
                 "app2container/operations-in-depth",
                 "codepipeline/container-deployment-artifacts",
                 "copilot/container-application-workflows-and-support",
-                "eks/services-and-load-balancers"
+                "eks/services-and-load-balancers",
+                "reference-architectures/container-delivery-pipeline"
               ]
             },
             {
@@ -921,7 +933,8 @@
                 "ecr/image-replication",
                 "global-accelerator/regional-endpoint-routing",
                 "global-accelerator/basics",
-                "global-infrastructure/multi-region-use-cases"
+                "global-infrastructure/multi-region-use-cases",
+                "reference-architectures/multi-region-automated-failover"
               ]
             },
             {
@@ -1005,7 +1018,8 @@
                 "elastic-disaster-recovery/drills-failover-and-failback",
                 "fis/experiment-templates-and-targets",
                 "fis/stop-conditions-and-recovery",
-                "fis/cross-account-experiments"
+                "fis/cross-account-experiments",
+                "reference-architectures/multi-region-automated-failover"
               ]
             },
             {
@@ -1416,7 +1430,8 @@
               "sections": [
                 "eventbridge/event-buses-and-patterns",
                 "eventbridge/operations-in-depth",
-                "reference-architectures/automated-security-remediation"
+                "reference-architectures/automated-security-remediation",
+                "reference-architectures/event-driven-operations"
               ]
             },
             {
@@ -1477,7 +1492,8 @@
                 "eventbridge/event-buses-and-patterns",
                 "eventbridge/operations-in-depth",
                 "cloudtrail/event-history-and-event-types",
-                "appflow/saas-data-integration"
+                "appflow/saas-data-integration",
+                "reference-architectures/event-driven-operations"
               ]
             },
             {
@@ -1501,7 +1517,8 @@
                 "eventbridge/event-buses-and-patterns",
                 "eventbridge/operations-in-depth",
                 "cloudtrail/api-event-alerts",
-                "eventbridge/cross-account-routing"
+                "eventbridge/cross-account-routing",
+                "reference-architectures/event-driven-operations"
               ]
             },
             {
@@ -1582,7 +1599,8 @@
                 "systems-manager/automation-runbooks-and-approvals",
                 "systems-manager/cross-account-and-region-automation",
                 "ec2-auto-scaling/lifecycle-hooks",
-                "ec2-auto-scaling/operations-in-depth"
+                "ec2-auto-scaling/operations-in-depth",
+                "reference-architectures/event-driven-operations"
               ]
             },
             {
@@ -1621,7 +1639,8 @@
                 "health/basics",
                 "health/operations-in-depth",
                 "systems-manager/opscenter",
-                "systems-manager/application-manager"
+                "systems-manager/application-manager",
+                "reference-architectures/event-driven-operations"
               ]
             },
             {

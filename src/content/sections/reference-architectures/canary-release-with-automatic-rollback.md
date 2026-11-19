@@ -42,35 +42,68 @@ facts:
   - id: weighted-stop
     text: Manually stopping a Lambda deployment without rollback can leave its alias referencing two versions and cause later deployments to fail.
     source: https://docs.aws.amazon.com/codedeploy/latest/userguide/troubleshooting-deployments-lambda.html#troubleshooting-manually-stopped-lambda-deployment
+  - id: synth
+    text: Synthetics canaries run scripted endpoint and user-flow checks without requiring customer traffic.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries.html#CloudWatch_Synthetics_Canaries
+  - id: synth-schedule
+    text: Canaries can run once or on a schedule as often as once per minute using cron or rate expressions.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries.html#CloudWatch_Synthetics_Canaries
+  - id: synth-metrics
+    text: Canaries publish metrics in the CloudWatchSynthetics namespace.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_metrics.html#CloudWatch_Synthetics_Canaries_metrics
+  - id: cd-sns
+    text: CodeDeploy deployment group triggers publish event notifications to an SNS topic and its subscribers, including email recipients.
+    source: https://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications.html#monitoring-sns-event-notifications
+  - id: cd-failure-trigger
+    text: Failure and Rollback are supported deployment event types for CodeDeploy SNS notification triggers.
+    source: https://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications.html#monitoring-sns-event-notifications
+  - id: cd-logs
+    text: Linux script output is in /opt/codedeploy-agent/deployment-root/<group-id>/<deployment-id>/logs/scripts.log; agent activity is in /var/log/aws/codedeploy-agent/codedeploy-agent.log.
+    source: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-view-logs.html#deployments-view-logs-instance-unix
+  - id: cd-health
+    text: EC2 blue/green AllowTraffic failures without deployment log errors are typically caused by incorrectly configured load balancer health checks.
+    source: https://docs.aws.amazon.com/codedeploy/latest/userguide/troubleshooting-deployments.html#troubleshooting-deployments-allowtraffic-no-logs
+  - id: apigw-alias
+    text: Stage variables can substitute a Lambda function name, version or alias in an integration URI.
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/aws-api-gateway-stage-variables-reference.html#stage-variables-in-integration-lambda-functions
 diagrams:
   - id: canary-release-with-automatic-rollback
     title: CodeDeploy shifts a Lambda alias in a canary and rolls back on an alarm
-    width: 1100
-    height: 600
+    width: 1240
+    height: 700
+    groups:
+      - { label: Region, x: 200, y: 20, w: 1020, h: 660, tone: neutral, icon: group-region }
     nodes:
-      - { id: pipe, label: CodePipeline, sub: deploy stage, x: 40, y: 60, w: 160, h: 86, tone: devtools, icon: codepipeline }
-      - { id: cd, label: CodeDeploy, sub: canary 10% 5 min, x: 300, y: 60, w: 160, h: 86, tone: devtools, icon: codedeploy, info: "Deployment group has the CloudWatch alarm attached and automatic rollback on alarm turned on." }
-      - { id: hook, label: Lambda, sub: validation hook, x: 300, y: 300, w: 160, h: 86, tone: compute, icon: lambda, info: "Runs at `BeforeAllowTraffic` and `AfterAllowTraffic` and reports success or failure to CodeDeploy." }
-      - { id: alias, label: Lambda alias, sub: live, x: 600, y: 60, w: 160, h: 86, tone: compute, icon: lambda }
-      - { id: users, label: Clients, x: 860, y: 67, w: 150, h: 72, tone: user, icon: res-users }
-      - { id: v1, label: Version 1, sub: 90% during canary, x: 600, y: 260, w: 160, h: 86, tone: compute, icon: lambda }
-      - { id: v2, label: Version 2, sub: 10% canary, x: 860, y: 260, w: 160, h: 86, tone: compute, icon: lambda }
-      - { id: alarm, label: CloudWatch alarm, sub: errors on new version, x: 600, y: 460, w: 170, h: 86, tone: mgmt, icon: res-cloudwatch-alarm }
+      - { id: hook, label: Lambda, sub: validation hook, x: 240, y: 70, w: 160, h: 86, tone: compute, icon: lambda, info: "Runs at `BeforeAllowTraffic` and `AfterAllowTraffic` and reports success or failure to CodeDeploy." }
+      - { id: cd, label: CodeDeploy, sub: canary 10% 5 min, x: 480, y: 70, w: 160, h: 86, tone: devtools, icon: codedeploy, info: "The deployment group has the alarm attached, automatic rollback on alarm turned on, and SNS triggers for Failure and Rollback events." }
+      - { id: pipe, label: CodePipeline, sub: deploy stage, x: 720, y: 70, w: 160, h: 86, tone: devtools, icon: codepipeline }
+      - { id: synth, label: Synthetics canary, sub: every minute, x: 240, y: 260, w: 160, h: 86, tone: mgmt, icon: cloudwatch, info: "Scripted checks run even with no customer traffic and publish metrics in the CloudWatchSynthetics namespace." }
+      - { id: alarm, label: CloudWatch alarm, sub: errors on new version, x: 1000, y: 260, w: 180, h: 86, tone: mgmt, icon: res-cloudwatch-alarm }
+      - { id: users, label: Clients, sub: HTTPS, x: 20, y: 450, w: 150, h: 86, tone: user, icon: res-users }
+      - { id: api, label: API Gateway, sub: integration on alias, x: 240, y: 450, w: 160, h: 86, tone: integration, icon: api-gateway }
+      - { id: alias, label: Lambda alias, sub: live, x: 480, y: 450, w: 160, h: 86, tone: compute, icon: lambda }
+      - { id: v1, label: Version 1, sub: 90% during canary, x: 760, y: 350, w: 160, h: 86, tone: compute, icon: lambda }
+      - { id: v2, label: Version 2, sub: 10% canary, x: 760, y: 550, w: 160, h: 86, tone: compute, icon: lambda }
     edges:
       - { from: pipe, to: cd, step: 1 }
       - { from: cd, to: hook, step: 2 }
       - { from: cd, to: alias, step: 3 }
-      - { from: users, to: alias, step: 4 }
+      - { from: users, to: api, step: 4 }
+      - { from: api, to: alias, step: 4 }
       - { from: alias, to: v1, step: 4 }
       - { from: alias, to: v2, step: 4 }
-      - { from: v2, to: alarm, step: 5 }
-      - { from: alarm, to: cd, step: 5 }
+      - { from: synth, to: api, step: 5 }
+      - { from: v2, to: alarm, step: 6 }
+      - { from: alarm, to: cd, step: 7, dashed: true }
+      - { from: cd, to: v1, step: 7, dashed: true }
     steps:
       - "The pipeline's deploy stage starts a CodeDeploy deployment whose AppSpec names the alias, the current version and the target version."
       - "The BeforeAllowTraffic hook validates the new version before it gets any traffic."
       - "CodeDeploy points 10 percent of the alias at version 2, waits five minutes, then shifts the rest."
-      - "Clients call the alias, which splits requests between the two versions while the canary runs."
-      - "If the alarm on the new version's errors fires, CodeDeploy stops the deployment and rolls back to the last known good version as a new deployment."
+      - "Clients call API Gateway, whose integration targets the alias, so requests split between the two versions while the canary runs."
+      - "A Synthetics canary calls the API every minute, so problems show up even when real traffic is low."
+      - "A CloudWatch alarm watches the new version's errors."
+      - "If the alarm fires, CodeDeploy stops the deployment and rolls back to version 1 as a new deployment, and the Failure and Rollback triggers notify the team through SNS."
 cards:
   - id: reference-architectures-054
     q: "A Lambda function update must reach 10 percent of requests first and then everyone if nothing breaks, with no custom traffic code. What fits?"
@@ -102,6 +135,23 @@ cards:
     q: "An Amazon ECS service behind an Application Load Balancer needs a canary release, with testers reaching the new task set before customers. What fits?"
     a: "A CodeDeploy ECS blue/green deployment with a **canary** configuration on the ALB and an optional **test listener** that reaches the replacement before production traffic shifts."
     facts: [ecs-alb, ecs-test, canary]
+  - id: reference-architectures-136
+    q: "A new API version gets almost no traffic at night, so a canary deployment's error alarm may never see a failure. How can the team keep testing the endpoint?"
+    a: "A **CloudWatch Synthetics canary** that calls the endpoint on a schedule, as often as once per minute, without needing customer traffic. Its metrics can feed the alarm."
+    facts: [synth, synth-schedule, synth-metrics]
+  - id: reference-architectures-137
+    q: "The release team must get an email whenever a CodeDeploy deployment fails or rolls back. What fits?"
+    a: "A **deployment group trigger** for the **Failure** and **Rollback** events, publishing to an SNS topic with email subscribers."
+    facts: [cd-sns, cd-failure-trigger]
+  - id: reference-architectures-138
+    q: "An EC2 in-place CodeDeploy deployment fails during a lifecycle script. Where should the team look first on a Linux instance?"
+    a: "The script output in **scripts.log** under the deployment's folder in /opt/codedeploy-agent/deployment-root, and the agent log in /var/log/aws/codedeploy-agent. The CloudWatch agent can collect them centrally."
+    facts: [cd-logs]
+  - id: reference-architectures-139
+    q: "An EC2 blue/green deployment fails at AllowTraffic, and the deployment logs show no errors. What is the usual cause?"
+    a: "**Load balancer health checks** that are configured incorrectly, so the new instances never pass."
+    trap: true
+    facts: [cd-health]
 ---
 Release questions ask how to ship a change to a small share of users, watch it and undo it automatically if it misbehaves. With Lambda or ECS, CodeDeploy does the traffic shifting, hooks run the checks, and a CloudWatch alarm on the deployment group triggers the rollback.
 
@@ -119,12 +169,22 @@ Release questions ask how to ship a change to a small share of users, watch it a
 | Linear | Equal increments at equal intervals | Gradual ramp with time to watch |
 | All-at-once | Everything in one step | Speed over safety |
 
+| Decision | Choose | When |
+|---|---|---|
+| Lambda behind API Gateway | CodeDeploy shifting the alias | The integration targets the alias |
+| ECS behind an ALB | CodeDeploy blue/green with a test listener | Testers reach the new task set first |
+| Undo a bad release | Alarm on the deployment group, rollback on alarm | Errors rise during the shift |
+| Test with no real traffic | Synthetics canary | Low or no traffic during the release |
+| Tell people about failures | Deployment group triggers to SNS | Failure and Rollback events |
+
 ### Exam cues
 
 - If the question says send a small percentage first and the rest later, think a canary deployment configuration.
 - If the question says increase traffic gradually in equal steps, think linear.
 - If the question says roll back automatically when errors rise, think a CloudWatch alarm on the deployment group plus automatic rollback on alarm.
 - If the question says test before any traffic, think the `BeforeAllowTraffic` hook (or the ECS test listener).
+- If the question says test an endpoint even when there is no traffic, think a CloudWatch Synthetics canary.
+- If the question says notify on failed or rolled back deployments, think deployment group triggers to SNS.
 
 ### Remember
 
