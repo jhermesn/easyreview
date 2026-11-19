@@ -29,7 +29,8 @@
                 "codepipeline/cross-account-deployments",
                 "cdk/cross-account-trust",
                 "cdk/pipelines-and-approval-steps",
-                "codepipeline/pipeline-types-and-execution-modes"
+                "codepipeline/pipeline-types-and-execution-modes",
+                "reference-architectures/cross-account-deployment-pipeline"
               ]
             },
             {
@@ -88,7 +89,8 @@
                 "deployment-strategies/rollout-capacity-and-cost",
                 "deployment-strategies/traffic-shifting-and-health-gates",
                 "deployment-strategies/rollback-and-schema-compatibility",
-                "codedeploy/rollbacks"
+                "codedeploy/rollbacks",
+                "reference-architectures/canary-release-with-automatic-rollback"
               ]
             }
           ]
@@ -312,7 +314,8 @@
                 "codeartifact/authentication-tokens",
                 "codeartifact/cross-account-access",
                 "ecr/cross-account-access",
-                "codebuild/service-role-and-troubleshooting"
+                "codebuild/service-role-and-troubleshooting",
+                "reference-architectures/cross-account-deployment-pipeline"
               ]
             },
             {
@@ -363,7 +366,8 @@
                 "elastic-beanstalk/worker-environments",
                 "elastic-beanstalk/database-lifecycle",
                 "lambda/versions-and-aliases",
-                "sam/gradual-deployments"
+                "sam/gradual-deployments",
+                "reference-architectures/canary-release-with-automatic-rollback"
               ]
             }
           ]
@@ -435,7 +439,8 @@
               "sections": [
                 "cloudformation/stackset-permissions-and-targeting",
                 "cloudformation/stackset-rollout-and-recovery",
-                "service-catalog/stackset-constraints"
+                "service-catalog/stackset-constraints",
+                "reference-architectures/cross-account-deployment-pipeline"
               ]
             },
             {
@@ -490,7 +495,8 @@
                 "resource-access-manager/basics",
                 "resource-access-manager/operations-in-depth",
                 "multi-account-strategy/account-boundaries-and-shared-services",
-                "multi-account-strategy/operations-in-depth"
+                "multi-account-strategy/operations-in-depth",
+                "reference-architectures/governed-multi-account-landing-zone"
               ]
             },
             {
@@ -511,7 +517,8 @@
                 "organizations/accounts-ous-and-consolidated-billing",
                 "organizations/basics",
                 "organizations/operations-in-depth",
-                "control-tower/account-factory-and-enrollment"
+                "control-tower/account-factory-and-enrollment",
+                "reference-architectures/governed-multi-account-landing-zone"
               ]
             },
             {
@@ -523,7 +530,8 @@
                 "organizations/basics",
                 "organizations/operations-in-depth",
                 "iam/cross-account-roles-and-resource-policies",
-                "iam-identity-center/identity-sources-permission-sets-and-sessions"
+                "iam-identity-center/identity-sources-permission-sets-and-sessions",
+                "reference-architectures/governed-multi-account-landing-zone"
               ]
             },
             {
@@ -542,7 +550,9 @@
                 "organizations/resource-control-policies",
                 "organizations/operations-in-depth",
                 "organizations/trusted-access-and-delegated-administration",
-                "security-hub/cross-account-and-region-aggregation"
+                "security-hub/cross-account-and-region-aggregation",
+                "reference-architectures/governed-multi-account-landing-zone",
+                "reference-architectures/automated-security-remediation"
               ]
             }
           ]
@@ -1053,7 +1063,8 @@
                 "managed-prometheus/workspaces-ingestion-and-promql",
                 "managed-prometheus/managed-collectors-and-remote-write",
                 "api-gateway/integrations-and-monitoring",
-                "api-gateway/operations-in-depth"
+                "api-gateway/operations-in-depth",
+                "reference-architectures/centralized-observability"
               ]
             },
             {
@@ -1107,7 +1118,8 @@
                 "cloudtrail/log-integrity-and-protection",
                 "cloudtrail/operations-in-depth",
                 "s3/object-lock",
-                "cloudwatch/s3-log-exports"
+                "cloudwatch/s3-log-exports",
+                "reference-architectures/centralized-observability"
               ]
             },
             {
@@ -1156,7 +1168,8 @@
                 "cloudwatch/subscription-filters-and-central-log-delivery",
                 "firehose/transformations-and-format-conversion",
                 "firehose/operations-in-depth",
-                "firehose/delivery-failures-and-backup"
+                "firehose/delivery-failures-and-backup",
+                "reference-architectures/centralized-observability"
               ]
             },
             {
@@ -1238,7 +1251,8 @@
               "sections": [
                 "cloudwatch/dashboards",
                 "quicksight/datasets-visuals-and-dashboards",
-                "managed-grafana/workspaces-authentication-and-data-sources"
+                "managed-grafana/workspaces-authentication-and-data-sources",
+                "reference-architectures/centralized-observability"
               ]
             },
             {
@@ -1398,7 +1412,8 @@
               "text": "Configuring EventBridge to send notifications based on a particular event pattern",
               "sections": [
                 "eventbridge/event-buses-and-patterns",
-                "eventbridge/operations-in-depth"
+                "eventbridge/operations-in-depth",
+                "reference-architectures/automated-security-remediation"
               ]
             },
             {
@@ -1419,7 +1434,8 @@
               "sections": [
                 "config/managed-custom-and-proactive-rules",
                 "config/automation-remediation-and-retries",
-                "config/operations-in-depth"
+                "config/operations-in-depth",
+                "reference-architectures/automated-security-remediation"
               ]
             },
             {
@@ -1573,7 +1589,8 @@
               "sections": [
                 "config/automation-remediation-and-retries",
                 "config/operations-in-depth",
-                "systems-manager/state-manager-associations"
+                "systems-manager/state-manager-associations",
+                "reference-architectures/automated-security-remediation"
               ]
             }
           ]
@@ -1624,7 +1641,8 @@
                 "codedeploy/deployment-troubleshooting",
                 "cloudformation/creation-and-deletion-failures",
                 "cloudformation/update-rollback-recovery",
-                "cloudwatch/synthetics-and-release-diagnostics"
+                "cloudwatch/synthetics-and-release-diagnostics",
+                "reference-architectures/canary-release-with-automatic-rollback"
               ]
             },
             {
@@ -1694,7 +1712,8 @@
               "sections": [
                 "organizations/service-control-policies",
                 "organizations/basics",
-                "organizations/operations-in-depth"
+                "organizations/operations-in-depth",
+                "reference-architectures/governed-multi-account-landing-zone"
               ]
             },
             {
@@ -1821,7 +1840,8 @@
                 "multi-account-strategy/baseline-rollout-and-delegation",
                 "security-hub/central-configuration-policies",
                 "firewall-manager/organization-policies-and-config-prerequisites",
-                "systems-manager/cross-account-and-region-automation"
+                "systems-manager/cross-account-and-region-automation",
+                "reference-architectures/automated-security-remediation"
               ]
             },
             {
