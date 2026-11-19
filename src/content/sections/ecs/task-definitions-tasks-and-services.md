@@ -97,6 +97,9 @@ facts:
   - id: image-digest
     text: A container definition can reference an image by digest (repository@sha256:...), so every task runs exactly that image.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_image
+  - id: shared-kernel
+    text: "Containers use the host operating system kernel directly, while each virtual machine runs its own guest operating system."
+    source: https://aws.amazon.com/compare/the-difference-between-docker-vm/
 diagrams:
   - id: ecs-service-replacement
     title: A service replaces a stopped task
@@ -226,6 +229,10 @@ cards:
     q: How can an ECS task definition guarantee that every task runs the exact same image, even if a tag is moved?
     a: Reference the image by digest (repository@sha256:...) instead of by tag.
     facts: [image-digest]
+  - id: ecs-077
+    q: "Why do containers start faster and use fewer resources than virtual machines?"
+    a: "Containers share the host operating system kernel; a virtual machine runs a full guest operating system."
+    facts: [shared-kernel]
 ---
 
 An ECS task definition describes how to run an application in containers, which package code and its dependencies. A task is a running copy; a service keeps the requested number of copies available.
@@ -262,5 +269,6 @@ A Fargate service can use an Application Load Balancer for HTTP/HTTPS, a Network
 - A task definition groups containers and their runtime settings.
 - `DAEMON` means one task per eligible instance; Fargate requires `REPLICA` for services.
 - EFS on Fargate Linux requires platform version 1.4.0 or later.
+- Containers share the host kernel; VMs each run a guest operating system.
 
 > **Trap:** Stopping a service task does not stop the service from maintaining its desired count.

@@ -41,6 +41,12 @@ facts:
     text: When backup rule start windows overlap, AWS Backup optimizes backups using the rule with the
       longer retention period.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html
+  - id: on-demand
+    text: "AWS Backup creates backups automatically through backup plans or manually as on-demand backups."
+    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-a-backup.html
+  - id: frequency
+    text: "A backup rule can run snapshot backups every hour, 12 hours, day, week or month, or on a cron expression as often as hourly."
+    source: https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html#backup-frequency
 cards:
   - id: backup-002
     q: What does an AWS Backup plan define, and how are resources selected?
@@ -72,6 +78,10 @@ cards:
     facts:
       - cold-minimum
       - continuous-retention
+  - id: backup-035
+    q: "What is the most frequent snapshot schedule an AWS Backup plan rule supports?"
+    a: "Hourly, set as a frequency or with a cron expression. Use an on-demand backup for a one-off copy."
+    facts: [frequency, on-demand]
 ---
 
 AWS Backup schedules and retains backups for assigned AWS resources. A plan is the timetable, a vault is the storage container, and a recovery point is the saved backup you can restore.
@@ -99,5 +109,6 @@ AWS Backup schedules and retains backups for assigned AWS resources. A plan is t
 
 - Continuous retention: 1 to 35 days.
 - Eligible cold backups must stay cold for at least 90 days. Schedule deletion at least 90 days after transition.
+- Backups come from plans or on demand. Most frequent schedule: hourly.
 
 > **Trap:** A vault key does not determine every backup's encryption. Independently encrypted backups use it; other resources inherit source-service encryption.

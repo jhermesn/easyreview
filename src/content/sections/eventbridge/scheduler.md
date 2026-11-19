@@ -39,6 +39,9 @@ facts:
   - id: snapshot-target
     text: An EventBridge rule can target the EBS CreateSnapshot API directly.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-console-targets
+  - id: scheduler-input
+    text: "An EventBridge Scheduler schedule names its target, an execution role and an optional input that it delivers to the target, such as a JSON payload for a Lambda function."
+    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/managing-targets-templated.html
 cards:
   - id: eventbridge-013
     q: Which EventBridge feature supports one-time schedules, local time zones, and flexible delivery windows?
@@ -73,6 +76,10 @@ cards:
     facts:
       - snapshot-target
       - legacy-rules
+  - id: eventbridge-053
+    q: "A Lambda function invoked by Amazon EventBridge Scheduler needs a customer ID on each run. How can the schedule pass it?"
+    a: "Set the schedule target's input; Scheduler delivers that payload to the function."
+    facts: [scheduler-input]
 ---
 EventBridge Scheduler invokes a target at a chosen time or on a recurring schedule. It supports local time zones and flexible delivery windows, so a job can follow a calendar or run within an acceptable interval.
 
@@ -105,5 +112,6 @@ Legacy scheduled rules use the default event bus, UTC, and at least one-minute p
 - Types: `rate`, `cron`, and `at`.
 - Retry configuration: 60 to 86400 seconds of event age and 0 to 185 retries; the first exhausted limit stops retries.
 - A rate day is 24 hours, including daylight saving transitions.
+- A schedule can pass an input payload to its target.
 
 > **Trap:** A rate day is always 24 hours, so it can shift relative to local wall-clock time when daylight saving time changes.

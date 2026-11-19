@@ -45,6 +45,9 @@ facts:
   - id: iterator-age
     text: IteratorAge helps detect a stalled Lambda stream consumer.
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html#invocation-retries
+  - id: esm-sources
+    text: "Lambda event source mappings poll Amazon SQS, Kinesis, DynamoDB Streams, Amazon MQ, Amazon MSK and Amazon DocumentDB change streams."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html
 diagrams:
   - id: lambda-sqs-batch-routing
     title: An SQS source queue owns failed-message redrive
@@ -171,6 +174,10 @@ cards:
     facts:
       - sqs-batch-payload
       - sqs-batch-sizes
+  - id: lambda-076
+    q: "A team wants AWS Lambda to process messages from an Amazon MQ broker without writing a poller. Is that supported?"
+    a: "Yes. An event source mapping can poll Amazon MQ, as it does SQS, Kinesis, DynamoDB Streams, MSK and DocumentDB change streams."
+    facts: [esm-sources]
 ---
 An event source mapping is a Lambda resource that reads a queue or stream and invokes a function with batches of records. Its retries belong to that source path. At-least-once processing means the same record can be processed again.
 
@@ -194,5 +201,6 @@ An event source mapping is a Lambda resource that reads a queue or stream and in
 - The function timeout must be no greater than the SQS queue visibility timeout.
 - SQS mapping maximum batch size: 10,000 for standard, 10 for FIFO. More than 10 records requires at least a 1-second batching window.
 - Put the DLQ on the SQS source queue. Put stream failure settings and destinations on the event source mapping.
+- Event source mappings: SQS, Kinesis, DynamoDB Streams, Amazon MQ, MSK, DocumentDB change streams.
 
 > **Trap:** A function DLQ and asynchronous retry settings do not control failed SQS messages. Configure the source queue redrive policy and visibility timeout.

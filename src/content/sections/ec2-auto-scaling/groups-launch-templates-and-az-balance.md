@@ -90,6 +90,12 @@ facts:
   - id: memory-agent
     text: "EC2 does not publish memory metrics; the CloudWatch agent collects memory metrics such as mem_used_percent from inside the instance."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-CloudWatch-agent.html
+  - id: template-immutable
+    text: "A launch template version can't be modified; changes create a new version, and a version can set the AMI, instance type, subnet, key pair and security groups for instances launched directly or by Auto Scaling."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/manage-launch-template-versions.html
+  - id: target-registration
+    text: "When an Auto Scaling group has an attached load balancer, its instances are registered with the load balancer automatically."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html
 diagrams:
   - id: asg-alb-zones
     title: Load balancing across an Auto Scaling group
@@ -234,6 +240,15 @@ cards:
     q: "An Auto Scaling group must scale on memory utilization, but no memory metric appears in CloudWatch. What is missing?"
     a: "The **CloudWatch agent** on the instances. EC2 does not publish memory metrics; the agent sends them as custom metrics a scaling policy can use."
     facts: [memory-agent]
+  - id: ec2-auto-scaling-089
+    q: "A team must change the AMI in an EC2 launch template used by an Auto Scaling group. Can it edit the existing version?"
+    a: "No. Launch template versions are immutable; create a new version and point the group at it."
+    trap: true
+    facts: [template-immutable]
+  - id: ec2-auto-scaling-090
+    q: "An Auto Scaling group with an attached Application Load Balancer launches new instances. Must an operator register them with the target group?"
+    a: "No. Auto Scaling registers its instances with the attached load balancer automatically."
+    facts: [target-registration]
 ---
 An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces instances that terminate unexpectedly. A launch template is its versioned recipe for new instances, including the machine image, instance type and security groups. A machine image supplies the software to boot the instance; security groups are network traffic rules for its connections.
 
@@ -268,5 +283,7 @@ An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces ins
 - Minimum <= desired <= maximum capacity.
 - Rebalancing launches before terminating.
 - Default rebalancing headroom is 10% of maximum capacity or one instance, whichever is greater. An instance maintenance policy can set replacement thresholds.
+- Launch template versions are immutable; changes make a new version.
+- Auto Scaling registers instances with its attached load balancer.
 
 > **Trap:** A termination policy does not override zone balance or protect an unhealthy instance from replacement.

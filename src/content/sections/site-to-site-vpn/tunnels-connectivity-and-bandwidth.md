@@ -45,6 +45,9 @@ facts:
   - id: tunnel-auth
     text: "Site-to-Site VPN tunnel endpoints authenticate with a pre-shared key, the default, or with certificates."
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-tunnel-authentication-options.html
+  - id: vpn-pricing
+    text: "AWS Site-to-Site VPN charges for each connection-hour the connection is provisioned, with partial hours billed as full hours, plus standard data transfer charges."
+    source: https://aws.amazon.com/vpn/pricing/
 diagrams:
   - id: vpn-two-tunnels
     title: Two VPN tunnels
@@ -83,6 +86,10 @@ cards:
     q: "A Site-to-Site VPN is up, but instances cannot reach on-premises hosts. The VPC uses a virtual private gateway. What is often missing?"
     a: "Route propagation (or static routes) in the subnet route tables toward the virtual private gateway."
     facts: [route-propagation]
+  - id: site-to-site-vpn-019
+    q: "What does an AWS Site-to-Site VPN connection cost while it is provisioned but idle?"
+    a: "The hourly connection charge still applies; data transfer charges add only for traffic sent."
+    facts: [vpn-pricing]
 ---
 AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud (VPC), an isolated virtual network in AWS, using IPsec, a protocol for securing IP traffic. Each connection has two encrypted tunnels for availability.
 
@@ -104,5 +111,6 @@ AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud 
 - Both tunnels must use the same bandwidth setting. Large Bandwidth Tunnels require Transit Gateway or Cloud WAN and a fixed customer gateway IP address.
 - Large Bandwidth Tunnels do not support accelerated VPN.
 - Direct Connect does not encrypt traffic by default.
+- Pricing: per connection-hour (partial hours round up) plus data transfer.
 
 > **Trap:** A virtual private gateway cannot use Large Bandwidth Tunnels. Use Transit Gateway or Cloud WAN for that option.

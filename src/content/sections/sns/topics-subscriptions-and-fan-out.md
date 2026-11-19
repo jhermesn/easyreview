@@ -54,6 +54,15 @@ facts:
   - id: fifo-dedup
     text: "An SNS FIFO topic accepts but does not deliver a message whose deduplication ID was already published within the five-minute deduplication interval."
     source: https://docs.aws.amazon.com/sns/latest/dg/fifo-message-dedup.html
+  - id: fifo-durability
+    text: "SNS FIFO topics and SQS queues store messages redundantly across multiple Availability Zones."
+    source: https://docs.aws.amazon.com/sns/latest/dg/fifo-message-durability.html
+  - id: sse-scope
+    text: "SNS server-side encryption encrypts message bodies with symmetric KMS keys only; topic metadata and message metadata such as subject, ID and attributes are not encrypted."
+    source: https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#what-does-sse-encrypt
+  - id: delivery-status
+    text: "SNS can log the delivery status of messages to endpoints such as Amazon SQS, AWS Lambda, Data Firehose and HTTP/S."
+    source: https://docs.aws.amazon.com/sns/latest/dg/sns-topic-attributes.html
 cards:
   - id: sns-003
     q: What do an Amazon SNS topic and subscription represent?
@@ -129,6 +138,15 @@ cards:
     q: "A publisher must send 700 KiB messages through an SNS topic to SQS and Lambda subscribers. Is S3 offloading required?"
     a: "Not necessarily. Set the topic **MaximumMessageSize** attribute, up to **1 MiB**. The default is 256 KiB, and larger topics support Firehose, SQS and Lambda subscriptions."
     facts: [max-message-size]
+  - id: sns-032
+    q: "An Amazon SNS topic uses server-side encryption. Is a sensitive value placed in a message attribute protected?"
+    a: "No. SSE encrypts the message body only; message attributes, subject and topic metadata stay unencrypted."
+    trap: true
+    facts: [sse-scope]
+  - id: sns-033
+    q: "A team must confirm whether Amazon SNS messages reached an SQS queue and a Lambda function. Which SNS feature helps?"
+    a: "Delivery status logging for those endpoints."
+    facts: [delivery-status]
 diagrams:
   - id: sns-independent-queues
     title: One publication, separate subscriber queues
@@ -223,5 +241,8 @@ Amazon SNS is a publish/subscribe service: a publisher sends a message to a topi
 - Standard topics: at-least-once delivery and best-effort ordering.
 - SNS FIFO can deliver to Standard queues, but strict consumer ordering requires FIFO queues.
 - FIFO topics do not directly support email, HTTP(S), SMS, or mobile push.
+- FIFO topics store messages across multiple Availability Zones.
+- SSE encrypts message bodies only, with symmetric KMS keys.
+- Delivery status logging covers endpoints such as SQS, Lambda, Firehose and HTTP/S.
 
 > **Trap:** An SNS FIFO topic alone cannot preserve ordered processing through an SQS Standard queue. Choose a FIFO queue when consumer ordering matters.

@@ -78,6 +78,9 @@ facts:
   - id: function-url
     text: "A Lambda function URL is a dedicated HTTPS endpoint for one function, with auth type AWS_IAM or NONE (public, still subject to the resource-based policy), and works as a webhook endpoint without API Gateway."
     source: https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html#urls-configuration
+  - id: managed-instances
+    text: "Lambda Managed Instances run Lambda functions on EC2 instances defined by a capacity provider with VPC configuration, use EC2 pricing options such as Savings Plans and Reserved Instances, and let one execution environment handle several invocations at once."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-managed-instances.html
 diagrams:
   - id: lambda-async-invocation-flow
     title: Asynchronous invocation separates acceptance from execution
@@ -212,6 +215,10 @@ cards:
     q: "A third-party service must call a Lambda function through an HTTPS webhook. What is the simplest option?"
     a: "A Lambda function URL: a dedicated HTTPS endpoint for the function, with no API Gateway to set up."
     facts: [function-url]
+  - id: lambda-074
+    q: "A steady, high-volume AWS Lambda workload should use EC2 Savings Plans and specialized instance types without managing servers. Which Lambda option fits, and how does its concurrency differ?"
+    a: "Lambda Managed Instances. Functions run on EC2 instances from a capacity provider, and one execution environment can handle several invocations at once."
+    facts: [managed-instances]
 ---
 Lambda runs function code in response to invocations, meaning requests to execute the function. A synchronous caller waits for the result; an asynchronous caller hands work to Lambda's event queue. The invocation path determines who owns retries.
 
@@ -247,5 +254,6 @@ An Application Load Balancer (ALB) invokes a Lambda target directly with a JSON 
 - Durable executions can last up to one year. In November 2026 the default running-execution quota rose from one million to five million per account, with twice that new quota in N. Virginia, Oregon, and Ireland.
 - Lambda: no servers to manage, pay for what you use; S3 and DynamoDB events can trigger it.
 - Lambda pricing: requests plus duration (GB-seconds); free tier 1 million requests and 400,000 GB-seconds a month.
+- Lambda Managed Instances: EC2 capacity from a capacity provider, EC2 pricing options, several invocations per environment.
 
 > **Trap:** Disabling asynchronous function-error retries does not prevent duplicate events.

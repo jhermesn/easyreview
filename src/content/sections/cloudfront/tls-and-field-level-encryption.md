@@ -106,6 +106,9 @@ facts:
     text: HTTPS protects connections, while field-level encryption keeps selected data encrypted during
       application processing.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption
+  - id: any-dns-provider
+    text: "An alternate domain name for a CloudFront distribution is routed by its DNS service, which can be Route 53 with an alias record or another DNS provider pointing to the distribution domain name."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CreatingCNAME.html
 diagrams:
   - id: cloudfront-field-encryption-flow
     title: Selected fields stay encrypted through the application
@@ -228,6 +231,10 @@ cards:
     facts:
       - tls-sni
       - tls-dedicated
+  - id: cloudfront-061
+    q: "A company's domain is hosted at a third-party DNS provider. Can it still serve www.example.com through Amazon CloudFront?"
+    a: "Yes. Point the name at the distribution domain name in that DNS provider; Route 53 alias records are optional."
+    facts: [any-dns-provider]
 ---
 CloudFront uses Transport Layer Security (TLS) to protect HTTPS connections. The viewer connection and the custom-origin connection have separate settings. Field-level encryption protects selected form values beyond those connections so they stay encrypted inside the application until the component with the private key reads them.
 
@@ -259,6 +266,7 @@ Field-level encryption supports up to 10 fields per request. Require viewer `Red
 - Redirect mode uses `301` for GET and HEAD; for POST, PUT, DELETE, OPTIONS and PATCH over HTTP 1.1 or later it uses `307`, preserving method and body. Those methods below HTTP 1.1 get `403`.
 - The viewer ACM certificate belongs in `us-east-1`; an Elastic Load Balancing origin uses its own regional certificate. Provision it in the Region where the load balancer uses it.
 - Field-level encryption supports at most 10 fields per request.
+- Any DNS provider can point an alternate domain name at the distribution.
 
 > **Trap:** Viewer HTTPS does not configure custom-origin HTTPS. An S3 website endpoint cannot use HTTPS on the origin connection.
 

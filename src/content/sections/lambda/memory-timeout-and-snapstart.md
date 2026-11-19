@@ -21,6 +21,9 @@ facts:
   - id: ephemeral-storage
     text: "Lambda /tmp ephemeral storage is configurable from 512 MB to 10,240 MB, is unique to each execution environment and is encrypted at rest."
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-ephemeral-storage.html#configuration-ephemeral-storage
+  - id: cold-start
+    text: "A cold start happens when Lambda prepares a new execution environment by downloading code, starting the environment and running initialization code; Lambda may reuse an environment for later invocations, but reuse is not guaranteed."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html#cold-start-latency
 cards:
   - id: lambda-060
     q: A CPU-bound Lambda function at 512 MB runs slowly, and its memory use is low. Which setting speeds it up?
@@ -44,6 +47,11 @@ cards:
     q: "A containerized Lambda function needs 5 GB of scratch space during each run. Does it need EFS?"
     a: "No. Set the function ephemeral storage (/tmp) to at least 5 GB; it goes up to 10,240 MB. EFS is for data that must persist or be shared."
     facts: [ephemeral-storage]
+  - id: lambda-075
+    q: "An AWS Lambda function caches data in a global variable. Can every invocation rely on that cache?"
+    a: "No. A reused execution environment keeps it, but a cold start creates a new environment without it."
+    trap: true
+    facts: [cold-start]
 ---
 Lambda sizing has one main dial: memory, which also sets CPU. Timeout caps how long a run can take, and SnapStart cuts cold starts for supported runtimes. [Configure Lambda function memory](https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html)
 
@@ -64,5 +72,6 @@ Lambda sizing has one main dial: memory, which also sets CPU. Timeout caps how l
 - Memory 128 MB to 10,240 MB; CPU proportional.
 - Timeout default 3 seconds, maximum 900 seconds.
 - SnapStart: Java 11+, Python 3.12+, .NET 8+.
+- Cold start: new environment, code download, initialization. Environment reuse is possible, never guaranteed.
 
 > **Trap:** Lambda has no separate CPU setting. To get more CPU, raise memory.

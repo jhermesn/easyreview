@@ -41,6 +41,39 @@ facts:
     text: If the oldest of 100 retained versions has a label, creation of a new version fails instead of
       deleting the labeled version.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions
+  - id: session-restricted
+    text: A custom Session document using schemaVersion 1.0 and sessionType InteractiveCommands can
+      restrict commands and parameters.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-restrict-command-access.html#session-manager-restrict-command-access
+  - id: session-restricted-cli
+    text: InteractiveCommands sessions are supported only through the CLI.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-restrict-command-access.html#session-manager-restrict-command-access
+  - id: session-iam
+    text: IAM policies control which users may start sessions and which managed nodes they can access.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html#session-manager
+  - id: session-no-fallback
+    text: If Run As cannot use the selected operating-system user, the session fails without falling
+      back to ssm-user.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-run-as.html#session-preferences-run-as
+  - id: session-idle
+    text: Session Manager idle timeout defaults to 20 minutes.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-timeout.html#session-preferences-timeout
+  - id: session-idle-range
+    text: Session Manager idle timeout can be set from one to 60 minutes.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-timeout.html#session-preferences-timeout
+  - id: session-idle-input
+    text: Keyboard input, window resizing and reconnection can reset the Session Manager idle timeout.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-timeout.html#session-preferences-timeout
+  - id: session-idle-input-duration
+    text: Maximum session duration is a separate control from idle timeout.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-timeout.html#session-preferences-timeout
+  - id: session-default-user
+    text: On Linux and macOS, Session Manager uses ssm-user by default and adds it to sudoers.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-run-as.html#session-preferences-run-as
+  - id: session-run-as
+    text: Run As chooses an existing Linux or macOS operating-system user using SSMSessionRunAs on the
+      IAM entity before the user configured in session preferences.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-run-as.html#session-preferences-run-as
 cards:
   - id: systems-manager-030
     q: Can a Systems Manager Parameter Store advanced parameter be changed to standard after its value
@@ -78,6 +111,41 @@ cards:
     facts:
       - parameter-history
       - parameter-history-label
+  - id: systems-manager-068
+    q: Engineers should run only an approved interactive command through Systems Manager. How can access
+      be restricted?
+    a: Create a custom Session document with schemaVersion 1.0 and sessionType InteractiveCommands, then
+      restrict IAM access to that document. These sessions must start through the CLI.
+    facts:
+      - session-restricted
+      - session-restricted-cli
+      - session-iam
+  - id: systems-manager-069
+    q: A Systems Manager Run As session fails because its configured Linux user is absent. Will it fall
+      back to ssm-user?
+    a: No. The configured user must exist; Run As fails without falling back to ssm-user.
+    trap: true
+    facts:
+      - session-no-fallback
+  - id: systems-manager-070
+    q: What is the default idle timeout for Systems Manager Session Manager, and does it impose a strict
+      total duration?
+    a: 20 minutes, configurable from one to 60 minutes. Client inputs such as resizing or reconnection
+      reset it; use maximum session duration for a separate total-duration control.
+    facts:
+      - session-idle
+      - session-idle-range
+      - session-idle-input
+      - session-idle-input-duration
+  - id: systems-manager-089
+    q: A team wants native Systems Manager sessions on Linux to use an existing operating-system user
+      rather than ssm-user. What should it configure?
+    a: Enable Run As. Set SSMSessionRunAs on the IAM user or role, or set the OS user in session
+      preferences. The IAM tag takes precedence, and the selected user must exist.
+    facts:
+      - session-default-user
+      - session-run-as
+      - session-no-fallback
 ---
 Systems Manager Parameter Store uses hierarchies, policies and version history to organize parameters and manage their lifecycle. These controls affect how applications retrieve values and how updates behave over time.
 
@@ -100,5 +168,8 @@ Systems Manager Parameter Store uses hierarchies, policies and version history t
 - An advanced parameter supports up to ten policies.
 - Parameter Store retains up to 100 versions.
 - A standard parameter can become advanced; an [advanced parameter cannot be changed back to standard](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html#parameter-store-tiers-limitations).
+- Session Manager idle timeout: 20 minutes by default, one to 60 minutes; resizing or reconnecting can reset it. Maximum session duration is a separate limit.
+- Restricted command access: custom `Session` documents with `sessionType: InteractiveCommands`, started through the CLI.
+- Run As selects an existing Linux or macOS user (the `SSMSessionRunAs` tag wins over the account preference) and fails rather than falling back to `ssm-user`.
 
 > **Trap:** `Expiration` deletes the parameter; `ExpirationNotification` emits an event. Also, supplying a new policy array replaces the existing array rather than adding to it.

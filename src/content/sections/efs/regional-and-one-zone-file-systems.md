@@ -74,6 +74,12 @@ facts:
   - id: access-charges
     text: EFS charges per GB for reads and writes, plus an extra per-GB charge to read data from the Infrequent Access and Archive storage classes.
     source: https://aws.amazon.com/efs/pricing/
+  - id: efs-kms-keys
+    text: "EFS encrypts file data at rest with either the AWS owned key aws/elasticfilesystem (default, no extra charge) or a customer managed KMS key for more control and auditing."
+    source: https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html
+  - id: efs-default-backups
+    text: "File systems created in the EFS console are backed up by AWS Backup automatically by default; through the CLI or API, automatic backups are on by default only for One Zone file systems."
+    source: https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html
 cards:
   - id: efs-001
     q: Which AWS service gives Linux clients shared POSIX file storage across AZs, and what network
@@ -148,6 +154,15 @@ cards:
     a: Yes. IA and Archive reads add a per-GB charge on top of the normal read charge, which is why they suit rarely accessed data.
     trap: true
     facts: [access-charges]
+  - id: efs-026
+    q: "An Amazon EFS file system must be encrypted with a key whose use the security team controls and audits. Which key should it choose?"
+    a: "A customer managed KMS key. The default AWS owned key costs nothing extra but gives less control."
+    facts: [efs-kms-keys]
+  - id: efs-027
+    q: "A team creates an Amazon EFS Regional file system through the API and assumes AWS Backup protects it automatically. Is that right?"
+    a: "No. Automatic backups are on by default for console-created file systems, and through the API only for One Zone file systems."
+    trap: true
+    facts: [efs-default-backups]
 diagrams:
   - id: efs-regional-clients
     title: Clients in different AZs share one Regional file system
@@ -227,6 +242,8 @@ Amazon EFS provides shared files that multiple clients can read and write over N
 - NFS versions: 4.0 and 4.1. Network port: TCP 2049.
 - Regional: one mount target per AZ. One Zone: a single target in its storage AZ; access from other AZs incurs cross-AZ data access charges.
 - Return to Standard on access is disabled by default. Configure `On first access` to return active files to Standard.
+- Encryption key: AWS owned `aws/elasticfilesystem` by default, or a customer managed KMS key.
+- Automatic AWS Backup: on by default from the console; from the CLI or API only for One Zone.
 
 > **Trap:** A mount target in another AZ does not change One Zone's data placement. One Zone still keeps its copies in one AZ, where a disaster affecting those copies can cause data loss.
 

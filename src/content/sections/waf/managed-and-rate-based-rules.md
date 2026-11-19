@@ -42,6 +42,9 @@ facts:
     text: Test and tune WAF protections in staging, then Count mode on production traffic before
       enforcement.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-testing.html
+  - id: rule-group-owners
+    text: "AWS WAF rule groups can be your own, managed by AWS Managed Rules, managed by AWS Marketplace sellers, or owned by services such as Firewall Manager and Shield Advanced."
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-groups.html
 diagrams: []
 cards:
   - id: waf-002
@@ -81,6 +84,10 @@ cards:
     q: An AWS WAF managed rule group should inspect only requests to a login path. What should the team add?
     a: Add a scope-down statement matching the login path. Only matching requests are evaluated by the group.
     facts: [managed-scope]
+  - id: waf-028
+    q: "A team wants vendor-maintained AWS WAF protection for a specific application type instead of writing rules. What can it add?"
+    a: "A managed rule group, from AWS Managed Rules or an AWS Marketplace seller."
+    facts: [rule-group-owners]
 ---
 AWS WAF managed rule groups provide maintained sets of request checks. Rate-based rules control high request volumes. Use both when an application faces exploit attempts as well as floods.
 
@@ -112,5 +119,6 @@ A scope-down statement can also restrict a managed rule group to matching reques
 
 - Count all requires a scope-down statement. It is an aggregation choice, separate from the Count rule action.
 - Rate limiting is approximate and can react after a delay.
+- Rule group owners: you, AWS Managed Rules, AWS Marketplace sellers, Firewall Manager or Shield Advanced.
 
 > **Trap:** A per-IP counter does not impose one shared limit on requests from all IPs. Choose aggregation to match the traffic grouping the question requires.

@@ -179,7 +179,8 @@
                 "api-gateway/authentication-and-api-keys",
                 "cloudfront/signed-urls-and-cookies",
                 "cloudfront/origin-access-control",
-                "cloudfront/design-details"
+                "cloudfront/design-details",
+                "systems-manager/session-manager"
               ]
             },
             {
@@ -224,7 +225,8 @@
               "sections": [
                 "vpc/subnets-and-gateways",
                 "vpc/security-groups-and-network-acls",
-                "multi-account-strategy/account-boundaries-and-shared-services"
+                "multi-account-strategy/account-boundaries-and-shared-services",
+                "systems-manager/session-manager"
               ]
             },
             {

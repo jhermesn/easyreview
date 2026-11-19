@@ -75,6 +75,9 @@ facts:
   - id: migrate-via-replica
     text: "To move from RDS for MySQL to Aurora MySQL with little downtime, create an Aurora read replica of the RDS instance, wait for replica lag 0, point clients to it and promote it."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Migrating.RDSMySQL.Replica.html#AuroraMySQL.Migrating.RDSMySQL.Replica
+  - id: dynamic-resizing
+    text: "On supported versions, an Aurora cluster volume shrinks automatically when data is removed, such as by dropping or truncating a table, which lowers storage charges."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html
 cards:
   - id: aurora-001
     q: What separates Aurora storage durability from database instance availability?
@@ -141,6 +144,10 @@ cards:
     q: "A production RDS for MySQL database must move to Aurora MySQL with minimal downtime. What path does AWS recommend?"
     a: "Create an Aurora read replica of the RDS instance; when replica lag reaches 0, switch clients and promote the replica."
     facts: [migrate-via-replica]
+  - id: aurora-051
+    q: "A team drops large tables in an Amazon Aurora cluster. Does it keep paying for the storage those tables used?"
+    a: "No, on supported versions. Aurora shrinks the cluster volume automatically when data is removed, lowering storage charges."
+    facts: [dynamic-resizing]
 diagrams:
   - id: aurora-shared-storage
     title: Instances share storage while endpoints select connections
@@ -231,5 +238,6 @@ An Aurora cluster separates database instances from a shared storage volume. The
 
 - Six data copies across three zones; one writer and up to 15 readers.
 - Aurora is MySQL and PostgreSQL compatible; AWS patches it in the maintenance window.
+- The cluster volume shrinks when data is removed, on supported versions.
 
 > **Trap:** Manually created readers affect Auto Scaling metrics but are not removed by its scale-in actions. With no readers, the reader endpoint reaches the writer and can accept writes.

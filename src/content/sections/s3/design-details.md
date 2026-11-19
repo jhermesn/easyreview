@@ -30,6 +30,9 @@ facts:
   - id: bucket-namespaces
     text: "General purpose bucket names share a global namespace by default and must be unique across all accounts in a partition; a bucket can instead be created in the account regional namespace, a reserved part of that namespace where only the owning account can create buckets."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/gpbucketnamespaces.html#account-regional-gp-buckets
+  - id: bucket-quota
+    text: "An account can create 10,000 general purpose buckets by default, and the quota can be increased."
+    source: https://docs.aws.amazon.com/general/latest/gr/s3.html
 cards:
   - id: s3-169
     q: "Millions of 20 KB objects are moved to S3 Standard-IA to save money, and the bill goes up. Why?"
@@ -66,6 +69,10 @@ cards:
     q: "Must every Amazon S3 general purpose bucket name compete with all other AWS accounts' bucket names?"
     a: "By default, yes, within the partition.\nA bucket created in the account regional namespace uses a reserved part that only the owning account can create buckets in."
     facts: [bucket-namespaces]
+  - id: s3-206
+    q: "How many Amazon S3 general purpose buckets can an account create by default, and is that fixed?"
+    a: "10,000, and the quota can be increased."
+    facts: [bucket-quota]
 ---
 S3 design choices depend on object size, archive controls and website naming. Check these details before choosing a storage class or setting up a custom domain.
 
@@ -92,5 +99,6 @@ S3 design choices depend on object size, archive controls and website naming. Ch
 - Standard-IA and One Zone-IA bill each object for at least 128 KB and 30 days, even if deleted earlier.
 - Glacier Flexible Retrieval and Deep Archive add 40 KB of metadata per object: 32 KB at the archive rate and 8 KB at the S3 Standard rate.
 - Bucket names: global namespace per partition by default, or the account regional namespace reserved to one account.
+- Default bucket quota: 10,000 general purpose buckets per account, adjustable.
 
 > **Trap:** A small object in Intelligent-Tiering does not move to Infrequent Access just because it is rarely read. Objects below 128 KB remain in Frequent Access.
