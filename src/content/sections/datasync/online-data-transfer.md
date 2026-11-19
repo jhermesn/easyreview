@@ -39,6 +39,12 @@ facts:
   - id: task-throughput
     text: "A DataSync task reaches up to 10 Gbps when it uses an agent and up to 5 Gbps without one."
     source: https://docs.aws.amazon.com/general/latest/gr/datasync.html
+  - id: transfer-pricing
+    text: "AWS DataSync charges for gigabytes transferred; Enhanced mode also charges per task execution, in addition to applicable storage-service request, storage and data-transfer charges."
+    source: https://aws.amazon.com/datasync/pricing/#Enhanced_mode_data_transfers
+  - id: network-compression
+    text: "AWS DataSync compresses transfer data before sending it over the network when compression is possible, reducing the physical bytes sent."
+    source: https://docs.aws.amazon.com/datasync/latest/userguide/transfer-performance-counters.html
 cards:
   - id: datasync-001
     q: A company must copy 200 TB from an on-premises NFS server to Amazon EFS over its existing network link, with encryption in transit and integrity checks, and then keep syncing changes nightly. Which service fits?
@@ -65,6 +71,14 @@ cards:
     q: What does an AWS DataSync agent run on?
     a: "A VM on VMware ESXi, KVM, Nutanix AHV or Hyper-V, or an EC2 instance when the storage is in a VPC."
     facts: [agent]
+  - id: datasync-008
+    q: "A company schedules many AWS DataSync Enhanced mode transfers. Which billing dimensions should it include in its estimate?"
+    a: "Gigabytes transferred and task executions, plus applicable storage, request and data-transfer charges."
+    facts: [transfer-pricing]
+  - id: datasync-009
+    q: "During an AWS DataSync migration, why can network bytes be lower than the amount of data transferred?"
+    a: "Compression before network transmission. When the data can be compressed, fewer physical bytes cross the network."
+    facts: [network-compression]
 ---
 AWS DataSync copies files and objects over the network, fast and with checks, so you don't have to script `rsync` jobs and verify them yourself. [What is AWS DataSync?](https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html)
 
@@ -73,7 +87,7 @@ AWS DataSync copies files and objects over the network, fast and with checks, so
 1. For on-premises or other-cloud storage, deploy a DataSync agent near the data and activate it against a public or VPC service endpoint.
 2. Create a source and a destination location, such as an NFS share and an S3 bucket.
 3. Create a task with options: what metadata to keep, filters, bandwidth limit, schedule.
-4. Each task execution scans both sides, copies what changed over TLS, and verifies integrity.
+4. Each task execution scans both sides, copies what changed over TLS, and verifies integrity. DataSync compresses data before network transmission when possible.
 
 | Need | Service |
 |---|---|
@@ -89,6 +103,9 @@ AWS DataSync copies files and objects over the network, fast and with checks, so
 - If the question says copy between two AWS storage services, think DataSync with no agent.
 
 ### Remember
+
+- Transfer charges depend on gigabytes copied; Enhanced mode adds a per-execution fee. Storage, request and data-transfer charges can also apply.
+- Compression can reduce network bytes when the data is compressible.
 
 - Sources: NFS, SMB, HDFS, object storage, other clouds. Targets: S3, EFS, all FSx types.
 - Agent needed for on-premises and other clouds; none between AWS services in one account.

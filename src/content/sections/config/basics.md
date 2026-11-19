@@ -4,8 +4,8 @@ level: foundational
 order: 5
 facts:
   - id: inventory-history
-    text: "AWS Config shows the configuration of AWS resources, how they relate to each other, and how their configurations changed over time."
-    source: https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html#WhatIsConfig
+    text: "AWS Config keeps configuration records for selected supported resource types; daily recording retains only the latest changed state over a 24-hour period."
+    source: https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html#select-resources-recording-frequency
   - id: rules-basic
     text: "AWS Config rules evaluate resource settings continuously and flag resources that break a rule as noncompliant."
     source: https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html#WhatIsConfig
@@ -26,13 +26,17 @@ cards:
     a: "No. AWS CloudTrail records API calls; AWS Config records resource configurations and checks them against rules."
     trap: true
     facts: [inventory-history]
+  - id: config-055
+    q: "Does enabling AWS Config guarantee a history of every change to every AWS resource?"
+    a: "No. Recording covers selected supported resource types, and daily recording captures only the latest changed state over 24 hours."
+    facts: [inventory-history]
 ---
 AWS Config keeps an inventory of AWS resources with their configuration history, and checks them against rules for compliance. [What is AWS Config?](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html#WhatIsConfig)
 
 ### How it works
 
-1. AWS Config records each supported resource and its settings.
-2. Every change becomes a new configuration item, building a history.
+1. Choose supported resource types for AWS Config to record.
+2. Continuous recording captures changes as they occur. Daily recording captures the latest changed state over a 24-hour period.
 3. Rules evaluate the settings and mark resources compliant or noncompliant.
 
 ### Exam cues
@@ -41,7 +45,7 @@ AWS Config keeps an inventory of AWS resources with their configuration history,
 
 ### Remember
 
-- Inventory, relationships and history of resource configurations.
+- Inventory, relationships and history cover the supported resources selected for recording.
 - Rules flag noncompliant resources.
 
 > **Trap:** AWS Config tracks how a resource is configured. CloudTrail tracks who made the API call that changed it.

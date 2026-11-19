@@ -32,6 +32,9 @@ facts:
   - id: smb-ad
     text: "An S3 File Gateway SMB file share authenticates users with Microsoft Active Directory (on-premises or AWS Managed Microsoft AD) after the gateway joins the domain, or with guest access."
     source: https://docs.aws.amazon.com/filegateway/latest/files3/CreatingAnSMBFileShare.html#CreatingAnSMBFileShare
+  - id: private-endpoints
+    text: "S3 File Gateway can use private VPC endpoints for its AWS connections and data transfers without requiring public internet access."
+    source: https://docs.aws.amazon.com/filegateway/latest/files3/Requirements.html#allow-firewall-gateway-access
 diagrams:
   - id: storage-file-upload
     title: Files become asynchronously uploaded S3 objects
@@ -100,6 +103,10 @@ cards:
     q: "Windows users must reach an S3 File Gateway share with their corporate logins. What is required?"
     a: "An SMB file share with Active Directory authentication, with the gateway joined to the domain."
     facts: [smb-ad]
+  - id: storage-gateway-017
+    q: "An on-premises S3 File Gateway must connect to AWS and transfer data without public internet access. Which service connectivity option fits?"
+    a: "Private VPC endpoints configured for the gateway's AWS connections and data transfers."
+    facts: [private-endpoints]
 ---
 S3 File Gateway lets existing applications use shared files while storing their data as S3 objects. Network File System (NFS) and Server Message Block (SMB) are protocols for accessing files over a network. Think of the gateway as a file interface backed by an S3 bucket.
 
@@ -117,6 +124,8 @@ S3 File Gateway lets existing applications use shared files while storing their 
 - If the question says block volumes or virtual tape library, think Volume Gateway or Tape Gateway, because both expose iSCSI interfaces.
 
 ### Remember
+
+- Private VPC endpoints allow gateway connections and data transfers to AWS without public internet access.
 
 - S3 data can use versioning, replication and lifecycle management.
 - FSx File Gateway closed to new customers in October 2024. Existing customers can continue using it.

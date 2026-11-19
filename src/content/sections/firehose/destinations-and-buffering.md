@@ -71,6 +71,9 @@ facts:
   - id: deliver-event-target
     text: An EventBridge rule can invoke Lambda asynchronously as its target.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-targets
+  - id: deliver-zero-latency
+    text: "Amazon Data Firehose can deliver within a few seconds with a zero-second buffering interval for supported application destinations; zero buffering is unavailable for S3 backup and dynamic partitioning."
+    source: https://docs.aws.amazon.com/firehose/latest/dev/create-configure-backup.html#buffering-hints
 cards:
   - id: firehose-002
     q: Does a Firehose S3 destination deliver every input record immediately?
@@ -120,6 +123,10 @@ cards:
       - deliver-event-target
       - deliver-api-filter
       - deliver-api-role
+  - id: firehose-023
+    q: "An Amazon Data Firehose stream needs delivery within a few seconds to a supported application destination. Which buffering setting fits, and where is it unavailable?"
+    a: "A zero-second buffering interval. Zero buffering is unavailable for S3 backup and dynamic partitioning, which groups records by partition key."
+    facts: [deliver-zero-latency]
 diagrams:
   - id: firehose-redshift-staging
     title: Firehose stages Redshift loads in S3
@@ -192,6 +199,8 @@ Amazon Data Firehose delivers streaming records to storage and analytics destina
 - If the question says retained Kinesis history must be copied when Firehose is attached, think a separate replay consumer, because Firehose starts at `LATEST`.
 
 ### Remember
+
+- A zero-second interval can deliver within a few seconds to supported application destinations. It does not support S3 backup or dynamic partitioning, which groups records by partition key.
 
 - S3 destination defaults: 5 MB or 300 seconds, whichever is met first.
 - S3 concatenation adds no delimiter by default. Enable the newline option when needed.

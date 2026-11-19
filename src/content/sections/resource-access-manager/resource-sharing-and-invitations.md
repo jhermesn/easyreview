@@ -63,6 +63,9 @@ facts:
   - id: ram-re-share
     text: A resource received through a share cannot be shared again by the recipient.
     source: https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing-create.html#working-with-sharing-create
+  - id: stacksets-deploy
+    text: "AWS CloudFormation StackSets creates, updates or deletes stacks across multiple AWS accounts and Regions from a common template in one operation."
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html
 diagrams:
   - id: ram-cross-account-sharing
     title: Cross-account resource sharing
@@ -103,6 +106,10 @@ cards:
     q: A network account wants other accounts to attach VPCs to its transit gateway. What sharing service can it use?
     a: AWS RAM can share the transit gateway; recipients can create VPC attachments but cannot manage its route tables.
     facts: [ram-transit]
+  - id: resource-access-manager-011
+    q: "A team is comparing AWS RAM and AWS CloudFormation StackSets for multiple accounts. Which shares an existing supported resource, and which deploys stacks in each account?"
+    a: "AWS RAM shares access to an owned resource. AWS CloudFormation StackSets deploys stacks from a template across accounts and Regions."
+    facts: [ram-purpose, ram-ownership, stacksets-deploy]
 ---
 AWS Resource Access Manager (AWS RAM) shares supported resources across accounts without creating a separate copy for each account. The owner keeps the resource; a resource share describes who may use it and what they may do.
 
@@ -116,6 +123,8 @@ A virtual private cloud (VPC) is an isolated virtual network. A subnet is a rang
 4. The managed permission sets the maximum cross-account actions. The consuming account administrator grants its users and roles permissions to the shared resource.
 
 ### Exam cues
+
+- If the question says deploy a template into multiple accounts and Regions, think CloudFormation StackSets, because it manages stack deployments across those targets. Use AWS RAM when accounts need access to an existing supported resource.
 
 - If the question says share subnets across accounts in one organization, think AWS RAM, because the VPC owner can share subnets with those accounts.
 - If the question says a recipient accepted a share but a user cannot use it, think identity-based permissions in the consuming account, because the share's managed permission is a ceiling.

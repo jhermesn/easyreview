@@ -64,8 +64,8 @@ facts:
       member accounts.
     source: https://docs.aws.amazon.com/config/latest/developerguide/conformance-pack-organization-apis.html#conformance-pack-organization-apis
   - id: recording-flow
-    text: A recorder stores configuration changes for selected resource types as configuration items.
-    source: https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html#stop-start-recorder
+    text: "AWS Config records only selected supported resource types; continuous recording captures changes as they occur, while daily recording keeps the latest state in a 24-hour period only if it differs from the previous recorded state."
+    source: https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html#select-resources-recording-frequency
   - id: rule-triggers
     text: Config rule evaluations can follow configuration changes, a periodic schedule, or both.
     source: https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-trigger
@@ -259,6 +259,10 @@ cards:
     q: A company must turn on S3 server access logging automatically for any bucket that lacks it. What fits?
     a: The AWS Config rule s3-bucket-logging-enabled with automatic remediation through the AWS-ConfigureS3BucketLogging runbook.
     facts: [s3-logging-remediation]
+  - id: config-054
+    q: "An AWS Config audit needs every configuration change for selected supported resources. Should the team choose daily or continuous recording?"
+    a: "Continuous recording. Daily recording retains only the latest changed state over a 24-hour period."
+    facts: [recording-flow]
 ---
 AWS Config **remediation** corrects a resource that a rule reports as noncompliant. The rule detects the problem; a Systems Manager Automation **runbook**, a document listing corrective actions, performs the fix.
 
@@ -279,6 +283,8 @@ AWS Config **remediation** corrects a resource that a rule reports as noncomplia
 - If the question says enable S3 server access logging for buckets without it, think `s3-bucket-logging-enabled` and `AWS-ConfigureS3BucketLogging`, because the rule detects missing logging and the runbook can remediate it automatically.
 
 ### Remember
+
+- Recording covers selected supported resource types. Continuous recording captures changes as they happen; daily recording retains only the latest changed state over 24 hours.
 
 - `access-keys-rotated` defaults to 90 days and excludes root user keys.
 - `restricted-ssh` checks unrestricted SSH from `0.0.0.0/0` or `::/0`, meaning any IPv4 or IPv6 address. It has both change and periodic triggers.

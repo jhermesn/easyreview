@@ -27,6 +27,9 @@ facts:
   - id: multi-az
     text: "Provisioned RA3 (and RG) clusters support Multi-AZ deployments that run compute in two Availability Zones to keep working through a zone failure."
     source: https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-multi-az.html#managing-cluster-multi-az
+  - id: columnar-storage
+    text: "Amazon Redshift stores table values by column, reducing disk reads for analytical queries that need only some columns."
+    source: https://docs.aws.amazon.com/redshift/latest/dg/c_columnar_storage_disk_mem_mgmnt.html
 cards:
   - id: redshift-001
     q: Which AWS service provides a managed SQL data warehouse for analytics?
@@ -48,8 +51,14 @@ cards:
     q: "A Redshift data warehouse must survive an Availability Zone failure without a restore. What deployment fits?"
     a: "A Multi-AZ deployment on RA3 nodes."
     facts: [multi-az]
+  - id: redshift-013
+    q: "An Amazon Redshift report scans millions of records but reads only a few columns. Which storage design reduces disk I/O?"
+    a: "Columnar storage. Redshift reads the needed columns without loading every field in each row."
+    facts: [columnar-storage]
 ---
 Amazon Redshift is a [managed cloud data warehouse](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome) for SQL and business intelligence tools. Its loading, query, network and deployment choices determine how it accesses data and handles an Availability Zone failure.
+
+Redshift uses columnar storage: it stores values by column so analytical queries that read a subset of columns need fewer disk reads.
 
 ### How it works
 
@@ -59,6 +68,8 @@ Amazon Redshift is a [managed cloud data warehouse](https://docs.aws.amazon.com/
 4. For a zone failure, a [Multi-AZ deployment](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-multi-az.html#managing-cluster-multi-az) runs compute in two Availability Zones so the warehouse can keep working.
 
 ### Exam cues
+
+- If the question says analytics scans many records but needs only a few columns, think Redshift columnar storage, because it reduces the data read from disk.
 
 - If the question says load S3 data into warehouse tables in parallel, think COPY, because it reads and loads data in parallel.
 - If the question says query S3 files directly, think Spectrum, because it uses an external schema and table to query those files.
