@@ -10,7 +10,10 @@ facts:
     text: Lambda allocates CPU power in proportion to configured memory, so memory is the main lever for function performance.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html
   - id: timeout
-    text: A Lambda function's timeout defaults to 3 seconds and can be set from 1 to 900 seconds (15 minutes).
+    text: A Lambda function's timeout defaults to 3 seconds and can be set in 1-second steps up to 1,800 seconds (30 minutes).
+    source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
+  - id: timeout-change
+    text: In November 2026 the Lambda documentation raised the maximum function timeout from 900 seconds (15 minutes) to 1,800 seconds (30 minutes).
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
   - id: snapstart
     text: Lambda SnapStart cuts cold start latency, often to under a second, by initializing the function when you publish a version and resuming later invocations from a cached snapshot.
@@ -31,18 +34,18 @@ cards:
     trap: true
     facts: [memory-cpu, memory-range]
   - id: lambda-061
-    q: A batch job takes about 25 minutes per run. Can it run as one AWS Lambda invocation?
-    a: "No. The Lambda timeout maximum is 900 seconds (15 minutes); use AWS Batch, ECS or Fargate, or split the work with Step Functions."
+    q: A batch job takes about 45 minutes per run. Can it run as one AWS Lambda invocation?
+    a: "No. The Lambda timeout maximum is 1,800 seconds (30 minutes); use AWS Batch, ECS or Fargate, or split the work with Step Functions. Questions written before November 2026 use the old 15-minute limit."
     trap: true
-    facts: [timeout]
+    facts: [timeout, timeout-change]
   - id: lambda-062
     q: A Java Lambda function behind API Gateway has multi-second cold starts. Which Lambda feature reduces them without paying for idle capacity?
     a: "**Lambda SnapStart**, which resumes from a snapshot taken when the version is published (provisioned concurrency also works, at a cost)."
     facts: [snapstart, snapstart-runtimes]
   - id: lambda-063
     q: What are the default and maximum timeout for an AWS Lambda function?
-    a: "Default 3 seconds; maximum 900 seconds (15 minutes)."
-    facts: [timeout]
+    a: "Default 3 seconds; maximum 1,800 seconds (30 minutes), raised from 900 seconds in November 2026."
+    facts: [timeout, timeout-change]
   - id: lambda-066
     q: "A containerized Lambda function needs 5 GB of scratch space during each run. Does it need EFS?"
     a: "No. Set the function ephemeral storage (/tmp) to at least 5 GB; it goes up to 10,240 MB. EFS is for data that must persist or be shared."
@@ -58,19 +61,19 @@ Lambda sizing has one main dial: memory, which also sets CPU. Timeout caps how l
 ### How it works
 
 1. Set memory between 128 MB and 10,240 MB; CPU grows with it.
-2. Set a timeout up to 15 minutes; a run that exceeds it is stopped.
+2. Set a timeout up to 30 minutes; a run that exceeds it is stopped.
 3. For Java, Python or .NET, enable SnapStart on published versions: Lambda initializes once and resumes later cold starts from a snapshot.
 
 ### Exam cues
 
 - If the question says a Lambda function is slow or CPU-bound, think more memory.
-- If the question says a task runs longer than 15 minutes, think Batch, ECS or Fargate, or Step Functions instead of one Lambda invocation.
+- If the question says a task runs longer than the Lambda maximum, think Batch, ECS or Fargate, or Step Functions instead of one Lambda invocation. The maximum is 30 minutes since November 2026; earlier questions use 15 minutes.
 - If the question says cold starts for Java functions, think SnapStart (or provisioned concurrency).
 
 ### Remember
 
 - Memory 128 MB to 10,240 MB; CPU proportional.
-- Timeout default 3 seconds, maximum 900 seconds.
+- Timeout default 3 seconds, maximum 1,800 seconds (was 900 seconds until November 2026).
 - SnapStart: Java 11+, Python 3.12+, .NET 8+.
 - Cold start: new environment, code download, initialization. Environment reuse is possible, never guaranteed.
 

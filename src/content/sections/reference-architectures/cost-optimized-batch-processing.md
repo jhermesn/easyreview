@@ -16,7 +16,7 @@ facts:
     text: AWS Fargate runs containers without provisioning, configuring or scaling clusters of EC2 instances; you set CPU and memory per task.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#AWS_Fargate
   - id: lambda-timeout
-    text: A Lambda function's timeout defaults to 3 seconds and can be set from 1 to 900 seconds (15 minutes).
+    text: A Lambda function's timeout defaults to 3 seconds and can be set in 1-second steps up to 1,800 seconds (30 minutes).
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
   - id: on-demand
     text: On-Demand Instances are paid by the second for the instances you launch, with no commitment.
@@ -155,7 +155,7 @@ cards:
     facts: [spot-allocation]
   - id: reference-architectures-115
     q: A job takes 40 minutes per file. A team proposes Lambda triggered by S3 uploads. Why will that fail, and what fits?
-    a: "A Lambda function times out after at most **900 seconds (15 minutes)**. Run long jobs on **AWS Batch** or containers instead."
+    a: "A Lambda function times out after at most **1,800 seconds (30 minutes)**. Run long jobs on **AWS Batch** or containers instead."
     trap: true
     facts: [lambda-timeout, batch]
   - id: reference-architectures-116
@@ -192,7 +192,7 @@ Cost questions about batch work give a nightly or event-driven workload, say it 
 
 | Need | Compute |
 |---|---|
-| Short tasks, up to 15 minutes | Lambda |
+| Short tasks, up to 30 minutes | Lambda |
 | Containerized jobs, scheduler managed for you | AWS Batch |
 | Hadoop or Spark over large datasets | Amazon EMR |
 | Containers with no instances to manage | Fargate |
@@ -220,7 +220,7 @@ Cost questions about batch work give a nightly or event-driven workload, say it 
 
 ### Remember
 
-- Lambda timeout: 900 seconds at most.
+- Lambda timeout: 1,800 seconds (30 minutes) at most.
 - Spot: up to 90% off, two-minute interruption notice; design jobs to retry.
 - Savings Plans and Reserved Instances: up to 72% off; Savings Plans are not tied to an instance configuration.
 - Minimum storage durations: 30 days for the IA classes, 90 for Glacier Instant and Flexible Retrieval, 180 for Deep Archive.

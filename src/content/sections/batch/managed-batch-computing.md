@@ -21,6 +21,9 @@ facts:
   - id: parallelcluster
     text: "AWS ParallelCluster is an open source tool that deploys HPC clusters with compute, a scheduler such as Slurm and a shared file system; AWS now points new HPC work to the managed AWS Parallel Computing Service."
     source: https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html#what-is-aws-parallelcluster
+  - id: lambda-timeout
+    text: A Lambda function's timeout defaults to 3 seconds and can be set in 1-second steps up to 1,800 seconds (30 minutes).
+    source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
 cards:
   - id: batch-001
     q: Scientists submit thousands of compute jobs that must run on as many servers as needed and then stop. Which AWS service manages this?
@@ -37,8 +40,8 @@ cards:
     facts: [provisioning]
   - id: batch-004
     q: "A nightly image job runs for three hours and needs a custom runtime. Lambda or AWS Batch?"
-    a: "AWS Batch. Lambda stops at 15 minutes; Batch runs any container image as long as needed on EC2, Spot or Fargate capacity."
-    facts: [capacity-types]
+    a: "AWS Batch. Lambda stops at 30 minutes; Batch runs any container image as long as needed on EC2, Spot or Fargate capacity."
+    facts: [capacity-types, lambda-timeout]
   - id: batch-005
     q: "Which AWS service manages infrastructure for batch computing workloads?"
     a: "AWS Batch runs batch jobs and manages the underlying infrastructure."
