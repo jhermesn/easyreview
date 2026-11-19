@@ -34,6 +34,9 @@ facts:
     text: Trace headers can come from clients; an application can remove incoming headers to avoid
       client-supplied trace IDs or sampling choices.
     source: https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader
+  - id: sdk-maintenance
+    text: "On February 25, 2026, the AWS X-Ray SDKs and daemon entered maintenance mode, with releases limited to security fixes; AWS recommends OpenTelemetry-based instrumentation instead."
+    source: https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-migration.html
 diagrams:
   - id: xray-request-trace
     title: One trace across API Gateway, Lambda and DynamoDB
@@ -120,6 +123,10 @@ cards:
       - segment
       - subsegment
       - inferred
+  - id: xray-036
+    q: "A new service needs distributed tracing that reaches AWS X-Ray (2026 onward). Should it add the X-Ray SDK and daemon?"
+    a: "No. Since February 2026 they are in maintenance mode; use OpenTelemetry-based instrumentation."
+    facts: [sdk-maintenance]
 ---
 X-Ray follows recorded requests across a distributed application, meaning an application whose work spans services. A trace is the request's connected record; segments describe service work and subsegments describe smaller operations within that work.
 
@@ -141,5 +148,6 @@ An inferred node is X-Ray's reconstruction of a dependency from client observati
 
 - A segment document has a maximum size of 64 kB.
 - Incoming trace headers can come from clients; applications can remove them to avoid client-controlled trace IDs and sampling decisions.
+- X-Ray SDKs and daemon: maintenance mode since February 25, 2026; use OpenTelemetry for new instrumentation.
 
 > **Trap:** An inferred node does not mean the dependency emitted its own trace segment. X-Ray derives it from the client subsegment.

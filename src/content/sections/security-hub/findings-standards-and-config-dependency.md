@@ -48,6 +48,9 @@ facts:
   - id: patch-findings
     text: Systems Manager Patch Manager can send patch compliance findings to Security Hub CSPM.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html#securityhub-internal-providers
+  - id: third-party-findings
+    text: "Security Hub CSPM also receives findings from supported third-party security products and can send its findings to other AWS services and supported third-party products."
+    source: https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html
 diagrams:
   - id: security-hub-config-integration
     title: Config rule results imported as CSPM findings
@@ -157,5 +160,6 @@ AWS added service-linked recorder guidance in May 2026. For older scenarios or C
 - API default standards: FSBP and CIS AWS Foundations Benchmark v1.2.0.
 - Manual recording: cover required resource types in every applicable account and Region.
 - Both services enabled: CSPM creates the service-linked recorder automatically.
+- Findings also arrive from supported third-party products.
 
 > **Trap:** CSPM alone needs manual Config recording for the required resource types. The automatic service-linked recorder applies when both CSPM and Security Hub are enabled.

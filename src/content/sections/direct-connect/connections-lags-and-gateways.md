@@ -24,6 +24,9 @@ facts:
   - id: partner-extension
     text: "A Direct Connect Partner can provide the network extension from an office or data center to a Direct Connect location."
     source: https://aws.amazon.com/directconnect/faqs/
+  - id: loa-cross-connect
+    text: "After a dedicated connection request, AWS provides a Letter of Authorization and Connecting Facility Assignment (LOA-CFA), which your network provider needs to order the cross connect at the Direct Connect location."
+    source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/dedicated_connection.html
 cards:
   - id: direct-connect-009
     q: A company needs a 200 Mbps Direct Connect link. Can it order a dedicated connection from AWS at that speed?
@@ -51,6 +54,10 @@ cards:
     q: "A company wants AWS Direct Connect but its data center is outside a Direct Connect location. Who can extend the network to that location?"
     a: "A Direct Connect Partner can extend the company network to the location."
     facts: [partner-extension]
+  - id: direct-connect-021
+    q: "AWS has approved a new AWS Direct Connect dedicated connection. What document does the network provider need to order the cross connect at the Direct Connect location?"
+    a: "The LOA-CFA (Letter of Authorization and Connecting Facility Assignment)."
+    facts: [loa-cross-connect]
 ---
 Direct Connect choices come down to speed, who provisions the link, and how far it reaches. [Dedicated and hosted connections](https://docs.aws.amazon.com/directconnect/latest/UserGuide/WorkingWithConnections.html)
 
@@ -83,5 +90,6 @@ Budget for provisioned port time and data transfer out of AWS. Connection capaci
 - LAG: same location, LACP.
 - Port time remains billable while a provisioned connection is idle.
 - Direct Connect gateway: global, but no VPC-to-VPC routing.
+- Dedicated connection: AWS issues the LOA-CFA; the network provider uses it to order the cross connect.
 
 > **Trap:** Some practice answers say a Direct Connect gateway gives transitive routing between attached VPCs. It doesn't: associations on the same gateway can't send traffic to each other.

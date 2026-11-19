@@ -57,6 +57,18 @@ facts:
   - id: geoprox-coords
     text: "Geoproximity routing locates AWS resources by Region or Local Zone group and non-AWS resources by latitude and longitude."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html#routing-policy-geoproximity
+  - id: zero-weight-fallback
+    text: "With health checks on weighted records, Route 53 first considers only nonzero-weight records and uses zero-weight records only when all nonzero-weight records are unhealthy."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html
+  - id: all-unhealthy
+    text: "When no record in a group is healthy, Route 53 treats all of them as healthy and still answers according to the routing policy."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html
+  - id: multivalue-not-lb
+    text: "Multivalue answer routing returns health-checked IP addresses to improve uptime and share load, but it is not a substitute for a load balancer."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html
+  - id: geo-uses
+    text: "Geolocation routing can serve content in the user's language or limit content to the locations where you have distribution rights."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geo.html
 cards:
   - id: route53-001
     q: An application runs in two AWS Regions, and its standby should receive DNS answers only after the primary fails. Which Route 53 policy fits?
@@ -113,6 +125,24 @@ cards:
     a: "No. A simple record returns every value in random order without checking each one; multivalue answer records with health checks return only healthy addresses."
     trap: true
     facts: [simple-multi, multivalue]
+  - id: route53-078
+    q: "Amazon Route 53 weighted records have health checks, and a zero-weight record points to a maintenance page. When does Route 53 return the zero-weight record?"
+    a: "Only when all nonzero-weight records are unhealthy."
+    facts: [zero-weight-fallback]
+  - id: route53-079
+    q: "Every record in an Amazon Route 53 weighted group fails its health check. Does Route 53 stop answering DNS queries for the name?"
+    a: "No. It treats all the records as healthy and answers by the routing policy."
+    trap: true
+    facts: [all-unhealthy]
+  - id: route53-080
+    q: "A team wants Amazon Route 53 multivalue answers to replace its Application Load Balancer. Is that a good fit?"
+    a: "No. Multivalue answers improve uptime with health-checked IP addresses but are not a substitute for a load balancer."
+    trap: true
+    facts: [multivalue-not-lb]
+  - id: route53-081
+    q: "A video service may stream some titles only in licensed countries. Which Amazon Route 53 routing policy helps?"
+    a: "Geolocation routing. It can limit content to the locations where you have distribution rights."
+    facts: [geo-uses]
 diagrams:
   - id: route53-regional-alias-tree
     title: Latency selection above regional weighted records
@@ -217,5 +247,8 @@ A bias expands or shrinks the geographic area served by a geoproximity resource.
 - A simple record returns all its values; multivalue records can check each resource.
 - The smallest matching geolocation wins.
 - An unchecked record counts as healthy.
+- Weighted with health checks: zero-weight records answer only when every nonzero record is unhealthy. If every record is unhealthy, Route 53 treats all as healthy.
+- Multivalue answers are not a substitute for a load balancer.
+- Geolocation can localize content or enforce distribution rights.
 
 > **Trap:** Weighted DNS does not promise an exact percentage of application requests. Resolvers can serve a cached answer repeatedly.

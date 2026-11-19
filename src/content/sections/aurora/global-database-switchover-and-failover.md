@@ -60,6 +60,12 @@ facts:
   - id: sns-permissions
     text: RDS event publishing requires permissions on the SNS topic; a custom topic policy can restrict source resources or allow cross-account notification.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.GrantingPermissions.html#USER_Events.GrantingPermissions
+  - id: rpo-seconds
+    text: "An Aurora global database replicates asynchronously, so the RPO of an unplanned cross-Region failover is typically measured in seconds rather than zero."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html
+  - id: managed-rpo
+    text: "For an Aurora PostgreSQL global database, the rds.global_db_rpo parameter sets a target RPO; when every secondary lags beyond it, the primary pauses commits until one catches up."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html
 cards:
   - id: aurora-003
     q: An Aurora Global Database must move its primary Region during planned maintenance without data loss. How does this differ from disaster failover?
@@ -103,6 +109,15 @@ cards:
     trap: true
     facts:
       - headless
+  - id: aurora-047
+    q: "Does an Aurora global database guarantee replication lag below one second, so an unplanned Region failover loses no data?"
+    a: "No. Replication is asynchronous; the RPO of an unplanned failover is typically some seconds.\nA switchover synchronizes first and has RPO zero."
+    trap: true
+    facts: [rpo-seconds]
+  - id: aurora-048
+    q: "An Aurora PostgreSQL global database must never lose more than a set amount of recent data in a Region failover. Which setting enforces that, and what is the trade-off?"
+    a: "`rds.global_db_rpo`. When every secondary lags beyond it, the primary pauses commits until one catches up."
+    facts: [managed-rpo]
 diagrams:
   - id: aurora-global-switchover
     title: Planned switchover synchronizes before changing the writer
@@ -194,5 +209,6 @@ For event notifications, configure an Aurora event subscription with resources, 
 
 - Switchover RPO: 0. Failover can lose unreplicated writes; --allow-data-loss accepts this.
 - Parameter groups, alarms and service integrations need regional alignment.
+- Unplanned failover RPO: typically seconds. Aurora PostgreSQL `rds.global_db_rpo` pauses primary commits when every secondary lags past it.
 
 > **Trap:** Global replication is asynchronous. An unchanged endpoint name does not remove replication loss or DNS propagation concerns during failover.

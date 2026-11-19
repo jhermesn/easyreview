@@ -48,6 +48,9 @@ facts:
   - id: compute-storage-cost
     text: "Amazon RDS pricing includes DB instance compute capacity and provisioned storage; Provisioned IOPS storage also charges for the IOPS provisioned."
     source: https://aws.amazon.com/rds/pricing/
+  - id: iam-auth-privileges
+    text: "IAM database authentication controls who can connect as a database user; the privileges granted to that user inside the database still control what it can do."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html
 cards:
   - id: rds-055
     q: "Does an Amazon RDS Multi-AZ deployment guarantee no performance impact during automated backups?"
@@ -108,6 +111,11 @@ cards:
     q: "A team estimates Amazon RDS cost for a database using Provisioned IOPS SSD storage. Which capacity charges should it include?"
     a: "DB instance compute capacity, provisioned storage and provisioned IOPS. Size each for the workload requirements."
     facts: [compute-storage-cost]
+  - id: rds-105
+    q: "An application connects to Amazon RDS for MySQL with IAM database authentication. Does the IAM policy decide which tables it can read?"
+    a: "No. IAM decides who can connect as the database user; database privileges (GRANT, REVOKE) decide what that user can do."
+    trap: true
+    facts: [iam-auth-privileges]
 ---
 RDS design choices affect database access, availability and operations. These details help you choose how clients connect and what to expect from backups, failover and stopped instances.
 
@@ -136,5 +144,6 @@ RDS design choices affect database access, availability and operations. These de
 - A DB instance can remain stopped for at most 7 consecutive days.
 - [RDS for MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_MySQL.Replication.ReadReplicas.html) supports up to 15 read replicas per source DB instance in the same Region.
 - [RDS Custom for Oracle](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-oracle-multiaz.html#custom-oracle-multiaz) support ends March 31, 2027; its console and resources cannot be accessed afterward.
+- IAM database authentication decides who connects; database privileges decide what that user can do.
 
 > **Trap:** Public access on a DB instance does not make RDS Proxy public. The proxy remains private even when its database is publicly accessible.

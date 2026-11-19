@@ -24,6 +24,9 @@ facts:
   - id: active-passive
     text: "Active-passive failover uses the failover routing policy: Route 53 answers with the healthy primary resources and only switches to the secondary resources when every primary is unhealthy."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-types.html#dns-failover-types-active-passive
+  - id: control-data-plane
+    text: "For Route 53 public and private DNS and health checks, the control plane, which handles record and health-check changes, is in us-east-1, while the data planes that answer queries and run health checks are globally distributed."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/route-53-concepts.html#route-53-concepts-control-and-data-plane
 diagrams:
   - id: route53-dns-failover
     title: DNS failover between regional endpoints
@@ -105,6 +108,10 @@ cards:
     q: "Users must see a static error page from S3 only when the ALB that serves the site is unhealthy. Which Route 53 setup fits?"
     a: "Active-passive failover: a primary failover record for the ALB with a health check, and a secondary record (an alias to the S3 website endpoint) that Route 53 returns only when the primary is unhealthy."
     facts: [active-passive]
+  - id: route53-082
+    q: "A Route 53 failover design must work during a Regional outage. Why rely on health checks instead of editing DNS records during the event?"
+    a: "Health checks and DNS answers run on the globally distributed data plane.\nRecord changes use the control plane in us-east-1, which an outage could impair."
+    facts: [control-data-plane]
 ---
 Route 53 failover routing changes the DNS answer from a primary resource to a standby. It uses recorded health status, while recursive resolver caches control when a client receives a fresh answer.
 
@@ -125,5 +132,6 @@ Route 53 failover routing changes the DNS answer from a primary resource to a st
 
 - AWS recommends a TTL of 60 seconds or less for health-checked records.
 - Probes run separately from DNS queries.
+- Control plane (record and health-check changes): us-east-1. Data plane (answers, health checks): global.
 
 > **Trap:** An unchecked secondary is treated as healthy even if its resource is unavailable.

@@ -74,6 +74,9 @@ facts:
   - id: cli-instance-credentials
     text: "The AWS CLI running on an EC2 instance can retrieve temporary credentials from instance metadata for the IAM role attached to that instance."
     source: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-metadata.html
+  - id: role-session-duration
+    text: "An AssumeRole session lasts one hour by default and can be set from 15 minutes up to the role's maximum session duration; role chaining, using one role's credentials to assume another, limits the session to one hour."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
 diagrams:
   - id: iam-ec2-credentials
     title: EC2 applications use temporary role credentials
@@ -188,6 +191,11 @@ cards:
     q: "A script uses the AWS CLI on Amazon EC2 and needs AWS permissions without storing long-term access keys. How can it obtain credentials?"
     a: "Use the instance's attached IAM role. The AWS CLI can retrieve its temporary credentials from instance metadata."
     facts: [cli-instance-credentials]
+  - id: iam-125
+    q: "An application assumes IAM role A, then uses those credentials to assume role B with a four-hour session request. How long can the role B session last?"
+    a: "One hour. Role chaining limits the session to one hour, whatever the role's maximum session duration."
+    trap: true
+    facts: [role-session-duration]
 ---
 
 IAM identities determine who makes a request. A role supplies permissions through a temporary session, a period during which temporary credentials are valid. An instance profile connects a role to an EC2 instance so its applications can use those credentials.
@@ -212,5 +220,6 @@ IAM identities determine who makes a request. A role supplies permissions throug
 - Group policies contribute to user permissions. Groups cannot be nested or named as principals, the authenticated identities in requests.
 - Root and IAM users have separate MFA configurations.
 - A CodeArtifact token needs `sts:GetServiceBearerToken` and `codeartifact:GetAuthorizationToken`. An EC2 CloudWatch agent can use an instance role with `CloudWatchAgentServerPolicy`.
+- AssumeRole: one hour by default, 15 minutes up to the role maximum. Role chaining: one hour at most.
 
 > **Trap:** Enabling root MFA does not configure MFA for the account's IAM users.

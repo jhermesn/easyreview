@@ -78,6 +78,9 @@ facts:
   - id: ami-org-share
     text: "An AMI can be shared with a whole AWS organization or with organizational units instead of listing account IDs."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/share-amis-with-organizations-and-OUs.html#share-amis-with-organizations-and-OUs
+  - id: paid-ami
+    text: "An instance launched from a paid AMI is charged at the rate the AMI owner sets plus the standard EC2 usage fees; AWS Marketplace is where such software is sold."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/paid-amis.html
 cards:
   - id: ec2-004
     q: Does sharing an EC2 AMI create a copy owned by the recipient account?
@@ -119,6 +122,10 @@ cards:
     q: "An EC2 instance needs a replacement in another Availability Zone for recovery. How can an AMI help?"
     a: "Create an AMI from the instance and launch a replacement in a subnet in the target Availability Zone."
     facts: [az-replacement, subnet-zone]
+  - id: ec2-123
+    q: "A team launches EC2 instances from an AWS Marketplace AMI that includes commercial software. What does it pay?"
+    a: "The software rate set by the AMI owner plus the standard EC2 usage fees."
+    facts: [paid-ami]
 diagrams:
   - id: ec2-ami-zone-replacement
     title: Relocate within a Region by launching from an AMI
@@ -167,5 +174,6 @@ An Amazon Machine Image (AMI) is a software template for setting up and booting 
 - The source account pays for shared-image storage; the recipient owns an AMI it copies.
 - `aws/ebs` is an AWS managed key. An AMI encrypted with the default AWS managed key cannot be shared.
 - Copies need their own launch permissions. Encrypted snapshots cannot become unencrypted through copying.
+- Paid AMIs: the owner's software rate plus standard EC2 fees.
 
 > **Trap:** A shared AMI is permission to use the owner's image. It does not create an image owned by the recipient.

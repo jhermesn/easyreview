@@ -36,6 +36,9 @@ facts:
   - id: log-classes
     text: "CloudWatch Logs Standard provides the full feature set; Essentials (formerly Infrequent Access, noted November 2026) lowers ingestion cost but excludes Live Tail and subscription filters. Storage and Logs Insights query prices are the same, and a log group's class is fixed at creation."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html#CloudWatch_Logs_Log_Classes
+  - id: private-ingestion
+    text: "An interface VPC endpoint powered by AWS PrivateLink lets resources in a VPC send logs to CloudWatch Logs over private IP addresses."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html
 cards:
   - id: cloudwatch-057
     q: What is the difference between a CloudWatch Logs log stream and a log group?
@@ -76,6 +79,10 @@ cards:
     q: "A CloudWatch Logs design needs Live Tail and subscription filters. Can it use the cheaper Essentials log class?"
     a: "Use Standard. Essentials, formerly Infrequent Access, does not support Live Tail or subscription filters."
     facts: [log-classes]
+  - id: cloudwatch-131
+    q: "EC2 instances in private subnets with no internet access must send logs to Amazon CloudWatch Logs. What should the VPC add?"
+    a: "An interface VPC endpoint for CloudWatch Logs (AWS PrivateLink)."
+    facts: [private-ingestion]
 ---
 CloudWatch Logs stores timestamped events from applications and infrastructure. A log stream holds events from one source; a log group collects streams that need the same retention, monitoring, and access settings.
 
@@ -98,5 +105,6 @@ CloudWatch Logs stores timestamped events from applications and infrastructure. 
 - An applicable account-level policy overrides the group's own retention setting.
 - Among overlapping account policies, the longest retention wins; NEVER_EXPIRE is longest.
 - Deletion protection is off by default. It protects the log group; event retention remains a separate setting.
+- Private subnets reach CloudWatch Logs through an interface VPC endpoint.
 
 > **Trap:** A longer group retention value does not defeat a shorter applicable account policy. The account policy overrides the group value.

@@ -103,6 +103,11 @@
       "id": "encryption-default",
       "text": "DynamoDB encrypts all table data at rest; the default AWS owned key has no extra charge, while AWS managed and customer managed keys incur KMS charges.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html"
+    },
+    {
+      "id": "query-scan-size",
+      "text": "A Query sums the size of all items it returns and rounds the total up to the next 4 KB; a Scan counts the size of every item it evaluates, not only the items it returns.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html#read-operation-consumption"
     }
   ],
   "cards": [
@@ -173,6 +178,24 @@
       "a": "Use on-demand capacity. It scales without provisioning read or write units and bills per request.",
       "facts": [
         "on-demand"
+      ]
+    },
+    {
+      "id": "dynamodb-068",
+      "q": "An Amazon DynamoDB Scan with a filter evaluates 100 KB of items but returns only 10 KB. Which size determines its read capacity?",
+      "a": "The 100 KB evaluated.\nScan charges for items evaluated, so a filter does not reduce read capacity.",
+      "trap": true,
+      "facts": [
+        "query-scan-size"
+      ]
+    },
+    {
+      "id": "dynamodb-069",
+      "q": "An Amazon DynamoDB Query returns ten 1 KB items with strongly consistent reads. How many read capacity units does it consume?",
+      "a": "3. Query sums the items (10 KB) and rounds up to 12 KB, three 4 KB units.",
+      "facts": [
+        "query-scan-size",
+        "reads"
       ]
     }
   ],
@@ -264,5 +287,6 @@ DynamoDB capacity controls how much read and write work a table can accept. On-d
 - Scale-out triggers after two consecutive minutes above target, followed by alarm and update delay.
 - An 8 KB item read uses 2 strong, 1 eventual, or 4 transactional read units.
 - Index metrics use TableName and GlobalSecondaryIndexName.
+- Query sums returned item sizes, then rounds up to 4 KB. Scan counts every item evaluated, filtered or not.
 
 > **Trap:** Auto scaling does not react instantly to spikes. On-demand can also throttle at quotas or configured maximums.

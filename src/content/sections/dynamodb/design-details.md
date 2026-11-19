@@ -33,6 +33,9 @@ facts:
   - id: partiql
     text: "DynamoDB supports a subset of PartiQL for SQL-compatible reads, inserts, updates and deletes."
     source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.html#ql-reference.what-is
+  - id: single-digit-latency
+    text: "DynamoDB is a serverless, fully managed NoSQL database with single-digit millisecond performance at any scale."
+    source: https://aws.amazon.com/dynamodb/
 cards:
   - id: dynamodb-045
     q: "A DynamoDB table holding orders must never be dropped by mistake during routine administration. Which table setting fits?"
@@ -75,6 +78,10 @@ cards:
     q: "An application team wants SQL-compatible statements for reading and modifying Amazon DynamoDB items. Which interface can it use?"
     a: "PartiQL. DynamoDB supports a subset for reads, inserts, updates and deletes."
     facts: [partiql]
+  - id: dynamodb-070
+    q: "An application needs a serverless NoSQL database with consistent single-digit millisecond latency as traffic grows to millions of requests. Which AWS service fits?"
+    a: "Amazon DynamoDB."
+    facts: [single-digit-latency]
 ---
 DynamoDB tables allow items with different attributes and provide settings for deletion protection and storage costs. DynamoDB also replicates table data across Availability Zones automatically.
 
@@ -104,5 +111,6 @@ DynamoDB tables allow items with different attributes and provide settings for d
 - Reserved capacity has a one-year term, or three years in some Regions, and is unavailable for on-demand capacity.
 - On-demand bills consumed requests; provisioned bills allocated capacity by the hour.
 - LSI reads share table capacity; GSI reads use index capacity.
+- Single-digit millisecond performance at any scale.
 
 > **Trap:** A table does not need extra setup for replication across Availability Zones. Deletion protection, however, must be enabled.

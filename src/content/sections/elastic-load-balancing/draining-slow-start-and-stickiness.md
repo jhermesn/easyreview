@@ -51,6 +51,9 @@ facts:
   - id: tg-stickiness
     text: "Weighted target groups do not honor sticky sessions by default. With target group stickiness enabled on the rule, an AWSALBTG cookie keeps a client on the target group it first reached for the configured duration."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-action-types.html#forward-actions
+  - id: nlb-source-ip-stickiness
+    text: "Network Load Balancer sticky sessions follow the client source IP address, so all clients behind one NAT device reach the same target."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/edit-target-group-attributes.html#sticky-sessions
 cards:
   - id: elastic-load-balancing-006
     q: How can an ALB target finish active requests before it is removed during scale-in?
@@ -93,6 +96,11 @@ cards:
     a: "They keep returning to it for the stickiness duration because the AWSALBTG cookie pins them, so the test reaches more traffic over time than the weight suggests."
     facts:
       - tg-stickiness
+  - id: elastic-load-balancing-078
+    q: "A Network Load Balancer uses sticky sessions, and many users sit behind one corporate NAT device. Why does one target receive most of their traffic?"
+    a: "NLB stickiness follows the source IP address, and all those users share the NAT address. ALB stickiness uses cookies instead."
+    trap: true
+    facts: [nlb-source-ip-stickiness]
 ---
 ALB target group attributes control how targets enter service, leave service, and keep a client's requests together. Draining means finishing active work after new requests stop. Slow start spreads a new target's warm-up over time. Stickiness, also called session affinity, uses cookies to keep a session on one target.
 
@@ -123,5 +131,6 @@ Session state is the application data retained between a user's requests. A shar
 - Slow start: disabled by default with value 0; enabled range 30 to 900 seconds.
 - Stickiness: disabled by default, enabled per target group.
 - Duration-based cookie: `AWSALB`.
+- NLB stickiness follows the client source IP; clients behind one NAT reach one target.
 
 > **Trap:** Stickiness does not keep a failed target available. ALB selects another target when the duration-based cookie points to an unhealthy or deregistered target.

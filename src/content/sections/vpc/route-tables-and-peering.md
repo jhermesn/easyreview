@@ -80,6 +80,12 @@ facts:
   - id: peer-dns
     text: "Peering DNS resolution is off by default; once enabled, a peer instance public IPv4 DNS hostname resolves to its private IPv4 address across the peering connection."
     source: https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-dns.html
+  - id: peering-backbone
+    text: "Inter-Region VPC peering traffic stays in private IP address space, is encrypted, and stays on the AWS global backbone without crossing the public internet."
+    source: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html
+  - id: middlebox-routing
+    text: "A route more specific than the local route, matching a whole subnet CIDR, can send traffic between subnets in a VPC through a middlebox such as a Gateway Load Balancer endpoint, Network Firewall endpoint or appliance network interface."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/route-table-options.html#route-tables-appliance-routing
 cards:
   - id: vpc-011
     q: A VPC subnet has no explicit route-table association. Which table directs its traffic?
@@ -158,6 +164,14 @@ cards:
     q: "An Amazon VPC needs highly available outbound IPv6 internet access without unsolicited inbound connections. Which gateway fits?"
     a: "An egress-only internet gateway. It is horizontally scaled, redundant and highly available."
     facts: [ipv6-egress]
+  - id: vpc-106
+    q: "Does traffic over an inter-Region Amazon VPC peering connection cross the public internet?"
+    a: "No. It stays in private IP space, is encrypted and stays on the AWS global backbone."
+    facts: [peering-backbone]
+  - id: vpc-107
+    q: "Traffic between two subnets in the same Amazon VPC must pass through a firewall appliance. How can routing achieve that?"
+    a: "Add a route more specific than the local route, matching the other subnet's CIDR, with the appliance (for example a Gateway Load Balancer endpoint) as target."
+    facts: [middlebox-routing]
 diagrams:
   - id: vpc-direct-peering
     title: Peering needs routes on both sides
@@ -229,5 +243,7 @@ A VPC route table chooses where traffic goes. Each route pairs a destination add
 - An egress-only internet gateway is redundant, highly available and horizontally scaled.
 - Zonal NAT bandwidth scales automatically from 5 Gbps to 100 Gbps. NAT gateways have no security groups.
 - Peering does not share a peer's internet gateway, NAT, VPN, Direct Connect, or S3 gateway endpoint.
+- Inter-Region peering traffic is encrypted and stays on the AWS backbone.
+- A subnet-CIDR route more specific than the local route can send east-west traffic through a middlebox.
 
 > **Trap:** Transit Gateway does not solve overlapping VPC address ranges. It also cannot route between VPCs whose CIDRs overlap.
