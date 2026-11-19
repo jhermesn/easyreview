@@ -506,7 +506,8 @@
               "sections": [
                 "control-tower/account-factory-and-enrollment",
                 "cloudformation/stackset-permissions-and-targeting",
-                "control-tower/account-factory-for-terraform"
+                "control-tower/account-factory-for-terraform",
+                "reference-architectures/governed-multi-account-landing-zone"
               ]
             },
             {
@@ -756,7 +757,8 @@
               "text": "Configuring load balancing to support cross-AZ services",
               "sections": [
                 "elastic-load-balancing/cross-zone-balancing",
-                "elastic-load-balancing/operations-in-depth"
+                "elastic-load-balancing/operations-in-depth",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -940,7 +942,8 @@
                 "lambda/memory-timeout-and-snapstart",
                 "api-gateway/integrations-and-monitoring",
                 "api-gateway/operations-in-depth",
-                "api-gateway/endpoint-types-and-throttling"
+                "api-gateway/endpoint-types-and-throttling",
+                "reference-architectures/serverless-event-driven-application"
               ]
             }
           ]

@@ -30,13 +30,37 @@ facts:
   - id: sg-reference
     text: A security group rule can name another security group as its source, allowing traffic from every instance associated with that group over private IP addresses.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
+  - id: waf
+    text: AWS WAF is a web application firewall that watches HTTP(S) requests to resources such as CloudFront distributions and API Gateway APIs and allows or blocks them by rules.
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html#waf-chapter
+  - id: shield-standard
+    text: AWS gives automatic protection against common DDoS attacks such as UDP reflection and SYN floods at no extra cost.
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/shield-chapter.html#shield-chapter
+  - id: edge-ddos
+    text: Serving traffic through Amazon CloudFront and Amazon Route 53, which run in edge locations, is an AWS best practice for DDoS resilience because attacks are absorbed at the edge.
+    source: https://docs.aws.amazon.com/whitepapers/latest/aws-best-practices-ddos-resiliency/aws-best-practices-ddos-resiliency.html
+  - id: acm
+    text: AWS Certificate Manager creates, stores and renews public and private SSL/TLS certificates that protect websites and applications on AWS.
+    source: https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html#acm-overview
+  - id: acm-integrated
+    text: ACM certificates are deployed to integrated AWS services such as Elastic Load Balancing and CloudFront.
+    source: https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html#acm-overview
+  - id: rds-kms
+    text: Amazon RDS encrypts DB instances at rest with an AWS KMS key, either the AWS managed key for RDS (the default) or a customer managed key you choose when creating the instance.
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Overview
+  - id: rds-encrypt-existing
+    text: To encrypt an unencrypted RDS DB instance or change its KMS key, copy a manual snapshot with encryption enabled and restore it, or use a blue/green deployment with an encrypted green environment.
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations
+  - id: target-tracking
+    text: Target tracking adjusts group capacity toward a metric target and manages the associated CloudWatch alarms.
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-scaling-target-tracking
 diagrams:
   - id: three-tier-web-application
     title: Three-tier web application across two Availability Zones
     width: 1240
-    height: 760
+    height: 900
     groups:
-      - { label: Region, x: 380, y: 20, w: 840, h: 720, tone: neutral, icon: group-region }
+      - { label: Region, x: 380, y: 20, w: 840, h: 860, tone: neutral, icon: group-region }
       - { label: VPC, x: 400, y: 165, w: 800, h: 560, tone: network, icon: group-virtual-private-cloud-vpc }
       - { label: Availability Zone A, x: 420, y: 200, w: 760, h: 200, tone: neutral }
       - { label: Availability Zone B, x: 420, y: 520, w: 760, h: 190, tone: neutral }
@@ -44,9 +68,12 @@ diagrams:
     nodes:
       - { id: users, label: Users, x: 20, y: 344, w: 130, h: 72, tone: user, icon: res-users }
       - { id: dns, label: Route 53, sub: "alias at apex", x: 20, y: 103, w: 130, h: 86, tone: network, icon: route-53, info: "An **alias** record at the zone apex points example.com at the CloudFront distribution." }
-      - { id: cdn, label: CloudFront, sub: edge cache, x: 200, y: 344, w: 150, h: 86, tone: network, icon: cloudfront, info: "Serves cached static content from edge locations and forwards dynamic requests to the load balancer." }
+      - { id: cdn, label: CloudFront, sub: edge cache, x: 200, y: 344, w: 150, h: 86, tone: network, icon: cloudfront, info: "Serves cached static content from edge locations and forwards dynamic requests to the load balancer. Shield Standard protects it at no extra cost." }
+      - { id: waf, label: AWS WAF, sub: web ACL, x: 200, y: 520, w: 150, h: 86, tone: security, icon: waf, info: "Rules block SQL injection, cross-site scripting and request floods before they reach the origin." }
+      - { id: acm, label: ACM, sub: TLS certificates, x: 20, y: 680, w: 150, h: 86, tone: security, icon: certificate-manager, info: "Issues and renews the certificates on the distribution and on the load balancer." }
       - { id: s3, label: S3 bucket, sub: static assets, x: 420, y: 55, w: 170, h: 86, tone: storage, icon: res-simple-storage-service-bucket, info: "Private bucket. Its policy lets only this distribution read it, through **origin access control**." }
       - { id: igw, label: Internet gateway, sub: attached to VPC, x: 640, y: 55, w: 160, h: 86, tone: network, icon: res-vpc-internet-gateway }
+      - { id: kms, label: AWS KMS, sub: key for data at rest, x: 880, y: 55, w: 170, h: 86, tone: security, icon: key-management-service, info: "Chosen when the database is created. An unencrypted database cannot be encrypted in place." }
       - { id: alb, label: Load balancer, sub: "ALB, two AZs", x: 440, y: 418, w: 160, h: 86, tone: network, icon: res-elastic-load-balancing-application-load-balancer, info: "Internet-facing ALB with nodes in a public subnet of each AZ. Its security group accepts HTTPS from CloudFront." }
       - { id: nata, label: NAT gateway, sub: public subnet A, x: 440, y: 240, w: 160, h: 86, tone: network, icon: res-vpc-nat-gateway }
       - { id: natb, label: NAT gateway, sub: public subnet B, x: 440, y: 600, w: 160, h: 86, tone: network, icon: res-vpc-nat-gateway }
@@ -55,30 +82,38 @@ diagrams:
       - { id: cache, label: ElastiCache, sub: "sessions, reads", x: 880, y: 418, w: 160, h: 86, tone: database, icon: elasticache, info: "Shared session store and read cache, so any instance can serve any user." }
       - { id: writer, label: Aurora writer, sub: private DB subnet A, x: 1010, y: 240, w: 160, h: 86, tone: database, icon: aurora, info: "Takes all writes. Its security group allows the database port only from the app tier security group." }
       - { id: reader, label: Aurora Replica, sub: private DB subnet B, x: 1010, y: 600, w: 160, h: 86, tone: database, icon: aurora, info: "Serves reads through the reader endpoint and is the failover target if the writer fails." }
+      - { id: alarm, label: CloudWatch alarm, sub: target tracking, x: 680, y: 765, w: 180, h: 86, tone: mgmt, icon: res-cloudwatch-alarm, info: "Created and managed by the target tracking policy, for example average CPU at 50 percent." }
     edges:
       - { from: users, to: dns, step: 1 }
       - { from: users, to: cdn, step: 2 }
-      - { from: cdn, to: s3, step: 3 }
-      - { from: cdn, to: alb, step: 4 }
-      - { from: alb, to: weba, step: 5 }
-      - { from: alb, to: webb, step: 5 }
-      - { from: weba, to: cache, step: 6 }
-      - { from: weba, to: writer, step: 7 }
-      - { from: writer, to: reader, step: 8, dashed: true }
-      - { from: weba, to: nata, step: 9 }
-      - { from: webb, to: natb, step: 9 }
-      - { from: nata, to: igw, step: 10 }
+      - { from: cdn, to: waf, step: 3 }
+      - { from: acm, to: cdn, step: 4 }
+      - { from: cdn, to: s3, step: 5 }
+      - { from: cdn, to: alb, step: 6 }
+      - { from: alb, to: weba, step: 7 }
+      - { from: alb, to: webb, step: 7 }
+      - { from: weba, to: cache, step: 8 }
+      - { from: weba, to: writer, step: 9 }
+      - { from: writer, to: kms, step: 10 }
+      - { from: writer, to: reader, step: 11, dashed: true }
+      - { from: alarm, to: webb, step: 12 }
+      - { from: weba, to: nata, step: 13 }
+      - { from: webb, to: natb, step: 13 }
+      - { from: nata, to: igw, step: 13 }
     steps:
       - "Users look up the domain in Route 53. An alias record at the zone apex returns the CloudFront distribution."
-      - "Requests reach a nearby CloudFront edge location."
-      - "Static files come from a private S3 bucket that only the distribution can read, through origin access control."
-      - "Dynamic requests go to the Application Load Balancer, which has nodes in public subnets of two Availability Zones."
-      - "The load balancer spreads requests across an Auto Scaling group in private subnets of both zones. The group replaces unhealthy instances and can launch in the other zone if one fails."
+      - "Requests reach a nearby CloudFront edge location, where Shield Standard absorbs common DDoS attacks at no extra cost."
+      - "An AWS WAF web ACL on the distribution blocks malicious requests, such as SQL injection, before they reach any origin."
+      - "TLS uses certificates that ACM issues and renews, on the distribution and on the load balancer."
+      - "Static files come from a private S3 bucket that only the distribution can read, through origin access control in the bucket policy."
+      - "Dynamic requests go to the Application Load Balancer, which has nodes in public subnets of two Availability Zones and accepts traffic only from CloudFront."
+      - "The load balancer spreads requests across an Auto Scaling group in private subnets of both zones. Only the ALB security group may reach the instances."
       - "Instances keep sessions and cached reads in ElastiCache, so no user is tied to one instance."
-      - "Writes go to the Aurora writer. The cluster volume keeps copies of the data in three Availability Zones."
-      - "An Aurora Replica in the other zone serves reads and becomes the writer on failover."
-      - "Outbound internet calls from each zone use the NAT gateway in that same zone."
-      - "NAT gateway traffic leaves the VPC through the internet gateway."
+      - "Writes go to the Aurora writer, reachable only from the app tier security group. The cluster volume keeps copies of the data in three Availability Zones."
+      - "The database is encrypted at rest with a KMS key chosen when it was created."
+      - "If the writer or its zone fails, the Aurora Replica in the other zone becomes the writer."
+      - "A target tracking policy keeps a metric such as average CPU at its target, adding or removing instances, and the group replaces unhealthy instances in the surviving zone."
+      - "Outbound internet calls from each zone use the NAT gateway in that same zone, which sends them out through the internet gateway."
 cards:
   - id: reference-architectures-001
     q: A web application on EC2 must survive the loss of an Availability Zone with no manual action. Which combination of load balancer and compute settings fits?
@@ -109,24 +144,55 @@ cards:
     q: Users of an Auto Scaling web tier are logged out whenever an instance is terminated. Which change fits a highly available three-tier design?
     a: "Move session state to a shared store such as **ElastiCache** (or DynamoDB), so any instance can serve any user."
     facts: [shared-store]
+  - id: reference-architectures-068
+    q: "A web application behind CloudFront receives SQL injection attempts and bursts of requests from a few IP addresses. What should block them before they reach the origin?"
+    a: "An **AWS WAF web ACL** on the CloudFront distribution, with rules for SQL injection and request rates."
+    facts: [waf]
+  - id: reference-architectures-069
+    q: "A company wants baseline DDoS protection for a public web application without paying for an extra service. What does it get, and which front end helps?"
+    a: "**Shield Standard** protects every customer automatically at no extra cost. Serving through **CloudFront and Route 53** absorbs attacks at edge locations."
+    facts: [shield-standard, edge-ddos]
+  - id: reference-architectures-070
+    q: "A web application needs HTTPS certificates on CloudFront and on its Application Load Balancer that renew without manual work. Which service fits?"
+    a: "**AWS Certificate Manager (ACM)**: it issues and renews certificates and deploys them to integrated services such as CloudFront and Elastic Load Balancing."
+    facts: [acm, acm-integrated]
+  - id: reference-architectures-071
+    q: "An Amazon RDS DB instance was created without encryption, and compliance now requires encryption at rest. Can the team turn it on in place?"
+    a: "No. Copy a manual snapshot with **encryption enabled** and restore it (or use a blue/green deployment with an encrypted green environment). The KMS key is chosen at creation."
+    trap: true
+    facts: [rds-kms, rds-encrypt-existing]
+  - id: reference-architectures-072
+    q: "An Auto Scaling group behind an ALB should keep average CPU near 50 percent as traffic changes, without hand-built alarms. Which scaling policy fits?"
+    a: "A **target tracking** policy on average CPU with a target of 50. It adjusts capacity and manages its own CloudWatch alarms."
+    facts: [target-tracking]
 ---
-The classic architecture question describes a web application that must stay up through an Availability Zone failure, scale with traffic and keep its data private. The answer combines an edge layer, a load-balanced stateless tier and a managed database, each placed in at least two zones.
+The classic architecture question describes a web application that must stay up through an Availability Zone failure, scale with traffic, resist attacks and keep its data private. The answer combines a protected edge layer, a load-balanced stateless tier and an encrypted managed database, each placed in at least two zones.
 
 ### How it works
 
 1. Route 53 answers for the domain with an alias record that points at CloudFront. [Alias records](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
-2. CloudFront serves static files from a private S3 bucket through origin access control and forwards dynamic requests to the load balancer.
-3. An Application Load Balancer in public subnets of two zones sends requests to an Auto Scaling group in private subnets of the same zones.
-4. The app tier keeps no local state: sessions and hot reads live in ElastiCache, durable data in Aurora.
-5. Aurora takes writes on the writer and keeps a replica in the other zone for reads and failover.
-6. Each zone has its own NAT gateway for outbound calls, so losing one zone does not cut the other off.
+2. At the edge, Shield Standard absorbs common DDoS attacks, and an AWS WAF web ACL blocks malicious requests. ACM provides and renews the TLS certificates.
+3. CloudFront serves static files from a private S3 bucket through origin access control and forwards dynamic requests to the load balancer.
+4. An Application Load Balancer in public subnets of two zones sends requests to an Auto Scaling group in private subnets of the same zones. A target tracking policy scales the group, and unhealthy instances are replaced.
+5. The app tier keeps no local state: sessions and hot reads live in ElastiCache, durable data in Aurora, encrypted with a KMS key chosen at creation.
+6. Aurora takes writes on the writer and keeps a replica in the other zone for reads and failover.
+7. Each zone has its own NAT gateway for outbound calls, so losing one zone does not cut the other off.
 
-| Tier | Service | What makes it highly available |
+| Tier | Service | What makes it highly available and secure |
 |---|---|---|
-| Edge | Route 53, CloudFront, S3 | Global edge network; private bucket behind OAC |
-| Web and app | ALB, EC2 Auto Scaling | Two or more AZs; unhealthy instances replaced |
+| Edge | Route 53, CloudFront, Shield Standard, AWS WAF, ACM | Global edge network; attacks filtered before the origin |
+| Static content | S3 | Private bucket behind OAC |
+| Web and app | ALB, EC2 Auto Scaling | Two or more AZs; target tracking; unhealthy instances replaced |
 | Session and cache | ElastiCache | Shared state, so instances are interchangeable |
-| Data | Aurora | Storage in three AZs; replica as failover target |
+| Data | Aurora, KMS | Storage in three AZs; replica as failover target; encrypted at rest |
+
+| Decision | Choose | When |
+|---|---|---|
+| Name at the zone apex | Alias record | Pointing example.com at CloudFront or an ALB |
+| Block web exploits | AWS WAF on CloudFront | SQL injection, scripting, rate floods |
+| Reach from app tier to database | Security group as source | Instances come and go |
+| Scaling policy | Target tracking | Keep one metric near a target |
+| Egress for private subnets | One NAT gateway per AZ | Egress must survive an AZ failure |
 
 Security groups chain the tiers: the ALB accepts HTTPS, the app tier accepts traffic only from the ALB security group, and the database accepts its port only from the app tier security group.
 
@@ -137,6 +203,8 @@ Security groups chain the tiers: the ALB accepts HTTPS, the app tier accepts tra
 - If the question says private instances keep internet access during an AZ outage, think one NAT gateway per AZ, because a NAT gateway lives in one zone.
 - If the question says keep the S3 origin private behind CloudFront, think origin access control, because only the distribution can read the bucket.
 - If the question says users lose sessions as instances scale in, think ElastiCache or DynamoDB for session state, because the app tier must be stateless.
+- If the question says block SQL injection or request floods, think AWS WAF on CloudFront, because it filters at the edge.
+- If the question says certificates must renew automatically, think ACM.
 
 ### Remember
 
@@ -144,5 +212,7 @@ Security groups chain the tiers: the ALB accepts HTTPS, the app tier accepts tra
 - Aurora: storage copies in three AZs; up to 15 Aurora Replicas.
 - NAT gateway: one per AZ for zone-independent egress.
 - Alias, not CNAME, at the zone apex.
+- Shield Standard is automatic and free; AWS WAF is configured per resource.
+- RDS encryption is set at creation; encrypt later through an encrypted snapshot copy.
 
 > **Trap:** One NAT gateway or one database instance makes the whole design depend on a single zone, even when the web tier spans two. Check every tier, not just compute.
