@@ -21,6 +21,9 @@ facts:
   - id: http-api-cors
     text: "When CORS is configured on an HTTP API, API Gateway answers preflight OPTIONS requests automatically, even without an OPTIONS route."
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html
+  - id: proxy-502
+    text: "If a Lambda proxy integration returns output in a format other than the expected statusCode, headers and body structure, API Gateway returns 502 Bad Gateway."
+    source: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
 cards:
   - id: api-gateway-040
     q: Which REST API integration type should you use to call a Lambda function with the least setup?
@@ -39,6 +42,10 @@ cards:
     q: "A browser app on another origin calls an API Gateway HTTP API and fails on the preflight request. What fixes it?"
     a: "**Configure CORS on the HTTP API.** API Gateway then answers preflight OPTIONS requests automatically and adds the CORS headers."
     facts: [http-api-cors]
+  - id: api-gateway-051
+    q: "An Amazon API Gateway REST API with a Lambda proxy integration returns 502 Bad Gateway although the function runs without error. What is a likely cause?"
+    a: "The function's response is not in the proxy format (statusCode, headers, body), so API Gateway rejects it."
+    facts: [proxy-502]
 ---
 An integration connects an API method to its backend. The integration type decides how much mapping you configure. [Choose an API Gateway API integration type](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html)
 
@@ -65,5 +72,6 @@ An integration connects an API method to its backend. The integration type decid
 ### Remember
 
 - Integration timeout: 50 ms to 29 seconds; raise it only for Regional or private APIs.
+- A Lambda proxy response in the wrong format returns 502 Bad Gateway.
 
 > **Trap:** Regional and private APIs can request a higher integration timeout quota, but edge-optimized APIs cannot.

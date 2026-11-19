@@ -52,6 +52,12 @@ facts:
   - id: scan-limit
     text: Athena cannot read more than one million partitions in a single scan.
     source: https://docs.aws.amazon.com/athena/latest/ug/partitions.html#partitions-considerations-limitations
+  - id: schema-on-read
+    text: "An Athena table only describes the schema and S3 location of data for read-time querying; Athena does not modify the data in Amazon S3."
+    source: https://docs.aws.amazon.com/athena/latest/ug/creating-tables.html
+  - id: workgroups
+    text: "Athena workgroups separate workloads, control team access, enforce settings, track query metrics and control costs."
+    source: https://docs.aws.amazon.com/athena/latest/ug/workgroups-manage-queries-control-costs.html
 diagrams:
   - id: athena-log-conversion
     title: Convert raw logs for selective scans
@@ -144,6 +150,14 @@ cards:
       - convert
       - ctas
       - glue-convert
+  - id: athena-020
+    q: "Does creating an Amazon Athena table load or change the underlying data in Amazon S3?"
+    a: "No. The table only describes the schema and location for read-time querying."
+    facts: [schema-on-read]
+  - id: athena-021
+    q: "Two analytics teams share Amazon Athena and finance needs separate cost tracking and limits per team. What should be configured?"
+    a: "A workgroup per team, which separates workloads, tracks query metrics and controls costs."
+    facts: [workgroups]
 ---
 Partitioning and columnar storage reduce the data Athena needs to read. A partition groups objects by a key such as date. A columnar file groups values by column so a query can read the fields it needs.
 
@@ -173,5 +187,7 @@ Partitioning and columnar storage reduce the data Athena needs to read. A partit
 - Choose partition keys for common queries; excessive keys can create too many small files.
 - Athena cannot read more than one million partitions in one scan.
 - Most compressed text files cannot be split across readers. Avoid consolidating into too few files that prevent parallel reading.
+- Tables describe data in S3 for read-time queries; Athena never changes that data.
+- Workgroups separate teams, track query metrics and control costs.
 
 > **Trap:** Partitioning does not automatically restrict a query to the dates you intended. Include conditions on the partition columns and inspect EXPLAIN when the scan is unexpectedly broad.

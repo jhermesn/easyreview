@@ -30,6 +30,12 @@ facts:
   - id: manager-models
     text: Firewall Manager supports distributed Network Firewall deployments, a centralized firewall in one VPC, and importing existing firewalls for policy management.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/network-firewall-policies.html
+  - id: tgw-attached
+    text: "A Network Firewall can attach directly to a transit gateway as a firewall attachment, giving central inspection without provisioning firewall endpoints in an inspection VPC."
+    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/tgw-firewall.html
+  - id: tls-inspection
+    text: "A TLS inspection configuration lets Network Firewall decrypt inbound and outbound TLS traffic, inspect it with stateful rules and re-encrypt it before forwarding."
+    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-configurations.html
 cards:
   - id: network-firewall-001
     q: What does AWS Network Firewall inspect, and where are its VPC endpoints placed?
@@ -62,6 +68,14 @@ cards:
     a: Distributed deployment, centralized deployment in one VPC, and importing existing firewalls.
     facts:
       - manager-models
+  - id: network-firewall-012
+    q: "A company routes VPC traffic through AWS Transit Gateway and wants central AWS Network Firewall inspection without building an inspection VPC. What fits?"
+    a: "A transit gateway-attached firewall."
+    facts: [tgw-attached]
+  - id: network-firewall-013
+    q: "AWS Network Firewall stateful rules must inspect HTTPS payloads. What is required?"
+    a: "A TLS inspection configuration, which decrypts, inspects and re-encrypts the traffic."
+    facts: [tls-inspection]
 diagrams:
   - id: network-firewall-internet-path
     title: Example outbound path; return traffic uses the same endpoint
@@ -131,5 +145,7 @@ AWS Network Firewall filters VPC traffic that is routed through its firewall end
 - An endpoint cannot inspect traffic entering or leaving its own subnet.
 - Endpoint associations support additional endpoints and VPCs within the documented zone constraints.
 - Stateful log destinations are S3, CloudWatch Logs, and Firehose; log types include flow, alert, and TLS.
+- A firewall can attach directly to a transit gateway.
+- TLS inspection decrypts, inspects and re-encrypts traffic.
 
 > **Trap:** Adding a firewall without changing the required routes does not put application traffic on the inspection path.

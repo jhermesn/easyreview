@@ -87,6 +87,21 @@ facts:
   - id: source-ip-scope
     text: Pair aws:VpcSourceIp with aws:SourceVpc, aws:SourceVpce, or aws:SourceVpcArn because unrelated VPCs can have overlapping IP ranges.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-vpcsourceip
+  - id: endpoint-azs
+    text: "For high availability, AWS recommends at least two Availability Zones per interface endpoint, with the resources that use it in those zones; endpoints bill per hour in each zone plus per GB processed."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html
+  - id: endpoint-dns-names
+    text: "Each interface endpoint gets Regional and zonal DNS names that resolve to its network interfaces, usable when private DNS is off."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-dns
+  - id: udp-support
+    text: "Since October 2024, AWS PrivateLink supports UDP over IPv4 and IPv6; before that it supported only TCP."
+    source: https://aws.amazon.com/about-aws/whats-new/2024/10/aws-udp-privatelink-dual-stack-network-load-balancers/
+  - id: endpoint-targets
+    text: "Interface endpoints connect privately to AWS services, endpoint services hosted by other AWS accounts, and AWS Marketplace partner services."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html
+  - id: endpoint-ipv6
+    text: "An interface endpoint can use IPv6 only when the AWS service supports access over IPv6."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html
 diagrams:
   - id: privatelink-service-flow
     title: Private service access
@@ -148,6 +163,22 @@ cards:
     a: Use `aws:VpcSourceIp`, not `aws:SourceIp`, together with a VPC or endpoint condition to avoid matching overlapping ranges.
     facts: [s3-source-ip, source-ip-scope]
     trap: true
+  - id: privatelink-012
+    q: "An interface VPC endpoint has a network interface in only one Availability Zone. What availability risk does that create, and what does AWS recommend?"
+    a: "Access depends on that one zone. Use at least two Availability Zones and place the client resources there."
+    facts: [endpoint-azs]
+  - id: privatelink-013
+    q: "Private DNS is turned off on an interface VPC endpoint. How do clients reach the service through the endpoint?"
+    a: "Use the endpoint's Regional or zonal DNS names, which resolve to its network interfaces."
+    facts: [endpoint-dns-names]
+  - id: privatelink-014
+    q: "A provider exposes a UDP-based service behind a Network Load Balancer. Can consumers reach it through AWS PrivateLink?"
+    a: "Yes, since October 2024 PrivateLink supports UDP over IPv4 and IPv6. Earlier it was TCP only."
+    facts: [udp-support]
+  - id: privatelink-015
+    q: "Which kinds of services can an interface VPC endpoint reach privately?"
+    a: "AWS services, endpoint services in other AWS accounts, and AWS Marketplace partner services."
+    facts: [endpoint-targets]
 ---
 
 AWS PrivateLink connects a virtual private cloud (VPC), an isolated virtual network, to supported services privately. An interface endpoint is a private entry point in the consumer's network, not a connection to the provider's entire network.
@@ -174,5 +205,9 @@ AWS PrivateLink connects a virtual private cloud (VPC), an isolated virtual netw
 - The default endpoint policy grants full access through the endpoint; not all AWS services support custom endpoint policies.
 - Consumers can access endpoint services from on-premises as well as VPCs.
 - Interface endpoints incur hourly charges per Availability Zone and data processing charges.
+- Use at least two Availability Zones per endpoint; billing is per endpoint-hour per zone plus per GB.
+- Regional and zonal endpoint DNS names work without private DNS.
+- UDP support since October 2024 (TCP only before).
+- Targets: AWS services, other accounts' endpoint services, AWS Marketplace partner services. IPv6 needs service support.
 
 > **Trap:** A failed ping does not prove an interface endpoint is broken. Interface endpoints do not respond to ping.

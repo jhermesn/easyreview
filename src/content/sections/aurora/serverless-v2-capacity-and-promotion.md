@@ -39,6 +39,9 @@ facts:
   - id: convert-provisioned
     text: "A provisioned Aurora DB instance can be converted to Serverless v2 by modifying its instance class; to keep writer downtime low, convert or add a Serverless v2 reader and then fail over to it."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-administration.html#aurora-serverless-v2-converting-from-provisioned
+  - id: acu-per-second
+    text: "Aurora Serverless measures capacity in Aurora Capacity Units (ACUs) and bills them per second."
+    source: https://aws.amazon.com/rds/aurora/pricing/
 cards:
   - id: aurora-006
     q: An Aurora workload has unpredictable bursts. What does Serverless v2 scale, and does ordinary capacity scaling require idle connections?
@@ -64,6 +67,10 @@ cards:
     q: "A provisioned Aurora cluster must move its writer to Serverless v2 for traffic spikes, with little downtime. What is the usual path?"
     a: "Add (or convert) a Serverless v2 reader, then fail over so it becomes the writer. No new cluster or data migration is needed."
     facts: [convert-provisioned]
+  - id: aurora-050
+    q: "How is Amazon Aurora Serverless v2 compute billed?"
+    a: "In Aurora Capacity Units (ACUs), billed per second as capacity scales."
+    facts: [acu-per-second]
 diagrams:
   - id: aurora-serverless-promotion-tiers
     title: Promotion tiers choose shared or independent capacity
@@ -127,5 +134,6 @@ Aurora Serverless v2 changes database compute capacity as load varies. Each writ
 - One ACU includes about 2 GiB of memory with corresponding CPU and networking.
 - Provisioned and Serverless instances can coexist in a cluster.
 - Paused instances have no compute-capacity charge; storage and other cluster charges continue.
+- Serverless capacity: ACUs billed per second.
 
 > **Trap:** Normal capacity scaling can occur during active transactions, but a connection to a paused instance must wait for it to resume.

@@ -107,6 +107,9 @@ facts:
   - id: az-replication
     text: "EBS replicates volume data across multiple servers in its Availability Zone; io2 Block Express is designed for 99.999 percent durability and other types for 99.8 to 99.9 percent."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html
+  - id: hdd-throughput
+    text: "st1 volumes range from 0.125 TiB to 16 TiB and use a throughput burst bucket: baseline 40 MiB/s per TiB, with throughput capped at 500 MiB/s per volume."
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#ST1ThroughputBurst
 cards:
   - id: ebs-010
     q: When should an EC2 workload choose EBS gp3 rather than io2 Block Express?
@@ -188,6 +191,10 @@ cards:
     q: "A database needs more IOPS than one EBS volume can give. What block-level approach adds performance across volumes?"
     a: "A RAID 0 stripe across several EBS volumes, up to the instance EBS bandwidth limit. Avoid RAID 5 or 6, which waste IOPS on parity."
     facts: [raid0]
+  - id: ebs-054
+    q: "What is the maximum throughput of an Amazon EBS Throughput Optimized HDD (st1) volume, and what limits a small one?"
+    a: "500 MiB/s. A small st1 volume has a low baseline (40 MiB/s per TiB) and bursts on throughput credits."
+    facts: [hdd-throughput]
 ---
 Amazon EBS provides block storage, disks attached to EC2 instances. Choose solid-state drive (SSD) storage for transactional I/O, meaning application reads and writes, and hard disk drive (HDD) storage for large sequential transfers.
 
@@ -228,5 +235,6 @@ EKS Auto Mode manages block storage without installing that CSI controller. Its 
 - st1 and sc1 cannot boot an EC2 instance.
 - For direct volume creation, the console defaults to gp3; command line tools, API and SDK default to gp2.
 - EBS volume and instance: same AZ.
+- st1: 0.125 to 16 TiB, baseline 40 MiB/s per TiB, burst bucket, 500 MiB/s maximum.
 
 > **Trap:** An EBS IOPS setting alone does not establish application performance. The I/O size, instance limits and workload demand also matter.

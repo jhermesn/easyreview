@@ -32,6 +32,12 @@ facts:
   - id: console-multi-region
     text: "A trail created in the CloudTrail console applies to all enabled Regions (a multi-Region trail); a single-Region trail can only be created with the CLI or API."
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html#cloudtrail-create-a-trail-using-the-console-first-time
+  - id: first-copy-free
+    text: "The first copy of management events in each Region for an account is delivered free; more trails delivering the same management events, such as an extra single-Region trail beside a multi-Region trail, incur CloudTrail charges."
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-manage-costs.html
+  - id: sns-delivery-notice
+    text: "A trail can publish an Amazon SNS notification when CloudTrail delivers log files, which it does about every 5 minutes."
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/how-cloudtrail-works.html
 cards:
   - id: cloudtrail-004
     q: A CloudTrail trail existed before an S3 download, but S3 data events were disabled. Can its
@@ -61,6 +67,15 @@ cards:
     q: "A trail is created in the CloudTrail console. Which Regions does it log?"
     a: "All enabled Regions. Console trails are multi-Region; a single-Region trail needs the CLI or API."
     facts: [console-multi-region]
+  - id: cloudtrail-056
+    q: "An account has a multi-Region CloudTrail trail for management events and adds a second, single-Region trail with the same events. Is the second trail free?"
+    a: "No. Only the first copy of management events per Region is free; the duplicate delivery incurs CloudTrail charges."
+    trap: true
+    facts: [first-copy-free]
+  - id: cloudtrail-057
+    q: "A team wants an automated process to start each time AWS CloudTrail delivers new log files to S3. What can the trail send?"
+    a: "An Amazon SNS notification on each log file delivery."
+    facts: [sns-delivery-notice]
 ---
 A trail is the CloudTrail configuration that sends selected events to S3 for an ongoing audit record. An event selector is a filter that decides which activity the trail records. [Trail concepts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-trails)
 
@@ -92,5 +107,7 @@ See also [global event handling](https://docs.aws.amazon.com/awscloudtrail/lates
 
 - Data events are opt-in and incur additional charges.
 - Console-created trails cover all enabled Regions. [Console trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html#cloudtrail-create-a-trail-using-the-console-first-time)
+- First copy of management events per Region: free. Duplicate trails for the same events: charged.
+- SNS can notify on each log file delivery (about every 5 minutes).
 
 > **Trap:** An existing trail is not evidence that an S3 download was recorded. Its data event selection must have included that operation when it happened.

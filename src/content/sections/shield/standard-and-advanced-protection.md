@@ -56,6 +56,9 @@ facts:
   - id: edge-services
     text: Serving traffic through Amazon CloudFront and Amazon Route 53, which run in edge locations, is an AWS best practice for DDoS resilience because attacks are absorbed at the edge.
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-best-practices-ddos-resiliency/aws-best-practices-ddos-resiliency.html
+  - id: advanced-billing
+    text: "Shield Advanced is subscribed per account; for accounts in an AWS Organizations organization, subscriptions are billed to the payer account, and one subscription fee covers all subscribed accounts in the consolidated billing family."
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/enable-ddos-prem.html
 diagrams: []
 cards:
   - id: shield-001
@@ -109,6 +112,11 @@ cards:
     q: Besides AWS Shield, which two edge services help a web application absorb DDoS attacks?
     a: Amazon CloudFront and Amazon Route 53, which run in edge locations.
     facts: [edge-services]
+  - id: shield-017
+    q: "An organization subscribes ten of its AWS accounts to AWS Shield Advanced. Does it pay ten subscription fees?"
+    a: "No. One subscription fee covers the subscribed accounts in its consolidated billing family, billed to the payer account. Each account still subscribes."
+    trap: true
+    facts: [advanced-billing]
 ---
 AWS Shield helps keep applications available during a distributed denial of service (DDoS) attack, where many systems flood a target with traffic. Standard protection is automatic. Advanced adds explicitly configured protection for supported resources.
 
@@ -137,5 +145,6 @@ AWS Shield helps keep applications available during a distributed denial of serv
 - Advanced protects selected resources, including EC2 and NLB resources through Elastic IPs.
 - For applicable ALB and CloudFront cost protection, configure a WAF rate-based rule in Block mode before an attack.
 - Submit eligible credit requests within 15 days after the attack billing month. Credits apply only to Shield Advanced usage.
+- Shield Advanced: each account subscribes; one fee covers a consolidated billing family, billed to the payer account.
 
 > **Trap:** Subscribing during an attack does not make previously unprotected resources eligible for cost protection.

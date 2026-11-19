@@ -58,6 +58,9 @@ facts:
   - id: higher-throughput
     text: "Parameter Store has a default throughput quota for API transactions per second; higher throughput can be turned on for heavier workloads, at extra charge."
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-throughput.html#parameter-store-throughput
+  - id: ssm-vpc-endpoints
+    text: "Systems Manager can be reached through interface VPC endpoints (AWS PrivateLink), so managed nodes and applications in a VPC need no public endpoint access."
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html
 cards:
   - id: systems-manager-005
     q: How do Systems Manager Parameter Store standard and advanced parameters differ?
@@ -105,6 +108,10 @@ cards:
     q: "An application reading parameters heavily gets ThrottlingException from Parameter Store. What setting helps?"
     a: "Turn on higher throughput for Parameter Store (extra charge), or cache the values in the application."
     facts: [higher-throughput]
+  - id: systems-manager-117
+    q: "Applications in private subnets with no NAT gateway must read AWS Systems Manager Parameter Store values. What should the VPC add?"
+    a: "An interface VPC endpoint for Systems Manager (AWS PrivateLink)."
+    facts: [ssm-vpc-endpoints]
 ---
 Parameter Store keeps application configuration as named values. The tier determines storage limits and policy support; the parameter type determines how the value is represented.
 
@@ -135,6 +142,7 @@ Parameter Store keeps application configuration as named values. The tier determ
 
 - Version one is initial; edits increment it.
 - No version specified means latest; a nonexistent version causes an error.
+- Private subnets reach Systems Manager through interface VPC endpoints.
 
 > **Trap:** Shrinking an advanced value does not permit downgrading the parameter.
 

@@ -45,6 +45,9 @@ facts:
   - id: rds-pg-invoke
     text: "RDS for PostgreSQL can invoke Lambda functions through the aws_lambda extension once the instance has an outbound network path to Lambda and an IAM role allowed to invoke the function."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL-Lambda.html#PostgreSQL-Lambda
+  - id: s3-push-permission
+    text: "For S3 event notifications, the bucket is configured to send events and the function's resource-based policy grants Amazon S3 permission to invoke it."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html
 diagrams:
   - id: lambda-permission-directions
     title: Invocation permission and execution permission have different owners
@@ -125,6 +128,10 @@ cards:
     q: "An application in one AWS account must invoke a Lambda function in another account. Which permissions are required?"
     a: "Grant access in the function resource-based policy and give the caller corresponding Lambda API permission."
     facts: [cross-account-invoke]
+  - id: lambda-077
+    q: "An S3 bucket must invoke an AWS Lambda function on each upload. Which permission lets S3 call the function?"
+    a: "A statement in the function's resource-based policy allowing Amazon S3 to invoke it. The execution role only needs S3 read access if the function reads the object."
+    facts: [s3-push-permission]
 ---
 A Lambda execution role is an AWS Identity and Access Management (IAM) role that grants the function access to AWS resources. A resource-based policy grants callers access to the function. A principal is the identity or service receiving permission; these policies control different directions of access.
 
@@ -150,5 +157,6 @@ For EFS file access using IAM client authorization, EFS evaluates the role's ide
 - Code access: execution role. Caller access: resource policy, with caller permissions also required for cross-account invocation.
 - Logs need `logs:PutLogEvents`; changing the log-group name does not itself grant that permission.
 - EFS IAM authorization combines identity and file-system policies.
+- S3 notifications need the function's resource-based policy to allow S3 to invoke it.
 
 > **Trap:** Giving the execution role permission to write to a service does not grant that service permission to invoke the function.

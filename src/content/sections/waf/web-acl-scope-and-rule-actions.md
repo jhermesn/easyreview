@@ -80,6 +80,12 @@ facts:
   - id: wcu
     text: "A web ACL can use up to 5,000 WAF capacity units (WCUs); its base price includes 1,500 WCUs and higher usage costs extra. A rule group can have at most 5,000 WCUs."
     source: https://docs.aws.amazon.com/waf/latest/developerguide/aws-waf-capacity-units.html
+  - id: request-components
+    text: "AWS WAF rule statements can inspect request components such as the HTTP method, a single header or all headers, cookies, the URI path, the query string and the body."
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-fields-list.html
+  - id: logical-statements
+    text: "Logical rule statements combine or negate nested statements with AND, OR and NOT."
+    source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statements-logical.html
 diagrams:
   - id: waf-rule-evaluation
     title: Evaluation when no rule terminates
@@ -211,6 +217,10 @@ cards:
     q: "A web app must reject requests whose query string is longer than 100 bytes. Which AWS WAF rule statement fits?"
     a: "A size constraint statement on the query string with a greater-than comparison."
     facts: [size-constraint]
+  - id: waf-027
+    q: "An AWS WAF rule must block requests that have a particular header value AND come from outside one country. How is that built?"
+    a: "Nest a header match statement and a negated geo match statement under a logical AND statement."
+    facts: [request-components, logical-statements]
 ---
 AWS WAF filters web requests using a web access control list (web ACL), also called a protection pack. A web ACL contains rules associated with a supported application endpoint. It lets you choose which matching requests to allow, block, count or challenge.
 
@@ -248,5 +258,6 @@ For an ALB origin behind CloudFront, an origin is the backend serving CloudFront
 - Allow and Block stop evaluation. Count continues.
 - CAPTCHA and Challenge depend on token validity.
 - WAF logs can go to CloudWatch Logs, S3 or Data Firehose.
+- Inspectable parts: method, headers, cookies, URI path, query string, body. AND, OR and NOT combine statements.
 
 > **Trap:** Count does not guarantee that a request reaches the application. A later rule or the default action can still block it.

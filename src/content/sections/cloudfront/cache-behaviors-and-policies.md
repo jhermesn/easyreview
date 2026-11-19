@@ -92,6 +92,9 @@ facts:
   - id: price-class
     text: "A price class other than PriceClass_All limits which edge locations serve a distribution to lower cost; viewers in excluded regions may see slower performance."
     source: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DistributionConfig.html
+  - id: standard-log-destinations
+    text: "CloudFront standard logging (v2) can send access logs to Amazon S3, CloudWatch Logs or Data Firehose, with selectable fields."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging.html
 cards:
   - id: cloudfront-001
     q: What decides which CloudFront origin and settings handle a request?
@@ -155,6 +158,10 @@ cards:
       prevent those responses from sharing the same cache key?
     a: Use a cache policy to include the relevant query strings in the cache key.
     facts: [cache-policy, cache-vary]
+  - id: cloudfront-062
+    q: "Amazon CloudFront access logs must stream into Amazon Data Firehose instead of S3. Is that supported?"
+    a: "Yes. Standard logging (v2) can deliver to S3, CloudWatch Logs or Data Firehose."
+    facts: [standard-log-destinations]
 ---
 CloudFront delivers web content through edge locations, which are servers that keep copies near viewers, the clients requesting content. An origin holds the original content. A distribution is the configuration that connects those origins to viewers; its cache behaviors are ordered rules for different URL paths.
 
@@ -182,5 +189,6 @@ For selected files or city-level rules, an application can check a geolocation s
 
 - The first matching behavior wins; the default `*` rule is last.
 - Cache key values are forwarded automatically.
+- Standard logs (v2) go to S3, CloudWatch Logs or Data Firehose.
 
 > **Trap:** Adding `Cache-Control` with a response headers policy changes viewer caching. It does not set CloudFront's object TTL.
