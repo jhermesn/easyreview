@@ -24,6 +24,9 @@ facts:
   - id: size
     text: "The item maximum is 400 KB including attribute names and values."
     source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Constraints.html
+  - id: global-tables
+    text: DynamoDB global tables replicate a table across AWS Regions with managed replication, and every replica can serve reads and writes.
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html
 cards:
   - id: dynamodb-049
     q: "Which AWS database service is a serverless, fully managed NoSQL database?"
@@ -37,6 +40,10 @@ cards:
     q: "How do DynamoDB keys and size limits constrain flexible item attributes?"
     a: "Non-key attributes can vary. A simple key identifies by partition key; a composite key identifies by partition and sort key. Each item is at most 400 KB, including names and values."
     facts: [items, keys, size]
+  - id: dynamodb-071
+    q: "Users in several AWS Regions must read and write the same Amazon DynamoDB data with low latency in their own Region. Which DynamoDB feature fits?"
+    a: "DynamoDB global tables. AWS replicates the table across Regions, and every replica serves reads and writes."
+    facts: [global-tables]
 ---
 Amazon DynamoDB is a serverless NoSQL database for fast key-value and document access. [What is Amazon DynamoDB?](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html#Introduction)
 
@@ -53,5 +60,6 @@ Amazon DynamoDB is a serverless NoSQL database for fast key-value and document a
 ### Remember
 
 - Serverless NoSQL, single-digit millisecond.
+- Global tables: multi-Region replicas, each readable and writable.
 
 > **Trap:** DynamoDB is NoSQL; joins and complex SQL point to a relational database.
