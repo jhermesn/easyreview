@@ -108,6 +108,18 @@ facts:
   - id: zero-fallback
     text: With health checks on weighted records, Route 53 considers zero-weight records when all nonzero-weight records are unhealthy.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html#routing-policy-weighted-healthchecks
+  - id: manual-state
+    text: SetAlarmState cannot force a Route 53 health-check change because Route 53 reads the metric stream.
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
+  - id: update
+    text: After changing the CloudWatch alarm settings, update its Route 53 health check.
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-cloudwatch
+  - id: sla
+    text: The Route 53 SLA covers authoritative DNS hosted-zone availability and excludes API and console availability.
+    source: https://aws.amazon.com/route53/sla/
+  - id: dnssec-keys
+    text: "DNSSEC signing works only for public hosted zones; each key-signing key is backed by an asymmetric customer managed KMS key you own, Route 53 manages the zone-signing key, and a DS record in the parent zone completes the chain of trust."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec.html#dns-configuring-dnssec
 cards:
   - id: route53-026
     q: Can a Route 53 private hosted zone alias to CloudFront and evaluate its target health?
@@ -237,6 +249,27 @@ cards:
     facts:
       - zero-fallback
     trap: true
+  - id: route53-037
+    q: A team calls SetAlarmState to test Route 53 failover, but the health check does not change. Why?
+    a: Route 53 reads the metric data stream, not the alarm state set by the API.
+    facts:
+      - manual-state
+    trap: true
+  - id: route53-038
+    q: An operator changes the CloudWatch alarm threshold used by a Route 53 check. What additional update is required?
+    a: Update the Route 53 health check after changing the alarm settings.
+    facts:
+      - update
+  - id: route53-051
+    q: Does the Route 53 authoritative DNS SLA guarantee its console and API availability?
+    a: No. The SLA is scoped to authoritative DNS hosted-zone availability and excludes API and console availability.
+    facts:
+      - sla
+    trap: true
+  - id: route53-073
+    q: "What does a team need to sign a public Route 53 hosted zone with DNSSEC?"
+    a: "A key-signing key backed by an asymmetric customer managed KMS key, then a DS record added at the parent zone. Private hosted zones cannot be signed."
+    facts: [dnssec-keys]
 ---
 Route 53 health checks, routing settings and Resolver DNS Firewall rules determine how DNS answers and queries behave during failures. Their operational details matter when a health signal, record weight or firewall rule produces an unexpected result.
 
@@ -271,5 +304,8 @@ TTL is the time a record can be cached. [Block responses](https://docs.aws.amazo
 - The 10-second check interval costs extra. The health-check console can create a CloudWatch alarm that notifies an SNS topic in us-east-1 after one minute of unhealthy status. [Intervals](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-advanced) · [Notifications](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-alarm)
 - Weighted records accept integer weights from 0 through 255. If all weights are zero, resources have equal selection probability. [Weights](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-weighted.html#rrsets-values-weighted-weight)
 - Multivalue routing returns up to eight healthy records, or all healthy records if there are eight or fewer. If all are unhealthy, it returns up to eight unhealthy records. [Multivalue routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html#routing-policy-multivalue)
+- An alarm-based health check follows the metric data stream, not a state set with SetAlarmState; update the check after changing the alarm.
+- The Route 53 SLA covers authoritative DNS, not the API or console.
+- DNSSEC signing: a customer managed asymmetric KMS key backs each key-signing key, Route 53 manages the zone-signing key, and a DS record in the parent zone completes the chain of trust.
 
 > **Trap:** A healthy HTTPS check does not prove that the TLS certificate is valid. An expired or invalid certificate can still pass. [HTTPS checks](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints)

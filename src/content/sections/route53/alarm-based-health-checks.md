@@ -30,9 +30,6 @@ facts:
   - id: manual-state
     text: SetAlarmState cannot force a Route 53 health-check change because Route 53 reads the metric stream.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
-  - id: update
-    text: After changing the CloudWatch alarm settings, update its Route 53 health check.
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-cloudwatch
 cards:
   - id: route53-008
     q: A private application needs Route 53 failover, but public checkers cannot reach it. How should health be represented?
@@ -56,17 +53,6 @@ cards:
     facts:
       - missing
       - manual-state
-  - id: route53-037
-    q: A team calls SetAlarmState to test Route 53 failover, but the health check does not change. Why?
-    a: Route 53 reads the metric data stream, not the alarm state set by the API.
-    facts:
-      - manual-state
-    trap: true
-  - id: route53-038
-    q: An operator changes the CloudWatch alarm threshold used by a Route 53 check. What additional update is required?
-    a: Update the Route 53 health check after changing the alarm settings.
-    facts:
-      - update
 diagrams:
   - id: route53-private-alarm-health
     title: Private application health reaches DNS through an alarm
@@ -119,12 +105,10 @@ An alarm-based Route 53 health check turns a CloudWatch metric signal into DNS h
 2. Identify that alarm by its name and Region when creating the Route 53 health check.
 3. Route 53 reads the alarm's metric data stream. A result corresponding to OK is healthy; ALARM is unhealthy.
 4. Choose how the check handles insufficient data. Attach the check to the DNS record whose routing should depend on that health signal.
-5. If you change the alarm settings, update the health check too.
 
 ### Exam cues
 
 - If the question says private IPs cannot be reached by Route 53 checkers, think an alarm-based check, because health can come from a metric rather than a public probe.
-- If the question says SetAlarmState did not change DNS health, think metric data stream, because Route 53 does not follow a manually set alarm state.
 
 ### Remember
 
@@ -133,4 +117,4 @@ An alarm-based Route 53 health check turns a CloudWatch metric signal into DNS h
 - High-resolution metrics, extended statistics, M-out-of-N alarms and multi-metric math alarms are unsupported.
 - Insufficient data can mean Healthy, Unhealthy or LastKnownStatus. New LastKnownStatus checks start healthy.
 
-> **Trap:** Changing the CloudWatch alarm state with SetAlarmState does not force Route 53 failover.
+> **Trap:** A Route 53 endpoint health check cannot probe a private IP address. For a resource reachable only inside a VPC, base the check on a CloudWatch alarm instead.

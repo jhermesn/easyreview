@@ -30,9 +30,6 @@ facts:
   - id: txt
     text: TXT records hold text values, including values used to establish domain ownership.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html#TXTFormat
-  - id: sla
-    text: The Route 53 SLA covers authoritative DNS hosted-zone availability and excludes API and console availability.
-    source: https://aws.amazon.com/route53/sla/
   - id: dnssec
     text: "Route 53 DNSSEC signing signs every response for a hosted zone with public key cryptography, so DNS resolvers can verify that answers came from Route 53 and weren't tampered with."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec.html#dns-configuring-dnssec
@@ -42,9 +39,6 @@ facts:
   - id: ttl-tradeoff
     text: "A shorter DNS TTL makes resolvers notice changes sooner but raises query volume and cost; a longer TTL serves more answers from cache but delays changes. AWS recommends 60 to 172,800 seconds."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/best-practices-dns.html
-  - id: dnssec-keys
-    text: "DNSSEC signing works only for public hosted zones; each key-signing key is backed by an asymmetric customer managed KMS key you own, Route 53 manages the zone-signing key, and a DS record in the parent zone completes the chain of trust."
-    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec.html#dns-configuring-dnssec
 cards:
   - id: route53-048
     q: A company keeps its domain at an external registrar but wants Route 53 DNS hosting. Must it transfer registration?
@@ -68,12 +62,6 @@ cards:
       - ns
       - mx
       - txt
-  - id: route53-051
-    q: Does the Route 53 authoritative DNS SLA guarantee its console and API availability?
-    a: No. The SLA is scoped to authoritative DNS hosted-zone availability and excludes API and console availability.
-    facts:
-      - sla
-    trap: true
   - id: route53-066
     q: "A bank must protect its public domain against DNS spoofing so resolvers can verify Route 53 answers. Which Route 53 feature fits?"
     a: "**DNSSEC signing** on the public hosted zone."
@@ -82,10 +70,6 @@ cards:
     q: "How do you move DNS for a live domain to Route 53 with little disruption?"
     a: "Recreate the records in a hosted zone, lower TTLs, wait for the old TTL to expire, then change the NS records at the registrar to the Route 53 name servers."
     facts: [migrate-in-use, ttl-tradeoff]
-  - id: route53-073
-    q: "What does a team need to sign a public Route 53 hosted zone with DNSSEC?"
-    a: "A key-signing key backed by an asymmetric customer managed KMS key, then a DS record added at the parent zone. Private hosted zones cannot be signed."
-    facts: [dnssec-keys]
 diagrams:
   - id: route53-public-delegation
     title: Delegate an externally registered domain to Route 53
@@ -157,6 +141,5 @@ A public hosted zone holds DNS records for a domain. Domain registration and DNS
 
 - Route 53 assigns four name servers to the hosted zone.
 - A uses IPv4; AAAA uses IPv6.
-- The Route 53 SLA concerns authoritative hosted-zone DNS availability. It excludes API and console availability.
 
 > **Trap:** Creating a public hosted zone for an externally registered domain does not update that registrar's name-server settings.
