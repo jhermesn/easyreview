@@ -69,6 +69,7 @@ facts:
 diagrams:
   - id: multi-region-automated-failover
     title: Two Regions serve traffic, replicate data, and fail over by DNS and origin groups
+    facts: [global-tables, mrec, mrsc, mrsc-create, mrsc-accounts, gt-failover, origin-group, failover-codes, failover-hit, latency, latency-tree, arc-switch, arc-failover, arc-not-monitor, arc-assertion, arc-cluster, s3-crr, fis, fis-template, fis-stop, resiliency-policy]
     width: 1240
     height: 760
     groups:

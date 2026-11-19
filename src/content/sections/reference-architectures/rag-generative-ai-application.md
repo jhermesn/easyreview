@@ -78,6 +78,7 @@ facts:
 diagrams:
   - id: rag-generative-ai-application
     title: Company documents are indexed for retrieval, and answers are grounded and checked
+    facts: [token, embedding, context-window, rag, kb, citations, ingestion, runtime, chunking, apis, vector-stores, s3-vectors, data-sources, guardrails, grounding, sensitive, prompt-attacks, hallucination, bedrock-shared, provider-access, bedrock-privatelink, invocation-logging, encryption, macie]
     width: 1240
     height: 680
     groups:

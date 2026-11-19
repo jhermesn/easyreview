@@ -102,6 +102,7 @@ facts:
 diagrams:
   - id: web-application-on-aws
     title: A web application spread over two Availability Zones, protected at the edge
+    facts: [shared, in-cloud, ec2-customer, rds-patching, global-infra, region, az, multi-az, edge, waf, shield, guardduty, guardduty-sources, inspector, asg, replace, elb, rds, rds-manages, vpc, subnet, public-private, igw, sg, nacl, sg-stateful, acl-stateless, route53, s3, s3-durability, cloudfront, oac]
     width: 1240
     height: 900
     groups:

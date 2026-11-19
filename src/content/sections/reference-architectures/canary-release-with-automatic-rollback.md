@@ -69,6 +69,7 @@ facts:
 diagrams:
   - id: canary-release-with-automatic-rollback
     title: CodeDeploy shifts a Lambda alias in a canary and rolls back on an alarm
+    facts: [canary, linear, all-at-once, lambda-canary, lambda-alias, lambda-hooks, alarm-stop, alarm-rollback, rollback-new, service-role, ecs-alb, ecs-test, weighted-stop, synth, synth-schedule, synth-metrics, cd-sns, cd-failure-trigger, cd-logs, cd-health, apigw-alias]
     width: 1240
     height: 700
     groups:

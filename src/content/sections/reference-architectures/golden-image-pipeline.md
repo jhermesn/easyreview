@@ -84,6 +84,7 @@ facts:
 diagrams:
   - id: golden-image-pipeline
     title: Image Builder bakes and tests an AMI, shares it, and Auto Scaling replaces instances with it
+    facts: [recipe, scheduled, workflow-order, test-instance, test-gate, build-sns, keep-failed, distribution, copied, shared-scope, parameter-output, regional-ami, inspector, template-update, refresh, refresh-min, rollback-default, rollback-alias, mutable, immutable, bake, bootstrap, inventory, inventory-sync, compliance, baseline]
     width: 1240
     height: 760
     groups:

@@ -96,6 +96,7 @@ facts:
 diagrams:
   - id: governed-multi-account-landing-zone
     title: A landing zone that vends, customizes, logs and watches every account
+    facts: [landing-zone, controls, factory, shared-names, scp-ceiling, scp-management, delegated-admin, delegated-services, gd-regional, org-trail, org-trail-protect, org-trail-new, identity-center, permission-set, aggregator, aggregator-readonly, sh-home-region, account-create, cfct, cfct-stacksets, aft, aft-scope, drift, scp-drift, drift-events, drift-pattern, access-role, invited-role, preventive, detective]
     width: 1240
     height: 720
     groups:

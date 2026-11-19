@@ -40,6 +40,8 @@ const diagram = z.object({
     )
     .default([]),
   steps: z.array(z.string()).default([]),
+  // Ids of the section's facts that the steps and node notes rely on; doc-watch lists the diagram when one changes.
+  facts: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
 }).superRefine((d, ctx) => {
   const ids = new Set(d.nodes.map((n) => n.id));
   for (const e of d.edges)

@@ -45,6 +45,7 @@ facts:
 diagrams:
   - id: hybrid-network-hub
     title: Data center connected to VPCs in several accounts through one transit gateway
+    facts: [tgw-hub, dxgw-tgw, dx-no-encryption, vpn-backup, dx-preferred, tgw-route-tables, tgw-ram, resolver-endpoints, dx-max-resiliency, encrypt-dx, peer-nontransitive, rules-ram, phz-scope]
     width: 1240
     height: 900
     groups:

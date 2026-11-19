@@ -18,6 +18,15 @@ const CONCURRENCY = 6;
 const MAX_LISTED = 80;
 const MISSING = 'missing';
 
+// The cards that cite a fact and the diagrams that rely on it, so a changed fact leads to everything built on it.
+// A diagram without `facts` counts as relying on every fact of its section.
+function usedBy(data, factId) {
+  const cards = (data.cards ?? []).filter((c) => (c.facts ?? []).includes(factId)).map((c) => c.id);
+  const diagrams = (data.diagrams ?? []).filter((d) => !(d.facts ?? []).length || d.facts.includes(factId)).map((d) => d.id);
+  const parts = [cards.length && `cards ${cards.join(', ')}`, diagrams.length && `diagram ${diagrams.join(', ')}`].filter(Boolean);
+  return parts.length ? ` (${parts.join('; ')})` : '';
+}
+
 // url (with anchor) -> citing facts: { who: "codedeploy/agent-setup#agent-needed" or "glossary/codedeploy: AppSpec", text }
 function citations() {
   const out = new Map();
@@ -25,7 +34,8 @@ function citations() {
   for (const unit of readdirSync(SECTIONS)) {
     for (const file of readdirSync(join(SECTIONS, unit)).filter((f) => f.endsWith('.md'))) {
       const front = /^---\n([\s\S]*?)\n---/.exec(readFileSync(join(SECTIONS, unit, file), 'utf8'))?.[1];
-      for (const f of parse(front ?? '')?.facts ?? []) add(f.source, `${unit}/${file.replace(/\.md$/, '')}#${f.id}`, f.text);
+      const data = parse(front ?? '') ?? {};
+      for (const f of data.facts ?? []) add(f.source, `${unit}/${file.replace(/\.md$/, '')}#${f.id}${usedBy(data, f.id)}`, f.text);
     }
   }
   for (const file of readdirSync(GLOSSARY).filter((f) => f.endsWith('.json'))) {

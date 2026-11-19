@@ -54,6 +54,7 @@ facts:
 diagrams:
   - id: streaming-data-lake
     title: Events streamed into an encrypted S3 data lake and queried in place
+    facts: [kds, firehose-source, parquet, crawler, athena, lake-formation, spectrum, quick-sources, kms-stream, kms-athena, esm-batches, buffer-trigger, direct-put, conversion-errors, stream-retry, lifecycle]
     width: 1240
     height: 700
     groups:

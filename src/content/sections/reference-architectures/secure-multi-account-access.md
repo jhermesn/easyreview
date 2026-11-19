@@ -69,6 +69,7 @@ facts:
 diagrams:
   - id: secure-multi-account-access
     title: Workforce, application and vendor access governed across an organization
+    facts: [identity-source, saml-sign-in, scim-sync, permission-set, role-provisioning, role-selection, ds-proxy, controls, preventive, detective, scp-ceiling, scp-management, org-trail, trail-bucket-policy, role-caller, role-trust, both-sides, external-id, external-condition, key-policy, kms-cross-account]
     width: 1240
     height: 960
     groups:

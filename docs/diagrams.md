@@ -16,6 +16,7 @@ diagrams:
       - { from: pipe, to: cfn, step: 1 }
     steps:   # step N explains the edge with step: N
       - "First thing that happens."
+    facts: [pipeline-roles, artifact-key]   # the section facts the steps and notes rely on
 ```
 
 ## Rules
@@ -27,7 +28,8 @@ diagrams:
 - Give edges a `step` and put the text in `steps`. Edge labels overlap the boxes in these layouts, so don't use them.
 - Leave at least 40 px between boxes and keep every box inside its group and the viewBox. Nodes inside a group need about 30 px of top padding for the group label.
 - Arrows are straight lines between box centres: place boxes so that no arrow passes through a third box.
-- `npm run lint` reports overlaps, arrows crossing boxes, boxes outside the viewBox and steps without an edge. A finished section has none.
+- List in `facts` the ids of the section facts that the steps and node notes rely on. When a cited AWS page changes, `node scripts/doc-watch.mjs` names the diagrams that rely on the fact, next to the cards that cite it; a diagram without `facts` is named for every fact of its section.
+- `npm run lint` reports overlaps, arrows crossing boxes, boxes outside the viewBox and steps without an edge. A finished section has none. It also reports a diagram `facts` id that the section does not define.
 
 ## Reference architectures
 
@@ -50,3 +52,8 @@ A scenario is a design that a guide task asks the candidate to build or recogniz
 - **Mapping.** The section is mapped into every guide item it serves, in every cert at or above its level.
 
 A complete design is usually 12 to 18 nodes and 7 to 12 steps. Fewer than that usually means a boundary, a trust edge or a failure path is missing.
+
+Two checks hold every reference architecture to this:
+
+- `npm run lint` fails a `reference-architectures` section whose diagram has fewer than 10 nodes or 6 steps, no group, no dashed edge or no `facts`.
+- `npm test` (`src/lib/scenarios.test.ts`) fails when a scenario's section is missing, is above the exam's level or is not mapped into an item it lists, when a guide maps a `reference-architectures` section that its `scenarios` leave out, and when a section of the unit belongs to no scenario.

@@ -81,6 +81,7 @@ facts:
 diagrams:
   - id: ai-agent-with-tools
     title: A customer service agent reasons with a model, remembers, and acts through governed tools
+    facts: [agent, tool, how-much, mcp, mcp-primitives, hitl, use-cases, multi-agent, orchestrator, memory-tiers, agentcore, frameworks, runtime, memory, gateway, identity, vault, policy, observe, agents-classic, strands, prompt-attacks, injection, sanitize, guardrail-attacks]
     width: 1240
     height: 700
     groups:

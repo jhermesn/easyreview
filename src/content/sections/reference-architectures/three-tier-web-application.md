@@ -57,6 +57,7 @@ facts:
 diagrams:
   - id: three-tier-web-application
     title: Three-tier web application across two Availability Zones
+    facts: [alias-apex, oac, alb-two-azs, asg-multi-az, shared-store, aurora-storage, aurora-replicas, nat-per-az, sg-reference, waf, shield-standard, edge-ddos, acm, acm-integrated, rds-kms, rds-encrypt-existing, target-tracking]
     width: 1240
     height: 900
     groups:

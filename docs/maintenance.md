@@ -9,7 +9,7 @@ The `Content health` workflow (`.github/workflows/content-health.yml`) runs ever
 | Doc sections | `node scripts/doc-watch.mjs` | Changed text under a cited `#anchor` (or on a cited page without one), and anchors that disappeared. Lists the facts and glossary terms to re-check, first the ones that state a number the page no longer has. PDF sources are left to the link check |
 | Dated content | `node scripts/date-watch.mjs` | Dates in facts, cards and bodies that passed in the last 8 days, such as a support plan or service end date |
 | Who passed | `node scripts/verify-passed.mjs` | Entries whose Credly badges expired or disappeared, or whose Credly profile no longer links their GitHub profile. The same script checks new entries in pull requests (see CONTRIBUTING.md) |
-| Section lint | `npm run lint` | Cards citing missing facts, cut-off bodies, diagram layout problems |
+| Section lint | `npm run lint` | Cards and diagrams citing missing facts, cut-off bodies, diagram layout problems, reference architectures below the size floor |
 | Strict coverage | `STRICT_COVERAGE=1 npm run build` | Guide items without a section, in-scope services without a section in the cert, guide items mapping a section above the exam's level, sections no cert maps |
 
 ## When the issue fires
@@ -17,6 +17,6 @@ The `Content health` workflow (`.github/workflows/content-health.yml`) runs ever
 1. **Guide page changed:** re-extract that guide into `src/data/guides/<cert>.json` in the same shape. Keep the section mappings of unchanged items, map new items, and write sections for anything uncovered.
 2. **New exam code:** treat it as a new guide. Update the cert's `code` in `src/lib/certs.ts`, re-extract the guide, and re-check every mapped section against the new outline.
 3. **Dead link:** find the current AWS page and re-check the facts that cite it, or record the retirement, with its date, as a fact.
-4. **Doc section changed:** re-read the section and fix the listed facts, plus the cards and body lines that rely on them. A new limit, default or feature gets a dated fact. A missing anchor means the section moved: point the facts at the new anchor.
+4. **Doc section changed:** re-read the section and fix the listed facts, plus the cards, diagram steps and body lines that rely on them. The report names the cards and diagrams next to each fact. A new limit, default or feature gets a dated fact. A missing anchor means the section moved: point the facts at the new anchor.
 5. **Dated content passed:** check what AWS did on that date, then rewrite the listed lines in the past tense or to the new state. Update the facts first; their cards and body lines follow.
 6. Run `node scripts/guide-watch.mjs --update` or `node scripts/doc-watch.mjs --update` for the check that fired, and commit the new snapshot (`src/data/guides/watch.json` and `src/data/exams.json`, or `src/data/doc-watch.json`) with the content changes. Newly cited pages join the doc-watch snapshot the same way.

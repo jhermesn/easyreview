@@ -69,6 +69,7 @@ facts:
 diagrams:
   - id: automated-security-remediation
     title: Config fixes drift with Automation, and findings trigger a cross-account response
+    facts: [remediation-runbook, automatic-remediation, automatic-role, resource-parameter, retry-attempts, organization-pack, central-ownership, config-integration, event-targets, custom-action, automation-rules, gd-export, gd-updates, isolation, connections, role-caller, role-trust, detective, detective-history, eb-retry, eb-dlq]
     width: 1240
     height: 800
     groups:
