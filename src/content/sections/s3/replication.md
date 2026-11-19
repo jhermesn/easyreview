@@ -89,9 +89,6 @@ facts:
   - id: replication-encryption-default
     text: Replicas of SSE-S3, SSE-KMS or DSSE-KMS source objects use the source encryption type rather than the destination bucket default.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-config-for-kms-objects.html#replication-default-encryption
-  - id: multi-destination
-    text: "One source bucket can replicate to a single destination bucket or to multiple destination buckets, in the same Region or in different Regions."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication
   - id: replication-two-way
     text: "Synchronizing buckets that both receive writes requires two-way replication rules; a rule from one source bucket to a destination does not configure the reverse direction."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#two-way-replication-scenario
@@ -255,11 +252,6 @@ cards:
     trap: true
     facts:
       - replication-encryption-default
-  - id: s3-111
-    q: "Objects written to one S3 bucket must appear automatically in buckets in three other Regions. What provides this without custom copy code?"
-    a: "S3 Replication from the source bucket to each destination bucket. One source can replicate to multiple destination buckets across Regions."
-    facts:
-      - multi-destination
   - id: s3-163
     q: "Global users need faster reads of a website; separately, a copy of all data must exist in a second Region. Which feature serves which need?"
     a: "CloudFront caches content at edge locations for the reads. Cross-Region Replication keeps a full, asynchronous copy in another Region; it does not cache near users."

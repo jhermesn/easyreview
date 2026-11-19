@@ -43,6 +43,16 @@ facts:
   - id: bastion-definition
     text: "A bastion host, or jump box, is a server that is the single access point from an external network to resources in a private network, and its exposure to the internet is a security risk."
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/access-a-bastion-host-by-using-session-manager-and-amazon-ec2-instance-connect.html
+  - id: node-dhmc-scope
+    text: Default Host Management Configuration supplies node permissions without individual instance
+      profiles in each account and Region where enabled.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/fleet-manager-default-host-management-configuration.html#fleet-manager-default-host-management-configuration
+  - id: node-dhmc-requires
+    text: DHMC requires EC2 instances to use IMDSv2.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/fleet-manager-default-host-management-configuration.html#dhmc-prerequisites
+  - id: node-dhmc-requires-agent
+    text: DHMC requires SSM Agent 3.2.582.0 or later.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/fleet-manager-default-host-management-configuration.html#dhmc-prerequisites
 cards:
   - id: systems-manager-028
     q: Engineers need Systems Manager shell access without inbound SSH and with an audit trail. What
@@ -74,6 +84,15 @@ cards:
     q: "Administrators reach private EC2 instances through a public bastion host with SSH open. Which AWS feature removes the inbound port and the bastion?"
     a: "AWS Systems Manager Session Manager, with sessions authorized by IAM and logged."
     facts: [bastion-definition]
+  - id: systems-manager-036
+    q: An EC2 fleet needs Systems Manager permissions without individual instance profiles. What must be
+      enabled and installed?
+    a: Enable Default Host Management Configuration in each account and Region. Instances must use
+      IMDSv2 and SSM Agent 3.2.582.0 or later.
+    facts:
+      - node-dhmc-scope
+      - node-dhmc-requires
+      - node-dhmc-requires-agent
 ---
 Session Manager opens remote sessions to managed nodes through the agent connection. Native sessions remove the need for an inbound SSH port, SSH keys or a bastion, a separate host used to reach private machines.
 

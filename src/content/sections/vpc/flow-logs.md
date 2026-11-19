@@ -3,24 +3,9 @@ title: Flow Logs
 level: associate
 order: 40
 facts:
-  - id: flow-scope
-    text: Flow logs can cover a VPC, subnet, or network interface; VPC and subnet logs monitor their
-      network interfaces.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-basics.html#flow-logs-basics
   - id: flow-filter
     text: Flow logs can capture accepted traffic, rejected traffic, or all traffic.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-basics.html#flow-logs-basics
-  - id: flow-destinations
-    text: VPC Flow Logs publish to CloudWatch Logs, S3, or Data Firehose.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs
-  - id: flow-outside-path
-    text: Flow log collection occurs outside the network traffic path and does not affect its throughput
-      or latency.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs
-  - id: flow-fields
-    text: Flow records include source and destination addresses and ports, protocol, packet and byte
-      counts, timestamps, action, and logging status.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields
   - id: flow-action
     text: ACCEPT means accepted traffic; REJECT can indicate security group or ACL rejection or packets
       arriving after connection closure.
@@ -56,17 +41,6 @@ facts:
     text: "Flow logs do not record traffic to the Amazon DNS server, instance metadata at 169.254.169.254, Amazon Time Sync at 169.254.169.123, DHCP or Windows license activation."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-limitations.html
 cards:
-  - id: vpc-007
-    q: What do VPC Flow Logs record, and where can the records be published?
-    a: IP traffic metadata such as addresses, ports, protocol, bytes, and ACCEPT or REJECT, at VPC,
-      subnet, or network-interface scope. Publish to CloudWatch Logs, S3, or Data Firehose. Packet
-      contents are not captured, and collection is outside the traffic path.
-    facts:
-      - flow-scope
-      - flow-destinations
-      - flow-fields
-      - flow-no-payload
-      - flow-outside-path
   - id: vpc-021
     q: A team wants to inspect HTTP request bodies from historical VPC Flow Logs. Can it do that?
     a: No. Flow Logs contain traffic metadata and do not capture packet contents.

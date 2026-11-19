@@ -3,9 +3,6 @@ title: Cache behaviors and policies
 level: associate
 order: 10
 facts:
-  - id: cache-delivery
-    text: CloudFront serves content through edge locations and retrieves missing content from a configured origin.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction
   - id: cache-distribution
     text: A distribution specifies the origins and settings CloudFront uses to deliver content.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#HowCloudFrontWorksOverview
@@ -143,12 +140,6 @@ cards:
     q: "A dynamic site must stay in an on-premises data center in the US but load faster for new users in Asia within days. What fits?"
     a: "A CloudFront distribution with a custom origin that points to the on-premises web servers. A custom origin can be any publicly resolvable HTTP server."
     facts: [custom-origin-anywhere]
-  - id: cloudfront-055
-    q: A website needs to serve cached content from locations close to viewers. Which AWS service
-      fits?
-    a: Amazon CloudFront delivers content through edge locations and retrieves missing content from
-      the configured origin.
-    facts: [cache-delivery]
   - id: cloudfront-059
     q: "A company serves viewers mostly in North America and Europe and wants to lower CloudFront delivery costs, accepting slower access elsewhere. Which setting fits?"
     a: "A cheaper **price class** (such as Price Class 100). It limits the edge locations used; viewers in excluded regions may see more latency."

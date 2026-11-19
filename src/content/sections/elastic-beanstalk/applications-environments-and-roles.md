@@ -3,14 +3,8 @@ title: Applications, environments, and roles
 level: associate
 order: 10
 facts:
-  - id: application
-    text: An application groups versions, environments, and environment configurations.
-    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.html#concepts
   - id: version
     text: An application version labels deployable code stored as an S3 object.
-    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.html#concepts
-  - id: environments
-    text: An application can have independent environments running the same or different application versions.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.html#concepts
   - id: standard-platform
     text: Beanstalk Standard runs applications on EC2.
@@ -87,9 +81,6 @@ facts:
   - id: upload-code
     text: With Elastic Beanstalk you upload an application source bundle and it provisions and runs the AWS resources, such as EC2 instances, a load balancer and Auto Scaling, while you keep control of them.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
-  - id: no-charge
-    text: Elastic Beanstalk has no additional charge; you pay only for the AWS resources your application uses.
-    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
   - id: docker-platform
     text: Elastic Beanstalk Docker platforms run applications in any language or runtime packaged as a container image.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.html
@@ -147,12 +138,6 @@ cards:
     facts:
       - service-role
       - instance-profile
-  - id: elastic-beanstalk-034
-    q: An Elastic Beanstalk team needs isolated test and production deployments of one application. How should it organize them?
-    a: Create separate environments in the same application. They can run different application versions independently.
-    facts:
-      - application
-      - environments
   - id: elastic-beanstalk-035
     q: "A team wants AWS to provision and run EC2 resources for an uploaded application while retaining control of those resources. Which service fits?"
     a: "AWS Elastic Beanstalk. It provisions resources such as EC2 instances, a load balancer and Auto Scaling for the application."
@@ -188,10 +173,6 @@ cards:
     a: "Use an instance profile to pass an IAM role to the instances. The application can use that role to access permitted resources."
     facts:
       - instance-profile
-  - id: elastic-beanstalk-060
-    q: A developer wants to upload a web application and have AWS provision the servers, load balancing and scaling, with no extra service fee. Which service fits?
-    a: "AWS Elastic Beanstalk.\nIt has no additional charge; you pay for the EC2 instances and other resources it creates."
-    facts: [upload-code, no-charge]
   - id: elastic-beanstalk-062
     q: A team must run an app on Elastic Beanstalk in a language Beanstalk has no managed platform for. What should it use?
     a: A Docker platform with the app packaged as a container image. Custom platforms were retired on July 18, 2022.

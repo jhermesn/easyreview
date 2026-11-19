@@ -12,6 +12,12 @@ facts:
   - id: agent
     text: "The CloudWatch agent gathers metrics, logs and traces from Amazon EC2 instances."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html#WhatIsCloudWatch
+  - id: billing-alarm
+    text: A billing alarm watches the EstimatedCharges metric and notifies through Amazon SNS; billing alerts must be turned on first, and billing metric data is stored in US East (N. Virginia).
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html
+  - id: purpose
+    text: Amazon CloudWatch monitors AWS resources and applications in real time, covering resource utilization, application performance and operational health.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
 cards:
   - id: cloudwatch-124
     q: "How can Amazon CloudWatch support data governance through logging?"
@@ -26,6 +32,14 @@ cards:
     a: "No. That is AWS CloudTrail. CloudWatch watches metrics, logs and alarms about performance and health."
     trap: true
     facts: [monitors]
+  - id: cloudwatch-113
+    q: A company wants an email when its estimated AWS charges pass 500 USD, using CloudWatch. What does it set up, and in which Region?
+    a: A CloudWatch billing alarm on EstimatedCharges with an SNS notification, created in US East (N. Virginia) after turning on billing alerts.
+    facts: [billing-alarm]
+  - id: cloudwatch-114
+    q: Which AWS service monitors resource utilization, application performance and operational health of AWS resources?
+    a: Amazon CloudWatch.
+    facts: [purpose]
 ---
 Amazon CloudWatch is the monitoring service of AWS: it collects metrics and logs from resources and applications and acts on them with alarms and dashboards. [What is Amazon CloudWatch?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html#WhatIsCloudWatch)
 

@@ -15,9 +15,6 @@ facts:
   - id: ecmp
     text: Equal Cost Multi Path routing across multiple VPN connections can increase aggregate bandwidth beyond that of a single tunnel.
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html#lbt-scaling
-  - id: gateway-roles
-    text: A customer gateway is an AWS resource describing the customer gateway device, which is physical or software equipment on the customer side.
-    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts
   - id: outside-addresses
     text: Outside tunnel address options include public IPv4, private IPv4 and IPv6; public IPv4 is the default.
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/create-vpn-connection.html#create-vpn-connection-console
@@ -51,10 +48,6 @@ cards:
     q: How can a Site-to-Site VPN design scale aggregate bandwidth beyond one large tunnel?
     a: "Use Equal Cost Multi Path routing across multiple VPN connections."
     facts: [ecmp]
-  - id: site-to-site-vpn-007
-    q: What is the difference between a Site-to-Site VPN customer gateway and customer gateway device?
-    a: "The customer gateway is an AWS resource describing the device. The device is physical or software equipment on the customer side."
-    facts: [gateway-roles]
   - id: site-to-site-vpn-008
     q: What outside tunnel address types can an AWS Site-to-Site VPN use, and what is the default?
     a: "Public IPv4, private IPv4 or IPv6. Public IPv4 is the default."

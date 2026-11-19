@@ -3,16 +3,8 @@ title: Gateway endpoints and endpoint policies
 level: associate
 order: 30
 facts:
-  - id: gateway-services
-    text: Gateway endpoints provide S3 and DynamoDB connectivity without an internet gateway or NAT, do
-      not use PrivateLink, and have no additional endpoint charge.
-    source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoints
   - id: gateway-routes
     text: "A gateway endpoint adds a service prefix-list route to associated route tables. Clients reach the service public endpoint through that route, so the endpoint uses route-table associations rather than network interfaces placed in each subnet."
-    source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-routing
-  - id: gateway-region
-    text: Gateway prefix lists are Region-specific, so the endpoint route applies to the service in that
-      Region rather than another Region.
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-routing
   - id: gateway-boundary
     text: An S3 gateway endpoint cannot be extended through VPN, peering, Transit Gateway, or Direct
@@ -48,15 +40,6 @@ facts:
     text: "Traffic from a VPC public subnet to the public S3 or DynamoDB endpoint can leave through the internet gateway while remaining on the AWS network."
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-overview
 cards:
-  - id: vpc-005
-    q: How does a VPC gateway endpoint provide private S3 or DynamoDB access?
-    a: It adds an AWS-managed service prefix-list route to associated route tables. No internet gateway
-      or NAT is required, and there is no additional endpoint charge. The service prefix list is
-      Region-specific.
-    facts:
-      - gateway-services
-      - gateway-routes
-      - gateway-region
   - id: vpc-006
     q: An S3 gateway endpoint policy allows a bucket, but the request is denied. Why can that happen?
     a: The endpoint policy does not replace IAM or bucket policies. Other applicable policies must

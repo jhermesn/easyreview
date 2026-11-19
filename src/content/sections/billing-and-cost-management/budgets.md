@@ -18,6 +18,12 @@ facts:
   - id: notifications
     text: AWS Budgets sends its alerts by email or to Amazon SNS topics.
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs
+  - id: cad-what
+    text: AWS Cost Anomaly Detection uses machine learning to detect and alert on unusual spend patterns, accounting for seasonality and natural growth to reduce false positives.
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/manage-ad.html#manage-ad
+  - id: cad-alerts
+    text: Cost Anomaly Detection sends alerts individually or in aggregated reports by email or to an Amazon SNS topic, which Amazon Q Developer in chat applications can forward to a Slack channel.
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/manage-ad.html#manage-ad
 cards:
   - id: billing-and-cost-management-001
     q: A company wants an email before its monthly AWS spend goes over 1,000 USD. Which AWS service does this?
@@ -32,6 +38,15 @@ cards:
     q: How can AWS Budgets tell a team that spending crossed a budget threshold?
     a: It sends an alert by email or to an Amazon SNS topic.
     facts: [notifications]
+  - id: billing-and-cost-management-033
+    q: A finance team wants an alert when daily spend jumps unexpectedly, without setting fixed thresholds for every service. Which AWS feature fits?
+    a: "**AWS Cost Anomaly Detection**, which learns spend patterns with ML and alerts by email or SNS."
+    trap: true
+    facts: [cad-what, cad-alerts]
+  - id: billing-and-cost-management-036
+    q: Fixed spending limits with alerts versus unexpected spending patterns. Which AWS feature fits each?
+    a: "- Fixed limits: **AWS Budgets**.\n- Unexpected patterns: **AWS Cost Anomaly Detection**."
+    facts: [cad-what]
 ---
 AWS Budgets tracks costs against a spending target and can alert on actual or forecasted spending. [Managing costs with AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs)
 

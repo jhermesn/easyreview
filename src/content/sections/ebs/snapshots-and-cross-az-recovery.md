@@ -3,16 +3,6 @@ title: Snapshots and cross-AZ recovery
 level: associate
 order: 30
 facts:
-  - id: snapshot
-    text: An EBS snapshot is a point-in-time backup; each snapshot contains the information needed to
-      restore the captured data to a new volume.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html#ebs-snapshots
-  - id: incremental
-    text: EBS snapshots store only blocks changed since the preceding snapshot.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html#ebs-snapshots
-  - id: deletion
-    text: Deleting an older EBS snapshot preserves blocks referenced by other snapshots.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html#ebs-snapshots
   - id: regional
     text: EBS snapshot data is replicated across AZs in its Region and can restore a volume in any AZ
       there.
@@ -57,12 +47,6 @@ facts:
     text: Stopping and starting an EBS-backed EC2 instance usually migrates it to another host when
       addressing an underlying system problem.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#system-status-checks
-  - id: stored-in-s3
-    text: EBS snapshots are stored in Amazon S3, in buckets the customer can't access directly.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html
-  - id: billed-stored
-    text: EBS snapshot charges are based on the data stored; because snapshots are incremental, only changed blocks add storage.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html
 diagrams:
   - id: ebs-cross-az-recovery
     title: Recover an EBS volume in another AZ
@@ -137,14 +121,6 @@ cards:
       - az-attach
       - regional
       - restore
-  - id: ebs-003
-    q: Do incremental EBS snapshots require retaining every older snapshot to restore a full volume?
-    a: No. Each snapshot has the information needed to restore its captured data, and deleting an older
-      snapshot preserves blocks used by other snapshots.
-    facts:
-      - snapshot
-      - incremental
-      - deletion
   - id: ebs-005
     q: How should a team prepare an EBS snapshot when application consistency matters?
     a: Pause writes or unmount the volume before requesting the snapshot. Data still in application or
@@ -176,11 +152,6 @@ cards:
     q: "A disaster recovery plan needs an EBS snapshot available in another AWS Region. What must happen before recovery there?"
     a: "Copy the completed snapshot to the recovery Region, then restore a volume from that copy."
     facts: [cross-region, restore]
-  - id: ebs-044
-    q: A 500 GiB EBS volume has 20 GiB of changes since its last snapshot. Does the new snapshot add 500 GiB of storage charges?
-    a: No. Snapshots are incremental and billed on data stored, so the new snapshot adds only the changed blocks.
-    trap: true
-    facts: [billed-stored, stored-in-s3]
 ---
 An EBS snapshot is a point-in-time backup used to create a replacement disk. The volume must share its instance's Availability Zone (AZ), but the snapshot can restore volumes across AZs in the same Region.
 

@@ -69,9 +69,6 @@ facts:
   - id: access-analyzer-s3
     text: "IAM Access Analyzer for S3 reports general purpose buckets that allow access to the public or to other AWS accounts, and a public bucket can be blocked from that page with one action."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html#access-analyzer
-  - id: bpa-no-grant
-    text: "Block Public Access settings constrain permissions granted through policies or ACLs; removing a block does not itself grant public access."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html
 cards:
   - id: s3-017
     q: How can an S3 administrator block public access even when bucket-level permissions grant it?
@@ -123,10 +120,6 @@ cards:
     q: "A security team wants a list of S3 buckets that are public or shared with other AWS accounts, reviewed from the S3 console. Which feature fits?"
     a: "IAM Access Analyzer for S3. It lists buckets with public or cross-account access and can block public access on a bucket in one step."
     facts: [access-analyzer-s3]
-  - id: s3-195
-    q: "An Amazon S3 bucket has Block Public Access turned off but no policy or ACL grants public reads. Does turning off the block make its objects public?"
-    a: "No. Public reads still need an applicable policy or ACL grant."
-    facts: [bpa-no-grant]
 ---
 S3 separates public-access safeguards from object ownership. Block Public Access limits public grants; Object Ownership decides who owns uploaded objects and whether access control lists (ACLs), lists of grants attached to resources, are used.
 

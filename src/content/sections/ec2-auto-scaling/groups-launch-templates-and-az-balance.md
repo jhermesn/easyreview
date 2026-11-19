@@ -3,12 +3,6 @@ title: Groups, launch templates, and AZ balance
 level: associate
 order: 10
 facts:
-  - id: capacity
-    text: An Auto Scaling group maintains desired capacity within its minimum and maximum size limits.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-capacity-limits.html#asg-capacity-limits
-  - id: unexpected-loss
-    text: An Auto Scaling group launches replacement instances after unexpected termination to maintain desired capacity.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-capacity-limits.html#asg-capacity-limits
   - id: template
     text: A launch template is a versioned set of instance launch settings, including the machine image, instance type and security groups.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html#launch-templates
@@ -166,12 +160,6 @@ cards:
       - az-recovery
       - rebalancing-order
       - capacity-failure
-  - id: ec2-auto-scaling-029
-    q: An EC2 Auto Scaling group must keep a fixed fleet size without demand-based scaling. Which setting defines that size?
-    a: Desired capacity. The group maintains it and replaces unexpectedly terminated instances.
-    facts:
-      - capacity
-      - unexpected-loss
   - id: ec2-auto-scaling-030
     q: An EC2 Auto Scaling group uses OldestInstance, but removes a newer instance in a crowded zone. Why?
     a: Availability Zone balance takes priority over the termination policy. The policy is applied to eligible candidates after choosing the zone.

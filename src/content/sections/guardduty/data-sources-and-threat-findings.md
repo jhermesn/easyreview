@@ -12,9 +12,6 @@ facts:
   - id: finding
     text: A GuardDuty finding represents a potential security issue detected in AWS accounts, workloads, or data.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html
-  - id: foundational
-    text: GuardDuty automatically ingests CloudTrail management events, EC2 VPC flow logs, and DNS logs as foundational data sources.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty
   - id: cloudtrail-stream
     text: GuardDuty consumes CloudTrail management events through an independent duplicate stream without changing existing CloudTrail configurations.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_controlplane
@@ -69,10 +66,6 @@ facts:
     text: "Amazon GuardDuty administrator accounts can manage members added through AWS Organizations or members that accept an administrator invitation."
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html#delegated_admin_important
 cards:
-  - id: guardduty-001
-    q: Which AWS service detects potentially compromised credentials and unauthorized cryptomining by analyzing AWS activity?
-    a: GuardDuty. It analyzes foundational CloudTrail management events, EC2 VPC flow logs, and DNS logs.
-    facts: [detection, threats, foundational]
   - id: guardduty-007
     q: A team has not configured a CloudTrail trail or VPC Flow Logs delivery. Can GuardDuty analyze foundational events?
     a: Yes. GuardDuty consumes independent streams without changing the customer's CloudTrail or flow log configuration.

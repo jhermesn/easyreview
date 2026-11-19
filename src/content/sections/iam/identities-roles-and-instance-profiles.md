@@ -9,16 +9,6 @@ facts:
   - id: role-permissions
     text: A role permissions policy defines the actions and resources available through the role.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#iam-term-role
-  - id: ec2-profile
-    text: An instance profile is the container that passes an IAM role to an EC2 instance.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html#id_roles_use_switch-role-ec2_instance-profiles
-  - id: ec2-credentials
-    text: Applications retrieve temporary role credentials from EC2 instance metadata.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-roles
-  - id: ec2-refresh
-    text: EC2 updates temporary credentials before expiration; SDK instance profile credential providers can
-      retrieve and refresh them.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-roles
   - id: profile-limit
     text: An instance profile can contain only one role; a role can appear in multiple profiles.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html#id_roles_use_switch-role-ec2_instance-profiles
@@ -130,15 +120,6 @@ cards:
     facts:
       - role-trust
       - role-permissions
-  - id: iam-017
-    q: An EC2 application needs AWS credentials without storing access keys in its machine image. What should the
-      team attach?
-    a: An IAM role through an instance profile. Use an SDK instance profile credential provider to retrieve and
-      refresh temporary credentials.
-    facts:
-      - ec2-profile
-      - ec2-credentials
-      - ec2-refresh
   - id: iam-025
     q: A vendor can assume an IAM role but cannot read the required data. Which role policy defines resource
       access?

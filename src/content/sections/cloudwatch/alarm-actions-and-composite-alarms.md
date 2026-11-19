@@ -37,9 +37,6 @@ facts:
     text: CloudWatch sends alarm state-change events to EventBridge, where rules can route them to
       targets.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-and-eventbridge.html#cloudwatch-and-eventbridge
-  - id: billing-alarm
-    text: A billing alarm watches the EstimatedCharges metric and notifies through Amazon SNS; billing alerts must be turned on first, and billing metric data is stored in US East (N. Virginia).
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html
 cards:
   - id: cloudwatch-010
     q: Several related CloudWatch alarms page the same team. Which alarm type can combine their
@@ -85,10 +82,6 @@ cards:
     facts:
       - ec2-reboot
       - ec2-recover
-  - id: cloudwatch-113
-    q: A company wants an email when its estimated AWS charges pass 500 USD, using CloudWatch. What does it set up, and in which Region?
-    a: A CloudWatch billing alarm on EstimatedCharges with an SNS notification, created in US East (N. Virginia) after turning on billing alerts.
-    facts: [billing-alarm]
 ---
 CloudWatch alarm actions turn a detected condition into a notification or response. A composite alarm combines other alarms so related symptoms can produce a single notification.
 

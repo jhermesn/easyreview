@@ -17,10 +17,6 @@ facts:
     text: Prebaking and bootstrapping can be combined to start instances with software already installed
       and customize them for their environment.
     source: https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/prebaking-vs.-bootstrapping-amis.html
-  - id: user-data
-    text: EC2 user data can run configuration scripts at launch; Linux user data scripts and cloud-init
-      directives run on first launch by default.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts
   - id: image-recipe
     text: An Image Builder recipe selects the base image and build and test components; components
       contain installation, configuration, or test instructions.
@@ -98,12 +94,16 @@ facts:
     text: Image Builder terminates build or test instances on failure by default; infrastructure configuration
       can retain them for troubleshooting.
     source: https://docs.aws.amazon.com/imagebuilder/latest/userguide/troubleshooting.html#troubleshooting-pipelines
-  - id: instance-metadata
-    text: Instance metadata is data about a running EC2 instance, such as its ID and type, that software on the instance can read; it is not the launch script, which is user data.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
   - id: encrypt-ami
     text: To get an encrypted AMI from an unencrypted one, copy it with encryption turned on and a KMS key; the copy's snapshots are encrypted.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html
+  - id: instance-metadata
+    text: Instance metadata is data about a running EC2 instance, such as its ID and type, that software on the instance can read; it is not the launch script, which is user data.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+  - id: user-data
+    text: EC2 user data can run configuration scripts at launch; Linux user data scripts and cloud-init
+      directives run on first launch by default.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts
 diagrams:
   - id: image-builder-bake-and-roll
     title: Bake, distribute and roll out a golden AMI
@@ -288,15 +288,15 @@ cards:
     q: "An EC2 Image Builder pipeline must prevent an image from being distributed when validation fails. What should the team configure?"
     a: "Configure image tests. Image Builder distributes the image only after all configured tests succeed."
     facts: [test-before-distribute]
+  - id: deployment-strategies-042
+    q: How does a team turn an existing unencrypted AMI into an encrypted one?
+    a: Copy the AMI with encryption on and a KMS key; the new AMI's snapshots are encrypted.
+    facts: [encrypt-ami]
   - id: deployment-strategies-041
     q: A company wants each EC2 instance to install software automatically at first launch. Should it use instance metadata or user data?
     a: User data, which runs scripts at launch. Instance metadata only describes the running instance.
     trap: true
     facts: [instance-metadata, user-data]
-  - id: deployment-strategies-042
-    q: How does a team turn an existing unencrypted AMI into an encrypted one?
-    a: Copy the AMI with encryption on and a KMS key; the new AMI's snapshots are encrypted.
-    facts: [encrypt-ami]
 ---
 
 A golden AMI is a reusable EC2 launch image prepared with the software and settings an application needs. Prebaking puts application components into that image. Bootstrapping runs installation or configuration when an instance starts. [AWS deployment guidance](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/prebaking-vs.-bootstrapping-amis.html) recommends combining the two when instances need both quick startup and environment-specific customization.

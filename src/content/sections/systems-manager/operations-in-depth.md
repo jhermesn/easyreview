@@ -74,6 +74,24 @@ facts:
     text: Run As chooses an existing Linux or macOS operating-system user using SSMSessionRunAs on the
       IAM entity before the user configured in session preferences.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-run-as.html#session-preferences-run-as
+  - id: window-priority
+    text: Tasks run in priority order; tasks with the same priority run in parallel.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-vs-maintenance-windows.html#state-manager-vs-maintenance-windows
+  - id: window-final
+    text: A later-priority task starts after earlier-priority tasks reach a final state, regardless of
+      whether those tasks succeeded.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/state-manager-vs-maintenance-windows.html#state-manager-vs-maintenance-windows
+  - id: window-cutoff
+    text: Cutoff specifies how many hours before the window ends Systems Manager stops scheduling new
+      tasks.
+    source: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateMaintenanceWindow.html#systemsmanager-CreateMaintenanceWindow-request-Cutoff
+  - id: window-continue
+    text: CutoffBehavior defaults to CONTINUE_TASK, allowing running tasks to continue after cutoff.
+    source: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_RegisterTaskWithMaintenanceWindow.html#systemsmanager-RegisterTaskWithMaintenanceWindow-request-CutoffBehavior
+  - id: window-types
+    text: Maintenance windows support Run Command, Automation, Lambda and Step Functions Standard tasks;
+      Express workflows are unsupported.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows.html#maintenance-windows
 cards:
   - id: systems-manager-030
     q: Can a Systems Manager Parameter Store advanced parameter be changed to standard after its value
@@ -146,6 +164,29 @@ cards:
       - session-default-user
       - session-run-as
       - session-no-fallback
+  - id: systems-manager-059
+    q: A Systems Manager maintenance-window task fails. Does task priority automatically skip all later
+      tasks?
+    a: No. Later-priority tasks can start after earlier tasks reach a final state, regardless of
+      success. Priority orders tasks; it is not a success dependency.
+    trap: true
+    facts:
+      - window-priority
+      - window-final
+  - id: systems-manager-060
+    q: A Systems Manager maintenance window reaches its cutoff while tasks are running. What happens by
+      default?
+    a: CONTINUE_TASK allows running tasks to continue. Cutoff stops scheduling new tasks; it is not an
+      automatic termination deadline.
+    trap: true
+    facts:
+      - window-cutoff
+      - window-continue
+  - id: systems-manager-061
+    q: Which Step Functions workflow type can run as a Systems Manager maintenance-window task?
+    a: Standard workflows. Express workflows are unsupported.
+    facts:
+      - window-types
 ---
 Systems Manager Parameter Store uses hierarchies, policies and version history to organize parameters and manage their lifecycle. These controls affect how applications retrieve values and how updates behave over time.
 

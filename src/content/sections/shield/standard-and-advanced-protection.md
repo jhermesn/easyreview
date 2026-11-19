@@ -97,11 +97,6 @@ cards:
     facts:
       - waf-integration
       - automatic-mitigation
-  - id: shield-007
-    q: "A company wants to improve DDoS resilience by absorbing attack traffic at AWS edge locations. Which services should it use?"
-    a: "Amazon CloudFront and Amazon Route 53. Serving traffic through these edge services helps absorb attacks at the edge."
-    facts:
-      - edge-services
   - id: shield-008
     q: What do AWS Shield Advanced protection groups do?
     a: Group protected resources for detection and mitigation across the group. A resource can belong to

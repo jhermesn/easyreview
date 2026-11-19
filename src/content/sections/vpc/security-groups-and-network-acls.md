@@ -3,10 +3,6 @@ title: Security groups and network ACLs
 level: associate
 order: 10
 facts:
-  - id: sg-scope
-    text: Security groups control allowed inbound and outbound traffic for associated resources and
-      their network interfaces.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups
   - id: sg-stateful
     text: Security groups track connections and automatically allow response traffic for allowed
       requests regardless of opposite-direction rules.
@@ -21,9 +17,6 @@ facts:
   - id: sg-reference
     text: "A security group reference allows the specified protocol and ports involving private addresses of interfaces in the referenced group, including the same group. It does not inherit that group's rules or automatically allow all traffic."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-referencing
-  - id: acl-subnet
-    text: "Each VPC subnet has one network ACL, and one ACL can serve multiple subnets. Creating a custom ACL does not attach it to a subnet; associate it explicitly to apply its rules."
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/create-network-acl.html#CreateACL
   - id: acl-stateless
     text: "Network ACLs do not track connections. Traffic between subnets must pass the source outbound and destination inbound rules; replies must pass both subnet ACLs in the reverse direction."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
@@ -50,9 +43,6 @@ facts:
   - id: cidr-sources
     text: "Network ACL rules match protocol, applicable ports and a source CIDR for inbound traffic or destination CIDR for outbound traffic. They do not take security group IDs as the address range."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/nacl-rules.html
-  - id: sg-sources
-    text: "A security group rule source or destination is an IPv4 or IPv6 CIDR range, a single address written as a /32 or /128, a prefix list ID, or another security group; an internet gateway ID is not a valid source."
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rule-components
   - id: common-ports
     text: "Common security group rules open TCP 22 for SSH to Linux instances, 3389 for RDP to Windows instances, 80 for HTTP and 443 for HTTPS."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html#security-group-rules-reference
@@ -69,18 +59,6 @@ facts:
     text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the subnet."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
 cards:
-  - id: vpc-001
-    q: How do VPC security groups and network ACLs differ?
-    a: Security groups protect associated resources, track connections, and have allow rules only.
-      Network ACLs protect subnets, do not track connections, and process allow or deny rules from
-      lowest number to first match. A subnet has one ACL.
-    facts:
-      - sg-scope
-      - sg-stateful
-      - sg-allows
-      - acl-subnet
-      - acl-stateless
-      - acl-order
   - id: vpc-002
     q: A VPC subnet ACL allows inbound HTTPS, but a client gets no response. What return-path rule may
       be missing?
@@ -134,10 +112,6 @@ cards:
     q: "How do Amazon VPC network ACL rules specify the remote network for inbound and outbound traffic?"
     a: "An inbound rule uses a source CIDR; an outbound rule uses a destination CIDR. Rules also match protocol and applicable ports, and cannot use security group IDs."
     facts: [cidr-sources]
-  - id: vpc-045
-    q: "Which of these cannot be the source of a security group inbound rule: a CIDR block, a single IP, another security group, or an internet gateway ID?"
-    a: "An internet gateway ID. Sources are CIDR ranges (including single addresses), prefix lists and security groups."
-    facts: [sg-sources]
   - id: vpc-046
     q: "Which inbound ports does a security group open for SSH to a Linux instance, RDP to a Windows instance, and HTTPS?"
     a: "TCP 22 for SSH, 3389 for RDP and 443 for HTTPS (80 for plain HTTP)."
@@ -170,10 +144,6 @@ cards:
     q: "Amazon EC2 instances in two VPC subnets exchange requests and responses. Which network ACL directions must allow the traffic?"
     a: "Source outbound and destination inbound for the request; destination outbound and source inbound for the response."
     facts: [acl-stateless]
-  - id: vpc-102
-    q: "A team creates a custom Amazon VPC network ACL but does not associate a subnet. Do its rules affect an existing subnet?"
-    a: "No. Associate the custom ACL with the subnet to apply its rules; creation alone changes no subnet association."
-    facts: [acl-subnet]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.

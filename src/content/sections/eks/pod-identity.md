@@ -134,17 +134,6 @@ diagrams:
       - The agent calls AssumeRoleForPodIdentity on EKS Auth.
       - The role association determines the temporary role credentials returned through the agent.
 cards:
-  - id: eks-001
-    q: How do EKS Pod Identity and IAM roles for service accounts differ for workload permissions?
-    a: Both associate a workload role with a service account. Pod Identity uses the node agent and
-      trusts `pods.eks.amazonaws.com` without a cluster OIDC provider. IRSA uses OIDC and STS web
-      identity. Pod Identity supports Linux EC2 Pods, not Fargate.
-    facts:
-      - association
-      - trust
-      - agent
-      - irsa
-      - linux-ec2
   - id: eks-026
     q: An EKS application on Fargate needs AWS API permissions. Should it use Pod Identity or its Pod
       execution role?

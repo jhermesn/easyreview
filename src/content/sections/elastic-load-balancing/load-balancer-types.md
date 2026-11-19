@@ -13,10 +13,6 @@ facts:
   - id: nlb
     text: Network Load Balancers support TCP, TLS, UDP, TCP_UDP, QUIC, and TCP_QUIC listeners.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html#listener-configuration
-  - id: static-ip
-    text: A Network Load Balancer has a static IP address per enabled Availability Zone; an Elastic IP
-      address can optionally be associated when it is created.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#request-routing
   - id: gwlb
     text: Gateway Load Balancers distribute IP traffic to virtual appliances and exchange traffic with
       them using GENEVE on port 6081.
@@ -149,9 +145,6 @@ facts:
   - id: lambda-one-function
     text: "An ALB target group of type lambda holds one Lambda function; to replace the function, AWS recommends a new target group and an updated listener rule."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#register-lambda-function
-  - id: healthy-targets
-    text: "Elastic Load Balancing scales its load balancer capacity as incoming traffic changes, distributes traffic across targets in multiple Availability Zones, and monitors target health to select healthy targets."
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html
   - id: host-wildcard
     text: "In an ALB host condition, *.example.com matches test.example.com but not example.com; host matching is not case-sensitive, while path patterns are case-sensitive."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#host-conditions
@@ -161,12 +154,6 @@ facts:
   - id: nlb-primary-ip
     text: "When NLB targets are registered by instance ID, traffic goes to the primary private IP address of the instance primary network interface."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#request-routing-ip-addresses
-  - id: alb-websockets
-    text: "Application Load Balancers natively support WebSockets: an HTTP/1.1 connection can be upgraded to a persistent ws or wss connection."
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#load-balancer-listeners
-  - id: alb-lambda
-    text: "An ALB can forward a request to a target group whose target is a Lambda function, invoking the function with the request content."
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#lambda-functions
   - id: grpc
     text: "An ALB target group can use protocol version HTTP/1.1 (default), HTTP/2 or gRPC; gRPC requires targets that support it."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-group-protocol-version
@@ -192,15 +179,6 @@ facts:
     text: "An Application Load Balancer target group can use HTTPS, so the load balancer opens TLS connections to its targets."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html
 cards:
-  - id: elastic-load-balancing-002
-    q: When should an application use an ALB, NLB, or GWLB?
-    a: ALB for HTTP request routing; NLB for transport protocols and static zonal addresses; GWLB for
-      virtual inspection appliances using GENEVE on port 6081.
-    facts:
-      - alb
-      - nlb
-      - static-ip
-      - gwlb
   - id: elastic-load-balancing-009
     q: An ALB must route requests by HTTP method and query string. Which feature handles this?
     a: Listener rule conditions. ALB can match http-request-method and query-string alongside host,
@@ -348,10 +326,6 @@ cards:
     facts:
       - lambda-one-function
       - weights
-  - id: elastic-load-balancing-058
-    q: How does Elastic Load Balancing improve the availability of an application on EC2 instances in two Availability Zones?
-    a: It spreads traffic across the instances in both AZs and sends requests only to healthy ones.
-    facts: [healthy-targets]
   - id: elastic-load-balancing-063
     q: "Which hostnames does the ALB host condition *.example.com match: example.com, test.example.com, or example.test.com?"
     a: "Only test.example.com. The wildcard needs a label in front of example.com, so the bare domain does not match. Host matching ignores case."
@@ -365,10 +339,6 @@ cards:
     q: "An NLB target group registers EC2 instances by instance ID. Which IP address receives the traffic?"
     a: "The primary private IP address of each instance primary network interface, not a public or Elastic IP."
     facts: [nlb-primary-ip]
-  - id: elastic-load-balancing-066
-    q: "Which load balancer supports path-based and host-based routing, WebSockets, and Lambda functions as targets?"
-    a: "The Application Load Balancer. It routes on HTTP content, upgrades connections to WebSockets, and can invoke a Lambda function from a target group."
-    facts: [alb-websockets, alb-lambda]
   - id: elastic-load-balancing-067
     q: "Microservices talk to each other with gRPC behind a load balancer. Which load balancer and setting fit?"
     a: "An Application Load Balancer with a target group whose protocol version is gRPC."
@@ -394,10 +364,6 @@ cards:
     q: "An Elastic Load Balancing design has public web servers and application servers that should accept only private traffic from the web tier. Which load balancer schemes fit?"
     a: "Use an internet-facing load balancer for the web tier and an internal load balancer for the application tier."
     facts: [scheme-private]
-  - id: elastic-load-balancing-077
-    q: "When incoming application traffic grows, how does Elastic Load Balancing adjust the capacity of the load balancer itself?"
-    a: "Elastic Load Balancing scales load balancer capacity automatically as traffic changes."
-    facts: [healthy-targets]
   - id: elastic-load-balancing-079
     q: "Compliance requires encryption between an Application Load Balancer and its EC2 targets, not only from clients. How?"
     a: "Use an HTTPS target group, so the ALB opens TLS connections to the targets."

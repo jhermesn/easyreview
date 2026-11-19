@@ -66,12 +66,6 @@ facts:
   - id: init-order
     text: Lambda initialization runs extension initialization, runtime initialization, and function initialization before invoking the handler.
     source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html#using-extensions-env
-  - id: serverless
-    text: AWS Lambda runs code without servers to provision or manage; AWS handles server maintenance, capacity provisioning and scaling, and you pay only for the resources used.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/welcome.html
-  - id: triggers
-    text: Other AWS services, such as Amazon S3 and Amazon DynamoDB, can invoke Lambda functions with events.
-    source: https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html
   - id: pricing
     text: Lambda functions are billed by the number of requests and the duration the code runs, in GB-seconds based on the memory chosen; the free tier includes one million requests and 400,000 GB-seconds per month.
     source: https://aws.amazon.com/lambda/pricing/
@@ -198,14 +192,6 @@ cards:
     a: "Lambda places the events in a managed internal queue for asynchronous invocation."
     facts:
       - async-queue
-  - id: lambda-057
-    q: A company wants to run code in response to new uploads to an Amazon S3 bucket, with no servers to manage. Which service fits?
-    a: "AWS Lambda, triggered by S3 events.\nAWS manages the servers, capacity and scaling."
-    facts: [serverless, triggers]
-  - id: lambda-058
-    q: Who patches and scales the servers that run AWS Lambda functions?
-    a: AWS. Lambda is serverless; you manage only your code.
-    facts: [serverless]
   - id: lambda-059
     q: "An AWS Lambda function processes asynchronous events. Can it receive the same event more than once after successful processing?"
     a: "Yes. Asynchronous invocation can deliver duplicate events even when the function succeeds."

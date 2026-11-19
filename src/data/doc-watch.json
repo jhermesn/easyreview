@@ -3508,6 +3508,7 @@
   "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#concurrency-metrics": "ff620b3d4966d591",
   "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#invocation-metrics": "65f2fd56419f284e",
   "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#performance-metrics": "0ebda1fdba1f3c57",
+  "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html": "8568589e9e8284ad",
   "https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-cross-account.html#permissions-function-cross-account": "8fa944013eae33b1",
   "https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html#provisioned-concurrency": "0379aeb6022f212d",
   "https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package": "76cdf29d4d1d6fed",

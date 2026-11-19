@@ -48,6 +48,17 @@ facts:
   - id: igw-route
     text: "A subnet is public when its route table sends 0.0.0.0/0 (or ::/0) to the internet gateway, or a narrower range of public addresses."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access
+  - id: gateway-services
+    text: Gateway endpoints provide S3 and DynamoDB connectivity without an internet gateway or NAT, do
+      not use PrivateLink, and have no additional endpoint charge.
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoints
+  - id: gateway-routes
+    text: "A gateway endpoint adds a service prefix-list route to associated route tables. Clients reach the service public endpoint through that route, so the endpoint uses route-table associations rather than network interfaces placed in each subnet."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-routing
+  - id: gateway-region
+    text: Gateway prefix lists are Region-specific, so the endpoint route applies to the service in that
+      Region rather than another Region.
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-routing
 cards:
   - id: vpc-026
     q: What is an Amazon VPC subnet, and how many Availability Zones can one subnet span?
@@ -95,6 +106,15 @@ cards:
     q: "What makes a subnet public?"
     a: "Its route table sends 0.0.0.0/0 (or ::/0) to an internet gateway."
     facts: [igw-route]
+  - id: vpc-005
+    q: How does a VPC gateway endpoint provide private S3 or DynamoDB access?
+    a: It adds an AWS-managed service prefix-list route to associated route tables. No internet gateway
+      or NAT is required, and there is no additional endpoint charge. The service prefix list is
+      Region-specific.
+    facts:
+      - gateway-services
+      - gateway-routes
+      - gateway-region
 ---
 Amazon VPC is your own isolated network in AWS. Inside it, subnets split the address range by Availability Zone, route tables steer traffic, and gateways connect the VPC to the internet, other networks or AWS services. [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc)
 

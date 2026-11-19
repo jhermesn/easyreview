@@ -30,6 +30,14 @@ facts:
   - id: policy-simulator
     text: "The IAM policy simulator tests identity-based policies, permissions boundaries, SCPs and resource-based policies against a simulated request, without sending a real request to any service."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html#access_policies_testing-policies
+  - id: external-zone
+    text: An external analyzer uses an account or organization as its zone of trust and reports supported
+      resources shared outside it.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification
+  - id: external-region
+    text: External access analysis covers resources in the analyzer Region; create analyzers in each Region with
+      supported resources.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification
 cards:
   - id: iam-079
     q: What are the three kinds of identity-based policies in IAM?
@@ -65,6 +73,14 @@ cards:
     q: "Which IAM feature tests whether policies would allow an action without making the real request?"
     a: "The IAM policy simulator. It evaluates identity-based policies, permissions boundaries, SCPs and resource-based policies against a simulated request."
     facts: [policy-simulator]
+  - id: iam-026
+    q: A security team wants to find supported AWS resources shared outside its account or organization. What
+      should it configure?
+    a: IAM Access Analyzer external access analyzers, using that account or organization as the zone of trust, in
+      each Region with supported resources.
+    facts:
+      - external-zone
+      - external-region
 ---
 IAM offers different policy types and tools to manage and review permissions. User groups help administrators organize users as their jobs change. [IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline) [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 

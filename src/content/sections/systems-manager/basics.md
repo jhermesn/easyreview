@@ -12,6 +12,9 @@ facts:
   - id: no-ssh
     text: "Systems Manager manages nodes remotely without bastion hosts, SSH or remote PowerShell, and its tools include Run Command, Session Manager, Automation and Parameter Store."
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html#benefits
+  - id: central-view
+    text: Systems Manager gives a centralized view to see and manage EC2 instances, on-premises servers and other managed nodes across an organization's accounts.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html
 cards:
   - id: systems-manager-114
     q: "Operations must patch hundreds of EC2 instances and on-premises servers from one place. Which AWS service fits?"
@@ -25,6 +28,10 @@ cards:
     q: "Which AWS service helps a company centrally manage servers across AWS, on premises and other clouds?"
     a: "AWS Systems Manager centrally manages and operates nodes across these environments."
     facts: [manage-nodes]
+  - id: systems-manager-108
+    q: A company wants one place to view and operate both its EC2 instances and its on-premises servers. Which AWS service fits?
+    a: AWS Systems Manager, which manages them all as managed nodes from a centralized view.
+    facts: [central-view]
 ---
 AWS Systems Manager is the operations hub for servers: it patches, runs commands, opens sessions and stores parameters for EC2 instances and on-premises machines. [What is AWS Systems Manager?](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html#what-is-systems-manager)
 

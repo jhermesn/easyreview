@@ -3,9 +3,6 @@ title: Origin access control
 level: associate
 order: 30
 facts:
-  - id: oac-auth
-    text: Origin access control authenticates CloudFront requests to an S3 bucket origin.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#private-content-restricting-access-to-s3
   - id: oac-regions
     text: OAC supports S3 buckets in all AWS Regions.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#private-content-restricting-access-to-s3
@@ -25,12 +22,6 @@ facts:
     text: For S3 with OAC, use Bucket owner enforced Object Ownership; if ACLs are required, use Bucket owner
       preferred.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#private-content-restricting-access-to-s3
-  - id: oac-principal
-    text: The S3 bucket policy grants access to the CloudFront service principal cloudfront.amazonaws.com.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3
-  - id: oac-source-arn
-    text: An AWS:SourceArn condition scopes the S3 bucket policy grant to the distribution containing the origin.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3
   - id: oac-read
     text: The read-only OAC bucket policy grants s3:GetObject on the bucket objects.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permission-to-access-s3
@@ -57,10 +48,6 @@ facts:
   - id: oac-kms
     text: SSE-KMS objects also require a KMS key policy permitting the CloudFront distribution to use the key.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#oac-permissions-sse-kms
-  - id: oac-private
-    text: Remove permissions that allow other users to read the S3 objects directly to prevent bypassing
-      CloudFront.
-    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-overview.html#private-content-overview-s3
   - id: oac-migrate-both
     text: Before migrating from OAI to OAC, update the bucket policy to allow both the OAI and the distribution
       using OAC.
@@ -130,17 +117,6 @@ diagrams:
       - When CloudFront requests the object from S3, OAC signs the request; the bucket policy grants the
         distribution access.
 cards:
-  - id: cloudfront-009
-    q: A team serves content from S3 through CloudFront and must prevent direct public bucket reads. What should
-      it configure?
-    a: Use OAC with the regular S3 bucket origin. Grant cloudfront.amazonaws.com s3:GetObject in the bucket
-      policy, scoped by AWS:SourceArn to the distribution. Remove direct public read permissions.
-    facts:
-      - oac-auth
-      - oac-principal
-      - oac-source-arn
-      - oac-read
-      - oac-private
   - id: cloudfront-010
     q: Why does AWS recommend CloudFront OAC over legacy OAI for S3 origins?
     a: OAC supports all S3 Regions, SSE-KMS objects, and PUT and DELETE requests. SSE-KMS also needs a KMS key

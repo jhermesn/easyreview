@@ -24,12 +24,6 @@ facts:
   - id: api-endpoint
     text: Trusted Advisor operations in the Support API require the US East (N. Virginia) endpoint.
     source: https://docs.aws.amazon.com/awssupport/latest/APIReference/API_DescribeTrustedAdvisorCheckResult.html
-  - id: basic-security-examples
-    text: Basic Support includes checks for S3 bucket permissions, MFA on the root account and security groups with specific unrestricted ports.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor-check-reference.html
-  - id: cloudtrail-check
-    text: The AWS CloudTrail Management Event Logging security check checks whether CloudTrail is recording management events in the account.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html#aws-cloudtrail-man-events-log
 cards:
   - id: trusted-advisor-004
     q: A team wants immediate custom notifications for Trusted Advisor status changes. Where should it create the EventBridge rule?
@@ -48,14 +42,6 @@ cards:
     q: Which endpoint must an application use for Trusted Advisor operations in the AWS Support API?
     a: "The US East (N. Virginia) endpoint."
     facts: [api-endpoint]
-  - id: trusted-advisor-013
-    q: Which security checks can a Basic Support customer use in Trusted Advisor?
-    a: "Examples include S3 bucket permissions, MFA on the root account and security groups with specific unrestricted ports."
-    facts: [basic-security-examples]
-  - id: trusted-advisor-015
-    q: Which AWS Trusted Advisor category checks whether AWS CloudTrail is logging management events?
-    a: Security, through the AWS CloudTrail Management Event Logging check.
-    facts: [cloudtrail-check]
 ---
 AWS Trusted Advisor check results can drive custom notifications or be retrieved through the AWS Support API. Security checks also identify issues such as S3 bucket permissions and whether AWS CloudTrail records management events. [Event notifications](https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html), [security checks](https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html#aws-cloudtrail-man-events-log)
 

@@ -48,12 +48,6 @@ facts:
   - id: proxy-reserve
     text: RDS Proxy reserves internal connections, so MaxDatabaseConnectionsAllowed can be lower than the value calculated from MaxConnectionsPercent.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.maxconnectionspercent
-  - id: engine-compat
-    text: Amazon Aurora is a fully managed relational database engine compatible with MySQL and PostgreSQL.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html
-  - id: managed-patching
-    text: Aurora applies operating system and database engine patches during the cluster maintenance window, so the customer does not patch servers.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html
   - id: custom-endpoint
     text: "An Aurora custom endpoint points to a set of DB instances you choose and balances connections among them, for example to send reporting queries to specific replicas."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Custom.html#Aurora.Endpoints.Custom
@@ -111,10 +105,6 @@ cards:
       not scale the writer.
     facts:
       - autoscaling
-  - id: aurora-031
-    q: A company runs MySQL and PostgreSQL applications and wants a managed relational database that AWS patches for it. Which AWS database fits?
-    a: "Amazon Aurora.\nIt is compatible with MySQL and PostgreSQL, and AWS applies OS and engine patches in the maintenance window."
-    facts: [engine-compat, managed-patching]
   - id: aurora-037
     q: "Analytics queries must go only to two large Aurora replicas, while the app uses the others. Which Aurora feature fits?"
     a: "A **custom endpoint** that includes just those two replicas."

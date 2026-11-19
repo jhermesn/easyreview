@@ -35,9 +35,6 @@ facts:
   - id: effect-element
     text: Effect selects Allow or Deny for a policy statement.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies-introduction
-  - id: action-element
-    text: "An IAM Action value combines a service namespace and an operation name, such as s3:GetObject; wildcards can match several operations."
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_action.html
   - id: resource-element
     text: Resource identifies the resources to which the operations apply, normally using ARNs.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_resource.html#reference_policies_elements_resource
@@ -170,10 +167,6 @@ cards:
     q: "A team edits a customer managed IAM policy shared by several roles. Which roles receive the revised policy permissions?"
     a: "Every role to which that customer managed policy is attached. They share the same standalone policy."
     facts: [managed-policy]
-  - id: iam-119
-    q: "An IAM author needs to recognize an operation such as s3:GetObject and the scope of s3:*. What do these Action values mean?"
-    a: "`s3:GetObject` names a service and an operation. `s3:*` matches the actions in that service namespace."
-    facts: [action-element]
   - id: iam-120
     q: "What document structure defines the permissions in an IAM identity-based policy?"
     a: "A JSON document with one or more permission statements. AWS evaluates applicable policies for each request."

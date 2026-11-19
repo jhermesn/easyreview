@@ -6,14 +6,6 @@ facts:
   - id: analyzer-purpose
     text: IAM Access Analyzer evaluates access policies and provides external, internal and unused access analysis.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer
-  - id: external-zone
-    text: An external analyzer uses an account or organization as its zone of trust and reports supported
-      resources shared outside it.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification
-  - id: external-region
-    text: External access analysis covers resources in the analyzer Region; create analyzers in each Region with
-      supported resources.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification
   - id: internal-analysis
     text: Internal access analysis identifies principals inside the account or organization that can access
       selected supported resources.
@@ -60,14 +52,6 @@ cards:
       - policy-validation
       - custom-policy-checks
       - policy-generation
-  - id: iam-026
-    q: A security team wants to find supported AWS resources shared outside its account or organization. What
-      should it configure?
-    a: IAM Access Analyzer external access analyzers, using that account or organization as the zone of trust, in
-      each Region with supported resources.
-    facts:
-      - external-zone
-      - external-region
   - id: iam-062
     q: A team wants a narrower IAM policy based on observed application activity. How should it use Access
       Analyzer?

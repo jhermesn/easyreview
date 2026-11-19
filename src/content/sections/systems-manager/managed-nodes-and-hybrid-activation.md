@@ -42,16 +42,6 @@ facts:
   - id: node-message-versions-region
     text: Regions launched in 2024 or later do not support ec2messages.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up-messageAPIs.html#message-services
-  - id: node-dhmc-scope
-    text: Default Host Management Configuration supplies node permissions without individual instance
-      profiles in each account and Region where enabled.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/fleet-manager-default-host-management-configuration.html#fleet-manager-default-host-management-configuration
-  - id: node-dhmc-requires
-    text: DHMC requires EC2 instances to use IMDSv2.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/fleet-manager-default-host-management-configuration.html#dhmc-prerequisites
-  - id: node-dhmc-requires-agent
-    text: DHMC requires SSM Agent 3.2.582.0 or later.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/fleet-manager-default-host-management-configuration.html#dhmc-prerequisites
   - id: node-dhmc-precedence
     text: An attached instance profile allowing ssm:UpdateInstanceInformation takes precedence over
       Default Host Management Configuration credentials.
@@ -114,9 +104,6 @@ facts:
   - id: term-security-group
     text: A set of rules that controls permitted network traffic for associated resources.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups
-  - id: central-view
-    text: Systems Manager gives a centralized view to see and manage EC2 instances, on-premises servers and other managed nodes across an organization's accounts.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html
   - id: managed-check
     text: The Config rule ec2-instance-managed-by-systems-manager marks EC2 instances NON_COMPLIANT when Systems Manager doesn't manage them, and DescribeInstanceInformation lists the managed nodes.
     source: https://docs.aws.amazon.com/config/latest/developerguide/ec2-instance-managed-by-systems-manager.html
@@ -202,15 +189,6 @@ cards:
       - node-hybrid-role
       - node-hybrid-id
       - node-ec2-trust
-  - id: systems-manager-036
-    q: An EC2 fleet needs Systems Manager permissions without individual instance profiles. What must be
-      enabled and installed?
-    a: Enable Default Host Management Configuration in each account and Region. Instances must use
-      IMDSv2 and SSM Agent 3.2.582.0 or later.
-    facts:
-      - node-dhmc-scope
-      - node-dhmc-requires
-      - node-dhmc-requires-agent
   - id: systems-manager-037
     q: A Systems Manager EC2 node still uses its instance role after Default Host Management
       Configuration is enabled. Why?
@@ -244,10 +222,6 @@ cards:
     facts:
       - node-ec2-trust
       - node-hybrid-role
-  - id: systems-manager-108
-    q: A company wants one place to view and operate both its EC2 instances and its on-premises servers. Which AWS service fits?
-    a: AWS Systems Manager, which manages them all as managed nodes from a centralized view.
-    facts: [central-view]
   - id: systems-manager-110
     q: A company must find EC2 instances that Systems Manager is not managing. What fits?
     a: The AWS Config rule ec2-instance-managed-by-systems-manager (or comparing running instances with DescribeInstanceInformation).

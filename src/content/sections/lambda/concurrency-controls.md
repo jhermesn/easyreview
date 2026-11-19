@@ -45,6 +45,9 @@ facts:
   - id: scaling-rate
     text: "Each Lambda function can scale by up to 1,000 execution environments every 10 seconds in each Region, and unused scaling capacity does not accrue."
     source: https://docs.aws.amazon.com/lambda/latest/dg/scaling-behavior.html#scaling-rate
+  - id: concurrent-executions-alarm
+    text: "Lambda sends metrics such as ConcurrentExecutions, the number of function instances processing events, to CloudWatch every minute, where alarms can respond to changes in utilization."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html
 cards:
   - id: lambda-010
     q: How do reserved concurrency and provisioned concurrency differ for Lambda?
@@ -90,6 +93,10 @@ cards:
     q: "How fast can one Lambda function add concurrency during a sudden burst?"
     a: "Up to 1,000 more execution environments every 10 seconds per function per Region, within the account concurrency quota."
     facts: [scaling-rate]
+  - id: lambda-078
+    q: "An AWS Lambda function can scale out quickly and overwhelm a downstream database. How can the team be warned before concurrency gets too high?"
+    a: "Create an Amazon CloudWatch alarm on the Lambda `ConcurrentExecutions` metric (or `Invocations`) with the expected threshold.\nLambda publishes these metrics to CloudWatch every minute."
+    facts: [concurrent-executions-alarm]
 ---
 Lambda concurrency is the number of requests a function handles at the same time. Reserved concurrency protects and limits capacity; provisioned concurrency prepares execution environments so requests avoid initialization delays called cold starts.
 
@@ -114,5 +121,6 @@ Lambda concurrency is the number of requests a function handles at the same time
 - Reserved concurrency has no extra charge. Provisioned concurrency costs extra and cannot target `$LATEST`.
 - Synchronous request rate has a separate ceiling of 10 times the concurrency limit. Do not apply that synchronous ceiling to asynchronous invocation.
 - Concurrency is simultaneous work; request rate is work arriving per second.
+- `ConcurrentExecutions` in CloudWatch shows how many function instances are processing events; alarm on it to catch runaway scaling.
 
 > **Trap:** Reserving concurrency does not prepare runtime environments. It cannot by itself remove cold starts.

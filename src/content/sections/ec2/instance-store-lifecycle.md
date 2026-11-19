@@ -6,9 +6,6 @@ facts:
   - id: local-storage
     text: Instance store provides temporary disk storage physically attached to the EC2 host computer.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage
-  - id: temporary-use
-    text: Instance store suits temporary data such as caches, buffers and scratch files.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage
   - id: type-dependent
     text: Instance store availability and capacity depend on the EC2 instance type and size.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStorage
@@ -48,20 +45,10 @@ facts:
   - id: ebs-backed-image
     text: An EBS-backed AMI uses EBS snapshots for its disk image data.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html#AMIEncryption
-  - id: host-disks
-    text: Instance store is temporary block storage on disks physically attached to the host computer, suited to buffers, caches and scratch data.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
-  - id: no-charge
-    text: Instance store volumes have no additional charge; they are included in the instance usage cost.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
   - id: replicated-fleet-data
     text: "Instance store also suits temporary data replicated across a fleet of instances, such as a load-balanced pool of web servers."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
 cards:
-  - id: ec2-001
-    q: What happens to EC2 instance store data when its instance stops, hibernates or terminates?
-    a: It is erased. Use instance store for temporary data, and copy anything that must survive to persistent storage.
-    facts: [stop-loss, temporary-use, copy-durable]
   - id: ec2-013
     q: An EC2 application keeps disposable cache files on instance store. Does a normal instance reboot erase the files?
     a: No. Instance store data survives a reboot. Stopping, hibernating or terminating the instance erases it.
@@ -86,10 +73,6 @@ cards:
     a: No. Recovery loses the instance store data, even though an ordinary instance reboot would preserve it.
     facts: [recovery-loss, reboot-persists]
     trap: true
-  - id: ec2-050
-    q: An application needs very fast temporary block storage for scratch data, at no extra storage cost. Which EC2 storage option fits?
-    a: "Instance store.\nIts disks are attached to the host and are included in the instance price, but data is lost when the instance stops or terminates."
-    facts: [host-disks, no-charge]
   - id: ec2-124
     q: "A load-balanced web fleet keeps a cache that every instance can rebuild from its peers. Is EC2 instance store a reasonable place for it?"
     a: "Yes. Instance store suits temporary data replicated across a fleet; losing one instance's copy does not lose the data."

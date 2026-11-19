@@ -143,11 +143,6 @@ cards:
       - organizations-accounts-create-role
       - organizations-accounts-invite-role
       - organizations-accounts-assume
-  - id: organizations-016
-    q: "A company wants to combine charges from multiple AWS accounts. How does AWS Organizations handle billing?"
-    a: "The management account pays member account charges through consolidated billing."
-    facts:
-      - organizations-accounts-management
   - id: organizations-018
     q: An account leaves AWS Organizations, but a role still trusts its old management account. Is that
       role removed automatically?
