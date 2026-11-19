@@ -61,6 +61,9 @@ facts:
   - id: ssm-vpc-endpoints
     text: "Systems Manager can be reached through interface VPC endpoints (AWS PrivateLink), so managed nodes and applications in a VPC need no public endpoint access."
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html
+  - id: hierarchies
+    text: "Parameter Store names can form hierarchies of up to 15 levels separated by forward slashes, and GetParametersByPath returns all parameters under a chosen level."
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-queries
 cards:
   - id: systems-manager-005
     q: How do Systems Manager Parameter Store standard and advanced parameters differ?
@@ -112,6 +115,10 @@ cards:
     q: "Applications in private subnets with no NAT gateway must read AWS Systems Manager Parameter Store values. What should the VPC add?"
     a: "An interface VPC endpoint for Systems Manager (AWS PrivateLink)."
     facts: [ssm-vpc-endpoints]
+  - id: systems-manager-119
+    q: "An application must load every AWS Systems Manager Parameter Store value for /prod/payments/ at startup. Which naming and API fit?"
+    a: "Hierarchical names such as /prod/payments/db-url, read with GetParametersByPath (recursively if needed)."
+    facts: [hierarchies]
 ---
 Parameter Store keeps application configuration as named values. The tier determines storage limits and policy support; the parameter type determines how the value is represented.
 
@@ -143,6 +150,7 @@ Parameter Store keeps application configuration as named values. The tier determ
 - Version one is initial; edits increment it.
 - No version specified means latest; a nonexistent version causes an error.
 - Private subnets reach Systems Manager through interface VPC endpoints.
+- Hierarchies: up to 15 levels; GetParametersByPath reads everything under a level.
 
 > **Trap:** Shrinking an advanced value does not permit downgrading the parameter.
 

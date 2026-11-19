@@ -905,7 +905,8 @@
                 "lambda/operations-in-depth",
                 "lambda/memory-timeout-and-snapstart",
                 "api-gateway/integrations-and-monitoring",
-                "api-gateway/operations-in-depth"
+                "api-gateway/operations-in-depth",
+                "api-gateway/endpoint-types-and-throttling"
               ]
             }
           ]
