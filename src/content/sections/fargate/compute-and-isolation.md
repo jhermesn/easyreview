@@ -118,11 +118,6 @@ cards:
       - task
       - shared
       - ec2
-  - id: fargate-003
-    q: "A team wants to run Amazon ECS containers without provisioning or patching container hosts. Which compute option fits?"
-    a: "AWS Fargate runs ECS containers without customers provisioning, patching or scaling container hosts."
-    facts:
-      - compute
   - id: fargate-004
     q: "An ECS application on AWS Fargate needs a shared persistent file system for its tasks. Which storage option fits?"
     a: "Use Amazon EFS. ECS tasks on Fargate Linux platform 1.4.0 or later can mount shared persistent EFS file systems."

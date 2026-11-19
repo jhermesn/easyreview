@@ -3,9 +3,6 @@ title: Replication and staging
 level: associate
 order: 10
 facts:
-  - id: scope
-    text: Elastic Disaster Recovery recovers on-premises and cloud-based applications running on supported server operating systems.
-    source: https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html
   - id: agent
     text: The AWS Replication Agent continuously copies disk block changes from source servers to a target staging area.
     source: https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html
@@ -92,14 +89,6 @@ diagrams:
       - The agent transfers disk changes to replication servers in the staging subnet.
       - Replication servers write the received blocks to attached EBS volumes.
 cards:
-  - id: elastic-disaster-recovery-001
-    q: When does AWS Elastic Disaster Recovery fit a recovery requirement?
-    a: When supported servers need continuous replication to AWS and recovery onto EC2. The staging area maintains replicated data with minimal compute.
-    facts:
-      - scope
-      - agent
-      - staging
-      - conversion
   - id: elastic-disaster-recovery-002
     q: On-premises servers need seconds-level data recovery points with limited compute running at the recovery site. Which AWS service fits?
     a: Elastic Disaster Recovery. It continuously replicates disk blocks to a staging area and can launch recovery instances in minutes. Network and staging throughput must keep up with writes.

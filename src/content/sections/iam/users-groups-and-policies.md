@@ -27,6 +27,9 @@ facts:
   - id: user-credentials
     text: "An IAM user is an identity in one AWS account with a name and credentials; you choose a console password, access keys or both, and a user created through the CLI or API starts with no credentials."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html#id_users_creds
+  - id: action-element
+    text: "An IAM Action value combines a service namespace and an operation name, such as s3:GetObject; wildcards can match several operations."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_action.html
 cards:
   - id: iam-078
     q: Ten developers need the same permissions in AWS. What is the simplest way to manage them in IAM?
@@ -57,6 +60,10 @@ cards:
     q: "Does every IAM user need a console password?"
     a: "No. An IAM user can have a console password, access keys or both.\nA user created through the CLI or API starts with no credentials."
     facts: [user-credentials]
+  - id: iam-119
+    q: "An IAM author needs to recognize an operation such as s3:GetObject and the scope of s3:*. What do these Action values mean?"
+    a: "`s3:GetObject` names a service and an operation. `s3:*` matches the actions in that service namespace."
+    facts: [action-element]
 ---
 IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 

@@ -9,6 +9,49 @@ facts:
   - id: nacl-basic
     text: "A network ACL allows or denies inbound and outbound traffic at the subnet level."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#vpc-network-acls
+  - id: flow-scope
+    text: Flow logs can cover a VPC, subnet, or network interface; VPC and subnet logs monitor their
+      network interfaces.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-basics.html#flow-logs-basics
+  - id: flow-destinations
+    text: VPC Flow Logs publish to CloudWatch Logs, S3, or Data Firehose.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs
+  - id: flow-fields
+    text: Flow records include source and destination addresses and ports, protocol, packet and byte
+      counts, timestamps, action, and logging status.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields
+  - id: flow-no-payload
+    text: VPC Flow Logs do not capture packet contents.
+    source: https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/application.html
+  - id: flow-outside-path
+    text: Flow log collection occurs outside the network traffic path and does not affect its throughput
+      or latency.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs
+  - id: sg-scope
+    text: Security groups control allowed inbound and outbound traffic for associated resources and
+      their network interfaces.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups
+  - id: sg-stateful
+    text: Security groups track connections and automatically allow response traffic for allowed
+      requests regardless of opposite-direction rules.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#security-group-basics
+  - id: sg-allows
+    text: Security groups have allow rules only; rules across multiple attached groups combine into one
+      set of permissions.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rule-characteristics
+  - id: acl-subnet
+    text: "Each VPC subnet has one network ACL, and one ACL can serve multiple subnets. Creating a custom ACL does not attach it to a subnet; associate it explicitly to apply its rules."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/create-network-acl.html#CreateACL
+  - id: acl-stateless
+    text: "Network ACLs do not track connections. Traffic between subnets must pass the source outbound and destination inbound rules; replies must pass both subnet ACLs in the reverse direction."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
+  - id: acl-order
+    text: ACL rules allow or deny traffic in ascending rule-number order; the first match wins, and
+      numbered rules range from 1 to 32766.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
+  - id: sg-sources
+    text: "A security group rule source or destination is an IPv4 or IPv6 CIDR range, a single address written as a /32 or /128, a prefix list ID, or another security group; an internet gateway ID is not a valid source."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rule-components
 cards:
   - id: vpc-062
     q: "What does a security group do in an Amazon VPC?"
@@ -18,6 +61,37 @@ cards:
     q: "Which Amazon VPC security control allows or denies traffic at the subnet level?"
     a: "A network ACL controls inbound and outbound traffic at the subnet level."
     facts: [nacl-basic]
+  - id: vpc-007
+    q: What do VPC Flow Logs record, and where can the records be published?
+    a: IP traffic metadata such as addresses, ports, protocol, bytes, and ACCEPT or REJECT, at VPC,
+      subnet, or network-interface scope. Publish to CloudWatch Logs, S3, or Data Firehose. Packet
+      contents are not captured, and collection is outside the traffic path.
+    facts:
+      - flow-scope
+      - flow-destinations
+      - flow-fields
+      - flow-no-payload
+      - flow-outside-path
+  - id: vpc-001
+    q: How do VPC security groups and network ACLs differ?
+    a: Security groups protect associated resources, track connections, and have allow rules only.
+      Network ACLs protect subnets, do not track connections, and process allow or deny rules from
+      lowest number to first match. A subnet has one ACL.
+    facts:
+      - sg-scope
+      - sg-stateful
+      - sg-allows
+      - acl-subnet
+      - acl-stateless
+      - acl-order
+  - id: vpc-045
+    q: "Which of these cannot be the source of a security group inbound rule: a CIDR block, a single IP, another security group, or an internet gateway ID?"
+    a: "An internet gateway ID. Sources are CIDR ranges (including single addresses), prefix lists and security groups."
+    facts: [sg-sources]
+  - id: vpc-102
+    q: "A team creates a custom Amazon VPC network ACL but does not associate a subnet. Do its rules affect an existing subnet?"
+    a: "No. Associate the custom ACL with the subnet to apply its rules; creation alone changes no subnet association."
+    facts: [acl-subnet]
 ---
 A VPC has two built-in network filters: security groups around instances and network ACLs around subnets. [Security groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups)
 

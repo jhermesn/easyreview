@@ -40,12 +40,6 @@ facts:
   - id: sc1
     text: Cold HDD (sc1) targets infrequently accessed large sequential data at lower cost than st1.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#EBSVolumeTypes_sc1
-  - id: hdd-boot
-    text: Neither st1 nor sc1 can be an EC2 boot volume.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#hdd-vols
-  - id: ssd-boot
-    text: General Purpose SSD volumes are suitable for boot volumes.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#general-purpose
   - id: instance-limit
     text: Realized EBS performance depends on instance configuration and I/O demand, not only the
       selected volume performance.
@@ -80,12 +74,6 @@ facts:
     text: An EKS Auto Mode StorageClass defines volume provisioning settings such as volume type and
       encryption.
     source: https://docs.aws.amazon.com/eks/latest/userguide/create-storage-class.html#create-storage-class
-  - id: same-az
-    text: An EBS volume and the instance it attaches to must be in the same Availability Zone; EBS volumes persist independently of the instance.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes.html
-  - id: pricing-dimensions
-    text: EBS charges for provisioned storage per GB-month by volume type, for provisioned IOPS and throughput above what is included, and for snapshot storage.
-    source: https://aws.amazon.com/ebs/pricing/
   - id: delete-on-termination
     text: "The DeleteOnTermination attribute decides whether an EBS volume is deleted when its instance terminates: a root volume attached at launch is deleted by default, while a data volume attached after launch is preserved."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/preserving-volumes-on-termination.html#how-instance-termination-affects-root-and-data-volumes
@@ -118,13 +106,6 @@ cards:
     facts:
       - gp3-independent
       - io2
-  - id: ebs-011
-    q: Can an EC2 instance boot from an EBS st1 or sc1 HDD volume?
-    a: No. Neither HDD type supports boot volumes. General Purpose SSD supports boot use.
-    trap: true
-    facts:
-      - hdd-boot
-      - ssd-boot
   - id: ebs-016
     q: A small EBS gp2 volume slows after a period of heavy database I/O. Which metric and storage
       behavior should the team inspect?
@@ -166,11 +147,6 @@ cards:
     trap: true
     facts:
       - eks-fargate
-  - id: ebs-041
-    q: Can an EC2 instance in us-east-1a attach an EBS volume created in us-east-1b?
-    a: No. An EBS volume attaches only to instances in its own Availability Zone. Use a snapshot to create a volume in the other AZ.
-    trap: true
-    facts: [same-az]
   - id: ebs-042
     q: "An EC2 workload needs more EBS performance without increasing volume size. Which volume type supports this?"
     a: "Use gp3. Its performance can be provisioned independently of volume size."

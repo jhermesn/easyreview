@@ -68,17 +68,6 @@ facts:
     text: "S3 server access log records include fields for requester identity, request time, operation, and HTTP response status."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/LogFormat.html#log-record-fields
 cards:
-  - id: s3-034
-    q: An S3 audit needs object reads recorded while a scheduled job lists bucket contents. Which
-      features fit?
-    a: Enable CloudTrail S3 data events for object activity and S3 Inventory for the listing. Data
-      events are not logged by default; Inventory lists objects and metadata rather than access
-      calls.
-    trap: true
-    facts:
-      - audit-data
-      - audit-default
-      - inventory-purpose
   - id: s3-077
     q: An S3 team needs a weekly list of every version with encryption and replication metadata for SQL
       analysis. What should it configure?

@@ -25,10 +25,6 @@ facts:
     text: FSx File Gateway closed to new customers in October 2024; existing customers can continue
       using it.
     source: https://docs.aws.amazon.com/filegateway/latest/filefsxw/DocumentHistory.html
-  - id: gateway-types
-    text: Volume Gateway exposes block volumes through iSCSI; Tape Gateway exposes a virtual tape
-      library through iSCSI.
-    source: https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html
   - id: smb-ad
     text: "An S3 File Gateway SMB file share authenticates users with Microsoft Active Directory (on-premises or AWS Managed Microsoft AD) after the gateway joins the domain, or with guest access."
     source: https://docs.aws.amazon.com/filegateway/latest/files3/CreatingAnSMBFileShare.html#CreatingAnSMBFileShare
@@ -76,13 +72,6 @@ diagrams:
       - Write files
       - Upload asynchronously
 cards:
-  - id: storage-gateway-001
-    q: Which AWS Storage Gateway interface fits file shares, block volumes and tape backup software?
-    a: S3 File Gateway for NFS or SMB files stored as S3 objects; Volume Gateway for iSCSI block
-      volumes; Tape Gateway for an iSCSI virtual tape library.
-    facts:
-      - file-protocols
-      - gateway-types
   - id: storage-gateway-004
     q: An on-premises application must keep using SMB while AWS applications read its files as S3
       objects. Which Storage Gateway type fits?

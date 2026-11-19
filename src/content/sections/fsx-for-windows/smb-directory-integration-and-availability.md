@@ -73,10 +73,6 @@ diagrams:
       - Windows clients access the file share.
       - Data is synchronously replicated; FSx fails over to the standby when needed.
 cards:
-  - id: fsx-for-windows-001
-    q: Which AWS service fits Windows SMB shares with Active Directory authentication?
-    a: FSx for Windows File Server. It supports SMB and joins Microsoft Active Directory.
-    facts: [smb, active-directory]
   - id: fsx-for-windows-002
     q: Windows servers need a shared drive with domain accounts and failover across Availability Zones. Which service and deployment fit?
     a: FSx for Windows File Server with Multi-AZ, joined to AWS Managed Microsoft AD or self-managed Microsoft Active Directory.

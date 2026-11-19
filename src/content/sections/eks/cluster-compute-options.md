@@ -71,6 +71,25 @@ facts:
   - id: eks-connector
     text: "Amazon EKS Connector registers any conformant Kubernetes cluster, such as one on premises or in another cloud, so its status, configuration and workloads show in the EKS console."
     source: https://docs.aws.amazon.com/eks/latest/userguide/eks-connector.html#eks-connector
+  - id: association
+    text: Pod Identity associates an IAM role with a service account in a namespace of an EKS cluster;
+      Pods use that service account to obtain workload permissions.
+    source: https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html
+  - id: trust
+    text: Pod Identity roles trust the pods.eks.amazonaws.com service principal, and the same role trust
+      can serve associations in multiple clusters without an OIDC provider.
+    source: https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html#pod-id-benefits
+  - id: agent
+    text: Pod Identity needs the Pod Identity Agent on nodes; Auto Mode includes it without a separate
+      installation.
+    source: https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html#pod-id-setup-overview
+  - id: irsa
+    text: IAM roles for service accounts use a cluster IAM OIDC provider and a service account token
+      exchanged with STS using AssumeRoleWithWebIdentity.
+    source: https://docs.aws.amazon.com/eks/latest/userguide/pod-id-how-it-works.html#pod-id-credentials
+  - id: linux-ec2
+    text: Pod Identity is supported for Pods on Linux EC2 workers, not Fargate or Windows EC2 workers.
+    source: https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html#pod-id-restrictions
 cards:
   - id: eks-004
     q: Does Amazon EKS always manage only the control plane?
@@ -117,6 +136,17 @@ cards:
     q: "A company wants to see its on-premises Kubernetes clusters next to its EKS clusters in the EKS console. What feature does that?"
     a: "Amazon EKS Connector, which registers the external clusters for viewing in the console."
     facts: [eks-connector]
+  - id: eks-001
+    q: How do EKS Pod Identity and IAM roles for service accounts differ for workload permissions?
+    a: Both associate a workload role with a service account. Pod Identity uses the node agent and
+      trusts `pods.eks.amazonaws.com` without a cluster OIDC provider. IRSA uses OIDC and STS web
+      identity. Pod Identity supports Linux EC2 Pods, not Fargate.
+    facts:
+      - association
+      - trust
+      - agent
+      - irsa
+      - linux-ec2
 ---
 Amazon EKS runs Kubernetes, a system that places and maintains container workloads. Its control plane stores cluster state and schedules work. A node is the machine running that work; its kubelet agent keeps containers running inside Pods, the units Kubernetes schedules.
 

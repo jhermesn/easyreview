@@ -30,6 +30,25 @@ facts:
   - id: transfer-acceleration
     text: S3 Transfer Acceleration speeds up long-distance transfers to a bucket by routing them through CloudFront edge locations.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
+  - id: audit-data
+    text: CloudTrail S3 data events record object-level API activity such as reads and writes.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudtrail-logging-s3-info.html#cloudtrail-logging-s3-info
+  - id: audit-default
+    text: CloudTrail does not log data events by default; they must be enabled and incur additional
+      charges.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudtrail-logging-s3-info.html#cloudtrail-logging-s3-info
+  - id: inventory-purpose
+    text: "S3 Inventory produces daily or weekly object and metadata listings for an entire bucket or for keys with a selected prefix."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory-buckets
+  - id: multipart
+    text: Multipart upload sends an object as independent parts, in any order and in parallel, which raises throughput and lets you retry only the parts that failed on an unreliable network.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html#mpuoverview
+  - id: bpa-no-grant
+    text: "Block Public Access settings constrain permissions granted through policies or ACLs; removing a block does not itself grant public access."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html
+  - id: multi-destination
+    text: "One source bucket can replicate to a single destination bucket or to multiple destination buckets, in the same Region or in different Regions."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication
 cards:
   - id: s3-112
     q: What kind of storage is Amazon S3, and what are its two main building blocks?
@@ -65,6 +84,30 @@ cards:
     a: No. S3 is flat; folders in the console are shared key name prefixes.
     trap: true
     facts: [flat]
+  - id: s3-034
+    q: An S3 audit needs object reads recorded while a scheduled job lists bucket contents. Which
+      features fit?
+    a: Enable CloudTrail S3 data events for object activity and S3 Inventory for the listing. Data
+      events are not logged by default; Inventory lists objects and metadata rather than access
+      calls.
+    trap: true
+    facts:
+      - audit-data
+      - audit-default
+      - inventory-purpose
+  - id: s3-136
+    q: A 3 GB upload to Amazon S3 over a flaky network keeps restarting from zero. What should the client use?
+    a: "Multipart upload, so only the failed parts are retried."
+    facts: [multipart]
+  - id: s3-195
+    q: "An Amazon S3 bucket has Block Public Access turned off but no policy or ACL grants public reads. Does turning off the block make its objects public?"
+    a: "No. Public reads still need an applicable policy or ACL grant."
+    facts: [bpa-no-grant]
+  - id: s3-111
+    q: "Objects written to one S3 bucket must appear automatically in buckets in three other Regions. What provides this without custom copy code?"
+    a: "S3 Replication from the source bucket to each destination bucket. One source can replicate to multiple destination buckets across Regions."
+    facts:
+      - multi-destination
 ---
 Amazon S3 stores data as objects in buckets. It is built for any amount of data with very high durability, so it is the default place on AWS for files, backups, data lakes and static website content. [What is Amazon S3?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#Welcome)
 

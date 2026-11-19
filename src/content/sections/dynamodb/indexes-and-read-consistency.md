@@ -5,21 +5,6 @@
   "order": 10,
   "facts": [
     {
-      "id": "items",
-      "text": "A table contains items made of named attributes; non-key attributes may differ between items.",
-      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
-    },
-    {
-      "id": "keys",
-      "text": "A simple primary key is a partition key; a composite primary key adds a sort key and its combined values uniquely identify an item.",
-      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
-    },
-    {
-      "id": "size",
-      "text": "The item maximum is 400 KB including attribute names and values.",
-      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Constraints.html"
-    },
-    {
       "id": "query",
       "text": "Query requires partition-key equality and optionally a sort-key comparison, BETWEEN range, or begins_with prefix.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.KeyConditionExpressions.html"
@@ -153,16 +138,6 @@
       "facts": [
         "scan",
         "query"
-      ]
-    },
-    {
-      "id": "dynamodb-015",
-      "q": "How do DynamoDB keys and size limits constrain flexible item attributes?",
-      "a": "Non-key attributes can vary. A simple key identifies by partition key; a composite key identifies by partition and sort key. Each item is at most 400 KB, including names and values.",
-      "facts": [
-        "items",
-        "keys",
-        "size"
       ]
     },
     {

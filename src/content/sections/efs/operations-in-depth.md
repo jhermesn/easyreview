@@ -14,16 +14,6 @@ facts:
     text: An access-point root directory must exist or specify creation ownership and permissions;
       otherwise mounting the access point fails.
     source: https://docs.aws.amazon.com/efs/latest/ug/enforce-root-directory-access-point.html#create-root-directory-access-point
-  - id: lifecycle-ia
-    text: The documented default IA transition moves files after 30 days without access in Standard.
-    source: https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs
-  - id: lifecycle-archive
-    text: The documented default Archive transition moves files after 90 days without access in Standard.
-    source: https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs
-  - id: archive-requires-elastic
-    text: Archive requires Elastic throughput; an Archive transition policy prevents switching to
-      Bursting or Provisioned.
-    source: https://docs.aws.amazon.com/efs/latest/ug/features.html#storage-classes
   - id: cross-account-role
     text: Cross-account replication requires a supplied IAM role and cannot use the EFS service-linked
       role; passing a role requires iam:PassRole.
@@ -44,14 +34,6 @@ cards:
       creation ownership and permissions.
     facts:
       - missing-root
-  - id: efs-012
-    q: What are the documented EFS lifecycle transition defaults for IA and Archive?
-    a: After 30 days without access in Standard for IA, and after 90 days for Archive. Archive requires
-      Elastic throughput.
-    facts:
-      - lifecycle-ia
-      - lifecycle-archive
-      - archive-requires-elastic
   - id: efs-020
     q: An EFS replication configuration spans AWS accounts. Can the team rely on the EFS service-linked
       role?

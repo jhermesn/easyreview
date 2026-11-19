@@ -6,6 +6,15 @@ facts:
   - id: threat-detection
     text: "Amazon GuardDuty is a threat detection service that continuously analyzes AWS data sources and logs, using threat intelligence and machine learning, to find malicious activity such as compromised credentials."
     source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#what-is-guardduty
+  - id: detection
+    text: GuardDuty analyzes AWS data sources using threat intelligence and machine learning to identify suspicious and potentially malicious activity.
+    source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#what-is-guardduty
+  - id: threats
+    text: GuardDuty can detect compromised credentials and unauthorized cryptomining on EC2 instances and container workloads.
+    source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#what-is-guardduty
+  - id: foundational
+    text: GuardDuty automatically ingests CloudTrail management events, EC2 VPC flow logs, and DNS logs as foundational data sources.
+    source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty
 cards:
   - id: guardduty-032
     q: "A company wants continuous detection of compromised credentials and malicious activity in its AWS accounts without installing agents on its own. Which service fits?"
@@ -16,6 +25,10 @@ cards:
     a: "No. GuardDuty detects threats from activity and logs; Amazon Inspector scans for software vulnerabilities."
     trap: true
     facts: [threat-detection]
+  - id: guardduty-001
+    q: Which AWS service detects potentially compromised credentials and unauthorized cryptomining by analyzing AWS activity?
+    a: GuardDuty. It analyzes foundational CloudTrail management events, EC2 VPC flow logs, and DNS logs.
+    facts: [detection, threats, foundational]
 ---
 Amazon GuardDuty watches account activity and logs for signs of attack and reports findings. [What is Amazon GuardDuty?](https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#what-is-guardduty)
 

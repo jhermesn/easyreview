@@ -6,9 +6,6 @@ facts:
   - id: shared-nfs
     text: EFS provides elastic shared file storage over NFS versions 4.0 and 4.1 for concurrent clients.
     source: https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works
-  - id: posix-files
-    text: EFS supports POSIX file permissions, using numeric users and groups to control file access.
-    source: https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html#accessing-fs-nfs-permissions
   - id: regional-placement
     text: Regional EFS stores data redundantly across multiple AZs in one Region and remains available
       when an AZ is unavailable.
@@ -25,10 +22,6 @@ facts:
     text: One Zone EFS has a single mount target in its storage AZ; clients in other AZs can access it
       but incur cross-AZ data access charges.
     source: https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-ec2
-  - id: nfs-port
-    text: EFS clients need outbound TCP 2049 to the mount target, and its security group must allow
-      inbound TCP 2049 from those clients.
-    source: https://docs.aws.amazon.com/efs/latest/ug/network-access.html#network-access
   - id: gp-default
     text: General Purpose is the default performance mode and has lower per-operation latency than Max
       I/O; One Zone always uses General Purpose.
@@ -81,17 +74,6 @@ facts:
     text: "File systems created in the EFS console are backed up by AWS Backup automatically by default; through the CLI or API, automatic backups are on by default only for One Zone file systems."
     source: https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html
 cards:
-  - id: efs-001
-    q: Which AWS service gives Linux clients shared POSIX file storage across AZs, and what network
-      access does it need?
-    a: Regional EFS over NFS. Use a mount target in each client AZ, client outbound TCP 2049, and
-      mount-target inbound TCP 2049.
-    facts:
-      - shared-nfs
-      - posix-files
-      - regional-placement
-      - regional-targets
-      - nfs-port
   - id: efs-002
     q: How do EFS Regional and One Zone differ in data placement and AZ failure exposure?
     a: Regional stores data across multiple AZs and tolerates an unavailable AZ. One Zone stores all

@@ -3,12 +3,6 @@ title: AMI scope and sharing
 level: associate
 order: 10
 facts:
-  - id: ami-template
-    text: An Amazon Machine Image (AMI) supplies the software used to set up and boot an EC2 instance.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs
-  - id: compatible-type
-    text: An AMI must be compatible with the instance type selected for launch.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs
   - id: instance-type
     text: An EC2 instance type determines the host hardware configuration used for an instance.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-types
@@ -101,10 +95,6 @@ cards:
     q: A team must relocate an EC2 instance to another Availability Zone in its current Region. What image-based procedure fits?
     a: Create an AMI and launch a replacement in a subnet in the destination zone. AWSSupport-CopyEC2Instance can automate this. Update references to changed IP addresses.
     facts: [az-replacement, subnet-zone, az-addresses]
-  - id: ec2-009
-    q: What does an EC2 AMI provide, and what compatibility must a launch satisfy?
-    a: The software to set up and boot an instance. The AMI must support the chosen instance type.
-    facts: [ami-template, compatible-type]
   - id: ec2-011
     q: Can EC2 CopyImage turn an encrypted EBS-backed AMI into an unencrypted AMI?
     a: No. Copying can encrypt or re-encrypt the backing snapshots, but cannot remove their encryption.

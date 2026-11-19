@@ -3,21 +3,9 @@ title: Health checks and grace periods
 level: associate
 order: 40
 facts:
-  - id: ec2
-    text: EC2 status checks and scheduled events are always part of Auto Scaling health evaluation.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#available-health-checks
   - id: elb
     text: Auto Scaling ignores load balancer health results by default; enabling Elastic Load Balancing health checks makes it replace instances reported unhealthy by the load balancer.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#elastic-load-balancing-health-checks
-  - id: lattice
-    text: VPC Lattice health checks are optional and use the target group health result to identify unhealthy instances.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#available-health-checks
-  - id: ebs
-    text: Optional EBS health checks evaluate volume reachability and I/O status.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#available-health-checks
-  - id: custom
-    text: Custom health checks can report application-specific health problems to Auto Scaling.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#available-health-checks
   - id: impaired
     text: Auto Scaling waits a few minutes before marking an instance unhealthy after an impaired EC2 status check.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#instance-health-detection
@@ -58,15 +46,6 @@ cards:
     trap: true
     facts:
       - elb
-  - id: ec2-auto-scaling-011
-    q: Which health signals can an EC2 Auto Scaling group evaluate?
-    a: EC2 status checks and scheduled events are always included. ELB, VPC Lattice and EBS checks are optional; custom checks can report other health problems.
-    facts:
-      - ec2
-      - elb
-      - lattice
-      - ebs
-      - custom
   - id: ec2-auto-scaling-012
     q: What does the EC2 Auto Scaling health check grace period delay after a launch hook?
     a: Unhealthy replacement after the instance reaches InService. It does not pause load balancer checks, and leaving running state still causes immediate replacement.

@@ -3,13 +3,6 @@ title: Service control policies
 level: associate
 order: 20
 facts:
-  - id: organizations-scp-ceiling
-    text: An SCP limits the available permissions of principals in member accounts and never grants
-      access.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html
-  - id: organizations-scp-all-features
-    text: SCPs require the organization all-features mode and the SCP policy type enabled.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html
   - id: organizations-scp-path
     text: An action needs an SCP Allow at every level from the root through each OU to the target
       account.
@@ -118,13 +111,6 @@ diagrams:
       - The root and every parent OU must allow the action. An applicable explicit Deny blocks it.
       - The account must also allow the action through its SCPs; IAM still needs to grant access.
 cards:
-  - id: organizations-001
-    q: What does an AWS Organizations service control policy grant?
-    a: Nothing. An SCP sets the permission ceiling for member-account principals. IAM or resource
-      policies must supply access within that ceiling, and SCPs require all-features mode.
-    facts:
-      - organizations-scp-ceiling
-      - organizations-scp-all-features
   - id: organizations-002
     q: How are SCP permissions evaluated through nested AWS Organizations OUs?
     a: The action needs an Allow at every level from root through the OUs to the account. An explicit

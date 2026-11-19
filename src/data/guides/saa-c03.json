@@ -17,9 +17,11 @@
               "text": "Access controls and management across multiple accounts",
               "sections": [
                 "organizations/service-control-policies",
+                "organizations/basics",
                 "organizations/resource-control-policies",
                 "iam/cross-account-roles-and-resource-policies",
                 "resource-access-manager/resource-sharing-and-invitations",
+                "resource-access-manager/basics",
                 "multi-account-strategy/account-boundaries-and-shared-services"
               ]
             },
@@ -31,6 +33,7 @@
                 "iam/saml-and-oidc-federation",
                 "iam-identity-center/identity-sources-permission-sets-and-sessions",
                 "iam/identities-roles-and-instance-profiles",
+                "iam/roles-basics",
                 "directory-service/managed-ad-ad-connector-and-simple-ad"
               ]
             },
@@ -81,6 +84,7 @@
                 "iam/users-groups-and-policies",
                 "iam/more-essentials",
                 "iam/identities-roles-and-instance-profiles",
+                "iam/roles-basics",
                 "iam/rbac-and-abac",
                 "iam/permissions-boundaries-and-session-policies",
                 "lambda/execution-roles-and-resource-policies"
@@ -105,6 +109,7 @@
                 "control-tower/basics",
                 "organizations/service-control-policies",
                 "organizations/accounts-ous-and-consolidated-billing",
+                "organizations/basics",
                 "firewall-manager/basics",
                 "service-catalog/basics"
               ]
@@ -144,7 +149,8 @@
               "sections": [
                 "secrets-manager/managed-and-lambda-rotation",
                 "systems-manager/parameter-store-tiers-and-policies",
-                "iam/identities-roles-and-instance-profiles"
+                "iam/identities-roles-and-instance-profiles",
+                "iam/roles-basics"
               ]
             },
             {
@@ -166,6 +172,7 @@
                 "vpc/security-groups-and-network-acls",
                 "network-firewall/firewall-endpoints-and-routing",
                 "vpc/flow-logs",
+                "vpc/security-basics",
                 "route53/resolver-dns-firewall",
                 "network-firewall/stateful-domain-and-suricata-rules"
               ]
@@ -180,6 +187,7 @@
                 "api-gateway/authentication-and-api-keys",
                 "cloudfront/signed-urls-and-cookies",
                 "cloudfront/origin-access-control",
+                "cloudfront/basics",
                 "cloudfront/design-details",
                 "systems-manager/session-manager"
               ]
@@ -191,6 +199,7 @@
               "sections": [
                 "cognito/user-pools-and-identity-pools",
                 "guardduty/data-sources-and-threat-findings",
+                "guardduty/basics",
                 "macie/sensitive-data-discovery-and-jobs",
                 "inspector/ec2-ecr-and-lambda-scanning",
                 "detective/finding-investigation",
@@ -203,6 +212,7 @@
               "text": "Threat vectors external to AWS (for example, DDoS, SQL injection)",
               "sections": [
                 "shield/standard-and-advanced-protection",
+                "shield/basics",
                 "shield/response-team-and-proactive-engagement",
                 "waf/managed-and-rate-based-rules"
               ]
@@ -213,6 +223,7 @@
               "text": "Designing VPC architectures with security components (for example, security groups, route tables, network ACLs, NAT gateways)",
               "sections": [
                 "vpc/security-groups-and-network-acls",
+                "vpc/security-basics",
                 "vpc/route-tables-and-peering",
                 "vpc/subnets-and-gateways",
                 "vpc/ip-addressing-and-nat-instances",
@@ -227,6 +238,7 @@
               "sections": [
                 "vpc/subnets-and-gateways",
                 "vpc/security-groups-and-network-acls",
+                "vpc/security-basics",
                 "multi-account-strategy/account-boundaries-and-shared-services",
                 "systems-manager/session-manager"
               ]
@@ -237,8 +249,10 @@
               "text": "Integrating AWS services to secure applications (for example, AWS Shield, AWS WAF, IAM Identity Center, AWS Secrets Manager)",
               "sections": [
                 "shield/standard-and-advanced-protection",
+                "shield/basics",
                 "waf/managed-and-rate-based-rules",
                 "waf/web-acl-scope-and-rule-actions",
+                "waf/basics",
                 "iam-identity-center/identity-sources-permission-sets-and-sessions",
                 "elastic-load-balancing/alb-authentication-and-certificates"
               ]
@@ -250,6 +264,7 @@
               "sections": [
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "site-to-site-vpn/design-details",
+                "site-to-site-vpn/basics",
                 "direct-connect/private-connectivity-and-encryption",
                 "direct-connect/design-details",
                 "client-vpn/remote-user-connectivity",
@@ -274,6 +289,7 @@
                 "macie/sensitive-data-discovery-and-jobs",
                 "cloudtrail/trails-and-event-selectors",
                 "cloudfront/origin-access-control",
+                "cloudfront/basics",
                 "cloudfront/design-details",
                 "s3/inventory-and-access-logging",
                 "cloudtrail/event-history-and-event-types"
@@ -290,7 +306,8 @@
                 "dynamodb/backups-and-point-in-time-recovery",
                 "dynamodb/design-details",
                 "s3/versioning-and-delete-markers",
-                "ebs/snapshots-and-cross-az-recovery"
+                "ebs/snapshots-and-cross-az-recovery",
+                "ebs/basics"
               ]
             },
             {
@@ -420,6 +437,7 @@
               "text": "API creation and management (for example, Amazon API Gateway, REST API)",
               "sections": [
                 "api-gateway/deployments-and-stages",
+                "api-gateway/basics",
                 "api-gateway/authentication-and-api-keys",
                 "api-gateway/endpoint-types-and-throttling",
                 "api-gateway/integrations-and-monitoring"
@@ -443,6 +461,7 @@
                 "elasticache/engines-replicas-and-multi-az",
                 "elasticache/use-cases-and-engine-choice",
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/basics",
                 "cloudfront/design-details",
                 "dynamodb/dax-read-caching"
               ]
@@ -479,6 +498,7 @@
                 "scalable-architectures/scaling-state-and-coupling",
                 "ec2-auto-scaling/scaling-policy-selection",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/basics",
                 "aurora/design-details"
               ]
             },
@@ -488,8 +508,10 @@
               "text": "How to appropriately use edge accelerators (for example, content delivery network [CDN])",
               "sections": [
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/basics",
                 "cloudfront/design-details",
                 "global-accelerator/regional-endpoint-routing",
+                "global-accelerator/basics",
                 "s3/performance-and-large-uploads"
               ]
             },
@@ -510,6 +532,7 @@
               "text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
               "sections": [
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/basics",
                 "elastic-load-balancing/cross-zone-balancing",
                 "elastic-load-balancing/alb-authentication-and-certificates"
               ]
@@ -522,6 +545,7 @@
                 "scalable-architectures/scaling-state-and-coupling",
                 "vpc/subnets-and-gateways",
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/basics",
                 "reference-architectures/three-tier-web-application"
               ]
             },
@@ -544,8 +568,10 @@
               "text": "Serverless technologies and patterns (for example, AWS Fargate, AWS Lambda)",
               "sections": [
                 "lambda/invocation-and-retries",
+                "lambda/basics",
                 "lambda/concurrency-controls",
                 "fargate/compute-and-isolation",
+                "fargate/basics",
                 "step-functions/standard-and-express",
                 "amplify/frontend-and-mobile-apps",
                 "reference-architectures/serverless-event-driven-application"
@@ -558,8 +584,11 @@
               "sections": [
                 "s3/buckets-objects-and-durability",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "ebs/volume-types",
-                "fsx-for-windows/smb-directory-integration-and-availability"
+                "ebs/basics",
+                "fsx-for-windows/smb-directory-integration-and-availability",
+                "fsx-for-windows/basics"
               ]
             },
             {
@@ -582,6 +611,7 @@
                 "rds/read-replicas-and-regional-recovery",
                 "rds/design-details",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/basics",
                 "aurora/design-details"
               ]
             },
@@ -644,6 +674,7 @@
                 "ecs/task-definitions-tasks-and-services",
                 "eks/cluster-compute-options",
                 "fargate/compute-and-isolation",
+                "fargate/basics",
                 "ecs/ecs-anywhere",
                 "eks-anywhere/on-premises-kubernetes"
               ]
@@ -654,9 +685,12 @@
               "text": "Determining when to use serverless technologies and patterns",
               "sections": [
                 "lambda/invocation-and-retries",
+                "lambda/basics",
                 "fargate/compute-and-isolation",
+                "fargate/basics",
                 "step-functions/standard-and-express",
                 "api-gateway/deployments-and-stages",
+                "api-gateway/basics",
                 "serverless-application-repository/application-sharing-and-deployment",
                 "lambda/memory-timeout-and-snapstart",
                 "reference-architectures/serverless-event-driven-application"
@@ -671,6 +705,7 @@
                 "ec2/design-details",
                 "s3/storage-classes",
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/basics",
                 "rds/managed-vs-self-managed-databases",
                 "rds/design-details",
                 "rds/more-essentials",
@@ -710,6 +745,7 @@
                 "global-infrastructure/more-essentials",
                 "global-infrastructure/multi-region-use-cases",
                 "route53/routing-policies",
+                "route53/basics",
                 "route53/dns-failover-and-testing"
               ]
             },
@@ -792,6 +828,7 @@
               "text": "Load balancing concepts (for example, ALB)",
               "sections": [
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/basics",
                 "elastic-load-balancing/target-health-and-fail-open",
                 "elastic-load-balancing/draining-slow-start-and-stickiness"
               ]
@@ -822,7 +859,9 @@
               "sections": [
                 "s3/buckets-objects-and-durability",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "ebs/snapshots-and-cross-az-recovery",
+                "ebs/basics",
                 "s3/replication"
               ]
             },
@@ -833,7 +872,8 @@
               "sections": [
                 "xray/traces-segments-and-propagation",
                 "cloudwatch/application-signals-and-slos",
-                "managed-prometheus/workspaces-ingestion-and-promql"
+                "managed-prometheus/workspaces-ingestion-and-promql",
+                "cloudwatch/synthetics-and-release-diagnostics"
               ]
             },
             {
@@ -845,7 +885,9 @@
                 "config/automation-remediation-and-retries",
                 "proton/platform-templates-and-end-of-support",
                 "service-catalog/products-portfolios-and-versions",
-                "config/managed-custom-and-proactive-rules"
+                "config/managed-custom-and-proactive-rules",
+                "cloudformation/bootstrap-helpers-and-signals",
+                "systems-manager/maintenance-windows"
               ]
             },
             {
@@ -855,6 +897,7 @@
               "sections": [
                 "elastic-load-balancing/cross-zone-balancing",
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "ec2-auto-scaling/basics",
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
                 "route53/dns-failover-and-testing",
@@ -870,12 +913,14 @@
                 "cloudwatch/alarm-actions-and-composite-alarms",
                 "route53/endpoint-and-calculated-health-checks",
                 "health/account-events-and-affected-resources",
+                "health/basics",
                 "cloudwatch/agent-and-custom-metrics",
                 "cloudwatch/metric-filters-and-patterns",
                 "cloudwatch/logs-insights",
                 "route53/alarm-based-health-checks",
                 "elastic-load-balancing/error-metrics-and-access-logs",
-                "cloudwatch/metrics-dimensions-and-resolution"
+                "cloudwatch/metrics-dimensions-and-resolution",
+                "cloudwatch/basics"
               ]
             },
             {
@@ -889,6 +934,7 @@
                 "well-architected/framework-pillars",
                 "ec2/ip-addresses-and-network-interfaces",
                 "ec2-auto-scaling/health-checks-and-grace-periods",
+                "ec2-auto-scaling/basics",
                 "reference-architectures/three-tier-web-application"
               ]
             },
@@ -900,7 +946,8 @@
                 "s3/buckets-objects-and-durability",
                 "s3/versioning-and-delete-markers",
                 "backup/plans-vaults-and-recovery-points",
-                "ebs/snapshots-and-cross-az-recovery"
+                "ebs/snapshots-and-cross-az-recovery",
+                "ebs/basics"
               ]
             },
             {
@@ -921,6 +968,7 @@
               "sections": [
                 "ec2/automatic-instance-recovery",
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
+                "ec2-auto-scaling/basics",
                 "route53/dns-failover-and-testing",
                 "elastic-disaster-recovery/replication-and-staging",
                 "sqs/standard-and-fifo-queues",
@@ -962,6 +1010,7 @@
               "text": "Hybrid storage solutions to meet business requirements",
               "sections": [
                 "storage-gateway/file-gateways",
+                "storage-gateway/basics",
                 "storage-gateway/volume-and-tape-gateways",
                 "fsx-for-netapp-ontap/multiprotocol-storage-and-availability"
               ]
@@ -973,7 +1022,9 @@
               "sections": [
                 "s3/buckets-objects-and-durability",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "ebs/volume-types",
+                "ebs/basics",
                 "ebs/multi-attach"
               ]
             },
@@ -984,8 +1035,11 @@
               "sections": [
                 "s3/buckets-objects-and-durability",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "ebs/volume-types",
-                "fsx-for-windows/smb-directory-integration-and-availability"
+                "ebs/basics",
+                "fsx-for-windows/smb-directory-integration-and-availability",
+                "fsx-for-windows/basics"
               ]
             },
             {
@@ -994,7 +1048,9 @@
               "text": "Determining storage services and configurations that meet performance demands",
               "sections": [
                 "ebs/volume-types",
+                "ebs/basics",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "fsx-for-lustre/parallel-storage-and-s3-integration",
                 "s3/performance-and-large-uploads",
                 "ec2/instance-store-lifecycle",
@@ -1008,6 +1064,7 @@
               "sections": [
                 "s3/buckets-objects-and-durability",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "fsx-for-netapp-ontap/multiprotocol-storage-and-availability"
               ]
             }
@@ -1025,10 +1082,12 @@
                 "batch/managed-batch-computing",
                 "emr/distributed-processing-workloads",
                 "fargate/compute-and-isolation",
+                "fargate/basics",
                 "ec2/instance-types",
                 "ec2/design-details",
                 "lambda/concurrency-controls",
-                "elastic-beanstalk/applications-environments-and-roles"
+                "elastic-beanstalk/applications-environments-and-roles",
+                "elastic-beanstalk/basics"
               ]
             },
             {
@@ -1041,6 +1100,7 @@
                 "cloudfront/functions-and-lambda-at-edge",
                 "cloudfront/design-details",
                 "global-accelerator/regional-endpoint-routing",
+                "global-accelerator/basics",
                 "wavelength/carrier-edge-zones"
               ]
             },
@@ -1065,7 +1125,8 @@
                 "application-auto-scaling/scalable-targets-and-policies",
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
                 "ec2-auto-scaling/lifecycle-hooks",
-                "ec2-auto-scaling/health-checks-and-grace-periods"
+                "ec2-auto-scaling/health-checks-and-grace-periods",
+                "ec2-auto-scaling/basics"
               ]
             },
             {
@@ -1074,8 +1135,10 @@
               "text": "Serverless technologies and patterns (for example, AWS Lambda, Fargate)",
               "sections": [
                 "lambda/invocation-and-retries",
+                "lambda/basics",
                 "lambda/vpc-connectivity",
                 "fargate/compute-and-isolation",
+                "fargate/basics",
                 "lambda/queue-and-stream-event-sources",
                 "lambda/memory-timeout-and-snapstart"
               ]
@@ -1114,7 +1177,8 @@
                 "cloudwatch/alarm-evaluation-and-missing-data",
                 "ecs/service-auto-scaling",
                 "cloudwatch/agent-and-custom-metrics",
-                "cloudwatch/metrics-dimensions-and-resolution"
+                "cloudwatch/metrics-dimensions-and-resolution",
+                "cloudwatch/basics"
               ]
             },
             {
@@ -1167,6 +1231,7 @@
                 "elasticache/use-cases-and-engine-choice",
                 "dynamodb/dax-read-caching",
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/basics",
                 "cloudfront/design-details"
               ]
             },
@@ -1193,6 +1258,7 @@
                 "dynamodb/design-details",
                 "rds/storage-autoscaling-and-metrics",
                 "ebs/volume-types",
+                "ebs/basics",
                 "aurora/serverless-v2-capacity-and-promotion"
               ]
             },
@@ -1225,6 +1291,7 @@
                 "rds/design-details",
                 "rds/multi-az-and-failover-tests",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/basics",
                 "aurora/design-details",
                 "aurora/global-database-switchover-and-failover",
                 "dynamodb/global-tables"
@@ -1254,6 +1321,7 @@
                 "rds/read-replicas-and-regional-recovery",
                 "rds/design-details",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/basics",
                 "aurora/design-details"
               ]
             },
@@ -1290,6 +1358,7 @@
               "text": "Determining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB)",
               "sections": [
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/basics",
                 "aurora/design-details",
                 "dynamodb/capacity-scaling-and-throttling",
                 "dynamodb/design-details",
@@ -1309,7 +1378,8 @@
                 "elasticache/use-cases-and-engine-choice",
                 "elasticache/engines-replicas-and-multi-az",
                 "dynamodb/dax-read-caching",
-                "api-gateway/deployments-and-stages"
+                "api-gateway/deployments-and-stages",
+                "api-gateway/basics"
               ]
             }
           ]
@@ -1324,9 +1394,11 @@
               "text": "Edge networking services with appropriate use cases (for example, Amazon CloudFront, AWS Global Accelerator)",
               "sections": [
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/basics",
                 "cloudfront/design-details",
                 "cloudfront/origin-failover",
                 "global-accelerator/regional-endpoint-routing",
+                "global-accelerator/basics",
                 "s3/performance-and-large-uploads"
               ]
             },
@@ -1347,6 +1419,7 @@
               "text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
               "sections": [
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/basics",
                 "elastic-load-balancing/cross-zone-balancing",
                 "elastic-load-balancing/alb-authentication-and-certificates"
               ]
@@ -1358,6 +1431,7 @@
               "sections": [
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "site-to-site-vpn/design-details",
+                "site-to-site-vpn/basics",
                 "direct-connect/private-connectivity-and-encryption",
                 "direct-connect/design-details",
                 "privatelink/interface-endpoints-and-private-access",
@@ -1375,6 +1449,7 @@
                 "direct-connect/connections-lags-and-gateways",
                 "site-to-site-vpn/vpn-cloudhub",
                 "global-accelerator/regional-endpoint-routing",
+                "global-accelerator/basics",
                 "reference-architectures/hybrid-network-hub"
               ]
             },
@@ -1385,7 +1460,8 @@
               "sections": [
                 "vpc/ip-addressing-and-nat-instances",
                 "transit-gateway/attachments-route-tables-and-sharing",
-                "resource-access-manager/resource-sharing-and-invitations"
+                "resource-access-manager/resource-sharing-and-invitations",
+                "resource-access-manager/basics"
               ]
             },
             {
@@ -1405,8 +1481,10 @@
               "text": "Selecting the appropriate load balancing strategy",
               "sections": [
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/basics",
                 "elastic-load-balancing/cross-zone-balancing",
-                "route53/routing-policies"
+                "route53/routing-policies",
+                "route53/basics"
               ]
             }
           ]
@@ -1449,6 +1527,7 @@
               "sections": [
                 "datasync/online-data-transfer",
                 "storage-gateway/file-gateways",
+                "storage-gateway/basics",
                 "storage-gateway/volume-and-tape-gateways",
                 "snow-family/offline-transfer-and-edge-devices",
                 "transfer-family/managed-file-transfer-endpoints"
@@ -1536,7 +1615,8 @@
                 "snow-family/offline-transfer-and-edge-devices",
                 "transfer-family/managed-file-transfer-endpoints",
                 "s3/performance-and-large-uploads",
-                "storage-gateway/file-gateways"
+                "storage-gateway/file-gateways",
+                "storage-gateway/basics"
               ]
             },
             {
@@ -1609,7 +1689,8 @@
               "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
               "sections": [
                 "billing-and-cost-management/cost-allocation-tags",
-                "organizations/accounts-ous-and-consolidated-billing"
+                "organizations/accounts-ous-and-consolidated-billing",
+                "organizations/basics"
               ]
             },
             {
@@ -1632,8 +1713,11 @@
               "sections": [
                 "s3/storage-classes",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "ebs/volume-types",
+                "ebs/basics",
                 "fsx-for-windows/smb-directory-integration-and-availability",
+                "fsx-for-windows/basics",
                 "fsx-for-lustre/parallel-storage-and-s3-integration",
                 "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
                 "fsx-for-openzfs/nfs-snapshots-and-clones"
@@ -1659,6 +1743,7 @@
               "text": "Block storage options (for example, hard disk drive [HDD] volume types, solid state drive [SSD] volume types)",
               "sections": [
                 "ebs/volume-types",
+                "ebs/basics",
                 "ec2/instance-store-lifecycle"
               ]
             },
@@ -1669,6 +1754,7 @@
               "sections": [
                 "s3/lifecycle-and-retention",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "ebs/snapshot-lifecycle-management"
               ]
             },
@@ -1680,6 +1766,7 @@
                 "datasync/online-data-transfer",
                 "transfer-family/managed-file-transfer-endpoints",
                 "storage-gateway/file-gateways",
+                "storage-gateway/basics",
                 "storage-gateway/volume-and-tape-gateways"
               ]
             },
@@ -1712,8 +1799,11 @@
               "sections": [
                 "s3/buckets-objects-and-durability",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "ebs/volume-types",
-                "fsx-for-windows/smb-directory-integration-and-availability"
+                "ebs/basics",
+                "fsx-for-windows/smb-directory-integration-and-availability",
+                "fsx-for-windows/basics"
               ]
             },
             {
@@ -1731,6 +1821,7 @@
               "text": "Determining the correct storage size for a workload",
               "sections": [
                 "ebs/volume-types",
+                "ebs/basics",
                 "rds/storage-autoscaling-and-metrics",
                 "compute-optimizer/resource-rightsizing"
               ]
@@ -1753,8 +1844,10 @@
               "sections": [
                 "rds/storage-autoscaling-and-metrics",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/basics",
                 "aurora/design-details",
-                "efs/regional-and-one-zone-file-systems"
+                "efs/regional-and-one-zone-file-systems",
+                "efs/basics"
               ]
             },
             {
@@ -1787,6 +1880,7 @@
                 "snow-family/offline-transfer-and-edge-devices",
                 "transfer-family/managed-file-transfer-endpoints",
                 "storage-gateway/file-gateways",
+                "storage-gateway/basics",
                 "cloud-adoption/migration-services"
               ]
             },
@@ -1797,7 +1891,9 @@
               "sections": [
                 "s3/storage-classes",
                 "efs/regional-and-one-zone-file-systems",
-                "ebs/volume-types"
+                "efs/basics",
+                "ebs/volume-types",
+                "ebs/basics"
               ]
             },
             {
@@ -1817,7 +1913,9 @@
               "sections": [
                 "s3/storage-classes",
                 "ebs/volume-types",
+                "ebs/basics",
                 "efs/regional-and-one-zone-file-systems",
+                "efs/basics",
                 "s3/storage-lens"
               ]
             }
@@ -1833,7 +1931,8 @@
               "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
               "sections": [
                 "billing-and-cost-management/cost-allocation-tags",
-                "organizations/accounts-ous-and-consolidated-billing"
+                "organizations/accounts-ous-and-consolidated-billing",
+                "organizations/basics"
               ]
             },
             {
@@ -1847,7 +1946,8 @@
                 "billing-and-cost-management/cost-and-usage-reports",
                 "billing-and-cost-management/anomaly-detection-and-optimization-hub",
                 "compute-optimizer/resource-rightsizing",
-                "trusted-advisor/checks-and-event-notifications"
+                "trusted-advisor/checks-and-event-notifications",
+                "trusted-advisor/basics"
               ]
             },
             {
@@ -1913,6 +2013,7 @@
               "sections": [
                 "compute-optimizer/resource-rightsizing",
                 "fargate/compute-and-isolation",
+                "fargate/basics",
                 "lambda/concurrency-controls",
                 "ecs/capacity-providers"
               ]
@@ -1933,6 +2034,7 @@
               "text": "Determining an appropriate load balancing strategy (for example, Application Load Balancer [Layer 7] compared with Network Load Balancer [Layer 4] compared with Gateway Load Balancer)",
               "sections": [
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/basics",
                 "elastic-load-balancing/cross-zone-balancing"
               ]
             },
@@ -1954,6 +2056,7 @@
               "sections": [
                 "lambda/concurrency-controls",
                 "fargate/compute-and-isolation",
+                "fargate/basics",
                 "ec2/purchasing-options",
                 "ec2/instance-types",
                 "ec2/design-details"
@@ -2003,7 +2106,8 @@
               "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
               "sections": [
                 "billing-and-cost-management/cost-allocation-tags",
-                "organizations/accounts-ous-and-consolidated-billing"
+                "organizations/accounts-ous-and-consolidated-billing",
+                "organizations/basics"
               ]
             },
             {
@@ -2027,6 +2131,7 @@
                 "elasticache/engines-replicas-and-multi-az",
                 "elasticache/use-cases-and-engine-choice",
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/basics",
                 "cloudfront/design-details",
                 "dynamodb/dax-read-caching"
               ]
@@ -2083,6 +2188,7 @@
                 "rds/design-details",
                 "rds/multi-az-and-failover-tests",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/basics",
                 "aurora/design-details",
                 "aurora/global-database-switchover-and-failover"
               ]
@@ -2096,6 +2202,7 @@
                 "rds/design-details",
                 "rds/more-essentials",
                 "aurora/storage-replicas-and-auto-scaling",
+                "aurora/basics",
                 "aurora/design-details",
                 "dynamodb/capacity-scaling-and-throttling",
                 "dynamodb/design-details",
@@ -2177,7 +2284,8 @@
               "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
               "sections": [
                 "billing-and-cost-management/cost-allocation-tags",
-                "organizations/accounts-ous-and-consolidated-billing"
+                "organizations/accounts-ous-and-consolidated-billing",
+                "organizations/basics"
               ]
             },
             {
@@ -2199,6 +2307,7 @@
               "text": "Load balancing concepts (for example, ALB)",
               "sections": [
                 "elastic-load-balancing/load-balancer-types",
+                "elastic-load-balancing/basics",
                 "elastic-load-balancing/target-health-and-fail-open",
                 "elastic-load-balancing/draining-slow-start-and-stickiness"
               ]
@@ -2220,6 +2329,7 @@
                 "direct-connect/connections-lags-and-gateways",
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "site-to-site-vpn/design-details",
+                "site-to-site-vpn/basics",
                 "site-to-site-vpn/vpn-cloudhub"
               ]
             },
@@ -2238,6 +2348,7 @@
               "text": "Network services with appropriate use cases (for example, DNS)",
               "sections": [
                 "route53/routing-policies",
+                "route53/basics",
                 "route53/alias-records-and-target-health",
                 "route53/private-hosted-zones",
                 "route53/resolver-endpoints-and-rules",
@@ -2264,6 +2375,7 @@
                 "direct-connect/connections-lags-and-gateways",
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "site-to-site-vpn/design-details",
+                "site-to-site-vpn/basics",
                 "client-vpn/remote-user-connectivity"
               ]
             },
@@ -2275,6 +2387,7 @@
                 "billing-and-cost-management/data-transfer-costs",
                 "vpc/gateway-endpoints-and-endpoint-policies",
                 "global-accelerator/regional-endpoint-routing",
+                "global-accelerator/basics",
                 "privatelink/interface-endpoints-and-private-access"
               ]
             },
@@ -2284,10 +2397,12 @@
               "text": "Determining strategic needs for content delivery networks (CDNs) and edge caching",
               "sections": [
                 "cloudfront/cache-behaviors-and-policies",
+                "cloudfront/basics",
                 "cloudfront/design-details",
                 "cloudfront/ttl-stale-content-and-invalidation",
                 "cloudfront/origin-shield",
-                "global-accelerator/regional-endpoint-routing"
+                "global-accelerator/regional-endpoint-routing",
+                "global-accelerator/basics"
               ]
             },
             {
@@ -2297,6 +2412,7 @@
               "sections": [
                 "billing-and-cost-management/data-transfer-costs",
                 "vpc/flow-logs",
+                "vpc/security-basics",
                 "vpc/gateway-endpoints-and-endpoint-policies",
                 "well-architected/well-architected-tool"
               ]
@@ -2319,6 +2435,7 @@
               "sections": [
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "site-to-site-vpn/design-details",
+                "site-to-site-vpn/basics",
                 "direct-connect/connections-lags-and-gateways"
               ]
             }

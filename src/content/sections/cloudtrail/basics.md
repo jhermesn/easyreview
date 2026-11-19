@@ -12,6 +12,21 @@ facts:
   - id: trail-basic
     text: "A trail delivers events to an Amazon S3 bucket for longer storage, optionally also to CloudWatch Logs and EventBridge."
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html#cloudtrail-user-guide
+  - id: insights-baseline
+    text: CloudTrail Insights learns a baseline from past API activity and emits events when call or
+      error rates depart from it.
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-insights-events-with-cloudtrail.html#logging-insights-events-with-cloudtrail
+  - id: insights-write
+    text: Management API call-rate Insights require write management events and Insights enabled on the
+      trail or source event data store.
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-insights-events-with-cloudtrail.html#logging-insights-events-with-cloudtrail
+  - id: insights-errors
+    text: Management API error-rate Insights require read or write management events, or both, with
+      Insights enabled.
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-insights-events-with-cloudtrail.html#logging-insights-events-with-cloudtrail
+  - id: insights-opt-in
+    text: Insights logging is disabled by default and incurs additional charges when enabled.
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-insights-events
 cards:
   - id: cloudtrail-053
     q: "An auditor asks who deleted an S3 bucket yesterday in an AWS account. Which service answers it?"
@@ -26,6 +41,16 @@ cards:
     a: "AWS CloudTrail. CloudWatch monitors metrics and logs about resource performance."
     trap: true
     facts: [records-actions]
+  - id: cloudtrail-019
+    q: What does CloudTrail Insights detect, and which management events must be recorded first?
+    a: Call-rate or error-rate deviations from a learned baseline. Management call-rate Insights need
+      write events; error-rate Insights need read or write events, or both. Enable Insights
+      explicitly.
+    facts:
+      - insights-baseline
+      - insights-write
+      - insights-errors
+      - insights-opt-in
 ---
 AWS CloudTrail is the audit log of an AWS account: it records who did what, when and from where through the console, CLI, SDKs and APIs. [What is AWS CloudTrail?](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html#cloudtrail-user-guide)
 

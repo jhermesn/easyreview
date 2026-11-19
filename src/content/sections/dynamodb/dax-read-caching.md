@@ -10,11 +10,6 @@
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html"
     },
     {
-      "id": "hit",
-      "text": "The DAX client routes requests to a cluster; hits avoid table reads, while misses read DynamoDB and cache results.",
-      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html"
-    },
-    {
       "id": "item",
       "text": "The item cache stores GetItem and BatchGetItem results by primary key with a default TTL of five minutes.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html"
@@ -66,16 +61,6 @@
     }
   ],
   "cards": [
-    {
-      "id": "dynamodb-008",
-      "q": "An application repeatedly reads DynamoDB items and accepts eventual consistency. What provides microsecond cache reads?",
-      "a": "DAX. Cache hits avoid table reads. Strong and transactional reads pass through to DynamoDB without caching results.",
-      "facts": [
-        "dax",
-        "hit",
-        "strong"
-      ]
-    },
     {
       "id": "dynamodb-038",
       "q": "A DynamoDB application requires every read to be strongly consistent. Will DAX serve those reads from memory?",

@@ -114,10 +114,6 @@ cards:
     a: No. Existing connections remain directed to that endpoint until idle timeout; new connections can use another available endpoint.
     facts: [existing-connections, failover]
     trap: true
-  - id: global-accelerator-009
-    q: "A global application needs fixed IP addresses and traffic routed over the AWS global network to regional endpoints. Which service fits?"
-    a: "AWS Global Accelerator provides static IP addresses at AWS edge locations and routes traffic to regional endpoints over the AWS global network."
-    facts: [fixed-entry]
   - id: global-accelerator-010
     q: A multiplayer game uses UDP and needs lower latency for players worldwide. Which AWS service fits better than CloudFront?
     a: AWS Global Accelerator. Its listeners support TCP and UDP, while CloudFront caches HTTP content.

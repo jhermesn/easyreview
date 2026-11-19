@@ -6,9 +6,6 @@ facts:
   - id: recommendations
     text: Trusted Advisor inspects AWS environments and recommends ways to reduce costs, improve availability and performance, or address security gaps.
     source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html
-  - id: categories
-    text: Check categories are Cost optimization, Performance, Security, Fault tolerance, Service limits and Operational Excellence.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/get-started-with-aws-trusted-advisor.html#view-check-categories
   - id: basic
     text: Basic Support provides all Service Limits checks and selected Security and Fault tolerance checks in the console; automatic check updates are unavailable.
     source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html
@@ -26,9 +23,6 @@ facts:
     source: https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html
   - id: event-region
     text: Trusted Advisor events are emitted to EventBridge in US East (N. Virginia), and delivery is best effort.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html
-  - id: event-support
-    text: Creating an EventBridge rule for Trusted Advisor checks requires Business Support+, Enterprise Support or Unified Operations.
     source: https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html
   - id: event-status
     text: EventBridge check item statuses are ERROR, INFO, OK and WARN.
@@ -88,10 +82,6 @@ diagrams:
       - Trusted Advisor emits a check event to EventBridge in US East (N. Virginia).
       - A matching rule sends the event to an SNS topic.
 cards:
-  - id: trusted-advisor-001
-    q: What does Trusted Advisor check, and how can its check events trigger automation?
-    a: "Trusted Advisor recommends improvements across cost, performance, security, fault tolerance, service limits and operational excellence. EventBridge rules in us-east-1 can invoke targets such as Lambda or SNS; eligible support is required."
-    facts: [categories, eventbridge, event-region, event-support]
   - id: trusted-advisor-002
     q: Which Trusted Advisor checks can a Basic Support customer access?
     a: "All Service Limits checks and selected Security and Fault tolerance checks in the console. Automatic check updates are unavailable."
@@ -121,10 +111,6 @@ cards:
     q: How can automation select tagged low-utilization EC2 instances from Trusted Advisor events?
     a: "Route check events to Lambda, retrieve EC2 tags for the resource and apply the team's selection policy before acting."
     facts: [low-utilization, eventbridge, ec2-tags-api]
-  - id: trusted-advisor-014
-    q: Which AWS Trusted Advisor check finds EBS volumes that are unattached or barely used?
-    a: Underutilized Amazon EBS volumes, a cost optimization check.
-    facts: [ebs-underutilized]
   - id: trusted-advisor-018
     q: "A team wants to find Amazon EBS volumes that may be wasting money. How can AWS Trusted Advisor help?"
     a: "Use the Underutilized Amazon EBS volumes check to identify unattached volumes or volumes with very low write activity for cost review."

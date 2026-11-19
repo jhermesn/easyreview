@@ -15,23 +15,13 @@ facts:
   - id: event-details
     text: Event details include the service, status, Region, category, description, update timeline, and affected resource count.
     source: https://docs.aws.amazon.com/health/latest/ug/aws-health-account-views.html#event-details
-  - id: affected-resources
-    text: The Affected resources tab lists resource IDs or ARNs when available.
-    source: https://docs.aws.amazon.com/health/latest/ug/aws-health-account-views.html#event-details
   - id: eks-support-notice
     text: Amazon EKS sends a notice through AWS Health when an account has clusters running a Kubernetes version approaching the end of standard support.
     source: https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#version-faqs
-  - id: service-health
-    text: The AWS Health Dashboard service health page needs no sign-in or AWS account, shows service history for the last 12 months and has an RSS feed; your account health requires signing in.
-    source: https://docs.aws.amazon.com/health/latest/ug/aws-health-dashboard-status.html
   - id: all-customers
     text: The AWS Health Dashboard is available to all AWS customers at no additional cost, on every Support plan.
     source: https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html
 cards:
-  - id: health-002
-    q: A scheduled AWS maintenance event affects particular instances. Where can a team find the affected resources?
-    a: Open the account-specific AWS Health event and its Affected resources tab.
-    facts: [account-events, affected-resources]
   - id: health-004
     q: How do public AWS Health events differ from account-specific events?
     a: Public events describe regional service availability; account-specific events concern the account and its resources.
@@ -40,10 +30,6 @@ cards:
     q: Where can a team find an AWS notice that an Amazon EKS cluster's Kubernetes version is approaching the end of standard support?
     a: AWS Health Dashboard. Amazon EKS sends a notice for accounts with affected clusters.
     facts: [eks-support-notice]
-  - id: health-015
-    q: Where can anyone, without an AWS account, see the status and 12-month history of AWS services?
-    a: The service health page of the AWS Health Dashboard. Your account health needs sign-in.
-    facts: [service-health]
   - id: health-016
     q: Does a company on AWS Basic Support get the AWS Health Dashboard view of events affecting its account?
     a: Yes. The AWS Health Dashboard is available to all AWS customers at no additional cost.

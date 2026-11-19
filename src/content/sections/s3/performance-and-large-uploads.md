@@ -68,10 +68,6 @@ cards:
     q: An analytics job needs only the first 250 bytes (a header) of millions of large S3 objects. How should it read them?
     a: "Use byte-range GETs (the `Range` header) to fetch only those bytes."
     facts: [byte-range]
-  - id: s3-136
-    q: A 3 GB upload to Amazon S3 over a flaky network keeps restarting from zero. What should the client use?
-    a: "Multipart upload, so only the failed parts are retried."
-    facts: [multipart]
   - id: s3-137
     q: "Can S3 Transfer Acceleration add to the bill beyond standard Amazon S3 pricing?"
     a: "Yes. It can add data transfer charges on top of standard S3 pricing."

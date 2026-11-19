@@ -18,9 +18,6 @@ facts:
   - id: hibernate-launch
     text: Hibernation can't be enabled or disabled after an instance is launched.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enabling-hibernation.html
-  - id: user-data-root
-    text: On Linux, EC2 user data scripts run as root on the first boot by default; the instance can be configured to run them again on later restarts.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts
   - id: user-data-size
     text: EC2 user data is limited to 16 KB before base64 encoding, and for an EBS-backed instance you can stop it to change the user data.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
@@ -61,11 +58,6 @@ cards:
     q: Do you pay EC2 instance charges while an instance is hibernated?
     a: "No instance usage charges while it's stopped; you still pay for its EBS volumes, including the saved RAM."
     facts: [hibernate-cost]
-  - id: ec2-070
-    q: A user data script on an EC2 instance uses sudo, and an admin expects it to run on every reboot. What is wrong with both assumptions?
-    a: "On Linux, user data runs as root and only on first boot by default. Configure repeated execution if it must run on later restarts."
-    trap: true
-    facts: [user-data-root]
   - id: ec2-071
     q: Admins must SSH into Linux EC2 instances without distributing long-lived key pairs, with access controlled by IAM. Which feature fits?
     a: "EC2 Instance Connect, which pushes a one-time public key valid for 60 seconds."
