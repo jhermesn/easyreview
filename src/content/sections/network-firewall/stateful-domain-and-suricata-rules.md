@@ -18,24 +18,12 @@ facts:
   - id: suricata-rules
     text: Suricata-compatible rule strings define traffic match conditions and actions for the stateful engine.
     source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-suricata.html
-  - id: rule-order
-    text: Default stateful action order is pass, drop, reject, then alert; strict order follows rule-group priority and the order of rules within each group.
-    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html
   - id: domain-fields
     text: TLS_SNI domain rules match the hostname in the TLS handshake; HTTP_HOST rules match the HTTP Host header.
     source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html
   - id: domain-allow
     text: With default action order, an Allow domain list using HTTP_HOST or TLS_SNI blocks nonmatching domains for the selected protocol; with strict order, this implicit denial does not apply.
     source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html
-  - id: home-net
-    text: By default domain inspection HOME_NET is the deployment VPC address range; centralized inspection of other VPC ranges requires including those ranges in HOME_NET.
-    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html
-  - id: capacity-fixed
-    text: Rule-group capacity is fixed at creation and cannot be changed or exceeded by later rule updates.
-    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/nwfw-rule-group-capacity.html
-  - id: capacity-policy
-    text: A firewall policy reserves the entire configured capacity of a referenced rule group.
-    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/nwfw-rule-group-capacity.html
   - id: domain-vs-payload
     text: Domain filtering based on HTTP Host or TLS SNI does not itself decrypt encrypted payloads; TLS inspection uses a separate TLS inspection configuration.
     source: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_CreateTLSInspectionConfiguration.html
@@ -53,23 +41,6 @@ cards:
     trap: true
     facts:
       - stateless-actions
-  - id: network-firewall-008
-    q: An AWS Network Firewall rule group needs more capacity after creation. Can the team raise its capacity in place?
-    a: No. Capacity is fixed at creation. Create a replacement rule group with sufficient capacity and update the policy reference.
-    trap: true
-    facts:
-      - capacity-fixed
-      - capacity-policy
-  - id: network-firewall-009
-    q: A central AWS Network Firewall inspects other VPCs, but their traffic misses domain-list filtering. Which variable should the team review?
-    a: HOME_NET. Include the other VPC address ranges; its default covers only the deployment VPC.
-    facts:
-      - home-net
-  - id: network-firewall-010
-    q: What changes when AWS Network Firewall uses strict order for stateful rules?
-    a: Groups follow configured priority and rules follow their listed order, rather than the default pass, drop, reject, alert action order.
-    facts:
-      - rule-order
   - id: network-firewall-011
     q: Does an AWS Network Firewall TLS_SNI domain rule decrypt HTTPS request bodies?
     a: No. It matches the hostname in the TLS handshake. Payload decryption requires a separate TLS inspection configuration.
@@ -146,8 +117,6 @@ AWS Network Firewall first checks packets independently, then can inspect them a
 1. Evaluate stateless rules first. Their action passes, drops, or forwards the packet to stateful inspection. If none matches, apply the configured default stateless action.
 2. Forward traffic that needs domain or Suricata inspection to the stateful engine. Stateless Pass bypasses that engine.
 3. Choose domain lists for hostname matching or Suricata rule strings for explicit traffic conditions. HTTP_HOST reads the HTTP Host header; TLS_SNI reads Server Name Indication, the hostname sent in a TLS handshake.
-4. Select rule order deliberately. Default action order evaluates pass, drop, reject, then alert. Strict order follows group priority and rule sequence.
-5. Set enough rule-group capacity at creation. Capacity is the reserved processing allowance for rules and cannot be increased later.
 
 | Stateless action | Result |
 |---|---|
@@ -158,15 +127,10 @@ AWS Network Firewall first checks packets independently, then can inspect them a
 ### Exam cues
 
 - If the question says a stateful deny is bypassed by a stateless allow, think change Pass to Forward to stateful rules, because Pass ends inspection.
-- If the question says a rule group has outgrown capacity, think replace the group, because capacity is fixed at creation.
-- If the question says domain filtering misses traffic from other VPCs, think HOME_NET, because its default covers the deployment VPC address range.
 
 ### Remember
 
 - Unmatched stateless traffic uses configured defaults; full packets and UDP fragments have separate settings.
-- Default stateful action order is pass, drop, reject, alert.
-- Strict order requires explicit attention to default actions; the domain Allow list's implicit denial applies only with default action order.
-- A policy reserves a referenced group's configured capacity.
 - TLS SNI hostname inspection does not itself decrypt HTTPS payloads.
 
 > **Trap:** A stateful rule cannot inspect a packet already permitted by stateless Pass. The packet must be forwarded to the stateful engine.

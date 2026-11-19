@@ -1732,7 +1732,8 @@
                 "vpc/gateway-endpoints-and-endpoint-policies",
                 "vpc/operations-in-depth",
                 "vpc/route-tables-and-peering",
-                "vpc/subnets-and-gateways"
+                "vpc/subnets-and-gateways",
+                "network-firewall/operations-in-depth"
               ]
             },
             {
