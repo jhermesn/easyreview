@@ -87,6 +87,7 @@ facts:
 diagrams:
   - id: cost-optimized-batch-processing
     title: File-triggered batch jobs on Spot with an On-Demand fallback and tiered storage
+    facts: [batch, batch-capacity, emr, fargate, lambda-timeout, on-demand, spot, spot-90, spot-notice, savings-plans, reserved, prefer-sp, s3-eventbridge, sns, intelligent-tiering, deep-archive, lifecycle-rules, lifecycle-early, eb-batch, job-queue, ce-order, spot-allocation, retry, batch-events, standard-ia, glacier-ir, glacier-flexible]
     width: 1240
     height: 740
     groups:

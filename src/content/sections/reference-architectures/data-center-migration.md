@@ -78,6 +78,7 @@ facts:
 diagrams:
   - id: data-center-migration
     title: Servers, a database and files move to AWS over a private connection
+    facts: [seven-rs, rehost, replatform, refactor-cost, mgn, mgn-replication, mgn-rehost, evaluator, hub, hub-closed, dms, dms-ongoing, sct, schema-not-data, datasync, snow-closed, storage-gateway, file-gateway, vpn, vpn-tunnels, dx, dx-preferred, vpn-backup, dx-no-encryption]
     width: 1240
     height: 1000
     groups:

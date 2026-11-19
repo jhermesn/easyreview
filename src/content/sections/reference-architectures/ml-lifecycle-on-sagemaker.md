@@ -81,6 +81,7 @@ facts:
 diagrams:
   - id: ml-lifecycle-on-sagemaker
     title: Data becomes features, a trained model becomes an endpoint, and drift starts a retraining run
+    facts: [phases, business-goal, not-ml, data-processing, same-steps, feature-engineering, development, training, hyperparameters, holdout, overfitting, data-wrangler, feature-store, pipelines, registry, registry-approval, model-monitor, monitor-closed, drift, mlflow, real-time, serverless, async, batch, ops-burden]
     width: 1240
     height: 660
     groups:

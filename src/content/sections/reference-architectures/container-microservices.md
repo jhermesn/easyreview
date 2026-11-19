@@ -90,6 +90,7 @@ facts:
 diagrams:
   - id: container-microservices
     title: Stateless services on Fargate behind one load balancer, with a queue worker on Spot
+    facts: [ecs, fargate, eks, eks-compute, ecr, execution-role, secrets, task-role, alb-rules, alb-conditions, stateless, shared-store, sticky, efs, async, spot, spot-fallback, redelivery, scale-desired, scale-target, scale-cpu, scale-queue, asg-provider, a2c, a2c-closed, a2c-alternative, dlq, dlq-policy]
     width: 1240
     height: 880
     groups:

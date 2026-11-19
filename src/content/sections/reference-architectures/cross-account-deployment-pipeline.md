@@ -84,6 +84,7 @@ facts:
 diagrams:
   - id: cross-account-deployment-pipeline
     title: One pipeline in a tooling account deploys to staging and production accounts
+    facts: [cross-account-needs, bucket-policy, target-role, role-arn, key-alias, key-policy, approval-pause, approval-permission, regional-buckets, stackset, service-managed, ca-cross-account, ca-resource-policy, ca-bearer, ca-org, rollback-trigger, rollback-missing-data, event-levels, event-targets, failure-blocks, retry-failed, stage-rollback, v2-recovery, create-update, replace-failed, auto-deploy]
     width: 1240
     height: 800
     groups:

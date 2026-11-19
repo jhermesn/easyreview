@@ -69,6 +69,7 @@ facts:
 diagrams:
   - id: event-driven-operations
     title: Member accounts forward Health and API events to a central bus that notifies, tracks and fixes
+    facts: [health, account-events, public-events, cross-bus, receiver-policy, sender-role, no-third-hop, bus-routing, trail-required, api-call-type, write-events, read-events, opscenter, opsitem-create, opsitem-runbook, opsitem-dedup, automation-events, cross-automation, automation-admin-role, health-eventbridge, health-own-account]
     width: 1240
     height: 760
     groups:

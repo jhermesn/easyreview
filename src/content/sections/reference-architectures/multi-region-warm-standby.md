@@ -51,6 +51,7 @@ facts:
 diagrams:
   - id: multi-region-warm-standby
     title: Warm standby in a second Region with DNS failover
+    facts: [strategies, warm-standby, pilot-light, iac-regions, stackset, r53-active-passive, health-checks, aurora-global, switchover, managed-failover, writer-endpoint, s3-crr, backup-copy, backup-incremental, ddb-global]
     width: 1240
     height: 920
     groups:

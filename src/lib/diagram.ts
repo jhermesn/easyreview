@@ -13,6 +13,7 @@ export interface DiagramInput {
   nodes: DNode[];
   edges: DEdge[];
   steps: string[];
+  facts?: string[];
 }
 
 // Defaults must match src/content.config.ts.

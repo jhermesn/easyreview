@@ -81,6 +81,7 @@ facts:
 diagrams:
   - id: centralized-observability
     title: Workload accounts link telemetry to a monitoring account and stream logs to a locked archive
+    facts: [cross-purpose, sink, link, limits, sink-policy, cross-queries, cross-alarms, cross-pricing, subscription-purpose, destination-setup, destination-region, firehose-archive, account-filter, agent, guest-metrics, logs-kms, logs-kms-context, object-lock, opensearch, subscription-errors, missing-breaching, missing-not-breaching, firehose-errors, athena, quick-sources]
     width: 1240
     height: 880
     groups:

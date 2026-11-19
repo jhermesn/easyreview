@@ -72,6 +72,7 @@ facts:
 diagrams:
   - id: container-delivery-pipeline
     title: Build, scan and test an image, then shift ECS traffic to a green task set
+    facts: [test-build, lambda-result, lambda-credentials, step-invoke, docker-cache, ca-cross-account, ca-token, immutable-tags, enhanced-scan, inspector-scan, scan-thresholds, image-detail, bluegreen-inputs, image-definitions, task-sets, test-listener, test-hook, termination, alarm-rollback, circuit-breaker, breaker-rollback, eks-blue-green]
     width: 1240
     height: 780
     groups:

@@ -37,7 +37,24 @@ function check(file) {
     if (/[ \t]$/m.test(body)) problems.push('body: line ends with whitespace (a wrapped or cut-off line)');
   }
   for (const d of data.diagrams ?? []) for (const p of lintDiagram(withDefaults(d))) problems.push(`diagram ${d.id}: ${p}`);
+  for (const d of data.diagrams ?? []) for (const f of d.facts ?? []) if (!factIds.has(f)) problems.push(`diagram ${d.id}: unknown fact "${f}"`);
+  if (file.includes('/reference-architectures/')) problems.push(...referenceFloor(data.diagrams ?? []));
   return problems;
+}
+
+// A reference architecture below these sizes is missing a boundary, a trust edge or a failure path
+// (docs/diagrams.md#reference-architectures).
+function referenceFloor(diagrams) {
+  if (!diagrams.length) return ['reference architecture: needs a diagram'];
+  return diagrams.flatMap((d) => {
+    const missing = [];
+    if ((d.nodes ?? []).length < 10) missing.push(`at least 10 nodes (has ${(d.nodes ?? []).length})`);
+    if ((d.steps ?? []).length < 6) missing.push(`at least 6 steps (has ${(d.steps ?? []).length})`);
+    if (!(d.groups ?? []).length) missing.push('a group for its account, Region or VPC boundary');
+    if (!(d.edges ?? []).some((e) => e.dashed)) missing.push('a dashed failure or recovery edge');
+    if (!(d.facts ?? []).length) missing.push('`facts` listing the facts it relies on');
+    return missing.map((m) => `diagram ${d.id}: reference architecture needs ${m}`);
+  });
 }
 
 const files = process.argv.slice(2).length

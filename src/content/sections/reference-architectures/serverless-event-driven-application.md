@@ -45,6 +45,7 @@ facts:
 diagrams:
   - id: serverless-event-driven-application
     title: Serverless web front end, API and asynchronous event processing
+    facts: [oac, cognito-authorizer, api-throttling, ddb-on-demand, eventbridge, sqs-lambda, sqs-max-concurrency, dlq, dlq-alarm, step-functions, waf-api, xray, active-tracing]
     width: 1240
     height: 640
     groups:
