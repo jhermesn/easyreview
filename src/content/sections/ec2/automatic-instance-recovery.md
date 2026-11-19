@@ -96,6 +96,9 @@ facts:
   - id: secondary-interface
     text: A secondary network interface retains its attributes, including private IP addresses, when moved between EC2 instances in the same Availability Zone.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#using-eni
+  - id: stop-start-host
+    text: "Starting a stopped EBS-backed instance typically migrates it to a new underlying host and assigns a new public IPv4 address."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html
 cards:
   - id: ec2-002
     q: Which CloudWatch alarm action attempts to move an impaired EC2 instance to another host while preserving its ID and IP addresses?
@@ -142,6 +145,10 @@ cards:
     q: An EC2 secondary network interface moves between instances in the same Availability Zone. What happens to its private IP addresses?
     a: They stay with the network interface when it is moved.
     facts: [secondary-interface]
+  - id: ec2-125
+    q: "An EBS-backed EC2 instance has a scheduled retirement event for its degraded host. What simple action moves it to healthy hardware, and what changes?"
+    a: "Stop and start it. It typically starts on a new host and receives a new public IPv4 address."
+    facts: [stop-start-host]
 diagrams:
   - id: ec2-cloudwatch-recovery-flow
     title: CloudWatch recovery attempts to restore the same instance
@@ -191,6 +198,7 @@ For a separate failover approach, a network interface is a virtual network card.
 - `StatusCheckFailed_System`: 0 means passed; 1 means failed.
 - Simplified recovery is enabled by default only on supported instances. CloudWatch recovery needs an alarm action.
 - With instance store volumes attached at launch, CloudWatch recovery supports M3, C3, R3, X1, X1e, X2idn and X2iedn. It loses their local data.
+- Stop and start an EBS-backed instance to move it to a new host; its public IPv4 address changes.
 
 > **Trap:** Recovery preserves instance identity, addresses and EBS volumes, but not RAM or instance store contents. It is not a guarantee of recovery when capacity is unavailable.
 
