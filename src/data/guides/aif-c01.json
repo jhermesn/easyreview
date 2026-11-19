@@ -1070,5 +1070,39 @@
         }
       ]
     }
+  ],
+  "scenarios": [
+    {
+      "title": "Generative AI application with retrieval augmented generation",
+      "items": [
+        "2.1.o1",
+        "2.3.o1",
+        "3.1.o3",
+        "3.1.o4",
+        "5.1.o1",
+        "5.1.o5"
+      ],
+      "section": "reference-architectures/rag-generative-ai-application"
+    },
+    {
+      "title": "Machine learning lifecycle on SageMaker AI",
+      "items": [
+        "1.3.o1",
+        "1.3.o3",
+        "1.3.o4",
+        "1.3.o5"
+      ],
+      "section": "reference-architectures/ml-lifecycle-on-sagemaker"
+    },
+    {
+      "title": "AI agent with tools",
+      "items": [
+        "2.1.o6",
+        "2.3.o1",
+        "3.1.o6",
+        "5.1.o4"
+      ],
+      "section": "reference-architectures/ai-agent-with-tools"
+    }
   ]
 }
