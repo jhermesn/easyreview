@@ -145,7 +145,8 @@
               "text": "Describe and differentiate components of an AI/ML pipeline.",
               "sections": [
                 "ml-lifecycle/lifecycle-phases",
-                "ml-lifecycle/training-and-model-fit"
+                "ml-lifecycle/training-and-model-fit",
+                "reference-architectures/ml-lifecycle-on-sagemaker"
               ]
             },
             {
@@ -167,7 +168,8 @@
                 "sagemaker-ai/inference-options",
                 "ecs/basics",
                 "eks/basics",
-                "lambda/basics"
+                "lambda/basics",
+                "reference-architectures/ml-lifecycle-on-sagemaker"
               ]
             },
             {
@@ -188,7 +190,8 @@
                 "dynamodb/basics",
                 "elasticache/basics",
                 "rds/managed-vs-self-managed-databases",
-                "ec2/accelerated-computing-for-ai"
+                "ec2/accelerated-computing-for-ai",
+                "reference-architectures/ml-lifecycle-on-sagemaker"
               ]
             },
             {
@@ -197,7 +200,8 @@
               "text": "Describe fundamental concepts of ML operations (MLOps) (for example, experimentation, repeatable processes, scalable systems, managing technical debt, achieving production readiness, model monitoring, model re-training).",
               "sections": [
                 "sagemaker-ai/mlops-and-governance",
-                "ml-lifecycle/lifecycle-phases"
+                "ml-lifecycle/lifecycle-phases",
+                "reference-architectures/ml-lifecycle-on-sagemaker"
               ]
             },
             {
@@ -228,7 +232,8 @@
                 "generative-ai/tokens-and-embeddings",
                 "generative-ai/foundation-models-and-llms",
                 "bedrock/knowledge-bases-and-rag",
-                "nova/nova-models"
+                "nova/nova-models",
+                "reference-architectures/rag-generative-ai-application"
               ]
             },
             {
@@ -272,7 +277,8 @@
               "text": "Define foundational agentic AI concepts (for example, multi-agent system patterns for complex AI applications, Model Context Protocol [MCP] and its role in connecting agents to external systems, multi-agent communication patterns, memory management, tool usage, and workflow orchestration).",
               "sections": [
                 "agentic-ai/agents-and-tools",
-                "agentic-ai/multi-agent-systems-and-memory"
+                "agentic-ai/multi-agent-systems-and-memory",
+                "reference-architectures/ai-agent-with-tools"
               ]
             }
           ]
@@ -331,7 +337,9 @@
                 "kiro/agentic-development",
                 "strands-agents/agent-sdk",
                 "bedrock-agentcore/agentcore-services",
-                "nova/nova-models"
+                "nova/nova-models",
+                "reference-architectures/rag-generative-ai-application",
+                "reference-architectures/ai-agent-with-tools"
               ]
             },
             {
@@ -399,7 +407,8 @@
               "kind": "objective",
               "text": "Define Retrieval Augmented Generation (RAG) and describe its business applications (for example, Amazon Bedrock Knowledge Bases).",
               "sections": [
-                "bedrock/knowledge-bases-and-rag"
+                "bedrock/knowledge-bases-and-rag",
+                "reference-architectures/rag-generative-ai-application"
               ]
             },
             {
@@ -411,7 +420,8 @@
                 "opensearch/basics",
                 "neptune/graph-databases",
                 "aurora/basics",
-                "documentdb/basics"
+                "documentdb/basics",
+                "reference-architectures/rag-generative-ai-application"
               ]
             },
             {
@@ -429,7 +439,8 @@
               "text": "Define the role of AI agents and describe AI agents' business applications.",
               "sections": [
                 "agentic-ai/agents-and-tools",
-                "bedrock-agentcore/agentcore-services"
+                "bedrock-agentcore/agentcore-services",
+                "reference-architectures/ai-agent-with-tools"
               ]
             }
           ]
@@ -702,7 +713,8 @@
                 "shared-responsibility/security-of-and-in-the-cloud",
                 "secrets-manager/basics",
                 "bedrock-agentcore/agentcore-services",
-                "bedrock/guardrails"
+                "bedrock/guardrails",
+                "reference-architectures/rag-generative-ai-application"
               ]
             },
             {
@@ -737,7 +749,8 @@
                 "bedrock/security-and-monitoring",
                 "inspector/basics",
                 "vpc/security-basics",
-                "cloudfront/basics"
+                "cloudfront/basics",
+                "reference-architectures/ai-agent-with-tools"
               ]
             },
             {
@@ -746,7 +759,8 @@
               "text": "Describe hallucination detection methods and grounding techniques to improve output accuracy (for example, Retrieval Augmented Generation [RAG] grounding, output validation, confidence scoring).",
               "sections": [
                 "ai-security-governance/grounding-and-hallucinations",
-                "bedrock/guardrails"
+                "bedrock/guardrails",
+                "reference-architectures/rag-generative-ai-application"
               ]
             }
           ]
