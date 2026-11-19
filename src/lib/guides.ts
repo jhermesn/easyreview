@@ -14,6 +14,8 @@ export interface Guide {
   domains: { id: string; name: string; tasks: GuideTask[] }[];
   concepts: string[];
   services: { category: string; services: GuideService[] }[];
+  // End-to-end designs the exam builds scenario questions on, each drawn by a reference architecture section (docs/diagrams.md).
+  scenarios?: { title: string; items: string[]; section: string }[];
 }
 
 const files = import.meta.glob<Guide>('../data/guides/*.json', { eager: true, import: 'default' });
