@@ -48,6 +48,16 @@
       "id": "database-encryption-sdk",
       "text": "The AWS Database Encryption SDK encrypts chosen DynamoDB attributes on the client before they are sent, so the table holds only ciphertext for those fields.",
       "source": "https://docs.aws.amazon.com/database-encryption-sdk/latest/devguide/what-is-database-encryption-sdk.html#what-is-database-encryption-sdk"
+    },
+    {
+      "id": "create-by-replica",
+      "text": "In the current global tables version (2019.11.21), which AWS recommends over the legacy 2017.11.29 version, an MREC global table is created by adding a replica to an existing DynamoDB table.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html"
+    },
+    {
+      "id": "mrec-latency",
+      "text": "MREC replicates item changes to the other replicas asynchronously, typically within a second or less; its RPO equals the replication delay, usually a few seconds depending on the Regions.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html"
     }
   ],
   "cards": [
@@ -86,6 +96,23 @@
       "a": "Use multi-Region strong consistency (MRSC). It replicates a write to at least one other Region before reporting success.",
       "facts": [
         "mrsc"
+      ]
+    },
+    {
+      "id": "dynamodb-063",
+      "q": "A team wants an existing single-Region Amazon DynamoDB table to replicate to a second Region with the current global tables version. How does it create the global table?",
+      "a": "Add a replica in the second Region to the existing table.\nCreating separate tables first and linking them belongs to the legacy 2017 version.",
+      "trap": true,
+      "facts": [
+        "create-by-replica"
+      ]
+    },
+    {
+      "id": "dynamodb-064",
+      "q": "How quickly does an Amazon DynamoDB MREC global table usually copy a write to the other Regions, and what does that mean for RPO?",
+      "a": "Typically within a second or less.\nThe RPO equals that replication delay, usually a few seconds.",
+      "facts": [
+        "mrec-latency"
       ]
     }
   ],
@@ -155,5 +182,7 @@ DynamoDB global tables replicate data across Regions so applications can read an
 - Default: MREC. The mode cannot change or differ between replicas.
 - MRSC conversion needs an empty table; additional replicas cannot be added afterward.
 - MRSC supports same-account configurations only. MREC also supports multi-account configurations.
+- Current version (2019.11.21): create an MREC global table by adding a replica to an existing table.
+- MREC replication: typically a second or less; RPO equals that delay, usually a few seconds.
 
 > **Trap:** Strong reads on an MREC replica do not make cross-Region replication synchronous. A remote write can still be missing.

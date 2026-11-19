@@ -54,6 +54,9 @@ facts:
   - id: no-charge
     text: Instance store volumes have no additional charge; they are included in the instance usage cost.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
+  - id: replicated-fleet-data
+    text: "Instance store also suits temporary data replicated across a fleet of instances, such as a load-balanced pool of web servers."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
 cards:
   - id: ec2-001
     q: What happens to EC2 instance store data when its instance stops, hibernates or terminates?
@@ -87,6 +90,10 @@ cards:
     q: An application needs very fast temporary block storage for scratch data, at no extra storage cost. Which EC2 storage option fits?
     a: "Instance store.\nIts disks are attached to the host and are included in the instance price, but data is lost when the instance stops or terminates."
     facts: [host-disks, no-charge]
+  - id: ec2-124
+    q: "A load-balanced web fleet keeps a cache that every instance can rebuild from its peers. Is EC2 instance store a reasonable place for it?"
+    a: "Yes. Instance store suits temporary data replicated across a fleet; losing one instance's copy does not lose the data."
+    facts: [replicated-fleet-data]
 ---
 Instance store is temporary disk storage on the physical computer, or host, running an EC2 instance. It suits caches, which hold replaceable copies of data, and scratch files, which hold temporary working data. Think of it as storage tied to that instance's local disks.
 
@@ -119,6 +126,7 @@ Instance store is temporary disk storage on the physical computer, or host, runn
 - Reboot preserves the data. Stop, hibernation and termination erase it.
 - Instance store capacity depends on the instance type and size.
 - Instance store: host-attached disks, included in the instance price.
+- Instance store also fits temporary data replicated across a fleet.
 
 > **Trap:** Automatic recovery can look like a reboot to the operating system, but CloudWatch action based recovery loses instance store data. Ordinary reboot persistence does not imply recovery persistence.
 

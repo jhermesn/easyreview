@@ -88,6 +88,26 @@
       "id": "consistent-read-param",
       "text": "GetItem, Query and Scan take an optional ConsistentRead parameter; setting it to true requests a strongly consistent read.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html"
+    },
+    {
+      "id": "gsi-projected-only",
+      "text": "A global secondary index query returns only attributes projected into the index; it cannot fetch other attributes from the base table.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html"
+    },
+    {
+      "id": "gsi-key-schema",
+      "text": "Every global secondary index has a partition key and an optional sort key, and its key schema can differ from the table's.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html"
+    },
+    {
+      "id": "projection-cost",
+      "text": "A global secondary index that projects fewer attributes costs less to store and less to write.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html#GSI.StorageConsiderations"
+    },
+    {
+      "id": "lsi-lifecycle",
+      "text": "Local secondary indexes are created with the table and are deleted when the table is deleted.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html"
     }
   ],
   "cards": [
@@ -160,6 +180,33 @@
       "facts": [
         "sparse-index"
       ]
+    },
+    {
+      "id": "dynamodb-065",
+      "q": "An Amazon DynamoDB query on a global secondary index needs an attribute that is not projected into the index. Can the query fetch it from the base table?",
+      "a": "No. A GSI query returns only projected attributes.\nProject the attribute into the index, or read the item from the table.",
+      "trap": true,
+      "facts": [
+        "gsi-projected-only"
+      ]
+    },
+    {
+      "id": "dynamodb-066",
+      "q": "A team wants to remove an Amazon DynamoDB local secondary index but keep the table. Is that possible?",
+      "a": "No. An LSI is created with the table and is deleted only with the table.\nA global secondary index can be added or removed later.",
+      "trap": true,
+      "facts": [
+        "lsi-lifecycle"
+      ]
+    },
+    {
+      "id": "dynamodb-067",
+      "q": "An Amazon DynamoDB global secondary index serves a query that needs only three attributes. Why project only those attributes?",
+      "a": "A smaller index costs less to store and less to write.\nThe query still gets every attribute it needs from the index.",
+      "facts": [
+        "projection-cost",
+        "gsi-projected-only"
+      ]
     }
   ]
 }
@@ -186,6 +233,9 @@ DynamoDB stores items, or records, in tables. Each item contains attributes, or 
 - LSI item collection maximum: 10 GB per partition key including table and local index entries.
 - Query page maximum: 1 MB before filtering. Continue with `LastEvaluatedKey`.
 - GetItem defaults to eventual consistency. LSIs support strong reads; GSIs do not.
+- A GSI query returns only projected attributes; it cannot fetch others from the table.
+- GSI: partition key plus optional sort key, any schema. Fewer projected attributes cost less to store and write.
+- LSIs are created and deleted with the table.
 
 > **Trap:** A filter does not make Scan cheaper. Reading happens before filtering.
 

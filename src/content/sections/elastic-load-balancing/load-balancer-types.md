@@ -188,6 +188,9 @@ facts:
   - id: enabled-zone-node
     text: "Enabling an Availability Zone causes Elastic Load Balancing to create a load balancer node in that zone."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#availability-zones
+  - id: alb-https-targets
+    text: "An Application Load Balancer target group can use HTTPS, so the load balancer opens TLS connections to its targets."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html
 cards:
   - id: elastic-load-balancing-002
     q: When should an application use an ALB, NLB, or GWLB?
@@ -395,6 +398,10 @@ cards:
     q: "When incoming application traffic grows, how does Elastic Load Balancing adjust the capacity of the load balancer itself?"
     a: "Elastic Load Balancing scales load balancer capacity automatically as traffic changes."
     facts: [healthy-targets]
+  - id: elastic-load-balancing-079
+    q: "Compliance requires encryption between an Application Load Balancer and its EC2 targets, not only from clients. How?"
+    a: "Use an HTTPS target group, so the ALB opens TLS connections to the targets."
+    facts: [alb-https-targets]
 diagrams:
   - id: alb-weighted-request-flow
     title: ALB rules select a weighted target group
@@ -510,5 +517,6 @@ An internet-facing load balancer can front the web tier while an internal load b
 - Dualstack describes the client-facing address choice; the target group controls backend addressing.
 - ALB Lambda request body and response JSON limits are 1 MB each.
 - When all registered targets are unhealthy, ALB and NLB can fail open and send traffic to unhealthy targets.
+- HTTPS target groups encrypt traffic from the ALB to its targets.
 
 > **Trap:** An unhealthy weighted ALB target group does not cause automatic failover to the other weighted group. Plan how the group weights will change.

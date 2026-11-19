@@ -24,6 +24,9 @@ facts:
   - id: server-certs
     text: "ACM is the preferred place for SSL/TLS server certificates; IAM can also store server certificates, and must be used in Regions that ACM does not support."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html#id_credentials_server-certs
+  - id: user-credentials
+    text: "An IAM user is an identity in one AWS account with a name and credentials; you choose a console password, access keys or both, and a user created through the CLI or API starts with no credentials."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html#id_users_creds
 cards:
   - id: iam-078
     q: Ten developers need the same permissions in AWS. What is the simplest way to manage them in IAM?
@@ -50,6 +53,10 @@ cards:
     q: "What does least privilege mean when granting IAM permissions?"
     a: "Give only the permissions needed for the task, scoped to the relevant actions, resources and conditions."
     facts: [least-privilege]
+  - id: iam-126
+    q: "Does every IAM user need a console password?"
+    a: "No. An IAM user can have a console password, access keys or both.\nA user created through the CLI or API starts with no credentials."
+    facts: [user-credentials]
 ---
 IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
 
@@ -71,5 +78,6 @@ IAM controls who can do what in an AWS account. Users are identities for people,
 
 - Prefer temporary credentials (roles) over long-term IAM user keys.
 - For IAM users with long-term credentials, require MFA, update access keys and remove unused users and credentials. [IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
+- An IAM user belongs to one account. Credentials: console password, access keys, both, or none yet when created through the CLI or API.
 
 > **Trap:** AWS managed policies do not always grant least privilege. They cover common use cases and can grant more than a specific task needs. [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-use-aws-defined-policies)

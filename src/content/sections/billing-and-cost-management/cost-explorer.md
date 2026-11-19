@@ -30,6 +30,12 @@ facts:
   - id: hourly-charge
     text: "Hourly granularity in Cost Explorer is optional and billed daily per hourly usage record kept for the past 14 days."
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-hourly-granularity.html#ce-hourly-granularity
+  - id: granularity
+    text: "Cost Explorer shows costs at monthly or daily granularity; hourly and resource-level data are optional features."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-granular-data.html
+  - id: extended-history
+    text: "Cost Explorer can add up to 38 months of multi-year data at monthly granularity for an organization, and daily resource-level data for chosen services covering the past 14 days."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-multi-year-data.html
 cards:
   - id: billing-and-cost-management-005
     q: Which AWS tool helps a company view and analyze its costs and usage?
@@ -63,6 +69,10 @@ cards:
     q: "What kind of information can a company analyze with AWS Cost Explorer?"
     a: "Costs and usage, including Reserved Instance reports."
     facts: [purpose]
+  - id: billing-and-cost-management-049
+    q: "A finance team needs to compare AWS costs year over year for the past three years in Cost Explorer. What should it enable?"
+    a: "Multi-year data, which keeps up to 38 months at monthly granularity."
+    facts: [extended-history]
 ---
 AWS Cost Explorer is the analysis tool for past and forecast costs. It charts spending by service, account, tag or other dimensions and helps find what drives cost. [AWS Cost Explorer](https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html#ce-what-is)
 
@@ -89,5 +99,7 @@ AWS Cost Explorer is the analysis tool for past and forecast costs. It charts sp
 
 - 13 months of history, 18 months of forecast.
 - Console free; API 0.01 USD per paginated request.
+- Granularity: monthly or daily; hourly and resource-level data are optional.
+- Optional history: 38 months of monthly multi-year data; 14 days of daily resource-level data.
 
 > **Trap:** Cost Explorer can't be turned off after it's enabled; that's not a reason to avoid it, since the console is free.

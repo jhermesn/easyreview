@@ -42,6 +42,9 @@ facts:
   - id: public-ip-nat
     text: "For EC2 internet access over IPv4, the instance uses its private address internally and the internet gateway translates traffic for its public IPv4 address."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#ip-addresses-and-nat
+  - id: enhanced-networking-free
+    text: "Enhanced networking uses SR-IOV for higher bandwidth, higher packets per second and lower latency between instances, at no additional charge."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html
 cards:
   - id: ec2-077
     q: A licensed application is tied to a fixed public IP. If its EC2 instance fails, a standby instance must take over at the same address quickly. What fits?
@@ -87,6 +90,10 @@ cards:
     q: "An EC2 instance has a public IPv4 address, but its operating system shows its private IPv4 address. Which VPC component handles translation for internet traffic?"
     a: "The internet gateway. The instance uses its private address internally; public IPv4 translation happens at the gateway."
     facts: [public-ip-nat]
+  - id: ec2-122
+    q: "Is there an extra charge for enabling EC2 enhanced networking for higher bandwidth and lower latency?"
+    a: "No. Enhanced networking has no additional charge on supported instance types."
+    facts: [enhanced-networking-free]
 ---
 An EC2 instance's network identity is its network interfaces and their addresses. Knowing which addresses stay and which can move answers most failover and licensing questions. [EC2 instance IP addressing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html)
 
@@ -116,5 +123,6 @@ An EC2 instance's network identity is its network interfaces and their addresses
 - Private IPv4 always; public IPv4 and IPv6 optional. Public IPv4 translation takes place at the internet gateway.
 - Network interfaces stay within one AZ.
 - Termination protection doesn't stop an OS-initiated terminate.
+- Enhanced networking: no additional charge.
 
 > **Trap:** A network interface can't move to an instance in another AZ, so it's not a cross-AZ failover tool. Use an Elastic IP, a load balancer or DNS for that.

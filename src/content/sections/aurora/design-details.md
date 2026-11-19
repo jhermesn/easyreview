@@ -36,6 +36,9 @@ facts:
   - id: lambda-native
     text: "Aurora MySQL can invoke a Lambda function from SQL with the native functions lambda_sync and lambda_async, once the cluster has access to Lambda."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Lambda.html#AuroraMySQL.Integrating.Lambda
+  - id: free-backup-allowance
+    text: "Aurora provides automated backup storage equal to the latest cluster volume size at no charge; only usage beyond that allowance is billed."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-storage-backup.html
 cards:
   - id: aurora-002
     q: How does an Aurora cluster automatically add read-serving instances as demand changes?
@@ -64,6 +67,10 @@ cards:
     q: "When a row is deleted in Aurora MySQL, a Lambda function must run and forward the change. How can the database call Lambda directly?"
     a: "With the Aurora MySQL native functions lambda_sync or lambda_async, after granting the cluster access to Lambda."
     facts: [lambda-native]
+  - id: aurora-049
+    q: "How much Amazon Aurora automated backup storage is included at no extra charge?"
+    a: "An amount equal to the latest cluster volume size. Only backup usage beyond it is billed."
+    facts: [free-backup-allowance]
 ---
 Aurora offers separate controls for reader capacity and database connections, plus ways to clone data and invoke Lambda. Choose the feature that matches the problem: scaling readers, reusing connections, creating a test cluster or calling a function.
 
@@ -85,5 +92,6 @@ Aurora offers separate controls for reader capacity and database connections, pl
 
 - The predefined reader metrics are `RDSReaderAverageCPUUtilization` and `RDSReaderAverageDatabaseConnections`.
 - `MaxDatabaseConnectionsAllowed` can be lower than the percentage calculation because RDS Proxy reserves internal connections. The proxy does not open all allowed connections in advance.
+- Automated backup storage up to the latest cluster volume size is free.
 
 > **Trap:** Aurora Auto Scaling does not scale the writer and cannot add readers to a Global Database secondary or an [Aurora Serverless v2 cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html#aurora-serverless-v2.limitations). Pre-created Serverless readers scale compute capacity instead.
