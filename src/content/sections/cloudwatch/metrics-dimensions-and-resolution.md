@@ -74,9 +74,6 @@ facts:
   - id: purpose
     text: Amazon CloudWatch monitors AWS resources and applications in real time, covering resource utilization, application performance and operational health.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
-  - id: putmetricdata-timestamps
-    text: "PutMetricData accepts data point timestamps up to two weeks in the past and up to two hours in the future."
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html#API_PutMetricData
 cards:
   - id: cloudwatch-001
     q: What identifies a traditional CloudWatch metric, and what does a new dimension value do?
@@ -124,14 +121,6 @@ cards:
     facts:
       - percentile
       - latency-percentile
-  - id: cloudwatch-047
-    q: A team publishes a traditional CloudWatch custom metric separately for each server. Will omitting
-      the server dimension automatically return a fleet aggregate?
-    a: No. Publish the required aggregate or calculate it explicitly. Traditional custom metrics do not
-      automatically aggregate across dimension combinations.
-    trap: true
-    facts:
-      - custom-aggregation
   - id: cloudwatch-110
     q: "A team wants an SNS alert when an AWS service usage metric passes 80 percent of its service quota. How can CloudWatch do this?"
     a: "Graph the usage metric, add the metric math expression m1/SERVICE_QUOTA(m1)*100, and create an alarm on it with a threshold of 80 that notifies the SNS topic."
@@ -141,10 +130,6 @@ cards:
     q: Which AWS service monitors resource utilization, application performance and operational health of AWS resources?
     a: Amazon CloudWatch.
     facts: [purpose]
-  - id: cloudwatch-120
-    q: "A batch job wants to backfill custom metric data points from three weeks ago with PutMetricData. Will CloudWatch accept them?"
-    a: "No. PutMetricData accepts timestamps up to two weeks back and up to two hours ahead."
-    facts: [putmetricdata-timestamps]
 ---
 CloudWatch metrics store measurements over time, such as CPU use or request latency, the delay a request experiences. For traditional metrics, the namespace is the container, the metric name is the measurement, and dimensions are name and value pairs identifying what was measured.
 
@@ -159,7 +144,6 @@ CloudWatch metrics store measurements over time, such as CPU use or request late
 
 - If the question says EC2 CPU data must arrive each minute, think detailed monitoring, because basic CPU monitoring uses 5-minute periods.
 - If the question says a healthy average hides slow requests, think a high latency percentile, because it exposes the slower part of the distribution.
-- If the question says custom metrics differ by server dimension, think separate metrics, because CloudWatch does not automatically combine those dimensions.
 - If the question says alert before a service quota is reached, think a CloudWatch alarm on usage divided by SERVICE_QUOTA, because metric math turns usage into a percentage of the quota.
 
 ### Remember

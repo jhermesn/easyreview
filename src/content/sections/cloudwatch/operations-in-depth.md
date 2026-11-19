@@ -91,6 +91,13 @@ facts:
   - id: filter-dimensions
     text: Metric filters with dimensions cannot have a default value.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html#search-filter-concepts
+  - id: custom-aggregation
+    text: CloudWatch does not automatically aggregate traditional custom metrics across different
+      dimension combinations.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#dimension-combinations
+  - id: putmetricdata-timestamps
+    text: "PutMetricData accepts data point timestamps up to two weeks in the past and up to two hours in the future."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html#API_PutMetricData
 cards:
   - id: cloudwatch-035
     q: How do CloudWatchAgentServerPolicy and CloudWatchAgentAdminPolicy differ for agent configuration
@@ -221,6 +228,18 @@ cards:
     trap: true
     facts:
       - filter-dimensions
+  - id: cloudwatch-047
+    q: A team publishes a traditional CloudWatch custom metric separately for each server. Will omitting
+      the server dimension automatically return a fleet aggregate?
+    a: No. Publish the required aggregate or calculate it explicitly. Traditional custom metrics do not
+      automatically aggregate across dimension combinations.
+    trap: true
+    facts:
+      - custom-aggregation
+  - id: cloudwatch-120
+    q: "A batch job wants to backfill custom metric data points from three weeks ago with PutMetricData. Will CloudWatch accept them?"
+    a: "No. PutMetricData accepts timestamps up to two weeks back and up to two hours ahead."
+    facts: [putmetricdata-timestamps]
 ---
 CloudWatch operational controls help teams configure agents, manage alarm actions, and investigate logs. Their behavior matters when permissions, maintenance windows, or log retention affect an operational response.
 
@@ -248,5 +267,7 @@ CloudWatch operational controls help teams configure agents, manage alarm action
 - Expired log events are marked for deletion. Deletion normally takes up to 72 hours and can rarely take longer.
 - Logs Insights supports Logs Insights QL, OpenSearch PPL, and OpenSearch SQL. Queries time out after 60 minutes; results remain available for 7 days.
 - Live Tail sessions are billed per minute.
+- Custom metrics published per server stay separate; omitting a dimension does not aggregate them.
+- PutMetricData accepts data points up to two weeks old.
 
 > **Trap:** An alarm action is not guaranteed to work just because it is configured. CloudWatch does not validate the destination; check that an SNS topic or Auto Scaling action exists.

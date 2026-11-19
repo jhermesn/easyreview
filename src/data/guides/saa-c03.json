@@ -166,7 +166,8 @@
                 "vpc/security-groups-and-network-acls",
                 "network-firewall/firewall-endpoints-and-routing",
                 "vpc/flow-logs",
-                "route53/resolver-dns-firewall"
+                "route53/resolver-dns-firewall",
+                "network-firewall/stateful-domain-and-suricata-rules"
               ]
             },
             {
@@ -215,7 +216,8 @@
                 "vpc/route-tables-and-peering",
                 "vpc/subnets-and-gateways",
                 "vpc/ip-addressing-and-nat-instances",
-                "reference-architectures/three-tier-web-application"
+                "reference-architectures/three-tier-web-application",
+                "network-firewall/stateful-domain-and-suricata-rules"
               ]
             },
             {
@@ -871,7 +873,9 @@
                 "cloudwatch/agent-and-custom-metrics",
                 "cloudwatch/metric-filters-and-patterns",
                 "cloudwatch/logs-insights",
-                "route53/alarm-based-health-checks"
+                "route53/alarm-based-health-checks",
+                "elastic-load-balancing/error-metrics-and-access-logs",
+                "cloudwatch/metrics-dimensions-and-resolution"
               ]
             },
             {
@@ -1109,7 +1113,8 @@
                 "ec2-auto-scaling/scaling-policy-selection",
                 "cloudwatch/alarm-evaluation-and-missing-data",
                 "ecs/service-auto-scaling",
-                "cloudwatch/agent-and-custom-metrics"
+                "cloudwatch/agent-and-custom-metrics",
+                "cloudwatch/metrics-dimensions-and-resolution"
               ]
             },
             {
@@ -1492,7 +1497,8 @@
                 "managed-service-for-apache-flink/stream-processing-workloads",
                 "kinesis-video-streams/video-ingestion-and-processing",
                 "msk/managed-kafka-clusters",
-                "reference-architectures/streaming-data-lake"
+                "reference-architectures/streaming-data-lake",
+                "kinesis-data-streams/enhanced-fan-out-and-checkpoints"
               ]
             },
             {
@@ -1517,7 +1523,8 @@
                 "managed-service-for-apache-flink/stream-processing-workloads",
                 "msk/managed-kafka-clusters",
                 "kinesis-video-streams/video-ingestion-and-processing",
-                "reference-architectures/streaming-data-lake"
+                "reference-architectures/streaming-data-lake",
+                "kinesis-data-streams/enhanced-fan-out-and-checkpoints"
               ]
             },
             {
