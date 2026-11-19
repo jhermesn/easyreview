@@ -33,6 +33,9 @@ facts:
   - id: rebalance
     text: "An EC2 rebalance recommendation signals that a Spot Instance is at elevated interruption risk; it can arrive before the two-minute interruption notice, but sometimes arrives with it."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rebalance-recommendations.html
+  - id: interruption-notice
+    text: "EC2 sends Spot interruption notices through Amazon EventBridge and instance metadata on a best-effort basis; stop and termination notices give two minutes, but hibernation begins immediately."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html
 cards:
   - id: ec2-073
     q: A batch workload must keep 200 vCPUs of cheap capacity running across several instance types and AZs, replacing Spot Instances when they are interrupted. Which feature fits?
@@ -63,6 +66,10 @@ cards:
     q: "Which Spot signal can warn earlier than the two-minute interruption notice?"
     a: "The EC2 instance rebalance recommendation, sent when the instance is at elevated interruption risk; it is not guaranteed to come first."
     facts: [rebalance]
+  - id: ec2-116
+    q: "An EC2 Spot application needs automated interruption handling. Where can it receive notices, and can it assume a notice always arrives?"
+    a: "Amazon EventBridge or instance metadata. Delivery is best effort, so the application must tolerate an interruption without a notice."
+    facts: [interruption-notice]
 ---
 Fleets and Spot request types control how EC2 keeps cheap capacity running when Spot Instances come and go. [EC2 Fleet and Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html)
 
@@ -71,7 +78,8 @@ Fleets and Spot request types control how EC2 keeps cheap capacity running when 
 1. Define a target capacity, a launch template and several instance types and AZs.
 2. The fleet launches a mix of On-Demand and Spot Instances to reach the target.
 3. When Spot Instances are interrupted, the fleet requests replacements.
-4. Single Spot requests are one-time (default) or persistent (resubmitted after interruption).
+4. Handle interruption signals from Amazon EventBridge or instance metadata. Delivery is best effort; hibernation begins immediately rather than allowing two minutes to prepare.
+5. Single Spot requests are one-time (default) or persistent (resubmitted after interruption).
 
 ### Exam cues
 
@@ -81,6 +89,7 @@ Fleets and Spot request types control how EC2 keeps cheap capacity running when 
 
 ### Remember
 
+- Interruption notices are best effort; a hibernation notice has no two-minute lead time.
 - Diversify instance types and AZs to lower interruption impact.
 - One-time is the default Spot request; persistent requests resubmit.
 - Cancel request and terminate instance are two separate steps.

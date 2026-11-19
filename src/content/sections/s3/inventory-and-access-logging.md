@@ -4,8 +4,8 @@ level: associate
 order: 140
 facts:
   - id: inventory-purpose
-    text: S3 Inventory reports object names and selected metadata on a daily or weekly schedule.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory
+    text: "S3 Inventory produces daily or weekly object and metadata listings for an entire bucket or for keys with a selected prefix."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory-buckets
   - id: inventory-formats
     text: Inventory output formats are CSV, Apache ORC, and Apache Parquet.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html#storage-inventory
@@ -64,6 +64,9 @@ facts:
   - id: logging-principal
     text: "Server access log delivery needs the destination bucket policy to grant s3:PutObject to the logging service principal logging.s3.amazonaws.com."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-bucket-policy
+  - id: access-log-fields
+    text: "S3 server access log records include fields for requester identity, request time, operation, and HTTP response status."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/LogFormat.html#log-record-fields
 cards:
   - id: s3-034
     q: An S3 audit needs object reads recorded while a scheduled job lists bucket contents. Which
@@ -114,14 +117,22 @@ cards:
     q: "Server access logging is on, but no logs reach the destination bucket. What permission is often missing?"
     a: "A destination bucket policy that allows s3:PutObject for the logging.s3.amazonaws.com service principal."
     facts: [logging-principal]
+  - id: s3-191
+    q: "An Amazon S3 auditor needs a weekly object listing limited to keys beginning with finance/. How can Inventory select them?"
+    a: "Set the Inventory source prefix to finance/; the report can cover a prefix rather than the whole bucket."
+    facts: [inventory-purpose]
+  - id: s3-193
+    q: "An Amazon S3 investigation needs requester identity, time, operation, and response status for bucket requests. Which records contain those fields?"
+    a: "S3 server access logs contain those request fields."
+    facts: [access-log-fields]
 ---
 S3 Inventory answers what objects exist and which metadata they have. Access logging and CloudTrail data events answer what requests were made; they serve different audit needs.
 
 ### How it works
 
-1. Configure Inventory for a daily or weekly report, selecting current versions or all versions and metadata such as encryption and replication status.
+1. Configure Inventory for a daily or weekly report for the entire bucket or a selected key prefix. Choose current versions or all versions and metadata such as encryption and replication status.
 2. Choose an output format and destination bucket for the report. Query reports with Athena when needed.
-3. Enable server access logging for request records. A separate destination without access logging avoids a recursive stream of logs.
+3. Enable server access logging for request records with requester, time, operation, and response-status fields. A separate destination without access logging avoids a recursive stream of logs.
 4. Enable CloudTrail S3 data events on a trail for object-level API auditing. Select the required buckets; these events are not included in Event history.
 
 | Requirement | Feature |
@@ -138,6 +149,7 @@ S3 Inventory answers what objects exist and which metadata they have. Access log
 
 ### Remember
 
+- Inventory can select a key prefix.
 - Server access logging is off by default and can also deliver structured records to CloudWatch Logs.
 - A direct S3 access-log destination cannot use Object Lock or Requester Pays.
 - CloudTrail data events are off by default, incur charges, and do not appear in Event history.

@@ -4,8 +4,7 @@ level: associate
 order: 30
 facts:
   - id: scope
-    text: With cross-zone load balancing enabled, a node can distribute requests to targets across
-      enabled zones; disabled nodes use only targets in their own zone.
+    text: "Cross-zone load balancing lets a node select targets across enabled zones; without it, selection stays in its own zone. Target selection still follows the load balancer routing algorithm, so enabling cross-zone routing does not itself guarantee identical traffic per target."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#cross-zone-load-balancing
   - id: alb-default
     text: ALB cross-zone balancing is always enabled at the load balancer level; target groups inherit
@@ -124,7 +123,7 @@ Cross-zone load balancing controls which Availability Zones a load balancer node
 
 1. Requests arrive at a load balancer node in an enabled zone.
 2. With cross-zone balancing enabled, the node can choose targets across enabled zones. With it disabled, the node uses only its own zone.
-3. Choose the setting at the supported level.
+3. Target selection still follows the routing algorithm. Cross-zone balancing expands the target pool without guaranteeing identical traffic to every target. Choose the setting at the supported level.
 
    | Type | Default | Where to change it |
    |---|---|---|

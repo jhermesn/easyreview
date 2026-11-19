@@ -69,6 +69,9 @@ facts:
   - id: access-analyzer-s3
     text: "IAM Access Analyzer for S3 reports general purpose buckets that allow access to the public or to other AWS accounts, and a public bucket can be blocked from that page with one action."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html#access-analyzer
+  - id: bpa-no-grant
+    text: "Block Public Access settings constrain permissions granted through policies or ACLs; removing a block does not itself grant public access."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html
 cards:
   - id: s3-017
     q: How can an S3 administrator block public access even when bucket-level permissions grant it?
@@ -120,12 +123,16 @@ cards:
     q: "A security team wants a list of S3 buckets that are public or shared with other AWS accounts, reviewed from the S3 console. Which feature fits?"
     a: "IAM Access Analyzer for S3. It lists buckets with public or cross-account access and can block public access on a bucket in one step."
     facts: [access-analyzer-s3]
+  - id: s3-195
+    q: "An Amazon S3 bucket has Block Public Access turned off but no policy or ACL grants public reads. Does turning off the block make its objects public?"
+    a: "No. Public reads still need an applicable policy or ACL grant."
+    facts: [bpa-no-grant]
 ---
 S3 separates public-access safeguards from object ownership. Block Public Access limits public grants; Object Ownership decides who owns uploaded objects and whether access control lists (ACLs), lists of grants attached to resources, are used.
 
 ### How it works
 
-1. Apply Block Public Access at the account level or through an organization policy for a shared baseline. S3 combines it with bucket and access point settings using the most restrictive result.
+1. Apply Block Public Access at the account level or through an organization policy for a shared baseline. Turning off a block does not itself grant access. S3 combines it with bucket and access point settings using the most restrictive result.
 2. Keep Bucket owner enforced for policy-based access. It makes the bucket owner own all objects and disables ACL authorization.
 3. For a legacy ACL workflow, distinguish Bucket owner preferred from Object writer. Preferred needs `bucket-owner-full-control` on a new cross-account upload to transfer ownership.
 4. Deny insecure client requests with `aws:SecureTransport: false`. When appropriate, exclude AWS service principals using `aws:PrincipalIsAWSService: false` so redacted service network context does not block delivery.

@@ -25,8 +25,7 @@ facts:
     text: An internet-facing load balancer accepts internet traffic through its public addresses.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#load-balancer-scheme
   - id: scheme-private
-    text: An internal load balancer uses private addresses and requires clients with access to its VPC;
-      its DNS name resolves to private addresses.
+    text: "An internal load balancer resolves to private addresses and serves clients with VPC access. In a multi-tier design, an internet-facing load balancer can serve the web tier while an internal load balancer serves the application tier."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#load-balancer-scheme
   - id: target-private
     text: Both internal and internet-facing load balancers reach targets using private addresses, so
@@ -74,9 +73,8 @@ facts:
       decryption.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html#listener-configuration
   - id: dualstack
-    text: An ALB using dualstack accepts IPv4 and IPv6 clients; its target group IP address type
-      independently determines how it reaches targets.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-ip-address-type.html
+    text: "ALB supports IPv4, dualstack, and dualstack without public IPv4. Standard dualstack accepts IPv4 and IPv6 clients; dualstack without public IPv4 provides public IPv6 and private IPv4/IPv6 connectivity and requires an internet-facing scheme. Target address types are configured separately."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#ip-address-types
   - id: vpc
     text: A VPC is a logically isolated virtual network for AWS resources.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
@@ -152,7 +150,7 @@ facts:
     text: "An ALB target group of type lambda holds one Lambda function; to replace the function, AWS recommends a new target group and an updated listener rule."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#register-lambda-function
   - id: healthy-targets
-    text: A load balancer distributes incoming traffic across targets in multiple Availability Zones, monitors their health and routes traffic only to healthy targets.
+    text: "Elastic Load Balancing scales its load balancer capacity as incoming traffic changes, distributes traffic across targets in multiple Availability Zones, and monitors target health to select healthy targets."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html
   - id: host-wildcard
     text: "In an ALB host condition, *.example.com matches test.example.com but not example.com; host matching is not case-sensitive, while path patterns are case-sensitive."
@@ -187,6 +185,9 @@ facts:
   - id: clb-previous-generation
     text: "Classic Load Balancers are the previous generation of Elastic Load Balancing; AWS recommends migrating to a current-generation load balancer."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html
+  - id: enabled-zone-node
+    text: "Enabling an Availability Zone causes Elastic Load Balancing to create a load balancer node in that zone."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html#availability-zones
 cards:
   - id: elastic-load-balancing-002
     q: When should an application use an ALB, NLB, or GWLB?
@@ -382,6 +383,18 @@ cards:
     q: "What subnet requirements does an Application Load Balancer have?"
     a: "Subnets in **at least two AZs**, each with at least a **/27** CIDR and **eight free IP addresses** for scaling. An NLB can use a single AZ."
     facts: [alb-subnets, nlb-one-az]
+  - id: elastic-load-balancing-074
+    q: "How does Elastic Load Balancing provide an entry point in each enabled Availability Zone?"
+    a: "It creates a load balancer node in each enabled Availability Zone."
+    facts: [enabled-zone-node]
+  - id: elastic-load-balancing-076
+    q: "An Elastic Load Balancing design has public web servers and application servers that should accept only private traffic from the web tier. Which load balancer schemes fit?"
+    a: "Use an internet-facing load balancer for the web tier and an internal load balancer for the application tier."
+    facts: [scheme-private]
+  - id: elastic-load-balancing-077
+    q: "When incoming application traffic grows, how does Elastic Load Balancing adjust the capacity of the load balancer itself?"
+    a: "Elastic Load Balancing scales load balancer capacity automatically as traffic changes."
+    facts: [healthy-targets]
 diagrams:
   - id: alb-weighted-request-flow
     title: ALB rules select a weighted target group
@@ -458,7 +471,9 @@ An Elastic Load Balancing listener is the entry point that accepts connections o
    | `fixed-response` | Return a configured HTTP response without a target |
 
 6. Allow listener and health check traffic through security group rules in both directions. A security group is a firewall that controls allowed network traffic.
-7. Choose encryption and addresses separately. TLS, the protocol that encrypts a connection, can terminate at an NLB TLS listener or pass through an NLB TCP listener on port 443. A dualstack ALB accepts both IPv4 and IPv6 clients while its target group controls the target address type.
+7. Elastic Load Balancing creates a node in each enabled Availability Zone. Load balancer capacity scales as incoming traffic changes.
+
+   Choose encryption and addresses separately. TLS, the protocol that encrypts a connection, can terminate at an NLB TLS listener or pass through an NLB TCP listener on port 443. A dualstack ALB accepts both IPv4 and IPv6 clients while its target group controls the target address type. For internet clients that need only IPv6, dualstack without public IPv4 avoids public IPv4 addresses; this option requires an internet-facing ALB.
 8. For Lambda targets, the function and target group must share an account and Region.
 9. ALB HTTPS target connections use encryption, but ALB does not validate the target certificate.
 10. Since October 2025, a nondefault ALB rule can rewrite the host header or URL after matching, without changing its routing decision. Since November 2025, an HTTPS rule can validate a JSON Web Token (JWT), a signed set of claims, before routing. This requires RS256 signatures and a publicly accessible JSON Web Key Set endpoint that supplies verification keys.
@@ -472,6 +487,8 @@ For static addresses or AWS PrivateLink with HTTP routing, an NLB can forward to
 An NLB created without security groups cannot add them later. NLB health checks must be allowed by outbound security group rules.
 
 Since November 2025, NLB default actions can use weighted target groups. Since July 2026, listener rules on dualstack NLBs can route IPv4 and IPv6 clients to different target groups.
+
+An internet-facing load balancer can front the web tier while an internal load balancer serves the private application tier.
 
 ### Exam cues
 

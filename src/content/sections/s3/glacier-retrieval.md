@@ -65,14 +65,17 @@ facts:
     text: Large archive datasets can take longer to restore than typical retrieval times.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html#restoring-objects-retrieval-options
   - id: bulk-cheapest
-    text: "Bulk is the lowest-cost retrieval option in the S3 Glacier storage classes, suited to retrieving large amounts of data inexpensively."
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html#restoring-objects-retrieval-options
+    text: "Bulk is the lowest-cost S3 Glacier retrieval option; Bulk retrievals from Glacier Flexible Retrieval are free."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html#GFR
   - id: archive-metadata
     text: "Each object in Glacier Flexible Retrieval or Glacier Deep Archive adds 40 KB of metadata: 32 KB billed at the archive class rate and 8 KB at the S3 Standard rate."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html
   - id: gir-min-size
     text: "Glacier Instant Retrieval bills each object as at least 128 KB."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html
+  - id: archive-retrieval-pricing
+    text: "Charges for restoring S3 Glacier Flexible Retrieval and Deep Archive objects vary with the selected retrieval tier."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/archival-storage.html#before-deciding-to-archive-objects
 diagrams:
   - id: s3-archive-restore-copy
     title: Making an archive permanently readable
@@ -162,13 +165,21 @@ cards:
     facts:
       - glacier-temporary
       - glacier-copy
+  - id: s3-203
+    q: "An Amazon S3 Glacier Flexible Retrieval archive can wait for Bulk retrieval. What retrieval charge applies to that option?"
+    a: "Bulk retrieval is free for S3 Glacier Flexible Retrieval."
+    facts: [bulk-cheapest]
+  - id: s3-204
+    q: "An Amazon S3 archive design compares retrieval options for Glacier Flexible Retrieval and Deep Archive. Does the selected restore tier affect charges?"
+    a: "Yes. Retrieval charges depend on the selected tier; include the required restore speed when estimating costs."
+    facts: [archive-retrieval-pricing]
 ---
 S3 Glacier storage classes trade access speed for archive storage costs. Instant Retrieval stays directly readable; Flexible Retrieval and Deep Archive require a restore job before an application can read the data.
 
 ### How it works
 
 1. Check the storage class. Use a normal `GET` for Instant Retrieval; use `RestoreObject` for Flexible Retrieval or Deep Archive.
-2. Select a retrieval tier. Standard is the default if the request does not specify one. Deep Archive does not offer Expedited.
+2. Select a retrieval tier with its speed and charges in mind. Standard is the default if the request does not specify one. Deep Archive does not offer Expedited. Bulk retrieval from Flexible Retrieval is free.
 3. For Flexible Retrieval Expedited requests that need reserved capacity, purchase provisioned capacity. Without it, high demand can cause rejection.
 4. Read the temporary restored copy for the requested number of days. Copy it with a different storage class if it must remain readable permanently.
 
@@ -186,6 +197,7 @@ S3 Glacier storage classes trade access speed for archive storage costs. Instant
 
 ### Remember
 
+- Retrieval charges vary by tier; Flexible Retrieval Bulk retrieval is free.
 - Flexible Retrieval Expedited is typically 1 to 5 minutes for objects smaller than 250 MB. Large datasets can take longer.
 - Each provisioned unit supports at least three Expedited requests per 5 minutes and up to 300 MB/s.
 - Minimum billed storage is 90 days for Instant and Flexible, 180 days for Deep Archive.

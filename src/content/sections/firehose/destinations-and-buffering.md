@@ -193,6 +193,7 @@ Amazon Data Firehose delivers streaming records to storage and analytics destina
 
 ### Remember
 
+
 - S3 destination defaults: 5 MB or 300 seconds, whichever is met first.
 - S3 concatenation adds no delimiter by default. Enable the newline option when needed.
 - OpenSearch expects UTF-8 single-line JSON objects.

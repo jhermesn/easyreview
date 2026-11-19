@@ -31,11 +31,10 @@ facts:
       treated as the longest.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#account-level-retention-policies
   - id: deletion-protection
-    text: Log group deletion protection is disabled by default and, when enabled, blocks deletion until
-      disabled.
-    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogsConcepts.html#CloudWatchLogsConcepts
+    text: "CloudWatch Logs deletion protection is off by default and prevents deletion of the log group until protection is disabled."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/protecting-log-groups-from-deletion.html#enabling-deletion-protection
   - id: log-classes
-    text: "CloudWatch Logs has a full-featured Standard log class and a lower-cost Essentials log class (formerly Infrequent Access) with a subset of features; the classes differ only in ingestion price, and a log group's class can't be changed after creation."
+    text: "CloudWatch Logs Standard provides the full feature set; Essentials (formerly Infrequent Access, noted November 2026) lowers ingestion cost but excludes Live Tail and subscription filters. Storage and Logs Insights query prices are the same, and a log group's class is fixed at creation."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html#CloudWatch_Logs_Log_Classes
 cards:
   - id: cloudwatch-057
@@ -73,6 +72,10 @@ cards:
     q: "A team wants to cut ingestion cost for logs it only keeps for occasional cross-account analysis. Which log class fits, and can an existing log group switch to it?"
     a: "The Essentials log class (formerly Infrequent Access), which has a lower ingestion price and fewer features. A log group's class is fixed at creation, so it needs a new log group."
     facts: [log-classes]
+  - id: cloudwatch-128
+    q: "A CloudWatch Logs design needs Live Tail and subscription filters. Can it use the cheaper Essentials log class?"
+    a: "Use Standard. Essentials, formerly Infrequent Access, does not support Live Tail or subscription filters."
+    facts: [log-classes]
 ---
 CloudWatch Logs stores timestamped events from applications and infrastructure. A log stream holds events from one source; a log group collects streams that need the same retention, monitoring, and access settings.
 
@@ -87,13 +90,13 @@ CloudWatch Logs stores timestamped events from applications and infrastructure. 
 - If the question says many application instances need common retention, think streams in a shared group, because retention belongs to the group.
 - If the question says existing groups must inherit a common account retention policy, think RETROACTIVE, because NEW_ONLY covers future groups.
 - If the question says protect a log group from accidental deletion, think deletion protection, because deletion remains blocked until protection is disabled.
-- If the question says cheaper ingestion for rarely queried logs, think the Essentials log class (formerly Infrequent Access), chosen when the log group is created.
+- If the question says cheaper ingestion for rarely queried logs, think the Essentials log class (formerly Infrequent Access), chosen when the log group is created. Choose Standard when Live Tail or subscription filters are required.
 
 ### Remember
 
 - Default retention: indefinite. Streams per group: no limit.
 - An applicable account-level policy overrides the group's own retention setting.
 - Among overlapping account policies, the longest retention wins; NEVER_EXPIRE is longest.
-- Deletion protection is off by default.
+- Deletion protection is off by default. It protects the log group; event retention remains a separate setting.
 
 > **Trap:** A longer group retention value does not defeat a shorter applicable account policy. The account policy overrides the group value.

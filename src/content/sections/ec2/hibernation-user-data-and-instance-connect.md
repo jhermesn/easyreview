@@ -19,8 +19,8 @@ facts:
     text: Hibernation can't be enabled or disabled after an instance is launched.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enabling-hibernation.html
   - id: user-data-root
-    text: EC2 user data scripts run as the root user and, by default, only during the first boot of a new instance.
-    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
+    text: On Linux, EC2 user data scripts run as root on the first boot by default; the instance can be configured to run them again on later restarts.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-shell-scripts
   - id: user-data-size
     text: EC2 user data is limited to 16 KB before base64 encoding, and for an EBS-backed instance you can stop it to change the user data.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
@@ -34,7 +34,7 @@ facts:
     text: "Software on an instance reads instance metadata and user data from the Instance Metadata Service at 169.254.169.254 (or fd00:ec2::254 over IPv6); requests are free."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-service
   - id: imdsv2
-    text: "IMDSv2 uses session tokens obtained with a PUT request; an instance can be set to IMDSv2 only (token required), which turns off tokenless IMDSv1 calls."
+    text: "IMDSv2 requires session tokens, and instance metadata options can require IMDSv2 only or disable the metadata service entirely."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html#configuring-instance-metadata-options
   - id: metadata-not-secret
     text: "Instance metadata and user data are not protected by authentication or encryption inside the instance, so they should not hold passwords or other secrets."
@@ -45,6 +45,9 @@ facts:
   - id: eice
     text: "EC2 Instance Connect Endpoint lets users connect from the internet to instances that have no public IP address, without a bastion host and without an internet gateway in the VPC."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-with-ec2-instance-connect-endpoint.html
+  - id: key-download
+    text: "When the EC2 console creates a key pair, its private key is downloaded at creation; that is the only opportunity to save that private key file."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html#having-ec2-create-your-key-pair
 cards:
   - id: ec2-067
     q: A Java application on EC2 takes 20 minutes to load caches after boot. The instances are stopped at night and must resume ready to serve in the morning. Which EC2 feature fits?
@@ -60,7 +63,7 @@ cards:
     facts: [hibernate-cost]
   - id: ec2-070
     q: A user data script on an EC2 instance uses sudo, and an admin expects it to run on every reboot. What is wrong with both assumptions?
-    a: "User data already runs as root (no sudo needed) and, by default, only on the first boot."
+    a: "On Linux, user data runs as root and only on first boot by default. Configure repeated execution if it must run on later restarts."
     trap: true
     facts: [user-data-root]
   - id: ec2-071
@@ -87,6 +90,14 @@ cards:
     q: "A team plans to hibernate EC2 instances with large memory. What storage requirement must it account for?"
     a: "The encrypted EBS root volume must have enough space for RAM."
     facts: [hibernate-prereqs]
+  - id: ec2-118
+    q: "An administrator creates a key pair in the EC2 console for Linux SSH access. When must the private key file be saved?"
+    a: "At creation, when the browser downloads it. The EC2 console does not offer another chance to save that private key."
+    facts: [key-download]
+  - id: ec2-121
+    q: "An EC2 application must reject tokenless instance metadata requests, while another instance must expose no metadata endpoint. Which settings fit?"
+    a: "Require IMDSv2 on the first instance and disable IMDS on the second through instance metadata options."
+    facts: [imdsv2]
 ---
 Three EC2 features that change how an instance starts and how you reach it: hibernation keeps memory across a stop, user data configures the first boot, and Instance Connect replaces long-lived SSH keys. [Hibernate your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 
@@ -94,8 +105,9 @@ Three EC2 features that change how an instance starts and how you reach it: hibe
 
 1. Hibernation: enable it at launch; on hibernate, the OS writes RAM to the encrypted EBS root volume and the instance stops.
 2. On start, the root volume is restored, RAM reloads and processes continue where they were.
-3. User data: a script or cloud-init directives passed at launch run as root on first boot.
-4. Instance Connect: an IAM-authorized API call pushes a temporary public key; you SSH in within 60 seconds.
+3. User data: on Linux, shell scripts and cloud-init directives automate setup; scripts run as root on first boot by default. Configure repeated execution for later restarts. Windows uses launch agents to handle scripts.
+4. Instance Connect: an IAM-authorized API call pushes a temporary public key; you SSH in within 60 seconds. When using a key pair created in the EC2 console, save its private key at creation.
+5. Set metadata options to require IMDSv2 tokens or disable the metadata service entirely.
 
 | Action | Memory | Instance ID | Instance charges |
 |---|---|---|---|
@@ -112,7 +124,7 @@ Three EC2 features that change how an instance starts and how you reach it: hibe
 ### Remember
 
 - Hibernation: enable at launch, encrypted EBS root, Linux RAM under 150 GiB.
-- User data: 16 KB, runs as root, first boot only by default.
+- User data: 16 KB; Linux scripts run as root, first boot only by default, with repeated execution configurable.
 - Instance Connect key lives 60 seconds in instance metadata.
 
 > **Trap:** Hibernation can't be added to a running instance that was launched without it. It must be enabled at launch.

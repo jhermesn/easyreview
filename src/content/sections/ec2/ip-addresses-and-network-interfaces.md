@@ -39,6 +39,9 @@ facts:
   - id: split-horizon-dns
     text: "EC2 hostnames use split-horizon DNS: queried from inside the VPC they resolve to the private IP address, and a public DNS name resolves to the public IPv4 address from outside."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hostname-types.html
+  - id: public-ip-nat
+    text: "For EC2 internet access over IPv4, the instance uses its private address internally and the internet gateway translates traffic for its public IPv4 address."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#ip-addresses-and-nat
 cards:
   - id: ec2-077
     q: A licensed application is tied to a fixed public IP. If its EC2 instance fails, a standby instance must take over at the same address quickly. What fits?
@@ -80,13 +83,17 @@ cards:
     q: "Two instances in the same VPC talk using each other public DNS names. Does the traffic leave the VPC?"
     a: "No. Inside the VPC the public DNS name resolves to the private IP address, so traffic stays private."
     facts: [split-horizon-dns]
+  - id: ec2-117
+    q: "An EC2 instance has a public IPv4 address, but its operating system shows its private IPv4 address. Which VPC component handles translation for internet traffic?"
+    a: "The internet gateway. The instance uses its private address internally; public IPv4 translation happens at the gateway."
+    facts: [public-ip-nat]
 ---
 An EC2 instance's network identity is its network interfaces and their addresses. Knowing which addresses stay and which can move answers most failover and licensing questions. [EC2 instance IP addressing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html)
 
 ### How it works
 
 1. Each instance has a primary network interface with a private IPv4 address from its subnet.
-2. It can also get a public IPv4 address, or an Elastic IP address you own and can move.
+2. It can also get a public IPv4 address, or an Elastic IP address you own and can move. The operating system uses the private address; the internet gateway translates IPv4 traffic for the public address.
 3. Extra network interfaces can be attached in the same AZ and moved between instances with their addresses.
 4. Enhanced networking and EBS optimization raise network and storage performance.
 
@@ -106,7 +113,7 @@ An EC2 instance's network identity is its network interfaces and their addresses
 
 ### Remember
 
-- Private IPv4 always; public IPv4 and IPv6 optional.
+- Private IPv4 always; public IPv4 and IPv6 optional. Public IPv4 translation takes place at the internet gateway.
 - Network interfaces stay within one AZ.
 - Termination protection doesn't stop an OS-initiated terminate.
 

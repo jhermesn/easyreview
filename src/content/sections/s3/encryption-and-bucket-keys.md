@@ -49,8 +49,8 @@ facts:
     text: Bucket Keys can reduce KMS request costs by up to 99%.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html#bucket-key
   - id: bucket-key-existing
-    text: Enabling Bucket Keys affects new objects; existing objects need a copy operation to use them.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html#configure-bucket-key
+    text: "Turning on Bucket Keys for a bucket does not change existing objects. For eligible SSE-KMS objects, UpdateObjectEncryption enables a Bucket Key without copying object data."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/update-sse-encryption.html
   - id: bucket-key-context
     text: Bucket Keys use the bucket ARN as encryption context, so policies expecting an object ARN must
       be updated.
@@ -93,6 +93,15 @@ facts:
   - id: kms-same-region
     text: "With SSE-KMS, the KMS key must be in the same AWS Region as the S3 bucket."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html
+  - id: bucket-key-audit
+    text: "S3 Bucket Keys reduce the number of KMS CloudTrail records for SSE-KMS objects because S3 reuses temporary key material instead of contacting KMS for every request."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html#bucket-key-cloudtrail
+  - id: aws-managed-s3-key
+    text: "SSE-KMS can use the AWS managed key aws/s3 when no customer managed key is supplied."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#sse-kms-cross-account-operations
+  - id: default-encryption-existing
+    text: "Setting bucket default encryption leaves the encryption of objects already stored in the bucket unchanged."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-bucket-encryption.html
 cards:
   - id: s3-014
     q: What encryption does S3 apply to a new upload with no encryption settings?
@@ -106,16 +115,9 @@ cards:
       - sse-mandatory
       - sse-existing
   - id: s3-015
-    q: What do S3 Bucket Keys change for SSE-KMS?
-    a: They reduce KMS request traffic with short-lived bucket-level keys, reducing KMS request costs by
-      up to 99%. The encryption context uses the bucket ARN. Existing objects need copying, and
-      DSSE-KMS is unsupported.
-    facts:
-      - bucket-key-cost
-      - bucket-key-cost-saving
-      - bucket-key-context
-      - bucket-key-existing
-      - bucket-key-dsse
+    q: "An Amazon S3 bucket uses SSE-KMS. What do Bucket Keys change, and how can existing eligible objects use them?"
+    a: "Bucket Keys reduce KMS calls, with up to 99% request-cost savings. UpdateObjectEncryption can enable them on existing eligible SSE-KMS objects without copying. The context becomes the bucket ARN; DSSE-KMS is unsupported."
+    facts: [bucket-key-cost, bucket-key-cost-saving, bucket-key-context, bucket-key-existing, bucket-key-dsse]
   - id: s3-016
     q: An S3 bucket must reject uploads that do not explicitly request SSE-KMS. What enforces this?
     a: A bucket-policy deny on PutObject when s3:x-amz-server-side-encryption is not aws:kms. Default
@@ -159,6 +161,18 @@ cards:
     a: "No. The KMS key must be in the **same Region as the bucket**. Use a KMS key in eu-west-1."
     trap: true
     facts: [kms-same-region]
+  - id: s3-175
+    q: "An Amazon S3 audit sees fewer AWS KMS CloudTrail records after Bucket Keys are enabled for SSE-KMS. What explains the change?"
+    a: "Bucket Keys reduce calls to KMS, so fewer corresponding KMS events appear in CloudTrail."
+    facts: [bucket-key-audit]
+  - id: s3-177
+    q: "An Amazon S3 application needs SSE-KMS within one account without creating a customer managed key. Which key can it use?"
+    a: "The AWS managed KMS key aws/s3."
+    facts: [aws-managed-s3-key]
+  - id: s3-178
+    q: "An Amazon S3 bucket changes its default encryption to SSE-KMS. Does that change objects already stored there?"
+    a: "No. Existing objects keep their encryption settings; changing the default does not update them."
+    facts: [default-encryption-existing]
 ---
 S3 server-side encryption protects object data at rest, meaning while stored on disk. S3 encrypts data during storage and decrypts it for authorized reads; the encryption option determines who controls the keys.
 
@@ -167,7 +181,7 @@ S3 server-side encryption protects object data at rest, meaning while stored on 
 1. Choose S3-managed keys for the base encryption behavior or AWS Key Management Service (KMS) keys for key access control and auditing. Previously unencrypted objects need a separate copy operation to encrypt them.
 2. Use a customer managed KMS key when sharing SSE-KMS objects across accounts. The AWS managed S3 key cannot provide that cross-account sharing.
 3. Set bucket default encryption for uploads without explicit encryption settings. Enforce strict requirements with a bucket-policy deny, because request settings can override the default.
-4. Enable Bucket Keys for SSE-KMS request savings.
+4. Enable Bucket Keys for SSE-KMS request savings. Existing eligible SSE-KMS objects can use `UpdateObjectEncryption` to enable Bucket Keys without a data copy. Fewer KMS calls also mean fewer KMS CloudTrail events.
 5. If SSE-C is required, provide the key over HTTPS. S3 does not keep that key.
 
 | Option | Key control |
@@ -185,6 +199,8 @@ S3 server-side encryption protects object data at rest, meaning while stored on 
 
 ### Remember
 
+- Changing bucket default encryption leaves existing objects unchanged.
+- SSE-KMS can use the AWS managed `aws/s3` key; cross-account sharing requires a customer managed key.
 - New uploads have base SSE-S3 encryption using AES-256 since January 2023; it cannot be disabled and adds no encryption charge.
 - Bucket Keys can reduce KMS request costs by up to 99%; savings are not guaranteed for each workload.
 - Bucket Keys do not support DSSE-KMS.

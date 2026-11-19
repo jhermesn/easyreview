@@ -30,6 +30,9 @@ facts:
   - id: private-auth
     text: Private ECR push and pull operations require Docker client authentication and IAM permissions.
     source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html
+  - id: scan-on-push-filters
+    text: "With Amazon ECR basic scanning, only repositories matched by scan-on-push filters scan newly pushed images automatically; unmatched repositories require a manual scan."
+    source: https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning-filters.html
 cards:
   - id: ecr-002
     q: A team must prevent release tags in an ECR repository from being overwritten. Which setting
@@ -40,6 +43,10 @@ cards:
       - immutable-tags
       - image-identifiers
       - digest-definition
+  - id: ecr-027
+    q: "A team pushes images to an Amazon ECR repository using basic scanning, but the repository matches no scan-on-push filter. Are the images scanned automatically?"
+    a: "No. The repository uses manual scanning until it matches a scan-on-push filter."
+    facts: [scan-on-push-filters]
 ---
 Amazon ECR stores container images in repositories. A registry is the collection of repositories for an account. An image tag is a name used to select an image; an image digest is the SHA-256 content identifier of its manifest, the image description used to retrieve it.
 
@@ -60,6 +67,8 @@ Amazon ECR stores container images in repositories. A registry is the collection
 - If the question says pull a specific image manifest, think image digest, because it identifies the manifest by its SHA-256 digest.
 
 ### Remember
+
+- With basic scanning, configure scan-on-push filters for automatic scans. Unmatched repositories require manual scans.
 
 - CreateRepository defaults to `MUTABLE`.
 - Reusing an immutable tag returns `ImageTagAlreadyExistsException`.

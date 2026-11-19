@@ -90,6 +90,7 @@ AWS DataSync copies files and objects over the network, fast and with checks, so
 
 ### Remember
 
+
 - Sources: NFS, SMB, HDFS, object storage, other clouds. Targets: S3, EFS, all FSx types.
 - Agent needed for on-premises and other clouds; none between AWS services in one account.
 - TLS in transit, integrity verification, incremental runs, schedules, bandwidth limits.

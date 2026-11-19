@@ -18,6 +18,12 @@ facts:
   - id: dxgw-no-transit
     text: A Direct Connect gateway doesn't let its gateway associations send traffic to each other, so it doesn't route VPC to VPC between attached virtual private gateways.
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-gateways-intro.html
+  - id: connection-costs
+    text: "Direct Connect billing combines provisioned port time with data sent out of AWS; the selected connection capacity affects the port price, and an idle provisioned port still incurs charges."
+    source: https://aws.amazon.com/directconnect/pricing/
+  - id: partner-extension
+    text: "A Direct Connect Partner can provide the network extension from an office or data center to a Direct Connect location."
+    source: https://aws.amazon.com/directconnect/faqs/
 cards:
   - id: direct-connect-009
     q: A company needs a 200 Mbps Direct Connect link. Can it order a dedicated connection from AWS at that speed?
@@ -37,12 +43,20 @@ cards:
     a: "No. A Direct Connect gateway doesn't route between its associations; use VPC peering or transit gateway peering for VPC-to-VPC traffic."
     trap: true
     facts: [dxgw-no-transit]
+  - id: direct-connect-017
+    q: "A company leaves an AWS Direct Connect port provisioned during a month with no traffic. Does its port charge stop?"
+    a: "No. Provisioned port time is billable even while idle. Data transfer out is a separate charge."
+    facts: [connection-costs]
+  - id: direct-connect-018
+    q: "A company wants AWS Direct Connect but its data center is outside a Direct Connect location. Who can extend the network to that location?"
+    a: "A Direct Connect Partner can extend the company network to the location."
+    facts: [partner-extension]
 ---
 Direct Connect choices come down to speed, who provisions the link, and how far it reaches. [Dedicated and hosted connections](https://docs.aws.amazon.com/directconnect/latest/UserGuide/WorkingWithConnections.html)
 
 ### How it works
 
-1. Order a dedicated connection from AWS (1 to 400 Gbps) or a hosted connection from a Partner (50 Mbps to 25 Gbps).
+1. Order a dedicated connection from AWS (1 to 400 Gbps) or a hosted connection from a Partner (50 Mbps to 25 Gbps). A Direct Connect Partner can extend the office or data center network to the connection location.
 2. Bundle several connections at one location into a LAG for more bandwidth.
 3. Create virtual interfaces; attach a private or transit VIF to a Direct Connect gateway.
 4. Associate virtual private gateways or transit gateways in any Region with that Direct Connect gateway.
@@ -55,6 +69,8 @@ Direct Connect choices come down to speed, who provisions the link, and how far 
 | One link to VPCs in many Regions | Direct Connect gateway |
 | Survive a location failure | Connections at two or more locations |
 
+Budget for provisioned port time and data transfer out of AWS. Connection capacity affects the port price; keeping a port provisioned incurs charges even without traffic. [Pricing](https://aws.amazon.com/directconnect/pricing/)
+
 ### Exam cues
 
 - If the question says less than 1 Gbps, think hosted connection.
@@ -65,6 +81,7 @@ Direct Connect choices come down to speed, who provisions the link, and how far 
 
 - Dedicated: 1, 10, 100, 400 Gbps. Hosted: 50 Mbps to 25 Gbps.
 - LAG: same location, LACP.
+- Port time remains billable while a provisioned connection is idle.
 - Direct Connect gateway: global, but no VPC-to-VPC routing.
 
 > **Trap:** Some practice answers say a Direct Connect gateway gives transitive routing between attached VPCs. It doesn't: associations on the same gateway can't send traffic to each other.

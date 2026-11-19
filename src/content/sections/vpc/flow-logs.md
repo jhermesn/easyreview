@@ -26,8 +26,7 @@ facts:
       arriving after connection closure.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields
   - id: flow-interval
-    text: The default maximum aggregation interval is ten minutes; one minute is selectable, and Nitro
-      instance interfaces aggregate in one minute or less.
+    text: "The aggregation interval is the capture window for combining a flow into a record, not a publication schedule. Its maximum defaults to ten minutes, can be set to one minute, and is one minute or less for Nitro instance interfaces. Processing and delivery take additional time."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-aggregration-interval
   - id: flow-delayed
     text: Flow logs are not real-time streams and can take several minutes to begin collecting and
@@ -84,8 +83,7 @@ cards:
   - id: vpc-024
     q: What aggregation intervals are available for VPC Flow Logs, and what happens on Nitro instance
       interfaces?
-    a: The default maximum is ten minutes, with one minute selectable. Nitro instance interfaces
-      aggregate in one minute or less regardless of the selected maximum.
+    a: "Ten minutes by default, or one minute when selected. Nitro instance interfaces aggregate in one minute or less. This capture window does not guarantee delivery at that interval."
     facts:
       - flow-interval
   - id: vpc-053
@@ -129,7 +127,7 @@ VPC Flow Logs record information about IP traffic at network interfaces. They he
 
 ### Remember
 
-- Default maximum aggregation interval: ten minutes. One minute is selectable.
+- Default maximum aggregation interval: ten minutes. One minute is selectable. This is a capture window; publication adds delay.
 - Nitro instance interfaces aggregate in one minute or less. Nitro is the EC2 platform used by those instances.
 - Collection and publication can take several minutes; this is not a real-time stream.
 - Out-of-path collection does not affect traffic throughput or latency.

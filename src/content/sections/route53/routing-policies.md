@@ -22,7 +22,7 @@ facts:
     text: Recursive resolvers cache answers for the record TTL, so a cached answer can serve requests without another Route 53 query.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-weighted.html#rrsets-values-weighted-ttl
   - id: latency
-    text: Latency routing selects a configured AWS Region using latency measurements collected over time between users and AWS data centers.
+    text: "Route 53 latency routing compares configured Regions using measurements collected over time between users and AWS data centers. An endpoint outside AWS can have substantially different latency, even when it is near an AWS Region."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-latency.html#routing-policy-latency
   - id: geo
     text: Geolocation routing uses user location by continent, country or US state; the smallest overlapping location takes precedence.
@@ -201,6 +201,8 @@ Route 53 selects DNS answers using routing policies. DNS, the Domain Name System
 | Geoproximity | Distance between user and resources, adjusted by bias |
 | IP-based | User IP ranges in a CIDR collection |
 | Multivalue answer | Up to eight healthy records |
+
+Latency routing uses measurements to AWS data centers, which may differ from actual latency to endpoints outside AWS.
 
 A bias expands or shrinks the geographic area served by a geoproximity resource. A CIDR block is a compact way to describe an IP address range.
 

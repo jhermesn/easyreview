@@ -19,7 +19,7 @@ facts:
     text: A presigned URL grants time-limited access to download or upload a specific S3 object without changing the bucket policy and without the user needing AWS credentials.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html#using-presigned-url
   - id: presign-creator
-    text: A presigned URL uses the credentials and permissions of the IAM principal that created it, and works only if that principal can perform the operation.
+    text: "Valid AWS credentials are sufficient to create a presigned URL, but using it succeeds only when its signer has permission for the requested operation."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html#who-presigned-url
   - id: presign-expiry
     text: Presigned URLs from the console last 1 minute to 12 hours, and up to 7 days from the AWS CLI or SDKs; a URL signed with temporary credentials expires when those credentials expire.
@@ -54,13 +54,17 @@ cards:
     q: A company wants S3 presigned URLs to work only from its corporate network. How?
     a: "Add an `aws:SourceIp` condition (or `aws:SourceVpce` for VPC endpoints) to the bucket policy or the signer's IAM policy."
     facts: [presign-restrict]
+  - id: s3-189
+    q: "An application generates an Amazon S3 presigned GET URL using a role that lacks object-read permission. Does generating the URL prove that the download will work?"
+    a: "No. Valid credentials can create the URL, but using it requires the signer to have permission to read the object."
+    facts: [presign-creator]
 ---
 Two ways to share S3 data without opening the bucket: Requester Pays moves the bill to whoever downloads, and presigned URLs give one person temporary access to one object. [Requester Pays buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html)
 
 ### How it works
 
 1. Requester Pays: the owner enables it on the bucket; requesters authenticate and send `x-amz-request-payer` to accept charges.
-2. Presigned URL: a backend with permission signs a URL for one object, one HTTP method and an expiry.
+2. Presigned URL: a backend signs a URL for one object, one HTTP method and an expiry. Successful signing does not prove access; the signer must have permission when the URL is used.
 3. Anyone holding the URL can use it until it expires or the signing credentials stop being valid.
 
 ### Exam cues

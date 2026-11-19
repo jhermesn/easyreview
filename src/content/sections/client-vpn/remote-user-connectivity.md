@@ -91,6 +91,12 @@ facts:
     text: Client VPN Quickstart creates a VPC authorization grant, target subnet associations and VPC
       routes automatically.
     source: https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-endpoint-create.html
+  - id: hourly-charges
+    text: "AWS Client VPN bills each endpoint association and each client VPN connection by the hour; internet data transfer and optional logging add separate charges."
+    source: https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html#what-is-pricing
+  - id: internet-access
+    text: "In the public-subnet Client VPN internet-access setup, clients need an endpoint route and authorization for 0.0.0.0/0, a subnet route to an attached internet gateway, and outbound security-group access."
+    source: https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/how-it-works.html#scenario-internet
 diagrams:
   - id: client-vpn-subnet-path
     title: Subnet-based remote access path
@@ -210,6 +216,14 @@ cards:
       - route-consistency
       - routing
       - authorization
+  - id: client-vpn-012
+    q: "For AWS Client VPN remote access, which resources incur hourly charges even before considering data transfer?"
+    a: "Each endpoint association and each client VPN connection. Budget separately for internet data transfer and enabled logging."
+    facts: [hourly-charges]
+  - id: client-vpn-013
+    q: "AWS Client VPN users can reach their VPC but need internet access through an associated public subnet. What network configuration is required?"
+    a: "An endpoint route and authorization rule for `0.0.0.0/0`, a subnet route to an attached internet gateway, and security-group rules allowing outbound traffic."
+    facts: [internet-access]
 ---
 AWS Client VPN gives individual users encrypted access from their devices to AWS and connected on-premises resources. It uses an OpenVPN-based client and Transport Layer Security (TLS), the protocol that encrypts the connection. Site-to-Site VPN connects networks through IPsec, a suite of network encryption protocols.
 
@@ -240,6 +254,9 @@ Direct Transit Gateway attachment preserves client source IPs. Source network ad
 - If the question says direct remote access to networks on a Transit Gateway, think Transit Gateway-associated Client VPN, because it can attach directly without an intermediate VPC.
 
 ### Remember
+
+- Internet access through a public target subnet needs an endpoint default route and authorization, plus a subnet route to an internet gateway and outbound security-group access.
+- Endpoint associations and client connections are billed hourly; data transfer and optional logging can add charges.
 
 - Default transport and port: UDP and 443. TCP and port 1194 are also supported.
 - Split tunnel is disabled by default. Updating its endpoint routes resets all client connections.

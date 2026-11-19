@@ -31,7 +31,7 @@ facts:
     text: Transfer Acceleration suits customers uploading to a central bucket from around the world, regular cross-continent transfers of gigabytes to terabytes, and uploads that can't use the available internet bandwidth.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html#transfer-acceleration-why-use
   - id: ta-endpoint
-    text: Transfer Acceleration must be enabled on the bucket, needs a DNS-compliant bucket name without periods, and is used through the bucket-name.s3-accelerate.amazonaws.com endpoint.
+    text: "Transfer Acceleration requires an enabled bucket with a DNS-compliant name without periods. Use bucket-name.s3-accelerate.amazonaws.com, or bucket-name.s3-accelerate.dualstack.amazonaws.com for IPv6."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html#transfer-acceleration-requirements
   - id: ta-cost
     text: Transfer Acceleration can add data transfer charges on top of standard S3 pricing.
@@ -122,6 +122,6 @@ Amazon S3 scales per prefix, so performance problems are usually design problems
 
 - At least 3,500 writes and 5,500 reads per second per prefix; unlimited prefixes.
 - Single PUT up to 5 GB; multipart up to 50 TB, parts 1 to 10,000.
-- Transfer Acceleration: enable on bucket, `s3-accelerate` endpoint, no periods in the name, extra charges may apply.
+- Transfer Acceleration: enable on bucket, `s3-accelerate` endpoint, no periods in the name, extra charges may apply. IPv6 clients use `bucket-name.s3-accelerate.dualstack.amazonaws.com`.
 
 > **Trap:** Abandoned multipart uploads keep their parts until completed or stopped. Add a lifecycle rule that aborts incomplete multipart uploads.

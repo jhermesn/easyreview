@@ -54,6 +54,9 @@ facts:
   - id: smb-encryption
     text: "You can require SMB encryption for the whole file system or for selected file shares, so only clients that support SMB encryption can connect."
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/encryption-in-transit.html
+  - id: kms-at-rest
+    text: "Amazon FSx for Windows File Server automatically encrypts file system data and metadata at rest using keys managed in AWS KMS."
+    source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/encryption-at-rest.html#EFSKMS
 diagrams:
   - id: fsx-windows-multi-az
     title: Multi-AZ failover
@@ -116,6 +119,10 @@ cards:
     q: "An FSx for Windows File Server share holds many near-identical user files, and storage costs keep growing. Which feature reduces them?"
     a: "**Data Deduplication**. It stores duplicated portions of the data only once."
     facts: [dedup]
+  - id: fsx-for-windows-013
+    q: "A company chooses Amazon FSx for Windows File Server and requires encryption of stored files. How is encryption at rest provided?"
+    a: "Automatically through AWS KMS keys. FSx encrypts file system data and metadata at rest without application changes."
+    facts: [kms-at-rest]
 ---
 
 Amazon FSx for Windows File Server provides managed Windows file servers for shared files. Clients use Server Message Block (SMB), a network file-sharing protocol, and Microsoft Active Directory identifies users.
@@ -137,6 +144,8 @@ Amazon FSx for Windows File Server provides managed Windows file servers for sha
 - If the question says on-premises SMB access, think Direct Connect or Site-to-Site VPN, because either connects clients to the file system.
 
 ### Remember
+
+- File system data and metadata are encrypted at rest using AWS KMS keys.
 
 - SMB versions 2.0 through 3.1.1 are supported.
 - Multi-AZ failover typically takes less than 30 seconds; failback is automatic after recovery.

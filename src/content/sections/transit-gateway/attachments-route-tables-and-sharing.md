@@ -52,8 +52,8 @@ facts:
     text: Appliance mode keeps a flow on the same Availability Zone for the appliance VPC attachment for the flow's lifetime.
     source: https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-az-overview
   - id: peering
-    text: Transit gateway peering attachments require static routes.
-    source: https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-route-table-peering
+    text: "AWS Transit Gateway peering connects transit gateways within one Region or across Regions, including gateways in different accounts; traffic needs static routes pointing to the peering attachment."
+    source: https://docs.aws.amazon.com/vpc/latest/tgw/tgw-peering.html
   - id: multicast
     text: "Transit Gateway can route multicast traffic between subnets of attached VPCs, acting as the multicast router for senders and receivers."
     source: https://docs.aws.amazon.com/vpc/latest/tgw/tgw-multicast-overview.html#tgw-multicast-overview
@@ -95,8 +95,8 @@ cards:
     a: "Enable appliance mode on the VPC attachment."
     facts: [appliance]
   - id: transit-gateway-006
-    q: What routes are required for a Transit Gateway peering attachment?
-    a: "Create static routes pointing to the peering attachment."
+    q: Two AWS Transit Gateways are in different accounts and Regions. Can they be connected, and what routes are required?
+    a: Use a transit gateway peering attachment and static routes pointing to it.
     facts: [peering]
   - id: transit-gateway-007
     q: "Can an AWS Transit Gateway attachment reach another VPC without the required VPC subnet routes?"
@@ -131,6 +131,8 @@ AWS Transit Gateway is a Regional virtual router that connects virtual private c
 - If the question says connect peered transit gateways, think static routes, because peering attachments require them.
 
 ### Remember
+
+- Transit gateway peering can cross accounts and Regions; it requires static routes to the peering attachment.
 
 - An attachment associates with at most one gateway route table but can propagate to one or more tables.
 - A static route takes priority over a propagated route with the same destination. A blackhole route drops matching traffic.

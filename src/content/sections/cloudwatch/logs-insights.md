@@ -35,6 +35,9 @@ facts:
   - id: insight-metric
     text: Metric math's INSIGHT_RULE_METRIC function turns a Contributor Insights rule into a metric, so an alarm can fire, for example, when the top contributor's share of the total is too high.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html
+  - id: log-anomaly-detection
+    text: "CloudWatch Logs can learn normal log patterns and flag deviations with a continuous log anomaly detector or an on-demand Logs Insights anomaly detection query."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/LogsAnomalyDetection.html
 cards:
   - id: cloudwatch-014
     q: A team wants the error count in CloudWatch logs from last week. Will a newly created metric
@@ -60,6 +63,10 @@ cards:
     q: A team must find which EC2 instance produces the most error log lines and alarm when one instance causes over half of them. What fits?
     a: A CloudWatch Contributor Insights rule on the logs, plus an alarm on INSIGHT_RULE_METRIC comparing the top contributor with the total.
     facts: [contributor-insights, insight-metric]
+  - id: cloudwatch-130
+    q: "A team wants CloudWatch Logs to find unusual log patterns without writing a rule for each error. Which feature fits?"
+    a: "Log anomaly detection. Use a detector for continuous monitoring or a Logs Insights anomaly detection query for an investigation."
+    facts: [log-anomaly-detection]
 ---
 CloudWatch Logs Insights searches stored log events to answer questions about past behavior. Use it when the evidence is already in the logs and a newly created metric filter would start too late.
 
@@ -71,6 +78,7 @@ CloudWatch Logs Insights searches stored log events to answer questions about pa
 4. Use automatically discovered fields in supported logs and JSON. Field indexes, lookup structures for selected fields, can reduce how much data a query scans.
 5. Inspect results or add a query to a dashboard for repeated viewing.
 6. Use a scheduled query to run log analysis regularly and deliver results to a destination such as Amazon S3.
+7. For unexpected log patterns, use log anomaly detection. A detector monitors continuously; a Logs Insights anomaly detection query analyzes logs on demand.
 
 ### Exam cues
 

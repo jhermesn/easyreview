@@ -65,6 +65,9 @@ facts:
     text: Malware Protection for S3 requires a service role with permissions for the managed EventBridge
       rule and S3 objects; KMS access is needed for supported KMS-encrypted objects.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/malware-protection-s3-iam-policy-prerequisite.html#malware-protection-s3-iam-policy-prerequisite
+  - id: invited-members
+    text: "Amazon GuardDuty administrator accounts can manage members added through AWS Organizations or members that accept an administrator invitation."
+    source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html#delegated_admin_important
 cards:
   - id: guardduty-001
     q: Which AWS service detects potentially compromised credentials and unauthorized cryptomining by analyzing AWS activity?
@@ -104,6 +107,10 @@ cards:
     q: "A team wants to scan newly uploaded Amazon S3 objects for malware. Which GuardDuty feature fits?"
     a: "GuardDuty Malware Protection for S3 scans newly uploaded S3 objects."
     facts: [optional-malware]
+  - id: guardduty-034
+    q: "An Amazon GuardDuty administrator needs a member relationship with another account. Must membership use AWS Organizations?"
+    a: "No. Members can join through AWS Organizations or by accepting the GuardDuty administrator account's invitation."
+    facts: [invited-members]
 ---
 Amazon GuardDuty detects potential threats by analyzing AWS activity and threat intelligence. A finding is a report of a potential security issue, not proof that a resource is compromised.
 
@@ -132,6 +139,8 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 - If S3 malware scanning cannot access encrypted uploads, check the service role's EventBridge, S3, and KMS permissions.
 
 ### Remember
+
+- Multi-account membership can use AWS Organizations or accepted GuardDuty administrator invitations.
 
 - First-time foundational detection has a 30-day trial per Region.
 - Finding severity is 1.0 to 10.0; higher numbers indicate greater risk.

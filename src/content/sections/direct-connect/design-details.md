@@ -15,6 +15,12 @@ facts:
   - id: maximum-resiliency
     text: "Maximum resiliency uses separate connections ending on separate devices in more than one Direct Connect location, protecting against device, connection and full location failure."
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html#maximum_resiliency
+  - id: redundant-links
+    text: "AWS recommends a second Direct Connect connection for redundancy; without a backup Direct Connect link or configured IPsec VPN, a connection failure drops VPC traffic."
+    source: https://aws.amazon.com/directconnect/faqs/
+  - id: predictable-path
+    text: "Direct Connect avoids the public internet on the path to AWS resources, reducing exposure to bottlenecks and unexpected latency increases."
+    source: https://aws.amazon.com/directconnect/
 cards:
   - id: direct-connect-002
     q: Which AWS Direct Connect virtual interface types reach a VPC, public AWS services and transit gateways?
@@ -32,13 +38,21 @@ cards:
     q: "Critical workloads need Direct Connect to survive a device failure and the loss of a whole location. Which model fits?"
     a: "Maximum resiliency: separate connections on separate devices in at least two locations."
     facts: [maximum-resiliency]
+  - id: direct-connect-019
+    q: "An AWS Direct Connect link is the only path from a data center to a VPC. What should the architect add to maintain connectivity if the link fails?"
+    a: "A second Direct Connect connection or a configured backup IPsec VPN. Without a backup path, VPC traffic is dropped."
+    facts: [redundant-links]
+  - id: direct-connect-020
+    q: "A company needs a network path to AWS with less exposure to public internet bottlenecks and unexpected latency increases. Which connectivity service fits?"
+    a: "AWS Direct Connect. Its path to AWS resources bypasses the public internet."
+    facts: [predictable-path]
 ---
 AWS Direct Connect designs use virtual interfaces to reach different AWS destinations and backup paths to maintain connectivity when a connection fails. [Virtual interface types](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html#dx-vif-types) and [backup VPN](https://aws.amazon.com/directconnect/faqs/#high-availability-and-resilience--1f5cnkc)
 
 ### How it works
 
 1. Choose a virtual interface for the destination: private for a virtual private cloud (VPC), public for public AWS services, or transit for transit gateways through a Direct Connect gateway. [Interface types](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html#dx-vif-types)
-2. Configure a backup IPsec VPN to provide VPC connectivity if Direct Connect fails. [Backup VPN](https://aws.amazon.com/directconnect/faqs/#high-availability-and-resilience--1f5cnkc)
+2. Provide a second Direct Connect connection or configure a backup IPsec VPN to maintain VPC connectivity if the primary connection fails. Without either backup, the failure drops VPC traffic. [Backup VPN](https://aws.amazon.com/directconnect/faqs/#high-availability-and-resilience--1f5cnkc)
 3. For matching destination prefixes at a virtual private gateway, routes learned through Border Gateway Protocol (BGP) from Direct Connect take priority over Site-to-Site VPN routes, subject to endpoint health. [Route priority](https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-route-priority.html)
 4. For maximum resiliency, use separate connections on separate devices in more than one Direct Connect location. This protects against device, connection and full location failure. [Maximum resiliency](https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html#maximum_resiliency)
 
@@ -52,5 +66,7 @@ AWS Direct Connect designs use virtual interfaces to reach different AWS destina
 
 - Private interface: VPC. Public interface: public AWS services. Transit interface: transit gateways through a Direct Connect gateway.
 - Maximum resiliency uses more than one location and separate devices.
+- A second connection or configured VPN provides a backup path.
+- Bypassing the public internet reduces exposure to bottlenecks and unexpected latency increases.
 
 > **Trap:** A VPN backup does not automatically take priority over Direct Connect. At a virtual private gateway, Direct Connect BGP routes are preferred for matching prefixes, subject to endpoint health.

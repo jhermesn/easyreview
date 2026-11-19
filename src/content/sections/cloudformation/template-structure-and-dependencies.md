@@ -47,6 +47,9 @@ facts:
   - id: generated-names
     text: "If a template omits a resource name, CloudFormation generates a unique physical ID; custom names must be unique across active stacks, so a reused template must change or drop them."
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-name.html
+  - id: stack-updates
+    text: "A CloudFormation stack update compares the submitted template and parameters with the stack's current template and parameters to determine resource changes."
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-updatereplacepolicy.html#aws-attribute-updatereplacepolicy
 cards:
   - id: cloudformation-028
     q: Which section must a CloudFormation template contain, and what does it define?
@@ -90,6 +93,10 @@ cards:
     q: "A CloudFormation template sets BucketName: app-logs. Deploying it as a second stack in the same account fails. What change lets the template be reused?"
     a: "**Remove the custom name.** CloudFormation then generates a unique physical ID; custom names must be unique across active stacks."
     facts: [generated-names]
+  - id: cloudformation-159
+    q: "An AWS CloudFormation stack already manages an application environment. How should a team apply a revised template to that environment?"
+    a: "Update the existing stack with the revised template. CloudFormation uses differences from the stack's current template and parameters to determine resource changes."
+    facts: [stack-updates]
 diagrams:
   - id: cfn-dependency-order
     title: Create dependencies before their consumers
@@ -142,6 +149,7 @@ CloudFormation turns a JSON or YAML template into a stack, a group of resources 
 2. Supply optional inputs and logic using the sections below.
 3. Use `Ref` for a parameter value or a resource's identifying value, and `Fn::GetAtt` for a documented attribute. Use `Fn::Sub` to substitute string variables or `Fn::Join` to join strings with a separator.
 4. CloudFormation follows dependencies and runs independent operations in parallel. A referenced resource is created and updated first, then deleted last. Add `DependsOn` when the required order has no reference.
+5. To change an existing environment, update its stack with the revised template or parameters. CloudFormation compares them with the stack's current template and parameters to determine resource changes.
 
 | Section | Purpose |
 |---|---|
@@ -157,6 +165,7 @@ CloudFormation turns a JSON or YAML template into a stack, a group of resources 
 
 - If the question says a template must return a generated resource attribute, think `Fn::GetAtt`, because `Ref` returns the identifying value for that resource type.
 - If the question says two resources must be ordered without referencing each other, think `DependsOn`, because independent operations can run in parallel.
+- If the question says an existing environment needs revised resource definitions, think a stack update, because CloudFormation applies differences from the submitted template and parameters.
 
 ### Remember
 

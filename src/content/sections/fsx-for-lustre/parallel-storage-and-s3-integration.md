@@ -37,7 +37,7 @@ facts:
     text: Changes can be exported to a linked S3 repository by automatic export or an on-demand export task.
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-changed-data-meta-dra.html#export-changed-data-meta-dra
   - id: asynchronous
-    text: Automatic export sends file changes asynchronously after the application finishes modifying the file.
+    text: "FSx for Lustre automatic export sends changes asynchronously after a file is modified; adding a data repository through the console enables automatic export of new, changed and deleted files by default."
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html#create-dra-linked-data-repo
   - id: conflict
     text: FSx for Lustre does not prevent conflicting writes to the same file in both the file system and S3.
@@ -89,7 +89,7 @@ cards:
     facts: [replication]
   - id: fsx-for-lustre-005
     q: Does linking an S3 bucket to FSx for Lustre guarantee that file changes immediately appear in S3?
-    a: No. Configure automatic export or run an export task. Automatic export is asynchronous.
+    a: No. Automatic export is asynchronous. The console enables it by default for new repository associations; check its configuration or run an export task.
     trap: true
     facts: [export, asynchronous]
   - id: fsx-for-lustre-007
@@ -114,7 +114,7 @@ Amazon FSx for Lustre provides a managed high-performance file system for worklo
 2. Select a storage class. SSD provides low latency for the full dataset. Intelligent-Tiering moves data between storage tiers and can use an SSD read cache. HDD provides single-digit millisecond latency.
 3. Link an S3 data repository. Its objects appear as files, and a data repository association can import their metadata, such as file names and attributes.
 4. Mount the file system from EC2 using the Lustre client, or use the FSx for Lustre CSI driver with EKS. Applications process the files.
-5. To return changes to S3, configure automatic export or use an on-demand export task. Automatic export sends changes asynchronously after the application finishes modifying a file.
+5. To return changes to S3, use automatic export or an on-demand export task. The console enables automatic export of new, changed and deleted files by default when adding a repository. Automatic export sends changes asynchronously after the application finishes modifying a file.
 
 ### Exam cues
 
@@ -129,6 +129,7 @@ Amazon FSx for Lustre provides a managed high-performance file system for worklo
 
 - Persistent SSD and HDD replicate within one Availability Zone; Intelligent-Tiering replicates across multiple Availability Zones.
 - Lustre 2.10 and Scratch 1 do not support data repository associations or automatic export.
+- New console-created repository associations enable automatic export by default; check the settings when using another creation method.
 - File content loads from S3 on first access; later reads come from the file system.
 - Backups are supported only on persistent file systems that are not linked to S3.
 
