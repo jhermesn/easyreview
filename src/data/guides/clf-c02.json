@@ -94,7 +94,8 @@
               "text": "Resources to support the cloud migration journey",
               "sections": [
                 "cloud-adoption/migration-services",
-                "cloud-adoption/migration-planning-tools"
+                "cloud-adoption/migration-planning-tools",
+                "reference-architectures/data-center-migration"
               ]
             },
             {
@@ -115,7 +116,8 @@
                 "dms/basics",
                 "datasync/basics",
                 "snow-family/basics",
-                "transfer-family/basics"
+                "transfer-family/basics",
+                "reference-architectures/data-center-migration"
               ]
             }
           ]
@@ -215,7 +217,8 @@
               "kind": "skill",
               "text": "Recognizing the components of the AWS shared responsibility model",
               "sections": [
-                "shared-responsibility/security-of-and-in-the-cloud"
+                "shared-responsibility/security-of-and-in-the-cloud",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -471,7 +474,8 @@
                 "waf/basics",
                 "firewall-manager/basics",
                 "shield/basics",
-                "guardduty/basics"
+                "guardduty/basics",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -622,7 +626,8 @@
               "text": "Describing relationships among Regions, Availability Zones, and edge locations",
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
-                "global-infrastructure/more-essentials"
+                "global-infrastructure/more-essentials",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -632,7 +637,8 @@
               "sections": [
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
                 "global-infrastructure/more-essentials",
-                "ec2-auto-scaling/basics"
+                "ec2-auto-scaling/basics",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -705,7 +711,8 @@
               "text": "Recognizing that auto scaling provides elasticity",
               "sections": [
                 "ec2-auto-scaling/basics",
-                "application-auto-scaling/basics"
+                "application-auto-scaling/basics",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -713,7 +720,8 @@
               "kind": "skill",
               "text": "Identifying the purposes of load balancers",
               "sections": [
-                "elastic-load-balancing/basics"
+                "elastic-load-balancing/basics",
+                "reference-architectures/web-application-on-aws"
               ]
             }
           ]
@@ -739,7 +747,8 @@
               "text": "Database migration",
               "sections": [
                 "dms/basics",
-                "dms/schema-conversion-tool"
+                "dms/schema-conversion-tool",
+                "reference-architectures/data-center-migration"
               ]
             },
             {
@@ -758,7 +767,8 @@
               "sections": [
                 "rds/managed-vs-self-managed-databases",
                 "rds/more-essentials",
-                "aurora/basics"
+                "aurora/basics",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -784,7 +794,8 @@
               "text": "Identifying database migration tools (for example, AWS Database Migration Service [AWS DMS], AWS Schema Conversion Tool [AWS SCT])",
               "sections": [
                 "dms/basics",
-                "dms/schema-conversion-tool"
+                "dms/schema-conversion-tool",
+                "reference-architectures/data-center-migration"
               ]
             }
           ]
@@ -809,7 +820,8 @@
               "kind": "skill",
               "text": "Identifying the components of a VPC (for example, subnets, gateways)",
               "sections": [
-                "vpc/subnets-and-gateways"
+                "vpc/subnets-and-gateways",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -818,7 +830,8 @@
               "text": "Understanding security in a VPC (for example, network ACLs, security groups, Amazon Inspector)",
               "sections": [
                 "vpc/security-basics",
-                "inspector/basics"
+                "inspector/basics",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -826,7 +839,8 @@
               "kind": "skill",
               "text": "Understanding the purpose of Amazon Route 53",
               "sections": [
-                "route53/basics"
+                "route53/basics",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -836,7 +850,8 @@
               "sections": [
                 "site-to-site-vpn/basics",
                 "client-vpn/basics",
-                "direct-connect/basics"
+                "direct-connect/basics",
+                "reference-architectures/data-center-migration"
               ]
             }
           ]
@@ -860,7 +875,8 @@
               "kind": "skill",
               "text": "Identifying the uses for object storage",
               "sections": [
-                "s3/buckets-objects-and-durability"
+                "s3/buckets-objects-and-durability",
+                "reference-architectures/web-application-on-aws"
               ]
             },
             {
@@ -896,7 +912,8 @@
               "kind": "skill",
               "text": "Identifying cached file systems (for example, AWS Storage Gateway)",
               "sections": [
-                "storage-gateway/basics"
+                "storage-gateway/basics",
+                "reference-architectures/data-center-migration"
               ]
             },
             {
