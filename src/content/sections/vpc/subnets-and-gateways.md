@@ -22,8 +22,8 @@ facts:
     text: AWS recommends private subnets to protect AWS resources.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#configure-subnets
   - id: igw
-    text: An internet gateway is a horizontally scaled, redundant, highly available VPC component that allows communication between the VPC and the internet, for resources with a public IPv4 or IPv6 address.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#VPC_Internet_Gateway
+    text: "An internet gateway is a redundant, highly available VPC component for internet communication. Resources need a public IPv4 or public IPv6 address, an appropriate subnet route, and security controls that allow the traffic."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access
   - id: nat
     text: A NAT gateway lets instances in a private subnet connect to services outside the VPC while external services can't initiate connections to them; a public NAT gateway sits in a public subnet with an Elastic IP address.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#vpc-nat-gateway
@@ -40,7 +40,7 @@ facts:
     text: A VPC belongs to one Region and can have subnets in each of its Availability Zones; each subnet stays in one Availability Zone.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html
   - id: default-vpc
-    text: "Each Region has a default VPC with a public subnet in every Availability Zone, an internet gateway and DNS resolution turned on, so instances can launch there right away."
+    text: "AWS initially provides a default VPC in each Region with public default subnets, an internet gateway and DNS resolution enabled."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#default-vpc
   - id: vpc-quotas
     text: "Default quotas allow 5 VPCs per Region and 5 IPv4 CIDR blocks per VPC (adjustable to 50), and only one internet gateway can be attached to a VPC at a time."
@@ -89,7 +89,7 @@ cards:
     facts: [vpc-region]
   - id: vpc-049
     q: "What is the purpose of an internet gateway in Amazon VPC?"
-    a: "An internet gateway allows communication between a VPC and the internet for resources with a public IPv4 or IPv6 address."
+    a: "An internet gateway connects a VPC to the internet. Resources also need a public IPv4 or public IPv6 address, a route to the gateway and security controls that permit traffic."
     facts: [igw]
   - id: vpc-050
     q: "What makes a subnet public?"
@@ -118,7 +118,7 @@ Amazon VPC is your own isolated network in AWS. Inside it, subnets split the add
 
 ### Exam cues
 
-- If the question says web servers reachable from the internet, think public subnet with an internet gateway.
+- If the question says web servers reachable from the internet, think public subnet with an internet gateway, public addresses and permitted security rules, because a gateway alone does not allow traffic.
 - If the question says databases must not be reachable from the internet, think private subnet.
 - If the question says private instances need outbound internet only, think NAT gateway.
 
@@ -128,4 +128,4 @@ Amazon VPC is your own isolated network in AWS. Inside it, subnets split the add
 - AWS recommends private subnets to protect resources.
 - NAT gateway: managed by AWS. NAT instance: you manage it.
 
-> **Trap:** An internet gateway alone doesn't make an instance reachable. The subnet needs a route to it, and the instance needs a public IP address.
+> **Trap:** An internet gateway alone doesn't make an instance reachable. The subnet needs a route to it, the instance needs a public IPv4 or public IPv6 address, and security controls must permit the traffic.

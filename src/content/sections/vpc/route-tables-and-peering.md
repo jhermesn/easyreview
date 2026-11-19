@@ -39,9 +39,8 @@ facts:
       overlapping attachment routes are not propagated.
     source: https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html#tgw-vpc-attachments
   - id: nat-public
-    text: A public NAT gateway in a public subnet uses an Elastic IP and routes through an internet
-      gateway to support outbound internet access from private instances.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#vpc-nat-gateway
+    text: "A zonal public NAT gateway uses a public subnet and an Elastic IP for private-instance internet egress. It changes the instance source IPv4 address to its own private IPv4 address; the internet gateway maps that address to its Elastic IP. NAT reverses the translation for replies."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html
   - id: nat-private
     text: A private NAT gateway supports private connectivity, has no Elastic IP, and cannot provide
       internet egress through an internet gateway.
@@ -58,9 +57,8 @@ facts:
     text: A zonal NAT gateway starts with 5 Gbps of bandwidth and automatically scales up to 100 Gbps.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-basics.html#nat-gateway-basics
   - id: ipv6-egress
-    text: An egress-only internet gateway supports outbound IPv6 connections and their responses while
-      preventing unsolicited inbound IPv6 connections.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.html#egress-only-internet-gateway
+    text: "An egress-only internet gateway is horizontally scaled, redundant and highly available. It permits outbound IPv6 connections and their responses while blocking unsolicited inbound IPv6 connections."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.html
   - id: ipv6-route
     text: To use an egress-only internet gateway, add a route such as ::/0 targeting it.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.html#egress-only-internet-gateway-basics
@@ -71,8 +69,8 @@ facts:
     text: "Every route table has a local route for each VPC CIDR, so subnets in a VPC can reach each other by default; a more specific route than the local one must match a whole subnet CIDR and target a NAT gateway, network interface or Gateway Load Balancer endpoint."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/subnet-route-tables.html#route-table-routes
   - id: igw-nat
-    text: "For IPv4 an internet gateway performs the translation between an instance private address and its public IPv4 address; the instance itself only sees its private address."
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access
+    text: "For IPv4, an internet gateway translates an instance private address to its public IPv4 address; the instance sees its private address. IPv6 internet traffic uses the instance public IPv6 address directly, without this IPv4 address translation."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#ip-addresses-and-nat
   - id: peer-accounts
     text: "VPC peering can connect VPCs in different AWS accounts, in the same Region or in different Regions."
     source: https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html
@@ -152,6 +150,14 @@ cards:
     q: "Instances in peered VPCs call each other by public DNS hostname, and the traffic resolves to public IP addresses. How can the hostnames resolve to private IPs?"
     a: "Turn on **DNS resolution for the peering connection** (off by default). Public IPv4 DNS hostnames then resolve to private IPv4 addresses."
     facts: [peer-dns]
+  - id: vpc-091
+    q: "Does an Amazon VPC internet gateway translate a public IPv6 address the same way it translates an instance private IPv4 address?"
+    a: "No. IPv6 uses the assigned public IPv6 address directly; IPv4 uses address translation at the internet gateway."
+    facts: [igw-nat]
+  - id: vpc-094
+    q: "An Amazon VPC needs highly available outbound IPv6 internet access without unsolicited inbound connections. Which gateway fits?"
+    a: "An egress-only internet gateway. It is horizontally scaled, redundant and highly available."
+    facts: [ipv6-egress]
 diagrams:
   - id: vpc-direct-peering
     title: Peering needs routes on both sides
@@ -197,7 +203,7 @@ A VPC route table chooses where traffic goes. Each route pairs a destination add
 1. Find the subnet's route table. It uses the main table unless you explicitly associate another one.
 2. Match the destination using the most specific route. A CIDR block is an address range written with a prefix length; a longer matching prefix is more specific.
 3. For peering, request and accept the connection, add routes to the peer ranges on both sides, and permit traffic in the security controls.
-4. For private IPv4 internet egress, route to a public NAT gateway, which translates source addresses. It needs a public subnet, an Elastic IP address, and a path through an internet gateway.
+4. For private IPv4 internet egress, route to a zonal public NAT gateway. It replaces instance source addresses with its own private IPv4 address; the internet gateway maps that address to the gateway Elastic IP. Replies reverse the translation. A zonal public NAT gateway needs a public subnet.
 5. When using zonal NAT gateways, create one per AZ and route each AZ locally. An Availability Zone (AZ) is a separate location within a Region. For outbound-only IPv6, route to an egress-only internet gateway.
 
 | Path | Target or requirement |
@@ -219,6 +225,8 @@ A VPC route table chooses where traffic goes. Each route pairs a destination add
 ### Remember
 
 - Each subnet uses one route table; several subnets can share it.
+- IPv6 internet traffic uses public IPv6 addresses directly; IPv4 uses translation at the internet gateway.
+- An egress-only internet gateway is redundant, highly available and horizontally scaled.
 - Zonal NAT bandwidth scales automatically from 5 Gbps to 100 Gbps. NAT gateways have no security groups.
 - Peering does not share a peer's internet gateway, NAT, VPN, Direct Connect, or S3 gateway endpoint.
 

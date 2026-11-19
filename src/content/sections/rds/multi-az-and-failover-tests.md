@@ -49,6 +49,18 @@ facts:
   - id: cluster-failover-time
     text: "Multi-AZ DB cluster failover typically completes in under 35 seconds, once both readers have applied the outstanding transactions of the failed writer."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts-failover.html
+  - id: subnet-group-placement
+    text: "An RDS DB subnet group lists eligible VPC subnets; RDS selects a subnet and an IP address from that group when placing a DB instance."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Subnets
+  - id: cluster-instance-endpoint
+    text: "An RDS Multi-AZ DB cluster instance endpoint addresses one DB instance; writer and reader endpoints are better suited to connections that must follow failover."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts-connection-management.html#multi-az-db-clusters-concepts-connection-management-endpoints-ha
+  - id: cluster-engines
+    text: "The database engines available for an RDS Multi-AZ DB cluster are MySQL and PostgreSQL."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/create-multi-az-db-cluster.html
+  - id: cluster-endpoint-roles
+    text: "For an RDS Multi-AZ DB cluster, the cluster endpoint connects to the writer for reads and writes, while the reader endpoint sends read-only connections to reader instances."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts-connection-management.html#multi-az-db-clusters-concepts-connection-management-endpoint-types
 diagrams:
   - id: rds-instance-multi-az
     title: Multi-AZ DB instance connection and replication paths
@@ -137,6 +149,22 @@ cards:
     q: "An RDS for PostgreSQL workload needs faster failover than the 60 to 120 seconds of a Multi-AZ DB instance, plus readable standbys. Which RDS deployment fits?"
     a: "A **Multi-AZ DB cluster**: a writer and two readable replicas in three AZs. Failover is typically **under 35 seconds**."
     facts: [cluster-failover-time, failover-duration, cluster-topology]
+  - id: rds-088
+    q: "When creating an Amazon RDS DB instance in a VPC, what controls which subnets RDS can choose for placement?"
+    a: "The DB subnet group. It lists eligible VPC subnets from which RDS selects a subnet and IP address."
+    facts: [subnet-group-placement]
+  - id: rds-092
+    q: "An Amazon RDS Multi-AZ DB cluster application uses an individual instance endpoint for writes. Which endpoint better supports reconnecting after writer failover?"
+    a: "The cluster writer endpoint. It tracks the current writer; an instance endpoint identifies a particular DB instance."
+    facts: [cluster-instance-endpoint]
+  - id: rds-093
+    q: "A team choosing Amazon RDS needs a Multi-AZ DB cluster with readable replicas. Which database engines can it select?"
+    a: "MySQL or PostgreSQL. RDS Multi-AZ DB clusters support these two engines."
+    facts: [cluster-engines]
+  - id: rds-094
+    q: "An Amazon RDS Multi-AZ DB cluster serves order updates and read-only reports. Which endpoints should the application use?"
+    a: "The cluster writer endpoint for updates and the reader endpoint for reports. The reader endpoint creates read-only connections to reader instances."
+    facts: [cluster-endpoint-roles]
 ---
 
 Multi-AZ keeps database copies in separate Availability Zones (AZs), which are isolated locations within an AWS Region. It lets RDS move database service to another AZ after an infrastructure failure. The [RDS deployment models](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html#Concepts.MultiAZ) differ in whether their standby copies can serve reads.
@@ -144,9 +172,11 @@ Multi-AZ keeps database copies in separate Availability Zones (AZs), which are i
 ### How it works
 
 1. For a Multi-AZ DB instance, RDS maintains a synchronous standby: changes are copied as part of committing writes. The standby is in another AZ and does not accept application reads.
-2. A Multi-AZ DB cluster has a writer and two readable replicas across three AZs. It uses semisynchronous replication, where a replica acknowledges receipt before all replicas have applied the change.
+2. A Multi-AZ DB cluster supports MySQL or PostgreSQL and has a writer and two readable replicas across three AZs. It uses semisynchronous replication, where a replica acknowledges receipt before all replicas have applied the change.
 3. If a Multi-AZ DB instance suffers a qualifying outage, RDS promotes the standby and updates the database endpoint's DNS record. DNS maps the endpoint name to an address. Clients must resolve the endpoint and reconnect.
 4. To add availability to an existing Single-AZ instance, modify it to enable Multi-AZ. RDS initializes standby storage from a snapshot and enables synchronous replication. Allow for write-performance impact.
+5. Choose a DB subnet group to define the eligible VPC subnets for placement. RDS selects a subnet and an IP address from the group.
+6. For a Multi-AZ DB cluster, connect writes to the cluster writer endpoint and read-only work to the reader endpoint. These endpoints handle failover better than an endpoint tied to one DB instance.
 
 ### Exam cues
 

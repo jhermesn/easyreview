@@ -4,7 +4,7 @@ level: associate
 order: 30
 facts:
   - id: backup-scope
-    text: RDS automated backups capture the whole DB instance, not just an individual database.
+    text: "RDS backups and manual DB snapshots cover the DB instance storage, rather than only a selected database."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups
   - id: pitr-window
     text: RDS point-in-time recovery restores a DB instance to an available time within its backup
@@ -62,6 +62,12 @@ facts:
   - id: snapshots-outlive-instance
     text: "Final and manual DB snapshots are kept after the DB instance is deleted, independent of the backup retention period; automated backups are deleted with the instance unless you choose to retain them."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html
+  - id: snapshot-lazy-loading
+    text: "An RDS snapshot restore can become available while data still loads in the background; accessing data not yet loaded downloads it from Amazon S3."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html#restore_snapshot
+  - id: backup-s3-storage
+    text: "Automated RDS backups and manually created DB snapshots use Amazon S3 for backup storage."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupStorage
 cards:
   - id: rds-007
     q: An accidental table deletion is committed on an RDS Multi-AZ DB instance. Is failover sufficient
@@ -123,6 +129,18 @@ cards:
     a: "Automated backups are **deleted** with the instance. Manual and final snapshots are **kept** until you delete them."
     trap: true
     facts: [snapshots-outlive-instance]
+  - id: rds-087
+    q: "An Amazon RDS snapshot restore is available, but queries touching some data are slow. What recovery behavior should the team account for?"
+    a: "Lazy loading. Data continues loading from Amazon S3 after the instance becomes available, and access to unloaded data triggers a download."
+    facts: [snapshot-lazy-loading]
+  - id: rds-091
+    q: "Which AWS storage service holds Amazon RDS automated backups and manual DB snapshots?"
+    a: "Amazon S3. RDS uses it for backup storage."
+    facts: [backup-s3-storage]
+  - id: rds-097
+    q: "An Amazon RDS DB instance hosts several databases. Can a manual DB snapshot back up only one selected database?"
+    a: "No. A DB snapshot covers the DB instance storage, including its databases."
+    facts: [backup-scope]
 ---
 
 RDS backups provide earlier copies of a database for recovery after a data error. Point-in-time recovery (PITR) combines backups and transaction logs, which record database changes, to recover to an available time within the retention window. The [backup guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups) describes backups of the whole DB instance.
@@ -130,10 +148,11 @@ RDS backups provide earlier copies of a database for recovery after a data error
 ### How it works
 
 1. Set automated backup retention. A value of 0 disables automated backups for a DB instance; changing between 0 and a nonzero value causes an outage.
-2. RDS takes backups and uploads transaction logs to Amazon S3 every five minutes. Check `LatestRestorableTime` before selecting a recovery point.
+2. RDS stores automated backups and manual DB snapshots in Amazon S3, and uploads transaction logs every five minutes. Check `LatestRestorableTime` before selecting a recovery point.
 3. Use PITR to restore to an available time before the error. RDS creates a new DB instance and leaves the source unchanged.
 4. Preserve a manual or final snapshot when deleting an instance if you need a lasting recovery copy. Automated backups require an explicit retain choice to survive deletion for their retention period.
 5. For supported DB instances, cross-Region automated backup replication copies snapshots and transaction logs to a destination Region. Multi-AZ DB clusters do not support this feature.
+6. A snapshot restore can be available before all data has loaded from Amazon S3. Include this background loading and its effect on queries when assessing recovery readiness.
 
 ### Exam cues
 
@@ -146,6 +165,6 @@ RDS backups provide earlier copies of a database for recovery after a data error
 - DB instance retention: 0 to 35 days. Multi-AZ DB cluster retention: 1 to 35 days.
 - New DB instance defaults: one day through API/CLI, seven days through the console.
 - Transaction log upload interval: five minutes. Use the actual `LatestRestorableTime` for recovery.
-- Automated backups cover the DB instance, rather than a selected table or database.
+- Automated backups and manual DB snapshots cover DB instance storage, rather than a selected table or database.
 
 > **Trap:** Multi-AZ availability does not supply an earlier database state. A committed mistake is copied to the standby; restore a backup from before the mistake.

@@ -25,7 +25,7 @@ facts:
     text: Spot Instances use spare EC2 capacity at steep discounts and suit applications that are flexible about when they run and can be interrupted, such as batch jobs, data analysis and background processing.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html#using-spot-instances
   - id: spot-notice
-    text: Amazon EC2 issues a Spot Instance interruption notice two minutes before it stops or terminates the instance.
+    text: "EC2 Spot interruption notices are best effort: stop and termination notices give two minutes of warning, while a hibernation notice arrives as hibernation begins."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html#spot-instance-termination-notices
   - id: dedicated-host
     text: A Dedicated Host is a physical server fully dedicated to your instances, which lets you bring per-socket, per-core or per-VM software licenses.
@@ -92,7 +92,7 @@ cards:
     facts: [capacity-reservations]
   - id: ec2-042
     q: Should a production database that must never stop run on Spot Instances to save money?
-    a: No. Spot Instances can be interrupted with two minutes' notice. Use On-Demand, Savings Plans or Reserved Instances.
+    a: No. Spot capacity can be interrupted, and interruption notices are best effort. Use On-Demand capacity with a suitable discount if needed.
     trap: true
     facts: [spot, spot-notice]
   - id: ec2-043
@@ -150,7 +150,7 @@ Amazon EC2 charges the same instance in different ways depending on how much you
 
 1. Start with On-Demand while usage is unknown.
 2. Cover steady usage with Savings Plans; AWS recommends them over Reserved Instances. [Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html#what-is-savings-plans)
-3. Move interruptible work to Spot, which warns two minutes before an interruption. [Spot interruption notices](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html#spot-instance-termination-notices)
+3. Move fault-tolerant work to Spot. Notices are best effort; stop and termination notices give two minutes, while hibernation begins immediately. [Spot interruption notices](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html#spot-instance-termination-notices)
 4. Use Dedicated Hosts when licenses are tied to sockets or cores.
 
 ### Exam cues
@@ -164,7 +164,7 @@ Amazon EC2 charges the same instance in different ways depending on how much you
 ### Remember
 
 - Savings Plans and RIs: 1 or 3 years, up to 72% off.
-- Spot: two-minute interruption notice.
+- Spot notices: best effort; two minutes for stop or termination, immediate hibernation.
 - Savings Plans payment: All Upfront, Partial Upfront or No Upfront.
 - On-Demand: per second, 60-second minimum.
 - Spot: up to 90% off.

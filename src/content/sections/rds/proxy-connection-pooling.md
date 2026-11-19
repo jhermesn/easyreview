@@ -37,6 +37,15 @@ facts:
   - id: proxy-endpoints
     text: "A proxy default endpoint is provisioned across two Availability Zones chosen from its subnets; up to 20 additional endpoints can be added per proxy."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html
+  - id: proxy-engine-support
+    text: "RDS Proxy supports eligible versions of RDS for MariaDB, MySQL, PostgreSQL and SQL Server, plus Aurora MySQL and Aurora PostgreSQL."
+    source: https://aws.amazon.com/rds/proxy/
+  - id: proxy-managed-scaling
+    text: "RDS Proxy is fully managed and automatically scales its capacity with application demand."
+    source: https://aws.amazon.com/rds/proxy/
+  - id: proxy-client-tls
+    text: "Clients can require TLS/SSL when connecting to an RDS Proxy endpoint; the proxy can accept a newer TLS version than its underlying database."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html#rds-proxy-security.tls
 diagrams:
   - id: rds-proxy-client-backend
     title: Client connections and shared database connections
@@ -114,6 +123,18 @@ cards:
     trap: true
     facts:
       - load-shedding
+  - id: rds-085
+    q: "A team is choosing RDS Proxy for an Amazon RDS for Oracle database. Is that engine supported?"
+    a: "No. RDS Proxy supports eligible RDS MariaDB, MySQL, PostgreSQL and SQL Server versions, plus Aurora MySQL and PostgreSQL."
+    facts: [proxy-engine-support]
+  - id: rds-086
+    q: "An application needs database connection pooling but its team cannot operate or scale proxy servers. Which Amazon RDS feature fits?"
+    a: "RDS Proxy. AWS manages the proxy and scales its capacity automatically with demand."
+    facts: [proxy-managed-scaling]
+  - id: rds-096
+    q: "An application connects to Amazon RDS through RDS Proxy and must encrypt the client-to-proxy connection. What should its connection settings require?"
+    a: "TLS/SSL to the RDS Proxy endpoint. Set the TLS requirement in the client connection configuration."
+    facts: [proxy-client-tls]
 ---
 
 RDS Proxy reduces connection pressure by keeping a shared pool of database connections. A connection pool is a set of open connections that clients can reuse. The [RDS Proxy guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy) describes reuse, authentication, and recovery through a standby after database failure.
@@ -124,6 +145,8 @@ RDS Proxy reduces connection pressure by keeping a shared pool of database conne
 2. The proxy shares backend connections among client requests. It can enforce IAM authentication, which uses AWS identities, and connect to the database using IAM authentication or credentials from Secrets Manager.
 3. Under overload, the proxy can queue or throttle requests and reject client connections when configured limits are exceeded.
 4. Watch for session pinning, where a client keeps one backend connection until its session ends. This reduces sharing. For repeated reads that tolerate stale results, ElastiCache query caching can reduce database work: a miss queries the database and stores the result.
+5. Check engine and version eligibility: RDS Proxy supports RDS MariaDB, MySQL, PostgreSQL and SQL Server, and Aurora MySQL and PostgreSQL. AWS manages and scales the proxy capacity.
+6. Require TLS/SSL in the client connection settings to encrypt the connection to the proxy. The client-to-proxy TLS version can differ from the version used with the database.
 
 ### Exam cues
 

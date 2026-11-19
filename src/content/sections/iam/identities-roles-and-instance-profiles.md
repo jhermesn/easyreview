@@ -71,6 +71,9 @@ facts:
   - id: attach-running
     text: "An IAM role can be attached to a running or stopped EC2 instance; an instance with a role must have it replaced to use a different one."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/attach-iam-role.html
+  - id: cli-instance-credentials
+    text: "The AWS CLI running on an EC2 instance can retrieve temporary credentials from instance metadata for the IAM role attached to that instance."
+    source: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-metadata.html
 diagrams:
   - id: iam-ec2-credentials
     title: EC2 applications use temporary role credentials
@@ -181,6 +184,10 @@ cards:
     q: "An application on a running EC2 instance now needs S3 access, and the instance has no IAM role. Must it be relaunched?"
     a: "No. **Attach an IAM role** (through an instance profile) to the running instance. An existing role would be replaced, not stacked."
     facts: [attach-running]
+  - id: iam-121
+    q: "A script uses the AWS CLI on Amazon EC2 and needs AWS permissions without storing long-term access keys. How can it obtain credentials?"
+    a: "Use the instance's attached IAM role. The AWS CLI can retrieve its temporary credentials from instance metadata."
+    facts: [cli-instance-credentials]
 ---
 
 IAM identities determine who makes a request. A role supplies permissions through a temporary session, a period during which temporary credentials are valid. An instance profile connects a role to an EC2 instance so its applications can use those credentials.
@@ -189,7 +196,7 @@ IAM identities determine who makes a request. A role supplies permissions throug
 
 1. Set the role trust policy to identify who can assume it. Attach a permissions policy for the actions and resources the application needs.
 2. Put the role in an instance profile and attach the profile to EC2. The console creates the profile for an EC2 role; CLI and API workflows create it separately.
-3. The application retrieves temporary credentials from instance metadata, information available to software on the instance. An AWS software development kit (SDK) instance profile credential provider can refresh them as EC2 rotates them.
+3. The application retrieves temporary credentials from instance metadata, information available to software on the instance. An AWS software development kit (SDK) instance profile credential provider can refresh them as EC2 rotates them. The AWS CLI can also retrieve the attached role's temporary credentials from metadata.
 4. For human access, IAM groups distribute policies to their user members. Multi-factor authentication (MFA) adds an independent factor: a password is something known, a security key is something held, and a biometric is something inherent to the person.
 5. If an application still uses a user access key, create its replacement while the old key is active. Update every consumer, inspect usage, deactivate the old key, test, then delete it after confirming the transition.
 

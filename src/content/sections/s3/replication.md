@@ -7,11 +7,11 @@ facts:
     text: S3 Replication copies objects asynchronously between buckets in the same or different accounts.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication
   - id: crr-srr
-    text: Cross-Region Replication copies between AWS Regions.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication
+    text: "Cross-Region Replication copies objects between AWS Regions, including copies in Regions closer to geographically distributed readers to reduce access latency."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#crr-scenario
   - id: crr-srr-srr
-    text: Same-Region Replication copies within one AWS Region.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication
+    text: "Same-Region Replication copies objects between buckets in one AWS Region and can consolidate logs from several source buckets into one destination."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#srr-scenario
   - id: replication-new
     text: Live replication covers new matching objects and does not copy objects that predate the rule.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication
@@ -92,6 +92,15 @@ facts:
   - id: multi-destination
     text: "One source bucket can replicate to a single destination bucket or to multiple destination buckets, in the same Region or in different Regions."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication
+  - id: replication-two-way
+    text: "Synchronizing buckets that both receive writes requires two-way replication rules; a rule from one source bucket to a destination does not configure the reverse direction."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#two-way-replication-scenario
+  - id: replication-storage-class
+    text: "A replication rule can choose a storage class for replicas independently of the source; without that setting, replicas use the source storage class."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-add-config.html#storage-class-configuration
+  - id: replication-filter
+    text: "An S3 replication rule can cover all objects or filter them by a key prefix, tags, or both; combined prefix and tag filters must all match."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-add-config.html#replication-config-optional-filter
 diagrams:
   - id: s3-cross-region-replication
     title: Cross-account replication for recovery
@@ -255,13 +264,33 @@ cards:
     q: "Global users need faster reads of a website; separately, a copy of all data must exist in a second Region. Which feature serves which need?"
     a: "CloudFront caches content at edge locations for the reads. Cross-Region Replication keeps a full, asynchronous copy in another Region; it does not cache near users."
     facts: [replication-async, crr-srr]
+  - id: s3-197
+    q: "An Amazon S3 application writes new objects to buckets in two Regions and needs the writes copied to the other Region. What replication setup is needed?"
+    a: "Two-way Cross-Region Replication rules, with each bucket configured as a source for the other direction."
+    facts: [replication-two-way]
+  - id: s3-198
+    q: "An Amazon S3 source uses Standard, but its recovery replicas should use a different storage class. How should replication be configured?"
+    a: "Specify the destination storage class in the replication rule. Without an override, replicas use the source storage class."
+    facts: [replication-storage-class]
+  - id: s3-199
+    q: "Several Amazon S3 buckets hold logs in one AWS Region. Which replication option can consolidate them for processing in one bucket?"
+    a: "Same-Region Replication, with rules from the source buckets to the common destination."
+    facts: [crr-srr-srr]
+  - id: s3-200
+    q: "An Amazon S3 dataset serves readers in two distant geographic locations. How can the architecture keep a regional copy closer to each group?"
+    a: "Use Cross-Region Replication to maintain copies in Regions closer to the readers."
+    facts: [crr-srr]
+  - id: s3-202
+    q: "An Amazon S3 replication rule must copy only keys under reports/ tagged approved=yes. How should it select the objects?"
+    a: "Combine the reports/ key-prefix filter and approved=yes tag filter. The object must match both."
+    facts: [replication-filter]
 ---
 S3 Replication creates copies in other buckets without making the application upload each copy. It is asynchronous: the original write can finish before its replica is available.
 
 ### How it works
 
-1. Enable versioning on both buckets. Choose Cross-Region Replication (CRR) for another Region or Same-Region Replication (SRR) for the same Region.
-2. Create a source rule selecting objects and a destination. Give S3 an IAM role, a permission identity it can assume to read source versions and write replicas.
+1. Enable versioning on both buckets. Choose Cross-Region Replication (CRR) for another Region, including copies nearer distant readers, or Same-Region Replication (SRR) for the same Region, such as consolidating logs.
+2. Create a source rule selecting objects and a destination. Select all source objects or filter by prefix, tags, or both. Choose a replica storage class if it should differ from the source. Configure rules in both directions when both buckets accept writes. Give S3 an IAM role, a permission identity it can assume to read source versions and write replicas.
 3. For a different destination account, grant replication access in its bucket policy. Use destination Bucket owner enforced Object Ownership when that account must own replicas.
 4. For server-side encryption using KMS keys (SSE-KMS), or its dual-layer form (DSSE-KMS), explicitly enable encrypted-object replication and specify a destination-Region KMS key. Grant source decrypt and destination encrypt access.
 5. S3 copies new matching versions. Configure destination lifecycle and other bucket settings separately.
@@ -279,6 +308,8 @@ S3 Replication creates copies in other buckets without making the application up
 
 ### Remember
 
+- Replication is directional; buckets that both accept writes need two-way rules.
+- A destination storage-class setting overrides the source class for replicas.
 - Both buckets need versioning. Existing objects need Batch Replication.
 - V2 delete-marker replication is off by default and cannot be enabled for tag-filtered rules. V1 rules replicate markers from user deletes.
 - Lifecycle actions, bucket settings, and archived source objects are excluded.

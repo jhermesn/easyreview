@@ -25,7 +25,7 @@ facts:
     text: An associated Resolver forwarding rule for the same domain takes precedence over a private hosted zone.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-considerations.html#hosted-zone-private-considerations
   - id: vpc-dns-attributes
-    text: "enableDnsSupport (default true) lets a VPC use the Amazon-provided DNS server, and enableDnsHostnames (default false except in a default VPC) assigns public DNS hostnames to instances with public IPs; private hosted zones need both turned on."
+    text: "enableDnsSupport (default true) lets a VPC use the Amazon-provided DNS server, and enableDnsHostnames (default false except in a default VPC) controls public DNS hostname assignment; an instance with a public IPv4 address receives a public DNS hostname only when both attributes are true. Private hosted zones also require both attributes."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/AmazonDNS-concepts.html#vpc-dns-support
   - id: resolver-address
     text: "The Route 53 Resolver in a VPC answers at 169.254.169.253 (fd00:ec2::253 for IPv6) and at the VPC primary IPv4 CIDR base plus two."
@@ -61,6 +61,10 @@ cards:
     q: "How do resources in an associated VPC resolve names in a Route 53 private hosted zone?"
     a: "VPC Resolver answers using records from the associated private hosted zone."
     facts: [private-scope]
+  - id: route53-077
+    q: "An EC2 instance has a public IPv4 address but no public DNS hostname. Which VPC settings used with Amazon Route 53 Resolver should be checked?"
+    a: "Set both enableDnsSupport and enableDnsHostnames to true. A public IPv4 address alone does not enable a public DNS hostname."
+    facts: [vpc-dns-attributes]
 ---
 A private hosted zone is a collection of DNS records available through associated VPCs. It supports internal names and split-view DNS, where the same domain has different internal and external records.
 
@@ -71,6 +75,8 @@ A private hosted zone is a collection of DNS records available through associate
 3. It looks for the requested record name and type. If either is missing, it returns NXDOMAIN, the DNS response meaning the domain does not exist, without trying the public record.
 4. If no private zone matches, it uses normal public DNS resolution. An associated forwarding rule for the same domain takes precedence over the private zone.
 
+For public DNS hostnames on EC2 instances with public IPv4 addresses, both VPC DNS attributes must also be true.
+
 ### Exam cues
 
 - If the question says a public name fails only inside a VPC with a matching private zone, think a missing private record, because Resolver does not fall back to public DNS.
@@ -78,7 +84,7 @@ A private hosted zone is a collection of DNS records available through associate
 
 ### Remember
 
-- Both VPC DNS attributes must be true.
+- Both VPC DNS attributes must be true for private zones and for public DNS hostname assignment.
 - The most specific matching private zone wins.
 - A forwarding rule for the same domain wins over a private zone.
 

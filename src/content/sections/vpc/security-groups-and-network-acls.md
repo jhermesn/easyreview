@@ -19,15 +19,13 @@ facts:
     text: A newly created custom security group has no inbound rules and an allow-all outbound rule.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rule-characteristics
   - id: sg-reference
-    text: A security-group reference permits matching traffic from or to network interfaces associated
-      with that referenced group; it does not copy its rules.
+    text: "A security group reference allows the specified protocol and ports involving private addresses of interfaces in the referenced group, including the same group. It does not inherit that group's rules or automatically allow all traffic."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-referencing
   - id: acl-subnet
-    text: A network ACL filters traffic entering or leaving a subnet; each subnet has exactly one ACL,
-      and one ACL can serve multiple subnets.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
+    text: "Each VPC subnet has one network ACL, and one ACL can serve multiple subnets. Creating a custom ACL does not attach it to a subnet; associate it explicitly to apply its rules."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/create-network-acl.html#CreateACL
   - id: acl-stateless
-    text: Network ACLs are stateless, so response traffic needs its own matching allow rule.
+    text: "Network ACLs do not track connections. Traffic between subnets must pass the source outbound and destination inbound rules; replies must pass both subnet ACLs in the reverse direction."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
   - id: acl-order
     text: ACL rules allow or deny traffic in ascending rule-number order; the first match wins, and
@@ -50,8 +48,8 @@ facts:
       that environment lifecycle.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.ec2.console.html#using-features.managing.ec2.securitygroups
   - id: cidr-sources
-    text: Security group rules and network ACL rules specify IP address ranges in CIDR notation, such as 203.0.113.0/24.
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
+    text: "Network ACL rules match protocol, applicable ports and a source CIDR for inbound traffic or destination CIDR for outbound traffic. They do not take security group IDs as the address range."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/nacl-rules.html
   - id: sg-sources
     text: "A security group rule source or destination is an IPv4 or IPv6 CIDR range, a single address written as a /32 or /128, a prefix list ID, or another security group; an internet gateway ID is not a valid source."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rule-components
@@ -133,8 +131,8 @@ cards:
       - sg-retirement-dependency
       - sg-reference
   - id: vpc-034
-    q: In which notation do security group and network ACL rules specify IP address ranges?
-    a: CIDR notation, for example 203.0.113.0/24.
+    q: "How do Amazon VPC network ACL rules specify the remote network for inbound and outbound traffic?"
+    a: "An inbound rule uses a source CIDR; an outbound rule uses a destination CIDR. Rules also match protocol and applicable ports, and cannot use security group IDs."
     facts: [cidr-sources]
   - id: vpc-045
     q: "Which of these cannot be the source of a security group inbound rule: a CIDR block, a single IP, another security group, or an internet gateway ID?"
@@ -164,6 +162,18 @@ cards:
     a: "Network ACLs filter traffic **entering or leaving the subnet**, not traffic within it. Use security groups to control instance-to-instance traffic in one subnet."
     trap: true
     facts: [nacl-subnet-boundary]
+  - id: vpc-100
+    q: "Amazon EC2 cluster members share one VPC security group. How can the group permit the required member-to-member port?"
+    a: "Add an inbound rule for that protocol and port with the same security group as its source. Sharing a group alone does not grant all traffic."
+    facts: [sg-reference]
+  - id: vpc-101
+    q: "Amazon EC2 instances in two VPC subnets exchange requests and responses. Which network ACL directions must allow the traffic?"
+    a: "Source outbound and destination inbound for the request; destination outbound and source inbound for the response."
+    facts: [acl-stateless]
+  - id: vpc-102
+    q: "A team creates a custom Amazon VPC network ACL but does not associate a subnet. Do its rules affect an existing subnet?"
+    a: "No. Associate the custom ACL with the subnet to apply its rules; creation alone changes no subnet association."
+    facts: [acl-subnet]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.
@@ -182,7 +192,9 @@ Security groups and network access control lists (ACLs) control traffic at diffe
 | Return traffic | Automatically allowed for an allowed request | Needs an explicit allow rule |
 | Association | A resource can use multiple groups | One ACL per subnet; an ACL can serve multiple subnets |
 
-A group reference permits matching traffic involving interfaces in the referenced group. It does not copy that group's rules. For example, a database can allow its application tier by referring to the application's group.
+ACL rules match protocol, applicable ports and a source CIDR inbound or destination CIDR outbound. They do not accept security group IDs. A custom ACL must be associated explicitly before its rules affect a subnet.
+
+A group reference permits matching traffic involving interfaces in the referenced group, including its own group. It does not copy that group's rules. For example, a database can allow its application tier by referring to the application's group.
 
 Before retiring an environment, preserve the replacement application's access and remove references to the retiring environment's group. Beanstalk can fail to delete an environment-managed security group while another group depends on it; a separately managed group avoids that lifecycle dependency.
 
@@ -193,6 +205,7 @@ Before retiring an environment, preserve the replacement application's access an
 
 ### Remember
 
+- Between subnets, allow source outbound and destination inbound traffic, then both reverse directions for replies.
 - Numbered ACL rules: 1 to 32766. The asterisk rule denies unmatched traffic.
 - A new custom security group starts with no inbound rules and an allow-all outbound rule.
 

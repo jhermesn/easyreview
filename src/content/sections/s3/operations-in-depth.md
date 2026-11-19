@@ -42,8 +42,8 @@ facts:
     text: "UpdateObjectEncryption changes an existing SSE-S3 or SSE-KMS object to SSE-KMS, or to use an S3 Bucket Key, in place without copying data; it does not accept unencrypted, DSSE-KMS or SSE-C objects."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/update-sse-encryption.html#update-sse-encryption
   - id: bucket-key-existing
-    text: Enabling Bucket Keys affects new objects; existing objects need a copy operation to use them.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html#configure-bucket-key
+    text: "Turning on Bucket Keys for a bucket does not change existing objects. For eligible SSE-KMS objects, UpdateObjectEncryption enables a Bucket Key without copying object data."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/update-sse-encryption.html
   - id: aws-s3-key
     text: "When no KMS key is given for SSE-KMS, S3 uses the AWS managed key aws/s3 of the uploading account."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#aws-managed-customer-managed-keys

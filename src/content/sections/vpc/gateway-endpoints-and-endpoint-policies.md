@@ -8,8 +8,7 @@ facts:
       not use PrivateLink, and have no additional endpoint charge.
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoints
   - id: gateway-routes
-    text: Associating a route table with a gateway endpoint adds an AWS-managed service prefix-list
-      destination route targeting that endpoint.
+    text: "A gateway endpoint adds a service prefix-list route to associated route tables. Clients reach the service public endpoint through that route, so the endpoint uses route-table associations rather than network interfaces placed in each subnet."
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-routing
   - id: gateway-region
     text: Gateway prefix lists are Region-specific, so the endpoint route applies to the service in that
@@ -43,9 +42,11 @@ facts:
       VPCs can use overlapping private addresses.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-vpcsourceip
   - id: interface-network
-    text: An interface endpoint creates a private-addressed network interface in each selected subnet
-      for reaching a PrivateLink service.
-    source: https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html
+    text: "An interface endpoint provides private-addressed network interfaces for a PrivateLink service. Clients need network connectivity to those addresses; DNS resolves the service name to endpoint interface addresses."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-overview
+  - id: service-public-path
+    text: "Traffic from a VPC public subnet to the public S3 or DynamoDB endpoint can leave through the internet gateway while remaining on the AWS network."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-overview
 cards:
   - id: vpc-005
     q: How does a VPC gateway endpoint provide private S3 or DynamoDB access?
@@ -79,6 +80,22 @@ cards:
     facts:
       - vpc-source-ip
       - pair-source-conditions
+  - id: vpc-096
+    q: "Must an Amazon VPC S3 gateway endpoint have an endpoint network interface in each Availability Zone?"
+    a: "No. Associate the client subnet route tables with the gateway endpoint; matching service traffic follows the endpoint route."
+    facts: [gateway-routes]
+  - id: vpc-097
+    q: "Must an application change its standard Amazon S3 service hostname to use a VPC gateway endpoint?"
+    a: "No. Requests to the service public endpoint follow the matching gateway endpoint route in the associated route table."
+    facts: [gateway-routes]
+  - id: vpc-098
+    q: "An on-premises client resolves an AWS PrivateLink interface endpoint hostname to private IP addresses. Is DNS resolution alone enough to reach it?"
+    a: "No. The client also needs network connectivity to the endpoint network interface private addresses."
+    facts: [interface-network]
+  - id: vpc-099
+    q: "Amazon EC2 in a public VPC subnet reaches the public Amazon S3 endpoint through an internet gateway. Does this traffic leave the AWS network?"
+    a: "No. This service traffic stays on the AWS network even though it uses the internet gateway."
+    facts: [service-public-path]
 diagrams:
   - id: vpc-s3-gateway-path
     title: S3 traffic follows the gateway endpoint route
@@ -128,7 +145,7 @@ A gateway endpoint gives a VPC a route to S3 or DynamoDB without NAT or an inter
 ### How it works
 
 1. Create the gateway endpoint for S3 or DynamoDB in the service's Region.
-2. Associate the subnets' route tables. AWS adds a route whose destination is the service prefix list and whose target is the endpoint.
+2. Associate the subnets' route tables. AWS adds a route whose destination is the service prefix list and whose target is the endpoint. Clients keep using the service endpoint hostname; there is no endpoint network interface to place in each AZ.
 3. Permit the service traffic in client security groups and subnet ACLs. Groups can reference the prefix list; ACL rules need address ranges.
 4. Evaluate the endpoint policy alongside identity and resource policies, such as IAM and S3 bucket policies. The endpoint policy does not replace them, and an applicable explicit deny wins.
 5. For source-address conditions on S3 endpoint requests, use `aws:VpcSourceIp` with a VPC or endpoint condition.
@@ -142,6 +159,8 @@ A gateway endpoint gives a VPC a route to S3 or DynamoDB without NAT or an inter
 ### Remember
 
 - Gateway endpoints support S3 and DynamoDB, have no additional endpoint charge, and do not use PrivateLink.
+- Interface endpoint clients need connectivity to the endpoint private addresses as well as DNS resolution.
+- Traffic to S3 or DynamoDB through an internet gateway can stay on the AWS network.
 - Prefix lists are Region-specific. A gateway endpoint route does not cover a service in another Region.
 - The default endpoint policy permits full endpoint access subject to other applicable policies.
 - Use `aws:VpcSourceIp` with `aws:SourceVpc`, `aws:SourceVpce`, or `aws:SourceVpcArn`.

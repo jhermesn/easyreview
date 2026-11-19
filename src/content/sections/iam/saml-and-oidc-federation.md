@@ -55,8 +55,11 @@ facts:
     text: "If an identity store is not compatible with SAML 2.0, a custom identity broker application can authenticate users, request temporary credentials from AWS STS and hand them to the users."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_federated-users.html#id_roles_common-scenarios_federated-users-idbroker
   - id: saml-duration
-    text: "AssumeRoleWithSAML credentials last one hour by default; DurationSeconds can ask for longer, up to the role maximum session duration and the SAML assertion session limit."
-    source: https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithSAML.html#API_AssumeRoleWithSAML
+    text: "AssumeRoleWithSAML defaults to a one-hour session; a requested duration starts at 15 minutes and is bounded by the role maximum and the assertion session limit."
+    source: https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithSAML.html#API_AssumeRoleWithSAML_RequestParameters
+  - id: saml-console-entry
+    text: "For SAML console federation, the browser posts the identity provider assertion to the AWS sign-in endpoint, which obtains temporary role credentials and redirects the browser through a console sign-in URL."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html#enable-console-saml-overview
 diagrams:
   - id: iam-federation-exchange
     title: Provider evidence becomes AWS role credentials
@@ -102,6 +105,20 @@ diagrams:
     steps:
       - Exchange provider evidence through the matching STS operation.
       - The application uses the returned role credentials to access permitted AWS resources.
+  - id: iam-saml-console-entry
+    title: SAML sign-in to the console
+    width: 820
+    height: 180
+    nodes:
+      - { id: browser, label: Browser, sub: IdP assertion, icon: res-client, x: 20, y: 45, w: 180, h: 86, tone: user }
+      - { id: signin, label: AWS sign-in, sub: Requests STS credentials, icon: res-identity-access-management-aws-sts, x: 310, y: 45, w: 200, h: 86, tone: security }
+      - { id: console, label: AWS console, x: 620, y: 52, w: 180, h: 72, tone: neutral }
+    edges:
+      - { from: browser, to: signin, step: 1 }
+      - { from: signin, to: console, step: 2 }
+    steps:
+      - The browser posts the identity provider's SAML assertion to AWS sign-in.
+      - AWS sign-in obtains temporary role credentials and redirects the browser to the console.
 cards:
   - id: iam-015
     q: Which STS operation fits a SAML assertion, an OIDC token, a custom IAM-user broker, or an IAM user needing
@@ -146,6 +163,10 @@ cards:
     q: "An on-premises LDAP directory does not support SAML, and users must still get access to AWS without IAM users. What pattern fits?"
     a: "A custom identity broker that authenticates users against LDAP and requests short-lived credentials from AWS STS for them."
     facts: [identity-broker]
+  - id: iam-122
+    q: "Employees authenticate through a SAML identity provider and need the AWS Management Console. Which endpoint receives the assertion and opens their role session?"
+    a: "The AWS sign-in endpoint. It requests temporary role credentials for the user and redirects the browser to the console using a sign-in URL."
+    facts: [saml-console-entry]
 ---
 
 Federation lets an identity provider, the system that authenticates a person or workload, supply evidence that AWS exchanges for temporary credentials. SAML uses an assertion, a signed statement about authentication. OpenID Connect (OIDC) uses a token describing the authenticated subject.
@@ -154,8 +175,9 @@ Federation lets an identity provider, the system that authenticates a person or 
 
 1. Configure the provider and a role trust policy. For direct IAM SAML federation, upload the provider metadata into IAM and create the trusted role with its permissions.
 2. Authenticate with the provider. Exchange the SAML assertion through `AssumeRoleWithSAML`, or an OIDC token through `AssumeRoleWithWebIdentity`. These calls do not require AWS access keys for authentication.
-3. Restrict OIDC trust to the provider and appropriate claims, the fields in the token. `aud` is its intended audience; `sub` is its subject. For GitHub Actions, restrict `aud` to `sts.amazonaws.com` and `sub` to approved repositories or branches.
-4. Use the returned temporary role credentials for AWS requests. For application users, including guests, a Cognito identity pool can provide credentials controlled by IAM roles.
+3. For SAML console access, post the assertion to the AWS sign-in endpoint. It requests temporary credentials on the user's behalf and redirects the browser to the console.
+4. Restrict OIDC trust to the provider and appropriate claims, the fields in the token. `aud` is its intended audience; `sub` is its subject. For GitHub Actions, restrict `aud` to `sts.amazonaws.com` and `sub` to approved repositories or branches.
+5. Use the returned temporary role credentials for AWS requests. For application users, including guests, a Cognito identity pool can provide credentials controlled by IAM roles.
 
 | Input or need | STS operation |
 |---|---|
@@ -173,6 +195,7 @@ Federation lets an identity provider, the system that authenticates a person or 
 ### Remember
 
 - For centrally managed workforce access to multiple accounts, consider IAM Identity Center.
+- SAML console federation uses the AWS sign-in endpoint.
 - IAM rejects GitHub trust policies whose `token.actions.githubusercontent.com:sub` is absent, null or solely a wildcard.
 
 > **Trap:** A shared OIDC provider alone does not restrict access to your repository. Scope the audience and subject.

@@ -40,7 +40,7 @@ facts:
     text: s3:ObjectCreated:* covers object creation events including completed multipart uploads.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html#supported-notification-event-types
   - id: events-object-deleted
-    text: s3:ObjectRemoved:Delete signals an object deletion, not that the bucket is empty.
+    text: "s3:ObjectRemoved:Delete reports an object deletion; s3:ObjectRemoved:DeleteMarkerCreated reports creation of a delete marker in a versioned bucket. Neither event means that the bucket is empty."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html#supported-notification-event-types
   - id: events-sqs
     text: SQS queues store notification messages until consumers can process them.
@@ -204,6 +204,8 @@ S3 event notifications start work when selected bucket events occur. They let a 
 - If a notification must report S3 Lifecycle deletions, select lifecycle expiration events, because ObjectRemoved excludes automatic lifecycle deletions.
 
 ### Remember
+
+- `s3:ObjectRemoved:DeleteMarkerCreated` reports a new delete marker; `s3:ObjectRemoved:Delete` reports an object deletion.
 
 - Native Lambda, SNS, and SQS targets must be in the bucket Region. SNS and SQS targets must be standard types.
 - Delivery is at least once, with possible duplicates and reordering.

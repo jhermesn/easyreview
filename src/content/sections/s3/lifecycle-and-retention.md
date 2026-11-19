@@ -4,9 +4,8 @@ level: associate
 order: 60
 facts:
   - id: lifecycle-rules
-    text: S3 Lifecycle rules select groups of objects and schedule storage-class transitions or
-      expiration.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html#object-lifecycle-mgmt
+    text: "S3 Lifecycle rules schedule transitions or expiration for all objects in a bucket, or select a subset with filters such as a key prefix or object tags."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-filters.html#filter-examples
   - id: lifecycle-noncurrent
     text: Current and noncurrent versions have separate transition and expiration actions.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html#intro-lifecycle-rules-actions
@@ -65,9 +64,8 @@ facts:
       zone.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro
   - id: class-tiering
-    text: Intelligent-Tiering monitors access patterns and moves eligible objects to less expensive
-      access tiers for an object monitoring and automation fee.
-    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering-overview.html#intelligent-tiering-overview
+    text: "Intelligent-Tiering charges a monitoring and automation fee for eligible objects and automatically moves unread data into cheaper access tiers, so cost depends on both that fee and the tier savings."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering-overview.html
   - id: tiering-days
     text: Intelligent-Tiering moves objects to Infrequent Access after 30 consecutive days without
       access.
@@ -115,11 +113,20 @@ facts:
     text: "S3 Batch Operations applies a tag set to every object in a supplied list in one job, which can cover billions of objects."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html#object-tagging
   - id: transition-waterfall
-    text: "Lifecycle transitions only move objects toward colder classes, from Standard to Standard-IA, Intelligent-Tiering, One Zone-IA and the Glacier classes; One Zone-IA can only move on to Glacier Flexible Retrieval or Deep Archive, and nothing transitions back to Standard."
+    text: "S3 Lifecycle can move Standard objects to Standard-IA, Intelligent-Tiering, One Zone-IA or Glacier classes. Standard-IA can move to Intelligent-Tiering, One Zone-IA or Glacier classes. Glacier Instant Retrieval can move to Flexible Retrieval or Deep Archive; One Zone-IA can move only to Flexible Retrieval or Deep Archive. No class transitions back to Standard."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#supported-lifecycle-transitions
   - id: transition-request-charge
     text: "Each lifecycle transition is billed as a transition request per object, which is why S3 by default skips transitioning objects smaller than 128 KB."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#lifecycle-transition-general-considerations
+  - id: transition-rule-duration
+    text: "A single S3 Lifecycle rule must keep an object in a class for its minimum storage duration before another transition: 30 days for the IA classes and 90 days for Glacier Instant Retrieval. Separate rules can move it earlier, with remaining-duration charges."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#lifecycle-configuration-constraints
+  - id: tiering-read-return
+    text: "Reading an object in the Intelligent-Tiering Infrequent Access or Archive Instant Access tier automatically returns it to Frequent Access."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering-overview.html
+  - id: upload-storage-class
+    text: "An S3 upload can specify its storage class, including Standard-IA or One Zone-IA; omitting the choice uses Standard."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html#AmazonS3-PutObject-request-header-StorageClass
 cards:
   - id: s3-021
     q: Which S3 controls move aging objects, delete old versions, and remove abandoned upload parts?
@@ -211,7 +218,7 @@ cards:
     facts:
       - batch-tagging
   - id: s3-153
-    q: "Which lifecycle transition is supported: One Zone-IA to Standard-IA, Intelligent-Tiering to Standard, or Standard-IA to One Zone-IA?"
+    q: "Which Amazon S3 lifecycle transition is supported: One Zone-IA to Standard-IA, Intelligent-Tiering to Standard, or Standard-IA to One Zone-IA?"
     a: "Standard-IA to One Zone-IA. Transitions only go toward colder classes. One Zone-IA can only move to Glacier Flexible Retrieval or Deep Archive, and no class transitions back to Standard."
     trap: true
     facts: [transition-waterfall]
@@ -219,16 +226,40 @@ cards:
     q: "Do S3 lifecycle transitions cost anything by themselves?"
     a: "Yes. Each transitioned object is billed as a transition request, so moving many tiny objects can cost more than it saves. Data uploaded from the internet, by contrast, has no transfer charge."
     facts: [transition-request-charge]
+  - id: s3-180
+    q: "An Amazon S3 Lifecycle rule puts objects in Standard-IA on day 0 and schedules another transition on day 10. What prevents this schedule?"
+    a: "A single rule must allow the 30-day minimum storage duration in Standard-IA before transitioning again. Separate rules can move objects sooner with remaining-duration charges."
+    facts: [transition-rule-duration]
+  - id: s3-181
+    q: "Which Amazon S3 Lifecycle destinations are available for an object in Glacier Instant Retrieval?"
+    a: "S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive."
+    facts: [transition-waterfall]
+  - id: s3-183
+    q: "An Amazon S3 bucket stores several projects, but only keys beginning with logs/ should expire. How should Lifecycle select them?"
+    a: "Use a key-prefix filter for logs/. An empty filter would apply the rule to the entire bucket."
+    facts: [lifecycle-rules]
+  - id: s3-184
+    q: "An Amazon S3 GET reads an Intelligent-Tiering object in Archive Instant Access. Which tier holds the object afterward?"
+    a: "Frequent Access. Reading an object in Archive Instant Access or Infrequent Access automatically moves it back."
+    facts: [tiering-read-return]
+  - id: s3-185
+    q: "An Amazon S3 workload has changing access patterns. Does the Intelligent-Tiering monitoring fee mean it always costs more than fixed storage classes?"
+    a: "No. Automatic moves to cheaper tiers can offset the monitoring fee; compare expected access patterns and tier savings."
+    facts: [class-tiering]
+  - id: s3-186
+    q: "New Amazon S3 objects will be rarely accessed from the start. Must they first be uploaded to Standard before using Standard-IA or One Zone-IA?"
+    a: "No. Select Standard-IA or One Zone-IA during upload. Standard is the default when no class is specified."
+    facts: [upload-storage-class]
 ---
 S3 Lifecycle applies rules to move aging objects between storage classes or remove them. A storage class is a choice of access speed, storage placement, and billing terms; choose it before scheduling transitions.
 
 ### How it works
 
-1. Choose a class for the access pattern. Standard suits frequent reads. IA means infrequent access: Standard-IA retains zone resilience; One Zone-IA suits data that can be recreated after a zone loss.
-2. Use lifecycle rules when age determines the move. Use Intelligent-Tiering when changing access patterns should determine the access tier.
+1. Choose a class for the access pattern; it can be selected during upload. Standard suits frequent reads. IA means infrequent access: Standard-IA retains zone resilience; One Zone-IA suits data that can be recreated after a zone loss.
+2. Use lifecycle rules when age determines the move. Select the whole bucket or filter by prefix or tags. Use Intelligent-Tiering when changing access patterns should determine the access tier; reads from its Infrequent Access or Archive Instant Access tiers return objects to Frequent Access.
 3. Configure current-version and noncurrent-version actions separately. In a versioning-enabled bucket, current-version expiration adds a delete marker; noncurrent expiration removes old versions permanently.
 4. Add `AbortIncompleteMultipartUpload` for abandoned uploads. It removes unfinished parts after the configured age.
-5. Check minimum billing durations before moving or deleting data. Lifecycle cannot move Deep Archive objects back to Standard; restore and copy them.
+5. Allow each class's minimum storage duration before another transition in the same rule. Separate rules can move objects sooner but still incur remaining-duration charges. Glacier Instant Retrieval can transition to Flexible Retrieval or Deep Archive. Intelligent-Tiering destinations depend on the access tier. Lifecycle cannot move Deep Archive objects back to Standard; restore and copy them.
 6. Rules apply to existing objects as well as new ones.
 
 | Choice | Suitable access pattern or tradeoff |
@@ -238,6 +269,13 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 | One Zone-IA | Re-creatable data in one zone |
 | Intelligent-Tiering | Changing or unknown access patterns |
 | Glacier classes | Rare access; restore requirements depend on class |
+
+| Intelligent-Tiering access tier | Lifecycle destinations |
+|---|---|
+| Frequent Access or Infrequent Access | One Zone-IA or any Glacier class |
+| Archive Instant Access | Any Glacier class |
+| Archive Access | Glacier Flexible Retrieval or Deep Archive |
+| Deep Archive Access | Glacier Deep Archive |
 
 ### Exam cues
 
@@ -249,6 +287,8 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 
 ### Remember
 
+- In a single rule, wait 30 days in an IA class or 90 days in Glacier Instant Retrieval before the next transition. Separate rules do not avoid minimum-duration charges.
+- Intelligent-Tiering cost includes monitoring fees and savings from moving objects to cheaper tiers.
 - From September 2024, new or modified configurations block transitions below 128 KB by default; size filters can override this. Older configurations keep their earlier behavior until changed.
 - Minimum billing: IA classes 30 days; Glacier Instant and Flexible 90 days; Deep Archive 180 days. Early exit can still incur charges.
 - Intelligent-Tiering moves unaccessed objects after 30 days to Infrequent Access and 90 days to Archive Instant Access.

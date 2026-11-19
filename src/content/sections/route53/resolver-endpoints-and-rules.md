@@ -167,6 +167,7 @@ VPC Resolver looks up public names, VPC names and private-zone records. Resolver
 4. For the opposite direction, configure the on-premises server with a conditional forwarder, a rule that forwards only a selected domain, pointing to inbound endpoint IPs.
 5. The inbound endpoint receives the query over Direct Connect or VPN. VPC Resolver answers from the applicable private zone and returns the result along the reverse path.
 
+
 ### Exam cues
 
 - If the question says on-premises clients need private AWS names, think inbound endpoint plus conditional forwarding, because the query enters the VPC.

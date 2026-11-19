@@ -4,8 +4,8 @@ level: associate
 order: 100
 facts:
   - id: multiaz-backup-latency
-    text: "Synchronous replication to a Multi-AZ standby also minimizes latency spikes on the primary during system backups."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby
+    text: "RDS Multi-AZ deployments can still experience elevated latency during automated backups; Multi-AZ is not a guarantee of a backup window without performance impact."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ManagingAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow
   - id: iam-auth
     text: IAM database authentication works with RDS for MariaDB, MySQL and PostgreSQL; clients connect with an authentication token that lasts 15 minutes instead of a password.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth
@@ -30,10 +30,28 @@ facts:
   - id: replica-count
     text: "RDS for MySQL supports up to 15 read replicas per source DB instance in the same Region."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_MySQL.Replication.ReadReplicas.html
+  - id: transactional-row-layout
+    text: "Row-based data layouts suit transactional access that reads or changes complete records; columnar layouts suit analytical queries that scan selected columns."
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/perf03-bp04.html#implementation-guidance
+  - id: vpc-change
+    text: "An eligible RDS DB instance can move to another VPC by selecting a DB subnet group in the destination VPC; Multi-AZ instances and instances with read-replica relationships must first have those restrictions resolved."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.VPC2VPC.html
+  - id: relational-tables
+    text: "A relational database organizes records in table rows and their attributes in columns."
+    source: https://aws.amazon.com/rds/what-is-a-relational-database/
+  - id: key-value-selection
+    text: "A key-value database associates a value with a unique key, and applications can retrieve the associated data by that key."
+    source: https://aws.amazon.com/nosql/
+  - id: multiple-databases
+    text: "A single RDS DB instance can serve more than one logical database when its engine allows it."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.html
+  - id: compute-storage-cost
+    text: "Amazon RDS pricing includes DB instance compute capacity and provisioned storage; Provisioned IOPS storage also charges for the IOPS provisioned."
+    source: https://aws.amazon.com/rds/pricing/
 cards:
   - id: rds-055
-    q: "Besides failover, what does a Multi-AZ DB instance deployment improve during the daily backup window?"
-    a: "It minimizes latency spikes on the primary during backups, because of the synchronous standby. Multi-AZ still does not serve reads."
+    q: "Does an Amazon RDS Multi-AZ deployment guarantee no performance impact during automated backups?"
+    a: "No. Multi-AZ deployments can still experience elevated latency during automated backups. Account for backup activity when planning workload performance."
     facts: [multiaz-backup-latency]
   - id: rds-050
     q: A Lambda function must connect to RDS for PostgreSQL without storing a database password. Which feature fits?
@@ -66,16 +84,43 @@ cards:
     q: "How many same-Region read replicas can one RDS for MySQL source DB instance have?"
     a: "Up to **15**. Size each replica like the source, and scale replicas when you scale the source."
     facts: [replica-count]
+  - id: rds-089
+    q: "A team is choosing a data layout for a transactional database on Amazon RDS that frequently accesses complete records. Which layout fits?"
+    a: "A row-based layout. Transactional access to whole records suits rows; large analytical scans of selected fields suit a columnar layout."
+    facts: [transactional-row-layout]
+  - id: rds-095
+    q: "Can an Amazon RDS DB instance be moved to a different VPC by changing its DB subnet group?"
+    a: "Yes, when eligible. Use a subnet group in the destination VPC; first resolve restrictions such as Multi-AZ deployment or read-replica relationships."
+    facts: [vpc-change]
+  - id: rds-099
+    q: "An application being evaluated for Amazon RDS organizes records with consistent attributes and relationships between tables. Which database model fits?"
+    a: "The relational model. Records are rows, attributes are columns, and tables can be related."
+    facts: [relational-tables]
+  - id: rds-101
+    q: "A team comparing Amazon RDS with a key-value database only needs to look up an object by its unique identifier. Which access model matches that requirement?"
+    a: "Key-value access. The unique key identifies the associated value to retrieve."
+    facts: [key-value-selection]
+  - id: rds-103
+    q: "A team planning Amazon RDS capacity has several logical databases. Does every logical database require a separate DB instance?"
+    a: "No. A DB instance can contain multiple user-created databases, subject to its engine's capabilities."
+    facts: [multiple-databases]
+  - id: rds-104
+    q: "A team estimates Amazon RDS cost for a database using Provisioned IOPS SSD storage. Which capacity charges should it include?"
+    a: "DB instance compute capacity, provisioned storage and provisioned IOPS. Size each for the workload requirements."
+    facts: [compute-storage-cost]
 ---
 RDS design choices affect database access, availability and operations. These details help you choose how clients connect and what to expect from backups, failover and stopped instances.
 
 ### How it works
 
-1. A [Multi-AZ DB instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby) uses a synchronous standby, which also minimizes latency spikes on the primary during system backups. RDS Custom for Oracle and SQL Server also support a synchronous standby in another Availability Zone, but require [prerequisites](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-sqlserver-multiaz.html#custom-sqlserver-multiaz).
+1. A [Multi-AZ DB instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby) uses a synchronous standby. Automated backups can still cause elevated latency; Multi-AZ does not guarantee a backup window without performance impact. RDS Custom for Oracle and SQL Server also support a synchronous standby in another Availability Zone, but require [prerequisites](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-sqlserver-multiaz.html#custom-sqlserver-multiaz).
 2. For MariaDB, MySQL and PostgreSQL, [IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth) lets clients use a short-lived token instead of a password.
 3. Every DB instance has a private IP address in its VPC, a private virtual network. To make an instance publicly accessible, every subnet in its DB subnet group must be public, and the VPC must have DNS hostnames and DNS resolution enabled. See [working with a DB instance in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html).
 4. [RDS Proxy](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations) must be in the database's VPC and cannot be public. During [failover](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html), most client connections remain open, but connections in the middle of a transaction or SQL statement are canceled. The proxy accepts new connections immediately.
 5. A stopped DB instance [starts automatically](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html#USER_StopInstance) after its maximum stop period, so it does not miss required maintenance.
+6. For data modeling, relational tables store records as rows and attributes as columns. Row layouts suit transactions that touch complete records. Key-value access suits looking up a value by its key.
+7. A DB instance can host multiple logical databases, depending on its engine. Estimate instance compute, provisioned storage and any provisioned IOPS separately.
+8. An eligible instance can change VPCs through a destination DB subnet group, after resolving Multi-AZ and replica restrictions.
 
 ### Exam cues
 

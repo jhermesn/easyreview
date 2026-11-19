@@ -57,9 +57,6 @@ facts:
   - id: kms-at-rest
     text: "Amazon FSx for Windows File Server automatically encrypts file system data and metadata at rest using keys managed in AWS KMS."
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/encryption-at-rest.html#EFSKMS
-  - id: peered-vpc-access
-    text: "Amazon FSx for Windows File Server supports access from resources in another VPC or AWS account, including through inter-Region VPC peering, for file systems created after February 22, 2019."
-    source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/doc-history.html
 diagrams:
   - id: fsx-windows-multi-az
     title: Multi-AZ failover
@@ -126,10 +123,6 @@ cards:
     q: "A company chooses Amazon FSx for Windows File Server and requires encryption of stored files. How is encryption at rest provided?"
     a: "Automatically through AWS KMS keys. FSx encrypts file system data and metadata at rest without application changes."
     facts: [kms-at-rest]
-  - id: fsx-for-windows-014
-    q: "A new Amazon FSx for Windows File Server file system must serve clients in a VPC in another Region. Can VPC peering provide an access path?"
-    a: "Yes. FSx for Windows File Server supports inter-Region VPC peering access for file systems created after February 22, 2019."
-    facts: [peered-vpc-access]
 ---
 
 Amazon FSx for Windows File Server provides managed Windows file servers for shared files. Clients use Server Message Block (SMB), a network file-sharing protocol, and Microsoft Active Directory identifies users.
@@ -153,7 +146,6 @@ Amazon FSx for Windows File Server provides managed Windows file servers for sha
 ### Remember
 
 - File system data and metadata are encrypted at rest using AWS KMS keys.
-- File systems created after February 22, 2019 support inter-Region VPC peering access.
 
 - SMB versions 2.0 through 3.1.1 are supported.
 - Multi-AZ failover typically takes less than 30 seconds; failback is automatic after recovery.
