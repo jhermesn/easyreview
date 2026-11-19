@@ -28,8 +28,11 @@ facts:
     text: The Lambda function timeout defaults to three seconds.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html#configuration-timeout
   - id: timeout-standard
-    text: The normal Lambda function timeout can be set from 1 to 900 seconds, in one-second increments.
+    text: The normal Lambda function timeout can be set from 1 to 1,800 seconds, in one-second increments.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html#configuration-timeout
+  - id: timeout-change
+    text: In November 2026 the Lambda documentation raised the maximum function timeout from 900 seconds (15 minutes) to 1,800 seconds (30 minutes).
+    source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
   - id: timeout-managed
     text: Lambda Managed Instances allow up to 5,400 seconds for asynchronous invocations and event source mappings other than Amazon MQ and Amazon DocumentDB.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html#configuration-timeout
@@ -157,10 +160,11 @@ diagrams:
 cards:
   - id: lambda-004
     q: What are the default timeout and normal maximum timeout for a Lambda function?
-    a: Three seconds by default; normally up to 900 seconds (15 minutes). Lambda Managed Instances have a longer allowance for qualifying asynchronous and event source mapping invocations.
+    a: Three seconds by default; normally up to 1,800 seconds (30 minutes), raised from 900 seconds in November 2026. Lambda Managed Instances have a longer allowance for qualifying asynchronous and event source mapping invocations.
     facts:
       - timeout-default
       - timeout-standard
+      - timeout-change
       - timeout-managed
   - id: lambda-005
     q: Who retries synchronous Lambda function errors, and what happens after an asynchronous function error?
@@ -234,7 +238,7 @@ An Application Load Balancer (ALB) invokes a Lambda target directly with a JSON 
 ### Remember
 
 - Function-error retries: 2 by default, configurable from 0 to 2.
-- Timeout: 3 seconds by default, normally 1 through 900 seconds. Lambda Managed Instances permit up to 5,400 seconds for asynchronous and event source mapping invocations except Amazon MQ and Amazon DocumentDB.
+- Timeout: 3 seconds by default, normally 1 through 1,800 seconds (900 until November 2026). Lambda Managed Instances permit up to 5,400 seconds for asynchronous and event source mapping invocations except Amazon MQ and Amazon DocumentDB.
 - Memory: 128 MB by default, 128 through 10,240 MB in 1-MB steps. At 1,769 MB, CPU capacity equals one virtual CPU (vCPU).
 - Temporary storage: 512 through 10,240 MB in 1-MB steps, per environment.
 - Durable executions can last up to one year. In November 2026 the default running-execution quota rose from one million to five million per account, with twice that new quota in N. Virginia, Oregon, and Ireland.
