@@ -22,7 +22,8 @@
                 "iam/cross-account-roles-and-resource-policies",
                 "resource-access-manager/resource-sharing-and-invitations",
                 "resource-access-manager/basics",
-                "multi-account-strategy/account-boundaries-and-shared-services"
+                "multi-account-strategy/account-boundaries-and-shared-services",
+                "reference-architectures/secure-multi-account-access"
               ]
             },
             {
@@ -34,7 +35,8 @@
                 "iam-identity-center/identity-sources-permission-sets-and-sessions",
                 "iam/identities-roles-and-instance-profiles",
                 "iam/roles-basics",
-                "directory-service/managed-ad-ad-connector-and-simple-ad"
+                "directory-service/managed-ad-ad-connector-and-simple-ad",
+                "reference-architectures/secure-multi-account-access"
               ]
             },
             {
@@ -97,7 +99,8 @@
               "sections": [
                 "iam/cross-account-roles-and-resource-policies",
                 "iam/rbac-and-abac",
-                "iam/external-id-and-mfa-conditions"
+                "iam/external-id-and-mfa-conditions",
+                "reference-architectures/secure-multi-account-access"
               ]
             },
             {
@@ -111,7 +114,8 @@
                 "organizations/accounts-ous-and-consolidated-billing",
                 "organizations/basics",
                 "firewall-manager/basics",
-                "service-catalog/basics"
+                "service-catalog/basics",
+                "reference-architectures/secure-multi-account-access"
               ]
             },
             {
@@ -123,7 +127,8 @@
                 "kms/key-policies-and-grants",
                 "s3/public-access-and-object-ownership",
                 "s3/design-details",
-                "lambda/execution-roles-and-resource-policies"
+                "lambda/execution-roles-and-resource-policies",
+                "reference-architectures/secure-multi-account-access"
               ]
             },
             {
@@ -133,7 +138,8 @@
               "sections": [
                 "directory-service/managed-ad-ad-connector-and-simple-ad",
                 "iam/saml-and-oidc-federation",
-                "iam-identity-center/identity-sources-permission-sets-and-sessions"
+                "iam-identity-center/identity-sources-permission-sets-and-sessions",
+                "reference-architectures/secure-multi-account-access"
               ]
             }
           ]
@@ -240,7 +246,8 @@
                 "vpc/security-groups-and-network-acls",
                 "vpc/security-basics",
                 "multi-account-strategy/account-boundaries-and-shared-services",
-                "systems-manager/session-manager"
+                "systems-manager/session-manager",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -254,7 +261,8 @@
                 "waf/web-acl-scope-and-rule-actions",
                 "waf/basics",
                 "iam-identity-center/identity-sources-permission-sets-and-sessions",
-                "elastic-load-balancing/alb-authentication-and-certificates"
+                "elastic-load-balancing/alb-authentication-and-certificates",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -361,7 +369,8 @@
                 "s3/encryption-and-bucket-keys",
                 "ebs/encryption-and-regional-copies",
                 "rds/encryption-authentication-and-maintenance",
-                "rds/design-details"
+                "rds/design-details",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -373,7 +382,8 @@
                 "cloudfront/tls-and-field-level-encryption",
                 "elastic-load-balancing/alb-authentication-and-certificates",
                 "rds/encryption-authentication-and-maintenance",
-                "rds/design-details"
+                "rds/design-details",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -394,7 +404,8 @@
                 "backup/cross-account-copies",
                 "rds/read-replicas-and-regional-recovery",
                 "rds/design-details",
-                "efs/replication-and-failover"
+                "efs/replication-and-failover",
+                "reference-architectures/multi-region-warm-standby"
               ]
             },
             {
@@ -440,7 +451,8 @@
                 "api-gateway/basics",
                 "api-gateway/authentication-and-api-keys",
                 "api-gateway/endpoint-types-and-throttling",
-                "api-gateway/integrations-and-monitoring"
+                "api-gateway/integrations-and-monitoring",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -473,7 +485,8 @@
               "sections": [
                 "scalable-architectures/scaling-state-and-coupling",
                 "ecs/task-definitions-tasks-and-services",
-                "api-gateway/endpoint-types-and-throttling"
+                "api-gateway/endpoint-types-and-throttling",
+                "reference-architectures/container-microservices"
               ]
             },
             {
@@ -523,7 +536,8 @@
                 "app2container/application-containerization-and-availability",
                 "ecs/task-definitions-tasks-and-services",
                 "ecr/repositories-and-image-tags",
-                "cloud-adoption/migration-strategies"
+                "cloud-adoption/migration-strategies",
+                "reference-architectures/container-microservices"
               ]
             },
             {
@@ -559,7 +573,8 @@
                 "sns/topics-subscriptions-and-fan-out",
                 "amazon-mq/managed-message-brokers",
                 "sns/subscription-filters",
-                "sqs/dead-letter-queues-and-redrive"
+                "sqs/dead-letter-queues-and-redrive",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -600,7 +615,8 @@
                 "ecs/capacity-providers",
                 "eks/cluster-compute-options",
                 "eks/pod-and-node-scaling",
-                "eks-distro/self-managed-kubernetes"
+                "eks-distro/self-managed-kubernetes",
+                "reference-architectures/container-microservices"
               ]
             },
             {
@@ -635,7 +651,8 @@
                 "scalable-architectures/scaling-state-and-coupling",
                 "eventbridge/event-buses-and-patterns",
                 "step-functions/service-integration-patterns",
-                "reference-architectures/three-tier-web-application"
+                "reference-architectures/three-tier-web-application",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -676,7 +693,8 @@
                 "fargate/compute-and-isolation",
                 "fargate/basics",
                 "ecs/ecs-anywhere",
-                "eks-anywhere/on-premises-kubernetes"
+                "eks-anywhere/on-premises-kubernetes",
+                "reference-architectures/container-microservices"
               ]
             },
             {
@@ -901,7 +919,8 @@
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
                 "route53/dns-failover-and-testing",
-                "dynamodb/global-tables"
+                "dynamodb/global-tables",
+                "reference-architectures/three-tier-web-application"
               ]
             },
             {
@@ -1087,7 +1106,8 @@
                 "ec2/design-details",
                 "lambda/concurrency-controls",
                 "elastic-beanstalk/applications-environments-and-roles",
-                "elastic-beanstalk/basics"
+                "elastic-beanstalk/basics",
+                "reference-architectures/cost-optimized-batch-processing"
               ]
             },
             {
@@ -1152,7 +1172,8 @@
                 "ecs/capacity-providers",
                 "eks/cluster-compute-options",
                 "eks/pod-and-node-scaling",
-                "eks-distro/self-managed-kubernetes"
+                "eks-distro/self-managed-kubernetes",
+                "reference-architectures/container-microservices"
               ]
             },
             {
@@ -1164,7 +1185,8 @@
                 "sqs/standard-and-fifo-queues",
                 "sns/topics-subscriptions-and-fan-out",
                 "eventbridge/event-buses-and-patterns",
-                "dynamodb/streams-and-consumer-limits"
+                "dynamodb/streams-and-consumer-limits",
+                "reference-architectures/serverless-event-driven-application"
               ]
             },
             {
@@ -1178,7 +1200,8 @@
                 "ecs/service-auto-scaling",
                 "cloudwatch/agent-and-custom-metrics",
                 "cloudwatch/metrics-dimensions-and-resolution",
-                "cloudwatch/basics"
+                "cloudwatch/basics",
+                "reference-architectures/container-microservices"
               ]
             },
             {
@@ -1379,7 +1402,8 @@
                 "elasticache/engines-replicas-and-multi-az",
                 "dynamodb/dax-read-caching",
                 "api-gateway/deployments-and-stages",
-                "api-gateway/basics"
+                "api-gateway/basics",
+                "reference-architectures/three-tier-web-application"
               ]
             }
           ]
@@ -1484,7 +1508,8 @@
                 "elastic-load-balancing/basics",
                 "elastic-load-balancing/cross-zone-balancing",
                 "route53/routing-policies",
-                "route53/basics"
+                "route53/basics",
+                "reference-architectures/three-tier-web-application"
               ]
             }
           ]
@@ -1626,7 +1651,8 @@
               "sections": [
                 "quicksight/datasets-visuals-and-dashboards",
                 "opensearch/log-ingestion-search-and-dashboards",
-                "managed-grafana/workspaces-authentication-and-data-sources"
+                "managed-grafana/workspaces-authentication-and-data-sources",
+                "reference-architectures/streaming-data-lake"
               ]
             },
             {
@@ -1657,7 +1683,8 @@
               "sections": [
                 "firehose/transformations-and-format-conversion",
                 "glue/data-integration-and-catalog",
-                "athena/partitions-and-columnar-formats"
+                "athena/partitions-and-columnar-formats",
+                "reference-architectures/streaming-data-lake"
               ]
             }
           ]
@@ -1789,7 +1816,8 @@
                 "s3/storage-classes",
                 "s3/lifecycle-and-retention",
                 "s3/glacier-retrieval",
-                "s3/design-details"
+                "s3/design-details",
+                "reference-architectures/cost-optimized-batch-processing"
               ]
             },
             {
@@ -1856,7 +1884,8 @@
               "text": "Managing S3 object lifecycles",
               "sections": [
                 "s3/lifecycle-and-retention",
-                "s3/storage-classes"
+                "s3/storage-classes",
+                "reference-architectures/cost-optimized-batch-processing"
               ]
             },
             {
@@ -1893,7 +1922,8 @@
                 "efs/regional-and-one-zone-file-systems",
                 "efs/basics",
                 "ebs/volume-types",
-                "ebs/basics"
+                "ebs/basics",
+                "reference-architectures/cost-optimized-batch-processing"
               ]
             },
             {
@@ -1969,7 +1999,8 @@
                 "ec2/reserved-instance-flexibility-and-sharing",
                 "ec2/design-details",
                 "ec2/fleets-and-spot-requests",
-                "license-manager/license-inventory-and-rules"
+                "license-manager/license-inventory-and-rules",
+                "reference-architectures/cost-optimized-batch-processing"
               ]
             },
             {
@@ -2059,7 +2090,8 @@
                 "fargate/basics",
                 "ec2/purchasing-options",
                 "ec2/instance-types",
-                "ec2/design-details"
+                "ec2/design-details",
+                "reference-architectures/cost-optimized-batch-processing"
               ]
             },
             {
@@ -2339,7 +2371,8 @@
               "text": "Network routing, topology, and peering (for example, AWS Transit Gateway, VPC peering)",
               "sections": [
                 "transit-gateway/attachments-route-tables-and-sharing",
-                "vpc/route-tables-and-peering"
+                "vpc/route-tables-and-peering",
+                "reference-architectures/hybrid-network-hub"
               ]
             },
             {
@@ -2376,7 +2409,8 @@
                 "site-to-site-vpn/tunnels-connectivity-and-bandwidth",
                 "site-to-site-vpn/design-details",
                 "site-to-site-vpn/basics",
-                "client-vpn/remote-user-connectivity"
+                "client-vpn/remote-user-connectivity",
+                "reference-architectures/hybrid-network-hub"
               ]
             },
             {
