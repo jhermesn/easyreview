@@ -530,7 +530,8 @@
                 "sqs/visibility-retention-and-polling",
                 "sns/topics-subscriptions-and-fan-out",
                 "amazon-mq/managed-message-brokers",
-                "sns/subscription-filters"
+                "sns/subscription-filters",
+                "sqs/dead-letter-queues-and-redrive"
               ]
             },
             {
@@ -627,7 +628,8 @@
                 "eventbridge/event-buses-and-patterns",
                 "amazon-mq/managed-message-brokers",
                 "lambda/async-destinations-and-dead-letter-queues",
-                "reference-architectures/serverless-event-driven-application"
+                "reference-architectures/serverless-event-driven-application",
+                "dynamodb/streams-and-consumer-limits"
               ]
             },
             {
@@ -766,7 +768,9 @@
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
                 "cloudfront/origin-failover",
-                "reference-architectures/multi-region-warm-standby"
+                "reference-architectures/multi-region-warm-standby",
+                "dynamodb/global-tables",
+                "route53/alarm-based-health-checks"
               ]
             },
             {
@@ -849,7 +853,8 @@
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
                 "rds/multi-az-and-failover-tests",
                 "aurora/global-database-switchover-and-failover",
-                "route53/dns-failover-and-testing"
+                "route53/dns-failover-and-testing",
+                "dynamodb/global-tables"
               ]
             },
             {
@@ -863,7 +868,8 @@
                 "health/account-events-and-affected-resources",
                 "cloudwatch/agent-and-custom-metrics",
                 "cloudwatch/metric-filters-and-patterns",
-                "cloudwatch/logs-insights"
+                "cloudwatch/logs-insights",
+                "route53/alarm-based-health-checks"
               ]
             },
             {
@@ -911,7 +917,8 @@
                 "ec2-auto-scaling/groups-launch-templates-and-az-balance",
                 "route53/dns-failover-and-testing",
                 "elastic-disaster-recovery/replication-and-staging",
-                "sqs/standard-and-fifo-queues"
+                "sqs/standard-and-fifo-queues",
+                "sqs/dead-letter-queues-and-redrive"
               ]
             },
             {
@@ -1039,7 +1046,8 @@
                 "sqs/standard-and-fifo-queues",
                 "sqs/visibility-retention-and-polling",
                 "sns/topics-subscriptions-and-fan-out",
-                "amazon-mq/managed-message-brokers"
+                "amazon-mq/managed-message-brokers",
+                "sqs/dead-letter-queues-and-redrive"
               ]
             },
             {
@@ -1086,7 +1094,8 @@
                 "scalable-architectures/scaling-state-and-coupling",
                 "sqs/standard-and-fifo-queues",
                 "sns/topics-subscriptions-and-fan-out",
-                "eventbridge/event-buses-and-patterns"
+                "eventbridge/event-buses-and-patterns",
+                "dynamodb/streams-and-consumer-limits"
               ]
             },
             {
@@ -1210,7 +1219,8 @@
                 "rds/multi-az-and-failover-tests",
                 "aurora/storage-replicas-and-auto-scaling",
                 "aurora/design-details",
-                "aurora/global-database-switchover-and-failover"
+                "aurora/global-database-switchover-and-failover",
+                "dynamodb/global-tables"
               ]
             },
             {
@@ -1250,7 +1260,9 @@
                 "aurora/global-database-switchover-and-failover",
                 "rds/proxy-connection-pooling",
                 "rds/design-details",
-                "dynamodb/indexes-and-read-consistency"
+                "dynamodb/indexes-and-read-consistency",
+                "dynamodb/global-tables",
+                "dynamodb/streams-and-consumer-limits"
               ]
             },
             {
@@ -2219,7 +2231,8 @@
                 "route53/routing-policies",
                 "route53/alias-records-and-target-health",
                 "route53/private-hosted-zones",
-                "route53/resolver-endpoints-and-rules"
+                "route53/resolver-endpoints-and-rules",
+                "route53/public-zone-delegation"
               ]
             },
             {

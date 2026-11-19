@@ -27,6 +27,24 @@ facts:
   - id: inflight-polling
     text: At the in-flight limit, short polling returns OverLimit while long polling returns no new messages until in-flight count drops.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#inflight-messages
+  - id: dlq-policy
+    text: A source queue RedrivePolicy identifies deadLetterTargetArn and maxReceiveCount; SQS moves a message when its receive count exceeds maxReceiveCount.
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html#API_CreateQueue
+  - id: dlq-allow-policy
+    text: A DLQ RedriveAllowPolicy selects allowed source queues using allowAll, byQueue, or denyAll.
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html#API_CreateQueue
+  - id: redrive-no-transform
+    text: DLQ redrive cannot filter or modify message contents during movement.
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html#sqs-configure-dead-letter-queue-redrive-console
+  - id: redrive-new
+    text: DLQ redrive assigns a new message ID and enqueue time, resetting retention.
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html#sqs-configure-dead-letter-queue-redrive
+  - id: redrive-permissions
+    text: Starting redrive needs sqs:StartMessageMoveTask, sqs:ReceiveMessage, sqs:DeleteMessage, and sqs:GetQueueAttributes on the DLQ, plus sqs:SendMessage on the destination.
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html#sqs-configure-dead-letter-queue-redrive-permissions
+  - id: redrive-kms
+    text: Redrive of KMS-encrypted messages needs kms:Decrypt on the keys used to encrypt them; an encrypted destination also needs kms:GenerateDataKey and kms:Decrypt.
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html#sqs-configure-dead-letter-queue-redrive-permissions
 cards:
   - id: sqs-007
     q: An SQS producer retries messages with identical bodies but different attributes under content-based FIFO deduplication. Are the attributes part of the deduplication hash?
@@ -54,6 +72,25 @@ cards:
       - inflight
       - inflight-standard-limit
       - inflight-polling
+  - id: sqs-018
+    q: How do SQS RedrivePolicy and RedriveAllowPolicy differ?
+    a: RedrivePolicy on the source sets failure routing and maxReceiveCount. RedriveAllowPolicy on the DLQ controls which source queues may use it.
+    facts:
+      - dlq-policy
+      - dlq-allow-policy
+  - id: sqs-019
+    q: A team wants SQS DLQ redrive to rewrite malformed payloads before sending them back. Can the managed redrive task do that?
+    a: No. DLQ redrive cannot filter or modify messages. It moves them and assigns new message IDs and enqueue times.
+    trap: true
+    facts:
+      - redrive-no-transform
+      - redrive-new
+  - id: sqs-021
+    q: An SQS DLQ redrive is denied for an encrypted queue pair. Which permissions should the team check?
+    a: Check DLQ move/read/delete/attribute permissions and destination sqs:SendMessage. Also check kms:Decrypt for message keys and kms:GenerateDataKey plus kms:Decrypt for the encrypted destination.
+    facts:
+      - redrive-permissions
+      - redrive-kms
 ---
 SQS message handling depends on how producers identify and delay messages and how consumers delete them. These choices also affect how to investigate a queue that stops returning work.
 
@@ -76,5 +113,8 @@ SQS message handling depends on how producers identify and delay messages and ho
 - Queue delay defaults to 0 seconds and can be up to 15 minutes.
 - A standard queue allows approximately 120,000 in-flight messages, depending on traffic and backlog.
 - Short polling returns `OverLimit` at the in-flight limit; long polling returns no new messages until the count drops.
+- A DLQ `RedriveAllowPolicy` selects which source queues may use it: `allowAll`, `byQueue` or `denyAll`.
+- Redrive gives messages new IDs and enqueue times and cannot filter or rewrite them.
+- Starting a redrive needs `sqs:StartMessageMoveTask`, receive, delete and attribute permissions on the DLQ, `sqs:SendMessage` on the destination, and KMS permissions for encrypted queues.
 
 > **Trap:** Different message attributes do not make content-based FIFO deduplication treat identical bodies as different. Use explicit deduplication IDs when the messages need distinct identities.

@@ -33,6 +33,27 @@ facts:
   - id: lsi
     text: "An LSI keeps the table partition key, changes the sort key, is created with the table, and supports eventual or strong reads."
     source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html
+  - id: topology
+    text: "MRSC needs exactly three Regions, using three replicas or two replicas and a witness that cannot serve application reads or writes."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html
+  - id: limits
+    text: "MRSC does not support TTL, LSIs, or DynamoDB transaction operations."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html
+  - id: mrec-streams
+    text: "MREC replication reads changes from DynamoDB Streams, which are enabled by default on every replica and cannot be disabled there."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html#global-tables-streams
+  - id: readers
+    text: "DynamoDB Streams supports up to two simultaneous readers per shard; exceeding this can throttle reads."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/streamsmain.html
+  - id: adapter
+    text: "The DynamoDB Streams Kinesis Adapter lets Kinesis Client Library applications read DynamoDB Streams without changing the underlying service."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html
+  - id: kinesis
+    text: "Kinesis Data Streams for DynamoDB is a separate change-capture option with retention up to one year and enhanced fan-out."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/streamsmain.html
+  - id: lambda
+    text: "AWS recommends at most two simultaneous Lambda functions per shard for single-Region tables and one for global tables."
+    source: https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html
 cards:
   - id: dynamodb-034
     q: "A DynamoDB write consumer is falling behind. Which metric distinguishes write throttling from read throttling?"
@@ -59,6 +80,29 @@ cards:
     q: "How many local secondary indexes can a DynamoDB table have?"
     a: "**Five**, a fixed quota. LSIs are also created only with the table."
     facts: [lsi-limit, lsi]
+  - id: dynamodb-030
+    q: "A DynamoDB MRSC design needs only two full replicas. What else is required?"
+    a: "A witness in a third Region. MRSC needs exactly three Regions; the witness cannot serve application reads or writes."
+    facts: [topology]
+  - id: dynamodb-031
+    q: "Can a DynamoDB MRSC table use TTL, local secondary indexes, and transactions?"
+    a: "No. MRSC does not support those features."
+    trap: true
+    facts: [limits]
+  - id: dynamodb-041
+    q: "A team wants to disable DynamoDB Streams on an MREC global table replica. Is that supported?"
+    a: "No. MREC replication reads changes from DynamoDB Streams, which are enabled by default and cannot be disabled on its replicas."
+    trap: true
+    facts: [mrec-streams]
+  - id: dynamodb-018
+    q: "Several DynamoDB Streams consumers throttle on one shard. Does the Kinesis Adapter remove that limit?"
+    a: "No. It still reads DynamoDB Streams. Reduce direct readers, distribute records downstream, or choose Kinesis Data Streams with enhanced fan-out."
+    trap: true
+    facts: [readers, adapter, kinesis]
+  - id: dynamodb-020
+    q: "How many simultaneous Lambda readers should a team plan per DynamoDB Streams shard?"
+    a: "Up to two functions for a single-Region table; AWS recommends one for a global table to avoid throttling."
+    facts: [lambda]
 ---
 DynamoDB operations can involve table and index capacity, cached reads, and index projections. Understanding which resource or cache holds the data helps explain throttling, stale results, and extra reads.
 
@@ -81,5 +125,9 @@ DynamoDB operations can involve table and index capacity, cached reads, and inde
 - A table can switch from provisioned to on-demand up to four times in a rolling 24-hour window; on-demand to provisioned is allowed at any time.
 - DAX item-cache default TTL: five minutes.
 - A table can have at most [five LSIs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html), a fixed quota. LSIs must be created with the table.
+- MRSC needs exactly three Regions: three replicas, or two replicas plus a witness that serves no application reads or writes.
+- MRSC does not support TTL, local secondary indexes or transactions.
+- MREC replication reads DynamoDB Streams, which stay enabled on every replica.
+- DynamoDB Streams: plan at most two simultaneous readers per shard; the Kinesis Adapter changes the client interface, not those limits.
 
 > **Trap:** Updating an item does not refresh a cached DAX `Query` or `Scan` result. The query cache is separate from the item cache.
