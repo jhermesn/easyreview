@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { availableCerts } from '../../lib/certs';
+import { levelRank } from '../../lib/levels';
 import { getCertView, sectionHref, unitIdOf } from '../../lib/content';
 import { jsonForScript } from '../../lib/format';
 import { localeOf, localeParams, localePath, useTranslations } from '../../i18n';
@@ -9,21 +10,26 @@ export const getStaticPaths = () => localeParams();
 const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
 
-// One entry per section, linked through the first cert that includes it; `cert` lists every exam that does.
+// One entry per section. `links` holds the section's page in every cert that maps it, most advanced exam
+// first: the client opens it in the cert the reader is studying, or else in the most advanced one.
 const views = await Promise.all(availableCerts().map((c) => getCertView(c.id, locale)));
-const certCodes = new Map<string, string[]>();
-for (const view of views) for (const s of view.sections) certCodes.set(s.id, [...(certCodes.get(s.id) ?? []), view.cert.code]);
+const byLevel = [...views].sort((a, b) => levelRank(b.cert.level) - levelRank(a.cert.level));
+const certsOf = new Map<string, string[]>();
+for (const view of byLevel) for (const s of view.sections) certsOf.set(s.id, [...(certsOf.get(s.id) ?? []), view.cert.id]);
+const codeOf = new Map(views.map((v) => [v.cert.id, v.cert.code]));
 const indexed = new Set<string>();
 const index = views.flatMap((view) =>
   view.units.flatMap(({ unit, sections }) =>
     sections.flatMap((s) => {
       if (indexed.has(s.id)) return [];
       indexed.add(s.id);
-      const cert = certCodes.get(s.id)!.join(' ');
+      const ids = certsOf.get(s.id)!;
+      const cert = ids.map((id) => codeOf.get(id)).join(' ');
       const topic = unit.data.title;
+      const links = (path: (certId: string) => string) => ids.map((id) => [id, localePath(locale, path(id))]);
       return [
-        { kind: 'section', cert, title: s.data.title, text: `${topic} ${s.body ?? ''}`, href: localePath(locale, sectionHref(view.cert.id, s)), topic },
-        ...s.data.cards.map((c) => ({ kind: 'card', cert, title: c.q, text: `${c.a} ${topic}`, href: localePath(locale, `/${view.cert.id}/${unitIdOf(s)}#cards`), topic })),
+        { kind: 'section', cert, title: s.data.title, text: `${topic} ${s.body ?? ''}`, links: links((id) => sectionHref(id, s)), topic },
+        ...s.data.cards.map((c) => ({ kind: 'card', cert, title: c.q, text: `${c.a} ${topic}`, links: links((id) => `/${id}/${unitIdOf(s)}#cards`), topic })),
       ];
     }),
   ),
@@ -49,7 +55,8 @@ const index = views.flatMap((view) =>
 <script>
   import { escapeHtml as esc } from '../../lib/format';
   import { clientT } from '../../i18n';
-  type Entry = { kind: string; cert: string; title: string; text: string; href: string; topic?: string };
+  import { readRecent } from '../../lib/recent';
+  type Entry = { kind: string; cert: string; title: string; text: string; links: [string, string][]; topic?: string };
   document.addEventListener('astro:page-load', () => {
     const input = document.querySelector<HTMLInputElement>('[data-search]');
     if (!input || input.dataset.ready) return;
@@ -57,6 +64,8 @@ const index = views.flatMap((view) =>
     const t = clientT();
     const index: Entry[] = JSON.parse(document.querySelector('[data-index]')!.textContent!);
     const out = document.querySelector<HTMLElement>('[data-results]')!;
+    const current = readRecent()?.cert;
+    const hrefOf = (e: Entry) => (e.links.find(([cert]) => cert === current) ?? e.links[0])[1];
     const run = () => {
       const terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
       if (!terms.length) { out.innerHTML = ''; return; }
@@ -71,7 +80,7 @@ const index = views.flatMap((view) =>
         .sort((a, b) => b.score - a.score)
         .slice(0, 40);
       out.innerHTML = hits.length
-        ? hits.map(({ e }) => `<li><span class="c">${esc(e.cert)}</span><span class="k">${t(e.kind === 'card' ? 'search.kind.card' : 'search.kind.section')}</span><a href="${e.href}">${esc(e.title.replace(/[*`]/g, ''))}</a>${e.topic ? `<small>${esc(e.topic)}</small>` : ''}</li>`).join('')
+        ? hits.map(({ e }) => `<li><span class="c">${esc(e.cert)}</span><span class="k">${t(e.kind === 'card' ? 'search.kind.card' : 'search.kind.section')}</span><a href="${hrefOf(e)}">${esc(e.title.replace(/[*`]/g, ''))}</a>${e.topic ? `<small>${esc(e.topic)}</small>` : ''}</li>`).join('')
         : `<li class="muted">${esc(t('search.none'))}</li>`;
     };
     input.addEventListener('input', run);

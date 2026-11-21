@@ -35,7 +35,7 @@ const stages = roadmap.stages.map((s) => ({ ...s, units: s.units.map((id) => byI
           <ul class="units">
             {s.units.map(({ unit, sections }) => (
               <li>
-                <a href={localePath(locale, `/${certId}/${unit.id}`)} title={unit.data.summary} data-known={sectionIds(sections)} data-roadmap-unit>
+                <a href={`${localePath(locale, `/${certId}/${unit.id}/`)}?trail`} title={unit.data.summary} data-known={sectionIds(sections)} data-roadmap-unit>
                   {unit.data.icon ? <img src={withBase(`/aws-icons/${unit.data.icon}.svg`)} alt="" width="20" height="20" loading="lazy" /> : null}
                   <span class="name">{unit.data.title}</span>
                   <Icon name="check-circle" size={13} class="st-done" />
