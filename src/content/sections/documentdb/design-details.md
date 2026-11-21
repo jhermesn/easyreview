@@ -38,15 +38,15 @@ cards:
     a: "Documents can represent products with different attribute sets, matching the variable structure of a product catalog."
     facts: [catalog-workloads]
 ---
-Amazon DocumentDB is a managed database for MongoDB-compatible workloads. Before moving an application, check which operations it needs and how they behave. [Amazon DocumentDB](https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is)
+Amazon DocumentDB is a managed database for MongoDB-compatible workloads. Before moving an application, check which operations it needs and how they behave.
 
 Product catalogs are a document-database use case: different products can have different attributes. Amazon DocumentDB can query and index JSON data without enforcing one schema across the collection.
 
 ### How it works
 
-1. Check the [supported MongoDB APIs and operations](https://docs.aws.amazon.com/documentdb/latest/devguide/mongo-apis.html#mongo-apis-dababase-administrative) for the compatibility level and review the [functional differences](https://docs.aws.amazon.com/documentdb/latest/devguide/functional-differences.html#functional-differences).
-2. The cluster volume grows automatically as data grows, and billing reflects the space used. [How it works](https://docs.aws.amazon.com/documentdb/latest/devguide/how-it-works.html#how-it-works)
-3. Create a manual cluster snapshot to retain backup data beyond the backup retention period. [Backing up and restoring](https://docs.aws.amazon.com/documentdb/latest/devguide/backup_restore.html#backup_restore)
+1. Check the supported MongoDB APIs and operations for the compatibility level and review the functional differences.
+2. The cluster volume grows automatically as data grows, and billing reflects the space used.
+3. Create a manual cluster snapshot to retain backup data beyond the backup retention period.
 
 ### Exam cues
 

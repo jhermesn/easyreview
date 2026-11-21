@@ -29,7 +29,7 @@ cards:
     a: The service health page of the AWS Health Dashboard. Your account health needs sign-in.
     facts: [service-health]
 ---
-AWS Health reports AWS events, such as outages and scheduled changes, that affect your account. [What is AWS Health?](https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html#what-is-aws-health)
+AWS Health reports AWS events, such as outages and scheduled changes, that affect your account.
 
 ### How it works
 

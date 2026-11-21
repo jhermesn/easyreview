@@ -123,11 +123,11 @@ Kinesis Data Streams producers choose how to route and write records. The write 
 
 ### How it works
 
-1. Kinesis uses an MD5 hash of the partition key, a value supplied with a record, to choose a shard by its hash range. The same key maps to the same shard unless the mapping is explicitly overridden. [Source](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html#API_PutRecords)
-2. For strict write order, send `PutRecord` calls serially to the same shard and use `SequenceNumberForOrdering`. The ordering guarantee applies to writes from the same client and partition key; sequence numbers do not establish order across shards. [Source](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html#API_PutRecord)
-3. KPL aggregation packs multiple application records into one Kinesis record, reducing the service-record rate and improving producer throughput. [Source](https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-aggretation)
-4. KPL collection sends multiple Kinesis records in one `PutRecords` request. Aggregation and collection can be configured independently. [Source](https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-batching)
-5. A `PutRecords` request can partially succeed. Check for failed entries and retry them; the operation does not guarantee record ordering. [Source](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html#API_PutRecords)
+1. Kinesis uses an MD5 hash of the partition key, a value supplied with a record, to choose a shard by its hash range. The same key maps to the same shard unless the mapping is explicitly overridden.
+2. For strict write order, send `PutRecord` calls serially to the same shard and use `SequenceNumberForOrdering`. The ordering guarantee applies to writes from the same client and partition key; sequence numbers do not establish order across shards.
+3. KPL aggregation packs multiple application records into one Kinesis record, reducing the service-record rate and improving producer throughput.
+4. KPL collection sends multiple Kinesis records in one `PutRecords` request. Aggregation and collection can be configured independently.
+5. A `PutRecords` request can partially succeed. Check for failed entries and retry them; the operation does not guarantee record ordering.
 
 ### Exam cues
 
@@ -138,10 +138,10 @@ Kinesis Data Streams producers choose how to route and write records. The write 
 ### Remember
 
 - Aggregation combines application records; collection sends Kinesis records together using `PutRecords`.
-- Both KPL batching features are enabled by default and can be configured independently. [Source](https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-batching)
-- Sequence numbers do not establish order across shards. [Source](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html#API_PutRecord)
+- Both KPL batching features are enabled by default and can be configured independently.
+- Sequence numbers do not establish order across shards.
 - KCL 3.x keeps lease, worker metrics and coordinator state tables; KCL 3.5 supports one lease table.
 - Enhanced fan-out propagation typically averages 70 ms; it is not a per-record guarantee, and it does not make processing exactly once.
 - Producer retries can duplicate payloads under new sequence numbers; deduplicate on an application identifier.
 
-> **Trap:** A `PutRecords` request can succeed for some entries and fail for others. A batch does not guarantee strict ordering, even when records are sent together. [Source](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html#API_PutRecords)
+> **Trap:** A `PutRecords` request can succeed for some entries and fail for others. A batch does not guarantee strict ordering, even when records are sent together.

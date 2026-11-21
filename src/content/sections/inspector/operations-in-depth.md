@@ -43,13 +43,13 @@ cards:
     facts:
       - lambda-eligibility
 ---
-Amazon Inspector uses workload scan types to assess resources. Understanding how EC2 inventory is collected and which Lambda functions qualify helps explain scan coverage. [First activation](https://docs.aws.amazon.com/inspector/latest/user/scanning-resources.html) enables EC2, ECR, and Lambda standard scanning.
+Amazon Inspector uses workload scan types to assess resources. Understanding how EC2 inventory is collected and which Lambda functions qualify helps explain scan coverage. First activation enables EC2, ECR, and Lambda standard scanning.
 
 ### How it works
 
-1. For EC2, Inspector compares collected software metadata with security advisories. Agent-based scanning uses Systems Manager Agent, while agentless scanning uses EBS snapshots. [Hybrid mode](https://docs.aws.amazon.com/inspector/latest/user/scanning-ec2.html) combines the methods for managed and eligible unmanaged instances.
-2. For Lambda, check the [function's eligibility](https://docs.aws.amazon.com/inspector/latest/user/scanning-lambda.html#supported-functions): a supported runtime, `$LATEST`, recent invocation or update, and no exclusion tag.
-3. Recognize the historical [Inspector Classic assessment model](https://aws.amazon.com/blogs/security/how-to-set-up-continuous-golden-ami-vulnerability-assessments-with-amazon-inspector/): EC2 instances launched from golden AMIs used an Inspector agent, tag-selected assessment targets, and assessment templates.
+1. For EC2, Inspector compares collected software metadata with security advisories. Agent-based scanning uses Systems Manager Agent, while agentless scanning uses EBS snapshots. Hybrid mode combines the methods for managed and eligible unmanaged instances.
+2. For Lambda, check the function's eligibility: a supported runtime, `$LATEST`, recent invocation or update, and no exclusion tag.
+3. Recognize the historical Inspector Classic assessment model: EC2 instances launched from golden AMIs used an Inspector agent, tag-selected assessment targets, and assessment templates.
 
 ### Exam cues
 
@@ -62,6 +62,6 @@ Amazon Inspector uses workload scan types to assess resources. Understanding how
 - Hybrid is the default EC2 scan mode.
 - Lambda eligibility requires a supported runtime, `$LATEST`, an invocation or update within 90 days, and no exclusion tag.
 - Lambda code scanning and machine image scanning require separate activation.
-- Inspector Classic support ended [May 20, 2026](https://docs.aws.amazon.com/managedservices/latest/onboardingguide/inspector.html).
+- Inspector Classic support ended May 20, 2026.
 
 > **Trap:** An Inspector agent and tag-selected assessment targets describe Inspector Classic. Current Inspector uses workload scan types, and Classic support has ended.

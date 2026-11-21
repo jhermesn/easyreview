@@ -20,7 +20,7 @@ cards:
     trap: true
     facts: [outbound]
 ---
-ECS Anywhere extends an ECS cluster to servers you own: the same task definitions and console, with the containers running on premises. [Amazon ECS clusters for external instances](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-anywhere.html)
+ECS Anywhere extends an ECS cluster to servers you own: the same task definitions and console, with the containers running on premises.
 
 ### How it works
 

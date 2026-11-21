@@ -12,7 +12,7 @@ cards:
     a: "Amazon Macie."
     facts: [sensitive-data]
 ---
-Amazon Macie finds sensitive data, such as personal information, in Amazon S3 and flags bucket security risks. [What is Amazon Macie?](https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html#what-is-macie)
+Amazon Macie finds sensitive data, such as personal information, in Amazon S3 and flags bucket security risks.
 
 ### How it works
 

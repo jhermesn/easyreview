@@ -12,7 +12,7 @@ cards:
     a: "Amazon SNS, publishing to a topic with those subscribers."
     facts: [pub-sub]
 ---
-Amazon SNS is publish and subscribe messaging: one message to a topic reaches many subscribers. [What is Amazon SNS?](https://docs.aws.amazon.com/sns/latest/dg/welcome.html#welcome)
+Amazon SNS is publish and subscribe messaging: one message to a topic reaches many subscribers.
 
 ### How it works
 

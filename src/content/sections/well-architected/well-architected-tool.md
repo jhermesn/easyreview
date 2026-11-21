@@ -50,14 +50,14 @@ cards:
     a: "The customer's own team. The tool guides a self-review and produces the risks and an improvement plan."
     facts: [output]
 ---
-The AWS Well-Architected Tool runs Well-Architected Framework reviews in the AWS console. You answer the questions for a workload, and the tool lists the risks and an improvement plan. [What is AWS WA Tool](https://docs.aws.amazon.com/wellarchitected/latest/userguide/tool.html#tool)
+The AWS Well-Architected Tool runs Well-Architected Framework reviews in the AWS console. You answer the questions for a workload, and the tool lists the risks and an improvement plan.
 
 ### How it works
 
 1. Define a workload in the tool.
 2. Answer the review questions for each pillar. Lenses supply the questions; custom lenses add your own.
 3. Read the result: high risk issues (HRIs), medium risk issues (MRIs) and an improvement plan.
-4. Save a milestone, make improvements, and review again to track progress. [AWS Well-Architected](https://docs.aws.amazon.com/wellarchitected/latest/userguide/well-architected.html#well-architected)
+4. Save a milestone, make improvements, and review again to track progress.
 
 AWS Well-Architected Agent, in preview as of October 2026, takes another approach: it analyzes deployed resources with AI and proposes fixes. The two can be used together.
 

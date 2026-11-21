@@ -30,9 +30,9 @@ Amazon Comprehend can find entity types and classify documents using categories 
 
 ### How it works
 
-1. For business-specific terms or product codes, use [custom entity recognition](https://docs.aws.amazon.com/comprehend/latest/dg/custom-entity-recognition.html#custom-entity-recognition) to train a model for your entity types.
-2. For your own document categories, train a [custom classifier](https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html#how-document-classification), then classify a single document in real time or a set asynchronously.
-3. For sentiment about each product or brand in a document, use [targeted sentiment](https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html#how-targeted-sentiment).
+1. For business-specific terms or product codes, use custom entity recognition to train a model for your entity types.
+2. For your own document categories, train a custom classifier, then classify a single document in real time or a set asynchronously.
+3. For sentiment about each product or brand in a document, use targeted sentiment.
 
 ### Exam cues
 

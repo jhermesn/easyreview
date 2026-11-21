@@ -116,13 +116,13 @@ cards:
     a: "Governance, along with program and project management, benefits management, risk management, cloud financial management and application portfolio management."
     facts: [governance-capabilities]
 ---
-The AWS Cloud Adoption Framework (AWS CAF) is AWS guidance for the organizational side of moving to the cloud. It helps find and prioritize opportunities, check how ready the organization is, and plan the transformation in steps. [AWS CAF overview](https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/welcome.html#welcome)
+The AWS Cloud Adoption Framework (AWS CAF) is AWS guidance for the organizational side of moving to the cloud. It helps find and prioritize opportunities, check how ready the organization is, and plan the transformation in steps.
 
 ### How it works
 
-1. AWS CAF ties cloud adoption to business outcomes: less business risk, better ESG performance, more revenue and more operational efficiency. [Business outcomes](https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/accelerating-business-outcomes.html#accelerating-business-outcomes)
-2. Its capabilities sit in six perspectives, each owned by a group of stakeholders. [Foundational capabilities](https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/foundational-capabilities.html#foundational-capabilities)
-3. The journey repeats four phases: Envision, Align, Launch and Scale. [Transformation journey](https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/your-cloud-transformation-journey.html#your-cloud-transformation-journey)
+1. AWS CAF ties cloud adoption to business outcomes: less business risk, better ESG performance, more revenue and more operational efficiency.
+2. Its capabilities sit in six perspectives, each owned by a group of stakeholders.
+3. The journey repeats four phases: Envision, Align, Launch and Scale.
 
 | Perspective | Focus |
 |---|---|

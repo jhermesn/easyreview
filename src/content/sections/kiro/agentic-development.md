@@ -27,7 +27,7 @@ cards:
     trap: true
     facts: [assistant]
 ---
-Kiro brings agents into software development: they help plan features, write and change code, run tests and use tools through MCP. It's the AWS path forward for the Amazon Q Developer IDE plugins. [Choosing a generative AI service](https://docs.aws.amazon.com/decision-guides/latest/generative-ai-on-aws-how-to-choose/guide.html)
+Kiro brings agents into software development: they help plan features, write and change code, run tests and use tools through MCP. It's the AWS path forward for the Amazon Q Developer IDE plugins.
 
 ### How it works
 

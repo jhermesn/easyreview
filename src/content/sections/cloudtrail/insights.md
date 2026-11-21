@@ -53,7 +53,7 @@ cards:
       - insights-trail-delay
       - insights-baseline
 ---
-CloudTrail Insights detects unusual API call rates and error rates. Its baseline is the normal activity pattern learned from past events, so the feature looks for departures from that pattern. [AWS Insights behavior](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-insights-events-with-cloudtrail.html#logging-insights-events-with-cloudtrail)
+CloudTrail Insights detects unusual API call rates and error rates. Its baseline is the normal activity pattern learned from past events, so the feature looks for departures from that pattern.
 
 ### How it works
 
@@ -77,6 +77,6 @@ CloudTrail Insights detects unusual API call rates and error rates. Its baseline
 
 - Insights is opt-in and incurs additional charges.
 - Trail delivery can take up to 36 hours after enablement or restart, and only produces events when unusual activity is detected.
-- Lake uses a source and destination event data store and can take up to 7 days under the same condition. [Delivery timing](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/insights-events-understanding.html#insights-events-understanding)
+- Lake uses a source and destination event data store and can take up to 7 days under the same condition.
 
 > **Trap:** Enabling management call-rate Insights on a trail that records only read calls does not supply its required write-event input.

@@ -33,7 +33,7 @@ cards:
     a: AWS Systems Manager, which manages them all as managed nodes from a centralized view.
     facts: [central-view]
 ---
-AWS Systems Manager is the operations hub for servers: it patches, runs commands, opens sessions and stores parameters for EC2 instances and on-premises machines. [What is AWS Systems Manager?](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html#what-is-systems-manager)
+AWS Systems Manager is the operations hub for servers: it patches, runs commands, opens sessions and stores parameters for EC2 instances and on-premises machines.
 
 ### How it works
 

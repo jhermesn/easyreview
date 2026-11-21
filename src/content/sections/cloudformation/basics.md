@@ -12,7 +12,7 @@ cards:
     a: "AWS CloudFormation."
     facts: [templates]
 ---
-AWS CloudFormation creates and updates AWS resources from templates, which is infrastructure as code. [What is CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome)
+AWS CloudFormation creates and updates AWS resources from templates, which is infrastructure as code.
 
 ### How it works
 

@@ -58,7 +58,7 @@ cards:
     trap: true
     facts: [order]
 ---
-Customization runs from cheap to expensive: better prompts, richer context, retrieval (RAG), fine-tuning, continued pre-training and, rarely, training a model from scratch. Start at the cheap end and climb only when results demand it. [Learn when to customize models](https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/genops05-bp01.html)
+Customization runs from cheap to expensive: better prompts, richer context, retrieval (RAG), fine-tuning, continued pre-training and, rarely, training a model from scratch. Start at the cheap end and climb only when results demand it.
 
 ### How it works
 

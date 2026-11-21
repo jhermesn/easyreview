@@ -12,7 +12,7 @@ cards:
     a: "An S3 Lifecycle rule: transition to a cheaper class after 30 days, archive later, and expire after a year."
     facts: [lifecycle-actions]
 ---
-S3 Lifecycle rules manage objects over time, moving them to cheaper storage and deleting them when no longer needed. [Managing the lifecycle of objects](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html#object-lifecycle-mgmt)
+S3 Lifecycle rules manage objects over time, moving them to cheaper storage and deleting them when no longer needed.
 
 ### How it works
 

@@ -154,7 +154,7 @@ Container delivery questions combine three repositories (code, packages, images)
 
 ### How it works
 
-1. CodeBuild pulls dependencies from CodeArtifact, builds the image and pushes it to ECR with immutable tags. [Blue/green for ECS](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECSbluegreen.html#action-reference-ECSbluegreen-config)
+1. CodeBuild pulls dependencies from CodeArtifact, builds the image and pushes it to ECR with immutable tags.
 2. An InspectorScan action stops the pipeline when the image has too many findings.
 3. A test action invokes Lambda, or CodeBuild, for integration tests.
 4. CodeDeployToECS creates the green task set, the test listener exposes it to the AfterAllowTestTraffic hook, then production traffic shifts.

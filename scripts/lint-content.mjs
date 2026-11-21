@@ -36,6 +36,8 @@ function check(file) {
     if (!body.includes('> **Trap:**')) problems.push('body: missing a > **Trap:** block');
     if (/[ \t]$/m.test(body)) problems.push('body: line ends with whitespace (a wrapped or cut-off line)');
   }
+  // Sources are listed once, under "From the AWS docs" (the facts); the body names things without linking out.
+  if (/\]\(https?:\/\//.test(match[2])) problems.push('body: external link (put the source in a fact instead)');
   for (const d of data.diagrams ?? []) for (const p of lintDiagram(withDefaults(d))) problems.push(`diagram ${d.id}: ${p}`);
   for (const d of data.diagrams ?? []) for (const f of d.facts ?? []) if (!factIds.has(f)) problems.push(`diagram ${d.id}: unknown fact "${f}"`);
   if (file.includes('/reference-architectures/')) problems.push(...referenceFloor(data.diagrams ?? []));

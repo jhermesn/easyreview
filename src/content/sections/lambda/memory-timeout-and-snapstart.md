@@ -56,7 +56,7 @@ cards:
     trap: true
     facts: [cold-start]
 ---
-Lambda sizing has one main dial: memory, which also sets CPU. Timeout caps how long a run can take, and SnapStart cuts cold starts for supported runtimes. [Configure Lambda function memory](https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html)
+Lambda sizing has one main dial: memory, which also sets CPU. Timeout caps how long a run can take, and SnapStart cuts cold starts for supported runtimes.
 
 ### How it works
 

@@ -30,9 +30,9 @@ AWS Compute Optimizer recommendations depend on resource-specific requirements. 
 
 ### How it works
 
-1. For [EC2 instances and Auto Scaling groups](https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-ec2-instances), check for at least 30 hours of CloudWatch metrics in the past 14 days, or in the past 93 days with enhanced infrastructure metrics.
-2. For [Lambda memory recommendations](https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-lambda-functions), check both configured memory and invocation count in the last 14 days.
-3. For a supported [EBS volume](https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-ebs-volumes), check that it has been attached to a running instance for at least 30 consecutive hours. Its recommendation is unavailable after detachment.
+1. For EC2 instances and Auto Scaling groups, check for at least 30 hours of CloudWatch metrics in the past 14 days, or in the past 93 days with enhanced infrastructure metrics.
+2. For Lambda memory recommendations, check both configured memory and invocation count in the last 14 days.
+3. For a supported EBS volume, check that it has been attached to a running instance for at least 30 consecutive hours. Its recommendation is unavailable after detachment.
 
 ### Exam cues
 

@@ -12,7 +12,7 @@ cards:
     a: "Amazon FSx for OpenZFS."
     facts: [openzfs]
 ---
-Amazon FSx for OpenZFS is a managed OpenZFS file system on AWS. [What is FSx for OpenZFS?](https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/what-is-fsx.html#what-is-fsx)
+Amazon FSx for OpenZFS is a managed OpenZFS file system on AWS.
 
 ### How it works
 

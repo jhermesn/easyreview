@@ -91,13 +91,13 @@ cards:
     facts:
       - authorization
 ---
-The AWS Command Line Interface (CLI) reports errors that help identify why a command failed. For an access denied error, check the caller's identity and permissions. [Troubleshooting AWS CLI errors](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-troubleshooting.html)
+The AWS Command Line Interface (CLI) reports errors that help identify why a command failed. For an access denied error, check the caller's identity and permissions.
 
 ### How it works
 
-1. Check the command's [return code](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-returncodes.html), the process status reported to the script, and inspect the error details.
+1. Check the command's return code, the process status reported to the script, and inspect the error details.
 2. For access denied, check the caller's identity and permissions. For invalid parameters, correct the syntax or values.
-3. Use [`--debug`](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-troubleshooting.html#general-debug) to inspect processing details, including parameter parsing, requests and responses.
+3. Use `--debug` to inspect processing details, including parameter parsing, requests and responses.
 
 ### Exam cues
 
@@ -106,7 +106,7 @@ The AWS Command Line Interface (CLI) reports errors that help identify why a com
 
 ### Remember
 
-- Return code `252` indicates invalid syntax or parameters; `253` indicates an invalid environment or configuration; `254` means the service returned an error. [Return codes](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-returncodes.html)
+- Return code `252` indicates invalid syntax or parameters; `253` indicates an invalid environment or configuration; `254` means the service returned an error.
 - For S3 transfers, code `1` indicates a failed transfer, while code `2` can indicate skipped files.
 
 > **Trap:** Return code `2` can also mean a command parsing failure; its meaning depends on the command.

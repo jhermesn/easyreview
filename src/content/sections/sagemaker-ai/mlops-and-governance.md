@@ -64,7 +64,7 @@ cards:
     a: "It catalogs models for production and manages their versions."
     facts: [registry]
 ---
-MLOps applies DevOps habits to ML: automated, repeatable pipelines, versioned models, monitoring in production and retraining when the world changes. SageMaker AI has a tool for each step and for documenting models. [Model Monitor](https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html)
+MLOps applies DevOps habits to ML: automated, repeatable pipelines, versioned models, monitoring in production and retraining when the world changes. SageMaker AI has a tool for each step and for documenting models.
 
 ### How it works
 

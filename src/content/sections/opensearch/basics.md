@@ -12,7 +12,7 @@ cards:
     a: "Amazon OpenSearch Service."
     facts: [search]
 ---
-Amazon OpenSearch Service runs OpenSearch for search and log analytics. [What is Amazon OpenSearch Service?](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html#what-is)
+Amazon OpenSearch Service runs OpenSearch for search and log analytics.
 
 ### How it works
 

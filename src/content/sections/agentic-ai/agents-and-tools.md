@@ -58,7 +58,7 @@ cards:
     a: "No. One model call (or a classifier) does it; agents fit tasks needing reasoning, tools and several steps."
     facts: [how-much]
 ---
-An agent is a foundation model given a goal, tools and memory, running in a loop: think, act, observe, repeat. The Model Context Protocol (MCP) standardizes how agents reach tools and data. [Agentic AI Lens definitions](https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/definitions.html)
+An agent is a foundation model given a goal, tools and memory, running in a loop: think, act, observe, repeat. The Model Context Protocol (MCP) standardizes how agents reach tools and data.
 
 ### How it works
 

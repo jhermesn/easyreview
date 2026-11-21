@@ -27,13 +27,13 @@ cards:
     a: A data repository association. A file system can have up to eight.
     facts: [association]
 ---
-An FSx for Lustre data repository association links a file system directory to an S3 bucket or prefix. Its automatic import and export defaults depend on how the repository is added. [Linking a file system to S3](https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-dra-linked-data-repo.html#create-dra-linked-data-repo)
+An FSx for Lustre data repository association links a file system directory to an S3 bucket or prefix. Its automatic import and export defaults depend on how the repository is added.
 
 ### How it works
 
 1. Link a file system directory to an S3 bucket or prefix with a data repository association. A file system supports up to eight associations.
 2. When adding a repository, check the automatic import and export settings. The console enables new, changed and deleted events by default; the CLI and API disable automatic import and export by default.
-3. Account for the export method: automatic export and export data repository tasks cannot run at the same time. [Exporting changes](https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-changed-data-meta-dra.html#export-changed-data-meta-dra)
+3. Account for the export method: automatic export and export data repository tasks cannot run at the same time.
 
 ### Exam cues
 

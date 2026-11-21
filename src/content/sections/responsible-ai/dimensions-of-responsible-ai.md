@@ -61,7 +61,7 @@ cards:
     trap: true
     facts: [definition, is-ai-needed]
 ---
-Responsible AI weighs the benefits of an AI system against its risks, across eight dimensions, from the first decision about whether AI is needed to the system's retirement. [Responsible AI](https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/responsible-ai.html)
+Responsible AI weighs the benefits of an AI system against its risks, across eight dimensions, from the first decision about whether AI is needed to the system's retirement.
 
 ### How it works
 

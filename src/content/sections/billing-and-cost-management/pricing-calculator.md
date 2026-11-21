@@ -30,7 +30,7 @@ cards:
     trap: true
     facts: [purpose]
 ---
-AWS Pricing Calculator estimates what AWS services will cost before you use them. It's free and needs no AWS experience. [What is AWS Pricing Calculator?](https://docs.aws.amazon.com/pricing-calculator/latest/userguide/what-is-pricing-calculator.html#what-is-pricing-calculator)
+AWS Pricing Calculator estimates what AWS services will cost before you use them. It's free and needs no AWS experience.
 
 ### How it works
 

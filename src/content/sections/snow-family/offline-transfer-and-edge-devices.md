@@ -54,7 +54,7 @@ cards:
     trap: true
     facts: [import-to-s3]
 ---
-The Snow Family solves two problems: moving more data than the network can carry in time, and running compute where there is no network. You load a rugged device on site and ship it back to AWS, which imports the data into Amazon S3. [What is Snowball Edge?](https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html)
+The Snow Family solves two problems: moving more data than the network can carry in time, and running compute where there is no network. You load a rugged device on site and ship it back to AWS, which imports the data into Amazon S3.
 
 ### How it works
 

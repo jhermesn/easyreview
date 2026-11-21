@@ -20,7 +20,7 @@ cards:
     facts:
       - compute
 ---
-AWS Fargate is serverless compute for containers: you run tasks without managing servers. [AWS Fargate for Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#AWS_Fargate)
+AWS Fargate is serverless compute for containers: you run tasks without managing servers.
 
 ### How it works
 

@@ -107,16 +107,16 @@ AWS App2Container uses a sequence of commands to discover an application, build 
 
 ### How it works
 
-1. Run `init` to configure the workspace, then `inventory` to list running candidate applications and assign IDs. Run `analyze` to identify runtime dependencies and write `analysis.json`. The [command reference](https://docs.aws.amazon.com/app2container/latest/UserGuide/a2c-commands.html#a2c-commands) describes each phase.
-2. If using a worker, run `extract` to create an application archive and transfer it to the worker. The [worker](https://docs.aws.amazon.com/app2container/latest/UserGuide/start-intro.html#start-intro) must support containers and use the same Linux or Windows platform as the application server.
-3. Run [`containerize`](https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-containerize.html#cmd-containerize) with the analysis results or extracted archive. It generates a Dockerfile, an image, and `deployment.json`. It pre-validates the image by default; `--no-validate` skips that check.
-4. Run [`generate app-deployment`](https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-appdeploy.html#cmd-generate-appdeploy) using `deployment.json`. Review and customize the generated artifacts for manual deployment, or use `--deploy` to create and deploy the target stack directly.
-5. Optionally run [`generate pipeline`](https://docs.aws.amazon.com/app2container/latest/UserGuide/cmd-generate-pipeline.html#cmd-generate-pipeline) to produce delivery-pipeline artifacts. It uses `pipeline.json`, which `generate app-deployment` creates.
+1. Run `init` to configure the workspace, then `inventory` to list running candidate applications and assign IDs. Run `analyze` to identify runtime dependencies and write `analysis.json`. The command reference describes each phase.
+2. If using a worker, run `extract` to create an application archive and transfer it to the worker. The worker must support containers and use the same Linux or Windows platform as the application server.
+3. Run `containerize` with the analysis results or extracted archive. It generates a Dockerfile, an image, and `deployment.json`. It pre-validates the image by default; `--no-validate` skips that check.
+4. Run `generate app-deployment` using `deployment.json`. Review and customize the generated artifacts for manual deployment, or use `--deploy` to create and deploy the target stack directly.
+5. Optionally run `generate pipeline` to produce delivery-pipeline artifacts. It uses `pipeline.json`, which `generate app-deployment` creates.
 
 ### Exam cues
 
 - If the question says the application server cannot run Docker, think of extracting an archive for a compatible worker, because the worker can build and deploy the application.
-- If the question says a supported framework is detected, think application mode, because it selects the required application files and dependencies. If no supported framework is found or dependent processes need broader discovery, think process mode, because it includes all non-system files. See [supported applications](https://docs.aws.amazon.com/app2container/latest/UserGuide/supported-applications.html#supported-applications).
+- If the question says a supported framework is detected, think application mode, because it selects the required application files and dependencies. If no supported framework is found or dependent processes need broader discovery, think process mode, because it includes all non-system files. See supported applications.
 - If the question asks which configuration feeds deployment or pipeline generation, think `deployment.json` for `generate app-deployment` and `pipeline.json` for `generate pipeline`.
 
 ### Remember

@@ -119,14 +119,14 @@ cards:
       - pod-logs-opt-in
       - pod-api-log
 ---
-EKS Pod troubleshooting separates placement failures, image retrieval failures, and container startup failures. A Pod is the unit Kubernetes places on a node, the machine that runs it. Start with its state and events, then inspect the component responsible for the failure. [AWS diagnostic walkthrough](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/container-insights-eks-otel-quickstart.html)
+EKS Pod troubleshooting separates placement failures, image retrieval failures, and container startup failures. A Pod is the unit Kubernetes places on a node, the machine that runs it. Start with its state and events, then inspect the component responsible for the failure.
 
 ### How it works
 
 1. Use `kubectl get pods` in the affected namespace, a named group of Kubernetes resources, to locate the Pod state. Use `kubectl describe pod` for events and `kubectl logs` for startup errors. Specify the intended `--context` and namespace.
 2. Follow the evidence rather than repeatedly deleting Pods. Resource requests reserve CPU and memory for placement. Node affinity and `nodeSelector` constrain eligible nodes; taints restrict placement unless a Pod has a matching toleration, permission to tolerate that restriction.
-3. For image failures, inspect the image reference and connectivity to ECR, the container image registry. Pull permissions belong to the EC2 node role or Fargate Pod execution role. [Cluster troubleshooting](https://docs.aws.amazon.com/eks/latest/userguide/troubleshooting.html)
-4. Enable the relevant control-plane log type when the problem concerns cluster management. The control plane accepts API requests, places Pods, and maintains desired cluster state. Export is off by default. [Control-plane logging](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
+3. For image failures, inspect the image reference and connectivity to ECR, the container image registry. Pull permissions belong to the EC2 node role or Fargate Pod execution role.
+4. Enable the relevant control-plane log type when the problem concerns cluster management. The control plane accepts API requests, places Pods, and maintains desired cluster state. Export is off by default.
 
 | Pod evidence | Check next |
 |---|---|
@@ -134,8 +134,6 @@ EKS Pod troubleshooting separates placement failures, image retrieval failures, 
 | `FailedScheduling` with placement restrictions | Node affinity, `nodeSelector`, taints, and tolerations |
 | `ImagePullBackOff` | Image tag, ECR connectivity, and image-pull permissions |
 | Agent `CrashLoopBackOff` | Startup logs for configuration errors or missing volume mounts |
-
-[AWS agent troubleshooting examples](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/container-insights-eks-troubleshooting.html)
 
 | Control-plane log type | Diagnostic purpose |
 |---|---|
@@ -145,7 +143,7 @@ EKS Pod troubleshooting separates placement failures, image retrieval failures, 
 | `controllerManager` | Core reconciliation loops, which maintain desired state |
 | `scheduler` | When and where Pods are placed |
 
-For node-level diagnostics, the EKS log collector gathers logs at `/etc/eks/log-collector-script/eks-log-collector.sh` when installed. [Node diagnostics](https://docs.aws.amazon.com/eks/latest/userguide/troubleshooting.html)
+For node-level diagnostics, the EKS log collector gathers logs at `/etc/eks/log-collector-script/eks-log-collector.sh` when installed.
 
 ### Exam cues
 

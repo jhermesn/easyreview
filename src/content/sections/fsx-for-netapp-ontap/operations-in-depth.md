@@ -33,13 +33,13 @@ cards:
     a: AWS Transit Gateway, because Multi-AZ NFS endpoints use floating IP addresses.
     facts: [multi-az-routing]
 ---
-Amazon FSx for NetApp ONTAP uses storage virtual machines (SVMs) to provide Network File System (NFS) and Server Message Block (SMB) endpoints for volume access. NetApp SnapMirror provides scheduled volume replication to another file system. [Client access](https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients) | [SnapMirror replication](https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/scheduled-replication.html#scheduled-replication)
+Amazon FSx for NetApp ONTAP uses storage virtual machines (SVMs) to provide Network File System (NFS) and Server Message Block (SMB) endpoints for volume access. NetApp SnapMirror provides scheduled volume replication to another file system. Client access | SnapMirror replication
 
 ### How it works
 
-1. For a client in the same virtual private cloud (VPC) and account, mount the volume using the SVM DNS name and the volume junction for NFS or the SMB share for SMB. [Same VPC access](https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#same-vpc-access)
-2. For NFS, SMB or management access from a peered network to a Multi-AZ file system, use AWS Transit Gateway unless using a documented cache alternative. These endpoints use floating IP addresses. [Transit Gateway requirements](https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#when-is-transit-gateway-required)
-3. Schedule SnapMirror volume replication to or from another file system in the same Region or another Region. FSx for ONTAP supports volume-level replication, while synchronous SnapMirror and SVM disaster recovery replication are unsupported. [SnapMirror replication](https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/scheduled-replication.html#scheduled-replication)
+1. For a client in the same virtual private cloud (VPC) and account, mount the volume using the SVM DNS name and the volume junction for NFS or the SMB share for SMB.
+2. For NFS, SMB or management access from a peered network to a Multi-AZ file system, use AWS Transit Gateway unless using a documented cache alternative. These endpoints use floating IP addresses.
+3. Schedule SnapMirror volume replication to or from another file system in the same Region or another Region. FSx for ONTAP supports volume-level replication, while synchronous SnapMirror and SVM disaster recovery replication are unsupported.
 
 ### Exam cues
 

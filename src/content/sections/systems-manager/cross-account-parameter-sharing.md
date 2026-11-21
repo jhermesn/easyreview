@@ -222,7 +222,7 @@ diagrams:
         label: key policy and consumer IAM
     steps: []
 ---
-Cross-account Parameter Store sharing lets applications read configuration owned by another AWS account. AWS Resource Access Manager (RAM) shares the existing advanced parameter with consumers, the accounts allowed to use it. The owner keeps control of updates and deletion. [Sharing model](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html)
+Cross-account Parameter Store sharing lets applications read configuration owned by another AWS account. AWS Resource Access Manager (RAM) shares the existing advanced parameter with consumers, the accounts allowed to use it. The owner keeps control of updates and deletion.
 
 ### How it works
 
@@ -230,7 +230,7 @@ Cross-account Parameter Store sharing lets applications read configuration owned
 2. Add the parameter to a RAM resource share, a record of the resource, allowed consumers, and permissions. Select accounts or enabled AWS Organizations targets. An organizational unit (OU) is a group of accounts. Consumers accept an invitation unless sharing within the organization is enabled.
 3. Choose read-only access with or without version history. A recipient can neither update, delete, nor reshare the parameter.
 4. For `SecureString`, an encrypted parameter value, use a customer managed KMS key and authorize that key separately. The owner's key policy and the consumer's IAM permissions must permit key use. Plaintext retrieval requires `kms:Decrypt`.
-5. Retrieve with `GetParameter` using the full ARN, the AWS identifier containing the Region, owner account, and parameter path. Set `WithDecryption: true` for plaintext. Use `describe-parameters --shared` for discovery; the consumer's `My parameters` page does not list these values. [Read API](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameter.html) · [Cross-account key access](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html)
+5. Retrieve with `GetParameter` using the full ARN, the AWS identifier containing the Region, owner account, and parameter path. Set `WithDecryption: true` for plaintext. Use `describe-parameters --shared` for discovery; the consumer's `My parameters` page does not list these values. Read API · Cross-account key access
 
 | RAM permission set | Allowed reads | History |
 |---|---|---|
@@ -245,8 +245,6 @@ Cross-account Parameter Store sharing lets applications read configuration owned
 | Parameters and Secrets Lambda extension; Automation runbook retrieval | Supported |
 | Run Command parameter references | Unsupported |
 | CodeBuild or App Runner environment values; ECS secret values | Unsupported |
-
-[Permissions and integration support](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html)
 
 ### Exam cues
 

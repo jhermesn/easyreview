@@ -161,7 +161,7 @@ AI Practitioner questions name a stage of a machine learning project and ask whi
 
 ### How it works
 
-1. Start with the business goal and problem framing; only then collect data. [ML lifecycle](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lifecycle.html)
+1. Start with the business goal and problem framing; only then collect data.
 2. Data Wrangler prepares the data, and Feature Store keeps the features for training and inference.
 3. A training job builds the model, evaluated on a holdout set; MLflow tracks experiments.
 4. Model Registry versions the model, and an approved version deploys to an endpoint.

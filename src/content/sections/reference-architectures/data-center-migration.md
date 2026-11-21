@@ -163,7 +163,7 @@ Migration questions describe a company leaving its data center and ask which str
 
 ### How it works
 
-1. Direct Connect gives a private connection for migration traffic; a Site-to-Site VPN is the backup. [Migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#migration-strategies)
+1. Direct Connect gives a private connection for migration traffic; a Site-to-Site VPN is the backup.
 2. AWS Transform MGN rehosts servers on EC2 without changing them.
 3. Schema conversion and AWS DMS replatform the database onto Aurora, keeping it in sync until cutover.
 4. DataSync copies file shares to S3, and Storage Gateway lets on-premises applications keep using S3 through file shares.

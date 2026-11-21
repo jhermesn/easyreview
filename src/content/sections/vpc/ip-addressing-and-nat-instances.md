@@ -207,7 +207,7 @@ cards:
     a: "Translate the source through a private NAT gateway in a separate routable range, then route through Transit Gateway to a load balancer in the destination VPC routable range."
     facts: [private-nat-overlap]
 ---
-VPC addressing mistakes are hard to fix later, and NAT choices trade operations work for flexibility. [VPC CIDR blocks](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html)
+VPC addressing mistakes are hard to fix later, and NAT choices trade operations work for flexibility.
 
 ### How it works
 

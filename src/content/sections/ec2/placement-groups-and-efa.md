@@ -57,7 +57,7 @@ cards:
     a: "Elastic Fabric Adapter (EFA)."
     facts: [efa]
 ---
-Placement groups tell EC2 how to place instances on hardware: close together for speed, apart for resilience. [Placement strategies](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-strategies.html)
+Placement groups tell EC2 how to place instances on hardware: close together for speed, apart for resilience.
 
 ### How it works
 

@@ -12,7 +12,7 @@ cards:
     a: "AWS Security Hub."
     facts: [posture]
 ---
-AWS Security Hub gathers security findings in one place and checks accounts against security standards. [Introduction to AWS Security Hub CSPM](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html#what-is-securityhub)
+AWS Security Hub gathers security findings in one place and checks accounts against security standards.
 
 ### How it works
 

@@ -69,10 +69,10 @@ EC2 Image Builder pipelines depend on instance connectivity and permissions to b
 
 ### How it works
 
-1. Give build and test instances access to Systems Manager and an instance profile with permissions for their components. Image Builder uses [Run Command](https://docs.aws.amazon.com/imagebuilder/latest/userguide/set-up-ib-env.html#prereq-config) to operate those instances. If build logs go to Amazon S3, the [instance profile](https://docs.aws.amazon.com/imagebuilder/latest/userguide/set-up-ib-env.html#image-builder-IAM-prereq) also needs `s3:PutObject` for the bucket.
-2. For an [output Parameter Store value](https://docs.aws.amazon.com/imagebuilder/latest/userguide/cr-upd-ami-distribution-settings.html#ami-distribution-prereqs-ssm-param), grant the execution role `ssm:PutParameter` and, for `aws:ec2:image` validation, `ec2:DescribeImages`. Enable a targeted opt-in Region in the source account for parameter writes.
-3. Enable an [Amazon Inspector on-demand AMI scan](https://docs.aws.amazon.com/imagebuilder/latest/userguide/integ-inspector.html#integ-inspector-ami-scan) and set a scan result condition to make Image Builder wait for the result. Findings above the allowed severity fail the image. This scan does not require Inspector account activation.
-4. For [instance refresh rollback](https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-rollback.html), specify a desired configuration and use an explicit numbered previous launch template version. Rollback does not support `$Latest`, `$Default`, or a Parameter Store AMI alias.
+1. Give build and test instances access to Systems Manager and an instance profile with permissions for their components. Image Builder uses Run Command to operate those instances. If build logs go to Amazon S3, the instance profile also needs `s3:PutObject` for the bucket.
+2. For an output Parameter Store value, grant the execution role `ssm:PutParameter` and, for `aws:ec2:image` validation, `ec2:DescribeImages`. Enable a targeted opt-in Region in the source account for parameter writes.
+3. Enable an Amazon Inspector on-demand AMI scan and set a scan result condition to make Image Builder wait for the result. Findings above the allowed severity fail the image. This scan does not require Inspector account activation.
+4. For instance refresh rollback, specify a desired configuration and use an explicit numbered previous launch template version. Rollback does not support `$Latest`, `$Default`, or a Parameter Store AMI alias.
 
 ### Exam cues
 

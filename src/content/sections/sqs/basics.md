@@ -12,7 +12,7 @@ cards:
     a: "Amazon SQS, a queue between the two tiers."
     facts: [decouple]
 ---
-Amazon SQS is a message queue: producers add messages and consumers process them at their own pace. [What is Amazon SQS?](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html#welcome)
+Amazon SQS is a message queue: producers add messages and consumers process them at their own pace.
 
 ### How it works
 

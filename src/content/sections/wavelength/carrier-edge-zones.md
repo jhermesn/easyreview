@@ -44,7 +44,7 @@ cards:
     a: "Create the EKS cluster in a regular Availability Zone, then run self-managed node groups in Wavelength Zone subnets."
     facts: [eks-wavelength]
 ---
-AWS Wavelength is for latency-sensitive mobile traffic: video analytics, game streaming, connected vehicles. The traffic stays inside the 5G carrier network instead of travelling to a Region. [What is AWS Wavelength?](https://docs.aws.amazon.com/wavelength/latest/developerguide/what-is-wavelength.html)
+AWS Wavelength is for latency-sensitive mobile traffic: video analytics, game streaming, connected vehicles. The traffic stays inside the 5G carrier network instead of travelling to a Region.
 
 ### How it works
 

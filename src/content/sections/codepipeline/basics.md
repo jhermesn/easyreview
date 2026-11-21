@@ -12,7 +12,7 @@ cards:
     a: "AWS CodePipeline."
     facts: [release]
 ---
-AWS CodePipeline automates a release process as a series of stages. [What is AWS CodePipeline?](https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html#welcome)
+AWS CodePipeline automates a release process as a series of stages.
 
 ### How it works
 

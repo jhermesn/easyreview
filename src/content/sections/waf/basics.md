@@ -26,7 +26,7 @@ cards:
     a: AWS WAF, with an SQL injection rule statement.
     facts: [sqli]
 ---
-AWS WAF filters web requests before they reach an application. [AWS WAF](https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html#waf-chapter)
+AWS WAF filters web requests before they reach an application.
 
 ### How it works
 

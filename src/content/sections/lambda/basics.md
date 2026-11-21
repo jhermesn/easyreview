@@ -33,7 +33,7 @@ cards:
     a: AWS. Lambda is serverless; you manage only your code.
     facts: [serverless-2]
 ---
-AWS Lambda runs your code when an event happens, with no servers for you to manage. [What is AWS Lambda?](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html#welcome)
+AWS Lambda runs your code when an event happens, with no servers for you to manage.
 
 ### How it works
 

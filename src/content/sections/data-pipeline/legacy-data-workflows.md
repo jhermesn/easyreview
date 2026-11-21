@@ -42,7 +42,7 @@ cards:
     a: "AWS Step Functions."
     facts: [sfn-fit]
 ---
-AWS Data Pipeline still appears in older exam questions about scheduled copies and EMR jobs. Today it only serves existing customers, so new designs use AWS Glue, AWS Step Functions or Amazon MWAA. [What is AWS Data Pipeline?](https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/what-is-datapipeline.html)
+AWS Data Pipeline still appears in older exam questions about scheduled copies and EMR jobs. Today it only serves existing customers, so new designs use AWS Glue, AWS Step Functions or Amazon MWAA.
 
 ### How it works
 

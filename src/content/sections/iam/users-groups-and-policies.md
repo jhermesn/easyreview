@@ -65,26 +65,26 @@ cards:
     a: "`s3:GetObject` names a service and an operation. `s3:*` matches the actions in that service namespace."
     facts: [action-element]
 ---
-IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
+IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow.
 
 ### How it works
 
 1. Create identities. AWS prefers roles and IAM Identity Center users with temporary credentials; an IAM user has long-term credentials.
 2. Collect users with the same job into a group.
 3. Attach policies to the group, user or role. A policy lists allowed or denied actions on resources.
-4. Start from AWS managed policies, then narrow them into customer managed policies that give only what each job needs. [Least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)
+4. Start from AWS managed policies, then narrow them into customer managed policies that give only what each job needs.
 
 ### Exam cues
 
 - If the question says many users need the same permissions, think IAM group, because a group policy gives its permissions to each user in the group.
 - If the question says only the permissions needed for a task, think least privilege, because it limits actions on specific resources under specific conditions.
-- If the question says a friendly IAM user sign-in URL, think account alias, because it replaces the numeric account ID in the URL. [Account alias](https://docs.aws.amazon.com/IAM/latest/UserGuide/console-account-alias.html#console-account-alias)
-- If the question says store a server certificate, think AWS Certificate Manager (ACM), because it is preferred; use IAM in Regions ACM does not support. [Server certificates](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html#id_credentials_server-certs)
+- If the question says a friendly IAM user sign-in URL, think account alias, because it replaces the numeric account ID in the URL.
+- If the question says store a server certificate, think AWS Certificate Manager (ACM), because it is preferred; use IAM in Regions ACM does not support.
 
 ### Remember
 
 - Prefer temporary credentials (roles) over long-term IAM user keys.
-- For IAM users with long-term credentials, require MFA, update access keys and remove unused users and credentials. [IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
+- For IAM users with long-term credentials, require MFA, update access keys and remove unused users and credentials.
 - An IAM user belongs to one account. Credentials: console password, access keys, both, or none yet when created through the CLI or API.
 
-> **Trap:** AWS managed policies do not always grant least privilege. They cover common use cases and can grant more than a specific task needs. [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-use-aws-defined-policies)
+> **Trap:** AWS managed policies do not always grant least privilege. They cover common use cases and can grant more than a specific task needs.

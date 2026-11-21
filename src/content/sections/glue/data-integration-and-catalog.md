@@ -41,7 +41,7 @@ cards:
     a: "AWS Glue is a serverless data integration service for discovering and preparing data for machine learning and analytics."
     facts: [purpose]
 ---
-AWS Glue prepares data for analytics. It discovers data in many sources, keeps a central catalog of it, and runs ETL jobs that clean and move data into a data lake, without servers to manage. [What is AWS Glue?](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html#what-is-glue)
+AWS Glue prepares data for analytics. It discovers data in many sources, keeps a central catalog of it, and runs ETL jobs that clean and move data into a data lake, without servers to manage.
 
 ### How it works
 

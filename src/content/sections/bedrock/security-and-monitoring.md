@@ -44,7 +44,7 @@ cards:
     trap: true
     facts: [invocation-logging]
 ---
-Bedrock follows the shared responsibility model: AWS runs the infrastructure and keeps model providers out of it, and you decide who can call which model, how traffic flows and what gets logged. [Data protection](https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html)
+Bedrock follows the shared responsibility model: AWS runs the infrastructure and keeps model providers out of it, and you decide who can call which model, how traffic flows and what gets logged.
 
 ### How it works
 

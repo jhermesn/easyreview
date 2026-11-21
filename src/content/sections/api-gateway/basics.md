@@ -19,7 +19,7 @@ cards:
     a: Yes. A REST API can use an AWS service integration as a Kinesis proxy.
     facts: [aws-integration]
 ---
-Amazon API Gateway is a managed front door for APIs that call Lambda functions or other backends. [What is Amazon API Gateway?](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html#welcome)
+Amazon API Gateway is a managed front door for APIs that call Lambda functions or other backends.
 
 ### How it works
 

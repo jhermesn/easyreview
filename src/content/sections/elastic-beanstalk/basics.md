@@ -41,7 +41,7 @@ cards:
     a: Load balancer health checks (or EC2 status checks for a single instance) and that the Auto Scaling group has at least one instance. It publishes no CloudWatch metrics; enhanced health adds an agent and more data.
     facts: [basic-health]
 ---
-AWS Elastic Beanstalk takes your application and builds the environment that runs it. [What is AWS Elastic Beanstalk?](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html#Welcome)
+AWS Elastic Beanstalk takes your application and builds the environment that runs it.
 
 ### How it works
 

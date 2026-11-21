@@ -47,9 +47,9 @@ AWS Database Migration Service (DMS) provides endpoint tests, task and table sta
 
 ### How it works
 
-1. Define source and target endpoints with the data stores' connection, type, and location information. [Test each endpoint connection](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.Creating.html) using a VPC and replication instance.
-2. Check the [task status](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Tasks.Status) and [table states](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Tasks.CustomizingTasks.TableState). A task can continue loading other tables when one or more fail. Enable task logging in the settings to send [task information to CloudWatch](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.ManagingLogs).
-3. Compare [replication metrics](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.Metrics). Similar `CDCLatencySource` and `CDCLatencyTarget` values suggest checking the source first; a higher target value suggests checking the target. Also check `FreeableMemory` and `SwapUsage` for signs of an overloaded replication instance.
+1. Define source and target endpoints with the data stores' connection, type, and location information. Test each endpoint connection using a VPC and replication instance.
+2. Check the task status and table states. A task can continue loading other tables when one or more fail. Enable task logging in the settings to send task information to CloudWatch.
+3. Compare replication metrics. Similar `CDCLatencySource` and `CDCLatencyTarget` values suggest checking the source first; a higher target value suggests checking the target. Also check `FreeableMemory` and `SwapUsage` for signs of an overloaded replication instance.
 
 ### Exam cues
 

@@ -203,7 +203,7 @@ For resource matching, use the service's ARN format:
 |---|---|
 | S3 bucket | `arn:aws:s3:::bucket-name` |
 
-Billing console access also has an account setting. For pages governed by **Activate IAM Access**, the root user enables IAM access when needed, and the caller still needs an appropriate IAM policy. Organizations-created member accounts enable the setting by default. [Billing access](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/control-access-billing.html#ControllingAccessWebsite-Activate)
+Billing console access also has an account setting. For pages governed by **Activate IAM Access**, the root user enables IAM access when needed, and the caller still needs an appropriate IAM policy. Organizations-created member accounts enable the setting by default.
 
 ### Exam cues
 

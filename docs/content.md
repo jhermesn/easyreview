@@ -28,6 +28,8 @@ The Markdown body follows a fixed order, so readers know where to look:
 4. `### Remember`: short bullets with the numbers and defaults. They must match facts.
 5. Traps as blockquotes starting with `**Trap:**`. Blockquotes are reserved for traps: the site styles every blockquote as a trap callout.
 
+The body has no links to outside pages. Every source is a fact, and the page lists them once under "From the AWS docs"; `npm run lint` rejects a body link to an `http` URL.
+
 Short paragraphs with one idea each, and a table for three or more options. `src/content/sections/codedeploy/` has good examples.
 
 ## Flashcards

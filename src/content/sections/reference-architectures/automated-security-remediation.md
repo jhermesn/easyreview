@@ -170,7 +170,7 @@ Remediation questions describe a misconfiguration or a threat and ask for the fa
 
 ### How it works
 
-1. An AWS Config rule, deployed to every account by an organization conformance pack, evaluates each change. [Remediation](https://docs.aws.amazon.com/config/latest/developerguide/remediation.html)
+1. An AWS Config rule, deployed to every account by an organization conformance pack, evaluates each change.
 2. For noncompliant resources, automatic remediation runs a Systems Manager Automation runbook, using the role in `AutomationAssumeRole`, and retries up to `MaximumAutomaticAttempts`.
 3. With the Config integration on, Security Hub CSPM receives the evaluation as a finding. Automation rules can update findings first.
 4. GuardDuty and Security Hub CSPM send findings to EventBridge. A rule matches the pattern and invokes Lambda or SNS, and custom actions let an analyst send one finding on demand.

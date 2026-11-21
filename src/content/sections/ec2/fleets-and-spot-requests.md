@@ -71,7 +71,7 @@ cards:
     a: "Amazon EventBridge or instance metadata. Delivery is best effort, so the application must tolerate an interruption without a notice."
     facts: [interruption-notice]
 ---
-Fleets and Spot request types control how EC2 keeps cheap capacity running when Spot Instances come and go. [EC2 Fleet and Spot Fleet](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html)
+Fleets and Spot request types control how EC2 keeps cheap capacity running when Spot Instances come and go.
 
 ### How it works
 

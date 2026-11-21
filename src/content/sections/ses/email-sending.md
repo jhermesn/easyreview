@@ -37,7 +37,7 @@ cards:
     a: "Amazon Simple Email Service (Amazon SES) sends transactional and marketing emails using your own email addresses and domains."
     facts: [purpose, send-types]
 ---
-Amazon SES sends email at scale, such as marketing campaigns, receipts and newsletters, from your own domains, and can also receive email. [What is Amazon SES?](https://docs.aws.amazon.com/ses/latest/dg/Welcome.html#Welcome)
+Amazon SES sends email at scale, such as marketing campaigns, receipts and newsletters, from your own domains, and can also receive email.
 
 ### How it works
 

@@ -12,7 +12,7 @@ cards:
     a: "AWS CloudShell, a pre-authenticated shell in the browser."
     facts: [browser-shell]
 ---
-AWS CloudShell opens a command line in the browser, already signed in as the console user. [What is AWS CloudShell?](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#welcome)
+AWS CloudShell opens a command line in the browser, already signed in as the console user.
 
 ### How it works
 

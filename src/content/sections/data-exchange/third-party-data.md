@@ -26,7 +26,7 @@ cards:
     a: "It helps providers share data without building their own delivery infrastructure. Eligible providers can also sell data products in AWS Marketplace."
     facts: [senders]
 ---
-AWS Data Exchange is where organizations share, sell and subscribe to data sets, so ML and analytics teams can use outside data without building delivery pipelines. [What is AWS Data Exchange?](https://docs.aws.amazon.com/data-exchange/latest/userguide/what-is.html)
+AWS Data Exchange is where organizations share, sell and subscribe to data sets, so ML and analytics teams can use outside data without building delivery pipelines.
 
 ### How it works
 

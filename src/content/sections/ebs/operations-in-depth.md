@@ -78,11 +78,11 @@ EBS operations depend on restore settings, snapshot automation and volume throug
 
 ### How it works
 
-1. For fast snapshot restore (FSR), check [volume creation credits](https://docs.aws.amazon.com/ebs/latest/userguide/volume-creation-credits.html#volume-creation-credits) for the snapshot and Availability Zone (AZ) pair. Each restored volume consumes one credit; without enough credits, the volume is created without FSR benefits.
-2. Check the [FSR performance limits](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-fast-snapshot-restore.html#fsr-considerations). Above them, AWS recommends initializing the volume for full performance. A specified [volume initialization rate](https://docs.aws.amazon.com/ebs/latest/userguide/initalize-volume.html#consistent-rate-considerations) overrides FSR.
-3. For [cross-account snapshot copies](https://docs.aws.amazon.com/ebs/latest/userguide/event-policy.html#event-policy), create a Data Lifecycle Manager (DLM) snapshot policy in the source account to share snapshots, and a cross-account copy event policy in the destination account to copy them. Create both policies in the same Region; copies can go to other Regions.
-4. To invoke EBS `CreateSnapshot` directly from an event rule, use the [EventBridge built-in target](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutTargets.html#API_PutTargets). Create rules with built-in targets through the console.
-5. For [st1 and sc1 HDD volumes](https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#hdd-vols), consider the size-based throughput baseline and burst credits when assessing throughput.
+1. For fast snapshot restore (FSR), check volume creation credits for the snapshot and Availability Zone (AZ) pair. Each restored volume consumes one credit; without enough credits, the volume is created without FSR benefits.
+2. Check the FSR performance limits. Above them, AWS recommends initializing the volume for full performance. A specified volume initialization rate overrides FSR.
+3. For cross-account snapshot copies, create a Data Lifecycle Manager (DLM) snapshot policy in the source account to share snapshots, and a cross-account copy event policy in the destination account to copy them. Create both policies in the same Region; copies can go to other Regions.
+4. To invoke EBS `CreateSnapshot` directly from an event rule, use the EventBridge built-in target. Create rules with built-in targets through the console.
+5. For st1 and sc1 HDD volumes, consider the size-based throughput baseline and burst credits when assessing throughput.
 
 ### Exam cues
 

@@ -43,7 +43,7 @@ cards:
     a: Amazon SageMaker Unified Studio.
     facts: [unified-studio, bedrock-in-studio]
 ---
-SageMaker AI covers the range from no-code to full code. Canvas builds predictions without code, JumpStart deploys and tunes pre-trained models, and Unified Studio puts data, analytics and AI work in one place. [JumpStart and FM hosting](https://docs.aws.amazon.com/decision-guides/latest/generative-ai-on-aws-how-to-choose/guide.html)
+SageMaker AI covers the range from no-code to full code. Canvas builds predictions without code, JumpStart deploys and tunes pre-trained models, and Unified Studio puts data, analytics and AI work in one place.
 
 ### How it works
 

@@ -33,13 +33,13 @@ cards:
     a: "The AWS Management Console provides web-based access to AWS service consoles."
     facts: [console]
 ---
-AWS CloudFormation templates help create resources consistently across Regions. The AWS Management Console also supports signing in to multiple identities in one browser. [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#welcome-quickly-replicate-your-infrastructure) | [Multi-session support](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/multisession.html#multisession)
+AWS CloudFormation templates help create resources consistently across Regions. The AWS Management Console also supports signing in to multiple identities in one browser. CloudFormation | Multi-session support
 
 ### How it works
 
-1. Describe the resources you want in a CloudFormation template. CloudFormation provisions and configures them, handling their dependencies. [What is CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome)
-2. Reuse the template to create the same resources consistently in multiple Regions. [Replicate your infrastructure](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#welcome-quickly-replicate-your-infrastructure)
-3. Opt in to multi-session support to sign in to multiple console identities in the same browser. [Signing in to multiple accounts](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/multisession.html#multisession)
+1. Describe the resources you want in a CloudFormation template. CloudFormation provisions and configures them, handling their dependencies.
+2. Reuse the template to create the same resources consistently in multiple Regions.
+3. Opt in to multi-session support to sign in to multiple console identities in the same browser.
 
 ### Exam cues
 

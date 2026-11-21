@@ -70,13 +70,13 @@ Amazon SNS can carry operational notifications from several AWS services. The co
 
    | Event source | Path to SNS |
    |---|---|
-   | EC2 Auto Scaling | Select [launch or termination notification types](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-sns-notifications.html#ec2-auto-scaling-sns-notifications), including error types for failures. |
-   | Systems Manager | Send [Run Command or Maintenance Windows status changes](https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-sns-notifications.html) to an SNS Standard topic. An invocation is a command sent to an individual node. |
-   | AWS Organizations | Configure an [EventBridge rule](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_cloudwatch-integration.html#orgs_cloudwatch-integration) in `us-east-1` with SNS as the target. |
-   | AWS Trusted Advisor | Monitor [check metrics with a CloudWatch alarm](https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-metrics-ta.html#cloudwatch-metrics-ta) in `us-east-1` and notify SNS. |
-   | Amazon Aurora | Allow the RDS event service to publish in the [destination topic policy](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.GrantingPermissions.html#USER_Events.GrantingPermissions). |
+   | EC2 Auto Scaling | Select launch or termination notification types, including error types for failures. |
+   | Systems Manager | Send Run Command or Maintenance Windows status changes to an SNS Standard topic. An invocation is a command sent to an individual node. |
+   | AWS Organizations | Configure an EventBridge rule in `us-east-1` with SNS as the target. |
+   | AWS Trusted Advisor | Monitor check metrics with a CloudWatch alarm in `us-east-1` and notify SNS. |
+   | Amazon Aurora | Allow the RDS event service to publish in the destination topic policy. |
 
-2. When a subscription filter policy is added or changed, allow for [eventual consistency](https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html#sns-subscription-filter-policies): the change can take up to 15 minutes to fully take effect.
+2. When a subscription filter policy is added or changed, allow for eventual consistency: the change can take up to 15 minutes to fully take effect.
 
 ### Exam cues
 

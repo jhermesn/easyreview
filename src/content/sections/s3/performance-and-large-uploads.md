@@ -91,7 +91,7 @@ cards:
     a: "Around 100 MB, with up to 10,000 parts."
     facts: [multipart-guidance]
 ---
-Amazon S3 scales per prefix, so performance problems are usually design problems: one hot prefix, single-stream uploads, or long-distance transfers. [Optimizing Amazon S3 performance](https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html)
+Amazon S3 scales per prefix, so performance problems are usually design problems: one hot prefix, single-stream uploads, or long-distance transfers.
 
 ### How it works
 

@@ -40,7 +40,7 @@ cards:
     a: The AWS Acceptable Use Policy. Abuse that breaks it is reported to the AWS Trust & Safety team.
     facts: [aup, report]
 ---
-When an AWS resource is used for abuse, such as spam, attacks or illegal content, anyone can report it to the AWS Trust & Safety team. [Report abuse of AWS resources](https://aws.amazon.com/premiumsupport/knowledge-center/report-aws-abuse/)
+When an AWS resource is used for abuse, such as spam, attacks or illegal content, anyone can report it to the AWS Trust & Safety team.
 
 ### How it works
 

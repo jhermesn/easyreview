@@ -49,9 +49,9 @@ Athena tables need partition locations and a serializer and deserializer, or Ser
 
 ### How it works
 
-1. Check the partition path layout. [Hive-style paths](https://docs.aws.amazon.com/athena/latest/ug/partitions.html) use `key=value` components and can be discovered with `MSCK REPAIR TABLE`. For non-Hive paths, such as typical CloudTrail date paths, add partitions explicitly with `ALTER TABLE ADD PARTITION`.
-2. Alternatively, configure [partition projection](https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html#performance-tuning-use-partition-projection). Athena computes locations in memory from rules in table properties instead of looking them up in the Glue Data Catalog.
-3. Choose a [SerDe](https://docs.aws.amazon.com/athena/latest/ug/serde-reference.html#serde-reference) matching the table data, such as a JSON SerDe for JSON records.
+1. Check the partition path layout. Hive-style paths use `key=value` components and can be discovered with `MSCK REPAIR TABLE`. For non-Hive paths, such as typical CloudTrail date paths, add partitions explicitly with `ALTER TABLE ADD PARTITION`.
+2. Alternatively, configure partition projection. Athena computes locations in memory from rules in table properties instead of looking them up in the Glue Data Catalog.
+3. Choose a SerDe matching the table data, such as a JSON SerDe for JSON records.
 
 ### Exam cues
 

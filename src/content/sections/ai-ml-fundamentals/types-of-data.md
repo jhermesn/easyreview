@@ -40,7 +40,7 @@ cards:
     a: Structured, tabular data.
     facts: [structured]
 ---
-The kind of data you have shapes which model you can build. Supervised learning needs labeled data; text, images and audio are unstructured; sales by day are time series. [Structured vs unstructured data](https://aws.amazon.com/what-is/structured-data/)
+The kind of data you have shapes which model you can build. Supervised learning needs labeled data; text, images and audio are unstructured; sales by day are time series.
 
 ### How it works
 

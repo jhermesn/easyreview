@@ -41,7 +41,7 @@ cards:
     a: "Amazon Textract extracts text, forms and tables from documents with structured data."
     facts: [forms-tables]
 ---
-Amazon Textract pulls text and structure out of documents. It reads printed and handwritten text and keeps form fields and tables intact, so scanned paperwork becomes data. [What is Amazon Textract?](https://docs.aws.amazon.com/textract/latest/dg/what-is.html#what-is)
+Amazon Textract pulls text and structure out of documents. It reads printed and handwritten text and keeps form fields and tables intact, so scanned paperwork becomes data.
 
 ### How it works
 

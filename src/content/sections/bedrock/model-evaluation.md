@@ -62,7 +62,7 @@ cards:
     a: "Human evaluation lets employees or subject-matter experts rate the responses."
     facts: [human]
 ---
-Amazon Bedrock evaluations compare models, and RAG pipelines, on your own prompts or standard datasets, scored by metrics, by a judge model or by your own people. [Evaluate performance](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html)
+Amazon Bedrock evaluations compare models, and RAG pipelines, on your own prompts or standard datasets, scored by metrics, by a judge model or by your own people.
 
 ### How it works
 

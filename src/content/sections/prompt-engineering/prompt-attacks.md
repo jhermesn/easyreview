@@ -61,7 +61,7 @@ cards:
     trap: true
     facts: [poisoning, prompt-attacks]
 ---
-Prompts are an attack surface. Users can try to override instructions, extract hidden prompts or talk the model out of its safety rules, and attackers can poison the data a model learns from. [Common prompt injection attacks](https://docs.aws.amazon.com/prescriptive-guidance/latest/llm-prompt-engineering-best-practices/common-attacks.html)
+Prompts are an attack surface. Users can try to override instructions, extract hidden prompts or talk the model out of its safety rules, and attackers can poison the data a model learns from.
 
 ### How it works
 

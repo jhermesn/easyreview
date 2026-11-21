@@ -31,7 +31,7 @@ cards:
     a: "AWS Lake Formation provides centralized governance and fine-grained access control for data lake data."
     facts: [what]
 ---
-AWS Lake Formation is the governance layer of a data lake: it decides who may see which databases, tables and columns in S3 and the Glue Data Catalog, and shares data safely for analytics and ML. [What is Lake Formation?](https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html)
+AWS Lake Formation is the governance layer of a data lake: it decides who may see which databases, tables and columns in S3 and the Glue Data Catalog, and shares data safely for analytics and ML.
 
 ### How it works
 

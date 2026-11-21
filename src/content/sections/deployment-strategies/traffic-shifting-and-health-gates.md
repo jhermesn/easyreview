@@ -197,7 +197,7 @@ cards:
       - linear-shift
 ---
 
-Traffic shifting controls how many requests reach a new version while it is evaluated. A health gate is a check that can stop rollout when the new version is not ready. The [ECS canary workflow](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/canary-deployment.html) combines limited initial exposure with evaluation before the remaining traffic moves.
+Traffic shifting controls how many requests reach a new version while it is evaluated. A health gate is a check that can stop rollout when the new version is not ready. The ECS canary workflow combines limited initial exposure with evaluation before the remaining traffic moves.
 
 ### How it works
 

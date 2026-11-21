@@ -59,7 +59,7 @@ cards:
     a: "The LOA-CFA (Letter of Authorization and Connecting Facility Assignment)."
     facts: [loa-cross-connect]
 ---
-Direct Connect choices come down to speed, who provisions the link, and how far it reaches. [Dedicated and hosted connections](https://docs.aws.amazon.com/directconnect/latest/UserGuide/WorkingWithConnections.html)
+Direct Connect choices come down to speed, who provisions the link, and how far it reaches.
 
 ### How it works
 
@@ -76,7 +76,7 @@ Direct Connect choices come down to speed, who provisions the link, and how far 
 | One link to VPCs in many Regions | Direct Connect gateway |
 | Survive a location failure | Connections at two or more locations |
 
-Budget for provisioned port time and data transfer out of AWS. Connection capacity affects the port price; keeping a port provisioned incurs charges even without traffic. [Pricing](https://aws.amazon.com/directconnect/pricing/)
+Budget for provisioned port time and data transfer out of AWS. Connection capacity affects the port price; keeping a port provisioned incurs charges even without traffic.
 
 ### Exam cues
 

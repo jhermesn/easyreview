@@ -27,7 +27,7 @@ cards:
     trap: true
     facts: [what, with-agentcore]
 ---
-Strands Agents is a code framework for agents: you give it a model, a prompt and tools, and the model drives the loop of reasoning and tool calls. It runs anywhere, and on AWS it pairs with Bedrock models and AgentCore. [Strands Agents](https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-frameworks/strands-agents.html)
+Strands Agents is a code framework for agents: you give it a model, a prompt and tools, and the model drives the loop of reasoning and tool calls. It runs anywhere, and on AWS it pairs with Bedrock models and AgentCore.
 
 ### How it works
 

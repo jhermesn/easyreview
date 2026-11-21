@@ -12,7 +12,7 @@ cards:
     a: "Amazon Athena."
     facts: [sql-on-s3]
 ---
-Amazon Athena runs SQL queries on data where it sits in Amazon S3. [What is Amazon Athena?](https://docs.aws.amazon.com/athena/latest/ug/what-is.html#what-is)
+Amazon Athena runs SQL queries on data where it sits in Amazon S3.
 
 ### How it works
 

@@ -131,14 +131,14 @@ cards:
     facts:
       - launch-suspension
 ---
-EC2 Auto Scaling launch troubleshooting starts with the failed scaling activity, which records why the group could not add an instance. Separate an invalid launch configuration from exhausted capacity or missing permissions before changing scaling policies. [Troubleshooting entry point](https://docs.aws.amazon.com/autoscaling/ec2/userguide/CHAP_Troubleshooting.html)
+EC2 Auto Scaling launch troubleshooting starts with the failed scaling activity, which records why the group could not add an instance. Separate an invalid launch configuration from exhausted capacity or missing permissions before changing scaling policies.
 
 ### How it works
 
 1. Open the group's `Activity` tab or use `describe-scaling-activities`. Read `StatusCode` and `StatusMessage` for the failed launch.
 2. Match the error to the resource or permission it names. A launch template is a versioned instance configuration; check the version actually selected by the group.
 3. For a generic template error, read the more specific message and test the selected version with `run-instances --dry-run`. A dry run checks the request without launching an instance. `DryRunOperation` means the permission check succeeded.
-4. Correct the cause, update the group's launch settings when required, and inspect subsequent activities. If launches remain stopped, check for an administratively suspended process. [Template diagnosis](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-launch-template.html) · [Suspensions](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html)
+4. Correct the cause, update the group's launch settings when required, and inspect subsequent activities. If launches remain stopped, check for an administratively suspended process. Template diagnosis · Suspensions
 
 | Evidence | Meaning | Response |
 |---|---|---|
@@ -150,9 +150,9 @@ EC2 Auto Scaling launch troubleshooting starts with the failed scaling activity,
 | Launch-template authorization failure | Caller lacks required launch or role-passing access | Check `ec2:RunInstances`, launch-tag `ec2:CreateTags`, and profile-related `iam:PassRole` |
 | Encrypted-volume `Client.InternalError` | The Auto Scaling role may lack key access | Check the customer managed key policy and grants |
 
-[Launch errors](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-instancelaunchfailure.html) · [EC2 error meanings](https://docs.aws.amazon.com/ec2/latest/devguide/errors-overview.html) · [AMI errors](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-ami.html)
+Launch errors · EC2 error meanings · AMI errors
 
-An instance profile supplies a role to software running on EC2. A service-linked role supplies permissions to Auto Scaling itself. For customer managed EBS encryption keys, the latter needs key use and `kms:CreateGrant`. Cross-account keys additionally need a grant to that role, meaning an explicit KMS permission delegation. [Encryption permissions](https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html)
+An instance profile supplies a role to software running on EC2. A service-linked role supplies permissions to Auto Scaling itself. For customer managed EBS encryption keys, the latter needs key use and `kms:CreateGrant`. Cross-account keys additionally need a grant to that role, meaning an explicit KMS permission delegation.
 
 ### Exam cues
 

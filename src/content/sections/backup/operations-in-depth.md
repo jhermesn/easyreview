@@ -68,11 +68,11 @@ AWS Backup operations depend on resource selection, rule settings, permissions, 
 
 ### How it works
 
-1. For a tag-only resource assignment, check [service opt-in settings](https://docs.aws.amazon.com/aws-backup/latest/devguide/assigning-resources.html). They still apply to the selected resources.
-2. Review the backup rule's [console defaults](https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-a-backup-plan.html) for start time and windows. The [completion window](https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html) does not apply to Amazon FSx.
-3. For a database point-in-time recovery (PITR) copy, check `rds:DeleteDBSnapshot`. AWS Backup uses it to remove a temporary source snapshot; without it, an expired recovery point can require [manual deletion](https://docs.aws.amazon.com/aws-backup/latest/devguide/point-in-time-recovery-copying.html).
-4. Before restoring a copy in another account, ensure that account has the [service-linked role](https://docs.aws.amazon.com/aws-backup/latest/devguide/create-cross-account-backup.html#restore-cab) for the resource's service.
-5. Compare new backup and copy job retention with the vault's [Vault Lock bounds](https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html#lock-backup-vault-console). Incompatible jobs fail, while existing recovery points keep their lifecycles.
+1. For a tag-only resource assignment, check service opt-in settings. They still apply to the selected resources.
+2. Review the backup rule's console defaults for start time and windows. The completion window does not apply to Amazon FSx.
+3. For a database point-in-time recovery (PITR) copy, check `rds:DeleteDBSnapshot`. AWS Backup uses it to remove a temporary source snapshot; without it, an expired recovery point can require manual deletion.
+4. Before restoring a copy in another account, ensure that account has the service-linked role for the resource's service.
+5. Compare new backup and copy job retention with the vault's Vault Lock bounds. Incompatible jobs fail, while existing recovery points keep their lifecycles.
 
 ### Exam cues
 

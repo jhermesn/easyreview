@@ -34,7 +34,7 @@ cards:
     trap: true
     facts: [inferentia, trainium]
 ---
-Training and serving large models needs accelerators. AWS offers its own chips (Trainium for training, Inferentia for inference) next to NVIDIA GPU instances. [Infrastructure for training and inference](https://docs.aws.amazon.com/decision-guides/latest/generative-ai-on-aws-how-to-choose/guide.html)
+Training and serving large models needs accelerators. AWS offers its own chips (Trainium for training, Inferentia for inference) next to NVIDIA GPU instances.
 
 ### How it works
 

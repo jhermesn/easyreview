@@ -46,7 +46,7 @@ cards:
       - organizations-scp-ceiling
       - organizations-scp-all-features
 ---
-AWS Organizations manages a group of AWS accounts as one organization, with shared billing and central policies. [What is AWS Organizations?](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html#orgs_introduction)
+AWS Organizations manages a group of AWS accounts as one organization, with shared billing and central policies.
 
 ### How it works
 

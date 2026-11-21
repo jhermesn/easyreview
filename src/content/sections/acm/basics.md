@@ -19,7 +19,7 @@ cards:
     a: "AWS Certificate Manager, which renews ACM-issued certificates."
     facts: [certificates]
 ---
-AWS Certificate Manager (ACM) provides SSL/TLS certificates for HTTPS and renews them, so encrypted connections keep working. [What is AWS Certificate Manager?](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html#acm-overview)
+AWS Certificate Manager (ACM) provides SSL/TLS certificates for HTTPS and renews them, so encrypted connections keep working.
 
 ### How it works
 

@@ -48,7 +48,7 @@ cards:
     a: "- Fixed limits: **AWS Budgets**.\n- Unexpected patterns: **AWS Cost Anomaly Detection**."
     facts: [cad-what]
 ---
-AWS Budgets tracks costs against a spending target and can alert on actual or forecasted spending. [Managing costs with AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs)
+AWS Budgets tracks costs against a spending target and can alert on actual or forecasted spending.
 
 ### How it works
 

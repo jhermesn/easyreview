@@ -19,7 +19,7 @@ cards:
     a: "The customer gateway is an AWS resource describing the device. The device is physical or software equipment on the customer side."
     facts: [gateway-roles]
 ---
-AWS Site-to-Site VPN links a whole remote network to a VPC with an encrypted connection. [What is AWS Site-to-Site VPN?](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#VPC_VPN)
+AWS Site-to-Site VPN links a whole remote network to a VPC with an encrypted connection.
 
 ### How it works
 

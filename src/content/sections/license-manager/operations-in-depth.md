@@ -38,13 +38,13 @@ cards:
     facts: [discovery-uninstall]
     trap: true
 ---
-AWS License Manager can track licenses for on-premises applications alongside AWS servers and monitor usage across accounts and Regions. [Inventory search](https://docs.aws.amazon.com/license-manager/latest/userguide/inventory.html) and [license asset groups](https://docs.aws.amazon.com/license-manager/latest/userguide/license-asset-groups-overview.html) support these views.
+AWS License Manager can track licenses for on-premises applications alongside AWS servers and monitor usage across accounts and Regions. Inventory search and license asset groups support these views.
 
 ### How it works
 
-1. Use Systems Manager Inventory to discover on-premises applications, attach licensing rules, and refresh non-AWS inventory periodically. License Manager cannot validate those servers' rules at launch or termination. [Inventory search](https://docs.aws.amazon.com/license-manager/latest/userguide/inventory.html)
-2. Use license asset groups to monitor usage across accounts and Regions. Manage their rules from a management or delegated administrator account. [License asset groups](https://docs.aws.amazon.com/license-manager/latest/userguide/license-asset-groups-overview.html)
-3. Review the stopped instances rule and automated discovery behavior. The former controls whether stopped instances count; the latter can be configured to stop tracking instances after software is uninstalled. [License rules](https://docs.aws.amazon.com/license-manager/latest/userguide/config-overview.html), [automated discovery](https://docs.aws.amazon.com/license-manager/latest/userguide/automated-discovery.html)
+1. Use Systems Manager Inventory to discover on-premises applications, attach licensing rules, and refresh non-AWS inventory periodically. License Manager cannot validate those servers' rules at launch or termination.
+2. Use license asset groups to monitor usage across accounts and Regions. Manage their rules from a management or delegated administrator account.
+3. Review the stopped instances rule and automated discovery behavior. The former controls whether stopped instances count; the latter can be configured to stop tracking instances after software is uninstalled. License rules, automated discovery
 
 ### Exam cues
 

@@ -50,7 +50,7 @@ cards:
     a: "Amazon MQ for ActiveMQ, which accepts MQTT (and MQTT over WebSocket)."
     facts: [activemq-protocols, migrate]
 ---
-Amazon MQ is the "lift the broker" answer: applications built on ActiveMQ or RabbitMQ keep their protocols and client libraries, and AWS runs, patches and fails over the brokers. [What is Amazon MQ?](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/welcome.html)
+Amazon MQ is the "lift the broker" answer: applications built on ActiveMQ or RabbitMQ keep their protocols and client libraries, and AWS runs, patches and fails over the brokers.
 
 ### How it works
 

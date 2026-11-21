@@ -22,7 +22,7 @@ cards:
     a: FSx for Windows File Server. It supports SMB and joins Microsoft Active Directory.
     facts: [smb, active-directory]
 ---
-Amazon FSx for Windows File Server gives Windows workloads managed file shares. [What is FSx for Windows File Server?](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#what-is)
+Amazon FSx for Windows File Server gives Windows workloads managed file shares.
 
 ### How it works
 

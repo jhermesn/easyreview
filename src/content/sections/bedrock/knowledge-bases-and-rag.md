@@ -92,7 +92,7 @@ cards:
     a: "Amazon Aurora and Amazon OpenSearch Service are among the supported options."
     facts: [vector-stores, kb-vector-stores]
 ---
-Retrieval augmented generation (RAG) gives a model the facts it needs at question time: find the relevant passages in your data and put them in the prompt. Amazon Bedrock Knowledge Bases runs that pipeline for you, from ingestion to citations. [Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)
+Retrieval augmented generation (RAG) gives a model the facts it needs at question time: find the relevant passages in your data and put them in the prompt. Amazon Bedrock Knowledge Bases runs that pipeline for you, from ingestion to citations.
 
 ### How it works
 

@@ -157,7 +157,7 @@ Analytics questions describe events or logs that arrive continuously and must be
 ### How it works
 
 1. Applications write events to a Kinesis data stream, which real-time consumers can also read.
-2. Data Firehose reads the stream, converts JSON to Parquet with a Glue Data Catalog schema, and writes to S3. [Record format conversion](https://docs.aws.amazon.com/firehose/latest/dev/record-format-conversion.html)
+2. Data Firehose reads the stream, converts JSON to Parquet with a Glue Data Catalog schema, and writes to S3.
 3. A Glue crawler keeps catalog tables current; Lake Formation controls who can see which tables and columns.
 4. A Lambda function reads the same stream for per-event processing, because Firehose buffers before delivering.
 5. Athena queries the files in place, Quick Sight draws dashboards on it, and Redshift Spectrum joins the same data with warehouse tables.

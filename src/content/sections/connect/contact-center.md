@@ -35,7 +35,7 @@ cards:
     trap: true
     facts: [chime-eos]
 ---
-Amazon Connect runs a contact center in the cloud: phone and chat with customers, routing to the right agent, and real-time performance tracking. The contact center product is now called Amazon Connect Customer. [What is Connect Customer?](https://docs.aws.amazon.com/connect/latest/adminguide/what-is-amazon-connect.html#what-is-amazon-connect)
+Amazon Connect runs a contact center in the cloud: phone and chat with customers, routing to the right agent, and real-time performance tracking. The contact center product is now called Amazon Connect Customer.
 
 ### How it works
 

@@ -159,7 +159,7 @@ cards:
       - switch-tags
 ---
 
-RDS Blue/Green Deployments prepares database changes in a separate staging copy while production continues running. Blue means current production; green means the synchronized staging environment. The [RDS overview](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html#blue-green-deployments-overview) describes this workflow for supported MariaDB, MySQL, and PostgreSQL versions and Regions.
+RDS Blue/Green Deployments prepares database changes in a separate staging copy while production continues running. Blue means current production; green means the synchronized staging environment. The RDS overview describes this workflow for supported MariaDB, MySQL, and PostgreSQL versions and Regions.
 
 ### How it works
 

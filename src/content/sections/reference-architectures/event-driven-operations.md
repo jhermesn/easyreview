@@ -150,7 +150,7 @@ Operations questions at the professional level describe something happening in a
 
 ### How it works
 
-1. A rule on each account's default bus forwards events to a central bus in the operations account. [Cross-account events](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cross-account.html)
+1. A rule on each account's default bus forwards events to a central bus in the operations account.
 2. AWS Health events and CloudTrail API call events arrive on the default bus of the account they concern.
 3. Central rules notify through SNS, open OpsItems in OpsCenter, start Automation runbooks or invoke Lambda.
 4. Responses act in member accounts through an execution role that trusts the operations account.

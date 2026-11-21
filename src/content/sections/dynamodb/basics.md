@@ -45,7 +45,7 @@ cards:
     a: "DynamoDB global tables. AWS replicates the table across Regions, and every replica serves reads and writes."
     facts: [global-tables]
 ---
-Amazon DynamoDB is a serverless NoSQL database for fast key-value and document access. [What is Amazon DynamoDB?](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html#Introduction)
+Amazon DynamoDB is a serverless NoSQL database for fast key-value and document access.
 
 ### How it works
 

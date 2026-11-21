@@ -71,26 +71,26 @@ cards:
     trap: true
     facts: [second-cgw]
 ---
-AWS Site-to-Site VPN design choices affect tunnel redundancy, routing and bandwidth. A customer gateway is the AWS resource that describes the physical or software customer gateway device. [VPN concepts](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts)
+AWS Site-to-Site VPN design choices affect tunnel redundancy, routing and bandwidth. A customer gateway is the AWS resource that describes the physical or software customer gateway device.
 
 ### How it works
 
-1. Configure both tunnels so traffic can use the available tunnel if one becomes unavailable. [Tunnel options](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html)
-2. For protection against a customer device failure, add a second VPN connection with a second customer gateway device. This also lets you maintain one device while using the other. [Redundant connections](https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-redundant-connection.html)
-3. Choose static routing or dynamic routing with Border Gateway Protocol (BGP), which exchanges routes. Cloud WAN VPN connections require BGP. [Create a VPN connection](https://docs.aws.amazon.com/vpn/latest/s2svpn/create-vpn-connection.html#create-vpn-connection-console)
-4. To increase aggregate bandwidth beyond one tunnel, use Equal Cost Multi Path (ECMP) routing across multiple VPN connections. Transit Gateway can use ECMP on VPN attachments to spread traffic across tunnels. [VPN scaling](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html#lbt-scaling) and [Transit Gateway ECMP](https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-ecmp)
+1. Configure both tunnels so traffic can use the available tunnel if one becomes unavailable.
+2. For protection against a customer device failure, add a second VPN connection with a second customer gateway device. This also lets you maintain one device while using the other.
+3. Choose static routing or dynamic routing with Border Gateway Protocol (BGP), which exchanges routes. Cloud WAN VPN connections require BGP.
+4. To increase aggregate bandwidth beyond one tunnel, use Equal Cost Multi Path (ECMP) routing across multiple VPN connections. Transit Gateway can use ECMP on VPN attachments to spread traffic across tunnels. VPN scaling and Transit Gateway ECMP
 
 ### Exam cues
 
 - If the question says an AWS tunnel may fail, think configure both tunnels, because traffic can use the available tunnel.
 - If the question says the customer router may fail, think a second VPN connection and customer gateway device, because two tunnels alone do not protect against that device failing.
-- If the question says a Direct Connect circuit needs backup, think a Large Bandwidth Tunnel, because it can provide backup or overlay connectivity. [Large Bandwidth Tunnels](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html#large-bandwidth-tunnels)
+- If the question says a Direct Connect circuit needs backup, think a Large Bandwidth Tunnel, because it can provide backup or overlay connectivity.
 - If the question says aggregate bandwidth must exceed one tunnel, think ECMP across multiple VPN connections, because it can spread traffic across tunnels.
 
 ### Remember
 
-- Outside tunnel addresses can be public IPv4, private IPv4 or IPv6. Public IPv4 is the default. [VPN connection options](https://docs.aws.amazon.com/vpn/latest/s2svpn/create-vpn-connection.html#create-vpn-connection-console)
-- A single connection cannot carry IPv4 and IPv6 traffic simultaneously. A virtual private gateway VPN does not support IPv6 traffic. [VPN limitations](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#site-to-site-limitations)
-- Large Bandwidth Tunnels require Transit Gateway or Cloud WAN. Both tunnels must use the same bandwidth, and accelerated VPN is not supported. [Large Bandwidth Tunnel requirements](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html#lbt-requirements)
+- Outside tunnel addresses can be public IPv4, private IPv4 or IPv6. Public IPv4 is the default.
+- A single connection cannot carry IPv4 and IPv6 traffic simultaneously. A virtual private gateway VPN does not support IPv6 traffic.
+- Large Bandwidth Tunnels require Transit Gateway or Cloud WAN. Both tunnels must use the same bandwidth, and accelerated VPN is not supported.
 
 > **Trap:** Two tunnels on one customer gateway device do not protect against that device failing. Add a second VPN connection with a second device.

@@ -43,20 +43,20 @@ cards:
     a: "The US East (N. Virginia) endpoint."
     facts: [api-endpoint]
 ---
-AWS Trusted Advisor check results can drive custom notifications or be retrieved through the AWS Support API. Security checks also identify issues such as S3 bucket permissions and whether AWS CloudTrail records management events. [Event notifications](https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html), [security checks](https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html#aws-cloudtrail-man-events-log)
+AWS Trusted Advisor check results can drive custom notifications or be retrieved through the AWS Support API. Security checks also identify issues such as S3 bucket permissions and whether AWS CloudTrail records management events. Event notifications, security checks
 
 ### How it works
 
-1. Create an EventBridge rule in US East (N. Virginia) to match Trusted Advisor check status changes and invoke a target such as Lambda or SNS. Event delivery is best effort. [EventBridge monitoring](https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html)
-2. To retrieve fresh results through the Support API, use the US East (N. Virginia) endpoint and request a refresh for an eligible check. Some automatically refreshed checks reject refresh requests. [API endpoint](https://docs.aws.amazon.com/awssupport/latest/APIReference/API_DescribeTrustedAdvisorCheckResult.html), [refresh](https://docs.aws.amazon.com/awssupport/latest/APIReference/API_RefreshTrustedAdvisorCheck.html)
-3. Poll refresh status until it reports success, then call `DescribeTrustedAdvisorCheckResult`. Handle an abandoned status as a failed refresh. The result operation does not generate updated results. [Polling](https://docs.aws.amazon.com/awssupport/latest/user/trustedadvisor.html#getcheckstatus), [refresh status](https://docs.aws.amazon.com/awssupport/latest/APIReference/API_TrustedAdvisorCheckRefreshStatus.html), [results](https://docs.aws.amazon.com/awssupport/latest/user/trustedadvisor.html#requestcheck)
+1. Create an EventBridge rule in US East (N. Virginia) to match Trusted Advisor check status changes and invoke a target such as Lambda or SNS. Event delivery is best effort.
+2. To retrieve fresh results through the Support API, use the US East (N. Virginia) endpoint and request a refresh for an eligible check. Some automatically refreshed checks reject refresh requests. API endpoint, refresh
+3. Poll refresh status until it reports success, then call `DescribeTrustedAdvisorCheckResult`. Handle an abandoned status as a failed refresh. The result operation does not generate updated results. Polling, refresh status, results
 
 ### Exam cues
 
 - If the question says custom notifications for check status changes, think EventBridge in US East (N. Virginia), because Trusted Advisor emits events there on a best effort basis.
 - If the question says a program needs fresh results, think refresh, poll and retrieve, because reading a result does not refresh the check.
-- If the question says CloudTrail management event logging, think the Trusted Advisor Security category and its AWS CloudTrail Management Event Logging check. [Security check](https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html#aws-cloudtrail-man-events-log)
-- If the question says security checks available with Basic Support, think S3 bucket permissions, root account multi-factor authentication (MFA), and security groups with specific unrestricted ports. [Check reference](https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor-check-reference.html)
+- If the question says CloudTrail management event logging, think the Trusted Advisor Security category and its AWS CloudTrail Management Event Logging check.
+- If the question says security checks available with Basic Support, think S3 bucket permissions, root account multi-factor authentication (MFA), and security groups with specific unrestricted ports.
 
 ### Remember
 

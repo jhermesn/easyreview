@@ -198,7 +198,7 @@ The ECS deployment circuit breaker stops a release that cannot reach a stable ru
 4. With rollback enabled, ECS returns to the most recent `COMPLETED` deployment. If none exists, it stalls without launching new tasks.
 5. Add CloudWatch alarms for application metrics. With both methods enabled, the first to meet its failure condition fails the release. That method must have rollback enabled to initiate recovery.
 
-Native blue/green setup also supports circuit-breaker rollback. The [October 2026 VPC Lattice announcement](https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-ecs-vpc-lattice-blue-green-deployments/) describes the same protection for native blue/green, linear, and canary deployments.
+Native blue/green setup also supports circuit-breaker rollback. The October 2026 VPC Lattice announcement describes the same protection for native blue/green, linear, and canary deployments.
 
 ### Exam cues
 

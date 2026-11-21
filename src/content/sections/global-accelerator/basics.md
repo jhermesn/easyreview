@@ -19,7 +19,7 @@ cards:
     a: "AWS Global Accelerator provides static IP addresses at AWS edge locations and routes traffic to regional endpoints over the AWS global network."
     facts: [fixed-entry]
 ---
-AWS Global Accelerator sends users onto the AWS global network close to them to improve application performance. [What is AWS Global Accelerator?](https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html#what-is-global-accelerator)
+AWS Global Accelerator sends users onto the AWS global network close to them to improve application performance.
 
 ### How it works
 

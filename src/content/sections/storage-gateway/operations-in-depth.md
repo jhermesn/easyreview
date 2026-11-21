@@ -76,20 +76,20 @@ S3 File Gateway upload notifications and cache refreshes help coordinate file wo
 
 ### How it works
 
-1. After writing a working file set to a share, call [`NotifyWhenUploaded`](https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_NotifyWhenUploaded.html). The response returns a notification ID without waiting for the uploads to finish.
+1. After writing a working file set to a share, call `NotifyWhenUploaded`. The response returns a notification ID without waiting for the uploads to finish.
 2. Once all files written to the share up to the request time have reached S3, EventBridge sends a completion notification. It can route the event to SNS or Lambda.
-3. For changes made directly in S3, use [`RefreshCache`](https://docs.aws.amazon.com/filegateway/latest/files3/refresh-cache.html) to update the gateway's cached object inventory. This does not load file contents into the local cache.
+3. For changes made directly in S3, use `RefreshCache` to update the gateway's cached object inventory. This does not load file contents into the local cache.
 4. Alternatively, configure a time to live (TTL) for cache refresh. After it expires, access to a directory triggers a refresh of that directory and waits until the refresh finishes. The refresh does not include subdirectories.
 
 ### Exam cues
 
 - If the question says a workflow must wait for a working file set to reach S3, think `NotifyWhenUploaded` and the EventBridge completion notification, because the API response does not wait for the uploads.
-- If the question says each file upload needs its own notification, think [`NotificationPolicy`](https://docs.aws.amazon.com/filegateway/latest/files3/monitoring-file-gateway.html#get-notification), because it reports individual uploads rather than a working file set.
+- If the question says each file upload needs its own notification, think `NotificationPolicy`, because it reports individual uploads rather than a working file set.
 - If the question says objects changed outside the gateway are missing from a share, think `RefreshCache` or TTL-based refresh, because they update the cached inventory.
 
 ### Remember
 
-- [Cached volumes](https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html#storage-gateway-cached-concepts): 1 GiB to 32 TiB per volume, up to 32 volumes per gateway.
-- [Stored volumes](https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html#storage-gateway-stored-volume-concepts): 1 GiB to 16 TiB per volume, up to 32 volumes per gateway.
+- Cached volumes: 1 GiB to 32 TiB per volume, up to 32 volumes per gateway.
+- Stored volumes: 1 GiB to 16 TiB per volume, up to 32 volumes per gateway.
 
 > **Trap:** A `NotifyWhenUploaded` response is not upload completion. Wait for the EventBridge notification. TTL refresh also does not scan every directory: it refreshes only an accessed directory after its TTL expires, and access waits for the refresh.

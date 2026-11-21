@@ -85,7 +85,7 @@ cards:
     a: "S3 Intelligent-Tiering is designed for unknown or changing access patterns. It charges monitoring and automation fees but no retrieval fees."
     facts: [intelligent-tiering]
 ---
-Amazon S3 storage classes trade access speed and frequency for price. All are designed for the same 11 nines of durability; they differ in availability, retrieval time, retrieval fees and minimum storage duration. [Comparing the Amazon S3 storage classes](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-compare)
+Amazon S3 storage classes trade access speed and frequency for price. All are designed for the same 11 nines of durability; they differ in availability, retrieval time, retrieval fees and minimum storage duration.
 
 ### How it works
 

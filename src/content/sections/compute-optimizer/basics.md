@@ -12,7 +12,7 @@ cards:
     a: "AWS Compute Optimizer."
     facts: [rightsizing]
 ---
-AWS Compute Optimizer recommends resource sizes based on how resources are actually used. [What is AWS Compute Optimizer?](https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html#what-is-compute-optimizer)
+AWS Compute Optimizer recommends resource sizes based on how resources are actually used.
 
 ### How it works
 

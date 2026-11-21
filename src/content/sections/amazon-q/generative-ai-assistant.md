@@ -70,7 +70,7 @@ cards:
     a: "It can answer code questions, generate and complete code, and scan for security vulnerabilities."
     facts: [qdev-ide]
 ---
-Amazon Q is AWS's family of generative AI assistants. Amazon Q Developer helps people build and run applications on AWS. Amazon Q Business answers employees' questions from company data. Both have changed recently, so exam questions may use older names. [What is Amazon Q Developer?](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html#what-is)
+Amazon Q is AWS's family of generative AI assistants. Amazon Q Developer helps people build and run applications on AWS. Amazon Q Business answers employees' questions from company data. Both have changed recently, so exam questions may use older names.
 
 ### How it works
 

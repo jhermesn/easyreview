@@ -41,7 +41,7 @@ cards:
     a: "Amazon SageMaker AI provides managed tools for building, training and deploying machine learning models."
     facts: [purpose, no-servers]
 ---
-Amazon SageMaker AI is the AWS platform for custom machine learning. Data scientists prepare data, train models and deploy them to production in one managed service, without running their own servers. [What is Amazon SageMaker AI?](https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html#whatis)
+Amazon SageMaker AI is the AWS platform for custom machine learning. Data scientists prepare data, train models and deploy them to production in one managed service, without running their own servers.
 
 ### How it works
 

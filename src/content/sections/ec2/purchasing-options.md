@@ -134,7 +134,7 @@ cards:
     trap: true
     facts: [sp-hourly, cr-billing]
 ---
-Amazon EC2 charges the same instance in different ways depending on how much you commit and how much interruption you accept. Choosing well can cut compute costs sharply. [EC2 billing and purchasing options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html#instance-purchasing-options)
+Amazon EC2 charges the same instance in different ways depending on how much you commit and how much interruption you accept. Choosing well can cut compute costs sharply.
 
 ### How it works
 
@@ -149,8 +149,8 @@ Amazon EC2 charges the same instance in different ways depending on how much you
 | Capacity Reservations | Capacity in one AZ | Guaranteed capacity |
 
 1. Start with On-Demand while usage is unknown.
-2. Cover steady usage with Savings Plans; AWS recommends them over Reserved Instances. [Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html#what-is-savings-plans)
-3. Move fault-tolerant work to Spot. Notices are best effort; stop and termination notices give two minutes, while hibernation begins immediately. [Spot interruption notices](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html#spot-instance-termination-notices)
+2. Cover steady usage with Savings Plans; AWS recommends them over Reserved Instances.
+3. Move fault-tolerant work to Spot. Notices are best effort; stop and termination notices give two minutes, while hibernation begins immediately.
 4. Use Dedicated Hosts when licenses are tied to sockets or cores.
 
 ### Exam cues

@@ -47,14 +47,14 @@ cards:
     a: "The function's response is not in the proxy format (statusCode, headers, body), so API Gateway rejects it."
     facts: [proxy-502]
 ---
-An integration connects an API method to its backend. The integration type decides how much mapping you configure. [Choose an API Gateway API integration type](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-integration-types.html)
+An integration connects an API method to its backend. The integration type decides how much mapping you configure.
 
 ### How it works
 
 1. A client calls a method. If request validation is on, API Gateway rejects an invalid request with 400 before going further.
 2. The integration request sends the call to the backend: as is for proxy types, or through mapping templates for AWS and HTTP custom types.
 3. The backend has up to the integration timeout to answer (29 seconds by default).
-4. API Gateway returns the response. With HTTP API CORS configured, it also answers preflight OPTIONS requests automatically. [HTTP API CORS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html)
+4. API Gateway returns the response. With HTTP API CORS configured, it also answers preflight OPTIONS requests automatically.
 
 | Integration type | Backend | Mappings |
 |---|---|---|

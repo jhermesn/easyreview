@@ -37,7 +37,7 @@ cards:
     a: "VMware vSphere, bare metal, Nutanix, Apache CloudStack and AWS Snow."
     facts: [platforms]
 ---
-Amazon EKS offers several ways to run Kubernetes outside a Region. The deciding question is who runs the control plane: AWS (EKS, EKS on Outposts, EKS Hybrid Nodes) or you (EKS Anywhere). [Amazon EKS deployment options](https://docs.aws.amazon.com/eks/latest/userguide/eks-deployment-options.html)
+Amazon EKS offers several ways to run Kubernetes outside a Region. The deciding question is who runs the control plane: AWS (EKS, EKS on Outposts, EKS Hybrid Nodes) or you (EKS Anywhere).
 
 ### How it works
 

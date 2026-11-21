@@ -12,7 +12,7 @@ cards:
     a: "AWS Backup."
     facts: [central-backup]
 ---
-AWS Backup manages backups for many AWS services from one place. [What is AWS Backup?](https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#whatisbackup)
+AWS Backup manages backups for many AWS services from one place.
 
 ### How it works
 

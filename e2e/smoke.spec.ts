@@ -94,7 +94,7 @@ test('the study path points to the next topic and keeps the exam-domain view', a
 
 test('a finished topic can be shared with its name and link', async ({ page }) => {
   await page.goto('pt-br/clf-c02/iam/');
-  const share = page.locator('.unit-head [data-share]');
+  const share = page.locator('.unit-done [data-share]');
   await expect(share).toBeHidden();
   await page.getByRole('button', { name: /Marcar tudo como sabido/ }).click();
   await share.locator('summary').click();
@@ -115,6 +115,28 @@ test('search finds sections', async ({ page }) => {
   await page.goto('search/');
   await page.locator('[data-search]').fill('blue green');
   await expect(page.locator('[data-results] li a').first()).toBeVisible();
+});
+
+test('a search result opens in the cert being studied, else in the most advanced cert that has it', async ({ page }) => {
+  await page.goto('search/');
+  await page.locator('[data-search]').fill('root user');
+  const first = page.locator('[data-results] li a').first();
+  await expect(first).toHaveAttribute('href', /\/easyreview\/(dop-c02|saa-c03)\//);
+  await page.goto('clf-c02/iam/');
+  await page.goto('search/');
+  await page.locator('[data-search]').fill('root user');
+  await expect(first).toHaveAttribute('href', /\/easyreview\/clf-c02\//);
+});
+
+test('a topic opened from the study path pages through the path, not the exam guide', async ({ page }) => {
+  await page.goto('clf-c02/');
+  const roadmap = page.locator('[data-roadmap-unit]');
+  const second = (await roadmap.nth(1).getAttribute('href'))!;
+  const third = (await roadmap.nth(2).getAttribute('href'))!;
+  await roadmap.nth(1).click();
+  await expect(page).toHaveURL(new RegExp(second.replace('?', '\\?') + '$'));
+  await expect(page.locator('[data-pager="guide"]')).toBeHidden();
+  await expect(page.locator('[data-pager="trail"] a').last()).toHaveAttribute('href', third);
 });
 
 test('who passed lists people from Credly', async ({ page }) => {

@@ -54,14 +54,14 @@ cards:
     trap: true
     facts: [sellers, pricing]
 ---
-AWS Marketplace is a catalog of third-party software, data and services. Customers buy and deploy them without a separate contract, and the charges appear on their AWS bill. [What is AWS Marketplace?](https://docs.aws.amazon.com/marketplace/latest/buyerguide/what-is-marketplace.html#what-is-marketplace)
+AWS Marketplace is a catalog of third-party software, data and services. Customers buy and deploy them without a separate contract, and the charges appear on their AWS bill.
 
 ### How it works
 
 1. Find a product: AMIs, SaaS, containers and more, from independent software vendors and other sellers. AWS curates every listing.
 2. Choose a pricing option: free trial, hourly, monthly, annual, multi-year or BYOL.
 3. Deploy with a few clicks; AWS bills it with the rest of the account.
-4. Govern buying with Private Marketplace catalogs, share licenses through AWS License Manager, and track costs with cost allocation tags. [Private Marketplace](https://docs.aws.amazon.com/marketplace/latest/buyerguide/private-marketplace-current.html#private-marketplace-current)
+4. Govern buying with Private Marketplace catalogs, share licenses through AWS License Manager, and track costs with cost allocation tags.
 
 | Need | Marketplace feature |
 |---|---|

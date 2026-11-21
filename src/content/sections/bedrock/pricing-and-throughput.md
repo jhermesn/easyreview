@@ -64,7 +64,7 @@ cards:
     a: "It provides a higher level of throughput at a fixed hourly cost, with discounts for longer commitments."
     facts: [provisioned]
 ---
-Bedrock pricing follows tokens. On-demand bills each input and output token; batch, caching, routing and service tiers lower the bill or raise performance; Provisioned Throughput buys reserved capacity by the hour. [Amazon Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
+Bedrock pricing follows tokens. On-demand bills each input and output token; batch, caching, routing and service tiers lower the bill or raise performance; Provisioned Throughput buys reserved capacity by the hour.
 
 ### How it works
 

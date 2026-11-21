@@ -43,7 +43,7 @@ cards:
     a: "It helps build labeled training datasets using human workers and automated data labeling."
     facts: [ground-truth]
 ---
-Good models need prepared data and, often, people in the loop. SageMaker AI has tools to prepare and share data, to label it, and to send uncertain predictions to human reviewers. [Ground Truth](https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html)
+Good models need prepared data and, often, people in the loop. SageMaker AI has tools to prepare and share data, to label it, and to send uncertain predictions to human reviewers.
 
 ### How it works
 

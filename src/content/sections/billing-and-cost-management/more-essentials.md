@@ -36,14 +36,14 @@ cards:
     a: "The zero spend budget template in AWS Budgets."
     facts: [budget-templates]
 ---
-AWS Budgets can monitor Reserved Instance and Savings Plans coverage and utilization, send notifications, and trigger actions at a budget threshold. These options help a team track its commitments and respond to costs. [Managing costs with AWS Budgets](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html#budgets-managing-costs)
+AWS Budgets can monitor Reserved Instance and Savings Plans coverage and utilization, send notifications, and trigger actions at a budget threshold. These options help a team track its commitments and respond to costs.
 
 ### How it works
 
-1. Choose a budget for Reserved Instance or Savings Plans coverage or utilization, and set a threshold. [Creating a budget](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-create.html#budgets-create)
+1. Choose a budget for Reserved Instance or Savings Plans coverage or utilization, and set a threshold.
 2. Set notifications by email or Amazon SNS. A utilization notification can alert when utilization falls below a target.
 3. For a budget action, configure a custom IAM policy that denies provisioning more resources when the threshold is reached.
-4. For a quick setup, use the zero spend template to get notified when spending exceeds AWS Free Tier limits. [Budget templates](https://docs.aws.amazon.com/cost-management/latest/userguide/budget-templates.html#budget-templates)
+4. For a quick setup, use the zero spend template to get notified when spending exceeds AWS Free Tier limits.
 
 ### Exam cues
 

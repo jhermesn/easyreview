@@ -19,7 +19,7 @@ cards:
     a: AWS Control Tower.
     facts: [controls]
 ---
-AWS Control Tower builds and governs a multi-account environment using AWS best practices. [What is AWS Control Tower?](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html#what-is-control-tower)
+AWS Control Tower builds and governs a multi-account environment using AWS best practices.
 
 ### How it works
 

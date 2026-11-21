@@ -137,7 +137,7 @@ cards:
     facts: [proxy-client-tls]
 ---
 
-RDS Proxy reduces connection pressure by keeping a shared pool of database connections. A connection pool is a set of open connections that clients can reuse. The [RDS Proxy guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy) describes reuse, authentication, and recovery through a standby after database failure.
+RDS Proxy reduces connection pressure by keeping a shared pool of database connections. A connection pool is a set of open connections that clients can reuse. The RDS Proxy guide describes reuse, authentication, and recovery through a standby after database failure.
 
 ### How it works
 

@@ -101,7 +101,7 @@ cards:
     a: "Its **logs, automated backups, read replicas and snapshots**, along with the instance storage."
     facts: [encryption-scope]
 ---
-RDS security includes encryption at rest and SSL/TLS encryption for connections. Maintenance behavior on Multi-AZ is another common exam topic. [Encrypting Amazon RDS resources](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
+RDS security includes encryption at rest and SSL/TLS encryption for connections. Maintenance behavior on Multi-AZ is another common exam topic.
 
 ### How it works
 

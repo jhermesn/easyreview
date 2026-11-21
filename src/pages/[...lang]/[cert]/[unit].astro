@@ -10,6 +10,7 @@ import { formatRich, plainText, withBase } from '../../../lib/format';
 import { absoluteUrl, breadcrumbs, certFullName } from '../../../lib/seo';
 import ContentNotice from '../../../components/ContentNotice.astro';
 import ShareProgress from '../../../components/ShareProgress.astro';
+import { getRoadmap } from '../../../lib/roadmap';
 import { LOCALES, localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 
 export async function getStaticPaths() {
@@ -31,6 +32,11 @@ const { Content: Intro } = await render(unit);
 const blocks = await Promise.all(sections.map(async (s) => ({ s, Content: (await render(s)).Content })));
 const cards = deckCards({ cert, units: [entry], sections, missing: [] });
 const href = (u: CertUnit) => localePath(locale, `/${cert.id}/${u.unit.id}`);
+// Opened from the study path (links there end in ?trail), the pager follows the path's order instead of the guide's.
+const byId = new Map(units.map((u) => [u.unit.id, u]));
+const trail = (getRoadmap(cert.id)?.stages ?? []).flatMap((s) => s.units).map((id) => byId.get(id)).filter((u): u is CertUnit => !!u);
+const onTrail = trail.findIndex((u) => u.unit.id === unit.id);
+const [trailPrev, trailNext] = onTrail < 0 ? [] : [trail[onTrail - 1], trail[onTrail + 1]];
 const site = Astro.site!;
 const jsonLd: Record<string, unknown>[] = [
   breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }, { name: unit.data.title, path: `/${cert.id}/${unit.id}/` }], site, locale),
@@ -69,16 +75,6 @@ if (cards.length) {
     </div>
     <h1>{unit.data.icon && <img src={withBase(`/aws-icons/${unit.data.icon}.svg`)} alt="" width="36" height="36" />}{unit.data.title}</h1>
     <p class="muted summary">{unit.data.summary}</p>
-    <button class="known" type="button" data-known-toggle={sectionIds(sections)} aria-pressed="false" title={t('unit.markAllTitle')}>
-      <Icon name="circle" class="k-off" /><Icon name="check-circle" class="k-on" />
-      <span class="k-off">{t('unit.markAll')}</span><span class="k-on">{t('unit.allKnown')}</span>
-    </button>
-    <ShareProgress
-      ids={sectionIds(sections)}
-      title={t('share.title')}
-      text={t('share.topicText', { topic: unit.data.title, cert: certFullName(cert) })}
-      url={absoluteUrl(`/${cert.id}/${unit.id}/`, site, locale)}
-    />
     <ContentNotice langs={[unit.lang, ...sections.map((s) => s.lang)]} />
     {sections.length > 1 && (
       <nav class="toc" aria-label={t('unit.sections')}>
@@ -110,6 +106,19 @@ if (cards.length) {
       </section>
     ))}
 
+    <div class="unit-done">
+      <button class="known" type="button" data-known-toggle={sectionIds(sections)} aria-pressed="false" title={t('unit.markAllTitle')}>
+        <Icon name="circle" class="k-off" /><Icon name="check-circle" class="k-on" />
+        <span class="k-off">{t('unit.markAll')}</span><span class="k-on">{t('unit.allKnown')}</span>
+      </button>
+      <ShareProgress
+        ids={sectionIds(sections)}
+        title={t('share.title')}
+        text={t('share.topicText', { topic: unit.data.title, cert: certFullName(cert) })}
+        url={absoluteUrl(`/${cert.id}/${unit.id}/`, site, locale)}
+      />
+    </div>
+
     {cards.length > 0 && (
       <section id="cards">
         <h2>{t('nav.flashcards')}</h2>
@@ -129,10 +138,16 @@ if (cards.length) {
     )}
   </article>
 
-  <nav class="pager">
+  <nav class="pager" data-pager="guide">
     {prev ? <a href={href(prev)} title={prev.unit.data.title}><Icon name="arrow-left" /> <span>{prev.unit.data.title}</span></a> : <span />}
     {next ? <a href={href(next)} title={next.unit.data.title}><span>{next.unit.data.title}</span> <Icon name="arrow-right" /></a> : <span />}
   </nav>
+  {onTrail >= 0 && (
+    <nav class="pager" data-pager="trail" hidden>
+      {trailPrev ? <a href={`${href(trailPrev)}/?trail`} title={trailPrev.unit.data.title}><Icon name="arrow-left" /> <span>{trailPrev.unit.data.title}</span></a> : <span />}
+      {trailNext ? <a href={`${href(trailNext)}/?trail`} title={trailNext.unit.data.title}><span>{trailNext.unit.data.title}</span> <Icon name="arrow-right" /></a> : <span />}
+    </nav>
+  )}
 </Base>
 
 <style>
@@ -169,4 +184,14 @@ if (cards.length) {
   .pager a { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; color: var(--ink-300); max-width: 48%; }
   .pager a span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .pager a:hover { color: var(--ink-100); }
+  .unit-done { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--ink-700); }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const trail = document.querySelector<HTMLElement>('[data-pager="trail"]');
+    if (!trail || !new URLSearchParams(location.search).has('trail')) return;
+    trail.hidden = false;
+    document.querySelector<HTMLElement>('[data-pager="guide"]')!.hidden = true;
+  });
+</script>

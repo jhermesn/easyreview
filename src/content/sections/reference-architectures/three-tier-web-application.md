@@ -171,7 +171,7 @@ The classic architecture question describes a web application that must stay up 
 
 ### How it works
 
-1. Route 53 answers for the domain with an alias record that points at CloudFront. [Alias records](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
+1. Route 53 answers for the domain with an alias record that points at CloudFront.
 2. At the edge, Shield Standard absorbs common DDoS attacks, and an AWS WAF web ACL blocks malicious requests. ACM provides and renews the TLS certificates.
 3. CloudFront serves static files from a private S3 bucket through origin access control and forwards dynamic requests to the load balancer.
 4. An Application Load Balancer in public subnets of two zones sends requests to an Auto Scaling group in private subnets of the same zones. A target tracking policy scales the group, and unhealthy instances are replaced.

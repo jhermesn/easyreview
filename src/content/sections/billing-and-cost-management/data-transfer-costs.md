@@ -76,7 +76,7 @@ cards:
     a: "Keep them in the same Availability Zone and use private IP addresses."
     facts: [same-az-private-free]
 ---
-Data transfer pricing depends on direction and distance. Data coming in from the internet is free. Data leaving AWS for the internet, crossing Regions, or crossing Availability Zones is generally charged. [Understanding data transfer charges](https://docs.aws.amazon.com/cur/latest/userguide/cur-data-transfers-charges.html#cur-data-transfers-charges)
+Data transfer pricing depends on direction and distance. Data coming in from the internet is free. Data leaving AWS for the internet, crossing Regions, or crossing Availability Zones is generally charged.
 
 ### How it works
 

@@ -103,16 +103,16 @@ cards:
     facts:
       - sla-contract
 ---
-A workload availability target states how often the application must perform its agreed function. A service-level agreement, or SLA, defines a service commitment and its remedy. Set the workload target from business needs and evaluate the services it depends on. [AWS availability guidance](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability) · [SLA and dependency guidance](https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html#availability-with-dependencies)
+A workload availability target states how often the application must perform its agreed function. A service-level agreement, or SLA, defines a service commitment and its remedy. Set the workload target from business needs and evaluate the services it depends on. AWS availability guidance · SLA and dependency guidance
 
 ### How it works
 
 1. Define the workload function and measurement period. Availability measures whether the function succeeds during that period.
-2. Define recovery limits separately. RTO, the recovery time objective, limits the delay until service restoration. RPO, the recovery point objective, limits the age of the recoverable data and therefore the acceptable data loss. [Recovery objectives](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/disaster-recovery-dr-objectives.html#disaster-recovery-dr-objectives)
+2. Define recovery limits separately. RTO, the recovery time objective, limits the delay until service restoration. RPO, the recovery point objective, limits the age of the recoverable data and therefore the acceptable data loss.
 3. Read each dependency SLA for deployment conditions and its definition of unavailability. An Availability Zone, or AZ, is an isolated location within an AWS Region.
 4. Choose a target the business needs and can support. Higher targets typically require more cost, testing and automated recovery.
 
-DNS, the Domain Name System, answers queries about domain names. A name server answers these queries; an authoritative name server uses the records it holds for the domain. [AWS DNS terms](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/route-53-concepts.html#route-53-concepts-domain-name-system-dns)
+DNS, the Domain Name System, answers queries about domain names. A name server answers these queries; an authoritative name server uses the records it holds for the domain.
 
 | Measure or commitment | Scope | What to check |
 |---|---|---|
@@ -121,9 +121,9 @@ DNS, the Domain Name System, answers queries about domain names. A name server a
 | EC2 Instance-Level SLA | Individual EC2 instance | 99.5% monthly |
 | Route 53 Authoritative DNS SLA | Hosted-zone DNS responses | Assigned name servers and SLA exclusions |
 
-EC2 Region-Level unavailability requires all running instances in the qualifying AZs to have no external connectivity concurrently. A qualifying service-credit claim goes through AWS Support and is due by the end of the second billing cycle after the incident. [EC2 SLA](https://aws.amazon.com/compute/sla/)
+EC2 Region-Level unavailability requires all running instances in the qualifying AZs to have no external connectivity concurrently. A qualifying service-credit claim goes through AWS Support and is due by the end of the second billing cycle after the incident.
 
-A Route 53 hosted zone is a container of DNS records that describe where a domain's traffic should go. The Authoritative DNS SLA treats a minute as unavailable only when all four assigned virtual name servers fail to answer all DNS queries throughout that minute. Other Route 53 features, including its API and console, are excluded. [Hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html#hosted-zones-working-with) · [Route 53 SLA](https://aws.amazon.com/route53/sla/)
+A Route 53 hosted zone is a container of DNS records that describe where a domain's traffic should go. The Authoritative DNS SLA treats a minute as unavailable only when all four assigned virtual name servers fail to answer all DNS queries throughout that minute. Other Route 53 features, including its API and console, are excluded. Hosted zones · Route 53 SLA
 
 ### Exam cues
 

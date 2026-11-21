@@ -95,11 +95,11 @@ GuardDuty monitoring and finding delivery depend on the data source, protection 
 
 ### How it works
 
-1. GuardDuty accesses EC2 DNS queries through [AWS DNS resolvers](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_dns) without requiring Resolver query logging. It also receives an [independent stream of EC2 VPC flow logs](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_vpc), without a customer-configured flow log.
-2. Select the [protection plan](https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty) for the signal: Runtime Monitoring analyzes operating system events on EKS, EC2, and ECS, including Fargate; RDS Protection analyzes supported database logins; Lambda Protection monitors Lambda network activity. The GuardDuty security agent provides EC2 runtime events.
-3. Configure the same delegated administrator and its members in [each desired Region](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html#delegated_admin_important). Choose [organization auto-enable](https://docs.aws.amazon.com/guardduty/latest/ug/set-guardduty-auto-enable-preferences.html#set-guardduty-auto-enable-preferences) as `ALL`, `NEW`, or `NONE`. Malware Protection for S3 is excluded from these preferences.
-4. GuardDuty [aggregates related recurring activity](https://docs.aws.amazon.com/guardduty/latest/ug/finding-aggregation.html#finding-aggregation) into the original finding, increasing its count and updating details. Earlier details can be replaced. Configure VPC Flow Logs to retain individual activity.
-5. Configure [findings export](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-export-findings-considerations) per Region. An administrator's export includes associated member findings generated in the same Region. The destination S3 bucket and KMS key must share a Region; opt-in destination Regions have additional cross-Region restrictions.
+1. GuardDuty accesses EC2 DNS queries through AWS DNS resolvers without requiring Resolver query logging. It also receives an independent stream of EC2 VPC flow logs, without a customer-configured flow log.
+2. Select the protection plan for the signal: Runtime Monitoring analyzes operating system events on EKS, EC2, and ECS, including Fargate; RDS Protection analyzes supported database logins; Lambda Protection monitors Lambda network activity. The GuardDuty security agent provides EC2 runtime events.
+3. Configure the same delegated administrator and its members in each desired Region. Choose organization auto-enable as `ALL`, `NEW`, or `NONE`. Malware Protection for S3 is excluded from these preferences.
+4. GuardDuty aggregates related recurring activity into the original finding, increasing its count and updating details. Earlier details can be replaced. Configure VPC Flow Logs to retain individual activity.
+5. Configure findings export per Region. An administrator's export includes associated member findings generated in the same Region. The destination S3 bucket and KMS key must share a Region; opt-in destination Regions have additional cross-Region restrictions.
 
 ### Exam cues
 
@@ -112,7 +112,7 @@ GuardDuty monitoring and finding delivery depend on the data source, protection 
 
 ### Remember
 
-- New findings reach EventBridge near real time. Updates default to 6 hours and can be set to 15 minutes or 1 hour. [EventBridge notification frequency](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_eventbridge.html#eventbridge-freq-notifications-gdu)
+- New findings reach EventBridge near real time. Updates default to 6 hours and can be set to 15 minutes or 1 hour.
 - Changing organization auto-enable to `NONE` does not disable existing accounts.
 - Archived findings, including new occurrences of suppressed findings, are not exported by default.
 

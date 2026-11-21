@@ -186,14 +186,14 @@ cards:
       - organizations-alert-region
       - eventbridge-trail
 ---
-CloudTrail events can drive notifications or automated responses. A metric filter counts log records matching a pattern; an alarm evaluates that metric. EventBridge uses rules to match events on an event bus, the place events enter its routing system, and sends matches to targets. [CloudWatch alert examples](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html#cloudwatch-alarms-for-cloudtrail) · [EventBridge integration](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html#eb-service-event-cloudtrail)
+CloudTrail events can drive notifications or automated responses. A metric filter counts log records matching a pattern; an alarm evaluates that metric. EventBridge uses rules to match events on an event bus, the place events enter its routing system, and sends matches to targets. CloudWatch alert examples · EventBridge integration
 
 ### How it works
 
 1. Keep a trail logging the activity of interest. For CloudWatch alarms, configure delivery to a CloudWatch Logs group.
-2. Match security changes with a metric filter on `eventName`. The root user has unrestricted account access. To monitor root usage, AWS documents a filter on `userIdentity.type = Root` that excludes service-invoked activity and `AwsServiceEvent` records. Attach an alarm and SNS notification. [Root-usage filter](https://docs.aws.amazon.com/securityhub/latest/userguide/cloudwatch-controls.html#cloudwatch-1)
+2. Match security changes with a metric filter on `eventName`. The root user has unrestricted account access. To monitor root usage, AWS documents a filter on `userIdentity.type = Root` that excludes service-invoked activity and `AwsServiceEvent` records. Attach an alarm and SNS notification.
 3. For an event-driven response, match CloudTrail-derived events on the default EventBridge bus. API requests use `AWS API Call via CloudTrail`; sign-in attempts use `AWS Console Signin via CloudTrail`. A Lambda function can be the target.
-4. Set the rule state for the activity being watched. Read-only management calls need the special state below; data calls must also be selected by the trail. [AWS routing rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html#eb-service-event-cloudtrail)
+4. Set the rule state for the activity being watched. Read-only management calls need the special state below; data calls must also be selected by the trail.
 
 | Activity | Trail requirement | EventBridge rule state |
 |---|---|---|
@@ -201,15 +201,15 @@ CloudTrail events can drive notifications or automated responses. A metric filte
 | Read-only management event | Logging enabled | `ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS` |
 | Data event | Relevant data type selected | `ENABLED` |
 
-For new log groups, a rule can match `CreateLogGroup` and invoke Lambda to call `PutSubscriptionFilter`, attaching a subscription that streams matching logs to Firehose. A subscription is an ongoing log-delivery connection. [EventBridge targets](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-targets) · [Subscription API](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html#API_PutSubscriptionFilter) · [CloudWatch Logs events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/logging_cw_api_calls_cwl.html#logging_cw_api_calls_cwl)
+For new log groups, a rule can match `CreateLogGroup` and invoke Lambda to call `PutSubscriptionFilter`, attaching a subscription that streams matching logs to Firehose. A subscription is an ongoing log-delivery connection. EventBridge targets · Subscription API · CloudWatch Logs events
 
-For AWS Organizations API activity, configure CloudTrail and EventBridge monitoring in `us-east-1`. An SNS topic can receive matching events for notifications. [Organizations monitoring](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tutorials_cwe.html#tutorial-cwe-step1)
+For AWS Organizations API activity, configure CloudTrail and EventBridge monitoring in `us-east-1`. An SNS topic can receive matching events for notifications.
 
 ### Exam cues
 
 - If the question says send email for security group changes, think metric filter, alarm and SNS, because CloudWatch converts matching audit records into an alarm signal.
 - If the question says automate a reaction to an API request, think an EventBridge rule and Lambda target, because the rule can route the matching CloudTrail event.
-- If the question says detect a stopped trail and restore it, think periodic `cloudtrail-enabled` evaluation plus separately configured remediation, because compliance evaluation alone does not restart logging. `StartLogging` resumes an existing trail. [Config rule](https://docs.aws.amazon.com/config/latest/developerguide/cloudtrail-enabled.html#cloudtrail-enabled) · [Remediation](https://docs.aws.amazon.com/config/latest/developerguide/remediation.html#remediation)
+- If the question says detect a stopped trail and restore it, think periodic `cloudtrail-enabled` evaluation plus separately configured remediation, because compliance evaluation alone does not restart logging. `StartLogging` resumes an existing trail. Config rule · Remediation
 
 ### Remember
 

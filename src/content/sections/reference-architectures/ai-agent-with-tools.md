@@ -166,7 +166,7 @@ Agent questions describe an assistant that must take actions, such as looking up
 
 ### How it works
 
-1. The agent runs on AgentCore Runtime and uses a foundation model to reason and plan. [AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html#core-services-in-agentcore)
+1. The agent runs on AgentCore Runtime and uses a foundation model to reason and plan.
 2. AgentCore Memory gives it the conversation so far and what it learned before.
 3. AgentCore Gateway exposes Lambda functions and APIs as MCP tools, and Policy checks each call.
 4. AgentCore Identity handles who the user is and the credentials the tools need.

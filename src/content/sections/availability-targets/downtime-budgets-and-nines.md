@@ -70,7 +70,7 @@ cards:
     facts:
       - planned-downtime
 ---
-A downtime budget is the amount of unavailability compatible with an availability target over a stated period. Nines are shorthand for availability percentages: five nines means 99.999%. [AWS availability definitions](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability)
+A downtime budget is the amount of unavailability compatible with an availability target over a stated period. Nines are shorthand for availability percentages: five nines means 99.999%.
 
 ### How it works
 
@@ -95,6 +95,6 @@ A downtime budget is the amount of unavailability compatible with an availabilit
 | 99.99% | 52 minutes |
 | 99.999% | 5 minutes |
 
-These are rounded annual values. Use the actual measurement period when calculating a budget. [AWS nines table and measurement methods](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability)
+These are rounded annual values. Use the actual measurement period when calculating a budget.
 
 > **Trap:** An annual downtime table does not give a monthly allowance. Calculate from the period named in the requirement.

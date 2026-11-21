@@ -76,10 +76,10 @@ Aurora offers separate controls for reader capacity and database connections, pl
 
 ### How it works
 
-1. Register the cluster with Application Auto Scaling under the `rds` namespace and the `rds:cluster:ReadReplicaCount` dimension. Set a target and limits so [Aurora Auto Scaling](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling) can add or remove readers. The predefined targets use [average reader CPU or connections](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.Add.html#Aurora.Integrating.AutoScaling.AddCode.DefineScalingPolicy.Predefined). See the [registration details](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.Add.html#Aurora.Integrating.AutoScaling.AddCode.Register).
-2. Connect clients to the [RDS Proxy endpoint](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-connections.html#rds-proxy-connection-life). The proxy manages reusable database connections separately from client connections. Set [MaxConnectionsPercent](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-proxy-connections.html#rds-proxy-connection-pooling-tuning.maxconnectionspercent) to cap database connections as a percentage of `max_connections`.
-3. Create an [Aurora clone](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html#Aurora.Managing.Clone) for a test environment. It initially shares data pages with the source using copy-on-write, which uses little extra space.
-4. Give an Aurora MySQL cluster access to Lambda, then call a function from SQL using [`lambda_sync` or `lambda_async`](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Lambda.html#AuroraMySQL.Integrating.Lambda).
+1. Register the cluster with Application Auto Scaling under the `rds` namespace and the `rds:cluster:ReadReplicaCount` dimension. Set a target and limits so Aurora Auto Scaling can add or remove readers. The predefined targets use average reader CPU or connections. See the registration details.
+2. Connect clients to the RDS Proxy endpoint. The proxy manages reusable database connections separately from client connections. Set MaxConnectionsPercent to cap database connections as a percentage of `max_connections`.
+3. Create an Aurora clone for a test environment. It initially shares data pages with the source using copy-on-write, which uses little extra space.
+4. Give an Aurora MySQL cluster access to Lambda, then call a function from SQL using `lambda_sync` or `lambda_async`.
 
 ### Exam cues
 
@@ -94,4 +94,4 @@ Aurora offers separate controls for reader capacity and database connections, pl
 - `MaxDatabaseConnectionsAllowed` can be lower than the percentage calculation because RDS Proxy reserves internal connections. The proxy does not open all allowed connections in advance.
 - Automated backup storage up to the latest cluster volume size is free.
 
-> **Trap:** Aurora Auto Scaling does not scale the writer and cannot add readers to a Global Database secondary or an [Aurora Serverless v2 cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.requirements.html#aurora-serverless-v2.limitations). Pre-created Serverless readers scale compute capacity instead.
+> **Trap:** Aurora Auto Scaling does not scale the writer and cannot add readers to a Global Database secondary or an Aurora Serverless v2 cluster. Pre-created Serverless readers scale compute capacity instead.

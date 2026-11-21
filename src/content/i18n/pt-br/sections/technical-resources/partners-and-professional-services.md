@@ -1,5 +1,5 @@
 ---
-source: a6be5fba5990
+source: ae39de725529
 title: Parceiros e Professional Services
 facts:
   apn: A AWS Partner Network (APN) é uma comunidade global de organizações que usam tecnologias, programas, financiamento e ferramentas da AWS para criar soluções e serviços para clientes.
@@ -41,16 +41,16 @@ cards:
     q: Qual equipe da AWS pode ajudar uma empresa a projetar e migrar suas cargas de trabalho na AWS?
     a: O AWS Professional Services ajuda organizações a projetar, construir, migrar e gerenciar cargas de trabalho na AWS.
 ---
-Quando um cliente precisa de mais do que documentação e casos de suporte, a AWS oferece pessoas. O AWS Professional Services e os arquitetos de soluções da AWS vêm da própria AWS; os membros da AWS Partner Network são empresas externas. [AWS Partner Network](https://aws.amazon.com/partners/)
+Quando um cliente precisa de mais do que documentação e casos de suporte, a AWS oferece pessoas. O AWS Professional Services e os arquitetos de soluções da AWS vêm da própria AWS; os membros da AWS Partner Network são empresas externas.
 
 ### Como funciona
 
-1. O **AWS Professional Services** trabalha em projetos para projetar, construir, migrar e gerenciar cargas de trabalho. [AWS Professional Services](https://aws.amazon.com/professional-services/)
+1. O **AWS Professional Services** trabalha em projetos para projetar, construir, migrar e gerenciar cargas de trabalho.
 2. Os **arquitetos de soluções da AWS** compartilham experiência em arquitetura; essa experiência deu forma às boas práticas do Well-Architected.
 3. Os membros da **AWS Partner Network (APN)** incluem parceiros de consultoria e integradores de sistemas, que entregam projetos, e fornecedores independentes de software (ISVs), que vendem software, muitas vezes pelo AWS Marketplace.
 4. **Technical Account Managers** vêm com o Enterprise Support e o Unified Operations.
-5. O **AWS Managed Services (AMS)** faz a AWS operar a infraestrutura do cliente: solicitações de mudança, monitoramento, patches, segurança e backup. O AMS Advanced fechou para novos clientes em 30 de junho de 2026 e acaba em 30 de junho de 2027. [O que é o AMS?](https://docs.aws.amazon.com/managedservices/latest/userguide/what-is-ams.html#what-is-ams)
-6. Os parceiros gerenciam o relacionamento com a AWS no AWS Partner Central e recebem programas, certificações, incentivos e financiamento. [Partner Central](https://docs.aws.amazon.com/partner-central/latest/getting-started/what-is-partner-central.html#what-is-partner-central)
+5. O **AWS Managed Services (AMS)** faz a AWS operar a infraestrutura do cliente: solicitações de mudança, monitoramento, patches, segurança e backup. O AMS Advanced fechou para novos clientes em 30 de junho de 2026 e acaba em 30 de junho de 2027.
+6. Os parceiros gerenciam o relacionamento com a AWS no AWS Partner Central e recebem programas, certificações, incentivos e financiamento.
 
 | Ajuda | De quem | Uso típico |
 |---|---|---|

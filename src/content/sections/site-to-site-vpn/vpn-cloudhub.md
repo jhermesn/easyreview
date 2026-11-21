@@ -27,7 +27,7 @@ cards:
     trap: true
     facts: [no-overlap]
 ---
-AWS VPN CloudHub turns the virtual private gateway into a hub, so branch offices that already have VPNs to AWS can reach each other through it. [VPN CloudHub](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPN_CloudHub.html)
+AWS VPN CloudHub turns the virtual private gateway into a hub, so branch offices that already have VPNs to AWS can reach each other through it.
 
 ### How it works
 

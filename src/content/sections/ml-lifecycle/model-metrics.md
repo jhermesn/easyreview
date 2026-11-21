@@ -72,7 +72,7 @@ cards:
     a: "Business metrics connect technical model performance to outcomes such as customer satisfaction."
     facts: [business-metrics]
 ---
-Model metrics say how well a model predicts; business metrics say whether that matters. For classification, the confusion matrix counts true and false positives and negatives, and precision, recall and F1 come from it. [Autopilot metrics](https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html#autopilot-metrics)
+Model metrics say how well a model predicts; business metrics say whether that matters. For classification, the confusion matrix counts true and false positives and negatives, and precision, recall and F1 come from it.
 
 ### How it works
 

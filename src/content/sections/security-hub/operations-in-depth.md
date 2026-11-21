@@ -51,10 +51,10 @@ Security Hub CSPM uses AWS Config for control checks and can also import Config 
 
 ### How it works
 
-1. Most CSPM control checks use service-linked Config rules to evaluate recorded resource configuration. When CSPM is enabled without Security Hub, [manually enable recording](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-setup-prereqs.html#manual-config-setup) for the resource types required by enabled controls in every participating account and Region.
-2. If required resource types are missing from manual recording, [Config.1 can report FAILED](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-setup-prereqs.html#config-1-overview), and the affected control can produce WARNING findings.
-3. Activate the [AWS Config integration](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html#securityhub-internal-providers) to import managed and custom rule evaluations through EventBridge. The integration excludes service-linked rule evaluations, except those from rules managed by AWS Control Tower.
-4. The integration sends evaluations performed after CSPM was enabled. CSPM does not [retroactively consolidate findings](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html#what-is-securityhub) generated before enablement.
+1. Most CSPM control checks use service-linked Config rules to evaluate recorded resource configuration. When CSPM is enabled without Security Hub, manually enable recording for the resource types required by enabled controls in every participating account and Region.
+2. If required resource types are missing from manual recording, Config.1 can report FAILED, and the affected control can produce WARNING findings.
+3. Activate the AWS Config integration to import managed and custom rule evaluations through EventBridge. The integration excludes service-linked rule evaluations, except those from rules managed by AWS Control Tower.
+4. The integration sends evaluations performed after CSPM was enabled. CSPM does not retroactively consolidate findings generated before enablement.
 
 ### Exam cues
 

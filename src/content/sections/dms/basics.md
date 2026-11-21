@@ -19,7 +19,7 @@ cards:
     a: "Yes. It replicates ongoing changes after the initial migration."
     facts: [ongoing]
 ---
-AWS DMS moves data from one database to another, including into AWS, and can keep them in sync during the move. [What is AWS DMS?](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html#Welcome)
+AWS DMS moves data from one database to another, including into AWS, and can keep them in sync during the move.
 
 ### How it works
 

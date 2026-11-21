@@ -30,7 +30,7 @@ cards:
     a: GuardDuty. It analyzes foundational CloudTrail management events, EC2 VPC flow logs, and DNS logs.
     facts: [detection, threats, foundational]
 ---
-Amazon GuardDuty watches account activity and logs for signs of attack and reports findings. [What is Amazon GuardDuty?](https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#what-is-guardduty)
+Amazon GuardDuty watches account activity and logs for signs of attack and reports findings.
 
 ### How it works
 

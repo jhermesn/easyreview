@@ -12,7 +12,7 @@ cards:
     a: "AWS Client VPN."
     facts: [remote-users]
 ---
-AWS Client VPN connects individual users' devices to AWS and on-premises networks. [What is AWS Client VPN?](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html#what-is)
+AWS Client VPN connects individual users' devices to AWS and on-premises networks.
 
 ### How it works
 

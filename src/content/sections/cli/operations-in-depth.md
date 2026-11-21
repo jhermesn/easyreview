@@ -84,14 +84,14 @@ cards:
       - retry-errors
       - backoff
 ---
-The AWS CLI can retrieve paginated lists and retry supported temporary errors. These behaviors help scripts process inventory results and handle transient failures. [Pagination](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-serverside) | [Retry modes](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-retries.html#cli-usage-retries-modes-standard.title)
+The AWS CLI can retrieve paginated lists and retry supported temporary errors. These behaviors help scripts process inventory results and handle transient failures. Pagination | Retry modes
 
 ### How it works
 
-1. For supported paginated list commands, the CLI retrieves all pages by default, using the service's default page size. Set [`--page-size`](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-pagesize) to change the items requested per service call. Smaller pages can reduce timeouts without limiting the total retrieved.
-2. Use [`--max-items`](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-maxitems) to limit the output batch. If more items remain, retain the `NextToken` and pass it as [`--starting-token`](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-startingtoken) to resume. Do not pass a null or empty token.
-3. Standard retry mode retries supported connection, timeout and throttling errors, as well as HTTP 500, 502, 503 and 504 responses. It uses exponential backoff between attempts. [Standard retry mode](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-retries.html#cli-usage-retries-modes-standard.title)
-4. Check the [return code](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-returncodes.html): `0` indicates success without CLI or service errors.
+1. For supported paginated list commands, the CLI retrieves all pages by default, using the service's default page size. Set `--page-size` to change the items requested per service call. Smaller pages can reduce timeouts without limiting the total retrieved.
+2. Use `--max-items` to limit the output batch. If more items remain, retain the `NextToken` and pass it as `--starting-token` to resume. Do not pass a null or empty token.
+3. Standard retry mode retries supported connection, timeout and throttling errors, as well as HTTP 500, 502, 503 and 504 responses. It uses exponential backoff between attempts.
+4. Check the return code: `0` indicates success without CLI or service errors.
 
 ### Exam cues
 
@@ -102,7 +102,7 @@ The AWS CLI can retrieve paginated lists and retry supported temporary errors. T
 ### Remember
 
 - Standard retry backoff uses a base factor of two and a maximum delay of 20 seconds.
-- AWS CLI v2 uses a [client-side display pager](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html#cli-usage-pagination-clientside) by default.
+- AWS CLI v2 uses a client-side display pager by default.
 - Return code `0` means the command succeeded without CLI or service errors.
 
 > **Trap:** `--no-cli-pager` disables the display pager, but does not disable API pagination.

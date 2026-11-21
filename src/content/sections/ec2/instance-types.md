@@ -106,7 +106,7 @@ cards:
     a: The software to set up and boot an instance. The AMI must support the chosen instance type.
     facts: [ami-template, compatible-type]
 ---
-An EC2 instance type sets the CPU, memory, storage and networking of a virtual server. Types are grouped into categories by what they're good at, so the first choice is the category that matches the workload. [Amazon EC2 instance types](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-types.html#instance-types)
+An EC2 instance type sets the CPU, memory, storage and networking of a virtual server. Types are grouped into categories by what they're good at, so the first choice is the category that matches the workload.
 
 ### How it works
 

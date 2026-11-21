@@ -84,16 +84,16 @@ cards:
     a: "Horizontal scaling (scaling out): more, smaller resources, so one failure affects less of the workload."
     facts: [scale-out]
 ---
-Cloud computing delivers IT resources on demand over the internet, with pay-as-you-go pricing. AWS owns and maintains the hardware, and you provision what you need when you need it. [What is cloud computing](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/what-is-cloud-computing.html#what-is-cloud-computing)
+Cloud computing delivers IT resources on demand over the internet, with pay-as-you-go pricing. AWS owns and maintains the hardware, and you provision what you need when you need it.
 
 ### How it works
 
 1. You request resources through the console, the CLI or an API instead of buying hardware.
 2. AWS runs them on its infrastructure in the Region you choose, and bills for what you use.
 3. When demand changes, you add or remove resources, so capacity follows the workload. This is elasticity.
-4. Spreading a workload over many small resources and over separate locations keeps one failure from taking it all down. This is high availability. [Reliability design principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-design-principles.html#rel-design-principles)
+4. Spreading a workload over many small resources and over separate locations keeps one failure from taking it all down. This is high availability.
 
-AWS names six advantages of cloud computing: [Six advantages](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html#six-advantages-of-cloud-computing)
+AWS names six advantages of cloud computing:
 
 | Advantage | What changes |
 |---|---|

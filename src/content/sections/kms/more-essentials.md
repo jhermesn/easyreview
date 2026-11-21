@@ -41,14 +41,14 @@ cards:
     a: Customer managed keys (full control), AWS managed keys (created by a service in your account) and AWS owned keys (owned by the service).
     facts: [key-types]
 ---
-AWS services offer encryption defaults and settings for stored data. Knowing which service applies a default and who controls a key helps you choose the right setting. [S3 defaults](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html#default-encryption-faq) · [KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)
+AWS services offer encryption defaults and settings for stored data. Knowing which service applies a default and who controls a key helps you choose the right setting. S3 defaults · KMS keys
 
 ### How it works
 
-1. Amazon S3 automatically encrypts new object uploads with server-side encryption using S3 managed keys (SSE-S3). CloudTrail log files delivered to S3 use SSE-S3 by default, or server-side encryption with a KMS key (SSE-KMS) when you choose a key. [S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html#default-encryption-faq) · [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html)
-2. AWS Storage Gateway uses TLS for data in transit and SSE-S3 by default for data it stores in S3. New Amazon Redshift provisioned clusters are encrypted by default, except that the change does not affect clusters restored from snapshots. [Storage Gateway](https://docs.aws.amazon.com/filegateway/latest/files3/encryption.html) · [Redshift](https://docs.aws.amazon.com/redshift/latest/mgmt/behavior-changes.html#encryption-by-default)
-3. Choose encryption at rest when creating an Amazon EFS file system. You cannot add it to an unencrypted file system later. [EFS](https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html)
-4. Choose a KMS key type by who controls it. You create and control customer managed keys; an AWS service creates AWS managed keys in your account and owns AWS owned keys. [KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)
+1. Amazon S3 automatically encrypts new object uploads with server-side encryption using S3 managed keys (SSE-S3). CloudTrail log files delivered to S3 use SSE-S3 by default, or server-side encryption with a KMS key (SSE-KMS) when you choose a key. S3 · CloudTrail
+2. AWS Storage Gateway uses TLS for data in transit and SSE-S3 by default for data it stores in S3. New Amazon Redshift provisioned clusters are encrypted by default, except that the change does not affect clusters restored from snapshots. Storage Gateway · Redshift
+3. Choose encryption at rest when creating an Amazon EFS file system. You cannot add it to an unencrypted file system later.
+4. Choose a KMS key type by who controls it. You create and control customer managed keys; an AWS service creates AWS managed keys in your account and owns AWS owned keys.
 
 ### Exam cues
 

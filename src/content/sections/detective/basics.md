@@ -20,7 +20,7 @@ cards:
     trap: true
     facts: [investigate]
 ---
-Amazon Detective is an investigation tool: after something suspicious is found, it shows the related activity to explain what happened. [What is Amazon Detective?](https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#what-is-detective)
+Amazon Detective is an investigation tool: after something suspicious is found, it shows the related activity to explain what happened.
 
 ### How it works
 

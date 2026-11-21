@@ -44,7 +44,7 @@ cards:
     a: "Amazon Neptune is a graph database used for recommendation engines and other connected-data applications."
     facts: [purpose, use-cases]
 ---
-Amazon Neptune stores data as a graph: things and the relationships between them. That makes queries like "friends of friends" or "accounts linked to this device" fast, where a relational database would need many joins. [What is Amazon Neptune?](https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro)
+Amazon Neptune stores data as a graph: things and the relationships between them. That makes queries like "friends of friends" or "accounts linked to this device" fast, where a relational database would need many joins.
 
 ### How it works
 

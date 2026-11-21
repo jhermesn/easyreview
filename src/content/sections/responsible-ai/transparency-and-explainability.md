@@ -62,7 +62,7 @@ cards:
     trap: true
     facts: [interpretability, model-cards]
 ---
-A transparent system tells people that AI is involved and how it was built; an explainable model lets you see why it produced an output. Both build trust, support audits and satisfy regulators. [Model explainability](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/mlops01-bp02.html)
+A transparent system tells people that AI is involved and how it was built; an explainable model lets you see why it produced an output. Both build trust, support audits and satisfy regulators.
 
 ### How it works
 

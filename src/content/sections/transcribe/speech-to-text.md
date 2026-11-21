@@ -51,7 +51,7 @@ cards:
     a: "AWS HealthScribe, which transcribes the conversation and generates clinical notes with generative AI, and is HIPAA eligible."
     facts: [healthscribe]
 ---
-Amazon Transcribe turns speech into text. It works on live audio streams and on recorded files. [What is Amazon Transcribe?](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is)
+Amazon Transcribe turns speech into text. It works on live audio streams and on recorded files.
 
 ### How it works
 
@@ -62,7 +62,7 @@ Amazon Transcribe turns speech into text. It works on live audio streams and on 
 ### Exam cues
 
 - If the question says speech to text, transcripts or captions, think Amazon Transcribe.
-- If the question says individual words such as acronyms, think custom vocabulary; for the context of specialized speech, think custom language models. [Custom vocabularies](https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html#custom-vocabulary) and [custom language models](https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html#custom-language-models)
+- If the question says individual words such as acronyms, think custom vocabulary; for the context of specialized speech, think custom language models. Custom vocabularies and custom language models
 
 ### Remember
 

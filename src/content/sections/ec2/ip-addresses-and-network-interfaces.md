@@ -95,7 +95,7 @@ cards:
     a: "No. Enhanced networking has no additional charge on supported instance types."
     facts: [enhanced-networking-free]
 ---
-An EC2 instance's network identity is its network interfaces and their addresses. Knowing which addresses stay and which can move answers most failover and licensing questions. [EC2 instance IP addressing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html)
+An EC2 instance's network identity is its network interfaces and their addresses. Knowing which addresses stay and which can move answers most failover and licensing questions.
 
 ### How it works
 

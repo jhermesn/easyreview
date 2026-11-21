@@ -56,7 +56,7 @@ cards:
     a: "Elastic Load Balancing scales load balancer capacity automatically as traffic changes."
     facts: [healthy-targets]
 ---
-Elastic Load Balancing puts one entry point in front of many targets and spreads the traffic among the healthy ones. [What is Elastic Load Balancing?](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html#what-is-load-balancing)
+Elastic Load Balancing puts one entry point in front of many targets and spreads the traffic among the healthy ones.
 
 ### How it works
 

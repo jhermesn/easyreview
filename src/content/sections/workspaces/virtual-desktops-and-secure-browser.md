@@ -37,13 +37,13 @@ cards:
     trap: true
     facts: [workspaces, access]
 ---
-Amazon WorkSpaces puts users' desktops in the cloud. Users connect from laptops, thin clients or browsers to a Windows or Linux desktop that runs on AWS. Amazon WorkSpaces Secure Browser covers lighter needs: secure access to web applications only. [What is Amazon WorkSpaces?](https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces.html#amazon-workspaces)
+Amazon WorkSpaces puts users' desktops in the cloud. Users connect from laptops, thin clients or browsers to a Windows or Linux desktop that runs on AWS. Amazon WorkSpaces Secure Browser covers lighter needs: secure access to web applications only.
 
 ### How it works
 
 1. Choose WorkSpaces Personal (persistent desktop per user) or WorkSpaces Pools (non-persistent).
 2. Users connect from their devices or a browser.
-3. For web-only access, WorkSpaces Secure Browser streams a disposable browser session. [WorkSpaces Secure Browser](https://docs.aws.amazon.com/workspaces-web/latest/adminguide/what-is-workspaces-secure-browser.html#what-is-workspaces-secure-browser)
+3. For web-only access, WorkSpaces Secure Browser streams a disposable browser session.
 
 | Need | Service |
 |---|---|

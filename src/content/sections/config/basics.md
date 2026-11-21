@@ -27,7 +27,7 @@ cards:
     trap: true
     facts: [inventory-history]
 ---
-AWS Config keeps an inventory of AWS resources with their configuration history, and checks them against rules for compliance. [What is AWS Config?](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html#WhatIsConfig)
+AWS Config keeps an inventory of AWS resources with their configuration history, and checks them against rules for compliance.
 
 ### How it works
 

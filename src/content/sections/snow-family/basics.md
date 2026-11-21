@@ -12,7 +12,7 @@ cards:
     a: "Snowball Edge is closed to new customers. Use AWS DataSync online, AWS Data Transfer Terminal for physical transfer, or AWS Outposts for edge computing."
     facts: [snow-closed]
 ---
-AWS Snowball Edge devices moved data physically and ran edge workloads; the service is closed to new customers, but exam questions may still name it. [What is Snowball Edge?](https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html#whatisedge)
+AWS Snowball Edge devices moved data physically and ran edge workloads; the service is closed to new customers, but exam questions may still name it.
 
 ### How it works
 

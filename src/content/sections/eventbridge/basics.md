@@ -12,7 +12,7 @@ cards:
     a: "Amazon EventBridge."
     facts: [event-router]
 ---
-Amazon EventBridge routes events from sources to the targets that care about them. [What is Amazon EventBridge?](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html#eb-what-is)
+Amazon EventBridge routes events from sources to the targets that care about them.
 
 ### How it works
 

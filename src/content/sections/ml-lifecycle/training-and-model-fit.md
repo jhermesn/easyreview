@@ -60,7 +60,7 @@ cards:
     a: K-fold cross-validation, which trains and validates k times, each time holding out a different fold.
     facts: [kfold]
 ---
-Training fits a model to data; the real question is whether it works on data it hasn't seen. A model that memorizes its training set overfits, and one that is too simple underfits. [What is overfitting?](https://aws.amazon.com/what-is/overfitting/)
+Training fits a model to data; the real question is whether it works on data it hasn't seen. A model that memorizes its training set overfits, and one that is too simple underfits.
 
 ### How it works
 

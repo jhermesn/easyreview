@@ -53,12 +53,12 @@ cards:
     a: "In AWS Migration Hub, which receives migration status updates from both services."
     facts: [dms-tracking]
 ---
-AWS migration services help discover on-premises servers, move them to AWS and track migration progress. Some were renamed or closed to new customers, so exam questions may use older names. [Migration Hub](https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html#whatishub)
+AWS migration services help discover on-premises servers, move them to AWS and track migration progress. Some were renamed or closed to new customers, so exam questions may use older names.
 
 ### How it works
 
-1. **Discovery:** AWS Application Discovery Service collects server configuration, usage and network connections, so servers can be grouped into applications. [Application Discovery Service](https://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html#what-is-appdiscovery)
-2. **Move servers:** AWS Application Migration Service replicates servers continuously and launches them on AWS with short cutovers. [AWS Transform MGN](https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html#what-is-mgn)
+1. **Discovery:** AWS Application Discovery Service collects server configuration, usage and network connections, so servers can be grouped into applications.
+2. **Move servers:** AWS Application Migration Service replicates servers continuously and launches them on AWS with short cutovers.
 3. **Track:** AWS Migration Hub shows each application's migration status across tools, including AWS Application Migration Service and AWS Database Migration Service (AWS DMS).
 
 | Service | Stage | Status (November 2026) |

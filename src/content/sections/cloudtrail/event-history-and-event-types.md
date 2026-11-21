@@ -98,14 +98,14 @@ cards:
     facts:
       - history-scope
 ---
-CloudTrail records supported activity in an AWS account so investigators can identify an action and its caller. An API is the interface a tool uses to ask a service to perform an action. CloudTrail events include API calls and some actions such as console sign-ins. [AWS event concepts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-events)
+CloudTrail records supported activity in an AWS account so investigators can identify an action and its caller. An API is the interface a tool uses to ask a service to perform an action. CloudTrail events include API calls and some actions such as console sign-ins.
 
 ### How it works
 
 1. A person, application or AWS service performs a supported action. CloudTrail records fields such as identity, event name, event time, Region and source IP address.
 2. Classify the event by what it describes. The control plane manages resources; the data plane performs operations on those resources.
 3. Search Event history for recent management activity in the relevant account and Region. Use one attribute filter and a time range, or call `LookupEvents`.
-4. Use a trail or event data store for an ongoing record beyond the history window. Athena can query trail files retained in S3. [Event history](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html#view-cloudtrail-events) · [Athena queries](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html#cloudtrail-logs)
+4. Use a trail or event data store for an ongoing record beyond the history window. Athena can query trail files retained in S3. Event history · Athena queries
 
 | Category | What it records | Default trail coverage |
 |---|---|---|

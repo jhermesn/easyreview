@@ -34,10 +34,10 @@ AWS Health organizational view brings events from across an AWS organization int
 
 ### How it works
 
-1. Enable [organizational view](https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html#aggregate-events) for an organization with [all features enabled](https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html#prerequisites-organizational-view).
+1. Enable organizational view for an organization with all features enabled.
 2. Delegate administrator access to a member account to use the aggregated view.
-3. For a planned lifecycle event, check the affected resource status. The [status list](https://docs.aws.amazon.com/health/latest/ug/aws-health-account-views.html#event-details) can take time to reflect a change.
-4. Use the [account event log](https://docs.aws.amazon.com/health/latest/ug/aws-health-account-views.html#aws-health-account-views) to review recent account events.
+3. For a planned lifecycle event, check the affected resource status. The status list can take time to reflect a change.
+4. Use the account event log to review recent account events.
 
 ### Exam cues
 

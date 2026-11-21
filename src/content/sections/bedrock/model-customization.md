@@ -87,7 +87,7 @@ cards:
     a: "Nova Pro, a multimodal understanding model that Bedrock can fine-tune. Nova Micro is text only, and Nova Reel generates video and is not on the fine-tuning list."
     facts: [fine-tunable-amazon-models]
 ---
-Customization changes the model itself, unlike prompts and RAG. Bedrock offers supervised fine-tuning, reinforcement fine-tuning, distillation and continued pre-training, and can import models trained elsewhere. [Customize your model](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
+Customization changes the model itself, unlike prompts and RAG. Bedrock offers supervised fine-tuning, reinforcement fine-tuning, distillation and continued pre-training, and can import models trained elsewhere.
 
 ### How it works
 

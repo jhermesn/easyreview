@@ -69,23 +69,23 @@ cards:
     a: "Amazon RDS supports PostgreSQL and manages tasks such as backups and software patching."
     facts: [engines, rds-manages]
 ---
-Amazon RDS manages common database tasks, so teams can run relational databases with less administration. Choosing between RDS and a database on Amazon EC2 depends on how much control the application needs. [RDS responsibilities](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison)
+Amazon RDS manages common database tasks, so teams can run relational databases with less administration. Choosing between RDS and a database on Amazon EC2 depends on how much control the application needs.
 
 ### How it works
 
-1. Choose RDS for a supported relational engine when you want AWS to handle installation, patching, backups, scaling and availability. The customer still optimizes the application. [RDS responsibilities](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.comparison)
-2. Consider EC2 when you need full control of the operating system or database software, or an engine RDS does not support. RDS Custom offers database and operating system customization while automating administration tasks. [RDS Custom](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom)
-3. For a long-running RDS database, consider a reserved DB instance for a discount. For RDS for Oracle, choose License Included or Bring Your Own License (BYOL). [Reserved DB instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithReservedDBInstances.html), [Oracle licensing](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Oracle.Concepts.Licensing.html#Oracle.Concepts.Licensing)
+1. Choose RDS for a supported relational engine when you want AWS to handle installation, patching, backups, scaling and availability. The customer still optimizes the application.
+2. Consider EC2 when you need full control of the operating system or database software, or an engine RDS does not support. RDS Custom offers database and operating system customization while automating administration tasks.
+3. For a long-running RDS database, consider a reserved DB instance for a discount. For RDS for Oracle, choose License Included or Bring Your Own License (BYOL). Reserved DB instances, Oracle licensing
 
 ### Exam cues
 
-- If the question says a MySQL database needs less patching and backup work, think RDS because it manages those tasks. [RDS advantages](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.on-prem)
+- If the question says a MySQL database needs less patching and backup work, think RDS because it manages those tasks.
 - If the question says an existing Oracle license should be used, think RDS for Oracle BYOL because it offers that licensing model.
-- If the question says timestamped sensor readings, think Amazon Timestream for time series data. New customers should evaluate Timestream for InfluxDB because LiveAnalytics is closed to them. [Timestream](https://docs.aws.amazon.com/timestream/latest/developerguide/what-is-timestream.html#what-is-timestream), [availability change](https://docs.aws.amazon.com/timestream/latest/developerguide/AmazonTimestreamForLiveAnalytics-availability-change.html#AmazonTimestreamForLiveAnalytics-availability-change)
+- If the question says timestamped sensor readings, think Amazon Timestream for time series data. New customers should evaluate Timestream for InfluxDB because LiveAnalytics is closed to them. Timestream, availability change
 
 ### Remember
 
-- RDS supports IBM Db2, MariaDB, Microsoft SQL Server, MySQL, Oracle Database and PostgreSQL. [RDS engines](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.on-prem)
+- RDS supports IBM Db2, MariaDB, Microsoft SQL Server, MySQL, Oracle Database and PostgreSQL.
 - Reserved DB instances offer one-year or three-year terms, with No Upfront, Partial Upfront or All Upfront payment.
 - Timestream for LiveAnalytics closed to new customers on June 20, 2025.
 

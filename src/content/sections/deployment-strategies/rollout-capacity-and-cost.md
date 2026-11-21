@@ -99,7 +99,7 @@ cards:
       - rolling-mixed
 ---
 
-Deployment capacity planning asks how much of the old application can stay available while the new version starts. The [Beanstalk deployment policies](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html#environments-cfg-rollingdeployments) provide a concrete comparison for EC2-based Beanstalk Standard environments. Other platforms have their own capacity controls.
+Deployment capacity planning asks how much of the old application can stay available while the new version starts. The Beanstalk deployment policies provide a concrete comparison for EC2-based Beanstalk Standard environments. Other platforms have their own capacity controls.
 
 ### How it works
 

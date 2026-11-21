@@ -33,14 +33,14 @@ cards:
     a: The AWS Management Console.
     facts: [console]
 ---
-AWS offers several ways to work with services, from a web interface to commands, application code and templates. Choose the method that fits how you want to operate. [AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/what-is.html#what-is)
+AWS offers several ways to work with services, from a web interface to commands, application code and templates. Choose the method that fits how you want to operate.
 
 ### How it works
 
-1. Use the [AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/what-is.html#what-is) to access service consoles on the web.
-2. Run commands in a shell with the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html#cli-chap-welcome).
-3. Use an [AWS SDK](https://docs.aws.amazon.com/local-zones/latest/ug/what-is-aws-local-zones.html#deploying-in-local-zones) to call AWS from code through a language-specific API. The SDK handles details such as signing requests, retries and errors.
-4. Describe resources in a template and let [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome) provision and configure them, including their dependencies.
+1. Use the AWS Management Console to access service consoles on the web.
+2. Run commands in a shell with the AWS CLI.
+3. Use an AWS SDK to call AWS from code through a language-specific API. The SDK handles details such as signing requests, retries and errors.
+4. Describe resources in a template and let AWS CloudFormation provision and configure them, including their dependencies.
 
 ### Exam cues
 

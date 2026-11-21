@@ -35,7 +35,7 @@ cards:
     a: "Amazon Personalize is a fully managed ML service that generates item recommendations using your data."
     facts: [what]
 ---
-Amazon Personalize builds recommendation systems from your users' interactions, such as views, clicks and purchases, with no ML to write. [What is Amazon Personalize?](https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html)
+Amazon Personalize builds recommendation systems from your users' interactions, such as views, clicks and purchases, with no ML to write.
 
 ### How it works
 

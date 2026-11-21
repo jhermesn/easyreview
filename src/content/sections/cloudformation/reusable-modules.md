@@ -174,14 +174,14 @@ diagrams:
       - Resolve registered modules into the processed template.
       - Review the expanded resources in a change set and execute it.
 ---
-A CloudFormation module packages a reusable resource configuration with inputs that customize it. It lets teams reuse an approved infrastructure pattern while CloudFormation still exposes the resources the pattern creates. A schema is the contract describing those inputs and resources. [Modules](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/modules.html)
+A CloudFormation module packages a reusable resource configuration with inputs that customize it. It lets teams reuse an approved infrastructure pattern while CloudFormation still exposes the resources the pattern creates. A schema is the contract describing those inputs and resources.
 
 ### How it works
 
 1. Define a template fragment, the resource definitions and related configuration to reuse, and generate its schema. Package them for registration.
 2. Register the private module in each target account and Region. With `AWS::CloudFormation::ModuleVersion`, the package is stored in S3 and registration needs `s3:GetObject` permission.
 3. Add the type under `Resources` using `organization::service::use-case::MODULE`. Supply module inputs through `Properties`; template parameters can provide those values.
-4. CloudFormation expands the module into the processed template. Review a change set, a preview of resource changes, before executing the operation. [Using modules](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/modules-using.html) · [Registration](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cloudformation-moduleversion.html)
+4. CloudFormation expands the module into the processed template. Review a change set, a preview of resource changes, before executing the operation. Using modules · Registration
 
 | Version choice | Behavior |
 |---|---|
@@ -190,7 +190,7 @@ A CloudFormation module packages a reusable resource configuration with inputs t
 | Normal template processing | Resolves the current default in the operation's account and Region |
 | Use previous template | Reuses the previous processed template without expanding modules again |
 
-A version is immutable, meaning it cannot be edited after registration. Register a new version to change the pattern. Align defaults across deployment accounts and Regions, including defaults for nested modules. [Version selection](https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cloudformation-moduledefaultversion.html) · [Operation behavior](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/module-versioning.html)
+A version is immutable, meaning it cannot be edited after registration. Register a new version to change the pattern. Align defaults across deployment accounts and Regions, including defaults for nested modules. Version selection · Operation behavior
 
 ### Exam cues
 
@@ -204,6 +204,6 @@ A version is immutable, meaning it cannot be edited after registration. Register
 - Private module registration is scoped to the account and Region.
 - Modules can nest up to three levels deep.
 - Module fragments cannot contain nested stacks, StackSets, macros, transforms, `Fn::ImportValue`, or exported outputs.
-- Expanded resources still count toward processed-template quotas. [Fragment restrictions](https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/modules-structure.html) · [Input constraints](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/module-using-params.html)
+- Expanded resources still count toward processed-template quotas. Fragment restrictions · Input constraints
 
 > **Trap:** A newer registered module version does not automatically become the default after the first registration. Select the new default explicitly; existing stacks still need an operation that processes the module.

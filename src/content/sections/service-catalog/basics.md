@@ -12,7 +12,7 @@ cards:
     a: "AWS Service Catalog."
     facts: [approved-catalog]
 ---
-AWS Service Catalog offers a menu of approved AWS products that users can launch. [What is Service Catalog?](https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html#introduction)
+AWS Service Catalog offers a menu of approved AWS products that users can launch.
 
 ### How it works
 

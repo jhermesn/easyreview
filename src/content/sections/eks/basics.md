@@ -12,7 +12,7 @@ cards:
     a: "Amazon Elastic Kubernetes Service (Amazon EKS)."
     facts: [managed-k8s]
 ---
-Amazon EKS runs Kubernetes for you on AWS. [What is Amazon EKS?](https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html#what-is-eks)
+Amazon EKS runs Kubernetes for you on AWS.
 
 ### How it works
 

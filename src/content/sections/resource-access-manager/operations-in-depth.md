@@ -35,9 +35,9 @@ AWS Resource Access Manager (AWS RAM) has specific setup and retention options f
 
 ### How it works
 
-1. Enable sharing with AWS Organizations through AWS RAM from the management account, with all Organizations features enabled. Enabling trusted access only in Organizations does not create the required service-linked role. [Organization sharing](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs)
-2. To preserve access for an individual account that leaves the organization, enable `RetainSharingOnAccountLeaveOrganization` when creating its share and allow external principals. AWS RAM sends the account an invitation. [Retention settings](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs)
-3. A new share uses the default version of its managed permission. Existing shares do not automatically move to a new default version. [Managed permissions](https://docs.aws.amazon.com/ram/latest/userguide/security-ram-permissions.html#security-ram-permissions)
+1. Enable sharing with AWS Organizations through AWS RAM from the management account, with all Organizations features enabled. Enabling trusted access only in Organizations does not create the required service-linked role.
+2. To preserve access for an individual account that leaves the organization, enable `RetainSharingOnAccountLeaveOrganization` when creating its share and allow external principals. AWS RAM sends the account an invitation.
+3. A new share uses the default version of its managed permission. Existing shares do not automatically move to a new default version.
 
 ### Exam cues
 

@@ -47,7 +47,7 @@ cards:
     a: "- No Kafka code: **Amazon Kinesis Data Streams**.\n- Existing Kafka code: **Amazon MSK**, which keeps the Kafka APIs."
     facts: [data-plane]
 ---
-Amazon MSK is managed Apache Kafka. Choose it when the application or team already uses Kafka; for a new AWS-native stream, Amazon Kinesis Data Streams is usually simpler. [What is Amazon MSK?](https://docs.aws.amazon.com/msk/latest/developerguide/what-is-msk.html)
+Amazon MSK is managed Apache Kafka. Choose it when the application or team already uses Kafka; for a new AWS-native stream, Amazon Kinesis Data Streams is usually simpler.
 
 ### How it works
 

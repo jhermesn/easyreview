@@ -66,7 +66,7 @@ cards:
     a: Yes. Configure efs-utils with the file system's Region; the instance also needs network access to the file system.
     facts: [other-region]
 ---
-Amazon Elastic File System (Amazon EFS) is a shared file system that grows and shrinks with the files stored in it. [What is Amazon EFS?](https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html#whatisefs)
+Amazon Elastic File System (Amazon EFS) is a shared file system that grows and shrinks with the files stored in it.
 
 ### How it works
 

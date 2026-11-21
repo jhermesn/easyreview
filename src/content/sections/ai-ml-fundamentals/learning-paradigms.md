@@ -65,7 +65,7 @@ cards:
     a: "Semi-supervised learning. The model trains on the labeled examples, labels the unlabeled data (pseudo-labeling), and keeps training on both."
     facts: [semi-supervised]
 ---
-A model learns in one of three ways: from labeled examples (supervised), by finding structure in unlabeled data (unsupervised), or from rewards for its actions (reinforcement). The data you have and the answer you want decide which one fits. [Types of algorithms](https://docs.aws.amazon.com/sagemaker/latest/dg/algorithms-choose.html)
+A model learns in one of three ways: from labeled examples (supervised), by finding structure in unlabeled data (unsupervised), or from rewards for its actions (reinforcement). The data you have and the answer you want decide which one fits.
 
 ### How it works
 

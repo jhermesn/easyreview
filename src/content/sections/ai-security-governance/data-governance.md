@@ -48,7 +48,7 @@ cards:
     trap: true
     facts: [privacy-techniques, minimize]
 ---
-Data governance decides what data AI may use, where it lives, how long it's kept and how its history is tracked. Good governance makes models auditable and keeps regulated data under control. [Enforce data lineage](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/mlsec03-bp04.html)
+Data governance decides what data AI may use, where it lives, how long it's kept and how its history is tracked. Good governance makes models auditable and keeps regulated data under control.
 
 ### How it works
 

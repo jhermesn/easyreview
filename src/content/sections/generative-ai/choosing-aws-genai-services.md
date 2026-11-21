@@ -50,7 +50,7 @@ cards:
     a: "Amazon Bedrock provides serverless access to models from Amazon and other providers."
     facts: [bedrock-default]
 ---
-AWS offers generative AI at three levels: ready-made assistants, a managed platform to build your own apps and agents, and infrastructure to host or train models yourself. Pick the most managed option that meets the need. [Choosing a generative AI service](https://docs.aws.amazon.com/decision-guides/latest/generative-ai-on-aws-how-to-choose/guide.html)
+AWS offers generative AI at three levels: ready-made assistants, a managed platform to build your own apps and agents, and infrastructure to host or train models yourself. Pick the most managed option that meets the need.
 
 ### How it works
 

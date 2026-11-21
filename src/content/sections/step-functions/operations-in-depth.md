@@ -47,9 +47,9 @@ Step Functions can coordinate work pulled by an activity worker, retain values f
 
 ### How it works
 
-1. An [activity worker](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html#activities-overview) polls `GetActivityTask` with the activity ARN. It receives input and a task token, then uses the token with `SendTaskSuccess` or `SendTaskFailure` to report the result.
-2. Store a result in a [workflow variable](https://docs.aws.amazon.com/step-functions/latest/dg/workflow-variables.html#workflow-variables) for a later step without passing it through every intermediate state output.
-3. Use [Pass](https://docs.aws.amazon.com/step-functions/latest/dg/state-pass.html#state-pass) to forward input without doing work, or to transform or add output data. [Succeed](https://docs.aws.amazon.com/step-functions/latest/dg/state-succeed.html#state-succeed) ends a workflow, branch, or iteration successfully. [Fail](https://docs.aws.amazon.com/step-functions/latest/dg/state-fail.html#state-fail) stops execution with failure unless enclosing error handling catches it.
+1. An activity worker polls `GetActivityTask` with the activity ARN. It receives input and a task token, then uses the token with `SendTaskSuccess` or `SendTaskFailure` to report the result.
+2. Store a result in a workflow variable for a later step without passing it through every intermediate state output.
+3. Use Pass to forward input without doing work, or to transform or add output data. Succeed ends a workflow, branch, or iteration successfully. Fail stops execution with failure unless enclosing error handling catches it.
 
 ### Exam cues
 

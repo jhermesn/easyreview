@@ -55,7 +55,7 @@ cards:
     a: "Memcached Auto Discovery, which lets clients find all nodes and connect to them automatically. It exists only for the Memcached engine."
     facts: [memcached-auto-discovery]
 ---
-ElastiCache is more than a database cache. Valkey and Redis OSS add data structures, replication and pub/sub; Memcached stays a simple, multi-threaded object cache. [Common ElastiCache use cases](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-use-cases.html)
+ElastiCache is more than a database cache. Valkey and Redis OSS add data structures, replication and pub/sub; Memcached stays a simple, multi-threaded object cache.
 
 ### How it works
 

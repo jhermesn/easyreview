@@ -12,7 +12,7 @@ cards:
     a: "Amazon Inspector."
     facts: [vuln-scanning]
 ---
-Amazon Inspector finds software vulnerabilities and unintended network exposure in workloads. [What is Amazon Inspector?](https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html#what-is-inspector)
+Amazon Inspector finds software vulnerabilities and unintended network exposure in workloads.
 
 ### How it works
 

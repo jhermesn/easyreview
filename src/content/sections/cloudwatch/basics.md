@@ -41,7 +41,7 @@ cards:
     a: Amazon CloudWatch.
     facts: [purpose]
 ---
-Amazon CloudWatch is the monitoring service of AWS: it collects metrics and logs from resources and applications and acts on them with alarms and dashboards. [What is Amazon CloudWatch?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html#WhatIsCloudWatch)
+Amazon CloudWatch is the monitoring service of AWS: it collects metrics and logs from resources and applications and acts on them with alarms and dashboards.
 
 ### How it works
 

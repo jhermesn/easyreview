@@ -27,7 +27,7 @@ cards:
     trap: true
     facts: [browser]
 ---
-Amazon WorkSpaces Applications, formerly AppStream 2.0, runs desktop applications on AWS and streams them to users' browsers or clients. Users get the app without installing it, and IT keeps one version up to date. [What Is Amazon WorkSpaces Applications?](https://docs.aws.amazon.com/appstream2/latest/developerguide/what-is-appstream.html#what-is-appstream)
+Amazon WorkSpaces Applications, formerly AppStream 2.0, runs desktop applications on AWS and streams them to users' browsers or clients. Users get the app without installing it, and IT keeps one version up to date.
 
 ### How it works
 

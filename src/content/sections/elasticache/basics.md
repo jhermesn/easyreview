@@ -19,7 +19,7 @@ cards:
     a: "Valkey, Memcached and Redis OSS, as a serverless cache or a node-based cluster."
     facts: [engines]
 ---
-Amazon ElastiCache is a managed in-memory cache that speeds up reads. [What is Amazon ElastiCache?](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/WhatIs.html#WhatIs)
+Amazon ElastiCache is a managed in-memory cache that speeds up reads.
 
 ### How it works
 

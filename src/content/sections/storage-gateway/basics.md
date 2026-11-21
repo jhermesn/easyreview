@@ -27,7 +27,7 @@ cards:
       - file-protocols
       - gateway-types
 ---
-AWS Storage Gateway is a hybrid storage service: an appliance on premises stores data in AWS. [What is Storage Gateway?](https://docs.aws.amazon.com/storagegateway/latest/vgw/WhatIsStorageGateway.html#WhatIsStorageGateway)
+AWS Storage Gateway is a hybrid storage service: an appliance on premises stores data in AWS.
 
 ### How it works
 

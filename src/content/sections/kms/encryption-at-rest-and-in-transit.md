@@ -49,12 +49,12 @@ cards:
     a: "AWS Key Management Service (AWS KMS) creates and controls keys and integrates with Amazon RDS encryption."
     facts: [kms, kms-integration]
 ---
-Encryption protects data in two states. Data at rest sits in storage; data in transit moves between systems. AWS services offer encryption for both, and the customer decides how to use it. [Data at rest](https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/protecting-data-at-rest.html#protecting-data-at-rest) · [Data in transit](https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/protecting-data-in-transit.html#protecting-data-in-transit)
+Encryption protects data in two states. Data at rest sits in storage; data in transit moves between systems. AWS services offer encryption for both, and the customer decides how to use it. Data at rest · Data in transit
 
 ### How it works
 
-1. **At rest:** storage services encrypt data with keys. AWS KMS creates and controls those keys and integrates with services such as Amazon S3, Amazon EBS and Amazon RDS. [AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html#overview)
-2. **In transit:** TLS encrypts connections. AWS Certificate Manager issues and renews the TLS certificates. [ACM](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html#acm-overview)
+1. **At rest:** storage services encrypt data with keys. AWS KMS creates and controls those keys and integrates with services such as Amazon S3, Amazon EBS and Amazon RDS.
+2. **In transit:** TLS encrypts connections. AWS Certificate Manager issues and renews the TLS certificates.
 3. **Private paths:** AWS PrivateLink keeps traffic on the Amazon network instead of the internet.
 
 | State | Protects | AWS tools |

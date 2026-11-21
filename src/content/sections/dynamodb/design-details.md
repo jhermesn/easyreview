@@ -87,10 +87,10 @@ DynamoDB tables allow items with different attributes and provide settings for d
 
 ### How it works
 
-1. Define the primary key. Other attributes and their data types can differ between items, and nested attributes can represent document data in the same [table](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html).
-2. Choose a [table class](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.TableClasses.html). Standard is the default; Standard-IA targets infrequently accessed data where storage dominates costs.
-3. Enable [deletion protection](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.Basics.html#WorkingWithTables.Basics.DeletionProtection) to prevent table deletion until an authorized administrator turns it off.
-4. DynamoDB [replicates data](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/disaster-recovery-resiliency.html) across three Availability Zones in the Region. For provisioned capacity, [reserved capacity](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/reserved-capacity.html) can discount read and write capacity for a commitment term.
+1. Define the primary key. Other attributes and their data types can differ between items, and nested attributes can represent document data in the same table.
+2. Choose a table class. Standard is the default; Standard-IA targets infrequently accessed data where storage dominates costs.
+3. Enable deletion protection to prevent table deletion until an authorized administrator turns it off.
+4. DynamoDB replicates data across three Availability Zones in the Region. For provisioned capacity, reserved capacity can discount read and write capacity for a commitment term.
 5. Compare on-demand charges for requests consumed with provisioned charges for capacity allocated each hour. Include table storage and enabled extra features in the budget.
 6. Budget local secondary index (LSI) queries against the base table read capacity. Global secondary indexes (GSIs) use their own read capacity. Returning fewer attributes from a `Query` does not reduce its read capacity cost.
 7. Use PartiQL when SQL-compatible statements fit the application. DynamoDB supports a subset for reading and modifying items.
