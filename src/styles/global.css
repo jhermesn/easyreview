@@ -115,9 +115,16 @@ select:hover { border-color: var(--ink-400); }
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z'/%3E%3Cpath d='M12 9v4M12 17h.01'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .article blockquote > p:first-child > strong:first-child { color: var(--yellow); }
-.article table { display: block; overflow-x: auto; border-collapse: collapse; font-size: 0.88rem; margin: 1rem 0; }
-.article th, .article td { border: 1px solid var(--ink-700); padding: 0.35rem 0.6rem; text-align: left; vertical-align: top; }
-.article th { color: var(--ink-300); font-weight: 400; background: var(--ink-850); }
+/* A table shrinks to its content, scrolls sideways when wider than the page, and keeps each column wide
+   enough that long text is not squeezed into a sliver. The first column names the row, so it stands out. */
+.article table { display: block; width: max-content; max-width: 100%; overflow-x: auto; border-collapse: collapse; border: 1px solid var(--ink-700); font-size: 0.86rem; line-height: 1.55; margin: 1.2rem 0; }
+.article th, .article td { min-width: 9rem; padding: 0.55rem 0.85rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--ink-700); }
+.article th + th, .article td + td { border-left: 1px solid color-mix(in srgb, var(--ink-700) 55%, transparent); }
+.article th { color: var(--ink-100); font-weight: 600; background: var(--ink-850); border-bottom-color: var(--ink-500); }
+.article tbody tr:nth-child(even) { background: color-mix(in srgb, var(--ink-850) 60%, transparent); }
+.article tbody tr:last-child td { border-bottom: 0; }
+.article td:first-child { color: var(--ink-100); font-weight: 600; }
+@media (min-width: 700px) { .article td code { white-space: nowrap; } }
 /* Glossary terms (src/lib/autolink.ts): hover, keyboard focus or a tap shows the definition. */
 .term { position: relative; }
 .term dfn { font-style: normal; text-decoration: underline dashed var(--ink-400); text-underline-offset: 3px; cursor: help; }
