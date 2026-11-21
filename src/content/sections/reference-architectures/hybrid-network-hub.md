@@ -138,7 +138,7 @@ Hybrid questions describe a data center that must reach many VPCs reliably and p
 
 ### How it works
 
-1. A transit virtual interface connects the Direct Connect link to a Direct Connect gateway, which is associated with the transit gateway. [Direct Connect gateways and Transit Gateway](https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-transit-gateways.html)
+1. A transit virtual interface connects the Direct Connect link to a Direct Connect gateway, which is associated with the transit gateway.
 2. A Site-to-Site VPN to the same transit gateway gives a backup path; Direct Connect routes win while it is healthy.
 3. VPCs from many accounts attach to the transit gateway, shared through AWS RAM.
 4. Transit gateway route tables decide which attachments reach which, for example keeping production and development apart.

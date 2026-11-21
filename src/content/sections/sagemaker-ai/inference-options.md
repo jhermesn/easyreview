@@ -40,7 +40,7 @@ cards:
     a: "Real-time inference suits interactive workloads with low-latency requirements."
     facts: [real-time]
 ---
-SageMaker AI offers four ways to serve a model, chosen by latency need, payload size and traffic pattern. [Deploy models for inference](https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html)
+SageMaker AI offers four ways to serve a model, chosen by latency need, payload size and traffic pattern.
 
 ### How it works
 

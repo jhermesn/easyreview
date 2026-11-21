@@ -164,7 +164,7 @@ Image questions ask how to give every server the same tested base, patch it regu
 
 ### How it works
 
-1. An Image Builder pipeline runs the recipe's build and test components on a schedule. [Image Builder](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)
+1. An Image Builder pipeline runs the recipe's build and test components on a schedule.
 2. Tests run on a new instance launched from the built image, and nothing is distributed unless they pass.
 3. Distribution copies the AMI to each workload account and Region, and writes its ID to Parameter Store.
 4. A new launch template version picks up the AMI, and an instance refresh replaces instances in batches.

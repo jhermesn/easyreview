@@ -40,7 +40,7 @@ cards:
     trap: true
     facts: [availability]
 ---
-Amazon Kendra searches an organization's documents and answers questions in natural language, ranking results by meaning rather than by matching keywords. [What is Amazon Kendra?](https://docs.aws.amazon.com/kendra/latest/dg/what-is-kendra.html)
+Amazon Kendra searches an organization's documents and answers questions in natural language, ranking results by meaning rather than by matching keywords.
 
 ### How it works
 

@@ -82,14 +82,14 @@ cards:
       - external-zone
       - external-region
 ---
-IAM offers different policy types and tools to manage and review permissions. User groups help administrators organize users as their jobs change. [IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline) [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
+IAM offers different policy types and tools to manage and review permissions. User groups help administrators organize users as their jobs change.
 
 ### How it works
 
-1. Choose a policy type for the identity. [Managed and inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline)
-2. Place users in groups. When someone changes jobs, remove the user from the old groups and add them to the new ones. [IAM user groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups)
-3. Review credential status with the [credential report](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html), and use [last accessed information](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_last-accessed.html) to identify unused permissions.
-4. Test a simulated request with the [IAM policy simulator](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html#access_policies_testing-policies), without sending a real request to a service.
+1. Choose a policy type for the identity.
+2. Place users in groups. When someone changes jobs, remove the user from the old groups and add them to the new ones.
+3. Review credential status with the credential report, and use last accessed information to identify unused permissions.
+4. Test a simulated request with the IAM policy simulator, without sending a real request to a service.
 
 | Policy type | Managed by | Attachment |
 |---|---|---|

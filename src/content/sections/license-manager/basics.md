@@ -12,7 +12,7 @@ cards:
     a: "AWS License Manager."
     facts: [licenses]
 ---
-AWS License Manager tracks and controls software license use. [What is AWS License Manager?](https://docs.aws.amazon.com/license-manager/latest/userguide/license-manager.html#license-manager)
+AWS License Manager tracks and controls software license use.
 
 ### How it works
 

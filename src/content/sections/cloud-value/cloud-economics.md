@@ -101,23 +101,23 @@ cards:
     a: "IAM and EC2 Auto Scaling.\nAuto Scaling itself is free; you pay for the instances and CloudWatch resources it uses."
     facts: [free-iam, free-auto-scaling]
 ---
-Cloud economics compares what a workload costs in a data center with what it costs on AWS. On premises you buy capacity up front and pay for it whether you use it or not; on AWS you pay for what runs. [Six advantages](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html#six-advantages-of-cloud-computing)
+Cloud economics compares what a workload costs in a data center with what it costs on AWS. On premises you buy capacity up front and pay for it whether you use it or not; on AWS you pay for what runs.
 
 ### How it works
 
 1. **Fixed vs variable costs.** A data center needs servers, space, power and staff before the first user arrives. On AWS those become variable costs that follow usage.
-2. **On-premises costs.** Beyond hardware, a company pays to rack, stack and power servers and to manage operating systems. AWS takes on the data center work, and managed services take on more. [Cost optimization design principles](https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/design-principles.html#design-principles)
+2. **On-premises costs.** Beyond hardware, a company pays to rack, stack and power servers and to manage operating systems. AWS takes on the data center work, and managed services take on more.
 3. **Economies of scale.** AWS spreads its costs over many customers, so its prices fall below what one company can reach alone.
-4. **Right-sizing.** Pick the resource type, size and number that meet requirements at the lowest cost, and revisit it as usage changes. [Right-sizing](https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/select-the-correct-resource-type-size-and-number.html#select-the-correct-resource-type-size-and-number)
+4. **Right-sizing.** Pick the resource type, size and number that meet requirements at the lowest cost, and revisit it as usage changes.
 5. **Automation.** Scripts and services start, stop, resize and recover resources without people, which cuts labor and idle time.
-6. **Licensing.** Some software comes license included in the price; with Bring Your Own License (BYOL) you reuse licenses you already own. [RDS for Oracle licensing](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Oracle.Concepts.Licensing.html#Oracle.Concepts.Licensing)
+6. **Licensing.** Some software comes license included in the price; with Bring Your Own License (BYOL) you reuse licenses you already own.
 
 | Licensing model | Who holds the license | Example |
 |---|---|---|
 | License Included | AWS, built into the price | RDS for Oracle Standard Edition 2 |
 | Bring Your Own License (BYOL) | You, from licenses you already own | RDS for Oracle Enterprise Edition; Windows Server on EC2 Dedicated Hosts |
 
-Migration Evaluator builds a business case for a move, finds over-provisioned on-premises servers and compares BYOL with License Included. [Migration Evaluator](https://aws.amazon.com/migration-evaluator/)
+Migration Evaluator builds a business case for a move, finds over-provisioned on-premises servers and compares BYOL with License Included.
 
 ### Exam cues
 

@@ -12,7 +12,7 @@ cards:
     a: "Amazon EMR."
     facts: [big-data]
 ---
-Amazon EMR runs big data frameworks such as Hadoop and Spark on managed clusters. [What is Amazon EMR?](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html#emr-what-is-emr)
+Amazon EMR runs big data frameworks such as Hadoop and Spark on managed clusters.
 
 ### How it works
 

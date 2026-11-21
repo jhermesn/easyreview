@@ -161,7 +161,7 @@ AI Practitioner questions describe an assistant that must answer from company da
 
 ### How it works
 
-1. Documents in S3 are scanned by Macie and ingested by a Bedrock knowledge base: text, chunks, embeddings, vectors. [Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html#knowledge-base)
+1. Documents in S3 are scanned by Macie and ingested by a Bedrock knowledge base: text, chunks, embeddings, vectors.
 2. The app calls Bedrock privately through a VPC endpoint.
 3. The knowledge base retrieves similar chunks and adds them to the prompt.
 4. The foundation model answers with citations, and a guardrail checks grounding and sensitive content.

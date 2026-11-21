@@ -47,7 +47,7 @@ cards:
     a: "AWS Batch runs batch jobs and manages the underlying infrastructure."
     facts: [purpose]
 ---
-AWS Batch runs batch jobs: units of work, such as simulations or data processing, that run to completion without user interaction. You submit jobs; Batch finds and provisions the compute and spreads the work. [What is AWS Batch?](https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html#what-is-batch)
+AWS Batch runs batch jobs: units of work, such as simulations or data processing, that run to completion without user interaction. You submit jobs; Batch finds and provisions the compute and spreads the work.
 
 ### How it works
 

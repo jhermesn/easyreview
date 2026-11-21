@@ -76,7 +76,7 @@ cards:
     a: "Provisioned storage per GB-month by volume type, provisioned IOPS and throughput above what the volume type includes, and snapshot storage."
     facts: [pricing-dimensions]
 ---
-Amazon Elastic Block Store (Amazon EBS) gives EC2 instances network-attached disks (block storage) that keep data when the instance stops. [What is Amazon EBS?](https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html#what-is-ebs)
+Amazon Elastic Block Store (Amazon EBS) gives EC2 instances network-attached disks (block storage) that keep data when the instance stops.
 
 ### How it works
 

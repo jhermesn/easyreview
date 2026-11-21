@@ -79,7 +79,7 @@ cards:
     a: "Its sensitive information filters can block or mask personally identifiable information."
     facts: [sensitive]
 ---
-Amazon Bedrock Guardrails screens what goes into and comes out of a model, with the same policies whatever model you use. Each policy targets a different risk: harmful content, off-limits topics, banned words, PII, ungrounded answers and attacks on the prompt. [Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
+Amazon Bedrock Guardrails screens what goes into and comes out of a model, with the same policies whatever model you use. Each policy targets a different risk: harmful content, off-limits topics, banned words, PII, ungrounded answers and attacks on the prompt.
 
 ### How it works
 

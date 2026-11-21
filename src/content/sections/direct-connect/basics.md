@@ -12,7 +12,7 @@ cards:
     a: "AWS Direct Connect."
     facts: [dedicated-link]
 ---
-AWS Direct Connect is a dedicated private network link between a company network and AWS. [What is Direct Connect?](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html#Welcome)
+AWS Direct Connect is a dedicated private network link between a company network and AWS.
 
 ### How it works
 

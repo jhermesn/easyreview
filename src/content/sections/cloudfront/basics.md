@@ -48,7 +48,7 @@ cards:
       - oac-read
       - oac-private
 ---
-Amazon CloudFront is AWS's content delivery network (CDN): copies of content are served from edge locations close to users. [What is Amazon CloudFront?](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction)
+Amazon CloudFront is AWS's content delivery network (CDN): copies of content are served from edge locations close to users.
 
 ### How it works
 

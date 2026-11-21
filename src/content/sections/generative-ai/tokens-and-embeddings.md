@@ -51,7 +51,7 @@ cards:
     a: The context window, the maximum number of tokens the model can process in one call.
     facts: [context-window]
 ---
-Models don't see words; they see tokens, and they compare meaning with embeddings. Both drive cost and quality: you pay per token, and embeddings power semantic search and retrieval augmented generation. [Key terminology](https://docs.aws.amazon.com/bedrock/latest/userguide/key-definitions.html)
+Models don't see words; they see tokens, and they compare meaning with embeddings. Both drive cost and quality: you pay per token, and embeddings power semantic search and retrieval augmented generation.
 
 ### How it works
 

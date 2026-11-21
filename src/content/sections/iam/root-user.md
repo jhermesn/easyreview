@@ -82,17 +82,17 @@ cards:
     a: "Use a strong password and multi-factor authentication, avoid root access keys and secure account recovery mechanisms."
     facts: [protections]
 ---
-Every AWS account starts with a root user: the email address and password used to create it, with complete access to everything in the account. That power makes it the most valuable credential to protect, and AWS recommends keeping it locked away for the few tasks only it can do. [AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-tasks.html#id_root-user)
+Every AWS account starts with a root user: the email address and password used to create it, with complete access to everything in the account. That power makes it the most valuable credential to protect, and AWS recommends keeping it locked away for the few tasks only it can do.
 
 ### How it works
 
 1. Sign up: the root user exists, and MFA is enforced for it.
-2. Create an administrative user for daily work, for example in IAM Identity Center. [Root user best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-best-practices.html#root-user-best-practices)
+2. Create an administrative user for daily work, for example in IAM Identity Center.
 3. Lock the root user away: a strong password, MFA, no access keys, and safe recovery details.
 4. Sign in as root only for root-only tasks.
 5. In AWS Organizations, the management account can remove member accounts' root credentials altogether.
 
-Tasks that require the root user: [Tasks that require root user credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/root-user-tasks.html#root-user-tasks)
+Tasks that require the root user:
 
 | Area | Root-only task |
 |---|---|

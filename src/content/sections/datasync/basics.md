@@ -12,7 +12,7 @@ cards:
     a: "AWS DataSync."
     facts: [online-transfer]
 ---
-AWS DataSync moves file and object data over the network into, out of and between AWS storage services. [What is AWS DataSync?](https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html#what-is-datasync)
+AWS DataSync moves file and object data over the network into, out of and between AWS storage services.
 
 ### How it works
 

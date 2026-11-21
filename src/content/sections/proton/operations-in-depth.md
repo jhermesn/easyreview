@@ -61,10 +61,10 @@ AWS Proton environment templates defined shared infrastructure for applications.
 
 ### How it works
 
-1. An [environment template](https://docs.aws.amazon.com/proton/latest/userguide/Welcome.html#ag-admin) defined infrastructure shared by multiple applications or resources.
-2. A [customer managed environment template](https://docs.aws.amazon.com/proton/latest/userguide/ag-templates.html#ag-templates) connected to existing provisioned infrastructure without Proton managing it.
-3. After [support ended](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#proton-end-of-support), the Proton console and resources became [inaccessible](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#faqs). Deployed [CloudFormation stacks and their resources](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#important-migration-information) remained intact.
-4. AWS lists [CloudFormation Git sync](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#cloudformation-git-sync) and [CodePipeline with CodeBuild](https://docs.aws.amazon.com/proton/latest/userguide/proton-end-of-support.html#codepipeline-and-codebuild) as alternatives, with different tradeoffs.
+1. An environment template defined infrastructure shared by multiple applications or resources.
+2. A customer managed environment template connected to existing provisioned infrastructure without Proton managing it.
+3. After support ended, the Proton console and resources became inaccessible. Deployed CloudFormation stacks and their resources remained intact.
+4. AWS lists CloudFormation Git sync and CodePipeline with CodeBuild as alternatives, with different tradeoffs.
 
 ### Exam cues
 

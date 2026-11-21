@@ -32,7 +32,7 @@ cards:
       - staging
       - conversion
 ---
-AWS Elastic Disaster Recovery replicates servers into AWS so they can be recovered quickly. [What is Elastic Disaster Recovery?](https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html#what-is-drs)
+AWS Elastic Disaster Recovery replicates servers into AWS so they can be recovered quickly.
 
 ### How it works
 

@@ -47,13 +47,13 @@ cards:
     a: Yes. The customer decides whether the service will touch data that affects its compliance.
     facts: [not-listed]
 ---
-AWS takes part in many compliance programs: global standards, industry rules and government programs. Each covers a specific set of services. Customers inherit the AWS side of these programs and remain responsible for their own. [Compliance programs](https://aws.amazon.com/compliance/programs/)
+AWS takes part in many compliance programs: global standards, industry rules and government programs. Each covers a specific set of services. Customers inherit the AWS side of these programs and remain responsible for their own.
 
 ### How it works
 
 1. Independent third parties audit AWS for certifications and attestations, such as ISO 27001, SOC reports, PCI DSS and FedRAMP.
 2. AWS also aligns with laws, such as HIPAA, and with published frameworks, such as NIST.
-3. Each program covers a list of services, so requirements vary by service. Check the Services in Scope page for your program. [Services in scope](https://aws.amazon.com/compliance/services-in-scope/)
+3. Each program covers a list of services, so requirements vary by service. Check the Services in Scope page for your program.
 4. The audit reports themselves are in AWS Artifact.
 
 | Group | Examples |

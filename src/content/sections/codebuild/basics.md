@@ -12,7 +12,7 @@ cards:
     a: "AWS CodeBuild."
     facts: [build]
 ---
-AWS CodeBuild compiles and tests code on demand. [What is AWS CodeBuild?](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html#welcome)
+AWS CodeBuild compiles and tests code on demand.
 
 ### How it works
 

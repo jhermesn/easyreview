@@ -77,7 +77,7 @@ cards:
     a: "An Amazon SNS notification on each log file delivery."
     facts: [sns-delivery-notice]
 ---
-A trail is the CloudTrail configuration that sends selected events to S3 for an ongoing audit record. An event selector is a filter that decides which activity the trail records. [Trail concepts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-trails)
+A trail is the CloudTrail configuration that sends selected events to S3 for an ongoing audit record. An event selector is a filter that decides which activity the trail records.
 
 ### How it works
 
@@ -93,9 +93,7 @@ A trail is the CloudTrail configuration that sends selected events to S3 for an 
 | `eventName` | API operation | Selected object operations |
 | `readOnly` | Read or write activity | Read operations only |
 
-[AWS data event selection](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events-with-cloudtrail) · [Advanced selector fields](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/filtering-data-events.html#filtering-data-events)
-
-See also [global event handling](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-global-service-events).
+AWS data event selection · Advanced selector fields
 
 ### Exam cues
 
@@ -106,7 +104,7 @@ See also [global event handling](https://docs.aws.amazon.com/awscloudtrail/lates
 ### Remember
 
 - Data events are opt-in and incur additional charges.
-- Console-created trails cover all enabled Regions. [Console trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html#cloudtrail-create-a-trail-using-the-console-first-time)
+- Console-created trails cover all enabled Regions.
 - First copy of management events per Region: free. Duplicate trails for the same events: charged.
 - SNS can notify on each log file delivery (about every 5 minutes).
 

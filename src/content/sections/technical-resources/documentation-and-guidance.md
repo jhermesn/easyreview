@@ -57,15 +57,15 @@ cards:
     a: The AWS Architecture Center.
     facts: [architecture-center]
 ---
-AWS publishes free self-service resources for learning and troubleshooting. Most questions have an answer in one of them before a support case is needed. [Troubleshooting resources](https://docs.aws.amazon.com/awssupport/latest/user/troubleshooting.html#troubleshooting)
+AWS publishes free self-service resources for learning and troubleshooting. Most questions have an answer in one of them before a support case is needed.
 
 ### How it works
 
 1. **Documentation** for each service, including troubleshooting topics.
-2. **AWS Knowledge Center** articles answer common questions. They live on **AWS re:Post** with community questions and articles. [Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)
-3. **Whitepapers and guides** explain concepts and architectures. [Whitepapers](https://aws.amazon.com/whitepapers/)
-4. **AWS Prescriptive Guidance** gives tested patterns for migration, modernization and deployment, with steps and code. [Prescriptive Guidance patterns](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/welcome.html#welcome)
-5. **AWS Security Blog** covers security topics and practices. [AWS Security Blog](https://aws.amazon.com/blogs/security/)
+2. **AWS Knowledge Center** articles answer common questions. They live on **AWS re:Post** with community questions and articles.
+3. **Whitepapers and guides** explain concepts and architectures.
+4. **AWS Prescriptive Guidance** gives tested patterns for migration, modernization and deployment, with steps and code.
+5. **AWS Security Blog** covers security topics and practices.
 
 | Need | Resource |
 |---|---|

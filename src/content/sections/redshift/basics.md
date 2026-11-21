@@ -12,7 +12,7 @@ cards:
     a: "Amazon Redshift is a fully managed data warehouse. Redshift Serverless runs it without managing capacity."
     facts: [warehouse]
 ---
-Amazon Redshift is AWS's data warehouse for analytics on large datasets. [What is Amazon Redshift?](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome)
+Amazon Redshift is AWS's data warehouse for analytics on large datasets.
 
 ### How it works
 

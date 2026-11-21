@@ -44,7 +44,7 @@ cards:
     trap: true
     facts: [bias]
 ---
-Generative AI creates new legal and business exposure: output that copies protected work, biased or toxic content, confident falsehoods, leaked data and the loss of trust that follows. [What are foundation models?](https://aws.amazon.com/what-is/foundation-models/)
+Generative AI creates new legal and business exposure: output that copies protected work, biased or toxic content, confident falsehoods, leaked data and the loss of trust that follows.
 
 ### How it works
 

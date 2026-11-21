@@ -188,7 +188,7 @@ Operations questions at the professional level spread a workload across many acc
 
 ### How it works
 
-1. A monitoring account owns a sink. Each source account creates a link to it, allowed by the sink policy. [Cross-account observability](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html)
+1. A monitoring account owns a sink. Each source account creates a link to it, allowed by the sink policy.
 2. The monitoring account builds dashboards, runs Logs Insights queries across accounts and creates alarms on source-account metrics.
 3. Subscription filters, per log group or account level, send matching log events to a logical destination in the log archive account.
 4. The destination passes events to Data Firehose, which delivers them to an S3 bucket with Object Lock; Athena and Quick Sight query it there.

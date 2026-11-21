@@ -192,10 +192,10 @@ Systems Manager Parameter Store uses hierarchies, policies and version history t
 
 ### How it works
 
-1. Organize parameter names in a [slash-separated hierarchy](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-examples). Use [`GetParametersByPath` with recursive retrieval](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html#systemsmanager-GetParametersByPath-request-Recursive) to read parameters below a path.
-2. Use [policies](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#parameter-store-policies) on an advanced parameter to delete it after an expiration timestamp or emit EventBridge events. `ExpirationNotification` alerts before or after expiration; `NoChangeNotification` alerts when the parameter has remained unchanged for the specified period. Expiration is processed asynchronously through periodic scans.
-3. When updating policies, supply the [complete desired policy array](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#sysman-paramstore-su-policy-create): a new array replaces the existing policies.
-4. Parameter Store retains [version history](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions). Once the history is full, the oldest version is normally removed to make room for a new one. If the oldest version has a label, the update fails; move the label to a newer version before retrying.
+1. Organize parameter names in a slash-separated hierarchy. Use `GetParametersByPath` with recursive retrieval to read parameters below a path.
+2. Use policies on an advanced parameter to delete it after an expiration timestamp or emit EventBridge events. `ExpirationNotification` alerts before or after expiration; `NoChangeNotification` alerts when the parameter has remained unchanged for the specified period. Expiration is processed asynchronously through periodic scans.
+3. When updating policies, supply the complete desired policy array: a new array replaces the existing policies.
+4. Parameter Store retains version history. Once the history is full, the oldest version is normally removed to make room for a new one. If the oldest version has a label, the update fails; move the label to a newer version before retrying.
 
 ### Exam cues
 
@@ -208,7 +208,7 @@ Systems Manager Parameter Store uses hierarchies, policies and version history t
 - Hierarchies support up to 15 levels.
 - An advanced parameter supports up to ten policies.
 - Parameter Store retains up to 100 versions.
-- A standard parameter can become advanced; an [advanced parameter cannot be changed back to standard](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html#parameter-store-tiers-limitations).
+- A standard parameter can become advanced; an advanced parameter cannot be changed back to standard.
 - Session Manager idle timeout: 20 minutes by default, one to 60 minutes; resizing or reconnecting can reset it. Maximum session duration is a separate limit.
 - Restricted command access: custom `Session` documents with `sessionType: InteractiveCommands`, started through the CLI.
 - Run As selects an existing Linux or macOS user (the `SSMSessionRunAs` tag wins over the account preference) and fails rather than falling back to `ssm-user`.

@@ -82,16 +82,16 @@ cards:
       - lake-copy
       - lake-query
 ---
-CloudTrail Lake lets existing customers analyze retained audit events with SQL, a language for selecting and combining stored records. It stores selected events in an event data store, an immutable collection whose retained records cannot be changed. [AWS Lake model](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html#cloudtrail-lake)
+CloudTrail Lake lets existing customers analyze retained audit events with SQL, a language for selecting and combining stored records. It stores selected events in an event data store, an immutable collection whose retained records cannot be changed.
 
 ### How it works
 
 1. Choose the events using advanced selectors. An organization event data store can collect activity across accounts and Regions.
 2. Lake converts JSON records into Apache ORC, a columnar format that organizes stored data by field for queries. Previously retained trail events can also be copied into a store.
 3. Choose the retention pricing option, which determines how long events can remain available. Retention means how long stored events are kept.
-4. Query the retained events with SQL. Charges depend on data scanned. Stores are encrypted by default; once a customer KMS key is associated, it cannot be removed or changed. [Stores](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html#cloudtrail-lake-eds) · [Queries](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html#cloudtrail-lake-queries)
+4. Query the retained events with SQL. Charges depend on data scanned. Stores are encrypted by default; once a customer KMS key is associated, it cannot be removed or changed. Stores · Queries
 
-Since May 31, 2026, Lake has been closed to new customers. Existing customers retain access, with critical bug fixes and security updates. Existing organization stores support new member accounts; account-level stores do not extend ingestion to newly added organization accounts. CloudTrail trails and Insights remain available. [Availability change](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake-service-availability-change.html#cloudtrail-lake-service-availability-change)
+Since May 31, 2026, Lake has been closed to new customers. Existing customers retain access, with critical bug fixes and security updates. Existing organization stores support new member accounts; account-level stores do not extend ingestion to newly added organization accounts. CloudTrail trails and Insights remain available.
 
 ### Exam cues
 

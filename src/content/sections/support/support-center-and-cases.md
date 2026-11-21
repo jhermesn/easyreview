@@ -43,13 +43,13 @@ cards:
     a: In the AWS Support Center. Account and billing cases are available to all customers.
     facts: [case-types, all-customers]
 ---
-The AWS Support Center is where customers open and track cases with AWS Support. The case type and the support plan decide what help is available, and the severity sets how fast the first response comes. [Case management](https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#case-management)
+The AWS Support Center is where customers open and track cases with AWS Support. The case type and the support plan decide what help is available, and the severity sets how fast the first response comes.
 
 ### How it works
 
 1. Open a case in the Support Center console and choose its type.
 2. Describe the problem in detail: resources, timestamps and logs.
-3. Pick a severity that matches the business impact. [Severity levels](https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#choosing-severity)
+3. Pick a severity that matches the business impact.
 4. On Business Support+ or higher, change the severity later if the impact changes.
 
 | Severity | First response | Plans |

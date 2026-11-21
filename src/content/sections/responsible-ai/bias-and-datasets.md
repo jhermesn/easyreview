@@ -58,7 +58,7 @@ cards:
     trap: true
     facts: [group-fairness, paired-tests]
 ---
-Bias usually enters through data: groups that are missing or underrepresented, labels that carry annotators' assumptions, or examples that don't match real users. It shows up as a model that works well for some groups and badly for others. [Minimize unwanted bias](https://docs.aws.amazon.com/wellarchitected/latest/responsible-ai-lens/raidp03-bp02.html)
+Bias usually enters through data: groups that are missing or underrepresented, labels that carry annotators' assumptions, or examples that don't match real users. It shows up as a model that works well for some groups and badly for others.
 
 ### How it works
 

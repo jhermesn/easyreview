@@ -12,7 +12,7 @@ cards:
     a: "AWS Transfer Family transfers files into and out of AWS storage over protocols such as SFTP."
     facts: [managed-sftp]
 ---
-AWS Transfer Family gives partners a managed SFTP (and similar protocols) endpoint backed by AWS storage. [What is AWS Transfer Family?](https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html#what-is-aws-transfer-family)
+AWS Transfer Family gives partners a managed SFTP (and similar protocols) endpoint backed by AWS storage.
 
 ### How it works
 

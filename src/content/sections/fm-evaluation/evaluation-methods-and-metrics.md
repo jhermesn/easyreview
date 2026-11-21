@@ -72,7 +72,7 @@ cards:
     a: "The lower perplexity: the model predicts the test text better. It is an intrinsic metric and may not match human judgment, so pair it with task metrics or human review."
     facts: [perplexity]
 ---
-Evaluating generative AI takes several lenses at once: automatic metrics against reference answers, a model acting as judge, and human reviewers for what only people can judge. All of them need a good evaluation dataset. [Evaluating generated outputs](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/dev-experimenting-quality.html)
+Evaluating generative AI takes several lenses at once: automatic metrics against reference answers, a model acting as judge, and human reviewers for what only people can judge. All of them need a good evaluation dataset.
 
 ### How it works
 

@@ -59,7 +59,7 @@ cards:
     a: "No. Valid credentials can create the URL, but using it requires the signer to have permission to read the object."
     facts: [presign-creator]
 ---
-Two ways to share S3 data without opening the bucket: Requester Pays moves the bill to whoever downloads, and presigned URLs give one person temporary access to one object. [Requester Pays buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html)
+Two ways to share S3 data without opening the bucket: Requester Pays moves the bill to whoever downloads, and presigned URLs give one person temporary access to one object.
 
 ### How it works
 

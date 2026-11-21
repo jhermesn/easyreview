@@ -12,7 +12,7 @@ cards:
     a: "The AWS Command Line Interface (AWS CLI)."
     facts: [command-line]
 ---
-The AWS CLI controls AWS services with commands from a terminal, which makes tasks easy to script. [What is the AWS CLI?](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html#cli-chap-welcome)
+The AWS CLI controls AWS services with commands from a terminal, which makes tasks easy to script.
 
 ### How it works
 

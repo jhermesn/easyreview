@@ -30,7 +30,7 @@ cards:
     a: "Add all three certificates to the HTTPS listener's certificate list; the ALB picks the right one with SNI."
     facts: [sni]
 ---
-An Application Load Balancer can do two jobs that apps often repeat: signing users in, and serving the right TLS certificate for each domain. [Authenticate users using an ALB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-authenticate-users.html)
+An Application Load Balancer can do two jobs that apps often repeat: signing users in, and serving the right TLS certificate for each domain.
 
 ### How it works
 

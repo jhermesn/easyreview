@@ -47,10 +47,10 @@ Migration strategies describe what to do with an application when moving to the 
 
 ### How it works
 
-1. Consider whether the application has business value. If it does not, retire it by decommissioning or archiving it. If it needs to stay in its source environment, retain it. [Retire](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#retire), [retain](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#retain)
-2. To replace it with a different product or version, choose repurchase. For example, a traditionally licensed application can be replaced by software as a service (SaaS). [Repurchase](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#repurchase)
-3. To move servers to a cloud version of the same platform without rewriting applications or changing operations, choose relocate. [Relocate](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#relocate)
-4. To change the application's architecture to use cloud-native features, choose refactor. [Refactor](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#refactor)
+1. Consider whether the application has business value. If it does not, retire it by decommissioning or archiving it. If it needs to stay in its source environment, retain it. Retire, retain
+2. To replace it with a different product or version, choose repurchase. For example, a traditionally licensed application can be replaced by software as a service (SaaS).
+3. To move servers to a cloud version of the same platform without rewriting applications or changing operations, choose relocate.
+4. To change the application's architecture to use cloud-native features, choose refactor.
 
 | Strategy | What happens |
 |---|---|

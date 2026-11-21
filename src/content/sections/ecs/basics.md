@@ -12,7 +12,7 @@ cards:
     a: "Amazon Elastic Container Service (Amazon ECS)."
     facts: [orchestration]
 ---
-Amazon ECS runs and scales containers for you, on EC2 instances or on AWS Fargate. [What is Amazon ECS?](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html#Welcome)
+Amazon ECS runs and scales containers for you, on EC2 instances or on AWS Fargate.
 
 ### How it works
 

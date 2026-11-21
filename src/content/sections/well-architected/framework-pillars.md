@@ -88,7 +88,7 @@ cards:
     a: "The reliability pillar recommends horizontal scaling to increase availability."
     facts: [reliability-principles]
 ---
-The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them. [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html#definitions)
+The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them.
 
 ### How it works
 
@@ -105,9 +105,9 @@ The AWS Well-Architected Framework is AWS's set of best practices for cloud arch
 
 The other pillars are operational excellence, performance efficiency and sustainability.
 
-Since November 16, 2026, the framework is one document in two parts. Cloud Foundations covers what an organization sets up once for all workloads (accounts, identity, observability, inventory, security, cost, networking), and Cloud Workloads holds the six pillars. [Release notes](https://docs.aws.amazon.com/wellarchitected/latest/framework/release-notes.html#fw-11-16-2026-update)
+Since November 16, 2026, the framework is one document in two parts. Cloud Foundations covers what an organization sets up once for all workloads (accounts, identity, observability, inventory, security, cost, networking), and Cloud Workloads holds the six pillars.
 
-The general design principles apply across pillars: stop guessing capacity, test at production scale, automate to experiment, evolve the architecture, decide with data, and improve through game days. [Framework design principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/design-principles.html#design-principles)
+The general design principles apply across pillars: stop guessing capacity, test at production scale, automate to experiment, evolve the architecture, decide with data, and improve through game days.
 
 ### Exam cues
 
@@ -115,7 +115,7 @@ The general design principles apply across pillars: stop guessing capacity, test
 - If the question says lowest price point for the value delivered, think cost optimization.
 - If the question says protect data, systems and assets, think security.
 - If the question says simulate production events to find improvements, think game days.
-- If the question says reduce dependencies between components, think loosely coupled dependencies under reliability. [Reliability best practice](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel04-bp02.html#rel04-bp02)
+- If the question says reduce dependencies between components, think loosely coupled dependencies under reliability.
 - If the question says organization-wide setup before the first workload, such as a landing zone, think Well-Architected Cloud Foundations.
 
 ### Remember

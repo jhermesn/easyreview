@@ -27,7 +27,7 @@ cards:
     facts:
       - edge-services
 ---
-AWS Shield protects applications from distributed denial of service (DDoS) attacks. [AWS Shield](https://docs.aws.amazon.com/waf/latest/developerguide/shield-chapter.html#shield-chapter)
+AWS Shield protects applications from distributed denial of service (DDoS) attacks.
 
 ### How it works
 

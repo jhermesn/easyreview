@@ -194,7 +194,7 @@ Governance questions at the professional level describe dozens of accounts and a
 
 ### How it works
 
-1. Control Tower sets up the landing zone on Organizations, with OUs, shared accounts and controls. Account Factory vends new accounts, and CfCT (or AFT, with Terraform) applies the company's customizations to each one. [What is Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html)
+1. Control Tower sets up the landing zone on Organizations, with OUs, shared accounts and controls. Account Factory vends new accounts, and CfCT (or AFT, with Terraform) applies the company's customizations to each one.
 2. SCPs on OUs set the maximum permissions for member accounts. IAM policies inside each account still grant the actual access.
 3. IAM Identity Center gives people single sign-on, and permission sets define what they get in each account.
 4. An organization trail sends every account's activity to the central log archive bucket. Since landing zone 4.0, the shared accounts are named CloudTrail Administrator and Aggregator by default (formerly Log Archive and Audit).

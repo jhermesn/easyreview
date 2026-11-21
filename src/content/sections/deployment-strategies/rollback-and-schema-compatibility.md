@@ -106,7 +106,7 @@ cards:
       - refresh-window
 ---
 
-Rollback restores an earlier application revision or returns traffic to a retained version. Its mechanism depends on the deployment platform. A database schema is the structure of tables and fields; [AWS schema guidance](https://docs.aws.amazon.com/whitepapers/latest/blue-green-deployments/best-practices-for-managing-data-synchronization-and-schema-changes.html#decoupling-schema-changes-from-code-changes) explains why that structure must remain compatible with both application versions during a shared-database release.
+Rollback restores an earlier application revision or returns traffic to a retained version. Its mechanism depends on the deployment platform. A database schema is the structure of tables and fields; AWS schema guidance explains why that structure must remain compatible with both application versions during a shared-database release.
 
 ### How it works
 

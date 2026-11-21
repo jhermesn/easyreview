@@ -198,7 +198,7 @@ Cloud Practitioner questions often describe a simple website and ask which servi
 
 ### How it works
 
-1. Route 53 answers DNS, and CloudFront serves users from edge locations, with AWS WAF and Shield Standard in front. [Shared responsibility model](https://aws.amazon.com/compliance/shared-responsibility-model/)
+1. Route 53 answers DNS, and CloudFront serves users from edge locations, with AWS WAF and Shield Standard in front.
 2. Static files live in Amazon S3; other requests go through the internet gateway to a load balancer.
 3. EC2 instances in two Availability Zones run the application, and Auto Scaling adds or replaces them.
 4. Amazon RDS stores the data, with a standby in the second Availability Zone.

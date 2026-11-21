@@ -27,7 +27,7 @@ cards:
     trap: true
     facts: [hosting, cdn]
 ---
-AWS Amplify is the AWS toolset for frontend web and mobile developers. Amplify Hosting deploys a full-stack app from a Git repository on every push and serves it through the AWS global CDN. [Welcome to AWS Amplify Hosting](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html#welcome)
+AWS Amplify is the AWS toolset for frontend web and mobile developers. Amplify Hosting deploys a full-stack app from a Git repository on every push and serves it through the AWS global CDN.
 
 ### How it works
 

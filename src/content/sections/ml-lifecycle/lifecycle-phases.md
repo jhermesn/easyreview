@@ -58,7 +58,7 @@ cards:
     a: ML problem framing.
     facts: [framing]
 ---
-An ML project isn't a single training run. It's a loop: agree on the business goal, frame it as a prediction, prepare data, build a model, deploy it, and watch it, feeding what you learn back into earlier phases. [ML lifecycle](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lifecycle.html)
+An ML project isn't a single training run. It's a loop: agree on the business goal, frame it as a prediction, prepare data, build a model, deploy it, and watch it, feeding what you learn back into earlier phases.
 
 ### How it works
 

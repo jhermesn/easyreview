@@ -12,7 +12,7 @@ cards:
     a: "AWS Transit Gateway, a central hub."
     facts: [hub]
 ---
-AWS Transit Gateway is a central hub that connects many VPCs and on-premises networks. [What is AWS Transit Gateway?](https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html#what-is-transit-gateway)
+AWS Transit Gateway is a central hub that connects many VPCs and on-premises networks.
 
 ### How it works
 

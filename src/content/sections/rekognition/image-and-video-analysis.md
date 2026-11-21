@@ -65,7 +65,7 @@ cards:
     a: "Amazon Rekognition can detect protective equipment such as head, face and hand covers in images."
     facts: [ppe-detection]
 ---
-Amazon Rekognition analyzes images and videos: what objects and scenes appear, whether there is text or unsafe content, and whose face it is. It works through an API, with no models to build. [What is Amazon Rekognition?](https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html#what-is)
+Amazon Rekognition analyzes images and videos: what objects and scenes appear, whether there is text or unsafe content, and whose face it is. It works through an API, with no models to build.
 
 ### How it works
 

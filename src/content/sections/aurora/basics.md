@@ -22,7 +22,7 @@ cards:
     a: "Amazon Aurora.\nIt is compatible with MySQL and PostgreSQL, and AWS applies OS and engine patches in the maintenance window."
     facts: [engine-compat, managed-patching]
 ---
-Amazon Aurora is AWS's MySQL- and PostgreSQL-compatible relational database, managed through Amazon RDS. [What is Amazon Aurora?](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html#CHAP_AuroraOverview)
+Amazon Aurora is AWS's MySQL- and PostgreSQL-compatible relational database, managed through Amazon RDS.
 
 ### How it works
 

@@ -12,7 +12,7 @@ cards:
     a: "Amazon Data Firehose."
     facts: [delivery]
 ---
-Amazon Data Firehose loads streaming data into storage and analytics services for you. [What is Amazon Data Firehose?](https://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html#what-is-this-service)
+Amazon Data Firehose loads streaming data into storage and analytics services for you.
 
 ### How it works
 

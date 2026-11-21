@@ -50,7 +50,7 @@ cards:
     a: "They organize resource costs in a cost allocation report so the company can categorize and track them."
     facts: [report]
 ---
-Cost allocation tags split the AWS bill by business dimension, such as team, project or environment. A tag is a key and value on a resource; activating it makes billing tools use it. [Cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#cost-alloc-tags)
+Cost allocation tags split the AWS bill by business dimension, such as team, project or environment. A tag is a key and value on a resource; activating it makes billing tools use it.
 
 ### How it works
 

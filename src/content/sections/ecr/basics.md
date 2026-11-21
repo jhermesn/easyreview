@@ -12,7 +12,7 @@ cards:
     a: "Amazon Elastic Container Registry (Amazon ECR)."
     facts: [registry]
 ---
-Amazon ECR stores container images so services such as ECS and EKS can pull them. [What is Amazon ECR?](https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html#what-is-ecr)
+Amazon ECR stores container images so services such as ECS and EKS can pull them.
 
 ### How it works
 

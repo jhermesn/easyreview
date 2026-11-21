@@ -55,7 +55,7 @@ cards:
     a: "A stop sequence. When the model generates a specified stop sequence, it stops generating more tokens."
     facts: [stop-sequences]
 ---
-Inference parameters are dials you set per request. Temperature, Top K and Top P control how adventurous the model is when picking each next token; length settings cap how much it writes. [Inference parameters](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html)
+Inference parameters are dials you set per request. Temperature, Top K and Top P control how adventurous the model is when picking each next token; length settings cap how much it writes.
 
 ### How it works
 

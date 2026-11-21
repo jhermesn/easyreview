@@ -12,7 +12,7 @@ cards:
     a: "AWS PrivateLink, through an interface VPC endpoint."
     facts: [private-access]
 ---
-AWS PrivateLink lets a VPC reach services privately, without the public internet. [What is AWS PrivateLink?](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html#what-is-privatelink)
+AWS PrivateLink lets a VPC reach services privately, without the public internet.
 
 ### How it works
 

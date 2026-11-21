@@ -12,7 +12,7 @@ cards:
     a: "Amazon Kinesis Data Streams."
     facts: [streams]
 ---
-Amazon Kinesis Data Streams carries real-time data streams for applications to process. [What is Amazon Kinesis Data Streams?](https://docs.aws.amazon.com/streams/latest/dev/introduction.html#introduction)
+Amazon Kinesis Data Streams carries real-time data streams for applications to process.
 
 ### How it works
 

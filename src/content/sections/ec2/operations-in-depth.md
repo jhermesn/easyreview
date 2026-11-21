@@ -73,11 +73,11 @@ EC2 operations can require control over how Amazon Machine Images (AMIs) are dis
 
 ### How it works
 
-1. [Launching from a shared AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html#considerations-for-sharing-AMI-with-accounts) does not require separately sharing its backing EBS snapshots. [Copying a shared EBS-backed AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ami-copy-works.html#copy-ami-across-accounts) requires read permission for those snapshots.
-2. A copy has a [new AMI ID and is independent of its source](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ami-copy-works.html#how-ami-copy-works). Its [launch permissions are not copied](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html#copy-ami-considerations), so grant them on the new AMI.
-3. [Image Builder cross-account distribution](https://docs.aws.amazon.com/imagebuilder/latest/userguide/cross-account-dist.html#cross-account-dist) delivers images that destination accounts can launch or modify. For encrypted images, provide access to the [source and destination KMS keys](https://docs.aws.amazon.com/imagebuilder/latest/userguide/cross-account-dist.html#cross-account-dist-prereqs); Image Builder re-encrypts with the designated destination Region key.
-4. Restrict which AMIs a user can launch with [resource-level permissions for `ec2:RunInstances`](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-ec2-console.html#iam-policies-ec2-console). To identify running instances outside an approved list, configure the AWS Config rule [`approved-amis-by-id`](https://docs.aws.amazon.com/config/latest/developerguide/approved-amis-by-id.html#approved-amis-by-id).
-5. Check recovery eligibility: [neither simplified nor CloudWatch action based recovery supports instances using an Elastic Fabric Adapter (EFA)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cloudwatch-recovery.html#requirements-for-cloudwatch-action-based-recovery). For EC2 action alarms, AWS recommends [treating missing data as missing and triggering actions only in `ALARM` state](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html#UsingAlarmActions).
+1. Launching from a shared AMI does not require separately sharing its backing EBS snapshots. Copying a shared EBS-backed AMI requires read permission for those snapshots.
+2. A copy has a new AMI ID and is independent of its source. Its launch permissions are not copied, so grant them on the new AMI.
+3. Image Builder cross-account distribution delivers images that destination accounts can launch or modify. For encrypted images, provide access to the source and destination KMS keys; Image Builder re-encrypts with the designated destination Region key.
+4. Restrict which AMIs a user can launch with resource-level permissions for `ec2:RunInstances`. To identify running instances outside an approved list, configure the AWS Config rule `approved-amis-by-id`.
+5. Check recovery eligibility: neither simplified nor CloudWatch action based recovery supports instances using an Elastic Fabric Adapter (EFA). For EC2 action alarms, AWS recommends treating missing data as missing and triggering actions only in `ALARM` state.
 
 ### Exam cues
 

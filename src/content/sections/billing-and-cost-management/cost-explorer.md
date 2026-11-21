@@ -74,7 +74,7 @@ cards:
     a: "Multi-year data, which keeps up to 38 months at monthly granularity."
     facts: [extended-history]
 ---
-AWS Cost Explorer is the analysis tool for past and forecast costs. It charts spending by service, account, tag or other dimensions and helps find what drives cost. [AWS Cost Explorer](https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html#ce-what-is)
+AWS Cost Explorer is the analysis tool for past and forecast costs. It charts spending by service, account, tag or other dimensions and helps find what drives cost.
 
 ### How it works
 

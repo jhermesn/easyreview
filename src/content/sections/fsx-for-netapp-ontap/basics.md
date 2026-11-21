@@ -12,7 +12,7 @@ cards:
     a: "Amazon FSx for NetApp ONTAP."
     facts: [ontap]
 ---
-Amazon FSx for NetApp ONTAP brings NetApp ONTAP file storage to AWS as a managed service. [What is FSx for NetApp ONTAP?](https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html#what-is-fsx-ontap)
+Amazon FSx for NetApp ONTAP brings NetApp ONTAP file storage to AWS as a managed service.
 
 ### How it works
 

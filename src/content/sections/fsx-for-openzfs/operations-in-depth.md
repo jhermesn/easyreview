@@ -42,10 +42,10 @@ Amazon FSx for OpenZFS supports snapshot-based volume copies and individual file
 
 ### How it works
 
-1. A clone depends on its source snapshot. The snapshot cannot be deleted while the clone is in use. A full-copy volume is independent and writable, but takes longer to create than a clone. [Snapshot volumes](https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-volumes)
-2. While snapshot data is being copied to a full-copy volume, the volume is read-only. [Volume properties](https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/creating-volumes.html#volume-properties)
-3. To restore an individual file, a client copies it from the hidden `.zfs/snapshot` directory. The volume's NFS exports must include `crossmnt`. [Restoring individual files](https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/snapshots-openzfs.html#snapshots-user-restore)
-4. A volume quota limits capacity, while a reservation guarantees space for the volume. [Volume properties](https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/creating-volumes.html#volume-properties)
+1. A clone depends on its source snapshot. The snapshot cannot be deleted while the clone is in use. A full-copy volume is independent and writable, but takes longer to create than a clone.
+2. While snapshot data is being copied to a full-copy volume, the volume is read-only.
+3. To restore an individual file, a client copies it from the hidden `.zfs/snapshot` directory. The volume's NFS exports must include `crossmnt`.
+4. A volume quota limits capacity, while a reservation guarantees space for the volume.
 
 ### Exam cues
 

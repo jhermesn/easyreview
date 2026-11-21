@@ -85,12 +85,12 @@ cards:
     a: "MFA requires authentication from a device in addition to sign-in credentials."
     facts: [mfa]
 ---
-Credentials prove who is calling AWS. People sign in to the console with passwords and MFA; programs use access keys or, better, temporary credentials from roles. Fewer long-term credentials mean less to leak. [Access keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#id_credentials_access-keys)
+Credentials prove who is calling AWS. People sign in to the console with passwords and MFA; programs use access keys or, better, temporary credentials from roles. Fewer long-term credentials mean less to leak.
 
 ### How it works
 
-1. **Passwords** sign people in to the console. An account password policy sets complexity and rotation for IAM users. [Password policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html#id_credentials_passwords_account-policy)
-2. **MFA** adds a device check to sign-in. Passkeys and security keys resist phishing best; authenticator apps generate time-based codes. [MFA](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html#id_credentials_mfa)
+1. **Passwords** sign people in to the console. An account password policy sets complexity and rotation for IAM users.
+2. **MFA** adds a device check to sign-in. Passkeys and security keys resist phishing best; authenticator apps generate time-based codes.
 3. **Access keys** sign CLI, SDK and API calls. They are long-term, so AWS prefers roles, which hand out temporary credentials.
 4. **Application secrets**, such as database passwords, belong in AWS Secrets Manager or Systems Manager Parameter Store, not in code.
 5. **Single sign-on:** IAM Identity Center signs a person in once, with MFA, to every account they are assigned.

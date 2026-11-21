@@ -16,7 +16,7 @@ cards:
     a: "The customer, who has full control of the HSM and its keys."
     facts: [dedicated-hsm]
 ---
-AWS CloudHSM gives you your own hardware security modules in AWS for storing keys and running cryptographic operations. [What is AWS CloudHSM?](https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html#introduction)
+AWS CloudHSM gives you your own hardware security modules in AWS for storing keys and running cryptographic operations.
 
 ### How it works
 

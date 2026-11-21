@@ -48,10 +48,10 @@ Amazon EFS operational settings control client access, storage transitions, and 
 
 ### How it works
 
-1. For a failed write, check the [IAM client actions](https://docs.aws.amazon.com/efs/latest/ug/iam-access-control-nfs-efs.html#efs-filesystempolicy-actions): `ClientMount` grants read-only access, `ClientWrite` authorizes writes, and `ClientRootAccess` authorizes root use. Check the [POSIX permissions](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html#accessing-fs-nfs-permissions) for the numeric user and group as well.
-2. For a failed access-point mount, check whether its [root directory exists](https://docs.aws.amazon.com/efs/latest/ug/enforce-root-directory-access-point.html#create-root-directory-access-point). If it does not, specify creation ownership and permissions so EFS can create it.
-3. Review the [lifecycle transition defaults](https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html#lifecycle-management-efs) for Infrequent Access (IA) and Archive. [Archive requires Elastic throughput](https://docs.aws.amazon.com/efs/latest/ug/features.html#storage-classes); an Archive transition policy prevents switching to Bursting or Provisioned throughput.
-4. For [cross-account replication](https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html#efs-replication-permissions), supply an IAM role and grant the configuring identity `iam:PassRole` to pass it.
+1. For a failed write, check the IAM client actions: `ClientMount` grants read-only access, `ClientWrite` authorizes writes, and `ClientRootAccess` authorizes root use. Check the POSIX permissions for the numeric user and group as well.
+2. For a failed access-point mount, check whether its root directory exists. If it does not, specify creation ownership and permissions so EFS can create it.
+3. Review the lifecycle transition defaults for Infrequent Access (IA) and Archive. Archive requires Elastic throughput; an Archive transition policy prevents switching to Bursting or Provisioned throughput.
+4. For cross-account replication, supply an IAM role and grant the configuring identity `iam:PassRole` to pass it.
 
 ### Exam cues
 

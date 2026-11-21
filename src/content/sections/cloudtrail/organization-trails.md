@@ -164,14 +164,14 @@ cards:
     facts:
       - organization-status
 ---
-An organization trail applies CloudTrail event collection across an AWS Organizations organization, a group of centrally managed AWS accounts. A delegated administrator is a member account authorized to manage CloudTrail organization resources. [AWS organization trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html#creating-trail-organization)
+An organization trail applies CloudTrail event collection across an AWS Organizations organization, a group of centrally managed AWS accounts. A delegated administrator is a member account authorized to manage CloudTrail organization resources.
 
 ### How it works
 
 1. The management account or a CloudTrail delegated administrator creates the organization trail and chooses the event selection and destinations.
 2. For enabled Regions, use a multi-Region trail. The console creates this type; the CLI also supports single-Region trails. If the home Region requires explicit opt-in, each member must enable it before contributing any activity.
 3. CloudTrail adds trail copies to member accounts. New members receive the trail and its required service-linked role, an IAM role used by the service, and logging starts automatically.
-4. Collect files in S3 under paths containing the organization and account IDs. Optionally add hourly signed digests and CloudWatch Logs delivery. That delivery needs permissions for organization log streams. [File paths](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/get-and-view-cloudtrail-log-files.html#get-and-view-cloudtrail-log-files) · [Organization log permissions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html#policy-cwl-org)
+4. Collect files in S3 under paths containing the organization and account IDs. Optionally add hourly signed digests and CloudWatch Logs delivery. That delivery needs permissions for organization log streams. File paths · Organization log permissions
 5. Inspect delivery status and destination permissions. The presence of a trail copy does not prove that its bucket or KMS configuration allows delivery.
 
 ### Exam cues

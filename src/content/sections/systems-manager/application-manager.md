@@ -119,14 +119,14 @@ cards:
     facts:
       - app-compliance
 ---
-Systems Manager Application Manager collects operations information for resources treated as one application. It helps existing users investigate problems with application context and run remediation. In July 2026 it entered maintenance mode: accounts that had not used it before July 30, 2026 cannot start using it, while existing customers can continue in established accounts. [Purpose](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager.html) · [Availability change](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager-availability-change.html)
+Systems Manager Application Manager collects operations information for resources treated as one application. It helps existing users investigate problems with application context and run remediation. In July 2026 it entered maintenance mode: accounts that had not used it before July 30, 2026 cannot start using it, while existing customers can continue in established accounts. Purpose · Availability change
 
 ### How it works
 
 1. For an established account, import supported resource metadata, meaning descriptive information about resources. Sources include CloudFormation stacks, Resource Groups, and ECS or EKS clusters. A stack is a set of resources managed from a CloudFormation template.
-2. Group resources into an application, a logical collection operated as a unit. A tag is a key-value label. Tag-based Resource Groups select by resource type and tag filters within a Region. [Application grouping](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager-getting-started-adding-applications.html) · [Resource selection](https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html)
+2. Group resources into an application, a logical collection operated as a unit. A tag is a key-value label. Tag-based Resource Groups select by resource type and tag filters within a Region. Application grouping · Resource selection
 3. Configure the source services so their monitoring, compliance, and operational records are available in the application view.
-4. Investigate the affected resource and run an authorized Automation runbook, a sequence of operational actions, when remediation is needed. CloudFormation integration also exposes stack and template management. [Required integrations](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager-getting-started-related-services.html)
+4. Investigate the affected resource and run an authorized Automation runbook, a sequence of operational actions, when remediation is needed. CloudFormation integration also exposes stack and template management.
 
 | Information or action | Source | Meaning |
 |---|---|---|
@@ -136,7 +136,7 @@ Systems Manager Application Manager collects operations information for resource
 | OpsItems | OpsCenter | Operational work records for investigation |
 | Remediation | Automation runbooks | Authorized actions against applicable resources |
 
-An association is a saved desired configuration linked to targets. Configure those associations and the other source services before expecting their information to appear. CloudWatch Logs integration applies to applications, not clusters. EKS visibility covers hosting infrastructure, not individual Pods or containers. [Integration boundaries](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager-getting-started-related-services.html)
+An association is a saved desired configuration linked to targets. Configure those associations and the other source services before expecting their information to appear. CloudWatch Logs integration applies to applications, not clusters. EKS visibility covers hosting infrastructure, not individual Pods or containers.
 
 ### Exam cues
 
@@ -149,6 +149,6 @@ An association is a saved desired configuration linked to targets. Configure tho
 
 - New-account access closed July 30, 2026. Existing users retain access; no new features or Regions are planned.
 - Existing `awsApplication` tags and AppManager groups remain usable.
-- Alternatives: Resource Groups for Regional grouping; Resource Explorer for cross-account and cross-Region discovery; CloudWatch Application Signals for application observability. [Maintenance mode and alternatives](https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager-availability-change.html)
+- Alternatives: Resource Groups for Regional grouping; Resource Explorer for cross-account and cross-Region discovery; CloudWatch Application Signals for application observability.
 
 > **Trap:** Maintenance mode is not a shutdown. Existing applications and the underlying Systems Manager APIs continue to work; deleting application tags is not required.

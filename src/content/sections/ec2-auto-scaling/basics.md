@@ -52,7 +52,7 @@ cards:
       - ebs
       - custom
 ---
-Amazon EC2 Auto Scaling adds and removes EC2 instances so capacity matches demand, which supports elasticity and availability. [What is Amazon EC2 Auto Scaling?](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html#what-is-amazon-ec2-auto-scaling)
+Amazon EC2 Auto Scaling adds and removes EC2 instances so capacity matches demand, which supports elasticity and availability.
 
 ### How it works
 

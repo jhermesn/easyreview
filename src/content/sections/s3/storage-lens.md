@@ -29,7 +29,7 @@ cards:
     a: "S3 Storage Lens provides storage usage and activity analytics with cost recommendations."
     facts: [what]
 ---
-S3 Storage Lens answers "what do we store, where, and are we following best practices?" across accounts and Regions, without scripts over S3 Inventory. [S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)
+S3 Storage Lens answers "what do we store, where, and are we following best practices?" across accounts and Regions, without scripts over S3 Inventory.
 
 ### How it works
 

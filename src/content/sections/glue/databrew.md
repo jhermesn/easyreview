@@ -20,7 +20,7 @@ cards:
     trap: true
     facts: [databrew]
 ---
-AWS Glue DataBrew is point-and-click data preparation: profile a dataset, spot quality problems and apply ready-made transformations, with no code and no clusters. [What is DataBrew?](https://docs.aws.amazon.com/databrew/latest/dg/what-is.html)
+AWS Glue DataBrew is point-and-click data preparation: profile a dataset, spot quality problems and apply ready-made transformations, with no code and no clusters.
 
 ### How it works
 

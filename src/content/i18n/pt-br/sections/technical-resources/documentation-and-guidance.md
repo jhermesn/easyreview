@@ -1,5 +1,5 @@
 ---
-source: 400468bef095
+source: dd44eaa0a247
 title: Documentação e orientação
 facts:
   knowledge-center: Para respostas a dúvidas comuns de solução de problemas, a AWS indica o AWS Knowledge Center.
@@ -31,15 +31,15 @@ cards:
     q: Onde um arquiteto de soluções encontra diagramas de arquitetura de referência da AWS?
     a: No AWS Architecture Center.
 ---
-A AWS publica recursos gratuitos de autoatendimento para aprender e resolver problemas. A maioria das dúvidas tem resposta em um deles antes de ser preciso abrir um caso de suporte. [Recursos de solução de problemas](https://docs.aws.amazon.com/awssupport/latest/user/troubleshooting.html#troubleshooting)
+A AWS publica recursos gratuitos de autoatendimento para aprender e resolver problemas. A maioria das dúvidas tem resposta em um deles antes de ser preciso abrir um caso de suporte.
 
 ### Como funciona
 
 1. **Documentação** de cada serviço, com tópicos de solução de problemas.
-2. Os artigos do **AWS Knowledge Center** respondem a dúvidas comuns. Eles ficam no **AWS re:Post**, com perguntas e artigos da comunidade. [Knowledge Center](https://aws.amazon.com/premiumsupport/knowledge-center/)
-3. **Whitepapers e guias** explicam conceitos e arquiteturas. [Whitepapers](https://aws.amazon.com/whitepapers/)
-4. O **AWS Prescriptive Guidance** traz padrões testados de migração, modernização e implantação, com passos e código. [Padrões do Prescriptive Guidance](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/welcome.html#welcome)
-5. O **AWS Security Blog** trata de temas e práticas de segurança. [AWS Security Blog](https://aws.amazon.com/blogs/security/)
+2. Os artigos do **AWS Knowledge Center** respondem a dúvidas comuns. Eles ficam no **AWS re:Post**, com perguntas e artigos da comunidade.
+3. **Whitepapers e guias** explicam conceitos e arquiteturas.
+4. O **AWS Prescriptive Guidance** traz padrões testados de migração, modernização e implantação, com passos e código.
+5. O **AWS Security Blog** trata de temas e práticas de segurança.
 
 | Necessidade | Recurso |
 |---|---|

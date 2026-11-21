@@ -34,7 +34,7 @@ cards:
     a: Business impact metrics such as revenue growth, tracked against a baseline from before the assistant launched.
     facts: [business-health]
 ---
-A model can score well and still fail the business. Production generative AI is judged on what users and the company get from it: tasks completed, satisfaction, cost and revenue. [Monitoring generative AI in production](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/prod-monitoring-performance.html)
+A model can score well and still fail the business. Production generative AI is judged on what users and the company get from it: tasks completed, satisfaction, cost and revenue.
 
 ### How it works
 

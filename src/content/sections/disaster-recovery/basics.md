@@ -24,7 +24,7 @@ cards:
     trap: true
     facts: [rto-rpo-basic]
 ---
-Disaster recovery (DR) is how a workload comes back after a major failure. The four AWS strategies trade cost against recovery speed. [Disaster recovery options in the cloud](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud)
+Disaster recovery (DR) is how a workload comes back after a major failure. The four AWS strategies trade cost against recovery speed.
 
 ### How it works
 

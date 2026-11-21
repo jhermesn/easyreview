@@ -1,5 +1,5 @@
 ---
-source: 4281cf334ac1
+source: df78a49d28a1
 title: Denúncia de abuso
 facts:
   report: Suspeitas de abuso de recursos da AWS são denunciadas pelo formulário de abuso da Amazon AWS ou, em denúncias automatizadas ou quando o formulário não puder ser usado, por e-mail para trustandsafety@support.aws.com.
@@ -22,7 +22,7 @@ cards:
     q: Qual documento da AWS lista as atividades proibidas nos serviços da AWS?
     a: A Política de Uso Aceitável da AWS (AWS Acceptable Use Policy). Abusos que a violam são denunciados à equipe AWS Trust & Safety.
 ---
-Quando um recurso da AWS é usado para abuso, como spam, ataques ou conteúdo ilegal, qualquer pessoa pode denunciá-lo à equipe AWS Trust & Safety. [Denunciar abuso de recursos da AWS](https://aws.amazon.com/premiumsupport/knowledge-center/report-aws-abuse/)
+Quando um recurso da AWS é usado para abuso, como spam, ataques ou conteúdo ilegal, qualquer pessoa pode denunciá-lo à equipe AWS Trust & Safety.
 
 ### Como funciona
 

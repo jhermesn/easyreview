@@ -37,7 +37,7 @@ cards:
     a: "Kinesis Video Streams for ingestion and a Rekognition Video stream processor that searches faces against a collection; its results reach a Kinesis data stream, where a consumer can raise the alert."
     facts: [rekognition-stream]
 ---
-Amazon Kinesis Video Streams is the video member of the Kinesis family. Kinesis Data Streams carries records; Kinesis Video Streams carries media from cameras and sensors, keeps it, and lets you play it back or process it. [What is Amazon Kinesis Video Streams?](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/what-is-kinesis-video.html)
+Amazon Kinesis Video Streams is the video member of the Kinesis family. Kinesis Data Streams carries records; Kinesis Video Streams carries media from cameras and sensors, keeps it, and lets you play it back or process it.
 
 ### How it works
 

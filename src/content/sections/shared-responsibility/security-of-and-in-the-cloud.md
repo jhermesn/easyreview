@@ -108,7 +108,7 @@ cards:
     a: "AWS decommissions it with its media destruction process. Disposing of physical media is part of AWS security of the cloud."
     facts: [media-destruction]
 ---
-AWS and the customer share security and compliance. AWS secures the cloud itself: facilities, hardware, network, and the host software that runs the services. The customer secures what it builds in the cloud. The customer's part grows or shrinks with the services it chooses. [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/)
+AWS and the customer share security and compliance. AWS secures the cloud itself: facilities, hardware, network, and the host software that runs the services. The customer secures what it builds in the cloud. The customer's part grows or shrinks with the services it chooses.
 
 ### How it works
 

@@ -45,10 +45,10 @@ AWS Serverless Application Repository public sharing and deployment involve requ
 
 ### How it works
 
-1. For public sharing, provide [`SemanticVersion` and `LicenseUrl`](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-how-to-publish.html#share-application).
-2. For a parent with nested applications, ensure the consumer has [permission to deploy the nested applications](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/application-deployment-permissions.html#application-deployment-permissions).
-3. Review the required capabilities. [Nested applications require `CAPABILITY_AUTO_EXPAND`, while IAM resources with custom names require `CAPABILITY_NAMED_IAM`](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/acknowledging-application-capabilities.html#acknowledging-application-capabilities).
-4. For CLI deployment, review `requiredCapabilities`, create a CloudFormation change set with the required capabilities, then [execute the change set](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-how-to-consume.html#acknowledging-application-capabilities-api) to deploy.
+1. For public sharing, provide `SemanticVersion` and `LicenseUrl`.
+2. For a parent with nested applications, ensure the consumer has permission to deploy the nested applications.
+3. Review the required capabilities.
+4. For CLI deployment, review `requiredCapabilities`, create a CloudFormation change set with the required capabilities, then execute the change set to deploy.
 
 ### Exam cues
 

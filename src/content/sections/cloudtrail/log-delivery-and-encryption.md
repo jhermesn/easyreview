@@ -142,14 +142,14 @@ cards:
     trap: true
     facts: [free-copy]
 ---
-CloudTrail sends audit logs to S3 and can also send selected events to CloudWatch Logs for monitoring. Server-side encryption means the destination encrypts stored files: SSE-KMS uses an AWS KMS key, while SSE-S3 uses keys managed by S3. [Delivery and encryption](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html#encrypting-cloudtrail-log-files-with-aws-kms)
+CloudTrail sends audit logs to S3 and can also send selected events to CloudWatch Logs for monitoring. Server-side encryption means the destination encrypts stored files: SSE-KMS uses an AWS KMS key, while SSE-S3 uses keys managed by S3.
 
 ### How it works
 
 1. Configure the trail destination and encryption. The trail creation console enables SSE-KMS by default; disabling it selects SSE-S3.
 2. For SSE-KMS, choose a key in the bucket Region and authorize CloudTrail to generate data keys and describe the key. Readers need S3 read access and KMS decrypt permission. A disabled key or incorrect key policy blocks delivery.
-3. For CloudWatch Logs, select a log group in the current account and trail home Region. A log group holds related event streams. Give CloudTrail a role it can assume with `logs:CreateLogStream` and `logs:PutLogEvents` on those streams. Include organization stream permissions for an organization trail. [Role policy](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-required-policy-for-cloudwatch-logs.html#cloudtrail-required-policy-for-cloudwatch-logs)
-4. Allow for delivery delay and inspect `eventTime` when reconstructing events. CloudTrail files have no guaranteed event order. The CloudWatch console time column shows delivery time. [CloudWatch delivery](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html#viewing-events-in-cloudwatch)
+3. For CloudWatch Logs, select a log group in the current account and trail home Region. A log group holds related event streams. Give CloudTrail a role it can assume with `logs:CreateLogStream` and `logs:PutLogEvents` on those streams. Include organization stream permissions for an organization trail.
+4. Allow for delivery delay and inspect `eventTime` when reconstructing events. CloudTrail files have no guaranteed event order. The CloudWatch console time column shows delivery time.
 5. If delivery fails, inspect `GetTrailStatus`. `LatestDeliveryError` reports S3 errors, while `LatestCloudWatchLogsDeliveryError` reports CloudWatch Logs errors. The S3 error field does not report request timeouts.
 
 ### Exam cues
@@ -161,7 +161,7 @@ CloudTrail sends audit logs to S3 and can also send selected events to CloudWatc
 ### Remember
 
 - S3 and CloudWatch Logs delivery average about 5 minutes; neither timing is guaranteed.
-- CloudTrail does not forward events larger than 256 KB to CloudWatch Logs or EventBridge. [CloudTrail forwarding limitation](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html#send-cloudtrail-events-to-cloudwatch-logs-limitations)
+- CloudTrail does not forward events larger than 256 KB to CloudWatch Logs or EventBridge.
 - The KMS key Region follows the S3 bucket Region.
 - CloudTrail retries delivery to a misconfigured S3 destination for 30 days; attempted deliveries are subject to standard CloudTrail charges.
 

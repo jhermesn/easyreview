@@ -101,7 +101,7 @@ cards:
     a: "Online evaluation, which samples live production sessions and scores them continuously. On-demand evaluation targets chosen traces, and batch evaluation runs one-off jobs over many sessions."
     facts: [evaluation-types]
 ---
-AgentCore is a set of building blocks for running agents in production: where they run, what they remember, which tools they reach, whose identity they use, what they're allowed to do and how well they perform. Use the pieces together or one at a time, with any framework or model. [What is AgentCore?](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)
+AgentCore is a set of building blocks for running agents in production: where they run, what they remember, which tools they reach, whose identity they use, what they're allowed to do and how well they perform. Use the pieces together or one at a time, with any framework or model.
 
 ### How it works
 

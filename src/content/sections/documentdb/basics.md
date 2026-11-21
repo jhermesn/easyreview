@@ -12,7 +12,7 @@ cards:
     a: "Amazon DocumentDB is a fully managed service for MongoDB-compatible workloads."
     facts: [mongo-compatible]
 ---
-Amazon DocumentDB is a managed document database compatible with MongoDB. [What is Amazon DocumentDB?](https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is)
+Amazon DocumentDB is a managed document database compatible with MongoDB.
 
 ### How it works
 

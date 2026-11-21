@@ -41,7 +41,7 @@ cards:
     a: "The customer. They provide physical security, power, cooling and network at the site; AWS manages the rack hardware, hypervisor and services."
     facts: [outposts-responsibility]
 ---
-AWS Outposts puts AWS hardware in your data center. You run AWS services there with the same APIs and tools as in a Region, for workloads that need low latency to on-premises systems or must process data locally. [What is AWS Outposts?](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html#what-is-outposts)
+AWS Outposts puts AWS hardware in your data center. You run AWS services there with the same APIs and tools as in a Region, for workloads that need low latency to on-premises systems or must process data locally.
 
 ### How it works
 

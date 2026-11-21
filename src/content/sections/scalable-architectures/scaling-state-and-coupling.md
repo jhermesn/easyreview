@@ -54,7 +54,7 @@ cards:
     a: "Replacing servers at will and scaling horizontally, because any instance or Lambda function can serve any request."
     facts: [stateless]
 ---
-Most SAA architecture questions test the same ideas: scale out instead of up, keep compute stateless, and decouple tiers so one slow or failed part doesn't take down the rest. [Reliability design principles](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel-dp.html)
+Most SAA architecture questions test the same ideas: scale out instead of up, keep compute stateless, and decouple tiers so one slow or failed part doesn't take down the rest.
 
 ### How it works
 

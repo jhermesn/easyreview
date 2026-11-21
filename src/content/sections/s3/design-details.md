@@ -78,11 +78,11 @@ S3 design choices depend on object size, archive controls and website naming. Ch
 
 ### How it works
 
-1. Standard has no minimum billable object size or storage duration. One Zone-IA adds per-GB retrieval fees, while Standard has no per-GB retrieval fee. For small objects in Standard-IA or One Zone-IA, account for the [minimum billed object size and storage duration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-compare).
-2. For S3 Intelligent-Tiering, objects smaller than 128 KB stay in Frequent Access without automatic tiering or a [monitoring and automation fee](https://aws.amazon.com/s3/pricing/).
-3. For Glacier Flexible Retrieval or Deep Archive, include the [metadata billed for each archived object](https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html).
-4. For an existing standalone Amazon Glacier vault, a [Vault Lock policy](https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html#vault-lock-overview) can enforce write-once-read-many (WORM) controls. Once locked, the policy cannot be changed or deleted. The standalone service is [closed to new customers](https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html); AWS recommends S3 Glacier storage classes.
-5. For an S3 static website using a Route 53 alias, [match the bucket name to the custom domain](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html#website-hosting-custom-domain-walkthrough), such as `example.com`.
+1. Standard has no minimum billable object size or storage duration. One Zone-IA adds per-GB retrieval fees, while Standard has no per-GB retrieval fee. For small objects in Standard-IA or One Zone-IA, account for the minimum billed object size and storage duration.
+2. For S3 Intelligent-Tiering, objects smaller than 128 KB stay in Frequent Access without automatic tiering or a monitoring and automation fee.
+3. For Glacier Flexible Retrieval or Deep Archive, include the metadata billed for each archived object.
+4. For an existing standalone Amazon Glacier vault, a Vault Lock policy can enforce write-once-read-many (WORM) controls. Once locked, the policy cannot be changed or deleted. The standalone service is closed to new customers; AWS recommends S3 Glacier storage classes.
+5. For an S3 static website using a Route 53 alias, match the bucket name to the custom domain, such as `example.com`.
 
 ### Exam cues
 

@@ -154,7 +154,7 @@ Disaster recovery questions give a recovery time and a budget, then ask for the 
 ### How it works
 
 1. One CloudFormation template, deployed to both Regions through a StackSet, keeps the DR Region identical to production at a smaller size.
-2. A Route 53 health check watches the primary load balancer, and failover routing answers with the primary Region while it is healthy. [Active-passive failover](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-types.html)
+2. A Route 53 health check watches the primary load balancer, and failover routing answers with the primary Region while it is healthy.
 3. Aurora Global Database keeps a read-only cluster in the DR Region, and S3 Cross-Region Replication copies objects to a versioned bucket there.
 4. AWS Backup copies recovery points to a vault in the DR Region, so a restore point survives even when bad data replicates.
 5. When the primary fails its health check, Route 53 answers with the DR Region. The standby takes traffic at once and scales out.

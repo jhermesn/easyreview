@@ -91,7 +91,7 @@ cards:
     a: "Require IMDSv2 on the first instance and disable IMDS on the second through instance metadata options."
     facts: [imdsv2]
 ---
-Three EC2 features that change how an instance starts and how you reach it: hibernation keeps memory across a stop, user data configures the first boot, and Instance Connect replaces long-lived SSH keys. [Hibernate your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
+Three EC2 features that change how an instance starts and how you reach it: hibernation keeps memory across a stop, user data configures the first boot, and Instance Connect replaces long-lived SSH keys.
 
 ### How it works
 

@@ -107,10 +107,10 @@ Amazon Redshift is a managed cloud data warehouse for SQL analytics and business
 
 ### How it works
 
-1. Choose a provisioned cluster for manual resource management or [Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome) for automatically provisioned and scaled warehouse capacity.
-2. Redshift uses [massively parallel processing](https://docs.aws.amazon.com/redshift/latest/dg/c_challenges_achieving_high_performance_queries.html#massively-parallel-processing) (MPP): compute nodes run query segments on parts of the data. [Redshift ML](https://docs.aws.amazon.com/redshift/latest/dg/machine_learning.html#machine_learning) lets analysts create, train and run models with SQL, using SageMaker AI to create the model.
-3. [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum) queries S3 files directly. The cluster and files must be in the [same Region](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum-prerequisites). Spectrum cannot use [enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html#enhanced-vpc-routing).
-4. Redshift takes [automated snapshots](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html#about-automated-snapshots). Enable [cross-Region snapshot copy](https://docs.aws.amazon.com/redshift/latest/mgmt/cross-region-snapshot-copy.html#cross-region-snapshot-copy) to copy cluster snapshots to another Region for restoration if the primary Region fails.
+1. Choose a provisioned cluster for manual resource management or Redshift Serverless for automatically provisioned and scaled warehouse capacity.
+2. Redshift uses massively parallel processing (MPP): compute nodes run query segments on parts of the data. Redshift ML lets analysts create, train and run models with SQL, using SageMaker AI to create the model.
+3. Redshift Spectrum queries S3 files directly. The cluster and files must be in the same Region. Spectrum cannot use enhanced VPC routing.
+4. Redshift takes automated snapshots. Enable cross-Region snapshot copy to copy cluster snapshots to another Region for restoration if the primary Region fails.
 
 ### Exam cues
 

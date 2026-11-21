@@ -167,7 +167,7 @@ cards:
     facts: [cluster-endpoint-roles]
 ---
 
-Multi-AZ keeps database copies in separate Availability Zones (AZs), which are isolated locations within an AWS Region. It lets RDS move database service to another AZ after an infrastructure failure. The [RDS deployment models](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html#Concepts.MultiAZ) differ in whether their standby copies can serve reads.
+Multi-AZ keeps database copies in separate Availability Zones (AZs), which are isolated locations within an AWS Region. It lets RDS move database service to another AZ after an infrastructure failure. The RDS deployment models differ in whether their standby copies can serve reads.
 
 ### How it works
 

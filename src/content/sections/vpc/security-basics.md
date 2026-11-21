@@ -93,7 +93,7 @@ cards:
     a: "No. Associate the custom ACL with the subnet to apply its rules; creation alone changes no subnet association."
     facts: [acl-subnet]
 ---
-A VPC has two built-in network filters: security groups around instances and network ACLs around subnets. [Security groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups)
+A VPC has two built-in network filters: security groups around instances and network ACLs around subnets.
 
 ### How it works
 

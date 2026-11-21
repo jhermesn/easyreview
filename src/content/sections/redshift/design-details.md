@@ -56,16 +56,16 @@ cards:
     a: "Columnar storage. Redshift reads the needed columns without loading every field in each row."
     facts: [columnar-storage]
 ---
-Amazon Redshift is a [managed cloud data warehouse](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome) for SQL and business intelligence tools. Its loading, query, network and deployment choices determine how it accesses data and handles an Availability Zone failure.
+Amazon Redshift is a managed cloud data warehouse for SQL and business intelligence tools. Its loading, query, network and deployment choices determine how it accesses data and handles an Availability Zone failure.
 
 Redshift uses columnar storage: it stores values by column so analytical queries that read a subset of columns need fewer disk reads.
 
 ### How it works
 
-1. Use [COPY](https://docs.aws.amazon.com/redshift/latest/dg/t_Loading_tables_with_the_COPY_command.html#t_Loading_tables_with_the_COPY_command) to load data from sources such as Amazon S3 into Redshift tables in parallel. Redshift needs permission to access the source.
-2. To query S3 files directly, use [Redshift Spectrum](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum). Give the cluster an [IAM role](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum-create-role) for the external data catalog and S3 files, then create an [external schema and external table](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum-steps) before querying.
-3. Enable [enhanced VPC routing](https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html#enhanced-vpc-routing) to send COPY and UNLOAD traffic between the cluster and data repositories through its virtual private cloud (VPC). Configure a network path to the data resource so the commands can reach it.
-4. For a zone failure, a [Multi-AZ deployment](https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-multi-az.html#managing-cluster-multi-az) runs compute in two Availability Zones so the warehouse can keep working.
+1. Use COPY to load data from sources such as Amazon S3 into Redshift tables in parallel. Redshift needs permission to access the source.
+2. To query S3 files directly, use Redshift Spectrum. Give the cluster an IAM role for the external data catalog and S3 files, then create an external schema and external table before querying.
+3. Enable enhanced VPC routing to send COPY and UNLOAD traffic between the cluster and data repositories through its virtual private cloud (VPC). Configure a network path to the data resource so the commands can reach it.
+4. For a zone failure, a Multi-AZ deployment runs compute in two Availability Zones so the warehouse can keep working.
 
 ### Exam cues
 

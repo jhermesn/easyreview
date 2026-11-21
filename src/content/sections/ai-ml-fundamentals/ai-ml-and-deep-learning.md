@@ -54,7 +54,7 @@ cards:
     a: An agentic system works toward a goal on its own, planning steps and taking actions (calling tools) without a prompt for each step.
     facts: [agentic]
 ---
-Artificial intelligence (AI) is the broad goal of making machines solve problems the way people do. Machine learning (ML) is the part of AI where a system learns from data; deep learning is ML with many-layered neural networks; generative AI uses deep learning to create new content. Picture four nested circles. [What is AI?](https://aws.amazon.com/what-is/artificial-intelligence/)
+Artificial intelligence (AI) is the broad goal of making machines solve problems the way people do. Machine learning (ML) is the part of AI where a system learns from data; deep learning is ML with many-layered neural networks; generative AI uses deep learning to create new content. Picture four nested circles.
 
 ### How it works
 

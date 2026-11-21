@@ -40,7 +40,7 @@ cards:
     trap: true
     facts: [same-code, cql]
 ---
-Amazon Keyspaces is the managed home for Cassandra workloads: the same CQL, drivers and tools, with AWS handling servers, scaling and replication. [What is Amazon Keyspaces?](https://docs.aws.amazon.com/keyspaces/latest/devguide/what-is-keyspaces.html)
+Amazon Keyspaces is the managed home for Cassandra workloads: the same CQL, drivers and tools, with AWS handling servers, scaling and replication.
 
 ### How it works
 

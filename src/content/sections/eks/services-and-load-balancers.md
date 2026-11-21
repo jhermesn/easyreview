@@ -185,7 +185,7 @@ diagrams:
         label: direct Pod IP
     steps: []
 ---
-A Kubernetes Service gives application Pods a traffic destination while individual Pods change. The AWS Load Balancer Controller watches Service and Ingress objects and creates AWS load balancers for them. An Ingress describes application routing, such as HTTP paths. [Controller behavior](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
+A Kubernetes Service gives application Pods a traffic destination while individual Pods change. The AWS Load Balancer Controller watches Service and Ingress objects and creates AWS load balancers for them. An Ingress describes application routing, such as HTTP paths.
 
 ### How it works
 
@@ -193,7 +193,7 @@ A Kubernetes Service gives application Pods a traffic destination while individu
 2. Ensure the intended controller manages the object. An annotation is configuration attached to a Kubernetes resource; controller annotations choose target mode and placement.
 3. Select the target type, meaning what the load balancer registers as a destination. Instance targets receive traffic at NodePort, a port exposed on a worker node, before Kubernetes forwards it to a Pod. IP targets receive traffic directly at Pod addresses.
 4. Provide eligible subnets and choose internal or internet-facing placement. A subnet is a network address range within an AZ. Auto-discovery uses role tags unless subnet IDs are specified explicitly.
-5. During rollout, coordinate new target registration with a Pod readiness gate, an additional condition for accepting a Pod as ready. It can wait for load balancer health before old Pods are removed. [Target paths and readiness gates](https://docs.aws.amazon.com/eks/latest/best-practices/load-balancing.html)
+5. During rollout, coordinate new target registration with a Pod readiness gate, an additional condition for accepting a Pod as ready. It can wait for load balancer health before old Pods are removed.
 
 | Resource or target choice | Result | Selection cue |
 |---|---|---|
@@ -202,7 +202,7 @@ A Kubernetes Service gives application Pods a traffic destination while individu
 | Instance target | NodePort, then Pod forwarding | ALB default; Service must expose NodePort or LoadBalancer |
 | IP target | Direct Pod traffic and health checks | Required for Fargate targets |
 
-For ALB Pod targets, set `alb.ingress.kubernetes.io/target-type: ip`. For NLB Pod targets, set `service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip`. ClusterIP is the Service's internal address; direct IP targeting bypasses that forwarding hop. [ALB settings](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) · [NLB settings](https://docs.aws.amazon.com/eks/latest/userguide/network-load-balancing.html)
+For ALB Pod targets, set `alb.ingress.kubernetes.io/target-type: ip`. For NLB Pod targets, set `service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip`. ClusterIP is the Service's internal address; direct IP targeting bypasses that forwarding hop. ALB settings · NLB settings
 
 ### Exam cues
 

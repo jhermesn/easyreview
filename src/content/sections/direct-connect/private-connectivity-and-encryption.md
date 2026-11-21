@@ -96,7 +96,7 @@ AWS Direct Connect links an internal network to AWS without using internet servi
 
 1. Connect your network to a Direct Connect location. A virtual interface is a logical connection to an AWS destination.
 2. If encryption is required, use Site-to-Site VPN tunnels, encrypted links using IPsec, over a public interface, or MACsec, link-level encryption, on a supported connection. IPsec encrypts between VPN endpoints; MACsec encrypts the link between the customer device and the Direct Connect device.
-3. To encrypt traffic without public IP addresses, use private IP Site-to-Site VPN over Direct Connect. For active and passive private virtual interfaces, use local preference Border Gateway Protocol (BGP) communities to influence route selection. [Private IP VPN](https://docs.aws.amazon.com/vpn/latest/s2svpn/private-ip-dx.html) and [routing](https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html)
+3. To encrypt traffic without public IP addresses, use private IP Site-to-Site VPN over Direct Connect. For active and passive private virtual interfaces, use local preference Border Gateway Protocol (BGP) communities to influence route selection. Private IP VPN and routing
 
 ### Exam cues
 

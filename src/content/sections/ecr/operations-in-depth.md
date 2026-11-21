@@ -42,9 +42,9 @@ Amazon ECR supports tag exclusions, public image access and image push triggers 
 
 ### How it works
 
-1. Choose an [exclusion setting](https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html#image-tag-mutability). With `IMMUTABLE_WITH_EXCLUSION`, matching tags can be updated. With `MUTABLE_WITH_EXCLUSION`, matching tags are protected from updates.
-2. Anyone can pull from a [public repository](https://docs.aws.amazon.com/AmazonECR/latest/public/public-registries.html#public-registries). To push, authenticate the Docker client and have the required permissions.
-3. Use an [ECR source action](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECR.html) to trigger CodePipeline on an image push. Add another source action when the pipeline also needs deployment files from source control.
+1. Choose an exclusion setting. With `IMMUTABLE_WITH_EXCLUSION`, matching tags can be updated. With `MUTABLE_WITH_EXCLUSION`, matching tags are protected from updates.
+2. Anyone can pull from a public repository. To push, authenticate the Docker client and have the required permissions.
+3. Use an ECR source action to trigger CodePipeline on an image push. Add another source action when the pipeline also needs deployment files from source control.
 
 ### Exam cues
 

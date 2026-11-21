@@ -78,11 +78,11 @@ AWS WAF rate-based rules and logging have settings that affect how requests are 
 
 ### How it works
 
-1. Choose a rate evaluation window and limit. A rate-based rule can use any rule action except Allow. See [rate-based rule settings](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-high-level-settings.html).
-2. Check the custom aggregation key, the request components used to group requests. A request missing any required component is omitted from that rule's evaluation. See [aggregation options](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-aggregation-options.html).
-3. Plan changes to a live rule: changing rate settings resets its counts and can pause rate limiting for up to one minute. See [rate-based rule caveats](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-rate-based-caveats.html).
-4. Name a logging destination with the required prefix. Logging redaction does not affect request sampling; web ACL data protection can exclude fields from sampling. See [S3 logging](https://docs.aws.amazon.com/waf/latest/developerguide/logging-s3.html) and [WAF logging](https://docs.aws.amazon.com/waf/latest/developerguide/logging.html).
-5. For a tailored Block response, configure its response code, headers and body in place of the default 403 Forbidden. See [custom responses](https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html).
+1. Choose a rate evaluation window and limit. A rate-based rule can use any rule action except Allow. See rate-based rule settings.
+2. Check the custom aggregation key, the request components used to group requests. A request missing any required component is omitted from that rule's evaluation. See aggregation options.
+3. Plan changes to a live rule: changing rate settings resets its counts and can pause rate limiting for up to one minute. See rate-based rule caveats.
+4. Name a logging destination with the required prefix. Logging redaction does not affect request sampling; web ACL data protection can exclude fields from sampling. See S3 logging and WAF logging.
+5. For a tailored Block response, configure its response code, headers and body in place of the default 403 Forbidden. See custom responses.
 
 ### Exam cues
 

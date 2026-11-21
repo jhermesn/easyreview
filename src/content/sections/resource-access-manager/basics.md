@@ -25,7 +25,7 @@ cards:
     a: "AWS RAM shares access to an owned resource. AWS CloudFormation StackSets deploys stacks from a template across accounts and Regions."
     facts: [ram-purpose, ram-ownership, stacksets-deploy]
 ---
-AWS Resource Access Manager (RAM) lets accounts share resources instead of creating copies in each account. [What is AWS Resource Access Manager?](https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is)
+AWS Resource Access Manager (RAM) lets accounts share resources instead of creating copies in each account.
 
 ### How it works
 

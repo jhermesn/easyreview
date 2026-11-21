@@ -44,7 +44,7 @@ cards:
     trap: true
     facts: [cause, rag]
 ---
-Hallucinations can't be switched off, but they can be made rare and caught. Ground the model in real data, tell it to admit uncertainty, check its answers against the source, and keep people reviewing high-stakes output. [Model hallucinations and output integrity](https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-data-considerations-gen-ai/security.html#security-quality)
+Hallucinations can't be switched off, but they can be made rare and caught. Ground the model in real data, tell it to admit uncertainty, check its answers against the source, and keep people reviewing high-stakes output.
 
 ### How it works
 

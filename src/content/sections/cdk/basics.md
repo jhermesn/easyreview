@@ -12,7 +12,7 @@ cards:
     a: "The AWS CDK, which turns that code into CloudFormation deployments."
     facts: [iac-code]
 ---
-The AWS CDK lets developers describe infrastructure in a programming language and deploys it with CloudFormation. [What is the AWS CDK?](https://docs.aws.amazon.com/cdk/v2/guide/home.html#home)
+The AWS CDK lets developers describe infrastructure in a programming language and deploys it with CloudFormation.
 
 ### How it works
 

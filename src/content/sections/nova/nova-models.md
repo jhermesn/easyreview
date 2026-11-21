@@ -75,7 +75,7 @@ cards:
     a: "An invisible watermark that watermark detection tools can check."
     facts: [canvas-watermark]
 ---
-Amazon Nova is Amazon's own model family in Amazon Bedrock. Pick by modality and size: Micro for fast text, Lite and Pro for multimodal understanding, Premier for the hardest tasks, Canvas and Reel to create images and video, and Sonic for speech. [What is Amazon Nova?](https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html)
+Amazon Nova is Amazon's own model family in Amazon Bedrock. Pick by modality and size: Micro for fast text, Lite and Pro for multimodal understanding, Premier for the hardest tasks, Canvas and Reel to create images and video, and Sonic for speech.
 
 ### How it works
 

@@ -186,14 +186,14 @@ cards:
     facts:
       - theory-limits
 ---
-Availability calculations depend on what must work together. A hard dependency must work for the workload to perform its function. A soft dependency can fail while the application compensates. Redundant components are alternatives that can keep the function available when another component fails. [AWS dependency model](https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html#availability-with-dependencies) · [Redundancy model](https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-redundancy.html#availability-with-redundancy)
+Availability calculations depend on what must work together. A hard dependency must work for the workload to perform its function. A soft dependency can fail while the application compensates. Redundant components are alternatives that can keep the function available when another component fails. AWS dependency model · Redundancy model
 
 ### How it works
 
 1. Identify required components, including the application itself. For independent hard dependencies, multiply their availability fractions.
 2. Identify alternatives that can each handle the workload alone. Calculate the probability that all alternatives fail by multiplying their independent failure probabilities, then subtract that value from one.
 3. Check the independence assumption. An Availability Zone is a shared failure boundary: its resources can fail together. Redundancy needs failure detection, work shifting and enough healthy capacity.
-4. If a component has no published availability guidance, estimate it from mean time between failures, or MTBF, and mean time to recover, or MTTR. Use `MTBF / (MTBF + MTTR)`, with both durations in the same unit. [AWS formulas](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability)
+4. If a component has no published availability guidance, estimate it from mean time between failures, or MTBF, and mean time to recover, or MTTR. Use `MTBF / (MTBF + MTTR)`, with both durations in the same unit.
 
 | Arrangement | Calculation with availability fractions | Example |
 |---|---|---|
@@ -212,6 +212,6 @@ Availability calculations depend on what must work together. A hard dependency m
 - Three independent required components at 99.99% each give approximately 99.97% theoretical availability.
 - Two independent alternatives at 99.9% each give 99.9999% theoretical availability.
 - The nines shortcut adds nines only for independent redundant alternatives whose percentages consist entirely of nines.
-- Calculations based on SLA or SLO figures are rough estimates. An SLO, or service-level objective, is an availability goal. [Limits of SLA-based estimates](https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html#availability-with-dependencies)
+- Calculations based on SLA or SLO figures are rough estimates. An SLO, or service-level objective, is an availability goal.
 
 > **Trap:** Two copies do not automatically justify the independent-redundancy formula. Shared failure boundaries, failure detection and surviving capacity must fit the model.

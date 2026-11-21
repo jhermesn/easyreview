@@ -52,7 +52,7 @@ cards:
       - insights-errors
       - insights-opt-in
 ---
-AWS CloudTrail is the audit log of an AWS account: it records who did what, when and from where through the console, CLI, SDKs and APIs. [What is AWS CloudTrail?](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html#cloudtrail-user-guide)
+AWS CloudTrail is the audit log of an AWS account: it records who did what, when and from where through the console, CLI, SDKs and APIs.
 
 ### How it works
 

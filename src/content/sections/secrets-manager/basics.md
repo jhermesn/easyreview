@@ -12,7 +12,7 @@ cards:
     a: "AWS Secrets Manager."
     facts: [store-rotate]
 ---
-AWS Secrets Manager keeps secrets out of code: applications fetch them at run time, and Secrets Manager can rotate them on a schedule. [What is AWS Secrets Manager?](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html#intro)
+AWS Secrets Manager keeps secrets out of code: applications fetch them at run time, and Secrets Manager can rotate them on a schedule.
 
 ### How it works
 

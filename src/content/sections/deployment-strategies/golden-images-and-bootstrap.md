@@ -299,7 +299,7 @@ cards:
     facts: [instance-metadata, user-data]
 ---
 
-A golden AMI is a reusable EC2 launch image prepared with the software and settings an application needs. Prebaking puts application components into that image. Bootstrapping runs installation or configuration when an instance starts. [AWS deployment guidance](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/prebaking-vs.-bootstrapping-amis.html) recommends combining the two when instances need both quick startup and environment-specific customization.
+A golden AMI is a reusable EC2 launch image prepared with the software and settings an application needs. Prebaking puts application components into that image. Bootstrapping runs installation or configuration when an instance starts. AWS deployment guidance recommends combining the two when instances need both quick startup and environment-specific customization.
 
 ### How it works
 

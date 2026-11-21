@@ -53,13 +53,13 @@ cards:
     trap: true
     facts: [auditors, own-documents]
 ---
-AWS Artifact is a free portal in the AWS console for compliance documents. It provides reports and certifications about AWS's own controls, which customers hand to auditors. It also manages legal agreements with AWS. [What is AWS Artifact?](https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html#what-is-aws-artifact)
+AWS Artifact is a free portal in the AWS console for compliance documents. It provides reports and certifications about AWS's own controls, which customers hand to auditors. It also manages legal agreements with AWS.
 
 ### How it works
 
 1. **Artifact Reports:** download AWS compliance reports and certifications, such as SOC, ISO and PCI. Third parties audit them.
 2. Give them to auditors or regulators as evidence about the AWS side, or use them to evaluate your own controls.
-3. **Artifact Agreements:** review, accept and track agreements with AWS, such as the HIPAA Business Associate Addendum. Accept them for one account or for a whole organization. [Managing agreements](https://docs.aws.amazon.com/artifact/latest/ug/managing-agreements.html#managing-agreements)
+3. **Artifact Agreements:** review, accept and track agreements with AWS, such as the HIPAA Business Associate Addendum. Accept them for one account or for a whole organization.
 
 ### Exam cues
 

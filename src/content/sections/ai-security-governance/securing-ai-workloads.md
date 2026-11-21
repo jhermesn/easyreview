@@ -55,7 +55,7 @@ cards:
     trap: true
     facts: [scopes, matrix]
 ---
-Securing AI starts by asking how much of the solution you own. The Generative AI Security Scoping Matrix answers that in five scopes, and the controls follow: least privilege, private networking, encryption and data policies. [Generative AI Security Scoping Matrix](https://aws.amazon.com/ai/generative-ai/security/scoping-matrix/)
+Securing AI starts by asking how much of the solution you own. The Generative AI Security Scoping Matrix answers that in five scopes, and the controls follow: least privilege, private networking, encryption and data policies.
 
 ### How it works
 

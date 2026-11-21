@@ -137,14 +137,14 @@ diagrams:
       - Users reach the nearest edge location, which answers from its cache when it can.
       - On a cache miss, the edge location fetches the content from the origin in the Region.
 ---
-The AWS global infrastructure has three building blocks. A Region is a geographic area. Inside it, Availability Zones (AZs) are isolated groups of data centers. Edge locations, outside the Regions, deliver content close to users. [Regions](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/regions.html#regions) · [Availability Zones](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/availability-zones.html#availability-zones)
+The AWS global infrastructure has three building blocks. A Region is a geographic area. Inside it, Availability Zones (AZs) are isolated groups of data centers. Edge locations, outside the Regions, deliver content close to users. Regions · Availability Zones
 
 ### How it works
 
 1. You pick a Region for each resource. Regions are isolated from each other, and data stays in its Region unless you copy it.
 2. Inside the Region, you spread resources over two or more AZs. Each AZ has its own power, networking and connectivity, and AZs share no generators or cooling.
 3. AZs are close enough for synchronous replication, so a database or load-balanced fleet can span them.
-4. Edge locations cache content for Amazon CloudFront near users; on a miss they fetch it from the origin in the Region. [How CloudFront delivers content](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html#HowCloudFrontWorksContentDelivery)
+4. Edge locations cache content for Amazon CloudFront near users; on a miss they fetch it from the origin in the Region.
 
 | Building block | What it is | Used for |
 |---|---|---|

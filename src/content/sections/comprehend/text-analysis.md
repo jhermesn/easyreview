@@ -41,13 +41,13 @@ cards:
     a: "Amazon Comprehend Medical, the clinical-text version of Comprehend."
     facts: [comprehend-medical]
 ---
-Amazon Comprehend reads text and tells you what's in it: the people, places and organizations mentioned, key phrases, the language and the sentiment. It needs no machine learning expertise. [What is Amazon Comprehend?](https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html#what-is)
+Amazon Comprehend reads text and tells you what's in it: the people, places and organizations mentioned, key phrases, the language and the sentiment. It needs no machine learning expertise.
 
 ### How it works
 
 1. Send text to the API, or start a job over documents in Amazon S3.
 2. Comprehend returns entities, key phrases, language and sentiment.
-3. For clinical text, use [Amazon Comprehend Medical](https://docs.aws.amazon.com/comprehend-medical/latest/dev/comprehendmedical-welcome.html#comprehendmedical-welcome) to detect medical information such as conditions and medications.
+3. For clinical text, use Amazon Comprehend Medical to detect medical information such as conditions and medications.
 
 ### Exam cues
 

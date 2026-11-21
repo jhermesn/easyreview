@@ -48,7 +48,7 @@ cards:
     a: "Amazon Polly converts text to speech and supports multiple languages and voices."
     facts: [purpose]
 ---
-Amazon Polly reads text out loud in natural-sounding voices, in many languages. It's used for accessibility, e-learning, newsreaders and voice responses. [What is Amazon Polly?](https://docs.aws.amazon.com/polly/latest/dg/what-is.html#what-is)
+Amazon Polly reads text out loud in natural-sounding voices, in many languages. It's used for accessibility, e-learning, newsreaders and voice responses.
 
 ### How it works
 

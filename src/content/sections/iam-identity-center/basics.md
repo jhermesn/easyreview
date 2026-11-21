@@ -12,7 +12,7 @@ cards:
     a: "AWS IAM Identity Center."
     facts: [workforce-access]
 ---
-AWS IAM Identity Center gives employees single sign-on to AWS accounts and applications. [What is IAM Identity Center?](https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#what-is)
+AWS IAM Identity Center gives employees single sign-on to AWS accounts and applications.
 
 ### How it works
 

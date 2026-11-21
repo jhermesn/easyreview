@@ -43,7 +43,7 @@ cards:
     a: "A tools configuration in the saved prompt, for a model that supports tool use."
     facts: [prompt-tools]
 ---
-Prompts are part of an application's code and deserve the same care: Amazon Bedrock Prompt Management stores them with variables, compares variants and keeps versions, and Flows wires prompts into larger workflows. [Prompt Management](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html)
+Prompts are part of an application's code and deserve the same care: Amazon Bedrock Prompt Management stores them with variables, compares variants and keeps versions, and Flows wires prompts into larger workflows.
 
 ### How it works
 

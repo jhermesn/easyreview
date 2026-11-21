@@ -24,7 +24,7 @@ cards:
     trap: true
     facts: [multi-az-basic, read-replica-basic]
 ---
-Amazon RDS improves availability with Multi-AZ standbys and scales reads with read replicas. [Multi-AZ deployments](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html#Concepts.MultiAZ)
+Amazon RDS improves availability with Multi-AZ standbys and scales reads with read replicas.
 
 ### How it works
 

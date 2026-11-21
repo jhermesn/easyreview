@@ -109,13 +109,13 @@ cards:
     facts:
       - multi-destination
 ---
-Amazon S3 stores data as objects in buckets. It is built for any amount of data with very high durability, so it is the default place on AWS for files, backups, data lakes and static website content. [What is Amazon S3?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html#Welcome)
+Amazon S3 stores data as objects in buckets. It is built for any amount of data with very high durability, so it is the default place on AWS for files, backups, data lakes and static website content.
 
 ### How it works
 
 1. Create a bucket in a Region.
 2. Upload objects. Each one is a file plus metadata, identified by a key.
-3. S3 stores each object across at least three Availability Zones in most storage classes. [Data protection in Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DataDurability.html#DataDurability)
+3. S3 stores each object across at least three Availability Zones in most storage classes.
 4. Grant access explicitly with policies; everything starts private.
 
 | Storage type | AWS example | Holds |

@@ -135,10 +135,10 @@ AWS Certificate Manager (ACM) supports different validation and certificate life
 
 ### How it works
 
-1. Choose domain validation. [HTTP validation](https://docs.aws.amazon.com/acm/latest/userguide/http-validation.html) is available through [CloudFront Distribution Tenants](https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate-characteristics.html), but it does not support wildcards. [DNS validation](https://docs.aws.amazon.com/acm/latest/userguide/dns-validation.html) proves control through ACM-provided CNAME records in public DNS.
-2. For an existing email-validated public certificate, use `UpdateCertificateOptions` to switch to DNS without changing its Amazon Resource Name (ARN). Add the CNAME records within 72 hours. [Email-to-DNS migration](https://aws.amazon.com/about-aws/whats-new/2026/08/AWS-Certificate-Manager-Email-DNS-Switch/)
-3. To allow public certificate export, set `CertificateOptions.Export` to `ENABLED` at creation. The setting cannot change later. An export contains the certificate, its chain and a private key encrypted with a passphrase. Private certificate exports also contain an encrypted private key. [Export option](https://docs.aws.amazon.com/acm/latest/APIReference/API_CertificateOptions.html), [public export](https://docs.aws.amazon.com/acm/latest/userguide/export-public-certificate.html), [private export](https://docs.aws.amazon.com/acm/latest/userguide/export-private.html)
-4. For ACM with an ACME client, the client generates and holds the private key and manages public certificate renewal. ACME-issued certificates cannot bind to AWS integrated services and do not use ACM managed renewal. [Issuance options](https://docs.aws.amazon.com/acm/latest/userguide/service-options.html), [managed renewal](https://docs.aws.amazon.com/acm/latest/userguide/managed-renewal.html)
+1. Choose domain validation. HTTP validation is available through CloudFront Distribution Tenants, but it does not support wildcards. DNS validation proves control through ACM-provided CNAME records in public DNS.
+2. For an existing email-validated public certificate, use `UpdateCertificateOptions` to switch to DNS without changing its Amazon Resource Name (ARN). Add the CNAME records within 72 hours.
+3. To allow public certificate export, set `CertificateOptions.Export` to `ENABLED` at creation. The setting cannot change later. An export contains the certificate, its chain and a private key encrypted with a passphrase. Private certificate exports also contain an encrypted private key. Export option, public export, private export
+4. For ACM with an ACME client, the client generates and holds the private key and manages public certificate renewal. ACME-issued certificates cannot bind to AWS integrated services and do not use ACM managed renewal. Issuance options, managed renewal
 
 ### Exam cues
 
@@ -149,9 +149,9 @@ AWS Certificate Manager (ACM) supports different validation and certificate life
 
 ### Remember
 
-- From February 18, 2026, newly issued and renewed ACM public certificates have a maximum validity of 198 days. [Validity update](https://aws.amazon.com/about-aws/whats-new/2026/02/aws-certificate-manager-updates-default/)
-- Public certificates with 198-day validity renew 45 days before expiration. Older 395-day certificates renew 60 days before expiration and receive 198-day replacements. [DNS renewal](https://docs.aws.amazon.com/acm/latest/userguide/dns-renewal-validation.html)
-- ACM attempts renewal of eligible private certificates 60 days before expiration. [Private renewal](https://docs.aws.amazon.com/acm/latest/userguide/renew-private-cert.html)
-- New email-validated issuance stops March 31, 2027; renewal stops September 30, 2027. [Email validation phaseout](https://aws.amazon.com/about-aws/whats-new/2026/08/AWS-Certificate-Manager-Email-DNS-Switch/)
+- From February 18, 2026, newly issued and renewed ACM public certificates have a maximum validity of 198 days.
+- Public certificates with 198-day validity renew 45 days before expiration. Older 395-day certificates renew 60 days before expiration and receive 198-day replacements.
+- ACM attempts renewal of eligible private certificates 60 days before expiration.
+- New email-validated issuance stops March 31, 2027; renewal stops September 30, 2027.
 
 > **Trap:** HTTP validation is available for CloudFront Distribution Tenants, but it cannot validate a wildcard certificate. Use DNS validation for that request.

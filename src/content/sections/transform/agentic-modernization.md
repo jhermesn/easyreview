@@ -24,7 +24,7 @@ cards:
     trap: true
     facts: [what]
 ---
-AWS Transform applies agentic AI to large modernization jobs: mainframe code, VMware migrations and .NET ports, handled by agents that analyze, plan and transform with people reviewing. [What is AWS Transform?](https://docs.aws.amazon.com/transform/latest/userguide/what-is-service.html)
+AWS Transform applies agentic AI to large modernization jobs: mainframe code, VMware migrations and .NET ports, handled by agents that analyze, plan and transform with people reviewing.
 
 ### How it works
 

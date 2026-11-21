@@ -108,10 +108,10 @@ DynamoDB operations can involve table and index capacity, cached reads, and inde
 
 ### How it works
 
-1. Compare [`WriteThrottleEvents` and `ReadThrottleEvents`](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/metrics-dimensions.html) to distinguish write and read throttling. For index metrics, use both `TableName` and `GlobalSecondaryIndexName`. An `IndexWriteProvisionedThroughputExceeded` reason can point to [GSI write back-pressure](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/throttling-provisioned-capacity-exceeded-mitigation.html) throttling base table writes.
-2. Check the [capacity mode switch limit](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html) before switching from provisioned to on-demand. The reverse switch is allowed at any time.
-3. DAX keeps [`GetItem` and `BatchGetItem` results by primary key in an item cache](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html). It stores `Query` and `Scan` result sets in a separate query cache. A cache time to live (TTL) sets how long a result remains cached. [Writes do not invalidate cached query results](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.consistency.html); they are read again after the query-cache TTL expires.
-4. A [local secondary index (LSI)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html) keeps the table partition key and uses another sort key. Choose its [projection](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html), the attributes copied into the index: `KEYS_ONLY` copies table and index keys, `INCLUDE` adds selected attributes, and `ALL` copies all attributes. An LSI query can fetch unprojected attributes from the table, with extra latency and read capacity cost.
+1. Compare `WriteThrottleEvents` and `ReadThrottleEvents` to distinguish write and read throttling. For index metrics, use both `TableName` and `GlobalSecondaryIndexName`. An `IndexWriteProvisionedThroughputExceeded` reason can point to GSI write back-pressure throttling base table writes.
+2. Check the capacity mode switch limit before switching from provisioned to on-demand. The reverse switch is allowed at any time.
+3. DAX keeps `GetItem` and `BatchGetItem` results by primary key in an item cache. It stores `Query` and `Scan` result sets in a separate query cache. A cache time to live (TTL) sets how long a result remains cached. Writes do not invalidate cached query results; they are read again after the query-cache TTL expires.
+4. A local secondary index (LSI) keeps the table partition key and uses another sort key. Choose its projection, the attributes copied into the index: `KEYS_ONLY` copies table and index keys, `INCLUDE` adds selected attributes, and `ALL` copies all attributes. An LSI query can fetch unprojected attributes from the table, with extra latency and read capacity cost.
 
 ### Exam cues
 
@@ -124,7 +124,7 @@ DynamoDB operations can involve table and index capacity, cached reads, and inde
 
 - A table can switch from provisioned to on-demand up to four times in a rolling 24-hour window; on-demand to provisioned is allowed at any time.
 - DAX item-cache default TTL: five minutes.
-- A table can have at most [five LSIs](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html), a fixed quota. LSIs must be created with the table.
+- A table can have at most five LSIs, a fixed quota. LSIs must be created with the table.
 - MRSC needs exactly three Regions: three replicas, or two replicas plus a witness that serves no application reads or writes.
 - MRSC does not support TTL, local secondary indexes or transactions.
 - MREC replication reads DynamoDB Streams, which stay enabled on every replica.

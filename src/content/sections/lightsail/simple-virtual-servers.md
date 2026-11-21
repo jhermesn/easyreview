@@ -24,7 +24,7 @@ cards:
     trap: true
     facts: [purpose]
 ---
-Amazon Lightsail packages a virtual server with storage, networking and optional databases into simple plans with a fixed monthly price. It suits simple websites, blogs and small applications. [What is Amazon Lightsail?](https://docs.aws.amazon.com/lightsail/latest/userguide/what-is-amazon-lightsail.html#what-is-amazon-lightsail)
+Amazon Lightsail packages a virtual server with storage, networking and optional databases into simple plans with a fixed monthly price. It suits simple websites, blogs and small applications.
 
 ### How it works
 

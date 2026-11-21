@@ -69,7 +69,7 @@ cards:
     a: "AWS AppSync, a managed GraphQL service; pipeline resolvers can combine operations on several tables for one field."
     facts: [appsync]
 ---
-API Gateway endpoint type decides where requests enter AWS, and throttling decides how many get through. [API endpoint types](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html)
+API Gateway endpoint type decides where requests enter AWS, and throttling decides how many get through.
 
 ### How it works
 

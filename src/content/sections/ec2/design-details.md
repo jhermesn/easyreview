@@ -92,15 +92,15 @@ cards:
     a: "No. The active host is billed regardless of how many instances run on it. Release the host to stop its On-Demand charges."
     facts: [host-billing]
 ---
-EC2 design choices include the instance type, tenancy and how capacity is paid for. Reading the instance name and understanding charges across its lifecycle helps you choose and operate instances. [Instance type names](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html#instance-type-names)
+EC2 design choices include the instance type, tenancy and how capacity is paid for. Reading the instance name and understanding charges across its lifecycle helps you choose and operate instances.
 
 ### How it works
 
-1. Read an instance type name as family and size. In `c7gn.4xlarge`, `c` is the series, `7` the generation, `gn` the options and `4xlarge` the size. [Instance type names](https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html#instance-type-names)
-2. Choose tenancy for the VPC and instance. A dedicated-tenancy VPC runs all instances as Dedicated Instances. In a default-tenancy VPC, an instance or launch template can still request dedicated tenancy. [Dedicated Instance basics](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html#dedicated-howitworks)
-3. Account for instance state and reserved capacity. Instance usage is billed while running and while stopping for hibernation. A Capacity Reservation is billed at the On-Demand rate even when unused, with applicable Savings Plans or Regional Reserved Instance discounts. [Instance billing by state](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html#instance-billing-by-state) [Capacity Reservation billing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-pricing-billing.html)
-4. Use Instance Scheduler on AWS to start and stop tagged EC2 and RDS instances on custom schedules across accounts and Regions. [Instance Scheduler](https://docs.aws.amazon.com/solutions/latest/instance-scheduler-on-aws/solution-overview.html#solution-overview)
-5. Consider the Reserved Instance Marketplace when a Standard Reserved Instance is no longer needed, such as after a move to another Region. [Reserved Instance Marketplace](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html#ri-market-general)
+1. Read an instance type name as family and size. In `c7gn.4xlarge`, `c` is the series, `7` the generation, `gn` the options and `4xlarge` the size.
+2. Choose tenancy for the VPC and instance. A dedicated-tenancy VPC runs all instances as Dedicated Instances. In a default-tenancy VPC, an instance or launch template can still request dedicated tenancy.
+3. Account for instance state and reserved capacity. Instance usage is billed while running and while stopping for hibernation. A Capacity Reservation is billed at the On-Demand rate even when unused, with applicable Savings Plans or Regional Reserved Instance discounts.
+4. Use Instance Scheduler on AWS to start and stop tagged EC2 and RDS instances on custom schedules across accounts and Regions.
+5. Consider the Reserved Instance Marketplace when a Standard Reserved Instance is no longer needed, such as after a move to another Region.
 6. Plan capacity separately from price: On-Demand launches and restarts can fail for insufficient capacity. A Capacity Reservation defines the zone, instance type, platform and tenancy.
 7. Use Dedicated Host affinity when placement must stay tied to a physical host. Budget for the allocated host even when its instances are stopped.
 8. Schedule downtime for vertical resizing: an EBS-backed instance must stop before its type changes and start again afterward.
@@ -117,7 +117,7 @@ EC2 design choices include the instance type, tenancy and how capacity is paid f
 
 ### Remember
 
-- Spot notices are best effort: two minutes for stop or termination, with no preparation interval for hibernation. [Spot interruption notices](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html#spot-instance-termination-notices)
+- Spot notices are best effort: two minutes for stop or termination, with no preparation interval for hibernation.
 - EBS volumes and Elastic IP addresses can incur charges regardless of instance state. A Reserved Instance continues billing through its term after its instance is terminated.
 - A Capacity Reservation incurs the On-Demand rate even when no instances use it.
 

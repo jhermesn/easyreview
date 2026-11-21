@@ -35,7 +35,7 @@ cards:
     trap: true
     facts: [standard, io-optimized]
 ---
-Two Aurora choices that come down to money and migration effort: the storage configuration decides how I/O is billed, and Babelfish lets SQL Server applications talk to Aurora PostgreSQL. [Aurora storage configurations](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html)
+Two Aurora choices that come down to money and migration effort: the storage configuration decides how I/O is billed, and Babelfish lets SQL Server applications talk to Aurora PostgreSQL.
 
 ### How it works
 

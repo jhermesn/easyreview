@@ -26,13 +26,13 @@ cards:
     a: "PII redaction, which outputs a redacted transcript (optionally also an unredacted one)."
     facts: [pii-redaction]
 ---
-Amazon Transcribe can identify individual speakers and help handle sensitive or toxic speech in transcripts. [What is Amazon Transcribe?](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is)
+Amazon Transcribe can identify individual speakers and help handle sensitive or toxic speech in transcripts.
 
 ### How it works
 
-1. Use speaker partitioning to distinguish individual speakers in the audio. [What is Amazon Transcribe?](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is)
-2. Use toxicity detection to classify speech using text and audio cues such as tone and pitch. [Detecting toxic speech](https://docs.aws.amazon.com/transcribe/latest/dg/toxicity.html#toxicity)
-3. Use personally identifiable information (PII) redaction to remove PII from the transcript. Choose a redacted transcript alone or both redacted and unredacted versions. [PII redaction](https://docs.aws.amazon.com/transcribe/latest/dg/pii-redaction.html#pii-redaction)
+1. Use speaker partitioning to distinguish individual speakers in the audio.
+2. Use toxicity detection to classify speech using text and audio cues such as tone and pitch.
+3. Use personally identifiable information (PII) redaction to remove PII from the transcript. Choose a redacted transcript alone or both redacted and unredacted versions.
 
 ### Exam cues
 

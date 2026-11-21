@@ -70,7 +70,7 @@ cards:
     a: "PartyRock, an Amazon Bedrock Playground. It needs no AWS account and gives a free daily usage allowance."
     facts: [partyrock, partyrock-free]
 ---
-Amazon Bedrock is the managed way to use foundation models on AWS: one API, many model providers, no servers. Your data stays yours: providers don't see your prompts and outputs, and customization works on a private copy of a model. [What is Amazon Bedrock?](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
+Amazon Bedrock is the managed way to use foundation models on AWS: one API, many model providers, no servers. Your data stays yours: providers don't see your prompts and outputs, and customization works on a private copy of a model.
 
 ### How it works
 

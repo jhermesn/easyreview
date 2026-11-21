@@ -12,7 +12,7 @@ cards:
     a: "AWS Directory Service."
     facts: [managed-ad]
 ---
-AWS Directory Service brings Microsoft Active Directory to AWS, as a managed directory or a connection to an existing one. [What is AWS Directory Service?](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/what_is.html#what_is)
+AWS Directory Service brings Microsoft Active Directory to AWS, as a managed directory or a connection to an existing one.
 
 ### How it works
 

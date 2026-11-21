@@ -55,7 +55,7 @@ cards:
     a: Route 53 health checks.
     facts: [health-checks]
 ---
-Amazon Route 53 is AWS's DNS service: it registers domains, answers DNS queries and checks endpoint health. [What is Amazon Route 53?](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html#Welcome)
+Amazon Route 53 is AWS's DNS service: it registers domains, answers DNS queries and checks endpoint health.
 
 ### How it works
 

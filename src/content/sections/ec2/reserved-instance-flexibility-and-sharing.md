@@ -59,14 +59,14 @@ cards:
     trap: true
     facts: [convertible-exchange-value]
 ---
-Reserved Instances are discounts on EC2 usage that matches their attributes. Their scope decides how flexible the discount is and whether it reserves capacity. In AWS Organizations, the discount can be shared across accounts. [Regional and zonal Reserved Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-scope.html#reserved-instances-scope)
+Reserved Instances are discounts on EC2 usage that matches their attributes. Their scope decides how flexible the discount is and whether it reserves capacity. In AWS Organizations, the discount can be shared across accounts.
 
 ### How it works
 
 1. Buy for one or three years; three years saves more.
-2. Pick the class: Standard (biggest discount, modify only) or Convertible (exchangeable). [Offering class](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html#ri-pricing-variable-offering-class)
+2. Pick the class: Standard (biggest discount, modify only) or Convertible (exchangeable).
 3. Pick the scope: regional for flexibility, zonal for a capacity reservation.
-4. In an organization, the management account decides how discounts are shared among accounts. [Discount sharing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ri-turn-off.html#ri-turn-off)
+4. In an organization, the management account decides how discounts are shared among accounts.
 
 | Scope | Reserves capacity | AZ flexibility | Size flexibility |
 |---|---|---|---|

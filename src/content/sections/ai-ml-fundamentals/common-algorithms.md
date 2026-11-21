@@ -62,7 +62,7 @@ cards:
     trap: true
     facts: [logistic]
 ---
-Classic ML algorithms each fit a problem type, and neural network families each fit a data type. Knowing the pairing answers many "which technique" questions. [Built-in algorithms](https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html)
+Classic ML algorithms each fit a problem type, and neural network families each fit a data type. Knowing the pairing answers many "which technique" questions.
 
 ### How it works
 

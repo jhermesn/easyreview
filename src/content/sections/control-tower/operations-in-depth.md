@@ -50,14 +50,14 @@ cards:
     facts:
       - config-scope
 ---
-AWS Control Tower orchestrates AWS Organizations, AWS Service Catalog, and AWS IAM Identity Center to set up and govern a [multi-account landing zone](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html#what-is-control-tower). Landing zone versions differ in their account structure and service integrations.
+AWS Control Tower orchestrates AWS Organizations, AWS Service Catalog, and AWS IAM Identity Center to set up and govern a multi-account landing zone. Landing zone versions differ in their account structure and service integrations.
 
 ### How it works
 
-1. In [versions 3.3 and earlier](https://docs.aws.amazon.com/controltower/latest/userguide/how-control-tower-works.html#landing-zone-structure), the Security organizational unit (OU) contains the shared Log Archive and Audit accounts. [Version 4.0](https://docs.aws.amazon.com/controltower/latest/userguide/landing-zone-v4-migration-guide.html#landing-zone-v4-migration-guide) no longer requires a Security OU and makes AWS Config, AWS CloudTrail, SecurityRoles, and AWS Backup integrations optional.
-2. For centralized CloudTrail logging, create or select a [CloudTrail administrator account](https://docs.aws.amazon.com/controltower/latest/userguide/special-accounts.html#log-archive-account), formerly Log Archive. When Config integration is enabled, create or select a [Config aggregator account](https://docs.aws.amazon.com/controltower/latest/userguide/special-accounts.html#audit-account), formerly Audit.
-3. In version 4.0, CloudTrail logs remain in the logging account, while Config logs use a [dedicated bucket](https://docs.aws.amazon.com/controltower/latest/userguide/special-accounts.html#log-archive-account) in the Config aggregator account. A [service-linked Config aggregator](https://docs.aws.amazon.com/controltower/latest/userguide/config-updates-v4.html#config-updates-v4) collects configuration data across accounts.
-4. Landing-zone Config integration configures service integration accounts. To configure member accounts, enable the [Config baseline](https://docs.aws.amazon.com/controltower/latest/userguide/key-changes-lz-v4.html#key-changes-lz-v4) on their managed OU.
+1. In versions 3.3 and earlier, the Security organizational unit (OU) contains the shared Log Archive and Audit accounts. Version 4.0 no longer requires a Security OU and makes AWS Config, AWS CloudTrail, SecurityRoles, and AWS Backup integrations optional.
+2. For centralized CloudTrail logging, create or select a CloudTrail administrator account, formerly Log Archive. When Config integration is enabled, create or select a Config aggregator account, formerly Audit.
+3. In version 4.0, CloudTrail logs remain in the logging account, while Config logs use a dedicated bucket in the Config aggregator account. A service-linked Config aggregator collects configuration data across accounts.
+4. Landing-zone Config integration configures service integration accounts. To configure member accounts, enable the Config baseline on their managed OU.
 
 ### Exam cues
 

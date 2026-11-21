@@ -41,8 +41,8 @@ Lambda can process SQS messages in batches. Partial batch responses let failed m
 
 ### How it works
 
-1. Set the SQS visibility timeout to at least six times the Lambda function timeout, plus the batching window when configured. See [queue configuration](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#events-sqs-queueconfig).
-2. Enable `ReportBatchItemFailures` on the event source mapping and return failed message IDs in `batchItemFailures`. By default, a batch failure retries every message in the batch. See [partial batch responses](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-batchfailurereporting).
+1. Set the SQS visibility timeout to at least six times the Lambda function timeout, plus the batching window when configured. See queue configuration.
+2. Enable `ReportBatchItemFailures` on the event source mapping and return failed message IDs in `batchItemFailures`. By default, a batch failure retries every message in the batch. See partial batch responses.
 3. For a FIFO queue, stop processing after the first failure and report both failed and unprocessed messages to preserve order.
 
 ### Exam cues

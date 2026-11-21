@@ -85,13 +85,13 @@ cards:
     a: "Only the Service limits checks and a few Security and Fault Tolerance checks in Trusted Advisor, and no Support API. Business Support+ is the lowest plan with all checks and the API."
     facts: [basic-ta-checks, support-api-plans]
 ---
-AWS Support plans set how much help a customer gets and how fast. Basic comes with every account. AWS has reorganized the plans: today they are Basic, Business Support+, Enterprise Support and Unified Operations. Developer, Business and Enterprise On-Ramp end on January 1, 2027. [AWS Support Plans](https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#aws-support-plans)
+AWS Support plans set how much help a customer gets and how fast. Basic comes with every account. AWS has reorganized the plans: today they are Basic, Business Support+, Enterprise Support and Unified Operations. Developer, Business and Enterprise On-Ramp end on January 1, 2027.
 
 ### How it works
 
 1. Every account starts on Basic: account and billing help, forums, health checks and documentation.
 2. A paid plan adds technical cases and 24x7 access to engineers, priced by the month with no contract.
-3. Higher plans add faster critical responses and named experts. [Features of AWS Support Plans](https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#features)
+3. Higher plans add faster critical responses and named experts.
 
 | Plan | Highlights | Fastest critical response |
 |---|---|---|

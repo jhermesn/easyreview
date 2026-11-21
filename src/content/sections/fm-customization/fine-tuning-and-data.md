@@ -65,7 +65,7 @@ cards:
     a: "A separate reward model trained on human choices between responses. It then acts as the reward function that optimizes the language model."
     facts: [rlhf-steps]
 ---
-Fine-tuning keeps training a pre-trained model on your data, so its weights change. The data decides the result: accurate, representative and varied examples matter more than volume. [Fine-tuning foundation models](https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning.html)
+Fine-tuning keeps training a pre-trained model on your data, so its weights change. The data decides the result: accurate, representative and varied examples matter more than volume.
 
 ### How it works
 

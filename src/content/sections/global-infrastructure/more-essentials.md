@@ -26,13 +26,13 @@ cards:
     a: "Price. Each Region has its own resource prices, so with no residency or latency constraint the cheaper Region can lower cost."
     facts: [region-pricing]
 ---
-AWS Local Zones bring selected resources close to large population and industry centers for low-latency access. When choosing where to run resources, also consider Region pricing and encryption between Availability Zones. [Local Zones](https://docs.aws.amazon.com/local-zones/latest/ug/what-is-aws-local-zones.html#what-is-aws-local-zones)
+AWS Local Zones bring selected resources close to large population and industry centers for low-latency access. When choosing where to run resources, also consider Region pricing and encryption between Availability Zones.
 
 ### How it works
 
 1. Use a Local Zone to place compute, storage, database and other selected resources closer to users who need low latency.
-2. Consider Region pricing alongside latency, data residency and service availability. Local costs, including land, electricity and taxes, can make resource prices differ by Region. [Region cost](https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/cost_pricing_model_region_cost.html#cost_pricing_model_region_cost)
-3. All traffic between Availability Zones is encrypted. [Regions and Availability Zones](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)
+2. Consider Region pricing alongside latency, data residency and service availability. Local costs, including land, electricity and taxes, can make resource prices differ by Region.
+3. All traffic between Availability Zones is encrypted.
 
 ### Exam cues
 

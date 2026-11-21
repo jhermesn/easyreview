@@ -37,7 +37,7 @@ cards:
     a: "An Amazon Cognito identity pool issues AWS credentials for authenticated or guest users."
     facts: [identity-pools]
 ---
-Amazon Cognito handles identity for the users of your web and mobile apps: sign-up, sign-in, social and enterprise logins, and access to AWS resources from the app. [What is Amazon Cognito?](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html#what-is-amazon-cognito)
+Amazon Cognito handles identity for the users of your web and mobile apps: sign-up, sign-in, social and enterprise logins, and access to AWS resources from the app.
 
 ### How it works
 

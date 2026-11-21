@@ -34,13 +34,13 @@ cards:
     trap: true
     facts: [refactor-cost]
 ---
-A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs, for choosing how to move or handle a workload. [Migration strategies](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#migration-strategies)
+A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs, for choosing how to move or handle a workload.
 
 ### How it works
 
 1. Assess each application: its business value, dependencies, risk and target.
 2. Pick one of the 7 Rs for it.
-3. For a large migration, consider rehosting, relocating or replatforming first, then modernizing afterward. [Refactor](https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#refactor)
+3. For a large migration, consider rehosting, relocating or replatforming first, then modernizing afterward.
 
 | Strategy | Also called | What happens |
 |---|---|---|

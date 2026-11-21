@@ -111,7 +111,7 @@ cards:
     facts: [provisioned-iops-choice]
 ---
 
-RDS storage autoscaling grows a DB instance's allocated disk space when free space stays low. It addresses storage capacity up to a configured ceiling. [CloudWatch metrics](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html#rds-cw-metrics) separately show disk queues, operation times, CPU use, and connections.
+RDS storage autoscaling grows a DB instance's allocated disk space when free space stays low. It addresses storage capacity up to a configured ceiling. CloudWatch metrics separately show disk queues, operation times, CPU use, and connections.
 
 ### How it works
 

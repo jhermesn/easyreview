@@ -102,8 +102,8 @@ AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud 
 ### Exam cues
 
 - If the question says encrypt Direct Connect traffic without public addresses, think private IP Site-to-Site VPN, because it encrypts traffic over Direct Connect.
-- If the question says a VPN is up but VPC instances cannot reach the remote network, think subnet route tables, because route propagation can add VPN routes for a virtual private gateway. [Configure routing](https://docs.aws.amazon.com/vpn/latest/s2svpn/SetUpVPNConnections.html#vpn-configure-routing)
-- If the question asks for tunnel bandwidth, think standard or Large Bandwidth Tunnels, because their per-tunnel limits differ. [Tunnel bandwidth options](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html#tunnel-bandwidth-options)
+- If the question says a VPN is up but VPC instances cannot reach the remote network, think subnet route tables, because route propagation can add VPN routes for a virtual private gateway.
+- If the question asks for tunnel bandwidth, think standard or Large Bandwidth Tunnels, because their per-tunnel limits differ.
 
 ### Remember
 

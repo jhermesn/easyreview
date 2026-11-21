@@ -12,7 +12,7 @@ cards:
     a: "The AWS SDK for Java, a library that calls AWS APIs from code."
     facts: [sdk-libraries]
 ---
-AWS SDKs let programs call AWS services from languages such as Python, Java and JavaScript. [What is an SDK?](https://aws.amazon.com/what-is/sdk/#amsc3--1chu1sx)
+AWS SDKs let programs call AWS services from languages such as Python, Java and JavaScript.
 
 ### How it works
 

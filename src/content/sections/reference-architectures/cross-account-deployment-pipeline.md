@@ -192,7 +192,7 @@ Professional exams separate build tooling from workloads: one tooling account ru
 
 ### How it works
 
-1. A source action starts CodePipeline in the tooling account, and CodeBuild builds and tests the change. [Cross-account pipelines](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-create-cross-account.html)
+1. A source action starts CodePipeline in the tooling account, and CodeBuild builds and tests the change.
 2. Artifacts land in the pipeline's S3 bucket, encrypted with a customer managed KMS key. The bucket policy and the key policy both allow the target accounts.
 3. Each deploy action names the ARN of a role in its target account. That role can read the artifact, use the key and run CloudFormation there.
 4. A manual approval action holds the production stage until an authorized reviewer approves it.

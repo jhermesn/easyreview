@@ -44,13 +44,13 @@ cards:
     a: "Amazon RDS Custom provides access to customize the database environment and operating system while automating administration tasks."
     facts: [rds-custom]
 ---
-AWS offers managed services for relational databases, NoSQL databases and blockchain networks. Amazon RDS handles common administration tasks for relational databases, while RDS Custom allows access to the database environment and operating system. [What is Amazon RDS?](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome)
+AWS offers managed services for relational databases, NoSQL databases and blockchain networks. Amazon RDS handles common administration tasks for relational databases, while RDS Custom allows access to the database environment and operating system.
 
 ### How it works
 
-1. Choose a database type for the data: relational databases include Amazon RDS and Amazon Aurora; NoSQL databases include key-value, document and graph databases. [Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome), [NoSQL databases](https://aws.amazon.com/nosql/)
-2. Use Amazon RDS Custom when a managed database needs customization of its database environment or operating system. [RDS Custom](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html#rds-custom)
-3. Before customizing an RDS Custom for SQL Server host, pause automation for the change so monitoring and recovery do not interfere. Automation resumes when the pause ends. [Pause automation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-managing-sqlserver.pausing.html#custom-managing-sqlserver.pausing)
+1. Choose a database type for the data: relational databases include Amazon RDS and Amazon Aurora; NoSQL databases include key-value, document and graph databases. Amazon RDS, NoSQL databases
+2. Use Amazon RDS Custom when a managed database needs customization of its database environment or operating system.
+3. Before customizing an RDS Custom for SQL Server host, pause automation for the change so monitoring and recovery do not interfere. Automation resumes when the pause ends.
 
 Examples of database types:
 
@@ -65,7 +65,7 @@ Examples of database types:
 
 - If the question says key-value, document or graph database, think NoSQL: DynamoDB, DocumentDB or Neptune, respectively.
 - If the question says install an agent on a managed SQL Server host, think RDS Custom for SQL Server and pause automation before the change.
-- If the question says managed Hyperledger Fabric networks or Ethereum nodes, think Amazon Managed Blockchain. [Managed Blockchain](https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/what-is-managed-blockchain.html#what-is-managed-blockchain)
+- If the question says managed Hyperledger Fabric networks or Ethereum nodes, think Amazon Managed Blockchain.
 
 ### Remember
 

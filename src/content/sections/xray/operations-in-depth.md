@@ -89,10 +89,10 @@ X-Ray trace context connects work across instrumented HTTP services. Segments an
 
 ### How it works
 
-1. Instrumented HTTP services pass trace context in the [`X-Amzn-Trace-Id` header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader). `Root` identifies the trace, `Parent` identifies the upstream segment or subsegment, and `Sampled` carries the upstream recording decision.
-2. A [subsegment](https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-subsegments) describes part of a segment, such as an outgoing call, SQL query, or custom code block. X-Ray uses instrumented client subsegments to create [inferred nodes](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-subsegments) for services such as DynamoDB.
+1. Instrumented HTTP services pass trace context in the `X-Amzn-Trace-Id` header. `Root` identifies the trace, `Parent` identifies the upstream segment or subsegment, and `Sampled` carries the upstream recording decision.
+2. A subsegment describes part of a segment, such as an outgoing call, SQL query, or custom code block. X-Ray uses instrumented client subsegments to create inferred nodes for services such as DynamoDB.
 3. Compare the upstream client subsegment with the downstream service segment. The client view includes round-trip latency, while the service segment records the downstream service's view of the call.
-4. In Lambda traces, [`AWS::Lambda` records execution environment preparation and `AWS::Lambda::Function` records function work](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html#services-xray-traces). Traces from instrumented SQS producers can also be [linked to downstream Lambda consumer traces](https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).
+4. In Lambda traces, `AWS::Lambda` records execution environment preparation and `AWS::Lambda::Function` records function work. Traces from instrumented SQS producers can also be linked to downstream Lambda consumer traces.
 
 ### Exam cues
 

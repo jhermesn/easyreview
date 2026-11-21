@@ -12,7 +12,7 @@ cards:
     a: "Application Auto Scaling."
     facts: [beyond-ec2]
 ---
-Application Auto Scaling brings automatic scaling to AWS services other than EC2. [What is Application Auto Scaling?](https://docs.aws.amazon.com/autoscaling/application/userguide/what-is-application-auto-scaling.html#what-is-application-auto-scaling)
+Application Auto Scaling brings automatic scaling to AWS services other than EC2.
 
 ### How it works
 

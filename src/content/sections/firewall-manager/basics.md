@@ -12,7 +12,7 @@ cards:
     a: "AWS Firewall Manager."
     facts: [central-rules]
 ---
-AWS Firewall Manager applies firewall protections across the accounts of an organization from one place. [AWS Firewall Manager](https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html#fms-chapter)
+AWS Firewall Manager applies firewall protections across the accounts of an organization from one place.
 
 ### How it works
 

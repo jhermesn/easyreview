@@ -37,7 +37,7 @@ cards:
     a: "Amazon Lex builds conversational interfaces using speech recognition and natural language understanding."
     facts: [purpose]
 ---
-Amazon Lex builds chatbots and voice bots. It understands what a user means, manages the conversation, and plugs into web, mobile and chat channels. [What is Amazon Lex V2?](https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html#what-is)
+Amazon Lex builds chatbots and voice bots. It understands what a user means, manages the conversation, and plugs into web, mobile and chat channels.
 
 ### How it works
 

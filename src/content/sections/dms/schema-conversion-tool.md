@@ -26,12 +26,12 @@ cards:
     trap: true
     facts: [schema-not-data]
 ---
-When a database moves to a different engine, such as Oracle to Amazon Aurora PostgreSQL, its schema has to be converted before the data can follow. That conversion covers tables, views and code. AWS SCT and DMS Schema Conversion do it; AWS DMS moves the data. [AWS SCT](https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/CHAP_Welcome.html#CHAP_Welcome)
+When a database moves to a different engine, such as Oracle to Amazon Aurora PostgreSQL, its schema has to be converted before the data can follow. That conversion covers tables, views and code. AWS SCT and DMS Schema Conversion do it; AWS DMS moves the data.
 
 ### How it works
 
 1. Create a migration project with source and target databases.
-2. Convert the schema for the target database. [DMS Schema Conversion](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#CHAP_SchemaConversion)
+2. Convert the schema for the target database.
 3. Migrate the data with AWS DMS, with change data capture if the source stays live.
 
 | Migration | Schema step | Data step |

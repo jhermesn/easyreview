@@ -153,7 +153,7 @@ Professional resilience questions ask for more than a standby Region: both Regio
 
 ### How it works
 
-1. S3 Cross-Region Replication and a DynamoDB global table copy data to both Regions. [Global tables](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html)
+1. S3 Cross-Region Replication and a DynamoDB global table copy data to both Regions.
 2. CloudFront serves static content and fails over between buckets through an origin group.
 3. Route 53 latency records with Evaluate Target Health send users to the closest healthy Region.
 4. ARC routing controls move all traffic on purpose, through the health checks linked to each Region's records.

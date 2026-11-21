@@ -74,14 +74,14 @@ cards:
       - validation-separate
       - cli-validation
 ---
-CloudTrail log file integrity validation gives auditors evidence that delivered files stayed unchanged. A hash is a fingerprint calculated from file contents. A signed digest is an index of those fingerprints whose signature can be checked. It acts as a tamper-evident seal on the archive. [AWS integrity validation](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html#cloudtrail-log-file-validation-intro)
+CloudTrail log file integrity validation gives auditors evidence that delivered files stayed unchanged. A hash is a fingerprint calculated from file contents. A signed digest is an index of those fingerprints whose signature can be checked. It acts as a tamper-evident seal on the archive.
 
 ### How it works
 
 1. Enable integrity validation. CloudTrail calculates a SHA-256 hash for each delivered log file.
 2. Each hour, CloudTrail delivers a digest containing log references and hashes in a separate folder of the same bucket. It signs the digest using SHA-256 with RSA and links it to the previous digest signature.
 3. Validate separately. `validate-logs` checks the digests and the log files they reference.
-4. Apply storage protection as well. S3 Object Lock retains object versions using a write-once-read-many model, meaning a retained version cannot be overwritten or deleted under its protection. Retention periods and legal holds control how long protection applies. [CLI validation](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-cli.html#cloudtrail-log-file-validation-cli) · [Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock)
+4. Apply storage protection as well. S3 Object Lock retains object versions using a write-once-read-many model, meaning a retained version cannot be overwritten or deleted under its protection. Retention periods and legal holds control how long protection applies. CLI validation · Object Lock
 
 ### Exam cues
 
@@ -93,6 +93,6 @@ CloudTrail log file integrity validation gives auditors evidence that delivered 
 
 - Hash: SHA-256. Digest signature: SHA-256 with RSA. Digest delivery: hourly.
 - Enabling digest delivery and running validation are separate actions.
-- MFA Delete adds protection for digest files. [AWS storage guidance](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html#cloudtrail-log-file-validation-intro)
+- MFA Delete adds protection for digest files.
 
 > **Trap:** Integrity validation detects changes or deletion; it does not prevent deletion. Use storage protection as well.

@@ -116,14 +116,14 @@ cards:
       - gateway-routes
       - gateway-region
 ---
-Amazon VPC is your own isolated network in AWS. Inside it, subnets split the address range by Availability Zone, route tables steer traffic, and gateways connect the VPC to the internet, other networks or AWS services. [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-amazon-vpc)
+Amazon VPC is your own isolated network in AWS. Inside it, subnets split the address range by Availability Zone, route tables steer traffic, and gateways connect the VPC to the internet, other networks or AWS services.
 
 ### How it works
 
 1. Create a VPC with an IP address range in a Region.
 2. Add subnets, each in one Availability Zone. Use at least two AZs for high availability.
-3. Attach an internet gateway and route public subnets to it. [Internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#VPC_Internet_Gateway)
-4. Keep most resources in private subnets; give them outbound internet access through a NAT gateway. [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#vpc-nat-gateway)
+3. Attach an internet gateway and route public subnets to it.
+4. Keep most resources in private subnets; give them outbound internet access through a NAT gateway.
 5. Reach AWS services privately with VPC endpoints, other VPCs with peering or a transit gateway, and on-premises networks with a VPN or Direct Connect.
 
 | Component | Purpose |

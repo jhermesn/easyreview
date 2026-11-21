@@ -38,7 +38,7 @@ cards:
       - ec2-credentials
       - ec2-refresh
 ---
-An IAM role gives temporary permissions to whoever is allowed to assume it, such as an AWS service, an application or a federated user. [IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles)
+An IAM role gives temporary permissions to whoever is allowed to assume it, such as an AWS service, an application or a federated user.
 
 ### How it works
 

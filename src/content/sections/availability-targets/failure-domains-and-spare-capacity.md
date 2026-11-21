@@ -166,7 +166,7 @@ diagrams:
         label: healthy
     steps: []
 ---
-A failure domain is a location whose resources can fail together, such as an Availability Zone (AZ). Spare capacity is already available capacity that can take over lost work. Static stability means preparing the surviving locations to serve the workload before a failure occurs. [AWS static stability guidance](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_withstand_component_failures_static_stability.html#implementation-guidance)
+A failure domain is a location whose resources can fail together, such as an Availability Zone (AZ). Spare capacity is already available capacity that can take over lost work. Static stability means preparing the surviving locations to serve the workload before a failure occurs.
 
 ### How it works
 
@@ -174,7 +174,7 @@ A failure domain is a location whose resources can fail together, such as an Ava
 2. Pre-provision enough capacity for the surviving locations. This avoids making immediate recovery depend on the control plane, which creates or changes resources. The data plane is the existing resources' working functionality.
 3. Shift traffic to healthy instances using health checks. Auto Scaling can repair lost capacity afterward.
 4. Check storage, quota headroom, and subnet address space. A quota is an account usage limit; failed resources may still count while replacements launch. A subnet is a network address range whose free addresses must accommodate growth.
-5. Test the expected load with faults injected. Recovery must work across the application and its dependencies. [Quota planning](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_manage_service_limits_suff_buffer_limits.html#implementation-guidance) · [Network planning](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_planning_network_topology_ip_subnet_allocation.html) · [Resilience testing](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_testing_resiliency_failure_injection_resiliency.html)
+5. Test the expected load with faults injected. Recovery must work across the application and its dependencies. Quota planning · Network planning · Resilience testing
 
 | Storage choice | Interface | Failure-domain consideration |
 |---|---|---|
@@ -182,7 +182,7 @@ A failure domain is a location whose resources can fail together, such as an Ava
 | EFS Regional / One Zone | Shared files | Regional spans AZs; One Zone can lose data with its AZ |
 | S3 Standard / One Zone-IA | Objects | Standard spans at least three AZs; One Zone-IA uses one |
 
-[Block storage](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes.html) · [File system types](https://docs.aws.amazon.com/efs/latest/ug/features.html#file-system-type) · [Object storage](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DataDurability.html)
+Block storage · File system types · Object storage
 
 ### Exam cues
 

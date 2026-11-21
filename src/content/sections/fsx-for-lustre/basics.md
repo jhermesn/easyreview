@@ -12,7 +12,7 @@ cards:
     a: "Amazon FSx for Lustre."
     facts: [hpc-files]
 ---
-Amazon FSx for Lustre is a managed high-performance file system for compute-heavy workloads. [What is FSx for Lustre?](https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#what-is)
+Amazon FSx for Lustre is a managed high-performance file system for compute-heavy workloads.
 
 ### How it works
 

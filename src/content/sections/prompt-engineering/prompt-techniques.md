@@ -65,7 +65,7 @@ cards:
     trap: true
     facts: [definition]
 ---
-A prompt is everything the model sees: the task, the context, the data to work on and how the answer should look. Techniques such as few-shot examples and chain-of-thought get better answers from the same model. [Prompt engineering concepts](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html)
+A prompt is everything the model sees: the task, the context, the data to work on and how the answer should look. Techniques such as few-shot examples and chain-of-thought get better answers from the same model.
 
 ### How it works
 

@@ -96,10 +96,10 @@ SQS message handling depends on how producers identify and delay messages and ho
 
 ### How it works
 
-1. For FIFO deduplication, provide a `MessageDeduplicationId` or enable content-based deduplication. Content-based deduplication uses a SHA-256 hash, a fingerprint, of the message body and excludes message attributes. See [FIFO deduplication](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html#FIFO-queues-exactly-once-processing).
-2. A [queue delay](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-delay-queues.html#sqs-delay-queues) hides new messages before their first receive. For standard queues, a per-message `DelaySeconds` timer overrides that delay. FIFO queues do not support [individual message timers](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-timers.html#sqs-message-timers).
-3. A received message remains in flight until it is deleted. To delete it, use the `ReceiptHandle` from the most recent receive, not its `MessageId`. An old handle can return success without deleting the message. See [DeleteMessage](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html#API_DeleteMessage).
-4. If a standard queue reaches its [in-flight limit](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-queues.html#quotas-queues), short polling returns `OverLimit`. Long polling returns no new messages until the in-flight count drops, without that error. See [in-flight messages and quotas](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html#inflight-messages).
+1. For FIFO deduplication, provide a `MessageDeduplicationId` or enable content-based deduplication. Content-based deduplication uses a SHA-256 hash, a fingerprint, of the message body and excludes message attributes. See FIFO deduplication.
+2. A queue delay hides new messages before their first receive. For standard queues, a per-message `DelaySeconds` timer overrides that delay. FIFO queues do not support individual message timers.
+3. A received message remains in flight until it is deleted. To delete it, use the `ReceiptHandle` from the most recent receive, not its `MessageId`. An old handle can return success without deleting the message. See DeleteMessage.
+4. If a standard queue reaches its in-flight limit, short polling returns `OverLimit`. Long polling returns no new messages until the in-flight count drops, without that error. See in-flight messages and quotas.
 
 ### Exam cues
 

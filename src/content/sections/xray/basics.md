@@ -12,7 +12,7 @@ cards:
     a: "AWS X-Ray, which traces requests across services."
     facts: [tracing]
 ---
-AWS X-Ray traces requests through an application to show where time is spent and where errors happen. [What is AWS X-Ray?](https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html#aws-xray)
+AWS X-Ray traces requests through an application to show where time is spent and where errors happen.
 
 ### How it works
 

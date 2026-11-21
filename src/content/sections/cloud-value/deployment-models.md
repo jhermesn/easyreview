@@ -48,7 +48,7 @@ cards:
     a: Infrastructure as a Service (IaaS).
     facts: [service-models]
 ---
-A deployment model says where an application's parts run. AWS describes three: all in the cloud, hybrid, and on-premises. Each gives a different level of control, flexibility and management. [Types of cloud computing](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/types-of-cloud-computing.html#types-of-cloud-computing)
+A deployment model says where an application's parts run. AWS describes three: all in the cloud, hybrid, and on-premises. Each gives a different level of control, flexibility and management.
 
 ### How it works
 

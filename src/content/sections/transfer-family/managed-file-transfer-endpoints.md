@@ -62,7 +62,7 @@ cards:
     a: "Use a custom identity provider: a Lambda function, or an API Gateway method backed by Lambda, that checks the credentials."
     facts: [identity-providers]
 ---
-AWS Transfer Family replaces self-managed SFTP and FTP servers. Partners connect with the same clients as before; files go straight into Amazon S3 or Amazon EFS, where the rest of AWS can process them. [What is AWS Transfer Family?](https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html)
+AWS Transfer Family replaces self-managed SFTP and FTP servers. Partners connect with the same clients as before; files go straight into Amazon S3 or Amazon EFS, where the rest of AWS can process them.
 
 ### How it works
 

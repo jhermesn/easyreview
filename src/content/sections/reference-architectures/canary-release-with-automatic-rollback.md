@@ -158,7 +158,7 @@ Release questions ask how to ship a change to a small share of users, watch it a
 
 ### How it works
 
-1. The pipeline starts a CodeDeploy deployment. For Lambda, the AppSpec names the alias, the current version and the target version. [Deployment configurations](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html)
+1. The pipeline starts a CodeDeploy deployment. For Lambda, the AppSpec names the alias, the current version and the target version.
 2. The `BeforeAllowTraffic` hook runs a validation function before the new version gets traffic.
 3. A canary configuration moves a first share of traffic, waits, then moves the rest. Linear moves equal shares at equal intervals.
 4. A CloudWatch alarm on the new version's errors is attached to the deployment group. With automatic rollback on alarm, CodeDeploy stops and redeploys the last known good revision as a new deployment.

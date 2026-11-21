@@ -36,7 +36,7 @@ cards:
     a: "A VMware Cloud Foundation environment on EC2 bare metal instances inside your own VPC."
     facts: [evs]
 ---
-VMware Cloud on AWS is the relocate option for VMware estates: the same vSphere tools and VMs, running on AWS hardware next to native services. In 2024 its sale moved to Broadcom, and AWS added Amazon EVS for running VMware Cloud Foundation in your own VPC. [Choosing between RDS, EC2 or VMware Cloud on AWS](https://docs.aws.amazon.com/whitepapers/latest/oracle-database-aws-best-practices/choosing-between-amazon-rds-amazon-ec2-or-vmware-cloud-on-aws-for-your-oracle-database.html)
+VMware Cloud on AWS is the relocate option for VMware estates: the same vSphere tools and VMs, running on AWS hardware next to native services. In 2024 its sale moved to Broadcom, and AWS added Amazon EVS for running VMware Cloud Foundation in your own VPC.
 
 ### How it works
 

@@ -133,24 +133,24 @@ cards:
       - api-region-default
       - trail-regions
 ---
-CloudTrail trail operations determine which events are recorded, where to look for them, and how to validate delivered logs. Check the trail configuration and validation evidence together when investigating a gap. [Trail concepts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-trails) · [CLI validation](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-cli.html#cloudtrail-log-file-validation-cli)
+CloudTrail trail operations determine which events are recorded, where to look for them, and how to validate delivered logs. Check the trail configuration and validation evidence together when investigating a gap. Trail concepts · CLI validation
 
 ### How it works
 
-1. Choose Region coverage. A multi-Region trail covers enabled Regions. The console creates multi-Region trails, while `CreateTrail` defaults to a single Region unless `IsMultiRegionTrail` is enabled. [Trail concepts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-trails) · [CreateTrail](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html#awscloudtrail-CreateTrail-request-IsMultiRegionTrail)
-2. Set event selectors. A trail without specific selectors records read and write management events, but no data or network activity events. Advanced selectors replace basic selectors, so include the management events still needed. For S3 object data, use `eventCategory: Data`, `resources.type: AWS::S3::Object` and a `resources.ARN` prefix. [PutEventSelectors](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html#API_PutEventSelectors) · [Data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events-with-cloudtrail)
-3. Start recording. CLI trail creation and starting logging are separate operations. Call `StartLogging` in the home Region of a multi-Region trail to begin recording and delivery. [CLI trail operations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail-by-using-the-aws-cli.html#cloudtrail-create-and-update-a-trail-by-using-the-aws-cli) · [StartLogging](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_StartLogging.html#API_StartLogging)
-4. Validate logs with `validate-logs`. The CLI needs online access, read permission, and log and digest files in their original S3 locations. It checks only logs referenced by digests. Pass `--trail-arn` and `--start-time`, add `--account-id` for an organization trail, and use `--region` to select the Region. [CLI validation](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-cli.html#cloudtrail-log-file-validation-cli)
+1. Choose Region coverage. A multi-Region trail covers enabled Regions. The console creates multi-Region trails, while `CreateTrail` defaults to a single Region unless `IsMultiRegionTrail` is enabled. Trail concepts · CreateTrail
+2. Set event selectors. A trail without specific selectors records read and write management events, but no data or network activity events. Advanced selectors replace basic selectors, so include the management events still needed. For S3 object data, use `eventCategory: Data`, `resources.type: AWS::S3::Object` and a `resources.ARN` prefix. PutEventSelectors · Data events
+3. Start recording. CLI trail creation and starting logging are separate operations. Call `StartLogging` in the home Region of a multi-Region trail to begin recording and delivery. CLI trail operations · StartLogging
+4. Validate logs with `validate-logs`. The CLI needs online access, read permission, and log and digest files in their original S3 locations. It checks only logs referenced by digests. Pass `--trail-arn` and `--start-time`, add `--account-id` for an organization trail, and use `--region` to select the Region.
 
 ### Exam cues
 
-- If the question says a trail logs its own S3 deliveries repeatedly, think `RecursiveLogging: false`, because it suppresses CloudTrail delivery events while preserving other callers' events. [Recursive logging](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-recursive-logging.html#cloudtrail-trail-recursive-logging)
-- If the question says find an STS request, think about the endpoint: global endpoint requests are logged in `us-east-1`, while Regional endpoint requests are logged in their respective Region. [STS logging](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration)
-- If the question says a digest is missing or its signature is invalid, think validation failure, because the affected files' integrity is not established. [Validation results](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-cli.html#cloudtrail-log-file-validation-cli)
+- If the question says a trail logs its own S3 deliveries repeatedly, think `RecursiveLogging: false`, because it suppresses CloudTrail delivery events while preserving other callers' events.
+- If the question says find an STS request, think about the endpoint: global endpoint requests are logged in `us-east-1`, while Regional endpoint requests are logged in their respective Region.
+- If the question says a digest is missing or its signature is invalid, think validation failure, because the affected files' integrity is not established.
 
 ### Remember
 
-- `RecursiveLogging` defaults to `true`. Setting it to `false` suppresses CloudTrail-invoked S3 `PutObject` and CloudWatch Logs `PutLogEvents` delivery events. [CreateTrail](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html#API_CreateTrail_RequestParameters) · [Recursive logging](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-recursive-logging.html#cloudtrail-trail-recursive-logging)
-- Disabling validation breaks the digest chain after one hour. Files delivered while validation was disabled do not get digests. [CreateTrail validation](https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html#awscloudtrail-CreateTrail-request-EnableLogFileValidation)
+- `RecursiveLogging` defaults to `true`. Setting it to `false` suppresses CloudTrail-invoked S3 `PutObject` and CloudWatch Logs `PutLogEvents` delivery events. CreateTrail · Recursive logging
+- Disabling validation breaks the digest chain after one hour. Files delivered while validation was disabled do not get digests.
 
 > **Trap:** Reenabling validation does not create digests for the disabled period. A missing or modified digest also cannot establish the integrity of affected files.

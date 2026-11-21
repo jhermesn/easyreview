@@ -144,7 +144,7 @@ cards:
       - apprunner-date
 ---
 
-AWS App2Container packages a supported application that is already running on a server into a container image without requiring source code. A container image is the packaged application and dependencies used to start a container. The [App2Container guide](https://docs.aws.amazon.com/app2container/latest/UserGuide/what-is-a2c.html#what-is-a2c) describes discovery, packaging, and generation of AWS deployment artifacts, meaning files used to build or deploy the application.
+AWS App2Container packages a supported application that is already running on a server into a container image without requiring source code. A container image is the packaged application and dependencies used to start a container. The App2Container guide describes discovery, packaging, and generation of AWS deployment artifacts, meaning files used to build or deploy the application.
 
 ### How it works
 
@@ -168,7 +168,7 @@ AWS App2Container packages a supported application that is already running on a 
 | Amazon EKS | Container image in ECR and Kubernetes deployment artifacts |
 | AWS App Runner | Linux applications only; closed to new customers in March 2026 |
 
-- App2Container's [availability notice](https://docs.aws.amazon.com/app2container/latest/UserGuide/dotnet-modernization-tools-availability-change.html#dotnet-modernization-tools-availability-change) permits existing projects to continue with security and availability maintenance, without new features.
+- App2Container's availability notice permits existing projects to continue with security and availability maintenance, without new features.
 - App2Container has no additional tool charge; the AWS resources used by its outputs are billed.
 
 > **Trap:** Packaging the application does not package its database. The application container still needs access to the database server.

@@ -50,11 +50,11 @@ cards:
     trap: true
     facts: [backup-other-region]
 ---
-A single Region already spans several Availability Zones, which handles the loss of a data center. A second Region protects against problems that hit a whole Region. It also brings the workload closer to users elsewhere, and keeps data in the countries that require it. [Regions](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/regions.html#regions)
+A single Region already spans several Availability Zones, which handles the loss of a data center. A second Region protects against problems that hit a whole Region. It also brings the workload closer to users elsewhere, and keeps data in the countries that require it.
 
 ### How it works
 
-1. Decide what you are protecting against. For a data center loss, multiple AZs and backup and restore may be enough. For a Region loss, or when regulations require it, use a multi-Region strategy. [Disaster recovery options](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud)
+1. Decide what you are protecting against. For a data center loss, multiple AZs and backup and restore may be enough. For a Region loss, or when regulations require it, use a multi-Region strategy.
 2. Replicate data to the second Region. Nothing crosses Regions unless you replicate or copy it.
 3. Prepare the infrastructure there too, preferably with infrastructure as code, so it can be deployed quickly.
 4. For users in other parts of the world, serve them from a Region close to them.

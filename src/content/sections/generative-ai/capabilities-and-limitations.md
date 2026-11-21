@@ -54,7 +54,7 @@ cards:
     trap: true
     facts: [interpretability]
 ---
-Generative AI is flexible: one model writes, summarizes, translates and chats. The same flexibility makes it unreliable in ways that matter: it can invent facts, answer differently each time and repeat the bias in its data. [What are foundation models?](https://aws.amazon.com/what-is/foundation-models/)
+Generative AI is flexible: one model writes, summarizes, translates and chats. The same flexibility makes it unreliable in ways that matter: it can invent facts, answer differently each time and repeat the bias in its data.
 
 ### How it works
 

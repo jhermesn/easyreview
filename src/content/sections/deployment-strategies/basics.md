@@ -19,7 +19,7 @@ cards:
     a: "A blue/green deployment."
     facts: [blue-green]
 ---
-A deployment strategy decides how a new version replaces the old one. The main choices are updating servers in place or switching traffic to a new environment. [What is CodeDeploy?](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html#welcome)
+A deployment strategy decides how a new version replaces the old one. The main choices are updating servers in place or switching traffic to a new environment.
 
 ### How it works
 

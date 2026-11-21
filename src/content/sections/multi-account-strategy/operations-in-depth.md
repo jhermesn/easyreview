@@ -50,10 +50,10 @@ AWS Resource Access Manager (AWS RAM) shares require planning for Region, accoun
 
 ### How it works
 
-1. Create a share for a Regional resource in the same Region as the resource. For global resources, use a share in `us-east-1`. [AWS RAM](https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is-how-sharing)
-2. Organization sharing normally ends when a consumer account leaves. To retain access, create a new direct account share with `RetainSharingOnAccountLeaveOrganization`, allow external principals and have the consumer accept the invitation. [AWS RAM sharing](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html#getting-started-sharing-orgs)
-3. Share a customer managed RAM permission so receiving accounts can associate it with their own resource shares. AWS added this capability in November 2026. [AWS RAM document history](https://docs.aws.amazon.com/ram/latest/userguide/doc-history.html)
-4. Check the Organizations account quota when adding accounts. Pending invitations count against the quota. [AWS Organizations quotas](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html#default-maximum-number-of-accounts)
+1. Create a share for a Regional resource in the same Region as the resource. For global resources, use a share in `us-east-1`.
+2. Organization sharing normally ends when a consumer account leaves. To retain access, create a new direct account share with `RetainSharingOnAccountLeaveOrganization`, allow external principals and have the consumer accept the invitation.
+3. Share a customer managed RAM permission so receiving accounts can associate it with their own resource shares. AWS added this capability in November 2026.
+4. Check the Organizations account quota when adding accounts. Pending invitations count against the quota.
 
 ### Exam cues
 

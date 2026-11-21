@@ -68,7 +68,7 @@ cards:
     a: BERT (Bidirectional Encoder Representations from Transformers).
     facts: [bert]
 ---
-A foundation model (FM) is a large model pre-trained on broad data that you adapt to many tasks instead of training a new model per task. Large language models (LLMs) are the FMs that work with language. [Key terminology](https://docs.aws.amazon.com/bedrock/latest/userguide/key-definitions.html)
+A foundation model (FM) is a large model pre-trained on broad data that you adapt to many tasks instead of training a new model per task. Large language models (LLMs) are the FMs that work with language.
 
 ### How it works
 

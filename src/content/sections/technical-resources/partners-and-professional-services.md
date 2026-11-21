@@ -72,16 +72,16 @@ cards:
     a: "AWS Professional Services helps organizations design, build, migrate and manage AWS workloads."
     facts: [proserve]
 ---
-When a customer needs more than documentation and support cases, AWS offers people. AWS Professional Services and AWS solutions architects come from AWS itself; AWS Partner Network members are outside companies. [AWS Partner Network](https://aws.amazon.com/partners/)
+When a customer needs more than documentation and support cases, AWS offers people. AWS Professional Services and AWS solutions architects come from AWS itself; AWS Partner Network members are outside companies.
 
 ### How it works
 
-1. **AWS Professional Services** works on projects to design, build, migrate and manage workloads. [AWS Professional Services](https://aws.amazon.com/professional-services/)
+1. **AWS Professional Services** works on projects to design, build, migrate and manage workloads.
 2. **AWS solutions architects** share architecture expertise; their experience shaped the Well-Architected best practices.
 3. **AWS Partner Network (APN)** members include consulting partners and system integrators that deliver projects, and independent software vendors (ISVs) that sell software, often through AWS Marketplace.
 4. **Technical Account Managers** come with Enterprise Support and Unified Operations.
-5. **AWS Managed Services (AMS)** has AWS operate a customer's infrastructure: change requests, monitoring, patching, security and backup. AMS Advanced closed to new customers on June 30, 2026 and ends on June 30, 2027. [What is AMS?](https://docs.aws.amazon.com/managedservices/latest/userguide/what-is-ams.html#what-is-ams)
-6. Partners manage their AWS relationship in AWS Partner Central and get programs, certifications, incentives and funding. [Partner Central](https://docs.aws.amazon.com/partner-central/latest/getting-started/what-is-partner-central.html#what-is-partner-central)
+5. **AWS Managed Services (AMS)** has AWS operate a customer's infrastructure: change requests, monitoring, patching, security and backup. AMS Advanced closed to new customers on June 30, 2026 and ends on June 30, 2027.
+6. Partners manage their AWS relationship in AWS Partner Central and get programs, certifications, incentives and funding.
 
 | Help | From | Typical use |
 |---|---|---|

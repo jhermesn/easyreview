@@ -35,14 +35,14 @@ cards:
     a: Activate cost allocation tags; CUR then breaks costs down by those tags.
     facts: [granularity]
 ---
-AWS Cost and Usage Reports (CUR) are the most detailed billing data AWS provides: line items by hour, resource and tag, delivered to Amazon S3 for your own analysis. [What are AWS Cost and Usage Reports?](https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html#what-is-cur)
+AWS Cost and Usage Reports (CUR) are the most detailed billing data AWS provides: line items by hour, resource and tag, delivered to Amazon S3 for your own analysis.
 
 ### How it works
 
 1. Create a report and choose an S3 bucket.
 2. AWS writes line items for every product, usage type and operation, by hour, day or month.
 3. Activated cost allocation tags appear as columns, so costs can be split by team or project.
-4. Analyze the files with spreadsheets, Amazon Athena or other tools. Today AWS recommends CUR 2.0 through AWS Data Exports. [AWS Data Exports](https://docs.aws.amazon.com/cur/latest/userguide/what-is-data-exports.html#what-is-data-exports)
+4. Analyze the files with spreadsheets, Amazon Athena or other tools. Today AWS recommends CUR 2.0 through AWS Data Exports.
 
 ### Exam cues
 

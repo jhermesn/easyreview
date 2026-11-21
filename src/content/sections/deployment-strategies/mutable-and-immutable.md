@@ -82,7 +82,7 @@ cards:
     facts: [alb-cutover]
 ---
 
-A deployment can change existing servers or create replacements. In-place deployment changes the application on existing instances. Immutable deployment starts a new server set from the desired configuration. The [AWS deployment methods guide](https://docs.aws.amazon.com/whitepapers/latest/practicing-continuous-integration-continuous-delivery/deployment-methods.html) explains these choices.
+A deployment can change existing servers or create replacements. In-place deployment changes the application on existing instances. Immutable deployment starts a new server set from the desired configuration. The AWS deployment methods guide explains these choices.
 
 ### How it works
 

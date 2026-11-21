@@ -22,7 +22,7 @@ cards:
     a: "It ranks root causes by dollar impact by service, account, Region and usage type."
     facts: [cad-root-cause]
 ---
-Budgets alert on limits you set; Cost Anomaly Detection alerts on spending that doesn't look normal; Cost Optimization Hub tells you where to save. [AWS Cost Anomaly Detection](https://docs.aws.amazon.com/cost-management/latest/userguide/manage-ad.html)
+Budgets alert on limits you set; Cost Anomaly Detection alerts on spending that doesn't look normal; Cost Optimization Hub tells you where to save.
 
 ### How it works
 

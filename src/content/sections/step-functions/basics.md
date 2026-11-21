@@ -12,7 +12,7 @@ cards:
     a: "AWS Step Functions."
     facts: [workflows]
 ---
-AWS Step Functions coordinates the steps of a process as a visual workflow. [What is Step Functions?](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html#welcome)
+AWS Step Functions coordinates the steps of a process as a visual workflow.
 
 ### How it works
 

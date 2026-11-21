@@ -121,11 +121,11 @@ RDS design choices affect database access, availability and operations. These de
 
 ### How it works
 
-1. A [Multi-AZ DB instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html#Concepts.MultiAZSingleStandby) uses a synchronous standby. Automated backups can still cause elevated latency; Multi-AZ does not guarantee a backup window without performance impact. RDS Custom for Oracle and SQL Server also support a synchronous standby in another Availability Zone, but require [prerequisites](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-sqlserver-multiaz.html#custom-sqlserver-multiaz).
-2. For MariaDB, MySQL and PostgreSQL, [IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth) lets clients use a short-lived token instead of a password.
-3. Every DB instance has a private IP address in its VPC, a private virtual network. To make an instance publicly accessible, every subnet in its DB subnet group must be public, and the VPC must have DNS hostnames and DNS resolution enabled. See [working with a DB instance in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html).
-4. [RDS Proxy](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations) must be in the database's VPC and cannot be public. During [failover](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html), most client connections remain open, but connections in the middle of a transaction or SQL statement are canceled. The proxy accepts new connections immediately.
-5. A stopped DB instance [starts automatically](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html#USER_StopInstance) after its maximum stop period, so it does not miss required maintenance.
+1. A Multi-AZ DB instance uses a synchronous standby. Automated backups can still cause elevated latency; Multi-AZ does not guarantee a backup window without performance impact. RDS Custom for Oracle and SQL Server also support a synchronous standby in another Availability Zone, but require prerequisites.
+2. For MariaDB, MySQL and PostgreSQL, IAM database authentication lets clients use a short-lived token instead of a password.
+3. Every DB instance has a private IP address in its VPC, a private virtual network. To make an instance publicly accessible, every subnet in its DB subnet group must be public, and the VPC must have DNS hostnames and DNS resolution enabled. See working with a DB instance in a VPC.
+4. RDS Proxy must be in the database's VPC and cannot be public. During failover, most client connections remain open, but connections in the middle of a transaction or SQL statement are canceled. The proxy accepts new connections immediately.
+5. A stopped DB instance starts automatically after its maximum stop period, so it does not miss required maintenance.
 6. For data modeling, relational tables store records as rows and attributes as columns. Row layouts suit transactions that touch complete records. Key-value access suits looking up a value by its key.
 7. A DB instance can host multiple logical databases, depending on its engine. Estimate instance compute, provisioned storage and any provisioned IOPS separately.
 8. An eligible instance can change VPCs through a destination DB subnet group, after resolving Multi-AZ and replica restrictions.
@@ -142,8 +142,8 @@ RDS design choices affect database access, availability and operations. These de
 
 - IAM authentication tokens last 15 minutes.
 - A DB instance can remain stopped for at most 7 consecutive days.
-- [RDS for MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_MySQL.Replication.ReadReplicas.html) supports up to 15 read replicas per source DB instance in the same Region.
-- [RDS Custom for Oracle](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-oracle-multiaz.html#custom-oracle-multiaz) support ends March 31, 2027; its console and resources cannot be accessed afterward.
+- RDS for MySQL supports up to 15 read replicas per source DB instance in the same Region.
+- RDS Custom for Oracle support ends March 31, 2027; its console and resources cannot be accessed afterward.
 - IAM database authentication decides who connects; database privileges decide what that user can do.
 
 > **Trap:** Public access on a DB instance does not make RDS Proxy public. The proxy remains private even when its database is publicly accessible.

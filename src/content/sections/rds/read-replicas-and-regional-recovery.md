@@ -154,7 +154,7 @@ cards:
       - replica-lag
 ---
 
-A read replica is a database copy used to move read queries away from an RDS source. Supported replicas can also provide a recovery copy in another Region. The [RDS read-replica guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl) explains that replication is asynchronous: the source can commit a write before the replica receives it.
+A read replica is a database copy used to move read queries away from an RDS source. Supported replicas can also provide a recovery copy in another Region. The RDS read-replica guide explains that replication is asynchronous: the source can commit a write before the replica receives it.
 
 ### How it works
 

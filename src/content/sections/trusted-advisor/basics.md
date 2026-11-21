@@ -57,7 +57,7 @@ cards:
     a: Underutilized Amazon EBS volumes, a cost optimization check.
     facts: [ebs-underutilized]
 ---
-AWS Trusted Advisor checks an account against AWS best practices and recommends improvements for cost, performance, security, fault tolerance and service limits. [AWS Trusted Advisor](https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html#trusted-advisor)
+AWS Trusted Advisor checks an account against AWS best practices and recommends improvements for cost, performance, security, fault tolerance and service limits.
 
 ### How it works
 

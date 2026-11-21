@@ -24,7 +24,7 @@ cards:
     trap: true
     facts: [purpose]
 ---
-AWS IoT Core is the entry point for IoT devices into AWS. Devices connect to it over IoT protocols such as MQTT, exchange messages, and reach other AWS services. [What is AWS IoT?](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html#what-is-aws-iot)
+AWS IoT Core is the entry point for IoT devices into AWS. Devices connect to it over IoT protocols such as MQTT, exchange messages, and reach other AWS services.
 
 ### How it works
 

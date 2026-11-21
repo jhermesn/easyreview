@@ -144,7 +144,7 @@ diagrams:
       - Evaluate associated groups and rules from lowest numeric priority.
       - Apply the first matching action; if none matches, resolve normally.
 ---
-Route 53 Resolver DNS Firewall controls which domain names clients can resolve through VPC Resolver, the DNS service used by a virtual private cloud (VPC). DNS translates names into records such as addresses. DNS Firewall filters those queries; it does not inspect HTTPS payloads or turn domain names into blocked destination IPs. [Filtering scope](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html)
+Route 53 Resolver DNS Firewall controls which domain names clients can resolve through VPC Resolver, the DNS service used by a virtual private cloud (VPC). DNS translates names into records such as addresses. DNS Firewall filters those queries; it does not inspect HTTPS payloads or turn domain names into blocked destination IPs.
 
 ### How it works
 
@@ -152,15 +152,15 @@ Route 53 Resolver DNS Firewall controls which domain names clients can resolve t
 2. Add rules to a rule group, a reusable rule collection, and associate the group with a VPC. Filtering also covers on-premises queries entering that protected VPC through Resolver endpoints.
 3. Choose an action for each rule. `ALLOW` permits the query and stops inspection; `BLOCK` stops inspection and returns the configured block response. Queries with no match resolve normally.
 
-For an allow-only policy, allow approved domains before a rule blocking the rest. [Actions](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-actions.html) · [Policy examples](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-getting-started.html)
+For an allow-only policy, allow approved domains before a rule blocking the rest. Actions · Policy examples
 
-By default, domain-list rules inspect all names in a DNS redirection chain, where one name points to another. A setting that trusts redirected names applies only to that query; a direct query for the destination is evaluated independently. [Redirection behavior](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-overview.html)
+By default, domain-list rules inspect all names in a DNS redirection chain, where one name points to another. A setting that trusts redirected names applies only to that query; a direct query for the destination is evaluated independently.
 
 ### Exam cues
 
 - If the question says block malicious domain lookups through Amazon-provided DNS, think DNS Firewall, because security groups and network ACLs cannot block that resolver path.
 - If the question says an allow list must deny everything else, think a later catch-all block rule, because unmatched queries resolve normally.
-- If the question says deploy common DNS controls across accounts, think RAM sharing or Firewall Manager policies, because rule groups can be reused across VPCs. [Sharing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall-rule-group-sharing.html) · [Organization policies](https://docs.aws.amazon.com/waf/latest/developerguide/dns-firewall-policies.html)
+- If the question says deploy common DNS controls across accounts, think RAM sharing or Firewall Manager policies, because rule groups can be reused across VPCs. Sharing · Organization policies
 
 ### Remember
 

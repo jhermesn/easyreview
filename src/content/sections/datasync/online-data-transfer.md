@@ -66,7 +66,7 @@ cards:
     a: "A VM on VMware ESXi, KVM, Nutanix AHV or Hyper-V, or an EC2 instance when the storage is in a VPC."
     facts: [agent]
 ---
-AWS DataSync copies files and objects over the network, fast and with checks, so you don't have to script `rsync` jobs and verify them yourself. [What is AWS DataSync?](https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html)
+AWS DataSync copies files and objects over the network, fast and with checks, so you don't have to script `rsync` jobs and verify them yourself.
 
 ### How it works
 
@@ -89,7 +89,6 @@ AWS DataSync copies files and objects over the network, fast and with checks, so
 - If the question says copy between two AWS storage services, think DataSync with no agent.
 
 ### Remember
-
 
 - Sources: NFS, SMB, HDFS, object storage, other clouds. Targets: S3, EFS, all FSx types.
 - Agent needed for on-premises and other clouds; none between AWS services in one account.

@@ -41,7 +41,7 @@ cards:
     a: "Amazon Translate provides text translation on demand using machine learning."
     facts: [purpose]
 ---
-Amazon Translate translates text between languages on demand. Applications use it to serve customers in their own language and to process content written in other languages. [What is Amazon Translate?](https://docs.aws.amazon.com/translate/latest/dg/what-is.html#what-is)
+Amazon Translate translates text between languages on demand. Applications use it to serve customers in their own language and to process content written in other languages.
 
 ### How it works
 

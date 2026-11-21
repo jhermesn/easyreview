@@ -47,7 +47,7 @@ cards:
     trap: true
     facts: [multi-agent, specialized]
 ---
-When one agent can't hold all the skills or context, a multi-agent system splits the work among specialized agents, coordinated by an orchestrator or by peers. Memory lets agents carry context within a session and across sessions. [Agentic AI Lens definitions](https://docs.aws.amazon.com/wellarchitected/latest/agentic-ai-lens/definitions.html)
+When one agent can't hold all the skills or context, a multi-agent system splits the work among specialized agents, coordinated by an orchestrator or by peers. Memory lets agents carry context within a session and across sessions.
 
 ### How it works
 

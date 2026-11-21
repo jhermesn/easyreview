@@ -58,7 +58,7 @@ cards:
     trap: true
     facts: [start-small]
 ---
-A generative AI project starts with scoping the problem, then picking and adapting a model, integrating it, deploying it and improving it with feedback. Model choice is a cost and quality trade-off you revisit as new models appear. [Generative AI lifecycle](https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lifecycle.html)
+A generative AI project starts with scoping the problem, then picking and adapting a model, integrating it, deploying it and improving it with feedback. Model choice is a cost and quality trade-off you revisit as new models appear.
 
 ### How it works
 

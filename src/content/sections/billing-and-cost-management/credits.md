@@ -50,7 +50,7 @@ cards:
     a: "Always Free offers apply to both plans. Short-term trials are only on the paid plan."
     facts: [always-free]
 ---
-AWS credits lower an AWS bill, for example credits from a promotion or a program. They apply automatically to eligible charges until they run out or expire. [Applying AWS credits](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/useconsolidatedbilling-credits.html)
+AWS credits lower an AWS bill, for example credits from a promotion or a program. They apply automatically to eligible charges until they run out or expire.
 
 ### How it works
 

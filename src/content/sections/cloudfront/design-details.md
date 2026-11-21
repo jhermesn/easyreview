@@ -64,10 +64,10 @@ CloudFront offers distribution settings for access, origin connectivity and requ
 
 ### How it works
 
-1. Use a [country allowlist or denylist](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html#georestrictions-cloudfront) to restrict an entire distribution. For geography combined with other conditions, use [AWS WAF geo match](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html#cloudfront-distributions-geo-restriction).
-2. For custom client certificate checks during the TLS handshake, use a [CloudFront Connection Function](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/function-code-choose-purpose.html#function-code-connection-request). It allows or denies the connection and cannot modify HTTP requests or responses.
-3. For an origin in a private subnet, use a [VPC origin](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-vpc-origins.html#private-content-vpc-origins). It supports Application Load Balancers, Network Load Balancers and EC2 instances, with CloudFront as the single entry point and no public access needed at the origin.
-4. When all HTTP methods are allowed, CloudFront forwards uploads and other requests using `PUT`, `POST`, `PATCH` and `DELETE` to the origin over the edge network. It caches only `GET`, `HEAD` and optionally `OPTIONS` responses. See [HTTP methods](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#RequestCustomHTTPMethods).
+1. Use a country allowlist or denylist to restrict an entire distribution. For geography combined with other conditions, use AWS WAF geo match.
+2. For custom client certificate checks during the TLS handshake, use a CloudFront Connection Function. It allows or denies the connection and cannot modify HTTP requests or responses.
+3. For an origin in a private subnet, use a VPC origin. It supports Application Load Balancers, Network Load Balancers and EC2 instances, with CloudFront as the single entry point and no public access needed at the origin.
+4. When all HTTP methods are allowed, CloudFront forwards uploads and other requests using `PUT`, `POST`, `PATCH` and `DELETE` to the origin over the edge network. It caches only `GET`, `HEAD` and optionally `OPTIONS` responses. See HTTP methods.
 
 ### Exam cues
 
@@ -80,6 +80,6 @@ CloudFront offers distribution settings for access, origin connectivity and requ
 ### Remember
 
 - CloudFront caches `GET` and `HEAD` responses and can cache `OPTIONS` responses, but does not cache responses to the other methods.
-- [Data transfer from AWS origins to CloudFront](https://aws.amazon.com/cloudfront/pricing/), such as from S3 or an Application Load Balancer, is not charged.
+- Data transfer from AWS origins to CloudFront, such as from S3 or an Application Load Balancer, is not charged.
 
 > **Trap:** A CloudFront geographic restriction blocks requests before AWS WAF receives them. Use WAF geo match when geography must be combined with other conditions.

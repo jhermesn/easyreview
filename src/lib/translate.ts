@@ -82,6 +82,7 @@ export function sectionProblems(en: SectionText, enBody: string, tr: SectionTran
     problems.push(...(original ? diagramProblems(original, d) : [`diagram "${id}" is not in the English file`]));
   }
   if (headingOutline(enBody) !== headingOutline(trBody)) problems.push(`body headings "${headingOutline(trBody)}" differ from the English "${headingOutline(enBody)}"`);
+  if (/\]\(https?:\/\//.test(trBody)) problems.push('body: external link (sources are listed only with the facts)');
   return problems;
 }
 
