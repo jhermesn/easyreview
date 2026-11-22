@@ -71,6 +71,9 @@ facts:
   - id: tag-policies
     text: "AWS Organizations tag policies standardize the tags on resources across the organization's accounts, including the case of tag keys and values."
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html#orgs_manage_policies_tag-policies
+  - id: tag-report
+    text: "Organizations tag policy compliance reports omit completely untagged resources."
+    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-report-tagging-compliance.html
 diagrams:
   - id: organizations-policy-tree
     title: Policy inheritance follows the account path
@@ -116,6 +119,10 @@ diagrams:
       - The member account inherits applicable OU policies in addition to policies attached directly
         to it.
 cards:
+  - id: organizations-039
+    q: "Will an AWS Organizations tag policy compliance report flag completely untagged resources?"
+    a: "No. Untagged resources do not appear as noncompliant in the report."
+    facts: [tag-report]
   - id: organizations-009
     q: Does AWS Organizations consolidated billing grant access to another member account resources?
     a: No. It combines charges and eligible discounts. Cross-account administration still requires an
@@ -181,6 +188,7 @@ For activity alerts, configure a CloudTrail trail and an EventBridge rule in `us
 
 ### Exam cues
 
+- If the question says find completely untagged resources in a tag policy compliance report, think a separate search, because the report does not flag them as noncompliant.
 - If the question says an invited account lacks the administrative access role, think create the role explicitly, because invitation does not create it.
 - If the question says discounts are not shared, think both accounts' sharing settings, because one enabled side is insufficient.
 

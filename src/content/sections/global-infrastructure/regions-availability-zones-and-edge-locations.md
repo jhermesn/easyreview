@@ -63,6 +63,9 @@ facts:
   - id: sts-endpoints
     text: "AWS STS provides a global endpoint and Regional endpoints."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html
+  - id: az-spare-capacity
+    text: "A workload can pre-provision enough capacity in surviving Availability Zones to carry its load after one zone fails."
+    source: https://docs.aws.amazon.com/whitepapers/latest/advanced-multi-az-resilience-patterns/data-plane-controlled-evacuation.html
 cards:
   - id: global-infrastructure-001
     q: How do AWS Regions and Availability Zones relate to each other?
@@ -131,6 +134,10 @@ cards:
     q: "Does AWS Security Token Service have Regional endpoints as well as its global endpoint?"
     a: "Yes. AWS STS provides both global and Regional endpoints."
     facts: [sts-endpoints]
+  - id: global-infrastructure-026
+    q: "How can a Multi-AZ workload avoid waiting for new capacity after an Availability Zone fails?"
+    a: "Pre-provision enough capacity in the surviving Availability Zones to carry the workload."
+    facts: [az-spare-capacity]
 diagrams:
   - id: region-azs-edge
     title: A Region, its Availability Zones, and edge locations
@@ -168,6 +175,7 @@ The AWS global infrastructure has three building blocks. A Region is a geographi
 
 ### Exam cues
 
+- If the question says a workload must survive a zone failure without provisioning capacity, think spare capacity across Availability Zones, because the remaining zones must carry the load.
 - If the question says call AWS STS in a particular Region, think its Regional endpoint, because STS provides both Regional and global endpoints.
 - If the question says a workload has US government regulatory requirements, think AWS GovCloud (US), because its isolated Regions are designed for such needs.
 - If the question says survive a data center failure, think multiple Availability Zones.

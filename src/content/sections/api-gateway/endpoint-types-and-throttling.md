@@ -30,6 +30,12 @@ facts:
   - id: appsync
     text: "AWS AppSync provides serverless GraphQL and Pub/Sub APIs that read from one or more data sources, such as DynamoDB, through a single GraphQL endpoint; pipeline resolvers run several functions in sequence to resolve one field."
     source: https://docs.aws.amazon.com/appsync/latest/devguide/what-is-appsync.html#what-is-appsync
+  - id: appsync-writes
+    text: "AppSync DynamoDB pipeline resolvers can use GetItem to read and PutItem to write items."
+    source: https://docs.aws.amazon.com/appsync/latest/devguide/tutorial-pipeline-resolvers.html
+  - id: appsync-domain
+    text: "An AppSync custom domain needs an ACM certificate covering the name in us-east-1 and a DNS record pointing to its CloudFront distribution."
+    source: https://docs.aws.amazon.com/appsync/latest/devguide/custom-domain-name.html
 cards:
   - id: api-gateway-031
     q: A REST API serves mobile users worldwide from one Region. Which API Gateway endpoint type reduces their latency with no extra setup?
@@ -68,6 +74,14 @@ cards:
     q: "A mobile app needs a serverless GraphQL API that reads and writes several DynamoDB tables. Which service fits better than API Gateway?"
     a: "AWS AppSync, a managed GraphQL service; pipeline resolvers can combine operations on several tables for one field."
     facts: [appsync]
+  - id: api-gateway-053
+    q: "Can AWS AppSync DynamoDB resolvers read and write items?"
+    a: "Yes. Resolver functions can use GetItem and PutItem."
+    facts: [appsync-writes]
+  - id: api-gateway-054
+    q: "What certificate and DNS setup does an AWS AppSync custom domain need?"
+    a: "Use an ACM certificate covering the name in us-east-1 and point DNS to the AppSync CloudFront distribution."
+    facts: [appsync-domain]
 ---
 API Gateway endpoint type decides where requests enter AWS, and throttling decides how many get through.
 
@@ -86,6 +100,8 @@ API Gateway endpoint type decides where requests enter AWS, and throttling decid
 
 ### Exam cues
 
+- If the question says a GraphQL API needs to read and write DynamoDB items, think AppSync resolvers, because they can use GetItem and PutItem.
+- If the question says an AppSync custom domain needs HTTPS, think an ACM certificate in us-east-1 and DNS to CloudFront, because AppSync uses a CloudFront distribution for the domain.
 - If the question says global clients, think edge-optimized; same-Region or multi-Region with latency routing, think Regional.
 - If the question says API reachable only from a VPC, think a private API.
 - If the question says 429 errors or protect the backend from bursts, think throttling settings, usage plans and caching.

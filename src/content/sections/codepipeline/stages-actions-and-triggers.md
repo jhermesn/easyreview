@@ -3,6 +3,9 @@ title: Stages, actions, and triggers
 level: associate
 order: 10
 facts:
+  - id: disable-transition
+    text: "A CodePipeline transition between stages can be disabled to stop executions from entering the next stage."
+    source: https://docs.aws.amazon.com/codepipeline/latest/userguide/transitions.html
   - id: release-workflow
     text: A pipeline describes a release workflow made of stages containing actions.
     source: https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-pipelines
@@ -52,6 +55,49 @@ facts:
   - id: execution-meaning
     text: A pipeline execution is one identified run of a set of changes through a pipeline.
     source: https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#concepts-executions
+cards:
+  - id: codepipeline-058
+    q: "How can a team stop CodePipeline executions from entering the next stage?"
+    a: "Disable the transition into that stage."
+    facts: [disable-transition]
+  - id: codepipeline-015
+    q: A CodePipeline pipeline uses CodeCommit and starts twice for each push after an EventBridge rule
+      is added. What should the team change?
+    a: Set `PollForSourceChanges` to `false`. EventBridge detects changes, so polling must be disabled.
+    facts:
+      - codecommit-events
+      - codecommit-polling
+  - id: codepipeline-031
+    q: How does CodePipeline order actions within a stage?
+    a: "Use `runOrder`: equal values run in parallel; higher values wait for lower values to succeed."
+    facts:
+      - ordered-actions
+  - id: codepipeline-032
+    q: A team wants a CodePipeline pipeline to start from GitHub repository events without polling.
+      Which source integration fits?
+    a: Use AWS CodeConnections with the `CodeStarSourceConnection` source action. Provider webhooks
+      detect changes.
+    facts:
+      - connection-source
+  - id: codepipeline-033
+    q: A V2 CodePipeline pipeline should start only for changes under an application path on a release
+      branch. What filters fit?
+    a: Use a connections source with branch and file path filters. Both must match; excludes override
+      includes.
+    facts:
+      - filtered-triggers
+      - trigger-scope
+      - filter-logic
+      - filter-excludes
+  - id: codepipeline-034
+    q: A PARALLEL CodePipeline execution with a CodeCommit source builds a later commit than the one
+      that triggered it. Why?
+    a: The CodeCommit source clones HEAD when the source action starts. Connections sources capture the
+      pushed commit.
+    trap: true
+    facts:
+      - parallel-codecommit
+      - connection-revision
 diagrams:
   - id: pipeline-release-order
     title: A source revision moves through release actions
@@ -94,45 +140,6 @@ diagrams:
     steps:
       - The source action provides the revision as an artifact.
       - After build and test succeed, the deployment action consumes the build artifact.
-cards:
-  - id: codepipeline-015
-    q: A CodePipeline pipeline uses CodeCommit and starts twice for each push after an EventBridge rule
-      is added. What should the team change?
-    a: Set `PollForSourceChanges` to `false`. EventBridge detects changes, so polling must be disabled.
-    facts:
-      - codecommit-events
-      - codecommit-polling
-  - id: codepipeline-031
-    q: How does CodePipeline order actions within a stage?
-    a: "Use `runOrder`: equal values run in parallel; higher values wait for lower values to succeed."
-    facts:
-      - ordered-actions
-  - id: codepipeline-032
-    q: A team wants a CodePipeline pipeline to start from GitHub repository events without polling.
-      Which source integration fits?
-    a: Use AWS CodeConnections with the `CodeStarSourceConnection` source action. Provider webhooks
-      detect changes.
-    facts:
-      - connection-source
-  - id: codepipeline-033
-    q: A V2 CodePipeline pipeline should start only for changes under an application path on a release
-      branch. What filters fit?
-    a: Use a connections source with branch and file path filters. Both must match; excludes override
-      includes.
-    facts:
-      - filtered-triggers
-      - trigger-scope
-      - filter-logic
-      - filter-excludes
-  - id: codepipeline-034
-    q: A PARALLEL CodePipeline execution with a CodeCommit source builds a later commit than the one
-      that triggered it. Why?
-    a: The CodeCommit source clones HEAD when the source action starts. Connections sources capture the
-      pushed commit.
-    trap: true
-    facts:
-      - parallel-codecommit
-      - connection-revision
 ---
 CodePipeline coordinates a software release through stages, which group related work, and actions, which perform that work. An execution is one trip through this workflow.
 
@@ -146,6 +153,7 @@ CodePipeline coordinates a software release through stages, which group related 
 
 ### Exam cues
 
+- If the question says pause movement between pipeline stages, think disable the CodePipeline transition, because executions cannot enter the next stage.
 - If the question says GitHub events should start releases, think CodeConnections, because its source action receives provider webhooks.
 - If the question says CodeCommit pushes start duplicate executions, think disable polling, because EventBridge and polling can both start the pipeline.
 - If the question says only one application's files on a release branch should trigger a run, think V2 branch and path filters, because both conditions must match.

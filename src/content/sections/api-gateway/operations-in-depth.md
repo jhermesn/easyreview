@@ -62,6 +62,9 @@ facts:
   - id: proxy-502
     text: "With a Lambda proxy integration, a function response that is not in the required format makes API Gateway return 502 Bad Gateway."
     source: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
+  - id: private-alb-v2
+    text: "API Gateway REST API private integrations support an Application Load Balancer through a VPC link V2."
+    source: https://docs.aws.amazon.com/whitepapers/latest/best-practices-api-gateway-private-apis-integration/rest-api.html
 cards:
   - id: api-gateway-005
     q: An API Gateway REST API stage uses a variable for its Lambda target and receives an invocation
@@ -152,6 +155,10 @@ cards:
     q: "A REST API with Lambda proxy integration returns 502 Bad Gateway although the function runs without errors. What is the likely cause?"
     a: "The function returns a response **not in the proxy integration format** (statusCode, headers, body). API Gateway answers 502 when it cannot use the output."
     facts: [proxy-502]
+  - id: api-gateway-052
+    q: "How can an API Gateway REST API privately reach an Application Load Balancer?"
+    a: "Use a private integration with a VPC link V2."
+    facts: [private-alb-v2]
 ---
 API Gateway offers settings and diagnostics for operating deployed APIs, from stage configuration and caching to integration troubleshooting and client SDK generation.
 
@@ -166,6 +173,7 @@ API Gateway offers settings and diagnostics for operating deployed APIs, from st
 
 ### Exam cues
 
+- If the question says a REST API must reach a private Application Load Balancer, think VPC link V2, because it supports that integration target.
 - If the question says a stage variable selects a Lambda function but invocation fails, check the target's invoke permission, because it must be configured manually.
 - If the question says a backend needs a different request body, think an integration request mapping template, because it transforms the payload before the backend is called.
 - If the question says a frontend needs responses before the backend exists, think MOCK integration, because API Gateway answers without a backend.

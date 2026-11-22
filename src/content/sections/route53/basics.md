@@ -24,6 +24,9 @@ facts:
   - id: health-checks
     text: Route 53 health checks monitor the health of web applications and other resources, and CloudWatch alarms can notify when a health check status changes.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html
+  - id: "resolver-hybrid"
+    text: "Route 53 Resolver inbound and outbound endpoints forward DNS queries between a VPC and an on-premises network over a VPN or Direct Connect."
+    source: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html#resolver"
 cards:
   - id: route53-074
     q: "A company needs to register a domain and route its traffic to resources on AWS. Which service fits?"
@@ -54,6 +57,10 @@ cards:
     q: Which Amazon Route 53 feature monitors whether a web server is healthy so DNS can fail over away from it?
     a: Route 53 health checks.
     facts: [health-checks]
+  - id: route53-083
+    q: "How can Route 53 Resolver exchange DNS queries between a VPC and an on-premises network connected by VPN?"
+    a: "Use inbound and outbound Resolver endpoints for the required query directions."
+    facts: [resolver-hybrid]
 ---
 Amazon Route 53 is AWS's DNS service: it registers domains, answers DNS queries and checks endpoint health.
 
@@ -65,6 +72,7 @@ Amazon Route 53 is AWS's DNS service: it registers domains, answers DNS queries 
 
 ### Exam cues
 
+- If the question says resolve names between a VPC and on-premises DNS over VPN, think Route 53 Resolver endpoints, because they forward queries between networks.
 - If the question says DNS or domain registration, think Route 53.
 
 ### Remember

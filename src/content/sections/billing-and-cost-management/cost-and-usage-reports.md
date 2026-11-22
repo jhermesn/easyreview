@@ -21,6 +21,15 @@ facts:
   - id: export-formats
     text: "Data Exports delivers CUR 2.0 data to an S3 bucket as gzip-compressed CSV or Parquet files, with a manifest describing the export."
     source: https://docs.aws.amazon.com/cur/latest/userguide/dataexports-export-delivery.html
+  - id: analytics-integrations
+    text: "AWS Cost and Usage Reports can be analyzed with Amazon Athena, Amazon Redshift and Amazon QuickSight."
+    source: https://docs.aws.amazon.com/cur/latest/userguide/dataexports-migrate.html
+  - id: billing-group-report
+    text: "AWS Billing Conductor can create a pro forma Cost and Usage Report for each billing group."
+    source: https://docs.aws.amazon.com/billingconductor/latest/userguide/configuring-abc.html
+  - id: reservation-effective-cost
+    text: "The reservation effective cost column in AWS Cost and Usage Reports includes the amortized upfront and recurring reservation fees for discounted usage."
+    source: https://docs.aws.amazon.com/cur/latest/userguide/reservation-columns.html
 cards:
   - id: billing-and-cost-management-010
     q: A finance team needs the most detailed AWS billing data, line by line and hour by hour, delivered to Amazon S3. Which AWS feature provides it?
@@ -34,6 +43,11 @@ cards:
     q: How can a Cost and Usage Report show costs per project?
     a: Activate cost allocation tags; CUR then breaks costs down by those tags.
     facts: [granularity]
+  - id: billing-and-cost-management-055
+    q: "How can AWS Billing Conductor report pro forma costs for each billing group?"
+    a: "Create a pro forma AWS Cost and Usage Report for each billing group."
+    facts: [billing-group-report]
+
 ---
 AWS Cost and Usage Reports (CUR) are the most detailed billing data AWS provides: line items by hour, resource and tag, delivered to Amazon S3 for your own analysis.
 
@@ -46,6 +60,9 @@ AWS Cost and Usage Reports (CUR) are the most detailed billing data AWS provides
 
 ### Exam cues
 
+- If the question says find the effective reservation cost of discounted usage, think the reservation effective cost column, because it combines the applicable reservation fees.
+- If the question says create a Cost and Usage Report with custom billing group prices, think a pro forma report, because Billing Conductor can create one for each group.
+- If the question says analyze Cost and Usage Report data, think Amazon Athena, Amazon Redshift or Amazon QuickSight, because these tools support the report.
 - If the question says most granular or detailed billing data, think AWS Cost and Usage Reports.
 - If the question says deliver billing data to S3 for analysis, think CUR (Data Exports).
 

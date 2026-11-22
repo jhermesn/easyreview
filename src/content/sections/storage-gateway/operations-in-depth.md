@@ -32,6 +32,9 @@ facts:
   - id: stored-limit
     text: Stored volumes support 1 GiB to 16 TiB per volume and up to 32 volumes per gateway.
     source: https://docs.aws.amazon.com/storagegateway/latest/vgw/StorageGatewayConcepts.html#storage-gateway-stored-volume-concepts
+  - id: refresh-complete
+    text: "S3 File Gateway RefreshCache starts an asynchronous refresh; a completion notification indicates when it finishes."
+    source: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_RefreshCache.html
 cards:
   - id: storage-gateway-005
     q: A workflow must run only after an AWS S3 File Gateway working file set reaches S3. What should it
@@ -71,6 +74,10 @@ cards:
     facts:
       - cached-limit
       - stored-limit
+  - id: storage-gateway-018
+    q: "Does a successful AWS Storage Gateway RefreshCache response mean the S3 File Gateway refresh has completed?"
+    a: "No. The call starts the refresh. Use the completion notification to tell when it finishes."
+    facts: [refresh-complete]
 ---
 S3 File Gateway upload notifications and cache refreshes help coordinate file workflows with S3. Volume Gateway limits determine the size and number of volumes available in each mode.
 
@@ -83,6 +90,7 @@ S3 File Gateway upload notifications and cache refreshes help coordinate file wo
 
 ### Exam cues
 
+- If the question says check whether an S3 File Gateway refresh has finished, think refresh completion notification, because a successful API response only starts the operation.
 - If the question says a workflow must wait for a working file set to reach S3, think `NotifyWhenUploaded` and the EventBridge completion notification, because the API response does not wait for the uploads.
 - If the question says each file upload needs its own notification, think `NotificationPolicy`, because it reports individual uploads rather than a working file set.
 - If the question says objects changed outside the gateway are missing from a share, think `RefreshCache` or TTL-based refresh, because they update the cached inventory.

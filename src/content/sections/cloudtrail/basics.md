@@ -3,6 +3,9 @@ title: "CloudTrail basics"
 level: foundational
 order: 5
 facts:
+  - id: supported-data-events
+    text: "CloudTrail logs data events only for the resource types it supports, such as Amazon S3 objects, Lambda functions and DynamoDB tables."
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events
   - id: records-actions
     text: "AWS CloudTrail records actions taken by users, roles and AWS services as events, whether they come from the console, the CLI, SDKs or APIs, to support auditing, governance and compliance."
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html#cloudtrail-user-guide
@@ -37,6 +40,10 @@ facts:
     text: "CloudTrail trails do not log data events by default."
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html
 cards:
+  - id: cloudtrail-060
+    q: "Does AWS CloudTrail log data events for every AWS resource type once a trail exists?"
+    a: "No. Data events cover only the resource types CloudTrail supports, such as S3 objects and Lambda functions.\nThe trail logs them only when you select them."
+    facts: [supported-data-events, trail-data-opt-in]
   - id: cloudtrail-053
     q: "An auditor asks who deleted an S3 bucket yesterday in an AWS account. Which service answers it?"
     a: "AWS CloudTrail, which records API calls with the identity, time and source of each action."
@@ -79,6 +86,7 @@ AWS CloudTrail is the audit log of an AWS account: it records who did what, when
 
 ### Exam cues
 
+- If the question says log a data event for a resource, think check CloudTrail support and select the event, because data events are not enabled by default.
 - If the question says log S3 object operations, think select CloudTrail data events, because trails do not record them by default.
 - If the question says who made a change or which API call happened, think CloudTrail, because it records account activity.
 - If the question says keep the activity log for years, think a CloudTrail trail to S3, because Event history keeps only 90 days.

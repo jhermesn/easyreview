@@ -63,6 +63,9 @@ facts:
   - id: delivery-status
     text: "SNS can log the delivery status of messages to endpoints such as Amazon SQS, AWS Lambda, Data Firehose and HTTP/S."
     source: https://docs.aws.amazon.com/sns/latest/dg/sns-topic-attributes.html
+  - id: "sms-replies-sns"
+    text: "AWS End User Messaging SMS can send incoming two-way SMS message bodies to an Amazon SNS topic for processing."
+    source: "https://docs.aws.amazon.com/sms-voice/latest/userguide/two-way-sms.html#two-way-sms"
 cards:
   - id: sns-003
     q: What do an Amazon SNS topic and subscription represent?
@@ -147,6 +150,10 @@ cards:
     q: "A team must confirm whether Amazon SNS messages reached an SQS queue and a Lambda function. Which SNS feature helps?"
     a: "Delivery status logging for those endpoints."
     facts: [delivery-status]
+  - id: sns-035
+    q: "How can a two-way AWS End User Messaging SMS number route customer replies for processing with Amazon SNS?"
+    a: "Send incoming message bodies to an SNS topic."
+    facts: [sms-replies-sns]
 diagrams:
   - id: sns-independent-queues
     title: One publication, separate subscriber queues
@@ -230,6 +237,7 @@ Amazon SNS is a publish/subscribe service: a publisher sends a message to a topi
 
 ### Exam cues
 
+- If the question says process replies to a two-way SMS number, think an SNS topic, because AWS End User Messaging SMS can send incoming messages to it.
 - If the question says every application needs an independent copy and can be temporarily offline, think SNS with one SQS queue per application, because each queue retains its delivered messages.
 - If the question says deployment failure email without polling, think a native CodeDeploy trigger to SNS, because the deployment group can emit the event directly.
 - If the question says an email subscription receives nothing, think confirmation, because SNS waits for the recipient to confirm.

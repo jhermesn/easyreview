@@ -108,6 +108,11 @@
       "id": "query-scan-size",
       "text": "A Query sums the size of all items it returns and rounds the total up to the next 4 KB; a Scan counts the size of every item it evaluates, not only the items it returns.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html#read-operation-consumption"
+    },
+    {
+      "id": "cli-scaling",
+      "text": "The DynamoDB CLI auto scaling tutorial registers a scalable target and creates a scaling policy after creating the table.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AutoScaling.CLI.html"
     }
   ],
   "cards": [
@@ -197,6 +202,14 @@
         "query-scan-size",
         "reads"
       ]
+    },
+    {
+      "id": "dynamodb-079",
+      "q": "How do you turn on auto scaling for an existing provisioned-capacity DynamoDB table from the AWS CLI?",
+      "a": "After creating the table, register a scalable target and create an Application Auto Scaling policy.",
+      "facts": [
+        "cli-scaling"
+      ]
     }
   ],
   "diagrams": [
@@ -276,6 +289,8 @@ DynamoDB capacity controls how much read and write work a table can accept. On-d
 | Transactional write | 1 KB | 2 |
 
 ### Exam cues
+
+- If the question says configure provisioned DynamoDB auto scaling with the CLI, think register a scalable target and create a policy, because the table creation step alone does not set up that tutorial policy.
 
 - If the question says avoid provisioning units, think on-demand, because capacity scales with requests.
 - If the question says table writes fail because of an index, think GSI write capacity, because index back-pressure can throttle base writes.

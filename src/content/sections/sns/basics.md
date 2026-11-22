@@ -6,11 +6,18 @@ facts:
   - id: pub-sub
     text: "Amazon SNS delivers messages from publishers to subscribers: publishers send to a topic, and every subscriber of the topic receives the message."
     source: https://docs.aws.amazon.com/sns/latest/dg/welcome.html#welcome
+  - id: "mobile-push"
+    text: "Amazon SNS can send push notifications directly to applications on mobile devices."
+    source: "https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html"
 cards:
   - id: sns-030
     q: "One message must reach email subscribers, an SQS queue and a Lambda function at the same time. Which service fits?"
     a: "Amazon SNS, publishing to a topic with those subscribers."
     facts: [pub-sub]
+  - id: sns-034
+    q: "Which AWS service can send push notifications to mobile applications?"
+    a: "Amazon SNS."
+    facts: [mobile-push]
 ---
 Amazon SNS is publish and subscribe messaging: one message to a topic reaches many subscribers.
 
@@ -22,6 +29,7 @@ Amazon SNS is publish and subscribe messaging: one message to a topic reaches ma
 
 ### Exam cues
 
+- If the question says send push notifications to mobile apps, think Amazon SNS, because it can deliver to mobile application endpoints.
 - If the question says notify many subscribers at once or fan out, think SNS.
 
 ### Remember

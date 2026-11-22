@@ -3,6 +3,9 @@ title: Schema and endpoint choices
 level: associate
 order: 30
 facts:
+  - id: s3-target-default-format
+    text: "An AWS DMS task writing to Amazon S3 uses CSV by default for both full load and change data capture."
+    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html
   - id: dms-schema
     text: DMS Schema Conversion assesses and converts schemas and code for a different target engine; objects it cannot convert automatically require manual conversion.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.HighLevelView.html
@@ -25,6 +28,10 @@ facts:
     text: DMS Schema Conversion can run an assessment showing what converts automatically and what needs manual work, then apply the converted code to the target or export it as SQL scripts.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#CHAP_SchemaConversion
 cards:
+  - id: dms-022
+    q: "What format does AWS DMS use by default for full load and change data capture files in an S3 target?"
+    a: "CSV."
+    facts: [s3-target-default-format]
   - id: dms-012
     q: A team is migrating to a different database engine with AWS DMS. How can it convert the source schema?
     a: Use DMS Schema Conversion or AWS Schema Conversion Tool. Manually convert objects that automatic conversion cannot handle.
@@ -57,6 +64,7 @@ AWS Database Migration Service (AWS DMS) offers schema conversion and endpoint o
 
 ### Exam cues
 
+- If the question says an S3 target needs the default AWS DMS format, think CSV, because both full load and change data capture use it by default.
 - If the question says estimate manual schema conversion work, think DMS Schema Conversion assessment, because it shows what converts automatically and what needs manual work.
 - If the question says load S3 files and ongoing changes into a stream, think S3 source and Kinesis Data Streams target, because DMS supports both endpoints.
 - If the question says move MongoDB data to Amazon DynamoDB, think DMS, because DynamoDB can be a target for a MongoDB or relational source.

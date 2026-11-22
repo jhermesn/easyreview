@@ -54,6 +54,9 @@ facts:
   - id: cloudwatch-log-streaming
     text: When instance log streaming is enabled, Elastic Beanstalk sends environment instance log files to CloudWatch Logs.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.cloudwatchlogs.html#AWSHowTo.cloudwatchlogs.loggroups
+  - id: cloudwatch-log-retention
+    text: "Elastic Beanstalk can configure a retention period for instance logs streamed to CloudWatch Logs."
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.cloudwatchlogs.html
 cards:
   - id: elastic-beanstalk-006
     q: An Elastic Beanstalk deployment stays at Warning even though the team has confirmed it operates correctly. Which health settings can change acceptance?
@@ -117,6 +120,7 @@ Enable instance log streaming to send environment log files to CloudWatch Logs.
 
 ### Exam cues
 
+- If the question says keep streamed instance logs for a selected period, think the CloudWatch Logs retention setting, because Elastic Beanstalk lets you configure it.
 - If the question says failed rolling deployment with different versions across instances, think deployment IDs and health causes, because they identify which deployment reached each instance.
 - If the question says the load balancer sends requests before startup finishes, think an application health check URL, because accepting a TCP connection does not prove the app is ready.
 - If the question says notify on environment health or deployment failure, think EventBridge rules, because Beanstalk publishes health and operation transitions.

@@ -3,6 +3,9 @@ title: RBAC and ABAC
 level: associate
 order: 100
 facts:
+  - id: terminate-resource-tag
+    text: "An IAM policy can use an instance resource tag to restrict the ec2:TerminateInstances action."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html#iam-example-instances-specific
   - id: rbac-definition
     text: Role-based access control defines permissions by job function and attaches the corresponding policies to
       identities.
@@ -32,6 +35,10 @@ facts:
     text: A permission set is a collection of IAM policies used to assign account access in IAM Identity Center.
     source: https://docs.aws.amazon.com/singlesignon/latest/userguide/permissionsetsconcept.html#permissionsetsconcept
 cards:
+  - id: iam-133
+    q: "How can an IAM policy allow EC2 termination only for instances with a specified tag?"
+    a: "Use a resource tag condition on ec2:TerminateInstances."
+    facts: [terminate-resource-tag]
   - id: iam-021
     q: How do RBAC and ABAC differ when designing IAM permissions?
     a: RBAC assigns permissions by job function. ABAC compares attributes such as principal and resource tags for
@@ -70,6 +77,7 @@ Role-based access control (RBAC) assigns permissions by job function. Attribute-
 
 ### Exam cues
 
+- If the question says allow termination only for tagged EC2 instances, think a resource tag condition, because EC2 termination supports that restriction.
 - If the question says project resources grow frequently, think ABAC tag matching, because matching resources can be covered without listing each new ARN.
 - If the question says each IAM user gets an S3 home path, think a policy variable such as `${aws:username}` in the object ARN plus `s3:prefix` on `s3:ListBucket`, because listing and object access use different resource scopes.
 - If the question says federated role access fails with that home-path policy, think unavailable `aws:username`, because a role request does not have that IAM user attribute.

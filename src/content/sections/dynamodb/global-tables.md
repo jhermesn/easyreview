@@ -58,6 +58,11 @@
       "id": "mrec-latency",
       "text": "MREC replicates item changes to the other replicas asynchronously, typically within a second or less; its RPO equals the replication delay, usually a few seconds depending on the Regions.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html"
+    },
+    {
+      "id": "cli-mrec-example",
+      "text": "The DynamoDB CLI MREC tutorial creates a table with Streams enabled, then adds a replica.",
+      "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables.tutorial.html"
     }
   ],
   "cards": [
@@ -113,6 +118,14 @@
       "a": "Typically within a second or less.\nThe RPO equals that replication delay, usually a few seconds.",
       "facts": [
         "mrec-latency"
+      ]
+    },
+    {
+      "id": "dynamodb-078",
+      "q": "How do you create a DynamoDB global table with multi-Region eventual consistency (MREC) from the AWS CLI?",
+      "a": "Create a table with DynamoDB Streams enabled, then add a replica with UpdateTable.",
+      "facts": [
+        "cli-mrec-example"
       ]
     }
   ],
@@ -173,6 +186,8 @@ DynamoDB global tables replicate data across Regions so applications can read an
 | Strong read | May miss remote writes in transit | Latest item across replicas |
 
 ### Exam cues
+
+- If the question says create an MREC global table with the documented CLI sequence, think enable Streams and add a replica, because the example starts with a Streams-enabled table.
 
 - If the question says regional writes with eventual convergence, think MREC, because replication is asynchronous.
 - If the question says strong reads must include remote writes, think MRSC, because write success requires synchronous replication.

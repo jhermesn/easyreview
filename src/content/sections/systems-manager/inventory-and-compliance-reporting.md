@@ -48,6 +48,9 @@ facts:
   - id: term-finding
     text: "Finding: A recorded security check result or security-related detection."
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-security-hub-integration.html#patch-manager-security-hub-integration
+  - id: "custom-compliance-api"
+    text: "Custom Systems Manager compliance metadata is explicitly assigned to managed nodes using the PutComplianceItems API."
+    source: "https://docs.aws.amazon.com/systems-manager/latest/userguide/compliance-about.html"
 diagrams:
   - id: ssm-inventory-query
     title: Centralize collected inventory before querying across locations
@@ -133,6 +136,10 @@ cards:
     a: A custom inventory JSON file on each managed node for Inventory to collect.
     facts:
       - inventory-custom
+  - id: systems-manager-127
+    q: "How does a team supply custom compliance results for a managed node to AWS Systems Manager?"
+    a: "Explicitly submit the metadata using PutComplianceItems."
+    facts: [custom-compliance-api]
 ---
 Inventory records what is installed and configured on managed nodes. Compliance records whether patching and associations meet their expected state; compliance history requires AWS Config.
 
@@ -146,6 +153,7 @@ Inventory records what is installed and configured on managed nodes. Compliance 
 
 ### Exam cues
 
+- If the question says report a custom compliance result, think PutComplianceItems, because the custom metadata must be supplied for the node.
 - If the question says which software versions are installed across the fleet, think Inventory, because it gathers application metadata.
 - If the question says query inventory across accounts and Regions, think resource data sync plus Athena, because S3 holds the aggregated data.
 - If the question says show how compliance changed over time, think AWS Config, because Compliance itself shows current state.

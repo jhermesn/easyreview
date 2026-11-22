@@ -21,6 +21,12 @@ facts:
   - id: basic-health
     text: Basic health reporting uses load balancer health checks (or EC2 status checks in a single-instance environment), checks that the Auto Scaling group has at least one instance, and publishes no metrics to CloudWatch.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.healthstatus.html
+  - id: go-platform
+    text: "Elastic Beanstalk supports a Go platform for deploying Go applications."
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/go-environment.html
+  - id: dotnet-windows
+    text: "Elastic Beanstalk supports ASP.NET and .NET Core web applications on Windows."
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.html
 cards:
   - id: elastic-beanstalk-063
     q: "Developers want to upload application code and have AWS create the servers, load balancer and scaling for them. Which service fits?"
@@ -51,6 +57,8 @@ AWS Elastic Beanstalk takes your application and builds the environment that run
 
 ### Exam cues
 
+- If the question says deploy an ASP.NET or .NET Core Windows web application, think Elastic Beanstalk, because it supports these applications on Windows.
+- If the question says deploy a Go application with Elastic Beanstalk, think the Go platform, because Beanstalk supports Go applications on it.
 - If the question says deploy an app without setting up the infrastructure yourself, think Elastic Beanstalk.
 
 ### Remember

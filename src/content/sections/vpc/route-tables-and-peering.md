@@ -86,6 +86,12 @@ facts:
   - id: middlebox-routing
     text: "A route more specific than the local route, matching a whole subnet CIDR, can send traffic between subnets in a VPC through a middlebox such as a Gateway Load Balancer endpoint, Network Firewall endpoint or appliance network interface."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/route-table-options.html#route-tables-appliance-routing
+  - id: nat64-translation
+    text: "NAT64 enables IPv6-only resources to communicate with IPv4 resources."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html
+  - id: peering-vpcs-only
+    text: "A VPC peering connection connects two VPCs; an on-premises network is not a VPC peer."
+    source: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html
 cards:
   - id: vpc-011
     q: A VPC subnet has no explicit route-table association. Which table directs its traffic?
@@ -172,6 +178,15 @@ cards:
     q: "Traffic between two subnets in the same Amazon VPC must pass through a firewall appliance. How can routing achieve that?"
     a: "Add a route more specific than the local route, matching the other subnet's CIDR, with the appliance (for example a Gateway Load Balancer endpoint) as target."
     facts: [middlebox-routing]
+  - id: vpc-111
+    q: "Does Amazon VPC NAT64 provide native IPv6-to-IPv6 internet egress?"
+    a: "No. NAT64 translates IPv6 traffic for IPv4 destinations. For outbound-only IPv6 internet access, use an egress-only internet gateway."
+    facts: [nat64-translation, ipv6-egress]
+  - id: vpc-117
+    q: "Can an on-premises network be an endpoint of an Amazon VPC peering connection?"
+    a: "No. VPC peering connects two VPCs."
+    facts: [peering-vpcs-only]
+
 diagrams:
   - id: vpc-direct-peering
     title: Peering needs routes on both sides
@@ -231,6 +246,8 @@ A VPC route table chooses where traffic goes. Each route pairs a destination add
 
 ### Exam cues
 
+- If the question says connect an on-premises network as a VPC peer, think another hybrid connection, because VPC peering connects two VPCs.
+- If the question says an IPv6-only workload must reach an IPv4 destination, think NAT64, because it translates traffic to IPv4.
 - If the question says peering is active but communication fails, think routes and security controls on both sides, because acceptance alone does not configure them.
 - If the question says B and C must communicate through their shared peer A, think non-transitive peering, because a peering connection is a direct relationship only.
 - If the question says zonal NAT internet access must survive another AZ's outage, think a local NAT gateway per AZ, because sharing one creates an AZ dependency.

@@ -3,6 +3,12 @@ title: Policy evaluation
 level: associate
 order: 20
 facts:
+  - id: unsupported-resource-wildcard
+    text: "For an IAM action that applies to all resources in a service, the Resource element uses a wildcard."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_resource.html#reference_policies_elements_resource
+  - id: sid-identifier
+    text: "In an IAM policy, Sid is an optional identifier for a statement."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_sid.html
   - id: policy-definition
     text: "IAM identity-based policies are JSON documents containing one or more permission statements; AWS evaluates applicable policies when a principal makes a request."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies-introduction
@@ -83,6 +89,14 @@ facts:
     text: "S3 bucket ARNs leave the Region and owning-account fields empty, as in arn:aws:s3:::example-bucket."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#arns-paths-wildcards
 cards:
+  - id: iam-137
+    q: "What Resource value is used for an IAM action that cannot be scoped to a specific resource?"
+    a: "Use the wildcard *."
+    facts: [unsupported-resource-wildcard]
+  - id: iam-136
+    q: "What does Sid identify in an IAM policy statement?"
+    a: "It is an optional identifier for the statement."
+    facts: [sid-identifier]
   - id: iam-001
     q: What wins when IAM finds both an Allow and an applicable explicit Deny for a request?
     a: The explicit Deny wins. Otherwise the applicable policy types must grant access within their limits; an
@@ -207,6 +221,8 @@ Billing console access also has an account setting. For pages governed by **Acti
 
 ### Exam cues
 
+- If the question says an IAM action cannot be scoped to a resource ARN, think Resource wildcard, because the action applies to all resources in the service.
+- If the question says identify an IAM policy statement, think Sid, because it labels the statement rather than the resource.
 - If the question says several identities need the same policy, think customer managed policy, because it is reusable and an edit applies to every attached identity. Inline policies belong to one identity and are deleted with it.
 - If the question says `s3:GetObject` is allowed but objects remain inaccessible, think resource ARN matching, because a bucket ARN differs from an object ARN. `s3:ListBucket` targets the bucket; object actions target object paths.
 - If the question says a Region restriction breaks a global service, think `NotAction` exceptions in the `aws:RequestedRegion` deny, because global endpoints can be outside the approved Regions.

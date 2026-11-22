@@ -3,6 +3,12 @@ title: "IAM roles basics"
 level: foundational
 order: 5
 facts:
+  - id: session-credential-parts
+    text: "Temporary AWS security credentials have three parts: access key ID, secret access key and session token."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html
+  - id: sts-issues-credentials
+    text: "AWS Security Token Service (AWS STS) issues temporary security credentials."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html
   - id: role-basic
     text: "An IAM role is an identity with permissions that anyone or anything allowed can assume, such as a service or application, and it provides temporary credentials instead of long-term keys."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles
@@ -20,6 +26,14 @@ facts:
       retrieve and refresh them.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-roles
 cards:
+  - id: iam-130
+    q: "Which three values make up temporary AWS role credentials?"
+    a: "An access key ID, a secret access key and a session token."
+    facts: [session-credential-parts]
+  - id: iam-129
+    q: "Which AWS service issues temporary security credentials?"
+    a: "AWS Security Token Service (AWS STS)."
+    facts: [sts-issues-credentials]
   - id: iam-110
     q: "An application on EC2 needs to read from S3. What is the recommended way to give it permissions?"
     a: "Attach an IAM role to the instance, so the app gets temporary credentials instead of stored access keys."
@@ -48,6 +62,9 @@ An IAM role gives temporary permissions to whoever is allowed to assume it, such
 
 ### Exam cues
 
+- If the question says a role session makes an AWS request, think policy evaluation, because applicable policies determine whether the request is allowed.
+- If the question says use temporary role credentials, think access key ID, secret access key and session token, because all three form the credential set.
+- If the question says issue temporary AWS security credentials, think AWS STS, because it provides credentials with a limited lifetime.
 - If the question says give an AWS service or app permissions without stored keys, think an IAM role.
 - If the question says employees sign in with a corporate directory, think federation.
 

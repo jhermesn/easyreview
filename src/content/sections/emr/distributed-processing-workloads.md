@@ -29,6 +29,15 @@ facts:
   - { id: release-date, text: "EMR 7.10.0 was initially released in August 2025.", source: "https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-7100-release.html#emr-7100-supported-lifecycle" }
   - { id: serverless, text: "EMR Serverless runs big data frameworks without configuring, managing and scaling clusters or servers.", source: "https://aws.amazon.com/emr/" }
   - { id: eks, text: "EMR on EKS submits Spark jobs on EKS without provisioning EMR clusters.", source: "https://aws.amazon.com/emr/" }
+  - id: "hdfs-intermediate"
+    text: "EMR HDFS can cache intermediate job results."
+    source: "https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-file-systems.html#emr-plan-file-systems"
+  - id: "hdfs-ephemeral"
+    text: "EMR HDFS storage is reclaimed when its cluster ends."
+    source: "https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-file-systems.html#emr-plan-file-systems"
+  - id: "emrfs-custom-key"
+    text: "EMRFS client-side encryption can use a custom Java key provider to decrypt S3 objects after download."
+    source: "https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-data-encryption-options.html"
 diagrams:
   - id: emr-node-roles
     title: EMR on EC2 node roles
@@ -93,6 +102,14 @@ cards:
     q: "A team already runs Amazon EKS and wants to submit Spark jobs without provisioning Amazon EMR clusters. Which EMR option fits?"
     a: "Amazon EMR on EKS runs Spark jobs on EKS without provisioning EMR clusters."
     facts: [eks]
+  - id: emr-017
+    q: "An Amazon EMR job caches intermediate results in HDFS. What happens to those results when the cluster ends?"
+    a: "The HDFS storage is reclaimed."
+    facts: [hdfs-intermediate, hdfs-ephemeral]
+  - id: emr-018
+    q: "How can Amazon EMR decrypt client-side encrypted S3 objects with an application supplied key?"
+    a: "Configure EMRFS client-side encryption with a custom Java key provider."
+    facts: [emrfs-custom-key]
 ---
 
 Amazon EMR is a managed platform for running distributed data processing frameworks such as Apache Spark and Hadoop. The examples below use EMR on EC2, where a cluster is a group of machines working on the data.
@@ -115,6 +132,8 @@ EMR Serverless runs big data frameworks without managing clusters or servers. EM
 
 ### Exam cues
 
+- If the question says cache intermediate results for one cluster, think HDFS, because its storage is reclaimed when the cluster ends.
+- If the question says EMRFS must decrypt S3 data with a supplied key, think a custom client-side key provider, because the EMRFS client decrypts downloaded objects.
 - If the question says managed Spark processing over large datasets, think EMR, because it runs distributed processing frameworks.
 - If the question says Hadoop processing of newline-separated log files in S3, think EMR, because it can read S3 input and Hadoop accepts newline-separated text by default.
 - If the question says data-critical HDFS with cheaper extra compute, think On-Demand primary and core nodes plus Spot task nodes, because task nodes do not store HDFS data.

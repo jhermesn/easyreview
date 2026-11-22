@@ -71,6 +71,9 @@ facts:
   - id: deliver-event-target
     text: An EventBridge rule can invoke Lambda asynchronously as its target.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-targets
+  - id: ingestion-cost
+    text: "Amazon Data Firehose charges for the volume of data ingested."
+    source: https://aws.amazon.com/firehose/pricing/
 cards:
   - id: firehose-002
     q: Does a Firehose S3 destination deliver every input record immediately?
@@ -120,6 +123,10 @@ cards:
       - deliver-event-target
       - deliver-api-filter
       - deliver-api-role
+  - id: firehose-023
+    q: "How does Amazon Data Firehose charge for data ingestion?"
+    a: "It charges based on the volume of data ingested."
+    facts: [ingestion-cost]
 diagrams:
   - id: firehose-redshift-staging
     title: Firehose stages Redshift loads in S3
@@ -186,6 +193,7 @@ Amazon Data Firehose delivers streaming records to storage and analytics destina
 
 ### Exam cues
 
+- If the question says estimate Firehose ingestion costs, think data volume, because ingestion is charged by volume.
 - If the question says ship CloudWatch Logs to S3 without a custom delivery consumer, think subscription filter to Firehose, because Firehose handles buffered delivery.
 - If the question says Firehose loads Redshift, think S3 then `COPY`, because Firehose stages the objects before loading them.
 - If the question says new log groups need automatic Firehose subscriptions, think EventBridge to Lambda calling `PutSubscriptionFilter`, because log-group creation can trigger subscription setup.

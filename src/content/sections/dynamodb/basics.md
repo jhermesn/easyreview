@@ -33,6 +33,12 @@ facts:
   - id: batch-write
     text: BatchWriteItem puts or deletes multiple DynamoDB items across one or more tables.
     source: https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html
+  - id: storage-growth
+    text: "DynamoDB automatically expands table storage as data grows."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Partitions.html
+  - id: regional-table
+    text: "A DynamoDB table without global tables is Regional."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-global-table-design.html
 cards:
   - id: dynamodb-049
     q: "Which AWS database service is a serverless, fully managed NoSQL database?"
@@ -58,6 +64,14 @@ cards:
     q: Can Amazon DynamoDB store JSON documents?
     a: Yes. DynamoDB supports document types such as maps for JSON documents.
     facts: [document-types]
+  - id: dynamodb-074
+    q: "How does Amazon DynamoDB handle table storage as the data grows?"
+    a: "DynamoDB automatically expands the table storage. Items can have different non-key attributes."
+    facts: [storage-growth, items]
+  - id: dynamodb-075
+    q: "Does an Amazon DynamoDB table replicate across Regions without global tables?"
+    a: "No. A table without global tables is Regional; global tables replicate across Regions."
+    facts: [regional-table, global-tables]
 ---
 Amazon DynamoDB is a serverless NoSQL database for fast key-value and document access.
 
@@ -69,6 +83,8 @@ Amazon DynamoDB is a serverless NoSQL database for fast key-value and document a
 
 ### Exam cues
 
+- If the question says a DynamoDB table grows as items are added, think automatic storage expansion, because DynamoDB increases storage as needed.
+- If the question says replicate DynamoDB data between Regions, think global tables, because a table without them is Regional.
 - If the question says serverless NoSQL or key-value at any scale, think DynamoDB.
 - If the question says store JSON documents, think DynamoDB document types, because maps hold JSON data.
 - If the question says put or delete multiple DynamoDB items in one request, think BatchWriteItem, because it handles both operations in batches.

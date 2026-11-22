@@ -3,6 +3,12 @@ title: Template structure and dependencies
 level: associate
 order: 10
 facts:
+  - id: resource-charges
+    text: "Resources created by CloudFormation incur their applicable service charges."
+    source: https://aws.amazon.com/cloudformation/pricing/
+  - id: template-version-control
+    text: "A version control system can track changes to CloudFormation templates."
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#welcome-easily-control-and-trach-changes
   - id: template-stack
     text: CloudFormation provisions and manages a stack of resources from a JSON or YAML template.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html#Welcome
@@ -51,6 +57,10 @@ facts:
     text: "A CloudFormation stack update compares the submitted template and parameters with the stack's current template and parameters to determine resource changes."
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-updatereplacepolicy.html#aws-attribute-updatereplacepolicy
 cards:
+  - id: cloudformation-164
+    q: "How can a team track revisions to CloudFormation infrastructure templates?"
+    a: "Store the templates in a version control system."
+    facts: [template-version-control]
   - id: cloudformation-028
     q: Which section must a CloudFormation template contain, and what does it define?
     a: Resources. It defines each resource with a logical ID, type, and configuration properties.
@@ -163,6 +173,8 @@ CloudFormation turns a JSON or YAML template into a stack, a group of resources 
 
 ### Exam cues
 
+- If the question says CloudFormation created resources, think their usual service charges, because provisioning does not remove those charges.
+- If the question says track infrastructure template changes, think version control for CloudFormation templates, because it records revisions.
 - If the question says a template must return a generated resource attribute, think `Fn::GetAtt`, because `Ref` returns the identifying value for that resource type.
 - If the question says two resources must be ordered without referencing each other, think `DependsOn`, because independent operations can run in parallel.
 - If the question says an existing environment needs revised resource definitions, think a stack update, because CloudFormation applies differences from the submitted template and parameters.
