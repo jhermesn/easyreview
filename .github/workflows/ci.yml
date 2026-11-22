@@ -1,6 +1,6 @@
 name: CI
 
-# Every pull request: section lint, card ids kept, unit tests, a full build and a browser smoke test.
+# Every pull request: section lint, card ids kept, changed facts listed, unit tests, a full build and a browser smoke test.
 on:
   pull_request:
 
@@ -30,6 +30,10 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: node scripts/check-card-ids.mjs "$BASE_SHA"
+      - name: Changed facts and cards
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/check-revisions.mjs "$BASE_SHA"
       - name: Unit tests
         run: npm test
       - name: Build

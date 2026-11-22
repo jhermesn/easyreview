@@ -103,6 +103,33 @@ test('a finished topic can be shared with its name and link', async ({ page }) =
   expect(x.searchParams.get('url')).toMatch(/\/easyreview\/pt-br\/clf-c02\/iam\/$/);
 });
 
+test('the share button stays beside "mark all as known" and its menu stays on screen', async ({ page }) => {
+  await page.goto('clf-c02/iam/');
+  const mark = page.locator('.unit-done [data-known-toggle]');
+  await mark.click();
+  const share = page.locator('.unit-done [data-share] summary');
+  const [a, b] = [(await mark.boundingBox())!, (await share.boundingBox())!];
+  expect(Math.abs(a.y + a.height / 2 - (b.y + b.height / 2))).toBeLessThan(4);
+  await share.click();
+  const panel = (await page.locator('.unit-done [data-share] .panel').boundingBox())!;
+  expect(panel.x + panel.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+});
+
+test('a section changed after it was marked known asks to be re-read until marked again', async ({ page }) => {
+  const id = 'lambda/memory-timeout-and-snapstart';
+  await page.goto('dop-c02/');
+  await page.evaluate((id) => localStorage.setItem('easyreview:known:v1', JSON.stringify({ [id]: Date.UTC(2026, 10, 1) })), id);
+  await page.reload();
+  await expect(page.locator('#updated')).toBeVisible();
+  await page.locator('#updated a', { hasText: 'Lambda' }).click();
+  const note = page.locator(`[data-updated-only="${id}"]`);
+  await expect(note).toBeVisible();
+  await expect(page.locator(`.toc a[data-known="${id}"]`)).toHaveClass(/is-updated/);
+  await page.locator(`[data-known-toggle="${id}"]`).click();
+  await expect(note).toBeHidden();
+  await expect(page.locator(`.toc a[data-known="${id}"]`)).toHaveClass(/is-known/);
+});
+
 test('a flashcard flips and can be graded', async ({ page }) => {
   await page.goto('dop-c02/flashcards/');
   await page.getByRole('button', { name: 'Answer' }).click();

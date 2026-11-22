@@ -5,7 +5,7 @@ import Diagram from '../../../components/Diagram.astro';
 import FlashDeck from '../../../components/FlashDeck.astro';
 import Icon from '../../../components/Icon.astro';
 import { availableCerts, domainName, getCert } from '../../../lib/certs';
-import { getCertView, deckCards, sectionIds, sectionSlug, type CertUnit } from '../../../lib/content';
+import { getCertView, deckCards, latestRevision, sectionIds, sectionSlug, type CertUnit } from '../../../lib/content';
 import { formatRich, plainText, withBase } from '../../../lib/format';
 import { absoluteUrl, breadcrumbs, certFullName } from '../../../lib/seo';
 import ContentNotice from '../../../components/ContentNotice.astro';
@@ -32,6 +32,7 @@ const { Content: Intro } = await render(unit);
 const blocks = await Promise.all(sections.map(async (s) => ({ s, Content: (await render(s)).Content })));
 const cards = deckCards({ cert, units: [entry], sections, missing: [] });
 const href = (u: CertUnit) => localePath(locale, `/${cert.id}/${u.unit.id}`);
+const day = (d: Date) => d.toLocaleDateString(LOCALES[locale].lang, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 // Opened from the study path (links there end in ?trail), the pager follows the path's order instead of the guide's.
 const byId = new Map(units.map((u) => [u.unit.id, u]));
 const trail = (getRoadmap(cert.id)?.stages ?? []).flatMap((s) => s.units).map((id) => byId.get(id)).filter((u): u is CertUnit => !!u);
@@ -93,6 +94,12 @@ if (cards.length) {
             <Icon name="circle" class="k-off" size={15} /><Icon name="check-circle" class="k-on" size={15} />
           </button>
         </h2>
+        {latestRevision(s) && (
+          <p class="revised-note" data-updated-only={s.id} hidden>
+            <Icon name="alert" size={15} />
+            <span>{t('unit.revised', { date: day(latestRevision(s)!.date) })} <span lang="en">{latestRevision(s)!.note}</span></span>
+          </p>
+        )}
         <div lang={langOf(s.lang)}>
           <Content />
           {s.data.diagrams.map((d) => <Diagram d={d} />)}
@@ -184,7 +191,9 @@ if (cards.length) {
   .pager a { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; color: var(--ink-300); max-width: 48%; }
   .pager a span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .pager a:hover { color: var(--ink-100); }
-  .unit-done { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--ink-700); }
+  .revised-note { display: flex; gap: 0.5rem; align-items: flex-start; margin: 0.4rem 0 1rem; padding: 0.55rem 0.8rem; border-left: 3px solid var(--amber); background: color-mix(in srgb, var(--amber) 8%, var(--ink-850)); font-size: 0.88rem; }
+  .revised-note :global(svg) { color: var(--amber); flex: none; margin-top: 0.2rem; }
+  .unit-done { display: flex; align-items: center; gap: 0.6rem; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--ink-700); }
 </style>
 
 <script>

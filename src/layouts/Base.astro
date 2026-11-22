@@ -8,7 +8,7 @@ import Transfer from '../components/Transfer.astro';
 import CertCelebration from '../components/CertCelebration.astro';
 import GitHubStar from '../components/GitHubStar.astro';
 import { getCert } from '../lib/certs';
-import { getCertView, knownGroups, sectionIds } from '../lib/content';
+import { getCertView, knownGroups, revisionTimes, sectionIds } from '../lib/content';
 import { getGuide } from '../lib/guides';
 import { jsonForScript, withBase } from '../lib/format';
 import { badgeUrl } from '../lib/badge';
@@ -43,6 +43,7 @@ const imageAlt = t('meta.imageAlt');
 const ldJson = (data: Record<string, unknown>) => jsonForScript({ '@context': 'https://schema.org', ...data });
 const view = cert ? await getCertView(cert.id, locale) : undefined;
 const hasGuide = cert ? !!getGuide(cert.id) : false;
+const revisions = await revisionTimes();
 // Other free study tools by the same author, shown in the footer.
 const moreTools = [
   { name: 'Redocted', href: 'https://jhermesn.dev/redocted/', text: t('footer.redocted') },
@@ -200,6 +201,7 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
       </main>
     </div>
     {cert && <CertCelebration cert={cert} dialog />}
+    <script type="application/json" data-revisions set:html={jsonForScript(revisions)} />
   </body>
 </html>
 

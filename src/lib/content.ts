@@ -115,12 +115,31 @@ export async function orphanSections(certIds: string[]): Promise<string[]> {
 export function deckCards(view: CertView): DeckCard[] {
   return view.units.flatMap(({ unit, domain, sections }) =>
     sections.flatMap((s) =>
-      s.data.cards.map((c) => ({ id: c.id, topic: unit.id, topicTitle: unit.data.title, domain, q: c.q, a: c.a, trap: c.trap, lang: LOCALES[s.lang].lang })),
+      s.data.cards.map((c) => ({ id: c.id, topic: unit.id, topicTitle: unit.data.title, domain, q: c.q, a: c.a, trap: c.trap, lang: LOCALES[s.lang].lang, revised: cardRevision(s, c.id) })),
     ),
   );
 }
 
 export const sectionIds = (sections: Section[]) => sections.map((s) => s.id).join(',');
+
+// A revision counts from the end of its UTC day, so a reader who marked the section known earlier that day,
+// before the change shipped, still sees it as updated.
+const revisionTime = (date: Date) => date.getTime() + 86_400_000 - 1;
+export function latestRevision(s: Section): { at: number; date: Date; note: string } | undefined {
+  const last = [...s.data.revised].sort((a, b) => b.date.getTime() - a.date.getTime())[0];
+  return last && { at: revisionTime(last.date), date: last.date, note: last.note };
+}
+export const cardRevision = (s: Section, cardId: string): number | undefined =>
+  Math.max(0, ...s.data.revised.filter((r) => r.cards.includes(cardId)).map((r) => revisionTime(r.date))) || undefined;
+
+// Section id -> time of its latest revision, for every section that has one (lib/known.ts reads it on each page).
+export async function revisionTimes(): Promise<Record<string, number>> {
+  const { sections } = await getContent();
+  return Object.fromEntries([...sections.values()].flatMap((s) => {
+    const r = latestRevision(s);
+    return r ? [[s.id, r.at]] : [];
+  }));
+}
 
 // Readers count topics (units), and a topic is known once all of its sections are: "a,b|c" = two topics.
 export function knownGroups(sections: Section[]): string {

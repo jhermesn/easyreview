@@ -147,3 +147,7 @@ select:hover { border-color: var(--ink-400); }
 .topic-grid small { display: block; color: var(--ink-300); line-height: 1.5; margin-top: 0.3rem; }
 
 img.is-gold { filter: drop-shadow(0 0 0.6rem rgb(242 193 78 / 0.45)); }
+
+/* A topic marked known that changed afterwards (lib/known.ts): its open-circle icon turns amber everywhere it
+   is listed, so the reader sees what to re-read. Overrides each list's own icon color. */
+.is-updated .st-open { color: var(--amber) !important; }

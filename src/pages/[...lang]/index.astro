@@ -3,7 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import HeroBadge from '../../components/HeroBadge.astro';
 import { certs, levels, isAvailable, availableCerts } from '../../lib/certs';
-import { getCertView, knownGroups, unitIdOf } from '../../lib/content';
+import { getCertView, knownGroups, latestRevision, sectionIds, unitIdOf } from '../../lib/content';
+import UpdatedTopics from '../../components/UpdatedTopics.astro';
 import { getGuide } from '../../lib/guides';
 import { withBase } from '../../lib/format';
 import { badgeUrl } from '../../lib/badge';
@@ -26,6 +27,10 @@ const allUnitGroups = knownGroups(sections);
 const cardTotal = sections.reduce((n, s) => n + s.data.cards.length, 0);
 const diagramTotal = sections.reduce((n, s) => n + s.data.diagrams.length, 0);
 const live = availableCerts();
+const updatedItems = live.flatMap((c) => {
+  const revised = views.get(c.id)!.sections.filter((s) => latestRevision(s));
+  return revised.length ? [{ href: link(`/${c.id}/#updated`), label: c.code, ids: sectionIds(revised) }] : [];
+});
 const guideItems = live.flatMap((c) => getGuide(c.id)?.domains.flatMap((d) => d.tasks.flatMap((t) => t.items)) ?? []);
 const coveredPct = guideItems.length ? Math.round((guideItems.filter((i) => i.sections.length).length / guideItems.length) * 100) : 0;
 const primary = live[0];
@@ -55,6 +60,7 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
         <span class="resume-text"><small>{t('home.resume')}</small><span><b data-recent-code></b> · <span data-recent-title></span></span></span>
         <Icon name="arrow-right" />
       </a>
+      <UpdatedTopics items={updatedItems} />
       <div class="ctas">
         {primary && <a class="btn btn-primary" href={link(`/${primary.id}`)}>{t('home.start', { code: primary.code })}</a>}
         <a class="btn" href="#certs"><Icon name="grid" /> {t('nav.allCerts')}</a>

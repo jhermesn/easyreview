@@ -32,6 +32,24 @@ The body has no links to outside pages. Every source is a fact, and the page lis
 
 Short paragraphs with one idea each, and a table for three or more options. `src/content/sections/codedeploy/` has good examples.
 
+## Revisions
+
+Readers mark sections known and review cards on a schedule, so a correction must reach the people who already studied the old text. When a change alters what a reader should answer (a fact's claim, a number, a card's answer), add an entry to the section's `revised` list in the same pull request:
+
+```yaml
+revised:
+  - date: 2026-11-19
+    note: The maximum Lambda function timeout is now 1,800 seconds (30 minutes), up from 900 seconds (15 minutes).
+    cards: [lambda-061, lambda-063]
+```
+
+- `date` is the day the change merges. Readers who marked the section known before the end of that day (UTC) see it as updated: an amber mark wherever it is listed, the `note` above the section, and a list on the home and cert pages. It stops counting as known until they mark it again.
+- `cards` lists the cards whose answer changed. A reader who last reviewed one of them before `date` gets it back as due.
+- `note` says what changed in one sentence, so the reader knows what to look for.
+- Typo fixes and rewording that keep the same claim get no entry.
+
+CI runs `node scripts/check-revisions.mjs <base>`, which lists every section whose facts or card answers changed without a new entry; it never fails, so you decide whether each change is material.
+
 ## Flashcards
 
 - Ask what the exam asks: which service or feature solves X, ordering, defaults and limits, what breaks when, cross-account and multi-Region setups. Mix recall cards with at least two exam-style scenario cards per section.
