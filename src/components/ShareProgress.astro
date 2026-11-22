@@ -34,14 +34,10 @@ const t = useTranslations(localeOf(Astro.currentLocale));
   .panel { position: absolute; left: 0; top: calc(100% + 6px); z-index: 40; width: min(18rem, calc(100vw - 2rem)); padding: 0.8rem; background: var(--ink-900); border: 1px solid var(--ink-500); box-shadow: 0 12px 30px rgb(0 0 0 / 0.5); display: grid; gap: 0.45rem; }
   .title { margin: 0; font-weight: 700; }
   .note { margin: 0; font-size: 0.78rem; line-height: 1.45; }
-  ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; }
-  ul a { display: flex; align-items: center; justify-content: space-between; gap: 0.3rem; padding: 0.35rem 0.5rem; border: 1px solid var(--ink-700); text-decoration: none; color: var(--ink-300); font-size: 0.82rem; }
-  ul a:hover { color: var(--ink-100); border-color: var(--ink-500); }
+  .panel ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+  .panel ul a { display: flex; align-items: center; justify-content: space-between; gap: 0.3rem; padding: 0.35rem 0.5rem; border: 1px solid var(--ink-700); text-decoration: none; color: var(--ink-300); font-size: 0.82rem; }
+  .panel ul a:hover { color: var(--ink-100); border-color: var(--ink-500); }
   .panel button { display: inline-flex; align-items: center; gap: 0.4rem; justify-content: center; }
-  /* On phones the button gets its own line, so the panel opens from the left margin and stays on screen. */
-  @media (max-width: 640px) {
-    .share:global(.is-known) { display: block; margin: 0.5rem 0 0; }
-  }
 </style>
 
 <script>
@@ -60,6 +56,14 @@ const t = useTranslations(localeOf(Astro.currentLocale));
         native.hidden = false;
         native.addEventListener('click', () => navigator.share({ text, url }).catch(() => undefined));
       }
+      // The button sits beside others, so on a narrow screen the panel shifts left to stay on screen.
+      const panel = root.querySelector<HTMLElement>('.panel')!;
+      root.addEventListener('toggle', () => {
+        panel.style.left = '';
+        if (!root.open) return;
+        const overflow = panel.getBoundingClientRect().right - (document.documentElement.clientWidth - 16);
+        if (overflow > 0) panel.style.left = `${-overflow}px`;
+      });
       const copy = root.querySelector<HTMLButtonElement>('[data-share-copy]')!;
       const label = root.querySelector<HTMLElement>('[data-share-copy-label]')!;
       copy.addEventListener('click', async () => {
