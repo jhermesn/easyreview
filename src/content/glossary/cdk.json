@@ -11,7 +11,10 @@
     "term": "construct",
     "aliases": [],
     "definition": "A reusable code component that describes one or more CloudFormation resources and their configuration.",
-    "source": "https://docs.aws.amazon.com/cdk/v2/guide/constructs.html"
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/constructs.html",
+    "notIn": [
+      "Construct the app"
+    ]
   },
   {
     "term": "stack",
@@ -75,7 +78,10 @@
     "term": "scope",
     "aliases": [],
     "definition": "A construct and its children to which an operation such as an Aspect applies.",
-    "source": "https://docs.aws.amazon.com/cdk/v2/guide/aspects.html"
+    "source": "https://docs.aws.amazon.com/cdk/v2/guide/aspects.html",
+    "notIn": [
+      "Scope them"
+    ]
   },
   {
     "term": "stage",

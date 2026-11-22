@@ -35,7 +35,11 @@
       "batch size"
     ],
     "definition": "A group of records passed to a function in one invocation.",
-    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping"
+    "source": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping",
+    "notIn": [
+      "AWS Batch",
+      "Batch, ECS"
+    ]
   },
   {
     "term": "Batching window",

@@ -23,7 +23,10 @@
     "term": "Deployment",
     "aliases": [],
     "definition": "A Deployment maintains application replicas and manages updates to their version.",
-    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html",
+    "notIn": [
+      "deployment of patched"
+    ]
   },
   {
     "term": "Replica",
@@ -35,7 +38,11 @@
     "term": "Service",
     "aliases": [],
     "definition": "A Kubernetes Service routes traffic to application Pods.",
-    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html"
+    "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html",
+    "notIn": [
+      "service account",
+      "service principal"
+    ]
   },
   {
     "term": "Service selector",
@@ -281,7 +288,9 @@
   },
   {
     "term": "Pod disruption budget",
-    "aliases": ["PDB"],
+    "aliases": [
+      "PDB"
+    ],
     "definition": "A Kubernetes setting that limits concurrent voluntary disruptions to a workload.",
     "source": "https://docs.aws.amazon.com/eks/latest/best-practices/application.html#_configure_pod_disruption_budgets"
   }

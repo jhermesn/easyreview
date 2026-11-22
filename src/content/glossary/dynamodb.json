@@ -107,7 +107,11 @@
     "term": "replica",
     "aliases": [],
     "definition": "A regional table participating in global table replication.",
-    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html"
+    "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html",
+    "notIn": [
+      "read replicas",
+      "replica is promoted"
+    ]
   },
   {
     "term": "witness",

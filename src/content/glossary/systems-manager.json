@@ -121,9 +121,7 @@
   },
   {
     "term": "Account-Region pair",
-    "aliases": [
-      "Location"
-    ],
+    "aliases": [],
     "definition": "One AWS account in one AWS Region used as an Automation execution location.",
     "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/running-automations-multiple-accounts-regions.html#multiple-console"
   },
@@ -161,9 +159,7 @@
   },
   {
     "term": "Rate expression",
-    "aliases": [
-      "rate"
-    ],
+    "aliases": [],
     "definition": "A schedule expression specifying a repeating time interval.",
     "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/reference-cron-and-rate-expressions.html#reference-cron-and-rate-expressions"
   },
@@ -171,7 +167,11 @@
     "term": "Compliance",
     "aliases": [],
     "definition": "The reported state of a node compared with required patching or configuration criteria.",
-    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/compliance-about.html#compliance-about"
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/compliance-about.html#compliance-about",
+    "notIn": [
+      "Resource compliance",
+      "monitoring, compliance"
+    ]
   },
   {
     "term": "Patch baseline",
@@ -207,7 +207,10 @@
     "term": "Cutoff",
     "aliases": [],
     "definition": "The time before a maintenance window ends when scheduling of new tasks stops.",
-    "source": "https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateMaintenanceWindow.html#API_CreateMaintenanceWindow"
+    "source": "https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateMaintenanceWindow.html#API_CreateMaintenanceWindow",
+    "notIn": [
+      "Cutoff date"
+    ]
   },
   {
     "term": "Metadata",
@@ -271,9 +274,7 @@
   },
   {
     "term": "Parameter label",
-    "aliases": [
-      "Label"
-    ],
+    "aliases": [],
     "definition": "A user-defined name attached to a particular parameter version.",
     "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-versions.html#sysman-paramstore-versions"
   },
@@ -332,12 +333,6 @@
     ],
     "definition": "An organization-maintained base machine image used for consistent instance launches.",
     "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-tutorial-update-patch-golden-ami.html#automation-tutorial-update-patch-golden-ami"
-  },
-  {
-    "term": "Application",
-    "aliases": [],
-    "definition": "A logical group of AWS resources operated together as one workload.",
-    "source": "https://docs.aws.amazon.com/systems-manager/latest/userguide/application-manager.html#application-manager"
   },
   {
     "term": "Maintenance mode",

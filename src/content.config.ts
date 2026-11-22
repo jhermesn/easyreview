@@ -71,7 +71,10 @@ const units = defineCollection({
 // Definitions apply only inside that unit, because the same word can mean different things per service.
 const glossary = defineCollection({
   loader: glob({ base: './src/content/glossary', pattern: '*.json' }),
-  schema: z.array(z.object({ term: z.string(), aliases: z.array(z.string()).default([]), definition: z.string(), source: awsSource })),
+  // `notIn`: phrases where the word means something else ("subject to"), so a match inside one gets no tooltip.
+  schema: z.array(
+    z.object({ term: z.string(), aliases: z.array(z.string()).default([]), definition: z.string(), source: awsSource, notIn: z.array(z.string().min(3)).default([]) }),
+  ),
 });
 
 // One exam-relevant idea of a unit: src/content/sections/<unit>/<slug>.md, id "<unit>/<slug>".

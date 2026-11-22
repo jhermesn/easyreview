@@ -161,7 +161,11 @@
     "term": "Component",
     "aliases": [],
     "definition": "Installation, configuration, or test instructions form a reusable part of an image recipe.",
-    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/how-image-builder-works.html"
+    "source": "https://docs.aws.amazon.com/imagebuilder/latest/userguide/how-image-builder-works.html",
+    "notIn": [
+      "application components",
+      "their components"
+    ]
   },
   {
     "term": "Organizational unit",

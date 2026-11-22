@@ -111,8 +111,9 @@ test('the share button stays beside "mark all as known" and its menu stays on sc
   const [a, b] = [(await mark.boundingBox())!, (await share.boundingBox())!];
   expect(Math.abs(a.y + a.height / 2 - (b.y + b.height / 2))).toBeLessThan(4);
   await share.click();
-  const panel = (await page.locator('.unit-done [data-share] .panel').boundingBox())!;
-  expect(panel.x + panel.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+  // The panel shifts on the details toggle event, which fires after the click resolves.
+  const panel = page.locator('.unit-done [data-share] .panel');
+  await expect.poll(async () => { const b = (await panel.boundingBox())!; return b.x + b.width; }).toBeLessThanOrEqual(page.viewportSize()!.width);
 });
 
 test('a section changed after it was marked known asks to be re-read until marked again', async ({ page }) => {

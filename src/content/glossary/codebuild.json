@@ -85,7 +85,10 @@
     "term": "namespace",
     "aliases": [],
     "definition": "A namespace groups the output variables of a pipeline action so later actions can reference them.",
-    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#reference-variables-concepts"
+    "source": "https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html#reference-variables-concepts",
+    "notIn": [
+      "matching namespace"
+    ]
   },
   {
     "term": "report group",

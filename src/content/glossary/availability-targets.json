@@ -3,7 +3,10 @@
     "term": "Availability",
     "aliases": [],
     "definition": "The percentage of a measurement period during which a workload performs its agreed function successfully.",
-    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability"
+    "source": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html#availability",
+    "notIn": [
+      "Availability Zone"
+    ]
   },
   {
     "term": "Downtime budget",
@@ -91,9 +94,7 @@
   },
   {
     "term": "Redundancy",
-    "aliases": [
-      "spare"
-    ],
+    "aliases": [],
     "definition": "Alternative components that keep a workload operating when another component fails.",
     "source": "https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-redundancy.html#availability-with-redundancy"
   },

@@ -323,9 +323,7 @@
   },
   {
     "term": "Rule scope",
-    "aliases": [
-      "scope"
-    ],
+    "aliases": [],
     "definition": "The resource types, identifiers, or tags used to decide which resource changes initiate a rule evaluation.",
     "source": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_components.html#evaluate-config_use-managed-rules-trigger"
   },

@@ -11,7 +11,11 @@
       "workflow run"
     ],
     "definition": "One run of a state machine.",
-    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-view-execution-details.html#concepts-view-execution-details"
+    "source": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-view-execution-details.html#concepts-view-execution-details",
+    "notIn": [
+      "execution role",
+      "task execution"
+    ]
   },
   {
     "term": "Idempotent action",
