@@ -71,6 +71,10 @@ const en = {
   'passed.add': 'Add yourself',
   'passed.activeCount': '{n} AWS Certifications',
 
+  'trail.description': 'Free review of every topic on the site, at every level, for the Golden Jacket: notes, step-by-step diagrams and {n} flashcards from AWS documentation.',
+  'trail.intro': 'Every topic and section on the site, with no exam scope or level limit, for anyone working toward every AWS Certification. Topics are grouped by the first exam that asks for them, so the trail follows the exams in order. Known marks and flashcard progress are the same as on the exam pages.',
+  'home.trail': 'Golden Jacket trail',
+  'home.trail.text': 'Every topic at every level, in one trail',
   'cert.description': 'Free {cert} review: notes, step-by-step diagrams and {n} flashcards from AWS documentation, mapped to the exam guide.',
   'cert.overview': 'Overview',
   'cert.topics': 'Topics',

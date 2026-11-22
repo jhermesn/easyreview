@@ -3,13 +3,13 @@
 // covers the unit, and at the reader's locale.
 import { defineMiddleware } from 'astro:middleware';
 import { localeOf, localePath, stripLocale } from './i18n';
-import { availableCerts } from './lib/certs';
+import { studyTracks } from './lib/certs';
 import { getCertView } from './lib/content';
 
 let certUnits: Promise<Map<string, Set<string>>> | undefined;
 const unitsByCert = () =>
   (certUnits ??= Promise.all(
-    availableCerts().map(async (c) => [c.id, new Set((await getCertView(c.id)).units.map((u) => u.unit.id))] as const),
+    studyTracks().map(async (c) => [c.id, new Set((await getCertView(c.id)).units.map((u) => u.unit.id))] as const),
   ).then((entries) => new Map(entries)));
 
 export const onRequest = defineMiddleware(async (context, next) => {

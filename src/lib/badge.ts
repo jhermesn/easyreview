@@ -1,7 +1,7 @@
 // The site's own certification badge art: a square-cornered hexagon on the site's ink and grid,
 // coloured by exam level, with the exam code. The gold variant marks a cert whose every topic is known.
 // Official AWS Certification badges are reserved for certified individuals, so the site never shows them.
-import type { Cert, Level } from './certs';
+import { isTrail, type Cert, type Level } from './certs';
 import { withBase } from './format';
 
 // The official level hues of AWS Certification (slate, blue, teal, indigo, magenta), lightened just enough
@@ -23,9 +23,12 @@ const FONT = `ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace`
 export const badgeUrl = (certId: string, gold = false) => withBase(`/badges/${certId}${gold ? '-gold' : ''}.svg`);
 
 export function badgeSvg(cert: Cert, gold = false): string {
-  const [prefix, version = ''] = cert.code.split('-');
-  const accent = gold ? 'url(#gold)' : LEVEL_COLOR[cert.level];
+  // The Golden Jacket trail spans every level, so its badge names that instead of an exam code.
+  const trail = isTrail(cert);
+  const [prefix, version = ''] = trail ? ['ALL', 'TOPICS'] : cert.code.split('-');
+  const accent = gold ? 'url(#gold)' : trail ? '#c49a3c' : LEVEL_COLOR[cert.level];
   const pips = LEVEL_PIPS[cert.level];
+  const label = trail ? 'ALL LEVELS' : cert.level.toUpperCase();
   const pipRow = Array.from({ length: pips }, (_, i) => {
     const x = 83 - (pips * 10 - 4) / 2 + i * 10;
     return cert.level === 'specialty'
@@ -42,7 +45,7 @@ export function badgeSvg(cert: Cert, gold = false): string {
 <path d="${HEX}" fill="url(#grid)"/>
 <path d="${HEX}" fill="none" stroke="${accent}" stroke-width="10" clip-path="url(#hex)"/>
 <path d="${INNER}" fill="none" stroke="${gold ? '#5c4a1c' : '#1f2833'}" stroke-width="1.5"/>
-<text x="83" y="62" font-size="10.5" letter-spacing="1.6" fill="${accent}">${cert.level.toUpperCase()}</text>
+<text x="83" y="62" font-size="10.5" letter-spacing="1.6" fill="${accent}">${label}</text>
 <text x="83" y="114" font-size="44" fill="${gold ? 'url(#gold)' : '#e6ebf2'}">${prefix}</text>
 <text x="83" y="139" font-size="18" fill="${gold ? '#f2c14e' : '#97a4b3'}">${version}</text>
 ${pipRow}

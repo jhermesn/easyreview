@@ -2,13 +2,13 @@
 import Base from '../../../layouts/Base.astro';
 import FlashDeck from '../../../components/FlashDeck.astro';
 import ContentNotice from '../../../components/ContentNotice.astro';
-import { availableCerts, getCert } from '../../../lib/certs';
+import { getCert, studyTracks } from '../../../lib/certs';
 import { getCertView, deckCards } from '../../../lib/content';
 import { certFullName } from '../../../lib/seo';
 import { localeOf, localeParams, useTranslations } from '../../../i18n';
 
 export function getStaticPaths() {
-  return localeParams(availableCerts().map((c) => ({ params: { cert: c.id } })));
+  return localeParams(studyTracks().map((c) => ({ params: { cert: c.id } })));
 }
 const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);

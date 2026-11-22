@@ -148,6 +148,16 @@ test('a flashcard whose answer changed after its last review starts over as new'
   await expect.poll(() => page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('easyreview:progress:v1') ?? '{}')))).toEqual(['lambda-001']);
 });
 
+test('the Golden Jacket trail shows every section of a unit and shares known marks with the exams', async ({ page }) => {
+  const id = 'lambda/versions-and-aliases';
+  await page.goto('dop-c02/lambda/');
+  const examSections = await page.locator('.toc a[data-known]').count();
+  await page.locator(`[data-known-toggle="${id}"]`).click();
+  await page.goto('golden-jacket/lambda/');
+  expect(await page.locator('.toc a[data-known]').count()).toBeGreaterThanOrEqual(examSections);
+  await expect(page.locator(`.toc a[data-known="${id}"]`)).toHaveClass(/is-known/);
+});
+
 test('search finds sections', async ({ page }) => {
   await page.goto('search/');
   await page.locator('[data-search]').fill('blue green');

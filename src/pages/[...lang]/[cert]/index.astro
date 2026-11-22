@@ -2,7 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
 import ExamFacts from '../../../components/ExamFacts.astro';
-import { availableCerts, getCert } from '../../../lib/certs';
+import { getCert, isTrail, studyTracks } from '../../../lib/certs';
 import { getCertView, knownGroups, latestRevision, sectionIds } from '../../../lib/content';
 import UpdatedTopics from '../../../components/UpdatedTopics.astro';
 import { getGuide } from '../../../lib/guides';
@@ -15,7 +15,7 @@ import { getRoadmap } from '../../../lib/roadmap';
 import { localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 
 export function getStaticPaths() {
-  return localeParams(availableCerts().map((c) => ({ params: { cert: c.id } })));
+  return localeParams(studyTracks().map((c) => ({ params: { cert: c.id } })));
 }
 const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
@@ -25,7 +25,8 @@ const view = await getCertView(cert.id, locale);
 const cardTotal = view.sections.reduce((n, s) => n + s.data.cards.length, 0);
 const guideItems = getGuide(cert.id)?.domains.flatMap((d) => d.tasks.flatMap((t) => t.items)) ?? [];
 const covered = guideItems.filter((i) => i.sections.length).length;
-const description = t('cert.description', { cert: certFullName(cert), n: cardTotal });
+const trail = isTrail(cert);
+const description = t(trail ? 'trail.description' : 'cert.description', { cert: certFullName(cert), n: cardTotal });
 const roadmap = getRoadmap(cert.id);
 const updatedItems = view.units.flatMap(({ unit, sections }) => {
   const revised = sections.filter((s) => latestRevision(s));
@@ -48,7 +49,7 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
     </div>
     <a class="btn btn-primary drill" href={link(`/${cert.id}/flashcards`)}><Icon name="cards" /> {t('cert.drill')}</a>
   </header>
-  <CertCelebration cert={cert} />
+  {trail ? <p class="trail-intro">{t('trail.intro')}</p> : <CertCelebration cert={cert} />}
   <UpdatedTopics items={updatedItems} />
   <ExamFacts certId={cert.id} />
 
@@ -64,7 +65,7 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
     </section>
   )}
   <div id="view-domains" role={roadmap ? 'tabpanel' : undefined} aria-labelledby={roadmap ? 'tab-domains' : undefined} hidden={!!roadmap}>
-  {cert.domains.map((d) => {
+  {view.cert.domains.map((d) => {
     const own = view.units.filter((u) => u.domain === d.id);
     return (
       <section class="domain">
@@ -115,6 +116,7 @@ const jsonLd = [breadcrumbs([{ name: cert.code, path: `/${cert.id}/` }], Astro.s
   .stats li { display: inline-flex; align-items: center; gap: 0.3rem; }
   .stats li:first-child { color: var(--mint); }
   .stats li.is-gold { color: var(--gold); }
+  .trail-intro { color: var(--ink-300); max-width: 46rem; margin: 0.8rem 0 0; }
   .drill { margin-left: auto; display: inline-flex; align-items: center; gap: 0.4rem; }
   .views { display: flex; gap: 0.4rem; margin: 1.6rem 0 1rem; border-bottom: 1px solid var(--ink-700); }
   .views button { display: inline-flex; align-items: center; gap: 0.4rem; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: 0.45rem 0.7rem; min-width: 0; white-space: normal; text-align: left; }
