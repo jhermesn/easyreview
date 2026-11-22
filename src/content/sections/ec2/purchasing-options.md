@@ -69,6 +69,15 @@ facts:
   - id: sp-hourly
     text: "Savings Plans are a commitment to a set amount of compute usage per hour for one or three years, in exchange for lower prices than On-Demand; they are a pricing model, not reserved capacity."
     source: https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html
+  - id: scheduled-unavailable
+    text: Scheduled Instances are no longer available for purchase.
+    source: https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-scheduled-instances.html
+  - id: spot-price-trends
+    text: EC2 Spot prices adjust gradually with long-term trends in spare capacity supply and demand.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html
+  - id: capacity-request-failure
+    text: An EC2 Capacity Reservation request can fail if sufficient capacity is unavailable.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-create.html
 cards:
   - id: ec2-036
     q: A company runs a steady workload on EC2 for the next three years but may change instance families. Which purchasing option saves the most while staying flexible?
@@ -133,6 +142,19 @@ cards:
     a: "No. Savings Plans only lower prices for committed hourly usage; to hold capacity in an Availability Zone, use an On-Demand Capacity Reservation."
     trap: true
     facts: [sp-hourly, cr-billing]
+  - id: ec2-127
+    q: Can a customer purchase new EC2 Scheduled Instances?
+    a: No. Scheduled Instances are no longer available for purchase.
+    facts: [scheduled-unavailable]
+  - id: ec2-128
+    q: How do EC2 Spot Instance prices change as spare capacity supply and demand change?
+    a: They adjust gradually with long-term trends in supply and demand.
+    facts: [spot-price-trends]
+  - id: ec2-139
+    q: Does an immediate EC2 Capacity Reservation request always succeed?
+    a: No. The request can fail if EC2 lacks sufficient capacity.
+    trap: true
+    facts: [capacity-request-failure]
 ---
 Amazon EC2 charges the same instance in different ways depending on how much you commit and how much interruption you accept. Choosing well can cut compute costs sharply.
 
@@ -155,6 +177,8 @@ Amazon EC2 charges the same instance in different ways depending on how much you
 
 ### Exam cues
 
+- If the question says an immediate Capacity Reservation is guaranteed to succeed, think no, because the requested capacity might be unavailable.
+- If the question says buy a new Scheduled Instance, think unavailable, because EC2 no longer sells Scheduled Instances.
 - If the question says steady usage for one or three years, think Savings Plans or Reserved Instances.
 - If the question says can be interrupted or flexible start times, think Spot.
 - If the question says short-term, unpredictable, no commitment, think On-Demand.

@@ -54,6 +54,15 @@ facts:
   - id: multipart-guidance
     text: "AWS suggests multipart upload once an object reaches about 100 MB; an upload can have up to 10,000 parts, and only the last part may be smaller than 5 MiB."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/qfacts.html#qfacts
+  - id: same-region-free
+    text: "S3 data transfer to an EC2 instance in the same AWS Region has no S3 data transfer charge."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: single-range
+    text: "A single S3 GET request cannot retrieve multiple byte ranges."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html
+  - id: batch-lambda
+    text: "S3 Batch Operations can invoke a Lambda function to perform custom actions on objects in a job manifest."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-invoke-lambda.html
 cards:
   - id: s3-132
     q: An application writes 20,000 objects per second into a single S3 prefix and gets HTTP 503 Slow Down errors. What design change fixes it?
@@ -93,6 +102,18 @@ cards:
     q: "From what object size does AWS suggest multipart upload, and how many parts can one upload have?"
     a: "Around 100 MB, with up to 10,000 parts."
     facts: [multipart-guidance]
+  - id: s3-224
+    q: "Is Amazon S3 data transfer to an EC2 instance in the same Region charged by S3?"
+    a: "No S3 data transfer charge applies."
+    facts: [same-region-free]
+  - id: s3-225
+    q: "Can one Amazon S3 GET request retrieve multiple byte ranges?"
+    a: "No. Use separate GET requests for the ranges."
+    facts: [single-range]
+  - id: s3-230
+    q: "How can Amazon S3 Batch Operations run custom code for objects in a manifest?"
+    a: "Use its Lambda invocation operation."
+    facts: [batch-lambda]
 revised:
   - date: 2026-11-21
     note: Amazon S3 now supports at least 11,000 GET/HEAD requests per second per prefix, up from 5,500, and recommends a hash character at the start of key names to spread load.
@@ -117,6 +138,9 @@ Amazon S3 scales per prefix, so performance problems are usually design problems
 
 ### Exam cues
 
+- If the question says run custom processing for many S3 objects, think S3 Batch Operations invoking Lambda, because it invokes the function for objects in a manifest.
+- If the question says fetch several byte ranges from one S3 object, think separate GET requests, because one GET cannot return multiple ranges.
+- If the question says transfer S3 data to EC2 in the same Region, think no S3 data transfer charge, because that transfer is free.
 - If the question says high request rate and 503 errors, think more prefixes. Questions written before November 2026 use 5,500 reads per second per prefix.
 - If the question says large files from around the world, think Transfer Acceleration plus multipart upload.
 - If the question says read only part of each object, think byte-range fetches.

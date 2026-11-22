@@ -69,6 +69,9 @@ facts:
   - id: pricing
     text: "AWS Fargate is billed per second, with a one-minute minimum, for the vCPU and memory you allocate to each task, whether or not they are fully used."
     source: https://docs.aws.amazon.com/decision-guides/latest/decision-guides/fargate-or-lambda.html
+  - id: fargate-linux-largest
+    text: "The largest listed Fargate Linux task size is 32 vCPUs with up to 244 GB of memory."
+    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html
 diagrams:
   - id: fargate-task-launch
     title: ECS places a task on managed compute
@@ -162,6 +165,10 @@ cards:
     q: "A team wants to run Kubernetes pods without managing the underlying compute hosts. Which AWS Fargate integration fits?"
     a: "Use Amazon EKS on Fargate. Each pod runs with its own compute boundary."
     facts: [eks]
+  - id: fargate-019
+    q: "What is the largest listed CPU and memory combination for an Amazon ECS Fargate Linux task?"
+    a: "32 vCPUs and 244 GB of memory."
+    facts: [fargate-linux-largest]
 ---
 Fargate supplies container compute without requiring you to manage worker hosts. ECS runs tasks, groups of containers deployed together, while EKS runs Kubernetes pods. The isolation boundary surrounds each task or pod, not every container inside it.
 
@@ -193,6 +200,7 @@ Fargate supplies container compute without requiring you to manage worker hosts.
 
 ### Remember
 
+- Largest listed Fargate Linux task: 32 vCPUs and 244 GB of memory.
 - New tasks use the latest revision of the selected platform version. An unchanged service's scale-out keeps its current deployment version.
 - A forced deployment replaces tasks without requiring a service-definition change.
 - The task role authorizes application API calls; the execution role authorizes agent operations.

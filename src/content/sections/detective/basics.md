@@ -9,6 +9,9 @@ facts:
   - id: history
     text: "Detective keeps up to a year of historical event data and links activity to GuardDuty findings."
     source: https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#what-is-detective
+  - id: analysis-methods
+    text: Amazon Detective builds its investigation visualizations with machine learning, statistical analysis and graph theory.
+    source: https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#what-is-detective
 cards:
   - id: detective-008
     q: "GuardDuty raised a finding and the security team needs to find its root cause and scope. Which service helps investigate?"
@@ -27,6 +30,8 @@ Amazon Detective is an investigation tool: after something suspicious is found, 
 1. Detective collects log data from AWS resources.
 2. It builds graphs and visualizations of activity over time.
 3. Analysts follow a finding to the root cause.
+
+Its investigation visuals come from machine learning, statistical analysis and graph theory applied to that data.
 
 ### Exam cues
 

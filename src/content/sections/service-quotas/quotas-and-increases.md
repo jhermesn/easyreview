@@ -21,6 +21,9 @@ facts:
   - id: automatic-management
     text: "Service Quotas Automatic Management watches quota usage and notifies at 80% and 95% utilization through the AWS Health dashboard, email, Slack or EventBridge; Notify and Auto-Adjust mode also requests increases for you, while Notify Only just alerts."
     source: https://docs.aws.amazon.com/servicequotas/latest/userguide/automatic-management.html#automatic-management-modes
+  - id: notification-configuration
+    text: Service Quotas Automatic Management notifications can be configured in AWS User Notifications.
+    source: https://docs.aws.amazon.com/servicequotas/latest/userguide/updating-automatic-management.html
 cards:
   - id: service-quotas-001
     q: A company hits the maximum number of EC2 instances allowed in its account. Where does it see the limit and ask for more?
@@ -43,6 +46,10 @@ cards:
     q: "A company is planning a standby environment for an AWS workload. Why should it review service quotas?"
     a: "Quotas set maximum values for AWS resources and actions. The company can request increases if the defaults do not meet its needs."
     facts: [definition, increase]
+  - id: service-quotas-006
+    q: Where can a team configure notification delivery for Service Quotas Automatic Management?
+    a: In AWS User Notifications.
+    facts: [notification-configuration]
 ---
 Every AWS account has quotas, also called limits, on how many resources and actions it can use. Defaults protect accounts and AWS capacity; Service Quotas shows them and asks for more.
 
@@ -54,6 +61,7 @@ Every AWS account has quotas, also called limits, on how many resources and acti
 
 ### Exam cues
 
+- If the question says change delivery settings for Service Quotas Automatic Management notifications, think AWS User Notifications, because it manages their configuration.
 - If the question says a limit stops resource creation, think Service Quotas increase request.
 - If the question says see all limits in one place, think Service Quotas.
 

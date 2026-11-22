@@ -48,6 +48,12 @@ facts:
   - id: vpn-pricing
     text: "AWS Site-to-Site VPN charges for each connection-hour the connection is provisioned, with partial hours billed as full hours, plus standard data transfer charges."
     source: https://aws.amazon.com/vpn/pricing/
+  - id: certificate-no-ip
+    text: A public Site-to-Site VPN using a private certificate from AWS Private CA does not require a customer gateway IP address.
+    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/cgw-options.html
+  - id: cgw-static-ip
+    text: When specified, the Site-to-Site VPN customer gateway IP address must be static.
+    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/cgw-options.html
 diagrams:
   - id: vpn-two-tunnels
     title: Two VPN tunnels
@@ -90,6 +96,10 @@ cards:
     q: "What does an AWS Site-to-Site VPN connection cost while it is provisioned but idle?"
     a: "The hourly connection charge still applies; data transfer charges add only for traffic sent."
     facts: [vpn-pricing]
+  - id: site-to-site-vpn-021
+    q: Must a public AWS Site-to-Site VPN customer gateway have an IP address when using a private certificate from AWS Private CA?
+    a: No. An IP address is not required for that public VPN configuration.
+    facts: [certificate-no-ip]
 ---
 AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud (VPC), an isolated virtual network in AWS, using IPsec, a protocol for securing IP traffic. Each connection has two encrypted tunnels for availability.
 
@@ -101,6 +111,7 @@ AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud 
 
 ### Exam cues
 
+- If the question says a public Site-to-Site VPN customer gateway uses a private certificate, think an IP address is optional, because that certificate configuration does not require one.
 - If the question says encrypt Direct Connect traffic without public addresses, think private IP Site-to-Site VPN, because it encrypts traffic over Direct Connect.
 - If the question says a VPN is up but VPC instances cannot reach the remote network, think subnet route tables, because route propagation can add VPN routes for a virtual private gateway.
 - If the question asks for tunnel bandwidth, think standard or Large Bandwidth Tunnels, because their per-tunnel limits differ.

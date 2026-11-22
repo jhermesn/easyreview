@@ -15,6 +15,9 @@ facts:
   - id: babelfish
     text: Babelfish for Aurora PostgreSQL accepts connections from SQL Server clients over the TDS wire protocol, so SQL Server applications work with Aurora PostgreSQL with few code changes and no driver changes.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/babelfish.html#babelfish
+  - id: babelfish-schema
+    text: "A Babelfish migration creates target schemas and tables from exported SQL Server data definition language before loading data."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/babelfish-migration.html
 cards:
   - id: aurora-032
     q: An Aurora cluster's I/O charges are 40% of its bill and fluctuate month to month. Which change lowers and stabilizes the cost?
@@ -34,6 +37,10 @@ cards:
     a: "No. Aurora Standard is cheaper when I/O is under 25% of total Aurora spending."
     trap: true
     facts: [standard, io-optimized]
+  - id: aurora-058
+    q: "What must be created before loading SQL Server data into a Babelfish target?"
+    a: "Create the compatible target schemas and tables using the exported data definition language."
+    facts: [babelfish-schema]
 ---
 Two Aurora choices that come down to money and migration effort: the storage configuration decides how I/O is billed, and Babelfish lets SQL Server applications talk to Aurora PostgreSQL.
 
@@ -45,6 +52,7 @@ Two Aurora choices that come down to money and migration effort: the storage con
 
 ### Exam cues
 
+- If the question says migrate SQL Server data to Babelfish, think create the target schema first, because data needs compatible tables.
 - If the question says I/O-heavy Aurora with unpredictable I/O bills, think Aurora I/O-Optimized.
 - If the question says migrate SQL Server apps to PostgreSQL with minimal code changes, think Babelfish (plus AWS DMS for the data).
 

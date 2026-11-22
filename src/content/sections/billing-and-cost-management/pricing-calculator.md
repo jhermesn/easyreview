@@ -15,6 +15,9 @@ facts:
   - id: no-account
     text: No experience with cloud computing or AWS is needed to use AWS Pricing Calculator.
     source: https://docs.aws.amazon.com/pricing-calculator/latest/userguide/what-is-pricing-calculator.html#what-is-pricing-calculator
+  - id: public-account
+    text: The public AWS Pricing Calculator is available without an AWS account.
+    source: https://docs.aws.amazon.com/pricing-calculator/latest/userguide/getting-started.html#apc-prereqs
 cards:
   - id: billing-and-cost-management-013
     q: A company that has never used AWS wants to estimate the monthly cost of a planned architecture. Which AWS tool fits?
@@ -29,6 +32,10 @@ cards:
     a: No. It estimates future costs; actual spending is in AWS Cost Explorer and the bill.
     trap: true
     facts: [purpose]
+  - id: billing-and-cost-management-050
+    q: Can someone without an AWS account estimate service costs with AWS Pricing Calculator?
+    a: Yes. The public AWS Pricing Calculator is available without an AWS account.
+    facts: [public-account]
 ---
 AWS Pricing Calculator estimates what AWS services will cost before you use them. It's free and needs no AWS experience.
 
@@ -43,6 +50,7 @@ AWS Pricing Calculator estimates what AWS services will cost before you use them
 
 - If the question says estimate cost before migrating or building, think AWS Pricing Calculator.
 - If the question says compare pricing of configurations, think AWS Pricing Calculator.
+- If the question says estimate costs before creating an AWS account, think the public AWS Pricing Calculator, because it does not require an account.
 
 ### Remember
 

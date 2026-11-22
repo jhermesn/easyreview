@@ -45,6 +45,12 @@ facts:
   - id: key-download
     text: "When the EC2 console creates a key pair, its private key is downloaded at creation; that is the only opportunity to save that private key file."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html#having-ec2-create-your-key-pair
+  - id: address-metadata
+    text: EC2 instance metadata includes local IPv4 and, when assigned, public IPv4 addresses.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+  - id: metadata-identity-key
+    text: EC2 instance metadata includes the instance ID and, when supplied at launch, its public key.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
 cards:
   - id: ec2-067
     q: A Java application on EC2 takes 20 minutes to load caches after boot. The instances are stopped at night and must resume ready to serve in the morning. Which EC2 feature fits?
@@ -90,6 +96,10 @@ cards:
     q: "An EC2 application must reject tokenless instance metadata requests, while another instance must expose no metadata endpoint. Which settings fit?"
     a: "Require IMDSv2 on the first instance and disable IMDS on the second through instance metadata options."
     facts: [imdsv2]
+  - id: ec2-135
+    q: Where can software on an EC2 instance find its local IPv4 address and assigned public IPv4 address?
+    a: In instance metadata, under local-ipv4 and public-ipv4.
+    facts: [address-metadata]
 ---
 Three EC2 features that change how an instance starts and how you reach it: hibernation keeps memory across a stop, user data configures the first boot, and Instance Connect replaces long-lived SSH keys.
 
@@ -109,6 +119,7 @@ Three EC2 features that change how an instance starts and how you reach it: hibe
 
 ### Exam cues
 
+- If the question says an EC2 application needs its own addresses, think instance metadata, because it exposes local and assigned public IPv4 addresses.
 - If the question says long warm-up time and instances stopped on a schedule, think hibernation.
 - If the question says install software at launch, think user data; for fixed, slow installs, bake them into a golden AMI.
 - If the question says SSH with IAM control and no shared keys, think EC2 Instance Connect (or Session Manager with no open port).

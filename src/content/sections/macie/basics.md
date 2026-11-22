@@ -6,11 +6,18 @@ facts:
   - id: sensitive-data
     text: "Amazon Macie discovers sensitive data in Amazon S3 using machine learning and pattern matching, and evaluates buckets for security and access risks."
     source: https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html#what-is-macie
+  - id: findings-eventbridge
+    text: "Amazon Macie automatically publishes policy and sensitive data findings as events to Amazon EventBridge."
+    source: https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html
 cards:
   - id: macie-013
     q: "A company must find personal data such as credit card numbers stored across its S3 buckets. Which service fits?"
     a: "Amazon Macie."
     facts: [sensitive-data]
+  - id: macie-014
+    q: "How can another AWS service process Amazon Macie findings automatically?"
+    a: "Use an EventBridge rule to route the findings that Macie publishes."
+    facts: [findings-eventbridge]
 ---
 Amazon Macie finds sensitive data, such as personal information, in Amazon S3 and flags bucket security risks.
 
@@ -22,6 +29,7 @@ Amazon Macie finds sensitive data, such as personal information, in Amazon S3 an
 
 ### Exam cues
 
+- If the question says process Macie findings with another service, think EventBridge, because Macie publishes findings as events.
 - If the question says find PII or sensitive data in S3, think Macie.
 
 ### Remember

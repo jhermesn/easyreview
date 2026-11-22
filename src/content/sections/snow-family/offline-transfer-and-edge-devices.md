@@ -27,6 +27,9 @@ facts:
   - id: import-to-s3
     text: "A Snowball Edge import job copies data into Amazon S3 buckets, with each file becoming an S3 object; to archive it cheaply, a lifecycle rule then moves the objects to a Glacier storage class."
     source: https://docs.aws.amazon.com/snowball/latest/developer-guide/importtype.html#importtype
+  - id: terminal-equipment
+    text: AWS Data Transfer Terminal customers must bring compatible equipment for their scheduled reservation.
+    source: https://docs.aws.amazon.com/datatransferterminal/latest/userguide/tech-requirements.html
 cards:
   - id: snow-family-001
     q: A research site has 500 TB to load into Amazon S3 and only a slow internet link that would take months. Which AWS option did exam questions traditionally expect, and what changed in November 2025?
@@ -53,6 +56,10 @@ cards:
     a: "To an S3 bucket, with a lifecycle rule that moves the objects to Glacier Deep Archive the same day. Import jobs land data in S3 buckets, not straight in a Glacier vault."
     trap: true
     facts: [import-to-s3]
+  - id: snow-family-008
+    q: What must a customer arrange for an AWS Data Transfer Terminal upload?
+    a: Reserve a visit and bring compatible equipment.
+    facts: [terminal-equipment, dtt]
 ---
 The Snow Family solves two problems: moving more data than the network can carry in time, and running compute where there is no network. You load a rugged device on site and ship it back to AWS, which imports the data into Amazon S3.
 
@@ -72,6 +79,7 @@ The Snow Family solves two problems: moving more data than the network can carry
 
 ### Exam cues
 
+- If the question says upload at an AWS Data Transfer Terminal, think a reservation and compatible customer equipment, because the customer visits the facility with their devices.
 - If the question says hundreds of terabytes and a link that would take weeks or months, think Snowball Edge, then S3 lifecycle rules for cheaper classes.
 - If the question says disconnected or rugged edge location that needs local compute, think Snowball Edge Compute Optimized.
 - If the question is set after November 2025 and asks for a new customer, think DataSync, Data Transfer Terminal or Outposts.

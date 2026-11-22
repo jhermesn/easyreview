@@ -27,6 +27,12 @@ facts:
   - id: global-tables
     text: DynamoDB global tables replicate a table across AWS Regions with managed replication, and every replica can serve reads and writes.
     source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html
+  - id: document-types
+    text: DynamoDB supports document types, including maps for storing JSON documents.
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes
+  - id: batch-write
+    text: BatchWriteItem puts or deletes multiple DynamoDB items across one or more tables.
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html
 cards:
   - id: dynamodb-049
     q: "Which AWS database service is a serverless, fully managed NoSQL database?"
@@ -44,6 +50,14 @@ cards:
     q: "Users in several AWS Regions must read and write the same Amazon DynamoDB data with low latency in their own Region. Which DynamoDB feature fits?"
     a: "DynamoDB global tables. AWS replicates the table across Regions, and every replica serves reads and writes."
     facts: [global-tables]
+  - id: dynamodb-072
+    q: Which DynamoDB operation can put or delete multiple items in one request?
+    a: BatchWriteItem can put or delete items in one or more tables.
+    facts: [batch-write]
+  - id: dynamodb-073
+    q: Can Amazon DynamoDB store JSON documents?
+    a: Yes. DynamoDB supports document types such as maps for JSON documents.
+    facts: [document-types]
 ---
 Amazon DynamoDB is a serverless NoSQL database for fast key-value and document access.
 
@@ -56,6 +70,8 @@ Amazon DynamoDB is a serverless NoSQL database for fast key-value and document a
 ### Exam cues
 
 - If the question says serverless NoSQL or key-value at any scale, think DynamoDB.
+- If the question says store JSON documents, think DynamoDB document types, because maps hold JSON data.
+- If the question says put or delete multiple DynamoDB items in one request, think BatchWriteItem, because it handles both operations in batches.
 
 ### Remember
 

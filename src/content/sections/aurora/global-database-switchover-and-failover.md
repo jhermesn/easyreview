@@ -3,6 +3,9 @@ title: Global database switchover and failover
 level: associate
 order: 20
 facts:
+  - id: global-full-copy
+    text: Aurora Global Database replicates the primary database to secondary Regions as full copies of its data.
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database-overview
   - id: global
     text: Aurora Global Database replicates asynchronously from a primary Region to secondary Regions for regional reads and disaster recovery.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Concepts.AuroraHighAvailability.GlobalDB
@@ -66,7 +69,20 @@ facts:
   - id: managed-rpo
     text: "For an Aurora PostgreSQL global database, the rds.global_db_rpo parameter sets a target RPO; when every secondary lags beyond it, the primary pauses commits until one catches up."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html
+  - id: storage-latency
+    text: "Aurora Global Database uses storage-based replication with typical cross-Region latency below one second."
+    source: https://docs.aws.amazon.com/rds/latest/auroraextendedcontent/aurora-features-availability.html#aurora-features-global-database
+  - id: logical-lag
+    text: "Aurora cross-Region binlog replication lag depends on change rates, apply rates and network delays, and can grow without bound."
+    source: https://docs.aws.amazon.com/rds/latest/auroraextendedcontent/aurora-faq-availability-and-durability.html
+  - id: parallel-global
+    text: "Aurora MySQL 5.7 supports using Parallel Query together with Aurora Global Database."
+    source: https://aws.amazon.com/about-aws/whats-new/2020/09/announcing-aurora-parallel-query-region-expansion-and-mysql-5-7-compatibility/
 cards:
+  - id: aurora-059
+    q: "Can region-restricted data remain inside an Aurora Global Database if a secondary Region is outside its allowed locations?"
+    a: "No. The global database replicates the primary data to its secondary Regions. Keep restricted data outside that replicated database or choose permitted Regions."
+    facts: [global-full-copy]
   - id: aurora-003
     q: An Aurora Global Database must move its primary Region during planned maintenance without data loss. How does this differ from disaster failover?
     a: "Use switchover: it synchronizes the target and has RPO zero. Unplanned failover does not wait for synchronization and can lose writes; --allow-data-loss explicitly accepts that risk."
@@ -118,6 +134,18 @@ cards:
     q: "An Aurora PostgreSQL global database must never lose more than a set amount of recent data in a Region failover. Which setting enforces that, and what is the trade-off?"
     a: "`rds.global_db_rpo`. When every secondary lags beyond it, the primary pauses commits until one catches up."
     facts: [managed-rpo]
+  - id: aurora-054
+    q: "Does Aurora Global Database guarantee cross-Region replication lag below one second?"
+    a: "No. Storage-based replication typically takes less than one second, but the figure is not a guarantee."
+    facts: [storage-latency]
+  - id: aurora-055
+    q: "What affects cross-Region Aurora binlog replication lag?"
+    a: "Change and apply rates and network delays; lag can grow without bound."
+    facts: [logical-lag]
+  - id: aurora-056
+    q: "Can Aurora MySQL 5.7 use Parallel Query with Aurora Global Database?"
+    a: "Yes. AWS supports using the features together."
+    facts: [parallel-global]
 diagrams:
   - id: aurora-global-switchover
     title: Planned switchover synchronizes before changing the writer
@@ -200,6 +228,10 @@ For event notifications, configure an Aurora event subscription with resources, 
 
 ### Exam cues
 
+- If the question says data must stay within permitted Regions, think about every Aurora Global Database secondary, because each receives a copy of the primary data.
+- If the question says combine Aurora MySQL 5.7 Parallel Query with a global database, think a supported configuration, because AWS supports those features together.
+- If the question says cross-Region binlog replication is falling behind, think workload and network delay, because logical replication lag can grow without bound.
+- If the question says Aurora Global Database must replicate across Regions, think storage-based replication, because its typical latency is below one second but is not a maximum.
 - If the question says a planned primary-Region move must avoid data loss, think switchover, because the target synchronizes first.
 - If the question says a primary Region is unavailable, think failover to the least-lag secondary, because waiting for the failed Region to synchronize is not the recovery path.
 - If the question says regional recovery from backup, think copied cluster snapshots or supported AWS Backup copies, because Aurora lacks native automated backup replication across Regions.

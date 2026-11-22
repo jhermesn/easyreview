@@ -57,6 +57,9 @@ facts:
   - id: kms-at-rest
     text: "Amazon FSx for Windows File Server automatically encrypts file system data and metadata at rest using keys managed in AWS KMS."
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/encryption-at-rest.html#EFSKMS
+  - id: throughput-iops
+    text: "FSx for Windows File Server network performance depends on throughput capacity, while disk IOPS depends on throughput capacity and storage configuration."
+    source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/performance.html
 diagrams:
   - id: fsx-windows-multi-az
     title: Multi-AZ failover
@@ -133,6 +136,7 @@ Amazon FSx for Windows File Server provides managed Windows file servers for sha
 
 ### Exam cues
 
+- If the question says size FSx for Windows File Server for throughput and IOPS, think throughput capacity and storage configuration, because they determine performance limits.
 - If the question says Windows shares and existing domain accounts, think FSx for Windows File Server joined to Active Directory, because it supports SMB and directory authentication.
 - If the question says survive an Availability Zone disruption, think Multi-AZ, because it replicates to and fails over to a standby in another zone.
 - If the question says users need earlier file versions, think shadow copies, because users can restore files from them once enabled.
@@ -142,7 +146,6 @@ Amazon FSx for Windows File Server provides managed Windows file servers for sha
 ### Remember
 
 - File system data and metadata are encrypted at rest using AWS KMS keys.
-
 - SMB versions 2.0 through 3.1.1 are supported.
 - Multi-AZ failover typically takes less than 30 seconds; failback is automatic after recovery.
 - Shadow copies are off by default; automatic daily backups are on by default.

@@ -52,6 +52,9 @@ facts:
   - id: status-reporting
     text: With build status reporting turned on, CodeBuild posts the build result to the commit or pull request in the source provider.
     source: https://docs.aws.amazon.com/codebuild/latest/userguide/sample-github-pull-request.html
+  - id: push-filter
+    text: "CodeBuild GitHub webhooks can trigger builds on PUSH events and filter by the head reference."
+    source: https://docs.aws.amazon.com/codebuild/latest/userguide/github-webhook.html
 diagrams:
   - id: codebuild-codecommit-trigger
     title: CodeCommit pull request events start builds
@@ -144,6 +147,10 @@ cards:
     q: Developers want each pull request to show whether its CodeBuild build passed. Which CodeBuild setting does this?
     a: Build status reporting, which posts the build result to the source provider.
     facts: [status-reporting]
+  - id: codebuild-063
+    q: "How can AWS CodeBuild start a build when a specific GitHub branch is updated?"
+    a: "Configure a webhook filter group for PUSH and the matching HEAD_REF."
+    facts: [push-filter]
 ---
 CodeBuild repository webhooks start builds in response to source events. A webhook is an event notification sent by the repository provider. Pull request builds run tests on proposed changes, while comment approval controls whether untrusted contributions may execute.
 
@@ -164,6 +171,7 @@ For CodeCommit, use its `pullRequestCreated` and `pullRequestSourceBranchUpdated
 
 ### Exam cues
 
+- If the question says build after a GitHub branch update, think a PUSH webhook filter with HEAD_REF, because the event and branch can both be matched.
 - If the question says run tests before a GitHub pull request merges, think pull request webhook events, because they cover opened and updated proposals.
 - If the question says unknown contributors must be reviewed first, think comment approval, because untrusted changes do not start a build until a trusted role holder approves the commit.
 - If the question says a public test project has deployment permissions, think separate projects and roles, because webhook code runs with the project's service role.

@@ -48,7 +48,20 @@ facts:
   - id: media-destruction
     text: "When a storage device that held customer data reaches the end of its life, AWS decommissions it with a documented media destruction process, as part of security of the cloud."
     source: https://aws.amazon.com/compliance/data-center/controls/
+  - id: pentest-c2
+    text: "AWS requires prior approval for security testing that includes command and control."
+    source: https://aws.amazon.com/security/penetration-testing/
+  - id: pentest-databases
+    text: "AWS lists Amazon RDS and Aurora as permitted services for assessments of customer resources without prior approval, subject to its testing policy."
+    source: https://aws.amazon.com/security/penetration-testing/
+  - id: pentest-unlisted
+    text: Amazon S3, IAM and AWS STS are absent from the AWS permitted services list for security assessments without prior approval.
+    source: https://aws.amazon.com/security/penetration-testing/
 cards:
+  - id: shared-responsibility-017
+    q: "Are Amazon S3, IAM and AWS STS on the AWS list of services permitted for security assessments without prior approval?"
+    a: "No. Consult AWS Support or your account representative about testing services outside the permitted list."
+    facts: [pentest-unlisted, pentest]
   - id: shared-responsibility-001
     q: In the AWS shared responsibility model, what does "security of the cloud" versus "security in the cloud" mean?
     a: "- Of the cloud: AWS protects the infrastructure that runs AWS services, from the facilities to the host OS and virtualization layer\n- In the cloud: the customer secures what it puts and configures there"
@@ -107,6 +120,14 @@ cards:
     q: "What happens to an AWS storage device that held customer data when it reaches end of life?"
     a: "AWS decommissions it with its media destruction process. Disposing of physical media is part of AWS security of the cloud."
     facts: [media-destruction]
+  - id: shared-responsibility-015
+    q: "When does AWS require prior approval for security testing that includes command and control?"
+    a: "Before conducting the test. The AWS penetration testing policy requires prior approval."
+    facts: [pentest-c2]
+  - id: shared-responsibility-016
+    q: "Can customers assess their own Amazon RDS and Aurora resources without prior AWS approval?"
+    a: "Yes, subject to the AWS penetration testing policy and its conditions."
+    facts: [pentest-databases]
 ---
 AWS and the customer share security and compliance. AWS secures the cloud itself: facilities, hardware, network, and the host software that runs the services. The customer secures what it builds in the cloud. The customer's part grows or shrinks with the services it chooses.
 
@@ -131,6 +152,9 @@ IT controls are split the same way:
 
 ### Exam cues
 
+- If the question says assess S3, IAM or STS, think the AWS permitted services list, because these services are not listed for testing without prior approval.
+- If the question says assess owned RDS or Aurora resources, think the AWS permitted services list, because both appear on it subject to the testing policy.
+- If the question says a security test includes command and control, think prior AWS approval, because the testing policy requires it.
 - If the question says data center, hardware or physical security, think AWS.
 - If the question says guest OS patches on Amazon EC2, security groups or IAM users, think customer.
 - If the question says patching on Amazon RDS or AWS Lambda, think AWS.

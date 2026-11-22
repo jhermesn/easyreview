@@ -11,6 +11,9 @@ facts:
     text: Task definitions specify container images, CPU, memory, networking, logging, volumes, and an
       application IAM role.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html
+  - id: ecs-model-task-role-arn
+    text: The taskRoleArn field in a task definition specifies the IAM role used by the task's containers to call AWS APIs.
+    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_role_arn
   - id: ecs-model-task
     text: A task is an instance of a task definition inside a cluster.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html
@@ -233,6 +236,10 @@ cards:
     q: "Why do containers start faster and use fewer resources than virtual machines?"
     a: "Containers share the host operating system kernel; a virtual machine runs a full guest operating system."
     facts: [shared-kernel]
+  - id: ecs-078
+    q: Which Amazon ECS task definition field assigns an IAM role to application containers?
+    a: Set taskRoleArn to the task IAM role.
+    facts: [ecs-model-task-role-arn]
 ---
 
 An ECS task definition describes how to run an application in containers, which package code and its dependencies. A task is a running copy; a service keeps the requested number of copies available.
@@ -263,6 +270,7 @@ A Fargate service can use an Application Load Balancer for HTTP/HTTPS, a Network
 - If the question says a nightly ECS job must exit when done, think scheduled standalone task, because a service maintains continuous task availability.
 - If the question says stopping an ECS service task creates another, think desired count, because the service replaces stopped tasks.
 - If the question says replacement Linux tasks need the same shared files, think EFS, because container writable layers do not persist.
+- If the question says give ECS application containers AWS API permissions, think taskRoleArn, because it assigns the task IAM role.
 
 ### Remember
 

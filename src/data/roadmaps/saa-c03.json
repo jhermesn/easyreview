@@ -104,7 +104,9 @@
         "license-manager",
         "outposts",
         "wavelength",
-        "vmware-cloud-on-aws"
+        "vmware-cloud-on-aws",
+        "appstream",
+        "workspaces"
       ]
     },
     {

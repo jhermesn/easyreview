@@ -58,6 +58,15 @@ facts:
     text: Importing material into the standard store gives control over material generation and removal but keeps
       that imported material in KMS.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html#imported-key-material
+  - id: cloudhsm-nonextractable
+    text: A CloudHSM key store keeps the KMS key material non-extractable in the customer's CloudHSM cluster.
+    source: https://docs.aws.amazon.com/kms/latest/developerguide/keystore-cloudhsm.html
+  - id: cloudhsm-audit
+    text: Each CloudHSM instance produces its own audit log, which CloudHSM sends to CloudWatch Logs.
+    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/get-audit-logs-from-cloudwatch.html
+  - id: cloudhsm-cloudtrail
+    text: CloudTrail records CloudHSM control plane API calls, while HSM audit logs track operations on the HSM.
+    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/bp-monitoring.html
 diagrams:
   - id: kms-cloudhsm-store-flow
     title: KMS forwards cryptographic requests to the customer HSM cluster
@@ -157,6 +166,14 @@ diagrams:
       - KMS sends the request to the customer-provided XKS proxy.
       - The proxy calls the external manager and returns its response to KMS.
 cards:
+  - id: kms-048
+    q: Where does a CloudHSM key store keep the non-extractable material for an AWS KMS key?
+    a: In the customer's AWS CloudHSM cluster.
+    facts: [cloudhsm-nonextractable]
+  - id: kms-049
+    q: How do CloudHSM audit logs differ from CloudTrail records for AWS CloudHSM?
+    a: HSM audit logs track HSM operations and are sent to CloudWatch Logs. CloudTrail records control plane API calls.
+    facts: [cloudhsm-audit, cloudhsm-cloudtrail]
   - id: kms-011
     q: When should an AWS KMS design choose a CloudHSM key store or an external key store?
     a: Choose CloudHSM for a requirement to protect material in customer-controlled single-tenant HSMs in AWS.
@@ -221,6 +238,7 @@ Importing material into a standard key store gives control over its generation a
 
 ### Exam cues
 
+- If the question says inspect HSM operations, think CloudHSM audit logs in CloudWatch Logs, because each HSM produces its own log. CloudTrail records control plane API calls.
 - If the question says dedicated HSMs controlled by the customer in AWS, think a CloudHSM key store, because its cluster holds and uses the material.
 - If the question says the external key must stay outside AWS, think XKS, because KMS calls a proxy connected to the external manager.
 - If the question says key operations failed after a store disconnect, think its connection and backing manager, because IAM cannot replace a working key-store dependency.

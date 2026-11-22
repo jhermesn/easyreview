@@ -90,6 +90,12 @@ facts:
   - id: linux-ec2
     text: Pod Identity is supported for Pods on Linux EC2 workers, not Fargate or Windows EC2 workers.
     source: https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html#pod-id-restrictions
+  - id: access-entry
+    text: "An EKS access entry associates an IAM principal with cluster access and can grant Kubernetes permissions through EKS access policies or Kubernetes groups and RBAC."
+    source: https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html
+  - id: kubernetes-conformance
+    text: "Amazon EKS is Kubernetes-conformant, so Kubernetes-compatible applications and community tools can be used with it."
+    source: https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html
 cards:
   - id: eks-004
     q: Does Amazon EKS always manage only the control plane?
@@ -147,6 +153,14 @@ cards:
       - agent
       - irsa
       - linux-ec2
+  - id: eks-063
+    q: "How can an Amazon EKS access entry grant an IAM role Kubernetes permissions?"
+    a: "Associate an EKS access policy or map the principal to Kubernetes groups with RBAC permissions."
+    facts: [access-entry]
+  - id: eks-066
+    q: "Can Kubernetes-compatible applications and tools run on Amazon EKS?"
+    a: "Yes. EKS is Kubernetes-conformant."
+    facts: [kubernetes-conformance]
 ---
 Amazon EKS runs Kubernetes, a system that places and maintains container workloads. Its control plane stores cluster state and schedules work. A node is the machine running that work; its kubelet agent keeps containers running inside Pods, the units Kubernetes schedules.
 
@@ -180,6 +194,8 @@ Amazon EKS runs Kubernetes, a system that places and maintains container workloa
 
 ### Exam cues
 
+- If the question says use Kubernetes tools and applications on AWS, think Amazon EKS, because it is Kubernetes-conformant.
+- If the question says grant an IAM principal Kubernetes permissions, think EKS access entry with an access policy or Kubernetes group and RBAC, because the entry connects the principal to cluster access.
 - If the question says an EKS workload needs a GPU or a privileged node agent, think EC2 nodes, because Fargate does not support those features.
 - If the question says the Kubernetes API must have no public access, think private endpoint access with public access disabled, because management clients must then use the VPC or a connected network.
 - If the question says a Fargate Pod needs persistent file storage, think statically provisioned EFS, because Fargate cannot mount EBS.

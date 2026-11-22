@@ -67,6 +67,9 @@ facts:
   - id: access-log-fields
     text: "S3 server access log records include fields for requester identity, request time, operation, and HTTP response status."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/LogFormat.html#log-record-fields
+  - id: vended-log-delivery
+    text: "S3 server access logs can be delivered to a CloudWatch Logs log group using CloudWatch Logs vended log delivery."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/sal-cw-enabling.html
 cards:
   - id: s3-077
     q: An S3 team needs a weekly list of every version with encryption and replication metadata for SQL
@@ -114,6 +117,10 @@ cards:
     q: "An Amazon S3 investigation needs requester identity, time, operation, and response status for bucket requests. Which records contain those fields?"
     a: "S3 server access logs contain those request fields."
     facts: [access-log-fields]
+  - id: s3-233
+    q: "How can Amazon S3 server access logs be delivered to a CloudWatch Logs log group?"
+    a: "Use CloudWatch Logs vended log delivery."
+    facts: [vended-log-delivery]
 ---
 S3 Inventory answers what objects exist and which metadata they have. Access logging and CloudTrail data events answer what requests were made; they serve different audit needs.
 
@@ -132,6 +139,7 @@ S3 Inventory answers what objects exist and which metadata they have. Access log
 
 ### Exam cues
 
+- If the question says send S3 server access logs to a CloudWatch Logs group, think vended log delivery, because it supports that destination.
 - If the question says an S3 audit needs a scheduled object catalog, think Inventory, because it lists objects and selected metadata.
 - If the question says an S3 audit needs object read and write calls, think CloudTrail data events, because Inventory is not a request log.
 - If the question says an S3 server access log is delayed or absent, think best-effort delivery, because completeness and timeliness are not guaranteed.

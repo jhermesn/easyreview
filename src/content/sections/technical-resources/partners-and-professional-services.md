@@ -33,6 +33,15 @@ facts:
   - id: ams-advanced-end
     text: "AMS Advanced stopped accepting new customers on June 30, 2026 and reaches end of support on June 30, 2027; alternatives include AMS Accelerate, the Unified Operations support plan and AWS Partner managed services."
     source: https://docs.aws.amazon.com/managedservices/latest/userguide/SunsetPlan.html#SunsetPlan
+  - id: partner-paths
+    text: "AWS Partner Paths replaced the former technology and consulting partner types with paths based on offerings."
+    source: https://aws.amazon.com/blogs/aws/aws-partner-network-apn-10-years-and-going-strong/
+  - id: software-services-paths
+    text: "The AWS Software Path is for organizations developing software that runs on or integrates with AWS; the Services Path covers consulting and other services."
+    source: https://aws.amazon.com/partners/smb-partner-solutions/
+  - id: consulting-services
+    text: "AWS Managed Service Provider partners provide consulting services across cloud planning, design, building, migration and operations."
+    source: https://aws.amazon.com/blogs/apn/the-journey-to-aws-msp-an-auditors-advice-for-partners/
 cards:
   - id: technical-resources-006
     q: What is the AWS Partner Network (APN)?
@@ -71,6 +80,14 @@ cards:
     q: "Which AWS team can help a company design and migrate its AWS workloads?"
     a: "AWS Professional Services helps organizations design, build, migrate and manage AWS workloads."
     facts: [proserve]
+  - id: technical-resources-020
+    q: "What replaced the former AWS technology and consulting partner types?"
+    a: "AWS Partner Paths, based on partner offerings."
+    facts: [partner-paths]
+  - id: technical-resources-021
+    q: "Which AWS Partner Paths fit software developers and consulting providers?"
+    a: "Software Path for software that runs on or integrates with AWS; Services Path for consulting and other services."
+    facts: [software-services-paths]
 ---
 When a customer needs more than documentation and support cases, AWS offers people. AWS Professional Services and AWS solutions architects come from AWS itself; AWS Partner Network members are outside companies.
 
@@ -94,6 +111,9 @@ When a customer needs more than documentation and support cases, AWS offers peop
 
 ### Exam cues
 
+- If the question says an outside organization should help design and migrate AWS workloads, think an AWS consulting partner, because partners offer those services.
+- If the question says a partner develops software for AWS, think Software Path; for consulting services, think Services Path.
+- If the question says identify the current AWS partner model, think Partner Paths, because they replaced the former partner types.
 - If the question says third-party company to help migrate, think an AWS Partner (consulting partner or system integrator).
 - If the question says AWS experts on a project, think AWS Professional Services.
 - If the question says software company selling on AWS, think ISV in the APN and AWS Marketplace.

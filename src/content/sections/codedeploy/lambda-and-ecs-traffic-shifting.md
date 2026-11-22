@@ -77,6 +77,9 @@ facts:
     text: In a ten-percent Lambda canary, the original version initially receives ninety percent; after
       the shift completes, the target receives all traffic.
     source: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html#deployment-configurations-predefined-lambda
+  - id: lambda-linear-three-minutes
+    text: CodeDeployDefault.LambdaLinear10PercentEvery3Minutes shifts 10 percent of Lambda traffic every three minutes until the shift is complete.
+    source: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html#deployment-configurations-predefined-lambda
 diagrams:
   - id: codedeploy-lambda-canary
     title: Lambda traffic shifting with an alias
@@ -222,6 +225,10 @@ diagrams:
         deployment configuration.
       - The original task set is terminated after the configured wait.
 cards:
+  - id: codedeploy-072
+    q: How does CodeDeployDefault.LambdaLinear10PercentEvery3Minutes shift traffic for a Lambda deployment?
+    a: It shifts 10 percent every three minutes until all traffic has moved.
+    facts: [lambda-linear-three-minutes]
   - id: codedeploy-006
     q: How do CodeDeployDefault.LambdaCanary10Percent5Minutes and
       CodeDeployDefault.LambdaLinear10PercentEvery1Minute differ?
@@ -318,6 +325,7 @@ The example configuration names use the `CodeDeployDefault.` prefix. NLB means N
 
 ### Remember
 
+- CodeDeployDefault.LambdaLinear10PercentEvery3Minutes shifts 10 percent every three minutes.
 - ECS needs two target groups and a production listener; its test listener is optional.
 - NLB with CodeDeploy: `CodeDeployDefault.ECSAllAtOnce` only.
 - Lambda and ECS deployment hooks invoke Lambda validation functions.

@@ -33,7 +33,14 @@ facts:
   - id: profiler-languages
     text: CodeGuru Profiler supports JVM languages and Python 3.6 or later; heap summary visualization is available for JVM applications but not Python.
     source: https://docs.aws.amazon.com/codeguru/latest/profiler-ug/what-is-codeguru-profiler.html#what-is-language-support
+  - id: q-github-secrets
+    text: Amazon Q Developer can review GitHub repositories and detect exposed secrets.
+    source: https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/codeguru-reviewer-availability-change.html#run-code-reviews-with-amazon-q-developer
 cards:
+  - id: codeguru-007
+    q: Which AWS developer tool can review a GitHub repository for exposed secrets?
+    a: Amazon Q Developer.
+    facts: [q-github-secrets]
   - id: codeguru-001
     q: How do Amazon CodeGuru Reviewer and Profiler differ?
     a: Reviewer analyzes source code for defects; Profiler analyzes runtime performance in live applications.
@@ -74,6 +81,7 @@ Amazon CodeGuru offers tools for finding code defects and understanding applicat
 
 ### Exam cues
 
+- If the question says find exposed secrets in a GitHub repository, think Amazon Q Developer, because it can review repositories for secrets exposure.
 - If the question says find hardcoded secrets in an existing Reviewer association, think Reviewer with Secrets Manager, because it detects unprotected secrets in code.
 - If the question says identify code consuming CPU in a running application, think CodeGuru Profiler, because it collects runtime performance data.
 - If the question says review a newly associated repository, think Amazon Q Developer, because Reviewer stopped accepting new associations.

@@ -49,6 +49,39 @@ facts:
   - id: multi-destination
     text: "One source bucket can replicate to a single destination bucket or to multiple destination buckets, in the same Region or in different Regions."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html#replication
+  - id: request-pricing
+    text: "S3 request charges depend on the request type and storage class, including GET and COPY requests."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: cors-browser
+    text: "S3 cross-origin resource sharing permits configured browser applications to access resources across origins."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html
+  - id: mfa-delete
+    text: "S3 MFA Delete requires additional authentication to permanently delete an object version or change bucket versioning state."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html
+  - id: simple-delete-marker
+    text: "Deleting without a version ID in a versioning-enabled S3 bucket creates a delete marker instead of permanently deleting the object."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjects.html
+  - id: deny-delete
+    text: "An S3 bucket policy can explicitly deny object deletion permissions."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjects.html
+  - id: object-lock
+    text: "S3 Object Lock protects object versions from deletion or overwrite for a retention period."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+  - id: event-notifications
+    text: "S3 Event Notifications send messages when configured bucket events occur."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/EventNotifications.html
+  - id: internet-transfer
+    text: "Internet data transfer into S3 is free; outbound internet transfer is subject to pricing and applicable allowances."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: acceleration-download
+    text: "S3 Transfer Acceleration supports object GET and PUT requests through its acceleration endpoint."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration-getting-started.html
+  - id: event-notification-cost
+    text: "S3 Event Notifications have no additional S3 notification charge; destination services can incur charges."
+    source: https://aws.amazon.com/s3/faqs/
+  - id: mfa-simple-delete
+    text: "An S3 delete request that does not specify a version can succeed without an MFA token in an MFA-enabled bucket."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjects.html
 cards:
   - id: s3-112
     q: What kind of storage is Amazon S3, and what are its two main building blocks?
@@ -108,6 +141,50 @@ cards:
     a: "S3 Replication from the source bucket to each destination bucket. One source can replicate to multiple destination buckets across Regions."
     facts:
       - multi-destination
+  - id: s3-213
+    q: "What affects the cost of Amazon S3 GET and COPY requests?"
+    a: "The request type, storage class and number of requests."
+    facts: [request-pricing]
+  - id: s3-214
+    q: "What controls browser access to an Amazon S3 resource from a different origin?"
+    a: "Configure S3 cross-origin resource sharing (CORS)."
+    facts: [cors-browser]
+  - id: s3-215
+    q: "Which Amazon S3 operations require MFA when MFA Delete is enabled?"
+    a: "Permanent version deletion and changes to the bucket versioning state."
+    facts: [mfa-delete]
+  - id: s3-216
+    q: "What does an Amazon S3 delete request without a version ID do in a versioning-enabled bucket?"
+    a: "It creates a delete marker; the prior object version remains."
+    facts: [simple-delete-marker]
+  - id: s3-217
+    q: "How can an Amazon S3 bucket policy prevent object deletion?"
+    a: "Explicitly deny the applicable delete permissions."
+    facts: [deny-delete]
+  - id: s3-218
+    q: "Which Amazon S3 feature protects object versions from deletion or overwrite for a retention period?"
+    a: "S3 Object Lock."
+    facts: [object-lock]
+  - id: s3-219
+    q: "How can an Amazon S3 bucket notify another service when a configured event occurs?"
+    a: "Use S3 Event Notifications."
+    facts: [event-notifications]
+  - id: s3-221
+    q: "How does Amazon S3 price internet data transfer in each direction?"
+    a: "Internet transfer in is free; transfer out is subject to pricing and applicable allowances."
+    facts: [internet-transfer]
+  - id: s3-234
+    q: "Can Amazon S3 Transfer Acceleration support downloads as well as uploads?"
+    a: "Yes. Its acceleration endpoint supports GET and PUT requests."
+    facts: [acceleration-download]
+  - id: s3-235
+    q: "Does Amazon S3 charge an additional fee for Event Notifications?"
+    a: "No additional S3 notification fee applies; destination services can charge."
+    facts: [event-notification-cost]
+  - id: s3-240
+    q: "Does a simple Amazon S3 delete request need an MFA token when MFA Delete is enabled?"
+    a: "A delete request without a version ID can succeed without an MFA token and create a delete marker."
+    facts: [mfa-simple-delete, simple-delete-marker]
 ---
 Amazon S3 stores data as objects in buckets. It is built for any amount of data with very high durability, so it is the default place on AWS for files, backups, data lakes and static website content.
 
@@ -126,6 +203,17 @@ Amazon S3 stores data as objects in buckets. It is built for any amount of data 
 
 ### Exam cues
 
+- If the question says a simple S3 delete adds a marker, think no MFA token is required for that request, because MFA Delete protects permanent version deletion.
+- If the question says estimate S3 Event Notifications cost, think destination service charges, because S3 does not add a notification charge.
+- If the question says accelerate a long-distance S3 download, think Transfer Acceleration, because the acceleration endpoint supports GET as well as PUT.
+- If the question says estimate S3 internet transfer costs, think free inbound transfer and priced outbound transfer, because the directions are billed differently.
+- If the question says react to bucket events, think S3 Event Notifications, because S3 sends messages for configured events.
+- If the question says retain an object version against deletion or overwrite, think S3 Object Lock, because it enforces retention.
+- If the question says prevent object deletion, think an explicit deny in the S3 bucket policy, because it restricts delete permissions.
+- If the question says delete an S3 object without a version ID, think delete marker, because versioning preserves the prior version.
+- If the question says protect permanent version deletion with another authentication factor, think S3 MFA Delete, because it protects version deletion and versioning state changes.
+- If the question says a browser application needs a resource from another origin, think S3 CORS, because it controls permitted cross-origin requests.
+- If the question says estimate S3 request costs, think request type and storage class, because their rates differ.
 - If the question says store unlimited files, backups or static web content, think Amazon S3.
 - If the question says highest durability, think S3's 11 nines.
 

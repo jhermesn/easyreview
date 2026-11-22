@@ -67,6 +67,9 @@ facts:
   - id: ttl-wildcard
     text: Invalidation paths support the * wildcard.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation_Requests.html#invalidating-objects-console
+  - id: longer-cache-hit-ratio
+    text: "A longer practical CloudFront cache duration can increase the proportion of requests served from cache."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html
 cards:
   - id: cloudfront-004
     q: How long does CloudFront cache an object with neither Cache-Control nor Expires in the origin response?
@@ -124,6 +127,10 @@ cards:
     a: Set minimum, default and maximum TTLs all to 0.
     facts:
       - ttl-disabled
+  - id: cloudfront-063
+    q: "How can a team increase the CloudFront cache hit ratio when its content can remain cached longer?"
+    a: "Increase the practical cache duration so more requests can use cached content."
+    facts: [longer-cache-hit-ratio]
 ---
 CloudFront expiration settings control when a stored response needs another origin check. Time to live (TTL) is its freshness duration. A stale object has passed that duration but may still be usable during a refresh or an origin failure.
 
@@ -144,6 +151,7 @@ CloudFront expiration settings control when a stored response needs another orig
 
 ### Exam cues
 
+- If the question says improve CloudFront cache hits for content that changes infrequently, think a longer practical cache duration, because cached objects can serve more requests.
 - If the question says users see old assets after an invalidation, think versioned file names, because browser and proxy caches are outside that invalidation.
 - If the question says serve content during origin failure, think `stale-if-error`, because an expired cached copy can satisfy the request within its limits.
 - If the question says different browser and CloudFront freshness durations, think `max-age` plus `s-maxage`, because the origin can set them separately.

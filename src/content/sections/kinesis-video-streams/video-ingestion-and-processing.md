@@ -18,6 +18,9 @@ facts:
   - id: rekognition-stream
     text: "Amazon Rekognition Video analyzes live video from Kinesis Video Streams through a stream processor: face search results go to a Kinesis data stream, and label detection results (people, packages, pets) go out as SNS and S3 notifications."
     source: https://docs.aws.amazon.com/rekognition/latest/dg/streaming-video.html#streaming-video
+  - id: rekognition-streaming-availability
+    text: "Amazon Rekognition Streaming Video became unavailable to new customers on April 30, 2026."
+    source: https://docs.aws.amazon.com/rekognition/latest/dg/rekognition-availability-changes.html
 cards:
   - id: kinesis-video-streams-001
     q: Thousands of security cameras must stream live video to AWS, where it is stored for 30 days and analyzed in real time. Which service ingests the video?
@@ -36,6 +39,7 @@ cards:
     q: "Security cameras must stream live video to AWS, and unknown people must trigger an alert. Which services fit?"
     a: "Kinesis Video Streams for ingestion and a Rekognition Video stream processor that searches faces against a collection; its results reach a Kinesis data stream, where a consumer can raise the alert."
     facts: [rekognition-stream]
+
 ---
 Amazon Kinesis Video Streams is the video member of the Kinesis family. Kinesis Data Streams carries records; Kinesis Video Streams carries media from cameras and sensors, keeps it, and lets you play it back or process it.
 
@@ -47,6 +51,7 @@ Amazon Kinesis Video Streams is the video member of the Kinesis family. Kinesis 
 
 ### Exam cues
 
+- If the question says use Rekognition Streaming Video in a new account, check feature availability, because it became unavailable to new customers on April 30, 2026.
 - If the question says stream live video from cameras, drones or phones to AWS, think Amazon Kinesis Video Streams.
 - If the question says clickstream, logs or IoT records, think Kinesis Data Streams or Amazon Data Firehose instead.
 

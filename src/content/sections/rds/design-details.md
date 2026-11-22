@@ -51,6 +51,18 @@ facts:
   - id: iam-auth-privileges
     text: "IAM database authentication controls who can connect as a database user; the privileges granted to that user inside the database still control what it can do."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html
+  - id: iam-ec2-credentials
+    text: "An application on EC2 can use its instance profile credentials with RDS IAM database authentication."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth
+  - id: iam-mysql-plugin
+    text: "RDS for MySQL uses AWSAuthenticationPlugin for database users configured for IAM authentication."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.DBAccounts.html#UsingWithRDS.IAMDBAuth.DBAccounts.MySQL
+  - id: iam-tls
+    text: "RDS IAM database authentication encrypts database network traffic using SSL or TLS."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth
+  - id: iam-password
+    text: "RDS can retain standard database authentication when IAM database authentication is enabled; for a PostgreSQL user granted rds_iam, IAM authentication takes precedence over password authentication."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth
 cards:
   - id: rds-055
     q: "Does an Amazon RDS Multi-AZ deployment guarantee no performance impact during automated backups?"
@@ -116,6 +128,22 @@ cards:
     a: "No. IAM decides who can connect as the database user; database privileges (GRANT, REVOKE) decide what that user can do."
     trap: true
     facts: [iam-auth-privileges]
+  - id: rds-113
+    q: "How can an EC2 application authenticate to an RDS database with IAM?"
+    a: "Use its EC2 instance profile credentials to obtain an IAM database authentication token."
+    facts: [iam-ec2-credentials]
+  - id: rds-114
+    q: "Which plugin authenticates an IAM-enabled RDS for MySQL database user?"
+    a: "AWSAuthenticationPlugin."
+    facts: [iam-mysql-plugin]
+  - id: rds-116
+    q: "How does an Amazon RDS IAM database authentication connection protect traffic?"
+    a: "It uses SSL or TLS to encrypt network traffic."
+    facts: [iam-tls]
+  - id: rds-122
+    q: "Can an Amazon RDS database still use standard authentication after IAM database authentication is enabled?"
+    a: "Yes. Users can keep signing in with passwords.\nOn PostgreSQL, a user granted `rds_iam` must use IAM: it takes precedence over that user's password."
+    facts: [iam-password]
 ---
 RDS design choices affect database access, availability and operations. These details help you choose how clients connect and what to expect from backups, failover and stopped instances.
 
@@ -132,6 +160,10 @@ RDS design choices affect database access, availability and operations. These de
 
 ### Exam cues
 
+- If the question says retain standard authentication after enabling RDS IAM authentication, think user-specific authentication, because PostgreSQL users granted rds_iam must use IAM.
+- If the question says protect traffic for an RDS IAM database authentication connection, think SSL or TLS, because IAM database authentication encrypts database traffic.
+- If the question says configure an RDS for MySQL database user for IAM authentication, think AWSAuthenticationPlugin, because it authenticates that user through IAM.
+- If the question says an EC2 application needs IAM database authentication to RDS, think instance profile credentials, because they can be used to access the database.
 - If the question says avoid storing a database password for a PostgreSQL client, think IAM database authentication, because it uses a token.
 - If the question says public access is enabled but the DB subnet group contains private subnets, think subnet configuration, because every subnet in the group must be public.
 - If the question says RDS Custom needs a standby, think Multi-AZ and its prerequisites, because RDS Custom runs inside your account.

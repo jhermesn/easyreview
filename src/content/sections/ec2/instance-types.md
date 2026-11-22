@@ -54,6 +54,39 @@ facts:
   - id: compatible-type
     text: An AMI must be compatible with the instance type selected for launch.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html#AMIs
+  - id: launch-user-data
+    text: EC2 user data can provide scripts for automated configuration at instance launch.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
+  - id: instance-metadata
+    text: Instance metadata describes a running EC2 instance and can be used to configure or manage it.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+  - id: metadata-examples
+    text: EC2 instance metadata includes the instance ID and, when available, the kernel ID and instance role credentials.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+  - id: optional-elastic-ip
+    text: An Elastic IP address is optional for an EC2 instance and provides a persistent public IPv4 address.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-networking.html
+  - id: windows-rdp
+    text: Remote Desktop can connect to a Windows EC2 instance.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-rdp.html
+  - id: environment-tags
+    text: EC2 resource tags can categorize instances by environment.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html
+  - id: ami-copy-region
+    text: An EC2 AMI can be copied to another Region and used there to launch instances with a consistent configuration.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html
+  - id: ebs-console-data-termination
+    text: An EBS data volume attached at launch in the EC2 console persists by default after instance termination and continues to incur charges.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/how-ec2-instance-termination-works.html
+  - id: ami-instance-recovery
+    text: An AMI created from a customized EC2 instance can launch another instance with those customizations.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
+  - id: ami-volume-snapshots
+    text: Creating an EBS-backed AMI from an EC2 instance creates snapshots of its root volume and attached EBS volumes.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html
+  - id: default-subnet
+    text: If a Region has a default VPC and no subnet is specified for an EC2 launch, AWS selects a default subnet.
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html
 cards:
   - id: ec2-030
     q: A company runs a web server that uses CPU, memory and network in roughly equal amounts. Which EC2 instance category fits?
@@ -105,6 +138,38 @@ cards:
     q: What does an EC2 AMI provide, and what compatibility must a launch satisfy?
     a: The software to set up and boot an instance. The AMI must support the chosen instance type.
     facts: [ami-template, compatible-type]
+  - id: ec2-129
+    q: A team wants an EC2 instance to run configuration scripts at launch. Should it use user data or instance metadata?
+    a: User data supplies launch configuration scripts. Instance metadata describes the running instance.
+    facts: [launch-user-data, instance-metadata]
+  - id: ec2-130
+    q: Which EC2 feature can categorize instances by environment?
+    a: Resource tags.
+    facts: [environment-tags]
+  - id: ec2-131
+    q: Which client protocol can connect to a Windows EC2 instance's desktop?
+    a: Remote Desktop Protocol (RDP).
+    facts: [windows-rdp]
+  - id: ec2-137
+    q: How can a team launch an EC2 instance with the same AMI configuration in another Region?
+    a: Copy the AMI to the destination Region and launch an instance from the copy.
+    facts: [ami-copy-region]
+  - id: ec2-138
+    q: What happens by default to an EBS data volume attached at EC2 launch using the console when the instance terminates?
+    a: The volume persists and continues to incur charges.
+    facts: [ebs-console-data-termination]
+  - id: ec2-140
+    q: How can a team use a customized EC2 instance to prepare a replacement instance?
+    a: Create an AMI from the customized instance and launch a replacement from that AMI.
+    facts: [ami-instance-recovery]
+  - id: ec2-141
+    q: What happens to attached EBS volumes when EC2 creates an EBS-backed AMI from an instance?
+    a: EC2 creates snapshots of the root and attached EBS volumes.
+    facts: [ami-volume-snapshots]
+  - id: ec2-144
+    q: What subnet can EC2 select when a launch does not specify one and a default VPC exists?
+    a: A default subnet in the Region's default VPC.
+    facts: [default-subnet]
 ---
 An EC2 instance type sets the CPU, memory, storage and networking of a virtual server. Types are grouped into categories by what they're good at, so the first choice is the category that matches the workload.
 
@@ -125,6 +190,11 @@ An EC2 instance type sets the CPU, memory, storage and networking of a virtual s
 
 ### Exam cues
 
+- If the question says an EC2 instance needs a persistent public IPv4 address, think an Elastic IP address, because it is optional and can be moved.
+- If the question says launch an EC2 instance without specifying a subnet, think a default subnet when a default VPC exists, because AWS can select one.
+- If the question says launch a replacement with an EC2 instance's customizations, think an AMI created from the instance, because it can launch another instance.
+- If the question says launch the same EC2 image in another Region, think copy the AMI first, because an AMI is regional.
+- If the question says configure an EC2 instance at launch, think user data, because it can run configuration scripts.
 - If the question says balanced or general web workload, think general purpose.
 - If the question says CPU-bound processing, think compute optimized.
 - If the question says large in-memory data sets, think memory optimized.

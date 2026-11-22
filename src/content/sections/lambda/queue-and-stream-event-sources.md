@@ -48,6 +48,12 @@ facts:
   - id: esm-sources
     text: "Lambda event source mappings poll Amazon SQS, Kinesis, DynamoDB Streams, Amazon MQ, Amazon MSK and Amazon DocumentDB change streams."
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html
+  - id: kinesis-polling
+    text: A Lambda Kinesis standard iterator polls each shard at a base rate of once per second.
+    source: https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#kinesis-polling-and-batching
+  - id: kinesis-fanout
+    text: An enhanced fan-out Kinesis consumer has a dedicated connection to each shard and pushes records to Lambda to reduce latency.
+    source: https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#kinesis-polling-and-batching
 diagrams:
   - id: lambda-sqs-batch-routing
     title: An SQS source queue owns failed-message redrive
@@ -144,6 +150,10 @@ diagrams:
       - The mapping invokes the function with a shard batch; default errors block shard progress.
       - Bounded retries or age allow discarding the batch; an on-failure destination retains failure information.
 cards:
+  - id: lambda-079
+    q: How can a Lambda Kinesis consumer reduce latency compared with a standard iterator sharing shard throughput?
+    a: Use an enhanced fan-out consumer. It has a dedicated connection and pushes records to Lambda; a standard iterator polls each shard at a base rate of once per second.
+    facts: [kinesis-polling, kinesis-fanout]
   - id: lambda-001
     q: A Lambda function consuming Kinesis repeatedly fails on one bad record with default processing settings. What happens to its shard?
     a: Progress in the affected shard stops while Lambda retries the failed batch. Use mapping retry/age limits and batch bisection to isolate or discard bad records; an on-failure destination can retain discarded-batch information.
@@ -192,12 +202,14 @@ An event source mapping is a Lambda resource that reads a queue or stream and in
 
 ### Exam cues
 
+- If the question says reduce Lambda Kinesis consumer latency, think enhanced fan-out, because a dedicated connection pushes records from each shard.
 - If the question says an SQS batch contains fewer records than configured, think the 6 MB payload limit, because message metadata also uses space.
 - If the question says one Kinesis record stalls a shard, think bisection and bounded retries or age, because more capacity alone does not repair the bad record.
 - If the question says a stream consumer stops advancing, think `IteratorAge`, because it helps detect a stalled consumer.
 
 ### Remember
 
+- A Lambda Kinesis standard iterator polls each shard at a base rate of once per second.
 - The function timeout must be no greater than the SQS queue visibility timeout.
 - SQS mapping maximum batch size: 10,000 for standard, 10 for FIFO (10,000 in provisioned mode). More than 10 records requires at least a 1-second batching window.
 - Put the DLQ on the SQS source queue. Put stream failure settings and destinations on the event source mapping.

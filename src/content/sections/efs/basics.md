@@ -37,6 +37,12 @@ facts:
   - id: other-region
     text: An EC2 instance in a different AWS Region from an EFS file system can mount it, after setting the file system Region in efs-utils.
     source: https://docs.aws.amazon.com/efs/latest/ug/mount-different-region.html
+  - id: on-premises
+    text: "On-premises servers can mount Amazon EFS through a VPC connection over AWS Direct Connect or Site-to-Site VPN."
+    source: https://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-helper-direct.html
+  - id: lifecycle-maximum
+    text: "EFS IA and Archive transition policies can use an interval of up to 365 days since files were last accessed in Standard storage."
+    source: https://docs.aws.amazon.com/efs/latest/APIReference/API_LifecyclePolicy.html#API_LifecyclePolicy_Contents
 cards:
   - id: efs-025
     q: "Many Linux EC2 instances must read and write the same files at the same time. Which AWS storage service fits?"
@@ -65,6 +71,14 @@ cards:
     q: Can an EC2 instance in another AWS Region mount an Amazon EFS file system?
     a: Yes. Configure efs-utils with the file system's Region; the instance also needs network access to the file system.
     facts: [other-region]
+  - id: efs-028
+    q: "How can on-premises Linux servers mount an Amazon EFS file system?"
+    a: "Connect to its VPC through AWS Direct Connect or Site-to-Site VPN."
+    facts: [on-premises]
+  - id: efs-029
+    q: "What is the longest selectable EFS lifecycle interval for moving files from Standard to IA or Archive?"
+    a: "365 days since the files were last accessed in Standard."
+    facts: [lifecycle-maximum]
 ---
 Amazon Elastic File System (Amazon EFS) is a shared file system that grows and shrinks with the files stored in it.
 
@@ -76,6 +90,8 @@ Amazon Elastic File System (Amazon EFS) is a shared file system that grows and s
 
 ### Exam cues
 
+- If the question says move inactive EFS files to IA or Archive, think lifecycle policies, because the transition uses time since last access in Standard.
+- If the question says on-premises Linux servers need shared EFS files, think Direct Connect or Site-to-Site VPN, because either can connect the servers to the VPC.
 - If the question says shared file storage for many Linux instances, think EFS.
 
 ### Remember

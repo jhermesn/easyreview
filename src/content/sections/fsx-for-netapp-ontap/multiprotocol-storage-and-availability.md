@@ -51,6 +51,9 @@ facts:
   - id: openzfs
     text: FSx for OpenZFS supports NFS, snapshots and clones, and can move ZFS or Linux file server data to AWS.
     source: https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/what-is-fsx.html#what-is-fsx
+  - id: encryption-transparent
+    text: "Amazon FSx for NetApp ONTAP automatically encrypts data before writing it to the file system and decrypts it on read without application changes."
+    source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/encryption-at-rest.html
 diagrams:
   - id: ontap-multi-az-failover
     title: Multi-AZ storage and failover
@@ -94,6 +97,10 @@ cards:
     q: What must an iSCSI client configure for transparent failover on FSx for NetApp ONTAP?
     a: Client-side multipathing, so the client can switch between file servers.
     facts: [client-failover]
+  - id: fsx-for-netapp-ontap-011
+    q: "Must an application decrypt data read from an Amazon FSx for NetApp ONTAP file system?"
+    a: "No. FSx automatically decrypts file system data on read."
+    facts: [encryption-transparent]
 ---
 Amazon FSx for NetApp ONTAP provides managed shared storage for applications that need NetApp features and multiple access protocols. A volume is an isolated container for files, directories or block storage units.
 
@@ -113,6 +120,7 @@ Amazon FSx for NetApp ONTAP provides managed shared storage for applications tha
 
 ### Exam cues
 
+- If the question says an application reads encrypted FSx for ONTAP data, think transparent decryption, because FSx decrypts data as it is read.
 - If the question says Windows and Linux clients need shared SMB and NFS access across zones, think Multi-AZ FSx for ONTAP, because it supports both protocols and replicates writes across zones.
 - If the question says recover a volume in another Region, think SnapMirror, because it schedules cross-Region volume replication.
 

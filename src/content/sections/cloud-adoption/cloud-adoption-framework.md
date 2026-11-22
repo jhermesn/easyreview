@@ -57,6 +57,27 @@ facts:
   - id: governance-capabilities
     text: "The CAF Governance perspective has seven capabilities: program and project management, benefits management, risk management, cloud financial management, application portfolio management, data governance and data curation."
     source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/governance-perspective.html#governance-perspective
+  - id: security-identity
+    text: The CAF Security perspective includes managing identities and permissions for access to resources.
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/security-perspective.html#security-perspective
+  - id: security-data
+    text: CAF data protection includes data protection controls and lifecycle management policies.
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/security-perspective.html#security-perspective
+  - id: security-threats
+    text: CAF threat detection identifies potential security threats, misconfigurations and unexpected behavior.
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/security-perspective.html#security-perspective
+  - id: platform-data-architecture
+    text: Data architecture is a capability of the CAF Platform perspective.
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/platform-perspective.html
+  - id: organizational-transformation
+    text: CAF organizational transformation includes organizing teams around products and value streams and using agile methods to iterate.
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/accelerating-business-outcomes.html#accelerating-business-outcomes
+  - id: process-transformation
+    text: CAF process transformation includes using data and analytics to improve business operations.
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/accelerating-business-outcomes.html#accelerating-business-outcomes
+  - id: product-transformation
+    text: CAF product transformation includes creating new products, services and revenue models.
+    source: https://docs.aws.amazon.com/whitepapers/latest/overview-aws-cloud-adoption-framework/accelerating-business-outcomes.html#accelerating-business-outcomes
 cards:
   - id: cloud-adoption-001
     q: What are the six perspectives of the AWS Cloud Adoption Framework (AWS CAF)?
@@ -115,6 +136,22 @@ cards:
     q: "Data governance and data curation belong to which CAF perspective?"
     a: "Governance, along with program and project management, benefits management, risk management, cloud financial management and application portfolio management."
     facts: [governance-capabilities]
+  - id: cloud-adoption-032
+    q: Which AWS CAF Security capabilities cover identity permissions, data lifecycle controls and detecting threats?
+    a: Identity and access management, data protection and threat detection, respectively.
+    facts: [security-identity, security-data, security-threats]
+  - id: cloud-adoption-033
+    q: Which AWS CAF perspective includes data architecture?
+    a: The Platform perspective.
+    facts: [platform-data-architecture]
+  - id: cloud-adoption-034
+    q: An organization arranges teams around products and value streams and uses agile iteration. Which AWS CAF transformation domain fits?
+    a: Organizational transformation.
+    facts: [organizational-transformation]
+  - id: cloud-adoption-035
+    q: Which AWS CAF transformation domains cover improving operations with analytics and creating new revenue models?
+    a: Process transformation covers operational improvement; product transformation covers new revenue models.
+    facts: [process-transformation, product-transformation]
 ---
 The AWS Cloud Adoption Framework (AWS CAF) is AWS guidance for the organizational side of moving to the cloud. It helps find and prioritize opportunities, check how ready the organization is, and plan the transformation in steps.
 
@@ -135,11 +172,16 @@ The AWS Cloud Adoption Framework (AWS CAF) is AWS guidance for the organizationa
 
 Business, People and Governance are the business side; Platform, Security and Operations are the technical side.
 
+Security capabilities include identity and access management, data protection and threat detection. Data architecture belongs to Platform. Organizational transformation can organize teams around products and value streams and use agile iteration. Process transformation improves operations, while product transformation creates new offerings and revenue models.
+
 ### Exam cues
 
 - If the question says culture, training or organizational structure, think People perspective.
 - If the question says risk and benefits of cloud initiatives, think Governance perspective.
 - If the question says pilots in production, think Launch phase; finding gaps, think Align.
+- If the question says analytics improve business operations, think process transformation, because it covers operational improvement.
+- If the question says create a new revenue model, think product transformation, because it covers new value propositions and revenue models.
+- If the question says teams organized around products and value streams, think organizational transformation, because it changes how teams work.
 
 ### Remember
 

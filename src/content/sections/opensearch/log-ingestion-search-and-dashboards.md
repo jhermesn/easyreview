@@ -42,6 +42,9 @@ facts:
   - id: ddb-ingestion
     text: "An OpenSearch Ingestion pipeline can stream DynamoDB table changes into OpenSearch, with or without an initial full snapshot, to add search over DynamoDB data."
     source: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configure-client-ddb.html#configure-client-ddb
+  - id: grafana-data-source
+    text: Amazon Managed Grafana can query and visualize OpenSearch data by adding OpenSearch as a data source.
+    source: https://docs.aws.amazon.com/grafana/latest/userguide/using-opensearch-in-AMG.html
 diagrams:
   - id: opensearch-log-flow
     title: Search CloudWatch logs
@@ -80,6 +83,10 @@ cards:
     q: "A team wants to analyze CloudWatch log events in Amazon OpenSearch Service as they arrive. What can send matching events to the domain?"
     a: "A CloudWatch Logs subscription filter can send matching events to the OpenSearch Service domain in near real time."
     facts: [search-subscription]
+  - id: opensearch-011
+    q: How can Amazon Managed Grafana query and visualize data stored in OpenSearch?
+    a: Add OpenSearch as a data source in the Grafana workspace.
+    facts: [grafana-data-source]
 ---
 
 Amazon OpenSearch Service manages search and analytics clusters for workloads such as application log analysis. OpenSearch Dashboards visualizes the data.
@@ -92,6 +99,7 @@ Amazon OpenSearch Service manages search and analytics clusters for workloads su
 
 ### Exam cues
 
+- If the question says visualize OpenSearch logs in Managed Grafana, think an OpenSearch data source, because Grafana queries the configured data source.
 - If the question says search application logs and build dashboards, think OpenSearch Service and OpenSearch Dashboards, because they provide log analytics and visualization.
 - If the question says stream a CloudWatch log group into OpenSearch, think an OpenSearch subscription filter, because it sends matching events to the domain.
 - If the question says query archived files directly in S3 using SQL, think Athena, because it queries S3 data without an OpenSearch domain.

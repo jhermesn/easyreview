@@ -27,6 +27,15 @@ facts:
   - id: insights-opt-in
     text: Insights logging is disabled by default and incurs additional charges when enabled.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-concepts.html#cloudtrail-concepts-insights-events
+  - id: trail-regions
+    text: "A trail created in the CloudTrail console is a multi-Region trail and covers all enabled Regions."
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html#cloudtrail-create-a-trail-using-the-console-first-time
+  - id: trail-management-cost
+    text: "CloudTrail delivers the first copy of management events in each Region without a CloudTrail charge."
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-trail-manage-costs.html
+  - id: trail-data-opt-in
+    text: "CloudTrail trails do not log data events by default."
+    source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html
 cards:
   - id: cloudtrail-053
     q: "An auditor asks who deleted an S3 bucket yesterday in an AWS account. Which service answers it?"
@@ -51,6 +60,14 @@ cards:
       - insights-write
       - insights-errors
       - insights-opt-in
+  - id: cloudtrail-058
+    q: "A team creates a CloudTrail trail in the console and needs S3 object data events. What must it configure?"
+    a: "The console creates a multi-Region trail, but data events must be selected explicitly."
+    facts: [trail-regions, trail-data-opt-in]
+  - id: cloudtrail-059
+    q: Is there a CloudTrail charge for the first copy of management events delivered in each Region?
+    a: No. CloudTrail delivers the first copy in each Region without a CloudTrail charge.
+    facts: [trail-management-cost]
 ---
 AWS CloudTrail is the audit log of an AWS account: it records who did what, when and from where through the console, CLI, SDKs and APIs.
 
@@ -62,6 +79,7 @@ AWS CloudTrail is the audit log of an AWS account: it records who did what, when
 
 ### Exam cues
 
+- If the question says log S3 object operations, think select CloudTrail data events, because trails do not record them by default.
 - If the question says who made a change or which API call happened, think CloudTrail, because it records account activity.
 - If the question says keep the activity log for years, think a CloudTrail trail to S3, because Event history keeps only 90 days.
 

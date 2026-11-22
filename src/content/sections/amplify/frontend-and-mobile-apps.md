@@ -12,6 +12,9 @@ facts:
   - id: frameworks
     text: Amplify Hosting supports SSR frameworks such as Next.js and Nuxt, SPA frameworks such as React, Angular and Vue.js, and static site generators such as Hugo and Gatsby.
     source: https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html#amplify-framework-support
+  - id: ios-backend
+    text: AWS Amplify supports building an iOS app with a serverless cloud backend.
+    source: https://docs.aws.amazon.com/hands-on/latest/build-ios-app-amplify/build-ios-app-amplify.html
 cards:
   - id: amplify-001
     q: A frontend team wants to deploy a React web app from Git with continuous deployment and global delivery, without managing servers. Which AWS service fits?
@@ -26,6 +29,10 @@ cards:
     a: No. Amplify Hosting deploys the app to the AWS CDN with a Git-based workflow.
     trap: true
     facts: [hosting, cdn]
+  - id: amplify-004
+    q: Which AWS toolset can help a developer build an iOS app with a serverless cloud backend?
+    a: AWS Amplify.
+    facts: [ios-backend]
 ---
 AWS Amplify is the AWS toolset for frontend web and mobile developers. Amplify Hosting deploys a full-stack app from a Git repository on every push and serves it through the AWS global CDN.
 
@@ -34,6 +41,8 @@ AWS Amplify is the AWS toolset for frontend web and mobile developers. Amplify H
 1. Connect a Git repository.
 2. Amplify builds and deploys on each commit (continuous deployment).
 3. The app is served from the AWS global CDN.
+
+Amplify also supports iOS apps with serverless cloud backends.
 
 ### Exam cues
 

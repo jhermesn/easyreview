@@ -57,6 +57,12 @@ facts:
   - id: regional-services
     text: "Regional services, such as Amazon S3, are built across several Availability Zones of one Region and spread data and requests over them."
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/regional-services.html#regional-services
+  - id: govcloud
+    text: "AWS GovCloud (US) consists of isolated Regions designed for workloads with specific US regulatory and compliance requirements."
+    source: https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/whatis.html
+  - id: sts-endpoints
+    text: "AWS STS provides a global endpoint and Regional endpoints."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html
 cards:
   - id: global-infrastructure-001
     q: How do AWS Regions and Availability Zones relate to each other?
@@ -117,6 +123,14 @@ cards:
     q: "Sort these by scope: IAM, CloudFront, Route 53, S3, EFS, AWS Batch, EC2, EBS."
     a: "Global: IAM, CloudFront, Route 53. Regional: S3, EFS, AWS Batch. Zonal: EC2 instances and EBS volumes, which live in one Availability Zone."
     facts: [global-services, regional-services, zonal-services]
+  - id: global-infrastructure-023
+    q: "Which AWS Regions are designed for workloads with specific US government compliance requirements?"
+    a: "AWS GovCloud (US) Regions."
+    facts: [govcloud]
+  - id: global-infrastructure-024
+    q: "Does AWS Security Token Service have Regional endpoints as well as its global endpoint?"
+    a: "Yes. AWS STS provides both global and Regional endpoints."
+    facts: [sts-endpoints]
 diagrams:
   - id: region-azs-edge
     title: A Region, its Availability Zones, and edge locations
@@ -154,6 +168,8 @@ The AWS global infrastructure has three building blocks. A Region is a geographi
 
 ### Exam cues
 
+- If the question says call AWS STS in a particular Region, think its Regional endpoint, because STS provides both Regional and global endpoints.
+- If the question says a workload has US government regulatory requirements, think AWS GovCloud (US), because its isolated Regions are designed for such needs.
 - If the question says survive a data center failure, think multiple Availability Zones.
 - If the question says users far away see slow static content, think edge locations with CloudFront.
 - If the question says data must stay in a country, think choose a Region there; data stays in its Region unless copied.

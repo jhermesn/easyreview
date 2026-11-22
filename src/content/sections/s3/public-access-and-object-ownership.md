@@ -69,6 +69,15 @@ facts:
   - id: access-analyzer-s3
     text: "IAM Access Analyzer for S3 reports general purpose buckets that allow access to the public or to other AWS accounts, and a public bucket can be blocked from that page with one action."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html#access-analyzer
+  - id: cross-account-policies
+    text: "Cross-account S3 access can require permission from both the bucket owner and the caller account."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-walkthroughs-managing-access-example2.html
+  - id: put-object-acl
+    text: "The S3 PutObjectAcl operation sets ACL permissions on an existing object."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html
+  - id: website-server-side
+    text: "S3 static website hosting supports static pages and client-side scripts but does not run server-side scripts."
+    source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/RoutingToS3Bucket.html
 cards:
   - id: s3-017
     q: How can an S3 administrator block public access even when bucket-level permissions grant it?
@@ -120,6 +129,18 @@ cards:
     q: "A security team wants a list of S3 buckets that are public or shared with other AWS accounts, reviewed from the S3 console. Which feature fits?"
     a: "IAM Access Analyzer for S3. It lists buckets with public or cross-account access and can block public access on a bucket in one step."
     facts: [access-analyzer-s3]
+  - id: s3-231
+    q: "In the standard cross-account Amazon S3 bucket access model, which accounts must grant permission?"
+    a: "The bucket owner grants access in its bucket policy, and the caller account grants its identity permission."
+    facts: [cross-account-policies]
+  - id: s3-232
+    q: "Which Amazon S3 operation sets an ACL on an existing object?"
+    a: "PutObjectAcl, when ACLs are enabled."
+    facts: [put-object-acl]
+  - id: s3-239
+    q: "Can Amazon S3 static website hosting run server-side application scripts?"
+    a: "No. Use a separate compute service for server-side logic."
+    facts: [website-server-side]
 ---
 S3 separates public-access safeguards from object ownership. Block Public Access limits public grants; Object Ownership decides who owns uploaded objects and whether access control lists (ACLs), lists of grants attached to resources, are used.
 
@@ -139,6 +160,9 @@ S3 separates public-access safeguards from object ownership. Block Public Access
 
 ### Exam cues
 
+- If the question says add server-side logic to an S3 static website, think a separate compute service, because S3 does not run server-side scripts.
+- If the question says update the ACL of an existing S3 object, think PutObjectAcl, because it sets object ACL permissions.
+- If the question says an external account cannot access an S3 bucket, think check both bucket and identity permissions, because both accounts must grant access in this model.
 - If the question says an S3 bucket must stay private even after a public grant, think Block Public Access, because its applicable settings override public permissions.
 - If the question says S3 cross-account uploads must belong to the bucket owner without ACL management, think Bucket owner enforced, because it disables ACLs and gives that owner all objects.
 - If the question says an S3 website needs HTTPS, think CloudFront, because the website endpoint itself supports HTTP only.

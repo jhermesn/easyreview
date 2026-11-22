@@ -901,7 +901,8 @@
                 "dynamodb/operations-in-depth",
                 "scalable-architectures/scaling-state-and-coupling",
                 "elasticache/use-cases-and-engine-choice",
-                "reference-architectures/three-tier-web-application"
+                "reference-architectures/three-tier-web-application",
+                "ec2/purchasing-options"
               ]
             },
             {
@@ -1675,7 +1676,8 @@
                 "observability-strategy/incident-correlation-and-bottlenecks",
                 "ecs/task-troubleshooting",
                 "ec2-auto-scaling/launch-failure-troubleshooting",
-                "eks/pod-troubleshooting"
+                "eks/pod-troubleshooting",
+                "ec2/ip-addresses-and-network-interfaces"
               ]
             }
           ]

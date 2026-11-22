@@ -29,6 +29,18 @@ facts:
   - id: alb-lambda
     text: "An ALB can forward a request to a target group whose target is a Lambda function, invoking the function with the request content."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html#lambda-functions
+  - id: alb-host-path
+    text: "Application Load Balancer listener rules can match the request host name and URL path."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html
+  - id: alb-availability-zones
+    text: "A regional Application Load Balancer requires subnets in at least two Availability Zones."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html
+  - id: alb-health-checks
+    text: "An Application Load Balancer periodically checks its registered targets to determine their health."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html
+  - id: alb-routing-algorithms
+    text: "Application Load Balancer target groups support round robin, least outstanding requests and weighted random routing algorithms."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html
 cards:
   - id: elastic-load-balancing-070
     q: "A web app runs on EC2 instances in two Availability Zones. Which service spreads requests across them and skips unhealthy instances?"
@@ -55,6 +67,18 @@ cards:
     q: "When incoming application traffic grows, how does Elastic Load Balancing adjust the capacity of the load balancer itself?"
     a: "Elastic Load Balancing scales load balancer capacity automatically as traffic changes."
     facts: [healthy-targets]
+  - id: elastic-load-balancing-080
+    q: "A web application needs to route requests to different targets by host name or URL path. Which Elastic Load Balancing feature fits?"
+    a: "Application Load Balancer listener rules can match host names and URL paths."
+    facts: [alb-host-path]
+  - id: elastic-load-balancing-081
+    q: "How many Availability Zones must a regional Application Load Balancer use?"
+    a: "At least two Availability Zones."
+    facts: [alb-availability-zones]
+  - id: elastic-load-balancing-082
+    q: "Which target group routing algorithms can an Application Load Balancer use?"
+    a: "Round robin, least outstanding requests or weighted random."
+    facts: [alb-routing-algorithms]
 ---
 Elastic Load Balancing puts one entry point in front of many targets and spreads the traffic among the healthy ones.
 
@@ -66,10 +90,13 @@ Elastic Load Balancing puts one entry point in front of many targets and spreads
 
 ### Exam cues
 
+- If the question says an Application Load Balancer needs to test target availability, think health checks, because the load balancer checks registered targets periodically.
+- If the question says route web requests by host name or URL path, think Application Load Balancer listener rules, because their conditions can match either value.
 - If the question says distribute traffic across instances or Availability Zones, think Elastic Load Balancing.
 
 ### Remember
 
+- A regional Application Load Balancer requires subnets in at least two Availability Zones.
 - Routes only to healthy targets.
 
 > **Trap:** A load balancer spreads traffic; Auto Scaling changes how many instances there are. They are often used together.

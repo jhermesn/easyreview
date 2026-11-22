@@ -15,6 +15,9 @@ facts:
   - id: service-health
     text: The AWS Health Dashboard service health page needs no sign-in or AWS account, shows service history for the last 12 months and has an RSS feed; your account health requires signing in.
     source: https://docs.aws.amazon.com/health/latest/ug/aws-health-dashboard-status.html
+  - id: all-customers
+    text: "All AWS customers can use the AWS Health Dashboard at no additional cost."
+    source: https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html#what-is-aws-health
 cards:
   - id: health-017
     q: "An administrator wants to know whether an AWS service event affects the company's own resources. Where do they look?"
@@ -28,6 +31,10 @@ cards:
     q: Where can anyone, without an AWS account, see the status and 12-month history of AWS services?
     a: The service health page of the AWS Health Dashboard. Your account health needs sign-in.
     facts: [service-health]
+  - id: health-018
+    q: "Can a customer with AWS Basic Support use the AWS Health Dashboard?"
+    a: "Yes. The dashboard is available to all AWS customers at no additional cost."
+    facts: [all-customers]
 ---
 AWS Health reports AWS events, such as outages and scheduled changes, that affect your account.
 
@@ -39,6 +46,7 @@ AWS Health reports AWS events, such as outages and scheduled changes, that affec
 
 ### Exam cues
 
+- If the question says a Basic Support customer needs AWS service health information, think AWS Health Dashboard, because all AWS customers can use it.
 - If the question says AWS service events affecting your resources, think AWS Health.
 
 ### Remember

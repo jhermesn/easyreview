@@ -89,6 +89,12 @@ facts:
   - id: ap-vpc-endpoint
     text: "To use an access point from a VPC, the S3 VPC endpoint policy must allow the access point and its underlying bucket."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-vpc.html
+  - id: source-vpc-policy
+    text: "An S3 bucket policy can use aws:SourceVpc to restrict access to a specified VPC."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies-vpc-endpoint.html
+  - id: vpc-direct-access
+    text: "An S3 access point network restriction applies to requests made through that access point."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html
 diagrams:
   - id: s3-object-lambda-response
     title: Transforming an Object Lambda response
@@ -181,6 +187,14 @@ cards:
     q: "Thousands of corporate directory users each need access to their own S3 prefixes, beyond what bucket policies scale to. Which S3 feature fits?"
     a: "S3 Access Grants, which maps prefix-level permissions to IAM principals and to directory users and groups."
     facts: [access-grants]
+  - id: s3-223
+    q: "How can a bucket policy restrict Amazon S3 access to a specified VPC?"
+    a: "Use the aws:SourceVpc condition in the bucket policy."
+    facts: [source-vpc-policy]
+  - id: s3-236
+    q: "Does a VPC-only Amazon S3 access point automatically restrict direct bucket access?"
+    a: "No. Its network restriction applies to requests through the access point; restrict direct bucket access separately."
+    facts: [vpc-direct-access]
 ---
 S3 access points give a shared bucket separate named entry points and permission controls. CORS, or cross-origin resource sharing, lets browser code use permitted resources from another origin; an origin combines protocol, host, and port.
 
@@ -194,6 +208,8 @@ S3 access points give a shared bucket separate named entry points and permission
 
 ### Exam cues
 
+- If the question says an S3 access point is VPC-only, think restrict direct bucket access separately, because access point network controls apply to requests through that access point.
+- If the question says restrict S3 bucket access to a VPC, think a bucket policy using aws:SourceVpc, because an access point restriction alone applies to that access point.
 - If the question says different teams need different S3 policies for a shared dataset, think access points, because each endpoint has its own access controls.
 - If the question says authorized browser code cannot read S3 from another origin, think CORS matching, because browser permission and object authorization are separate checks.
 - If the question says temporary S3 uploads must work without handing out credentials, think a presigned PUT URL, because it delegates one permitted operation.

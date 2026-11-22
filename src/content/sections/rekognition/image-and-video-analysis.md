@@ -30,6 +30,16 @@ facts:
   - id: celebrity-recognition
     text: "Rekognition celebrity recognition identifies tens of thousands of well-known people in images and videos; for other faces you search a face collection."
     source: https://docs.aws.amazon.com/rekognition/latest/dg/celebrities.html#celebrities
+  - id: collection-features
+    text: Rekognition IndexFaces stores facial feature information and metadata in a collection without storing the image bytes.
+    source: https://docs.aws.amazon.com/rekognition/latest/dg/add-faces-to-collection-procedure.html
+  - id: face-search-video
+    text: Rekognition can search a face collection for faces detected in a video stored in Amazon S3.
+    source: https://docs.aws.amazon.com/rekognition/latest/dg/procedure-person-search-videos.html
+  - id: private-endpoint
+    text: An interface VPC endpoint provides private access to Rekognition without an internet gateway.
+    source: https://docs.aws.amazon.com/rekognition/latest/dg/vpc.html
+
 cards:
   - id: rekognition-001
     q: A social media app must flag inappropriate images uploaded by users. Which AWS service fits?
@@ -64,6 +74,19 @@ cards:
     q: "A construction company wants to analyze site photos for protective equipment. Which AWS AI service can help?"
     a: "Amazon Rekognition can detect protective equipment such as head, face and hand covers in images."
     facts: [ppe-detection]
+  - id: rekognition-009
+    q: Does an Amazon Rekognition face collection store the original image bytes when IndexFaces adds a face?
+    a: No. It stores facial feature information and metadata without the image bytes.
+    trap: true
+    facts: [collection-features]
+  - id: rekognition-010
+    q: How can an application call Amazon Rekognition privately from a VPC without an internet gateway?
+    a: Use an interface VPC endpoint for Rekognition.
+    facts: [private-endpoint]
+  - id: rekognition-011
+    q: What inputs does Amazon Rekognition use to search a stored video for known faces?
+    a: A face collection and a video stored in Amazon S3.
+    facts: [face-search-video]
 ---
 Amazon Rekognition analyzes images and videos: what objects and scenes appear, whether there is text or unsafe content, and whose face it is. It works through an API, with no models to build.
 
@@ -75,6 +98,8 @@ Amazon Rekognition analyzes images and videos: what objects and scenes appear, w
 
 ### Exam cues
 
+- If the question says call Rekognition from a private VPC, think an interface VPC endpoint, because it provides access without an internet gateway.
+- If the question says search faces in a stored video, think a Rekognition face collection and an Amazon S3 video, because the video search compares detected faces with the collection.
 - If the question says detect objects, faces or inappropriate content in images or video, think Amazon Rekognition.
 - If the question says find your own logo or products, think Custom Labels; unsafe images, think content moderation; spoofed selfies, think Face Liveness; hard hats, think PPE detection.
 

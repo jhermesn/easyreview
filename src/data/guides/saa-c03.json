@@ -100,7 +100,8 @@
                 "iam/cross-account-roles-and-resource-policies",
                 "iam/rbac-and-abac",
                 "iam/external-id-and-mfa-conditions",
-                "reference-architectures/secure-multi-account-access"
+                "reference-architectures/secure-multi-account-access",
+                "ecs/task-and-execution-roles"
               ]
             },
             {
@@ -156,7 +157,9 @@
                 "secrets-manager/managed-and-lambda-rotation",
                 "systems-manager/parameter-store-tiers-and-policies",
                 "iam/identities-roles-and-instance-profiles",
-                "iam/roles-basics"
+                "iam/roles-basics",
+                "secrets-manager/secret-versions-and-runtime-access",
+                "systems-manager/securestring-encryption"
               ]
             },
             {
@@ -300,7 +303,8 @@
                 "cloudfront/basics",
                 "cloudfront/design-details",
                 "s3/inventory-and-access-logging",
-                "cloudtrail/event-history-and-event-types"
+                "cloudtrail/event-history-and-event-types",
+                "cloudtrail/log-delivery-and-encryption"
               ]
             },
             {
@@ -452,7 +456,8 @@
                 "api-gateway/authentication-and-api-keys",
                 "api-gateway/endpoint-types-and-throttling",
                 "api-gateway/integrations-and-monitoring",
-                "reference-architectures/serverless-event-driven-application"
+                "reference-architectures/serverless-event-driven-application",
+                "api-gateway/canary-releases"
               ]
             },
             {
@@ -905,7 +910,9 @@
                 "service-catalog/products-portfolios-and-versions",
                 "config/managed-custom-and-proactive-rules",
                 "cloudformation/bootstrap-helpers-and-signals",
-                "systems-manager/maintenance-windows"
+                "systems-manager/maintenance-windows",
+                "systems-manager/run-command-and-remote-scripts",
+                "systems-manager/basics"
               ]
             },
             {
@@ -1107,7 +1114,8 @@
                 "lambda/concurrency-controls",
                 "elastic-beanstalk/applications-environments-and-roles",
                 "elastic-beanstalk/basics",
-                "reference-architectures/cost-optimized-batch-processing"
+                "reference-architectures/cost-optimized-batch-processing",
+                "appstream/application-streaming"
               ]
             },
             {
@@ -1214,7 +1222,8 @@
                 "ec2/placement-groups-and-efa",
                 "ec2/accelerated-computing-for-ai",
                 "ec2/hibernation-user-data-and-instance-connect",
-                "ec2/ip-addresses-and-network-interfaces"
+                "ec2/ip-addresses-and-network-interfaces",
+                "workspaces/virtual-desktops-and-secure-browser"
               ]
             },
             {
@@ -1602,7 +1611,8 @@
                 "kinesis-video-streams/video-ingestion-and-processing",
                 "msk/managed-kafka-clusters",
                 "reference-architectures/streaming-data-lake",
-                "kinesis-data-streams/enhanced-fan-out-and-checkpoints"
+                "kinesis-data-streams/enhanced-fan-out-and-checkpoints",
+                "kinesis-data-streams/basics"
               ]
             },
             {
@@ -1628,7 +1638,8 @@
                 "msk/managed-kafka-clusters",
                 "kinesis-video-streams/video-ingestion-and-processing",
                 "reference-architectures/streaming-data-lake",
-                "kinesis-data-streams/enhanced-fan-out-and-checkpoints"
+                "kinesis-data-streams/enhanced-fan-out-and-checkpoints",
+                "kinesis-data-streams/retention-and-replay"
               ]
             },
             {

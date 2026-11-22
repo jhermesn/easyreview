@@ -48,7 +48,24 @@ facts:
   - id: trusts
     text: "AWS Managed Microsoft AD supports one-way and two-way external and forest trusts with self-managed on-premises Active Directory and with other AWS Managed Microsoft AD directories."
     source: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_setup_trust.html#ms_ad_setup_trust
+  - id: ds-role-access
+    text: IAM roles can be assigned to Directory Service users and groups to grant access to AWS resources.
+    source: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_management_console_access.html
+  - id: ds-role-trust
+    text: An existing IAM role assigned to Directory Service users or groups must trust Directory Service.
+    source: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html
+  - id: ds-wildcard
+    text: Some Directory Service actions require a wildcard resource in an IAM policy when they do not support resource-level permissions.
+    source: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/IAM_Auth_Access_IdentityBased.html
 cards:
+  - id: directory-service-010
+    q: How can Directory Service users and groups obtain permissions to AWS resources through an existing IAM role?
+    a: Assign the IAM role to the directory users or groups and configure the role to trust Directory Service.
+    facts: [ds-role-access, ds-role-trust]
+  - id: directory-service-011
+    q: What resource should an IAM policy specify for a Directory Service action that does not support resource-level permissions?
+    a: A wildcard resource, `*`.
+    facts: [ds-wildcard]
   - id: directory-service-001
     q: An organization has on-premises Active Directory. How do AWS Managed Microsoft AD, AD Connector and Simple AD differ?
     a: Managed Microsoft AD runs Microsoft AD in AWS and can establish a trust. AD Connector forwards requests to existing AD. Simple AD is a standalone Samba-based directory with fewer features.
@@ -118,6 +135,8 @@ IAM Identity Center can use an Active Directory identity source to assign access
 
 ### Exam cues
 
+- If the question says assign AWS permissions to directory users, think an IAM role that trusts Directory Service, because directory users and groups can be assigned that role.
+- If a Directory Service action does not support resource-level permissions, use a wildcard resource in the policy.
 - If the question says use on-premises credentials without copying directory data, think AD Connector, because it forwards requests to the existing directory.
 - If the question says RDS for SQL Server needs Active Directory, think AWS Managed Microsoft AD, because the other two options do not support that integration.
 - If the question says connect an existing directory to IAM Identity Center, think Managed Microsoft AD or AD Connector, not Simple AD.

@@ -47,6 +47,12 @@ facts:
     text: ALB connection idle timeout defaults to 60 seconds and can be set from 1 to 4000 seconds;
       HTTP/2 PING frames do not reset it.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-load-balancer-attributes.html#connection-idle-timeout
+  - id: log-delivery-interval
+    text: "Elastic Load Balancing publishes Application Load Balancer access logs for each node every five minutes."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  - id: log-best-effort
+    text: "Application Load Balancer access logs are delivered on a best-effort basis and do not account for every request."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
 cards:
   - id: elastic-load-balancing-001
     q: An ALB returns 5XX responses after a deployment. How can the team identify their origin?
@@ -74,6 +80,10 @@ cards:
     facts:
       - xff
       - xff-trust
+  - id: elastic-load-balancing-084
+    q: "Can Application Load Balancer access logs provide a complete count of every request?"
+    a: "No. Access logging is best effort."
+    facts: [log-best-effort]
 ---
 ALB metrics show trends in errors, connections, and response time. Access logs record individual requests so an operator can investigate which clients and targets were involved. Connection metadata carries the original client information through a load balancer.
 
@@ -92,6 +102,7 @@ ALB metrics show trends in errors, connections, and response time. Access logs r
 
 ### Exam cues
 
+- If the question says count every request using Application Load Balancer access logs, think best effort, because logs may omit requests.
 - If the question says 5XX responses rose after deployment, think compare ALB and target counters, because they distinguish response origin.
 - If the question says investigate one client's failed request, think S3 access logs, because they contain request details.
 - If the question says recover client addresses for HTTP behind ALB, think `X-Forwarded-For`, because it carries addresses through the proxy.
@@ -99,6 +110,7 @@ ALB metrics show trends in errors, connections, and response time. Access logs r
 
 ### Remember
 
+- Application Load Balancer access logs are published for each node every five minutes.
 - ALB access logs are disabled by default.
 - ALB and target 5XX counters exclude each other's responses.
 - Default `X-Forwarded-For` mode: `append`.

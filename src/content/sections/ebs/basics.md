@@ -37,7 +37,38 @@ facts:
   - id: pricing-dimensions
     text: EBS charges for provisioned storage per GB-month by volume type, for provisioned IOPS and throughput above what is included, and for snapshot storage.
     source: https://aws.amazon.com/ebs/pricing/
+  - id: root-volume
+    text: An EBS-backed EC2 instance uses an EBS volume as its root volume.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/RootDeviceStorage.html
+  - id: snapshot-attached
+    text: An EBS volume can be used while a snapshot is being created.
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-creating-snapshot.html
+  - id: snapshot-consistency
+    text: AWS recommends pausing writes before creating an EBS snapshot to help ensure it is consistent and complete.
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-creating-snapshot.html
+  - id: hdd-workloads
+    text: Throughput Optimized HDD targets frequently accessed sequential workloads, while Cold HDD targets less frequently accessed data.
+    source: https://aws.amazon.com/ebs/volume-types/
+  - id: io-patterns
+    text: EBS SSD volumes handle small or random I/O, while HDD volumes are optimized for large sequential I/O.
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-io-characteristics.html
 cards:
+  - id: ebs-056
+    q: What type of root volume does an EBS-backed EC2 instance use?
+    a: An Amazon EBS volume.
+    facts: [root-volume]
+  - id: ebs-057
+    q: Can an attached Amazon EBS volume remain in use while an EBS snapshot is being created?
+    a: Yes. AWS recommends pausing writes for a consistent and complete snapshot.
+    facts: [snapshot-attached, snapshot-consistency]
+  - id: ebs-058
+    q: Which EBS HDD volume type fits frequently accessed sequential data, and which fits less frequently accessed data?
+    a: Throughput Optimized HDD fits frequent access; Cold HDD fits less frequent access.
+    facts: [hdd-workloads]
+  - id: ebs-059
+    q: Which EBS volume family fits small random I/O, and which favors large sequential I/O?
+    a: SSD volumes handle small or random I/O; HDD volumes favor large sequential I/O.
+    facts: [io-patterns]
   - id: ebs-052
     q: "An EC2 instance needs a persistent disk for its operating system and database. Which AWS storage service fits?"
     a: "Amazon EBS, block storage volumes attached to EC2 instances."
@@ -86,6 +117,9 @@ Amazon Elastic Block Store (Amazon EBS) gives EC2 instances network-attached dis
 
 ### Exam cues
 
+- If the question says back up a volume that is in use, think an EBS snapshot, because the volume can remain in use while the snapshot is created.
+- If the question says frequent sequential data, think Throughput Optimized HDD, because it targets that access pattern. For infrequent data, consider Cold HDD.
+- If the question says small random I/O, think an EBS SSD volume, because HDD volumes favor large sequential I/O.
 - If the question says a disk for one EC2 instance, think EBS.
 
 ### Remember

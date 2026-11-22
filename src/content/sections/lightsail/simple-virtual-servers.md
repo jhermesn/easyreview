@@ -9,7 +9,14 @@ facts:
   - id: bundle
     text: Lightsail includes instances (virtual private servers), container services, managed databases, CDN distributions, load balancers, SSD block storage, static IP addresses, DNS management and snapshots, for a low, predictable monthly price.
     source: https://docs.aws.amazon.com/lightsail/latest/userguide/what-is-amazon-lightsail.html#what-is-amazon-lightsail
+  - id: wordpress-blueprint
+    text: A Lightsail WordPress blueprint provides a prepackaged operating system and WordPress application for a new instance.
+    source: https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-quick-start-guide-wordpress.html
 cards:
+  - id: lightsail-004
+    q: How can a user launch a preconfigured WordPress instance in Amazon Lightsail?
+    a: Select a WordPress blueprint when creating the instance.
+    facts: [wordpress-blueprint]
   - id: lightsail-001
     q: A small business wants to launch a WordPress website on AWS quickly, for a fixed, predictable monthly price. Which AWS service fits?
     a: Amazon Lightsail, which bundles a virtual server, storage and networking at a low monthly price.
@@ -34,6 +41,7 @@ Amazon Lightsail packages a virtual server with storage, networking and optional
 
 ### Exam cues
 
+- If the question says launch a preconfigured WordPress instance, think a Lightsail WordPress blueprint, because it packages the application with an operating system.
 - If the question says simple website, low predictable monthly price, little AWS experience, think Amazon Lightsail.
 
 ### Remember

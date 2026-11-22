@@ -18,6 +18,9 @@ facts:
   - id: slots
     text: "Slots are the parameters an intent needs; Lex prompts the user for each required slot value before it fulfills the intent, and each slot has a built-in or custom slot type."
     source: https://docs.aws.amazon.com/lexv2/latest/dg/how-it-works.html#how-it-works
+  - id: kendra-search
+    text: "Amazon Lex V2 can use AMAZON.KendraSearchIntent to search documents indexed by Amazon Kendra."
+    source: https://docs.aws.amazon.com/lexv2/latest/dg/built-in-intent-kendra-search.html
 cards:
   - id: lex-001
     q: A company wants a chatbot on its website that understands customers' typed and spoken questions. Which AWS service fits?
@@ -36,6 +39,10 @@ cards:
     q: "Which AWS service can build a conversational interface that accepts both voice and text?"
     a: "Amazon Lex builds conversational interfaces using speech recognition and natural language understanding."
     facts: [purpose]
+  - id: lex-005
+    q: "How can an Amazon Lex V2 bot search documents indexed by Amazon Kendra?"
+    a: "Use AMAZON.KendraSearchIntent."
+    facts: [kendra-search]
 ---
 Amazon Lex builds chatbots and voice bots. It understands what a user means, manages the conversation, and plugs into web, mobile and chat channels.
 
@@ -48,6 +55,7 @@ Amazon Lex builds chatbots and voice bots. It understands what a user means, man
 
 ### Exam cues
 
+- If the question says a Lex bot must search indexed documents, think Amazon Kendra search intent, because it searches an Amazon Kendra index.
 - If the question says chatbot or conversational interface, think Amazon Lex.
 - If the question says the bot must collect details before acting, think slots of an intent fulfilled by Lambda.
 

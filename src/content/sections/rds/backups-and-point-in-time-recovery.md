@@ -68,6 +68,9 @@ facts:
   - id: backup-s3-storage
     text: "Automated RDS backups and manually created DB snapshots use Amazon S3 for backup storage."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupStorage
+  - id: cross-region-copy-duration
+    text: "An RDS cross-Region DB snapshot copy can take hours, depending on the Regions and amount of data."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html
 cards:
   - id: rds-007
     q: An accidental table deletion is committed on an RDS Multi-AZ DB instance. Is failover sufficient
@@ -141,6 +144,10 @@ cards:
     q: "An Amazon RDS DB instance hosts several databases. Can a manual DB snapshot back up only one selected database?"
     a: "No. A DB snapshot covers the DB instance storage, including its databases."
     facts: [backup-scope]
+  - id: rds-111
+    q: "Does scheduling an RDS snapshot every hour guarantee an hourly recovery point in another Region?"
+    a: "No. Cross-Region snapshot copies can take hours to complete."
+    facts: [cross-region-copy-duration]
 ---
 
 RDS backups provide earlier copies of a database for recovery after a data error. Point-in-time recovery (PITR) combines backups and transaction logs, which record database changes, to recover to an available time within the retention window. The backup guide describes backups of the whole DB instance.
@@ -156,6 +163,7 @@ RDS backups provide earlier copies of a database for recovery after a data error
 
 ### Exam cues
 
+- If the question says an hourly RDS snapshot schedule guarantees an hourly cross-Region recovery point, think copy completion time, because a copy can take hours.
 - If the question says an accidental deletion has reached the Multi-AZ standby, think PITR before the deletion, because synchronous replication also copies unwanted changes.
 - If the question says recover a deleted DB instance after its automated backups are gone, think a retained manual or final snapshot, because those copies are independent of instance deletion.
 - If the question says restore without overwriting the source, think PITR, because it creates another DB instance.

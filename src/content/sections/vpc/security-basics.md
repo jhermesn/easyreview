@@ -52,6 +52,9 @@ facts:
   - id: sg-sources
     text: "A security group rule source or destination is an IPv4 or IPv6 CIDR range, a single address written as a /32 or /128, a prefix list ID, or another security group; an internet gateway ID is not a valid source."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html#security-group-rule-components
+  - id: default-security-group
+    text: "When an EC2 instance is launched without a specified security group, EC2 associates the VPC default security group."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/default-security-group.html
 cards:
   - id: vpc-062
     q: "What does a security group do in an Amazon VPC?"
@@ -92,6 +95,10 @@ cards:
     q: "A team creates a custom Amazon VPC network ACL but does not associate a subnet. Do its rules affect an existing subnet?"
     a: "No. Associate the custom ACL with the subnet to apply its rules; creation alone changes no subnet association."
     facts: [acl-subnet]
+  - id: vpc-108
+    q: "Which security group does Amazon EC2 associate with an instance launched without a specified security group?"
+    a: "The VPC default security group."
+    facts: [default-security-group]
 ---
 A VPC has two built-in network filters: security groups around instances and network ACLs around subnets.
 
@@ -103,6 +110,7 @@ A VPC has two built-in network filters: security groups around instances and net
 
 ### Exam cues
 
+- If the question says no security group was specified for an EC2 instance, think the VPC default security group, because EC2 associates it at launch.
 - If the question says instance-level firewall, think security group.
 - If the question says subnet-level allow and deny rules, think network ACL.
 

@@ -18,6 +18,9 @@ facts:
   - id: conversion
     text: Recovery orchestration creates volumes from replicated data and converts non-AWS servers to boot natively on EC2.
     source: https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html
+  - id: recovery-dashboard
+    text: "The Elastic Disaster Recovery recovery dashboard shows source server replication status, replication progress and lag."
+    source: https://docs.aws.amazon.com/drs/latest/userguide/recovery-dashboard.html
 cards:
   - id: elastic-disaster-recovery-013
     q: "A company wants to recover on-premises servers into AWS quickly after a disaster, paying little while idle. Which service fits?"
@@ -31,6 +34,10 @@ cards:
       - agent
       - staging
       - conversion
+  - id: elastic-disaster-recovery-014
+    q: "Where can an AWS Elastic Disaster Recovery operator see a source server replication progress and lag?"
+    a: "The source server recovery dashboard."
+    facts: [recovery-dashboard]
 ---
 AWS Elastic Disaster Recovery replicates servers into AWS so they can be recovered quickly.
 
@@ -42,6 +49,7 @@ AWS Elastic Disaster Recovery replicates servers into AWS so they can be recover
 
 ### Exam cues
 
+- If the question says check replication progress or lag, think the Elastic Disaster Recovery recovery dashboard, because it shows source server replication status.
 - If the question says recover on-premises or cloud servers into AWS, think Elastic Disaster Recovery.
 
 ### Remember
