@@ -26,7 +26,7 @@ facts:
   - id: route-retention
     text: Kinesis Data Streams retains records for 24 hours by default and supports retention up to 365
       days.
-    source: https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#retention
+    source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-extended-retention.html#kinesis-extended-retention
   - id: route-firehose
     text: Firehose delivers records to a configured destination, including S3, Redshift, OpenSearch,
       Splunk, HTTP endpoints, or Snowflake.
