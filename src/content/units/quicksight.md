@@ -1,6 +1,6 @@
 ---
 title: Quick Sight
-names: ["Amazon Quick Sight", "Amazon QuickSight", "Quick Sight", "QuickSight"]
+names: ["AWS Quick Sight", "Amazon Quick Sight", "Amazon QuickSight", "Quick Sight", "QuickSight"]
 summary: Connect data sources and publish interactive business intelligence dashboards.
 icon: quick
 ---

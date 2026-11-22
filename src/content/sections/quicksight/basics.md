@@ -4,15 +4,15 @@ level: foundational
 order: 5
 facts:
   - id: bi
-    text: "Amazon Quick provides visualization and business intelligence: connect data sources, build dashboards and embed analytics in applications."
+    text: "AWS Quick Sight, the business intelligence feature of AWS Quick, connects data sources, builds interactive dashboards and embeds analytics in applications."
     source: https://docs.aws.amazon.com/quicksight/latest/user/welcome.html#what-is
 cards:
   - id: quicksight-011
     q: "Which AWS service helps an analytics team visualize data from connected sources?"
-    a: "Amazon Quick provides business intelligence and visualization, including dashboards and embedded analytics."
+    a: "AWS Quick Sight (part of AWS Quick) provides business intelligence and visualization, including dashboards and embedded analytics."
     facts: [bi]
 ---
-Amazon Quick Sight is AWS's business intelligence service for dashboards and visual analysis.
+AWS Quick Sight is AWS's business intelligence service for dashboards and visual analysis.
 
 ### How it works
 
