@@ -10,7 +10,7 @@ facts:
     text: FSx for ONTAP supports NFS and SMB file access and iSCSI and NVMe over TCP block access.
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients
   - id: block-limit
-    text: iSCSI is available on file systems with six or fewer high-availability pairs; NVMe over TCP requires a second-generation file system with six or fewer pairs.
+    text: iSCSI is available on file systems with six or fewer high-availability pairs; NVMe over TCP requires a second- or third-generation file system with six or fewer pairs.
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients
   - id: shared-volume
     text: FSx for ONTAP supports concurrent NFS and SMB access to the same volume.
@@ -119,6 +119,6 @@ Amazon FSx for NetApp ONTAP provides managed shared storage for applications tha
 ### Remember
 
 - Failover typically completes in less than 60 seconds.
-- iSCSI supports file systems with up to six high-availability pairs; NVMe over TCP also requires a second-generation file system.
+- iSCSI supports file systems with up to six high-availability pairs; NVMe over TCP also requires a second- or third-generation file system.
 
 > **Trap:** Multi-AZ synchronous replication is within one Region. It is not synchronous cross-Region SnapMirror replication.

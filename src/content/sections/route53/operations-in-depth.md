@@ -28,7 +28,7 @@ facts:
     text: If both checked failover records are unhealthy, Route 53 returns the primary.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html#health-checks-how-route-53-chooses-records
   - id: aggregate
-    text: Route 53 considers an endpoint healthy when more than 18% of checkers report healthy.
+    text: For a public endpoint health check, For a public endpoint, Route 53 considers it healthy when more than 18% of checkers report healthy.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints
   - id: consecutive
     text: The failure threshold is the number of consecutive successes or failures required to change a checker status.
@@ -156,7 +156,7 @@ cards:
     trap: true
   - id: route53-004
     q: How does Route 53 aggregate endpoint health check results?
-    a: The endpoint is healthy when more than 18% of checkers report healthy. Each checker applies its interval and consecutive-check threshold.
+    a: For a public endpoint, it is healthy when more than 18% of checkers report healthy. Each checker applies its interval and consecutive-check threshold.
     facts:
       - aggregate
       - consecutive
@@ -275,7 +275,7 @@ Route 53 health checks, routing settings and Resolver DNS Firewall rules determi
 
 ### How it works
 
-1. Endpoint checkers use a 30-second or 10-second interval and a consecutive success or failure threshold. Route 53 considers the endpoint healthy when more than 18% of checkers report healthy. Check settings · Health determination
+1. Endpoint checkers use a 30-second or 10-second interval and a consecutive success or failure threshold. For a public endpoint, Route 53 considers it healthy when more than 18% of checkers report healthy. Check settings · Health determination
 2. HTTP and HTTPS checks need a TCP connection within four seconds and a 2xx or 3xx response within two seconds after connection. A string check needs the body within two more seconds and the complete string in its first 5,120 bytes. HTTPS checks do not validate TLS certificates.
 3. For an ALB or NLB alias, each associated target group with targets needs at least one healthy target. An empty group is unhealthy. For S3, API Gateway and interface endpoints, AWS recommends checking application access for failover. CloudFront aliases cannot use Evaluate Target Health or exist in private hosted zones. Target health · CloudFront target
 4. For regional failover, latency aliases can point to regional weighted groups. Enable Evaluate Target Health and check the non-alias leaves: an unchecked leaf can keep a failed branch eligible. If both checked failover records are unhealthy, Route 53 returns the primary. Regional trees · Unchecked leaves · Failover selection

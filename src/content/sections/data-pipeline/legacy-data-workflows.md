@@ -19,7 +19,7 @@ facts:
     text: AWS Glue suits migrated Data Pipeline workloads that need serverless data integration, Spark or Python jobs and crawlers, such as exporting a DynamoDB table to Amazon S3.
     source: https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/migration.html#migration-glue
   - id: sfn-fit
-    text: AWS Step Functions suits migrated Data Pipeline workloads that orchestrate tasks across services such as EMR, Lambda, Glue and DynamoDB, billed per task execution.
+    text: AWS Step Functions suits migrated Data Pipeline workloads that orchestrate tasks across services such as EMR, Lambda, Glue and DynamoDB; Standard workflows are billed by state transitions and Express workflows by requests and duration.
     source: https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/migration.html#migration-step-functions
 cards:
   - id: data-pipeline-001

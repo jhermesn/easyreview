@@ -15,7 +15,8 @@ const SNAPSHOT = 'src/data/doc-watch.json';
 const SECTIONS = 'src/content/sections';
 const GLOSSARY = 'src/content/glossary';
 const CONCURRENCY = 6;
-const MAX_LISTED = 80;
+// The content-health issue body has a size limit; a local run lists everything.
+const MAX_LISTED = process.env.GITHUB_ACTIONS ? 80 : Infinity;
 const MISSING = 'missing';
 
 // The cards that cite a fact and the diagrams that rely on it, so a changed fact leads to everything built on it.

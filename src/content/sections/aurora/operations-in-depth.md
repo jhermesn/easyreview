@@ -28,7 +28,7 @@ facts:
     text: "An Aurora global database has one primary Region and up to 10 read-only secondary Regions; a secondary cluster can hold up to 16 reader instances."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database-overview
   - id: upper
-    text: Supported Aurora MySQL Serverless v2 configurations can reach 256 ACUs, depending on engine and platform version.
+    text: Aurora MySQL Serverless v2 can reach 384 ACUs on the newest supported versions (3.14.0 and 8.4.10 or higher); earlier supported versions stop at 256 ACUs.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.capacity
   - id: postgres-upper
     text: Supported Aurora PostgreSQL Serverless v2 configurations can reach 384 ACUs, depending on engine and platform version.
@@ -118,7 +118,7 @@ cards:
     facts: [global-limits]
   - id: aurora-007
     q: Which Aurora Serverless v2 capacity and configuration limits should be checked before deployment?
-    a: Check engine, platform and Region support. Supported MySQL configurations reach 256 ACUs and PostgreSQL 384; capacity changes can be as small as 0.5 ACU. A zero minimum enables auto-pause only on supported versions.
+    a: Check engine, platform and Region support. The newest supported MySQL and PostgreSQL versions reach 384 ACUs, earlier ones 256; capacity changes can be as small as 0.5 ACU. A zero minimum enables auto-pause only on supported versions.
     facts:
       - upper
       - postgres-upper
@@ -180,6 +180,10 @@ cards:
       - tier
       - tier-tie
       - tier-exception
+revised:
+  - date: 2026-11-21
+    note: Aurora MySQL Serverless v2 now reaches 384 ACUs on the newest versions, like PostgreSQL; before, MySQL stopped at 256.
+    cards: [aurora-007]
 ---
 Aurora operations involve recovery choices, Serverless v2 capacity settings and reader promotion priorities. These controls affect recovery point objectives, instance capacity and failover readiness.
 
@@ -201,7 +205,7 @@ Aurora operations involve recovery choices, Serverless v2 capacity settings and 
 ### Remember
 
 - A global database has one primary Region and up to 10 secondary Regions, each secondary cluster with up to 16 readers. See global database overview.
-- Supported Serverless v2 configurations reach up to 256 ACUs for MySQL and 384 ACUs for PostgreSQL, depending on engine and platform versions. See capacity.
+- Supported Serverless v2 configurations reach up to 384 ACUs on the newest MySQL and PostgreSQL versions, 256 on earlier ones. See capacity.
 - `SecondsUntilAutoPause` defaults to 300 seconds and accepts 300 to 86400 seconds. See auto-pause timeout.
 - Global secondary clusters can use Serverless v2 compute, but their Serverless instances do not auto-pause. Global primary writers and their tier 0 or 1 readers do not auto-pause either. See high availability and auto-pause limitations.
 

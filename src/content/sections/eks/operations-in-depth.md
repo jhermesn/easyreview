@@ -39,7 +39,7 @@ facts:
     source: https://aws.amazon.com/about-aws/whats-new/2026/11/nitro-sandboxes-eks-ecs-ec2/
   - id: auto-pod-sg
     text: EKS Auto Mode security groups for Pods use SecurityGroupPolicy to assign different security
-      groups to Pods on the same node; unmatched Pods use node security groups.
+      groups to Pods on the same node; unmatched Pods use node security groups. A NodeClass podSecurityGroupSelectorTerms setting instead applies one security group set to every Pod on its nodes.
     source: https://docs.aws.amazon.com/eks/latest/userguide/auto-sgp.html
   - id: auto-pod-sg-date
     text: EKS Auto Mode added security groups for Pods in November 2026 for Kubernetes 1.36 or later.

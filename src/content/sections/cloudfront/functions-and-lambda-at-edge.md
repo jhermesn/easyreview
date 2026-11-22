@@ -14,7 +14,7 @@ facts:
     text: CloudFront Functions uses JavaScript and is designed for submillisecond execution.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/edge-functions-choosing.html#edge-functions-choosing
   - id: edge-cff-network
-    text: CloudFront Functions for HTTP delivery cannot make network calls.
+    text: CloudFront Functions for HTTP delivery can make one network call per invocation, only to an origin configured on the same distribution; Lambda@Edge can call any destination.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/edge-functions-choosing.html#edge-functions-choosing
   - id: edge-cff-files
     text: CloudFront Functions for HTTP delivery has no file system access.
@@ -253,8 +253,8 @@ cards:
   - id: cloudfront-024
     q: How do CloudFront Functions and Lambda@Edge differ in events, runtime and access?
     a: "CloudFront Functions for HTTP delivery: JavaScript, viewer request and viewer response, submillisecond
-      execution, no network or request body access. Lambda@Edge: Node.js or Python, all four viewer/origin
-      events, up to 30 seconds, with network and request body access."
+      execution, one network call per invocation to an origin of the same distribution, no request body access. Lambda@Edge: Node.js or Python, all four viewer/origin
+      events, up to 30 seconds, with network access to any destination and request body access."
     facts:
       - edge-cff-events
       - edge-cff-runtime
@@ -316,6 +316,10 @@ cards:
     facts:
       - edge-origin-request
       - edge-viewer-request
+revised:
+  - date: 2026-11-21
+    note: CloudFront Functions can now make one network call per invocation to an origin configured on the same distribution; before, they had no network access.
+    cards: [cloudfront-024]
 ---
 CloudFront Functions and Lambda@Edge run code at CloudFront events so a request or response can be changed during delivery. A trigger is an association between a function and an event on a cache behavior, the rule for a set of URL paths. Event placement decides whether the function also runs for cached content.
 
@@ -334,14 +338,15 @@ The following table compares HTTP request and response functions.
 | Events | Viewer request and viewer response | Viewer and origin request and response |
 | Runtime | JavaScript | Node.js or Python |
 | Execution duration | Submillisecond | Up to 30 seconds |
-| Network, file system, request body | No access | Access supported |
+| Network | One call per invocation, to an origin of the same distribution | Any destination |
+| File system, request body | No access | Access supported |
 
 To expose the request body, the data sent with a request, to Lambda@Edge, select `Include Body`. CloudFront exposes it as base64, a text encoding for binary data, and truncates it at 40 KB for viewer request or 1 MB for origin request. Reading without replacement still forwards the full original body to the origin.
 
 ### Exam cues
 
 - If the question says lightweight redirects or consistent cache keys, think CloudFront Functions at viewer request, because these are supported uses before cache lookup.
-- If the question says call an external service only before origin forwarding, think Lambda@Edge origin request, because CloudFront Functions has no network access and origin request skips hits.
+- If the question says call an external service only before origin forwarding, think Lambda@Edge origin request, because CloudFront Functions can call only an origin of the same distribution, once per invocation, and origin request skips hits.
 - If the question says consult an identity service before serving cached private content, think Lambda@Edge viewer request, because origin-request authorization never sees cache hits.
 
 ### Remember

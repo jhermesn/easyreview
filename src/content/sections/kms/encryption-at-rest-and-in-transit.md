@@ -25,7 +25,7 @@ facts:
     text: AWS PrivateLink keeps traffic between a VPC or on-premises network and services on the Amazon backbone, so it does not traverse the internet.
     source: https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/protecting-data-in-transit.html#protecting-data-in-transit
   - id: rds-at-create
-    text: An Amazon RDS DB instance can be encrypted only when it is created; to encrypt an existing one, copy an unencrypted snapshot with encryption and restore it.
+    text: An Amazon RDS DB instance is encrypted when it is created; to encrypt an existing one, restore from an encrypted copy of its snapshot, or use a blue/green deployment whose green environment is encrypted.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
 cards:
   - id: kms-038
@@ -67,7 +67,7 @@ Encryption protects data in two states. Data at rest sits in storage; data in tr
 - If the question says manage the keys that encrypt stored data, think AWS KMS.
 - If the question says HTTPS certificates, think ACM.
 - If the question says protect data moving over the network, think encryption in transit (TLS).
-- If the question says encrypt an existing unencrypted RDS instance, think snapshot copy with encryption and restore, because RDS encryption is set at creation.
+- If the question says encrypt an existing unencrypted RDS instance, think snapshot copy with encryption and restore, or a blue/green deployment, because RDS encryption is set at creation.
 
 ### Remember
 

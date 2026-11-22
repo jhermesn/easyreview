@@ -16,7 +16,7 @@ facts:
     text: For overlapping private hosted zones, VPC Resolver chooses the most specific matching zone.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-considerations.html#hosted-zone-private-considerations
   - id: no-fallback
-    text: When a private zone matches but lacks the requested name and record type, VPC Resolver returns NXDOMAIN rather than using public DNS.
+    text: When a private zone matches but lacks the requested name, VPC Resolver returns NXDOMAIN without querying public DNS, unless public DNS fallback is enabled for the zone; when the name exists without the requested record type, it returns NODATA.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-considerations.html#hosted-zone-private-considerations
   - id: public-fallback
     text: If no private zone matches, VPC Resolver performs normal public resolution.
@@ -65,6 +65,10 @@ cards:
     q: "An EC2 instance has a public IPv4 address but no public DNS hostname. Which VPC settings used with Amazon Route 53 Resolver should be checked?"
     a: "Set both enableDnsSupport and enableDnsHostnames to true. A public IPv4 address alone does not enable a public DNS hostname."
     facts: [vpc-dns-attributes]
+revised:
+  - date: 2026-11-21
+    note: A private hosted zone can now enable public DNS fallback, so names missing from the zone are retried against public DNS instead of returning NXDOMAIN.
+    cards: []
 ---
 A private hosted zone is a collection of DNS records available through associated VPCs. It supports internal names and split-view DNS, where the same domain has different internal and external records.
 
@@ -72,14 +76,14 @@ A private hosted zone is a collection of DNS records available through associate
 
 1. Associate the private zone with the VPCs that need its records. Set enableDnsSupport and enableDnsHostnames to true.
 2. VPC Resolver checks for a matching private zone. When several private zones match, it chooses the most specific name.
-3. It looks for the requested record name and type. If either is missing, it returns NXDOMAIN, the DNS response meaning the domain does not exist, without trying the public record.
+3. It looks for the requested record name and type. A missing name returns NXDOMAIN, the DNS response meaning the domain does not exist, without trying public DNS unless the zone has public DNS fallback enabled. An existing name without that record type returns NODATA.
 4. If no private zone matches, it uses normal public DNS resolution. An associated forwarding rule for the same domain takes precedence over the private zone.
 
 For public DNS hostnames on EC2 instances with public IPv4 addresses, both VPC DNS attributes must also be true.
 
 ### Exam cues
 
-- If the question says a public name fails only inside a VPC with a matching private zone, think a missing private record, because Resolver does not fall back to public DNS.
+- If the question says a public name fails only inside a VPC with a matching private zone, think a missing private record, because Resolver does not fall back to public DNS unless public DNS fallback is enabled on the zone.
 - If the question says one hostname needs separate internal and external answers, think split-view DNS, because public and private zones can share the name.
 
 ### Remember
