@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
-import { certs, getCert } from '../../lib/certs';
+import { certs, getCert, GOLDEN_TRAIL } from '../../lib/certs';
 import { badgeSvg } from '../../lib/badge';
 
 export function getStaticPaths() {
-  return certs.flatMap((c) => [{ params: { name: c.id } }, { params: { name: `${c.id}-gold` } }]);
+  return [...certs, GOLDEN_TRAIL].flatMap((c) => [{ params: { name: c.id } }, { params: { name: `${c.id}-gold` } }]);
 }
 
 export const GET: APIRoute = ({ params }) => {

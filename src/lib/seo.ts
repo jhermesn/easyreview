@@ -1,9 +1,9 @@
-import type { Cert } from './certs';
+import { isTrail, type Cert } from './certs';
 import { DEFAULT_LOCALE, localePath, type Locale } from '../i18n';
 
 export const absoluteUrl = (path: string, site: URL, locale: Locale = DEFAULT_LOCALE) => new URL(localePath(locale, path), site).href;
 
-export const certFullName = (cert: Cert) => `AWS Certified ${cert.name} (${cert.code})`;
+export const certFullName = (cert: Cert) => (isTrail(cert) ? cert.code : `AWS Certified ${cert.name} (${cert.code})`);
 
 // schema.org BreadcrumbList: home, then each level down to the current page.
 export function breadcrumbs(trail: { name: string; path: string }[], site: URL, locale: Locale = DEFAULT_LOCALE) {

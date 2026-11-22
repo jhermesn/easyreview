@@ -7,7 +7,7 @@ import Reminder from '../components/Reminder.astro';
 import Transfer from '../components/Transfer.astro';
 import CertCelebration from '../components/CertCelebration.astro';
 import GitHubStar from '../components/GitHubStar.astro';
-import { getCert } from '../lib/certs';
+import { getCert, isTrail } from '../lib/certs';
 import { getCertView, knownGroups, revisionTimes, sectionIds } from '../lib/content';
 import { getGuide } from '../lib/guides';
 import { jsonForScript, withBase } from '../lib/format';
@@ -149,7 +149,7 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
             <span class="bar"><span></span></span>
             <span class="muted" data-known-count></span>
           </div>
-          {cert.domains.map((d) => {
+          {view!.cert.domains.map((d) => {
             const own = view!.units.filter((u) => u.domain === d.id);
             return (
               <section class="side-domain">
@@ -200,7 +200,7 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
         </footer>
       </main>
     </div>
-    {cert && <CertCelebration cert={cert} dialog />}
+    {cert && !isTrail(cert) && <CertCelebration cert={cert} dialog />}
     <script type="application/json" data-revisions set:html={jsonForScript(revisions)} />
   </body>
 </html>

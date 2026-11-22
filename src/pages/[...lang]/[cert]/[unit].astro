@@ -4,7 +4,7 @@ import Base from '../../../layouts/Base.astro';
 import Diagram from '../../../components/Diagram.astro';
 import FlashDeck from '../../../components/FlashDeck.astro';
 import Icon from '../../../components/Icon.astro';
-import { availableCerts, domainName, getCert } from '../../../lib/certs';
+import { domainName, getCert, studyTracks } from '../../../lib/certs';
 import { getCertView, deckCards, latestRevision, sectionIds, sectionSlug, type CertUnit } from '../../../lib/content';
 import { formatRich, plainText, withBase } from '../../../lib/format';
 import { absoluteUrl, breadcrumbs, certFullName } from '../../../lib/seo';
@@ -15,14 +15,15 @@ import { LOCALES, localeOf, localeParams, localePath, useTranslations } from '..
 
 export async function getStaticPaths() {
   const paths = [];
-  for (const cert of availableCerts()) for (const { unit } of (await getCertView(cert.id)).units) paths.push({ params: { cert: cert.id, unit: unit.id } });
+  for (const cert of studyTracks()) for (const { unit } of (await getCertView(cert.id)).units) paths.push({ params: { cert: cert.id, unit: unit.id } });
   return localeParams(paths);
 }
 const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
 const cert = getCert(Astro.params.cert!);
 // Looked up per locale, so translated titles and text reach this page and its neighbours.
-const { units } = await getCertView(cert.id, locale);
+const view = await getCertView(cert.id, locale);
+const { units } = view;
 const at = units.findIndex((u) => u.unit.id === Astro.params.unit);
 const [entry, prev, next] = [units[at], units[at - 1], units[at + 1]];
 const { unit, domain, sections } = entry;
@@ -71,7 +72,7 @@ if (cards.length) {
 <Base title={`${unit.data.title} · ${cert.code}`} description={t('unit.description', { summary: unit.data.summary, code: cert.code })} cert={cert.id} jsonLd={jsonLd} heading={unit.data.title}>
   <header class="unit-head">
     <div class="chips">
-      <span title={t('unit.domain')}><Icon name="layers" size={14} />{domainName(cert, domain)}</span>
+      <span title={t('unit.domain')}><Icon name="layers" size={14} />{domainName(view.cert, domain)}</span>
       {cards.length > 0 && <a href="#cards" title={t('nav.flashcards')}><Icon name="cards" size={14} />{cards.length}</a>}
     </div>
     <h1>{unit.data.icon && <img src={withBase(`/aws-icons/${unit.data.icon}.svg`)} alt="" width="36" height="36" />}{unit.data.title}</h1>

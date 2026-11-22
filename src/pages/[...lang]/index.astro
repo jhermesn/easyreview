@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import HeroBadge from '../../components/HeroBadge.astro';
-import { certs, levels, isAvailable, availableCerts } from '../../lib/certs';
+import { certs, levels, isAvailable, availableCerts, GOLDEN_TRAIL } from '../../lib/certs';
 import { getCertView, knownGroups, latestRevision, sectionIds, unitIdOf } from '../../lib/content';
 import UpdatedTopics from '../../components/UpdatedTopics.astro';
 import { getGuide } from '../../lib/guides';
@@ -26,6 +26,7 @@ const unitCount = new Set(sections.map(unitIdOf)).size;
 const allUnitGroups = knownGroups(sections);
 const cardTotal = sections.reduce((n, s) => n + s.data.cards.length, 0);
 const diagramTotal = sections.reduce((n, s) => n + s.data.diagrams.length, 0);
+const trailView = await getCertView(GOLDEN_TRAIL.id, locale);
 const live = availableCerts();
 const updatedItems = live.flatMap((c) => {
   const revised = views.get(c.id)!.sections.filter((s) => latestRevision(s));
@@ -143,6 +144,20 @@ const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => 
     })}
       </div>
     ))}
+    <div class="level-row">
+      <div class="level">
+        <h3>{t('home.trail')}</h3>
+        <ul class="badges" data-reveal>
+          <li>
+            <a class="tile" href={link(`/${GOLDEN_TRAIL.id}`)} title={`${GOLDEN_TRAIL.code} · ${t('home.trail.text')}`}>
+              <img src={badgeUrl(GOLDEN_TRAIL.id)} alt={`${GOLDEN_TRAIL.code} ${GOLDEN_TRAIL.name}`} width="104" height="120" loading="lazy" data-badge-cert={GOLDEN_TRAIL.id} />
+              <span class="code">{GOLDEN_TRAIL.code}</span>
+              <span class="ring" data-cert={GOLDEN_TRAIL.id} data-known-set={knownGroups(trailView.sections)}><span data-known-pct aria-hidden="true"></span><span class="sr-only" data-known-count></span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </section>
 </Base>
 

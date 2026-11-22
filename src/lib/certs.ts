@@ -113,7 +113,22 @@ export const goldenJacketCerts = () => certs.filter((c) => !c.beta);
 // Name of the cert's badge on Credly, for example "AWS Certified DevOps Engineer - Professional".
 export const credlyBadgeName = (c: Cert) => `AWS Certified ${c.name}`;
 
+// The Golden Jacket trail: every published topic at every level, for readers working toward every exam.
+// It is no exam, so it stays out of `certs`; lib/content.ts builds its units and domains from the content.
+export const GOLDEN_TRAIL: Cert = {
+  id: 'golden-jacket',
+  code: 'Golden Jacket',
+  name: 'All topics, all levels',
+  level: 'professional',
+  page: 'https://aws.amazon.com/certification/',
+  domains: [],
+};
+export const isTrail = (c: Cert | string) => (typeof c === 'string' ? c : c.id) === GOLDEN_TRAIL.id;
+// Everything that gets cert pages: the available certs, then the trail.
+export const studyTracks = () => [...availableCerts(), GOLDEN_TRAIL];
+
 export function getCert(id: string): Cert {
+  if (isTrail(id)) return GOLDEN_TRAIL;
   const cert = certs.find((c) => c.id === id);
   if (!cert) throw new Error(`unknown cert "${id}": add it to src/lib/certs.ts`);
   return cert;

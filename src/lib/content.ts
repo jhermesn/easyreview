@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { DeckCard } from '../components/FlashDeck.astro';
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales';
-import { getCert, type Cert } from './certs';
+import { availableCerts, getCert, GOLDEN_TRAIL, isTrail, type Cert } from './certs';
 import { getGuide } from './guides';
 import { hashFile, mergeSection, sectionProblems } from './translate';
 
@@ -79,6 +79,7 @@ async function loadTranslated(locale: Locale): Promise<Content> {
 
 // The cert's units in guide order, each with only the sections the guide maps to it.
 export async function getCertView(certId: string, locale: Locale = DEFAULT_LOCALE): Promise<CertView> {
+  if (isTrail(certId)) return trailView(locale);
   const cert = getCert(certId);
   const { units, sections } = await getContent(locale);
   const picked = new Map<string, { domain: string; ids: Set<string> }>();
@@ -103,6 +104,32 @@ export async function getCertView(certId: string, locale: Locale = DEFAULT_LOCAL
     }))
     .sort((a, b) => domainRank(a.domain) - domainRank(b.domain) || b.sections.length - a.sections.length || a.unit.data.title.localeCompare(b.unit.data.title));
   return { cert, units: certUnits, sections: certUnits.flatMap((u) => u.sections), missing };
+}
+
+// The Golden Jacket trail: every published section of every unit, with no exam scope or level limit.
+// A unit goes in the domain of the first available cert (in catalog order) that shows it, so the trail
+// grows exam by exam; units no cert shows come last. A domain's weight is its share of the trail's sections.
+export const BEYOND_GUIDES = 'beyond';
+async function trailView(locale: Locale): Promise<CertView> {
+  const { units, sections } = await getContent(locale);
+  const exams = await Promise.all(availableCerts().map((c) => getCertView(c.id, locale)));
+  const firstExam = new Map<string, string>();
+  for (const v of exams) for (const u of v.units) if (!firstExam.has(u.unit.id)) firstExam.set(u.unit.id, v.cert.id);
+  const byUnit = new Map<string, Section[]>();
+  for (const s of sections.values()) byUnit.set(unitIdOf(s), [...(byUnit.get(unitIdOf(s)) ?? []), s]);
+  const order = [...exams.map((v) => v.cert.id), BEYOND_GUIDES];
+  const trailUnits = [...byUnit]
+    .map(([unitId, list]) => ({ unit: units.get(unitId)!, domain: firstExam.get(unitId) ?? BEYOND_GUIDES, sections: list.sort(bySectionOrder) }))
+    .sort((a, b) => order.indexOf(a.domain) - order.indexOf(b.domain) || b.sections.length - a.sections.length || a.unit.data.title.localeCompare(b.unit.data.title));
+  const all = trailUnits.flatMap((u) => u.sections);
+  const share = (id: string) => trailUnits.filter((u) => u.domain === id).reduce((n, u) => n + u.sections.length, 0);
+  const domains = order
+    .filter((id) => share(id) > 0)
+    .map((id) => {
+      const cert = id === BEYOND_GUIDES ? undefined : getCert(id);
+      return { id, name: cert ? `${cert.code} ${cert.name}` : 'Beyond the exam guides', weight: Math.round((100 * share(id)) / all.length) };
+    });
+  return { cert: { ...GOLDEN_TRAIL, domains }, units: trailUnits, sections: all, missing: [] };
 }
 
 // Sections no cert maps: shown in no cert, so they are either a gap in a guide map or extra content.
