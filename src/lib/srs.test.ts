@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { describeDelay, normalize, schedule } from './srs';
+import { describeDelay, forgetRevised, normalize, schedule } from './srs';
 
 const MIN = 60_000;
 const DAY = 86_400_000;
@@ -56,5 +56,23 @@ describe('describeDelay', () => {
 
   it('uses the given unit labels', () => {
     expect(describeDelay(96 * DAY, ['min', 'h', 'd', 'mês', 'a'])).toBe('3.2mês');
+  });
+});
+
+describe('forgetRevised', () => {
+  const reviewed = (at: number) => ({ due: at + 10 * DAY, ivl: 10, ease: 2.5, reps: 4, lapses: 0, last: 'ok' as const, at });
+
+  it('given a card reviewed before its answer changed, then it becomes new', () => {
+    const progress = { a: reviewed(now - DAY), b: reviewed(now - DAY) };
+    expect(Object.keys(forgetRevised(progress, [{ id: 'a', revised: now }, { id: 'b' }]))).toEqual(['b']);
+  });
+
+  it('given a card reviewed after its answer changed, then its schedule stays', () => {
+    const progress = { a: reviewed(now + DAY) };
+    expect(forgetRevised(progress, [{ id: 'a', revised: now }])).toEqual(progress);
+  });
+
+  it('given a revised card never reviewed, then nothing changes', () => {
+    expect(forgetRevised({}, [{ id: 'a', revised: now }])).toEqual({});
   });
 });
