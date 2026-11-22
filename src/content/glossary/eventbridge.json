@@ -1,9 +1,7 @@
 [
   {
     "term": "Event",
-    "aliases": [
-      "message"
-    ],
+    "aliases": [],
     "definition": "A JSON message that describes an occurrence or change.",
     "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is-how-it-works-concepts.html"
   },
@@ -85,7 +83,11 @@
     "term": "Connection",
     "aliases": [],
     "definition": "A configuration holding authorization and connectivity settings for an API destination.",
-    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html"
+    "source": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html",
+    "notIn": [
+      "into its connection",
+      "point-to-point connection"
+    ]
   },
   {
     "term": "Dead-letter queue",
@@ -201,11 +203,16 @@
     "term": "Execution role",
     "aliases": [],
     "definition": "An IAM role that Scheduler assumes to invoke a target on a caller's behalf.",
-    "source": "https://docs.aws.amazon.com/scheduler/latest/UserGuide/setting-up.html"
+    "source": "https://docs.aws.amazon.com/scheduler/latest/UserGuide/setting-up.html",
+    "notIn": [
+      "pipe execution role"
+    ]
   },
   {
     "term": "Customer managed key",
-    "aliases": ["customer managed KMS key"],
+    "aliases": [
+      "customer managed KMS key"
+    ],
     "definition": "A KMS key that you create and control, including its access policy.",
     "source": "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-mgn-key"
   },

@@ -57,7 +57,10 @@
       "Deny"
     ],
     "definition": "A policy statement that blocks matching requests even when another applicable policy allows them.",
-    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_evaluation.html#how_scps_deny"
+    "source": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_evaluation.html#how_scps_deny",
+    "notIn": [
+      "deny list"
+    ]
   },
   {
     "term": "Implicit deny",

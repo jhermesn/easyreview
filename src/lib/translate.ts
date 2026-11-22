@@ -40,7 +40,7 @@ export interface SectionTranslation {
   diagrams?: Record<string, DiagramTranslation>;
 }
 
-export interface Term { term: string; aliases: string[]; definition: string }
+export interface Term { term: string; aliases: string[]; definition: string; notIn?: string[] }
 export interface GlossaryTranslation { source: string; terms: Record<string, Term> }
 
 export const edgeKey = (e: { from: string; to: string }) => `${e.from}>${e.to}`;

@@ -7,9 +7,14 @@
   },
   {
     "term": "Run",
-    "aliases": ["test run"],
+    "aliases": [
+      "test run"
+    ],
     "definition": "A specific app build and set of tests to execute on a set of devices.",
-    "source": "https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-runs.html#test-runs"
+    "source": "https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-runs.html#test-runs",
+    "notIn": [
+      "runs Selenium"
+    ]
   },
   {
     "term": "Job",
@@ -19,13 +24,17 @@
   },
   {
     "term": "Test artifact",
-    "aliases": ["artifact"],
+    "aliases": [
+      "artifact"
+    ],
     "definition": "A record such as a log or recording produced during a test.",
     "source": "https://docs.aws.amazon.com/devicefarm/latest/testgrid/what-is-testgrid.html#terminology"
   },
   {
     "term": "Fuzz test",
-    "aliases": ["fuzzing"],
+    "aliases": [
+      "fuzzing"
+    ],
     "definition": "A test that sends random user interface events to a device and reports the results.",
     "source": "https://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-built-in-fuzz.html#test-types-built-in-fuzz"
   },

@@ -11,7 +11,7 @@ import { parse } from 'yaml';
 import { escapeRe } from './format';
 import { glossaryProblems, hashFile, mergeGlossary, type GlossaryTranslation, type Term } from './translate';
 
-interface Target { key: string; text: string; caseSensitive: boolean; plural: boolean; definition?: string; unit?: string }
+interface Target { key: string; text: string; caseSensitive: boolean; plural: boolean; definition?: string; unit?: string; notIn?: string[] }
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 const SKIP = new Set(['a', 'code', 'pre', 'kbd', 'dfn', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'button']);
@@ -57,7 +57,7 @@ function buildMatcher(unit: string, locale: string | undefined, names: Map<strin
   const targets: Target[] = [];
   for (const t of readGlossary(unit, locale))
     for (const text of [t.term, ...(t.aliases ?? [])])
-      targets.push({ key: `term:${t.term.toLowerCase()}`, text, caseSensitive: isAcronym(text), plural: !isAcronym(text), definition: t.definition });
+      targets.push({ key: `term:${t.term.toLowerCase()}`, text, caseSensitive: isAcronym(text), plural: !isAcronym(text), definition: t.definition, notIn: t.notIn });
   for (const [other, list] of names)
     if (other !== unit && certs.has(other)) for (const text of list) targets.push({ key: `unit:${other}`, text, caseSensitive: true, plural: false, unit: other });
   if (!targets.length) return undefined;
@@ -74,6 +74,16 @@ function buildMatcher(unit: string, locale: string | undefined, names: Map<strin
       return [match, stem].some((m) => (t.caseSensitive ? m === t.text : m.toLowerCase() === t.text.toLowerCase()));
     });
   return { re, find };
+}
+
+// True when text[at, at+length) lies inside one of `phrases` (case-insensitive), where the word has another sense.
+export function insidePhrase(text: string, at: number, length: number, phrases: string[] = []): boolean {
+  const lower = text.toLowerCase();
+  return phrases.some((phrase) => {
+    const p = phrase.toLowerCase();
+    for (let i = lower.indexOf(p); i >= 0; i = lower.indexOf(p, i + 1)) if (i <= at && at + length <= i + p.length) return true;
+    return false;
+  });
 }
 
 export function autolink({ base }: { base: string }): HastPluginEntry {
@@ -108,7 +118,7 @@ export function autolink({ base }: { base: string }): HastPluginEntry {
         let last = 0;
         for (const m of node.value.matchAll(matcher.re)) {
           const target = matcher.find(m[0]);
-          if (!target || used.has(target.key)) continue;
+          if (!target || used.has(target.key) || insidePhrase(node.value, m.index, m[0].length, target.notIn)) continue;
           used.add(target.key);
           if (m.index > last) parts.push({ type: 'text', value: node.value.slice(last, m.index) });
           parts.push(target.unit ? unitLink(target.unit, m[0]) : termTip(target.definition!, m[0], `def-${unit}-${slug}-${++tips}`));

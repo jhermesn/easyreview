@@ -44,7 +44,10 @@
       "writer endpoint"
     ],
     "definition": "The connection address that follows the current writer in an Aurora cluster.",
-    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Cluster.html#Aurora.Endpoints.Cluster"
+    "source": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Endpoints.Cluster.html#Aurora.Endpoints.Cluster",
+    "notIn": [
+      "global writer endpoint"
+    ]
   },
   {
     "term": "reader endpoint",

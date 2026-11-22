@@ -23,7 +23,14 @@
     "term": "Period",
     "aliases": [],
     "definition": "A period is the time span over which metric values are combined into a statistic.",
-    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#CloudWatchPeriods"
+    "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#CloudWatchPeriods",
+    "notIn": [
+      "Period-based",
+      "all periods",
+      "extension periods",
+      "time periods",
+      "waiting period"
+    ]
   },
   {
     "term": "Statistic",
@@ -135,9 +142,7 @@
   },
   {
     "term": "Worker node",
-    "aliases": [
-      "node"
-    ],
+    "aliases": [],
     "definition": "A worker node is a machine that runs Kubernetes application workloads.",
     "source": "https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-concepts.html"
   },
@@ -187,9 +192,7 @@
   },
   {
     "term": "Observability link",
-    "aliases": [
-      "link"
-    ],
+    "aliases": [],
     "definition": "An observability link is a source account resource that connects it to a monitoring account sink.",
     "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html#CloudWatch-Unified-Cross-Account"
   },

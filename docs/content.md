@@ -60,6 +60,6 @@ CI runs `node scripts/check-revisions.mjs <base>`, which lists every section who
 ## Style
 
 - Plain English, short sentences, no marketing words.
-- Define a technical term where it first appears, or add it to the unit's glossary (`src/content/glossary/<unit>.json`), which renders as a tooltip.
+- Define a technical term where it first appears, or add it to the unit's glossary (`src/content/glossary/<unit>.json`), which renders as a tooltip on the term's first mention in each section of the unit. When the word also has an everyday sense in that unit's text ("subject to the boundary" for the token `subject`), list the phrase in the term's `notIn`, so the tooltip skips it and lands on the next mention.
 - Use a service's official name, so it links to its unit.
 - Draw a diagram for anything hard to picture from text: order of execution, request flows, topologies, failover sequences, timing. Otherwise use a table.

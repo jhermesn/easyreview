@@ -15,7 +15,11 @@
     "term": "Target",
     "aliases": [],
     "definition": "A target is the set of AWS resources selected for a fault action.",
-    "source": "https://docs.aws.amazon.com/fis/latest/userguide/targets.html#targets"
+    "source": "https://docs.aws.amazon.com/fis/latest/userguide/targets.html#targets",
+    "notIn": [
+      "target account",
+      "target roles"
+    ]
   },
   {
     "term": "Blast radius",

@@ -35,9 +35,7 @@
   },
   {
     "term": "Shard",
-    "aliases": [
-      "partition"
-    ],
+    "aliases": [],
     "definition": "A shard holds part of a Valkey or Redis OSS dataset with a primary and optional replicas.",
     "source": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Clusters.html"
   },

@@ -25,7 +25,10 @@
       "Guardrail"
     ],
     "definition": "An ongoing governance rule applied to an AWS environment.",
-    "source": "https://docs.aws.amazon.com/controltower/latest/controlreference/controls.html#controls"
+    "source": "https://docs.aws.amazon.com/controltower/latest/controlreference/controls.html#controls",
+    "notIn": [
+      "Control Tower"
+    ]
   },
   {
     "term": "Service control policy",

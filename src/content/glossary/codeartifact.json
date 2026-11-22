@@ -49,9 +49,7 @@
   },
   {
     "term": "Upstream repository",
-    "aliases": [
-      "upstream"
-    ],
+    "aliases": [],
     "definition": "A CodeArtifact repository searched for packages missing from a connected downstream repository.",
     "source": "https://docs.aws.amazon.com/codeartifact/latest/ug/repo-upstream-behavior.html#repo-upstream-behavior"
   },
