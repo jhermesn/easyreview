@@ -28,7 +28,7 @@ Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.co
 
 ## Before you finish
 
-1. `npm run lint`, `npm test` and `npm run build`, with no new `[coverage <cert>]` warnings, then `npm run test:e2e` after UI changes. CI runs all of them on every pull request, plus `scripts/check-card-ids.mjs`, which fails if a card id from the base branch is gone.
+1. `npm run lint`, `npm test` and `npm run build`, with no new `[coverage <cert>]` warnings, then `npm run test:e2e` after UI changes. CI runs all of them on every pull request, plus `scripts/check-card-ids.mjs`, which fails if a card id from the base branch is gone, and `scripts/check-revisions.mjs`, which lists facts and card answers changed without a `revised` entry ([content.md](content.md#revisions)).
 2. Content PRs: `node scripts/doc-watch.mjs --add-new`, and commit `src/data/doc-watch.json`.
 3. `STRICT_COVERAGE=1 npm run build` passes before a cert is called complete. An unpublished section counts as a gap.
 4. For UI changes, look at the page in a browser at desktop width and at about 400 px.

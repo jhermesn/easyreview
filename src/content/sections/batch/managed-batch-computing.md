@@ -46,6 +46,10 @@ cards:
     q: "Which AWS service manages infrastructure for batch computing workloads?"
     a: "AWS Batch runs batch jobs and manages the underlying infrastructure."
     facts: [purpose]
+revised:
+  - date: 2026-11-19
+    note: The maximum Lambda function timeout is now 1,800 seconds (30 minutes), up from 900 seconds (15 minutes).
+    cards: [batch-004]
 ---
 AWS Batch runs batch jobs: units of work, such as simulations or data processing, that run to completion without user interaction. You submit jobs; Batch finds and provisions the compute and spreads the work.
 

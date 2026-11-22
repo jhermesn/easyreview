@@ -55,6 +55,10 @@ cards:
     a: "No. A reused execution environment keeps it, but a cold start creates a new environment without it."
     trap: true
     facts: [cold-start]
+revised:
+  - date: 2026-11-19
+    note: The maximum Lambda function timeout is now 1,800 seconds (30 minutes), up from 900 seconds (15 minutes).
+    cards: [lambda-061, lambda-063]
 ---
 Lambda sizing has one main dial: memory, which also sets CPU. Timeout caps how long a run can take, and SnapStart cuts cold starts for supported runtimes.
 

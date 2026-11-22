@@ -209,6 +209,10 @@ cards:
     q: "A steady, high-volume AWS Lambda workload should use EC2 Savings Plans and specialized instance types without managing servers. Which Lambda option fits, and how does its concurrency differ?"
     a: "Lambda Managed Instances. Functions run on EC2 instances from a capacity provider, and one execution environment can handle several invocations at once."
     facts: [managed-instances]
+revised:
+  - date: 2026-11-19
+    note: The maximum Lambda function timeout is now 1,800 seconds (30 minutes), up from 900 seconds (15 minutes).
+    cards: [lambda-004]
 ---
 Lambda runs function code in response to invocations, meaning requests to execute the function. A synchronous caller waits for the result; an asynchronous caller hands work to Lambda's event queue. The invocation path determines who owns retries.
 

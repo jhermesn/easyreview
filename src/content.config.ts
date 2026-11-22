@@ -91,11 +91,18 @@ const sections = defineCollection({
       cards: z
         .array(z.object({ id: slugId, q: z.string(), a: z.string(), trap: z.boolean().default(false), facts: z.array(slugId).default([]) }))
         .default([]),
+      // Material changes (docs/content.md#revisions): readers who marked the section known before `date` are
+      // asked to re-read it, and the listed cards come due again.
+      revised: z.array(z.object({ date: z.coerce.date(), note: z.string().min(1), cards: z.array(slugId).default([]) })).default([]),
     })
     .superRefine((s, ctx) => {
       uniqueIds(s.facts, 'facts', ctx);
       uniqueIds(s.cards, 'cards', ctx);
       uniqueIds(s.diagrams, 'diagrams', ctx);
+      const cards = new Set(s.cards.map((c) => c.id));
+      s.revised.forEach((r, i) =>
+        r.cards.forEach((id, j) => cards.has(id) || ctx.addIssue({ code: 'custom', path: ['revised', i, 'cards', j], message: `card "${id}" is not in this section` })),
+      );
     }),
 });
 

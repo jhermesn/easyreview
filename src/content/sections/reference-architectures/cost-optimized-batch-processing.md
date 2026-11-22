@@ -179,6 +179,10 @@ cards:
     q: The operations team must be alerted when a Batch job finally fails. What fits with no polling?
     a: "Batch sends **job status change events to EventBridge**; a rule matching FAILED jobs sends the event to an **SNS topic**."
     facts: [batch-events, sns]
+revised:
+  - date: 2026-11-19
+    note: The maximum Lambda function timeout is now 1,800 seconds (30 minutes), up from 900 seconds (15 minutes).
+    cards: [reference-architectures-115]
 ---
 Cost questions about batch work give a nightly or event-driven workload, say it can be interrupted or must finish by morning, and ask for the cheapest design. The answer combines the right compute service, the right purchasing option for each part of the load, and storage classes that follow how the data is used.
 

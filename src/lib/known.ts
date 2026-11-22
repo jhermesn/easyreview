@@ -17,10 +17,30 @@ export function setKnown(ids: string[], known: boolean) {
 }
 
 const idsOf = (value = '') => value.split(',').filter(Boolean);
-const allKnown = (ids: string[], all: Known) => ids.length > 0 && ids.every((id) => all[id]);
+
+// Section id -> time of its latest material change (Base.astro writes them into every page).
+let revisions: Record<string, number> | undefined;
+function readRevisions(): Record<string, number> {
+  if (!revisions) {
+    try {
+      revisions = JSON.parse(document.querySelector('script[data-revisions]')?.textContent ?? '{}');
+    } catch {
+      revisions = {};
+    }
+  }
+  return revisions!;
+}
+// Marked known, but the section changed afterwards: the reader should re-read it, so it no longer counts.
+export const isUpdated = (id: string, all: Known, rev = readRevisions()) => !!all[id] && (rev[id] ?? 0) > all[id];
+const isKnown = (id: string, all: Known) => !!all[id] && !isUpdated(id, all);
+const allKnown = (ids: string[], all: Known) => ids.length > 0 && ids.every((id) => isKnown(id, all));
+const anyUpdated = (ids: string[], all: Known) => ids.some((id) => isUpdated(id, all));
 
 // Elements opt in with data attributes (values are comma-separated section ids):
-//   data-known="a,b"         gets .is-known when every id is known (a unit = its sections)
+//   data-known="a,b"         gets .is-known when every id is known (a unit = its sections), and
+//                            .is-updated when one of them changed after it was marked
+//   data-updated-only="a,b"  shown only while one of the ids is updated; a [data-updated-list]
+//                            around such elements is shown only while one of them is
 //   data-known-set="a,b|c"   groups split by "|" (a topic = its sections); sets --pct and fills
 //                            [data-known-count] with "known groups/total groups" and
 //                            [data-known-pct] with the share known, for spaces too small for the count
@@ -29,7 +49,13 @@ const allKnown = (ids: string[], all: Known) => ids.length > 0 && ids.every((id)
 //   img[data-badge-cert]      shows the gold badge once its cert is complete
 //   data-known-cert="cert-id" gets .is-known once that cert is complete
 export function applyKnown(all = readKnown()) {
-  document.querySelectorAll<HTMLElement>('[data-known]').forEach((el) => el.classList.toggle('is-known', allKnown(idsOf(el.dataset.known), all)));
+  document.querySelectorAll<HTMLElement>('[data-known]').forEach((el) => {
+    const ids = idsOf(el.dataset.known);
+    el.classList.toggle('is-known', allKnown(ids, all));
+    el.classList.toggle('is-updated', anyUpdated(ids, all));
+  });
+  document.querySelectorAll<HTMLElement>('[data-updated-only]').forEach((el) => (el.hidden = !anyUpdated(idsOf(el.dataset.updatedOnly), all)));
+  document.querySelectorAll<HTMLElement>('[data-updated-list]').forEach((el) => (el.hidden = !el.querySelector('[data-updated-only]:not([hidden])')));
   const complete = readJson<Record<string, boolean>>(KEYS.complete, {});
   document.querySelectorAll<HTMLElement>('[data-known-set]').forEach((el) => {
     const groups = (el.dataset.knownSet ?? '').split('|').map(idsOf).filter((g) => g.length);
