@@ -1,5 +1,5 @@
 ---
-source: f3a1097cc7f7
+source: 8aff00030a95
 title: Recursos técnicos
 summary: Onde a AWS publica documentação e orientação, quem pode ajudar além do AWS Support e como denunciar abuso.
 ---

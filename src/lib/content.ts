@@ -7,6 +7,7 @@ import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales';
 import { availableCerts, getCert, GOLDEN_TRAIL, isTrail, type Cert } from './certs';
 import { getGuide } from './guides';
 import { hashFile, mergeSection, sectionProblems } from './translate';
+import { CATEGORIES, categoryName } from './categories';
 
 // `lang` is the language the entry's text is in: the page's locale when a fresh translation exists, else English.
 export type Unit = CollectionEntry<'units'> & { lang: Locale };
@@ -107,28 +108,26 @@ export async function getCertView(certId: string, locale: Locale = DEFAULT_LOCAL
 }
 
 // The Golden Jacket trail: every published section of every unit, with no exam scope or level limit.
-// A unit goes in the domain of the first available cert (in catalog order) that shows it, so the trail
-// grows exam by exam; units no cert shows come last. A domain's weight is its share of the trail's sections.
-export const BEYOND_GUIDES = 'beyond';
+// Units are grouped by service category (src/lib/categories.ts); inside one, units the earliest available
+// cert shows come first, so the trail still starts with the entry-level exams. A category's weight is its
+// share of the trail's sections.
 async function trailView(locale: Locale): Promise<CertView> {
   const { units, sections } = await getContent(locale);
   const exams = await Promise.all(availableCerts().map((c) => getCertView(c.id, locale)));
-  const firstExam = new Map<string, string>();
-  for (const v of exams) for (const u of v.units) if (!firstExam.has(u.unit.id)) firstExam.set(u.unit.id, v.cert.id);
+  const firstExam = new Map<string, number>();
+  exams.forEach((v, i) => v.units.forEach((u) => firstExam.has(u.unit.id) || firstExam.set(u.unit.id, i)));
   const byUnit = new Map<string, Section[]>();
   for (const s of sections.values()) byUnit.set(unitIdOf(s), [...(byUnit.get(unitIdOf(s)) ?? []), s]);
-  const order = [...exams.map((v) => v.cert.id), BEYOND_GUIDES];
+  const order: string[] = CATEGORIES.map((c) => c.id);
+  const rank = (unitId: string) => firstExam.get(unitId) ?? exams.length;
   const trailUnits = [...byUnit]
-    .map(([unitId, list]) => ({ unit: units.get(unitId)!, domain: firstExam.get(unitId) ?? BEYOND_GUIDES, sections: list.sort(bySectionOrder) }))
-    .sort((a, b) => order.indexOf(a.domain) - order.indexOf(b.domain) || b.sections.length - a.sections.length || a.unit.data.title.localeCompare(b.unit.data.title));
+    .map(([unitId, list]) => ({ unit: units.get(unitId)!, domain: units.get(unitId)!.data.category, sections: list.sort(bySectionOrder) }))
+    .sort((a, b) => order.indexOf(a.domain) - order.indexOf(b.domain) || rank(a.unit.id) - rank(b.unit.id) || a.unit.data.title.localeCompare(b.unit.data.title));
   const all = trailUnits.flatMap((u) => u.sections);
   const share = (id: string) => trailUnits.filter((u) => u.domain === id).reduce((n, u) => n + u.sections.length, 0);
   const domains = order
     .filter((id) => share(id) > 0)
-    .map((id) => {
-      const cert = id === BEYOND_GUIDES ? undefined : getCert(id);
-      return { id, name: cert ? `${cert.code} ${cert.name}` : 'Beyond the exam guides', weight: Math.round((100 * share(id)) / all.length) };
-    });
+    .map((id) => ({ id, name: categoryName(id, locale), weight: Math.max(1, Math.round((100 * share(id)) / all.length)) }));
   return { cert: { ...GOLDEN_TRAIL, domains }, units: trailUnits, sections: all, missing: [] };
 }
 

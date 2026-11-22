@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { categoryIds } from './lib/categories';
 
 const tone = z.enum(['compute', 'storage', 'network', 'security', 'mgmt', 'database', 'devtools', 'integration', 'user', 'neutral']);
 // Official AWS Architecture Icon id from src/data/aws-icons.json (synced by scripts/sync-aws-icons.mjs).
@@ -64,7 +65,8 @@ const units = defineCollection({
   loader: glob({ base: './src/content/units', pattern: '*.md' }),
   // `names`: official and short service names. Mentions in other units' sections link here,
   // and exam guide service lists match against them (src/lib/guides.ts).
-  schema: z.object({ title: z.string(), names: z.array(z.string()).default([]), summary: z.string(), icon: iconId.optional() }),
+  // `category`: the service category the Golden Jacket trail lists the unit under (src/lib/categories.ts).
+  schema: z.object({ title: z.string(), names: z.array(z.string()).default([]), summary: z.string(), category: z.enum(categoryIds), icon: iconId.optional() }),
 });
 
 // Terms a unit's sections use that a reader may not know: src/content/glossary/<unit>.json.

@@ -77,7 +77,7 @@ const ptBr: Partial<Record<Key, string>> = {
   'passed.activeCount': '{n} certificações AWS',
 
   'trail.description': 'Revisão gratuita de todos os tópicos do site, em todos os níveis, para o Golden Jacket: resumos, diagramas passo a passo e {n} flashcards feitos a partir da documentação da AWS.',
-  'trail.intro': 'Todos os tópicos e seções do site, sem limite de escopo de exame ou de nível, para quem busca todas as certificações da AWS. Os tópicos ficam agrupados pelo primeiro exame que os cobra, então a trilha segue os exames em ordem. As marcações de sabido e o progresso dos flashcards são os mesmos das páginas dos exames.',
+  'trail.intro': 'Todos os tópicos e seções do site, sem limite de escopo de exame ou de nível, para quem busca todas as certificações da AWS. Os tópicos ficam agrupados por categoria de serviço; em cada uma, os que os exames de entrada cobram vêm primeiro. As marcações de sabido e o progresso dos flashcards são os mesmos das páginas dos exames.',
   'home.trail': 'Trilha Golden Jacket',
   'home.trail.text': 'Todos os tópicos, em todos os níveis, numa trilha só',
   'cert.description': 'Revisão gratuita para {cert}: resumos, diagramas passo a passo e {n} flashcards feitos a partir da documentação da AWS, ligados ao guia do exame.',

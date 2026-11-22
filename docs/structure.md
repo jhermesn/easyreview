@@ -2,12 +2,12 @@
 
 ## Content model
 
-- **Unit**: one AWS service, or one cross-service concept such as deployment strategies. `src/content/units/<unit>.md` holds the title, `names` (official and short service names), a one-line summary and a short intro.
+- **Unit**: one AWS service, or one cross-service concept such as deployment strategies. `src/content/units/<unit>.md` holds the title, `names` (official and short service names), a one-line summary, its service `category` (`src/lib/categories.ts`) and a short intro.
 - **Section**: one exam-relevant idea of a unit, `src/content/sections/<unit>/<slug>.md`. It holds the facts, cards and diagrams for that idea, plus its Markdown body.
 - **Fact**: one claim from an AWS documentation page, with the exact URL. Numbers, limits, defaults and dates live in facts and nowhere else. Cards cite the facts they rely on.
 - **Glossary**: `src/content/glossary/<unit>.json`, terms a unit's sections use that a reader may not know. A definition applies only inside its unit, because the same word can mean different things per service.
 - **Guide map**: `src/data/guides/<cert>.json` lists each exam guide item and the section ids that cover it, and each in-scope service with the unit about it (`unit`), or the section ids that cover it when the service has no unit of its own (`sections`). A cert shows exactly the sections its guide maps. A section mapped by several certs is shared, so the "known" mark a reader sets on it (`src/lib/known.ts`) shows in all of them.
-- **Golden Jacket trail**: `/golden-jacket/` shows every published section of every unit, with no exam scope or level limit. It is not an exam, so it stays out of `certs` (`GOLDEN_TRAIL` in `src/lib/certs.ts`); `src/lib/content.ts` builds it from the content, putting each unit under the first available cert that shows it. It shares known marks and flashcard progress with the cert pages and needs no maintenance when content changes.
+- **Golden Jacket trail**: `/golden-jacket/` shows every published section of every unit, with no exam scope or level limit. It is not an exam, so it stays out of `certs` (`GOLDEN_TRAIL` in `src/lib/certs.ts`); `src/lib/content.ts` builds it from the content, grouping units by their `category`. It shares known marks and flashcard progress with the cert pages and needs no maintenance when content changes.
 - **Study path**: `src/data/roadmaps/<cert>.json` orders the cert's units into stages for the cert page (`src/components/Roadmap.astro`). A unit added to a cert's guide must also go into one stage of its path.
 
 A section is published once it has facts and every card cites facts that exist in it (`src/lib/content.ts`). When a section renders, `src/lib/autolink.ts` gives the first mention of each glossary term a definition tooltip and links the first mention of another unit's `names` to that unit.
