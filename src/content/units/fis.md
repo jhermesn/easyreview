@@ -4,6 +4,7 @@ names: ["AWS Fault Injection Service", "AWS Fault Injection Simulator", "Fault I
 summary: Test workload failure behavior with scoped fault actions, health-based stop conditions, and
   recovery plans.
 icon: fault-injection-service
+category: resilience
 ---
 
 FIS experiments act on real AWS resources. Define the affected targets, action dependencies, permissions, and stopping criteria before running a planned test in pre-production.
