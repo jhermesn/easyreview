@@ -28,7 +28,7 @@ facts:
     text: By default, a failed SQS batch makes all messages visible again after visibility timeout, including successfully processed messages.
     source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html#services-sqs-errorhandling
   - id: sqs-batch-sizes
-    text: The maximum SQS mapping batch size is 10,000 for standard queues and 10 for FIFO queues; a size over 10 requires a batching window of at least one second.
+    text: The maximum SQS mapping batch size is 10,000 for standard queues and 10 for FIFO queues, or 10,000 for FIFO when the mapping uses provisioned mode; a size over 10 requires a batching window of at least one second.
     source: https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-configure.html#services-sqs-configure
   - id: sqs-batch-payload
     text: SQS batches must fit the 6 MB synchronous invocation payload quota, including variable-length message metadata, which can reduce the number of records delivered.
@@ -199,7 +199,7 @@ An event source mapping is a Lambda resource that reads a queue or stream and in
 ### Remember
 
 - The function timeout must be no greater than the SQS queue visibility timeout.
-- SQS mapping maximum batch size: 10,000 for standard, 10 for FIFO. More than 10 records requires at least a 1-second batching window.
+- SQS mapping maximum batch size: 10,000 for standard, 10 for FIFO (10,000 in provisioned mode). More than 10 records requires at least a 1-second batching window.
 - Put the DLQ on the SQS source queue. Put stream failure settings and destinations on the event source mapping.
 - Event source mappings: SQS, Kinesis, DynamoDB Streams, Amazon MQ, MSK, DocumentDB change streams.
 

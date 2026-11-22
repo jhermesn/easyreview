@@ -4,7 +4,7 @@ level: associate
 order: 10
 facts:
   - id: one-policy
-    text: Every KMS key must have exactly one key policy.
+    text: Every KMS key must have a key policy; a key shared through AWS RAM also has an AWS_RAM key policy that AWS RAM creates and manages.
     source: https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html
   - id: policy-access
     text: A key policy is the resource permission document controlling who can manage or use its KMS key.
@@ -124,7 +124,7 @@ AWS KMS authorizes key management and cryptographic operations, such as encrypti
 
 ### How it works
 
-1. Start with the key policy. Every KMS key has exactly one, and it controls that key in its own Region.
+1. Start with the key policy. Every KMS key has one, and it controls that key in its own Region; AWS RAM adds its own `AWS_RAM` policy to keys it shares.
 2. For IAM-based access, allow IAM delegation in the key policy, then grant the caller the required operation in IAM. The default account-principal statement uses the account root ARN, an AWS resource identifier, and `kms:*` to enable that delegation. It does not grant every identity access.
 3. The console default policy adds the selected key administrators and key users to the account-delegation statement.
 4. For policy-based access from another account, allow access in the owning key policy and in the caller account's IAM policy. An IAM deny can still block access even when IAM delegation is not enabled.

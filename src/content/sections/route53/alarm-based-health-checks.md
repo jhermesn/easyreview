@@ -4,7 +4,7 @@ level: associate
 order: 30
 facts:
   - id: private
-    text: Endpoint health checks cannot probe local, private, non-routable or multicast IP address ranges.
+    text: A public endpoint health check cannot probe local, private, non-routable or multicast addresses; a private endpoint health check sends requests from a health check source in your VPC to a private IP address or domain name.
     source: https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-IPAddress
   - id: alarm-stream
     text: An alarm-based health check reads the CloudWatch alarm metric data stream; OK means healthy and ALARM means unhealthy.
@@ -33,7 +33,7 @@ facts:
 cards:
   - id: route53-008
     q: A private application needs Route 53 failover, but public checkers cannot reach it. How should health be represented?
-    a: Use a CloudWatch alarm-based health check on an application-health metric. Endpoint checks cannot probe private IP ranges.
+    a: Use a private endpoint health check, which probes from a health check source in the VPC, or a CloudWatch alarm-based health check on an application-health metric. Public endpoint checks cannot probe private IP ranges.
     facts:
       - private
       - alarm-stream
@@ -96,6 +96,10 @@ diagrams:
     steps:
       - Represent private application health with a metric evaluated by an alarm.
       - Use the alarm metric data stream as the Route 53 health signal.
+revised:
+  - date: 2026-11-21
+    note: Route 53 can now health check private endpoints from a health check source in your VPC; only public endpoint checks cannot reach private addresses.
+    cards: [route53-008]
 ---
 An alarm-based Route 53 health check turns a CloudWatch metric signal into DNS health. It is useful for a private application that public endpoint checkers cannot reach. A metric is a series of measurements; an alarm evaluates those measurements against a condition.
 
@@ -108,7 +112,7 @@ An alarm-based Route 53 health check turns a CloudWatch metric signal into DNS h
 
 ### Exam cues
 
-- If the question says private IPs cannot be reached by Route 53 checkers, think an alarm-based check, because health can come from a metric rather than a public probe.
+- If the question says private IPs cannot be reached by Route 53 public checkers, think a private endpoint health check from a health check source in the VPC, or an alarm-based check, because health can also come from a metric.
 
 ### Remember
 
@@ -117,4 +121,4 @@ An alarm-based Route 53 health check turns a CloudWatch metric signal into DNS h
 - High-resolution metrics, extended statistics, M-out-of-N alarms and multi-metric math alarms are unsupported.
 - Insufficient data can mean Healthy, Unhealthy or LastKnownStatus. New LastKnownStatus checks start healthy.
 
-> **Trap:** A Route 53 endpoint health check cannot probe a private IP address. For a resource reachable only inside a VPC, base the check on a CloudWatch alarm instead.
+> **Trap:** A public Route 53 endpoint health check cannot probe a private IP address. For a resource reachable only inside a VPC, use a private endpoint health check with a health check source, or base the check on a CloudWatch alarm.

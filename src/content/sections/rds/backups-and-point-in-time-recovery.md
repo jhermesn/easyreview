@@ -51,7 +51,7 @@ facts:
     text: "RDS includes free backup storage up to 100 percent of the total provisioned database storage in the account for each Region, covering DB snapshots and DB cluster snapshots."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups
   - id: aurora-no-disable
-    text: "Aurora automated backups cannot be turned off; the cluster keeps continuous, incremental backups for its retention period (1 day by default)."
+    text: "Aurora automated backups cannot be turned off; the cluster keeps continuous, incremental backups for its retention period (by default 1 day when the cluster is created through the CLI or API, 7 days through the console)."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.Backup
   - id: mysql-s3-import
     text: "RDS for MySQL can create a new DB instance from backup files that you upload to Amazon S3."

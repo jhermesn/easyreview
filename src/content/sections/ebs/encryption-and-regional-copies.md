@@ -42,8 +42,7 @@ facts:
     text: EBS cannot remove encryption when copying an encrypted snapshot or restoring a volume from it.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-encryption.html#new-encrypted-volumes
   - id: sharing
-    text: Encrypted EBS snapshot sharing requires a customer managed key and access to both the snapshot
-      and the key; default AWS managed key snapshots cannot be shared.
+    text: Encrypted EBS snapshot sharing needs a customer managed key and access to both the snapshot and the key; a snapshot under the default AWS managed key cannot be shared by permission alone, but can be once a customer managed key is associated with it and shared.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-modifying-snapshot-permissions.html#share-snapshot-considerations
   - id: destination-key
     text: DLM cross-Region snapshot copies use a KMS key in the destination Region; a selected key must
@@ -81,8 +80,7 @@ cards:
   - id: ebs-038
     q: An encrypted EBS snapshot uses the default AWS managed key. Can its owner share it with a
       recovery account?
-    a: No. Copy it under a customer managed key, then share the snapshot and grant the recovery account
-      access to that key.
+    a: Not by granting permission alone. Associate a customer managed key with the snapshot, or copy it under one, then share the snapshot and grant the recovery account access to that key.
     trap: true
     facts:
       - sharing
@@ -157,6 +155,10 @@ diagrams:
         w: 710
         h: 230
         tone: mgmt
+revised:
+  - date: 2026-11-21
+    note: A snapshot encrypted with the default AWS managed key can now be shared after associating a customer managed key with it; before, it had to be copied first.
+    cards: [ebs-038]
 ---
 EBS encryption protects stored data and the transfer between an EC2 instance and its attached disk. It uses AWS KMS keys, encryption keys managed through AWS Key Management Service. Regional recovery adds a snapshot copy in the destination Region and access to a suitable encryption key.
 
@@ -173,7 +175,7 @@ To encrypt an existing unencrypted disk, take a snapshot, make an encrypted copy
 |---|---|---|
 | Encrypt future volumes and snapshot copies | EBS encryption by default | Per account and Region; existing resources stay unchanged |
 | Change an existing resource's key | Snapshot copy with another KMS key | Creates a new resource |
-| Share an encrypted snapshot | Customer managed key plus snapshot and key permissions | Default AWS managed key snapshots cannot be shared |
+| Share an encrypted snapshot | Customer managed key plus snapshot and key permissions | A default AWS managed key snapshot needs an associated customer managed key first |
 | Evaluate attached-volume encryption | AWS Config `encrypted-volumes` | Optional `kmsId` checks the expected key |
 
 ### Exam cues
@@ -190,4 +192,4 @@ To encrypt an existing unencrypted disk, take a snapshot, make an encrypted copy
 - EBS does not remove encryption when restoring or copying encrypted snapshots.
 - AWS Config's encryption rule evaluates attached volumes.
 
-> **Trap:** A shared encrypted snapshot still requires key access. A snapshot encrypted with the default AWS managed key must first be copied under a customer managed key before sharing.
+> **Trap:** A shared encrypted snapshot still requires key access. A snapshot encrypted with the default AWS managed key cannot be shared by permission alone: associate a customer managed key with it, or copy it under one, then share.

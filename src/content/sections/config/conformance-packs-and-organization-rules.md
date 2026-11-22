@@ -8,8 +8,7 @@ facts:
       entity to an account and Region or across an organization.
     source: https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html#conformance-packs
   - id: pack-template
-    text: A conformance pack uses a YAML template listing managed or custom Config rules and remediation
-      actions.
+    text: A custom conformance pack uses a YAML template listing managed or custom Config rules and remediation actions; an AWS managed conformance pack is predefined and maintained by AWS, so it deploys without a template.
     source: https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html#conformance-packs
   - id: pack-api
     text: PutOrganizationConformancePack deploys conformance packs across member accounts and can be

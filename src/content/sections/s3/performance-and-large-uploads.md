@@ -4,10 +4,13 @@ level: associate
 order: 150
 facts:
   - id: prefix-rate
-    text: Amazon S3 scales automatically to at least 3,500 PUT/COPY/POST/DELETE or 5,500 GET/HEAD requests per second per partitioned prefix, with no limit on the number of prefixes in a bucket.
+    text: Amazon S3 supports at least 3,500 PUT/COPY/POST/DELETE or 11,000 GET/HEAD requests per second per partitioned prefix, and scales gradually to higher rates as traffic grows, returning temporary 503 Slow Down errors while it scales.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html#optimizing-performance
   - id: prefix-parallel
-    text: Spreading reads across 10 prefixes can scale an application to about 55,000 read requests per second.
+    text: A prefix is the leading characters of an object key and the forward slash has no special meaning, so folder-like paths alone do not raise the request rate; to spread load, add entropy such as a hash character at the start of key names.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-design-patterns.html
+  - id: rate-change
+    text: In November 2026 the Amazon S3 documentation raised the per-prefix GET/HEAD baseline from 5,500 to 11,000 requests per second; the write baseline stays 3,500.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html#optimizing-performance
   - id: slow-down
     text: HTTP 503 Slow Down responses show which prefixes, keys or buckets are being throttled, and the AWS SDKs retry them automatically.
@@ -54,8 +57,8 @@ facts:
 cards:
   - id: s3-132
     q: An application writes 20,000 objects per second into a single S3 prefix and gets HTTP 503 Slow Down errors. What design change fixes it?
-    a: "Spread the keys across more prefixes.\nEach prefix supports at least 3,500 writes and 5,500 reads per second, and prefixes are unlimited."
-    facts: [prefix-rate, slow-down]
+    a: "Spread the keys across more prefixes, for example with a hash character at the start of each key name.\nEach prefix supports at least 3,500 writes and 11,000 reads per second, and S3 scales per prefix."
+    facts: [prefix-rate, prefix-parallel, slow-down]
   - id: s3-133
     q: Users on several continents upload multi-gigabyte files to one S3 bucket in us-east-1 and complain about slow uploads. Which two S3 features help most?
     a: "- **S3 Transfer Acceleration** (edge locations shorten the long-distance path).\n- **Multipart upload** (parallel parts, retry only failed parts)."
@@ -90,12 +93,16 @@ cards:
     q: "From what object size does AWS suggest multipart upload, and how many parts can one upload have?"
     a: "Around 100 MB, with up to 10,000 parts."
     facts: [multipart-guidance]
+revised:
+  - date: 2026-11-21
+    note: Amazon S3 now supports at least 11,000 GET/HEAD requests per second per prefix, up from 5,500, and recommends a hash character at the start of key names to spread load.
+    cards: [s3-132]
 ---
 Amazon S3 scales per prefix, so performance problems are usually design problems: one hot prefix, single-stream uploads, or long-distance transfers.
 
 ### How it works
 
-1. Each prefix gets its own request capacity; more prefixes means more parallel capacity.
+1. Each partitioned prefix gets its own request capacity; spreading keys across more prefixes lets S3 partition more of them in parallel. The `/` is not special, so add entropy (a hash character) at the start of key names.
 2. Large objects go up with multipart upload: initiate, upload parts in parallel, complete.
 3. Large reads use concurrent byte-range GETs.
 4. Distant clients use Transfer Acceleration, which enters the AWS network at the nearest edge location.
@@ -110,13 +117,13 @@ Amazon S3 scales per prefix, so performance problems are usually design problems
 
 ### Exam cues
 
-- If the question says high request rate and 503 errors, think more prefixes.
+- If the question says high request rate and 503 errors, think more prefixes. Questions written before November 2026 use 5,500 reads per second per prefix.
 - If the question says large files from around the world, think Transfer Acceleration plus multipart upload.
 - If the question says read only part of each object, think byte-range fetches.
 
 ### Remember
 
-- At least 3,500 writes and 5,500 reads per second per prefix; unlimited prefixes.
+- At least 3,500 writes and 11,000 reads per second per prefix (5,500 reads until November 2026).
 - Single PUT up to 5 GB; multipart up to 50 TB, parts 1 to 10,000.
 - Transfer Acceleration: enable on bucket, `s3-accelerate` endpoint, no periods in the name, extra charges may apply. IPv6 clients use `bucket-name.s3-accelerate.dualstack.amazonaws.com`.
 

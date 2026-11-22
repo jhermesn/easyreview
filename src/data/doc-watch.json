@@ -1122,6 +1122,7 @@
   "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html#object-lock-retention-periods": "26b92961c652a4e2",
   "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html#object-tagging": "bad32cad740d4ded",
   "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html#tagging-apis": "f8eae1a7abc8ceb4",
+  "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-design-patterns.html": "4303228d45dda987",
   "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-guidelines.html#optimizing-performance-guidelines-combine": "0786b27cbda5700a",
   "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-guidelines.html#optimizing-performance-guidelines-get-range": "972c4f67583ce33f",
   "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-guidelines.html#optimizing-performance-guidelines-measure-503": "06d4aa08b4bac90d",

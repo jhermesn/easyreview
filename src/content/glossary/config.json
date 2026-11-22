@@ -116,7 +116,7 @@
     "aliases": [
       "organization conformance pack"
     ],
-    "definition": "A template-defined bundle of Config rules and remediation actions deployed together.",
+    "definition": "A bundle of Config rules and remediation actions deployed together, either from your own YAML template or as an AWS managed pack.",
     "source": "https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html#conformance-packs"
   },
   {
