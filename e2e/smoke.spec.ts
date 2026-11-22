@@ -139,6 +139,15 @@ test('a flashcard flips and can be graded', async ({ page }) => {
   expect(saved).toBe(1);
 });
 
+test('a flashcard whose answer changed after its last review starts over as new', async ({ page }) => {
+  const reviewed = (at: number) => ({ due: at + 30 * 86_400_000, ivl: 30, ease: 2.5, reps: 5, lapses: 0, last: 'ok', at });
+  await page.goto('dop-c02/');
+  // lambda-061 was revised on 2026-11-19; lambda-001 never was.
+  await page.evaluate((p) => localStorage.setItem('easyreview:progress:v1', JSON.stringify(p)), { 'lambda-061': reviewed(Date.UTC(2026, 10, 1)), 'lambda-001': reviewed(Date.UTC(2026, 10, 1)) });
+  await page.goto('dop-c02/flashcards/');
+  await expect.poll(() => page.evaluate(() => Object.keys(JSON.parse(localStorage.getItem('easyreview:progress:v1') ?? '{}')))).toEqual(['lambda-001']);
+});
+
 test('search finds sections', async ({ page }) => {
   await page.goto('search/');
   await page.locator('[data-search]').fill('blue green');

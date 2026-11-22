@@ -63,3 +63,10 @@ export function describeDelay(ms: number, units: string[] = ['m', 'h', 'd', 'mo'
 export const isDue = (s: CardState | undefined, now = Date.now()) => !!s && s.due <= now;
 export const isNew = (s: CardState | undefined) => !s;
 export const isKnown = (s: CardState | undefined) => !!s && s.last === 'ok';
+
+// A card whose answer changed after its last review starts over as new, so the reader learns the new answer
+// instead of grading against the old one. `revised` is when the card's answer last changed.
+export function forgetRevised<T extends { id: string; revised?: number }>(progress: Record<string, CardState>, cards: T[]): Record<string, CardState> {
+  const stale = new Set(cards.filter((c) => c.revised && progress[c.id] && progress[c.id].at < c.revised).map((c) => c.id));
+  return Object.fromEntries(Object.entries(progress).filter(([id]) => !stale.has(id)));
+}

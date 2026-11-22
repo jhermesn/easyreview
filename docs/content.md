@@ -44,7 +44,7 @@ revised:
 ```
 
 - `date` is the day the change merges. Readers who marked the section known before the end of that day (UTC) see it as updated: an amber mark wherever it is listed, the `note` above the section, and a list on the home and cert pages. It stops counting as known until they mark it again.
-- `cards` lists the cards whose answer changed. A reader who last reviewed one of them before `date` gets it back as due.
+- `cards` lists the cards whose answer changed. A reader who last reviewed one of them before `date` gets it back as new: its schedule starts over, as for a card never seen.
 - `note` says what changed in one sentence, so the reader knows what to look for.
 - Typo fixes and rewording that keep the same claim get no entry.
 
