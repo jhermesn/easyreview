@@ -92,7 +92,7 @@ facts:
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html
   - id: endpoint-dns-names
     text: "Each interface endpoint receives Regional and zonal DNS names. These resolve to its network interfaces and work when private DNS is off."
-    source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-dns
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-dns-hostnames
   - id: udp-support
     text: "Since October 2024, AWS PrivateLink supports UDP over IPv4 and IPv6; before that it supported only TCP."
     source: https://aws.amazon.com/about-aws/whats-new/2024/10/aws-udp-privatelink-dual-stack-network-load-balancers/
