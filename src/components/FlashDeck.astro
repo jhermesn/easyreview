@@ -1,21 +1,9 @@
 ---
+import type { DeckCard } from '../lib/content';
 import { formatRich, jsonForScript } from '../lib/format';
 import Icon from './Icon.astro';
 import { localeOf, useTranslations } from '../i18n';
 
-export interface DeckCard {
-  id: string;
-  topic: string;
-  topicTitle: string;
-  domain: string;
-  q: string;
-  a: string;
-  trap: boolean;
-  // BCP 47 tag of the card's text, which stays English until its section is translated.
-  lang: string;
-  // Time of the card's latest material change: a card last reviewed before it is due again.
-  revised?: number;
-}
 interface Props {
   cards: DeckCard[];
   filters?: boolean;
