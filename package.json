@@ -12,6 +12,7 @@
     "translations": "node scripts/translations.mjs",
     "lint:links": "lychee 'src/content/sections/**/*.md' 'src/content/glossary/*.json'",
     "test": "vitest run",
+    "typecheck": "astro sync && tsc --noEmit",
     "test:e2e": "playwright test"
   },
   "dependencies": {
@@ -22,6 +23,8 @@
   },
   "devDependencies": {
     "@playwright/test": "1.65.0",
+    "@types/three": "0.187.0",
+    "typescript": "7.0.2",
     "vitest": "5.1.0"
   }
 }
