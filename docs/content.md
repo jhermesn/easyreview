@@ -43,7 +43,7 @@ revised:
     cards: [lambda-061, lambda-063]
 ```
 
-- `date` is the day the change merges. Readers who marked the section known before the end of that day (UTC) see it as updated: an amber mark wherever it is listed, the `note` above the section, and a list on the home and cert pages. It stops counting as known until they mark it again.
+- `date` is the day the change merges. Readers who marked the section known before the end of that day (UTC) see it as updated; on the merge day itself the cutoff is the build of the site that ships the change, so a mark made after the release still counts. Those readers get an amber mark wherever it is listed, the `note` above the section, and a list on the home and cert pages. It stops counting as known until they mark it again.
 - `cards` lists the cards whose answer changed. A reader who last reviewed one of them before `date` gets it back as new: its schedule starts over, as for a card never seen.
 - `note` says what changed in one sentence, so the reader knows what to look for.
 - Typo fixes and rewording that keep the same claim get no entry.
