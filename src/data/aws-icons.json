@@ -126,6 +126,110 @@
    "kind": "service",
    "name": "AWS Budgets"
   },
+  "cat-analytics": {
+   "kind": "category",
+   "name": "Analytics"
+  },
+  "cat-application-integration": {
+   "kind": "category",
+   "name": "Application Integration"
+  },
+  "cat-artificial-intelligence": {
+   "kind": "category",
+   "name": "Artificial Intelligence"
+  },
+  "cat-blockchain": {
+   "kind": "category",
+   "name": "Blockchain"
+  },
+  "cat-business-applications": {
+   "kind": "category",
+   "name": "Business Applications"
+  },
+  "cat-cloud-financial-management": {
+   "kind": "category",
+   "name": "Cloud Financial Management"
+  },
+  "cat-compute": {
+   "kind": "category",
+   "name": "Compute"
+  },
+  "cat-containers": {
+   "kind": "category",
+   "name": "Containers"
+  },
+  "cat-customer-enablement": {
+   "kind": "category",
+   "name": "Customer Enablement"
+  },
+  "cat-customer-experience": {
+   "kind": "category",
+   "name": "Customer Experience"
+  },
+  "cat-databases": {
+   "kind": "category",
+   "name": "Databases"
+  },
+  "cat-developer-tools": {
+   "kind": "category",
+   "name": "Developer Tools"
+  },
+  "cat-end-user-computing": {
+   "kind": "category",
+   "name": "End User Computing"
+  },
+  "cat-front-end-web-mobile": {
+   "kind": "category",
+   "name": "Front End Web Mobile"
+  },
+  "cat-games": {
+   "kind": "category",
+   "name": "Games"
+  },
+  "cat-internet-of-things": {
+   "kind": "category",
+   "name": "Internet of Things"
+  },
+  "cat-management-tools": {
+   "kind": "category",
+   "name": "Management Tools"
+  },
+  "cat-media-services": {
+   "kind": "category",
+   "name": "Media Services"
+  },
+  "cat-migration-modernization": {
+   "kind": "category",
+   "name": "Migration Modernization"
+  },
+  "cat-multicloud-and-hybrid": {
+   "kind": "category",
+   "name": "Multicloud and Hybrid"
+  },
+  "cat-networking-content-delivery": {
+   "kind": "category",
+   "name": "Networking Content Delivery"
+  },
+  "cat-quantum-technologies": {
+   "kind": "category",
+   "name": "Quantum Technologies"
+  },
+  "cat-satellite": {
+   "kind": "category",
+   "name": "Satellite"
+  },
+  "cat-security-identity": {
+   "kind": "category",
+   "name": "Security Identity"
+  },
+  "cat-serverless": {
+   "kind": "category",
+   "name": "Serverless"
+  },
+  "cat-storage": {
+   "kind": "category",
+   "name": "Storage"
+  },
   "certificate-manager": {
    "kind": "service",
    "name": "AWS Certificate Manager"

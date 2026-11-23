@@ -8,7 +8,8 @@
 //        node scripts/sync-aws-icons.mjs --check   (build: no package needed; every used icon must be
 //                                                   indexed and copied)
 // Ids: services drop the Amazon/AWS prefix ("codedeploy", "route-53"); resources are
-// "res-<service>-<resource>" or "res-<name>" for general icons; groups are "group-<name>".
+// "res-<service>-<resource>" or "res-<name>" for general icons; groups are "group-<name>";
+// service categories are "cat-<name>" ("cat-artificial-intelligence").
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
 
@@ -69,6 +70,9 @@ for (const file of walk(pkg)) {
     const id = `res-${slug(stripVendor(m[1]))}`;
     if (icons[id] && !m[2]) continue;
     icons[id] = { kind: 'resource', name: m[1].replace(/_/g, ' ').replace(/-/g, ' '), file };
+  } else if ((m = /^Arch-Category_(.+)_48$/.exec(name))) {
+    // Category icons stand for a whole service category, for units about a cross-service concept.
+    icons[`cat-${slug(m[1])}`] = { kind: 'category', name: m[1].replace(/-/g, ' '), file };
   } else if ((m = /^(.+)_32(_Dark)?$/.exec(name)) && file.includes('Architecture-Group-Icons')) {
     const id = `group-${slug(m[1])}`;
     if (icons[id] && !m[2]) continue;

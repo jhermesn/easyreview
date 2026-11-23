@@ -2,7 +2,7 @@
 
 ## Content model
 
-- **Unit**: one AWS service, or one cross-service concept such as deployment strategies. `src/content/units/<unit>.md` holds the title, `names` (official and short service names), a one-line summary, its service `category` (`src/lib/categories.ts`) and a short intro.
+- **Unit**: one AWS service, or one cross-service concept such as deployment strategies. `src/content/units/<unit>.md` holds the title, `names` (official and short service names), a one-line summary, its service `category` (`src/lib/categories.ts`), an `icon` (the service's AWS icon, or the category icon `cat-<name>` for a cross-service concept) and a short intro.
 - **Section**: one exam-relevant idea of a unit, `src/content/sections/<unit>/<slug>.md`. It holds the facts, cards and diagrams for that idea, plus its Markdown body.
 - **Fact**: one claim from an AWS documentation page, with the exact URL. Numbers, limits, defaults and dates live in facts and nowhere else. Cards cite the facts they rely on.
 - **Glossary**: `src/content/glossary/<unit>.json`, terms a unit's sections use that a reader may not know. A definition applies only inside its unit, because the same word can mean different things per service.
