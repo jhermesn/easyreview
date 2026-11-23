@@ -74,13 +74,21 @@ cards:
     a: An Amazon EventBridge rule on root user activity recorded by CloudTrail, sending the alert through Amazon SNS.
     facts: [monitor-root]
   - id: iam-098
-    q: Which AWS services can notify a security team when the AWS account root user signs in?
-    a: A CloudWatch Events (EventBridge) rule that matches root user sign-in, with an Amazon SNS notification.
-    facts: [cloudwatch-events-rule, monitor-root]
+    q: "Which alternate contacts can an AWS account have?"
+    a: "Up to three: billing, operations and security. They can be distribution lists, and the root email still receives all messages."
+    facts: [alternate-contacts]
   - id: iam-103
-    q: "How can an AWS account owner protect the root user credentials?"
-    a: "Use a strong password and multi-factor authentication, avoid root access keys and secure account recovery mechanisms."
-    facts: [protections]
+    q: "How can AWS Organizations centrally remove root user credentials from member accounts?"
+    a: "Use centralized root access. New member accounts then have no root user credentials by default."
+    facts: [central-root]
+
+revised:
+  - date: 2026-11-23
+    note: The root credential card now tests centralized root access.
+    cards: [iam-103]
+  - date: 2026-11-23
+    note: The root notification card now tests account alternate contacts.
+    cards: [iam-098]
 ---
 Every AWS account starts with a root user: the email address and password used to create it, with complete access to everything in the account. That power makes it the most valuable credential to protect, and AWS recommends keeping it locked away for the few tasks only it can do.
 

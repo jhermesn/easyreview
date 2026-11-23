@@ -39,6 +39,48 @@ facts:
   - id: principal-wildcards
     text: A Principal ARN cannot use a wildcard to match only part of a principal name or ARN.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying
+cards:
+  - id: iam-008
+    q: An IAM role in account A reads an S3 object in account B using its original credentials. Which policies
+      must allow the action?
+    a: The role identity policy in A and the bucket resource policy in B. Applicable policy limits and explicit
+      denies can still block the request.
+    facts:
+      - cross-both-allow
+      - cross-limits
+  - id: iam-009
+    q: A team copies S3 objects across accounts and wants to keep using its original principal permissions. Which
+      access pattern fits?
+    a: A resource-based bucket policy that grants the original principal access, together with its identity
+      policy. Assuming a role uses the role permissions; it does not merge the original permissions into that
+      session.
+    trap: true
+    facts:
+      - resource-preserves-permissions
+      - role-replaces-permissions
+      - cross-both-allow
+  - id: iam-010
+    q: An IAM principal cannot assume a role in another AWS account. Which two permissions should the team inspect
+      first?
+    a: The caller identity policy must allow sts:AssumeRole on the target role ARN, and the target role trust
+      policy must trust the caller or its account.
+    facts:
+      - role-caller-allow
+      - role-trust-allow
+  - id: iam-042
+    q: Does trusting an AWS account in an IAM role trust policy automatically authorize every identity in that
+      account?
+    a: No. It delegates authority to that account, which must grant its caller sts:AssumeRole permission.
+    trap: true
+    facts:
+      - trust-account-delegation
+      - role-caller-allow
+  - id: iam-043
+    q: A service has no resource-based policy support. How can a principal in another AWS account access it?
+    a: Assume a role in the resource account whose permissions cover the required actions.
+    facts:
+      - resource-support
+      - role-credentials
 diagrams:
   - id: iam-cross-account-role
     title: Cross-account role assumption
@@ -117,48 +159,6 @@ diagrams:
       - Account A authorizes the caller to invoke AssumeRole on the target role.
       - The target trust policy in B allows assumption and STS issues credentials.
       - The caller accesses the bucket with the temporary role credentials.
-cards:
-  - id: iam-008
-    q: An IAM role in account A reads an S3 object in account B using its original credentials. Which policies
-      must allow the action?
-    a: The role identity policy in A and the bucket resource policy in B. Applicable policy limits and explicit
-      denies can still block the request.
-    facts:
-      - cross-both-allow
-      - cross-limits
-  - id: iam-009
-    q: A team copies S3 objects across accounts and wants to keep using its original principal permissions. Which
-      access pattern fits?
-    a: A resource-based bucket policy that grants the original principal access, together with its identity
-      policy. Assuming a role uses the role permissions; it does not merge the original permissions into that
-      session.
-    trap: true
-    facts:
-      - resource-preserves-permissions
-      - role-replaces-permissions
-      - cross-both-allow
-  - id: iam-010
-    q: An IAM principal cannot assume a role in another AWS account. Which two permissions should the team inspect
-      first?
-    a: The caller identity policy must allow sts:AssumeRole on the target role ARN, and the target role trust
-      policy must trust the caller or its account.
-    facts:
-      - role-caller-allow
-      - role-trust-allow
-  - id: iam-042
-    q: Does trusting an AWS account in an IAM role trust policy automatically authorize every identity in that
-      account?
-    a: No. It delegates authority to that account, which must grant its caller sts:AssumeRole permission.
-    trap: true
-    facts:
-      - trust-account-delegation
-      - role-caller-allow
-  - id: iam-043
-    q: A service has no resource-based policy support. How can a principal in another AWS account access it?
-    a: Assume a role in the resource account whose permissions cover the required actions.
-    facts:
-      - resource-support
-      - role-credentials
 ---
 
 Cross-account access lets an identity in one AWS account use resources in another. A role changes the credentials used for the work. A resource policy shares a resource with the original principal.

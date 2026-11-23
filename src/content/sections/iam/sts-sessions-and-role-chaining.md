@@ -56,12 +56,9 @@ cards:
       - assumerole-default
       - assumerole-range
   - id: iam-045
-    q: Which three values must an application use from an AWS STS temporary credential set?
-    a: The access key ID, secret access key and session token. Retrieve replacement credentials before expiration
-      for continued access.
-    facts:
-      - sts-credential-parts
-      - session-expiration
+    q: "What can an AWS STS client do if it cannot reach its original Regional endpoint?"
+    a: "Choose another Regional endpoint."
+    facts: [regional-endpoints]
   - id: iam-046
     q: A pipeline needs project session tags to survive when role A assumes role B. What should it configure?
     a: Mark the session tags as transitive. Ordinary session tags do not automatically pass to the next role
@@ -75,6 +72,10 @@ cards:
       activity.
     facts:
       - source-identity
+revised:
+  - date: 2026-11-23
+    note: The temporary credential card now tests Regional endpoint selection.
+    cards: [iam-045]
 ---
 
 AWS Security Token Service (STS) issues temporary credentials for a session. Role chaining is the use of an existing role session to assume another role. Each session acts with its selected role permissions.

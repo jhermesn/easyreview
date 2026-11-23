@@ -75,9 +75,6 @@ facts:
   - id: kinesis-agent
     text: "Kinesis Agent is a Java application for Linux servers that watches log files and sends new lines to a Kinesis data stream."
     source: https://docs.aws.amazon.com/streams/latest/dev/writing-with-agents.html#writing-with-agents
-  - id: consumer-destinations
-    text: A Kinesis Data Streams consumer can write its output to Amazon S3 or Amazon Redshift.
-    source: https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#high-level-architecture
   - id: reshard-update
     text: UpdateShardCount changes the number of shards in a stream.
     source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-using-sdk-java-resharding.html#kinesis-using-sdk-java-resharding
@@ -96,7 +93,15 @@ facts:
   - id: producer-shard-order
     text: Kinesis Data Streams sequence numbers are ordered within a shard, not across shards.
     source: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html#API_PutRecord
+  - id: consumer-producer-retry
+    text: A producer retry after an uncertain acknowledgement can store duplicate payloads with
+      different sequence numbers; an application-level key can identify duplicates.
+    source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html#kinesis-record-processor-duplicates-producer
 cards:
+  - id: kinesis-data-streams-002
+    q: Can a Kinesis Data Streams producer override the default partition key mapping to a shard?
+    a: Yes. The default MD5 partition key mapping can be explicitly overridden.
+    facts: [shard-hash]
   - id: kinesis-data-streams-001
     q: What sustained write and shared-read capacity does one Kinesis Data Streams shard provide?
     a: "Writes: 1 MB/s or 1000 records/s. Shared reads: 2 MB/s with up to 5 GetRecords calls/s.
@@ -154,10 +159,6 @@ cards:
     q: What TLS versions should a client use to connect to the Kinesis Data Streams API?
     a: Clients must support TLS 1.2; AWS recommends TLS 1.3.
     facts: [shard-tls]
-  - id: kinesis-data-streams-027
-    q: Where can a Kinesis Data Streams consumer store its processed output?
-    a: It can write the results to Amazon S3 or Amazon Redshift.
-    facts: [consumer-destinations]
   - id: kinesis-data-streams-028
     q: How can a team adjust provisioned Kinesis Data Streams shard capacity?
     a: Use UpdateShardCount or split and merge shards. Splitting increases capacity; merging reduces it.
@@ -165,12 +166,15 @@ cards:
   - id: kinesis-data-streams-029
     q: A Kinesis Data Streams producer retries after a timeout. How can its application recognize duplicate records?
     a: Include an application key in each record and use it to identify duplicates.
-    facts: [producer-retry-duplicates, producer-dedup-key]
+    facts: [producer-retry-duplicates, producer-dedup-key, consumer-producer-retry]
   - id: kinesis-data-streams-030
     q: How can a Kinesis Data Streams producer ensure increasing sequence numbers for records with the same partition key?
     a: Write serially to one shard with PutRecord and set SequenceNumberForOrdering to the previous record sequence number. Sequence numbers do not establish order across shards.
     facts: [producer-ordered-writes, producer-shard-order]
 revised:
+  - date: 2026-11-23
+    note: The partition key card now tests whether the default shard mapping can be overridden.
+    cards: [kinesis-data-streams-002]
   - date: 2026-11-23
     note: Two cards now cover encryption at rest and TLS for Kinesis API connections.
     cards: [kinesis-data-streams-023, kinesis-data-streams-025]
@@ -221,7 +225,7 @@ diagrams:
       - A hash in another range selects shard B; one hot key stays on its mapped shard.
 ---
 
-Kinesis Data Streams stores records for applications to process independently. A shard is an ordered lane of records with its own capacity. The partition key is the producer's grouping value that normally decides which lane receives a record.
+Kinesis Data Streams shard capacity builds on real-time streams. A shard is an ordered lane of records with its own capacity. The partition key is the producer's grouping value that normally decides which lane receives a record.
 
 ### How it works
 
@@ -238,9 +242,8 @@ Kinesis Data Streams stores records for applications to process independently. A
 
 ### Exam cues
 
-- If the question says store processed stream results, think a consumer writing to S3 or Redshift, because consumer applications choose their output destination.
 - If the question says adjust provisioned stream capacity, think UpdateShardCount or shard splits and merges, because the shard count controls capacity.
-- If the question says a producer retries after a timeout, think duplicate records and an application key, because the first write may have succeeded.
+- If the question says a producer retries after a timeout, think duplicate records and an application key, because the first write may have succeeded with a different sequence number.
 - If the question says strict order for one partition key, think PutRecord with SequenceNumberForOrdering, because it orders writes for that key.
 - If the question says most shards are idle but writes throttle, think hot partition key, because the same key maps to one shard.
 - If the question says unpredictable traffic with no shard management, think On-demand Standard, because it automatically manages capacity.

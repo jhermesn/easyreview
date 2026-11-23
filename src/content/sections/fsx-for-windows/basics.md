@@ -10,7 +10,7 @@ facts:
     text: FSx for Windows File Server provides managed Windows file servers and supports SMB versions 2.0 through 3.1.1.
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#fsx-access-shares
   - id: active-directory
-    text: FSx for Windows File Server joins an AWS Managed Microsoft AD or self-managed Microsoft Active Directory domain for authentication and access control.
+    text: For authentication and access control, FSx for Windows File Server joins a Microsoft Active Directory domain, either AWS Managed Microsoft AD or one the customer runs.
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/aws-ad-integration-fsxW.html#aws-ad-integration-fsxW
 cards:
   - id: fsx-for-windows-010
@@ -18,9 +18,20 @@ cards:
     a: "Amazon FSx for Windows File Server."
     facts: [windows-files]
   - id: fsx-for-windows-001
-    q: Which AWS service fits Windows SMB shares with Active Directory authentication?
-    a: FSx for Windows File Server. It supports SMB and joins Microsoft Active Directory.
-    facts: [smb, active-directory]
+    q: Which types of Active Directory can FSx for Windows File Server join for authentication?
+    a: Either AWS Managed Microsoft AD or a Microsoft Active Directory domain the customer runs.
+    facts: [active-directory]
+  - id: fsx-for-windows-004
+    q: "Which SMB versions does Amazon FSx for Windows File Server support?"
+    a: "SMB versions 2.0 through 3.1.1."
+    facts: [smb]
+revised:
+  - date: 2026-11-23
+    note: The directory card now tests the supported Active Directory types.
+    cards: [fsx-for-windows-001]
+  - date: 2026-11-23
+    note: The SMB card now tests the supported protocol versions.
+    cards: [fsx-for-windows-004]
 ---
 Amazon FSx for Windows File Server gives Windows workloads managed file shares.
 
@@ -37,5 +48,6 @@ Amazon FSx for Windows File Server gives Windows workloads managed file shares.
 ### Remember
 
 - Native Windows file system.
+- SMB versions 2.0 through 3.1.1 are supported.
 
 > **Trap:** Linux shared files use Amazon EFS; Windows shares use FSx for Windows File Server.

@@ -55,6 +55,9 @@ facts:
   - id: default-security-group
     text: "When an EC2 instance is launched without a specified security group, EC2 associates the VPC default security group."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/default-security-group.html
+  - id: default-sg-inbound
+    text: "The default security group initially allows inbound traffic from resources associated with that same security group."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/default-security-group.html#default-security-group-default-rules
 cards:
   - id: vpc-062
     q: "What does a security group do in an Amazon VPC?"
@@ -99,6 +102,11 @@ cards:
     q: "Which security group does Amazon EC2 associate with an instance launched without a specified security group?"
     a: "The VPC default security group."
     facts: [default-security-group]
+  - id: vpc-114
+    q: "What inbound traffic does a new Amazon VPC default security group allow?"
+    a: "Traffic from resources associated with the same security group."
+    facts: [default-sg-inbound]
+
 ---
 A VPC has two built-in network filters: security groups around instances and network ACLs around subnets.
 
@@ -110,6 +118,7 @@ A VPC has two built-in network filters: security groups around instances and net
 
 ### Exam cues
 
+- If the question says members of the default security group can communicate, think its default inbound self-reference.
 - If the question says no security group was specified for an EC2 instance, think the VPC default security group, because EC2 associates it at launch.
 - If the question says instance-level firewall, think security group.
 - If the question says subnet-level allow and deny rules, think network ACL.

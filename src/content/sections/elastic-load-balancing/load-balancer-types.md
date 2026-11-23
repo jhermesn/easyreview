@@ -127,9 +127,6 @@ facts:
   - id: nlb-fail-open
     text: If all targets fail health checks across enabled zones, an NLB fails open and routes to targets regardless of health.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html
-  - id: alb-fail-open
-    text: An ALB target group with only unhealthy registered targets fails open and routes to those targets.
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html
   - id: gwlb-endpoint
     text: A Gateway Load Balancer endpoint connects consumer and appliance VPCs; consumer route tables direct traffic to the endpoint, which must be in a different subnet from application servers.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/introduction.html#gateway-load-balancer-overview
@@ -148,9 +145,6 @@ facts:
   - id: host-wildcard
     text: "In an ALB host condition, *.example.com matches test.example.com but not example.com; host matching is not case-sensitive, while path patterns are case-sensitive."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#host-conditions
-  - id: path-routing
-    text: "A path-pattern condition routes by URL path, so one ALB can send /orders/* and /products/* to different target groups."
-    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions
   - id: nlb-primary-ip
     text: "When NLB targets are registered by instance ID, traffic goes to the primary private IP address of the instance primary network interface."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#request-routing-ip-addresses
@@ -190,6 +184,12 @@ facts:
   - id: listener-port-unique
     text: CreateListener returns DuplicateListener when a conflicting listener already uses the specified port on the load balancer.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html#API_CreateListener_Errors
+  - id: alb-fail-open
+    text: An ALB target group with only unhealthy registered targets fails open and routes to those targets.
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html
+  - id: path-routing
+    text: "A path-pattern condition routes by URL path, so one ALB can send /orders/* and /products/* to different target groups."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html#path-conditions
 cards:
   - id: elastic-load-balancing-009
     q: An ALB must route requests by HTTP method and query string. Which feature handles this?
@@ -344,9 +344,9 @@ cards:
     trap: true
     facts: [host-wildcard]
   - id: elastic-load-balancing-064
-    q: "Requests to /orders must reach one microservice and requests to /products another, behind one load balancer. Which ALB routing fits?"
-    a: "Path-based routing: listener rules with path-pattern conditions that forward to a separate target group per service. Host-based routing would split by domain name instead."
-    facts: [path-routing]
+    q: Are Application Load Balancer host and path condition matches case-sensitive?
+    a: Host matching is not case-sensitive, while path patterns are case-sensitive.
+    facts: [host-wildcard]
   - id: elastic-load-balancing-065
     q: "An NLB target group registers EC2 instances by instance ID. Which IP address receives the traffic?"
     a: "The primary private IP address of each instance primary network interface, not a public or Elastic IP."
@@ -439,18 +439,16 @@ diagrams:
     steps:
       - Evaluate listener rules in priority order.
       - A forward action selects a target group using its configured weight.
+revised:
+  - date: 2026-11-23
+    note: The card now compares case sensitivity for host and path conditions.
+    cards: [elastic-load-balancing-064]
 ---
 An Elastic Load Balancing listener is the entry point that accepts connections on a configured protocol and port. A target group is a set of destinations, such as EC2 instances, to which listener rules can send traffic.
 
 ### How it works
 
-1. Choose the load balancer for the traffic being handled.
-
-   | Type | Use when | Routing detail |
-   |---|---|---|
-   | Application Load Balancer (ALB) | HTTP or HTTPS request content decides the destination | Host, path, headers, method, source IP, or query string |
-   | Network Load Balancer (NLB) | Transport protocols or static zonal addresses are required | TCP, TLS, UDP, TCP_UDP, QUIC, or TCP_QUIC listeners |
-   | Gateway Load Balancer (GWLB) | Virtual appliances inspect IP traffic | GENEVE, a packet encapsulation protocol, on port 6081 |
+1. ALB listener conditions can match headers, methods, source IP addresses and query strings as well as host names and paths.
 
 2. Choose the scheme. Internet-facing load balancers accept internet clients through public addresses. Internal load balancers use private addresses and require access to the virtual private cloud (VPC), an isolated virtual network. Both reach targets through private addresses.
 3. For a regional ALB using Availability Zones, select subnets, address ranges within a VPC, in at least two different zones. Allow a /27 or larger address block and at least eight free IP addresses in each subnet so nodes can scale.
@@ -464,7 +462,7 @@ An Elastic Load Balancing listener is the entry point that accepts connections o
    | `fixed-response` | Return a configured HTTP response without a target |
 
 6. Allow listener and health check traffic through security group rules in both directions. A security group is a firewall that controls allowed network traffic.
-7. Elastic Load Balancing creates a node in each enabled Availability Zone. Load balancer capacity scales as incoming traffic changes.
+7. Elastic Load Balancing creates a node in each enabled Availability Zone.
 
    Choose encryption and addresses separately. TLS, the protocol that encrypts a connection, can terminate at an NLB TLS listener or pass through an NLB TCP listener on port 443. A dualstack ALB accepts both IPv4 and IPv6 clients while its target group controls the target address type. For internet clients that need only IPv6, dualstack without public IPv4 avoids public IPv4 addresses; this option requires an internet-facing ALB.
 8. For Lambda targets, the function and target group must share an account and Region.
@@ -504,7 +502,7 @@ An internet-facing load balancer can front the web tier while an internal load b
 - The default ALB listener rule runs last.
 - Dualstack describes the client-facing address choice; the target group controls backend addressing.
 - ALB Lambda request body and response JSON limits are 1 MB each.
-- When all registered targets are unhealthy, ALB and NLB can fail open and send traffic to unhealthy targets.
+- When all registered targets are unhealthy, NLB can fail open and send traffic to unhealthy targets.
 - HTTPS target groups encrypt traffic from the ALB to its targets.
 
 > **Trap:** An unhealthy weighted ALB target group does not cause automatic failover to the other weighted group. Plan how the group weights will change.

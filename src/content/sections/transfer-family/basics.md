@@ -6,11 +6,22 @@ facts:
   - id: managed-sftp
     text: "AWS Transfer Family is a fully managed service for transferring files into and out of AWS storage over protocols such as SFTP."
     source: https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html#what-is-aws-transfer-family
+  - id: what
+    text: AWS Transfer Family is a fully managed service for transferring files into and out of Amazon S3 or Amazon EFS over SFTP, FTPS, FTP, AS2 and web browser-based transfers.
+    source: https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html#what-is-aws-transfer-family
 cards:
   - id: transfer-family-009
     q: "A company is moving files into AWS storage and wants a managed service that supports SFTP. Which service fits?"
     a: "AWS Transfer Family transfers files into and out of AWS storage over protocols such as SFTP."
     facts: [managed-sftp]
+  - id: transfer-family-004
+    q: Which storage services can AWS Transfer Family write to?
+    a: "Amazon S3 and Amazon EFS."
+    facts: [what]
+  - id: transfer-family-005
+    q: Which protocols does AWS Transfer Family support?
+    a: "SFTP, FTPS, FTP and AS2, plus browser-based web apps."
+    facts: [what]
 ---
 AWS Transfer Family gives partners a managed SFTP (and similar protocols) endpoint backed by AWS storage.
 
@@ -27,5 +38,6 @@ AWS Transfer Family gives partners a managed SFTP (and similar protocols) endpoi
 ### Remember
 
 - Managed file transfer protocols.
+- Protocols include SFTP, FTPS, FTP and AS2; storage can be S3 or EFS.
 
 > **Trap:** Transfer Family serves partners using file protocols; DataSync moves bulk data between storage systems.

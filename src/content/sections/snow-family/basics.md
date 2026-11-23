@@ -3,16 +3,19 @@ title: "Snow Family basics"
 level: foundational
 order: 5
 facts:
-  - id: snow-closed
-    text: "AWS Snowball Edge is no longer available to new customers; AWS points new customers to DataSync for online transfers, AWS Data Transfer Terminal for physical transfers, and Outposts for edge computing."
+  - id: what
+    text: "Snowball Edge is a shippable device with its own storage and compute: it processes data and runs edge workloads on site, and a carrier moves it, with the data, to or from AWS."
     source: https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html#whatisedge
+  - id: closed
+    text: Only existing customers can use AWS Snowball Edge since November 7, 2025. For new customers AWS suggests AWS DataSync to move data over the network, AWS Data Transfer Terminal for physical transfers and AWS Outposts for compute at the edge.
+    source: https://docs.aws.amazon.com/snowball/latest/developer-guide/doc-history.html#doc-history
 cards:
   - id: snow-family-007
     q: "A new AWS customer asks for Snowball Edge to move data. What does AWS suggest now?"
     a: "Snowball Edge is closed to new customers. Use AWS DataSync online, AWS Data Transfer Terminal for physical transfer, or AWS Outposts for edge computing."
-    facts: [snow-closed]
+    facts: [closed]
 ---
-AWS Snowball Edge devices moved data physically and ran edge workloads; the service is closed to new customers, but exam questions may still name it.
+AWS Snowball Edge devices move data physically and run edge workloads; the service is closed to new customers.
 
 ### How it works
 
@@ -26,6 +29,6 @@ AWS Snowball Edge devices moved data physically and ran edge workloads; the serv
 
 ### Remember
 
-- Closed to new customers.
+- Closed to new customers since November 7, 2025.
 
 > **Trap:** Physical transfer is for when the network is too slow; for new customers AWS names Data Transfer Terminal instead of Snowball Edge.

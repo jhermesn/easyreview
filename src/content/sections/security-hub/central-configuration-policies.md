@@ -66,65 +66,6 @@ facts:
   - id: disassociate
     text: Dissociating a policy does not revert its settings; apply a replacement policy or switch to self-managed and change settings.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/configuration-policies-overview.html#configuration-policies-considerations
-diagrams:
-  - id: security-hub-policy-inheritance
-    title: Configuration policy association and inheritance
-    width: 1060
-    height: 360
-    nodes:
-      - id: admin
-        label: Administrator
-        icon: security-hub
-        x: 20
-        y: 120
-        w: 180
-        h: 86
-        sub: home Region
-        tone: security
-      - id: root
-        label: Organization root
-        icon: organizations
-        x: 360
-        y: 120
-        w: 180
-        h: 86
-        sub: policy association
-        tone: mgmt
-      - id: ou
-        label: OU
-        icon: organizations
-        x: 740
-        y: 20
-        w: 180
-        h: 86
-        sub: inherits policy
-        tone: mgmt
-      - id: account
-        label: Member account
-        icon: res-organizations-account
-        x: 740
-        y: 240
-        w: 180
-        h: 86
-        sub: inherits policy
-        tone: mgmt
-    edges:
-      - from: admin
-        to: root
-        step: 1
-        label: associate policy
-      - from: root
-        to: ou
-        step: 2
-        label: inherit
-      - from: ou
-        to: account
-        step: 3
-        label: inherit
-    steps:
-      - The delegated administrator associates a policy with the root.
-      - An OU without a direct association inherits the policy.
-      - The member inherits unless a direct policy or self-managed designation overrides inheritance.
 cards:
   - id: security-hub-006
     q: An AWS Security Hub CSPM team needs consistent standards and controls across OUs and Regions. How should it configure them?
@@ -188,6 +129,65 @@ cards:
     a: CSPM enablement, enabled security standards, controls to enable or disable, and supported custom control parameters.
     facts:
       - central-settings
+diagrams:
+  - id: security-hub-policy-inheritance
+    title: Configuration policy association and inheritance
+    width: 1060
+    height: 360
+    nodes:
+      - id: admin
+        label: Administrator
+        icon: security-hub
+        x: 20
+        y: 120
+        w: 180
+        h: 86
+        sub: home Region
+        tone: security
+      - id: root
+        label: Organization root
+        icon: organizations
+        x: 360
+        y: 120
+        w: 180
+        h: 86
+        sub: policy association
+        tone: mgmt
+      - id: ou
+        label: OU
+        icon: organizations
+        x: 740
+        y: 20
+        w: 180
+        h: 86
+        sub: inherits policy
+        tone: mgmt
+      - id: account
+        label: Member account
+        icon: res-organizations-account
+        x: 740
+        y: 240
+        w: 180
+        h: 86
+        sub: inherits policy
+        tone: mgmt
+    edges:
+      - from: admin
+        to: root
+        step: 1
+        label: associate policy
+      - from: root
+        to: ou
+        step: 2
+        label: inherit
+      - from: ou
+        to: account
+        step: 3
+        label: inherit
+    steps:
+      - The delegated administrator associates a policy with the root.
+      - An OU without a direct association inherits the policy.
+      - The member inherits unless a direct policy or self-managed designation overrides inheritance.
 ---
 Security Hub CSPM central configuration applies consistent service, standard, and control settings across an organization. A configuration policy is a complete set of those settings. An organizational unit (OU) groups accounts in the organization hierarchy; policy inheritance lets child accounts receive their parent's configuration.
 

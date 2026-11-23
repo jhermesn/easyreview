@@ -24,10 +24,6 @@ facts:
   - id: generation-data-gap
     text: Policy generation does not identify action-level activity for data events such as S3 object data events.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html#access-analyzer-policy-generation-know
-  - id: policy-generation
-    text: Policy generation creates a policy template from a user or role CloudTrail activity, which the author
-      reviews and customizes.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html#access-analyzer-policy-generation-howitworks
   - id: mfa-session-token
     text: GetSessionToken with MFA returns user temporary credentials with MFA authentication information.
     source: https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html#API_GetSessionToken
@@ -110,7 +106,6 @@ cards:
     facts:
       - generation-passrole-gap
       - generation-data-gap
-      - policy-generation
   - id: iam-050
     q: An IAM user needs temporary credentials carrying MFA information while retaining user permissions. Which
       STS operation fits?
@@ -184,8 +179,8 @@ IAM operational safeguards help teams review policies and control how temporary 
 
 ### How it works
 
-1. Use policy validation for grammar and AWS best practices. To detect added access, use a custom policy check against a reference policy. Custom checks can also examine specified actions or resources, or public access.
-2. Create external access analyzers in each Region with supported resources. Unused access findings do not depend on Region. Review and customize a policy template generated from CloudTrail activity.
+1. To detect added access, use a custom policy check against a reference policy. Grammar validation does not compare permission scope with the baseline.
+2. Create external access analyzers in each Region with supported resources. Unused access findings do not depend on Region.
 3. Use `GetSessionToken` with MFA for IAM user temporary credentials carrying MFA information. `aws:MultiFactorAuthAge` measures seconds since authentication and is available only for temporary credentials created with MFA.
 4. To restrict EC2 role credentials to their original network, compare `aws:SourceVpc` with `aws:Ec2InstanceSourceVpc`, and `aws:VpcSourceIp` with `aws:Ec2InstanceSourcePrivateIPv4`. AWS's example checks for `ec2:SourceInstanceARN` and exempts forwarded service calls with `aws:ViaAWSService`.
 5. For IAM Identity Center attribute-based access control (ABAC), select and map access-control attributes. For example, map `Department` to `${path:enterprise.department}`. Identity Center passes selected attributes as session tags; policies can compare `aws:PrincipalTag/Department` with a supported resource tag.

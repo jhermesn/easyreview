@@ -117,10 +117,9 @@ cards:
     a: "A regional NAT gateway in automatic mode. AWS manages addresses and AZ expansion; private subnets use the same NAT ID across zones."
     facts: [regional-nat, regional-nat-route]
   - id: vpc-042
-    q: "An Amazon VPC needs internet egress across Availability Zones with no public subnets. What regional NAT gateway option became available in November 2025?"
-    a: "A regional NAT gateway. Automatic mode manages addresses and expands across AZs; manual mode requires you to manage both. Use zonal NAT gateways for private NAT."
-    trap: true
-    facts: [regional-nat, regional-nat-private]
+    q: "Can an Amazon VPC regional NAT gateway provide private NAT connectivity?"
+    a: "No. AWS recommends zonal NAT gateways for private NAT use cases."
+    facts: [regional-nat-private]
   - id: vpc-043
     q: A network team must plan and track CIDR allocations across hundreds of VPCs and accounts to avoid overlaps. Which feature fits?
     a: "Amazon VPC IP Address Manager (IPAM). It tracks address usage and automatically allocates VPC CIDRs according to business rules."
@@ -206,6 +205,10 @@ cards:
     q: "Two Amazon VPCs contain overlapping workload CIDRs. How can private NAT enable one workload to call a service in the other VPC?"
     a: "Translate the source through a private NAT gateway in a separate routable range, then route through Transit Gateway to a load balancer in the destination VPC routable range."
     facts: [private-nat-overlap]
+revised:
+  - date: 2026-11-23
+    note: The regional NAT card now tests private connectivity support.
+    cards: [vpc-042]
 ---
 VPC addressing mistakes are hard to fix later, and NAT choices trade operations work for flexibility.
 

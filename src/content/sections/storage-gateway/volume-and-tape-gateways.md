@@ -44,7 +44,7 @@ facts:
       hours from S3 Glacier Deep Archive.
     source: https://docs.aws.amazon.com/storagegateway/latest/tgw/StorageGatewayConcepts.html
   - id: tape-limits
-    text: "A virtual tape is 100 GiB to 15 TiB; a Tape Gateway holds up to 1,500 tapes and 1 PiB of tapes in total."
+    text: "Virtual tapes range from 100 GiB to 15 TiB, and one Tape Gateway holds at most 1,500 of them, up to 1 PiB altogether."
     source: https://docs.aws.amazon.com/storagegateway/latest/tgw/resource-gateway-limits.html
 cards:
   - id: storage-gateway-002
@@ -85,7 +85,7 @@ cards:
       - not-objects
   - id: storage-gateway-013
     q: "What are the size and count limits for virtual tapes in an AWS Tape Gateway?"
-    a: "Each virtual tape is 100 GiB to 15 TiB. A gateway holds up to 1,500 tapes and 1 PiB in total."
+    a: "From 100 GiB to 15 TiB per tape. One gateway holds at most 1,500 tapes, up to 1 PiB altogether."
     facts: [tape-limits]
 diagrams:
   - id: storage-tape-archive

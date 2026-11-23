@@ -16,6 +16,15 @@ facts:
     text: Migration Evaluator builds a data-driven business case for AWS, discovers over-provisioned on-premises instances and compares BYOL with License Included options.
     source: https://aws.amazon.com/migration-evaluator/
 cards:
+  - id: cloud-adoption-030
+    q: "Which AWS migration services send status updates to AWS Migration Hub?"
+    a: "AWS Application Migration Service and AWS Database Migration Service."
+    facts: [dms-tracking]
+  - id: cloud-adoption-024
+    q: Does AWS Migration Hub itself copy servers to AWS?
+    a: No. It discovers, plans and tracks migrations; tools such as AWS Application Migration Service and AWS DMS do the moving.
+    trap: true
+    facts: [hub, dms-tracking]
   - id: cloud-adoption-021
     q: Which AWS service gives one place to track the migration status of each application across migration tools?
     a: AWS Migration Hub. It closed to new customers on November 7, 2025; AWS Transform offers similar capabilities.
@@ -29,6 +38,9 @@ cards:
     a: "Bring Your Own License and License Included options."
     facts: [evaluator]
 revised:
+  - date: 2026-11-23
+    note: The Migration Hub card now tests which services send it status updates.
+    cards: [cloud-adoption-030]
   - date: 2026-11-23
     note: The Migration Evaluator card now tests the licensing options it compares.
     cards: [cloud-adoption-031]

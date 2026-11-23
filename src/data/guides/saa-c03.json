@@ -470,7 +470,8 @@
               "sections": [
                 "transfer-family/managed-file-transfer-endpoints",
                 "sqs/standard-and-fifo-queues",
-                "amazon-mq/managed-message-brokers"
+                "amazon-mq/managed-message-brokers",
+                "transfer-family/basics"
               ]
             },
             {
@@ -1578,7 +1579,8 @@
                 "storage-gateway/basics",
                 "storage-gateway/volume-and-tape-gateways",
                 "snow-family/offline-transfer-and-edge-devices",
-                "transfer-family/managed-file-transfer-endpoints"
+                "transfer-family/managed-file-transfer-endpoints",
+                "transfer-family/basics"
               ]
             },
             {
@@ -1601,7 +1603,8 @@
                 "s3/access-points-and-cors",
                 "transfer-family/managed-file-transfer-endpoints",
                 "kinesis-data-streams/shards-partition-keys-and-capacity",
-                "privatelink/interface-endpoints-and-private-access"
+                "privatelink/interface-endpoints-and-private-access",
+                "transfer-family/basics"
               ]
             },
             {
@@ -1666,7 +1669,8 @@
                 "transfer-family/managed-file-transfer-endpoints",
                 "s3/performance-and-large-uploads",
                 "storage-gateway/file-gateways",
-                "storage-gateway/basics"
+                "storage-gateway/basics",
+                "transfer-family/basics"
               ]
             },
             {
@@ -1822,7 +1826,8 @@
                 "transfer-family/managed-file-transfer-endpoints",
                 "storage-gateway/file-gateways",
                 "storage-gateway/basics",
-                "storage-gateway/volume-and-tape-gateways"
+                "storage-gateway/volume-and-tape-gateways",
+                "transfer-family/basics"
               ]
             },
             {
@@ -1940,7 +1945,9 @@
                 "transfer-family/managed-file-transfer-endpoints",
                 "storage-gateway/file-gateways",
                 "storage-gateway/basics",
-                "cloud-adoption/migration-services"
+                "cloud-adoption/migration-services",
+                "cloud-adoption/migration-planning-tools",
+                "transfer-family/basics"
               ]
             },
             {

@@ -103,9 +103,14 @@ cards:
     a: Passkeys and security keys, virtual MFA apps, and hardware TOTP tokens. A virtual MFA app runs on an existing phone or computer.
     facts: [mfa-types]
   - id: iam-099
-    q: "How does multi-factor authentication (MFA) help protect an AWS root or IAM user?"
-    a: "MFA requires authentication from a device in addition to sign-in credentials."
-    facts: [mfa]
+    q: "How many MFA devices can an AWS root user or IAM user register, and how many are needed to sign in?"
+    a: "Up to eight devices can be registered; one is needed to sign in."
+    facts: [eight-devices]
+
+revised:
+  - date: 2026-11-23
+    note: The MFA card now tests device registration and sign-in limits.
+    cards: [iam-099]
 ---
 Credentials prove who is calling AWS. People sign in to the console with passwords and MFA; programs use access keys or, better, temporary credentials from roles. Fewer long-term credentials mean less to leak.
 

@@ -1308,7 +1308,8 @@
               "sections": [
                 "kinesis-data-streams/shards-partition-keys-and-capacity",
                 "kinesis-data-streams/operations-in-depth",
-                "managed-service-for-apache-flink/stream-processing-workloads"
+                "managed-service-for-apache-flink/stream-processing-workloads",
+                "kinesis-data-streams/basics"
               ]
             },
             {
@@ -1560,7 +1561,8 @@
                 "sqs/standard-and-fifo-queues",
                 "sqs/operations-in-depth",
                 "sqs/large-payloads",
-                "reference-architectures/serverless-event-driven-application"
+                "reference-architectures/serverless-event-driven-application",
+                "kinesis-data-streams/basics"
               ]
             }
           ]

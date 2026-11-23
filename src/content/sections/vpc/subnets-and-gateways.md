@@ -96,8 +96,8 @@ cards:
     a: A route table.
     facts: [route-tables]
   - id: vpc-033
-    q: A company wants private subnets to reach the internet through NAT with no instances to patch. Should it use a NAT gateway or a NAT instance?
-    a: A NAT gateway, which AWS manages. A NAT instance is an EC2 instance the customer must patch and maintain.
+    q: "Who maintains and patches an Amazon VPC NAT instance?"
+    a: "The customer maintains and patches the EC2 instance. AWS manages NAT gateways."
     facts: [nat-gateway-managed]
   - id: vpc-035
     q: Can one Amazon VPC span several AWS Regions or several Availability Zones?
@@ -105,13 +105,13 @@ cards:
     trap: true
     facts: [vpc-region]
   - id: vpc-049
-    q: "What is the purpose of an internet gateway in Amazon VPC?"
-    a: "An internet gateway connects a VPC to the internet. Resources also need a public IPv4 or public IPv6 address, a route to the gateway and security controls that permit traffic."
-    facts: [igw]
+    q: "How many internet gateways can be attached to an Amazon VPC at one time?"
+    a: "One internet gateway."
+    facts: [vpc-quotas]
   - id: vpc-050
-    q: "What makes a subnet public?"
-    a: "Its route table sends 0.0.0.0/0 (or ::/0) to an internet gateway."
-    facts: [igw-route]
+    q: "What route distinguishes a VPN-only Amazon VPC subnet?"
+    a: "It routes to a Site-to-Site VPN connection through a virtual private gateway and has no route to an internet gateway."
+    facts: [vpn-only]
   - id: vpc-005
     q: How does a VPC gateway endpoint provide private S3 or DynamoDB access?
     a: It adds an AWS-managed service prefix-list route to associated route tables. No internet gateway
@@ -129,6 +129,16 @@ cards:
     q: "How can two Amazon VPCs communicate over private IP addresses without a VPN connection?"
     a: "Use a VPC peering connection."
     facts: [peer-private-path]
+revised:
+  - date: 2026-11-23
+    note: The NAT card now tests maintenance responsibility.
+    cards: [vpc-033]
+  - date: 2026-11-23
+    note: The internet gateway card now tests the attachment limit.
+    cards: [vpc-049]
+  - date: 2026-11-23
+    note: The subnet card now tests VPN-only routing.
+    cards: [vpc-050]
 ---
 Amazon VPC is your own isolated network in AWS. Inside it, subnets split the address range by Availability Zone, route tables steer traffic, and gateways connect the VPC to the internet, other networks or AWS services.
 
