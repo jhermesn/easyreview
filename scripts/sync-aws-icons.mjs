@@ -88,7 +88,12 @@ if (missing.length) {
 }
 
 mkdirSync('public/aws-icons', { recursive: true });
-for (const id of used) copyFileSync(icons[id].file, join('public/aws-icons', `${id}.svg`));
+for (const id of used) {
+  const out = join('public/aws-icons', `${id}.svg`);
+  if (icons[id].kind !== 'category') copyFileSync(icons[id].file, out);
+  // Category icons carry a grey frame and margin around the 64 px tile; crop to the tile so they match service icons.
+  else writeFileSync(out, readFileSync(icons[id].file, 'utf8').replace('viewBox="0 0 74 74"', 'viewBox="5 5 64 64"').replace(/width="74px" height="74px"/, 'width="64px" height="64px"'));
+}
 
 const index = Object.fromEntries(
   Object.entries(icons)
