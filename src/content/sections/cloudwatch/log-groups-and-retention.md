@@ -42,8 +42,7 @@ facts:
 cards:
   - id: cloudwatch-057
     q: What is the difference between a CloudWatch Logs log stream and a log group?
-    a: A stream holds events from one source. A group holds streams with common retention, monitoring,
-      and access settings. A group has no limit on its number of streams.
+    a: A stream holds events from one source. A group shares retention, monitoring and access settings across its streams. A group has no limit on its number of streams.
     facts:
       - log-stream
       - log-group
@@ -77,7 +76,7 @@ cards:
     facts: [log-classes]
   - id: cloudwatch-128
     q: "A CloudWatch Logs design needs Live Tail and subscription filters. Can it use the cheaper Essentials log class?"
-    a: "Use Standard. Essentials, formerly Infrequent Access, does not support Live Tail or subscription filters."
+    a: "Use Standard. Live Tail and subscription filters are unavailable in Essentials, formerly called Infrequent Access."
     facts: [log-classes]
   - id: cloudwatch-131
     q: "EC2 instances in private subnets with no internet access must send logs to Amazon CloudWatch Logs. What should the VPC add?"

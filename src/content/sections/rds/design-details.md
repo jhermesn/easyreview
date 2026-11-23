@@ -22,7 +22,7 @@ facts:
     text: "An RDS DB instance can be stopped for at most 7 consecutive days; after that RDS starts it automatically so it does not miss required maintenance."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html#USER_StopInstance
   - id: proxy-private
-    text: "RDS Proxy must be in the same VPC as the database and cannot be publicly accessible, even when the database is."
+    text: "RDS Proxy and its database must share a VPC. The proxy cannot be publicly accessible, even if the database is."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations
   - id: failover-cancel
     text: "During a failover, most client connections through RDS Proxy stay open; only connections in the middle of a transaction or SQL statement are canceled, and the proxy accepts new connections immediately."
@@ -117,7 +117,7 @@ cards:
     facts: [key-value-selection]
   - id: rds-103
     q: "A team planning Amazon RDS capacity has several logical databases. Does every logical database require a separate DB instance?"
-    a: "No. A DB instance can contain multiple user-created databases, subject to its engine's capabilities."
+    a: "No. Depending on its engine's capabilities, a DB instance can hold multiple user-created databases."
     facts: [multiple-databases]
   - id: rds-104
     q: "A team estimates Amazon RDS cost for a database using Provisioned IOPS SSD storage. Which capacity charges should it include?"

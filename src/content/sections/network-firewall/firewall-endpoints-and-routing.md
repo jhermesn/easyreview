@@ -52,7 +52,7 @@ cards:
       - symmetric-flow
   - id: network-firewall-004
     q: An application shares the AWS Network Firewall endpoint subnet and its traffic bypasses inspection. Why?
-    a: A firewall endpoint cannot inspect traffic entering or leaving its own subnet. Move the application to a separate subnet and route its traffic through the endpoint.
+    a: A firewall endpoint cannot inspect traffic that enters or leaves the subnet where it resides. Move the application to a separate subnet and route its traffic through the endpoint.
     trap: true
     facts:
       - own-subnet
@@ -142,7 +142,7 @@ AWS Network Firewall filters VPC traffic that is routed through its firewall end
 ### Remember
 
 - Reserve endpoint subnets exclusively for Network Firewall.
-- An endpoint cannot inspect traffic entering or leaving its own subnet.
+- An endpoint cannot inspect traffic that enters or leaves the subnet where it resides.
 - Endpoint associations support additional endpoints and VPCs within the documented zone constraints.
 - Stateful log destinations are S3, CloudWatch Logs, and Firehose; log types include flow, alert, and TLS.
 - A firewall can attach directly to a transit gateway.

@@ -31,8 +31,7 @@ facts:
       AWS::S3::Object and resources.ARN StartsWith a bucket or object prefix.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html#logging-data-events-with-cloudtrail
   - id: sts-regions
-    text: CloudTrail logs STS global endpoint requests in us-east-1, while Regional STS endpoint
-      requests are logged in their respective Region.
+    text: CloudTrail records requests to the global STS endpoint in us-east-1. Requests to Regional STS endpoints are recorded in the corresponding Region.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration
   - id: trail-regions
     text: A multi-Region trail covers enabled Regions; all trails created in the CloudTrail console are
@@ -97,8 +96,7 @@ cards:
   - id: cloudtrail-007
     q: Does CloudTrail log every STS request in us-east-1, even when the caller uses a Regional STS
       endpoint?
-    a: No. Global endpoint requests are logged in us-east-1; Regional endpoint requests are logged in
-      their respective Region. Use a multi-Region trail for enabled Regions.
+    a: No. Requests to the global endpoint are recorded in us-east-1; requests to Regional endpoints are recorded in the corresponding Region. Use a multi-Region trail for enabled Regions.
     trap: true
     facts:
       - sts-regions
@@ -145,7 +143,7 @@ CloudTrail trail operations determine which events are recorded, where to look f
 ### Exam cues
 
 - If the question says a trail logs its own S3 deliveries repeatedly, think `RecursiveLogging: false`, because it suppresses CloudTrail delivery events while preserving other callers' events.
-- If the question says find an STS request, think about the endpoint: global endpoint requests are logged in `us-east-1`, while Regional endpoint requests are logged in their respective Region.
+- If the question says find an STS request, think about the endpoint: requests to the global endpoint are recorded in `us-east-1`, and requests to Regional endpoints are recorded in the corresponding Region.
 - If the question says a digest is missing or its signature is invalid, think validation failure, because the affected files' integrity is not established.
 
 ### Remember

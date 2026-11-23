@@ -89,8 +89,7 @@ diagrams:
 cards:
   - id: backup-007
     q: How do governance and compliance modes differ in AWS Backup Vault Lock?
-    a: Governance locks can be removed by authorized users. Compliance locks become immutable after
-      grace time of at least 3 days; backups remain protected until their lifecycle completes.
+    a: Authorized users can remove governance locks. After a grace time of at least 3 days, compliance locks become immutable; backups stay protected until their lifecycle completes.
     trap: true
     facts:
       - governance-removal

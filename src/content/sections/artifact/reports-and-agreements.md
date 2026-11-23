@@ -41,7 +41,7 @@ cards:
     facts: [baa, agreements]
   - id: artifact-003
     q: Where can a company find AWS compliance reports for an audit?
-    a: AWS Artifact provides on-demand access to AWS security and compliance documents.
+    a: AWS security and compliance documents are available on demand through AWS Artifact.
     facts: [reports, auditors]
   - id: artifact-004
     q: What compliance documents must an AWS customer provide beyond AWS Artifact reports?

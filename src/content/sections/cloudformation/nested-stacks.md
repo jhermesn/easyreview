@@ -121,7 +121,7 @@ Nested stacks reuse a CloudFormation template as a child of another stack. They 
 1. Store the child template in S3 and reference it with `TemplateURL` on an `AWS::CloudFormation::Stack` resource.
 2. Pass child inputs through that resource's `Parameters` property.
 3. Read child results with `Fn::GetAtt Child.Outputs.OutputName`. The parent can pass one child's result into another child's parameters.
-4. Initiate updates and deletion through the root stack. The root is the top of the hierarchy; a parent is the immediate stack containing a child. CloudFormation updates the nested stacks that need changes.
+4. Initiate updates and deletion through the root stack. The root sits at the top of the hierarchy; a parent is the immediate stack containing a child. CloudFormation updates the nested stacks that need changes.
 
 ### Exam cues
 

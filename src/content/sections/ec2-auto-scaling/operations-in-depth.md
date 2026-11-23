@@ -128,7 +128,7 @@ cards:
       - termination-abandon
   - id: ec2-auto-scaling-043
     q: How long can an EC2 Auto Scaling lifecycle hook wait, and how can automation keep it alive?
-    a: Heartbeat timeout defaults to one hour. RecordLifecycleActionHeartbeat extends the wait, up to the smaller of 48 hours or 100 times the heartbeat timeout.
+    a: "Heartbeat timeout defaults to one hour. RecordLifecycleActionHeartbeat extends the wait, capped at the smaller of 100 heartbeat timeouts and 48 hours."
     facts:
       - timeout
       - global-timeout
@@ -216,7 +216,7 @@ EC2 Auto Scaling operations depend on launch permissions, lifecycle decisions an
 
 ### Remember
 
-- The lifecycle hook heartbeat timeout defaults to 1 hour. The global timeout is the smaller of 48 hours or 100 times the heartbeat timeout.
+- The lifecycle hook heartbeat timeout defaults to 1 hour. The global timeout is the smaller of 100 heartbeat timeouts and 48 hours.
 - Predictive scaling needs at least 24 hours of data and analyzes up to 14 days. It forecasts hourly capacity for 48 hours and updates the forecast every 6 hours.
 - Warm-pool sizing defaults to group maximum capacity minus desired capacity. `MaxGroupPreparedCapacity` replaces the maximum in that calculation; `MinSize` sets a minimum, with none set by default.
 

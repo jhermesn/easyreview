@@ -34,7 +34,7 @@ facts:
     text: "An IAM user is an identity in one AWS account with a name and credentials; you choose a console password, access keys or both, and a user created through the CLI or API starts with no credentials."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html#id_users_creds
   - id: action-element
-    text: "An IAM Action value combines a service namespace and an operation name, such as s3:GetObject; wildcards can match several operations."
+    text: "An IAM Action value joins a service namespace to an operation name, for example s3:GetObject; a wildcard can match multiple operations."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_action.html
 cards:
   - id: iam-140

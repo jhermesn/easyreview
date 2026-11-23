@@ -118,7 +118,7 @@ Route 53 failover routing changes the DNS answer from a primary resource to a st
 ### How it works
 
 1. Configure primary and secondary failover records for the application name, with health checks or applicable alias target health.
-2. With checks on both records, Route 53 returns the primary while it is healthy. It returns the secondary when the primary is unhealthy and the secondary is healthy.
+2. With checks on both records, Route 53 returns the primary while it is healthy. When the primary is unhealthy, it returns the secondary if that record is healthy.
 3. An unchecked secondary is returned whenever the primary fails, regardless of the secondary resource's actual condition.
 4. A resolver can continue returning an earlier answer until its TTL expires. TTL means the time an answer may stay cached.
 

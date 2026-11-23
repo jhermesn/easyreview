@@ -34,7 +34,7 @@ facts:
     text: "An EC2 Capacity Reservation defines its capacity by Availability Zone, instance type, operating system platform and tenancy."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cr-concepts.html#cr-attributes
   - id: resize-downtime
-    text: "Changing the instance type of an EBS-backed EC2 instance requires stopping it and starting it again, so the workload needs planned downtime."
+    text: "To change an EBS-backed EC2 instance to a different instance type, stop and restart it; the workload therefore needs planned downtime."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/change-instance-type-of-ebs-backed-instance.html
   - id: host-billing
     text: "An active On-Demand Dedicated Host is billed for the host regardless of the number or sizes of instances running on it; releasing the host stops those charges."
@@ -136,7 +136,7 @@ EC2 design choices include the instance type, tenancy and how capacity is paid f
 ### Remember
 
 - Spot notices are best effort: two minutes for stop or termination, with no preparation interval for hibernation.
-- EBS volumes and Elastic IP addresses can incur charges regardless of instance state. A Reserved Instance continues billing through its term after its instance is terminated.
+- Charges can apply to EBS volumes and Elastic IP addresses whether the instance is running or not. A Reserved Instance continues billing through its term after its instance is terminated.
 - A Capacity Reservation incurs the On-Demand rate even when no instances use it.
 
 > **Trap:** Stopping an instance does not stop every charge. EBS volumes and Elastic IP addresses can still incur charges, and a Capacity Reservation is billed even when unused.

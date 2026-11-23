@@ -11,7 +11,7 @@ facts:
       retention period.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html#USER_PIT
   - id: restore-new
-    text: RDS point-in-time recovery creates a new DB instance without changing the source.
+    text: With RDS point-in-time recovery, the restored DB instance is new and the source remains unchanged.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html#USER_PIT
   - id: log-upload
     text: RDS uploads DB instance transaction logs to Amazon S3 every five minutes.
@@ -156,7 +156,7 @@ RDS backups provide earlier copies of a database for recovery after a data error
 
 1. Set automated backup retention. A value of 0 disables automated backups for a DB instance; changing between 0 and a nonzero value causes an outage.
 2. RDS stores automated backups and manual DB snapshots in Amazon S3, and uploads transaction logs every five minutes. Check `LatestRestorableTime` before selecting a recovery point.
-3. Use PITR to restore to an available time before the error. RDS creates a new DB instance and leaves the source unchanged.
+3. Use PITR to restore to an available time before the error. RDS restores to a new DB instance without altering the source.
 4. Preserve a manual or final snapshot when deleting an instance if you need a lasting recovery copy. Automated backups require an explicit retain choice to survive deletion for their retention period.
 5. For supported DB instances, cross-Region automated backup replication copies snapshots and transaction logs to a destination Region. Multi-AZ DB clusters do not support this feature.
 6. A snapshot restore can be available before all data has loaded from Amazon S3. Include this background loading and its effect on queries when assessing recovery readiness.

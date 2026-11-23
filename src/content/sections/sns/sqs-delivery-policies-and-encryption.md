@@ -63,7 +63,7 @@ facts:
       service principal key access.
     source: https://docs.aws.amazon.com/sns/latest/dg/sns-dead-letter-queues.html
   - id: symmetric-definition
-    text: Symmetric encryption uses the same key to encrypt and decrypt data.
+    text: Symmetric encryption encrypts and decrypts data with one shared key.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/strategy-data-at-rest-encryption/about-data-encryption.html
 cards:
   - id: sns-002

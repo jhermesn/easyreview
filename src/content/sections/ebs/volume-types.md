@@ -80,13 +80,13 @@ facts:
     text: "gp3 can be provisioned up to 80,000 IOPS (500 IOPS per GiB) and 2,000 MiB/s of throughput."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#gp3-ebs-volume-type
   - id: gp-sizes
-    text: "gp2 volumes range from 1 GiB to 16 TiB and gp3 volumes from 1 GiB to 64 TiB."
+    text: "The size range is 1 GiB to 16 TiB for gp2 volumes and 1 GiB to 64 TiB for gp3 volumes."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html#general-purpose
   - id: piops-sizes
     text: "io1 volumes range from 4 GiB to 16 TiB; io2 Block Express goes up to 64 TiB and 4,000 MiB/s of throughput."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/provisioned-iops.html#provisioned-iops
   - id: raid0
-    text: "RAID 0 stripes I/O across EBS volumes so their IOPS and throughput add up; AWS does not recommend RAID 5 or 6 on EBS because parity writes cost 20 to 30 percent of usable IOPS."
+    text: "RAID 0 spreads I/O across EBS volumes, adding their IOPS and throughput; AWS advises against using EBS for RAID 5 or 6: parity writes consume 20 to 30 percent of usable IOPS."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/raid-config.html#raid-config
   - id: az-replication
     text: "EBS replicates volume data across multiple servers in its Availability Zone; io2 Block Express is designed for 99.999 percent durability and other types for 99.8 to 99.9 percent."
@@ -207,7 +207,7 @@ EKS Auto Mode manages block storage without installing that CSI controller. Its 
 
 ### Remember
 
-- gp3 includes 3000 IOPS and 125 MiB/s.
+- gp3 comes with 3000 IOPS plus 125 MiB/s.
 - gp2 baseline is 3 IOPS per GiB, bounded by 100 and 16000 IOPS. Eligible small volumes can burst to 3000 IOPS.
 - st1 and sc1 cannot boot an EC2 instance.
 - For direct volume creation, the console defaults to gp3; command line tools, API and SDK default to gp2.

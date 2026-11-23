@@ -4,7 +4,7 @@ level: foundational
 order: 5
 facts:
   - id: online-transfer
-    text: "AWS DataSync is a secure, high-speed service for transferring file or object data to, from and between AWS storage services."
+    text: "AWS DataSync securely transfers file or object data at high speed. Transfers can go to, from or between AWS storage services."
     source: https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html#what-is-datasync
   - id: scheduled-task
     text: "AWS DataSync tasks can run repeatedly on a schedule."

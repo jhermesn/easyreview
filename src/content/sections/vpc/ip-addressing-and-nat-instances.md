@@ -52,7 +52,7 @@ facts:
     text: "An additional IPv4 CIDR must not overlap an existing VPC CIDR. A VPC with a CIDR from 10.0.0.0/8 cannot add a CIDR from 172.16.0.0/12 or 192.168.0.0/16."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html#add-cidr-block-restrictions
   - id: nat64
-    text: "A NAT gateway translates IPv6 traffic to IPv4 with NAT64. Enable DNS64 on the subnet containing the IPv6-only workloads, and route the synthesized 64:ff9b::/96 destinations to the NAT gateway."
+    text: "A NAT gateway translates IPv6 traffic to IPv4 with NAT64. For the subnet with the IPv6-only workloads, enable DNS64 and direct traffic for synthesized destinations in 64:ff9b::/96 to the NAT gateway."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64-walkthrough-internet
   - id: default-vpc-components
     text: "AWS initially creates a default VPC with 172.31.0.0/16 and /20 default subnets, plus a default security group and network ACL. You can add secondary IPv4 CIDRs, subnets, route tables and security groups."

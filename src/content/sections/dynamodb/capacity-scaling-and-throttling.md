@@ -91,12 +91,12 @@
     },
     {
       "id": "mode-switch",
-      "text": "A table can switch from provisioned to on-demand up to four times in a rolling 24-hour window; switching from on-demand to provisioned is allowed at any time.",
+      "text": "A table can change from provisioned to on-demand capacity at most four times per rolling 24-hour period; the reverse change is allowed at any time.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html"
     },
     {
       "id": "burst-capacity",
-      "text": "DynamoDB retains up to five minutes (300 seconds) of unused read and write capacity that short bursts can consume.",
+      "text": "DynamoDB keeps unused read and write capacity for up to five minutes (300 seconds), allowing short bursts to consume it.",
       "source": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/burst-adaptive-capacity.html"
     },
     {

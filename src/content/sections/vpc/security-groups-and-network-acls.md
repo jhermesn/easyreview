@@ -53,7 +53,7 @@ facts:
     text: "A security group can reference a security group in a peered VPC in the same Region, even in another account (account-id/sg-id); for a peer in another Region use its CIDR block."
     source: https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html#vpc-peering-security-groups
   - id: acl-within-subnet
-    text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the same subnet."
+    text: "Network ACL rules are evaluated at the subnet boundary, when traffic enters or leaves. They are not evaluated for traffic routed within the same subnet."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
   - id: sg-ingress-api
     text: "EC2 provides AuthorizeSecurityGroupIngress and RevokeSecurityGroupIngress to add and remove inbound security group rules."

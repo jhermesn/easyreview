@@ -84,7 +84,7 @@ cards:
     facts: [policy-scope]
   - id: iam-089
     q: What are AWS access keys used for, and what are their two parts?
-    a: They sign programmatic requests from the AWS CLI, SDKs or API. They have an access key ID and a secret access key.
+    a: They sign programmatic requests from the AWS CLI, SDKs or API. Each consists of a secret access key paired with an access key ID.
     facts: [access-keys]
   - id: iam-090
     q: "What does AWS recommend using for AWS access instead of long-term access keys?"

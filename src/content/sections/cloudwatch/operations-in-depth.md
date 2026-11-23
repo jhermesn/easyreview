@@ -265,7 +265,7 @@ CloudWatch operational controls help teams configure agents, manage alarm action
 - AWS recommends 60 seconds each for the suppressor wait and extension periods.
 - Alarms with 10, 20, or 30 second periods evaluate every 10 seconds. See evaluation settings.
 - Expired log events are marked for deletion. Deletion normally takes up to 72 hours and can rarely take longer.
-- Logs Insights supports Logs Insights QL, OpenSearch PPL, and OpenSearch SQL. Queries time out after 60 minutes; results remain available for 7 days.
+- For queries, Logs Insights supports OpenSearch SQL, OpenSearch PPL and Logs Insights QL. Queries time out after 60 minutes; results remain available for 7 days.
 - Live Tail sessions are billed per minute.
 - Custom metrics published per server stay separate; omitting a dimension does not aggregate them.
 - PutMetricData accepts data points up to two weeks old.

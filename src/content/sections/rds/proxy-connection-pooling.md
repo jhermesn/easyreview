@@ -145,7 +145,7 @@ RDS Proxy reduces connection pressure by keeping a shared pool of database conne
 2. The proxy shares backend connections among client requests. It can enforce IAM authentication, which uses AWS identities, and connect to the database using IAM authentication or credentials from Secrets Manager.
 3. Under overload, the proxy can queue or throttle requests and reject client connections when configured limits are exceeded.
 4. Watch for session pinning, where a client keeps one backend connection until its session ends. This reduces sharing. For repeated reads that tolerate stale results, ElastiCache query caching can reduce database work: a miss queries the database and stores the result.
-5. Check engine and version eligibility: RDS Proxy supports RDS MariaDB, MySQL, PostgreSQL and SQL Server, and Aurora MySQL and PostgreSQL. AWS manages and scales the proxy capacity.
+5. Check engine and version eligibility: Supported RDS engines for RDS Proxy include SQL Server, PostgreSQL, MySQL and MariaDB. It also supports Aurora PostgreSQL and MySQL. AWS manages and scales the proxy capacity.
 6. Require TLS/SSL in the client connection settings to encrypt the connection to the proxy. The client-to-proxy TLS version can differ from the version used with the database.
 
 ### Exam cues

@@ -94,7 +94,7 @@ facts:
     text: An EC2 instance's primary network interface cannot be detached from the instance.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#eni-basics
   - id: secondary-interface
-    text: A secondary network interface retains its attributes, including private IP addresses, when moved between EC2 instances in the same Availability Zone.
+    text: Move a secondary network interface to another EC2 instance in the same Availability Zone, and it keeps its attributes, including private IP addresses.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#using-eni
   - id: stop-start-host
     text: "Starting a stopped EBS-backed instance typically migrates it to a new underlying host and assigns a new public IPv4 address."
@@ -172,7 +172,7 @@ EC2 automatic instance recovery attempts to restore an instance after a problem 
 1. Distinguish the checks. A system status check tests AWS infrastructure; an instance status check tests the individual instance's software and network connectivity.
 2. For a supported standalone instance, simplified automatic recovery is enabled at launch by default. For alarm-controlled recovery, configure a CloudWatch alarm on `StatusCheckFailed_System` with the recover action. A metric records measurements over time; an alarm evaluates them against a threshold.
 3. After a system failure, AWS attempts to move the instance to another host. Recovery requires a running instance, available capacity and no service events listed in the AWS Health Dashboard.
-4. Successful recovery retains the instance ID, IP addresses, attached EBS disk volumes and zone. It also retains metadata, the information used to configure or manage the instance. An Elastic IP is a static public IPv4 address allocated to your account; it is retained too.
+4. Successful recovery retains the instance ID, IP addresses, attached EBS disk volumes and zone. It also retains metadata, the information used to configure or manage the instance. An Elastic IP, a public IPv4 address that remains static and is allocated to your account, is retained too.
 5. Expect to lose RAM, the instance's working memory. Operating system uptime resets to zero. CloudWatch recovery also loses instance store data; simplified recovery excludes instances with instance store volumes.
 6. If recovery fails and the instance remains unreachable or keeps failing system checks, stop and start it manually. This can change its public IPv4 address unless it uses an Elastic IP.
 

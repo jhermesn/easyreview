@@ -4,7 +4,7 @@ level: foundational
 order: 5
 facts:
   - id: sql-on-s3
-    text: "Amazon Athena is an interactive query service that analyzes data directly in Amazon S3 with standard SQL."
+    text: "Amazon Athena lets you run interactive standard SQL queries directly on data in Amazon S3."
     source: https://docs.aws.amazon.com/athena/latest/ug/what-is.html#what-is
   - id: serverless
     text: "Athena SQL and Apache Spark on Athena are serverless, so users do not set up or manage infrastructure."

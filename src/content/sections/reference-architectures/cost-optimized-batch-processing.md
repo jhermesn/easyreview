@@ -172,7 +172,7 @@ cards:
     facts: [lifecycle-rules, deep-archive]
   - id: reference-architectures-119
     q: A lifecycle rule moves files to Glacier Deep Archive, and another rule deletes them 30 days later. Why is the bill higher than expected?
-    a: "Deep Archive has a **180-day minimum storage duration**. Deleting earlier still charges for the remaining days."
+    a: "The **minimum storage duration** for Deep Archive is **180 days**. Deleting earlier still charges for the remaining days."
     trap: true
     facts: [deep-archive, lifecycle-early, standard-ia, glacier-ir]
   - id: reference-architectures-120

@@ -49,13 +49,13 @@ facts:
     text: Lambda assigns CPU capacity in proportion to configured memory.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html#configuration-memory
   - id: memory-range
-    text: Lambda memory ranges from 128 to 10,240 MB in 1-MB increments, with 128 MB as the default.
+    text: Lambda memory defaults to 128 MB and can be set between 128 MB and 10,240 MB, in increments of 1 MB.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html#configuration-memory
   - id: memory-vcpu
     text: At 1,769 MB, a Lambda function receives CPU capacity equivalent to one vCPU.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html#configuration-memory
   - id: tmp-storage
-    text: Each execution environment has its own temporary /tmp storage, configurable from 512 to 10,240 MB in 1-MB increments.
+    text: Each execution environment has its own temporary /tmp storage, with a configurable range of 512 to 10,240 MB and increments of 1 MB.
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-ephemeral-storage.html#configuration-ephemeral-storage
   - id: tmp-encryption
     text: Lambda encrypts /tmp data at rest using an AWS managed key.

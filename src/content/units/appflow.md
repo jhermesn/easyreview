@@ -6,4 +6,4 @@ icon: appflow
 category: application-integration
 ---
 
-AppFlow exchanges data between supported SaaS applications and AWS services. Choose the connector direction and trigger, then define which records and fields to transfer.
+AppFlow transfers data between AWS services and supported SaaS applications. Choose the connector direction and trigger, then define which records and fields to transfer.

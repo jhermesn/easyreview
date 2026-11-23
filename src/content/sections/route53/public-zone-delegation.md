@@ -114,7 +114,7 @@ diagrams:
       - Create the zone and obtain its assigned name servers.
       - Configure the registrar to use those servers so the zone supplies DNS answers.
 ---
-A public hosted zone holds DNS records for a domain. Domain registration and DNS hosting can use different providers. A registrar manages the domain registration; delegation tells DNS which name servers answer for it.
+A public hosted zone holds DNS records for a domain. You can host DNS with one provider and register the domain with another. A registrar manages the domain registration; delegation tells DNS which name servers answer for it.
 
 ### How it works
 

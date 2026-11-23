@@ -22,7 +22,7 @@ facts:
     text: "AWS-generated cost allocation tags carry the reserved aws: prefix, such as aws:createdBy, while user-defined tags appear with the user: prefix in the cost allocation report."
     source: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html#custom-tags
   - id: activation-delay
-    text: "After user-defined tags are applied, their keys can take up to 24 hours to appear for activation as cost allocation tags, and up to another 24 hours to activate."
+    text: "Once user-defined tags have been applied, their keys may need up to 24 hours before they are available to activate as cost allocation tags. Activation can take up to another 24 hours."
     source: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html
   - id: backfill
     text: "The management account can request a backfill that applies the current activation status of cost allocation tags to up to twelve past months."

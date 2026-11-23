@@ -4,7 +4,7 @@ level: foundational
 order: 5
 facts:
   - id: web-firewall
-    text: "AWS WAF is a web application firewall that watches HTTP(S) requests to resources such as CloudFront distributions and API Gateway APIs and allows or blocks them by rules."
+    text: "The AWS WAF web application firewall monitors HTTP(S) requests sent to resources, including API Gateway APIs and CloudFront distributions. It allows or blocks requests according to rules."
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html#waf-chapter
   - id: geo-match
     text: An AWS WAF geo match rule statement allows or blocks web requests by their country or region of origin.

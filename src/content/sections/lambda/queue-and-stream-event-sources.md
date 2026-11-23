@@ -46,7 +46,7 @@ facts:
     text: IteratorAge helps detect a stalled Lambda stream consumer.
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html#invocation-retries
   - id: esm-sources
-    text: "Lambda event source mappings poll Amazon SQS, Kinesis, DynamoDB Streams, Amazon MQ, Amazon MSK and Amazon DocumentDB change streams."
+    text: "Lambda event source mappings poll Amazon SQS, Kinesis, DynamoDB Streams and Amazon DocumentDB change streams. They also poll Amazon MQ and Amazon MSK."
     source: https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html
   - id: kinesis-polling
     text: A Lambda Kinesis standard iterator polls each shard at a base rate of once per second.

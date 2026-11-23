@@ -249,13 +249,13 @@
   {
     "term": "Log group",
     "aliases": [],
-    "definition": "A collection of log streams with common retention, monitoring, and access settings.",
+    "definition": "A collection of log streams that share access, monitoring, and retention settings.",
     "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html"
   },
   {
     "term": "Log stream",
     "aliases": [],
-    "definition": "A sequence of log events from the same source.",
+    "definition": "Log events from one source, arranged in sequence.",
     "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html"
   },
   {

@@ -4,8 +4,7 @@ level: associate
 order: 20
 facts:
   - id: organizations-scp-path
-    text: An action needs an SCP Allow at every level from the root through each OU to the target
-      account.
+    text: For an action to be allowed, an SCP Allow is required along the full path to the target account, including the root and each OU.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_evaluation.html#how_scps_allow
   - id: organizations-scp-deny
     text: An explicit SCP Deny at any point on the account path overrides allows at other levels.
@@ -53,8 +52,7 @@ facts:
       config:StopConfigurationRecorder.
     source: https://docs.aws.amazon.com/controltower/latest/controlreference/mandatory-controls.html
   - id: organizations-scp-selective
-    text: SCP statements can deny selected actions with conditions, leaving other actions subject to
-      their existing permissions.
+    text: SCP statements can use conditions to deny selected actions; existing permissions still govern the other actions.
     source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_syntax.html
   - id: organizations-scp-testing
     text: AWS recommends testing SCP impact on a limited set of accounts before broad attachment at the

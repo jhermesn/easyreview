@@ -4,7 +4,7 @@ level: associate
 order: 10
 facts:
   - id: what
-    text: AWS DataSync is a file transfer service that copies file or object data to, from and between AWS storage services.
+    text: AWS DataSync transfers files or object data by copying them. Transfers can go to, from or between AWS storage services.
     source: https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html#what-is-datasync
   - id: sources
     text: DataSync reads from on-premises NFS, SMB, HDFS and object storage, and from storage in other clouds such as Google Cloud Storage and Azure Blob Storage.

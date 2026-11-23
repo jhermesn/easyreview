@@ -4,7 +4,7 @@ level: professional
 order: 90
 facts:
   - id: launch-snapshots
-    text: Launching from a shared AMI does not require separately sharing its backing EBS snapshots.
+    text: To launch from a shared AMI, the backing EBS snapshots need not be shared separately.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-explicit.html#considerations-for-sharing-AMI-with-accounts
   - id: copy-snapshots
     text: Copying a shared EBS-backed AMI requires read permission for its backing snapshots.
@@ -73,7 +73,7 @@ EC2 operations can require control over how Amazon Machine Images (AMIs) are dis
 
 ### How it works
 
-1. Launching from a shared AMI does not require separately sharing its backing EBS snapshots. Copying a shared EBS-backed AMI requires read permission for those snapshots.
+1. To launch from a shared AMI, the backing EBS snapshots need not be shared separately. Copying a shared EBS-backed AMI requires read permission for those snapshots.
 2. A copy has a new AMI ID and is independent of its source. Its launch permissions are not copied, so grant them on the new AMI.
 3. Image Builder cross-account distribution delivers images that destination accounts can launch or modify. For encrypted images, provide access to the source and destination KMS keys; Image Builder re-encrypts with the designated destination Region key.
 4. Restrict which AMIs a user can launch with resource-level permissions for `ec2:RunInstances`. To identify running instances outside an approved list, configure the AWS Config rule `approved-amis-by-id`.

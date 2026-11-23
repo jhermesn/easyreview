@@ -49,13 +49,13 @@ facts:
       class.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#transition-glacier-deep-archive
   - id: glacier-minimum
-    text: Glacier Instant Retrieval has a 90-day minimum storage billing duration.
+    text: Glacier Instant Retrieval bills storage for at least 90 days.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro
   - id: glacier-minimum-flexible
-    text: Glacier Flexible Retrieval has a 90-day minimum storage billing duration.
+    text: Glacier Flexible Retrieval bills storage for at least 90 days.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro
   - id: glacier-minimum-deep
-    text: Glacier Deep Archive has a 180-day minimum storage billing duration.
+    text: Glacier Deep Archive bills storage for at least 180 days.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro
   - id: glacier-intelligent
     text: Restoring an Intelligent-Tiering Archive Access or Deep Archive Access object moves it to
@@ -65,7 +65,7 @@ facts:
     text: Large archive datasets can take longer to restore than typical retrieval times.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html#restoring-objects-retrieval-options
   - id: bulk-cheapest
-    text: "Bulk is the lowest-cost S3 Glacier retrieval option; Bulk retrievals from Glacier Flexible Retrieval are free."
+    text: "S3 Glacier offers Bulk as its least expensive retrieval option; Glacier Flexible Retrieval charges nothing for Bulk retrievals."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html#GFR
   - id: archive-metadata
     text: "Each object in Glacier Flexible Retrieval or Glacier Deep Archive adds 40 KB of metadata: 32 KB billed at the archive class rate and 8 KB at the S3 Standard rate."

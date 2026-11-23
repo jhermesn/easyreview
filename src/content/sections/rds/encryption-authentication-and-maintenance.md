@@ -31,7 +31,7 @@ facts:
     text: "To require encrypted connections, set rds.force_ssl to 1 for RDS for SQL Server (a static parameter, so reboot) or require_secure_transport to ON for RDS for MySQL (no reboot needed) in the DB parameter group."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/SQLServer.Concepts.General.SSL.Using.html#SQLServer.Concepts.General.SSL.Forcing
   - id: replica-encryption
-    text: "A read replica has the same encryption state as its source: an unencrypted instance cannot have an encrypted replica, and an encrypted one cannot have an unencrypted replica."
+    text: "A read replica matches its source in encryption state. Replicas of unencrypted instances cannot be encrypted; replicas of encrypted instances cannot be unencrypted."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations
   - id: log-export
     text: "RDS can publish database logs, such as the MySQL audit, error, general and slow query logs, to CloudWatch Logs, where they are kept until a retention period is set."

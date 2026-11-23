@@ -52,7 +52,7 @@ facts:
     text: A secondary without database instances needs an instance added before switchover or failover.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-bcdr-planning
   - id: snapshot-copy
-    text: Aurora DB clusters do not support native cross-Region automated backup replication; cluster snapshots can be copied to another Region for recovery.
+    text: Aurora DB clusters cannot natively replicate automated backups across Regions; for recovery, copy cluster snapshots into a different Region.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.Retaining.html#Aurora.Managing.Backups.Retaining.Limits
   - id: backup-copy
     text: AWS Backup supports Aurora cross-Region backup copies; copies of continuous backups become snapshot recovery points without point-in-time recovery.
@@ -222,7 +222,7 @@ Recovery point objective (RPO) measures how much recent data can be lost, expres
 | Copied cluster snapshot | Restores backup data in another Region |
 | AWS Backup cross-Region copy | Produces a copied recovery point; continuous copies become snapshots without PITR |
 
-Point-in-time recovery (PITR) means restoring to a selected time within retained backup history. Aurora does not support native cross-Region automated backup replication. Use copied cluster snapshots, supported AWS Backup copies or database replication for regional recovery.
+Point-in-time recovery (PITR) means restoring to a selected time within retained backup history. Aurora cannot natively replicate automated backups across Regions. Use copied cluster snapshots, supported AWS Backup copies or database replication for regional recovery.
 
 For event notifications, configure an Aurora event subscription with resources, event categories and an SNS topic. The topic must permit RDS event publishing; its policy can restrict source resources or allow cross-account notifications.
 

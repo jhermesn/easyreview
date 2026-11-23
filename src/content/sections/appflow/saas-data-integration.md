@@ -112,7 +112,7 @@ cards:
       - trigger-modes
   - id: appflow-006
     q: Which Amazon AppFlow trigger options support different data ingestion frequencies?
-    a: Flows can run on demand, on a schedule, or when a supported source supplies change events.
+    a: Flows run on demand, at scheduled times, or in response to change events from a supported source.
     facts:
       - trigger-modes
       - event-source

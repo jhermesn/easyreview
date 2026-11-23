@@ -22,7 +22,7 @@ facts:
     text: SnapStart supports Java 11 and later, Python 3.12 and later, and .NET 8 and later managed runtimes.
     source: https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html#snapstart-runtimes
   - id: ephemeral-storage
-    text: "Lambda /tmp ephemeral storage is configurable from 512 MB to 10,240 MB, is unique to each execution environment and is encrypted at rest."
+    text: "Each Lambda execution environment has its own encrypted-at-rest /tmp ephemeral storage, configurable between 512 MB and 10,240 MB."
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-ephemeral-storage.html#configuration-ephemeral-storage
   - id: cold-start
     text: "A cold start happens when Lambda prepares a new execution environment by downloading code, starting the environment and running initialization code; Lambda may reuse an environment for later invocations, but reuse is not guaranteed."

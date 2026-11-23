@@ -291,7 +291,7 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 - If the question says check a security group or bucket policy against custom requirements, think an AWS Config custom rule, because it can evaluate those resource settings.
 - If the question says required-tags misses a resource, think resource type and recorded tags, because the rule has a defined scope and Config does not record tags for every type.
 - If the question says check the account password policy minimum length, think the AWS Config iam-password-policy rule, because it evaluates the policy against configured requirements.
-- If the question says find running EC2 instances using unapproved images, think `approved-amis-by-id` with `amiIds`, because it compares their Amazon Machine Image (AMI) IDs with the approved list. An AMI supplies the software used to boot an instance.
+- If the question says find running EC2 instances using unapproved images, think `approved-amis-by-id` with `amiIds`, because it compares their Amazon Machine Image (AMI) IDs with the approved list. An AMI provides the software needed to start an instance.
 - If the question says check encryption on attached EBS volumes, think `encrypted-volumes`, because it checks encryption and can require the KMS key in `kmsId`.
 - If the question says detect that no CloudTrail trail is enabled, think `cloudtrail-enabled`, because it checks that condition periodically. Evaluation alone does not configure a fix.
 - If the question says check recorded properties without writing a Lambda function, think a Guard custom policy rule, because the policy expresses the check.

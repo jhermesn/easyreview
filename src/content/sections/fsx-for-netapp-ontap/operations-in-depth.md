@@ -8,7 +8,7 @@ facts:
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#when-is-transit-gateway-required
 cards:
   - id: fsx-for-netapp-ontap-009
-    q: A client in a peered VPC needs NFS access to an FSx for NetApp ONTAP Multi-AZ file system without a cache. What routing component is required?
+    q: Without a cache, a client in a peered VPC needs NFS access to an FSx for NetApp ONTAP file system deployed across multiple Availability Zones (Multi-AZ). What routing component is required?
     a: AWS Transit Gateway, because Multi-AZ NFS endpoints use floating IP addresses.
     facts: [multi-az-routing]
 ---

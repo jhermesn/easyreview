@@ -28,7 +28,7 @@ facts:
     text: AWS WAF logging destinations (S3 bucket, CloudWatch Logs group or Firehose stream) must have names starting with aws-waf-logs-.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/logging-s3.html
   - id: custom-block
-    text: "A WAF Block action can return a custom response code, headers and body in place of the default 403 Forbidden response."
+    text: "Instead of the default 403 Forbidden response, a WAF Block action can return customized response codes, headers and body."
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html
 cards:
   - id: waf-014

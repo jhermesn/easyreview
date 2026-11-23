@@ -102,7 +102,7 @@ cards:
     facts: [one-zone-ia]
   - id: s3-161
     q: "Which Amazon S3 storage class suits a latency-sensitive application that needs fast access to objects?"
-    a: "S3 Express One Zone provides single-digit millisecond access in one Availability Zone."
+    a: "S3 Express One Zone offers access in single-digit milliseconds within one Availability Zone."
     facts: [express]
   - id: s3-162
     q: "Which Amazon S3 storage class suits data with unpredictable access patterns?"

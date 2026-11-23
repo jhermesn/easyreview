@@ -10,7 +10,7 @@ facts:
     text: "Insufficient GSI write capacity can throttle base table writes through back-pressure, identified by IndexWriteProvisionedThroughputExceeded."
     source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/throttling-provisioned-capacity-exceeded-mitigation.html
   - id: mode-switch
-    text: "A table can switch from provisioned to on-demand up to four times in a rolling 24-hour window; switching from on-demand to provisioned is allowed at any time."
+    text: "A table can change from provisioned to on-demand capacity at most four times per rolling 24-hour period; the reverse change is allowed at any time."
     source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html
   - id: topology
     text: "MRSC needs exactly three Regions, using three replicas or two replicas and a witness that cannot serve application reads or writes."
@@ -80,7 +80,7 @@ DynamoDB operations involve table and index capacity, global table configuration
 
 ### Remember
 
-- A table can switch from provisioned to on-demand up to four times in a rolling 24-hour window; on-demand to provisioned is allowed at any time.
+- A table can change from provisioned to on-demand capacity at most four times per rolling 24-hour period; the reverse change is allowed at any time.
 - MRSC needs exactly three Regions: three replicas, or two replicas plus a witness that serves no application reads or writes.
 - MRSC does not support TTL, local secondary indexes or transactions.
 - MREC replication reads DynamoDB Streams, which stay enabled on every replica.

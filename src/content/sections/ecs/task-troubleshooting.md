@@ -87,8 +87,7 @@ facts:
       allocation or host operating-system constraints.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/out-of-memory.html
   - id: ecs-diagnose-log-group
-    text: A CloudWatch Logs group contains log streams with common retention, monitoring, and access
-      settings.
+    text: Within a CloudWatch Logs group, streams share access, monitoring, and retention settings.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html
   - id: ecs-diagnose-log-stream
     text: A CloudWatch Logs stream is a sequence of events from the same log source.

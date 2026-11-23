@@ -161,7 +161,7 @@ cards:
   - id: organizations-028
     q: A team needs a CloudTrail trail for current and future AWS Organizations member accounts that
       members cannot disable. What fits?
-    a: Create an organization trail from the management account or a CloudTrail delegated administrator.
+    a: Create an organization trail using either a CloudTrail delegated administrator or the management account.
       New members are added automatically, and ordinary member users cannot modify or stop it.
     facts:
       - organizations-integration-trail

@@ -31,7 +31,7 @@ facts:
     text: DNS routes a CloudFront request to the edge location (point of presence) that can best serve it, typically the nearest in latency, which returns cached content or fetches it from the origin.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html#HowCloudFrontWorksContentDelivery
   - id: waf
-    text: AWS WAF is a web application firewall that watches HTTP(S) requests to resources such as CloudFront distributions and API Gateway APIs and allows or blocks them by rules.
+    text: AWS WAF filters HTTP(S) requests using rules to allow or block traffic to resources including API Gateway APIs and CloudFront distributions.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html#waf-chapter
   - id: shield
     text: AWS gives automatic protection against common DDoS attacks such as UDP reflection and SYN floods at no extra cost.
@@ -67,7 +67,7 @@ facts:
     text: A subnet is a range of IP addresses in a VPC and must reside in a single Availability Zone.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#amazon-vpc-features
   - id: public-private
-    text: A public subnet has a direct route to an internet gateway; a private subnet doesn't, and its resources need a NAT device to reach the internet.
+    text: A public subnet routes directly to an internet gateway. A private subnet lacks that route, so its resources need a NAT device for internet access.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#configure-subnets
   - id: igw
     text: An internet gateway is a redundant, highly available VPC component for internet communication. Resources need a public IPv4 or public IPv6 address, an appropriate subnet route, and security controls that allow the traffic.

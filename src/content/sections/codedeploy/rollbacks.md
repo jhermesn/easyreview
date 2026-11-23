@@ -20,8 +20,7 @@ facts:
     text: A deployment group can stop a deployment when a configured CloudWatch alarm activates.
     source: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-configure-advanced-options.html#deployment-groups-configure-advanced-options
   - id: alarm-rollback
-    text: The Roll back when alarm thresholds are met setting redeploys the last known good revision on
-      an attached alarm.
+    text: When an attached alarm triggers, the setting Roll back when alarm thresholds are met redeploys the last known good revision.
     source: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-configure-advanced-options.html#deployment-groups-configure-advanced-options
   - id: ignore-poll
     text: Continue deployments even if alarm status is unavailable corresponds to ignorePollAlarmFailure.

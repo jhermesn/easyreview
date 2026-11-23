@@ -254,7 +254,7 @@ cards:
   - id: deployment-strategies-030
     q: An administrator creates an EC2 AMI from an instance whose user data configures the application. Will
       instances launched from that AMI inherit the user data?
-    a: No. User data is an instance attribute and is not included in the AMI. Supply it when launching, within
+    a: No. User data belongs to the instance and is excluded from the AMI. Supply it when launching, within
       the 16 KB raw limit.
     trap: true
     facts:

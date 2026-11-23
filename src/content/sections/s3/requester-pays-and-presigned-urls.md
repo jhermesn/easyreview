@@ -16,7 +16,7 @@ facts:
     text: When the requester assumes an IAM role before calling a Requester Pays bucket, the account that owns the role is charged.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html#RequesterPaysBuckets
   - id: presign-what
-    text: A presigned URL grants time-limited access to download or upload a specific S3 object without changing the bucket policy and without the user needing AWS credentials.
+    text: A presigned URL allows a user to upload or download a specific S3 object for a limited time, without AWS credentials or a bucket policy change.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html#using-presigned-url
   - id: presign-creator
     text: "Valid AWS credentials are sufficient to create a presigned URL, but using it succeeds only when its signer has permission for the requested operation."

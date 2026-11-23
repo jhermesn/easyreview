@@ -145,7 +145,7 @@ A resource control policy (RCP) limits access to supported resources in member a
 1. Enable all features and RCPs. Confirm that the resource's service supports RCPs; documented examples include S3, KMS, STS, SQS, and Secrets Manager.
 2. `RCPFullAWSAccess` permits requests through RCP evaluation but grants no resource access.
 3. Attach RCPs where restrictions belong. A `Deny` anywhere on the resource account's path wins over a resource policy Allow.
-4. Evaluate actual access with the relevant IAM and resource policies. A resource policy is a policy attached to a resource, such as an S3 bucket. It can grant access only within applicable organization limits.
+4. Evaluate actual access with the relevant IAM and resource policies. A resource policy attaches to a resource. An S3 bucket is one example. It can grant access only within applicable organization limits.
 5. Test on a small scope before broader use. Management-account resources and calls made through service-linked roles are exempt; delegated administrator member-account resources remain covered.
 
 | Control | What it limits | Grants access? |

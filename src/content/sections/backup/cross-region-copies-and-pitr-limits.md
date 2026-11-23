@@ -35,8 +35,7 @@ facts:
     text: Backups in cold storage cannot be copied across Regions.
     source: https://docs.aws.amazon.com/aws-backup/latest/devguide/recov-point-create-a-copy.html
   - id: aurora-replication-limit
-    text: Aurora DB clusters do not support native cross-Region automated replication of snapshots and
-      transaction logs.
+    text: Native automated replication across Regions is unavailable for Aurora DB cluster snapshots and transaction logs.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.Retaining.html#Aurora.Managing.Backups.Retaining.Limits
   - id: aurora-backup-copy
     text: AWS Backup supports cross-Region Aurora snapshot copies, including simultaneous cross-account
@@ -111,8 +110,7 @@ cards:
   - id: backup-024
     q: An Aurora disaster recovery design proposes native RDS automated backup replication to another
       Region. What backup-copy approach fits Aurora?
-    a: Use supported AWS Backup Aurora snapshot copies. Aurora clusters do not support native
-      cross-Region automated snapshot-and-log replication.
+    a: Use supported AWS Backup Aurora snapshot copies. Native automated replication across Regions is unavailable for Aurora cluster snapshots and logs.
     facts:
       - aurora-replication-limit
       - aurora-backup-copy

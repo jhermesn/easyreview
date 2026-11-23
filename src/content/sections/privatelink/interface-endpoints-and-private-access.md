@@ -91,8 +91,8 @@ facts:
     text: "For high availability, AWS recommends at least two Availability Zones per interface endpoint, with the resources that use it in those zones; endpoints bill per hour in each zone plus per GB processed."
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html
   - id: endpoint-dns-names
-    text: "Each interface endpoint gets Regional and zonal DNS names that resolve to its network interfaces, usable when private DNS is off."
-    source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-dns
+    text: "Each interface endpoint receives Regional and zonal DNS names. These resolve to its network interfaces and work when private DNS is off."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-dns-hostnames
   - id: udp-support
     text: "Since October 2024, AWS PrivateLink supports UDP over IPv4 and IPv6; before that it supported only TCP."
     source: https://aws.amazon.com/about-aws/whats-new/2024/10/aws-udp-privatelink-dual-stack-network-load-balancers/
@@ -177,7 +177,7 @@ cards:
     facts: [udp-support]
   - id: privatelink-015
     q: "Which kinds of services can an interface VPC endpoint reach privately?"
-    a: "AWS services, endpoint services in other AWS accounts, and AWS Marketplace partner services."
+    a: "AWS services, AWS Marketplace partner services, and endpoint services in other AWS accounts."
     facts: [endpoint-targets]
 ---
 
@@ -188,7 +188,7 @@ AWS PrivateLink connects a virtual private cloud (VPC), an isolated virtual netw
 1. For a custom service, the provider creates an endpoint service backed by a Network Load Balancer, which routes requests to service targets, and grants selected AWS principals permission.
 2. The consumer creates an interface endpoint for the service. AWS places a network interface with a private IP address in each selected subnet.
 3. The consumer initiates the connection; the provider accepts or rejects it. The endpoint must be available before use.
-4. Clients use the Domain Name System (DNS) to resolve the service name to an address and send requests to the endpoint. Its security group, a virtual firewall, must allow the traffic. Private DNS requires VPC DNS resolution and hostnames.
+4. Clients use the Domain Name System (DNS) to resolve the service name to an address and send requests to the endpoint. Its security group, a virtual firewall, must allow the traffic. Private DNS requires both DNS hostnames and DNS resolution in the VPC.
 
 ### Exam cues
 

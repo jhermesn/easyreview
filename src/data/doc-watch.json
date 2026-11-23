@@ -4671,7 +4671,7 @@
   "https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-security": "c7ddc12c021ef9f0",
   "https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoints": "86299daaa06569da",
   "https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html": "0d7539bdd3da2b86",
-  "https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-dns": "missing",
+  "https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-dns-hostnames": "ef16bbb2e43c415d",
   "https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-overview": "edec270a1a5d7c46",
   "https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#interface-endpoint-private-dns": "bb16beda12a61f5f",
   "https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html#privatelink-access-aws-services": "0d7539bdd3da2b86",
