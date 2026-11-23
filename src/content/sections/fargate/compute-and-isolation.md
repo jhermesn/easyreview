@@ -72,6 +72,62 @@ facts:
   - id: fargate-linux-largest
     text: "The largest listed Fargate Linux task size is 32 vCPUs with up to 244 GB of memory."
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html
+cards:
+  - id: fargate-001
+    q: Who manages container hosts for ECS Fargate, and what is the isolation boundary?
+    a: AWS manages Fargate compute hosts. Each task is isolated from other tasks, while containers inside one task share resources. EC2 container instances need controls to restrict access to instance metadata and other credentials.
+    facts:
+      - compute
+      - task
+      - shared
+      - ec2
+  - id: fargate-004
+    q: "An ECS application on AWS Fargate needs a shared persistent file system for its tasks. Which storage option fits?"
+    a: "Use Amazon EFS. ECS tasks on Fargate Linux platform 1.4.0 or later can mount shared persistent EFS file systems."
+    facts:
+      - efs
+  - id: fargate-005
+    q: "What isolates one Amazon ECS Fargate task from another?"
+    a: "Each task has its own kernel, CPU, memory and network interface."
+    facts: [task]
+  - id: fargate-006
+    q: A Kubernetes workload on EKS needs a privileged DaemonSet with host networking. Is Fargate suitable?
+    a: No. EKS Fargate does not support DaemonSets, privileged containers, or HostNetwork.
+    trap: true
+    facts:
+      - eks-limits
+  - id: fargate-007
+    q: How does EKS decide which Kubernetes pods run on Fargate?
+    a: A Fargate profile selects pods using a namespace and optional labels.
+    facts:
+      - selectors
+  - id: fargate-008
+    q: Can an EKS Fargate pod mount an EBS persistent volume?
+    a: No. Use supported EFS persistent storage with static provisioning when shared files fit the workload.
+    trap: true
+    facts:
+      - eks-ebs
+      - eks-efs
+  - id: fargate-009
+    q: Which target type should an Application Load Balancer use for an ECS Fargate service?
+    a: ip. Fargate tasks use task network interfaces rather than EC2 instance targets. Classic Load Balancers are unsupported.
+    facts:
+      - targets
+      - no-classic
+  - id: fargate-010
+    q: An application in an ECS Fargate container calls S3. Should its S3 permissions be placed only on the task execution role?
+    a: No. Application API permissions belong to the task role. The execution role supplies agent permissions for startup and log delivery.
+    trap: true
+    facts:
+      - roles
+  - id: fargate-016
+    q: "A team wants to run Kubernetes pods without managing the underlying compute hosts. Which AWS Fargate integration fits?"
+    a: "Use Amazon EKS on Fargate. Each pod runs with its own compute boundary."
+    facts: [eks]
+  - id: fargate-019
+    q: "What is the largest listed CPU and memory combination for an Amazon ECS Fargate Linux task?"
+    a: "32 vCPUs and 244 GB of memory."
+    facts: [fargate-linux-largest]
 diagrams:
   - id: fargate-task-launch
     title: ECS places a task on managed compute
@@ -112,63 +168,10 @@ diagrams:
     steps:
       - Define the container workload, CPU, memory, and networking for Fargate.
       - ECS runs the task with its own compute boundary on Fargate.
-cards:
-  - id: fargate-001
-    q: Who manages container hosts for ECS Fargate, and what is the isolation boundary?
-    a: AWS manages Fargate compute hosts. Each task is isolated from other tasks, while containers inside one task share resources. EC2 container instances need controls to restrict access to instance metadata and other credentials.
-    facts:
-      - compute
-      - task
-      - shared
-      - ec2
-  - id: fargate-004
-    q: "An ECS application on AWS Fargate needs a shared persistent file system for its tasks. Which storage option fits?"
-    a: "Use Amazon EFS. ECS tasks on Fargate Linux platform 1.4.0 or later can mount shared persistent EFS file systems."
-    facts:
-      - efs
-  - id: fargate-005
-    q: Two ECS Fargate tasks must share persistent files across replacements. Which storage service fits?
-    a: Amazon EFS, supported by Linux Fargate platform 1.4.0 or later.
-    facts:
-      - efs
-  - id: fargate-006
-    q: A Kubernetes workload on EKS needs a privileged DaemonSet with host networking. Is Fargate suitable?
-    a: No. EKS Fargate does not support DaemonSets, privileged containers, or HostNetwork.
-    trap: true
-    facts:
-      - eks-limits
-  - id: fargate-007
-    q: How does EKS decide which Kubernetes pods run on Fargate?
-    a: A Fargate profile selects pods using a namespace and optional labels.
-    facts:
-      - selectors
-  - id: fargate-008
-    q: Can an EKS Fargate pod mount an EBS persistent volume?
-    a: No. Use supported EFS persistent storage with static provisioning when shared files fit the workload.
-    trap: true
-    facts:
-      - eks-ebs
-      - eks-efs
-  - id: fargate-009
-    q: Which target type should an Application Load Balancer use for an ECS Fargate service?
-    a: ip. Fargate tasks use task network interfaces rather than EC2 instance targets. Classic Load Balancers are unsupported.
-    facts:
-      - targets
-      - no-classic
-  - id: fargate-010
-    q: An application in an ECS Fargate container calls S3. Should its S3 permissions be placed only on the task execution role?
-    a: No. Application API permissions belong to the task role. The execution role supplies agent permissions for startup and log delivery.
-    trap: true
-    facts:
-      - roles
-  - id: fargate-016
-    q: "A team wants to run Kubernetes pods without managing the underlying compute hosts. Which AWS Fargate integration fits?"
-    a: "Use Amazon EKS on Fargate. Each pod runs with its own compute boundary."
-    facts: [eks]
-  - id: fargate-019
-    q: "What is the largest listed CPU and memory combination for an Amazon ECS Fargate Linux task?"
-    a: "32 vCPUs and 244 GB of memory."
-    facts: [fargate-linux-largest]
+revised:
+  - date: 2026-11-23
+    note: The card now tests isolation between ECS Fargate tasks.
+    cards: [fargate-005]
 ---
 Fargate supplies container compute without requiring you to manage worker hosts. ECS runs tasks, groups of containers deployed together, while EKS runs Kubernetes pods. The isolation boundary surrounds each task or pod, not every container inside it.
 
@@ -193,7 +196,6 @@ Fargate supplies container compute without requiring you to manage worker hosts.
 
 ### Exam cues
 
-- If the question says avoid container-host provisioning and patching, think Fargate, because AWS manages that compute.
 - If the question says adopt a newer ECS service platform version, think a new deployment, because scale-out keeps the version of the current deployment.
 - If the question says shared persistent files across Linux ECS tasks, think EFS on supported Fargate platforms, because the file system is shared across tasks.
 - If the question says choose EKS pods by namespace and labels, think Fargate profiles, because their selectors control pod placement.

@@ -21,8 +21,8 @@ cards:
     a: "- AWS Management Console (web)\n- AWS CLI (command line)\n- AWS SDKs and APIs (code)\n- Infrastructure as code, such as AWS CloudFormation templates"
     facts: [console, cli, sdks, iac]
   - id: management-console-002
-    q: An administrator wants to run AWS commands from a terminal script. Which tool fits?
-    a: The AWS Command Line Interface (AWS CLI).
+    q: How does AWS CLI functionality compare with the AWS Management Console?
+    a: The AWS CLI provides functionality equivalent to the console through shell commands.
     facts: [cli]
   - id: management-console-003
     q: A developer's Python application must create objects in Amazon S3. How should it call AWS?
@@ -32,6 +32,10 @@ cards:
     q: A user needs to create one resource once, by hand, and see it visually. Which access method fits?
     a: The AWS Management Console.
     facts: [console]
+revised:
+  - date: 2026-11-23
+    note: The card now compares AWS CLI functionality with the console.
+    cards: [management-console-002]
 ---
 AWS offers several ways to work with services, from a web interface to commands, application code and templates. Choose the method that fits how you want to operate.
 

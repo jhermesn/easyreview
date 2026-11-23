@@ -65,9 +65,6 @@ facts:
   - id: event-lambda
     text: EventBridge rules can filter lifecycle notifications and route them to Lambda, SNS or SQS.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html#lifecycle-hooks
-  - id: default-result
-    text: When a lifecycle hook times out or has an unexpected failure, its default result is ABANDON unless configured otherwise.
-    source: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutLifecycleHook.html#API_PutLifecycleHook_RequestParameters
   - id: direct-notification-role
     text: A direct SNS or SQS lifecycle hook notification target requires an IAM role that allows Auto Scaling to publish to the target.
     source: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutLifecycleHook.html#API_PutLifecycleHook_RequestParameters
@@ -152,11 +149,11 @@ cards:
       - event-filter
       - event-lambda
   - id: ec2-auto-scaling-068
-    q: An EC2 Auto Scaling launch lifecycle hook times out without an explicit default result. What happens to the instance?
-    a: The default is ABANDON, which permits Auto Scaling to terminate and replace the instance.
+    q: Which EC2 Auto Scaling SNS notification types report failed instance launches and terminations?
+    a: autoscaling:EC2_INSTANCE_LAUNCH_ERROR and autoscaling:EC2_INSTANCE_TERMINATE_ERROR.
     facts:
-      - default-result
-      - launch-abandon
+      - sns-launch-error
+      - sns-terminate-error
   - id: ec2-auto-scaling-069
     q: An EC2 Auto Scaling lifecycle hook sends notifications directly to an Amazon SQS queue. What permission configuration does the hook need?
     a: An IAM role that allows Auto Scaling to publish to the queue.
@@ -187,6 +184,10 @@ cards:
     trap: true
     facts:
       - cold
+revised:
+  - date: 2026-11-23
+    note: The notification card now tests the SNS events for failed launches and terminations.
+    cards: [ec2-auto-scaling-068]
 ---
 EC2 Auto Scaling operations depend on launch permissions, lifecycle decisions and scaling settings. Knowing where each setting applies helps diagnose failed launches and control what happens as instances enter or leave a group.
 
@@ -208,7 +209,6 @@ EC2 Auto Scaling operations depend on launch permissions, lifecycle decisions an
 
 ### Exam cues
 
-- If the question says a launch hook times out without a configured result, think `ABANDON`, because it is the default and permits termination and replacement.
 - If the question says route different lifecycle waits or scaling failures to automation, think EventBridge rules, because they filter events by source and type.
 - If the question says target tracking has no policy warmup or group default warmup, think group default cooldown, because it is the fallback.
 - If the question says an empty warm pool must scale out, think a cold start directly into the group, because scale-out is subject to maximum capacity.
@@ -216,7 +216,7 @@ EC2 Auto Scaling operations depend on launch permissions, lifecycle decisions an
 
 ### Remember
 
-- The lifecycle hook heartbeat timeout defaults to 1 hour. The global timeout is the smaller of 48 hours or 100 times the heartbeat timeout. The default result on timeout or unexpected failure is `ABANDON` unless configured otherwise. See hook considerations and PutLifecycleHook.
+- The lifecycle hook heartbeat timeout defaults to 1 hour. The global timeout is the smaller of 48 hours or 100 times the heartbeat timeout.
 - Predictive scaling needs at least 24 hours of data and analyzes up to 14 days. It forecasts hourly capacity for 48 hours and updates the forecast every 6 hours.
 - Warm-pool sizing defaults to group maximum capacity minus desired capacity. `MaxGroupPreparedCapacity` replaces the maximum in that calculation; `MinSize` sets a minimum, with none set by default.
 

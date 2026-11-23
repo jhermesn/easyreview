@@ -3,6 +3,15 @@ title: Scheduler
 level: associate
 order: 60
 facts:
+  - id: schedule-precision
+    text: Scheduler invokes targets with 60-second precision when no flexible time window is set.
+    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#schedule-types
+  - id: dst-skip
+    text: A cron invocation at a nonexistent local time during the spring daylight saving transition is skipped.
+    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time
+  - id: dst-once
+    text: A cron invocation at a repeated local time during the autumn daylight saving transition runs only once, at the second occurrence after the shift.
+    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time
   - id: schedule-types
     text: Scheduler supports recurring rate and cron schedules and one-time at schedules.
     source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#schedule-types
@@ -43,6 +52,21 @@ facts:
     text: "An EventBridge Scheduler schedule names its target, an execution role and an optional input that it delivers to the target, such as a JSON payload for a Lambda function."
     source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/managing-targets-templated.html
 cards:
+  - id: eventbridge-037
+    q: Does disabling the EventBridge Scheduler flexible time window guarantee invocation at an exact second?
+    a: No. Scheduler still invokes with 60-second precision.
+    trap: true
+    facts:
+      - schedule-precision
+      - window
+  - id: eventbridge-034
+    q: An EventBridge Scheduler cron time occurs twice when clocks move backward. How many scheduled invocations
+      occur for that local time?
+    a: One. A repeated autumn time runs only once; a nonexistent spring time is skipped.
+    trap: true
+    facts:
+      - dst-once
+      - dst-skip
   - id: eventbridge-013
     q: Which EventBridge feature supports one-time schedules, local time zones, and flexible delivery windows?
     a: EventBridge Scheduler. Use `at` for one-time execution, `cron` for calendar schedules, and `rate` for
@@ -112,6 +136,8 @@ Legacy scheduled rules use the default event bus, UTC, and at least one-minute p
 - Types: `rate`, `cron`, and `at`.
 - Retry configuration: 60 to 86400 seconds of event age and 0 to 185 retries; the first exhausted limit stops retries.
 - A rate day is 24 hours, including daylight saving transitions.
+- A nonexistent spring cron time is skipped. A repeated autumn time runs once, at its second occurrence after the shift.
+- Without a flexible time window, Scheduler invokes with 60-second precision.
 - A schedule can pass an input payload to its target.
 
 > **Trap:** A rate day is always 24 hours, so it can shift relative to local wall-clock time when daylight saving time changes.

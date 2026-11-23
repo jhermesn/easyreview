@@ -29,9 +29,9 @@ facts:
     source: https://docs.aws.amazon.com/transfer/latest/userguide/create-server-sftp.html#create-server-sftp
 cards:
   - id: transfer-family-001
-    q: Dozens of vendors upload daily files with SFTP to an on-premises server that the company wants to retire. The files must land in Amazon S3, and vendors must not change their clients. Which service fits?
-    a: "**AWS Transfer Family** with an SFTP endpoint backed by S3.\nFully managed, and vendors keep their SFTP clients."
-    facts: [what, no-servers, use-cases]
+    q: Must vendors replace their existing SFTP clients when a company moves its file transfer endpoint to AWS Transfer Family?
+    a: "No. Vendors can keep their existing clients and configurations with a Transfer Family protocol-enabled endpoint."
+    facts: [no-servers]
   - id: transfer-family-002
     q: An AWS Transfer Family SFTP endpoint must be reachable from the internet only from a list of partner IP addresses. How?
     a: "Host the endpoint in a VPC, make it internet-facing with Elastic IP addresses, and allow only the partner addresses in its security group."
@@ -61,8 +61,12 @@ cards:
     q: "An SFTP endpoint on Transfer Family must authenticate partners against an existing Okta or LDAP directory. How?"
     a: "Use a custom identity provider: a Lambda function, or an API Gateway method backed by Lambda, that checks the credentials."
     facts: [identity-providers]
+revised:
+  - date: 2026-11-23
+    note: The vendor transfer card now tests existing client compatibility.
+    cards: [transfer-family-001]
 ---
-AWS Transfer Family replaces self-managed SFTP and FTP servers. Partners connect with the same clients as before; files go straight into Amazon S3 or Amazon EFS, where the rest of AWS can process them.
+AWS Transfer Family endpoints build on managed file transfers with endpoint networking, user access controls and workflows.
 
 ### How it works
 
@@ -73,7 +77,6 @@ AWS Transfer Family replaces self-managed SFTP and FTP servers. Partners connect
 
 ### Exam cues
 
-- If the question says partners or vendors use SFTP, FTPS or AS2 and the data should land in S3, think AWS Transfer Family.
 - If the question says allow only known partner IP addresses, think a VPC endpoint with Elastic IP addresses and a security group.
 - If the question says process each file right after upload with no servers, think a managed workflow (or S3 event notifications).
 

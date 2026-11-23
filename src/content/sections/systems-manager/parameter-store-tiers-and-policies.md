@@ -70,7 +70,21 @@ facts:
   - id: "kms-pricing"
     text: "Customer managed AWS KMS keys incur key and API usage charges; AWS managed KMS keys have no charge for the key itself."
     source: "https://docs.aws.amazon.com/prescriptive-guidance/latest/aws-startup-security-baseline/wkld-03.html"
+  - id: parameter-recursive
+    text: GetParametersByPath supports recursive retrieval of parameters below a path.
+    source: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html#systemsmanager-GetParametersByPath-request-Recursive
 cards:
+  - id: systems-manager-071
+    q: How many levels can an AWS Systems Manager Parameter Store hierarchy contain?
+    a: Up to 15 levels, separated by forward slashes.
+    facts: [hierarchies]
+  - id: systems-manager-030
+    q: Can a Systems Manager Parameter Store advanced parameter be changed to standard after its value
+      becomes smaller?
+    a: No. Standard can be upgraded to advanced, but an advanced parameter cannot be downgraded.
+    trap: true
+    facts:
+      - parameter-tier
   - id: systems-manager-005
     q: How do Systems Manager Parameter Store standard and advanced parameters differ?
     a: "Standard: 4 KB values, 10000 parameters per account and Region, no additional storage charge and
@@ -124,11 +138,15 @@ cards:
   - id: systems-manager-119
     q: "An application must load every AWS Systems Manager Parameter Store value for /prod/payments/ at startup. Which naming and API fit?"
     a: "Hierarchical names such as /prod/payments/db-url, read with GetParametersByPath (recursively if needed)."
-    facts: [hierarchies]
+    facts: [hierarchies, parameter-recursive]
   - id: systems-manager-128
     q: "When comparing AWS Secrets Manager and KMS costs for a Systems Manager Parameter Store design, which charges should a team consider?"
     a: "Secrets Manager charges for secrets and retrieval API calls. Customer managed KMS keys have key and API usage charges."
     facts: [secrets-manager-pricing, kms-pricing]
+revised:
+  - date: 2026-11-23
+    note: The hierarchy card now tests the maximum number of levels in a parameter name.
+    cards: [systems-manager-071]
 ---
 Parameter Store keeps application configuration as named values. The tier determines storage limits and policy support; the parameter type determines how the value is represented.
 

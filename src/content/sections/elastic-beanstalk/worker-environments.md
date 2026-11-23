@@ -57,9 +57,47 @@ facts:
   - id: fifo-order
     text: FIFO preserves message order within each message group.
     source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html#FIFO-queues-understanding-logic
-  - id: reverse-proxy
-    text: A reverse proxy receives traffic on an instance and forwards requests to the application.
-    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-linux-extend.proxy.html#platforms-linux-extend.proxy
+cards:
+  - id: elastic-beanstalk-026
+    q: How does an Elastic Beanstalk worker instance receive and acknowledge an SQS job?
+    a: The daemon sends the message body as an HTTP POST to the local application, using / by default and fixed port 80. Only 200 OK causes message deletion.
+    facts:
+      - worker-post
+      - worker-ack
+  - id: elastic-beanstalk-027
+    q: What happens to repeatedly failing Elastic Beanstalk worker messages?
+    a: With a dead-letter queue, MaxRetries controls transfer there and defaults to 10. Without one, messages remain until retention expires. Existing queues need a separately configured dead-letter queue.
+    facts:
+      - worker-max
+      - no-dlq
+      - worker-dlq
+      - existing-dlq
+  - id: elastic-beanstalk-028
+    q: How does an Elastic Beanstalk worker environment schedule periodic tasks?
+    a: Include cron.yaml with task names, URL paths, and cron schedules. An elected worker queues each job; any worker can process it. Periodic tasks do not support FIFO queues.
+    facts:
+      - periodic
+      - fifo
+      - existing-queue
+      - fifo-periodic
+  - id: elastic-beanstalk-053
+    q: An Elastic Beanstalk worker returns 202 after accepting an SQS job. Will the daemon delete the message?
+    a: No. Only 200 OK deletes it. A different response retries after ErrorVisibilityTimeout.
+    trap: true
+    facts:
+      - worker-ack
+      - worker-error
+  - id: elastic-beanstalk-054
+    q: An Elastic Beanstalk worker app listens on a custom port. Can the queue daemon be reconfigured to use it?
+    a: No. The daemon always posts to port 80. Make the application or its proxy listen on port 80; the URL path is configurable.
+    trap: true
+    facts:
+      - worker-post
+  - id: elastic-beanstalk-055
+    q: An Elastic Beanstalk worker sometimes processes the same message again. What application property is needed?
+    a: "Idempotent handling: repeated processing must not repeat the intended side effect. SQS at-least-once delivery can produce repeated messages."
+    facts:
+      - duplicate-work
 diagrams:
   - id: beanstalk-worker-request
     title: Worker queue to local HTTP processing
@@ -105,54 +143,13 @@ diagrams:
     steps:
       - The daemon receives an SQS message.
       - It posts to the local app. A 200 response deletes the message; errors or no response allow retry.
-cards:
-  - id: elastic-beanstalk-026
-    q: How does an Elastic Beanstalk worker instance receive and acknowledge an SQS job?
-    a: The daemon sends the message body as an HTTP POST to the local application, using / by default and fixed port 80. Only 200 OK causes message deletion.
-    facts:
-      - worker-post
-      - worker-ack
-  - id: elastic-beanstalk-027
-    q: What happens to repeatedly failing Elastic Beanstalk worker messages?
-    a: With a dead-letter queue, MaxRetries controls transfer there and defaults to 10. Without one, messages remain until retention expires. Existing queues need a separately configured dead-letter queue.
-    facts:
-      - worker-max
-      - no-dlq
-      - worker-dlq
-      - existing-dlq
-  - id: elastic-beanstalk-028
-    q: How does an Elastic Beanstalk worker environment schedule periodic tasks?
-    a: Include cron.yaml with task names, URL paths, and cron schedules. An elected worker queues each job; any worker can process it. Periodic tasks do not support FIFO queues.
-    facts:
-      - periodic
-      - fifo
-      - existing-queue
-      - fifo-periodic
-  - id: elastic-beanstalk-053
-    q: An Elastic Beanstalk worker returns 202 after accepting an SQS job. Will the daemon delete the message?
-    a: No. Only 200 OK deletes it. A different response retries after ErrorVisibilityTimeout.
-    trap: true
-    facts:
-      - worker-ack
-      - worker-error
-  - id: elastic-beanstalk-054
-    q: An Elastic Beanstalk worker app listens on a custom port. Can the queue daemon be reconfigured to use it?
-    a: No. The daemon always posts to port 80. Make the application or its proxy listen on port 80; the URL path is configurable.
-    trap: true
-    facts:
-      - worker-post
-  - id: elastic-beanstalk-055
-    q: An Elastic Beanstalk worker sometimes processes the same message again. What application property is needed?
-    a: "Idempotent handling: repeated processing must not repeat the intended side effect. SQS at-least-once delivery can produce repeated messages."
-    facts:
-      - duplicate-work
 ---
 Elastic Beanstalk worker environments move slow background jobs away from the web request path. The web application queues work in SQS, and separate worker instances process it. A daemon is a background process; Beanstalk's worker daemon bridges the queue to the local HTTP application.
 
 ### How it works
 
 1. Send jobs to the worker's SQS queue. Worker instances run in an Auto Scaling group without a load balancer.
-2. Each daemon reads a message and POSTs its body to the local application. The default path is `/`. Port 80 is fixed, so the application or its proxy, a server that forwards requests to the application, must listen there.
+2. Each daemon reads a message and POSTs its body to the local application. The default path is `/`. Port 80 is fixed, so the application or its proxy must listen there.
 3. Return `200 OK` after successful processing. Only that response causes the daemon to delete the message.
 4. A different response makes the job available after `ErrorVisibilityTimeout`. No response uses `InactivityTimeout`. Set `VisibilityTimeout`, the time a received message is hidden from other readers, longer than expected processing time. Make handling idempotent, meaning repeating a message does not repeat its intended side effect.
 5. Repeated failures go to a dead-letter queue, a queue for jobs that could not be processed, when one is configured. Autogenerated queues include one; existing queues need their own SQS configuration. Without one, retrying messages remain until retention expires.

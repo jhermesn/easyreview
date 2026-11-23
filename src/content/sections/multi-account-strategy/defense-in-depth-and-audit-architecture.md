@@ -23,9 +23,6 @@ facts:
     text: CloudTrail integrity validation delivers signed digest files; enabling it does not itself validate
       existing log files or prevent deletion.
     source: https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html
-  - id: management-exception
-    text: SCPs do not restrict the management account.
-    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#orgs_manage_policies_scps
   - id: waf
     text: WAF filters HTTP and HTTPS requests at supported resources such as CloudFront, ALB, and API Gateway REST
       APIs.
@@ -102,6 +99,9 @@ facts:
   - id: security-lake
     text: "Amazon Security Lake automatically centralizes security logs and events from AWS services, SaaS providers, on-premises and third-party sources into a data lake in your account, stored as Parquet in the OCSF schema."
     source: https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html#what-is-security-lake
+  - id: management-exception
+    text: SCPs do not restrict the management account.
+    source: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#orgs_manage_policies_scps
 cards:
   - id: multi-account-strategy-001
     q: AWS member-account administrators need their own CloudTrail trails while a central audit baseline remains
@@ -310,7 +310,6 @@ Defense in depth combines controls at several boundaries with independent audit 
 ### Remember
 
 - An organization trail and its destination bucket have separate access controls.
-- SCPs do not restrict the management account.
 - Security groups allow; network ACLs allow and deny in rule-number order.
 - Validation detects evidence changes; archive protections restrict who can make them.
 

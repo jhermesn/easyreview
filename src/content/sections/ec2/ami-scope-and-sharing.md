@@ -105,13 +105,13 @@ cards:
     a: "One instance, one AMI and one snapshot. Copying an EBS-backed AMI also copies its backing snapshot into the destination Region."
     facts: [copy-creates-snapshots]
   - id: ec2-099
-    q: "A disaster recovery plan needs to launch EC2 instances from an AMI in a different AWS Region. What must the team do?"
-    a: "Copy the AMI to the recovery Region. AMIs can launch instances only in their own Region."
-    facts: [regional, cross-region]
+    q: Does copying an EC2 AMI also copy its launch permissions to the new AMI?
+    a: No. AMI copying does not copy the source AMI launch permissions.
+    facts: [copy-permissions]
   - id: ec2-104
-    q: "An EC2 instance needs a replacement in another Availability Zone for recovery. How can an AMI help?"
-    a: "Create an AMI from the instance and launch a replacement in a subnet in the target Availability Zone."
-    facts: [az-replacement, subnet-zone]
+    q: What happens to EC2 AMIs that are already public when block public access for AMIs is turned on?
+    a: They stay public. The setting blocks new attempts to make an AMI public.
+    facts: [ami-bpa-existing]
   - id: ec2-123
     q: "A team launches EC2 instances from an AWS Marketplace AMI that includes commercial software. What does it pay?"
     a: "The software rate set by the AMI owner plus the standard EC2 usage fees."
@@ -134,6 +134,13 @@ diagrams:
     steps:
       - Create an AMI from the source instance.
       - Launch a new instance in the destination subnet and update references to changed addresses.
+revised:
+  - date: 2026-11-23
+    note: The card now covers launch permissions when copying an AMI.
+    cards: [ec2-099]
+  - date: 2026-11-23
+    note: The card now covers existing public AMIs after block public access is enabled.
+    cards: [ec2-104]
 ---
 An Amazon Machine Image (AMI) is a software template for setting up and booting EC2 instances. Sharing lets another account launch from your template; copying creates a separate image. An EBS-backed AMI uses EBS snapshots, point-in-time backups of disk volumes.
 

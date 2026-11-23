@@ -33,6 +33,24 @@ facts:
   - id: guardduty
     text: GuardDuty analyzes AWS logs using threat intelligence and machine learning to identify potentially malicious activity.
     source: https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html#detective-related-services
+cards:
+  - id: detective-001
+    q: Which optional Amazon Detective source package ingests Security Hub CSPM findings?
+    a: The AWS security findings package.
+    facts: [security-findings]
+  - id: detective-003
+    q: A security team needs to investigate related findings and affected resources together. What Amazon Detective feature helps?
+    a: Finding groups. They bring related findings and entities together for investigation.
+    facts: [groups]
+  - id: detective-004
+    q: A security team needs Amazon Detective to investigate suspicious activity across multiple AWS accounts. What can connect their data?
+    a: A behavior graph. An administrator can invite member accounts to contribute data.
+    facts: [accounts]
+  - id: detective-007
+    q: Must a team configure its existing CloudTrail trail or VPC Flow Logs for Amazon Detective to consume its core event streams?
+    a: No. Detective uses independent streams and does not use existing logging configurations.
+    facts: [separate-streams]
+    trap: true
 diagrams:
   - id: detective-source-graph
     title: Core sources feed the behavior graph
@@ -51,27 +69,13 @@ diagrams:
       - Detective uses CloudTrail events from graph accounts.
       - Detective uses VPC flow log events from independent streams.
       - Detective ingests GuardDuty findings for enrolled accounts and links activity over time.
-cards:
-  - id: detective-001
-    q: Which service helps investigate the root cause of a GuardDuty finding?
-    a: Amazon Detective. It connects activity over time in a behavior graph using core sources including CloudTrail, VPC Flow Logs and GuardDuty findings.
-    facts: [purpose, core-sources, graph]
-  - id: detective-003
-    q: A security team needs to investigate related findings and affected resources together. What Amazon Detective feature helps?
-    a: Finding groups. They bring related findings and entities together for investigation.
-    facts: [groups]
-  - id: detective-004
-    q: A security team needs Amazon Detective to investigate suspicious activity across multiple AWS accounts. What can connect their data?
-    a: A behavior graph. An administrator can invite member accounts to contribute data.
-    facts: [accounts]
-  - id: detective-007
-    q: Must a team configure its existing CloudTrail trail or VPC Flow Logs for Amazon Detective to consume its core event streams?
-    a: No. Detective uses independent streams and does not use existing logging configurations.
-    facts: [separate-streams]
-    trap: true
+revised:
+  - date: 2026-11-23
+    note: The card now covers the optional AWS security findings source package.
+    cards: [detective-001]
 ---
 
-Amazon Detective helps investigate security findings and suspicious activity to understand their root cause. Its behavior graph connects activity and resources over time.
+Amazon Detective uses a behavior graph to connect activity and resources over time.
 
 ### How it works
 
@@ -82,7 +86,6 @@ Amazon Detective helps investigate security findings and suspicious activity to 
 
 ### Exam cues
 
-- If the question says investigate the context and root cause of a GuardDuty finding, think Detective, because it connects activity and resources over time.
 - If the question says find potentially malicious activity in AWS logs, think GuardDuty, because it analyzes logs for threats; use Detective to investigate findings.
 - If the question says investigate related findings and entities together, think finding groups, because they bring them together for investigation.
 - If the question says investigate activity across accounts, think a behavior graph, because an administrator can invite member accounts to contribute data.

@@ -97,6 +97,18 @@
   ],
   "cards": [
     {
+      "id": "dynamodb-014",
+      "q": "A DynamoDB LSI query repeatedly fetches extra attributes from the table. How can the team reduce those reads?",
+      "a": "Project required attributes with INCLUDE or ALL. This trades index storage for fewer base table fetches.",
+      "facts": ["projection", "fetch"]
+    },
+    {
+      "id": "dynamodb-054",
+      "q": "How many local secondary indexes can a DynamoDB table have?",
+      "a": "**Five**, a fixed quota. LSIs are also created only with the table.",
+      "facts": ["lsi-limit", "lsi"]
+    },
+    {
       "id": "dynamodb-001",
       "q": "How do DynamoDB LSI and GSI keys, creation, and consistency differ?",
       "a": "An LSI keeps the table partition key, changes the sort key, must exist at table creation, and supports strong reads. A GSI can change both keys, be added later, and only supports eventual reads.",
@@ -193,7 +205,8 @@ DynamoDB stores items, or records, in tables. Each item contains attributes, or 
 1. Choose a partition key to group items. A simple primary key uses it alone; a composite primary key adds a sort key that orders items within a group. Each complete key must be unique.
 2. Use `Query` with one partition-key value and an optional sort-key comparison, `BETWEEN` range, or `begins_with` prefix. Results are ascending unless `ScanIndexForward=false`.
 3. Choose a local secondary index (LSI) for another sort key under the same partition key. Choose a global secondary index (GSI) when different keys and eventual reads fit.
-4. For competing allocation claims, use a conditional write, a write that succeeds only if the current item meets a condition. Reading an allocation alone does not reserve it.
+4. Choose an LSI projection: `KEYS_ONLY` copies table and index keys, `INCLUDE` adds selected attributes, and `ALL` copies all attributes. An LSI query can fetch unprojected attributes from the table at extra latency and read capacity cost.
+5. For competing allocation claims, use a conditional write, a write that succeeds only if the current item meets a condition. Reading an allocation alone does not reserve it.
 
 ### Exam cues
 
@@ -210,7 +223,7 @@ DynamoDB stores items, or records, in tables. Each item contains attributes, or 
 - GetItem defaults to eventual consistency. LSIs support strong reads; GSIs do not.
 - A GSI query returns only projected attributes; it cannot fetch others from the table.
 - GSI: partition key plus optional sort key, any schema. Fewer projected attributes cost less to store and write.
-- LSIs are created and deleted with the table.
+- A table can have at most five LSIs, a fixed quota. LSIs are created and deleted with the table.
 
 > **Trap:** A filter does not make Scan cheaper. Reading happens before filtering.
 

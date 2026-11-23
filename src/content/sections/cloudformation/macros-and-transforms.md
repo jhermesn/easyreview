@@ -33,13 +33,13 @@ facts:
     text: AWS::Serverless is a CloudFormation-hosted transform that expands SAM syntax into
       CloudFormation resources.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros.html#template-macros
-  - id: service-managed-macros
-    text: Service-managed StackSets do not support templates containing macros.
-    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros-overview.html#template-macros-considerations
   - id: macro-scope
     text: A macro must be defined in the account using it; multiple account macro definitions can
       reference a shared Lambda function with cross-account access.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros-overview.html#template-macros-permissions
+  - id: service-managed-macros
+    text: Service-managed StackSets do not support templates containing macros.
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros-overview.html#template-macros-considerations
 cards:
   - id: cloudformation-021
     q: What is a CloudFormation macro, and when is its output used?
@@ -141,6 +141,5 @@ A CloudFormation macro processes template text before CloudFormation provisions 
 ### Remember
 
 - Define the macro in each account that uses it. Definitions can share a Lambda function with cross-account access.
-- Service-managed StackSets do not support macro-containing templates.
 
 > **Trap:** The submitted template is not the complete resource plan when macros are involved. Review the processed change set to see what expansion introduces.

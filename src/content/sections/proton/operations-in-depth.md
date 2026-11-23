@@ -52,10 +52,15 @@ cards:
     a: "It requires more implementation work and has less built-in developer self-service."
     facts: [end-support, pipeline-alternative]
   - id: proton-009
-    q: "A team wants to retain AWS Proton-style environments when moving to CloudFormation Git sync. Does Git sync provide them?"
-    a: "No. AWS lists Git sync as a Git-based alternative, but it has no Proton-style environments."
+    q: "Does CloudFormation Git sync provide the advanced pipeline features of AWS Proton?"
+    a: "No. AWS lists Git sync as a Git-based alternative without Proton-style environments or advanced pipeline features."
     trap: true
     facts: [git-sync]
+
+revised:
+  - date: 2026-11-23
+    note: The card now covers Git sync pipeline features.
+    cards: [proton-009]
 ---
 AWS Proton environment templates defined shared infrastructure for applications. After Proton support ended, teams needed an alternative for infrastructure automation, while deployed CloudFormation stacks and their resources remained intact.
 

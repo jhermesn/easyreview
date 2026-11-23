@@ -60,24 +60,6 @@ facts:
   - id: anycast
     text: "Global Accelerator static IP addresses are anycast from the AWS edge network, so clients enter at a nearby edge location."
     source: https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html
-diagrams:
-  - id: accelerator-regional-routing
-    title: Standard accelerator routing
-    width: 800
-    height: 330
-    nodes:
-      - { id: client, label: Client, icon: res-client, x: 25, y: 125, w: 140, h: 72, tone: user }
-      - { id: accelerator, label: Global Accelerator, icon: global-accelerator, x: 275, y: 125, w: 185, h: 72, tone: network }
-      - { id: alb, label: ALB, sub: "Region A", icon: res-elastic-load-balancing-application-load-balancer, x: 590, y: 30, w: 160, h: 86, tone: network }
-      - { id: nlb, label: NLB, sub: "Region B", icon: elastic-load-balancing, x: 590, y: 215, w: 160, h: 86, tone: network }
-    edges:
-      - { from: client, to: accelerator, step: 1 }
-      - { from: accelerator, to: alb, step: 2 }
-      - { from: accelerator, to: nlb, step: 3 }
-    steps:
-      - The client connects to a static accelerator IP at the AWS edge.
-      - The standard accelerator can route to a healthy regional Application Load Balancer.
-      - It can route new connections to another available endpoint, such as a Network Load Balancer.
 cards:
   - id: global-accelerator-001
     q: A global TCP application needs fixed IP addresses and routing to healthy regional load balancers. What AWS service fits?
@@ -115,21 +97,45 @@ cards:
     facts: [existing-connections, failover]
     trap: true
   - id: global-accelerator-010
-    q: A multiplayer game uses UDP and needs lower latency for players worldwide. Which AWS service fits better than CloudFront?
-    a: AWS Global Accelerator. Its listeners support TCP and UDP, while CloudFront caches HTTP content.
-    trap: true
+    q: "Which protocols can AWS Global Accelerator listeners use for non-HTTP workloads?"
+    a: "TCP and UDP."
     facts: [tcp-udp]
   - id: global-accelerator-011
     q: "A stateful game server behind Global Accelerator must keep each player on the same endpoint. What setting does that?"
     a: "Client affinity set to Source IP on the listener."
     facts: [client-affinity]
   - id: global-accelerator-013
-    q: "A gaming company needs fixed IP addresses that route TCP and UDP players to the nearest healthy Region, with no content caching. Which service fits?"
-    a: "**AWS Global Accelerator.** Its static IPs are anycast from the AWS edge network and route over the AWS backbone; CloudFront would add caching for HTTP content instead."
+    q: "How do AWS Global Accelerator static IP addresses direct clients to an AWS edge location?"
+    a: "The addresses are anycast from the AWS edge network, so clients enter at a nearby edge location."
     facts: [anycast]
+diagrams:
+  - id: accelerator-regional-routing
+    title: Standard accelerator routing
+    width: 800
+    height: 330
+    nodes:
+      - { id: client, label: Client, icon: res-client, x: 25, y: 125, w: 140, h: 72, tone: user }
+      - { id: accelerator, label: Global Accelerator, icon: global-accelerator, x: 275, y: 125, w: 185, h: 72, tone: network }
+      - { id: alb, label: ALB, sub: "Region A", icon: res-elastic-load-balancing-application-load-balancer, x: 590, y: 30, w: 160, h: 86, tone: network }
+      - { id: nlb, label: NLB, sub: "Region B", icon: elastic-load-balancing, x: 590, y: 215, w: 160, h: 86, tone: network }
+    edges:
+      - { from: client, to: accelerator, step: 1 }
+      - { from: accelerator, to: alb, step: 2 }
+      - { from: accelerator, to: nlb, step: 3 }
+    steps:
+      - The client connects to a static accelerator IP at the AWS edge.
+      - The standard accelerator can route to a healthy regional Application Load Balancer.
+      - It can route new connections to another available endpoint, such as a Network Load Balancer.
+revised:
+  - date: 2026-11-23
+    note: The card now tests the protocols supported by Global Accelerator listeners.
+    cards: [global-accelerator-010]
+  - date: 2026-11-23
+    note: The card now tests how anycast directs clients to the AWS edge.
+    cards: [global-accelerator-013]
 ---
 
-AWS Global Accelerator gives clients fixed IP addresses for applications running in AWS Regions. It brings traffic onto the AWS global network at an edge location, an entry point near users, then routes it to application endpoints, the receiving resources.
+Regional endpoint routing builds on AWS Global Accelerator. A standard accelerator selects endpoints using location, health and configured weights.
 
 ### How it works
 

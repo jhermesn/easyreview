@@ -70,8 +70,8 @@ cards:
     trap: true
     facts: [hub, dms-tracking]
   - id: cloud-adoption-030
-    q: "A company moves its databases with AWS Database Migration Service and its servers with AWS Application Migration Service. Where can it follow the status of both?"
-    a: "In AWS Migration Hub, which receives migration status updates from both services."
+    q: "Which AWS migration services send status updates to AWS Migration Hub?"
+    a: "AWS Application Migration Service and AWS Database Migration Service."
     facts: [dms-tracking]
   - id: cloud-adoption-036
     q: Which AWS solution coordinates and automates tasks across a large migration?
@@ -97,6 +97,10 @@ cards:
     q: Which image formats can VM Import/Export use when exporting an image?
     a: VHD, VMDK and raw.
     facts: [vm-export-formats]
+revised:
+  - date: 2026-11-23
+    note: The Migration Hub card now tests which services send it status updates.
+    cards: [cloud-adoption-030]
 ---
 AWS migration services help discover on-premises servers, move them to AWS and track migration progress. Some were renamed or closed to new customers, so exam questions may use older names.
 

@@ -29,9 +29,13 @@ cards:
     trap: true
     facts: [repeatable, console]
   - id: management-console-007
-    q: "Which AWS access option lets a user manage services through a web browser?"
-    a: "The AWS Management Console provides web-based access to AWS service consoles."
-    facts: [console]
+    q: "How many identities can use the AWS Management Console in one browser after opting in to multi-session support?"
+    a: "Up to five identities, including root, IAM and federated roles from the same or different accounts."
+    facts: [multi-session]
+revised:
+  - date: 2026-11-23
+    note: The card now covers the console multi-session identity limit.
+    cards: [management-console-007]
 ---
 AWS CloudFormation templates help create resources consistently across Regions. The AWS Management Console also supports signing in to multiple identities in one browser. CloudFormation | Multi-session support
 

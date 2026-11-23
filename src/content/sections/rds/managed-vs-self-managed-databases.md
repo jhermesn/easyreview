@@ -27,9 +27,6 @@ facts:
   - id: custom-pause
     text: "Before customizing an RDS Custom host, pause RDS Custom automation for a set period so monitoring and instance recovery do not interfere; it resumes when the pause ends."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-managing-sqlserver.pausing.html#custom-managing-sqlserver.pausing
-  - id: per-second-billing
-    text: "RDS instance usage is billed in one-second increments with a 10-minute minimum."
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_OnDemandDBInstances.html
 cards:
   - id: rds-046
     q: "Which of these AWS databases are NoSQL: Amazon DynamoDB, Amazon Neptune, Amazon DocumentDB, Amazon Aurora?"

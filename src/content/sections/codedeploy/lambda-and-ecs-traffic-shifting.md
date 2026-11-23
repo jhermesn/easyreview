@@ -80,6 +80,68 @@ facts:
   - id: lambda-linear-three-minutes
     text: CodeDeployDefault.LambdaLinear10PercentEvery3Minutes shifts 10 percent of Lambda traffic every three minutes until the shift is complete.
     source: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html#deployment-configurations-predefined-lambda
+cards:
+  - id: codedeploy-072
+    q: How does CodeDeployDefault.LambdaLinear10PercentEvery3Minutes shift traffic for a Lambda deployment?
+    a: It shifts 10 percent every three minutes until all traffic has moved.
+    facts: [lambda-linear-three-minutes]
+  - id: codedeploy-006
+    q: How do CodeDeployDefault.LambdaCanary10Percent5Minutes and
+      CodeDeployDefault.LambdaLinear10PercentEvery1Minute differ?
+    a: Canary sends 10 percent first and the remaining 90 percent five minutes later. Linear adds 10
+      percent every minute until all traffic has moved.
+    facts:
+      - lambda-canary
+      - lambda-linear
+  - id: codedeploy-013
+    q: A Lambda team needs gradual releases with automatic recovery when errors rise. How should it
+      configure CodeDeploy?
+    a: Shift an alias with canary or linear traffic settings. Attach CloudWatch alarms and enable
+      rollback when alarm thresholds are met; optionally add pre-traffic and post-traffic validation
+      hooks.
+    facts:
+      - lambda-alias
+      - canary
+      - linear
+      - alarm-stop
+      - alarm-rollback
+      - lambda-hooks
+  - id: codedeploy-031
+    q: How does CodeDeploy blue/green update an ECS service?
+    a: Create a replacement task set from the task definition, attach the alternate target group,
+      optionally test it, and shift production traffic. Terminate the original after the configured
+      wait.
+    facts:
+      - ecs-green
+      - ecs-targets
+      - ecs-shift
+      - ecs-termination
+  - id: codedeploy-032
+    q: An ECS service uses CodeDeploy and a Network Load Balancer but needs gradual traffic shifting.
+      What should change?
+    a: Use an Application Load Balancer. CodeDeploy supports only CodeDeployDefault.ECSAllAtOnce with a
+      Network Load Balancer.
+    trap: true
+    facts:
+      - ecs-nlb
+      - ecs-alb
+  - id: codedeploy-036
+    q: "What does the optional test listener do in an ECS deployment managed by CodeDeploy?"
+    a: "It directs test traffic to the replacement task set before production traffic shifts."
+    facts: [ecs-shift]
+  - id: codedeploy-037
+    q: "What does the Lambda AppSpec identify for a CodeDeploy traffic shift?"
+    a: "The function alias, current version and target version."
+    facts: [lambda-alias]
+  - id: codedeploy-053
+    q: For an ECS service deployed by CodeDeploy, where are the controller, listeners, target groups,
+      and task definition configured?
+    a: Set the ECS service controller to CODE_DEPLOY. Put listeners and two target groups in the
+      deployment group; put the task definition in AppSpec.
+    facts:
+      - ecs-controller
+      - ecs-targets
+      - ecs-green
 diagrams:
   - id: codedeploy-lambda-canary
     title: Lambda traffic shifting with an alias
@@ -224,79 +286,14 @@ diagrams:
       - The optional test listener reaches green before CodeDeploy shifts production using the
         deployment configuration.
       - The original task set is terminated after the configured wait.
-cards:
-  - id: codedeploy-072
-    q: How does CodeDeployDefault.LambdaLinear10PercentEvery3Minutes shift traffic for a Lambda deployment?
-    a: It shifts 10 percent every three minutes until all traffic has moved.
-    facts: [lambda-linear-three-minutes]
-  - id: codedeploy-006
-    q: How do CodeDeployDefault.LambdaCanary10Percent5Minutes and
-      CodeDeployDefault.LambdaLinear10PercentEvery1Minute differ?
-    a: Canary sends 10 percent first and the remaining 90 percent five minutes later. Linear adds 10
-      percent every minute until all traffic has moved.
-    facts:
-      - lambda-canary
-      - lambda-linear
-  - id: codedeploy-013
-    q: A Lambda team needs gradual releases with automatic recovery when errors rise. How should it
-      configure CodeDeploy?
-    a: Shift an alias with canary or linear traffic settings. Attach CloudWatch alarms and enable
-      rollback when alarm thresholds are met; optionally add pre-traffic and post-traffic validation
-      hooks.
-    facts:
-      - lambda-alias
-      - canary
-      - linear
-      - alarm-stop
-      - alarm-rollback
-      - lambda-hooks
-  - id: codedeploy-031
-    q: How does CodeDeploy blue/green update an ECS service?
-    a: Create a replacement task set from the task definition, attach the alternate target group,
-      optionally test it, and shift production traffic. Terminate the original after the configured
-      wait.
-    facts:
-      - ecs-green
-      - ecs-targets
-      - ecs-shift
-      - ecs-termination
-  - id: codedeploy-032
-    q: An ECS service uses CodeDeploy and a Network Load Balancer but needs gradual traffic shifting.
-      What should change?
-    a: Use an Application Load Balancer. CodeDeploy supports only CodeDeployDefault.ECSAllAtOnce with a
-      Network Load Balancer.
-    trap: true
-    facts:
-      - ecs-nlb
-      - ecs-alb
-  - id: codedeploy-036
-    q: A team needs a CodeDeploy canary release for ECS behind a Network Load Balancer. What load
-      balancer meets the requirement?
-    a: An Application Load Balancer. The CodeDeploy controller cannot provide canary shifting through a
-      Network Load Balancer.
-    trap: true
-    facts:
-      - ecs-nlb
-      - ecs-alb
-  - id: codedeploy-037
-    q: How can CodeDeploy shift a Lambda release gradually and reverse it on an alarm?
-    a: Use an alias with canary or linear settings, attach a CloudWatch alarm, and enable automatic
-      rollback on its threshold. Validation hooks can test before and after the shift.
-    facts:
-      - lambda-alias
-      - canary
-      - linear
-      - alarm-rollback
-      - lambda-hooks
-  - id: codedeploy-053
-    q: For an ECS service deployed by CodeDeploy, where are the controller, listeners, target groups,
-      and task definition configured?
-    a: Set the ECS service controller to CODE_DEPLOY. Put listeners and two target groups in the
-      deployment group; put the task definition in AppSpec.
-    facts:
-      - ecs-controller
-      - ecs-targets
-      - ecs-green
+
+revised:
+  - date: 2026-11-23
+    note: The card now covers the ECS test listener.
+    cards: [codedeploy-036]
+  - date: 2026-11-23
+    note: The card now covers Lambda AppSpec fields.
+    cards: [codedeploy-037]
 ---
 CodeDeploy releases Lambda and ECS applications by shifting traffic to a replacement version. For Lambda, an alias is a stable function name that routes requests to function versions. For ECS, a task set is a group of tasks running an application version. CodeDeploy creates a replacement task set alongside the original.
 

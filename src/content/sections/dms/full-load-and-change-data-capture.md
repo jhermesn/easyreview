@@ -30,9 +30,6 @@ facts:
   - id: dms-cutover
     text: After replication reaches steady state, applications can be stopped while remaining changes are applied and restarted against the target.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.HighLevelView.html
-  - id: dms-schema
-    text: DMS Schema Conversion assesses and converts schemas and code for a different target engine; objects it cannot convert automatically require manual conversion.
-    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.HighLevelView.html
   - id: dms-documentdb
     text: Amazon DocumentDB is a managed database service for MongoDB-compatible databases.
     source: https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html
@@ -91,9 +88,9 @@ cards:
     trap: true
     facts: [dms-latency]
   - id: dms-010
-    q: "A database is moving to a different engine. How can AWS DMS help with the schema and data?"
-    a: "Use DMS Schema Conversion to assess and convert the schema, and DMS to migrate data. Objects that cannot be converted automatically need manual conversion."
-    facts: [dms-schema, dms-purpose]
+    q: Which AWS DMS task type can migrate database views?
+    a: A full-load-only task. Tasks that include change data capture cannot migrate views.
+    facts: [dms-views]
 diagrams:
   - id: dms-replication-flow
     title: DMS replication
@@ -109,6 +106,10 @@ diagrams:
     steps:
       - DMS reads source data and captures changes.
       - DMS loads the target and applies captured changes.
+revised:
+  - date: 2026-11-23
+    note: The DMS card now covers task support for migrating views.
+    cards: [dms-010]
 ---
 AWS Database Migration Service (DMS) moves data between supported data stores and can keep a target updated while the source changes. Think of a full load as the initial copy and change data capture (CDC) as the stream of later changes.
 

@@ -18,18 +18,15 @@ facts:
   - id: engines
     text: Amazon RDS supports IBM Db2, MariaDB, Microsoft SQL Server, MySQL, Oracle Database and PostgreSQL.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Concepts.on-prem
+  - id: per-second-billing
+    text: "RDS instance usage is billed in one-second increments with a 10-minute minimum."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_OnDemandDBInstances.html
   - id: reserved-db
     text: RDS reserved DB instances give a discount for a one-year or three-year term, with No Upfront, Partial Upfront or All Upfront payment.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithReservedDBInstances.html
   - id: oracle-byol
     text: "RDS for Oracle offers two licensing models, License Included and Bring Your Own License (BYOL), and you can switch between them by modifying the DB instance."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Oracle.Concepts.Licensing.html#Oracle.Concepts.Licensing
-  - id: timestream
-    text: "Amazon Timestream is the purpose-built time series database; Timestream for LiveAnalytics is serverless with a memory store for recent data and a magnetic store for history, and Timestream for InfluxDB runs managed InfluxDB."
-    source: https://docs.aws.amazon.com/timestream/latest/developerguide/what-is-timestream.html#what-is-timestream
-  - id: timestream-closed
-    text: "Amazon Timestream for LiveAnalytics closed to new customers on June 20, 2025; AWS points new workloads to Timestream for InfluxDB."
-    source: https://docs.aws.amazon.com/timestream/latest/developerguide/AmazonTimestreamForLiveAnalytics-availability-change.html#AmazonTimestreamForLiveAnalytics-availability-change
   - id: sql-server-byom
     text: "RDS for SQL Server Bring Your Own Media supports existing SQL Server licenses with active Software Assurance and License Mobility."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/sqlserver-byom.html
@@ -75,9 +72,9 @@ cards:
     a: Buy RDS reserved DB instances for a three-year term (No, Partial or All Upfront).
     facts: [reserved-db]
   - id: rds-057
-    q: "An RDS production database will run for years. How can its instance cost drop?"
-    a: "Buy RDS reserved DB instances for a one- or three-year term. They are a billing discount applied to matching DB instances."
-    facts: [reserved-db]
+    q: "What billing increment and minimum apply to Amazon RDS instance usage?"
+    a: "RDS instance usage is billed per second with a 10-minute minimum."
+    facts: [per-second-billing]
   - id: rds-058
     q: "Which RDS engine lets a company bring its own existing database licenses?"
     a: "RDS for Oracle, which offers Bring Your Own License as well as License Included."
@@ -110,6 +107,10 @@ cards:
     q: "What does Amazon RDS storage autoscaling increase?"
     a: "Allocated storage, when the autoscaling conditions are met."
     facts: [storage-autoscaling]
+revised:
+  - date: 2026-11-23
+    note: The instance cost card now tests billing increments and the minimum charge.
+    cards: [rds-057]
 ---
 Amazon RDS manages common database tasks, so teams can run relational databases with less administration. Choosing between RDS and a database on Amazon EC2 depends on how much control the application needs.
 
@@ -129,12 +130,10 @@ Amazon RDS manages common database tasks, so teams can run relational databases 
 - If the question says use eligible existing SQL Server licenses with Amazon RDS, think Bring Your Own Media, because it uses License Mobility through Software Assurance.
 - If the question says a MySQL database needs less patching and backup work, think RDS because it manages those tasks.
 - If the question says an existing Oracle license should be used, think RDS for Oracle BYOL because it offers that licensing model.
-- If the question says timestamped sensor readings, think Amazon Timestream for time series data. New customers should evaluate Timestream for InfluxDB because LiveAnalytics is closed to them. Timestream, availability change
 
 ### Remember
 
 - RDS supports IBM Db2, MariaDB, Microsoft SQL Server, MySQL, Oracle Database and PostgreSQL.
 - Reserved DB instances offer one-year or three-year terms, with No Upfront, Partial Upfront or All Upfront payment.
-- Timestream for LiveAnalytics closed to new customers on June 20, 2025.
 
 > **Trap:** RDS manages database tasks, but the customer still optimizes the application.

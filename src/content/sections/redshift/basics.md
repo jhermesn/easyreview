@@ -15,6 +15,9 @@ facts:
   - id: super-json
     text: Amazon Redshift can load JSON data into columns of the SUPER data type.
     source: https://docs.aws.amazon.com/redshift/latest/dg/ingest-super.html
+  - id: warehouse-purpose
+    text: Amazon Redshift is a managed cloud data warehouse that supports SQL-based tools and business intelligence applications.
+    source: https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome
 cards:
   - id: redshift-012
     q: "Which AWS analytics service provides a managed data warehouse for large datasets?"
@@ -32,6 +35,10 @@ cards:
     q: Which Amazon Redshift data type can store loaded JSON data?
     a: SUPER.
     facts: [super-json]
+  - id: redshift-001
+    q: Which AWS service provides a managed SQL data warehouse for analytics?
+    a: Amazon Redshift provides a managed cloud warehouse for SQL and business intelligence tools.
+    facts: [warehouse-purpose]
 ---
 Amazon Redshift is AWS's data warehouse for analytics on large datasets.
 

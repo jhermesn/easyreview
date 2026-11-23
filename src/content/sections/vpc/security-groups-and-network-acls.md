@@ -55,9 +55,6 @@ facts:
   - id: acl-within-subnet
     text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the same subnet."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-basics
-  - id: nacl-subnet-boundary
-    text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the subnet."
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
   - id: sg-ingress-api
     text: "EC2 provides AuthorizeSecurityGroupIngress and RevokeSecurityGroupIngress to add and remove inbound security group rules."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/changing-security-group.html
@@ -144,10 +141,10 @@ cards:
     trap: true
     facts: [acl-within-subnet]
   - id: vpc-069
-    q: "A network ACL denies TCP 5432, yet two instances in the same subnet still connect on that port. Why?"
-    a: "Network ACLs filter traffic **entering or leaving the subnet**, not traffic within it. Use security groups to control instance-to-instance traffic in one subnet."
+    q: "What happens when traffic matches no numbered rule in an Amazon VPC network ACL?"
+    a: "The unremovable asterisk rule denies the traffic."
     trap: true
-    facts: [nacl-subnet-boundary]
+    facts: [acl-unmatched]
   - id: vpc-100
     q: "Amazon EC2 cluster members share one VPC security group. How can the group permit the required member-to-member port?"
     a: "Add an inbound rule for that protocol and port with the same security group as its source. Sharing a group alone does not grant all traffic."
@@ -172,6 +169,10 @@ cards:
     q: "Which TCP ports should a security group allow for an AWS Transfer Family FTP server control and data channels?"
     a: "Port 21 for control and ports 8192 through 8200 for data."
     facts: [ftp-transfer-ports]
+revised:
+  - date: 2026-11-23
+    note: The network ACL card now covers the rule for traffic that matches no numbered rule.
+    cards: [vpc-069]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.

@@ -60,21 +60,6 @@ facts:
   - id: throughput-iops
     text: "FSx for Windows File Server network performance depends on throughput capacity, while disk IOPS depends on throughput capacity and storage configuration."
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/performance.html
-diagrams:
-  - id: fsx-windows-multi-az
-    title: Multi-AZ failover
-    width: 800
-    height: 220
-    nodes:
-      - { id: client, label: Windows client, icon: res-client, x: 30, y: 70, w: 160, h: 72, tone: user }
-      - { id: primary, label: Preferred server, sub: "Availability Zone A", icon: fsx-for-wfs, x: 310, y: 60, w: 170, h: 86, tone: storage }
-      - { id: standby, label: Standby server, sub: "Availability Zone B", icon: fsx-for-wfs, x: 590, y: 60, w: 170, h: 86, tone: storage }
-    edges:
-      - { from: client, to: primary, step: 1 }
-      - { from: primary, to: standby, step: 2 }
-    steps:
-      - Windows clients access the file share.
-      - Data is synchronously replicated; FSx fails over to the standby when needed.
 cards:
   - id: fsx-for-windows-002
     q: Windows servers need a shared drive with domain accounts and failover across Availability Zones. Which service and deployment fit?
@@ -85,9 +70,9 @@ cards:
     a: Enable and schedule shadow copies. Users can restore earlier versions from them.
     facts: [shadow-copies]
   - id: fsx-for-windows-004
-    q: "A Windows application needs a managed shared file system with SMB access and Active Directory authentication. Which service fits?"
-    a: "Amazon FSx for Windows File Server provides managed Windows file servers and joins a supported Active Directory domain."
-    facts: [smb, active-directory]
+    q: "Which SMB versions does Amazon FSx for Windows File Server support?"
+    a: "SMB versions 2.0 through 3.1.1."
+    facts: [smb]
   - id: fsx-for-windows-005
     q: How can multiple FSx for Windows File Server shares appear under one common folder structure?
     a: Use DFS Namespaces to group the shares under a common namespace.
@@ -122,9 +107,28 @@ cards:
     q: "A company chooses Amazon FSx for Windows File Server and requires encryption of stored files. How is encryption at rest provided?"
     a: "Automatically through AWS KMS keys. FSx encrypts file system data and metadata at rest without application changes."
     facts: [kms-at-rest]
+diagrams:
+  - id: fsx-windows-multi-az
+    title: Multi-AZ failover
+    width: 800
+    height: 220
+    nodes:
+      - { id: client, label: Windows client, icon: res-client, x: 30, y: 70, w: 160, h: 72, tone: user }
+      - { id: primary, label: Preferred server, sub: "Availability Zone A", icon: fsx-for-wfs, x: 310, y: 60, w: 170, h: 86, tone: storage }
+      - { id: standby, label: Standby server, sub: "Availability Zone B", icon: fsx-for-wfs, x: 590, y: 60, w: 170, h: 86, tone: storage }
+    edges:
+      - { from: client, to: primary, step: 1 }
+      - { from: primary, to: standby, step: 2 }
+    steps:
+      - Windows clients access the file share.
+      - Data is synchronously replicated; FSx fails over to the standby when needed.
+revised:
+  - date: 2026-11-23
+    note: The SMB card now tests the supported protocol versions.
+    cards: [fsx-for-windows-004]
 ---
 
-Amazon FSx for Windows File Server provides managed Windows file servers for shared files. Clients use Server Message Block (SMB), a network file-sharing protocol, and Microsoft Active Directory identifies users.
+FSx for Windows File Server adds directory integration, access controls and availability choices to managed Windows file shares.
 
 ### How it works
 
@@ -137,7 +141,6 @@ Amazon FSx for Windows File Server provides managed Windows file servers for sha
 ### Exam cues
 
 - If the question says size FSx for Windows File Server for throughput and IOPS, think throughput capacity and storage configuration, because they determine performance limits.
-- If the question says Windows shares and existing domain accounts, think FSx for Windows File Server joined to Active Directory, because it supports SMB and directory authentication.
 - If the question says survive an Availability Zone disruption, think Multi-AZ, because it replicates to and fails over to a standby in another zone.
 - If the question says users need earlier file versions, think shadow copies, because users can restore files from them once enabled.
 - If the question says multiple file systems need one shared folder structure, think DFS Namespaces, because it groups shares into a common namespace.

@@ -46,6 +46,47 @@ facts:
   - id: tape-limits
     text: "A virtual tape is 100 GiB to 15 TiB; a Tape Gateway holds up to 1,500 tapes and 1 PiB of tapes in total."
     source: https://docs.aws.amazon.com/storagegateway/latest/tgw/resource-gateway-limits.html
+cards:
+  - id: storage-gateway-002
+    q: How do AWS Volume Gateway cached and stored volumes differ?
+    a: Cached volumes keep primary data in S3 and frequently accessed data locally. Stored volumes keep
+      the entire primary dataset locally and asynchronously back it up as EBS snapshots.
+    facts:
+      - cached
+      - stored
+  - id: storage-gateway-003
+    q: A datacenter must replace physical tape hardware while retaining supported tape backup software.
+      Which AWS Storage Gateway type fits?
+    a: Tape Gateway. Its iSCSI virtual tape library accepts backup writes and archives ejected tapes to
+      S3 Glacier Flexible Retrieval or Deep Archive.
+    facts:
+      - vtl
+      - tape-archive
+  - id: storage-gateway-010
+    q: An on-premises block application needs low-latency access to its entire dataset and offsite
+      backups. Which AWS Volume Gateway mode fits?
+    a: Stored volumes. The complete primary dataset remains local and EBS snapshots back it up
+      asynchronously to AWS.
+    facts:
+      - stored
+  - id: storage-gateway-011
+    q: An application using AWS Volume Gateway needs less local primary storage and mostly reads a hot
+      subset of data. Which volume mode fits?
+    a: Cached volumes. Primary data lives in S3 while frequently accessed data stays in the local cache.
+    facts:
+      - cached
+  - id: storage-gateway-012
+    q: Can an application use the S3 API to read data from an AWS Volume Gateway cached volume?
+    a: No. Use the iSCSI volume interface. The S3 backing data is not directly accessible through the S3
+      API or console.
+    trap: true
+    facts:
+      - iscsi
+      - not-objects
+  - id: storage-gateway-013
+    q: "What are the size and count limits for virtual tapes in an AWS Tape Gateway?"
+    a: "Each virtual tape is 100 GiB to 15 TiB. A gateway holds up to 1,500 tapes and 1 PiB in total."
+    facts: [tape-limits]
 diagrams:
   - id: storage-tape-archive
     title: Tape writes and archival
@@ -86,50 +127,11 @@ diagrams:
     steps:
       - Write virtual tapes
       - Eject to archive
-cards:
-  - id: storage-gateway-002
-    q: How do AWS Volume Gateway cached and stored volumes differ?
-    a: Cached volumes keep primary data in S3 and frequently accessed data locally. Stored volumes keep
-      the entire primary dataset locally and asynchronously back it up as EBS snapshots.
-    facts:
-      - cached
-      - stored
-  - id: storage-gateway-003
-    q: A datacenter must replace physical tape hardware while retaining supported tape backup software.
-      Which AWS Storage Gateway type fits?
-    a: Tape Gateway. Its iSCSI virtual tape library accepts backup writes and archives ejected tapes to
-      S3 Glacier Flexible Retrieval or Deep Archive.
-    facts:
-      - vtl
-      - tape-archive
-  - id: storage-gateway-010
-    q: An on-premises block application needs low-latency access to its entire dataset and offsite
-      backups. Which AWS Volume Gateway mode fits?
-    a: Stored volumes. The complete primary dataset remains local and EBS snapshots back it up
-      asynchronously to AWS.
-    facts:
-      - stored
-  - id: storage-gateway-011
-    q: An application using AWS Volume Gateway needs less local primary storage and mostly reads a hot
-      subset of data. Which volume mode fits?
-    a: Cached volumes. Primary data lives in S3 while frequently accessed data stays in the local cache.
-    facts:
-      - cached
-  - id: storage-gateway-012
-    q: Can an application use the S3 API to read data from an AWS Volume Gateway cached volume?
-    a: No. Use the iSCSI volume interface. The S3 backing data is not directly accessible through the S3
-      API or console.
-    trap: true
-    facts:
-      - iscsi
-      - not-objects
-  - id: storage-gateway-013
-    q: "An on-premises application needs iSCSI block storage but has limited local capacity. Which AWS Storage Gateway volume type fits?"
-    a: "Cached volumes. Volume Gateway stores primary data in S3 and keeps frequently accessed data locally."
-    facts:
-      - iscsi
-      - cached
 
+revised:
+  - date: 2026-11-23
+    note: The card now covers virtual tape limits.
+    cards: [storage-gateway-013]
 ---
 Volume Gateway gives existing servers block storage, which they access as disks. Tape Gateway gives backup software a virtual tape library, a software replacement for tape drives and a tape changer. Both use iSCSI, a protocol that sends storage commands over an IP network.
 

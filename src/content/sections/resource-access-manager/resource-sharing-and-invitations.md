@@ -3,9 +3,6 @@ title: Resource sharing and invitations
 level: associate
 order: 10
 facts:
-  - id: ram-purpose
-    text: AWS RAM shares supported resources across accounts, organizations, organizational units, and for some resource types IAM roles and users.
-    source: https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is
   - id: ram-share
     text: A resource share contains owned resources, principals, and a managed permission for each resource type.
     source: https://docs.aws.amazon.com/ram/latest/userguide/what-is.html#what-is-how-sharing
@@ -83,7 +80,7 @@ cards:
   - id: resource-access-manager-002
     q: A team needs to share a subnet across its organization without invitations. What should it use?
     a: Enable sharing with Organizations through AWS RAM, then create a share targeting the organization or an OU.
-    facts: [ram-org-enable, ram-invitations, ram-subnets, ram-purpose]
+    facts: [ram-org-enable, ram-invitations, ram-subnets]
   - id: resource-access-manager-003
     q: Why use AWS RAM rather than only a resource-based policy for cross-account sharing?
     a: RAM can target an organization or OU without listing account IDs, and consumers can see shared resources in the service console and API.
@@ -101,7 +98,7 @@ cards:
     a: AWS RAM can share the transit gateway; recipients can create VPC attachments but cannot manage its route tables.
     facts: [ram-transit]
 ---
-AWS Resource Access Manager (AWS RAM) shares supported resources across accounts without creating a separate copy for each account. The owner keeps the resource; a resource share describes who may use it and what they may do.
+AWS Resource Access Manager (AWS RAM) resource shares define who may use shared resources and what they may do.
 
 A virtual private cloud (VPC) is an isolated virtual network. A subnet is a range of IP addresses inside it.
 
@@ -113,8 +110,6 @@ A virtual private cloud (VPC) is an isolated virtual network. A subnet is a rang
 4. The managed permission sets the maximum cross-account actions. The consuming account administrator grants its users and roles permissions to the shared resource.
 
 ### Exam cues
-
-- If the question says deploy a template into multiple accounts and Regions, think CloudFormation StackSets, because it manages stack deployments across those targets. Use AWS RAM when accounts need access to an existing supported resource.
 
 - If the question says share subnets across accounts in one organization, think AWS RAM, because the VPC owner can share subnets with those accounts.
 - If the question says a recipient accepted a share but a user cannot use it, think identity-based permissions in the consuming account, because the share's managed permission is a ceiling.

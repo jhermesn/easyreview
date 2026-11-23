@@ -3,9 +3,6 @@ title: "Scaling, connections and integrations"
 level: associate
 order: 60
 facts:
-  - id: autoscaling
-    text: Aurora Auto Scaling uses target tracking to add and remove reader instances within configured limits; it does not scale the writer.
-    source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.html#Aurora.Integrating.AutoScaling
   - id: dimension
     text: Application Auto Scaling registers an Aurora cluster with service namespace rds and scalable dimension rds:cluster:ReadReplicaCount.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Integrating.AutoScaling.Add.html#Aurora.Integrating.AutoScaling.AddCode.Register
@@ -41,11 +38,9 @@ facts:
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-storage-backup.html
 cards:
   - id: aurora-002
-    q: How does an Aurora cluster automatically add read-serving instances as demand changes?
-    a: Aurora Auto Scaling uses Application Auto Scaling target tracking on rds:cluster:ReadReplicaCount. Predefined metrics are RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
+    q: Which predefined metrics can Aurora Auto Scaling use for reader target tracking?
+    a: RDSReaderAverageCPUUtilization and RDSReaderAverageDatabaseConnections.
     facts:
-      - autoscaling
-      - dimension
       - cpu
       - connections
   - id: aurora-014
@@ -71,19 +66,22 @@ cards:
     q: "How much Amazon Aurora automated backup storage is included at no extra charge?"
     a: "An amount equal to the latest cluster volume size. Only backup usage beyond it is billed."
     facts: [free-backup-allowance]
+revised:
+  - date: 2026-11-23
+    note: The Aurora Auto Scaling card now tests its predefined reader metrics.
+    cards: [aurora-002]
 ---
 Aurora offers separate controls for reader capacity and database connections, plus ways to clone data and invoke Lambda. Choose the feature that matches the problem: scaling readers, reusing connections, creating a test cluster or calling a function.
 
 ### How it works
 
-1. Register the cluster with Application Auto Scaling under the `rds` namespace and the `rds:cluster:ReadReplicaCount` dimension. Set a target and limits so Aurora Auto Scaling can add or remove readers. The predefined targets use average reader CPU or connections. See the registration details.
+1. Register the cluster with Application Auto Scaling under the `rds` namespace and the `rds:cluster:ReadReplicaCount` dimension. The predefined targets use average reader CPU or connections.
 2. Connect clients to the RDS Proxy endpoint. The proxy manages reusable database connections separately from client connections. Set MaxConnectionsPercent to cap database connections as a percentage of `max_connections`.
 3. Create an Aurora clone for a test environment. It initially shares data pages with the source using copy-on-write, which uses little extra space.
 4. Give an Aurora MySQL cluster access to Lambda, then call a function from SQL using `lambda_sync` or `lambda_async`.
 
 ### Exam cues
 
-- If the question says read demand changes, think Aurora Auto Scaling, because it adjusts the reader count within configured limits.
 - If the question says many clients need a cap on database connections, think RDS Proxy and MaxConnectionsPercent, because the proxy reuses database connections.
 - If the question says create a fast, space-efficient test cluster from production data, think Aurora cloning, because the clone initially shares data pages.
 - If the question says Aurora MySQL must call Lambda from SQL, think `lambda_sync` or `lambda_async`, because these native functions invoke Lambda after the cluster has access.
@@ -94,4 +92,4 @@ Aurora offers separate controls for reader capacity and database connections, pl
 - `MaxDatabaseConnectionsAllowed` can be lower than the percentage calculation because RDS Proxy reserves internal connections. The proxy does not open all allowed connections in advance.
 - Automated backup storage up to the latest cluster volume size is free.
 
-> **Trap:** Aurora Auto Scaling does not scale the writer and cannot add readers to a Global Database secondary or an Aurora Serverless v2 cluster. Pre-created Serverless readers scale compute capacity instead.
+> **Trap:** Aurora Auto Scaling cannot add readers to a Global Database secondary or an Aurora Serverless v2 cluster. Pre-created Serverless readers scale compute capacity instead.

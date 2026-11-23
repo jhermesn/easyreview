@@ -3,10 +3,6 @@ title: Parameter Store operational controls
 level: professional
 order: 190
 facts:
-  - id: parameter-tier
-    text: A standard parameter can become advanced; an advanced parameter cannot be changed back to
-      standard.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html#parameter-store-tiers-limitations
   - id: parameter-expiry
     text: Expiration deletes a parameter after the specified timestamp through asynchronous periodic
       policy processing.
@@ -24,15 +20,6 @@ facts:
   - id: parameter-policy-replace
     text: Supplying a new policy array replaces the policies already attached to the parameter.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-policies.html#sysman-paramstore-su-policy-create
-  - id: parameter-path
-    text: Parameter hierarchies use slash-separated names.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-examples
-  - id: parameter-path-depth
-    text: Parameter hierarchies support up to 15 levels.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-examples
-  - id: parameter-recursive
-    text: GetParametersByPath supports recursive retrieval of parameters below a path.
-    source: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html#systemsmanager-GetParametersByPath-request-Recursive
   - id: parameter-history
     text: Parameter Store retains up to 100 versions, normally deleting the oldest to make room for the
       next.
@@ -92,14 +79,13 @@ facts:
     text: Maintenance windows support Run Command, Automation, Lambda and Step Functions Standard tasks;
       Express workflows are unsupported.
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows.html#maintenance-windows
+  - id: parameter-path
+    text: Parameter hierarchies use slash-separated names.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-examples
+  - id: parameter-path-depth
+    text: Parameter hierarchies support up to 15 levels.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-examples
 cards:
-  - id: systems-manager-030
-    q: Can a Systems Manager Parameter Store advanced parameter be changed to standard after its value
-      becomes smaller?
-    a: No. Standard can be upgraded to advanced, but an advanced parameter cannot be downgraded.
-    trap: true
-    facts:
-      - parameter-tier
   - id: systems-manager-031
     q: Which Systems Manager Parameter Store policies exist, and how do they notify?
     a: Expiration deletes the parameter; ExpirationNotification and NoChangeNotification emit
@@ -111,15 +97,6 @@ cards:
       - parameter-nochange
       - parameter-policy-count
       - parameter-policy-replace
-  - id: systems-manager-071
-    q: An application needs all Systems Manager parameters below its environment path. Which API and
-      naming structure fit?
-    a: Use slash-separated parameter hierarchies and GetParametersByPath with recursive retrieval.
-      Hierarchies support up to 15 levels.
-    facts:
-      - parameter-path
-      - parameter-path-depth
-      - parameter-recursive
   - id: systems-manager-073
     q: A Systems Manager parameter already has 100 versions and the oldest has a deployment label. What
       happens when its value is updated?
@@ -192,23 +169,19 @@ Systems Manager Parameter Store uses hierarchies, policies and version history t
 
 ### How it works
 
-1. Organize parameter names in a slash-separated hierarchy. Use `GetParametersByPath` with recursive retrieval to read parameters below a path.
-2. Use policies on an advanced parameter to delete it after an expiration timestamp or emit EventBridge events. `ExpirationNotification` alerts before or after expiration; `NoChangeNotification` alerts when the parameter has remained unchanged for the specified period. Expiration is processed asynchronously through periodic scans.
-3. When updating policies, supply the complete desired policy array: a new array replaces the existing policies.
-4. Parameter Store retains version history. Once the history is full, the oldest version is normally removed to make room for a new one. If the oldest version has a label, the update fails; move the label to a newer version before retrying.
+1. Use policies on an advanced parameter to delete it after an expiration timestamp or emit EventBridge events. `ExpirationNotification` alerts before or after expiration; `NoChangeNotification` alerts when the parameter has remained unchanged for the specified period. Expiration is processed asynchronously through periodic scans.
+2. When updating policies, supply the complete desired policy array: a new array replaces the existing policies.
+3. Parameter Store retains version history. Once the history is full, the oldest version is normally removed to make room for a new one. If the oldest version has a label, the update fails; move the label to a newer version before retrying.
 
 ### Exam cues
 
-- If the question says an application needs parameters below an environment path, think a hierarchy and recursive `GetParametersByPath`, because it retrieves parameters below the requested path.
 - If the question says to alert on a parameter that has not changed, think `NoChangeNotification`, because it emits an EventBridge event after the specified unchanged period.
 - If the question says an update fails with a full version history, think a label on the oldest version, because that label prevents its removal.
 
 ### Remember
 
-- Hierarchies support up to 15 levels.
 - An advanced parameter supports up to ten policies.
 - Parameter Store retains up to 100 versions.
-- A standard parameter can become advanced; an advanced parameter cannot be changed back to standard.
 - Session Manager idle timeout: 20 minutes by default, one to 60 minutes; resizing or reconnecting can reset it. Maximum session duration is a separate limit.
 - Restricted command access: custom `Session` documents with `sessionType: InteractiveCommands`, started through the CLI.
 - Run As selects an existing Linux or macOS user (the `SSMSessionRunAs` tag wins over the account preference) and fails rather than falling back to `ssm-user`.

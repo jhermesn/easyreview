@@ -95,12 +95,10 @@ cards:
       - admin-role
       - execution-role
   - id: service-catalog-018
-    q: A team needs an AWS Service Catalog CloudFormation product deployed to several named accounts and Regions through one catalog launch. What should the administrator configure?
-    a: A StackSet constraint with the target accounts, Regions, Region order, and StackSet roles.
+    q: What happens when an AWS Service Catalog StackSet constraint omits the administrator role?
+    a: StackSets uses its default administrator role ARN.
     facts:
-      - stackset
-      - targets
-      - execution-role
+      - admin-role
   - id: service-catalog-032
     q: An AWS Service Catalog administrator tries to add a StackSet constraint where a launch constraint already exists. Why does the request fail?
     a: LAUNCH and STACKSET constraints cannot coexist on the same product-portfolio association.
@@ -112,6 +110,10 @@ cards:
     a: Terraform Open Source products. The guide also states that AutoTags are unsupported with CloudFormation StackSets.
     facts:
       - unsupported
+revised:
+  - date: 2026-11-23
+    note: The card now covers the default StackSet administrator role ARN.
+    cards: [service-catalog-018]
 ---
 A StackSet constraint lets an AWS Service Catalog product deploy across accounts and Regions through CloudFormation StackSets. A stack set manages related stacks, each deployed in a target account and Region.
 

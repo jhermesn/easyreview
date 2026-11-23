@@ -15,9 +15,6 @@ facts:
   - id: warehouse-unload
     text: UNLOAD writes query results to files in S3.
     source: https://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html#r_UNLOAD
-  - id: warehouse-spectrum
-    text: Redshift Spectrum queries data directly from files in S3.
-    source: https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum
   - id: warehouse-spectrum-region
     text: A Redshift Spectrum cluster and its S3 data files must be in the same AWS Region.
     source: https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum-prerequisites
@@ -83,13 +80,13 @@ cards:
     a: "Amazon Redshift Serverless automatically provisions resources and scales warehouse capacity."
     facts: [warehouse-purpose, warehouse-serverless]
   - id: redshift-006
-    q: "A team wants to query files in Amazon S3 directly from its Amazon Redshift analytics workflow. Which feature fits?"
-    a: "Amazon Redshift Spectrum queries data directly from files in S3."
-    facts: [warehouse-spectrum]
+    q: Which Amazon Redshift command writes query results to files in S3?
+    a: UNLOAD writes query results to files in S3.
+    facts: [warehouse-unload]
   - id: redshift-007
-    q: A team wants Redshift warehouse capacity without manually managing a provisioned cluster. What can it choose?
-    a: Redshift Serverless automatically provisions resources and scales warehouse capacity.
-    facts: [warehouse-serverless]
+    q: How does Amazon Redshift use massively parallel processing to run a query?
+    a: Compute nodes run the same compiled query segments on different parts of the data.
+    facts: [warehouse-mpp]
   - id: redshift-008
     q: "Analysts load S3 data into a warehouse each morning, need fast MPP queries without managing clusters, and want to run ML predictions in SQL. What fits?"
     a: "A daily Glue job that loads Amazon Redshift Serverless, with Redshift ML for SQL-based models. Serverless keeps Redshift MPP query engine with automatic capacity."
@@ -102,15 +99,21 @@ cards:
     q: "A team wants to keep its Amazon Redshift data warehouse operating through an Availability Zone failure. What deployment option can help?"
     a: "A supported provisioned Multi-AZ cluster runs compute in two Availability Zones."
     facts: [multi-az]
+revised:
+  - date: 2026-11-23
+    note: The card now covers exporting query results with UNLOAD.
+    cards: [redshift-006]
+  - date: 2026-11-23
+    note: The card now covers how massively parallel processing runs queries.
+    cards: [redshift-007]
 ---
-Amazon Redshift is a managed cloud data warehouse for SQL analytics and business intelligence. A data warehouse is a store organized for analyzing data.
+Redshift warehouse workloads build on the basics with capacity, processing, and recovery choices.
 
 ### How it works
 
 1. Choose a provisioned cluster for manual resource management or Redshift Serverless for automatically provisioned and scaled warehouse capacity.
 2. Redshift uses massively parallel processing (MPP): compute nodes run query segments on parts of the data. Redshift ML lets analysts create, train and run models with SQL, using SageMaker AI to create the model.
-3. Redshift Spectrum queries S3 files directly. The cluster and files must be in the same Region. Spectrum cannot use enhanced VPC routing.
-4. Redshift takes automated snapshots. Enable cross-Region snapshot copy to copy cluster snapshots to another Region for restoration if the primary Region fails.
+3. Redshift takes automated snapshots. Enable cross-Region snapshot copy to copy cluster snapshots to another Region for restoration if the primary Region fails.
 
 ### Exam cues
 
