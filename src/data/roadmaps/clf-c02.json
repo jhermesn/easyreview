@@ -220,7 +220,10 @@
         "workspaces",
         "amazon-mq",
         "codedeploy",
-        "artifact-management"
+        "artifact-management",
+        "appsync",
+        "workmail",
+        "iot-greengrass"
       ]
     },
     {

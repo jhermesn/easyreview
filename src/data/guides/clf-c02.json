@@ -871,7 +871,8 @@
               "sections": [
                 "s3/buckets-objects-and-durability",
                 "ebs/basics",
-                "efs/basics"
+                "efs/basics",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -896,7 +897,8 @@
               "kind": "skill",
               "text": "Identifying block storage solutions (for example, Amazon Elastic Block Store [Amazon EBS], instance store)",
               "sections": [
-                "ebs/basics"
+                "ebs/basics",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1019,7 +1021,8 @@
               "text": "Business application services of Amazon Connect and Amazon Simple Email Service (Amazon SES)",
               "sections": [
                 "connect/contact-center",
-                "ses/email-sending"
+                "ses/email-sending",
+                "workmail/basics"
               ]
             },
             {
@@ -1056,7 +1059,8 @@
               "kind": "knowledge",
               "text": "Frontend web and mobile services of AWS Amplify",
               "sections": [
-                "amplify/frontend-and-mobile-apps"
+                "amplify/frontend-and-mobile-apps",
+                "appsync/basics"
               ]
             },
             {
@@ -1064,7 +1068,8 @@
               "kind": "knowledge",
               "text": "IoT services (for example, AWS IoT Core)",
               "sections": [
-                "iot-core/device-connectivity"
+                "iot-core/device-connectivity",
+                "iot-greengrass/basics"
               ]
             },
             {
@@ -1085,7 +1090,8 @@
               "text": "Choosing the appropriate service to meet business application needs",
               "sections": [
                 "connect/contact-center",
-                "ses/email-sending"
+                "ses/email-sending",
+                "workmail/basics"
               ]
             },
             {
@@ -1123,7 +1129,8 @@
               "kind": "skill",
               "text": "Identifying the services that can create and deploy frontend and mobile services",
               "sections": [
-                "amplify/frontend-and-mobile-apps"
+                "amplify/frontend-and-mobile-apps",
+                "appsync/basics"
               ]
             },
             {
@@ -1160,7 +1167,8 @@
               "text": "Storage options and tiers",
               "sections": [
                 "s3/storage-classes",
-                "ebs/basics"
+                "ebs/basics",
+                "ebs/volume-types-basics"
               ]
             },
             {

@@ -132,7 +132,8 @@
         "step-functions",
         "serverless-application-repository",
         "amplify",
-        "device-farm"
+        "device-farm",
+        "appsync"
       ]
     },
     {

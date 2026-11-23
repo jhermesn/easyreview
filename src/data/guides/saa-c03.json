@@ -116,7 +116,8 @@
                 "organizations/basics",
                 "firewall-manager/basics",
                 "service-catalog/basics",
-                "reference-architectures/secure-multi-account-access"
+                "reference-architectures/secure-multi-account-access",
+                "control-tower/account-factory-basics"
               ]
             },
             {
@@ -457,7 +458,9 @@
                 "api-gateway/endpoint-types-and-throttling",
                 "api-gateway/integrations-and-monitoring",
                 "reference-architectures/serverless-event-driven-application",
-                "api-gateway/canary-releases"
+                "api-gateway/canary-releases",
+                "appsync/basics",
+                "appsync/graphql-apis-and-real-time-data"
               ]
             },
             {
@@ -608,7 +611,8 @@
                 "ebs/volume-types",
                 "ebs/basics",
                 "fsx-for-windows/smb-directory-integration-and-availability",
-                "fsx-for-windows/basics"
+                "fsx-for-windows/basics",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -946,7 +950,8 @@
                 "route53/alarm-based-health-checks",
                 "elastic-load-balancing/error-metrics-and-access-logs",
                 "cloudwatch/metrics-dimensions-and-resolution",
-                "cloudwatch/basics"
+                "cloudwatch/basics",
+                "health/event-notifications-basics"
               ]
             },
             {
@@ -961,7 +966,8 @@
                 "ec2/ip-addresses-and-network-interfaces",
                 "ec2-auto-scaling/health-checks-and-grace-periods",
                 "ec2-auto-scaling/basics",
-                "reference-architectures/three-tier-web-application"
+                "reference-architectures/three-tier-web-application",
+                "availability-targets/static-stability-basics"
               ]
             },
             {
@@ -1051,7 +1057,8 @@
                 "efs/basics",
                 "ebs/volume-types",
                 "ebs/basics",
-                "ebs/multi-attach"
+                "ebs/multi-attach",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1065,7 +1072,8 @@
                 "ebs/volume-types",
                 "ebs/basics",
                 "fsx-for-windows/smb-directory-integration-and-availability",
-                "fsx-for-windows/basics"
+                "fsx-for-windows/basics",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1080,7 +1088,8 @@
                 "fsx-for-lustre/parallel-storage-and-s3-integration",
                 "s3/performance-and-large-uploads",
                 "ec2/instance-store-lifecycle",
-                "ebs/fast-snapshot-restore"
+                "ebs/fast-snapshot-restore",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1291,7 +1300,8 @@
                 "rds/storage-autoscaling-and-metrics",
                 "ebs/volume-types",
                 "ebs/basics",
-                "aurora/serverless-v2-capacity-and-promotion"
+                "aurora/serverless-v2-capacity-and-promotion",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1759,7 +1769,8 @@
                 "fsx-for-windows/basics",
                 "fsx-for-lustre/parallel-storage-and-s3-integration",
                 "fsx-for-netapp-ontap/multiprotocol-storage-and-availability",
-                "fsx-for-openzfs/nfs-snapshots-and-clones"
+                "fsx-for-openzfs/nfs-snapshots-and-clones",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1783,7 +1794,8 @@
               "sections": [
                 "ebs/volume-types",
                 "ebs/basics",
-                "ec2/instance-store-lifecycle"
+                "ec2/instance-store-lifecycle",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1843,7 +1855,8 @@
                 "ebs/volume-types",
                 "ebs/basics",
                 "fsx-for-windows/smb-directory-integration-and-availability",
-                "fsx-for-windows/basics"
+                "fsx-for-windows/basics",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1863,7 +1876,8 @@
                 "ebs/volume-types",
                 "ebs/basics",
                 "rds/storage-autoscaling-and-metrics",
-                "compute-optimizer/resource-rightsizing"
+                "compute-optimizer/resource-rightsizing",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1935,7 +1949,8 @@
                 "efs/basics",
                 "ebs/volume-types",
                 "ebs/basics",
-                "reference-architectures/cost-optimized-batch-processing"
+                "reference-architectures/cost-optimized-batch-processing",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -1958,7 +1973,8 @@
                 "ebs/basics",
                 "efs/regional-and-one-zone-file-systems",
                 "efs/basics",
-                "s3/storage-lens"
+                "s3/storage-lens",
+                "ebs/volume-types-basics"
               ]
             }
           ]

@@ -15,10 +15,6 @@ facts:
     text: Static stability for compute means provisioning enough capacity before failure for the
       surviving locations to handle the workload.
     source: https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_withstand_component_failures_static_stability.html#implementation-guidance
-  - id: plane-dependency
-    text: Pre-provisioning removes the need to launch replacement instances through the EC2 control
-      plane as part of immediate recovery.
-    source: https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/static-stability.html#static-stability
   - id: planes
     text: The control plane creates or changes resources; the data plane provides the existing
       resources' working functionality.
@@ -51,22 +47,6 @@ facts:
       AZ.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/DataDurability.html#DataDurability
 cards:
-  - id: availability-targets-016
-    q: What does static stability mean for a multi-AZ EC2 workload?
-    a: Pre-provision enough capacity in surviving AZs to serve the workload without waiting for new
-      instance launches.
-    facts:
-      - static-capacity
-      - plane-dependency
-  - id: availability-targets-017
-    q: An EC2 application spans several AZs but needs new instances before it can serve normal load
-      after losing an AZ. What resilience improvement is needed?
-    a: Provision spare capacity before the failure. A multi-AZ layout alone does not remove the recovery
-      dependency on instance launches.
-    trap: true
-    facts:
-      - static-capacity
-      - plane-dependency
   - id: availability-targets-018
     q: An EC2 failover cannot create replacement instances because inaccessible instances still consume
       the account quota. What should the design allow?
@@ -186,7 +166,6 @@ Block storage · File system types · Object storage
 
 ### Exam cues
 
-- If the question says survive an AZ failure without waiting for new instances, think static stability, because surviving capacity is provisioned in advance.
 - If the question says replacement launches hit quotas during failover, think overlap headroom, because inaccessible instances may still consume quota.
 - If the question says compute spans AZs but storage remains in one, think a storage failure domain, because an EBS volume cannot attach across AZs.
 - If the question says survive a Region failure, think an explicit multi-Region design, because EC2 does not automatically replicate resources between Regions.
