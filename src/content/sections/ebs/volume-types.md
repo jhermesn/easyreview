@@ -33,10 +33,6 @@ facts:
   - id: io2-date
     text: Since April 30, 2025, all new and existing io2 volumes use Block Express.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/provisioned-iops.html#io2-bx-considerations
-  - id: st1
-    text: Throughput Optimized HDD (st1) targets frequently accessed, large sequential workloads such as
-      log processing.
-    source: https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#EBSVolumeTypes_st1
   - id: sc1
     text: Cold HDD (sc1) targets infrequently accessed large sequential data at lower cost than st1.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#EBSVolumeTypes_sc1
@@ -134,14 +130,6 @@ cards:
     a: gp3. Its performance is configured independently of size and it does not use burst credits.
     facts:
       - gp3-independent
-  - id: ebs-018
-    q: Which EBS HDD types fit frequent sequential log processing versus infrequently read sequential
-      data?
-    a: st1 for frequently accessed sequential workloads; sc1 for infrequently accessed sequential data
-      where lower cost matters.
-    facts:
-      - st1
-      - sc1
   - id: ebs-019
     q: What EBS gp3 performance is included before provisioning extra IOPS or throughput?
     a: 3000 IOPS and 125 MiB/s.
@@ -215,8 +203,6 @@ EKS Auto Mode manages block storage without installing that CSI controller. Its 
 - If the question says a transaction workload is sensitive to EBS latency, think a low queue length and sufficient IOPS, because excessive queued I/O increases latency.
 - If the question says a small gp2 disk slows after sustained I/O, think BurstBalance, because its above-baseline performance consumes credits.
 - If the question says storage size is sufficient but performance must increase, think gp3, because IOPS and throughput can be provisioned independently of size.
-- If the question says large sequential logs are read frequently, think st1, because it targets frequent sequential transfers.
-- If the question says sequential data is rarely read and cost matters, think sc1, because it targets infrequent access.
 - If the question says EKS EBS provisioning fails with UnauthorizedOperation, think CSI controller permissions, because the driver calls AWS APIs.
 
 ### Remember

@@ -3,12 +3,6 @@ title: EventBridge routing and Region coverage
 level: professional
 order: 20
 facts:
-  - id: rule
-    text: EventBridge rules match AWS Health events and invoke targets such as SNS, Lambda, and SQS.
-    source: https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#cloudwatch-events-health
-  - id: source
-    text: The source value aws.health matches both public and account-specific Health events; aws.health* does not.
-    source: https://docs.aws.amazon.com/health/latest/ug/about-public-events.html#about-public-events
   - id: scope
     text: The eventScopeCode field distinguishes PUBLIC from ACCOUNT_SPECIFIC events in EventBridge.
     source: https://docs.aws.amazon.com/health/latest/ug/about-public-events.html#about-public-events
@@ -73,10 +67,6 @@ diagrams:
       - AWS Health sends an event to EventBridge.
       - A matching rule sends the event to an SNS topic.
 cards:
-  - id: health-001
-    q: How can a team receive notifications for AWS Health events affecting its account?
-    a: Create an EventBridge rule matching source `aws.health` and target an SNS topic.
-    facts: [rule, source]
   - id: health-003
     q: An AWS Health notice schedules retirement of an EBS-backed EC2 instance. How can a team automate the stop and start?
     a: Match the event with an EventBridge rule targeting Systems Manager Automation. The instance must be managed by Systems Manager.
@@ -108,14 +98,12 @@ cards:
     facts: [event-fields, delivery-region]
     trap: true
 ---
-AWS Health sends events to Amazon EventBridge so rules can route matching events to notification or automation targets.
+This section builds on routing AWS Health events through Amazon EventBridge, and covers which Regions receive the events, backup Regions and duplicate handling.
 
 ### How it works
 
-1. Create a regional EventBridge rule with the exact source `aws.health`. A rule is a filter that selects events and sends matches to a target.
-2. Optionally filter `eventScopeCode` for `PUBLIC` or `ACCOUNT_SPECIFIC`. Rules receive notifications for their own account.
-3. Choose a target such as an SNS topic, a Lambda function, or an SQS queue. For example, an SNS topic can notify subscribers.
-4. For resilient regional coverage, create rules in the affected and backup Regions and deduplicate by `eventArn` and `communicationId`. Deduplication prevents repeated processing of the same communication. A paginated event has a distinct communication ID per page.
+1. Start from a regional EventBridge rule for AWS Health events. Optionally filter `eventScopeCode` for `PUBLIC` or `ACCOUNT_SPECIFIC`. Rules receive notifications for their own account.
+2. For resilient regional coverage, create rules in the affected and backup Regions and deduplicate by `eventArn` and `communicationId`. Deduplication prevents repeated processing of the same communication. A paginated event has a distinct communication ID per page.
 
 ### Exam cues
 

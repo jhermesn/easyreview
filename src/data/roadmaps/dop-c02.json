@@ -119,7 +119,8 @@
         "rosa",
         "api-gateway",
         "step-functions",
-        "eks-anywhere"
+        "eks-anywhere",
+        "appsync"
       ]
     },
     {

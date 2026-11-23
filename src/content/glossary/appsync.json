@@ -1,0 +1,50 @@
+[
+  {
+    "term": "GraphQL",
+    "aliases": [],
+    "definition": "A language for API requests and data changes that lets clients specify the data they need.",
+    "source": "https://docs.aws.amazon.com/appsync/latest/devguide/graphql-overview.html"
+  },
+  {
+    "term": "schema",
+    "aliases": [],
+    "definition": "The definition of the shape of data available through a GraphQL API.",
+    "source": "https://docs.aws.amazon.com/appsync/latest/devguide/data-source-components.html"
+  },
+  {
+    "term": "resolver",
+    "aliases": ["resolvers"],
+    "definition": "Code attached to a GraphQL schema field that determines how to resolve that field.",
+    "source": "https://docs.aws.amazon.com/appsync/latest/devguide/resolver-components.html"
+  },
+  {
+    "term": "data source",
+    "aliases": ["data sources"],
+    "definition": "A resource or endpoint an AppSync API uses to access or process data.",
+    "source": "https://docs.aws.amazon.com/appsync/latest/devguide/data-source-components.html"
+  },
+  {
+    "term": "mutation",
+    "aliases": ["mutations"],
+    "definition": "A GraphQL operation that describes a change to data.",
+    "source": "https://docs.aws.amazon.com/appsync/latest/devguide/graphql-overview.html"
+  },
+  {
+    "term": "subscription",
+    "aliases": ["subscriptions", "subscribing"],
+    "definition": "A way for a client to receive updates; GraphQL subscriptions in AppSync respond to mutations.",
+    "source": "https://docs.aws.amazon.com/appsync/latest/devguide/aws-appsync-real-time-data.html#graphql-schema-subscription-directives"
+  },
+  {
+    "term": "channel",
+    "aliases": ["channels"],
+    "definition": "An AppSync Events route that delivers published events to subscribed clients.",
+    "source": "https://docs.aws.amazon.com/appsync/latest/eventapi/event-api-concepts.html#channel"
+  },
+  {
+    "term": "WebSocket",
+    "aliases": ["WebSockets"],
+    "definition": "A protocol for a stateful, two-way connection between client and server.",
+    "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html#welcome"
+  }
+]

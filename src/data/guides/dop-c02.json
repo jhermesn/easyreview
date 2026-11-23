@@ -289,7 +289,9 @@
                 "storage-gateway/operations-in-depth",
                 "s3/buckets-objects-and-durability",
                 "s3/operations-in-depth",
-                "s3/storage-classes"
+                "s3/storage-classes",
+                "availability-targets/static-stability-basics",
+                "ebs/volume-types-basics"
               ]
             },
             {
@@ -514,7 +516,8 @@
                 "control-tower/account-factory-and-enrollment",
                 "cloudformation/stackset-permissions-and-targeting",
                 "control-tower/account-factory-for-terraform",
-                "reference-architectures/governed-multi-account-landing-zone"
+                "reference-architectures/governed-multi-account-landing-zone",
+                "control-tower/account-factory-basics"
               ]
             },
             {
@@ -526,7 +529,8 @@
                 "organizations/basics",
                 "organizations/operations-in-depth",
                 "control-tower/account-factory-and-enrollment",
-                "reference-architectures/governed-multi-account-landing-zone"
+                "reference-architectures/governed-multi-account-landing-zone",
+                "control-tower/account-factory-basics"
               ]
             },
             {
@@ -669,7 +673,8 @@
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
                 "global-infrastructure/multi-region-use-cases",
                 "reference-architectures/multi-region-warm-standby",
-                "reference-architectures/multi-region-automated-failover"
+                "reference-architectures/multi-region-automated-failover",
+                "availability-targets/static-stability-basics"
               ]
             },
             {
@@ -711,7 +716,8 @@
                 "availability-targets/failure-domains-and-spare-capacity",
                 "disaster-recovery/availability-replication-and-backup",
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
-                "reference-architectures/three-tier-web-application"
+                "reference-architectures/three-tier-web-application",
+                "availability-targets/static-stability-basics"
               ]
             },
             {
@@ -733,7 +739,8 @@
               "sections": [
                 "availability-targets/dependency-and-redundancy-calculations",
                 "availability-targets/failure-domains-and-spare-capacity",
-                "resilience-hub/assessments-drift-and-pipeline-checks"
+                "resilience-hub/assessments-drift-and-pipeline-checks",
+                "availability-targets/static-stability-basics"
               ]
             },
             {
@@ -957,7 +964,9 @@
                 "api-gateway/integrations-and-monitoring",
                 "api-gateway/operations-in-depth",
                 "api-gateway/endpoint-types-and-throttling",
-                "reference-architectures/serverless-event-driven-application"
+                "reference-architectures/serverless-event-driven-application",
+                "appsync/basics",
+                "appsync/graphql-apis-and-real-time-data"
               ]
             }
           ]
@@ -1519,7 +1528,8 @@
                 "eventbridge/operations-in-depth",
                 "cloudtrail/api-event-alerts",
                 "eventbridge/cross-account-routing",
-                "reference-architectures/event-driven-operations"
+                "reference-architectures/event-driven-operations",
+                "health/event-notifications-basics"
               ]
             },
             {
