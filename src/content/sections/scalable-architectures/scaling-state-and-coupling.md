@@ -11,10 +11,10 @@ facts:
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html#ec2-instance-resize
   - id: stateless
     text: A stateless system keeps no session data on local disk or memory between requests, so servers can be replaced at will and any instance or Lambda function can serve any request, which allows horizontal scaling.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_mitigate_interaction_failure_stateless.html#rel_mitigate_interaction_failure_stateless
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel05-bp06.html#rel05-bp06
   - id: offload
     text: To make systems stateless, AWS suggests storing large unstructured data such as images in Amazon S3 and data such as user profiles in Amazon DynamoDB instead of in server memory.
-    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_mitigate_interaction_failure_stateless.html#rel_mitigate_interaction_failure_stateless
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel05-bp06.html#rel05-bp06
   - id: sticky
     text: Sticky sessions on an Application Load Balancer keep a client on one instance, but the session is lost if that instance fails and load can become uneven.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-asp-net-web-forms/ha-scaling.html#sticky-sessions
