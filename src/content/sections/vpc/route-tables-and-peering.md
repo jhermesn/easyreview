@@ -66,7 +66,7 @@ facts:
     text: "VPC peering also works between VPCs in different Regions; their resources talk over private IP addresses without a gateway or VPN, and inter-Region traffic is encrypted."
     source: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html#what-is-vpc-peering
   - id: local-route
-    text: "Every route table has a local route for each VPC CIDR, so subnets in a VPC can reach each other by default; a more specific route than the local one must match a whole subnet CIDR and target a NAT gateway, network interface or Gateway Load Balancer endpoint."
+    text: "By default, every route table holds a local route for each VPC CIDR, so subnets of the VPC can reach one another; a route more specific than the local one has to cover a whole subnet CIDR and point at a Gateway Load Balancer endpoint, a network interface or a NAT gateway."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/subnet-route-tables.html#route-table-routes
   - id: igw-nat
     text: "For IPv4, an internet gateway translates an instance private address to its public IPv4 address; the instance sees its private address. IPv6 internet traffic uses the instance public IPv6 address directly, without this IPv4 address translation."
@@ -126,13 +126,9 @@ cards:
     facts:
       - nat-zonal
   - id: vpc-016
-    q: IPv6 instances need internet connections initiated only from inside the VPC. Which gateway and
-      route fit?
-    a: An egress-only internet gateway with an IPv6 default route ::/0 targeting it. It permits
-      responses but prevents unsolicited inbound connections.
-    facts:
-      - ipv6-egress
-      - ipv6-route
+    q: "Which Amazon VPC route sends general IPv6 internet traffic through an egress-only internet gateway?"
+    a: "Add an IPv6 default route, ::/0, targeting the egress-only internet gateway."
+    facts: [ipv6-route]
   - id: vpc-017
     q: Which controls protect a zonal NAT gateway, and how does its bandwidth scale?
     a: Use subnet ACLs and instance security groups; the gateway itself cannot have a security group.
@@ -154,10 +150,9 @@ cards:
     trap: true
     facts: [igw-nat]
   - id: vpc-066
-    q: "VPC A in us-east-1 is peered with VPC B in eu-west-1. Can a security group in VPC A allow traffic by referencing a security group in VPC B?"
-    a: "No. Security group references work only for peers **in the same Region**. For an inter-Region peer, allow the **peer VPC CIDR block**."
-    trap: true
-    facts: [peer-sg-region]
+    q: "Can an Amazon VPC use a peered VPC internet gateway or NAT device for internet access?"
+    a: "No. A peer cannot use another VPC internet gateway or NAT device through the peering connection."
+    facts: [peer-edge]
   - id: vpc-067
     q: "Instances in peered VPCs call each other by public DNS hostname, and the traffic resolves to public IP addresses. How can the hostnames resolve to private IPs?"
     a: "Turn on **DNS resolution for the peering connection** (off by default). Public IPv4 DNS hostnames then resolve to private IPv4 addresses."
@@ -167,17 +162,17 @@ cards:
     a: "No. IPv6 uses the assigned public IPv6 address directly; IPv4 uses address translation at the internet gateway."
     facts: [igw-nat]
   - id: vpc-094
-    q: "An Amazon VPC needs highly available outbound IPv6 internet access without unsolicited inbound connections. Which gateway fits?"
-    a: "An egress-only internet gateway. It is horizontally scaled, redundant and highly available."
+    q: "What availability properties does an Amazon VPC egress-only internet gateway have?"
+    a: "It is horizontally scaled, redundant and highly available."
     facts: [ipv6-egress]
   - id: vpc-106
     q: "Does traffic over an inter-Region Amazon VPC peering connection cross the public internet?"
     a: "No. It stays in private IP space, is encrypted and stays on the AWS global backbone."
     facts: [peering-backbone]
   - id: vpc-107
-    q: "Traffic between two subnets in the same Amazon VPC must pass through a firewall appliance. How can routing achieve that?"
-    a: "Add a route more specific than the local route, matching the other subnet's CIDR, with the appliance (for example a Gateway Load Balancer endpoint) as target."
-    facts: [middlebox-routing]
+    q: "What routes exist by default for Amazon VPC CIDR blocks?"
+    a: "A local route for every VPC CIDR is in each route table by default, so subnets can reach one another."
+    facts: [local-route]
   - id: vpc-111
     q: "Does Amazon VPC NAT64 provide native IPv6-to-IPv6 internet egress?"
     a: "No. NAT64 translates IPv6 traffic for IPv4 destinations. For outbound-only IPv6 internet access, use an egress-only internet gateway."
@@ -223,6 +218,19 @@ diagrams:
     steps:
       - Add a route for the peer destination range on the requester side.
       - Add a return route on the accepter side and allow traffic through the network controls.
+revised:
+  - date: 2026-11-23
+    note: The IPv6 gateway card now tests the required route.
+    cards: [vpc-016]
+  - date: 2026-11-23
+    note: The peering card now tests edge-to-edge routing restrictions.
+    cards: [vpc-066]
+  - date: 2026-11-23
+    note: The IPv6 gateway card now tests availability properties.
+    cards: [vpc-094]
+  - date: 2026-11-23
+    note: The subnet routing card now tests default local routes.
+    cards: [vpc-107]
 ---
 
 A VPC route table chooses where traffic goes. Each route pairs a destination address range with a target, such as a gateway or a peering connection. Peering provides a direct private path between two VPCs when their address ranges do not overlap.

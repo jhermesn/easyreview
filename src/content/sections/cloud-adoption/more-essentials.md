@@ -71,6 +71,5 @@ Migration strategies describe what to do with an application when moving to the 
 ### Remember
 
 - Repurchase is also called drop and shop; refactor is also called re-architect.
-- Refactor is the most complex and costly strategy. For large migrations, AWS recommends rehosting, relocating or replatforming first, then modernizing.
 
 > **Trap:** Retire and retain are different choices. Retire decommissions or archives an application with no business value; retain keeps it in the source environment.

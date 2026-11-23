@@ -3,9 +3,6 @@ title: Regional endpoint routing
 level: associate
 order: 10
 facts:
-  - id: fixed-entry
-    text: Global Accelerator provides static IP addresses that accept client traffic at an AWS edge location and route it over the AWS global network to regional endpoints.
-    source: https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html#introduction-how-it-works
   - id: addresses
     text: An IPv4 accelerator has two static IPv4 addresses; a dual-stack accelerator has two IPv4 and two IPv6 addresses.
     source: https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html#about-static-ip-addresses
@@ -51,20 +48,14 @@ facts:
   - id: existing-connections
     text: Existing connections remain directed to their endpoint until the idle timeout, even if the endpoint becomes unhealthy or is removed.
     source: https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html#about-idle-timeout
-  - id: tcp-udp
-    text: Global Accelerator listeners support TCP and UDP, so it also serves non-HTTP workloads.
-    source: https://docs.aws.amazon.com/global-accelerator/latest/dg/about-listeners.html
   - id: client-affinity
     text: "Setting client affinity to Source IP makes a standard accelerator send every connection from the same client IP to the same endpoint, for stateful applications; the default None hashes the 5-tuple."
     source: https://docs.aws.amazon.com/global-accelerator/latest/dg/about-listeners-client-affinity.html#about-listeners-client-affinity
-  - id: anycast
-    text: "Global Accelerator static IP addresses are anycast from the AWS edge network, so clients enter at a nearby edge location."
-    source: https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html
 cards:
   - id: global-accelerator-001
-    q: A global TCP application needs fixed IP addresses and routing to healthy regional load balancers. What AWS service fits?
-    a: Use a standard Global Accelerator with regional load balancer endpoints.
-    facts: [fixed-entry, tcp, standard-endpoints, selection]
+    q: Which regional endpoint types can a standard AWS Global Accelerator use?
+    a: Network Load Balancers, Application Load Balancers, EC2 instances and Elastic IP addresses.
+    facts: [standard-endpoints]
   - id: global-accelerator-002
     q: How can a Route 53 domain name point to AWS Global Accelerator?
     a: Create a Route 53 alias record pointing to the accelerator.
@@ -96,18 +87,10 @@ cards:
     a: No. Existing connections remain directed to that endpoint until idle timeout; new connections can use another available endpoint.
     facts: [existing-connections, failover]
     trap: true
-  - id: global-accelerator-010
-    q: "Which protocols can AWS Global Accelerator listeners use for non-HTTP workloads?"
-    a: "TCP and UDP."
-    facts: [tcp-udp]
   - id: global-accelerator-011
     q: "A stateful game server behind Global Accelerator must keep each player on the same endpoint. What setting does that?"
     a: "Client affinity set to Source IP on the listener."
     facts: [client-affinity]
-  - id: global-accelerator-013
-    q: "How do AWS Global Accelerator static IP addresses direct clients to an AWS edge location?"
-    a: "The addresses are anycast from the AWS edge network, so clients enter at a nearby edge location."
-    facts: [anycast]
 diagrams:
   - id: accelerator-regional-routing
     title: Standard accelerator routing
@@ -128,11 +111,8 @@ diagrams:
       - It can route new connections to another available endpoint, such as a Network Load Balancer.
 revised:
   - date: 2026-11-23
-    note: The card now tests the protocols supported by Global Accelerator listeners.
-    cards: [global-accelerator-010]
-  - date: 2026-11-23
-    note: The card now tests how anycast directs clients to the AWS edge.
-    cards: [global-accelerator-013]
+    note: The standard accelerator card now tests its supported endpoint types.
+    cards: [global-accelerator-001]
 ---
 
 Regional endpoint routing builds on AWS Global Accelerator. A standard accelerator selects endpoints using location, health and configured weights.
@@ -147,7 +127,6 @@ Regional endpoint routing builds on AWS Global Accelerator. A standard accelerat
 
 ### Exam cues
 
-- If the question says fixed global IPs and healthy regional ALB or NLB endpoints, think standard Global Accelerator, because it routes traffic through the AWS network and monitors endpoint health.
 - If the question says a hostname should resolve to the accelerator, think a Route 53 alias record, because it can target an accelerator.
 - If the question says reduce traffic to a Region during a rollout, think traffic dial, because it limits traffic directed to that endpoint group.
 - If the question says split traffic among endpoints in one Region, think endpoint weights, because weights control their relative shares within a group.

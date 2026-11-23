@@ -69,6 +69,57 @@ facts:
   - id: providers
     text: GuardDuty, Inspector, and Macie send findings to CSPM.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html#securityhub-internal-providers
+cards:
+  - id: security-hub-004
+    q: For AWS Security Hub CSPM finding handling, when should a team use automation rules or EventBridge?
+    a: Use automation rules to update finding fields or suppress findings. Use EventBridge to trigger an external response such as a Lambda function or notification. A custom action lets an operator send selected findings to EventBridge.
+    facts:
+      - automation-fields
+      - event-targets
+      - manual-action
+  - id: security-hub-005
+    q: An AWS Security Hub CSPM team wants a finding status changed automatically and a remediation function invoked. Which mechanisms fit?
+    a: Use a CSPM automation rule for the finding update and an EventBridge rule for the external response. Automation updates happen before EventBridge evaluates the finding.
+    facts:
+      - automation-fields
+      - event-targets
+      - before-events
+  - id: security-hub-025
+    q: An AWS Security Hub CSPM automation rule should run after a BatchUpdateFindings call. Why does it not run?
+    a: CSPM automation rules do not trigger on BatchUpdateFindings. They evaluate provider findings ingested through BatchImportFindings after rule creation.
+    trap: true
+    facts:
+      - automation-trigger
+      - no-update-trigger
+  - id: security-hub-026
+    q: "A team needs an SNS notification for selected AWS Security Hub CSPM findings as they arrive. What should it configure?"
+    a: "Configure an EventBridge rule that filters finding attributes and targets an SNS topic. Match Security Hub Findings - Imported events from aws.securityhub."
+    facts:
+      - imported-event
+      - event-targets
+  - id: security-hub-027
+    q: "A team filters Security Hub CSPM findings in EventBridge for security alerts. Do CSPM automation rule updates occur before EventBridge evaluates the findings?"
+    a: "Yes. CSPM automation rules update findings before EventBridge rules receive and evaluate them."
+    facts:
+      - before-events
+  - id: security-hub-028
+    q: Two matching AWS Security Hub CSPM automation rules change the same finding field. Which update has the final effect?
+    a: Rules run in ascending RuleOrder, so the later matching rule has the final effect on that field.
+    facts:
+      - automation-order
+      - last-action
+  - id: security-hub-029
+    q: "A security team uses EventBridge to alert on AWS Security Hub CSPM findings. Can a BatchUpdateFindings call generate an imported finding event?"
+    a: "Yes. Both BatchUpdateFindings and BatchImportFindings can generate Security Hub Findings - Imported events."
+    facts:
+      - imported-event
+    trap: true
+  - id: security-hub-030
+    q: What event source and detail type should an EventBridge rule match for automatic AWS Security Hub CSPM finding responses?
+    a: Source aws.securityhub and detail type Security Hub Findings - Imported. Add finding attribute filters to select relevant events.
+    facts:
+      - imported-event
+      - event-targets
 diagrams:
   - id: security-findings-flow
     title: CSPM finding updates before external response
@@ -146,57 +197,6 @@ diagrams:
       - Integrated security services send findings to CSPM.
       - CSPM applies automation field updates before the event reaches EventBridge.
       - An EventBridge rule matches the updated finding and invokes the response function.
-cards:
-  - id: security-hub-004
-    q: For AWS Security Hub CSPM finding handling, when should a team use automation rules or EventBridge?
-    a: Use automation rules to update finding fields or suppress findings. Use EventBridge to trigger an external response such as a Lambda function or notification. A custom action lets an operator send selected findings to EventBridge.
-    facts:
-      - automation-fields
-      - event-targets
-      - manual-action
-  - id: security-hub-005
-    q: An AWS Security Hub CSPM team wants a finding status changed automatically and a remediation function invoked. Which mechanisms fit?
-    a: Use a CSPM automation rule for the finding update and an EventBridge rule for the external response. Automation updates happen before EventBridge evaluates the finding.
-    facts:
-      - automation-fields
-      - event-targets
-      - before-events
-  - id: security-hub-025
-    q: An AWS Security Hub CSPM automation rule should run after a BatchUpdateFindings call. Why does it not run?
-    a: CSPM automation rules do not trigger on BatchUpdateFindings. They evaluate provider findings ingested through BatchImportFindings after rule creation.
-    trap: true
-    facts:
-      - automation-trigger
-      - no-update-trigger
-  - id: security-hub-026
-    q: "A team needs an SNS notification for selected AWS Security Hub CSPM findings as they arrive. What should it configure?"
-    a: "Configure an EventBridge rule that filters finding attributes and targets an SNS topic. Match Security Hub Findings - Imported events from aws.securityhub."
-    facts:
-      - imported-event
-      - event-targets
-  - id: security-hub-027
-    q: "A team filters Security Hub CSPM findings in EventBridge for security alerts. Do CSPM automation rule updates occur before EventBridge evaluates the findings?"
-    a: "Yes. CSPM automation rules update findings before EventBridge rules receive and evaluate them."
-    facts:
-      - before-events
-  - id: security-hub-028
-    q: Two matching AWS Security Hub CSPM automation rules change the same finding field. Which update has the final effect?
-    a: Rules run in ascending RuleOrder, so the later matching rule has the final effect on that field.
-    facts:
-      - automation-order
-      - last-action
-  - id: security-hub-029
-    q: "A security team uses EventBridge to alert on AWS Security Hub CSPM findings. Can a BatchUpdateFindings call generate an imported finding event?"
-    a: "Yes. Both BatchUpdateFindings and BatchImportFindings can generate Security Hub Findings - Imported events."
-    facts:
-      - imported-event
-    trap: true
-  - id: security-hub-030
-    q: What event source and detail type should an EventBridge rule match for automatic AWS Security Hub CSPM finding responses?
-    a: Source aws.securityhub and detail type Security Hub Findings - Imported. Add finding attribute filters to select relevant events.
-    facts:
-      - imported-event
-      - event-targets
 ---
 Security Hub CSPM automation rules change findings as they arrive. EventBridge routes finding events to external actions. A custom action is the operator's way to send selected findings into an EventBridge response path. Updating a finding's status and repairing the affected resource are separate operations.
 

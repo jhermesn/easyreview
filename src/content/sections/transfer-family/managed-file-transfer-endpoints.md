@@ -3,9 +3,6 @@ title: Managed file transfer endpoints
 level: associate
 order: 10
 facts:
-  - id: what
-    text: AWS Transfer Family is a fully managed service for transferring files into and out of Amazon S3 or Amazon EFS over SFTP, FTPS, FTP, AS2 and web browser-based transfers.
-    source: https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html#what-is-aws-transfer-family
   - id: no-servers
     text: With Transfer Family you get a protocol-enabled server endpoint without running any server infrastructure, and end users keep their existing clients and configurations.
     source: https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html#what-is-aws-transfer-family
@@ -40,14 +37,6 @@ cards:
     q: After each upload to an AWS Transfer Family server, files must be scanned, tagged and copied to another location automatically. Which feature fits?
     a: "Transfer Family managed workflows, which run processing steps after upload."
     facts: [workflows]
-  - id: transfer-family-004
-    q: Which storage services can AWS Transfer Family write to?
-    a: "Amazon S3 and Amazon EFS."
-    facts: [what]
-  - id: transfer-family-005
-    q: Which protocols does AWS Transfer Family support?
-    a: "SFTP, FTPS, FTP and AS2, plus browser-based web apps."
-    facts: [what]
   - id: transfer-family-007
     q: Each vendor using an AWS Transfer Family SFTP server must see only its own prefix in a shared S3 bucket. What limits that?
     a: "The user's IAM user role plus a session policy scoped to the user's home folder."
@@ -70,10 +59,9 @@ AWS Transfer Family endpoints build on managed file transfers with endpoint netw
 
 ### How it works
 
-1. Create a server with the protocols you need (SFTP, FTPS, FTP, AS2) and choose S3 or EFS as storage.
-2. Choose the endpoint: public, VPC-only, or VPC internet-facing with Elastic IP addresses and security groups.
-3. Give each user an IAM user role, and a session policy that limits them to their home folder.
-4. Optionally attach a managed workflow that processes each uploaded file.
+1. Choose the endpoint: public, VPC-only, or VPC internet-facing with Elastic IP addresses and security groups.
+2. Give each user an IAM user role, and a session policy that limits them to their home folder.
+3. Optionally attach a managed workflow that processes each uploaded file.
 
 ### Exam cues
 
@@ -82,8 +70,7 @@ AWS Transfer Family endpoints build on managed file transfers with endpoint netw
 
 ### Remember
 
-- Protocols: SFTP, FTPS, FTP, AS2, browser web apps. Storage: S3 or EFS.
-- Fully managed, up to 3 Availability Zones.
+- Up to 3 Availability Zones.
 - A user role per user; a session policy can lock a user to their home folder.
 
-> **Trap:** Running SFTP on an EC2 instance works but adds servers to patch and scale. When the question stresses fully managed or least operational overhead, the answer is Transfer Family.
+> **Trap:** To limit a user to a home folder, use a session policy with the user's role.

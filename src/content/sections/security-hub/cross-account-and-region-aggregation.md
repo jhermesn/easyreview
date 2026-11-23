@@ -51,51 +51,6 @@ facts:
   - id: insight-definition
     text: An insight is a grouped collection of related findings.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-concepts.html#securityhub-concepts
-diagrams:
-  - id: security-hub-account-region-aggregation
-    title: Member findings collected in the administrator home Region
-    width: 820
-    height: 340
-    nodes:
-      - id: a
-        label: Member account A
-        icon: security-hub
-        x: 20
-        y: 20
-        w: 180
-        h: 86
-        sub: linked Region
-        tone: security
-      - id: b
-        label: Member account B
-        icon: security-hub
-        x: 20
-        y: 220
-        w: 180
-        h: 86
-        sub: linked Region
-        tone: security
-      - id: home
-        label: Administrator
-        icon: security-hub
-        x: 450
-        y: 120
-        w: 210
-        h: 86
-        sub: home Region view
-        tone: security
-    edges:
-      - from: a
-        to: home
-        step: 1
-        label: findings and updates
-      - from: b
-        to: home
-        step: 2
-        label: findings and updates
-    steps:
-      - An enabled member account generates findings in a linked Region.
-      - The administrator views associated members' replicated findings in the home Region.
 cards:
   - id: security-hub-003
     q: How can an AWS Security Hub CSPM administrator see member findings across accounts and Regions in one place?
@@ -144,6 +99,51 @@ cards:
     a: Findings and their updates, insights, control compliance statuses, and security scores from linked Regions into a home Region.
     facts:
       - home-region
+diagrams:
+  - id: security-hub-account-region-aggregation
+    title: Member findings collected in the administrator home Region
+    width: 820
+    height: 340
+    nodes:
+      - id: a
+        label: Member account A
+        icon: security-hub
+        x: 20
+        y: 20
+        w: 180
+        h: 86
+        sub: linked Region
+        tone: security
+      - id: b
+        label: Member account B
+        icon: security-hub
+        x: 20
+        y: 220
+        w: 180
+        h: 86
+        sub: linked Region
+        tone: security
+      - id: home
+        label: Administrator
+        icon: security-hub
+        x: 450
+        y: 120
+        w: 210
+        h: 86
+        sub: home Region view
+        tone: security
+    edges:
+      - from: a
+        to: home
+        step: 1
+        label: findings and updates
+      - from: b
+        to: home
+        step: 2
+        label: findings and updates
+    steps:
+      - An enabled member account generates findings in a linked Region.
+      - The administrator views associated members' replicated findings in the home Region.
 ---
 Security Hub CSPM combines two scopes: member account relationships let an administrator manage other accounts' findings, and cross-Region aggregation collects Regional data in a home Region. The home Region is the place to view the combined results; linked Regions supply data.
 

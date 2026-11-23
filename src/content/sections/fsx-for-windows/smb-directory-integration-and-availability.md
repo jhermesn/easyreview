@@ -3,9 +3,6 @@ title: SMB, directory integration, and availability
 level: associate
 order: 10
 facts:
-  - id: smb
-    text: FSx for Windows File Server provides managed Windows file servers and supports SMB versions 2.0 through 3.1.1.
-    source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#fsx-access-shares
   - id: active-directory
     text: FSx for Windows File Server joins an AWS Managed Microsoft AD or self-managed Microsoft Active Directory domain for authentication and access control.
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/aws-ad-integration-fsxW.html#aws-ad-integration-fsxW
@@ -69,10 +66,6 @@ cards:
     q: An FSx for Windows File Server user needs to recover an earlier version of a file without restoring a backup. What feature helps?
     a: Enable and schedule shadow copies. Users can restore earlier versions from them.
     facts: [shadow-copies]
-  - id: fsx-for-windows-004
-    q: "Which SMB versions does Amazon FSx for Windows File Server support?"
-    a: "SMB versions 2.0 through 3.1.1."
-    facts: [smb]
   - id: fsx-for-windows-005
     q: How can multiple FSx for Windows File Server shares appear under one common folder structure?
     a: Use DFS Namespaces to group the shares under a common namespace.
@@ -122,10 +115,6 @@ diagrams:
     steps:
       - Windows clients access the file share.
       - Data is synchronously replicated; FSx fails over to the standby when needed.
-revised:
-  - date: 2026-11-23
-    note: The SMB card now tests the supported protocol versions.
-    cards: [fsx-for-windows-004]
 ---
 
 FSx for Windows File Server adds directory integration, access controls and availability choices to managed Windows file shares.
@@ -149,7 +138,6 @@ FSx for Windows File Server adds directory integration, access controls and avai
 ### Remember
 
 - File system data and metadata are encrypted at rest using AWS KMS keys.
-- SMB versions 2.0 through 3.1.1 are supported.
 - Multi-AZ failover typically takes less than 30 seconds; failback is automatic after recovery.
 - Shadow copies are off by default; automatic daily backups are on by default.
 - Windows clients resume using the same DNS name. Linux clients resume after failback, the return to the preferred server, not automatic failover.

@@ -43,7 +43,28 @@ facts:
     text: Consumers should handle records more than once without unintended extra side effects; this is
       idempotent processing.
     source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html#kinesis-record-processor-duplicates
+  - id: consumer-latency
+    text: AWS describes enhanced fan-out message propagation delay as typically averaging 70
+      milliseconds.
+    source: https://docs.aws.amazon.com/streams/latest/dev/enhanced-consumers.html#enhanced-consumers
 cards:
+  - id: kinesis-data-streams-022
+    q: Does the typical 70 ms enhanced fan-out propagation figure describe a guaranteed per-record
+      latency?
+    a: No. AWS describes 70 ms as a typical average propagation delay.
+    trap: true
+    facts:
+      - consumer-latency
+  - id: kinesis-data-streams-021
+    q: A consumer uses enhanced fan-out and then restarts after a failed deployment. Does dedicated
+      throughput guarantee exactly-once side effects?
+    a: No. Enhanced fan-out isolates read throughput. Restart from the last checkpoint can still repeat
+      processing, so side effects must be idempotent.
+    trap: true
+    facts:
+      - consumer-efo
+      - consumer-restart
+      - consumer-idempotent
   - id: kinesis-data-streams-006
     q: Five Kinesis Data Streams applications each need the full shard read rate without competing with
       the others. Which consumer model fits?
@@ -151,5 +172,6 @@ Enhanced fan-out gives each registered consumer its own shard read throughput. K
 - Shared reads: 2 MB/s total per shard. Enhanced fan-out: up to 2 MB/s per consumer per shard.
 - Standard and Provisioned: up to 20 registered enhanced fan-out consumers per stream.
 - November 2025: AWS announced up to 50 for On-demand Advantage in supported Regions.
+- Enhanced fan-out propagation typically averages 70 ms; it is not a per-record guarantee.
 
 > **Trap:** Enhanced fan-out does not make processing exactly once. Dedicated read capacity and saved checkpoints still require duplicate-safe side effects.

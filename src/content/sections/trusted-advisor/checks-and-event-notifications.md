@@ -3,9 +3,6 @@ title: Checks and event notifications
 level: associate
 order: 10
 facts:
-  - id: recommendations
-    text: Trusted Advisor inspects AWS environments and recommends ways to reduce costs, improve availability and performance, or address security gaps.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html
   - id: basic
     text: Basic Support provides all Service Limits checks and selected Security and Fault tolerance checks in the console; automatic check updates are unavailable.
     source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html
@@ -54,9 +51,6 @@ facts:
   - id: sns-publish
     text: Messages published to an SNS topic are delivered on an attempted basis to its subscribed endpoints.
     source: https://docs.aws.amazon.com/sns/latest/dg/sns-publishing.html
-  - id: ebs-underutilized
-    text: The Underutilized Amazon EBS volumes check flags volumes that are unattached or have had very low write activity.
-    source: https://docs.aws.amazon.com/awssupport/latest/user/cost-optimization-checks.html#underutilized-amazon-ebs-volumes
   - id: rds-public-snapshots
     text: "The Trusted Advisor Amazon RDS Public Snapshots security check alerts when an RDS DB snapshot is marked as public."
     source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html
@@ -70,6 +64,14 @@ facts:
     text: "DescribeTrustedAdvisorChecks lists available Trusted Advisor checks and their metadata."
     source: https://docs.aws.amazon.com/awssupport/latest/APIReference/API_DescribeTrustedAdvisorChecks.html
 cards:
+  - id: trusted-advisor-010
+    q: Which endpoint must an application use for Trusted Advisor operations in the AWS Support API?
+    a: "The US East (N. Virginia) endpoint."
+    facts: [api-endpoint]
+  - id: trusted-advisor-004
+    q: A team wants immediate custom notifications for Trusted Advisor status changes. Where should it create the EventBridge rule?
+    a: "US East (N. Virginia), or us-east-1. Trusted Advisor emits events there; delivery is best effort."
+    facts: [event-region, eventbridge]
   - id: trusted-advisor-002
     q: "Are automatic AWS Trusted Advisor check updates available with Basic Support?"
     a: "No. Basic Support does not include automatic check updates."
@@ -131,14 +133,13 @@ revised:
     note: The card now covers the RDS public snapshots check.
     cards: [trusted-advisor-018]
 ---
-AWS Trusted Advisor inspects your AWS environment and recommends improvements to cost, availability, performance and security. A check evaluates resources and reports results for review.
+This section builds on Trusted Advisor basics and covers check access and notifications.
 
 ### How it works
 
-1. Trusted Advisor checks resources in categories including cost optimization, security, performance, fault tolerance, service limits and operational excellence.
-2. Review check results and recommended actions. The low-utilization EC2 check identifies instances for cost review; the console can filter results by resource tag. The underutilized EBS volumes check flags unattached volumes or those with very low write activity.
-3. Configure notifications: a weekly summary email, an EventBridge rule for check status events, or a CloudWatch metric alarm that sends to an SNS topic.
-4. For scheduled custom notifications, EventBridge Scheduler can invoke Lambda to query check results through the Support API and publish to SNS.
+1. Review check results and recommended actions. The low-utilization EC2 check identifies instances for cost review; the console can filter results by resource tag.
+2. Configure notifications: a weekly summary email, an EventBridge rule for check status events, or a CloudWatch metric alarm that sends to an SNS topic.
+3. For scheduled custom notifications, EventBridge Scheduler can invoke Lambda to query check results through the Support API and publish to SNS.
 
 ### Exam cues
 
@@ -152,7 +153,7 @@ AWS Trusted Advisor inspects your AWS environment and recommends improvements to
 
 | Access | Checks and tools |
 | --- | --- |
-| Basic Support | All Service Limits checks and selected Security and Fault tolerance checks in the console; no automatic check updates |
+| Basic Support | No automatic check updates |
 | Business Support+, Enterprise Support, Unified Operations | All checks in the console and Trusted Advisor API; eligible for EventBridge rules |
 
 - Business Support and Enterprise On-Ramp are discontinued in January 2027, but remain available in AWS GovCloud (US). Legacy Support API eligibility also applies before transition or in Regions without a current eligible plan.

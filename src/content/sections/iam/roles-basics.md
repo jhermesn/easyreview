@@ -43,14 +43,14 @@ cards:
     a: "Through identity federation, which gives them temporary credentials by assuming roles, instead of creating IAM users."
     facts: [prefer-federation, role-basic]
   - id: iam-017
-    q: An EC2 application needs AWS credentials without storing access keys in its machine image. What should the
-      team attach?
-    a: An IAM role through an instance profile. Use an SDK instance profile credential provider to retrieve and
-      refresh temporary credentials.
-    facts:
-      - ec2-profile
-      - ec2-credentials
-      - ec2-refresh
+    q: "How are temporary IAM role credentials refreshed for an EC2 application?"
+    a: "EC2 updates credentials before expiration; SDK instance profile credential providers can retrieve and refresh them."
+    facts: [ec2-refresh]
+
+revised:
+  - date: 2026-11-23
+    note: The EC2 role card now tests credential refresh.
+    cards: [iam-017]
 ---
 An IAM role gives temporary permissions to whoever is allowed to assume it, such as an AWS service, an application or a federated user.
 

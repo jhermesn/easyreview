@@ -67,6 +67,66 @@ facts:
   - id: role-session-duration
     text: "An AssumeRole session lasts one hour by default and can be set from 15 minutes up to the role's maximum session duration; role chaining, using one role's credentials to assume another, limits the session to one hour."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
+cards:
+  - id: iam-011
+    q: Does an IAM role trust policy grant the resulting session permission to read application data?
+    a: No. It controls who can assume the role. The role permissions policy defines its resource permissions.
+    trap: true
+    facts:
+      - role-trust
+      - role-permissions
+  - id: iam-025
+    q: "How many IAM roles can an instance profile contain, and can a role appear in more than one profile?"
+    a: "An instance profile can contain one role; a role can appear in multiple profiles."
+    facts: [profile-limit]
+  - id: iam-027
+    q: An application still uses an IAM user access key. How can the team rotate the key without interrupting
+      access?
+    a: Create the second key, update applications, inspect old-key usage, deactivate the old key, test the new
+      key, and delete the old key after confirming the migration.
+    facts:
+      - key-limit
+      - key-rotation
+  - id: iam-028
+    q: Can an IAM group contain another group or be named as Principal in an S3 bucket policy?
+    a: No. Groups contain users and distribute identity-policy permissions; they are not authenticated principals.
+    trap: true
+    facts:
+      - group-members
+      - group-not-principal
+      - group-no-nesting
+  - id: iam-030
+    q: Why does enabling MFA on the AWS root user not enable MFA for every IAM user?
+    a: Root and IAM users have separate MFA configurations. Each identity needs its own additional authentication
+      factor.
+    facts:
+      - mfa-separate
+      - mfa-purpose
+  - id: iam-031
+    q: In AWS MFA, what distinguishes a password from a security key or biometric?
+    a: A password is a knowledge factor; a security key is a possession factor; a biometric is an inherence
+      factor. MFA combines factors.
+    facts:
+      - mfa-factors
+      - mfa-purpose
+  - id: iam-109
+    q: "An app has 2 million customers who need AWS access. Should each get an IAM user?"
+    a: "No. An account allows at most 5,000 IAM users; use federation or Amazon Cognito for customer identities."
+    trap: true
+    facts: [user-quota]
+  - id: iam-112
+    q: "An application on a running EC2 instance now needs S3 access, and the instance has no IAM role. Must it be relaunched?"
+    a: "No. **Attach an IAM role** (through an instance profile) to the running instance. An existing role would be replaced, not stacked."
+    facts: [attach-running]
+  - id: iam-121
+    q: "A script uses the AWS CLI on Amazon EC2 and needs AWS permissions without storing long-term access keys. How can it obtain credentials?"
+    a: "Use the instance's attached IAM role. The AWS CLI can retrieve its temporary credentials from instance metadata."
+    facts: [cli-instance-credentials]
+  - id: iam-125
+    q: "How is an IAM instance profile created when an EC2 role is configured in the console versus the CLI or API?"
+    a: "The console creates a profile with the same name; CLI and API users create it separately."
+    facts: [profile-creation]
+
 diagrams:
   - id: iam-ec2-credentials
     title: EC2 applications use temporary role credentials
@@ -112,71 +172,13 @@ diagrams:
     steps:
       - The instance profile exposes the role credentials through EC2 metadata.
       - The application uses the credentials for actions permitted by the role.
-cards:
-  - id: iam-011
-    q: Does an IAM role trust policy grant the resulting session permission to read application data?
-    a: No. It controls who can assume the role. The role permissions policy defines its resource permissions.
-    trap: true
-    facts:
-      - role-trust
-      - role-permissions
-  - id: iam-025
-    q: A vendor can assume an IAM role but cannot read the required data. Which role policy defines resource
-      access?
-    a: The role permissions policy. Successful role assumption only establishes that its trust policy allowed the
-      caller.
-    trap: true
-    facts:
-      - role-trust
-      - role-permissions
-  - id: iam-027
-    q: An application still uses an IAM user access key. How can the team rotate the key without interrupting
-      access?
-    a: Create the second key, update applications, inspect old-key usage, deactivate the old key, test the new
-      key, and delete the old key after confirming the migration.
-    facts:
-      - key-limit
-      - key-rotation
-  - id: iam-028
-    q: Can an IAM group contain another group or be named as Principal in an S3 bucket policy?
-    a: No. Groups contain users and distribute identity-policy permissions; they are not authenticated principals.
-    trap: true
-    facts:
-      - group-members
-      - group-not-principal
-      - group-no-nesting
-  - id: iam-030
-    q: Why does enabling MFA on the AWS root user not enable MFA for every IAM user?
-    a: Root and IAM users have separate MFA configurations. Each identity needs its own additional authentication
-      factor.
-    facts:
-      - mfa-separate
-      - mfa-purpose
-  - id: iam-031
-    q: In AWS MFA, what distinguishes a password from a security key or biometric?
-    a: A password is a knowledge factor; a security key is a possession factor; a biometric is an inherence
-      factor. MFA combines factors.
-    facts:
-      - mfa-factors
-      - mfa-purpose
-  - id: iam-109
-    q: "An app has 2 million customers who need AWS access. Should each get an IAM user?"
-    a: "No. An account allows at most 5,000 IAM users; use federation or Amazon Cognito for customer identities."
-    trap: true
-    facts: [user-quota]
-  - id: iam-112
-    q: "An application on a running EC2 instance now needs S3 access, and the instance has no IAM role. Must it be relaunched?"
-    a: "No. **Attach an IAM role** (through an instance profile) to the running instance. An existing role would be replaced, not stacked."
-    facts: [attach-running]
-  - id: iam-121
-    q: "A script uses the AWS CLI on Amazon EC2 and needs AWS permissions without storing long-term access keys. How can it obtain credentials?"
-    a: "Use the instance's attached IAM role. The AWS CLI can retrieve its temporary credentials from instance metadata."
-    facts: [cli-instance-credentials]
-  - id: iam-125
-    q: "An application assumes IAM role A, then uses those credentials to assume role B with a four-hour session request. How long can the role B session last?"
-    a: "One hour. Role chaining limits the session to one hour, whatever the role's maximum session duration."
-    trap: true
-    facts: [role-session-duration]
+revised:
+  - date: 2026-11-23
+    note: The role chaining card now tests instance profile creation.
+    cards: [iam-125]
+  - date: 2026-11-23
+    note: The role policy card now tests instance profile limits.
+    cards: [iam-025]
 ---
 
 IAM identities determine who makes a request. A role supplies permissions through a temporary session, a period during which temporary credentials are valid. An instance profile connects a role to an EC2 instance so its applications can use those credentials.

@@ -3,12 +3,6 @@ title: Offline transfer and edge devices
 level: associate
 order: 10
 facts:
-  - id: what
-    text: Snowball Edge is a device with on-board storage and compute that processes data locally, runs edge workloads, and moves data to or from AWS by shipping the device through a carrier.
-    source: https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html#whatisedge
-  - id: closed
-    text: Since November 7, 2025, AWS Snowball Edge is available only to existing customers; new customers are pointed to AWS DataSync for online transfers, AWS Data Transfer Terminal for physical transfers, and AWS Outposts for edge compute.
-    source: https://docs.aws.amazon.com/snowball/latest/developer-guide/doc-history.html#doc-history
   - id: options
     text: Snowball Edge comes as Storage Optimized 210 TB or Compute Optimized.
     source: https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html#whatisedge
@@ -32,9 +26,9 @@ facts:
     source: https://docs.aws.amazon.com/datatransferterminal/latest/userguide/tech-requirements.html
 cards:
   - id: snow-family-001
-    q: A research site has 500 TB to load into Amazon S3 and only a slow internet link that would take months. Which AWS option did exam questions traditionally expect, and what changed in November 2025?
-    a: "**AWS Snowball Edge** (ship a device, then import into S3).\nSince November 7, 2025 it is only for existing customers; new customers use DataSync, Data Transfer Terminal or Partner solutions."
-    facts: [what, import-export, closed]
+    q: What network adapter speed can a Snowball Edge device use for offline data transfers?
+    a: Up to 100 Gbit/s.
+    facts: [import-export]
   - id: snow-family-002
     q: Which two Snowball Edge device options exist?
     a: "Storage Optimized 210 TB and Compute Optimized."
@@ -42,11 +36,11 @@ cards:
   - id: snow-family-003
     q: A ship with no reliable connectivity must run EC2-compatible instances and Kubernetes on board, then bring the data back to AWS. Which device family fits, for an existing customer?
     a: "Snowball Edge, which runs EC2-compatible instances and EKS Anywhere locally and ships data back to S3."
-    facts: [edge-compute, closed]
+    facts: [edge-compute]
   - id: snow-family-004
     q: A new AWS customer wants to physically bring hard drives to AWS for a fast upload. Which service fits?
     a: "AWS Data Transfer Terminal: reserve a slot at an AWS facility and upload with your own devices (Enterprise Support customers)."
-    facts: [dtt, closed]
+    facts: [dtt]
   - id: snow-family-005
     q: Is data on an AWS Snowball Edge device encrypted while it is shipped?
     a: "Yes. Encryption is enforced at rest and in physical transit."
@@ -57,9 +51,16 @@ cards:
     trap: true
     facts: [import-to-s3]
   - id: snow-family-008
-    q: What must a customer arrange for an AWS Data Transfer Terminal upload?
-    a: Reserve a visit and bring compatible equipment.
-    facts: [terminal-equipment, dtt]
+    q: Which AWS support customers can use AWS Data Transfer Terminal?
+    a: Enterprise Support customers.
+    facts: [dtt]
+revised:
+  - date: 2026-11-23
+    note: The transfer card now tests Snowball Edge network adapter speed.
+    cards: [snow-family-001]
+  - date: 2026-11-23
+    note: The terminal card now tests the required support tier.
+    cards: [snow-family-008]
 ---
 Snowball Edge also supports local workloads and device clusters at disconnected sites.
 
@@ -73,20 +74,16 @@ Snowball Edge also supports local workloads and device clusters at disconnected 
 |---|---|
 | Large one-time move, network too slow (existing Snow customers) | Snowball Edge Storage Optimized |
 | Compute at a disconnected site | Snowball Edge Compute Optimized, or AWS Outposts for new customers |
-| New customer, physical upload | AWS Data Transfer Terminal |
-| Enough bandwidth, recurring sync | AWS DataSync |
 
 ### Exam cues
 
 - If the question says upload at an AWS Data Transfer Terminal, think a reservation and compatible customer equipment, because the customer visits the facility with their devices.
 - If the question says hundreds of terabytes and a link that would take weeks or months, think Snowball Edge, then S3 lifecycle rules for cheaper classes.
 - If the question says disconnected or rugged edge location that needs local compute, think Snowball Edge Compute Optimized.
-- If the question is set after November 2025 and asks for a new customer, think DataSync, Data Transfer Terminal or Outposts.
 
 ### Remember
 
-- Closed to new customers since November 7, 2025; existing customers continue as normal.
 - Storage Optimized 210 TB or Compute Optimized; up to 100 Gbit/s adapters; encryption enforced.
 - Clusters of 3 to 16 devices; EC2-compatible instances and EKS Anywhere on the device.
 
-> **Trap:** Older practice questions answer "ship the data on a Snowball" for any big migration. Snowball Edge is closed to new customers since November 7, 2025, so a new account needs DataSync, Data Transfer Terminal or a Partner solution instead.
+> **Trap:** Snowball Edge imports land in S3 buckets. Use a lifecycle rule to move the objects to a Glacier storage class.

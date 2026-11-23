@@ -61,9 +61,6 @@ facts:
   - id: rdp-trusted
     text: "AWS recommends limiting RDP security group access to specific trusted IP addresses or ranges."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html
-  - id: default-sg-inbound
-    text: "The default security group initially allows inbound traffic from resources associated with that same security group."
-    source: https://docs.aws.amazon.com/vpc/latest/userguide/default-security-group.html#default-security-group-default-rules
   - id: ftp-transfer-ports
     text: "For an AWS Transfer Family FTP server in a VPC, configure TCP port 21 for control and ports 8192 through 8200 for data."
     source: https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#create-server-in-vpc
@@ -161,10 +158,6 @@ cards:
     q: "What source should an Amazon EC2 security group allow for RDP administration?"
     a: "The trusted administrator IP address or range."
     facts: [rdp-trusted]
-  - id: vpc-114
-    q: "What inbound traffic does a new Amazon VPC default security group allow?"
-    a: "Traffic from resources associated with the same security group."
-    facts: [default-sg-inbound]
   - id: vpc-115
     q: "Which TCP ports should a security group allow for an AWS Transfer Family FTP server control and data channels?"
     a: "Port 21 for control and ports 8192 through 8200 for data."
@@ -175,23 +168,15 @@ revised:
     cards: [vpc-069]
 ---
 
-Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.
+Security groups and network ACLs build on the VPC security basics with rule evaluation and return-path details.
 
 ### How it works
 
-1. A network ACL checks traffic entering or leaving its subnet. It evaluates rule numbers from lowest to highest and stops at the first match.
-2. The resource's security groups allow matching traffic. Their permissions combine; they have no deny rules.
-3. For an allowed request, security-group connection tracking automatically allows the response. This is what stateful means.
-4. The ACL checks the response separately because it is stateless, meaning it remembers no connection. Allow the client's ephemeral ports, the temporary ports selected when it opens a connection.
+1. An ACL evaluates rule numbers from lowest to highest and stops at the first match.
+2. Security group permissions combine across attached groups.
+3. Allow the client's ephemeral ports in ACL return-path rules. The client selects these temporary ports when it opens a connection.
 
-| Property | Security group | Network ACL |
-|---|---|---|
-| Scope | Associated resource or network interface | Subnet boundary |
-| Rules | Allow only, combined across groups | Allow and deny, first numbered match |
-| Return traffic | Automatically allowed for an allowed request | Needs an explicit allow rule |
-| Association | A resource can use multiple groups | One ACL per subnet; an ACL can serve multiple subnets |
-
-ACL rules match protocol, applicable ports and a source CIDR inbound or destination CIDR outbound. They do not accept security group IDs. A custom ACL must be associated explicitly before its rules affect a subnet.
+ACL rules match protocol, applicable ports and a source CIDR inbound or destination CIDR outbound. They do not accept security group IDs.
 
 A group reference permits matching traffic involving interfaces in the referenced group, including its own group. It does not copy that group's rules. For example, a database can allow its application tier by referring to the application's group.
 
@@ -201,7 +186,6 @@ Before retiring an environment, preserve the replacement application's access an
 
 - If the question says automate security group ingress changes, think the EC2 ingress authorization and revoke APIs, because they add and remove inbound rules.
 - If the question says allow RDP administration, think trusted administrator IP ranges, because broad inbound access exposes the service.
-- If the question says a default security group permits traffic among its members, think the default inbound self-reference, because it allows traffic from resources in that group.
 - If the question says configure FTP for AWS Transfer Family, think control and data channel rules, because the two channels use different ports.
 - If the question says block an IP range for an entire subnet, think an early ACL deny rule, because security groups cannot express deny rules.
 - If the question says inbound access works but replies fail, think the ACL return path, because responses need their own allow rule and the correct client ports.

@@ -73,7 +73,7 @@ cards:
     facts: [reserved-db]
   - id: rds-057
     q: "What billing increment and minimum apply to Amazon RDS instance usage?"
-    a: "RDS instance usage is billed per second with a 10-minute minimum."
+    a: "Per second, with a minimum charge of 10 minutes."
     facts: [per-second-billing]
   - id: rds-058
     q: "Which RDS engine lets a company bring its own existing database licenses?"

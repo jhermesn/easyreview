@@ -92,14 +92,9 @@ cards:
       - oidc-no-aws-keys
       - oidc-trust
   - id: iam-024
-    q: An external build system has an OIDC identity token and needs temporary AWS permissions for a particular
-      repository. What access pattern fits?
-    a: Federate to an IAM role with provider, audience and subject restrictions, and exchange the token through
-      AssumeRoleWithWebIdentity.
-    facts:
-      - oidc-flow
-      - oidc-trust
-      - oidc-claims
+    q: "Does an AWS STS AssumeRoleWithWebIdentity caller need existing AWS security credentials?"
+    a: "No. The caller does not need AWS security credentials."
+    facts: [oidc-no-aws-keys]
   - id: iam-054
     q: An application needs limited AWS access for both signed-in users and guests. Which federation component
       supplies the credentials?
@@ -174,6 +169,10 @@ diagrams:
     steps:
       - The browser posts the identity provider's SAML assertion to AWS sign-in.
       - AWS sign-in obtains temporary role credentials and redirects the browser to the console.
+revised:
+  - date: 2026-11-23
+    note: The OIDC federation card now tests whether existing AWS credentials are required.
+    cards: [iam-024]
 ---
 
 Federation lets an identity provider, the system that authenticates a person or workload, supply evidence that AWS exchanges for temporary credentials. SAML uses an assertion, a signed statement about authentication. OpenID Connect (OIDC) uses a token describing the authenticated subject.
