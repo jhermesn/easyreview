@@ -41,6 +41,9 @@ facts:
   - id: ecs-capacity-spare
     text: A targetCapacity below 100% retains spare instance capacity for future tasks.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/managed-termination-protection.html
+  - id: reservation-metric
+    text: "ECS managed scaling uses CapacityProviderReservation, the ratio of needed EC2 instances to running instances, to control capacity."
+    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html#cluster-auto-scaling
 diagrams:
   - id: ecs-capacity-demand
     title: Task demand becomes EC2 capacity
@@ -84,6 +87,7 @@ diagrams:
     steps:
       - ECS managed scaling adjusts the Auto Scaling group desired capacity from task demand.
       - The group launches instances that register with ECS to host waiting tasks.
+
 cards:
   - id: ecs-014
     q: An ECS EC2 service scales out but tasks remain pending for host resources. What capacity control
@@ -117,6 +121,10 @@ cards:
     facts:
       - ecs-capacity-base
       - ecs-capacity-weight
+  - id: ecs-082
+    q: "Which metric controls ECS managed scaling of an EC2 Auto Scaling group capacity provider?"
+    a: "CapacityProviderReservation compares needed instance capacity with running instances."
+    facts: [reservation-metric]
 ---
 
 A capacity provider connects ECS task demand to the compute that runs it. For EC2, managed scaling adjusts an Auto Scaling group, the collection of hosts that can grow or shrink as tasks need capacity.
@@ -132,6 +140,7 @@ A cluster can contain ASG and Fargate providers, but one strategy cannot mix tho
 
 ### Exam cues
 
+- If the question says scale EC2 capacity for ECS task placement, think managed scaling and CapacityProviderReservation, because the metric compares needed and running instances.
 - If the question says ECS service scale-out leaves tasks waiting for EC2 resources, think managed capacity provider, because desired task count and host count are separate controls.
 - If the question says a strategy needs a minimum task count on one provider, think `base`, because ECS meets it before distributing by weight.
 - If the question says tasks should start without waiting for hosts, think a target below 100%, because it retains spare capacity.

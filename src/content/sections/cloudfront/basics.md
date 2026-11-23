@@ -25,6 +25,15 @@ facts:
     text: Remove permissions that allow other users to read the S3 objects directly to prevent bypassing
       CloudFront.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-overview.html#private-content-overview-s3
+  - id: edge-availability
+    text: "Cached copies at edge locations improve CloudFront availability and reliability."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html#Introduction
+  - id: s3-origin-storage
+    text: "CloudFront supports Amazon S3 origins across S3 storage classes."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html#concept_S3Origin
+  - id: archived-restore
+    text: Archived S3 objects, in the S3 Glacier Deep Archive or S3 Glacier Flexible Retrieval storage class, have to be restored before anyone can read them.
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects.html#restoring-objects
 cards:
   - id: cloudfront-058
     q: "How do Amazon CloudFront edge locations benefit users around the world?"
@@ -47,6 +56,18 @@ cards:
       - oac-source-arn
       - oac-read
       - oac-private
+  - id: cloudfront-065
+    q: "How can CloudFront edge locations improve availability for content delivery?"
+    a: "CloudFront keeps cached copies at edge locations, improving availability and reliability."
+    facts: [edge-availability]
+  - id: cloudfront-066
+    q: "Can a CloudFront distribution use an S3 origin with S3 Intelligent-Tiering?"
+    a: "Yes. CloudFront supports S3 origins across storage classes."
+    facts: [s3-origin-storage]
+  - id: cloudfront-070
+    q: What must happen before CloudFront can retrieve an S3 Glacier Deep Archive object from an S3 origin?
+    a: Restore the archived object before accessing it.
+    facts: [archived-restore, s3-origin-storage]
 ---
 Amazon CloudFront is AWS's content delivery network (CDN): copies of content are served from edge locations close to users.
 
@@ -58,6 +79,8 @@ Amazon CloudFront is AWS's content delivery network (CDN): copies of content are
 
 ### Exam cues
 
+- If the question says serve an archived S3 object through CloudFront, think restore it first, because Glacier Flexible Retrieval and Deep Archive objects are not immediately accessible.
+- If the question says improve content availability, think CloudFront edge caching, because copies are held at edge locations.
 - If the question says low latency content delivery to global users, think CloudFront.
 
 ### Remember

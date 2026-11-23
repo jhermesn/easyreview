@@ -178,6 +178,18 @@ facts:
   - id: alb-https-targets
     text: "An Application Load Balancer target group can use HTTPS, so the load balancer opens TLS connections to its targets."
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html
+  - id: nlb-high-throughput
+    text: A Network Load Balancer can handle millions of requests per second.
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html#network-load-balancer-overview
+  - id: nlb-low-latency
+    text: A Network Load Balancer can serve high request volumes with low latency.
+    source: https://docs.aws.amazon.com/whitepapers/latest/aws-overview/networking-services.html
+  - id: listener-idempotent
+    text: CreateListener calls with identical settings succeed without creating multiple listeners.
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html#API_CreateListener
+  - id: listener-port-unique
+    text: CreateListener returns DuplicateListener when a conflicting listener already uses the specified port on the load balancer.
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html#API_CreateListener_Errors
 cards:
   - id: elastic-load-balancing-009
     q: An ALB must route requests by HTTP method and query string. Which feature handles this?
@@ -368,6 +380,14 @@ cards:
     q: "Compliance requires encryption between an Application Load Balancer and its EC2 targets, not only from clients. How?"
     a: "Use an HTTPS target group, so the ALB opens TLS connections to the targets."
     facts: [alb-https-targets]
+  - id: elastic-load-balancing-085
+    q: Which Elastic Load Balancing type handles millions of requests per second at the transport layer?
+    a: A Network Load Balancer, which handles high request volumes with low latency.
+    facts: [nlb-high-throughput, nlb-low-latency]
+  - id: elastic-load-balancing-086
+    q: An Elastic Load Balancing listener already uses a port. What happens when CreateListener requests a different listener on that port?
+    a: CreateListener returns a DuplicateListener error. A request with identical settings is idempotent.
+    facts: [listener-port-unique, listener-idempotent]
 diagrams:
   - id: alb-weighted-request-flow
     title: ALB rules select a weighted target group
@@ -465,6 +485,8 @@ An internet-facing load balancer can front the web tier while an internal load b
 
 ### Exam cues
 
+- If the question says millions of requests per second at the transport layer, think Network Load Balancer, because it supports that scale with low latency.
+- If the question says two listeners on one load balancer port, think DuplicateListener, because the port is already in use.
 - If the question says route by method or query string, think ALB conditions, because they inspect HTTP request fields.
 - If the question says gradually expose a release, think weighted forward actions, because group weights divide matching requests.
 - If the question says the application must decrypt TLS, think an NLB TCP listener on port 443, because it passes encrypted traffic through.

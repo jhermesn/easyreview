@@ -92,6 +92,12 @@ facts:
   - id: s3-logging-remediation
     text: The managed rule s3-bucket-logging-enabled flags buckets without server access logging, and the AWS-ConfigureS3BucketLogging runbook can remediate them automatically.
     source: https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-logging-enabled.html
+  - id: list-key-metadata
+    text: "IAM ListAccessKeys returns access key metadata including status and creation date."
+    source: https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAccessKeys.html
+  - id: lambda-target
+    text: An EventBridge rule can invoke an AWS Lambda function as a target.
+    source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html
 diagrams:
   - id: config-compliance-flow
     title: Record, evaluate, remediate and aggregate
@@ -194,6 +200,7 @@ diagrams:
       - An aggregator independently collects source configuration and compliance data into a central
         read-only view.
       - Compliance changes can independently trigger EventBridge notifications or other workflows.
+
 cards:
   - id: config-001
     q: A team wants AWS Config to detect old active IAM user access keys, alert operators, and support
@@ -263,6 +270,14 @@ cards:
     q: "An AWS Config audit needs every configuration change for selected supported resources. Should the team choose daily or continuous recording?"
     a: "Continuous recording. Daily recording retains only the latest changed state over a 24-hour period."
     facts: [recording-flow]
+  - id: config-060
+    q: "How can a team identify old inactive IAM user access keys that the AWS Config access-keys-rotated rule does not evaluate?"
+    a: "List the user access keys and compare their status and creation dates independently."
+    facts: [list-key-metadata, key-rotation-rule]
+  - id: config-063
+    q: How can AWS Config compliance changes invoke an AWS Lambda function?
+    a: Match Config compliance change events with an EventBridge rule that targets the Lambda function.
+    facts: [compliance-events, lambda-target]
 ---
 AWS Config **remediation** corrects a resource that a rule reports as noncompliant. The rule detects the problem; a Systems Manager Automation **runbook**, a document listing corrective actions, performs the fix.
 
@@ -276,6 +291,8 @@ AWS Config **remediation** corrects a resource that a rule reports as noncomplia
 
 ### Exam cues
 
+- If the question says invoke Lambda after an AWS Config compliance change, think an EventBridge rule, because it can match the event and target the function.
+- If the question says find old inactive IAM keys, think ListAccessKeys and compare creation dates, because access-keys-rotated evaluates active keys.
 - If the question says automatically correct noncompliant resources, think Config remediation plus an Automation runbook, because the evaluation and corrective action have separate responsibilities.
 - If the question says alert on unrestricted incoming SSH but let a person decide the fix, think `restricted-ssh`, EventBridge, SNS, and manual remediation, because automatic correction is not required for notification.
 - If the question says detect old active IAM user access keys, think periodic `access-keys-rotated` with `maxAccessKeyAge`, because it compares key age with the configured threshold.
@@ -285,7 +302,6 @@ AWS Config **remediation** corrects a resource that a rule reports as noncomplia
 ### Remember
 
 - Recording covers selected supported resource types. Continuous recording captures changes as they happen; daily recording retains only the latest changed state over 24 hours.
-
 - `access-keys-rotated` defaults to 90 days and excludes root user keys.
 - `restricted-ssh` checks unrestricted SSH from `0.0.0.0/0` or `::/0`, meaning any IPv4 or IPv6 address. It has both change and periodic triggers.
 - Automatic remediation requires `AutomationAssumeRole` even when a runbook can otherwise run without an explicit role.

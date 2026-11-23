@@ -119,6 +119,12 @@ facts:
     text: An AWS resource is an entity you create and manage in AWS, such as an EC2 instance or storage
       volume.
     source: https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#aws-resources
+  - id: host-license-history
+    text: "AWS Config records Dedicated Host and instance changes and their relationships for license reporting."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-aws-config.html
+  - id: waf-web-acl
+    text: "AWS Config supports recording AWS WAF web ACL resources."
+    source: https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html
 diagrams:
   - id: config-history-flow
     title: Record resource state and deliver history
@@ -166,6 +172,8 @@ diagrams:
         configuration items.
       - Config delivers history files to the configured S3 bucket; the console timeline also exposes
         resource history.
+
+
 cards:
   - id: config-002
     q: What does AWS Config configuration history contain, and how far back does it reach?
@@ -245,6 +253,14 @@ cards:
     facts:
       - scp-purpose
       - protect-recording
+  - id: config-057
+    q: "How can AWS Config support license reporting for EC2 Dedicated Hosts?"
+    a: "Record both hosts and instances. Config keeps their configuration changes and relationships."
+    facts: [host-license-history]
+  - id: config-058
+    q: "Can AWS Config record changes to supported AWS WAF web ACL resources?"
+    a: "Yes. AWS WAF web ACLs are supported resource types."
+    facts: [waf-web-acl]
 ---
 AWS Config records the settings and relationships of supported AWS **resources**, entities such as instances and storage volumes, so you can investigate how they changed. A **configuration item (CI)** is a record of one resource at a particular time. Its configuration history starts when recording starts.
 
@@ -260,6 +276,7 @@ AWS Config records the settings and relationships of supported AWS **resources**
 
 ### Exam cues
 
+- If the question says report licenses for Dedicated Hosts, think AWS Config recording of hosts and instances, because their histories are linked.
 - If the question says investigate a resource's settings before an incident, think configuration history, because its CIs show configurations and relationships over time from the start of recording.
 - If the question says a configuration-change rule has no evaluations, think recorder status, selected resource types, and rule scope, because those evaluations follow matching CI change notifications.
 - If the question says retain patch and association compliance changes, think Config recording of Systems Manager compliance resources, because current compliance reports alone do not provide that history.

@@ -102,6 +102,21 @@ facts:
   - id: password-policy-length
     text: "The AWS Config iam-password-policy rule checks the account password policy against configured requirements, including minimum password length."
     source: https://docs.aws.amazon.com/config/latest/developerguide/iam-password-policy.html
+  - id: tags-recording
+    text: "AWS Config does not record associated tags for every resource type, so verify that the resource configuration item includes them."
+    source: https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html#required-tags
+  - id: tags-resource-coverage
+    text: "The AWS Config required-tags rule applies to its listed resource types."
+    source: https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html#required-tags
+  - id: custom-security-group
+    text: A custom AWS Config rule can evaluate security group access against specific network requirements.
+    source: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/audit-security-groups-access-public-ip.html
+  - id: custom-bucket-policy
+    text: A custom AWS Config rule can test the contents of an S3 bucket policy.
+    source: https://docs.aws.amazon.com/pdfs/prescriptive-guidance/latest/presigned-url-best-practices/presigned-url-best-practices.pdf
+  - id: required-tags-limit
+    text: The AWS Config required-tags rule checks up to six tags on a resource.
+    source: https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html#required-tags
 diagrams:
   - id: config-proactive-flow
     title: Proactive evaluation supplies a result to a deployment gate
@@ -154,6 +169,8 @@ diagrams:
         StartResourceEvaluation.
       - Use the returned evaluation ID with GetResourceEvaluationSummary. To reject a failed check,
         the pipeline must enforce that decision.
+
+
 cards:
   - id: config-003
     q: When does an AWS Config rule evaluate, and how can its configuration-change scope be restricted?
@@ -238,6 +255,19 @@ cards:
     q: "What does the AWS Config iam-password-policy rule check when a minimum password length is configured?"
     a: "It evaluates the IAM account password policy against the configured requirement."
     facts: [password-policy-length]
+  - id: config-059
+    q: "Why might the AWS Config required-tags rule fail to evaluate tags for a resource?"
+    a: "Check that the rule supports the resource type and that Config records its tags."
+    facts: [tags-resource-coverage, tags-recording]
+  - id: config-061
+    q: How can AWS Config evaluate whether a security group allows SSH only from an office address?
+    a: Use a custom rule that checks the security group against the required address.
+    facts: [custom-security-group]
+  - id: config-062
+    q: How can AWS Config evaluate an S3 bucket policy against application-specific access requirements?
+    a: Use a custom rule to test the bucket policy against those requirements.
+    facts: [custom-bucket-policy]
+
 ---
 An AWS Config **rule** compares resource settings with desired conditions and reports compliance, meaning whether the resource passes the check. Choose the rule's implementation separately from its trigger, which decides when to run, and its evaluation mode, which decides whether to assess deployed or proposed resources.
 
@@ -258,6 +288,8 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 
 ### Exam cues
 
+- If the question says check a security group or bucket policy against custom requirements, think an AWS Config custom rule, because it can evaluate those resource settings.
+- If the question says required-tags misses a resource, think resource type and recorded tags, because the rule has a defined scope and Config does not record tags for every type.
 - If the question says check the account password policy minimum length, think the AWS Config iam-password-policy rule, because it evaluates the policy against configured requirements.
 - If the question says find running EC2 instances using unapproved images, think `approved-amis-by-id` with `amiIds`, because it compares their Amazon Machine Image (AMI) IDs with the approved list. An AMI supplies the software used to boot an instance.
 - If the question says check encryption on attached EBS volumes, think `encrypted-volumes`, because it checks encryption and can require the KMS key in `kmsId`.
@@ -268,6 +300,7 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 
 ### Remember
 
+- The required-tags rule checks up to six tags on a resource.
 - Trigger type and evaluation mode answer different questions: when to run and which resource state to assess.
 - Proactive evaluation does not remediate or prevent deployment.
 - The Security Hub CSPM integration sends evaluations performed after Security Hub CSPM was enabled. Service-linked rules are excluded except rules created and managed by Control Tower.

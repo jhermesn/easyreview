@@ -65,6 +65,9 @@ facts:
   - id: invited-members
     text: "Amazon GuardDuty administrator accounts can manage members added through AWS Organizations or members that accept an administrator invitation."
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html#delegated_admin_important
+  - id: iam-anomaly-types
+    text: GuardDuty has distinct anomalous IAM behavior finding types for activities including credential access, discovery and defense evasion.
+    source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-iam.html
 cards:
   - id: guardduty-007
     q: A team has not configured a CloudTrail trail or VPC Flow Logs delivery. Can GuardDuty analyze foundational events?
@@ -104,6 +107,10 @@ cards:
     q: "An Amazon GuardDuty administrator needs a member relationship with another account. Must membership use AWS Organizations?"
     a: "No. Members can join through AWS Organizations or by accepting the GuardDuty administrator account's invitation."
     facts: [invited-members]
+  - id: guardduty-036
+    q: How does Amazon GuardDuty distinguish anomalous IAM activity across different attack tactics?
+    a: It uses separate finding types, including credential access, discovery and defense evasion.
+    facts: [iam-anomaly-types]
 ---
 Amazon GuardDuty detects potential threats by analyzing AWS activity and threat intelligence. A finding is a report of a potential security issue, not proof that a resource is compromised.
 
@@ -126,6 +133,7 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 
 ### Exam cues
 
+- If the question says an anomalous IAM API call, think the GuardDuty finding type and its activity category, because different tactics have distinct findings.
 - If the question says unusual API calls or cryptomining, think GuardDuty, because it identifies potentially malicious activity from AWS signals.
 - If the question says no trail or VPC flow log delivery exists, think foundational detection still works, because GuardDuty receives independent streams.
 - If the question says scan new S3 objects for malware, think Malware Protection for S3, because S3 Protection focuses on data activity rather than object scanning.
@@ -134,7 +142,6 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 ### Remember
 
 - Multi-account membership can use AWS Organizations or accepted GuardDuty administrator invitations.
-
 - First-time foundational detection has a 30-day trial per Region.
 - Finding severity is 1.0 to 10.0; higher numbers indicate greater risk.
 - Malware Protection for S3 can be used without enabling GuardDuty.

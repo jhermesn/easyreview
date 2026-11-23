@@ -70,6 +70,12 @@ facts:
   - id: longer-cache-hit-ratio
     text: "A longer practical CloudFront cache duration can increase the proportion of requests served from cache."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-hit-ratio.html
+  - id: cache-range-large
+    text: "CloudFront can cache an object larger than 50 GB as ranges of at most 50 GB each."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorS3Origin.html#ResponseS3MaxFileSize
+  - id: cache-size-limit
+    text: "CloudFront caches response bodies up to 50 GB."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorS3Origin.html#ResponseS3MaxFileSize
 cards:
   - id: cloudfront-004
     q: How long does CloudFront cache an object with neither Cache-Control nor Expires in the origin response?
@@ -131,6 +137,10 @@ cards:
     q: "How can a team increase the CloudFront cache hit ratio when its content can remain cached longer?"
     a: "Increase the practical cache duration so more requests can use cached content."
     facts: [longer-cache-hit-ratio]
+  - id: cloudfront-067
+    q: "How can CloudFront cache an S3 object larger than 50 GB?"
+    a: "Request it in ranges no larger than 50 GB; CloudFront can cache each part."
+    facts: [cache-size-limit, cache-range-large]
 ---
 CloudFront expiration settings control when a stored response needs another origin check. Time to live (TTL) is its freshness duration. A stale object has passed that duration but may still be usable during a refresh or an origin failure.
 
@@ -151,6 +161,7 @@ CloudFront expiration settings control when a stored response needs another orig
 
 ### Exam cues
 
+- If the question says cache an S3 object larger than 50 GB, think range requests, because CloudFront can cache smaller parts.
 - If the question says improve CloudFront cache hits for content that changes infrequently, think a longer practical cache duration, because cached objects can serve more requests.
 - If the question says users see old assets after an invalidation, think versioned file names, because browser and proxy caches are outside that invalidation.
 - If the question says serve content during origin failure, think `stale-if-error`, because an expired cached copy can satisfy the request within its limits.
@@ -158,6 +169,7 @@ CloudFront expiration settings control when a stored response needs another orig
 
 ### Remember
 
+- CloudFront caches response bodies up to 50 GB; larger objects can be cached in ranges of at most 50 GB.
 - Without a cache policy, the initial default TTL is 24 hours; it is configurable.
 - Minimum, default and maximum TTLs all set to 0 disable caching.
 - Invalidation paths support `*`. Versioned names avoid invalidation charges.

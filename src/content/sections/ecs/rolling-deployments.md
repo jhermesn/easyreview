@@ -49,6 +49,9 @@ facts:
   - id: ecs-rolling-platform-force
     text: A forced deployment can start Fargate tasks on a newer platform version revision.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-ecs-service-forcenewdeployment.html
+  - id: force-latest-version
+    text: "An ECS service can force a deployment to move Fargate tasks to a newer platform version."
+    source: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html#ECS-UpdateService-request-forceNewDeployment
 cards:
   - id: ecs-001
     q: An ECS service image tag points to a newly pushed image. How should the service adopt it?
@@ -94,6 +97,10 @@ cards:
       - ecs-rolling-platform
       - ecs-rolling-platform-force
       - ecs-rolling-platform-scale
+  - id: ecs-081
+    q: "How can an ECS Fargate service using LATEST move its tasks to a newer platform version?"
+    a: "Force a new service deployment to replace the tasks."
+    facts: [force-latest-version]
 ---
 
 An ECS rolling deployment replaces service tasks while retaining a configured amount of healthy capacity. An image digest is a content identifier for an image; resolving tags to digests keeps a deployment's tasks on the same image.
@@ -109,6 +116,7 @@ A Fargate platform version identifies its kernel and container runtime. A patche
 
 ### Exam cues
 
+- If the question says move ECS Fargate tasks to a newer platform version, think force a new deployment, because it replaces the tasks.
 - If the question says an ECS deployment cannot start or stop tasks, think percentage bounds and capacity, because rounding can leave no legal move.
 - If the question says an image was pushed under the same tag, think force a new deployment, because existing tasks retain their images.
 - If the question says Fargate scale-out must upgrade the platform version, think service update and deployment, because scale-out retains the current version selection.

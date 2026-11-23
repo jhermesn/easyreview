@@ -91,7 +91,8 @@
         "lightsail",
         "batch",
         "elastic-beanstalk",
-        "outposts"
+        "outposts",
+        "wavelength"
       ]
     },
     {
@@ -218,7 +219,8 @@
         "appstream",
         "workspaces",
         "amazon-mq",
-        "codedeploy"
+        "codedeploy",
+        "artifact-management"
       ]
     },
     {

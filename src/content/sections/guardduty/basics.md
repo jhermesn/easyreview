@@ -15,6 +15,9 @@ facts:
   - id: foundational
     text: GuardDuty automatically ingests CloudTrail management events, EC2 VPC flow logs, and DNS logs as foundational data sources.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#features-of-guardduty
+  - id: active-threat-defense
+    text: AWS Network Firewall can use its AttackInfrastructure active threat defense managed rule group to block threats associated with certain GuardDuty findings.
+    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/nwfw-atd-guardduty-use-case.html
 cards:
   - id: guardduty-032
     q: "A company wants continuous detection of compromised credentials and malicious activity in its AWS accounts without installing agents on its own. Which service fits?"
@@ -29,6 +32,10 @@ cards:
     q: Which AWS service detects potentially compromised credentials and unauthorized cryptomining by analyzing AWS activity?
     a: GuardDuty. It analyzes foundational CloudTrail management events, EC2 VPC flow logs, and DNS logs.
     facts: [detection, threats, foundational]
+  - id: guardduty-035
+    q: How can AWS Network Firewall block threats associated with certain Amazon GuardDuty findings?
+    a: Use the AttackInfrastructure active threat defense managed rule group in the firewall policy.
+    facts: [active-threat-defense]
 ---
 Amazon GuardDuty watches account activity and logs for signs of attack and reports findings.
 
@@ -40,6 +47,7 @@ Amazon GuardDuty watches account activity and logs for signs of attack and repor
 
 ### Exam cues
 
+- If the question says block threats associated with GuardDuty findings, think Network Firewall active threat defense, because its managed rule group can block those threats.
 - If the question says intelligent threat detection or compromised credentials, think GuardDuty.
 
 ### Remember

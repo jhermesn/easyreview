@@ -618,7 +618,8 @@
                 "global-infrastructure/regions-availability-zones-and-edge-locations",
                 "global-infrastructure/more-essentials",
                 "cloudfront/basics",
-                "global-accelerator/basics"
+                "global-accelerator/basics",
+                "wavelength/basics"
               ]
             },
             {
@@ -1037,7 +1038,8 @@
                 "codebuild/basics",
                 "codepipeline/basics",
                 "xray/basics",
-                "ec2-image-builder/basics"
+                "ec2-image-builder/basics",
+                "artifact-management/codeartifact-packages"
               ]
             },
             {

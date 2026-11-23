@@ -75,6 +75,27 @@ facts:
   - id: kinesis-agent
     text: "Kinesis Agent is a Java application for Linux servers that watches log files and sends new lines to a Kinesis data stream."
     source: https://docs.aws.amazon.com/streams/latest/dev/writing-with-agents.html#writing-with-agents
+  - id: consumer-destinations
+    text: A Kinesis Data Streams consumer can write its output to Amazon S3 or Amazon Redshift.
+    source: https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html#high-level-architecture
+  - id: reshard-update
+    text: UpdateShardCount changes the number of shards in a stream.
+    source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-using-sdk-java-resharding.html#kinesis-using-sdk-java-resharding
+  - id: reshard-direction
+    text: Splitting a shard increases stream capacity, while merging shards reduces it.
+    source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-using-sdk-java-resharding.html#kinesis-using-sdk-java-resharding
+  - id: producer-retry-duplicates
+    text: A Kinesis producer retry after an uncertain acknowledgement can create duplicate records.
+    source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html#kinesis-record-processor-duplicates-producer
+  - id: producer-dedup-key
+    text: An application key in each record can identify duplicates created by Kinesis producer retries.
+    source: https://docs.aws.amazon.com/streams/latest/dev/kinesis-record-processor-duplicates.html#kinesis-record-processor-duplicates-producer
+  - id: producer-ordered-writes
+    text: For strictly increasing sequence numbers from the same client and partition key, a Kinesis producer can use PutRecord with the previous record sequence number in SequenceNumberForOrdering.
+    source: https://docs.aws.amazon.com/streams/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream
+  - id: producer-shard-order
+    text: Kinesis Data Streams sequence numbers are ordered within a shard, not across shards.
+    source: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html#API_PutRecord
 cards:
   - id: kinesis-data-streams-001
     q: What sustained write and shared-read capacity does one Kinesis Data Streams shard provide?
@@ -133,6 +154,22 @@ cards:
     q: "Web servers write log files, and the lines must reach a Kinesis data stream without changing the application. What tool does that?"
     a: "Kinesis Agent, installed on the servers and configured with the files to watch and the target stream."
     facts: [kinesis-agent]
+  - id: kinesis-data-streams-027
+    q: Where can a Kinesis Data Streams consumer store its processed output?
+    a: It can write the results to Amazon S3 or Amazon Redshift.
+    facts: [consumer-destinations]
+  - id: kinesis-data-streams-028
+    q: How can a team adjust provisioned Kinesis Data Streams shard capacity?
+    a: Use UpdateShardCount or split and merge shards. Splitting increases capacity; merging reduces it.
+    facts: [reshard-update, reshard-direction]
+  - id: kinesis-data-streams-029
+    q: A Kinesis Data Streams producer retries after a timeout. How can its application recognize duplicate records?
+    a: Include an application key in each record and use it to identify duplicates.
+    facts: [producer-retry-duplicates, producer-dedup-key]
+  - id: kinesis-data-streams-030
+    q: How can a Kinesis Data Streams producer ensure increasing sequence numbers for records with the same partition key?
+    a: Write serially to one shard with PutRecord and set SequenceNumberForOrdering to the previous record sequence number. Sequence numbers do not establish order across shards.
+    facts: [producer-ordered-writes, producer-shard-order]
 diagrams:
   - id: kinesis-partition-routing
     title: Partition keys distribute records among shards
@@ -197,6 +234,10 @@ Kinesis Data Streams stores records for applications to process independently. A
 
 ### Exam cues
 
+- If the question says store processed stream results, think a consumer writing to S3 or Redshift, because consumer applications choose their output destination.
+- If the question says adjust provisioned stream capacity, think UpdateShardCount or shard splits and merges, because the shard count controls capacity.
+- If the question says a producer retries after a timeout, think duplicate records and an application key, because the first write may have succeeded.
+- If the question says strict order for one partition key, think PutRecord with SequenceNumberForOrdering, because it orders writes for that key.
 - If the question says most shards are idle but writes throttle, think hot partition key, because the same key maps to one shard.
 - If the question says unpredictable traffic with no shard management, think On-demand Standard, because it automatically manages capacity.
 - If the question says server log lines must reach a stream without changing the application, think Kinesis Agent, because it watches log files and sends new lines to the stream.
