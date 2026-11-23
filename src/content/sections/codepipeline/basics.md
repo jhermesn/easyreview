@@ -3,10 +3,17 @@ title: "CodePipeline basics"
 level: foundational
 order: 5
 facts:
+  - id: cloudformation-deploy
+    text: "A CodePipeline CloudFormation deploy action can create a stack or update an existing stack."
+    source: https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CloudFormation.html#action-reference-CloudFormation-config
   - id: release
     text: "AWS CodePipeline is a continuous delivery service that models, visualizes and automates the stages of a software release."
     source: https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html#welcome
 cards:
+  - id: codepipeline-057
+    q: "How can CodePipeline create or update a CloudFormation stack as part of a release?"
+    a: "Use a CloudFormation deploy action with CREATE_UPDATE."
+    facts: [cloudformation-deploy]
   - id: codepipeline-056
     q: "A team wants every code change to flow automatically through build, test and deploy stages. Which service fits?"
     a: "AWS CodePipeline."
@@ -22,6 +29,7 @@ AWS CodePipeline automates a release process as a series of stages.
 
 ### Exam cues
 
+- If the question says a release must deploy infrastructure, think a CloudFormation deploy action in CodePipeline, because it can create or update a stack.
 - If the question says automate the release process (CI/CD), think CodePipeline.
 
 ### Remember

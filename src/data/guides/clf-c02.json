@@ -475,7 +475,8 @@
                 "firewall-manager/basics",
                 "shield/basics",
                 "guardduty/basics",
-                "reference-architectures/web-application-on-aws"
+                "reference-architectures/web-application-on-aws",
+                "network-firewall/basics"
               ]
             },
             {
@@ -738,7 +739,8 @@
                 "rds/managed-vs-self-managed-databases",
                 "rds/more-essentials",
                 "neptune/graph-databases",
-                "documentdb/basics"
+                "documentdb/basics",
+                "memorydb/basics"
               ]
             },
             {
@@ -785,7 +787,8 @@
               "text": "Identifying memory-based databases (for example, Amazon ElastiCache)",
               "sections": [
                 "elasticache/basics",
-                "dynamodb/basics"
+                "dynamodb/basics",
+                "memorydb/basics"
               ]
             },
             {
@@ -964,7 +967,8 @@
                 "athena/basics",
                 "emr/basics",
                 "redshift/basics",
-                "opensearch/basics"
+                "opensearch/basics",
+                "data-exchange/third-party-data"
               ]
             },
             {
@@ -1004,7 +1008,8 @@
                 "eventbridge/basics",
                 "sns/basics",
                 "sqs/basics",
-                "step-functions/basics"
+                "step-functions/basics",
+                "amazon-mq/basics"
               ]
             },
             {
@@ -1031,7 +1036,8 @@
               "sections": [
                 "codebuild/basics",
                 "codepipeline/basics",
-                "xray/basics"
+                "xray/basics",
+                "ec2-image-builder/basics"
               ]
             },
             {
@@ -1067,7 +1073,8 @@
                 "sns/basics",
                 "sqs/basics",
                 "eventbridge/basics",
-                "ses/email-sending"
+                "ses/email-sending",
+                "amazon-mq/basics"
               ]
             },
             {
@@ -1095,7 +1102,9 @@
                 "codebuild/basics",
                 "codepipeline/basics",
                 "xray/basics",
-                "elastic-beanstalk/basics"
+                "elastic-beanstalk/basics",
+                "ec2-image-builder/basics",
+                "codedeploy/basics"
               ]
             },
             {

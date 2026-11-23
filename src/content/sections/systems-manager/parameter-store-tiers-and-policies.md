@@ -64,6 +64,12 @@ facts:
   - id: hierarchies
     text: "Parameter Store names can form hierarchies of up to 15 levels separated by forward slashes, and GetParametersByPath returns all parameters under a chosen level."
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-hierarchies.html#ps-hierarchy-queries
+  - id: "secrets-manager-pricing"
+    text: "AWS Secrets Manager charges for stored secrets and API calls to retrieve them."
+    source: "https://docs.aws.amazon.com/prescriptive-guidance/latest/aws-startup-security-baseline/wkld-03.html"
+  - id: "kms-pricing"
+    text: "Customer managed AWS KMS keys incur key and API usage charges; AWS managed KMS keys have no charge for the key itself."
+    source: "https://docs.aws.amazon.com/prescriptive-guidance/latest/aws-startup-security-baseline/wkld-03.html"
 cards:
   - id: systems-manager-005
     q: How do Systems Manager Parameter Store standard and advanced parameters differ?
@@ -119,6 +125,10 @@ cards:
     q: "An application must load every AWS Systems Manager Parameter Store value for /prod/payments/ at startup. Which naming and API fit?"
     a: "Hierarchical names such as /prod/payments/db-url, read with GetParametersByPath (recursively if needed)."
     facts: [hierarchies]
+  - id: systems-manager-128
+    q: "When comparing AWS Secrets Manager and KMS costs for a Systems Manager Parameter Store design, which charges should a team consider?"
+    a: "Secrets Manager charges for secrets and retrieval API calls. Customer managed KMS keys have key and API usage charges."
+    facts: [secrets-manager-pricing, kms-pricing]
 ---
 Parameter Store keeps application configuration as named values. The tier determines storage limits and policy support; the parameter type determines how the value is represented.
 
@@ -139,6 +149,7 @@ Parameter Store keeps application configuration as named values. The tier determ
 
 ### Exam cues
 
+- If the question says compare secret storage costs, think Secrets Manager secret and retrieval charges plus applicable KMS key and usage charges.
 - If the question says configuration needs parameter policies, think the advanced tier, because standard parameters do not support policies.
 - If the question says credentials require automatic rotation, think Secrets Manager, because AWS recommends it for that requirement.
 - If the question says reuse configuration across accounts, think advanced parameters with AWS RAM, because standard parameters cannot use that sharing feature.

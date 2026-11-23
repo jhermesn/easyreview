@@ -75,6 +75,9 @@ facts:
     text: A Secrets Manager value injected as an environment variable is read at container startup and
       does not refresh on rotation; launch a new task or force a new service deployment.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html#secrets-envvar-secrets-manager
+  - id: ecs-roles-secret-exposure
+    text: Applications, container logs and debugging tools can access secrets injected as environment variables.
+    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html#secrets-envvar-secrets-manager
   - id: ecs-roles-secret-version
     text: Injecting a specific Secrets Manager JSON key or version on Fargate requires Linux platform
       version 1.4.0 or later, or Windows platform version 1.0.0.
@@ -195,6 +198,10 @@ cards:
     a: The container instance role (or the task execution role, if one is assigned). The task role is for the application's own calls.
     trap: true
     facts: [awslogs-role]
+  - id: ecs-079
+    q: Who can access a Secrets Manager value injected into an Amazon ECS container environment variable?
+    a: Applications in the container, container logs and debugging tools can access the environment variable.
+    facts: [ecs-roles-secret-exposure]
 ---
 
 ECS separates application permissions from the permissions needed to start a task. An IAM role is an assumable identity with permissions and temporary credentials; its trust policy defines who may assume it.
@@ -216,6 +223,8 @@ For injection, grant `secretsmanager:GetSecretValue` for Secrets Manager or `ssm
 For a private registry outside AWS, set `repositoryCredentials` and grant the execution role access to the Secrets Manager registry secret. Add `kms:Decrypt` if it uses a customer managed key.
 
 Injected Secrets Manager environment variables are read at container startup. After rotation, launch a new task or force a new service deployment. Injecting a specific JSON key or version needs Fargate Linux platform 1.4.0 or later, or Windows platform 1.0.0.
+
+Applications, container logs and debugging tools can access injected environment variables.
 
 ### Exam cues
 

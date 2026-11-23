@@ -36,6 +36,15 @@ facts:
   - id: same-az-private-free
     text: "Data transferred between EC2, RDS, Redshift and ElastiCache instances and network interfaces in the same Availability Zone over private IPs is free."
     source: https://aws.amazon.com/ec2/pricing/on-demand/
+  - id: s3-bucket-transfer
+    text: "Data transfer between Amazon S3 buckets in the same AWS Region has no data transfer charge."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: s3-request-charges
+    text: "Amazon S3 charges for requests to buckets and objects based on request type and quantity."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: s3-transfer-acceleration
+    text: "Amazon S3 Transfer Acceleration has a charge in addition to data transfer pricing."
+    source: https://aws.amazon.com/s3/pricing/
 cards:
   - id: billing-and-cost-management-019
     q: Does AWS charge for data uploaded from the internet into AWS?
@@ -75,6 +84,15 @@ cards:
     q: "Two chatty EC2 instances move terabytes between them. How can the transfer be free?"
     a: "Keep them in the same Availability Zone and use private IP addresses."
     facts: [same-az-private-free]
+  - id: billing-and-cost-management-052
+    q: "Does copying objects between Amazon S3 buckets in the same Region incur charges?"
+    a: "There is no data transfer charge for the copy. S3 request charges can still apply."
+    facts: [s3-bucket-transfer, s3-request-charges]
+  - id: billing-and-cost-management-053
+    q: "Can an internet upload to Amazon S3 incur a Transfer Acceleration charge?"
+    a: "Yes. Transfer Acceleration pricing is separate from data transfer pricing."
+    facts: [s3-transfer-acceleration]
+
 ---
 Data transfer pricing depends on direction and distance. Data coming in from the internet is free. Data leaving AWS for the internet, crossing Regions, or crossing Availability Zones is generally charged.
 
@@ -93,6 +111,8 @@ Data transfer pricing depends on direction and distance. Data coming in from the
 
 ### Exam cues
 
+- If the question says an internet upload uses S3 Transfer Acceleration, think a possible acceleration charge, because acceleration pricing is separate from data transfer pricing.
+- If the question says copy objects between S3 buckets in one Region, think no data transfer charge, because S3 does not charge for that transfer; request charges can still apply.
 - If the question says uploading data to AWS costs, think free inbound.
 - If the question says copying data to another Region, think charged out of the source Region.
 - If the question says traffic between AZs, think a small charge in each direction.

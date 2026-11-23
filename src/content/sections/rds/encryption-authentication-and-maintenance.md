@@ -48,6 +48,9 @@ facts:
   - id: encryption-scope
     text: "RDS encryption at rest covers the DB instance storage plus its logs, automated backups, read replicas and snapshots."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
+  - id: mysql-replica-upgrade
+    text: "For a reduced-downtime RDS MySQL upgrade, upgrade a read replica, suspend source writes, promote the replica and redirect writes."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.MySQL.ReducedDowntime.html
 cards:
   - id: rds-048
     q: A production RDS for MySQL instance was created without encryption. Compliance now requires encryption at rest. What is the supported path?
@@ -100,6 +103,10 @@ cards:
     q: "An RDS DB instance is encrypted at rest with KMS. Which related data is also encrypted?"
     a: "Its **logs, automated backups, read replicas and snapshots**, along with the instance storage."
     facts: [encryption-scope]
+  - id: rds-112
+    q: "How can a team reduce downtime during an RDS for MySQL major version upgrade?"
+    a: "Upgrade a read replica, suspend source writes at cutover, promote it and redirect writes."
+    facts: [mysql-replica-upgrade]
 ---
 RDS security includes encryption at rest and SSL/TLS encryption for connections. Maintenance behavior on Multi-AZ is another common exam topic.
 
@@ -117,6 +124,7 @@ RDS security includes encryption at rest and SSL/TLS encryption for connections.
 
 ### Exam cues
 
+- If the question says reduce downtime for an RDS MySQL major upgrade, think an upgraded read replica and a controlled promotion, because writes must stop at cutover.
 - If the question says encrypt an existing unencrypted RDS database, think encrypted snapshot copy and restore.
 - If the question says share an encrypted snapshot across accounts, think a customer managed key.
 - If the question says encrypt connections to an RDS database, think SSL/TLS.

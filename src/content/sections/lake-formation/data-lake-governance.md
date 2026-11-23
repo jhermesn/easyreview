@@ -12,6 +12,9 @@ facts:
   - id: cross-account
     text: "Lake Formation shares Data Catalog resources with other AWS accounts, organizations or IAM principals in another account using AWS RAM, with fine-grained access to both metadata and the underlying data."
     source: https://docs.aws.amazon.com/lake-formation/latest/dg/cross-account-permissions.html#cross-account-permissions
+  - id: athena-data-access
+    text: Athena users querying data registered with Lake Formation need IAM permission for lakeformation:GetDataAccess and Lake Formation permissions on the queried resources.
+    source: https://docs.aws.amazon.com/athena/latest/ug/lf-athena-user-permissions.html
 cards:
   - id: lake-formation-001
     q: A company must let its ML team read only certain columns of customer tables in an S3 data lake. Which AWS service fits?
@@ -30,6 +33,10 @@ cards:
     q: "Which AWS service centrally governs and controls access to data in an Amazon S3 data lake for analytics and machine learning?"
     a: "AWS Lake Formation provides centralized governance and fine-grained access control for data lake data."
     facts: [what]
+  - id: lake-formation-005
+    q: An Athena user has Lake Formation grants for a registered table. Which IAM action is also required to query the data?
+    a: lakeformation:GetDataAccess. The user also needs the appropriate Lake Formation grants.
+    facts: [athena-data-access]
 ---
 AWS Lake Formation is the governance layer of a data lake: it decides who may see which databases, tables and columns in S3 and the Glue Data Catalog, and shares data safely for analytics and ML.
 
@@ -39,9 +46,12 @@ AWS Lake Formation is the governance layer of a data lake: it decides who may se
 2. Grant or revoke Lake Formation permissions on databases, tables and columns.
 3. Analytics and ML services read only what each principal is allowed to see.
 
+Athena users querying registered data also need the IAM action `lakeformation:GetDataAccess` as well as Lake Formation grants.
+
 ### Exam cues
 
 - If the question says fine-grained, centralized access control for a data lake used for ML, think AWS Lake Formation.
+- If the question says an Athena user has Lake Formation grants but cannot query registered data, check IAM permission for `lakeformation:GetDataAccess`, because both permissions are required.
 
 ### Remember
 

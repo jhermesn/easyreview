@@ -27,6 +27,15 @@ facts:
   - id: convertible-exchange-value
     text: "A Convertible Reserved Instance can be exchanged any number of times for a different instance family, operating system or tenancy, as long as the new reservation is of equal or higher value."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-convertible-exchange.html#ri-convertible-exchange
+  - id: upfront-discount
+    text: The All Upfront Reserved Instance payment option provides the largest discount compared with On-Demand pricing.
+    source: https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/
+  - id: convertible-payment-exchange
+    text: Convertible Reserved Instances with All Upfront or Partial Upfront payment cannot be exchanged for No Upfront reservations.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-convertible-exchange.html
+  - id: upfront-payment-discount
+    text: Reserved Instances generally offer greater savings when more is paid upfront.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html
 cards:
   - id: ec2-044
     q: What is the difference between a regional and a zonal EC2 Reserved Instance?
@@ -58,6 +67,18 @@ cards:
     a: "The new reservation must be of equal or higher value. Family, operating system and tenancy can change, with no limit on the number of exchanges."
     trap: true
     facts: [convertible-exchange-value]
+  - id: ec2-126
+    q: Which EC2 Reserved Instance payment option gives the largest discount compared with On-Demand pricing?
+    a: All Upfront, which pays the entire reservation term in advance.
+    facts: [upfront-discount, payment-options]
+  - id: ec2-143
+    q: Can an All Upfront EC2 Convertible Reserved Instance be exchanged for a No Upfront Convertible Reserved Instance?
+    a: No. All Upfront and Partial Upfront reservations cannot be exchanged for No Upfront reservations.
+    facts: [convertible-payment-exchange]
+  - id: ec2-146
+    q: How does the upfront payment generally affect the discount for an EC2 Reserved Instance?
+    a: Paying more upfront generally increases the savings.
+    facts: [upfront-payment-discount]
 ---
 Reserved Instances are discounts on EC2 usage that matches their attributes. Their scope decides how flexible the discount is and whether it reserves capacity. In AWS Organizations, the discount can be shared across accounts.
 
@@ -75,6 +96,9 @@ Reserved Instances are discounts on EC2 usage that matches their attributes. The
 
 ### Exam cues
 
+- If the question compares EC2 Reserved Instance payment discounts, think greater upfront payment, because it generally gives greater savings.
+- If the question says exchange an upfront Convertible Reserved Instance for No Upfront, think unavailable, because that exchange is not allowed.
+- If the question says maximize the Reserved Instance payment discount, think All Upfront, because it provides the largest discount against On-Demand pricing.
 - If the question says RI discount across instance sizes, think regional RI size flexibility.
 - If the question says reserve capacity in an AZ, think zonal RI or Capacity Reservation.
 - If the question says share RI discounts across accounts, think AWS Organizations consolidated billing.

@@ -15,7 +15,15 @@ facts:
   - id: refactor-cost
     text: Refactoring is the most complex and costly migration strategy; for large migrations AWS recommends rehosting, relocating or replatforming first and modernizing afterward.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html#refactor
+  - id: rehost-issues
+    text: An existing platform issue in an application can remain after a rehosting migration.
+    source: https://docs.aws.amazon.com/pdfs/prescriptive-guidance/latest/migration-microsoft-workloads-aws/migration-microsoft-workloads-aws.pdf
 cards:
+  - id: cloud-adoption-042
+    q: Does rehosting an application automatically resolve an existing platform issue?
+    a: No. Rehosting moves the application without code or architecture changes, so the issue can remain.
+    trap: true
+    facts: [rehost, rehost-issues]
   - id: cloud-adoption-010
     q: What are the 7 Rs of migration to AWS?
     a: Retire, retain, rehost, relocate, repurchase, replatform, and refactor (re-architect).
@@ -49,6 +57,7 @@ A migration strategy is how one workload moves to AWS. AWS names seven, the 7 Rs
 
 ### Exam cues
 
+- If the question says an application has an existing platform issue, think that rehosting can leave it in place, because the application moves without changes.
 - If the question says move an application without changes, think rehost.
 - If the question says move a SQL Server database to Amazon RDS for SQL Server, think replatform, because the move adds an optimization.
 - If the question says modernize during a large migration, consider rehost, relocate or replatform first, because refactoring is the most complex and costly strategy.

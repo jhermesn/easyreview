@@ -24,6 +24,15 @@ facts:
   - id: lambda-timeout
     text: A Lambda function's timeout defaults to 3 seconds and can be set in 1-second steps up to 1,800 seconds (30 minutes).
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
+  - id: regional-endpoints
+    text: "AWS Batch provides service endpoints in supported AWS Regions."
+    source: https://docs.aws.amazon.com/general/latest/gr/batch.html
+  - id: regional-queues
+    text: "An AWS Batch job queue is created in a selected AWS Region."
+    source: https://docs.aws.amazon.com/batch/latest/userguide/create-job-queue-ec2.html
+  - id: reserved-instances
+    text: "AWS Batch jobs on ECS Managed Instances can use EC2 Reserved Instances."
+    source: https://docs.aws.amazon.com/batch/latest/userguide/when-to-use-ecs-managed-instances.html
 cards:
   - id: batch-001
     q: Scientists submit thousands of compute jobs that must run on as many servers as needed and then stop. Which AWS service manages this?
@@ -46,6 +55,10 @@ cards:
     q: "Which AWS service manages infrastructure for batch computing workloads?"
     a: "AWS Batch runs batch jobs and manages the underlying infrastructure."
     facts: [purpose]
+  - id: batch-006
+    q: "Can AWS Batch jobs use EC2 Reserved Instances?"
+    a: "Yes. Batch can use Reserved Instances with ECS Managed Instances."
+    facts: [reserved-instances]
 revised:
   - date: 2026-11-19
     note: The maximum Lambda function timeout is now 1,800 seconds (30 minutes), up from 900 seconds (15 minutes).
@@ -61,6 +74,9 @@ AWS Batch runs batch jobs: units of work, such as simulations or data processing
 
 ### Exam cues
 
+- If the question says a Batch workload needs Reserved Instance discounts, think ECS Managed Instances, because Batch can use Reserved Instances with this compute option.
+- If the question says create a Batch job queue, think a selected AWS Region, because the queue is created in that Region.
+- If the question says connect to AWS Batch in a particular Region, think its regional service endpoint, because Batch lists endpoints by Region.
 - If the question says run large numbers of batch jobs without managing servers or schedulers, think AWS Batch.
 
 ### Remember

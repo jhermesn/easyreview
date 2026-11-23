@@ -30,6 +30,15 @@ facts:
   - id: no-dedicated-hosts
     text: "Dedicated Hosts cannot be launched in placement groups."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
+  - id: efa-os-bypass
+    text: EFA allows supported applications to bypass the operating system kernel and communicate directly with the network device.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html
+  - id: efa-windows-cdi
+    text: On Windows, the EFA device of an EFA with ENA interface supports AWS Cloud Digital Interface SDK applications only.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa-limits
+  - id: parallelcluster
+    text: AWS ParallelCluster is a cluster management tool for deploying and managing HPC clusters.
+    source: https://docs.aws.amazon.com/parallelcluster/latest/ug/what-is-aws-parallelcluster.html
 cards:
   - id: ec2-061
     q: A tightly coupled HPC job needs the lowest network latency and highest throughput between 16 EC2 instances. Which placement strategy fits?
@@ -56,6 +65,14 @@ cards:
     q: Which EC2 network device speeds up MPI or NCCL communication between instances for HPC and ML training?
     a: "Elastic Fabric Adapter (EFA)."
     facts: [efa]
+  - id: ec2-132
+    q: How does an EC2 Elastic Fabric Adapter reduce overhead for supported HPC applications?
+    a: OS bypass lets applications communicate with the EFA device without passing through the operating system kernel.
+    facts: [efa-os-bypass]
+  - id: ec2-133
+    q: On Windows EC2 instances, which applications can use the EFA device of an EFA with ENA interface?
+    a: AWS Cloud Digital Interface SDK applications. Other applications use its ENA capability.
+    facts: [efa-windows-cdi]
 ---
 Placement groups tell EC2 how to place instances on hardware: close together for speed, apart for resilience.
 
@@ -73,6 +90,8 @@ Placement groups tell EC2 how to place instances on hardware: close together for
 
 ### Exam cues
 
+- If the question says manage an HPC cluster, think AWS ParallelCluster, because it deploys and manages the cluster.
+- If the question says an HPC application needs direct access to the network device, think EFA OS bypass, because supported applications can bypass the kernel.
 - If the question says lowest latency or highest throughput between instances, think a cluster placement group (and EFA).
 - If the question says large distributed or replicated data store, rack-aware, think partition placement group.
 - If the question says a handful of critical instances that must not fail together, think spread placement group.

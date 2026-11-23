@@ -51,6 +51,12 @@ facts:
   - id: default-internet
     text: "By default a Lambda function can reach the public internet; once attached to a VPC it reaches only what that VPC can reach, so internet access then needs a VPC path such as a NAT gateway."
     source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html
+  - id: ec2-throttled
+    text: EC2ThrottledException means EC2 throttled Lambda during function initialization.
+    source: https://docs.aws.amazon.com/lambda/latest/api/API_Invoke.html
+  - id: subnet-address-limit
+    text: SubnetIPAddressLimitReachedException means a subnet has insufficient IP addresses for Lambda network interfaces.
+    source: https://docs.aws.amazon.com/lambda/latest/api/API_Invoke.html
 diagrams:
   - id: lambda-vpc-ipv4-egress
     title: IPv4 internet access uses a private-to-public route
@@ -138,6 +144,10 @@ diagrams:
     steps:
       - Use routed VPC connectivity, allow NFS port 2049, and authorize the Lambda client to mount EFS through an access point.
 cards:
+  - id: lambda-084
+    q: What does EC2ThrottledException indicate when AWS Lambda initializes a function?
+    a: Amazon EC2 throttled Lambda during initialization. Subnet address exhaustion and ENI limits have separate exceptions.
+    facts: [ec2-throttled, subnet-address-limit, eni-limit]
   - id: lambda-015
     q: Does placing a VPC-connected Lambda function in a public subnet give it IPv4 internet access?
     a: No. It does not receive a public IP. Use private-subnet routing through a NAT gateway in a public subnet for IPv4 internet access; an S3 gateway endpoint can provide a separate S3 path.
@@ -196,6 +206,7 @@ A Lambda VPC attachment lets function code reach resources in your private netwo
 
 ### Exam cues
 
+- If the question says EC2ThrottledException during Lambda initialization, think EC2 throttling, because subnet address and network interface limits use separate exceptions.
 - If the question says Lambda lost IPv4 internet access after VPC attachment, think private-subnet NAT routing, because attachment does not assign a public IP.
 - If the question says the VPC attachment fails with network interface errors, think available subnet IP addresses and the VPC interface quota, because either can limit connectivity.
 - If the question says files must be shared across Lambda environments, think EFS access points, because they expose shared files through a local mount.

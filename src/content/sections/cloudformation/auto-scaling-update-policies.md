@@ -3,6 +3,9 @@ title: Auto Scaling update policies
 level: professional
 order: 180
 facts:
+  - id: required-processes
+    text: "During a rolling update, suspending Launch or Terminate can prevent the update from working; the same applies to AddToLoadBalancer when the group uses Elastic Load Balancing."
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-ec2-auto-scaling.html#scenario-as-updatepolicy
   - id: rolling
     text: AutoScalingRollingUpdate replaces instances in batches within the existing Auto Scaling group
       for supported property changes.
@@ -58,6 +61,10 @@ facts:
       group.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-updatepolicy.html#aws-resource-update-policies
 cards:
+  - id: cloudformation-163
+    q: "Which Auto Scaling processes should remain active during a CloudFormation rolling update of a load-balanced group?"
+    a: "Keep Launch, Terminate and AddToLoadBalancer active."
+    facts: [required-processes]
   - id: cloudformation-015
     q: A CloudFormation Auto Scaling rolling update must wait for EC2 application setup. Which settings
       make it wait?
@@ -171,6 +178,7 @@ CloudFormation Auto Scaling update policies control how instances change when a 
 
 ### Exam cues
 
+- If the question says a load-balanced Auto Scaling rolling update needs process suspension, think keep Launch, Terminate and AddToLoadBalancer active, because suspending them can prevent the update.
 - If the question says wait for application setup between replacement batches, think rolling updates with resource signals, because a batch must meet its signal requirement before progress.
 - If the question says rollback uses an unexpectedly small batch, think the previous update policy, because the failed update's policy does not govern rollback.
 - If the question says preserve an instance maintenance policy, think `AutoScalingInstanceRefresh`, because CloudFormation rolling updates do not honor that policy.

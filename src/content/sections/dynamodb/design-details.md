@@ -36,6 +36,15 @@ facts:
   - id: single-digit-latency
     text: "DynamoDB is a serverless, fully managed NoSQL database with single-digit millisecond performance at any scale."
     source: https://aws.amazon.com/dynamodb/
+  - id: table-size
+    text: "A DynamoDB table has no practical limit on its total item count or stored bytes."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html
+  - id: simpledb-size
+    text: "An Amazon SimpleDB domain has a maximum size of 10 GB."
+    source: https://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/SDBLimits.html
+  - id: item-policy
+    text: "An IAM policy can allow DynamoDB item actions on a specified table ARN."
+    source: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/iam-policy-specific-table-indexes.html
 cards:
   - id: dynamodb-045
     q: "A DynamoDB table holding orders must never be dropped by mistake during routine administration. Which table setting fits?"
@@ -82,6 +91,14 @@ cards:
     q: "An application needs a serverless NoSQL database with consistent single-digit millisecond latency as traffic grows to millions of requests. Which AWS service fits?"
     a: "Amazon DynamoDB."
     facts: [single-digit-latency]
+  - id: dynamodb-076
+    q: "How do Amazon DynamoDB table size and Amazon SimpleDB domain size compare?"
+    a: "A DynamoDB table has no practical item count or total byte limit. A SimpleDB domain is limited to 10 GB."
+    facts: [table-size, simpledb-size]
+  - id: dynamodb-077
+    q: "How can an IAM policy restrict Amazon DynamoDB item operations to one table?"
+    a: "Allow only the required item actions, such as GetItem or PutItem, on that table ARN."
+    facts: [item-policy]
 ---
 DynamoDB tables allow items with different attributes and provide settings for deletion protection and storage costs. DynamoDB also replicates table data across Availability Zones automatically.
 
@@ -97,6 +114,8 @@ DynamoDB tables allow items with different attributes and provide settings for d
 
 ### Exam cues
 
+- If the question says compare DynamoDB table and SimpleDB domain size, think no practical table size limit versus 10 GB per domain, because their storage limits differ.
+- If the question says allow item access to one DynamoDB table, think an IAM policy with specific actions and the table ARN, because permissions can be scoped to that resource.
 - If the question says items have different attributes, think DynamoDB, because only the primary key requires a fixed schema.
 - If the question says infrequent access and storage dominates costs, think Standard-IA, because it targets that usage.
 - If the question says prevent accidental table deletion, think deletion protection, because it blocks deletion until an authorized administrator disables it.

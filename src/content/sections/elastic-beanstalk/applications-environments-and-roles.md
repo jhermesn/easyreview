@@ -87,6 +87,12 @@ facts:
   - id: custom-platforms-retired
     text: "Elastic Beanstalk custom platforms are retired: on July 18, 2022, all Amazon Linux AMI platform branches, including custom platforms, were retired."
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html
+  - id: logs-s3
+    text: "Elastic Beanstalk uploads requested instance tail and bundle logs to Amazon S3."
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.logging.html
+  - id: logs-cloudwatch
+    text: "Elastic Beanstalk can stream instance logs to Amazon CloudWatch Logs."
+    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.logging.html
 diagrams:
   - id: beanstalk-https-request
     title: HTTPS termination and backend access
@@ -178,6 +184,11 @@ cards:
     a: A Docker platform with the app packaged as a container image. Custom platforms were retired on July 18, 2022.
     trap: true
     facts: [docker-platform, custom-platforms-retired]
+  - id: elastic-beanstalk-064
+    q: "Where can a team retrieve or stream Elastic Beanstalk instance logs?"
+    a: "Retrieve requested tail or bundle logs from Amazon S3, or stream logs to Amazon CloudWatch Logs."
+    facts: [logs-s3, logs-cloudwatch]
+
 ---
 Elastic Beanstalk Standard deploys application code on managed EC2 environments. An application groups related versions and environments; each environment is an independently configured running deployment. A platform is the operating system, language runtime, and server software used to run that code.
 
@@ -199,6 +210,7 @@ For the Standard Docker platform without Compose, use a `Dockerfile` to build an
 
 ### Exam cues
 
+- If the question says retrieve or continuously stream Elastic Beanstalk instance logs, think S3 for requested logs or CloudWatch Logs for streaming, because Beanstalk supports both paths.
 - If the question says isolated test and production versions of one application, think separate environments, because an application groups independent deployments.
 - If the question says an uploaded archive has an extra enclosing directory, think fix the bundle root, because Beanstalk expects the application files there.
 - If the question says a single instance failed, think Auto Scaling replacement, because single-instance mode still has an Auto Scaling group.

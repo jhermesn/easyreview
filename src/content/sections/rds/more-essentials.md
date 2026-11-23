@@ -30,6 +30,24 @@ facts:
   - id: timestream-closed
     text: "Amazon Timestream for LiveAnalytics closed to new customers on June 20, 2025; AWS points new workloads to Timestream for InfluxDB."
     source: https://docs.aws.amazon.com/timestream/latest/developerguide/AmazonTimestreamForLiveAnalytics-availability-change.html#AmazonTimestreamForLiveAnalytics-availability-change
+  - id: sql-server-byom
+    text: "RDS for SQL Server Bring Your Own Media supports existing SQL Server licenses with active Software Assurance and License Mobility."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/sqlserver-byom.html
+  - id: stopped-billing
+    text: "A stopped RDS DB instance has no DB instance-hour charges, while provisioned storage and backup storage remain chargeable."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html#USER_StopInstance.Operation.characteristics
+  - id: snapshot-restore
+    text: "An RDS manual DB snapshot captures a database instance backup that can be restored to a new DB instance."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/gettingstartedguide/managing-backup-restore.html#manual-snapshots
+  - id: modify-class
+    text: "Changing an RDS DB instance class is a DB instance modification."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ModifyInstance.Settings.html
+  - id: running-billing
+    text: "RDS on-demand DB instance billing starts when the instance is available and is based on its instance class."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_OnDemandDBInstances.html#USER_OnDemandDBInstances
+  - id: storage-autoscaling
+    text: "RDS storage autoscaling increases allocated storage when its configured conditions are met."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.Autoscaling.html#USER_PIOPS.Autoscaling
 cards:
   - id: rds-041
     q: What does Amazon RDS manage that a database on Amazon EC2 leaves to the customer?
@@ -68,6 +86,30 @@ cards:
     q: "A company needs a managed relational database that supports PostgreSQL. Which AWS service can it choose?"
     a: "Amazon RDS supports PostgreSQL and manages tasks such as backups and software patching."
     facts: [engines, rds-manages]
+  - id: rds-106
+    q: "How can a company use eligible existing SQL Server licenses with Amazon RDS?"
+    a: "Use Bring Your Own Media with the required active Software Assurance and License Mobility."
+    facts: [sql-server-byom]
+  - id: rds-107
+    q: "What charges remain when a supported Amazon RDS DB instance is stopped?"
+    a: "Provisioned storage and backup storage remain chargeable; DB instance-hour charges stop."
+    facts: [stopped-billing]
+  - id: rds-108
+    q: "How can a team restore an Amazon RDS database from a manual backup?"
+    a: "Restore the manual DB snapshot to a new DB instance."
+    facts: [snapshot-restore]
+  - id: rds-110
+    q: "How can a team change the compute capacity of an Amazon RDS DB instance?"
+    a: "Modify the DB instance and select a different instance class."
+    facts: [modify-class]
+  - id: rds-119
+    q: "Does an available but idle on-demand Amazon RDS DB instance incur instance charges?"
+    a: "Yes. Billing starts when the instance is available."
+    facts: [running-billing]
+  - id: rds-120
+    q: "What does Amazon RDS storage autoscaling increase?"
+    a: "Allocated storage, when the autoscaling conditions are met."
+    facts: [storage-autoscaling]
 ---
 Amazon RDS manages common database tasks, so teams can run relational databases with less administration. Choosing between RDS and a database on Amazon EC2 depends on how much control the application needs.
 
@@ -79,6 +121,12 @@ Amazon RDS manages common database tasks, so teams can run relational databases 
 
 ### Exam cues
 
+- If the question says automatically increase RDS disk space, think storage autoscaling, because it grows allocated storage when conditions are met.
+- If the question says an RDS instance is available but idle, think instance charges, because billing begins when the instance is available.
+- If the question says increase RDS instance compute capacity, think modify the DB instance class, because storage autoscaling changes allocated storage.
+- If the question says keep an RDS database backup for later recovery, think a manual DB snapshot, because it can restore a new DB instance.
+- If the question says reduce compute charges for an idle supported RDS instance, think stopping it, because instance-hour charges stop while storage and backup charges remain.
+- If the question says use eligible existing SQL Server licenses with Amazon RDS, think Bring Your Own Media, because it uses License Mobility through Software Assurance.
 - If the question says a MySQL database needs less patching and backup work, think RDS because it manages those tasks.
 - If the question says an existing Oracle license should be used, think RDS for Oracle BYOL because it offers that licensing model.
 - If the question says timestamped sensor readings, think Amazon Timestream for time series data. New customers should evaluate Timestream for InfluxDB because LiveAnalytics is closed to them. Timestream, availability change

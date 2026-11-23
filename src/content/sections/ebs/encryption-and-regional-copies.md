@@ -52,7 +52,15 @@ facts:
     text: The AWS Config encrypted-volumes rule evaluates attached EBS volumes and can flag missing
       encryption or use of a key outside its optional kmsId parameter.
     source: https://docs.aws.amazon.com/config/latest/developerguide/encrypted-volumes.html#encrypted-volumes
+  - id: symmetric-key
+    text: Amazon EBS supports symmetric encryption KMS keys and cannot encrypt a volume with an asymmetric KMS key.
+    source: https://docs.aws.amazon.com/kms/latest/developerguide/services-ebs.html
 cards:
+  - id: ebs-060
+    q: Can an asymmetric AWS KMS key encrypt an Amazon EBS volume?
+    a: No. Amazon EBS uses symmetric encryption KMS keys.
+    trap: true
+    facts: [symmetric-key]
   - id: ebs-002
     q: How can an EC2 workload recover an encrypted EBS volume in another AWS Region?
     a: Copy its completed snapshot to the target Region using an accessible destination key, then create
@@ -180,6 +188,7 @@ To encrypt an existing unencrypted disk, take a snapshot, make an encrypted copy
 
 ### Exam cues
 
+- If the question says choose a KMS key for EBS encryption, think a symmetric encryption key, because EBS does not support asymmetric keys for volume encryption.
 - If the question says recover encrypted EBS data in another Region, think snapshot copy and destination key access, because the source snapshot is regional.
 - If the question says enabling encryption by default should fix existing disks, think encrypted replacement volumes, because the setting only affects new resources.
 - If the question says an encrypted snapshot must be shared with another account, think a customer managed key and both permissions, because snapshot permission alone is insufficient.

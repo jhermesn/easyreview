@@ -98,7 +98,21 @@ facts:
   - id: hdd-throughput
     text: "st1 volumes range from 0.125 TiB to 16 TiB and use a throughput burst bucket: baseline 40 MiB/s per TiB, with throughput capped at 500 MiB/s per volume."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#ST1ThroughputBurst
+  - id: magnetic-previous
+    text: Previous-generation Magnetic volumes suit small datasets accessed infrequently when performance is not the primary concern.
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html
+  - id: transaction-queue
+    text: Transaction-intensive EBS workloads can keep latency down while maintaining high IOPS with a low queue length and enough available IOPS.
+    source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-io-characteristics.html
 cards:
+  - id: ebs-061
+    q: What EBS volume type can suit a small, infrequently accessed dataset when performance is not a priority?
+    a: Previous-generation Magnetic volumes. Cold HDD is another option for infrequently accessed sequential data.
+    facts: [magnetic-previous, sc1]
+  - id: ebs-062
+    q: How can a transaction-intensive EBS workload maintain high IOPS while limiting latency?
+    a: Keep queue length low and provide enough IOPS for the volume.
+    facts: [transaction-queue]
   - id: ebs-010
     q: When should an EC2 workload choose EBS gp3 rather than io2 Block Express?
     a: Use gp3 for general-purpose SSD storage with independently configured performance. Choose io2
@@ -198,6 +212,7 @@ EKS Auto Mode manages block storage without installing that CSI controller. Its 
 
 ### Exam cues
 
+- If the question says a transaction workload is sensitive to EBS latency, think a low queue length and sufficient IOPS, because excessive queued I/O increases latency.
 - If the question says a small gp2 disk slows after sustained I/O, think BurstBalance, because its above-baseline performance consumes credits.
 - If the question says storage size is sufficient but performance must increase, think gp3, because IOPS and throughput can be provisioned independently of size.
 - If the question says large sequential logs are read frequently, think st1, because it targets frequent sequential transfers.

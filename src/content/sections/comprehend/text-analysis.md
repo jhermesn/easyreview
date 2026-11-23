@@ -18,6 +18,9 @@ facts:
   - id: pii-detection
     text: "Amazon Comprehend detects PII entities in English or Spanish text and can locate them or redact them."
     source: https://docs.aws.amazon.com/comprehend/latest/dg/how-pii.html#how-pii
+  - id: medical-detect-phi
+    text: "Amazon Comprehend Medical DetectPHI identifies protected health information in clinical text."
+    source: https://docs.aws.amazon.com/comprehend-medical/latest/dev/textanalysis-phi.html
 cards:
   - id: comprehend-001
     q: A company wants to know whether customer reviews are positive or negative. Which AWS service fits?
@@ -40,6 +43,10 @@ cards:
     q: "Which AWS service extracts medical entities from physician notes, discharge summaries and test results?"
     a: "Amazon Comprehend Medical, the clinical-text version of Comprehend."
     facts: [comprehend-medical]
+  - id: comprehend-009
+    q: "Which Amazon Comprehend Medical operation detects protected health information in clinical text?"
+    a: "DetectPHI."
+    facts: [medical-detect-phi]
 ---
 Amazon Comprehend reads text and tells you what's in it: the people, places and organizations mentioned, key phrases, the language and the sentiment. It needs no machine learning expertise.
 
@@ -51,6 +58,7 @@ Amazon Comprehend reads text and tells you what's in it: the people, places and 
 
 ### Exam cues
 
+- If the question says identify protected health information in clinical text, think Amazon Comprehend Medical DetectPHI, because it detects that category of information.
 - If the question says sentiment, entities or key phrases in text, think Amazon Comprehend.
 - If the question says extract medical information from physician notes, think Amazon Comprehend Medical, because it analyzes clinical text.
 

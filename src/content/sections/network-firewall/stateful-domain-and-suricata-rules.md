@@ -27,6 +27,12 @@ facts:
   - id: domain-vs-payload
     text: Domain filtering based on HTTP Host or TLS SNI does not itself decrypt encrypted payloads; TLS inspection uses a separate TLS inspection configuration.
     source: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_CreateTLSInspectionConfiguration.html
+  - id: requested-host
+    text: "Network Firewall HTTP Host and TLS SNI domain rules match the hostname requested by the client."
+    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html
+  - id: https-url-filter
+    text: "Network Firewall URL category filtering requires TLS inspection to evaluate HTTPS URL paths."
+    source: https://docs.aws.amazon.com/network-firewall/latest/developerguide/rule-groups-url-filtering.html
 cards:
   - id: network-firewall-003
     q: Outbound HTTP and HTTPS traffic from private subnets must use only approved domains. Which AWS Network Firewall rules fit?
@@ -48,6 +54,14 @@ cards:
     facts:
       - domain-fields
       - domain-vs-payload
+  - id: network-firewall-014
+    q: "What hostname do AWS Network Firewall HTTP Host and TLS SNI domain rules match?"
+    a: "The hostname requested by the client."
+    facts: [requested-host]
+  - id: network-firewall-016
+    q: "What does AWS Network Firewall need to apply URL category filtering to HTTPS paths?"
+    a: "TLS inspection and a URL category filtering rule."
+    facts: [https-url-filter]
 diagrams:
   - id: network-firewall-engine-order
     title: Stateless decisions control access to stateful inspection
@@ -126,6 +140,8 @@ AWS Network Firewall first checks packets independently, then can inspect them a
 
 ### Exam cues
 
+- If the question says filter HTTPS URL paths, think TLS inspection and URL category rules, because encrypted URLs cannot be evaluated without TLS inspection.
+- If the question says match the hostname a client requests, think HTTP Host or TLS SNI domain rules, because those fields identify the requested hostname.
 - If the question says a stateful deny is bypassed by a stateless allow, think change Pass to Forward to stateful rules, because Pass ends inspection.
 
 ### Remember

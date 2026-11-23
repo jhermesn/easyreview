@@ -33,6 +33,9 @@ facts:
   - id: success-codes
     text: An ALB target passes its health check only if the response code is in the target group's success codes, 200 by default.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html
+  - id: alb-check-protocols
+    text: "Application Load Balancer target health checks support HTTP and HTTPS."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html
 cards:
   - id: elastic-load-balancing-005
     q: Every registered target in an ALB target group fails health checks across all enabled zones.
@@ -65,6 +68,10 @@ cards:
     a: The default success code is 200; add 302 to the success codes or point the check at a path that returns 200.
     trap: true
     facts: [success-codes]
+  - id: elastic-load-balancing-083
+    q: "Which protocols can an Application Load Balancer use for target health checks?"
+    a: "HTTP and HTTPS."
+    facts: [alb-check-protocols]
 ---
 An ALB health check evaluates a target's response. Health thresholds decide when to avoid a target or change routing when too little healthy capacity remains.
 
@@ -91,6 +98,7 @@ An ALB health check evaluates a target's response. Health thresholds decide when
 
 ### Remember
 
+- Application Load Balancer health checks support HTTP and HTTPS.
 - Default healthy count threshold: 1 for both failover actions; percentage thresholds default to off.
 - DNS failover thresholds must be greater than or equal to routing failover thresholds.
 - When count and percentage thresholds are both set, either breach triggers that action.

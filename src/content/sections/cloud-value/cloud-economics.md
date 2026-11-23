@@ -54,6 +54,9 @@ facts:
   - id: free-auto-scaling
     text: Amazon EC2 Auto Scaling has no additional fee; you pay for the EC2 instances, CloudWatch and other resources it uses.
     source: https://aws.amazon.com/ec2/autoscaling/pricing/
+  - id: operational-expense
+    text: "AWS describes cloud computing consumption as an operational expense, while buying physical hardware is a capital expense."
+    source: https://docs.aws.amazon.com/pdfs/prescriptive-guidance/latest/optimize-costs-microsoft-workloads/optimize-costs-microsoft-workloads.pdf
 cards:
   - id: cloud-value-014
     q: How does moving to the AWS Cloud change the way a company pays for servers?
@@ -100,6 +103,11 @@ cards:
     q: "Which AWS services in this list are free to use: IAM, EC2 Auto Scaling, Amazon EC2 instances, Amazon EBS volumes?"
     a: "IAM and EC2 Auto Scaling.\nAuto Scaling itself is free; you pay for the instances and CloudWatch resources it uses."
     facts: [free-iam, free-auto-scaling]
+  - id: cloud-value-029
+    q: "How does AWS describe cloud consumption compared with buying physical hardware?"
+    a: "Cloud consumption is an operational expense; purchasing physical hardware is a capital expense."
+    facts: [operational-expense]
+
 ---
 Cloud economics compares what a workload costs in a data center with what it costs on AWS. On premises you buy capacity up front and pay for it whether you use it or not; on AWS you pay for what runs.
 
@@ -121,6 +129,7 @@ Migration Evaluator builds a business case for a move, finds over-provisioned on
 
 ### Exam cues
 
+- If the question says classify pay-as-you-go cloud consumption, think operational expense, because AWS contrasts it with capital spending on physical hardware.
 - If the question says no large upfront investment, think variable expense.
 - If the question says servers are bigger than the workload needs, think right-sizing.
 - If the question says reuse existing licenses, think BYOL; on EC2 for per-core or per-socket licenses, think Dedicated Hosts.

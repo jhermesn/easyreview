@@ -3,6 +3,9 @@ title: Full load and change data capture
 level: associate
 order: 10
 facts:
+  - id: oracle-standard-source
+    text: "AWS DMS supports Oracle Standard Edition as a source database."
+    source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html
   - id: dms-purpose
     text: AWS DMS migrates data between supported data stores and can replicate ongoing changes.
     source: https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html
@@ -58,6 +61,10 @@ facts:
     text: Views can be migrated with full-load-only tasks but not with tasks that include CDC.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html
 cards:
+  - id: dms-021
+    q: "Can AWS DMS use Oracle Standard Edition as a migration source?"
+    a: "Yes. Oracle Standard Edition is a supported source."
+    facts: [oracle-standard-source]
   - id: dms-001
     q: How do Amazon DocumentDB, Amazon Redshift and AWS DMS differ?
     a: DocumentDB runs MongoDB-compatible databases. Redshift is a data warehouse for analytics. DMS migrates data and can replicate ongoing changes.
@@ -120,6 +127,7 @@ AWS Database Migration Service (DMS) moves data between supported data stores an
 
 ### Exam cues
 
+- If the question says migrate from Oracle Standard Edition, think an AWS DMS Oracle source endpoint, because that edition is supported.
 - If the question says reduce migration cutover downtime, think full load plus CDC, because ongoing changes are applied after the initial copy.
 - If the question says automatic failover of a provisioned DMS instance, think Multi-AZ, because it maintains a synchronous standby.
 - If the question says the target already has its initial data, think CDC only, because the task replicates ongoing changes.

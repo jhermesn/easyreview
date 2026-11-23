@@ -12,6 +12,9 @@ facts:
   - id: audit-basic
     text: "Configuration history from AWS Config helps prove compliance during audits."
     source: https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html#scenarios-auditing-and-compliance
+  - id: patch-history
+    text: "AWS Config can record Systems Manager patch compliance resources to retain their compliance history."
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/compliance-about.html#compliance-about
 cards:
   - id: config-051
     q: "A company must know whether any S3 bucket in its account allows public access, and keep checking as buckets change. Which service fits?"
@@ -26,6 +29,10 @@ cards:
     a: "No. AWS CloudTrail records API calls; AWS Config records resource configurations and checks them against rules."
     trap: true
     facts: [inventory-history]
+  - id: config-055
+    q: "How can AWS Config retain Systems Manager patch compliance history?"
+    a: "Enable recording for the Systems Manager patch compliance resource type."
+    facts: [patch-history]
 ---
 AWS Config keeps an inventory of AWS resources with their configuration history, and checks them against rules for compliance.
 
@@ -37,6 +44,7 @@ AWS Config keeps an inventory of AWS resources with their configuration history,
 
 ### Exam cues
 
+- If the question says retain patch compliance history, think recording Systems Manager patch compliance in AWS Config, because it keeps configuration history.
 - If the question says configuration history, or continuously check that resources follow a rule, think AWS Config.
 
 ### Remember

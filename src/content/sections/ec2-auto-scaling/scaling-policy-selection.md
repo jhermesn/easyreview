@@ -42,6 +42,9 @@ facts:
   - id: default-cooldown
     text: "An Auto Scaling group default cooldown is 300 seconds; simple scaling policies wait for it unless a policy sets its own cooldown."
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-cooldowns.html#set-default-cooldown
+  - id: predictive-equal-capacity
+    text: "Predictive scaling assumes instances have equal capacity, so forecasts can be inaccurate when a group uses unequal instance sizes."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-policy-overview.html#predictive-scaling-considerations
 cards:
   - id: ec2-auto-scaling-003
     q: Which EC2 Auto Scaling policy keeps average CPU near a target without manually maintaining its alarms?
@@ -97,6 +100,10 @@ cards:
     q: "An EC2 Auto Scaling group uses a simple scaling policy with no cooldown of its own. How long does it wait after a scaling activity before the next simple scaling action?"
     a: "The group default cooldown, 300 seconds unless changed."
     facts: [default-cooldown]
+  - id: ec2-auto-scaling-095
+    q: "Why can EC2 Auto Scaling predictive scaling forecast inaccurately for mixed instance sizes?"
+    a: "It assumes the group instances have equal capacity."
+    facts: [predictive-equal-capacity]
 ---
 Scaling policies change the desired capacity of an EC2 Auto Scaling group as demand changes. Scale-out adds capacity; scale-in removes it. Choose a policy based on whether the trigger is current utilization, a known time or a recurring demand pattern.
 
@@ -118,6 +125,7 @@ Scaling policies change the desired capacity of an EC2 Auto Scaling group as dem
 
 ### Exam cues
 
+- If the question says predictive scaling uses mixed instance sizes, think forecast accuracy, because the policy assumes equal instance capacity.
 - If the question says keep average CPU near a target, think target tracking, because it adjusts capacity and manages the alarms.
 - If the question says add progressively more instances for larger breaches, think step scaling, because each breach range has an adjustment.
 - If the question says open at a known time, think scheduled scaling, because its trigger is a schedule.

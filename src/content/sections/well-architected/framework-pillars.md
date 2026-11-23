@@ -45,6 +45,9 @@ facts:
   - id: cloud-workloads
     text: "Cloud Workloads holds the six pillars and their workload best practices, which can be evaluated and tracked continually."
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/release-notes.html#release-notes-workloads
+  - id: replace-failed-resource
+    text: A stateless failed component can be replaced instead of repaired as part of Well-Architected reliability practices.
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/rel11-bp03.html
 cards:
   - id: well-architected-001
     q: What are the six pillars of the AWS Well-Architected Framework?
@@ -87,6 +90,10 @@ cards:
     q: "Which AWS Well-Architected pillar recommends scaling horizontally to improve workload availability?"
     a: "The reliability pillar recommends horizontal scaling to increase availability."
     facts: [reliability-principles]
+  - id: well-architected-029
+    q: How can an AWS Well-Architected workload recover a failed stateless component?
+    a: Replace the component instead of repairing it in place.
+    facts: [replace-failed-resource]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them.
 
@@ -111,6 +118,7 @@ The general design principles apply across pillars: stop guessing capacity, test
 
 ### Exam cues
 
+- If the question says a stateless component has failed, think replacement, because a new component can restore it without repairing the failed one in place.
 - If the question says recover from failure or work consistently, think reliability.
 - If the question says lowest price point for the value delivered, think cost optimization.
 - If the question says protect data, systems and assets, think security.

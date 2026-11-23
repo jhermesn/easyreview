@@ -90,6 +90,9 @@ facts:
   - id: target-registration
     text: "When an Auto Scaling group has an attached load balancer, its instances are registered with the load balancer automatically."
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html
+  - id: parameter-ami
+    text: "An Auto Scaling launch template can reference a Systems Manager parameter containing an AMI ID, so updating the parameter can change the AMI without a new template version."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/using-systems-manager-parameters.html#using-systems-manager-parameters
 diagrams:
   - id: asg-alb-zones
     title: Load balancing across an Auto Scaling group
@@ -237,6 +240,10 @@ cards:
     q: "An Auto Scaling group with an attached Application Load Balancer launches new instances. Must an operator register them with the target group?"
     a: "No. Auto Scaling registers its instances with the attached load balancer automatically."
     facts: [target-registration]
+  - id: ec2-auto-scaling-094
+    q: "How can an EC2 Auto Scaling launch template use a new AMI without creating a new template version?"
+    a: "Reference a Systems Manager parameter for the AMI ID and update the parameter."
+    facts: [parameter-ami]
 ---
 An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces instances that terminate unexpectedly. A launch template is its versioned recipe for new instances, including the machine image, instance type and security groups. A machine image supplies the software to boot the instance; security groups are network traffic rules for its connections.
 
@@ -260,6 +267,7 @@ An Auto Scaling group maintains a chosen amount of EC2 capacity and replaces ins
 
 ### Exam cues
 
+- If the question says update an Auto Scaling group AMI without changing its launch template, think a Systems Manager parameter, because the template can resolve the current parameter value.
 - If the question says a zone fails under balanced best effort, think replacement capacity in other enabled zones, because the group attempts to maintain desired capacity.
 - If preserving zone balance matters more than launching elsewhere, choose balanced only.
 - If the question says a newer instance was removed under OldestInstance, think zone balance, because it takes priority over age.

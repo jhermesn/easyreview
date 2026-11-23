@@ -3,6 +3,9 @@ title: SAML and OIDC federation
 level: associate
 order: 70
 facts:
+  - id: adfs-saml
+    text: "Microsoft Active Directory Federation Services can act as a SAML 2.0 identity provider for AWS federation."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html#CreatingSAML-configuring-IdP
   - id: federation-purpose
     text: Federation lets externally authenticated identities access AWS through roles without creating an IAM
       user for each identity.
@@ -60,6 +63,58 @@ facts:
   - id: saml-console-entry
     text: "For SAML console federation, the browser posts the identity provider assertion to the AWS sign-in endpoint, which obtains temporary role credentials and redirects the browser through a console sign-in URL."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html#enable-console-saml-overview
+cards:
+  - id: iam-134
+    q: "How can Microsoft Active Directory Federation Services provide federated AWS access?"
+    a: "Use AD FS as a SAML 2.0 identity provider."
+    facts: [adfs-saml]
+  - id: iam-015
+    q: Which STS operation fits a SAML assertion, an OIDC token, a custom IAM-user broker, or an IAM user needing
+      MFA credentials?
+    a: "SAML: AssumeRoleWithSAML. OIDC: AssumeRoleWithWebIdentity. Custom IAM-user broker: GetFederationToken.
+      User MFA credentials: GetSessionToken. The SAML and OIDC calls authenticate with provider evidence
+      without AWS access keys."
+    facts:
+      - saml-flow
+      - saml-no-aws-keys
+      - oidc-flow
+      - oidc-no-aws-keys
+      - federation-broker
+      - sessiontoken-user
+  - id: iam-016
+    q: A GitHub Actions job needs AWS access without stored access keys and only from an approved repository
+      branch. What should the team configure?
+    a: An IAM OIDC provider and role trust restricted by audience and subject, then AssumeRoleWithWebIdentity. For
+      GitHub, use aud sts.amazonaws.com and sub for the approved repository and branch.
+    trap: true
+    facts:
+      - oidc-flow
+      - oidc-no-aws-keys
+      - oidc-trust
+  - id: iam-024
+    q: An external build system has an OIDC identity token and needs temporary AWS permissions for a particular
+      repository. What access pattern fits?
+    a: Federate to an IAM role with provider, audience and subject restrictions, and exchange the token through
+      AssumeRoleWithWebIdentity.
+    facts:
+      - oidc-flow
+      - oidc-trust
+      - oidc-claims
+  - id: iam-054
+    q: An application needs limited AWS access for both signed-in users and guests. Which federation component
+      supplies the credentials?
+    a: A Cognito identity pool. It issues temporary AWS credentials governed by IAM roles for authenticated and
+      guest identities.
+    facts:
+      - cognito-credentials
+  - id: iam-108
+    q: "An on-premises LDAP directory does not support SAML, and users must still get access to AWS without IAM users. What pattern fits?"
+    a: "A custom identity broker that authenticates users against LDAP and requests short-lived credentials from AWS STS for them."
+    facts: [identity-broker]
+  - id: iam-122
+    q: "Employees authenticate through a SAML identity provider and need the AWS Management Console. Which endpoint receives the assertion and opens their role session?"
+    a: "The AWS sign-in endpoint. It requests temporary role credentials for the user and redirects the browser to the console using a sign-in URL."
+    facts: [saml-console-entry]
 diagrams:
   - id: iam-federation-exchange
     title: Provider evidence becomes AWS role credentials
@@ -119,54 +174,6 @@ diagrams:
     steps:
       - The browser posts the identity provider's SAML assertion to AWS sign-in.
       - AWS sign-in obtains temporary role credentials and redirects the browser to the console.
-cards:
-  - id: iam-015
-    q: Which STS operation fits a SAML assertion, an OIDC token, a custom IAM-user broker, or an IAM user needing
-      MFA credentials?
-    a: "SAML: AssumeRoleWithSAML. OIDC: AssumeRoleWithWebIdentity. Custom IAM-user broker: GetFederationToken.
-      User MFA credentials: GetSessionToken. The SAML and OIDC calls authenticate with provider evidence
-      without AWS access keys."
-    facts:
-      - saml-flow
-      - saml-no-aws-keys
-      - oidc-flow
-      - oidc-no-aws-keys
-      - federation-broker
-      - sessiontoken-user
-  - id: iam-016
-    q: A GitHub Actions job needs AWS access without stored access keys and only from an approved repository
-      branch. What should the team configure?
-    a: An IAM OIDC provider and role trust restricted by audience and subject, then AssumeRoleWithWebIdentity. For
-      GitHub, use aud sts.amazonaws.com and sub for the approved repository and branch.
-    trap: true
-    facts:
-      - oidc-flow
-      - oidc-no-aws-keys
-      - oidc-trust
-  - id: iam-024
-    q: An external build system has an OIDC identity token and needs temporary AWS permissions for a particular
-      repository. What access pattern fits?
-    a: Federate to an IAM role with provider, audience and subject restrictions, and exchange the token through
-      AssumeRoleWithWebIdentity.
-    facts:
-      - oidc-flow
-      - oidc-trust
-      - oidc-claims
-  - id: iam-054
-    q: An application needs limited AWS access for both signed-in users and guests. Which federation component
-      supplies the credentials?
-    a: A Cognito identity pool. It issues temporary AWS credentials governed by IAM roles for authenticated and
-      guest identities.
-    facts:
-      - cognito-credentials
-  - id: iam-108
-    q: "An on-premises LDAP directory does not support SAML, and users must still get access to AWS without IAM users. What pattern fits?"
-    a: "A custom identity broker that authenticates users against LDAP and requests short-lived credentials from AWS STS for them."
-    facts: [identity-broker]
-  - id: iam-122
-    q: "Employees authenticate through a SAML identity provider and need the AWS Management Console. Which endpoint receives the assertion and opens their role session?"
-    a: "The AWS sign-in endpoint. It requests temporary role credentials for the user and redirects the browser to the console using a sign-in URL."
-    facts: [saml-console-entry]
 ---
 
 Federation lets an identity provider, the system that authenticates a person or workload, supply evidence that AWS exchanges for temporary credentials. SAML uses an assertion, a signed statement about authentication. OpenID Connect (OIDC) uses a token describing the authenticated subject.
@@ -188,6 +195,7 @@ Federation lets an identity provider, the system that authenticates a person or 
 
 ### Exam cues
 
+- If the question says federate an Active Directory Federation Services sign-in to AWS, think SAML federation, because AD FS can act as the identity provider.
 - If the question says external CI needs access without stored AWS keys, think OIDC role federation, because its token can be exchanged for temporary credentials.
 - If the question says workforce authentication already produces SAML assertions, think SAML role federation, because AWS can use that identity evidence without a separate IAM user for each person.
 - If the question says mobile or web users include guests who need limited AWS access, think Cognito identity pool, because it supplies role-controlled temporary AWS credentials.

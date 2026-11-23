@@ -59,6 +59,12 @@ facts:
     text: Gateway prefix lists are Region-specific, so the endpoint route applies to the service in that
       Region rather than another Region.
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-routing
+  - id: egress-only-ipv6
+    text: "An egress-only internet gateway allows outbound IPv6 connections from a VPC while preventing connections initiated from the internet."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.html
+  - id: peer-private-path
+    text: "VPC peering connects two VPCs over private IP addresses without a gateway or VPN connection."
+    source: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html
 cards:
   - id: vpc-026
     q: What is an Amazon VPC subnet, and how many Availability Zones can one subnet span?
@@ -115,6 +121,14 @@ cards:
       - gateway-services
       - gateway-routes
       - gateway-region
+  - id: vpc-109
+    q: "A VPC needs outbound IPv6 internet access without allowing internet hosts to initiate connections. Which gateway fits?"
+    a: "An egress-only internet gateway."
+    facts: [egress-only-ipv6]
+  - id: vpc-110
+    q: "How can two Amazon VPCs communicate over private IP addresses without a VPN connection?"
+    a: "Use a VPC peering connection."
+    facts: [peer-private-path]
 ---
 Amazon VPC is your own isolated network in AWS. Inside it, subnets split the address range by Availability Zone, route tables steer traffic, and gateways connect the VPC to the internet, other networks or AWS services.
 
@@ -138,6 +152,8 @@ Amazon VPC is your own isolated network in AWS. Inside it, subnets split the add
 
 ### Exam cues
 
+- If the question says connect two VPCs over private IP addresses without a VPN, think VPC peering, because it connects the VPCs directly.
+- If the question says outbound IPv6 internet access without inbound initiated connections, think an egress-only internet gateway, because it blocks connections initiated from the internet.
 - If the question says web servers reachable from the internet, think public subnet with an internet gateway, public addresses and permitted security rules, because a gateway alone does not allow traffic.
 - If the question says databases must not be reachable from the internet, think private subnet.
 - If the question says private instances need outbound internet only, think NAT gateway.

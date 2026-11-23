@@ -99,6 +99,9 @@ facts:
     text: Security Hub CSPM findings contain a security observation and identify the affected resource
       and current status.
     source: https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-internal-providers.html
+  - id: password-policy-length
+    text: "The AWS Config iam-password-policy rule checks the account password policy against configured requirements, including minimum password length."
+    source: https://docs.aws.amazon.com/config/latest/developerguide/iam-password-policy.html
 diagrams:
   - id: config-proactive-flow
     title: Proactive evaluation supplies a result to a deployment gate
@@ -231,6 +234,10 @@ cards:
     q: Which AWS Config managed rules check S3 buckets for public read access, public write access, or public bucket-level settings with an exclusion list?
     a: Use s3-bucket-public-read-prohibited, s3-bucket-public-write-prohibited, and s3-bucket-level-public-access-prohibited, respectively. The first two check Block Public Access, bucket policy, and bucket ACL; the last accepts excludedPublicBuckets.
     facts: [s3-public-read, s3-public-write, s3-public-bucket]
+  - id: config-056
+    q: "What does the AWS Config iam-password-policy rule check when a minimum password length is configured?"
+    a: "It evaluates the IAM account password policy against the configured requirement."
+    facts: [password-policy-length]
 ---
 An AWS Config **rule** compares resource settings with desired conditions and reports compliance, meaning whether the resource passes the check. Choose the rule's implementation separately from its trigger, which decides when to run, and its evaluation mode, which decides whether to assess deployed or proposed resources.
 
@@ -251,6 +258,7 @@ An AWS Config **rule** compares resource settings with desired conditions and re
 
 ### Exam cues
 
+- If the question says check the account password policy minimum length, think the AWS Config iam-password-policy rule, because it evaluates the policy against configured requirements.
 - If the question says find running EC2 instances using unapproved images, think `approved-amis-by-id` with `amiIds`, because it compares their Amazon Machine Image (AMI) IDs with the approved list. An AMI supplies the software used to boot an instance.
 - If the question says check encryption on attached EBS volumes, think `encrypted-volumes`, because it checks encryption and can require the KMS key in `kmsId`.
 - If the question says detect that no CloudTrail trail is enabled, think `cloudtrail-enabled`, because it checks that condition periodically. Evaluation alone does not configure a fix.

@@ -18,6 +18,15 @@ facts:
   - id: outposts-responsibility
     text: "With AWS Outposts the customer is responsible for the physical security and access controls of the site and for power, space, cooling and network connectivity; AWS is responsible for the rack hardware, hypervisor, storage systems and the AWS services on it."
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-outposts-high-availability-design/aws-outposts-high-availability-design.html#shared-security-model
+  - id: local-gateway
+    text: An Outposts rack local gateway connects its subnets to the on-premises network.
+    source: https://docs.aws.amazon.com/outposts/latest/userguide/outposts-local-gateways.html
+  - id: direct-routing-overlap
+    text: Outposts rack direct VPC routing does not support overlapping CIDR ranges.
+    source: https://docs.aws.amazon.com/outposts/latest/userguide/routing.html
+  - id: coip-overlap
+    text: Outposts rack customer-owned IP routing uses address translation and supports overlapping CIDR ranges.
+    source: https://docs.aws.amazon.com/outposts/latest/userguide/outposts-local-gateways.html#lgw-routing
 cards:
   - id: outposts-001
     q: A factory must process data locally with very low latency but wants the same AWS APIs and tools it uses in the cloud. Which AWS service fits?
@@ -40,6 +49,10 @@ cards:
     q: "Under the shared responsibility model, who secures the physical room where an AWS Outposts rack is installed?"
     a: "The customer. They provide physical security, power, cooling and network at the site; AWS manages the rack hardware, hypervisor and services."
     facts: [outposts-responsibility]
+  - id: outposts-006
+    q: How can an AWS Outposts rack connect its subnet to an on-premises network when their CIDR ranges overlap?
+    a: Use customer-owned IP routing through the local gateway. Direct VPC routing does not support overlapping CIDR ranges.
+    facts: [local-gateway, direct-routing-overlap, coip-overlap]
 ---
 AWS Outposts puts AWS hardware in your data center. You run AWS services there with the same APIs and tools as in a Region, for workloads that need low latency to on-premises systems or must process data locally.
 
@@ -51,6 +64,7 @@ AWS Outposts puts AWS hardware in your data center. You run AWS services there w
 
 ### Exam cues
 
+- If the question says an Outposts rack must reach an on-premises network with overlapping CIDR ranges, think customer-owned IP routing through the local gateway, because direct VPC routing does not support overlap.
 - If the question says AWS services in our own data center, low latency to on-premises systems, think AWS Outposts.
 
 ### Remember

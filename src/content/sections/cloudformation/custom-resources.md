@@ -3,6 +3,9 @@ title: Custom resources
 level: professional
 order: 190
 facts:
+  - id: ami-lookup
+    text: "A Lambda-backed CloudFormation custom resource can look up an AMI ID when a stack is created."
+    source: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources-lambda.html
   - id: custom-logic
     text: CloudFormation custom resources run provider-defined provisioning logic for Create, Update,
       and Delete lifecycle requests.
@@ -43,6 +46,10 @@ facts:
     text: CloudFormation cannot delete a bucket unless its objects have been removed.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options
 cards:
+  - id: cloudformation-162
+    q: "Which CloudFormation feature can run a Lambda function to look up an AMI ID during stack creation?"
+    a: "A Lambda-backed custom resource can perform the lookup."
+    facts: [ami-lookup]
   - id: cloudformation-018
     q: What must a CloudFormation custom resource provider do when it receives a lifecycle request?
     a: Handle Create, Update, or Delete and send JSON SUCCESS or FAILED to the presigned S3 ResponseURL.
@@ -147,6 +154,7 @@ A custom resource lets a CloudFormation template delegate provisioning work to c
 
 ### Exam cues
 
+- If the question says a stack needs a dynamic AMI lookup, think a Lambda-backed custom resource, because it can perform the lookup during stack creation.
 - If the question says a Lambda finishes but its CloudFormation resource hangs, think the response URL, because a normal Lambda return does not deliver the required S3 response.
 - If the question says a disposable S3 bucket must empty itself before stack deletion, think a custom resource with deletion logic, because CloudFormation cannot delete a non-empty bucket. CDK `autoDeleteObjects` uses that mechanism.
 - If the question says a provider returns a new physical ID on update, think replacement, because CloudFormation sends deletion for the old ID.

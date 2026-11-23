@@ -42,6 +42,30 @@ facts:
   - id: storage-class-analysis
     text: "S3 Storage Class Analysis watches access patterns to help decide when to move data to STANDARD_IA; results appear after 24 to 48 hours and update daily, with optional daily export to a bucket."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/analytics-storage-class.html#analytics-storage-class-contents
+  - id: upload-class
+    text: "An S3 object upload can specify the storage class; a general purpose bucket uses S3 Standard when none is specified."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/sc-howtoset.html
+  - id: ia-minimum-size
+    text: "S3 Standard-IA charges for at least 128 KB per object and at least 30 days of storage."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: one-zone-retrieval
+    text: "S3 One Zone-IA charges a per-GB fee for data retrieval."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html
+  - id: standard-retrieval
+    text: "S3 Standard has no per-GB data retrieval charge."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: storage-billing
+    text: "S3 storage charges depend on object size, time stored and storage class."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: deep-retrieval-cost
+    text: "S3 Glacier Deep Archive retrieval charges depend on the selected retrieval tier."
+    source: https://aws.amazon.com/s3/pricing/
+  - id: deep-retrieval-time
+    text: "S3 Glacier Deep Archive Standard retrievals typically finish within 12 hours and Bulk retrievals typically finish within 48 hours."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html
+  - id: ia-storage-rates
+    text: "S3 Standard-IA and S3 One Zone-IA have different storage rates."
+    source: https://aws.amazon.com/s3/pricing/
 cards:
   - id: s3-118
     q: A company's data is accessed in unpredictable patterns. Which Amazon S3 storage class moves it between tiers automatically without retrieval fees?
@@ -84,6 +108,30 @@ cards:
     q: "Which Amazon S3 storage class suits data with unpredictable access patterns?"
     a: "S3 Intelligent-Tiering is designed for unknown or changing access patterns. It charges monitoring and automation fees but no retrieval fees."
     facts: [intelligent-tiering]
+  - id: s3-207
+    q: "Can an Amazon S3 upload choose the storage class for the new object?"
+    a: "Yes. Specify the storage class during upload."
+    facts: [upload-class]
+  - id: s3-208
+    q: "What minimum storage billing applies to an Amazon S3 Standard-IA object?"
+    a: "At least 128 KB per object and 30 days of storage."
+    facts: [ia-minimum-size]
+  - id: s3-209
+    q: "Does Amazon S3 One Zone-IA charge for retrieving data?"
+    a: "Yes. A per-GB retrieval fee applies."
+    facts: [one-zone-retrieval]
+  - id: s3-210
+    q: "Does Amazon S3 Standard charge a per-GB data retrieval fee?"
+    a: "No. Request charges can still apply."
+    facts: [standard-retrieval]
+  - id: s3-211
+    q: "What affects the retrieval charge for an Amazon S3 Glacier Deep Archive object?"
+    a: "The selected retrieval tier, such as Standard or Bulk."
+    facts: [deep-retrieval-cost]
+  - id: s3-212
+    q: "How long do Amazon S3 Glacier Deep Archive Standard and Bulk retrievals typically take?"
+    a: "Standard typically finishes within 12 hours; Bulk typically finishes within 48 hours."
+    facts: [deep-retrieval-time]
 ---
 Amazon S3 storage classes trade access speed and frequency for price. All are designed for the same 11 nines of durability; they differ in availability, retrieval time, retrieval fees and minimum storage duration.
 
@@ -106,6 +154,14 @@ Amazon S3 storage classes trade access speed and frequency for price. All are de
 
 ### Exam cues
 
+- If the question says compare S3 Standard-IA and One Zone-IA storage costs, think different rates, because their storage prices differ.
+- If the question says choose a Deep Archive restore tier, think Standard for a typical 12-hour restore or Bulk for a typical 48-hour restore.
+- If the question says compare S3 Glacier Deep Archive restore costs, think retrieval tier, because Standard and Bulk have different rates.
+- If the question says estimate S3 storage charges, think size, storage time and class, because each affects storage billing.
+- If the question says frequent reads without data retrieval fees, think S3 Standard, because it has no per-GB retrieval charge.
+- If the question says read objects from S3 One Zone-IA, think retrieval charges, because reads incur a per-GB retrieval fee.
+- If the question says compare costs for small short-lived objects in S3 Standard-IA, think minimum size and duration, because both affect the bill.
+- If the question says choose a storage class for a new S3 object, think specify it during upload, because the class can be selected at creation.
 - If the question says unknown or changing access, think Intelligent-Tiering.
 - If the question says rarely accessed but needs immediate access, think Standard-IA or Glacier Instant Retrieval.
 - If the question says long-term archive, cheapest, hours are fine, think Glacier Deep Archive.

@@ -42,6 +42,12 @@ facts:
   - id: basic-ta-checks
     text: "With Basic Support, Trusted Advisor gives all Service limits checks plus a small set of Security and Fault Tolerance checks; the full set needs a higher plan."
     source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor-check-reference.html#trusted-advisor-check-reference
+  - id: unlimited-cases
+    text: "AWS Business Support+ permits an unlimited number of support cases."
+    source: https://docs.aws.amazon.com/awssupport/latest/user/aws-support-plans.html#features
+  - id: unified-price
+    text: "AWS Unified Operations has a 50,000 USD monthly minimum, compared with 5,000 USD for AWS Enterprise Support."
+    source: https://aws.amazon.com/premiumsupport/pricing/
 cards:
   - id: support-001
     q: What are the current AWS Support plans?
@@ -84,6 +90,14 @@ cards:
     q: "What does a Basic Support customer get from Trusted Advisor and the Support API?"
     a: "Only the Service limits checks and a few Security and Fault Tolerance checks in Trusted Advisor, and no Support API. Business Support+ is the lowest plan with all checks and the API."
     facts: [basic-ta-checks, support-api-plans]
+  - id: support-016
+    q: "Which has the higher monthly minimum, AWS Unified Operations or AWS Enterprise Support?"
+    a: "AWS Unified Operations: 50,000 USD, compared with 5,000 USD for Enterprise Support."
+    facts: [unified-price]
+  - id: support-017
+    q: Can an AWS Business Support+ customer open an unlimited number of support cases?
+    a: Yes. AWS Business Support+ permits an unlimited number of support cases.
+    facts: [unlimited-cases]
 ---
 AWS Support plans set how much help a customer gets and how fast. Basic comes with every account. AWS has reorganized the plans: today they are Basic, Business Support+, Enterprise Support and Unified Operations. Developer, Business and Enterprise On-Ramp end on January 1, 2027.
 
@@ -102,6 +116,7 @@ AWS Support plans set how much help a customer gets and how fast. Basic comes wi
 
 ### Exam cues
 
+- If the question says compare Enterprise Support and Unified Operations minimum charges, think Unified Operations costs more, because its monthly minimum is higher.
 - If the question says only account and billing questions, think Basic.
 - If the question says 24x7 technical support at low cost, think Business Support+.
 - If the question says Technical Account Manager, think Enterprise Support or higher.

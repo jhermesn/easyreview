@@ -9,6 +9,9 @@ facts:
   - id: integrated
     text: "ACM certificates are deployed to integrated AWS services such as Elastic Load Balancing and CloudFront."
     source: https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html#acm-overview
+  - id: import-external
+    text: "ACM can import SSL/TLS certificates obtained outside AWS."
+    source: https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html
 cards:
   - id: acm-023
     q: "A website behind an Application Load Balancer needs an HTTPS certificate that renews itself. Which AWS service provides it?"
@@ -18,6 +21,10 @@ cards:
     q: "Which AWS service handles SSL/TLS certificates so a team does not track expiry dates by hand?"
     a: "AWS Certificate Manager, which renews ACM-issued certificates."
     facts: [certificates]
+  - id: acm-025
+    q: "A company already has an SSL/TLS certificate from another issuer. Can AWS Certificate Manager use it?"
+    a: "Yes. Import the certificate into ACM for use with integrated AWS services."
+    facts: [import-external]
 ---
 AWS Certificate Manager (ACM) provides SSL/TLS certificates for HTTPS and renews them, so encrypted connections keep working.
 
@@ -29,6 +36,7 @@ AWS Certificate Manager (ACM) provides SSL/TLS certificates for HTTPS and renews
 
 ### Exam cues
 
+- If the question says use an existing certificate from another issuer, think ACM import, because ACM accepts certificates obtained outside AWS.
 - If the question says HTTPS certificate for a load balancer or CloudFront, think ACM.
 
 ### Remember

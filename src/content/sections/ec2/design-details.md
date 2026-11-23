@@ -39,6 +39,15 @@ facts:
   - id: host-billing
     text: "An active On-Demand Dedicated Host is billed for the host regardless of the number or sizes of instances running on it; releasing the host stops those charges."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-billing.html#on-demand-dedicated-hosts
+  - id: ri-market-convertible
+    text: Convertible Reserved Instances cannot be sold in the Reserved Instance Marketplace.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-types.html
+  - id: ri-market-term
+    text: A Standard Reserved Instance must have at least one month left in its term to be sold in the Reserved Instance Marketplace.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html
+  - id: ri-market-active
+    text: A Standard Reserved Instance must have been active in the account for at least 30 days before it can be sold in the Reserved Instance Marketplace.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html
 cards:
   - id: ec2-088
     q: "What does each part of the instance type name m5.2xlarge mean?"
@@ -91,6 +100,14 @@ cards:
     q: "A team stops every EC2 instance on an On-Demand Dedicated Host but keeps the host allocated. Does host billing stop?"
     a: "No. The active host is billed regardless of how many instances run on it. Release the host to stop its On-Demand charges."
     facts: [host-billing]
+  - id: ec2-136
+    q: Can a Convertible EC2 Reserved Instance be sold in the Reserved Instance Marketplace?
+    a: No. Only eligible Standard Reserved Instances can be sold there.
+    facts: [ri-market-convertible, ri-market-term]
+  - id: ec2-142
+    q: What minimum remaining term and activation period are required to sell a Standard EC2 Reserved Instance in the Reserved Instance Marketplace?
+    a: At least one month must remain in the term, and the reservation must have been active in the account for at least 30 days.
+    facts: [ri-market-term, ri-market-active]
 ---
 EC2 design choices include the instance type, tenancy and how capacity is paid for. Reading the instance name and understanding charges across its lifecycle helps you choose and operate instances.
 
@@ -107,11 +124,12 @@ EC2 design choices include the instance type, tenancy and how capacity is paid f
 
 ### Exam cues
 
+- If the question says sell a Standard Reserved Instance, think marketplace eligibility, because the reservation needs a minimum remaining term and activation period.
+- If the question says sell an unused Convertible Reserved Instance, think unavailable, because Convertible reservations cannot be sold in the Reserved Instance Marketplace.
 - If the question says `m5.2xlarge`, think series `m`, generation `5` and size `2xlarge`, because the name separates the family from the size.
 - If the question says a default-tenancy VPC and a dedicated launch template, think Dedicated Instances, because the template can request dedicated tenancy.
 - If the question says stop development instances outside business hours across accounts, think Instance Scheduler on AWS, because it uses tags and schedules.
 - If the question says an unused Standard Reserved Instance after a Region move, think Reserved Instance Marketplace, because customers can sell unused Standard reservations there.
-
 - If the question says resize an EBS-backed EC2 instance without downtime, think a different scaling design, because changing its type requires a stop and start.
 - If the question says an empty Dedicated Host still incurs charges, think host allocation, because billing does not depend on the number of running instances.
 

@@ -81,6 +81,12 @@ facts:
   - id: package-sizes
     text: "A .zip deployment package uploaded directly is limited to 50 MB (larger files go through Amazon S3), and a container image can be up to 10 GB uncompressed."
     source: https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#function-configuration-deployment-and-execution
+  - id: env-helpers-decrypt
+    text: Lambda console encryption helpers require function code and execution role permission to decrypt selected environment variables.
+    source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars-encryption.html
+  - id: env-key-permissions
+    text: A customer managed KMS key lets a user control who can decrypt Lambda environment variables in the console.
+    source: https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars-encryption.html
 diagrams:
   - id: lambda-weighted-alias-routing
     title: Only alias invocations participate in a weighted release
@@ -137,6 +143,14 @@ diagrams:
       - The alias routes part of the requests to its primary published version.
       - The remaining configured weight routes to the second published version.
 cards:
+  - id: lambda-082
+    q: What must a Lambda function have to use environment variables encrypted with console encryption helpers?
+    a: Code to decrypt the values and permission for its execution role to call kms:Decrypt.
+    facts: [env-helpers, env-helpers-decrypt]
+  - id: lambda-083
+    q: How can an administrator control who can decrypt Lambda environment variables in the console?
+    a: Use a customer managed KMS key and control its decrypt permissions.
+    facts: [env-encryption, env-key-permissions]
   - id: lambda-013
     q: Which Lambda version settings are fixed after publication, and what can a weighted alias target?
     a: Published code and most configuration are fixed; operational settings such as triggers and destinations can still change. A weighted alias routes between at most two published versions, never $LATEST.
@@ -216,6 +230,7 @@ Lambda versions preserve a release while aliases give callers a stable name for 
 
 ### Exam cues
 
+- If the question says decrypt values encrypted with Lambda console helpers, think function code and execution role permission, because both are needed for client-side decryption.
 - If the question says a gradual release sends all requests to new code, think the caller target, because `$LATEST` and direct version calls bypass alias weights.
 - If the question says share a fixed dependency release across ZIP functions, think a layer-version ARN, because each layer version preserves its contents.
 - If the question says a custom image runs in Docker but not Lambda, think the Runtime API, because an ordinary container entry point alone does not implement Lambda's invocation contract.

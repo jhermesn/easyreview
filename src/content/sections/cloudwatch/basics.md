@@ -18,7 +18,14 @@ facts:
   - id: purpose
     text: Amazon CloudWatch monitors AWS resources and applications in real time, covering resource utilization, application performance and operational health.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
+  - id: sensitive-logs
+    text: CloudWatch Logs data protection policies detect selected sensitive data in newly ingested log events and mask it when viewed.
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html
 cards:
+  - id: cloudwatch-132
+    q: How can a team mask selected sensitive data in newly ingested Amazon CloudWatch Logs events?
+    a: Configure a CloudWatch Logs data protection policy to detect and mask those data types.
+    facts: [sensitive-logs]
   - id: cloudwatch-124
     q: "How can Amazon CloudWatch support data governance through logging?"
     a: "It collects, stores and queries logs."
@@ -53,6 +60,7 @@ Amazon CloudWatch is the monitoring service of AWS: it collects metrics and logs
 
 - If the question says monitor performance, set a threshold alert or view a dashboard, think CloudWatch.
 - If the question says collect logs from servers, think CloudWatch Logs with the CloudWatch agent.
+- If the question says mask sensitive data in new log events, think a CloudWatch Logs data protection policy, because it detects selected data types and masks them in output.
 
 ### Remember
 

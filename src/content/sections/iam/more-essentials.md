@@ -3,6 +3,12 @@ title: IAM policy types and review tools
 level: foundational
 order: 120
 facts:
+  - id: groups-account-quota
+    text: "IAM sets a quota for the number of user groups in an AWS account."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html#reference_iam-quotas-entities
+  - id: access-analyzer-generation
+    text: "IAM Access Analyzer can create a policy template based on CloudTrail activity for an IAM user or role."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html
   - id: aws-managed
     text: AWS managed policies are standalone policies created and administered by AWS; customers can't modify them, and they can be attached to many identities.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#access_policies_managed-vs-inline
@@ -39,6 +45,14 @@ facts:
       supported resources.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html#what-is-access-analyzer-resource-identification
 cards:
+  - id: iam-132
+    q: "Does IAM limit the number of user groups in an AWS account?"
+    a: "Yes. IAM sets an account quota for user groups."
+    facts: [groups-account-quota]
+  - id: iam-131
+    q: "Which IAM feature can generate a policy template from a user or role CloudTrail activity?"
+    a: "IAM Access Analyzer policy generation."
+    facts: [access-analyzer-generation]
   - id: iam-079
     q: What are the three kinds of identity-based policies in IAM?
     a: "- AWS managed: created and maintained by AWS, can't be edited\n- Customer managed: you create and edit them, reusable\n- Inline: embedded in one user, group or role"
@@ -99,6 +113,8 @@ IAM offers different policy types and tools to manage and review permissions. Us
 
 ### Exam cues
 
+- If the question says an account cannot create more IAM groups, think the account group quota, because IAM limits the number of groups.
+- If the question says build a policy from recorded user or role activity, think IAM Access Analyzer policy generation, because it uses CloudTrail activity.
 - If the question says a reusable policy you can edit, think customer managed policy, because it can be attached to many identities.
 - If the question says a person changes jobs, think changing their group memberships, because an administrator can move the user from the old groups to the new ones.
 - If the question says audit users' passwords, access keys and MFA, think credential report, because it lists their status for all account users.

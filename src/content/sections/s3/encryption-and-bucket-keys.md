@@ -102,6 +102,21 @@ facts:
   - id: default-encryption-existing
     text: "Setting bucket default encryption leaves the encryption of objects already stored in the bucket unchanged."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-bucket-encryption.html
+  - id: client-wrapping-key
+    text: "The Amazon S3 Encryption Client supports wrapping keys including AWS KMS keys and raw AES or RSA keys, subject to client language support."
+    source: https://docs.aws.amazon.com/amazon-s3-encryption-client/latest/developerguide/concepts.html
+  - id: sse-s3-header
+    text: "An S3 upload can explicitly request SSE-S3 with the x-amz-server-side-encryption header set to AES256."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/specifying-s3-encryption.html
+  - id: sse-c-headers
+    text: "SSE-C uses customer algorithm, customer key and customer key MD5 request headers."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/specifying-s3-c-encryption.html
+  - id: explicit-sse-s3-policy
+    text: "An S3 bucket policy can require an explicit SSE-S3 request header, rejecting uploads that omit it even when bucket default encryption is enabled."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html
+  - id: aws-managed-key-rotation
+    text: "AWS KMS automatically rotates AWS managed key material every year."
+    source: https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html
 cards:
   - id: s3-014
     q: What encryption does S3 apply to a new upload with no encryption settings?
@@ -173,6 +188,26 @@ cards:
     q: "An Amazon S3 bucket changes its default encryption to SSE-KMS. Does that change objects already stored there?"
     a: "No. Existing objects keep their encryption settings; changing the default does not update them."
     facts: [default-encryption-existing]
+  - id: s3-222
+    q: "Which wrapping keys can the Amazon S3 Encryption Client use?"
+    a: "AWS KMS keys or raw AES or RSA keys, subject to client language support."
+    facts: [client-wrapping-key]
+  - id: s3-226
+    q: "Which request header value explicitly selects SSE-S3 for an Amazon S3 upload?"
+    a: "Set x-amz-server-side-encryption to AES256."
+    facts: [sse-s3-header]
+  - id: s3-227
+    q: "Which request headers identify an SSE-C key in an Amazon S3 request?"
+    a: "The customer algorithm, customer key and customer key MD5 headers."
+    facts: [sse-c-headers]
+  - id: s3-228
+    q: "Why might an Amazon S3 upload fail when default SSE-S3 encryption is enabled?"
+    a: "A bucket policy can require an explicit SSE-S3 header and deny requests that omit it."
+    facts: [explicit-sse-s3-policy]
+  - id: s3-229
+    q: "How often does AWS KMS rotate AWS managed key material used with Amazon S3?"
+    a: "Every year. S3 describes its SSE-S3 root key rotation as regular."
+    facts: [aws-managed-key-rotation, sse-s3-unique-key]
 ---
 S3 server-side encryption protects object data at rest, meaning while stored on disk. S3 encrypts data during storage and decrypts it for authorized reads; the encryption option determines who controls the keys.
 
@@ -193,6 +228,11 @@ S3 server-side encryption protects object data at rest, meaning while stored on 
 
 ### Exam cues
 
+- If the question asks about rotation of AWS managed KMS keys, think annual rotation, because KMS rotates their key material every year.
+- If the question says uploads fail despite default SSE-S3 encryption, think a policy requiring the explicit header, because a request without it is denied.
+- If the question says an S3 request supplies its own encryption key, think SSE-C customer algorithm, key and key MD5 headers.
+- If the question says explicitly request SSE-S3 on upload, think the encryption header with AES256, because that value selects SSE-S3.
+- If the question says encrypt before sending to S3 with a local key or KMS key, think the S3 Encryption Client, because it supports both types with language-specific limitations.
 - If the question says S3 KMS request costs are high, think Bucket Keys, because a short-lived bucket-level key reduces calls to KMS.
 - If the question says S3 uploads must explicitly request KMS encryption, think a bucket-policy deny for a missing or different encryption header, because a default is overridable.
 - If the question says S3 encrypted objects must be shared across accounts, think a customer managed KMS key, because the AWS managed S3 key cannot support that sharing.

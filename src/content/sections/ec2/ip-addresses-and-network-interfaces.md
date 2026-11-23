@@ -45,6 +45,18 @@ facts:
   - id: enhanced-networking-free
     text: "Enhanced networking uses SR-IOV for higher bandwidth, higher packets per second and lower latency between instances, at no additional charge."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html
+  - id: termination-protection-asg
+    text: EC2 termination protection does not stop Auto Scaling from terminating unhealthy instances or terminating instances during scale-in.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingDisableAPITermination.html
+  - id: intel-82599-families
+    text: Intel 82599 VF enhanced networking is used by the C3, C4, D2, I2, M4 except m4.16xlarge, and R3 instance families.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html
+  - id: t3a-nitro
+    text: EC2 T3a instances use the AWS Nitro System.
+    source: https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html
+  - id: nitro-ena
+    text: Nitro-based EC2 instances use Elastic Network Adapter for enhanced networking.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html
 cards:
   - id: ec2-077
     q: A licensed application is tied to a fixed public IP. If its EC2 instance fails, a standby instance must take over at the same address quickly. What fits?
@@ -94,6 +106,15 @@ cards:
     q: "Is there an extra charge for enabling EC2 enhanced networking for higher bandwidth and lower latency?"
     a: "No. Enhanced networking has no additional charge on supported instance types."
     facts: [enhanced-networking-free]
+  - id: ec2-134
+    q: Does EC2 termination protection prevent Auto Scaling from replacing an unhealthy instance or terminating it during scale-in?
+    a: No. Termination protection does not stop those Auto Scaling actions.
+    trap: true
+    facts: [termination-protection-asg]
+  - id: ec2-145
+    q: Which enhanced networking interface does an EC2 T3a instance use?
+    a: Elastic Network Adapter (ENA). T3a is Nitro-based, and Nitro-based instances use ENA.
+    facts: [t3a-nitro, nitro-ena]
 ---
 An EC2 instance's network identity is its network interfaces and their addresses. Knowing which addresses stay and which can move answers most failover and licensing questions.
 
@@ -114,12 +135,15 @@ An EC2 instance's network identity is its network interfaces and their addresses
 
 ### Exam cues
 
+- If the question says enhanced networking on a T3a instance, think ENA, because T3a uses the Nitro System.
+- If the question says move an EC2 network interface to a replacement, think a secondary interface, because the primary interface cannot be detached.
 - If the question says keep the same public IP across instance replacement, think Elastic IP.
 - If the question says MAC-bound license or a management network, think a secondary network interface.
 - If the question says prevent accidental termination, think termination protection (and check shutdown behavior).
 
 ### Remember
 
+- Intel 82599 VF enhanced networking applies to older instance families, including C3, C4, D2, I2, most M4 and R3.
 - Private IPv4 always; public IPv4 and IPv6 optional. Public IPv4 translation takes place at the internet gateway.
 - Network interfaces stay within one AZ.
 - Termination protection doesn't stop an OS-initiated terminate.

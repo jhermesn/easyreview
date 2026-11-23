@@ -27,6 +27,12 @@ facts:
   - id: custom
     text: Custom health checks can report application-specific health problems to Auto Scaling.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-checks-overview.html#available-health-checks
+  - id: regional-group
+    text: "An EC2 Auto Scaling group spans one AWS Region and can use multiple Availability Zones within that Region."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html#auto-scaling-benefits
+  - id: capacity-reservations
+    text: "EC2 Auto Scaling can launch group instances into matching EC2 Capacity Reservations."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/use-ec2-capacity-reservations.html#how-to-use-capacity-reservations
 cards:
   - id: ec2-auto-scaling-084
     q: "Traffic to a web app doubles every evening. How can the number of EC2 instances follow the load automatically?"
@@ -51,6 +57,14 @@ cards:
       - lattice
       - ebs
       - custom
+  - id: ec2-auto-scaling-092
+    q: "Can one EC2 Auto Scaling group span Availability Zones in different AWS Regions?"
+    a: "No. A group can span multiple Availability Zones within one Region."
+    facts: [regional-group]
+  - id: ec2-auto-scaling-093
+    q: "How can an EC2 Auto Scaling group use reserved compute capacity?"
+    a: "Launch matching instances into EC2 Capacity Reservations."
+    facts: [capacity-reservations]
 ---
 Amazon EC2 Auto Scaling adds and removes EC2 instances so capacity matches demand, which supports elasticity and availability.
 
@@ -62,6 +76,8 @@ Amazon EC2 Auto Scaling adds and removes EC2 instances so capacity matches deman
 
 ### Exam cues
 
+- If the question says an Auto Scaling group should use reserved EC2 capacity, think Capacity Reservations, because matching group instances can launch into them.
+- If the question says an EC2 Auto Scaling group must survive an Availability Zone failure, think multiple zones in one Region, because a group can span those zones.
 - If the question says match the number of EC2 instances to demand, think EC2 Auto Scaling.
 
 ### Remember

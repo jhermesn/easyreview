@@ -27,6 +27,12 @@ facts:
   - id: global-network
     text: Regions are interconnected through the AWS global network, which provides private, high-bandwidth, low-latency connectivity.
     source: https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/regions.html#regions
+  - id: recovery-routing
+    text: "Regional disaster recovery can route traffic to a recovery endpoint after failover."
+    source: https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud
+  - id: recovery-testing
+    text: "AWS recommends regularly testing a disaster recovery strategy."
+    source: https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#disaster-recovery-options-in-the-cloud
 cards:
   - id: global-infrastructure-011
     q: Name four reasons to run a workload in more than one AWS Region.
@@ -49,6 +55,10 @@ cards:
     a: No. The infrastructure, configuration and application code must also be redeployed in the recovery Region, ideally with infrastructure as code.
     trap: true
     facts: [backup-other-region]
+  - id: global-infrastructure-027
+    q: "How should a multi-Region AWS disaster recovery plan prepare data, traffic and recovery procedures?"
+    a: "Replicate data, plan routing to the recovery Region, and test the recovery strategy regularly."
+    facts: [backup-other-region, recovery-routing, recovery-testing]
 ---
 A single Region already spans several Availability Zones, which handles the loss of a data center. A second Region protects against problems that hit a whole Region. It also brings the workload closer to users elsewhere, and keeps data in the countries that require it.
 
@@ -68,6 +78,7 @@ A single Region already spans several Availability Zones, which handles the loss
 
 ### Exam cues
 
+- If the question says recover a workload in another Region, think replication, failover routing and regular recovery tests, because data and traffic must reach a usable recovery environment.
 - If the question says survive the loss of an entire Region, think multiple Regions, not more AZs.
 - If the question says data must remain in a country or area, think choose the Region there.
 - If the question says users on another continent see high latency, think a Region near them, or edge locations for cached content.

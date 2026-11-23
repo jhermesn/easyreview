@@ -36,6 +36,12 @@ facts:
   - id: sustainability-principles
     text: "Sustainability design principles: understand your impact, establish sustainability goals, maximize utilization, anticipate and adopt more efficient hardware and software, align the computational approach to problem complexity, and minimize the footprint of data and its processing."
     source: https://docs.aws.amazon.com/wellarchitected/latest/framework/sus-design-principles.html#sus-design-principles
+  - id: performance-right-sizing
+    text: The Well-Architected performance efficiency pillar recommends choosing compute resources that match a workload's performance characteristics.
+    source: https://docs.aws.amazon.com/wellarchitected/2023-04-10/framework/perf_select_compute_right_sizing.html
+  - id: scalability
+    text: Scalability measures a system's ability to grow as demand increases.
+    source: https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html
 cards:
   - id: well-architected-002
     q: A team wants to run its workload effectively, learn from operations and keep improving its procedures. Which AWS Well-Architected pillar covers this?
@@ -81,6 +87,14 @@ cards:
     q: "\"Maximize utilization\" and \"minimize the footprint of data and its processing\" are design principles of which Well-Architected pillar?"
     a: "Sustainability."
     facts: [sustainability-principles]
+  - id: well-architected-027
+    q: Which AWS Well-Architected pillar includes choosing compute resources to match workload performance requirements?
+    a: Performance efficiency. Use workload characteristics to select suitable compute resources.
+    facts: [performance-right-sizing]
+  - id: well-architected-028
+    q: What does scalability measure in the AWS Well-Architected Framework?
+    a: A system's ability to grow to accommodate increased demand.
+    facts: [scalability]
 ---
 The AWS Well-Architected pillars address different aspects of a workload, from running it effectively to using resources efficiently and reducing its environmental impact. Their design principles help teams identify practices for each goal.
 
@@ -94,6 +108,8 @@ The AWS Well-Architected pillars address different aspects of a workload, from r
 
 ### Exam cues
 
+- If the question says a system must grow with demand, think scalability, because it measures the ability to accommodate increased demand.
+- If the question says choose compute types and sizes for workload performance, think performance efficiency, because resources should match the workload profile.
 - If the question says improve procedures and learn from operations, think operational excellence, because it focuses on running workloads effectively and improving operations.
 - If the question says keep computing resources efficient as demand changes, think performance efficiency, because it addresses efficiency as requirements and technology change.
 - If the question says deliver business value at the lowest price point, think cost optimization, because its goal includes both value and cost.

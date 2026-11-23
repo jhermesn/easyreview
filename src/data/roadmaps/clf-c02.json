@@ -138,7 +138,8 @@
         "elasticache",
         "neptune",
         "documentdb",
-        "dms"
+        "dms",
+        "memorydb"
       ]
     },
     {
@@ -164,7 +165,8 @@
         "macie",
         "detective",
         "security-hub",
-        "artifact"
+        "artifact",
+        "network-firewall"
       ]
     },
     {
@@ -187,7 +189,8 @@
         "service-catalog",
         "license-manager",
         "cloudformation",
-        "cdk"
+        "cdk",
+        "ec2-image-builder"
       ]
     },
     {
@@ -213,7 +216,9 @@
         "amplify",
         "iot-core",
         "appstream",
-        "workspaces"
+        "workspaces",
+        "amazon-mq",
+        "codedeploy"
       ]
     },
     {
@@ -244,7 +249,8 @@
         "textract",
         "kendra",
         "transcribe",
-        "translate"
+        "translate",
+        "data-exchange"
       ]
     },
     {

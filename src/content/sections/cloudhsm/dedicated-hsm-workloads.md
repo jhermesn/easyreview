@@ -66,7 +66,14 @@ facts:
   - id: tde
     text: "CloudHSM can hold the transparent data encryption (TDE) master key for databases such as Oracle that encrypt their files before writing to disk."
     source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/use-cases.html#use-cases
+  - id: backup-recovery
+    text: A new CloudHSM cluster can be created from a backup containing the required keys.
+    source: https://docs.aws.amazon.com/cloudhsm/latest/userguide/backups-using.html
 cards:
+  - id: cloudhsm-015
+    q: A team needs to recover CloudHSM keys in a new cluster. What should it use?
+    a: Create the cluster from a backup containing the required keys.
+    facts: [backup-recovery]
   - id: cloudhsm-001
     q: A security team requires dedicated hardware security modules under its control. Which AWS service fits?
     a: AWS CloudHSM provides single-tenant HSMs and customer control of HSM users and keys.
@@ -142,6 +149,7 @@ AWS CloudHSM provides dedicated hardware security modules (HSMs), devices that s
 - If the question says dedicated hardware under customer control, think CloudHSM, because it provides single-tenant HSMs and customer-managed users.
 - If the question says KMS integration and customer-controlled HSMs, think a CloudHSM key store, because its KMS key material and operations use the customer's cluster.
 - If the question says newly generated keys need durability across zones, think at least three HSMs in different Availability Zones, because AWS recommends that configuration.
+- If the question says recover keys in a new CloudHSM cluster, think a backup containing those keys, because a new cluster can be created from it.
 
 ### Remember
 

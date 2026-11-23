@@ -29,6 +29,9 @@ facts:
   - id: origin-transfer-free
     text: "Data transfer from AWS origins, such as S3 or an ALB, to CloudFront is not charged."
     source: https://aws.amazon.com/cloudfront/pricing/
+  - id: anycast-static-ips
+    text: "CloudFront distributions can use Anycast static IP lists for network allowlisting."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/request-static-ips.html
 cards:
   - id: cloudfront-027
     q: When should a CloudFront distribution use geographic restrictions rather than AWS WAF geo match?
@@ -59,6 +62,10 @@ cards:
     q: "Serving S3 content through CloudFront instead of straight from S3: is the S3 to CloudFront transfer billed?"
     a: "No. Transfer from AWS origins to CloudFront is free; you pay CloudFront delivery to viewers."
     facts: [origin-transfer-free]
+  - id: cloudfront-064
+    q: "How can a network allowlist a fixed set of addresses for a CloudFront distribution?"
+    a: "Request and associate an Anycast static IP list."
+    facts: [anycast-static-ips]
 ---
 CloudFront offers distribution settings for access, origin connectivity and request handling. These choices help control who can connect, where requests go and which responses can be cached.
 
@@ -71,6 +78,7 @@ CloudFront offers distribution settings for access, origin connectivity and requ
 
 ### Exam cues
 
+- If the question says allowlist CloudFront distribution addresses, think an Anycast static IP list, because a distribution can use the assigned static addresses.
 - If the question says restrict a whole distribution by country, think CloudFront geographic restrictions, because they use a distribution-wide allowlist or denylist.
 - If the question says combine geography with other conditions, think AWS WAF geo match, because CloudFront geo-blocked requests do not reach WAF.
 - If the question says check client certificates during connection establishment, think Connection Function, because it can allow or deny the TLS connection.

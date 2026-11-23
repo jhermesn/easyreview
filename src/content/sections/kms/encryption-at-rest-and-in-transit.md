@@ -27,7 +27,14 @@ facts:
   - id: rds-at-create
     text: An Amazon RDS DB instance is encrypted when it is created; to encrypt an existing one, restore from an encrypted copy of its snapshot, or use a blue/green deployment whose green environment is encrypted.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
+  - id: launch-wizard-sap
+    text: AWS Launch Wizard for SAP supports customer managed KMS keys for EBS volume encryption.
+    source: https://docs.aws.amazon.com/launchwizard/latest/userguide/launch-wizard-security.html
 cards:
+  - id: kms-050
+    q: Can AWS Launch Wizard for SAP use a customer managed KMS key to encrypt EBS volumes?
+    a: Yes. Launch Wizard for SAP supports customer managed KMS keys for EBS encryption.
+    facts: [launch-wizard-sap]
   - id: kms-038
     q: What is the difference between encryption at rest and encryption in transit on AWS?
     a: "- At rest: protects stored data, such as in Amazon S3, Amazon EBS or a database\n- In transit: protects data moving between systems, usually with TLS"
@@ -64,6 +71,7 @@ Encryption protects data in two states. Data at rest sits in storage; data in tr
 
 ### Exam cues
 
+- If the question says encrypt EBS volumes for a Launch Wizard for SAP deployment with a customer managed key, think AWS KMS, because Launch Wizard supports those keys.
 - If the question says manage the keys that encrypt stored data, think AWS KMS.
 - If the question says HTTPS certificates, think ACM.
 - If the question says protect data moving over the network, think encryption in transit (TLS).

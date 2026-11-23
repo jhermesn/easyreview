@@ -70,6 +70,15 @@ facts:
   - id: restore-events
     text: "S3 ObjectRestore event types report when a restore from S3 Glacier Flexible Retrieval or Deep Archive starts, completes, and when the temporary restored copy expires."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html#supported-notification-event-types
+  - id: one-destination
+    text: "Each S3 event notification configuration specifies one destination."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html
+  - id: sns-fanout
+    text: "An SNS topic can deliver published messages to multiple subscribed SQS queues."
+    source: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-subscribe-queue-sns-topic.html
+  - id: delete-event-version
+    text: "The S3 ObjectRemoved:Delete event reports permanent deletion of a version, while ObjectRemoved:DeleteMarkerCreated reports creation of a delete marker."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html
 diagrams:
   - id: s3-eventbridge-fifo
     title: Routing S3 events to a FIFO queue
@@ -183,6 +192,14 @@ cards:
     q: "An app must start processing as soon as a Glacier Deep Archive restore finishes. Which S3 event type fits?"
     a: "s3:ObjectRestore:Completed, sent to SNS, SQS, Lambda or EventBridge."
     facts: [restore-events]
+  - id: s3-237
+    q: "How can one Amazon S3 event notification reach multiple queues?"
+    a: "Send it to an SNS topic and subscribe the SQS queues to the topic."
+    facts: [one-destination, sns-fanout]
+  - id: s3-238
+    q: "Which Amazon S3 event distinguishes creation of a delete marker from permanent deletion of a version?"
+    a: "ObjectRemoved:DeleteMarkerCreated reports a marker; ObjectRemoved:Delete reports permanent version deletion."
+    facts: [delete-event-version]
 ---
 S3 event notifications start work when selected bucket events occur. They let a file arrival trigger processing without an application repeatedly listing the bucket.
 
@@ -197,6 +214,9 @@ S3 event notifications start work when selected bucket events occur. They let a 
 
 ### Exam cues
 
+- If the question says detect an S3 delete marker, think ObjectRemoved:DeleteMarkerCreated, because permanent version deletion uses ObjectRemoved:Delete.
+- If the question says send the same notification to multiple queues, think SNS fanout, because each subscribed SQS queue receives the message.
+- If the question says distribute one S3 event to several consumers, think an SNS topic with subscribers, because each S3 notification specifies one destination.
 - If the question says S3 arrivals must reach an SQS FIFO queue, think EventBridge, because native notifications do not support that destination.
 - If the question says S3 processing must survive consumer downtime, think SQS, because the queue stores notifications until consumers can handle them.
 - If the question says an S3-triggered Lambda repeatedly processes its own output, think input-prefix isolation or separate buckets, because output uploads can trigger the same notification.
@@ -206,7 +226,6 @@ S3 event notifications start work when selected bucket events occur. They let a 
 ### Remember
 
 - `s3:ObjectRemoved:DeleteMarkerCreated` reports a new delete marker; `s3:ObjectRemoved:Delete` reports an object deletion.
-
 - Native Lambda, SNS, and SQS targets must be in the bucket Region. SNS and SQS targets must be standard types.
 - Delivery is at least once, with possible duplicates and reordering.
 - Prefix and suffix filters do not support wildcards; overlapping filters for the same event types can be invalid.

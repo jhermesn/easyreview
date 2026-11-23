@@ -58,6 +58,12 @@ facts:
   - id: workgroups
     text: "Athena workgroups separate workloads, control team access, enforce settings, track query metrics and control costs."
     source: https://docs.aws.amazon.com/athena/latest/ug/workgroups-manage-queries-control-costs.html
+  - id: dynamodb-read-only
+    text: "The Athena DynamoDB connector queries DynamoDB tables but does not support write operations such as INSERT INTO."
+    source: https://docs.aws.amazon.com/athena/latest/ug/connectors-dynamodb.html
+  - id: sql-on-s3
+    text: "Amazon Athena runs standard SQL queries directly on data stored in Amazon S3."
+    source: https://docs.aws.amazon.com/athena/latest/ug/what-is.html
 diagrams:
   - id: athena-log-conversion
     title: Convert raw logs for selective scans
@@ -158,6 +164,14 @@ cards:
     q: "Two analytics teams share Amazon Athena and finance needs separate cost tracking and limits per team. What should be configured?"
     a: "A workgroup per team, which separates workloads, tracks query metrics and controls costs."
     facts: [workgroups]
+  - id: athena-023
+    q: "Can the Amazon Athena DynamoDB connector insert records into a DynamoDB table?"
+    a: "No. It queries tables but does not support write operations."
+    facts: [dynamodb-read-only]
+  - id: athena-024
+    q: "Which AWS service runs SQL directly on data stored in Amazon S3?"
+    a: "Amazon Athena."
+    facts: [sql-on-s3]
 ---
 Partitioning and columnar storage reduce the data Athena needs to read. A partition groups objects by a key such as date. A columnar file groups values by column so a query can read the fields it needs.
 
@@ -177,6 +191,8 @@ Partitioning and columnar storage reduce the data Athena needs to read. A partit
 
 ### Exam cues
 
+- If the question says run SQL directly on S3 data, think Athena, because it queries the data in place.
+- If the question says change DynamoDB records through Athena, think use another write method, because the connector supports queries but not writes.
 - If the question says queries scan years of logs for a date range, think date partition filters, because only matching partition locations need reading.
 - If the question says Parquet queries remain slow with many tiny files, think compaction, because columnar storage still has per-file overhead.
 - If the question says convert JSON logs to Parquet with Athena, think CTAS, because it creates a table from query output in the chosen format.

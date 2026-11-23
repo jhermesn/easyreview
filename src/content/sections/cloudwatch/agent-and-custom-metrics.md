@@ -49,6 +49,18 @@ facts:
   - id: lambda-insights
     text: "CloudWatch Lambda Insights adds a Lambda extension layer that reports system metrics such as CPU, memory, disk and network, plus diagnostics such as cold starts."
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights.html#Lambda-Insights
+  - id: ec2-host-metrics
+    text: "EC2 publishes CPUUtilization, NetworkPacketsOut and instance store disk read metrics to CloudWatch without a guest agent."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html
+  - id: disk-no-instance-store
+    text: "Without instance store volumes, EC2 instance store disk read metrics can be zero or unreported."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html
+  - id: memory-asg
+    text: "The CloudWatch agent can aggregate memory utilization by AutoScalingGroupName for an EC2 Auto Scaling policy."
+    source: https://aws.amazon.com/blogs/mt/create-amazon-ec2-auto-scaling-policy-memory-utilization-metric-linux/
+  - id: old-agent
+    text: "The deprecated CloudWatch Logs agent can send log files to CloudWatch Logs but does not support IMDSv2; use the unified CloudWatch agent for IMDSv2."
+    source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
 cards:
   - id: cloudwatch-005
     q: An EC2 application needs memory use, disk space use, and application log files in CloudWatch.
@@ -96,6 +108,18 @@ cards:
     q: "A team needs memory and CPU usage plus cold-start data for its Lambda functions in CloudWatch. What should it enable?"
     a: "Lambda Insights, the CloudWatch extension delivered as a Lambda layer."
     facts: [lambda-insights]
+  - id: cloudwatch-133
+    q: "Which EC2 metrics reach CloudWatch without a guest agent, and what happens to instance store disk reads without instance store volumes?"
+    a: "CPU utilization, outgoing network packets and instance store disk read metrics are published by EC2. Disk reads can be zero or absent without instance store volumes."
+    facts: [ec2-host-metrics, disk-no-instance-store]
+  - id: cloudwatch-134
+    q: "How can an EC2 Auto Scaling group scale on aggregate memory utilization using CloudWatch?"
+    a: "Configure the CloudWatch agent to collect memory and aggregate by AutoScalingGroupName, then use that metric in a scaling policy."
+    facts: [memory-asg]
+  - id: cloudwatch-135
+    q: "An EC2 instance requires IMDSv2 and forwards log files to CloudWatch Logs. Which CloudWatch agent should it use?"
+    a: "Use the unified CloudWatch agent. The older CloudWatch Logs agent is deprecated and does not support IMDSv2."
+    facts: [old-agent]
 ---
 The CloudWatch agent collects measurements and log files from inside a server. It fills the gap between EC2 host monitoring and what the operating system or application knows, such as memory use and free disk space.
 
@@ -108,6 +132,9 @@ The CloudWatch agent collects measurements and log files from inside a server. I
 
 ### Exam cues
 
+- If the question says scale an Auto Scaling group on memory, think CloudWatch agent aggregation by AutoScalingGroupName, because the group needs a shared memory metric.
+- If the question says IMDSv2 and log collection, think the unified CloudWatch agent, because the deprecated Logs agent does not support IMDSv2.
+- If the question says instance store disk reads are missing, think the instance storage configuration, because the metric can be absent or zero without instance store volumes.
 - If the question says EC2 memory and disk space are missing, think CloudWatch agent, because it collects guest measurements.
 - If the question says Lambda should emit metrics without PutMetricData, think EMF, because extraction happens from log events.
 - If the question says configure many agents consistently, think Systems Manager and Parameter Store, because they manage installation and shared configuration.

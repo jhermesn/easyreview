@@ -74,6 +74,9 @@ facts:
     text: ALB support for zonal shift and autoshift with cross-zone balancing enabled launched in
       November 2024.
     source: https://aws.amazon.com/about-aws/whats-new/2024/11/cross-zone-application-load-balancer-zonal-shift-autoshift
+  - id: alb-cross-zone-setting
+    text: "Application Load Balancer cross-zone load balancing is always enabled at the load balancer level, but a target group can override it and turn it off."
+    source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html
 cards:
   - id: application-recovery-controller-001
     q: One Availability Zone behind an ALB is impaired. Which ARC feature can move new traffic away
@@ -139,6 +142,10 @@ cards:
     a: Weekly, with traffic for one resource shifted away from a zone for about 30 minutes.
     facts:
       - practice
+  - id: application-recovery-controller-018
+    q: "Can an Application Load Balancer disable cross-zone load balancing for one target group?"
+    a: "Yes. Cross-zone load balancing stays enabled at the load balancer level, but the target group can turn it off."
+    facts: [alb-cross-zone-setting]
 diagrams:
   - id: arc-zonal-target-exclusion
     title: ALB shifts new traffic away from the impaired zone
@@ -216,6 +223,7 @@ ALB added zonal shift and autoshift support with cross-zone balancing enabled in
 
 ### Exam cues
 
+- If the question says turn off cross-zone balancing for one Application Load Balancer target group, think target group override, because the load balancer setting remains enabled.
 - If the question says one ALB zone is impaired, think zonal shift, because it moves new traffic to other zones in the same Region.
 - If the question says ALB cross-zone balancing is enabled, think zonal shift is still supported, because ALB can administratively exclude the affected zone's targets.
 - If the question says AWS should trigger evacuation, think zonal autoshift, because AWS telemetry starts the shift.

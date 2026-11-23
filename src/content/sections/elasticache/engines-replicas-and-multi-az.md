@@ -87,6 +87,18 @@ facts:
   - id: iam-auth
     text: "ElastiCache for Valkey or Redis OSS version 7 or later can authenticate connections with IAM identities instead of passwords."
     source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth-iam.html#auth-iam-overview
+  - id: iam-token-expiry
+    text: ElastiCache IAM authentication tokens are valid for 15 minutes.
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth-iam.html#auth-iam-limits
+  - id: iam-connection-expiry
+    text: An IAM-authenticated ElastiCache connection disconnects after 12 hours unless renewed with a fresh token.
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth-iam.html#auth-iam-limits
+  - id: iam-transaction-reauth
+    text: An IAM-authenticated ElastiCache connection can run data commands in MULTI/EXEC blocks, but cannot reauthenticate inside them.
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth-iam.html#auth-iam-limits
+  - id: auth-password
+    text: Valkey and Redis OSS AUTH can require clients to supply a password before running commands.
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/auth.html
 diagrams:
   - id: elasticache-multi-az
     title: A replica in another Availability Zone can become primary
@@ -211,6 +223,18 @@ cards:
     q: "How can applications reach an ElastiCache for Valkey cache without storing a password?"
     a: "IAM authentication (Valkey or Redis OSS 7 and later), with access granted by IAM policies."
     facts: [iam-auth]
+  - id: elasticache-029
+    q: How long can an IAM-authenticated Amazon ElastiCache connection remain open without reauthentication, and how long is its authentication token valid?
+    a: The connection disconnects after 12 hours without renewal. An IAM authentication token is valid for 15 minutes.
+    facts: [iam-token-expiry, iam-connection-expiry]
+  - id: elasticache-030
+    q: Can an IAM-authenticated Amazon ElastiCache connection reauthenticate inside a MULTI/EXEC transaction?
+    a: No. Data commands can run inside the transaction, but reauthentication must happen outside it.
+    facts: [iam-transaction-reauth]
+  - id: elasticache-031
+    q: What must a client provide before running commands on an Amazon ElastiCache Redis OSS server protected by AUTH?
+    a: The configured authentication token or password.
+    facts: [auth-password]
 ---
 ElastiCache keeps data in memory to serve application reads without repeatedly querying an underlying database. Choose an engine and a deployment type before deciding how to partition data, add replicas, or recover from failure.
 
@@ -233,6 +257,8 @@ ElastiCache keeps data in memory to serve application reads without repeatedly q
 
 ### Exam cues
 
+- If the question says protect commands on a Redis OSS server with AUTH, think a client password, because AUTH can require one before commands run.
+- If the question says renew an IAM-authenticated ElastiCache connection during a transaction, think reauthenticate outside the MULTI/EXEC block, because reauthentication is not supported inside it.
 - If the question says repeat database reads dominate load, think cache-aside, because cache hits avoid those database queries.
 - If the question says survive an Availability Zone failure, think Multi-AZ replicas, because a replica in another Zone can become primary.
 - If the question says spread write load across data partitions, think shards, because adding read replicas does not create additional writable partitions.
@@ -240,6 +266,7 @@ ElastiCache keeps data in memory to serve application reads without repeatedly q
 
 ### Remember
 
+- ElastiCache IAM tokens last 15 minutes; an authenticated connection disconnects after 12 hours unless renewed.
 - With cluster mode disabled, use the primary endpoint for writes and reader endpoint for replica connections. With cluster mode enabled, use the configuration endpoint and a cluster-aware client.
 - Cluster mode enabled defaults to Multi-AZ and requires automatic failover.
 - Valkey, Redis OSS, and Serverless Memcached support snapshots. Node-based Memcached does not. A restore creates a new cache.

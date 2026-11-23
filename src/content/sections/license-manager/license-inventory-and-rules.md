@@ -36,6 +36,9 @@ facts:
   - id: rds-limitations
     text: Automated discovery of RDS for Oracle or RDS for Db2 uses vCPU counting and does not support rules or hard license limits.
     source: https://docs.aws.amazon.com/license-manager/latest/userguide/create-license-configuration.html
+  - id: sns-notifications
+    text: "AWS License Manager can send notifications and alerts to an Amazon SNS topic."
+    source: https://docs.aws.amazon.com/license-manager/latest/userguide/settings-managed-licenses.html
 cards:
   - id: license-manager-001
     q: Which AWS service tracks software licenses across AWS and on-premises servers?
@@ -57,6 +60,10 @@ cards:
     q: A company must prevent a new deployment when its AWS License Manager license count would be exceeded. Which limit should it choose?
     a: A hard limit. A soft limit notifies when exceeded but does not prevent deployment.
     facts: [limits]
+  - id: license-manager-011
+    q: "How can AWS License Manager deliver license notifications to subscribers?"
+    a: "Configure an Amazon SNS topic in License Manager settings."
+    facts: [sns-notifications]
 ---
 
 AWS License Manager tracks software license use across AWS accounts and Regions and can manage licenses on servers outside AWS. Bring Your Own License (BYOL) means using existing licenses with cloud resources.
@@ -74,6 +81,7 @@ AWS License Manager tracks software license use across AWS accounts and Regions 
 
 ### Exam cues
 
+- If the question says send License Manager alerts to subscribers, think an SNS topic, because License Manager can publish notifications to it.
 - If the question says reuse existing software licenses on AWS, think BYOL and self-managed licenses, because their rules reflect the agreement.
 - If the question says track licenses on servers outside AWS, think License Manager with Systems Manager, because it can manage those servers' licenses.
 - If the question says count physical cores or sockets, think Dedicated Hosts, because those counting types require that tenancy.

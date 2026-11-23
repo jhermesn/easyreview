@@ -31,6 +31,12 @@ facts:
     text: The EKS HPA walkthrough documents a default five-minute scale-down timeframe that can be
       changed.
     source: https://docs.aws.amazon.com/eks/latest/userguide/horizontal-pod-autoscaler.html#hpa-sample-app
+  - id: hpa-metrics
+    text: "The EKS HPA needs a metrics source such as Metrics Server to obtain CPU and memory resource metrics."
+    source: https://docs.aws.amazon.com/eks/latest/userguide/horizontal-pod-autoscaler.html
+  - id: vpa-requests
+    text: "The Kubernetes Vertical Pod Autoscaler adjusts CPU and memory reservations for Pods."
+    source: https://docs.aws.amazon.com/eks/latest/userguide/vertical-pod-autoscaler.html
 diagrams:
   - id: eks-scaling-layers
     title: Replica demand and node capacity are separate
@@ -110,6 +116,14 @@ cards:
       Pods that do not fit and consolidation.
     facts:
       - auto-mode
+  - id: eks-064
+    q: "An Amazon EKS HPA cannot obtain CPU utilization. What component should the team check?"
+    a: "A resource metrics source such as Metrics Server."
+    facts: [hpa-metrics]
+  - id: eks-065
+    q: "Which Amazon EKS autoscaler adjusts Pod CPU and memory reservations rather than the replica count?"
+    a: "Vertical Pod Autoscaler. HPA adjusts the replica count."
+    facts: [vpa-requests ,hpa]
 ---
 EKS scaling has separate workload and compute decisions. The Horizontal Pod Autoscaler (HPA) changes the number of Pod replicas. A node autoscaler supplies machines where those Pods can run. More requested replicas need somewhere to fit.
 
@@ -129,6 +143,8 @@ EKS scaling has separate workload and compute decisions. The Horizontal Pod Auto
 
 ### Exam cues
 
+- If the question says adjust Pod CPU and memory reservations, think Vertical Pod Autoscaler, because HPA changes replica counts.
+- If the question says HPA cannot read CPU utilization, think Metrics Server, because HPA needs a source for resource metrics.
 - If the question says HPA increased replicas but they cannot be scheduled, think node capacity and placement constraints, because HPA changes replicas without provisioning nodes.
 
 ### Remember

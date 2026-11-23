@@ -61,6 +61,12 @@ facts:
   - id: cluster-endpoint-roles
     text: "For an RDS Multi-AZ DB cluster, the cluster endpoint connects to the writer for reads and writes, while the reader endpoint sends read-only connections to reader instances."
     source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts-connection-management.html#multi-az-db-clusters-concepts-connection-management-endpoint-types
+  - id: primary-storage-failure
+    text: "Failure of the storage underlying an RDS Multi-AZ DB instance primary can trigger automatic failover."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.Failover.html#Concepts.MultiAZ.Failover
+  - id: multi-az-cost
+    text: "An RDS Multi-AZ DB instance deployment costs more than Single-AZ because the standby adds instance and storage resources."
+    source: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_OnDemandDBInstances.html#USER_OnDemandDBInstances.MultiAZ
 diagrams:
   - id: rds-instance-multi-az
     title: Multi-AZ DB instance connection and replication paths
@@ -165,6 +171,14 @@ cards:
     q: "An Amazon RDS Multi-AZ DB cluster serves order updates and read-only reports. Which endpoints should the application use?"
     a: "The cluster writer endpoint for updates and the reader endpoint for reports. The reader endpoint creates read-only connections to reader instances."
     facts: [cluster-endpoint-roles]
+  - id: rds-115
+    q: "What happens if storage under an Amazon RDS Multi-AZ primary DB instance fails?"
+    a: "RDS can automatically fail over to the standby."
+    facts: [primary-storage-failure]
+  - id: rds-117
+    q: "Why does an Amazon RDS Multi-AZ DB instance deployment cost more than Single-AZ?"
+    a: "The standby adds instance and storage resources."
+    facts: [multi-az-cost]
 ---
 
 Multi-AZ keeps database copies in separate Availability Zones (AZs), which are isolated locations within an AWS Region. It lets RDS move database service to another AZ after an infrastructure failure. The RDS deployment models differ in whether their standby copies can serve reads.
@@ -180,6 +194,8 @@ Multi-AZ keeps database copies in separate Availability Zones (AZs), which are i
 
 ### Exam cues
 
+- If the question says compare RDS Single-AZ and Multi-AZ costs, think added standby resources, because Multi-AZ includes another instance and its storage.
+- If the question says storage under an RDS Multi-AZ primary fails, think automatic failover, because storage failure is a failover condition.
 - If the question says automatic recovery from an AZ failure, think Multi-AZ, because RDS manages a copy in another AZ and the failover.
 - If the question says reporting reads from a standby, think a Multi-AZ DB cluster or read replica, because the single standby of a Multi-AZ DB instance does not serve reads.
 - If the question says Java clients cannot reconnect after failover, think DNS cache settings, because an old cached address can hide the endpoint change.

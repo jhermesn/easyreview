@@ -58,6 +58,18 @@ facts:
   - id: nacl-subnet-boundary
     text: "Network ACL rules are evaluated when traffic enters or leaves a subnet, not for traffic routed within the subnet."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
+  - id: sg-ingress-api
+    text: "EC2 provides AuthorizeSecurityGroupIngress and RevokeSecurityGroupIngress to add and remove inbound security group rules."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/changing-security-group.html
+  - id: rdp-trusted
+    text: "AWS recommends limiting RDP security group access to specific trusted IP addresses or ranges."
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html
+  - id: default-sg-inbound
+    text: "The default security group initially allows inbound traffic from resources associated with that same security group."
+    source: https://docs.aws.amazon.com/vpc/latest/userguide/default-security-group.html#default-security-group-default-rules
+  - id: ftp-transfer-ports
+    text: "For an AWS Transfer Family FTP server in a VPC, configure TCP port 21 for control and ports 8192 through 8200 for data."
+    source: https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#create-server-in-vpc
 cards:
   - id: vpc-002
     q: A VPC subnet ACL allows inbound HTTPS, but a client gets no response. What return-path rule may
@@ -144,6 +156,22 @@ cards:
     q: "Amazon EC2 instances in two VPC subnets exchange requests and responses. Which network ACL directions must allow the traffic?"
     a: "Source outbound and destination inbound for the request; destination outbound and source inbound for the response."
     facts: [acl-stateless]
+  - id: vpc-112
+    q: "Which Amazon EC2 API operations add and remove security group ingress rules?"
+    a: "AuthorizeSecurityGroupIngress adds rules, and RevokeSecurityGroupIngress removes them."
+    facts: [sg-ingress-api]
+  - id: vpc-113
+    q: "What source should an Amazon EC2 security group allow for RDP administration?"
+    a: "The trusted administrator IP address or range."
+    facts: [rdp-trusted]
+  - id: vpc-114
+    q: "What inbound traffic does a new Amazon VPC default security group allow?"
+    a: "Traffic from resources associated with the same security group."
+    facts: [default-sg-inbound]
+  - id: vpc-115
+    q: "Which TCP ports should a security group allow for an AWS Transfer Family FTP server control and data channels?"
+    a: "Port 21 for control and ports 8192 through 8200 for data."
+    facts: [ftp-transfer-ports]
 ---
 
 Security groups and network access control lists (ACLs) control traffic at different places in a VPC. A security group protects its associated resources. A network ACL controls traffic crossing a subnet boundary, where a subnet is a range of addresses inside the VPC.
@@ -170,11 +198,15 @@ Before retiring an environment, preserve the replacement application's access an
 
 ### Exam cues
 
+- If the question says automate security group ingress changes, think the EC2 ingress authorization and revoke APIs, because they add and remove inbound rules.
+- If the question says allow RDP administration, think trusted administrator IP ranges, because broad inbound access exposes the service.
+- If the question says a default security group permits traffic among its members, think the default inbound self-reference, because it allows traffic from resources in that group.
+- If the question says configure FTP for AWS Transfer Family, think control and data channel rules, because the two channels use different ports.
 - If the question says block an IP range for an entire subnet, think an early ACL deny rule, because security groups cannot express deny rules.
 - If the question says inbound access works but replies fail, think the ACL return path, because responses need their own allow rule and the correct client ports.
 
 ### Remember
-
+- AWS Transfer Family FTP uses TCP 21 for control and 8192 through 8200 for data.
 - Between subnets, allow source outbound and destination inbound traffic, then both reverse directions for replies.
 - Numbered ACL rules: 1 to 32766. The asterisk rule denies unmatched traffic.
 - A new custom security group starts with no inbound rules and an allow-all outbound rule.

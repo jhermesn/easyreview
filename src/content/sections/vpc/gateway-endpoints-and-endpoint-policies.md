@@ -39,6 +39,9 @@ facts:
   - id: service-public-path
     text: "Traffic from a VPC public subnet to the public S3 or DynamoDB endpoint can leave through the internet gateway while remaining on the AWS network."
     source: https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html#gateway-endpoint-overview
+  - id: s3-policy-resources
+    text: "An S3 gateway endpoint policy can list bucket and object ARNs as allowed resources."
+    source: https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#edit-vpc-endpoint-policy-s3
 cards:
   - id: vpc-006
     q: An S3 gateway endpoint policy allows a bucket, but the request is denied. Why can that happen?
@@ -79,6 +82,10 @@ cards:
     q: "Amazon EC2 in a public VPC subnet reaches the public Amazon S3 endpoint through an internet gateway. Does this traffic leave the AWS network?"
     a: "No. This service traffic stays on the AWS network even though it uses the internet gateway."
     facts: [service-public-path]
+  - id: vpc-116
+    q: "How can an Amazon S3 gateway endpoint policy allow access to specific buckets and their objects?"
+    a: "List the bucket and object ARNs in the policy Resource field."
+    facts: [s3-policy-resources]
 diagrams:
   - id: vpc-s3-gateway-path
     title: S3 traffic follows the gateway endpoint route
@@ -135,6 +142,7 @@ A gateway endpoint gives a VPC a route to S3 or DynamoDB without NAT or an inter
 
 ### Exam cues
 
+- If the question says restrict S3 gateway endpoint access to specific buckets and objects, think bucket and object ARNs in the endpoint policy, because its resource list limits requests through the endpoint.
 - If the question says instances need S3 access without NAT in the same Region, think gateway endpoint plus route-table association, because its prefix-list route reaches S3 without an internet gateway.
 - If the question says clients connect from on premises or a peered VPC, think an S3 interface endpoint, because the gateway endpoint cannot extend across those connections. An interface endpoint provides a private network interface for the service.
 - If the question says a permissive endpoint policy still yields AccessDenied, think IAM and resource policy evaluation, because endpoint permission alone does not replace authorization.

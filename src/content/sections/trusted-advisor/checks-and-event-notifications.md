@@ -66,6 +66,9 @@ facts:
   - id: sg-ipv6-skip
     text: "The Trusted Advisor security group specific ports check does not evaluate security group rules for IPv6 traffic."
     source: https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html
+  - id: describe-checks
+    text: "DescribeTrustedAdvisorChecks lists available Trusted Advisor checks and their metadata."
+    source: https://docs.aws.amazon.com/awssupport/latest/APIReference/API_DescribeTrustedAdvisorChecks.html
 diagrams:
   - id: trusted-advisor-events
     title: Check status notification
@@ -115,7 +118,10 @@ cards:
     q: "A team wants to find Amazon EBS volumes that may be wasting money. How can AWS Trusted Advisor help?"
     a: "Use the Underutilized Amazon EBS volumes check to identify unattached volumes or volumes with very low write activity for cost review."
     facts: [ebs-underutilized]
-
+  - id: trusted-advisor-019
+    q: "Which AWS Support API operation lists available Trusted Advisor checks, and how are results retrieved?"
+    a: "DescribeTrustedAdvisorChecks lists checks. DescribeTrustedAdvisorCheckResult retrieves a check result."
+    facts: [describe-checks, result]
 ---
 AWS Trusted Advisor inspects your AWS environment and recommends improvements to cost, availability, performance and security. A check evaluates resources and reports results for review.
 
@@ -128,6 +134,7 @@ AWS Trusted Advisor inspects your AWS environment and recommends improvements to
 
 ### Exam cues
 
+- If the question says list available Trusted Advisor checks, think DescribeTrustedAdvisorChecks, because check results require a separate operation.
 - If the question says a team needs custom check status notifications, think EventBridge in US East (N. Virginia), because Trusted Advisor emits events there. Delivery is best effort.
 - If the question says alert on a check-result metric, think a CloudWatch alarm and SNS, because Trusted Advisor publishes metrics when checks refresh.
 - If the question says notify on a schedule, think EventBridge Scheduler invoking Lambda to query results and publish to SNS, because the Support API exposes check results.

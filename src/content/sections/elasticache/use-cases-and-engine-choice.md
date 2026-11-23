@@ -24,6 +24,12 @@ facts:
   - id: memcached-auto-discovery
     text: "For Memcached clusters, ElastiCache Auto Discovery lets client programs find every node and keep connections to all of them as nodes are added or removed; it is not available for Valkey or Redis OSS."
     source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoDiscovery.html#AutoDiscovery
+  - id: memcached-replacement-empty
+    text: A Memcached node automatically replaced by ElastiCache starts empty.
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/CacheNodes.NodeReplacement-mc.html
+  - id: memcached-failure-replacement
+    text: ElastiCache automatically detects and replaces failed cache nodes, which continue to fail until replacement completes.
+    source: https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/AutoDiscovery.Benefits.html
 cards:
   - id: elasticache-018
     q: A mobile game needs a real-time global leaderboard that updates with every score change for millions of players. Which service and data structure fit?
@@ -54,6 +60,14 @@ cards:
     q: "An app stores sessions in an ElastiCache Memcached cluster that scales its node count. How do clients keep track of the nodes?"
     a: "Memcached Auto Discovery, which lets clients find all nodes and connect to them automatically. It exists only for the Memcached engine."
     facts: [memcached-auto-discovery]
+  - id: elasticache-032
+    q: What happens to cached data when Amazon ElastiCache automatically replaces a Memcached node?
+    a: The replacement starts empty, so the application must repopulate its cache.
+    facts: [memcached-replacement-empty]
+  - id: elasticache-034
+    q: What does Amazon ElastiCache do when a Memcached node fails?
+    a: It detects and replaces the failed node. The node continues to fail until replacement completes.
+    facts: [memcached-failure-replacement]
 ---
 ElastiCache is more than a database cache. Valkey and Redis OSS add data structures, replication and pub/sub; Memcached stays a simple, multi-threaded object cache.
 
@@ -72,6 +86,8 @@ ElastiCache is more than a database cache. Valkey and Redis OSS add data structu
 
 ### Exam cues
 
+- If the question says a Memcached node fails, think automatic replacement, because ElastiCache detects and replaces failed nodes.
+- If the question says an ElastiCache Memcached node is replaced, think an empty replacement, because cached data is not restored to it.
 - If the question says leaderboard or ranking in real time, think ElastiCache with sorted sets.
 - If the question says high availability, replication or persistence for a cache, think Valkey or Redis OSS.
 - If the question says simple object caching on large multi-core nodes, think Memcached.

@@ -3,6 +3,9 @@ title: Credentials and MFA
 level: foundational
 order: 3
 facts:
+  - id: password-policy-timing
+    text: "Changed IAM password length and character requirements apply when users next change their passwords; expiration settings take effect immediately."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html#password-policy-rules
   - id: mfa
     text: Multi-factor authentication (MFA) requires a user to provide unique authentication from a device in addition to their sign-in credentials; it can protect the root user and IAM users.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html#id_credentials_mfa
@@ -42,7 +45,26 @@ facts:
   - id: mfa-devices
     text: A FIDO security key is a physical device, such as a YubiKey, plugged into the computer; a hardware TOTP token is a separate device that displays a six-digit code; a virtual MFA device is an app on a phone or computer.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html
+  - id: codecommit-ssh
+    text: An IAM user can associate an SSH public key with the user to authenticate SSH connections to CodeCommit repositories.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_ssh-keys.html
+  - id: ec2-key-pair
+    text: An EC2 key pair helps authenticate connections to an EC2 instance.
+    source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
 cards:
+  - id: iam-135
+    q: "When do changed IAM password length and character requirements affect existing user passwords?"
+    a: "At the next password change. Password expiration settings take effect immediately."
+    facts: [password-policy-timing]
+  - id: iam-127
+    q: How can an IAM user authenticate an SSH connection to a CodeCommit repository?
+    a: Associate the SSH public key with the IAM user and use the matching private key for the connection.
+    facts: [codecommit-ssh]
+  - id: iam-128
+    q: Does an EC2 instance key pair sign AWS API requests?
+    a: No. The key pair helps connect to the instance. AWS access keys sign programmatic API requests.
+    trap: true
+    facts: [ec2-key-pair, access-keys]
   - id: iam-085
     q: What does multi-factor authentication (MFA) add to an AWS sign-in?
     a: A second proof from a device the user has, such as a passkey, security key or authenticator app, on top of the password.
@@ -104,10 +126,13 @@ Credentials prove who is calling AWS. People sign in to the console with passwor
 
 ### Exam cues
 
+- If the question says IAM password complexity changed for existing users, think enforcement at their next password change, because existing passwords are not forced to change for those settings.
 - If the question says require a second factor at sign-in, think MFA.
 - If the question says password length and rotation rules, think account password policy.
 - If the question says store and rotate database credentials, think AWS Secrets Manager.
 - If the question says one sign-in for many accounts, think IAM Identity Center.
+- If the question says connect to CodeCommit over SSH, think an SSH public key associated with the IAM user, because CodeCommit uses the matching key pair for authentication.
+- If the question says connect to an EC2 instance, think an EC2 key pair, because AWS access keys instead sign API requests.
 
 ### Remember
 

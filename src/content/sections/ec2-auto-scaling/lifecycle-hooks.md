@@ -39,6 +39,12 @@ facts:
   - id: slow-start
     text: ALB slow start gradually increases traffic to a new healthy target; it is incompatible with least outstanding requests and weighted random routing.
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html#slow-start-mode
+  - id: termination-timeout
+    text: "An EC2 Auto Scaling termination lifecycle hook proceeds to termination when its wait timeout expires."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks-overview.html
+  - id: termination-events
+    text: "EC2 Auto Scaling emits a termination lifecycle action event when an instance enters the wait state and a successful termination event after termination."
+    source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-event-reference.html
 cards:
   - id: ec2-auto-scaling-014
     q: An EC2 Auto Scaling instance must finish installing software before load balancer registration. What should the group use?
@@ -74,6 +80,14 @@ cards:
     facts:
       - ssm
       - registration
+  - id: ec2-auto-scaling-096
+    q: "What happens when an EC2 Auto Scaling termination lifecycle hook times out before log collection finishes?"
+    a: "The instance proceeds toward termination when the wait expires."
+    facts: [termination-timeout]
+  - id: ec2-auto-scaling-097
+    q: "Which EC2 Auto Scaling event can start log collection before an instance terminates?"
+    a: "The termination lifecycle action event, emitted as the instance enters the wait state."
+    facts: [termination-events]
 diagrams:
   - id: asg-launch-hook-flow
     title: Launch hook before load balancer registration
@@ -141,6 +155,8 @@ A lifecycle hook pauses an EC2 Auto Scaling instance while custom work finishes.
 4. A termination hook holds an instance in Terminating:Wait while automation collects logs. Completing the action permits termination.
 ### Exam cues
 
+- If the question says collect logs before an Auto Scaling instance terminates, think a termination lifecycle action event, because the successful termination event arrives after termination.
+- If the question says log collection exceeds a termination hook timeout, think termination proceeds, because the wait has expired.
 - If the question says finish setup before receiving traffic, think launch hook, because registration waits for the action to complete.
 - If the question says collect logs before removal, think termination hook with EventBridge automation, because the instance pauses in Terminating:Wait.
 - If the question says initialize first and gradually increase traffic afterward, think launch hook plus ALB slow start, because they control different parts of startup.

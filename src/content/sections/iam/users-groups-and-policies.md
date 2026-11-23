@@ -3,6 +3,12 @@ title: Users, groups, and policies
 level: foundational
 order: 2
 facts:
+  - id: resource-wildcards
+    text: "Wildcards in an IAM Resource ARN can match multiple resources."
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_resource.html#reference_policies_elements_resource_wildcards
+  - id: s3-putobject
+    text: "The s3:PutObject permission is required to add an object to an S3 bucket."
+    source: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html
   - id: group
     text: An IAM user group is a collection of IAM users; policies attached to the group give its permissions to every user in it.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html#id_groups
@@ -31,6 +37,14 @@ facts:
     text: "An IAM Action value combines a service namespace and an operation name, such as s3:GetObject; wildcards can match several operations."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_action.html
 cards:
+  - id: iam-140
+    q: "Why should a team review wildcard resource ARNs in an IAM policy?"
+    a: "A wildcard can match resources beyond the intended resource."
+    facts: [resource-wildcards]
+  - id: iam-138
+    q: "Which IAM permission is required to add an object to an Amazon S3 bucket?"
+    a: "s3:PutObject."
+    facts: [s3-putobject]
   - id: iam-078
     q: Ten developers need the same permissions in AWS. What is the simplest way to manage them in IAM?
     a: Put the developers in an IAM user group and attach the policy to the group. Every user in it gets the permissions.
@@ -75,6 +89,10 @@ IAM controls who can do what in an AWS account. Users are identities for people,
 4. Start from AWS managed policies, then narrow them into customer managed policies that give only what each job needs.
 
 ### Exam cues
+
+- If the question says an IAM resource wildcard grants access too broadly, think multiple matching resources, because an ARN wildcard can extend the scope.
+- If the question says grant permission to upload an S3 object, think s3:PutObject, because adding an object requires that permission.
+
 
 - If the question says many users need the same permissions, think IAM group, because a group policy gives its permissions to each user in the group.
 - If the question says only the permissions needed for a task, think least privilege, because it limits actions on specific resources under specific conditions.

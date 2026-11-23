@@ -36,6 +36,24 @@ facts:
   - id: extended-history
     text: "Cost Explorer can add up to 38 months of multi-year data at monthly granularity for an organization, and daily resource-level data for chosen services covering the past 14 days."
     source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-multi-year-data.html
+  - id: billing-conductor-chargeback
+    text: "AWS Billing Conductor provides customized cost data for chargeback."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/what-is-costmanagement.html
+  - id: billing-conductor-invoice
+    text: "AWS Billing Conductor does not change the AWS invoice."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/what-is-costmanagement.html
+  - id: billing-conductor-pricing
+    text: "AWS Billing Conductor applies custom pricing to produce pro forma costs for billing groups."
+    source: https://docs.aws.amazon.com/billingconductor/latest/userguide/what-is-billingconductor.html
+  - id: ri-coverage-utilization
+    text: "AWS Cost Explorer provides reservation utilization and coverage reports."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-ris.html
+  - id: forecast-past-usage
+    text: "AWS Cost Explorer forecasts future AWS usage based on past usage."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/ce-forecast.html
+  - id: ri-usage-lookback
+    text: "AWS Cost Explorer bases reservation purchase recommendations on On-Demand usage in a selected historical lookback period."
+    source: https://docs.aws.amazon.com/cost-management/latest/userguide/ri-recommendations.html
 cards:
   - id: billing-and-cost-management-005
     q: Which AWS tool helps a company view and analyze its costs and usage?
@@ -73,6 +91,15 @@ cards:
     q: "A finance team needs to compare AWS costs year over year for the past three years in Cost Explorer. What should it enable?"
     a: "Multi-year data, which keeps up to 38 months at monthly granularity."
     facts: [extended-history]
+  - id: billing-and-cost-management-051
+    q: "A company wants custom chargeback data without changing its AWS invoice. Which service fits?"
+    a: "AWS Billing Conductor creates customized chargeback data separately from the AWS invoice."
+    facts: [billing-conductor-chargeback, billing-conductor-invoice]
+  - id: billing-and-cost-management-056
+    q: "Where can a team review reservation utilization and coverage in AWS Cost Explorer?"
+    a: "Use the Cost Explorer reservation reports."
+    facts: [ri-coverage-utilization]
+
 ---
 AWS Cost Explorer is the analysis tool for past and forecast costs. It charts spending by service, account, tag or other dimensions and helps find what drives cost.
 
@@ -91,6 +118,11 @@ AWS Cost Explorer is the analysis tool for past and forecast costs. It charts sp
 
 ### Exam cues
 
+- If the question says estimate reservation savings from past On-Demand usage, think Cost Explorer recommendations, because they use usage from a selected lookback period.
+- If the question says estimate future AWS usage from past usage, think Cost Explorer forecasts, because they use historical usage.
+- If the question says review reservation coverage and utilization, think Cost Explorer reservation reports, because they show both measures.
+- If the question says apply custom prices to a billing group, think AWS Billing Conductor, because its pro forma billing data uses configured pricing.
+- If the question says allocate customized costs to teams without changing the AWS invoice, think AWS Billing Conductor, because it supplies separate chargeback data.
 - If the question says visualize, analyze or understand cost trends, think AWS Cost Explorer.
 - If the question says Reserved Instance purchase recommendations, think Cost Explorer.
 - If the question says underutilized EC2 instances across accounts, think Cost Explorer rightsizing recommendations, because they show them in one view.
