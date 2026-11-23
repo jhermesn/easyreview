@@ -8,6 +8,7 @@ import { availableCerts, getCert, GOLDEN_TRAIL, isTrail, type Cert } from './cer
 import { getGuide } from './guides';
 import { hashFile, mergeSection, sectionProblems } from './translate';
 import { CATEGORIES, categoryName } from './categories';
+import { revisionTime } from './revisions';
 
 // `lang` is the language the entry's text is in: the page's locale when a fresh translation exists, else English.
 export type Unit = CollectionEntry<'units'> & { lang: Locale };
@@ -148,9 +149,6 @@ export function deckCards(view: CertView): DeckCard[] {
 
 export const sectionIds = (sections: Section[]) => sections.map((s) => s.id).join(',');
 
-// A revision counts from the end of its UTC day, so a reader who marked the section known earlier that day,
-// before the change shipped, still sees it as updated.
-const revisionTime = (date: Date) => date.getTime() + 86_400_000 - 1;
 export function latestRevision(s: Section): { at: number; date: Date; note: string } | undefined {
   const last = [...s.data.revised].sort((a, b) => b.date.getTime() - a.date.getTime())[0];
   return last && { at: revisionTime(last.date), date: last.date, note: last.note };
