@@ -37,7 +37,7 @@ facts:
     text: "Data transferred between EC2, RDS, Redshift and ElastiCache instances and network interfaces in the same Availability Zone over private IPs is free."
     source: https://aws.amazon.com/ec2/pricing/on-demand/
   - id: s3-bucket-transfer
-    text: "Data transfer between Amazon S3 buckets in the same AWS Region has no data transfer charge."
+    text: "Moving data from one Amazon S3 bucket to another within a single AWS Region has no data transfer charge."
     source: https://aws.amazon.com/s3/pricing/
   - id: s3-request-charges
     text: "Amazon S3 charges for requests to buckets and objects based on request type and quantity."
@@ -85,7 +85,7 @@ cards:
     a: "Keep them in the same Availability Zone and use private IP addresses."
     facts: [same-az-private-free]
   - id: billing-and-cost-management-052
-    q: "Does copying objects between Amazon S3 buckets in the same Region incur charges?"
+    q: "Does copying objects from one Amazon S3 bucket to another in the same Region cost anything?"
     a: "There is no data transfer charge for the copy. S3 request charges can still apply."
     facts: [s3-bucket-transfer, s3-request-charges]
   - id: billing-and-cost-management-053

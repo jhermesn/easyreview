@@ -1,5 +1,5 @@
 ---
-source: ae39de725529
+source: b834c3f46283
 title: Parceiros e Professional Services
 facts:
   apn: A AWS Partner Network (APN) é uma comunidade global de organizações que usam tecnologias, programas, financiamento e ferramentas da AWS para criar soluções e serviços para clientes.
@@ -12,6 +12,9 @@ facts:
   solutions-library: A AWS Solutions Library reúne soluções revisadas criadas pela AWS e por AWS Partners; a antiga página do AWS Quick Starts agora leva até ela.
   ams: O AWS Managed Services (AMS) é um serviço corporativo em que a AWS opera a infraestrutura do cliente, automatizando solicitações de mudança, monitoramento, aplicação de patches, segurança e backup, 24 horas por dia, todos os dias do ano.
   ams-advanced-end: O AMS Advanced deixou de aceitar novos clientes em 30 de junho de 2026 e chega ao fim do suporte em 30 de junho de 2027; as alternativas incluem o AMS Accelerate, o plano de suporte Unified Operations e serviços gerenciados de AWS Partners.
+  partner-paths: Os AWS Partner Paths substituíram os antigos tipos de parceiro de tecnologia e de consultoria por trilhas baseadas no que o parceiro oferece.
+  software-services-paths: O AWS Software Path é para organizações que desenvolvem software que roda na AWS ou se integra a ela; o Services Path cobre consultoria e outros serviços.
+  consulting-services: Os parceiros AWS Managed Service Provider prestam consultoria em planejamento, projeto, construção, migração e operação na nuvem.
 cards:
   technical-resources-006:
     q: O que é a AWS Partner Network (APN)?
@@ -40,6 +43,12 @@ cards:
   technical-resources-019:
     q: Qual equipe da AWS pode ajudar uma empresa a projetar e migrar suas cargas de trabalho na AWS?
     a: O AWS Professional Services ajuda organizações a projetar, construir, migrar e gerenciar cargas de trabalho na AWS.
+  technical-resources-020:
+    q: O que substituiu os antigos tipos de parceiro de tecnologia e de consultoria da AWS?
+    a: Os AWS Partner Paths, baseados no que cada parceiro oferece.
+  technical-resources-021:
+    q: Quais AWS Partner Paths servem para quem desenvolve software e para quem presta consultoria?
+    a: O Software Path, para software que roda na AWS ou se integra a ela; o Services Path, para consultoria e outros serviços.
 ---
 Quando um cliente precisa de mais do que documentação e casos de suporte, a AWS oferece pessoas. O AWS Professional Services e os arquitetos de soluções da AWS vêm da própria AWS; os membros da AWS Partner Network são empresas externas.
 
@@ -63,7 +72,9 @@ Quando um cliente precisa de mais do que documentação e casos de suporte, a AW
 
 ### Dicas para a prova
 
-- Se a questão fala em empresa terceira para ajudar na migração, pense em um AWS Partner (parceiro de consultoria ou integrador de sistemas).
+- Se a questão fala em empresa externa para ajudar a planejar, projetar e migrar cargas de trabalho na AWS, pense em um AWS Partner que presta serviços (o Services Path), porque parceiros oferecem consultoria do planejamento à operação.
+- Se a questão fala em parceiro que desenvolve software para a AWS, pense no Software Path; para consultoria e outros serviços, pense no Services Path.
+- Se a questão pede o modelo atual de parceiros da AWS, pense nos Partner Paths, porque eles substituíram os antigos tipos de parceiro de tecnologia e de consultoria.
 - Se a questão fala em especialistas da AWS em um projeto, pense no AWS Professional Services.
 - Se a questão fala em empresa de software vendendo na AWS, pense em ISV na APN e no AWS Marketplace.
 - Se a questão fala que a AWS deve operar a infraestrutura pela empresa, pense no AWS Managed Services (AMS).
