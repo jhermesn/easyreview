@@ -3,9 +3,6 @@ title: Parallel storage and S3 integration
 level: associate
 order: 10
 facts:
-  - id: workload
-    text: FSx for Lustre provides a managed high-performance Lustre file system for workloads such as machine learning, high-performance computing and video processing.
-    source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#what-is
   - id: interface
     text: FSx for Lustre is POSIX-compliant and provides a native file system interface for Linux applications.
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html#what-is
@@ -54,26 +51,11 @@ facts:
   - id: hybrid-access
     text: "On-premises clients can mount FSx for Lustre over Direct Connect or Site-to-Site VPN."
     source: https://docs.aws.amazon.com/fsx/latest/LustreGuide/fsx-on-premises.html
-diagrams:
-  - id: lustre-s3-transfer
-    title: Transfer between S3 and Lustre
-    width: 800
-    height: 190
-    nodes:
-      - { id: input, label: S3 repository, x: 30, y: 55, w: 170, h: 72, tone: storage, icon: simple-storage-service }
-      - { id: fsx, label: FSx for Lustre, x: 315, y: 55, w: 170, h: 72, tone: storage, icon: fsx-for-lustre }
-      - { id: output, label: Same repository, x: 600, y: 55, w: 170, h: 72, tone: storage, icon: simple-storage-service }
-    edges:
-      - { from: input, to: fsx, step: 1 }
-      - { from: fsx, to: output, step: 2 }
-    steps:
-      - Import metadata for linked S3 objects into the file system.
-      - Export file changes back to the linked repository using configured automatic export or a task.
 cards:
   - id: fsx-for-lustre-001
-    q: Which file system fits HPC or machine learning workloads that process S3 data as files?
-    a: FSx for Lustre. Link an S3 repository and choose scratch for temporary work or persistent storage for longer-lived workloads.
-    facts: [workload, s3-files, scratch, persistent]
+    q: How can an FSx for Lustre workload process S3 objects as files, and which deployment suits temporary or longer-lived work?
+    a: Link an S3 repository. Choose scratch for temporary work or persistent storage for longer-lived workloads.
+    facts: [s3-files, scratch, persistent]
   - id: fsx-for-lustre-002
     q: A short-lived FSx for Lustre processing job can recreate its data after a server failure. Which deployment fits?
     a: Scratch. It is designed for temporary processing and does not replicate data.
@@ -105,8 +87,27 @@ cards:
     a: "No. Backups work only on **persistent** file systems **not linked to S3**. Keep durable data in S3 or use a persistent deployment."
     trap: true
     facts: [backup-scope]
+diagrams:
+  - id: lustre-s3-transfer
+    title: Transfer between S3 and Lustre
+    width: 800
+    height: 190
+    nodes:
+      - { id: input, label: S3 repository, x: 30, y: 55, w: 170, h: 72, tone: storage, icon: simple-storage-service }
+      - { id: fsx, label: FSx for Lustre, x: 315, y: 55, w: 170, h: 72, tone: storage, icon: fsx-for-lustre }
+      - { id: output, label: Same repository, x: 600, y: 55, w: 170, h: 72, tone: storage, icon: simple-storage-service }
+    edges:
+      - { from: input, to: fsx, step: 1 }
+      - { from: fsx, to: output, step: 2 }
+    steps:
+      - Import metadata for linked S3 objects into the file system.
+      - Export file changes back to the linked repository using configured automatic export or a task.
+revised:
+  - date: 2026-11-23
+    note: The workload card now tests S3 integration and deployment choices.
+    cards: [fsx-for-lustre-001]
 ---
-Amazon FSx for Lustre provides a managed high-performance file system for workloads such as machine learning and high-performance computing. Linux applications can use its POSIX file interface, a standard way to access files.
+Linux applications can use the Amazon FSx for Lustre POSIX file interface, a standard way to access files.
 
 ### How it works
 

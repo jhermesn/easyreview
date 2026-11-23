@@ -25,9 +25,13 @@ cards:
     a: Migration Evaluator. It finds over-provisioned servers and compares license options.
     facts: [evaluator]
   - id: cloud-adoption-031
-    q: "How can Migration Evaluator help a company prepare for a move to AWS?"
-    a: "It builds a data-driven business case and identifies over-provisioned on-premises instances."
+    q: "Which licensing options can Migration Evaluator compare in an AWS business case?"
+    a: "Bring Your Own License and License Included options."
     facts: [evaluator]
+revised:
+  - date: 2026-11-23
+    note: The Migration Evaluator card now tests the licensing options it compares.
+    cards: [cloud-adoption-031]
 ---
 Migration planning tools help a company build a business case for AWS and follow application migrations. Migration Evaluator supports the business case, while AWS Migration Hub provides one place to plan and track migrations.
 

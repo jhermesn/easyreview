@@ -2024,7 +2024,8 @@
                 "security-hub/operations-in-depth",
                 "detective/finding-investigation",
                 "detective/operations-in-depth",
-                "inspector/ami-scanning-and-finding-prioritization"
+                "inspector/ami-scanning-and-finding-prioritization",
+                "detective/basics"
               ]
             }
           ]

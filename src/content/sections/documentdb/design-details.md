@@ -3,7 +3,6 @@ title: Compatibility, storage and backups
 level: associate
 order: 20
 facts:
-  - { id: managed, text: "Amazon DocumentDB is a managed MongoDB-compatible database service.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is" }
   - { id: differences, text: "Amazon DocumentDB has functional differences from MongoDB.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/functional-differences.html#functional-differences" }
   - { id: api, text: "Supported MongoDB APIs and operations vary by compatibility level.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/mongo-apis.html#mongo-apis-dababase-administrative" }
   - { id: snapshot, text: "A manual snapshot can retain backup data beyond the backup retention period.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/backup_restore.html#backup_restore" }
@@ -18,9 +17,9 @@ facts:
     source: https://aws.amazon.com/nosql/document/#ams%23what-isc2%23pattern-data
 cards:
   - id: documentdb-001
-    q: Which managed database supports MongoDB-compatible document workloads?
-    a: Amazon DocumentDB. Check the supported API operations and functional differences before migration.
-    facts: [managed, differences, api]
+    q: What should a team check before migrating a MongoDB application to Amazon DocumentDB?
+    a: Check the supported API operations for the compatibility level and review functional differences.
+    facts: [differences, api]
   - id: documentdb-006
     q: A team must retain an Amazon DocumentDB backup beyond the continuous backup retention period. What should it create?
     a: A manual cluster snapshot.
@@ -37,8 +36,12 @@ cards:
     q: "A team is considering Amazon DocumentDB for a product catalog whose records have different attributes. Why does a document model fit?"
     a: "Documents can represent products with different attribute sets, matching the variable structure of a product catalog."
     facts: [catalog-workloads]
+revised:
+  - date: 2026-11-23
+    note: The migration card now tests API compatibility and functional differences.
+    cards: [documentdb-001]
 ---
-Amazon DocumentDB is a managed database for MongoDB-compatible workloads. Before moving an application, check which operations it needs and how they behave.
+For an Amazon DocumentDB migration, check which MongoDB operations the application needs and how they behave.
 
 Product catalogs are a document-database use case: different products can have different attributes. Amazon DocumentDB can query and index JSON data without enforcing one schema across the collection.
 
@@ -51,8 +54,6 @@ Product catalogs are a document-database use case: different products can have d
 ### Exam cues
 
 - If the question says a product catalog has different attributes for each product, think a document database such as Amazon DocumentDB, because documents accommodate that variation.
-
-- If the question says a managed MongoDB-compatible database, think Amazon DocumentDB, because it supports MongoDB-compatible workloads.
 - If the question says retain a backup beyond the retention period, think manual cluster snapshot, because it can keep backup data longer.
 - If the question says storage must grow with the data, think automatic cluster volume growth, because you pay for the space used.
 

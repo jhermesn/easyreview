@@ -60,13 +60,13 @@ facts:
     text: "The AZ Availability: Power Interruption scenario simulates outage symptoms including stopped
       compute, impaired scaling, subnet connectivity loss, and database failover."
     source: https://docs.aws.amazon.com/fis/latest/userguide/az-availability-scenario.html#az-availability-scenario
+  - id: template-arn
+    text: An Amazon Resource Name, or ARN, uniquely identifies an AWS resource.
+    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns
   - id: template-health
     text: A stop condition uses a CloudWatch alarm to stop an FIS experiment when workload performance
       crosses an unacceptable threshold.
     source: https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html#experiment-templates
-  - id: template-arn
-    text: An Amazon Resource Name, or ARN, uniquely identifies an AWS resource.
-    source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns
 cards:
   - id: fis-001
     q: A team must test whether a multi-AZ application tolerates losing an Availability Zone. Which FIS
@@ -180,7 +180,7 @@ AWS Fault Injection Service runs controlled fault experiments to test how a work
 3. Limit the blast radius, meaning the resources affected, with a selection mode. FIS selects targets before actions start and keeps that set for the experiment.
 4. Choose actions and parameters. Use `startAfter` when another action must finish first. Actions without dependencies start at the beginning.
 5. Supply an experiment role that trusts `fis.amazonaws.com` and permits the required actions. An Amazon Resource Name, or ARN, identifies a specific resource. Restrict its resource permissions and use `aws:SourceAccount` and `aws:SourceArn` trust conditions.
-6. Preview target selection with `actionsMode: skip-all`, then run the planned experiment with stop conditions. These are CloudWatch alarms that stop the experiment when workload performance crosses an unacceptable threshold. A preview resolves targets but does not prove fault-action permissions.
+6. Preview target selection with `actionsMode: skip-all`, then run the planned experiment with stop conditions. A preview resolves targets but does not prove fault-action permissions.
 
 | Selection mode | Effect |
 |---|---|

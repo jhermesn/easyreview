@@ -12,12 +12,6 @@ facts:
   - id: agent
     text: The AWS Replication Agent continuously copies disk block changes from source servers to a target staging area.
     source: https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html
-  - id: staging
-    text: The staging area subnet is in a selected AWS account and Region and uses storage and minimal compute for ongoing replication.
-    source: https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html
-  - id: conversion
-    text: Recovery orchestration creates volumes from replicated data and converts non-AWS servers to boot natively on EC2.
-    source: https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html
   - id: recovery-dashboard
     text: "The Elastic Disaster Recovery recovery dashboard shows source server replication status, replication progress and lag."
     source: https://docs.aws.amazon.com/drs/latest/userguide/recovery-dashboard.html
@@ -27,17 +21,17 @@ cards:
     a: "AWS Elastic Disaster Recovery."
     facts: [drs]
   - id: elastic-disaster-recovery-001
-    q: When does AWS Elastic Disaster Recovery fit a recovery requirement?
-    a: When supported servers need continuous replication to AWS and recovery onto EC2. The staging area maintains replicated data with minimal compute.
-    facts:
-      - scope
-      - agent
-      - staging
-      - conversion
+    q: What does the AWS Replication Agent copy for Elastic Disaster Recovery?
+    a: It continuously copies disk block changes from source servers to a target staging area.
+    facts: [agent]
   - id: elastic-disaster-recovery-014
     q: "Where can an AWS Elastic Disaster Recovery operator see a source server replication progress and lag?"
     a: "The source server recovery dashboard."
     facts: [recovery-dashboard]
+revised:
+  - date: 2026-11-23
+    note: One card now tests what the replication agent copies.
+    cards: [elastic-disaster-recovery-001]
 ---
 AWS Elastic Disaster Recovery replicates servers into AWS so they can be recovered quickly.
 

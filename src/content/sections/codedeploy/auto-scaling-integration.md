@@ -94,18 +94,13 @@ cards:
     facts:
       - scheduled
   - id: codedeploy-058
-    q: A CodeDeploy team suspended ScheduledActions but a scaling policy still launched instances during
-      deployment. Is this expected?
-    a: Yes. Suspending scheduled actions does not block scaling-policy scale-outs.
-    trap: true
-    facts:
-      - scheduled
+    q: "What happens to an Auto Scaling instance after a CodeDeploy termination deployment if a shutdown hook fails?"
+    a: "The instance termination continues whether the shutdown hooks succeed or fail."
+    facts: [termination-result]
   - id: codedeploy-059
-    q: "During a CodeDeploy rollout, an Auto Scaling group launches an instance. Which revision does it receive?"
-    a: "The previously deployed revision. After a successful rollout, CodeDeploy starts a follow-on deployment for outdated instances."
-    facts:
-      - old-revision
-      - follow-on
+    q: "What does the CodeDeploy launch hook use to notify CodeDeploy of an Auto Scaling instance launch?"
+    a: "The launch hook notifies an SQS queue that CodeDeploy polls to start the launch deployment."
+    facts: [queue]
   - id: codedeploy-069
     q: "How can a team disable automatic follow-on updates for instances left on an older revision during a CodeDeploy rollout?"
     a: "Set `outdatedInstancesStrategy` to `IGNORE`. Use `UPDATE` to enable automatic updates."
@@ -174,6 +169,13 @@ diagrams:
       - The Auto Scaling launch hook sends an SQS notification while the instance waits.
       - CodeDeploy polls SQS and starts the launch deployment.
       - After deploying, CodeDeploy signals CONTINUE on success or ABANDON on failure.
+revised:
+  - date: 2026-11-23
+    note: The card now covers termination after a failed shutdown hook.
+    cards: [codedeploy-058]
+  - date: 2026-11-23
+    note: The card now covers the launch hook SQS queue.
+    cards: [codedeploy-059]
 ---
 CodeDeploy integrates with Auto Scaling so a newly launched EC2 instance receives application code before it enters service. A lifecycle hook pauses an Auto Scaling state transition while deployment work runs.
 

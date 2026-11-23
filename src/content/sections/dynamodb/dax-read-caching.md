@@ -62,6 +62,19 @@
   ],
   "cards": [
     {
+      "id": "dynamodb-037",
+      "q": "An application updates a DynamoDB item through DAX but an identical Query still returns an old result. Why?",
+      "a": "The query cache is separate. Item writes do not invalidate Query or Scan results; the cached query must expire.",
+      "trap": true,
+      "facts": ["query", "freshness"]
+    },
+    {
+      "id": "dynamodb-039",
+      "q": "What keys and default expiration does the DAX item cache use?",
+      "a": "Primary keys for GetItem and BatchGetItem results, with a five-minute default item-cache TTL.",
+      "facts": ["item"]
+    },
+    {
       "id": "dynamodb-038",
       "q": "A DynamoDB application requires every read to be strongly consistent. Will DAX serve those reads from memory?",
       "a": "No. DAX forwards strong reads and TransactGetItems to DynamoDB without caching results.",
@@ -160,7 +173,7 @@ DynamoDB Accelerator (DAX) caches frequently read DynamoDB data in memory. A cac
 
 1. Connect through the DAX client to a cluster within a VPC, a private virtual network. Security groups control cluster access.
 2. For an eventual read, check the cache. A hit returns cached data; a miss reads DynamoDB and caches the result.
-3. Store individual reads in the item cache and Query or Scan results in the separate query cache.
+3. Store individual reads by primary key in the item cache, which has a default time to live (TTL) of five minutes. Store Query or Scan results in the separate query cache. Writes do not invalidate cached query results; those results are read again after the query-cache TTL expires.
 4. Standard writes through DAX reach DynamoDB first, then update the item cache before success. Direct table writes bypass this cache update.
 5. Forward strong reads, which require the latest successful value, and transactional `TransactGetItems` reads to DynamoDB without caching their results.
 
@@ -173,6 +186,7 @@ DynamoDB Accelerator (DAX) caches frequently read DynamoDB data in memory. A cac
 ### Exam cues
 
 - If the question says repeated eventual reads need microsecond latency, think DAX, because cache hits avoid table reads.
+- If the question says a query stays stale after an item update, think query-cache TTL, because writes do not invalidate cached query results.
 - If the question says a direct table write leaves an item stale in DAX, think item-cache bypass, because direct writes do not update that cache.
 - If the question says every read requires the latest value, think strong DynamoDB reads, because DAX forwards those requests.
 

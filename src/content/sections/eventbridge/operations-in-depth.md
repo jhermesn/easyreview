@@ -33,18 +33,6 @@ facts:
   - id: xray-insights
     text: Enable insights and notifications on an X-Ray group to send insight events through EventBridge.
     source: https://docs.aws.amazon.com/xray/latest/devguide/xray-console-insights.html
-  - id: dst-once
-    text: A cron invocation at a repeated local time during the autumn daylight saving transition runs only once, at the second occurrence after the shift.
-    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time
-  - id: dst-skip
-    text: A cron invocation at a nonexistent local time during the spring daylight saving transition is skipped.
-    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#daylist-savings-time
-  - id: schedule-precision
-    text: Scheduler invokes targets with 60-second precision when no flexible time window is set.
-    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html#schedule-types
-  - id: window
-    text: A flexible time window spreads target invocation within the configured window; choose OFF to disable it.
-    source: https://docs.aws.amazon.com/scheduler/latest/UserGuide/managing-schedule-flexible-time-windows.html
 cards:
   - id: eventbridge-017
     q: An EventBridge pattern must accept either of two states and also require one source. How do its conditions
@@ -82,23 +70,9 @@ cards:
     a: Enable both insights and notifications on the group.
     facts:
       - xray-insights
-  - id: eventbridge-034
-    q: An EventBridge Scheduler cron time occurs twice when clocks move backward. How many scheduled invocations
-      occur for that local time?
-    a: One. A repeated autumn time runs only once; a nonexistent spring time is skipped.
-    trap: true
-    facts:
-      - dst-once
-      - dst-skip
-  - id: eventbridge-037
-    q: Does disabling the EventBridge Scheduler flexible time window guarantee invocation at an exact second?
-    a: No. Scheduler still invokes with 60-second precision.
-    trap: true
-    facts:
-      - schedule-precision
-      - window
+
 ---
-EventBridge patterns select operational events for a response, while EventBridge Scheduler controls when a target is invoked. Pattern operators and schedule timing determine which events and invocations reach their targets.
+EventBridge patterns select operational events for a response. Pattern operators determine which events reach their targets.
 
 ### How it works
 
@@ -106,7 +80,6 @@ EventBridge patterns select operational events for a response, while EventBridge
 2. Select operators for the values: `suffix` matches a string ending, `cidr` matches an IPv4 or IPv6 network range, and `equals-ignore-case` ignores letter case.
 3. Select operational events. Auto Scaling lifecycle hooks emit events when an instance enters a wait state. Instance refresh emits checkpoint and status events, including rollback changes.
 4. For an exposed credential, match the AWS Health event `AWS_RISK_CREDENTIALS_EXPOSED` and start a Step Functions remediation workflow. For X-Ray insight events, enable both insights and notifications on the group.
-5. For Scheduler, choose a flexible time window to spread invocations, or set it to `OFF`. Consider daylight saving transitions when a cron schedule uses local time.
 
 ### Exam cues
 
@@ -119,7 +92,5 @@ EventBridge patterns select operational events for a response, while EventBridge
 ### Remember
 
 - Ordinary string matching is case sensitive.
-- A nonexistent spring cron time is skipped. A repeated autumn time runs once, at its second occurrence after the shift.
-- With no flexible time window, Scheduler invokes with 60-second precision.
 
-> **Trap:** A repeated autumn cron time does not run twice. Disabling the flexible window also does not guarantee an exact-second invocation.
+> **Trap:** Ordinary string matching is case sensitive.

@@ -12,9 +12,6 @@ facts:
   - id: no-ssh
     text: "Systems Manager manages nodes remotely without bastion hosts, SSH or remote PowerShell, and its tools include Run Command, Session Manager, Automation and Parameter Store."
     source: https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html#benefits
-  - id: central-view
-    text: Systems Manager gives a centralized view to see and manage EC2 instances, on-premises servers and other managed nodes across an organization's accounts.
-    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html
   - id: "patch-windows"
     text: "Systems Manager Patch Manager can scan for missing patches and install patches on managed Windows Server nodes."
     source: "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html#patch-manager"
@@ -36,6 +33,9 @@ facts:
   - id: "opscenter-purpose"
     text: "Systems Manager OpsCenter centralizes investigation and resolution of operational work items called OpsItems."
     source: "https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html#OpsCenter"
+  - id: central-view
+    text: Systems Manager gives a centralized view to see and manage EC2 instances, on-premises servers and other managed nodes across an organization's accounts.
+    source: https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html
 cards:
   - id: systems-manager-114
     q: "Operations must patch hundreds of EC2 instances and on-premises servers from one place. Which AWS service fits?"
@@ -50,9 +50,9 @@ cards:
     a: "AWS Systems Manager centrally manages and operates nodes across these environments."
     facts: [manage-nodes]
   - id: systems-manager-108
-    q: A company wants one place to view and operate both its EC2 instances and its on-premises servers. Which AWS service fits?
-    a: AWS Systems Manager, which manages them all as managed nodes from a centralized view.
-    facts: [central-view]
+    q: What does a node need to become managed by AWS Systems Manager?
+    a: SSM Agent must be installed and able to reach Systems Manager.
+    facts: [agent-required]
   - id: systems-manager-120
     q: "Which Systems Manager tool scans for missing patches and installs patches on managed Windows Server nodes?"
     a: "Patch Manager."
@@ -81,6 +81,10 @@ cards:
     q: "Which AWS Systems Manager tool tracks operational work items for investigation?"
     a: "OpsCenter manages OpsItems."
     facts: [opscenter-purpose]
+revised:
+  - date: 2026-11-23
+    note: The managed node card now tests the agent and service connectivity requirements.
+    cards: [systems-manager-108]
 ---
 AWS Systems Manager is the operations hub for servers: it patches, runs commands, opens sessions and stores parameters for EC2 instances and on-premises machines.
 

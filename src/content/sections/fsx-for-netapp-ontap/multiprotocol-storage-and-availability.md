@@ -54,24 +54,12 @@ facts:
   - id: encryption-transparent
     text: "Amazon FSx for NetApp ONTAP automatically encrypts data before writing it to the file system and decrypts it on read without application changes."
     source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/encryption-at-rest.html
-diagrams:
-  - id: ontap-multi-az-failover
-    title: Multi-AZ storage and failover
-    width: 800
-    height: 210
-    groups:
-      - { label: Availability Zone A, x: 220, y: 25, w: 230, h: 160, tone: neutral }
-      - { label: Availability Zone B, x: 530, y: 25, w: 230, h: 160, tone: neutral }
-    nodes:
-      - { id: client, label: Client, x: 25, y: 75, w: 140, h: 72, tone: compute, icon: res-ec2-instance }
-      - { id: active, label: Active server, x: 250, y: 75, w: 170, h: 72, tone: storage, icon: fsx-for-netapp-ontap }
-      - { id: standby, label: Standby server, x: 560, y: 75, w: 170, h: 72, tone: storage, icon: fsx-for-netapp-ontap }
-    edges:
-      - { from: client, to: active, step: 1 }
-      - { from: active, to: standby, step: 2 }
-    steps:
-      - The client accesses data through the storage virtual machine endpoint.
-      - Writes are synchronously replicated to the standby in another Availability Zone; FSx fails over to it if needed.
+  - id: svm-endpoints
+    text: A storage virtual machine provides NFS and SMB endpoints for clients to access its volumes.
+    source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#supported-fsx-clients
+  - id: mount
+    text: A client in the same VPC and account can mount a volume using the storage virtual machine DNS name and the volume junction or SMB share.
+    source: https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#same-vpc-access
 cards:
   - id: fsx-for-netapp-ontap-001
     q: When should a team choose FSx for NetApp ONTAP or FSx for OpenZFS?
@@ -101,13 +89,40 @@ cards:
     q: "Must an application decrypt data read from an Amazon FSx for NetApp ONTAP file system?"
     a: "No. FSx automatically decrypts file system data on read."
     facts: [encryption-transparent]
+  - id: fsx-for-netapp-ontap-003
+    q: How does an EC2 client in the same VPC and account mount an FSx for NetApp ONTAP volume over NFS or SMB?
+    a: Use the storage virtual machine DNS name and the volume junction for NFS or the SMB share for SMB.
+    facts: [svm-endpoints, mount]
+  - id: fsx-for-netapp-ontap-006
+    q: Does FSx for NetApp ONTAP support synchronous SnapMirror replication between Regions?
+    a: No. Synchronous SnapMirror is not supported. Use scheduled volume-level replication.
+    trap: true
+    facts: [asynchronous, snapmirror]
+diagrams:
+  - id: ontap-multi-az-failover
+    title: Multi-AZ storage and failover
+    width: 800
+    height: 210
+    groups:
+      - { label: Availability Zone A, x: 220, y: 25, w: 230, h: 160, tone: neutral }
+      - { label: Availability Zone B, x: 530, y: 25, w: 230, h: 160, tone: neutral }
+    nodes:
+      - { id: client, label: Client, x: 25, y: 75, w: 140, h: 72, tone: compute, icon: res-ec2-instance }
+      - { id: active, label: Active server, x: 250, y: 75, w: 170, h: 72, tone: storage, icon: fsx-for-netapp-ontap }
+      - { id: standby, label: Standby server, x: 560, y: 75, w: 170, h: 72, tone: storage, icon: fsx-for-netapp-ontap }
+    edges:
+      - { from: client, to: active, step: 1 }
+      - { from: active, to: standby, step: 2 }
+    steps:
+      - The client accesses data through the storage virtual machine endpoint.
+      - Writes are synchronously replicated to the standby in another Availability Zone; FSx fails over to it if needed.
 ---
 Amazon FSx for NetApp ONTAP provides managed shared storage for applications that need NetApp features and multiple access protocols. A volume is an isolated container for files, directories or block storage units.
 
 ### How it works
 
 1. Choose Single-AZ or Multi-AZ. Both use active and standby file servers. Single-AZ keeps them in one Availability Zone; Multi-AZ places them in different zones and synchronously replicates writes.
-2. Create volumes for the data.
+2. Create volumes for the data. A client in the same VPC and account mounts a volume using the storage virtual machine DNS name and the NFS volume junction or SMB share.
 3. Use Network File System (NFS) or Server Message Block (SMB) for file access; both can access the same volume at once. Internet Small Computer Systems Interface (iSCSI) and NVMe over TCP provide block access, where clients see storage devices rather than shared files.
 4. When a server fails, FSx automatically promotes the standby. NFS and SMB clients retain the endpoint IP; iSCSI and NVMe clients need multipathing, meaning multiple client paths to the servers, for transparent failover.
 5. For a separate disaster recovery copy, schedule NetApp SnapMirror volume replication to another file system, including in another Region.
@@ -127,6 +142,7 @@ Amazon FSx for NetApp ONTAP provides managed shared storage for applications tha
 ### Remember
 
 - Failover typically completes in less than 60 seconds.
+- SnapMirror volume replication can run every five minutes. Synchronous SnapMirror and storage virtual machine disaster recovery replication are unsupported.
 - iSCSI supports file systems with up to six high-availability pairs; NVMe over TCP also requires a second- or third-generation file system.
 
 > **Trap:** Multi-AZ synchronous replication is within one Region. It is not synchronous cross-Region SnapMirror replication.

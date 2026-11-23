@@ -185,11 +185,10 @@ cards:
     facts:
       - weighted-alias
   - id: lambda-043
-    q: "A Lambda canary uses a weighted alias, but some callers invoke a version ARN directly. Are those calls included in the traffic split?"
-    a: "No. Only calls through the alias use its traffic weights."
+    q: What is the total size limit for all environment variables in an AWS Lambda function?
+    a: All environment variables together are limited to 4 KB.
     facts:
-      - alias-call
-    trap: true
+      - env-size
   - id: lambda-044
     q: "A Lambda weighted alias cannot route traffic to a newly published version. Which execution settings must match between the two versions?"
     a: "They must use the same execution role and the same dead-letter queue configuration, or neither can have a dead-letter queue."
@@ -213,9 +212,17 @@ cards:
     a: "Console helpers for encryption in transit: they encrypt the chosen variables client-side with a KMS key, and the function decrypts them at runtime."
     facts: [env-helpers]
   - id: lambda-069
-    q: "A Lambda canary receives few requests, and the observed traffic split differs from the alias weights. Why?"
-    a: "Weighted alias routing is probabilistic, so low request counts can differ substantially from the configured percentages."
-    facts: [alias-probability]
+    q: Can an existing AWS Lambda layer version be edited after publication?
+    a: No. Layer versions are immutable, and functions reference a specific layer-version ARN.
+    facts: [layer-version]
+    trap: true
+revised:
+  - date: 2026-11-23
+    note: The card now covers the total size limit for environment variables.
+    cards: [lambda-043]
+  - date: 2026-11-23
+    note: The card now covers immutable layer versions.
+    cards: [lambda-069]
 ---
 Lambda versions preserve a release while aliases give callers a stable name for a published version. A weighted alias can send part of the traffic to a second version, allowing a canary release, where only some requests try the new code.
 

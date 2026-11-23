@@ -40,6 +40,41 @@ facts:
   - id: cache-eviction
     text: "S3 File Gateway evicts cached data using a least recently used algorithm."
     source: https://docs.aws.amazon.com/filegateway/latest/files3/decide-local-disks-and-sizes.html
+cards:
+  - id: storage-gateway-004
+    q: An on-premises application must keep using SMB while AWS applications read its files as S3
+      objects. Which Storage Gateway type fits?
+    a: S3 File Gateway. It maps files to S3 objects and retains recently accessed data locally. Uploads
+      happen asynchronously.
+    facts:
+      - file-protocols
+      - file-object-mapping
+      - local-cache
+      - s3-access
+  - id: storage-gateway-009
+    q: "How does S3 File Gateway map a file path to Amazon S3?"
+    a: "The file becomes an S3 object, and its path becomes the object key."
+    facts: [file-object-mapping]
+  - id: storage-gateway-015
+    q: "Windows users must reach an S3 File Gateway share with their corporate logins. What is required?"
+    a: "An SMB file share with Active Directory authentication, with the gateway joined to the domain."
+    facts: [smb-ad]
+  - id: storage-gateway-017
+    q: "An on-premises S3 File Gateway must connect to AWS and transfer data without public internet access. Which service connectivity option fits?"
+    a: "Private VPC endpoints configured for the gateway's AWS connections and data transfers."
+    facts: [private-endpoints]
+  - id: storage-gateway-019
+    q: "Can a customer buy a new AWS Storage Gateway Hardware Appliance, and how long are existing appliances supported?"
+    a: "AWS stopped offering it on May 12, 2025. Existing appliances receive support until May 2028."
+    facts: [hardware-end]
+  - id: storage-gateway-020
+    q: "Should an administrator install arbitrary software inside an AWS Storage Gateway appliance?"
+    a: "No. Treat it as a managed virtual machine and use the AWS gateway update mechanism."
+    facts: [managed-appliance]
+  - id: storage-gateway-021
+    q: "Does the size of an S3 File Gateway cache guarantee that files stay cached for a fixed time?"
+    a: "No. The gateway evicts cached data using a least recently used algorithm."
+    facts: [cache-eviction]
 diagrams:
   - id: storage-file-upload
     title: Files become asynchronously uploaded S3 objects
@@ -80,43 +115,11 @@ diagrams:
     steps:
       - Write files
       - Upload asynchronously
-cards:
-  - id: storage-gateway-004
-    q: An on-premises application must keep using SMB while AWS applications read its files as S3
-      objects. Which Storage Gateway type fits?
-    a: S3 File Gateway. It maps files to S3 objects and retains recently accessed data locally. Uploads
-      happen asynchronously.
-    facts:
-      - file-protocols
-      - file-object-mapping
-      - local-cache
-      - s3-access
-  - id: storage-gateway-009
-    q: "An on-premises application needs an SMB file share backed by Amazon S3 with low-latency access to recent data. Which AWS Storage Gateway option fits?"
-    a: "S3 File Gateway. It exposes S3 objects through SMB shares and caches recently accessed data locally."
-    facts:
-      - file-protocols
-      - local-cache
-  - id: storage-gateway-015
-    q: "Windows users must reach an S3 File Gateway share with their corporate logins. What is required?"
-    a: "An SMB file share with Active Directory authentication, with the gateway joined to the domain."
-    facts: [smb-ad]
-  - id: storage-gateway-017
-    q: "An on-premises S3 File Gateway must connect to AWS and transfer data without public internet access. Which service connectivity option fits?"
-    a: "Private VPC endpoints configured for the gateway's AWS connections and data transfers."
-    facts: [private-endpoints]
-  - id: storage-gateway-019
-    q: "Can a customer buy a new AWS Storage Gateway Hardware Appliance, and how long are existing appliances supported?"
-    a: "AWS stopped offering it on May 12, 2025. Existing appliances receive support until May 2028."
-    facts: [hardware-end]
-  - id: storage-gateway-020
-    q: "Should an administrator install arbitrary software inside an AWS Storage Gateway appliance?"
-    a: "No. Treat it as a managed virtual machine and use the AWS gateway update mechanism."
-    facts: [managed-appliance]
-  - id: storage-gateway-021
-    q: "Does the size of an S3 File Gateway cache guarantee that files stay cached for a fixed time?"
-    a: "No. The gateway evicts cached data using a least recently used algorithm."
-    facts: [cache-eviction]
+
+revised:
+  - date: 2026-11-23
+    note: The card now covers file path to object key mapping.
+    cards: [storage-gateway-009]
 ---
 S3 File Gateway lets existing applications use shared files while storing their data as S3 objects. Network File System (NFS) and Server Message Block (SMB) are protocols for accessing files over a network. Think of the gateway as a file interface backed by an S3 bucket.
 

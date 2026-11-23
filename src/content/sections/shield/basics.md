@@ -18,14 +18,18 @@ cards:
     a: "Yes. Common DDoS attacks are covered automatically at no extra cost; Shield Advanced adds more for a fee."
     facts: [standard, advanced]
   - id: shield-016
-    q: "Which AWS service protects against DDoS attacks?"
-    a: "AWS Shield: the standard protection is automatic, and Shield Advanced is the paid tier."
-    facts: [standard, advanced]
+    q: "Which common DDoS attacks does automatic AWS Shield protection cover?"
+    a: "UDP reflection and SYN floods."
+    facts: [standard]
   - id: shield-007
     q: "A company wants to improve DDoS resilience by absorbing attack traffic at AWS edge locations. Which services should it use?"
     a: "Amazon CloudFront and Amazon Route 53. Serving traffic through these edge services helps absorb attacks at the edge."
     facts:
       - edge-services
+revised:
+  - date: 2026-11-23
+    note: The card now tests examples of attacks covered by automatic protection.
+    cards: [shield-016]
 ---
 AWS Shield protects applications from distributed denial of service (DDoS) attacks.
 

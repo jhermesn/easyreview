@@ -80,46 +80,6 @@ facts:
   - id: logical-statements
     text: "Logical rule statements combine or negate nested statements with AND, OR and NOT."
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statements-logical.html
-diagrams:
-  - id: waf-rule-evaluation
-    title: Evaluation when no rule terminates
-    width: 800
-    height: 190
-    nodes:
-      - id: count
-        label: Count match
-        icon: waf
-        tone: security
-        x: 30
-        y: 60
-        w: 210
-        h: 86
-      - id: next
-        label: Later rules
-        icon: waf
-        tone: security
-        x: 295
-        y: 60
-        w: 210
-        h: 86
-      - id: default
-        label: Default action
-        icon: waf
-        tone: security
-        x: 560
-        y: 60
-        w: 210
-        h: 86
-    edges:
-      - from: count
-        to: next
-        step: 1
-      - from: next
-        to: default
-        step: 2
-    steps:
-      - Continue evaluation
-      - No terminating match
 cards:
   - id: waf-001
     q: Which resource types can AWS WAF protect with a web ACL?
@@ -158,13 +118,9 @@ cards:
       - testing
       - count
   - id: waf-007
-    q: A service needs AWS WAF HTTP filtering in front of an NLB. Can WAF attach directly to the NLB?
-    a: No. WAF needs a supported resource, such as an ALB or CloudFront distribution.
-    trap: true
-    facts:
-      - unsupported
-      - regional
-      - global
+    q: How many AWS WAF web ACLs can protect one resource, and can an ACL protect multiple resources?
+    a: A resource can have one web ACL. An ACL can protect multiple compatible resources.
+    facts: [association]
   - id: waf-008
     q: A WAF Allow rule runs before a Count rule and both would match the request. Does the Count rule
       record it?
@@ -207,6 +163,50 @@ cards:
     q: "An AWS WAF rule must block requests that have a particular header value AND come from outside one country. How is that built?"
     a: "Nest a header match statement and a negated geo match statement under a logical AND statement."
     facts: [request-components, logical-statements]
+diagrams:
+  - id: waf-rule-evaluation
+    title: Evaluation when no rule terminates
+    width: 800
+    height: 190
+    nodes:
+      - id: count
+        label: Count match
+        icon: waf
+        tone: security
+        x: 30
+        y: 60
+        w: 210
+        h: 86
+      - id: next
+        label: Later rules
+        icon: waf
+        tone: security
+        x: 295
+        y: 60
+        w: 210
+        h: 86
+      - id: default
+        label: Default action
+        icon: waf
+        tone: security
+        x: 560
+        y: 60
+        w: 210
+        h: 86
+    edges:
+      - from: count
+        to: next
+        step: 1
+      - from: next
+        to: default
+        step: 2
+    steps:
+      - Continue evaluation
+      - No terminating match
+revised:
+  - date: 2026-11-23
+    note: The web ACL card now covers resource association limits.
+    cards: [waf-007]
 ---
 AWS WAF filters web requests using a web access control list (web ACL), also called a protection pack. A web ACL contains rules associated with a supported application endpoint. It lets you choose which matching requests to allow, block, count or challenge.
 

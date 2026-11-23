@@ -78,9 +78,6 @@ facts:
   - id: security-group
     text: A security group controls allowed incoming and outgoing resource traffic.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.ec2.instances.sg.html#using-features.managing.ec2.instances.sg
-  - id: upload-code
-    text: With Elastic Beanstalk you upload an application source bundle and it provisions and runs the AWS resources, such as EC2 instances, a load balancer and Auto Scaling, while you keep control of them.
-    source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
   - id: docker-platform
     text: Elastic Beanstalk Docker platforms run applications in any language or runtime packaged as a container image.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.html
@@ -93,6 +90,58 @@ facts:
   - id: logs-cloudwatch
     text: "Elastic Beanstalk can stream instance logs to Amazon CloudWatch Logs."
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.logging.html
+cards:
+  - id: elastic-beanstalk-031
+    q: Which roles distinguish Elastic Beanstalk service permissions from application instance permissions?
+    a: The service role lets Beanstalk manage and monitor resources. The EC2 instance profile supplies the role used by application instances.
+    facts:
+      - service-role
+      - instance-profile
+  - id: elastic-beanstalk-035
+    q: "What does an Elastic Beanstalk application version identify?"
+    a: "A label for deployable code stored as an S3 object."
+    facts:
+      - version
+  - id: elastic-beanstalk-036
+    q: Does an Elastic Beanstalk single-instance environment use Auto Scaling or a load balancer?
+    a: It uses an Auto Scaling group fixed at one instance, with an Elastic IP and no load balancer. The group replaces terminated instances.
+    trap: true
+    facts:
+      - single-instance
+      - single-asg
+      - asg-replacement
+  - id: elastic-beanstalk-037
+    q: "An Elastic Beanstalk application must distribute requests across instances in multiple Availability Zones. Which environment fits?"
+    a: "A load-balanced environment. It distributes requests across EC2 instances and can run them in multiple Availability Zones."
+    facts:
+      - scalable
+      - multi-az
+  - id: elastic-beanstalk-038
+    q: An Elastic Beanstalk application needs HTTPS at its ALB and traffic forwarded to a custom backend port. What must be configured?
+    a: Assign a certificate to an HTTPS listener and allow traffic from the load balancer to the application port in the instance security group.
+    facts:
+      - https-listener
+      - backend-access
+  - id: elastic-beanstalk-039
+    q: "A team wants to deploy a containerized application with AWS Elastic Beanstalk. Which platform supports this use case?"
+    a: "An Elastic Beanstalk Docker platform. It runs applications packaged as container images."
+    facts:
+      - docker-platform
+  - id: elastic-beanstalk-040
+    q: "An application on Elastic Beanstalk EC2 instances needs access to permitted AWS resources. How should the team grant that access?"
+    a: "Use an instance profile to pass an IAM role to the instances. The application can use that role to access permitted resources."
+    facts:
+      - instance-profile
+  - id: elastic-beanstalk-062
+    q: A team must run an app on Elastic Beanstalk in a language Beanstalk has no managed platform for. What should it use?
+    a: A Docker platform with the app packaged as a container image. Custom platforms were retired on July 18, 2022.
+    trap: true
+    facts: [docker-platform, custom-platforms-retired]
+  - id: elastic-beanstalk-064
+    q: "Where can a team retrieve or stream Elastic Beanstalk instance logs?"
+    a: "Retrieve requested tail or bundle logs from Amazon S3, or stream logs to Amazon CloudWatch Logs."
+    facts: [logs-s3, logs-cloudwatch]
+
 diagrams:
   - id: beanstalk-https-request
     title: HTTPS termination and backend access
@@ -137,65 +186,17 @@ diagrams:
     steps:
       - The ALB listener accepts HTTPS using its assigned certificate.
       - The instance security group allows traffic from the load balancer to the application port.
-cards:
-  - id: elastic-beanstalk-031
-    q: Which roles distinguish Elastic Beanstalk service permissions from application instance permissions?
-    a: The service role lets Beanstalk manage and monitor resources. The EC2 instance profile supplies the role used by application instances.
-    facts:
-      - service-role
-      - instance-profile
-  - id: elastic-beanstalk-035
-    q: "A team wants AWS to provision and run EC2 resources for an uploaded application while retaining control of those resources. Which service fits?"
-    a: "AWS Elastic Beanstalk. It provisions resources such as EC2 instances, a load balancer and Auto Scaling for the application."
-    facts:
-      - upload-code
-  - id: elastic-beanstalk-036
-    q: Does an Elastic Beanstalk single-instance environment use Auto Scaling or a load balancer?
-    a: It uses an Auto Scaling group fixed at one instance, with an Elastic IP and no load balancer. The group replaces terminated instances.
-    trap: true
-    facts:
-      - single-instance
-      - single-asg
-      - asg-replacement
-  - id: elastic-beanstalk-037
-    q: "An Elastic Beanstalk application must distribute requests across instances in multiple Availability Zones. Which environment fits?"
-    a: "A load-balanced environment. It distributes requests across EC2 instances and can run them in multiple Availability Zones."
-    facts:
-      - scalable
-      - multi-az
-  - id: elastic-beanstalk-038
-    q: An Elastic Beanstalk application needs HTTPS at its ALB and traffic forwarded to a custom backend port. What must be configured?
-    a: Assign a certificate to an HTTPS listener and allow traffic from the load balancer to the application port in the instance security group.
-    facts:
-      - https-listener
-      - backend-access
-  - id: elastic-beanstalk-039
-    q: "A team wants to deploy a containerized application with AWS Elastic Beanstalk. Which platform supports this use case?"
-    a: "An Elastic Beanstalk Docker platform. It runs applications packaged as container images."
-    facts:
-      - docker-platform
-  - id: elastic-beanstalk-040
-    q: "An application on Elastic Beanstalk EC2 instances needs access to permitted AWS resources. How should the team grant that access?"
-    a: "Use an instance profile to pass an IAM role to the instances. The application can use that role to access permitted resources."
-    facts:
-      - instance-profile
-  - id: elastic-beanstalk-062
-    q: A team must run an app on Elastic Beanstalk in a language Beanstalk has no managed platform for. What should it use?
-    a: A Docker platform with the app packaged as a container image. Custom platforms were retired on July 18, 2022.
-    trap: true
-    facts: [docker-platform, custom-platforms-retired]
-  - id: elastic-beanstalk-064
-    q: "Where can a team retrieve or stream Elastic Beanstalk instance logs?"
-    a: "Retrieve requested tail or bundle logs from Amazon S3, or stream logs to Amazon CloudWatch Logs."
-    facts: [logs-s3, logs-cloudwatch]
-
+revised:
+  - date: 2026-11-23
+    note: The card now covers what an application version identifies.
+    cards: [elastic-beanstalk-035]
 ---
 Elastic Beanstalk Standard deploys application code on managed EC2 environments. An application groups related versions and environments; each environment is an independently configured running deployment. A platform is the operating system, language runtime, and server software used to run that code.
 
 ### How it works
 
 1. Create an application and upload a version. A version is a label pointing to code in S3. Package a single ZIP or WAR of at most 500 MB with the application files at its root, without an enclosing folder.
-2. Create an environment for that version and platform. Use separate environments for test and production, even when they run the same version.
+2. Create an environment for that version and platform.
 3. Supply the service role for Beanstalk's management actions and an EC2 instance profile, the wrapper that gives application instances an IAM role. IAM roles grant permission to call AWS APIs. The web and worker policies are `AWSElasticBeanstalkWebTier` and `AWSElasticBeanstalkWorkerTier`.
 4. Choose capacity and the request entry point. Auto Scaling maintains the instance count and replaces terminated instances. A load balancer distributes incoming requests across instances.
 5. For HTTPS termination, where the load balancer decrypts client requests, attach a certificate to an ALB HTTPS listener, typically port 443. ACM supplies certificates. Allow the backend application port from the load balancer in the instance security group, the rules that control allowed traffic.
@@ -211,7 +212,6 @@ For the Standard Docker platform without Compose, use a `Dockerfile` to build an
 ### Exam cues
 
 - If the question says retrieve or continuously stream Elastic Beanstalk instance logs, think S3 for requested logs or CloudWatch Logs for streaming, because Beanstalk supports both paths.
-- If the question says isolated test and production versions of one application, think separate environments, because an application groups independent deployments.
 - If the question says an uploaded archive has an extra enclosing directory, think fix the bundle root, because Beanstalk expects the application files there.
 - If the question says a single instance failed, think Auto Scaling replacement, because single-instance mode still has an Auto Scaling group.
 - If the question says shared load balancer across environments, think choose a shared ALB at environment creation, because this choice cannot be changed later.
@@ -223,6 +223,5 @@ For the Standard Docker platform without Compose, use a `Dockerfile` to build an
 - Single instance: Elastic IP, no load balancer, capacity fixed at 1.
 - Service role: Beanstalk actions. Instance profile: application instance actions.
 - With enhanced health authorization enabled, custom profiles need `elasticbeanstalk:PutInstanceStatistics` to send health data.
-- Elastic Beanstalk: no extra charge, pay for the resources.
 
 > **Trap:** A single-instance environment still uses Auto Scaling. It maintains one instance rather than adding instances for increasing traffic.

@@ -53,13 +53,9 @@ facts:
     text: Credit requests must be submitted within 15 days after the attack billing month; awarded
       credits apply only to Shield Advanced usage.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/ddos-request-service-credit.html
-  - id: edge-services
-    text: Serving traffic through Amazon CloudFront and Amazon Route 53, which run in edge locations, is an AWS best practice for DDoS resilience because attacks are absorbed at the edge.
-    source: https://docs.aws.amazon.com/whitepapers/latest/aws-best-practices-ddos-resiliency/aws-best-practices-ddos-resiliency.html
   - id: advanced-billing
     text: "Shield Advanced is subscribed per account; for accounts in an AWS Organizations organization, subscriptions are billed to the payer account, and one subscription fee covers all subscribed accounts in the consolidated billing family."
     source: https://docs.aws.amazon.com/waf/latest/developerguide/enable-ddos-prem.html
-diagrams: []
 cards:
   - id: shield-001
     q: How do AWS Shield Standard and Shield Advanced differ?
@@ -92,11 +88,9 @@ cards:
       - waf-integration
       - automatic-mitigation
   - id: shield-006
-    q: "A web application faces a flood of HTTP requests. How does AWS Shield Advanced integrate with AWS WAF to protect it?"
-    a: "Shield Advanced uses WAF web ACLs and rules for application layer protection. Automatic mitigation can count or block attack requests."
-    facts:
-      - waf-integration
-      - automatic-mitigation
+    q: "What actions can AWS Shield Advanced automatic application layer mitigation take on attack requests?"
+    a: "It can count or block attack requests and manage custom AWS WAF protections."
+    facts: [automatic-mitigation]
   - id: shield-008
     q: What do AWS Shield Advanced protection groups do?
     a: Group protected resources for detection and mitigation across the group. A resource can belong to
@@ -104,14 +98,22 @@ cards:
     facts:
       - protection-groups
   - id: shield-014
-    q: Besides AWS Shield, which two edge services help a web application absorb DDoS attacks?
-    a: Amazon CloudFront and Amazon Route 53, which run in edge locations.
-    facts: [edge-services]
+    q: "Where can a team examine AWS Shield Advanced attack metrics and reports?"
+    a: "Use the Shield Advanced console, API or Amazon CloudWatch."
+    facts: [visibility]
   - id: shield-017
     q: "An organization subscribes ten of its AWS accounts to AWS Shield Advanced. Does it pay ten subscription fees?"
     a: "No. One subscription fee covers the subscribed accounts in its consolidated billing family, billed to the payer account. Each account still subscribes."
     trap: true
     facts: [advanced-billing]
+diagrams: []
+revised:
+  - date: 2026-11-23
+    note: The card now tests the actions available to automatic application layer mitigation.
+    cards: [shield-006]
+  - date: 2026-11-23
+    note: The card now tests where Shield Advanced attack metrics and reports appear.
+    cards: [shield-014]
 ---
 AWS Shield helps keep applications available during a distributed denial of service (DDoS) attack, where many systems flood a target with traffic. Standard protection is automatic. Advanced adds explicitly configured protection for supported resources.
 
@@ -130,7 +132,6 @@ AWS Shield helps keep applications available during a distributed denial of serv
 
 ### Exam cues
 
-- If the question says common network floods with no additional subscription, think Shield Standard, because its protection is automatic.
 - If the question says automatic WAF changes during a web request flood, think Advanced automatic application layer mitigation, because it manages attack-specific WAF protections.
 - If the question says DDoS-related scaling charges, think Advanced cost protection eligibility, because credits depend on protection and required controls being in place before the attack.
 

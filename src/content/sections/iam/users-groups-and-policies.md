@@ -63,13 +63,13 @@ cards:
     a: Require MFA, update (rotate) their access keys, and regularly remove unused users and credentials.
     facts: [best-practices]
   - id: iam-106
-    q: "How can an administrator give the same IAM permissions to several users?"
-    a: "Attach a policy to an IAM user group. Its permissions apply to every user in the group."
-    facts: [group]
+    q: "How can an administrator make an IAM user sign-in URL easier to remember?"
+    a: "Create an account alias to replace the numeric account ID in the sign-in URL."
+    facts: [account-alias]
   - id: iam-107
-    q: "What does least privilege mean when granting IAM permissions?"
-    a: "Give only the permissions needed for the task, scoped to the relevant actions, resources and conditions."
-    facts: [least-privilege]
+    q: "Where should a team store a server certificate in an AWS Region that ACM does not support?"
+    a: "Use IAM to store the server certificate in that Region. ACM is preferred where supported."
+    facts: [server-certs]
   - id: iam-126
     q: "Does every IAM user need a console password?"
     a: "No. An IAM user can have a console password, access keys or both.\nA user created through the CLI or API starts with no credentials."
@@ -78,6 +78,10 @@ cards:
     q: "An IAM author needs to recognize an operation such as s3:GetObject and the scope of s3:*. What do these Action values mean?"
     a: "`s3:GetObject` names a service and an operation. `s3:*` matches the actions in that service namespace."
     facts: [action-element]
+revised:
+  - date: 2026-11-23
+    note: Two cards now cover the account alias and server certificate storage.
+    cards: [iam-106, iam-107]
 ---
 IAM controls who can do what in an AWS account. Users are identities for people, groups collect users, and policies hold the permissions. The principle of least privilege decides how much those policies allow.
 
@@ -92,8 +96,6 @@ IAM controls who can do what in an AWS account. Users are identities for people,
 
 - If the question says an IAM resource wildcard grants access too broadly, think multiple matching resources, because an ARN wildcard can extend the scope.
 - If the question says grant permission to upload an S3 object, think s3:PutObject, because adding an object requires that permission.
-
-
 - If the question says many users need the same permissions, think IAM group, because a group policy gives its permissions to each user in the group.
 - If the question says only the permissions needed for a task, think least privilege, because it limits actions on specific resources under specific conditions.
 - If the question says a friendly IAM user sign-in URL, think account alias, because it replaces the numeric account ID in the URL.

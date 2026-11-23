@@ -34,9 +34,9 @@ cards:
     a: "AWS Organizations, which gives consolidated billing and governance policies across accounts."
     facts: [central-management, consolidated-bill]
   - id: organizations-036
-    q: "What billing feature does AWS Organizations provide?"
-    a: "Consolidated billing: one bill per seller of record for member accounts."
-    facts: [consolidated-bill]
+    q: Does AWS Organizations charge an additional fee for consolidated billing?
+    a: No. Consolidated billing has no additional fee.
+    facts: [billing-no-fee]
   - id: organizations-037
     q: "Does AWS Organizations merge many accounts into one account?"
     a: "No. Each account stays separate; Organizations groups and governs them and combines their bills."
@@ -60,6 +60,9 @@ cards:
     facts: [combined-volume]
 
 revised:
+  - date: 2026-11-23
+    note: The card now covers the fee for consolidated billing.
+    cards: [organizations-036]
   - date: 2026-11-22
     note: Consolidated billing produces one bill per seller of record.
     cards: [organizations-036]

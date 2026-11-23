@@ -69,25 +69,10 @@ facts:
   - id: describe-checks
     text: "DescribeTrustedAdvisorChecks lists available Trusted Advisor checks and their metadata."
     source: https://docs.aws.amazon.com/awssupport/latest/APIReference/API_DescribeTrustedAdvisorChecks.html
-diagrams:
-  - id: trusted-advisor-events
-    title: Check status notification
-    width: 800
-    height: 180
-    nodes:
-      - { id: advisor, label: Trusted Advisor, x: 20, y: 54, w: 160, h: 72, tone: mgmt, icon: trusted-advisor }
-      - { id: events, label: EventBridge, x: 320, y: 54, w: 160, h: 72, tone: integration, icon: eventbridge }
-      - { id: topic, label: SNS topic, x: 620, y: 54, w: 160, h: 72, tone: integration, icon: simple-notification-service }
-    edges:
-      - { from: advisor, to: events, step: 1 }
-      - { from: events, to: topic, step: 2 }
-    steps:
-      - Trusted Advisor emits a check event to EventBridge in US East (N. Virginia).
-      - A matching rule sends the event to an SNS topic.
 cards:
   - id: trusted-advisor-002
-    q: Which Trusted Advisor checks can a Basic Support customer access?
-    a: "All Service Limits checks and selected Security and Fault tolerance checks in the console. Automatic check updates are unavailable."
+    q: "Are automatic AWS Trusted Advisor check updates available with Basic Support?"
+    a: "No. Basic Support does not include automatic check updates."
     facts: [basic]
   - id: trusted-advisor-003
     q: Which current support plans provide all Trusted Advisor checks and API access?
@@ -115,13 +100,36 @@ cards:
     a: "Route check events to Lambda, retrieve EC2 tags for the resource and apply the team's selection policy before acting."
     facts: [low-utilization, eventbridge, ec2-tags-api]
   - id: trusted-advisor-018
-    q: "A team wants to find Amazon EBS volumes that may be wasting money. How can AWS Trusted Advisor help?"
-    a: "Use the Underutilized Amazon EBS volumes check to identify unattached volumes or volumes with very low write activity for cost review."
-    facts: [ebs-underutilized]
+    q: "Which AWS Trusted Advisor check alerts when an Amazon RDS DB snapshot is public?"
+    a: "The Amazon RDS Public Snapshots security check."
+    facts: [rds-public-snapshots]
   - id: trusted-advisor-019
     q: "Which AWS Support API operation lists available Trusted Advisor checks, and how are results retrieved?"
     a: "DescribeTrustedAdvisorChecks lists checks. DescribeTrustedAdvisorCheckResult retrieves a check result."
     facts: [describe-checks, result]
+diagrams:
+  - id: trusted-advisor-events
+    title: Check status notification
+    width: 800
+    height: 180
+    nodes:
+      - { id: advisor, label: Trusted Advisor, x: 20, y: 54, w: 160, h: 72, tone: mgmt, icon: trusted-advisor }
+      - { id: events, label: EventBridge, x: 320, y: 54, w: 160, h: 72, tone: integration, icon: eventbridge }
+      - { id: topic, label: SNS topic, x: 620, y: 54, w: 160, h: 72, tone: integration, icon: simple-notification-service }
+    edges:
+      - { from: advisor, to: events, step: 1 }
+      - { from: events, to: topic, step: 2 }
+    steps:
+      - Trusted Advisor emits a check event to EventBridge in US East (N. Virginia).
+      - A matching rule sends the event to an SNS topic.
+
+revised:
+  - date: 2026-11-23
+    note: The card now covers automatic check updates under Basic Support.
+    cards: [trusted-advisor-002]
+  - date: 2026-11-23
+    note: The card now covers the RDS public snapshots check.
+    cards: [trusted-advisor-018]
 ---
 AWS Trusted Advisor inspects your AWS environment and recommends improvements to cost, availability, performance and security. A check evaluates resources and reports results for review.
 

@@ -754,7 +754,8 @@
                 "redshift/data-warehouse-workloads",
                 "redshift/design-details",
                 "memorydb/durable-in-memory-workloads",
-                "device-farm/device-and-browser-tests"
+                "device-farm/device-and-browser-tests",
+                "redshift/basics"
               ]
             }
           ]
@@ -1021,7 +1022,8 @@
                 "redshift/data-warehouse-workloads",
                 "redshift/design-details",
                 "memorydb/durable-in-memory-workloads",
-                "device-farm/device-and-browser-tests"
+                "device-farm/device-and-browser-tests",
+                "redshift/basics"
               ]
             }
           ]
@@ -1409,7 +1411,8 @@
                 "neptune/graph-databases",
                 "keyspaces/serverless-cassandra-tables",
                 "redshift/data-warehouse-workloads",
-                "redshift/design-details"
+                "redshift/design-details",
+                "redshift/basics"
               ]
             },
             {
@@ -1550,7 +1553,8 @@
                 "opensearch/log-ingestion-search-and-dashboards",
                 "emr/distributed-processing-workloads",
                 "data-exchange/third-party-data",
-                "reference-architectures/streaming-data-lake"
+                "reference-architectures/streaming-data-lake",
+                "redshift/basics"
               ]
             },
             {
@@ -2318,7 +2322,8 @@
                 "redshift/data-warehouse-workloads",
                 "redshift/design-details",
                 "athena/partitions-and-columnar-formats",
-                "keyspaces/serverless-cassandra-tables"
+                "keyspaces/serverless-cassandra-tables",
+                "redshift/basics"
               ]
             },
             {

@@ -3,9 +3,6 @@ title: Browser shell and permissions
 level: associate
 order: 10
 facts:
-  - id: shell
-    text: CloudShell is a browser-based pre-authenticated shell launched from the AWS Management Console, with AWS CLI version 2 pre-installed.
-    source: https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#aws-cli-support
   - id: shells
     text: CloudShell supports Bash, PowerShell and Z shell.
     source: https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#shells-dev-tools
@@ -62,9 +59,9 @@ facts:
     source: https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html#shell-pricing
 cards:
   - id: cloudshell-001
-    q: Which AWS service provides a browser-based shell with AWS CLI access using console credentials?
-    a: AWS CloudShell. The CLI is pre-installed and console credentials are normally forwarded.
-    facts: [shell, credentials]
+    q: Which command shells does AWS CloudShell support?
+    a: Bash, PowerShell and Z shell.
+    facts: [shells]
   - id: cloudshell-002
     q: A developer needs a browser shell to reach resources in a private VPC. Which CloudShell environment can use that VPC?
     a: A CloudShell VPC environment, configured with a VPC, subnet and security groups.
@@ -75,17 +72,17 @@ cards:
     trap: true
     facts: [vpc-storage]
   - id: cloudshell-004
-    q: "How can an operator use the AWS CLI to interact with infrastructure from a browser?"
-    a: "Launch AWS CloudShell from the AWS Management Console. It provides a pre-authenticated shell with AWS CLI version 2 installed."
-    facts: [shell]
+    q: "Does AWS CloudShell charge for the service and for other AWS resources used from the shell?"
+    a: "CloudShell has no additional service charge. Other AWS resources and standard data transfer rates are charged."
+    facts: [pricing]
   - id: cloudshell-005
     q: "A user can launch AWS CloudShell but cannot run an infrastructure command. What authorization should the team examine?"
     a: "Check the policies applicable to the principal and the requested AWS action. CloudShell access and AWS request authorization are evaluated through IAM policies."
     facts: [access, authorization]
   - id: cloudshell-006
-    q: "A team needs a browser shell in a selected VPC subnet to interact with private infrastructure. What can it configure?"
-    a: "Create an AWS CloudShell VPC environment with the required VPC, subnet, and security groups."
-    facts: [vpc]
+    q: "What additional permissions are needed to create an AWS CloudShell VPC environment?"
+    a: "VPC-specific EC2 permissions, including permission to create a network interface."
+    facts: [vpc-permissions]
   - id: cloudshell-007
     q: An administrator denies cloudshell:PutCredentials. Can a user still launch CloudShell and use console credentials automatically?
     a: The user can launch it with the required launch permissions, but must configure credentials manually.
@@ -99,8 +96,12 @@ cards:
     a: No. The policy grants CloudShell access; AWS still evaluates applicable policies for each service request.
     trap: true
     facts: [cloud-access-policy, authorization]
+revised:
+  - date: 2026-11-23
+    note: CloudShell cards now cover supported shells, pricing and VPC environment permissions.
+    cards: [cloudshell-001, cloudshell-004, cloudshell-006]
 ---
-AWS CloudShell is a browser-based shell for running AWS CLI commands without installing command-line tools locally. It normally uses the credentials from the AWS Management Console session.
+CloudShell environments add permission, storage and network choices to the browser shell.
 
 ### How it works
 
@@ -110,7 +111,6 @@ AWS CloudShell is a browser-based shell for running AWS CLI commands without ins
 
 ### Exam cues
 
-- If the question says run AWS CLI commands without a local installation, think CloudShell, because the CLI is pre-installed in the browser-based shell.
 - If the question says reach resources in a private VPC, think a CloudShell VPC environment, because it uses the selected subnet and security groups.
 - If the question says prevent automatic forwarding of console credentials, think deny `cloudshell:PutCredentials`, because users must then configure credentials manually.
 

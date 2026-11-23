@@ -3,9 +3,6 @@ title: Loading, routing and availability
 level: associate
 order: 20
 facts:
-  - id: warehouse-purpose
-    text: Amazon Redshift is a managed cloud data warehouse that supports SQL-based tools and business intelligence applications.
-    source: https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html#welcome
   - id: warehouse-spectrum
     text: Redshift Spectrum queries data directly from files in S3.
     source: https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum.html#c-getting-started-using-spectrum
@@ -24,17 +21,10 @@ facts:
   - id: warehouse-copy
     text: COPY reads and loads data in parallel into Redshift tables from sources including S3, subject to resource permissions.
     source: https://docs.aws.amazon.com/redshift/latest/dg/t_Loading_tables_with_the_COPY_command.html#t_Loading_tables_with_the_COPY_command
-  - id: multi-az
-    text: "Provisioned RA3 (and RG) clusters support Multi-AZ deployments that run compute in two Availability Zones to keep working through a zone failure."
-    source: https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-multi-az.html#managing-cluster-multi-az
   - id: columnar-storage
     text: "Amazon Redshift stores table values by column, reducing disk reads for analytical queries that need only some columns."
     source: https://docs.aws.amazon.com/redshift/latest/dg/c_columnar_storage_disk_mem_mgmnt.html
 cards:
-  - id: redshift-001
-    q: Which AWS service provides a managed SQL data warehouse for analytics?
-    a: Amazon Redshift provides a managed cloud warehouse for SQL and business intelligence tools.
-    facts: [warehouse-purpose]
   - id: redshift-002
     q: How can Amazon Redshift query external files in S3 directly?
     a: Use Redshift Spectrum with an external schema, an external table, and permission to access the catalog and S3.
@@ -48,15 +38,19 @@ cards:
     a: COPY, with permission for Redshift to access the S3 data.
     facts: [warehouse-copy]
   - id: redshift-011
-    q: "A Redshift data warehouse must survive an Availability Zone failure without a restore. What deployment fits?"
-    a: "A Multi-AZ deployment on RA3 nodes."
-    facts: [multi-az]
+    q: What can happen to Amazon Redshift COPY and UNLOAD when enhanced VPC routing has no network path to the data resource?
+    a: COPY and UNLOAD can fail because the VPC lacks a network path to the data resource.
+    facts: [warehouse-routing-path]
   - id: redshift-013
     q: "An Amazon Redshift report scans millions of records but reads only a few columns. Which storage design reduces disk I/O?"
     a: "Columnar storage. Redshift reads the needed columns without loading every field in each row."
     facts: [columnar-storage]
+revised:
+  - date: 2026-11-23
+    note: The card now covers missing network paths with enhanced VPC routing.
+    cards: [redshift-011]
 ---
-Amazon Redshift is a managed cloud data warehouse for SQL and business intelligence tools. Its loading, query, network and deployment choices determine how it accesses data and handles an Availability Zone failure.
+Redshift loading and routing build on the basics with data access and network controls.
 
 Redshift uses columnar storage: it stores values by column so analytical queries that read a subset of columns need fewer disk reads.
 
@@ -65,21 +59,17 @@ Redshift uses columnar storage: it stores values by column so analytical queries
 1. Use COPY to load data from sources such as Amazon S3 into Redshift tables in parallel. Redshift needs permission to access the source.
 2. To query S3 files directly, use Redshift Spectrum. Give the cluster an IAM role for the external data catalog and S3 files, then create an external schema and external table before querying.
 3. Enable enhanced VPC routing to send COPY and UNLOAD traffic between the cluster and data repositories through its virtual private cloud (VPC). Configure a network path to the data resource so the commands can reach it.
-4. For a zone failure, a Multi-AZ deployment runs compute in two Availability Zones so the warehouse can keep working.
 
 ### Exam cues
 
 - If the question says analytics scans many records but needs only a few columns, think Redshift columnar storage, because it reduces the data read from disk.
-
 - If the question says load S3 data into warehouse tables in parallel, think COPY, because it reads and loads data in parallel.
 - If the question says query S3 files directly, think Spectrum, because it uses an external schema and table to query those files.
 - If the question says control COPY and UNLOAD traffic through the VPC, think enhanced VPC routing, because it sends that traffic through the VPC.
-- If the question says keep a provisioned warehouse working through a zone failure, think Multi-AZ, because it runs compute in two Availability Zones.
 
 ### Remember
 
 - Spectrum needs an IAM role with access to the external catalog and S3 files.
 - Enhanced VPC routing allows VPC controls and flow logs, but COPY and UNLOAD can fail without a network path to the data resource.
-- Provisioned RA3 and RG clusters support Multi-AZ deployments.
 
 > **Trap:** COPY loads data into Redshift tables. Spectrum queries S3 files directly.

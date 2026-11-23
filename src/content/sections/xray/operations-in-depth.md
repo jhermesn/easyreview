@@ -85,19 +85,18 @@ cards:
     facts:
       - viewpoints
 ---
-X-Ray trace context connects work across instrumented HTTP services. Segments and subsegments also give different views of a call, helping you identify where recorded work belongs.
+X-Ray trace diagnostics build on traces, segments and subsegments to connect requests and compare views of recorded work.
 
 ### How it works
 
 1. Instrumented HTTP services pass trace context in the `X-Amzn-Trace-Id` header. `Root` identifies the trace, `Parent` identifies the upstream segment or subsegment, and `Sampled` carries the upstream recording decision.
-2. A subsegment describes part of a segment, such as an outgoing call, SQL query, or custom code block. X-Ray uses instrumented client subsegments to create inferred nodes for services such as DynamoDB.
+2. Inspect the client subsegment for latency when an inferred DynamoDB node appears in the trace.
 3. Compare the upstream client subsegment with the downstream service segment. The client view includes round-trip latency, while the service segment records the downstream service's view of the call.
 4. In Lambda traces, `AWS::Lambda` records execution environment preparation and `AWS::Lambda::Function` records function work. Traces from instrumented SQS producers can also be linked to downstream Lambda consumer traces.
 
 ### Exam cues
 
 - If the question says downstream HTTP work appears in a separate trace, think trace-header propagation, because `Root` and `Parent` carry the trace and upstream context.
-- If the question says DynamoDB appears as an inferred node, think instrumented client subsegment, because X-Ray derives the node from the client record.
 - If the question says Lambda preparation and function work need separate inspection, think `AWS::Lambda` and `AWS::Lambda::Function`, because they record those respective activities.
 - If the question says an instrumented SQS producer sends messages to a Lambda consumer, think linked traces, because X-Ray can connect the producer and consumer work.
 
@@ -107,4 +106,4 @@ X-Ray trace context connects work across instrumented HTTP services. Segments an
 - The upstream client subsegment includes round-trip latency; the downstream segment records the service view.
 - X-Ray does not support Lambda event source mappings for MSK, self-managed Kafka, Amazon MQ, or DocumentDB.
 
-> **Trap:** An inferred DynamoDB node does not come from a DynamoDB segment. Inspect the instrumented client subsegment for the call.
+> **Trap:** A downstream service segment does not include the client's full round-trip latency. Compare it with the upstream client subsegment.

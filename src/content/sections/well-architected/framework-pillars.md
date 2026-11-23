@@ -83,9 +83,9 @@ cards:
     a: "It provides best practices and questions for evaluating how well an architecture aligns with AWS guidance."
     facts: [framework]
   - id: well-architected-021
-    q: "Which AWS Well-Architected pillar focuses on a workload performing its intended function consistently?"
-    a: "The reliability pillar focuses on a workload performing its intended function correctly and consistently when expected."
-    facts: [reliability]
+    q: What is a workload in the AWS Well-Architected Framework?
+    a: A set of components that together deliver business value.
+    facts: [workload]
   - id: well-architected-025
     q: "Which AWS Well-Architected pillar recommends scaling horizontally to improve workload availability?"
     a: "The reliability pillar recommends horizontal scaling to increase availability."
@@ -94,6 +94,10 @@ cards:
     q: How can an AWS Well-Architected workload recover a failed stateless component?
     a: Replace the component instead of repairing it in place.
     facts: [replace-failed-resource]
+revised:
+  - date: 2026-11-23
+    note: The Well-Architected card now tests the definition of a workload.
+    cards: [well-architected-021]
 ---
 The AWS Well-Architected Framework is AWS's set of best practices for cloud architectures. It is organized in six pillars and comes with questions that show how well a workload follows them.
 

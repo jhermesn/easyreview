@@ -3,12 +3,6 @@ title: Data sources and threat findings
 level: associate
 order: 10
 facts:
-  - id: detection
-    text: GuardDuty analyzes AWS data sources using threat intelligence and machine learning to identify suspicious and potentially malicious activity.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#what-is-guardduty
-  - id: threats
-    text: GuardDuty can detect compromised credentials and unauthorized cryptomining on EC2 instances and container workloads.
-    source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html#what-is-guardduty
   - id: finding
     text: A GuardDuty finding represents a potential security issue detected in AWS accounts, workloads, or data.
     source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html
@@ -79,9 +73,9 @@ cards:
     a: S3 Protection analyzes data events; Malware Protection for S3 scans newly uploaded objects.
     facts: [optional-s3, optional-malware]
   - id: guardduty-012
-    q: "A security team needs to detect potentially compromised AWS credentials and unauthorized cryptomining. Which service fits?"
-    a: "Amazon GuardDuty analyzes AWS data sources to identify suspicious activity, including compromised credentials and unauthorized cryptomining."
-    facts: [detection, threats]
+    q: What does the severity score of an Amazon GuardDuty finding indicate?
+    a: Severity ranges from 1.0 to 10.0, with higher scores indicating greater risk.
+    facts: [severity]
   - id: guardduty-023
     q: A security team needs GuardDuty findings retained beyond the service retention period. What
       should it configure?
@@ -100,9 +94,9 @@ cards:
       processes relevant global service events in each Region where it is enabled.
     facts: [org-regional, global-events]
   - id: guardduty-031
-    q: "A team wants to scan newly uploaded Amazon S3 objects for malware. Which GuardDuty feature fits?"
-    a: "GuardDuty Malware Protection for S3 scans newly uploaded S3 objects."
-    facts: [optional-malware]
+    q: Can Malware Protection for S3 be used without enabling Amazon GuardDuty?
+    a: Yes. Malware Protection for S3 can be used independently of GuardDuty.
+    facts: [s3-independent]
   - id: guardduty-034
     q: "An Amazon GuardDuty administrator needs a member relationship with another account. Must membership use AWS Organizations?"
     a: "No. Members can join through AWS Organizations or by accepting the GuardDuty administrator account's invitation."
@@ -111,14 +105,18 @@ cards:
     q: How does Amazon GuardDuty distinguish anomalous IAM activity across different attack tactics?
     a: It uses separate finding types, including credential access, discovery and defense evasion.
     facts: [iam-anomaly-types]
+revised:
+  - date: 2026-11-23
+    note: The GuardDuty cards now cover severity scores and standalone Malware Protection for S3.
+    cards: [guardduty-012, guardduty-031]
 ---
-Amazon GuardDuty detects potential threats by analyzing AWS activity and threat intelligence. A finding is a report of a potential security issue, not proof that a resource is compromised.
+GuardDuty findings report potential security issues in accounts, workloads, or data.
 
 ### How it works
 
 1. Enable GuardDuty in a Region. It starts analyzing CloudTrail management events, EC2 VPC flow logs, and DNS logs.
 2. GuardDuty receives independent streams. It does not need a customer-configured trail or VPC flow log. It extracts fields for analysis and discards the source logs, so configure your own logging when you need retention.
-3. GuardDuty compares activity with threat intelligence, such as known malicious addresses, and uses machine learning to identify anomalies. It creates findings for potential threats, including compromised credentials and unauthorized cryptomining.
+3. GuardDuty creates findings for potential security issues.
 4. Choose protection plans for other signals. An audit log records actions.
 5. Configure the same delegated administrator and members in each desired Region. GuardDuty processes
    relevant global service events in each enabled Region.
@@ -134,7 +132,6 @@ Amazon GuardDuty detects potential threats by analyzing AWS activity and threat 
 ### Exam cues
 
 - If the question says an anomalous IAM API call, think the GuardDuty finding type and its activity category, because different tactics have distinct findings.
-- If the question says unusual API calls or cryptomining, think GuardDuty, because it identifies potentially malicious activity from AWS signals.
 - If the question says no trail or VPC flow log delivery exists, think foundational detection still works, because GuardDuty receives independent streams.
 - If the question says scan new S3 objects for malware, think Malware Protection for S3, because S3 Protection focuses on data activity rather than object scanning.
 - If S3 malware scanning cannot access encrypted uploads, check the service role's EventBridge, S3, and KMS permissions.

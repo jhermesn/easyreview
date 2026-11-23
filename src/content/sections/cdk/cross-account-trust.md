@@ -35,10 +35,6 @@ facts:
   - id: required-policy
     text: Using --trust also requires --cloudformation-execution-policies.
     source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-customizing.html#bootstrapping-customizing-cli
-  - id: missing
-    text: Invalid principals in a CDK Pipeline target can indicate missing bootstrap roles; an
-      unbootstrapped target is the most likely cause.
-    source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-env.html#bootstrapping-env-pipelines
   - id: source
     text: CDK Pipelines can build and deploy application changes when source code is committed.
     source: https://docs.aws.amazon.com/cdk/v2/guide/cdk-pipeline.html
@@ -66,6 +62,43 @@ facts:
   - id: arn
     text: An Amazon Resource Name (ARN) uniquely identifies an AWS resource.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html
+cards:
+  - id: cdk-010
+    q: How can a CDK pipeline in account A deploy into account B?
+    a: Bootstrap each target account and Region with --trust A and --cloudformation-execution-policies
+      <policy-ARN>. The deployment role submits the template and CloudFormation uses its execution
+      role.
+    facts:
+      - bootstrap
+      - trust
+      - required-policy
+      - deploy-role
+      - execution-role
+  - id: cdk-011
+    q: What determines the resource permissions of cross-account CDK deployments?
+    a: The CloudFormation execution policies selected at bootstrap. AdministratorAccess is the default;
+      choose narrower policies for the resources the pipeline needs.
+    trap: true
+    facts:
+      - policy
+      - default-policy
+  - id: cdk-026
+    q: Which environments must be bootstrapped for a cross-account CDK Pipeline?
+    a: Bootstrap the pipeline environment and every target environment.
+    facts: [bootstrap]
+  - id: cdk-030
+    q: An account needs to synthesize CDK stacks using another account's lookups but must not deploy
+      there. Which bootstrap option fits?
+    a: --trust-for-lookup, which grants lookup access without deployment permission.
+    facts:
+      - lookup-only
+  - id: cdk-031
+    q: An administrator adds a trusted account to an existing CDK bootstrap stack. What must the --trust
+      list include?
+    a: All accounts that must remain trusted. Omitting an existing account removes its trust.
+    trap: true
+    facts:
+      - replace-trust
 diagrams:
   - id: cdk-pipeline-cross-account
     title: CDK Pipeline deploying into another account
@@ -184,48 +217,11 @@ diagrams:
         template as a change set.
       - CloudFormation assumes the CloudFormation execution role and creates or updates the
         resources.
-cards:
-  - id: cdk-010
-    q: How can a CDK pipeline in account A deploy into account B?
-    a: Bootstrap each target account and Region with --trust A and --cloudformation-execution-policies
-      <policy-ARN>. The deployment role submits the template and CloudFormation uses its execution
-      role.
-    facts:
-      - bootstrap
-      - trust
-      - required-policy
-      - deploy-role
-      - execution-role
-  - id: cdk-011
-    q: What determines the resource permissions of cross-account CDK deployments?
-    a: The CloudFormation execution policies selected at bootstrap. AdministratorAccess is the default;
-      choose narrower policies for the resources the pipeline needs.
-    trap: true
-    facts:
-      - policy
-      - default-policy
-  - id: cdk-026
-    q: A CDK pipeline reports invalid principals in a target account. Does adding account trust alone
-      guarantee that the target is ready?
-    a: No. Verify that target bootstrap roles exist. Missing roles often mean the account and Region
-      were never bootstrapped.
-    trap: true
-    facts:
-      - missing
-      - bootstrap
-  - id: cdk-030
-    q: An account needs to synthesize CDK stacks using another account's lookups but must not deploy
-      there. Which bootstrap option fits?
-    a: --trust-for-lookup, which grants lookup access without deployment permission.
-    facts:
-      - lookup-only
-  - id: cdk-031
-    q: An administrator adds a trusted account to an existing CDK bootstrap stack. What must the --trust
-      list include?
-    a: All accounts that must remain trusted. Omitting an existing account removes its trust.
-    trap: true
-    facts:
-      - replace-trust
+
+revised:
+  - date: 2026-11-23
+    note: The bootstrap card now tests which pipeline and target environments need bootstrapping.
+    cards: [cdk-026]
 ---
 Cross-account CDK deployment lets a pipeline use roles in a separate target account. Trust controls who may enter; the CloudFormation execution policy controls which resources the deployment may change.
 
@@ -240,7 +236,6 @@ Cross-account CDK deployment lets a pipeline use roles in a separate target acco
 
 - If the question says a pipeline must deploy into another account, think target bootstrap trust plus execution policies, because both role access and resource permissions are required.
 - If the question says synthesis needs read access but deployment must remain prohibited, think `--trust-for-lookup`, because lookup trust does not grant deployment rights.
-- If the question says a target reports invalid principals, think missing bootstrap roles, because the policy may reference roles that were never created.
 
 ### Remember
 

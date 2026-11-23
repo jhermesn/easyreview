@@ -6,9 +6,6 @@ facts:
   - id: serverless-containers
     text: "AWS Fargate runs containers without provisioning, configuring or scaling clusters of EC2 instances; you set CPU and memory per task."
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#AWS_Fargate
-  - id: compute
-    text: Fargate runs ECS containers without customers provisioning, patching, or scaling container hosts.
-    source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html
   - id: linux-ephemeral-storage
     text: "Fargate Linux tasks on platform version 1.4.0 or later receive at least 20 GiB of ephemeral storage by default."
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-task-storage.html
@@ -18,14 +15,17 @@ cards:
     a: "AWS Fargate."
     facts: [serverless-containers]
   - id: fargate-003
-    q: "A team wants to run Amazon ECS containers without provisioning or patching container hosts. Which compute option fits?"
-    a: "AWS Fargate runs ECS containers without customers provisioning, patching or scaling container hosts."
-    facts:
-      - compute
+    q: "What resources does a team choose for an AWS Fargate task?"
+    a: "Set CPU and memory per task."
+    facts: [serverless-containers]
   - id: fargate-018
     q: "How much ephemeral storage does an Amazon ECS Fargate Linux task receive by default on platform version 1.4.0 or later?"
     a: "At least 20 GiB."
     facts: [linux-ephemeral-storage]
+revised:
+  - date: 2026-11-23
+    note: The card now asks which resources are set per task.
+    cards: [fargate-003]
 ---
 AWS Fargate is serverless compute for containers: you run tasks without managing servers.
 

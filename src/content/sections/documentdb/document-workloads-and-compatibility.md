@@ -3,10 +3,7 @@ title: Document workloads and compatibility
 level: associate
 order: 10
 facts:
-  - { id: managed, text: "Amazon DocumentDB is a managed MongoDB-compatible database service.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is" }
   - { id: documents, text: "Document databases store semistructured data in documents using nested key-value pairs.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/document-database-documents-understanding.html#document-database-documents-understanding" }
-  - { id: differences, text: "Amazon DocumentDB has functional differences from MongoDB.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/functional-differences.html#functional-differences" }
-  - { id: api, text: "Supported MongoDB APIs and operations vary by compatibility level.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/mongo-apis.html#mongo-apis-dababase-administrative" }
   - { id: cluster-types, text: "Amazon DocumentDB supports instance-based clusters and elastic clusters.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#overview" }
   - { id: availability-zone, text: "Availability Zones are distinct locations within an AWS Region, designed to be isolated from failures in other zones.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#what-is-availability-zones" }
   - { id: primary, text: "In an instance-based cluster, the primary handles writes and reads.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/how-it-works.html#how-it-works" }
@@ -17,26 +14,7 @@ facts:
   - { id: reader, text: "The reader endpoint balances connections, not requests, across replicas.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/how-it-works.html#how-it-works.endpoints.reader" }
   - { id: recommendation, text: "AWS recommends the cluster endpoint in replica set mode with a suitable read preference.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/how-it-works.html#how-it-works.endpoints" }
   - { id: backup, text: "Continuous backups retain data for 1 to 35 days for point-in-time recovery.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/backup_restore.html#backup_restore" }
-  - { id: snapshot, text: "A manual snapshot can retain backup data beyond the backup retention period.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/backup_restore.html#backup_restore" }
   - { id: encryption, text: "Encryption at rest uses AWS KMS keys and covers backups, snapshots and replicas in the cluster.", source: "https://docs.aws.amazon.com/documentdb/latest/devguide/what-is.html#overview" }
-diagrams:
-  - id: documentdb-instance-topology
-    title: Instance-based cluster
-    width: 800
-    height: 300
-    nodes:
-      - { id: client, label: Application, icon: res-client, x: 30, y: 105, w: 140, h: 72, tone: user }
-      - { id: primary, label: Primary, icon: documentdb, x: 250, y: 40, w: 140, h: 72, tone: database }
-      - { id: replica, label: Replica, icon: documentdb, x: 250, y: 190, w: 140, h: 72, tone: database }
-      - { id: volume, label: Cluster volume, icon: documentdb, x: 560, y: 105, w: 160, h: 72, tone: database }
-    edges:
-      - { from: client, to: primary, step: 1 }
-      - { from: primary, to: volume, step: 2 }
-      - { from: replica, to: volume, step: 3 }
-    steps:
-      - "The application writes through the primary."
-      - "The primary writes to the shared cluster volume."
-      - "Replicas read from the shared volume."
 cards:
   - id: documentdb-002
     q: "An instance-based Amazon DocumentDB cluster needs more read capacity and a failover target. What should the team add?"
@@ -59,9 +37,28 @@ cards:
     q: What consistency should a client expect when reading from an Amazon DocumentDB replica?
     a: Eventual consistency with the primary.
     facts: [eventual]
+
+diagrams:
+  - id: documentdb-instance-topology
+    title: Instance-based cluster
+    width: 800
+    height: 300
+    nodes:
+      - { id: client, label: Application, icon: res-client, x: 30, y: 105, w: 140, h: 72, tone: user }
+      - { id: primary, label: Primary, icon: documentdb, x: 250, y: 40, w: 140, h: 72, tone: database }
+      - { id: replica, label: Replica, icon: documentdb, x: 250, y: 190, w: 140, h: 72, tone: database }
+      - { id: volume, label: Cluster volume, icon: documentdb, x: 560, y: 105, w: 160, h: 72, tone: database }
+    edges:
+      - { from: client, to: primary, step: 1 }
+      - { from: primary, to: volume, step: 2 }
+      - { from: replica, to: volume, step: 3 }
+    steps:
+      - "The application writes through the primary."
+      - "The primary writes to the shared cluster volume."
+      - "Replicas read from the shared volume."
 ---
 
-Amazon DocumentDB is a managed database for MongoDB-compatible document workloads. A document stores data in key-value pairs that can be nested. Instance-based clusters use replicas and endpoints to support reads and failover.
+A document stores data in key-value pairs that can be nested. Instance-based clusters use replicas and endpoints to support reads and failover.
 
 ### How it works
 

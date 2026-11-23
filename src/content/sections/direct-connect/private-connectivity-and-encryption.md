@@ -3,9 +3,6 @@ title: Private connectivity and encryption
 level: associate
 order: 10
 facts:
-  - id: dx-connection
-    text: Direct Connect links an internal network to a Direct Connect location and bypasses internet service providers in the path to AWS.
-    source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html
   - id: dx-vpc
     text: A VPC is a logically isolated virtual network in AWS.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
@@ -33,9 +30,6 @@ facts:
   - id: dx-redundancy
     text: High resiliency uses separate Direct Connect connections at multiple locations to protect against connectivity and location failures.
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html#high_resiliency
-  - id: dedicated-link
-    text: AWS Direct Connect links an internal network to AWS over a dedicated Ethernet fiber connection at a Direct Connect location, bypassing internet service providers.
-    source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html
   - id: bgp-path-order
     text: "On private and transit virtual interfaces, Direct Connect selects routes by longest prefix first, then local preference BGP communities, then AS_PATH length, then MED; local preference communities are recommended for active/passive paths."
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html
@@ -63,9 +57,9 @@ cards:
     trap: true
     facts: [dx-macsec-support]
   - id: direct-connect-008
-    q: A company needs a dedicated private network connection from its data center to AWS that does not use the public internet. Which service fits?
-    a: AWS Direct Connect.
-    facts: [dedicated-link]
+    q: How does AWS Direct Connect select between routes on private and transit virtual interfaces?
+    a: Longest prefix comes first, then local preference communities, AS_PATH length, and MED.
+    facts: [bgp-path-order]
   - id: direct-connect-015
     q: "Does AWS Direct Connect encrypt traffic in transit by default?"
     a: "No. Add encryption in transit, such as an IPsec VPN over the connection or MACsec on a supported connection."
@@ -89,12 +83,16 @@ diagrams:
     steps:
       - The customer connects to a Direct Connect location.
       - A public virtual interface reaches the VPN endpoint for IPsec tunnels.
+revised:
+  - date: 2026-11-23
+    note: The routing card now tests route selection order on private and transit virtual interfaces.
+    cards: [direct-connect-008]
 ---
-AWS Direct Connect links an internal network to AWS without using internet service providers in the connection path. A private path is not automatically an encrypted path.
+Direct Connect encryption builds on its private network connection. A private path is not automatically an encrypted path.
 
 ### How it works
 
-1. Connect your network to a Direct Connect location. A virtual interface is a logical connection to an AWS destination.
+1. Create a virtual interface, a logical connection to an AWS destination.
 2. If encryption is required, use Site-to-Site VPN tunnels, encrypted links using IPsec, over a public interface, or MACsec, link-level encryption, on a supported connection. IPsec encrypts between VPN endpoints; MACsec encrypts the link between the customer device and the Direct Connect device.
 3. To encrypt traffic without public IP addresses, use private IP Site-to-Site VPN over Direct Connect. For active and passive private virtual interfaces, use local preference Border Gateway Protocol (BGP) communities to influence route selection. Private IP VPN and routing
 

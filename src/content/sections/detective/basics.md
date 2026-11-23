@@ -22,6 +22,10 @@ cards:
     a: "No. GuardDuty detects threats; Detective helps investigate findings and find their root cause."
     trap: true
     facts: [investigate]
+  - id: detective-002
+    q: How much historical event data can Amazon Detective make available?
+    a: Up to one year.
+    facts: [history]
 ---
 Amazon Detective is an investigation tool: after something suspicious is found, it shows the related activity to explain what happened.
 

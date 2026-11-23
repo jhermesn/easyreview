@@ -106,9 +106,9 @@ cards:
     a: Use CloudWatch Logs Insights for log groups and Athena for SQL over S3 data.
     facts: [logs, athena]
   - id: observability-strategy-005
-    q: Which AWS services show who changed a security group and its earlier configuration?
-    a: CloudTrail records the actor and action; AWS Config provides recorded configuration history.
-    facts: [cloudtrail, config]
+    q: Which AWS service evaluates supported resource configurations against compliance rules?
+    a: AWS Config records supported configurations and evaluates rules for compliance.
+    facts: [config]
   - id: observability-strategy-008
     q: Which AWS tools show a security group change actor, configuration history, network traffic, and stack drift?
     a: CloudTrail, AWS Config, VPC Flow Logs, and CloudFormation drift detection, respectively.
@@ -142,6 +142,10 @@ cards:
     q: How can a team continually export CloudWatch metrics to S3?
     a: Use a CloudWatch metric stream, with JSON or OpenTelemetry output.
     facts: [metric-stream]
+revised:
+  - date: 2026-11-23
+    note: The card now covers compliance evaluation with AWS Config.
+    cards: [observability-strategy-005]
 ---
 Observability uses measurements, records, and request traces to understand how a workload behaves. Choose a tool by the question and where the data lives.
 

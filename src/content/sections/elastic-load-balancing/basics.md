@@ -56,9 +56,9 @@ cards:
       - static-ip
       - gwlb
   - id: elastic-load-balancing-058
-    q: How does Elastic Load Balancing improve the availability of an application on EC2 instances in two Availability Zones?
-    a: It spreads traffic across the instances in both AZs and sends requests only to healthy ones.
-    facts: [healthy-targets]
+    q: How does an Application Load Balancer determine the health of its registered targets?
+    a: It periodically checks the registered targets.
+    facts: [alb-health-checks]
   - id: elastic-load-balancing-066
     q: "Which load balancer supports path-based and host-based routing, WebSockets, and Lambda functions as targets?"
     a: "The Application Load Balancer. It routes on HTTP content, upgrades connections to WebSockets, and can invoke a Lambda function from a target group."
@@ -79,6 +79,10 @@ cards:
     q: "Which target group routing algorithms can an Application Load Balancer use?"
     a: "Round robin, least outstanding requests or weighted random."
     facts: [alb-routing-algorithms]
+revised:
+  - date: 2026-11-23
+    note: One card now tests how an Application Load Balancer checks target health.
+    cards: [elastic-load-balancing-058]
 ---
 Elastic Load Balancing puts one entry point in front of many targets and spreads the traffic among the healthy ones.
 

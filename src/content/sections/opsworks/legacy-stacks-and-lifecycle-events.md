@@ -3,9 +3,6 @@ title: Legacy stacks and lifecycle events
 level: associate
 order: 10
 facts:
-  - id: shutdown
-    text: AWS OpsWorks Stacks reached end of support on May 1, 2024 and is in full shutdown.
-    source: https://docs.aws.amazon.com/general/latest/gr/full_shutdown_services.html#full_shutdown_services
   - id: stacks
     text: OpsWorks Stacks was an application management service for the application lifecycle.
     source: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/OpsWorks.html
@@ -63,7 +60,7 @@ cards:
     a: A supported Linux operating system.
     facts: [registration]
 ---
-AWS OpsWorks Stacks was an application management service with stacks, layers, instances, apps, and lifecycle recipes. It reached full shutdown in May 2024, so these concepts describe historical systems only.
+AWS OpsWorks Stacks was an application management service with stacks, layers, instances, apps, and lifecycle recipes.
 
 ### How it works
 
@@ -82,6 +79,5 @@ AWS OpsWorks Stacks was an application management service with stacks, layers, i
 
 - The five events were Setup, Configure, Deploy, Undeploy, and Shutdown.
 - Registered instances required a supported Linux operating system.
-- OpsWorks Stacks reached end of support on May 1, 2024.
 
-> **Trap:** OpsWorks Stacks is not available for a new deployment, even when a question describes its historical lifecycle recipes.
+> **Trap:** A custom lifecycle recipe did not replace the standard recipes; it ran after them.

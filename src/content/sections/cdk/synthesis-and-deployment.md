@@ -59,18 +59,64 @@ facts:
   - id: monitoring-default
     text: The monitoring-time default is 0, so alarms are monitored only during deployment.
     source: https://docs.aws.amazon.com/cdk/v2/guide/ref-cli-cmd-deploy.html#ref-cli-cmd-deploy-options
-  - id: file-role
-    text: FilePublishingRole publishes file assets.
-    source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-env.html#bootstrapping-env-default
-  - id: image-role
-    text: ImagePublishingRole publishes image assets.
-    source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-env.html#bootstrapping-env-default
   - id: deploy-role
     text: DeploymentActionRole submits deployments.
     source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-env.html#bootstrapping-env-default
   - id: execution-role
     text: CloudFormationExecutionRole grants CloudFormation resource permissions.
     source: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping-env.html#bootstrapping-env-default
+cards:
+  - id: cdk-001
+    q: What does AWS CDK synthesize, and how does cdk deploy use the result?
+    a: A cloud assembly of CloudFormation templates and deployment artifacts. Deployment uploads assets
+      and submits templates to CloudFormation, using a change set by default.
+    facts:
+      - assembly
+      - deployment
+      - method
+      - direct
+  - id: cdk-002
+    q: What are the AWS CDK synthesis lifecycle phases, and when does deployment start?
+    a: Construction, preparation with Aspects, validation, then synthesis. The CDK app exits before
+      CloudFormation deployment; deploy-time code can use a custom resource.
+    facts:
+      - lifecycle
+      - runtime
+      - custom-resource
+  - id: cdk-004
+    q: What does the AWS CDK deploy --require-approval option control?
+    a: "Approval prompts: any-change, broadening or never. The default broadening prompts when
+      permissions or security group rules widen."
+    facts:
+      - approval-options
+      - approval
+      - approval-broadening
+  - id: cdk-005
+    q: An AWS CDK team must inspect a CloudFormation change set with external tooling before execution.
+      Which deployment methods fit?
+    a: Use --method prepare-change-set, review the change set, then --method execute-change-set.
+    facts:
+      - prepared
+      - execute
+  - id: cdk-022
+    q: An AWS CDK team wants CloudFormation to roll back when application alarms fire. Which deployment
+      options apply?
+    a: Use --rollback-trigger-alarm-arns with up to 5 metric alarms. Set --monitoring-time-minutes from
+      0 to 180 for monitoring after completion; the default is 0.
+    facts:
+      - alarm-limit
+      - alarms
+      - monitoring
+      - monitoring-default
+  - id: cdk-029
+    q: An AWS CDK app must run custom logic after CloudFormation creates a resource. Can ordinary code
+      following the construct constructor wait for that creation?
+    a: No. The app finishes before deployment starts. Represent deploy-time logic with a custom
+      resource.
+    trap: true
+    facts:
+      - runtime
+      - custom-resource
 diagrams:
   - id: cdk-synth-deploy
     title: CDK app to deployed stack
@@ -140,58 +186,7 @@ diagrams:
       - File and image publishing roles upload assets to the bootstrap S3 bucket and ECR repository.
       - The deployment role submits the template to CloudFormation, which uses the execution role to
         provision resources.
-cards:
-  - id: cdk-001
-    q: What does AWS CDK synthesize, and how does cdk deploy use the result?
-    a: A cloud assembly of CloudFormation templates and deployment artifacts. Deployment uploads assets
-      and submits templates to CloudFormation, using a change set by default.
-    facts:
-      - assembly
-      - deployment
-      - method
-      - direct
-  - id: cdk-002
-    q: What are the AWS CDK synthesis lifecycle phases, and when does deployment start?
-    a: Construction, preparation with Aspects, validation, then synthesis. The CDK app exits before
-      CloudFormation deployment; deploy-time code can use a custom resource.
-    facts:
-      - lifecycle
-      - runtime
-      - custom-resource
-  - id: cdk-004
-    q: What does the AWS CDK deploy --require-approval option control?
-    a: "Approval prompts: any-change, broadening or never. The default broadening prompts when
-      permissions or security group rules widen."
-    facts:
-      - approval-options
-      - approval
-      - approval-broadening
-  - id: cdk-005
-    q: An AWS CDK team must inspect a CloudFormation change set with external tooling before execution.
-      Which deployment methods fit?
-    a: Use --method prepare-change-set, review the change set, then --method execute-change-set.
-    facts:
-      - prepared
-      - execute
-  - id: cdk-022
-    q: An AWS CDK team wants CloudFormation to roll back when application alarms fire. Which deployment
-      options apply?
-    a: Use --rollback-trigger-alarm-arns with up to 5 metric alarms. Set --monitoring-time-minutes from
-      0 to 180 for monitoring after completion; the default is 0.
-    facts:
-      - alarm-limit
-      - alarms
-      - monitoring
-      - monitoring-default
-  - id: cdk-029
-    q: An AWS CDK app must run custom logic after CloudFormation creates a resource. Can ordinary code
-      following the construct constructor wait for that creation?
-    a: No. The app finishes before deployment starts. Represent deploy-time logic with a custom
-      resource.
-    trap: true
-    facts:
-      - runtime
-      - custom-resource
+
 ---
 Synthesis turns a CDK app into deployment files called a cloud assembly. Deployment uploads the assets, such as function packages or container images, and asks CloudFormation to create or update resources.
 
@@ -200,7 +195,7 @@ Synthesis turns a CDK app into deployment files called a cloud assembly. Deploym
 1. Construct the app and its resource tree.
 2. Prepare constructs, apply Aspects (operations across that tree), and validate the result.
 3. Synthesize CloudFormation templates and assets into `cdk.out` by default.
-4. Publish file and image assets with their bootstrap publishing roles. Submit the template with the deployment role; CloudFormation provisions resources with its execution role.
+4. Upload assets and submit the template to CloudFormation for deployment.
 
 A change set is a proposed CloudFormation update that can be reviewed before execution.
 

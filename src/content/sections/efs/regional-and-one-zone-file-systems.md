@@ -61,9 +61,6 @@ facts:
   - id: eks-no-ebs
     text: EBS volumes cannot be mounted to EKS Fargate pods.
     source: https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html#ebs-csi
-  - id: on-premises
-    text: On-premises servers can mount an Amazon EFS file system when connected to the VPC with AWS Direct Connect or Site-to-Site VPN.
-    source: https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-direct-connect
   - id: access-charges
     text: EFS charges per GB for reads and writes, plus an extra per-GB charge to read data from the Infrequent Access and Archive storage classes.
     source: https://aws.amazon.com/efs/pricing/
@@ -73,6 +70,9 @@ facts:
   - id: efs-default-backups
     text: "File systems created in the EFS console are backed up by AWS Backup automatically by default; through the CLI or API, automatic backups are on by default only for One Zone file systems."
     source: https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html
+  - id: on-premises
+    text: On-premises servers can mount an Amazon EFS file system when connected to the VPC with AWS Direct Connect or Site-to-Site VPN.
+    source: https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-direct-connect
 cards:
   - id: efs-002
     q: How do EFS Regional and One Zone differ in data placement and AZ failure exposure?
@@ -128,9 +128,9 @@ cards:
       - eks-persistence
       - eks-no-ebs
   - id: efs-022
-    q: Can on-premises Linux servers mount an Amazon EFS file system?
-    a: Yes, when the data center connects to the VPC with AWS Direct Connect or Site-to-Site VPN.
-    facts: [on-premises]
+    q: Can clients in another Availability Zone use a One Zone EFS mount target, and what charge applies?
+    a: Yes. They can access the single mount target in the storage AZ, with cross-AZ data access charges.
+    facts: [one-zone-target]
   - id: efs-024
     q: Does reading files from EFS Infrequent Access storage cost more than from EFS Standard?
     a: Yes. IA and Archive reads add a per-GB charge on top of the normal read charge, which is why they suit rarely accessed data.
@@ -187,14 +187,18 @@ diagrams:
     steps:
       - The client in AZ A mounts the shared Regional file system through its local mount target.
       - The client in AZ B mounts the same file system through its own AZ mount target.
+revised:
+  - date: 2026-11-23
+    note: The One Zone card now tests cross-AZ access and its data access charges.
+    cards: [efs-022]
 ---
 
-Amazon EFS provides shared files that multiple clients can read and write over Network File System (NFS), a protocol for accessing files across a network. Regional and One Zone determine where EFS keeps its data; throughput and lifecycle settings control performance and storage placement.
+Regional and One Zone EFS build on shared file storage with choices for data placement, performance and lifecycle settings.
 
 ### How it works
 
 1. Choose Regional for data stored across Availability Zones (AZs), separate locations within a Region. One Zone stores all copies within one AZ.
-2. Create a mount target, the network address used to mount the file system, in each Regional client AZ. Allow TCP 2049 from clients to the targets. One Zone has one mount target in its storage AZ.
+2. Create a mount target, the network address used to mount the file system, in each Regional client AZ. One Zone has one mount target in its storage AZ.
 3. Select a performance mode, which affects per-operation latency, and a throughput mode, which controls how much data the file system can move over time.
 4. Apply lifecycle policies to move inactive files from Standard into Infrequent Access (IA) or Archive. EFS tracks access using an internal timer rather than the visible POSIX access timestamp. POSIX permissions are the Unix-style user, group, and file permission model.
 
@@ -216,12 +220,10 @@ Amazon EFS provides shared files that multiple clients can read and write over N
 
 - If the question says a shared writable Linux directory must survive an AZ outage, think Regional EFS with local mount targets, because data spans AZs.
 - If the question says unpredictable throughput without credit management, think Elastic, because capacity follows workload demand.
-- If the question says reduce storage cost for inactive files, think lifecycle policies, because they move content into IA or Archive.
 - If the question says EKS Fargate needs shared persistent files, think statically provisioned EFS, because those pods cannot mount EBS volumes.
 
 ### Remember
 
-- NFS versions: 4.0 and 4.1. Network port: TCP 2049.
 - Regional: one mount target per AZ. One Zone: a single target in its storage AZ; access from other AZs incurs cross-AZ data access charges.
 - Return to Standard on access is disabled by default. Configure `On first access` to return active files to Standard.
 - Encryption key: AWS owned `aws/elasticfilesystem` by default, or a customer managed KMS key.

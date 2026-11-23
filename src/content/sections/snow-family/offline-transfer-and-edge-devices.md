@@ -61,14 +61,13 @@ cards:
     a: Reserve a visit and bring compatible equipment.
     facts: [terminal-equipment, dtt]
 ---
-The Snow Family solves two problems: moving more data than the network can carry in time, and running compute where there is no network. You load a rugged device on site and ship it back to AWS, which imports the data into Amazon S3.
+Snowball Edge also supports local workloads and device clusters at disconnected sites.
 
 ### How it works
 
 1. Create an import or export job in the AWS Snow Family console.
-2. AWS ships a Snowball Edge device; you connect it to your network and unlock it.
-3. Copy data to it (or run EC2-compatible instances on it), then ship it back.
-4. AWS imports the data into Amazon S3; the device data is encrypted the whole way.
+2. Connect and unlock the device, then copy data or run EC2-compatible instances on it.
+3. The device data is encrypted at rest and during shipment.
 
 | Situation | Option |
 |---|---|

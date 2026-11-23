@@ -3,9 +3,6 @@ title: Tunnels, connectivity, and bandwidth
 level: associate
 order: 10
 facts:
-  - id: secure-connection
-    text: Site-to-Site VPN connects an on-premises network to VPCs using IPsec.
-    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#VPC_VPN
   - id: vpc
     text: A VPC is a logically isolated virtual network in AWS.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
@@ -54,26 +51,9 @@ facts:
   - id: cgw-static-ip
     text: When specified, the Site-to-Site VPN customer gateway IP address must be static.
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/cgw-options.html
-diagrams:
-  - id: vpn-two-tunnels
-    title: Two VPN tunnels
-    width: 800
-    height: 300
-    nodes:
-      - { id: customer, label: Customer device, x: 20, y: 112, w: 160, h: 72, tone: network }
-      - { id: tunnel1, label: Tunnel 1, x: 305, y: 20, w: 150, h: 72, tone: network, icon: site-to-site-vpn }
-      - { id: tunnel2, label: Tunnel 2, x: 305, y: 208, w: 150, h: 72, tone: network, icon: site-to-site-vpn }
-      - { id: aws, label: Transit gateway, x: 620, y: 112, w: 160, h: 72, tone: network, icon: transit-gateway }
-    edges:
-      - { from: customer, to: tunnel1, step: 1 }
-      - { from: tunnel1, to: aws, step: 2 }
-      - { from: customer, to: tunnel2, step: 3 }
-      - { from: tunnel2, to: aws, step: 4 }
-    steps:
-      - Configure the first encrypted tunnel.
-      - The first tunnel reaches the AWS gateway.
-      - Configure the second encrypted tunnel for redundancy.
-      - The second tunnel reaches the AWS gateway in another Availability Zone.
+  - id: secure-connection
+    text: Site-to-Site VPN connects an on-premises network to VPCs using IPsec.
+    source: https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#VPC_VPN
 cards:
   - id: site-to-site-vpn-001
     q: What are the tunnel and bandwidth options for AWS Site-to-Site VPN?
@@ -100,8 +80,28 @@ cards:
     q: Must a public AWS Site-to-Site VPN customer gateway have an IP address when using a private certificate from AWS Private CA?
     a: No. An IP address is not required for that public VPN configuration.
     facts: [certificate-no-ip]
+diagrams:
+  - id: vpn-two-tunnels
+    title: Two VPN tunnels
+    width: 800
+    height: 300
+    nodes:
+      - { id: customer, label: Customer device, x: 20, y: 112, w: 160, h: 72, tone: network }
+      - { id: tunnel1, label: Tunnel 1, x: 305, y: 20, w: 150, h: 72, tone: network, icon: site-to-site-vpn }
+      - { id: tunnel2, label: Tunnel 2, x: 305, y: 208, w: 150, h: 72, tone: network, icon: site-to-site-vpn }
+      - { id: aws, label: Transit gateway, x: 620, y: 112, w: 160, h: 72, tone: network, icon: transit-gateway }
+    edges:
+      - { from: customer, to: tunnel1, step: 1 }
+      - { from: tunnel1, to: aws, step: 2 }
+      - { from: customer, to: tunnel2, step: 3 }
+      - { from: tunnel2, to: aws, step: 4 }
+    steps:
+      - Configure the first encrypted tunnel.
+      - The first tunnel reaches the AWS gateway.
+      - Configure the second encrypted tunnel for redundancy.
+      - The second tunnel reaches the AWS gateway in another Availability Zone.
 ---
-AWS Site-to-Site VPN connects an on-premises network to a virtual private cloud (VPC), an isolated virtual network in AWS, using IPsec, a protocol for securing IP traffic. Each connection has two encrypted tunnels for availability.
+Site-to-Site VPN connections use two encrypted tunnels for availability. A virtual private cloud (VPC) is an isolated virtual network in AWS.
 
 ### How it works
 

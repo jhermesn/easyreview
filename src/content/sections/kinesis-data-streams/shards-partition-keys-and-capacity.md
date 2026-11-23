@@ -147,13 +147,13 @@ cards:
       - kinesis-agent
       - real-time
   - id: kinesis-data-streams-023
-    q: A company must ingest and process website clickstream data in real time. Which AWS service fits?
-    a: Amazon Kinesis Data Streams.
-    facts: [real-time]
+    q: How can a team encrypt data stored in Amazon Kinesis Data Streams?
+    a: Enable server-side encryption with an AWS KMS key.
+    facts: [shard-encryption]
   - id: kinesis-data-streams-025
-    q: "Web servers write log files, and the lines must reach a Kinesis data stream without changing the application. What tool does that?"
-    a: "Kinesis Agent, installed on the servers and configured with the files to watch and the target stream."
-    facts: [kinesis-agent]
+    q: What TLS versions should a client use to connect to the Kinesis Data Streams API?
+    a: Clients must support TLS 1.2; AWS recommends TLS 1.3.
+    facts: [shard-tls]
   - id: kinesis-data-streams-027
     q: Where can a Kinesis Data Streams consumer store its processed output?
     a: It can write the results to Amazon S3 or Amazon Redshift.
@@ -170,6 +170,10 @@ cards:
     q: How can a Kinesis Data Streams producer ensure increasing sequence numbers for records with the same partition key?
     a: Write serially to one shard with PutRecord and set SequenceNumberForOrdering to the previous record sequence number. Sequence numbers do not establish order across shards.
     facts: [producer-ordered-writes, producer-shard-order]
+revised:
+  - date: 2026-11-23
+    note: Two cards now cover encryption at rest and TLS for Kinesis API connections.
+    cards: [kinesis-data-streams-023, kinesis-data-streams-025]
 diagrams:
   - id: kinesis-partition-routing
     title: Partition keys distribute records among shards

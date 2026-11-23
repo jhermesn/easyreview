@@ -42,10 +42,6 @@ facts:
     text: After a safety lever is disengaged, a new experiment can be started from the same template,
       but a stopped or cancelled experiment cannot resume.
     source: https://docs.aws.amazon.com/fis/latest/userguide/safety-lever.html#safety-lever
-  - id: stop-preprod
-    text: AWS recommends planning and running FIS experiments in pre-production before production
-      because faults affect real resources.
-    source: https://docs.aws.amazon.com/fis/latest/userguide/what-is.html#what-is
   - id: stop-arn
     text: An Amazon Resource Name, or ARN, uniquely identifies an AWS resource.
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html#reference-arns
@@ -149,7 +145,7 @@ FIS stop conditions bound an experiment using workload health. Define the steady
 
 ### How it works
 
-1. Choose a metric such as latency or errors that represents acceptable behavior. Plan recovery and test in pre-production because FIS changes real resources.
+1. Choose a metric such as latency or errors that represents acceptable behavior. Plan recovery.
 2. Create a CloudWatch alarm and reference its Amazon Resource Name, or ARN, in a stop condition with `source: aws:cloudwatch:alarm`.
 3. FIS stops the experiment when that alarm threshold is reached. An operator can also stop a running experiment manually.
 4. Before stopping completes, FIS finishes pending post actions, the supported actions that restore a target's prior state. Recovery depends on the fault: termination has no reversal.
