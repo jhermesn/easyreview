@@ -15,6 +15,12 @@ facts:
   - id: sni
     text: An ALB HTTPS listener's certificate list lets one load balancer serve multiple domains on the same port with a different certificate per domain, chosen through Server Name Indication (SNI).
     source: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/https-listener-certificates.html#sni-certificate-list
+  - id: acm-new-domains
+    text: An ACM certificate cannot have domain names added or removed, so a change requires a new certificate.
+    source: https://docs.aws.amazon.com/acm/latest/userguide/acm-bestpractices.html
+  - id: acm-domain-validation
+    text: ACM requires validation of all domain names when requesting the replacement certificate.
+    source: https://docs.aws.amazon.com/acm/latest/userguide/acm-bestpractices.html
 cards:
   - id: elastic-load-balancing-060
     q: "An Application Load Balancer must authenticate users before forwarding requests to an application. What can the team configure?"
@@ -29,6 +35,10 @@ cards:
     q: One Application Load Balancer must serve three websites with different domain names and TLS certificates on port 443. How?
     a: "Add all three certificates to the HTTPS listener's certificate list; the ALB picks the right one with SNI."
     facts: [sni]
+  - id: elastic-load-balancing-087
+    q: An Application Load Balancer uses an ACM certificate and a team needs another domain on that certificate. What must the team do?
+    a: Request a new ACM certificate with the revised domain list and validate each domain.
+    facts: [acm-new-domains, acm-domain-validation]
 ---
 An Application Load Balancer can do two jobs that apps often repeat: signing users in, and serving the right TLS certificate for each domain.
 
@@ -40,6 +50,7 @@ An Application Load Balancer can do two jobs that apps often repeat: signing use
 
 ### Exam cues
 
+- If the question says add a domain to an ACM certificate, think request and validate a new certificate, because existing certificates cannot change their domain names.
 - If the question says sign users in at the load balancer, social or corporate identities, no app changes, think ALB authentication with Cognito or OIDC.
 - If the question says several HTTPS domains on one load balancer, think the certificate list with SNI.
 

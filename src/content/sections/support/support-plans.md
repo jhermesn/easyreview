@@ -48,6 +48,21 @@ facts:
   - id: unified-price
     text: "AWS Unified Operations has a 50,000 USD monthly minimum, compared with 5,000 USD for AWS Enterprise Support."
     source: https://aws.amazon.com/premiumsupport/pricing/
+  - id: architecture-guidance
+    text: Business Support+ offers architectural guidance from AWS support engineers.
+    source: https://aws.amazon.com/premiumsupport/plans/business-plus/
+  - id: enterprise-architecture
+    text: Enterprise Support includes consultative architectural guidance tailored to applications.
+    source: https://aws.amazon.com/premiumsupport/plans/
+  - id: enterprise-reviews
+    text: Enterprise Support includes architectural reviews and proactive services from AWS experts.
+    source: https://aws.amazon.com/premiumsupport/technology-and-programs/
+  - id: countdown-replaced
+    text: AWS Countdown replaced Infrastructure Event Management and is included with Enterprise Support.
+    source: https://aws.amazon.com/about-aws/whats-new/2023/11/aws-support-countdown-premium-tier/
+  - id: billing-concierge
+    text: Enterprise Support includes a billing concierge; Unified Operations provides a designated senior billing and account specialist.
+    source: https://aws.amazon.com/premiumsupport/plans/
 cards:
   - id: support-001
     q: What are the current AWS Support plans?
@@ -98,6 +113,22 @@ cards:
     q: Can an AWS Business Support+ customer open an unlimited number of support cases?
     a: Yes. AWS Business Support+ permits an unlimited number of support cases.
     facts: [unlimited-cases]
+  - id: support-018
+    q: Which AWS Support plan offers architectural guidance from support engineers at the lowest paid tier?
+    a: AWS Business Support+. Enterprise Support also offers consultative guidance tailored to applications.
+    facts: [architecture-guidance, enterprise-architecture]
+  - id: support-019
+    q: Which AWS Support plan includes architectural reviews and proactive services from AWS experts?
+    a: AWS Enterprise Support.
+    facts: [enterprise-reviews]
+  - id: support-020
+    q: What AWS Support service replaced Infrastructure Event Management and is included with Enterprise Support?
+    a: AWS Countdown.
+    facts: [countdown-replaced]
+  - id: support-021
+    q: How does billing assistance differ between AWS Enterprise Support and AWS Unified Operations?
+    a: Enterprise includes a billing concierge; Unified Operations has a designated senior billing and account specialist.
+    facts: [billing-concierge]
 ---
 AWS Support plans set how much help a customer gets and how fast. Basic comes with every account. AWS has reorganized the plans: today they are Basic, Business Support+, Enterprise Support and Unified Operations. Developer, Business and Enterprise On-Ramp end on January 1, 2027.
 
@@ -116,6 +147,9 @@ AWS Support plans set how much help a customer gets and how fast. Basic comes wi
 
 ### Exam cues
 
+- If the question says guidance from support engineers on architecture, think Business Support+, because that plan offers architectural guidance.
+- If the question says architectural reviews with AWS experts, think Enterprise Support, because reviews and proactive services are included.
+- If the question says a designated senior billing specialist, think Unified Operations, because Enterprise Support provides a billing concierge.
 - If the question says compare Enterprise Support and Unified Operations minimum charges, think Unified Operations costs more, because its monthly minimum is higher.
 - If the question says only account and billing questions, think Basic.
 - If the question says 24x7 technical support at low cost, think Business Support+.

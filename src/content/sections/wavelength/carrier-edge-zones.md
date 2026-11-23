@@ -21,6 +21,9 @@ facts:
   - id: eks-wavelength
     text: "An EKS cluster for Wavelength is created in a VPC Availability Zone, not a Wavelength Zone; its worker nodes run as self-managed node groups in Wavelength Zone subnets."
     source: https://docs.aws.amazon.com/wavelength/latest/developerguide/wavelength-quotas.html#eks-considerations
+  - id: eks-fargate-unavailable
+    text: Amazon EKS cannot deploy Fargate Pods to Wavelength Zones.
+    source: https://docs.aws.amazon.com/eks/latest/userguide/fargate.html
 cards:
   - id: wavelength-001
     q: A mobile game needs single-digit-millisecond latency for players on a 5G carrier network. Where should the game servers run?
@@ -43,6 +46,10 @@ cards:
     q: "A Kubernetes app must run at the edge of a carrier 5G network. How is it deployed with EKS?"
     a: "Create the EKS cluster in a regular Availability Zone, then run self-managed node groups in Wavelength Zone subnets."
     facts: [eks-wavelength]
+  - id: wavelength-008
+    q: Can Amazon EKS deploy Fargate Pods into AWS Wavelength Zones?
+    a: No. Use supported self-managed EC2 worker nodes in Wavelength subnets.
+    facts: [eks-fargate-unavailable, eks-wavelength]
 ---
 AWS Wavelength is for latency-sensitive mobile traffic: video analytics, game streaming, connected vehicles. The traffic stays inside the 5G carrier network instead of travelling to a Region.
 
@@ -61,6 +68,7 @@ AWS Wavelength is for latency-sensitive mobile traffic: video analytics, game st
 
 ### Exam cues
 
+- If the question says run EKS workloads in a Wavelength Zone, think self-managed EC2 nodes, because Fargate Pods cannot run there.
 - If the question says 5G, carrier network or mobile edge, think AWS Wavelength.
 - If the question says a city or metro area without mention of carriers, think Local Zones.
 

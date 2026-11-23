@@ -92,6 +92,12 @@ facts:
   - id: standard-log-destinations
     text: "CloudFront standard logging (v2) can send access logs to Amazon S3, CloudWatch Logs or Data Firehose, with selectable fields."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging.html
+  - id: dynamic-origin-headers
+    text: "Lambda@Edge can select a CloudFront origin using request header values."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-event-structure.html#lambda-event-content-based-routing
+  - id: response-policy-headers
+    text: "A CloudFront response headers policy adds or removes HTTP headers in responses to viewers."
+    source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html
 cards:
   - id: cloudfront-001
     q: What decides which CloudFront origin and settings handle a request?
@@ -153,6 +159,14 @@ cards:
     q: "Amazon CloudFront access logs must stream into Amazon Data Firehose instead of S3. Is that supported?"
     a: "Yes. Standard logging (v2) can deliver to S3, CloudWatch Logs or Data Firehose."
     facts: [standard-log-destinations]
+  - id: cloudfront-068
+    q: "A CloudFront distribution must choose an origin using a request header. What can perform the selection?"
+    a: "Lambda@Edge can select an origin from request header values. Cache behaviors match URL paths."
+    facts: [dynamic-origin-headers, cache-behavior]
+  - id: cloudfront-069
+    q: "What does a CloudFront response headers policy change?"
+    a: "It adds or removes HTTP response headers sent to viewers."
+    facts: [response-policy-headers]
 ---
 CloudFront delivers web content through edge locations, which are servers that keep copies near viewers, the clients requesting content. An origin holds the original content. A distribution is the configuration that connects those origins to viewers; its cache behaviors are ordered rules for different URL paths.
 
@@ -173,6 +187,7 @@ For selected files or city-level rules, an application can check a geolocation s
 
 ### Exam cues
 
+- If the question says choose an origin from a request header, think Lambda@Edge, because cache behaviors match paths.
 - If the question says a tracing header must reach the origin without creating extra cached copies, think origin request policy, because forwarding and cache identity are separate.
 - If the question says authorize selected downloads by city, think application geolocation plus signed URLs and an S3 origin protected by OAC, because built-in geographic restrictions cover a whole distribution at country level.
 

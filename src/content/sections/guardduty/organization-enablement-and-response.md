@@ -93,6 +93,12 @@ facts:
   - id: conditional-limit
     text: In the AWS conditional enablement pattern, a suspended GuardDuty keeps its detector, so the pattern reports AlreadyEnabled and does not resume monitoring; a disabled GuardDuty has no detector, so the pattern creates a new one without the old findings.
     source: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/enable-amazon-guardduty-conditionally-by-using-aws-cloudformation-templates.html#enable-amazon-guardduty-conditionally-by-using-aws-cloudformation-templates-prereqs
+  - id: event-firehose
+    text: An EventBridge rule can target an Amazon Data Firehose delivery stream.
+    source: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutTargets.html#API_PutTargets_Examples
+  - id: firehose-s3
+    text: An Amazon Data Firehose stream can deliver data to an S3 bucket.
+    source: https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning-s3bucketprefix.html
 diagrams:
   - id: guardduty-finding-response
     title: Route a finding to an automated response
@@ -172,6 +178,10 @@ cards:
     a: No. Automatically suppressed findings are not sent to EventBridge; manually archived findings continue to be sent.
     trap: true
     facts: [suppression-events]
+  - id: guardduty-037
+    q: How can a team deliver Amazon GuardDuty finding events to Amazon S3 through Amazon EventBridge?
+    a: Match GuardDuty findings in an EventBridge rule targeting a Firehose stream configured with an S3 destination.
+    facts: [event-publication, event-firehose, firehose-s3]
 ---
 GuardDuty can be managed across an organization and can send findings to automation. The delegated administrator is the account chosen to manage GuardDuty for associated member accounts.
 
@@ -196,6 +206,7 @@ For infrastructure deployments, an AWS CloudFormation custom resource can invoke
 
 ### Exam cues
 
+- If the question says deliver GuardDuty findings to S3 through EventBridge, think a Firehose target with an S3 destination, because the rule can send matching events to the stream.
 - If the question says cover existing and future accounts, think `ALL`, because `NEW` covers only accounts joining after the setting is applied.
 - If the question says an existing member opted into a Region after joining, think `ALL` or individual enablement, because `NEW` requires opting in before joining.
 - If the question says centralize member alerts, think an administrator-account EventBridge rule, because it can match applicable member findings.

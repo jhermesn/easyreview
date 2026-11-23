@@ -1728,7 +1728,8 @@
               "sections": [
                 "billing-and-cost-management/cost-allocation-tags",
                 "organizations/accounts-ous-and-consolidated-billing",
-                "organizations/basics"
+                "organizations/basics",
+                "config/managed-custom-and-proactive-rules"
               ]
             },
             {
