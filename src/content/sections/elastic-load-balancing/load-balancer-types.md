@@ -370,7 +370,7 @@ cards:
     facts: [alb-subnets, nlb-one-az]
   - id: elastic-load-balancing-074
     q: "How does Elastic Load Balancing provide an entry point in each enabled Availability Zone?"
-    a: "It creates a load balancer node in each enabled Availability Zone."
+    a: "Each enabled Availability Zone gets a load balancer node."
     facts: [enabled-zone-node]
   - id: elastic-load-balancing-076
     q: "An Elastic Load Balancing design has public web servers and application servers that should accept only private traffic from the web tier. Which load balancer schemes fit?"

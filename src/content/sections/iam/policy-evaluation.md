@@ -10,7 +10,7 @@ facts:
     text: "In an IAM policy, Sid is an optional identifier for a statement."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_sid.html
   - id: policy-definition
-    text: "IAM identity-based policies are JSON documents containing one or more permission statements; AWS evaluates applicable policies when a principal makes a request."
+    text: "An IAM identity-based policy is a JSON document with at least one permission statement; when a principal makes a request, AWS evaluates the applicable policies."
     source: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies-introduction
   - id: implicit-deny
     text: Requests start implicitly denied, except for the account root user.
@@ -217,7 +217,7 @@ For resource matching, use the service's ARN format:
 |---|---|
 | S3 bucket | `arn:aws:s3:::bucket-name` |
 
-Billing console access also has an account setting. For pages governed by **Activate IAM Access**, the root user enables IAM access when needed, and the caller still needs an appropriate IAM policy. Organizations-created member accounts enable the setting by default.
+Billing console access also has an account setting. For pages governed by **Activate IAM Access**, the root user enables IAM access when needed, and the caller still requires a suitable IAM policy. Member accounts created by Organizations have the setting enabled by default.
 
 ### Exam cues
 

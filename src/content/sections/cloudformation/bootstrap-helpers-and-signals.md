@@ -16,8 +16,8 @@ facts:
       archives using sources.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-init.html#aws-resource-init
   - id: config-order
-    text: Within a config key, cfn-init processes packages, groups, users, sources, files, commands, and
-      services in that order.
+    text: Within a config key, cfn-init processes packages, groups, and users first. It then processes
+      sources, files, commands, and services, in that order.
     source: https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-init.html#aws-resource-init
   - id: configsets
     text: configSets orders multiple cfn-init config keys; without a selected configset, cfn-init looks

@@ -5,4 +5,4 @@ summary: Convert speech in audio and video to text.
 icon: transcribe
 category: ai-ml
 ---
-Amazon Transcribe is an automatic speech recognition service that converts audio to text.
+Amazon Transcribe converts audio to text using automatic speech recognition.

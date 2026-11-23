@@ -104,7 +104,7 @@ Direct Connect encryption builds on its private network connection. A private pa
 
 ### Remember
 
-- Direct Connect does not encrypt traffic by default.
+- Traffic over Direct Connect is unencrypted by default.
 - MACsec supports dedicated 10, 100 and 400 Gbps connections at selected locations, not hosted connections.
 - New MACsec-enabled connections default to `should_encrypt`.
 

@@ -46,7 +46,7 @@ facts:
     text: DMS Schema Conversion converts the database schema, not the data; data migration uses the data migration features of AWS DMS.
     source: https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html#CHAP_SchemaConversion
   - id: datasync
-    text: AWS DataSync is a secure, high-speed service for transferring file or object data to, from and between AWS storage services.
+    text: AWS DataSync securely transfers file or object data at high speed between AWS storage services, as well as to and from them.
     source: https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html#what-is-datasync
   - id: snow-closed
     text: AWS Snowball Edge is no longer available to new customers; AWS points new customers to DataSync for online transfers, AWS Data Transfer Terminal for physical transfers, and Outposts for edge computing.

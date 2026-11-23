@@ -43,7 +43,7 @@ facts:
     text: "FSx for Windows File Server supports DFS Namespaces on every deployment type, but DFS Replication only on Single-AZ 1 file systems; Multi-AZ file systems provide their own cross-AZ redundancy."
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html#deployment-type-features-summary
   - id: no-ad-connector
-    text: "FSx for Windows File Server does not support AD Connector or Simple AD; join it to AWS Managed Microsoft AD or a self-managed Active Directory."
+    text: "AD Connector and Simple AD are unsupported by FSx for Windows File Server. Join it to a self-managed Active Directory or AWS Managed Microsoft AD."
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/aws-ad-integration-fsxW.html
   - id: dedup
     text: "FSx for Windows File Server Data Deduplication lowers storage costs by storing duplicated portions of a dataset only once."
@@ -121,7 +121,7 @@ FSx for Windows File Server adds directory integration, access controls and avai
 
 ### How it works
 
-1. Create a file system and join it to AWS Managed Microsoft AD or a self-managed Microsoft Active Directory domain, a directory of users and network resources.
+1. Create a file system. Join it to a directory of users and network resources: either a self-managed Microsoft Active Directory domain or AWS Managed Microsoft AD.
 2. Expose a file share, a folder and its subfolders, to SMB clients. Users authenticate with directory identities; Windows access control lists, which list permissions, control file and folder access.
 3. Choose Single-AZ for one file server in one Availability Zone, or Multi-AZ for synchronous replication and automatic failover to a standby in another zone.
 4. Enable and schedule shadow copies, point-in-time snapshots that let users recover files. Keep backups as well: automatic daily backups are enabled by default.

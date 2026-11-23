@@ -37,8 +37,8 @@ facts:
     text: FSR must be enabled on the specific snapshot in the AZ used to create the restored volume.
     source: https://docs.aws.amazon.com/ebs/latest/userguide/ebs-fast-snapshot-restore.html#ebs-fast-snapshot-restore
   - id: attached-check
-    text: Attached EBS status checks detect volume reachability and I/O impairment;
-      StatusCheckFailed_AttachedEBS signals an attached volume cannot complete I/O.
+    text: Attached EBS status checks detect whether a volume is reachable or has impaired I/O;
+      StatusCheckFailed_AttachedEBS indicates that an attached volume cannot complete I/O.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#attached-ebs-status-checks
   - id: multi-volume
     text: EBS supports taking multi-volume snapshots of volumes attached to an EC2 instance.

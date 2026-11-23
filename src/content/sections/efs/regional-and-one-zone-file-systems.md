@@ -198,7 +198,7 @@ Regional and One Zone EFS build on shared file storage with choices for data pla
 ### How it works
 
 1. Choose Regional for data stored across Availability Zones (AZs), separate locations within a Region. One Zone stores all copies within one AZ.
-2. Create a mount target, the network address used to mount the file system, in each Regional client AZ. One Zone has one mount target in its storage AZ.
+2. Create a mount target, the network address used to mount the file system, in each Regional client AZ. For One Zone, a single mount target resides in the storage AZ.
 3. Select a performance mode, which affects per-operation latency, and a throughput mode, which controls how much data the file system can move over time.
 4. Apply lifecycle policies to move inactive files from Standard into Infrequent Access (IA) or Archive. EFS tracks access using an internal timer rather than the visible POSIX access timestamp. POSIX permissions are the Unix-style user, group, and file permission model.
 

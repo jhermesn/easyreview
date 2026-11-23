@@ -28,7 +28,7 @@ facts:
     text: "An EC2 key pair is a public key that EC2 stores on the instance and a private key you keep; it proves identity for SSH on Linux and decrypts the administrator password on Windows."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#ec2-key-pairs
   - id: imds
-    text: "Software on an instance reads instance metadata and user data from the Instance Metadata Service at 169.254.169.254 (or fd00:ec2::254 over IPv6); requests are free."
+    text: "Instance software can read user data and instance metadata through the Instance Metadata Service. Its address is 169.254.169.254 (or fd00:ec2::254 over IPv6), and requests are free."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html#configuring-instance-metadata-service
   - id: imdsv2
     text: "IMDSv2 requires session tokens, and instance metadata options can require IMDSv2 only or disable the metadata service entirely."

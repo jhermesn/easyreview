@@ -7,7 +7,7 @@ facts:
     text: Directories store information about users, groups and devices and help administrators manage access.
     source: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/what_is.html
   - id: ds-managed
-    text: AWS Managed Microsoft AD runs Microsoft Active Directory as an AWS managed service and creates two domain controllers across Availability Zones.
+    text: AWS manages Microsoft Active Directory through AWS Managed Microsoft AD, which creates two domain controllers across Availability Zones.
     source: https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html
   - id: ds-trust
     text: AWS Managed Microsoft AD can establish a trust with existing Active Directory so users can access resources using their existing credentials.
@@ -120,8 +120,8 @@ AWS Directory Service offers ways to use directories, which store users, groups 
 
 ### How it works
 
-1. AWS Managed Microsoft AD runs Microsoft Active Directory in AWS with two managed domain controllers, servers that handle directory requests, in different Availability Zones.
-2. A trust allows users in an existing Active Directory to access resources in the managed directory with their existing credentials. Hybrid Edition extends an existing self-managed directory without synchronizing user identities.
+1. AWS Managed Microsoft AD provides two managed domain controllers in different Availability Zones for Microsoft Active Directory in AWS. These servers handle directory requests.
+2. A trust allows users in an existing Active Directory to access resources in the managed directory with their existing credentials. With Hybrid Edition, an existing self-managed directory is extended without identity synchronization.
 3. AD Connector is a proxy, or intermediary, that forwards requests to existing AD without caching directory information in AWS.
 4. Simple AD is a separate Samba-based directory with basic Active Directory features. As of November 2026, it is closed to new customers, but existing customers may create more directories.
 

@@ -33,13 +33,13 @@ facts:
     text: Standard-IA and One Zone-IA each have a 30-day minimum storage billing duration.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro
   - id: lifecycle-glacier-billing
-    text: Glacier Instant Retrieval has a 90-day minimum storage billing duration.
+    text: Glacier Instant Retrieval bills storage for at least 90 days.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro
   - id: lifecycle-glacier-billing-flexible
-    text: Glacier Flexible Retrieval has a 90-day minimum storage billing duration.
+    text: Glacier Flexible Retrieval bills storage for at least 90 days.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro
   - id: lifecycle-glacier-billing-deep
-    text: Glacier Deep Archive has a 180-day minimum storage billing duration.
+    text: Glacier Deep Archive bills storage for at least 180 days.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#storage-class-intro
   - id: lifecycle-early
     text: Deleting, overwriting, or transitioning objects out of a class before its minimum storage
@@ -259,7 +259,7 @@ S3 Lifecycle applies rules to move aging objects between storage classes or remo
 2. Use lifecycle rules when age determines the move. Select the whole bucket or filter by prefix or tags. Use Intelligent-Tiering when changing access patterns should determine the access tier; reads from its Infrequent Access or Archive Instant Access tiers return objects to Frequent Access.
 3. Configure current-version and noncurrent-version actions separately. In a versioning-enabled bucket, current-version expiration adds a delete marker; noncurrent expiration removes old versions permanently.
 4. Add `AbortIncompleteMultipartUpload` for abandoned uploads. It removes unfinished parts after the configured age.
-5. Allow each class's minimum storage duration before another transition in the same rule. Separate rules can move objects sooner but still incur remaining-duration charges. Glacier Instant Retrieval can transition to Flexible Retrieval or Deep Archive. Intelligent-Tiering destinations depend on the access tier. Lifecycle cannot move Deep Archive objects back to Standard; restore and copy them.
+5. Allow each class's minimum storage duration before another transition in the same rule. Separate rules can move objects sooner but still incur remaining-duration charges. Objects in Glacier Instant Retrieval can move to Deep Archive or Flexible Retrieval. Intelligent-Tiering destinations depend on the access tier. Lifecycle cannot move Deep Archive objects back to Standard; restore and copy them.
 6. Rules apply to existing objects as well as new ones.
 
 | Choice | Suitable access pattern or tradeoff |

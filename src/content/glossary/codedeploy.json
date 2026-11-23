@@ -225,13 +225,13 @@
   {
     "term": "scale-out",
     "aliases": [],
-    "definition": "An increase in the number of instances in an Auto Scaling group.",
+    "definition": "An increase in an Auto Scaling group's instance count.",
     "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors"
   },
   {
     "term": "scale-in",
     "aliases": [],
-    "definition": "A reduction in the number of instances in an Auto Scaling group.",
+    "definition": "A reduction in an Auto Scaling group's instance count.",
     "source": "https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable"
   },
   {

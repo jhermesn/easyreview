@@ -115,7 +115,7 @@ AWS Database Migration Service (DMS) moves data between supported data stores an
 
 ### How it works
 
-1. Use source and target endpoints. At least one endpoint must be an AWS service.
+1. Use source and target endpoints. An AWS service must serve as at least one of the endpoints.
 2. Select a replication instance, which reads and loads data, or use DMS Serverless to provision and scale capacity automatically. Multi-AZ gives a provisioned instance a synchronous standby in another Availability Zone.
 3. Choose the task type. Full load plus CDC copies existing data while caching changes for each table once its load starts, applies those changes, then continues replication from source logs. Configure the source for CDC as required by its engine.
 4. After replication reaches a steady state, stop the application, allow remaining changes to reach the target, and restart the application against the target.

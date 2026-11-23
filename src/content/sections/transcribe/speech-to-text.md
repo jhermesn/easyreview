@@ -4,7 +4,7 @@ level: foundational
 order: 10
 facts:
   - id: purpose
-    text: Amazon Transcribe is an automatic speech recognition service that uses machine learning to convert audio to text, standalone or inside applications.
+    text: Amazon Transcribe converts audio into text using machine learning and automatic speech recognition. It works standalone or inside applications.
     source: https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html#what-is
   - id: modes
     text: Amazon Transcribe transcribes media in real time (streaming) or files stored in Amazon S3 (batch).

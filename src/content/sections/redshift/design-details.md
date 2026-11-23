@@ -52,7 +52,7 @@ revised:
 ---
 Redshift loading and routing build on the basics with data access and network controls.
 
-Redshift uses columnar storage: it stores values by column so analytical queries that read a subset of columns need fewer disk reads.
+Redshift stores values by column, so queries that use only some columns need fewer disk reads.
 
 ### How it works
 

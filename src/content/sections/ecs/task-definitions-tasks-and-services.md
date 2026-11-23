@@ -15,7 +15,7 @@ facts:
     text: The taskRoleArn field in a task definition specifies the IAM role used by the task's containers to call AWS APIs.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_role_arn
   - id: ecs-model-task
-    text: A task is an instance of a task definition inside a cluster.
+    text: Inside a cluster, a task is an instance created from a task definition.
     source: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html
   - id: ecs-model-service
     text: A service maintains its desired task count and replaces failed or stopped tasks.

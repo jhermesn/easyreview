@@ -53,7 +53,7 @@ cards:
       - no-lb-probes
   - id: route53-013
     q: A root domain must point to an ALB through Route 53. Which record should be used?
-    a: An alias A record, or AAAA for an IPv6 answer. A CNAME cannot exist at the zone apex. The alias inherits its AWS target TTL, and AWS-resource alias queries have no Route 53 query charge.
+    a: An alias A record, or AAAA for an IPv6 answer. A CNAME cannot exist at the zone apex. The AWS target supplies the alias TTL. Route 53 does not charge for queries to aliases of AWS resources.
     facts:
       - alias
       - apex
@@ -91,7 +91,7 @@ For fixed network entry addresses across Regions, a Route 53 alias can point to 
 
 ### Remember
 
-- AWS-resource alias queries have no Route 53 query charge.
+- Route 53 does not charge for queries to aliases of AWS resources.
 - You cannot set a custom TTL for an alias to an AWS resource.
 
 > **Trap:** An alias cannot point directly to an EC2 instance public DNS name. Choose a supported target.

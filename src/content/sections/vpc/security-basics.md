@@ -28,8 +28,8 @@ facts:
       or latency.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-logs
   - id: sg-scope
-    text: Security groups control allowed inbound and outbound traffic for associated resources and
-      their network interfaces.
+    text: Security groups control which inbound and outbound traffic is allowed for associated resources
+      and their network interfaces.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#vpc-security-groups
   - id: sg-stateful
     text: Security groups track connections and automatically allow response traffic for allowed

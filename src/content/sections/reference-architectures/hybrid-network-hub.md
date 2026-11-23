@@ -117,7 +117,7 @@ cards:
     facts: [resolver-endpoints]
   - id: reference-architectures-026
     q: A security team assumes traffic over Direct Connect is encrypted. Is it?
-    a: "No. Direct Connect does **not encrypt** traffic by default. A **Private IP Site-to-Site VPN** over the connection adds IPsec encryption without public IP addresses."
+    a: "No. By default, traffic on Direct Connect is **not encrypted**. A **Private IP Site-to-Site VPN** over the connection adds IPsec encryption without public IP addresses."
     trap: true
     facts: [dx-no-encryption, encrypt-dx]
   - id: reference-architectures-081

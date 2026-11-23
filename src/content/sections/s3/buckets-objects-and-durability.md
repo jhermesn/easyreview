@@ -93,7 +93,7 @@ cards:
     facts: [durability]
   - id: s3-114
     q: How does Amazon S3 Standard protect objects against the loss of a data center?
-    a: It stores objects redundantly across at least three Availability Zones in the Region.
+    a: It stores objects redundantly across three or more Availability Zones within the Region.
     facts: [multi-az]
   - id: s3-115
     q: A new Amazon S3 bucket is created without any policy. Can anyone on the internet read its objects?

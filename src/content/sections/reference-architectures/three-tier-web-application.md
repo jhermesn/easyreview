@@ -31,7 +31,7 @@ facts:
     text: A security group rule can name another security group as its source, allowing traffic from every instance associated with that group over private IP addresses.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
   - id: waf
-    text: AWS WAF is a web application firewall that watches HTTP(S) requests to resources such as CloudFront distributions and API Gateway APIs and allows or blocks them by rules.
+    text: AWS WAF filters HTTP(S) requests using rules to allow or block traffic to resources including API Gateway APIs and CloudFront distributions.
     source: https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html#waf-chapter
   - id: shield-standard
     text: AWS gives automatic protection against common DDoS attacks such as UDP reflection and SYN floods at no extra cost.

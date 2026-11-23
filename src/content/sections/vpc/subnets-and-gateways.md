@@ -13,7 +13,7 @@ facts:
     text: Route tables determine where network traffic from a subnet or gateway is directed.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#amazon-vpc-features
   - id: public-private
-    text: A public subnet has a direct route to an internet gateway; a private subnet doesn't, and its resources need a NAT device to reach the internet.
+    text: A public subnet routes directly to an internet gateway. A private subnet does not, so resources in it require a NAT device for internet access.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html#configure-subnets
   - id: vpn-only
     text: A VPN-only subnet has a route to a Site-to-Site VPN connection through a virtual private gateway and no route to an internet gateway.
@@ -43,10 +43,10 @@ facts:
     text: "AWS initially provides a default VPC in each Region with public default subnets, an internet gateway and DNS resolution enabled."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#default-vpc
   - id: vpc-quotas
-    text: "Default quotas allow 5 VPCs per Region and 5 IPv4 CIDR blocks per VPC (adjustable to 50), and only one internet gateway can be attached to a VPC at a time."
+    text: "The default quotas are 5 VPCs in each Region and 5 IPv4 CIDR blocks for each VPC, adjustable to 50. A VPC can have only one attached internet gateway at a time."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html
   - id: igw-route
-    text: "A subnet is public when its route table sends 0.0.0.0/0 (or ::/0) to the internet gateway, or a narrower range of public addresses."
+    text: "A subnet is public if its route table directs a range of public addresses, including 0.0.0.0/0 or ::/0, to the internet gateway."
     source: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access
   - id: gateway-services
     text: Gateway endpoints provide S3 and DynamoDB connectivity without an internet gateway or NAT, do
@@ -72,7 +72,7 @@ cards:
     facts: [subnet]
   - id: vpc-027
     q: What makes a VPC subnet public rather than private?
-    a: A public subnet has a route to an internet gateway; a private subnet doesn't.
+    a: A public subnet routes to an internet gateway; a private subnet does not.
     facts: [public-private]
   - id: vpc-028
     q: Instances in a private subnet must download patches from the internet but must not accept incoming connections. What should the company add?

@@ -40,7 +40,7 @@ facts:
     text: "A simple record with several values returns all of them in random order and the resolver hands them to the client; unlike multivalue answer records, the values are not health checked one by one."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-simple.html#routing-policy-simple
   - id: geoprox-coords
-    text: "Geoproximity routing locates AWS resources by Region or Local Zone group and non-AWS resources by latitude and longitude."
+    text: "Geoproximity routing uses the Region or Local Zone group for AWS resources, and latitude and longitude for non-AWS resources."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html#routing-policy-geoproximity
   - id: zero-weight-fallback
     text: "With health checks on weighted records, Route 53 first considers only nonzero-weight records and uses zero-weight records only when all nonzero-weight records are unhealthy."
@@ -49,7 +49,7 @@ facts:
     text: "When no record in a group is healthy, Route 53 treats all of them as healthy and still answers according to the routing policy."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-how-route-53-chooses-records.html
   - id: multivalue-not-lb
-    text: "Multivalue answer routing returns health-checked IP addresses to improve uptime and share load, but it is not a substitute for a load balancer."
+    text: "Multivalue answer routing shares load and improves uptime by returning health-checked IP addresses, but it cannot replace a load balancer."
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html
   - id: geo-uses
     text: "Geolocation routing can serve content in the user's language or limit content to the locations where you have distribution rights."

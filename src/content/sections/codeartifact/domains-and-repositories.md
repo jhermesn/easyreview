@@ -46,7 +46,7 @@ facts:
       packages back to public repositories.
     source: https://docs.aws.amazon.com/codeartifact/latest/ug/packages-overview.html#package-publishing-upstreams-direct
   - id: symmetric-definition
-    text: Symmetric encryption uses the same key to encrypt and decrypt data.
+    text: With symmetric encryption, one key handles both data encryption and decryption.
     source: https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/concepts.html
 cards:
   - id: codeartifact-003

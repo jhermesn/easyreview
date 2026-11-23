@@ -75,10 +75,10 @@ facts:
     text: "VPC peering can connect VPCs in different AWS accounts, in the same Region or in different Regions."
     source: https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html
   - id: peer-sg-region
-    text: "A security group rule can reference a security group of a peered VPC in the same Region; for a peer in another Region, use the peer VPC CIDR block instead."
+    text: "For a peered VPC in the same Region, a security group rule can reference its security group. Use the peer VPC CIDR block instead when the peer is in another Region."
     source: https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html
   - id: peer-dns
-    text: "Peering DNS resolution is off by default; once enabled, a peer instance public IPv4 DNS hostname resolves to its private IPv4 address across the peering connection."
+    text: "Peering DNS resolution defaults to off. When enabled, the public IPv4 DNS hostname of a peer instance resolves across the peering connection to that instance's private IPv4 address."
     source: https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-dns.html
   - id: peering-backbone
     text: "Inter-Region VPC peering traffic stays in private IP address space, is encrypted, and stays on the AWS global backbone without crossing the public internet."
@@ -122,7 +122,7 @@ cards:
   - id: vpc-015
     q: Instances in several AZs share one zonal NAT gateway. How should the team remove the shared AZ
       dependency for internet egress?
-    a: Create a zonal NAT gateway per AZ and route each private subnet to its local AZ gateway.
+    a: Create a zonal NAT gateway in each AZ. Route each private subnet to the gateway in its own AZ.
     facts:
       - nat-zonal
   - id: vpc-016

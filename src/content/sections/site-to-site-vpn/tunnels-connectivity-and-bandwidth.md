@@ -7,7 +7,7 @@ facts:
     text: A VPC is a logically isolated virtual network in AWS.
     source: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
   - id: target-gateways
-    text: A virtual private gateway attaches to one VPC; a transit gateway connects multiple VPCs and on-premises networks.
+    text: Each virtual private gateway serves a single VPC; a transit gateway connects multiple VPCs and on-premises networks.
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html#concepts
   - id: two-tunnels
     text: Each VPN connection has two encrypted tunnels, which can both be used for high availability.
@@ -19,7 +19,7 @@ facts:
     text: Configure the customer gateway device and VPC route tables to direct traffic for the remote network to the AWS gateway.
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/Examples.html#SingleVPN
   - id: bandwidth
-    text: Standard tunnel bandwidth is up to 1.25 Gbps per tunnel by default; Large Bandwidth Tunnels support up to 5 Gbps per tunnel.
+    text: By default, each standard tunnel supports up to 1.25 Gbps. Each Large Bandwidth Tunnel supports up to 5 Gbps.
     source: https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html#tunnel-bandwidth-options
   - id: large-restrictions
     text: Large Bandwidth Tunnels require a transit gateway or Cloud WAN, both tunnels must use the same bandwidth, and accelerated VPN is not supported.
@@ -57,7 +57,7 @@ facts:
 cards:
   - id: site-to-site-vpn-001
     q: What are the tunnel and bandwidth options for AWS Site-to-Site VPN?
-    a: "Each connection has two encrypted tunnels. Standard bandwidth is up to 1.25 Gbps per tunnel by default; Large Bandwidth Tunnels support up to 5 Gbps per tunnel on Transit Gateway or Cloud WAN."
+    a: "Each connection has two encrypted tunnels. By default, each standard tunnel supports up to 1.25 Gbps. On Transit Gateway or Cloud WAN, each Large Bandwidth Tunnel supports up to 5 Gbps."
     facts: [two-tunnels, bandwidth, large-restrictions]
   - id: site-to-site-vpn-004
     q: A company needs encrypted Direct Connect traffic without public IP addresses. Which VPN option fits?
@@ -65,7 +65,7 @@ cards:
     facts: [private-ip-dx]
   - id: site-to-site-vpn-009
     q: A team assumes Direct Connect encrypts traffic by default. What should it know before using Site-to-Site VPN?
-    a: "Direct Connect does not encrypt traffic by default. Private IP Site-to-Site VPN can encrypt it without public IP addresses."
+    a: "By default, Direct Connect traffic is not encrypted. Private IP Site-to-Site VPN can encrypt it without public IP addresses."
     trap: true
     facts: [dx-encryption, private-ip-dx]
   - id: site-to-site-vpn-016
@@ -118,10 +118,10 @@ Site-to-Site VPN connections use two encrypted tunnels for availability. A virtu
 
 ### Remember
 
-- Standard tunnels support up to 1.25 Gbps each by default; Large Bandwidth Tunnels support up to 5 Gbps each.
+- By default, each standard tunnel supports up to 1.25 Gbps. Each Large Bandwidth Tunnel supports up to 5 Gbps.
 - Both tunnels must use the same bandwidth setting. Large Bandwidth Tunnels require Transit Gateway or Cloud WAN and a fixed customer gateway IP address.
 - Large Bandwidth Tunnels do not support accelerated VPN.
-- Direct Connect does not encrypt traffic by default.
+- By default, Direct Connect traffic is not encrypted.
 - Pricing: per connection-hour (partial hours round up) plus data transfer.
 
 > **Trap:** A virtual private gateway cannot use Large Bandwidth Tunnels. Use Transit Gateway or Cloud WAN for that option.

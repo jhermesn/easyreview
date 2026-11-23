@@ -46,7 +46,7 @@ facts:
     text: An EBS-backed AMI uses EBS snapshots for its disk image data.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html#AMIEncryption
   - id: replicated-fleet-data
-    text: "Instance store also suits temporary data replicated across a fleet of instances, such as a load-balanced pool of web servers."
+    text: "Instance store also suits temporary data copied among instances in a fleet, for example web servers in a load-balanced pool."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
 cards:
   - id: ec2-013

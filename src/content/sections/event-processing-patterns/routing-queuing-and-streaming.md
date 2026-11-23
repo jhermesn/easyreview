@@ -232,7 +232,7 @@ A shard is one ordered sequence within a Kinesis stream. A consumer is an applic
 
 ### Remember
 
-- Kinesis retention defaults to 24 hours and can reach 365 days.
+- Kinesis retains data for 24 hours by default, with a maximum of 365 days.
 - SQS messages need deletion after successful processing.
 - Firehose buffers destination delivery. Redshift, S3, and OpenSearch are destination choices, not independent replay consumers.
 - Firehose OpenSearch input must be UTF-8 single-line JSON. Athena queries data stored in S3.

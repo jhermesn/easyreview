@@ -36,7 +36,7 @@ cards:
     a: Yes. Launch Wizard for SAP supports customer managed KMS keys for EBS encryption.
     facts: [launch-wizard-sap]
   - id: kms-038
-    q: What is the difference between encryption at rest and encryption in transit on AWS?
+    q: How does AWS encryption at rest differ from encryption in transit?
     a: "- At rest: protects stored data, such as in Amazon S3, Amazon EBS or a database\n- In transit: protects data moving between systems, usually with TLS"
     facts: [at-rest, in-transit]
   - id: kms-039

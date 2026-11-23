@@ -43,7 +43,7 @@ facts:
     text: An account-level subscription applies to all log groups unless selection criteria limit which groups are included.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/subscription-concepts.html#subscription-concepts
   - id: agent
-    text: The CloudWatch agent collects guest operating system metrics and log files from EC2 and on-premises servers.
+    text: On EC2 and on-premises servers, the CloudWatch agent gathers guest operating system metrics and logs.
     source: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html#Install-CloudWatch-Agent
   - id: guest-metrics
     text: Use the CloudWatch agent to collect guest memory and disk space metrics beyond EC2 basic monitoring.

@@ -16,10 +16,10 @@ facts:
     text: CloudFront bounds max-age or s-maxage freshness by the configured minimum and maximum TTLs.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#ExpirationDownloadDist
   - id: ttl-shared
-    text: When both max-age and s-maxage are present, CloudFront uses s-maxage while browsers use max-age.
+    text: If both directives are present, browsers use max-age and CloudFront uses s-maxage.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#ExpirationDownloadDist
   - id: ttl-expires
-    text: Cache-Control max-age takes precedence over Expires when both are supplied.
+    text: When both are supplied, Cache-Control max-age overrides Expires.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#expiration-individual-objects
   - id: ttl-private-positive
     text: A minimum TTL greater than 0 makes CloudFront cache content for that minimum even with private, no-cache

@@ -25,7 +25,7 @@ facts:
     text: "A Direct Connect Partner can provide the network extension from an office or data center to a Direct Connect location."
     source: https://aws.amazon.com/directconnect/faqs/
   - id: loa-cross-connect
-    text: "After a dedicated connection request, AWS provides a Letter of Authorization and Connecting Facility Assignment (LOA-CFA), which your network provider needs to order the cross connect at the Direct Connect location."
+    text: "After a dedicated connection request, AWS issues the LOA-CFA (Letter of Authorization and Connecting Facility Assignment). Your network provider needs it to request the cross connect in that Direct Connect location."
     source: https://docs.aws.amazon.com/directconnect/latest/UserGuide/dedicated_connection.html
 cards:
   - id: direct-connect-009
@@ -55,7 +55,7 @@ cards:
     a: "A Direct Connect Partner can extend the company network to the location."
     facts: [partner-extension]
   - id: direct-connect-021
-    q: "AWS has approved a new AWS Direct Connect dedicated connection. What document does the network provider need to order the cross connect at the Direct Connect location?"
+    q: "AWS has approved a new AWS Direct Connect dedicated connection. Which document must the network provider use to order a cross connect at that Direct Connect location?"
     a: "The LOA-CFA (Letter of Authorization and Connecting Facility Assignment)."
     facts: [loa-cross-connect]
 ---

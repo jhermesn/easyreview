@@ -4,7 +4,7 @@ level: foundational
 order: 5
 facts:
   - id: windows-files
-    text: "Amazon FSx for Windows File Server provides fully managed Microsoft Windows file servers on a native Windows file system."
+    text: "Amazon FSx for Windows File Server offers Microsoft Windows file servers that are fully managed and use a native Windows file system."
     source: https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html#what-is
   - id: smb
     text: FSx for Windows File Server provides managed Windows file servers and supports SMB versions 2.0 through 3.1.1.

@@ -26,7 +26,7 @@ facts:
     text: Lambda runs the X-Ray daemon for sampled invocations.
     source: https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html
   - id: beanstalk
-    text: Elastic Beanstalk can run the X-Ray daemon using the XRayEnabled option.
+    text: The XRayEnabled option lets Elastic Beanstalk run the X-Ray daemon.
     source: https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html
   - id: cloudwatch
     text: The CloudWatch agent can collect OpenTelemetry or X-Ray SDK traces from EC2 and on-premises

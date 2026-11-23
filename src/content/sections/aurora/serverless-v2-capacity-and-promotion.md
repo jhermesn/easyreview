@@ -28,7 +28,7 @@ facts:
     text: Setting minimum capacity to 0.5 ACU or greater turns off auto-pause.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-disabling
   - id: pause-cost
-    text: Paused Serverless v2 instances have no instance-capacity charge, but storage and other cluster charges continue.
+    text: A paused Serverless v2 instance incurs no charge for instance capacity; charges for storage and other cluster resources continue.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-billing
   - id: resume
     text: A connection to an auto-paused instance must wait for it to resume, so applications must tolerate resume latency.

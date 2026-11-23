@@ -8,7 +8,7 @@ facts:
       KinesisDataFirehose and the deliveryStream destination key.
     source: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_LogDestinationConfig.html#networkfirewall-Type-LogDestinationConfig-LogDestination
   - id: deliver-zero
-    text: Zero buffering is unavailable for S3 backup and for dynamic partitioning.
+    text: S3 backup and dynamic partitioning do not support zero buffering.
     source: https://docs.aws.amazon.com/firehose/latest/dev/create-configure-backup.html#buffering-hints
   - id: transform-contract
     text: For Direct PUT and Kinesis Data Streams sources, every Lambda output record must preserve
@@ -64,7 +64,7 @@ Amazon Data Firehose can receive AWS Network Firewall logs and process records r
 
 ### Remember
 
-- Zero buffering is unavailable for S3 backup and dynamic partitioning.
+- S3 backup and dynamic partitioning do not support zero buffering.
 - Lambda result values are `Ok`, `Dropped`, and `ProcessingFailed`.
 
 > **Trap:** `Dropped` counts as successful processing, but changing a record's `recordId` causes transformation failure.

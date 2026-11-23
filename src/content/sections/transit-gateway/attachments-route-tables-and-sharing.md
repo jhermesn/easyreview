@@ -16,7 +16,7 @@ facts:
     text: Attachments can connect VPCs, VPN connections, Direct Connect gateways, Connect attachments and peer transit gateways.
     source: https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-attachments-overview
   - id: subnet-zones
-    text: A VPC attachment uses one subnet per enabled Availability Zone; resources in zones without an attachment cannot reach the transit gateway.
+    text: For a VPC attachment, each enabled Availability Zone uses one subnet. Without an attachment in their zone, resources cannot reach the transit gateway.
     source: https://docs.aws.amazon.com/vpc/latest/tgw/how-transit-gateways-work.html#tgw-az-overview
   - id: subnet-routes
     text: VPC subnet route tables need routes to the transit gateway and attachment subnet route tables need routes to destinations within the VPC.

@@ -43,7 +43,7 @@ facts:
     text: On supported versions, setting minimum capacity to 0 ACUs enables auto-pause after a period without user connections; a connection attempt resumes the instance.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2-auto-pause.html#auto-pause-enabling
   - id: high-priority
-    text: Serverless v2 readers in promotion tiers 0 and 1 have a minimum tied to current writer capacity, within the configured maximum, to prepare for failover.
+    text: To prepare for failover, Serverless v2 readers assigned to promotion tier 0 or 1 use a minimum capacity linked to the writer's current capacity, subject to the configured maximum.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html#aurora-serverless-v2.how-it-works.scaling
   - id: independent
     text: Serverless v2 readers in promotion tiers 2 through 15 scale independently within the cluster range and might need to scale up after promotion.

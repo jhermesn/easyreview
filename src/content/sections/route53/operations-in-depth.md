@@ -303,7 +303,7 @@ TTL is the time a record can be cached.
 
 - The 10-second check interval costs extra. The health-check console can create a CloudWatch alarm that notifies an SNS topic in us-east-1 after one minute of unhealthy status. Intervals · Notifications
 - Weighted records accept integer weights from 0 through 255. If all weights are zero, resources have equal selection probability.
-- Multivalue routing returns up to eight healthy records, or all healthy records if there are eight or fewer. If all are unhealthy, it returns up to eight unhealthy records.
+- For multivalue routing, the response includes at most eight healthy records, or every healthy record if there are eight or fewer. If all are unhealthy, it returns up to eight unhealthy records.
 - An alarm-based health check follows the metric data stream, not a state set with SetAlarmState; update the check after changing the alarm.
 - The Route 53 SLA covers authoritative DNS, not the API or console.
 - DNSSEC signing: a customer managed asymmetric KMS key backs each key-signing key, Route 53 manages the zone-signing key, and a DS record in the parent zone completes the chain of trust.

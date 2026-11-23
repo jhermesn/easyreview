@@ -7,7 +7,7 @@ facts:
     text: Target tracking adjusts group capacity toward a metric target and manages the associated CloudWatch alarms.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html#as-scaling-target-tracking
   - id: step
-    text: Step scaling uses operator-managed CloudWatch alarms and different capacity adjustments based on the size of the alarm breach.
+    text: With step scaling, operators manage CloudWatch alarms. Capacity adjustments vary with the size of the breach.
     source: https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html#as-scaling-simple-step
   - id: simple
     text: Simple scaling performs one adjustment and waits for a cooldown before further simple scaling activities.

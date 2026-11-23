@@ -54,8 +54,8 @@ facts:
       and Lambda provisioned concurrency; null is treated as zero.
     source: https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html
   - id: step
-    text: Step scaling uses customer-managed CloudWatch alarms and capacity adjustments based on the
-      size of the alarm breach.
+    text: With step scaling, you manage CloudWatch alarms. The capacity adjustment depends on how far
+      the metric breaches the alarm threshold.
     source: https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html
   - id: step-support
     text: Step scaling supports ECS services and Aurora clusters but does not list DynamoDB or Lambda

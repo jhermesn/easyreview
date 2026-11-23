@@ -13,7 +13,7 @@ facts:
     text: A certificate authority issues signed certificates binding identities to public keys.
     source: https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.html#concept-ca
   - id: public-trust
-    text: ACM public certificates are trusted by major browsers and operating systems.
+    text: Major operating systems and browsers trust ACM public certificates.
     source: https://docs.aws.amazon.com/acm/latest/userguide/certificate-types.html
   - id: private-trust
     text: Private certificates are not publicly trusted.

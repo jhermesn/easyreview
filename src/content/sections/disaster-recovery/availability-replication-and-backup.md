@@ -27,8 +27,8 @@ facts:
       destructive changes.
     source: https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html#backup-and-restore
   - id: aurora-backups
-    text: Aurora does not support native cross-Region automated backup replication of snapshots and
-      transaction logs; copy DB cluster snapshots for regional recovery.
+    text: Aurora does not natively replicate automated backups of snapshots and transaction logs across
+      Regions; copy DB cluster snapshots for regional recovery.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.Retaining.html#Aurora.Managing.Backups.Retaining.Limits
   - id: backup-copy
     text: AWS Backup can copy backups across Regions, including backups for Aurora.

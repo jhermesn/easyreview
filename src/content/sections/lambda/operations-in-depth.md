@@ -117,7 +117,7 @@ cards:
       - sqs-partial-scaling
   - id: lambda-047
     q: Several Lambda functions use the same subnet and security groups. Does Lambda need a separate network interface for every function?
-    a: No. Functions in the same account can share a Hyperplane ENI for the same subnet and security-group combination.
+    a: No. Functions in the same account can share a Hyperplane ENI when they use the same combination of subnet and security group.
     trap: true
     facts:
       - eni-reuse

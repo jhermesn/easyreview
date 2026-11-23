@@ -16,8 +16,7 @@ facts:
       and Hybrid Nodes.
     source: https://docs.aws.amazon.com/eks/latest/userguide/eks-compute.html
   - id: managed-group
-    text: Managed node groups provision and manage EC2 nodes in EKS-managed Auto Scaling groups in your
-      account.
+    text: Managed node groups provision EC2 nodes and manage them using Auto Scaling groups that EKS manages in your account.
     source: https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html#managed-node-group-concepts
   - id: managed-patches
     text: For an EKS optimized AMI, AWS builds patched images and the customer deploys those images to

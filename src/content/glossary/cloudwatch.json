@@ -285,7 +285,7 @@
   {
     "term": "Log stream",
     "aliases": [],
-    "definition": "A log stream is a sequence of log events from the same source.",
+    "definition": "A log stream groups a sequence of events that share one source.",
     "source": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#Working-with-log-groups-and-streams"
   },
   {

@@ -219,4 +219,4 @@ Use signed URLs for individual downloads or clients that cannot store cookies. U
 
 > **Trap:** Expiry is checked at request time. A download started before expiry can finish, but a new retry or range request after expiry fails.
 
-> **Trap:** Allowed `OPTIONS` requests do not require a signature. The origin must not return protected content for that method.
+> **Trap:** Allowed `OPTIONS` requests do not require a signature. For that method, the origin must not return protected content.

@@ -32,7 +32,7 @@ facts:
       be updated.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html#bucket-key-policies
   - id: ssec-update
-    text: From April 2026, SSE-C is blocked by default for new general purpose buckets and existing
+    text: From April 2026, SSE-C is blocked by default in new general purpose buckets and in existing
       buckets in accounts without SSE-C objects.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html#ServerSideEncryptionCustomerKeys
   - id: ssec-enable
@@ -191,7 +191,7 @@ cards:
       - inventory-destination
   - id: s3-081
     q: Which report schedules and file formats does S3 Inventory support?
-    a: Daily or weekly reports in CSV, ORC, or Parquet. The first report can take up to 48 hours.
+    a: Daily or weekly reports in CSV, ORC, or Parquet. The initial report may take as long as 48 hours.
     facts:
       - inventory-purpose
       - inventory-formats
@@ -273,7 +273,7 @@ S3 operations depend on configuration details that affect access, encryption, ev
 
 - General purpose bucket names are 3 to 63 characters long.
 - An object can have up to 10 tags, each with a unique key.
-- Inventory runs daily or weekly in CSV, ORC, or Parquet; the first report can take up to 48 hours.
+- Inventory runs daily or weekly in CSV, ORC, or Parquet; the initial report may take as long as 48 hours.
 - S3 rechecks tags when a queued tag-filtered expiration executes and skips expiration if the triggering tag is absent.
 - The S3 RTC SLA does not apply while the replication transfer rate exceeds the default 1 Gbps quota.
 

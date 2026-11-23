@@ -27,7 +27,7 @@ facts:
       created through the console.
     source: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutTargets.html#API_PutTargets
   - id: hdd-throughput
-    text: "st1 throughput reaches up to 500 MiB/s and sc1 up to 250 MiB/s, both governed by size-based baselines and burst credits."
+    text: "Maximum throughput is 500 MiB/s for st1 and 250 MiB/s for sc1. Size-based baselines and burst credits govern both."
     source: https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html#hdd-vols
 cards:
   - id: ebs-033

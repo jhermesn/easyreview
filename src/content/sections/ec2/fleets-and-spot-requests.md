@@ -28,13 +28,13 @@ facts:
     text: "capacity-optimized picks only the pools with the most spare capacity (fewest interruptions), diversified spreads Spot Instances across all pools, and lowest-price, the CLI default, carries the highest interruption risk."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html#ec2-fleet-allocation-strategies-for-spot-instances
   - id: spot-pool
-    text: "A Spot capacity pool is the unused EC2 capacity for one instance type in one Availability Zone."
+    text: "A Spot capacity pool consists of unused EC2 capacity for a single instance type within a single Availability Zone."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html#spot-features
   - id: rebalance
     text: "An EC2 rebalance recommendation signals that a Spot Instance is at elevated interruption risk; it can arrive before the two-minute interruption notice, but sometimes arrives with it."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rebalance-recommendations.html
   - id: interruption-notice
-    text: "EC2 sends Spot interruption notices through Amazon EventBridge and instance metadata on a best-effort basis; stop and termination notices give two minutes, but hibernation begins immediately."
+    text: "EC2 delivers Spot interruption notices on a best-effort basis via instance metadata and Amazon EventBridge; notices for stopping or terminating give two minutes, while hibernation starts immediately."
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html
 cards:
   - id: ec2-073

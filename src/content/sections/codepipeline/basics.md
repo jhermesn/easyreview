@@ -7,7 +7,7 @@ facts:
     text: "A CodePipeline CloudFormation deploy action can create a stack or update an existing stack."
     source: https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CloudFormation.html#action-reference-CloudFormation-config
   - id: release
-    text: "AWS CodePipeline is a continuous delivery service that models, visualizes and automates the stages of a software release."
+    text: "AWS CodePipeline models, visualizes and automates software release stages as a continuous delivery service."
     source: https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html#welcome
 cards:
   - id: codepipeline-057

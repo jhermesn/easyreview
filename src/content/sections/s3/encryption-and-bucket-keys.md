@@ -46,7 +46,7 @@ facts:
     text: Bucket Keys use short-lived bucket-level keys to reduce SSE-KMS calls to KMS.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html#bucket-key
   - id: bucket-key-cost-saving
-    text: Bucket Keys can reduce KMS request costs by up to 99%.
+    text: Bucket Keys can cut KMS request costs by as much as 99%.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html#bucket-key
   - id: bucket-key-existing
     text: "Turning on Bucket Keys for a bucket does not change existing objects. For eligible SSE-KMS objects, UpdateObjectEncryption enables a Bucket Key without copying object data."
@@ -91,7 +91,7 @@ facts:
     text: "Uploading an SSE-KMS object needs kms:GenerateDataKey on the key and downloading it needs kms:Decrypt, so S3 access alone does not let someone read the data."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#UsingKMSEncryption
   - id: kms-same-region
-    text: "With SSE-KMS, the KMS key must be in the same AWS Region as the S3 bucket."
+    text: "With SSE-KMS, the S3 bucket and KMS key must share an AWS Region."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html
   - id: bucket-key-audit
     text: "S3 Bucket Keys reduce the number of KMS CloudTrail records for SSE-KMS objects because S3 reuses temporary key material instead of contacting KMS for every request."
@@ -242,7 +242,7 @@ S3 server-side encryption protects object data at rest, meaning while stored on 
 - Changing bucket default encryption leaves existing objects unchanged.
 - SSE-KMS can use the AWS managed `aws/s3` key; cross-account sharing requires a customer managed key.
 - New uploads have base SSE-S3 encryption using AES-256 since January 2023; it cannot be disabled and adds no encryption charge.
-- Bucket Keys can reduce KMS request costs by up to 99%; savings are not guaranteed for each workload.
+- Bucket Keys can cut KMS request costs by as much as 99%; each workload may see different savings.
 - Bucket Keys do not support DSSE-KMS.
 
 > **Trap:** Default SSE-KMS does not require every caller to send a KMS header. A policy that requires that header also rejects an upload that would otherwise inherit the default.

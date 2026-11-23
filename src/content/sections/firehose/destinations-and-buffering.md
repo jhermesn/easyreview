@@ -78,7 +78,7 @@ cards:
   - id: firehose-002
     q: Does a Firehose S3 destination deliver every input record immediately?
     a: No. Firehose buffers records until its size or interval hint is met. S3 defaults are 5 MB and 300
-      seconds; ranges are 1 to 128 MB and 0 to 900 seconds.
+      seconds; the size range is 1 to 128 MB, and the interval range is 0 to 900 seconds.
     trap: true
     facts:
       - deliver-trigger

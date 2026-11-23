@@ -10,7 +10,7 @@ facts:
     text: "With Basic Support, Trusted Advisor offers all Service Limits checks and selected Security and Fault Tolerance checks."
     source: https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html#trusted-advisor
   - id: categories
-    text: Check categories are Cost optimization, Performance, Security, Fault tolerance, Service limits and Operational Excellence.
+    text: Checks cover Security, Performance, Cost optimization, Service limits, Fault tolerance and Operational Excellence.
     source: https://docs.aws.amazon.com/awssupport/latest/user/get-started-with-aws-trusted-advisor.html#view-check-categories
   - id: eventbridge
     text: EventBridge rules can match Trusted Advisor check status changes and invoke targets such as Lambda or SNS.
@@ -42,7 +42,7 @@ cards:
     facts: [basic-checks]
   - id: trusted-advisor-001
     q: What does Trusted Advisor check, and how can its check events trigger automation?
-    a: "Trusted Advisor recommends improvements across cost, performance, security, fault tolerance, service limits and operational excellence. EventBridge rules in us-east-1 can invoke targets such as Lambda or SNS; eligible support is required."
+    a: "Trusted Advisor recommends improvements in security, performance, cost, service limits, fault tolerance and operational excellence. EventBridge rules in us-east-1 can invoke targets such as Lambda or SNS; eligible support is required."
     facts: [categories, eventbridge, event-region, event-support]
   - id: trusted-advisor-013
     q: Which security checks can a Basic Support customer use in Trusted Advisor?

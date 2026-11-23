@@ -22,7 +22,7 @@ facts:
     text: "To serve an S3 static website at a custom domain through a Route 53 alias, the bucket name must match the domain name exactly, for example example.com."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html#website-hosting-custom-domain-walkthrough
   - id: standard-retrieval-cost
-    text: "S3 One Zone-IA adds a per-GB retrieval fee when objects are read; S3 Standard has no per-GB retrieval fee."
+    text: "Reading objects in S3 One Zone-IA incurs a per-GB retrieval fee; S3 Standard charges no per-GB retrieval fee."
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-compare
   - id: standard-billing-minimums
     text: "S3 Standard has neither a minimum billable object size nor a minimum storage duration."
@@ -59,11 +59,11 @@ cards:
     facts: [website-bucket-name]
   - id: s3-187
     q: "An Amazon S3 workload frequently reads objects that can be recreated. Does the lower One Zone-IA storage rate alone make it cheaper than Standard?"
-    a: "No. One Zone-IA adds per-GB retrieval fees; Standard has no per-GB retrieval fee. Include the reads when comparing costs."
+    a: "No. One Zone-IA adds per-GB retrieval fees; Standard charges no per-GB retrieval fee. Include the reads when comparing costs."
     facts: [standard-retrieval-cost]
   - id: s3-188
     q: "An Amazon S3 workload stores tiny temporary objects. Which minimum size and storage duration apply in Standard?"
-    a: "Neither. S3 Standard has no minimum billable object size or minimum storage duration."
+    a: "Neither. S3 Standard has neither a minimum storage duration nor a minimum billable object size."
     facts: [standard-billing-minimums]
   - id: s3-205
     q: "Must every Amazon S3 general purpose bucket name compete with all other AWS accounts' bucket names?"
@@ -78,7 +78,7 @@ S3 design choices depend on object size, archive controls and website naming. Ch
 
 ### How it works
 
-1. Standard has no minimum billable object size or storage duration. One Zone-IA adds per-GB retrieval fees, while Standard has no per-GB retrieval fee. For small objects in Standard-IA or One Zone-IA, account for the minimum billed object size and storage duration.
+1. Standard has neither a minimum storage duration nor a minimum billable object size. One Zone-IA adds per-GB retrieval fees, while retrieval in Standard has no per-GB fee. For small objects in Standard-IA or One Zone-IA, account for the minimum billed object size and storage duration.
 2. For S3 Intelligent-Tiering, objects smaller than 128 KB stay in Frequent Access without automatic tiering or a monitoring and automation fee.
 3. For Glacier Flexible Retrieval or Deep Archive, include the metadata billed for each archived object.
 4. For an existing standalone Amazon Glacier vault, a Vault Lock policy can enforce write-once-read-many (WORM) controls. Once locked, the policy cannot be changed or deleted. The standalone service is closed to new customers; AWS recommends S3 Glacier storage classes.
@@ -97,7 +97,7 @@ S3 design choices depend on object size, archive controls and website naming. Ch
 - Standard has no minimum billed size or storage duration and no per-GB retrieval fee. One Zone-IA has per-GB retrieval fees.
 - Intelligent-Tiering objects below 128 KB incur no monitoring and automation fee.
 - Standard-IA and One Zone-IA bill each object for at least 128 KB and 30 days, even if deleted earlier.
-- Glacier Flexible Retrieval and Deep Archive add 40 KB of metadata per object: 32 KB at the archive rate and 8 KB at the S3 Standard rate.
+- Each object in Glacier Deep Archive or Flexible Retrieval adds 40 KB of metadata: 8 KB at the S3 Standard rate and 32 KB at the archive rate.
 - Bucket names: global namespace per partition by default, or the account regional namespace reserved to one account.
 - Default bucket quota: 10,000 general purpose buckets per account, adjustable.
 

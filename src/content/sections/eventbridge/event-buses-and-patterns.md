@@ -18,7 +18,7 @@ facts:
       events to one target.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-custom-bus.html
   - id: five-targets
-    text: A rule can have at most five targets.
+    text: Each rule supports up to five targets.
     source: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-targets
   - id: pattern-fields
     text: An event must contain all pattern fields at the same nesting level; fields omitted from the pattern are

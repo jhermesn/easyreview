@@ -4,10 +4,10 @@ level: foundational
 order: 10
 facts:
   - id: purpose
-    text: Amazon Neptune is a fast, reliable, fully managed graph database service for applications that work with highly connected datasets.
+    text: Amazon Neptune offers a fully managed, fast and reliable graph database for applications with highly connected datasets.
     source: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro
   - id: engine
-    text: The Neptune engine is optimized for storing billions of relationships and querying the graph with milliseconds latency.
+    text: The Neptune engine is optimized to store billions of relationships and query the graph with latency measured in milliseconds.
     source: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html#intro
   - id: languages
     text: Neptune supports the graph query languages Apache TinkerPop Gremlin, openCypher and SPARQL.

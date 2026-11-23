@@ -10,7 +10,7 @@ facts:
     text: Aurora Standard adds a charge per million I/O requests and is the best choice when I/O is less than 25% of total Aurora spending.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html
   - id: switch
-    text: You can switch from Aurora Standard to I/O-Optimized once every 30 days and back to Standard at any time, without downtime on non-NVMe instances.
+    text: A change to I/O-Optimized from Aurora Standard is allowed once per 30 days. The return to Standard can happen at any time. Neither change causes downtime on non-NVMe instances.
     source: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html
   - id: babelfish
     text: Babelfish for Aurora PostgreSQL accepts connections from SQL Server clients over the TDS wire protocol, so SQL Server applications work with Aurora PostgreSQL with few code changes and no driver changes.

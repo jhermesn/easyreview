@@ -72,7 +72,7 @@ facts:
       encryption.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-config-for-kms-objects.html#replication-config-for-kms-objects
   - id: replication-rtc
-    text: S3 Replication Time Control replicates 99.9 percent of uploaded objects within 15 minutes and enables replication metrics.
+    text: S3 Replication Time Control replicates within 15 minutes for 99.9 percent of uploaded objects and enables replication metrics.
     source: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-time-control.html#replication-time-control
   - id: replication-batch-retry
     text: S3 Batch Replication uses an existing replication configuration and a manifest to retry failed objects or copy existing and previously replicated objects.
@@ -176,8 +176,7 @@ cards:
       - crr-srr-srr
   - id: s3-008
     q: Does S3 replication copy deletions of object versions and delete markers?
-    a: Version-specific deletions are not replicated. V2 rules do not replicate delete markers by
-      default; enable it for rules without tag filters. V1 rules replicate markers from user
+    a: Version-specific deletions are not replicated. By default, V2 rules do not replicate delete markers; enable it for rules without tag filters. V1 rules replicate markers from user
       deletes. Lifecycle actions are not replicated.
     trap: true
     facts:
@@ -198,7 +197,7 @@ cards:
       - replication-lifecycle
   - id: s3-010
     q: How does a team replicate SSE-KMS encrypted S3 objects across Regions?
-    a: Opt in to encrypted-object replication and specify a KMS key in the destination Region. Give the
+    a: Opt in to encrypted-object replication and choose a destination Region KMS key. Give the
       role source kms:Decrypt and destination kms:Encrypt permissions.
     facts:
       - replication-kms-opt-in
@@ -222,7 +221,7 @@ cards:
       - replication-versions
   - id: s3-084
     q: An S3 replication workload needs a measurable replication time target and CloudWatch metrics. What should the team enable?
-    a: Enable S3 Replication Time Control. It replicates 99.9 percent of uploaded objects within 15 minutes and enables replication metrics.
+    a: Enable S3 Replication Time Control. It replicates within 15 minutes for 99.9 percent of uploaded objects and enables replication metrics.
     facts:
       - replication-rtc
   - id: s3-086
@@ -294,7 +293,7 @@ S3 Replication creates copies in other buckets without making the application up
 - If the question says new S3 writes need copies in another Region, think CRR, because it copies matching versions asynchronously across Regions.
 - If the question says S3 replicas must survive version-specific deletes in the source, think replication, because these deletes are not propagated.
 - If the question says a replication chain misses copies from its first bucket, think direct source-to-destination rules, because live replication skips replicas from another rule.
-- If the question requires a replication time target and CloudWatch visibility, think S3 Replication Time Control, because it enables replication metrics and replicates 99.9 percent of uploaded objects within 15 minutes.
+- If the question says a replication time target and CloudWatch visibility are required, think S3 Replication Time Control, because it enables replication metrics and replicates within 15 minutes for 99.9 percent of uploaded objects.
 - If the question says an SSE-KMS replica must be readable in another account, think a destination-owned customer managed KMS key and key policy access for the replication role.
 - If the question says copy every new object to buckets in several Regions, think S3 Replication to multiple destinations, because one source bucket can replicate to many.
 

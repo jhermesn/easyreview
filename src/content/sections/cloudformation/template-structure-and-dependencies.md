@@ -116,7 +116,7 @@ diagrams:
       - id: network
         label: Network resource
         icon: res-gear
-        info: The referenced resource is created first and deleted last.
+        info: CloudFormation creates the referenced resource first and deletes it last.
         x: 25
         y: 65
         w: 200

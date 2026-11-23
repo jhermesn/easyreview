@@ -107,7 +107,7 @@ facts:
       application processing.
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html#field-level-encryption
   - id: any-dns-provider
-    text: "An alternate domain name for a CloudFront distribution is routed by its DNS service, which can be Route 53 with an alias record or another DNS provider pointing to the distribution domain name."
+    text: "The DNS service routes a CloudFront distribution's alternate domain name. An alias record in Route 53 can do this, as can a different DNS provider that points to the distribution domain name."
     source: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CreatingCNAME.html
 diagrams:
   - id: cloudfront-field-encryption-flow

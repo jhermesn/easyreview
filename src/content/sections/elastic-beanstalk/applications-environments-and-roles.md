@@ -73,7 +73,7 @@ facts:
     text: Dockerfile and Dockerrun.aws.json belong at the source archive root.
     source: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/single-container-docker-configuration.html#single-container-docker-configuration.dockerrun
   - id: elastic-ip
-    text: An Elastic IP is a static public IPv4 address.
+    text: An Elastic IP address is a public IPv4 address that is static.
     source: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#elastic-ip-addresses-eip
   - id: security-group
     text: A security group controls allowed incoming and outgoing resource traffic.
