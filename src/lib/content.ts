@@ -2,7 +2,6 @@
 // maps (src/data/guides/<cert>.json): 100% of the guide and nothing the guide doesn't ask for.
 import { resolve } from 'node:path';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import type { DeckCard } from '../components/FlashDeck.astro';
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales';
 import { availableCerts, getCert, GOLDEN_TRAIL, isTrail, type Cert } from './certs';
 import { getGuide } from './guides';
@@ -137,6 +136,21 @@ export async function orphanSections(certIds: string[]): Promise<string[]> {
   const { sections } = await getContent();
   const used = new Set((await Promise.all(certIds.map((id) => getCertView(id)))).flatMap((v) => v.sections.map((s) => s.id)));
   return [...sections.keys()].filter((id) => !used.has(id));
+}
+
+// One flashcard as the deck component receives it (src/components/FlashDeck.astro).
+export interface DeckCard {
+  id: string;
+  topic: string;
+  topicTitle: string;
+  domain: string;
+  q: string;
+  a: string;
+  trap: boolean;
+  // BCP 47 tag of the card's text, which stays English until its section is translated.
+  lang: string;
+  // Time of the card's latest material change: a card last reviewed before it is due again.
+  revised?: number;
 }
 
 export function deckCards(view: CertView): DeckCard[] {

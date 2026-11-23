@@ -25,7 +25,7 @@ facts:
     text: Route 53 health checks monitor the health of web applications and other resources, and CloudWatch alarms can notify when a health check status changes.
     source: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html
   - id: "resolver-hybrid"
-    text: "Route 53 Resolver inbound and outbound endpoints forward DNS queries between a VPC and an on-premises network over a VPN or Direct Connect."
+    text: "Route 53 Resolver inbound and outbound endpoints forward DNS queries in both directions between a VPC and on-premises DNS over a VPN or Direct Connect link."
     source: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html#resolver"
 cards:
   - id: route53-074
@@ -58,7 +58,7 @@ cards:
     a: Route 53 health checks.
     facts: [health-checks]
   - id: route53-083
-    q: "How can Route 53 Resolver exchange DNS queries between a VPC and an on-premises network connected by VPN?"
+    q: "A VPC and an on-premises data center are connected by VPN. How can Route 53 Resolver exchange DNS queries between them?"
     a: "Use inbound and outbound Resolver endpoints for the required query directions."
     facts: [resolver-hybrid]
 ---

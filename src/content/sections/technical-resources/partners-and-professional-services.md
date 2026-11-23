@@ -111,10 +111,9 @@ When a customer needs more than documentation and support cases, AWS offers peop
 
 ### Exam cues
 
-- If the question says an outside organization should help design and migrate AWS workloads, think an AWS consulting partner, because partners offer those services.
-- If the question says a partner develops software for AWS, think Software Path; for consulting services, think Services Path.
-- If the question says identify the current AWS partner model, think Partner Paths, because they replaced the former partner types.
-- If the question says third-party company to help migrate, think an AWS Partner (consulting partner or system integrator).
+- If the question says an outside company should help plan, design and migrate AWS workloads, think an AWS Partner that offers services (the Services Path), because partners provide consulting from planning through operations.
+- If the question says a partner develops software for AWS, think the Software Path; for consulting and other services, think the Services Path.
+- If the question says identify the current AWS partner model, think Partner Paths, because they replaced the former technology and consulting partner types.
 - If the question says AWS experts on a project, think AWS Professional Services.
 - If the question says software company selling on AWS, think ISV in the APN and AWS Marketplace.
 - If the question says AWS should operate the infrastructure for the company, think AWS Managed Services (AMS).

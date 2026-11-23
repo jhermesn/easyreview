@@ -23,7 +23,7 @@ diagrams:
 
 - Tones: `compute`, `storage`, `network`, `security`, `mgmt`, `database`, `devtools`, `integration`, `user`, `neutral`.
 - Keep `label` under 18 characters and `sub` under 26. Quote any value that contains a comma (`sub: "sessions, reads"`): in the one-line `{ ... }` form, YAML ends an unquoted value at the comma.
-- Every AWS service or resource node gets `icon: <id>` from `src/data/aws-icons.json`: services such as `codedeploy` or `route-53`, resources such as `res-ec2-instance` or `res-client`, group frames such as `group-region` or `group-aws-account`. An icon node needs `h: 72` without `sub` and `h: 86` with it.
+- Every AWS service or resource node gets `icon: <id>` from `src/data/aws-icons.json`: services such as `codedeploy` or `route-53`, resources such as `res-ec2-instance` or `res-client`, group frames such as `group-region` or `group-aws-account`, and service categories such as `cat-artificial-intelligence`. An icon node needs `h: 72` without `sub` and `h: 86` with it.
 - A new icon must be copied into `public/aws-icons/`: download the official package from https://aws.amazon.com/architecture/icons/, unzip it outside the repository and run `node scripts/sync-aws-icons.mjs <package dir>`. The build fails on an icon that was not copied.
 - Give edges a `step` and put the text in `steps`. Edge labels overlap the boxes in these layouts, so don't use them.
 - Leave at least 40 px between boxes and keep every box inside its group and the viewBox. Nodes inside a group need about 30 px of top padding for the group label.

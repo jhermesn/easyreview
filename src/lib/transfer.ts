@@ -6,7 +6,7 @@ const PREFIX = 'ER1.';
 type Saved = Partial<Record<keyof typeof KEYS, unknown>>;
 
 async function pipe(bytes: Uint8Array, stream: CompressionStream | DecompressionStream): Promise<Uint8Array> {
-  return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer());
+  return new Uint8Array(await new Response(new Blob([new Uint8Array(bytes)]).stream().pipeThrough(stream)).arrayBuffer());
 }
 
 function toBase64Url(bytes: Uint8Array): string {

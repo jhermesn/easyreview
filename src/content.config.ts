@@ -66,7 +66,8 @@ const units = defineCollection({
   // `names`: official and short service names. Mentions in other units' sections link here,
   // and exam guide service lists match against them (src/lib/guides.ts).
   // `category`: the service category the Golden Jacket trail lists the unit under (src/lib/categories.ts).
-  schema: z.object({ title: z.string(), names: z.array(z.string()).default([]), summary: z.string(), category: z.enum(categoryIds), icon: iconId.optional() }),
+  // `icon`: the service's AWS icon, or the category icon (`cat-<name>`) for a cross-service concept.
+  schema: z.object({ title: z.string(), names: z.array(z.string()).default([]), summary: z.string(), category: z.enum(categoryIds), icon: iconId }),
 });
 
 // Terms a unit's sections use that a reader may not know: src/content/glossary/<unit>.json.

@@ -23,7 +23,7 @@ export function withDefaults(d: Partial<DiagramInput> & { id: string; nodes: Par
     width: d.width ?? 800,
     height: d.height ?? 420,
     groups: d.groups ?? [],
-    nodes: d.nodes.map((n) => ({ w: 140, h: 56, ...n }) as DNode),
+    nodes: d.nodes.map((n) => ({ ...n, w: n.w ?? 140, h: n.h ?? 56 }) as DNode),
     edges: d.edges ?? [],
     steps: d.steps ?? [],
   };
