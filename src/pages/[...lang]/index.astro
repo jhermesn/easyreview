@@ -9,7 +9,7 @@ import { getGuide } from '../../lib/guides';
 import { withBase } from '../../lib/format';
 import { badgeUrl } from '../../lib/badge';
 import { examSummary } from '../../lib/exams';
-import { absoluteUrl } from '../../lib/seo';
+import { AUTHOR, absoluteUrl } from '../../lib/seo';
 import { Image } from 'astro:assets';
 import { ADD_YOURSELF, loadPeople } from '../../lib/people';
 import { localeOf, localeParams, localePath, useTranslations } from '../../i18n';
@@ -45,8 +45,8 @@ const certCount = people.reduce((n, p) => n + p.active, 0);
 // Site name and logo for search results.
 const home = new URL(link('/'), Astro.site).href;
 const jsonLd = [
-  { '@type': 'WebSite', name: 'Easy Review', url: home },
-  { '@type': 'Organization', name: 'Easy Review', url: home, logo: absoluteUrl('/icons/icon-512.png', Astro.site!), sameAs: ['https://github.com/jhermesn/easyreview'] },
+  { '@type': 'WebSite', '@id': `${absoluteUrl('/', Astro.site!)}#website`, name: 'Easy Review', url: home, creator: AUTHOR, publisher: { '@id': `${absoluteUrl('/', Astro.site!)}#organization` } },
+  { '@type': 'Organization', '@id': `${absoluteUrl('/', Astro.site!)}#organization`, name: 'Easy Review', url: home, logo: absoluteUrl('/icons/icon-512.png', Astro.site!), founder: AUTHOR, sameAs: ['https://github.com/jhermesn/easyreview'] },
 ];
 const rows = [[byId('foundational'), byId('business')], ...levels.filter((l) => !['foundational', 'business'].includes(l.id)).map((l) => [l])];
 ---
