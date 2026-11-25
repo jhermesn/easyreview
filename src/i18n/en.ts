@@ -131,7 +131,6 @@ const en = {
   'deck.answer': 'Answer',
   'deck.showAnswer': 'Show answer (space)',
   'deck.empty': 'Nothing to review here right now. Pick other topics or another filter.',
-  'deck.reset': 'Reset progress for the selected topics',
   'deck.dueNow': 'due now',
   'deck.nextIn': 'next in {delay}',
   'deck.new': 'new',

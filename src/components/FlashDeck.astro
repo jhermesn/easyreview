@@ -78,7 +78,7 @@ const grades = [
       ))}
     </div>
   </div>
-  <p class="stats muted"><span data-stats></span> · <button class="link" data-reset title={t('deck.reset')}><Icon name="reset" size={13} /></button></p>
+  <p class="stats muted"><span data-stats></span></p>
 </section>
 
 <style>
@@ -132,7 +132,6 @@ const grades = [
   @media (max-width: 360px) { .grades { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   button.easy { border-color: var(--purple); color: var(--purple); }
   .stats { font-size: 0.8rem; }
-  button.link { background: none; border: none; padding: 0; color: var(--ink-300); text-decoration: underline dotted; font-size: inherit; }
 </style>
 
 <script>
@@ -277,11 +276,6 @@ const grades = [
     root.querySelectorAll<HTMLButtonElement>('[data-grade]').forEach((b) => b.addEventListener('click', () => grade(b.dataset.grade as Grade)));
     $('[data-prev]').addEventListener('click', () => move(-1));
     $('[data-next]').addEventListener('click', () => move(1));
-    $('[data-reset]').addEventListener('click', () => {
-      all.filter((c) => inScope(c)).forEach((c) => delete progress[c.id]);
-      save(progress);
-      build();
-    });
     boxes.forEach((b) => b.addEventListener('change', build));
     root.querySelector('[data-pick-all]')?.addEventListener('click', () => { boxes.forEach((b) => (b.checked = true)); build(); });
     root.querySelector('[data-pick-none]')?.addEventListener('click', () => { boxes.forEach((b) => (b.checked = false)); build(); });

@@ -136,7 +136,6 @@ const ptBr: Partial<Record<Key, string>> = {
   'deck.answer': 'Resposta',
   'deck.showAnswer': 'Mostrar resposta (espaço)',
   'deck.empty': 'Nada para revisar aqui agora. Escolha outros tópicos ou outro filtro.',
-  'deck.reset': 'Zerar o progresso dos tópicos selecionados',
   'deck.dueNow': 'pendente agora',
   'deck.nextIn': 'próximo em {delay}',
   'deck.new': 'novo',
