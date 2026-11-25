@@ -29,7 +29,7 @@ const ptBr: Partial<Record<Key, string>> = {
   'footer.trademarks':
     'AWS e AWS Certification são marcas registradas da Amazon.com, Inc. ou de suas afiliadas. Seu progresso fica salvo só neste navegador; não há contas nem rastreadores.',
 
-  'home.title': 'Resumos e flashcards gratuitos para os exames de certificação AWS',
+  'home.title': 'Estude uma vez, passe em todo exame AWS: resumos e flashcards grátis',
   'home.description':
     'Revisão gratuita para as certificações AWS: resumos, diagramas passo a passo e flashcards feitos a partir da documentação da AWS, ligados a cada item do guia do exame. Estude um tópico uma vez e ele vale para todo exame que o cobra.',
   'home.kicker': '100% docs da AWS',
