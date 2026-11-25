@@ -255,7 +255,7 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
   /* Drawn with CSS: the sidebar repeats on every page, and two inline SVGs per link weighed ~100 kB per page. */
   .st { flex: none; position: relative; width: 12px; height: 12px; margin: 1px; border: 1.5px solid var(--ink-500); border-radius: 50%; }
   .side-link:global(.is-known) .st { border-color: var(--mint); }
-  .side-link:global(.is-known) .st::after { content: ''; position: absolute; left: 3.2px; top: 1px; width: 3px; height: 6px; border: solid var(--mint); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+  .side-link:global(.is-known) .st::after { content: ''; position: absolute; left: 50%; top: 50%; box-sizing: border-box; width: 4.5px; height: 7.5px; border: solid var(--mint); border-width: 0 1.5px 1.5px 0; transform: translate(-50%, -62%) rotate(45deg); }
 
   .main { min-height: calc(100dvh - var(--topbar)); display: flex; flex-direction: column; }
   .content { width: 100%; max-width: 54rem; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; flex: 1; }
