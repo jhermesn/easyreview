@@ -29,7 +29,7 @@ const ptBr: Partial<Record<Key, string>> = {
   'footer.trademarks':
     'AWS e AWS Certification são marcas registradas da Amazon.com, Inc. ou de suas afiliadas. Seu progresso fica salvo só neste navegador; não há contas nem rastreadores.',
 
-  'home.title': 'Estude uma vez, passe em todo exame AWS',
+  'home.title': 'Estude uma vez, passe em todo exame AWS: resumos e flashcards grátis',
   'home.description':
     'Revisão gratuita para as certificações AWS: resumos, diagramas passo a passo e flashcards feitos a partir da documentação da AWS, ligados a cada item do guia do exame. Estude um tópico uma vez e ele vale para todo exame que o cobra.',
   'home.kicker': '100% docs da AWS',
@@ -92,6 +92,8 @@ const ptBr: Partial<Record<Key, string>> = {
   'content.help': 'Ajude a traduzir',
 
   'unit.resourceName': '{unit} para o {code}',
+  'unit.title': '{unit} para o {code}: resumos e flashcards',
+  'unit.titleTrail': '{unit}: resumos e flashcards para os exames de certificação AWS',
   'unit.typeNotes': 'resumos de estudo',
   'unit.typeFlashcards': 'flashcards',
   'unit.description': '{summary} Resumos e flashcards para o {code}.',
@@ -134,7 +136,6 @@ const ptBr: Partial<Record<Key, string>> = {
   'deck.answer': 'Resposta',
   'deck.showAnswer': 'Mostrar resposta (espaço)',
   'deck.empty': 'Nada para revisar aqui agora. Escolha outros tópicos ou outro filtro.',
-  'deck.reset': 'Zerar o progresso dos tópicos selecionados',
   'deck.dueNow': 'pendente agora',
   'deck.nextIn': 'próximo em {delay}',
   'deck.new': 'novo',

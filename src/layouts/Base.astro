@@ -11,9 +11,10 @@ import { getCert, isTrail } from '../lib/certs';
 import { getCertView, knownGroups, revisionTimes, sectionIds } from '../lib/content';
 import { getGuide } from '../lib/guides';
 import { jsonForScript, withBase } from '../lib/format';
+import { absoluteUrl, isCanonicalPage, selfIndexing, type Indexing } from '../lib/seo';
 import { badgeUrl } from '../lib/badge';
 import LanguagePicker from '../components/LanguagePicker.astro';
-import { LOCALES, localeIds, localeOf, localePath, stripLocale, useTranslations, DEFAULT_LOCALE } from '../i18n';
+import { LOCALES, localeOf, localePath, stripLocale, useTranslations, DEFAULT_LOCALE } from '../i18n';
 import '../styles/global.css';
 
 interface Props {
@@ -23,19 +24,25 @@ interface Props {
   // schema.org objects for search engines, emitted as JSON-LD.
   jsonLd?: Record<string, unknown>[];
   noindex?: boolean;
+  // Which URL to index instead of this one, and the locales indexed in their own right (lib/seo.ts). Default: this page, every locale.
+  indexing?: Indexing;
   // Plain name of this page inside its cert ("CodeDeploy", "Flashcards"), shown by the resume block.
   heading?: string;
 }
 const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
-const { title, description = t('meta.description'), cert: certId, jsonLd = [], noindex = false, heading } = Astro.props;
+const { title, description = t('meta.description'), cert: certId, jsonLd = [], noindex = false, heading, indexing: pageIndexing } = Astro.props;
 const link = (path: string) => localePath(locale, path);
 // The same page in every locale, for hreflang and the language picker.
 const pagePath = stripLocale(Astro.url.pathname);
-const alternates = localeIds.map((l) => ({ l, href: new URL(localePath(l, pagePath), Astro.site).href }));
+const indexing = pageIndexing ?? selfIndexing(pagePath, locale);
+// hreflang belongs on indexed pages only, and only when another locale has its own indexed copy.
+const alternates = isCanonicalPage(indexing, pagePath, locale) && indexing.alternates.length > 1
+  ? indexing.alternates.map((l) => ({ l, href: absoluteUrl(pagePath, Astro.site!, l) }))
+  : [];
 const cert = certId ? getCert(certId) : undefined;
 const fullTitle = `${title} · Easy Review`;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const canonical = absoluteUrl(indexing.canonical.path, Astro.site!, indexing.canonical.locale);
 // Link previews show the logo with the name; the small icons below carry the logo alone.
 const image = new URL(withBase('/og.png'), Astro.site).href;
 const imageAlt = t('meta.imageAlt');
@@ -60,7 +67,7 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     {!noindex && alternates.map((a) => <link rel="alternate" hreflang={LOCALES[a.l].lang} href={a.href} />)}
-    {!noindex && <link rel="alternate" hreflang="x-default" href={alternates.find((a) => a.l === DEFAULT_LOCALE)!.href} />}
+    {!noindex && alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={alternates.find((a) => a.l === DEFAULT_LOCALE)!.href} />}
     <meta property="og:locale" content={LOCALES[locale].og} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Easy Review" />
@@ -153,13 +160,12 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
             const own = view!.units.filter((u) => u.domain === d.id);
             return (
               <section class="side-domain">
-                <h2 title={t('side.weight', { n: d.weight })}><span>{d.name}</span><em>{d.weight}%</em></h2>
+                <p class="side-head" title={t('side.weight', { n: d.weight })}><span>{d.name}</span><em>{d.weight}%</em></p>
                 <ul>
                   {own.map(({ unit, sections }) => (
                     <li>
                       <a class="side-link" href={link(`/${cert.id}/${unit.id}`)} aria-current={here(`/${cert.id}/${unit.id}`)} data-known={sectionIds(sections)}>
-                        <Icon name="circle" size={14} class="st st-open" />
-                        <Icon name="check-circle" size={14} class="st st-done" />
+                        <span class="st" aria-hidden="true"></span>
                         <span>{unit.data.title}</span>
                       </a>
                     </li>
@@ -240,17 +246,16 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
   .bar span { display: block; height: 100%; width: var(--pct, 0%); background: var(--mint); transition: width 0.2s; }
   .side-progress.is-gold { color: var(--gold); }
   .side-progress.is-gold .bar span { background: var(--gold-sheen); }
-  .side-domain h2 { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--purple); margin: 1.1rem 0.4rem 0.3rem; font-weight: 700; line-height: 1.4; }
-  .side-domain h2 em { font-style: normal; color: var(--ink-400); }
+  .side-head { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--purple); margin: 1.1rem 0.4rem 0.3rem; font-weight: 700; line-height: 1.4; }
+  .side-head em { font-style: normal; color: var(--ink-400); }
   .side-domain ul { list-style: none; margin: 0; padding: 0; }
   .side-link { display: flex; align-items: center; gap: 0.45rem; padding: 0.15rem 0.4rem; color: var(--ink-300); text-decoration: none; border-left: 2px solid transparent; line-height: 1.45; font-size: 0.84rem; }
   .side-link:hover { color: var(--ink-100); }
   .side-link[aria-current='page'] { color: var(--ink-100); border-left-color: var(--amber); background: var(--ink-850); }
-  .side-link :global(.st) { flex: none; }
-  .side-link :global(.st-open) { color: var(--ink-500); }
-  .side-link :global(.st-done) { color: var(--mint); display: none; }
-  .side-link:global(.is-known) :global(.st-open) { display: none; }
-  .side-link:global(.is-known) :global(.st-done) { display: inline; }
+  /* Drawn with CSS: the sidebar repeats on every page, and two inline SVGs per link weighed ~100 kB per page. */
+  .st { flex: none; position: relative; width: 12px; height: 12px; margin: 1px; border: 1.5px solid var(--ink-500); border-radius: 50%; }
+  .side-link:global(.is-known) .st { border-color: var(--mint); }
+  .side-link:global(.is-known) .st::after { content: ''; position: absolute; left: 50%; top: 50%; box-sizing: border-box; width: 4.5px; height: 7.5px; border: solid var(--mint); border-width: 0 1.5px 1.5px 0; transform: translate(-50%, -62%) rotate(45deg); }
 
   .main { min-height: calc(100dvh - var(--topbar)); display: flex; flex-direction: column; }
   .content { width: 100%; max-width: 54rem; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; flex: 1; }

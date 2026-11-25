@@ -1,6 +1,6 @@
 # Tech
 
-Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.config.ts`) and `@astrojs/sitemap`. TypeScript in strict mode. three.js loads only for the home hero. Node 24 or later. GitHub Pages serves the build (`.github/workflows/deploy.yml`).
+Astro 7 static site with Sätteri Markdown, Zod content schemas (`src/content.config.ts`). `src/pages/sitemap-index.xml.ts` and `src/pages/llms.txt.ts` build the sitemap and llms.txt from the content. TypeScript in strict mode. three.js loads only for the home hero. Node 24 or later. GitHub Pages serves the build (`.github/workflows/deploy.yml`).
 
 ## Commands
 
