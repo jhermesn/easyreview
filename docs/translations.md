@@ -8,7 +8,7 @@ The interface is available in English (default, at the root) and Brazilian Portu
 - `src/i18n/en.ts` holds every interface string, keyed by where it appears (`nav.search`, `deck.again`). It is the source for all translations.
 - `src/i18n/<id>.ts` holds one language. A missing key falls back to English, so a partial translation still works.
 - Strings use `{name}` placeholders (`'Start {code}'`). A translation must keep every placeholder of the English text; `npm test` checks this.
-- Pages live in `src/pages/[...lang]/`, so one page file serves every language. Links go through `localePath(locale, path)`, and the head lists every language version with `hreflang`. The sitemap lists them too.
+- Pages live in `src/pages/[...lang]/`, so one page file serves every language. Links go through `localePath(locale, path)`. Search engines index a language's copy of a page only when its main text is in that language: a topic page counts once the unit and every section are translated, and decks and coverage pages always use the English copy. Other copies set their canonical to the indexed one (`lib/seo.ts`). Only indexed pages carry `hreflang` and appear in the sitemap. A topic is indexed through its Golden Jacket page, which shows every section of the unit.
 - In client scripts, `clientT()` reads the page's language from `<html data-locale>`.
 
 ## Translate the interface into a new language

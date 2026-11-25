@@ -26,7 +26,7 @@ const en = {
   'footer.disclaimer': 'Independent review notes, not a course; AWS Skill Builder has the official training. Not affiliated with, sponsored by or endorsed by Amazon Web Services. Each topic links the AWS documentation it is based on; when in doubt, the official docs and exam guide win.',
   'footer.trademarks': 'AWS and AWS Certification are trademarks of Amazon.com, Inc. or its affiliates. Your progress is stored only in this browser; there are no accounts or trackers.',
 
-  'home.title': 'Study once, pass every AWS exam',
+  'home.title': 'Free study notes and flashcards for AWS Certification exams',
   'home.description': 'Free AWS certification review: notes, step-by-step diagrams and flashcards from AWS documentation, mapped to every exam guide item. Study a topic once and it counts for every exam that uses it.',
   'home.kicker': '100% AWS Docs',
   'home.h1.a': 'Study each topic',
@@ -87,6 +87,8 @@ const en = {
   'content.help': 'Help translate it',
 
   'unit.resourceName': '{unit} for {code}',
+  'unit.title': '{unit} for {code}: notes and flashcards',
+  'unit.titleTrail': '{unit}: notes and flashcards for AWS Certification exams',
   'unit.typeNotes': 'study notes',
   'unit.typeFlashcards': 'flashcards',
   'unit.description': '{summary} {code} review notes and flashcards.',

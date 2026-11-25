@@ -5,6 +5,7 @@ import { getCertView, getContent, orphanSections, sectionHref } from '../../../l
 import { getGuide, guideProblems, servicesCoverage } from '../../../lib/guides';
 import { DEFAULT_LOCALE, localeOf, localeParams, localePath, useTranslations } from '../../../i18n';
 import ContentNotice from '../../../components/ContentNotice.astro';
+import { englishIndexing } from '../../../lib/seo';
 
 export function getStaticPaths() {
   return localeParams(availableCerts().filter((c) => getGuide(c.id)).map((c) => ({ params: { cert: c.id } })));
@@ -40,7 +41,7 @@ if (cert.id === availableCerts()[0].id && locale === DEFAULT_LOCALE) {
 const link = (id: string) => (sections.has(id) ? localePath(locale, sectionHref(cert.id, sections.get(id)!)) : '#');
 const titleOf = (id: string) => sections.get(id)?.data.title ?? id;
 ---
-<Base title={`${t('cov.title')} · ${cert.code}`} description={t('cov.description', { code: cert.code })} cert={cert.id} heading={t('cov.title')}>
+<Base title={`${t('cov.title')} · ${cert.code}`} description={t('cov.description', { code: cert.code })} cert={cert.id} heading={t('cov.title')} indexing={englishIndexing(`/${cert.id}/coverage/`)}>
   <div class="article">
     <h1>{t('cov.title')} <span class="muted">{cert.code}</span></h1>
     <p class="muted">

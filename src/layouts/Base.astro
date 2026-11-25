@@ -11,9 +11,10 @@ import { getCert, isTrail } from '../lib/certs';
 import { getCertView, knownGroups, revisionTimes, sectionIds } from '../lib/content';
 import { getGuide } from '../lib/guides';
 import { jsonForScript, withBase } from '../lib/format';
+import { absoluteUrl, isCanonicalPage, selfIndexing, type Indexing } from '../lib/seo';
 import { badgeUrl } from '../lib/badge';
 import LanguagePicker from '../components/LanguagePicker.astro';
-import { LOCALES, localeIds, localeOf, localePath, stripLocale, useTranslations, DEFAULT_LOCALE } from '../i18n';
+import { LOCALES, localeOf, localePath, stripLocale, useTranslations, DEFAULT_LOCALE } from '../i18n';
 import '../styles/global.css';
 
 interface Props {
@@ -23,19 +24,25 @@ interface Props {
   // schema.org objects for search engines, emitted as JSON-LD.
   jsonLd?: Record<string, unknown>[];
   noindex?: boolean;
+  // Which URL to index instead of this one, and the locales indexed in their own right (lib/seo.ts). Default: this page, every locale.
+  indexing?: Indexing;
   // Plain name of this page inside its cert ("CodeDeploy", "Flashcards"), shown by the resume block.
   heading?: string;
 }
 const locale = localeOf(Astro.currentLocale);
 const t = useTranslations(locale);
-const { title, description = t('meta.description'), cert: certId, jsonLd = [], noindex = false, heading } = Astro.props;
+const { title, description = t('meta.description'), cert: certId, jsonLd = [], noindex = false, heading, indexing: pageIndexing } = Astro.props;
 const link = (path: string) => localePath(locale, path);
 // The same page in every locale, for hreflang and the language picker.
 const pagePath = stripLocale(Astro.url.pathname);
-const alternates = localeIds.map((l) => ({ l, href: new URL(localePath(l, pagePath), Astro.site).href }));
+const indexing = pageIndexing ?? selfIndexing(pagePath, locale);
+// hreflang belongs on indexed pages only, and only when another locale has its own indexed copy.
+const alternates = isCanonicalPage(indexing, pagePath, locale) && indexing.alternates.length > 1
+  ? indexing.alternates.map((l) => ({ l, href: absoluteUrl(pagePath, Astro.site!, l) }))
+  : [];
 const cert = certId ? getCert(certId) : undefined;
 const fullTitle = `${title} · Easy Review`;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const canonical = absoluteUrl(indexing.canonical.path, Astro.site!, indexing.canonical.locale);
 // Link previews show the logo with the name; the small icons below carry the logo alone.
 const image = new URL(withBase('/og.png'), Astro.site).href;
 const imageAlt = t('meta.imageAlt');
@@ -60,7 +67,7 @@ const here = (href: string) => (path === link(href).replace(/\/$/, '') ? 'page' 
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     {!noindex && alternates.map((a) => <link rel="alternate" hreflang={LOCALES[a.l].lang} href={a.href} />)}
-    {!noindex && <link rel="alternate" hreflang="x-default" href={alternates.find((a) => a.l === DEFAULT_LOCALE)!.href} />}
+    {!noindex && alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={alternates.find((a) => a.l === DEFAULT_LOCALE)!.href} />}
     <meta property="og:locale" content={LOCALES[locale].og} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Easy Review" />

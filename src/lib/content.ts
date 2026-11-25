@@ -2,7 +2,7 @@
 // maps (src/data/guides/<cert>.json): 100% of the guide and nothing the guide doesn't ask for.
 import { resolve } from 'node:path';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales';
+import { DEFAULT_LOCALE, LOCALES, localeIds, type Locale } from '../i18n/locales';
 import { availableCerts, getCert, GOLDEN_TRAIL, isTrail, type Cert } from './certs';
 import { getGuide } from './guides';
 import { hashFile, mergeSection, sectionProblems } from './translate';
@@ -184,4 +184,14 @@ export function knownGroups(sections: Section[]): string {
   const byUnit = new Map<string, Section[]>();
   for (const s of sections) byUnit.set(unitIdOf(s), [...(byUnit.get(unitIdOf(s)) ?? []), s]);
   return [...byUnit.values()].map(sectionIds).join('|');
+}
+
+// Locales other than English whose Golden Jacket copy of a unit is fully translated (the unit and every section).
+export async function translatedLocales(unitId: string): Promise<Locale[]> {
+  const others = localeIds.filter((l) => l !== DEFAULT_LOCALE);
+  const done = await Promise.all(others.map(async (l) => {
+    const own = (await getCertView(GOLDEN_TRAIL.id, l)).units.find((u) => u.unit.id === unitId);
+    return !!own && own.unit.lang === l && own.sections.every((sec) => sec.lang === l);
+  }));
+  return others.filter((_, i) => done[i]);
 }
